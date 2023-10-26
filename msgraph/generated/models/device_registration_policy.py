@@ -14,13 +14,13 @@ from .entity import Entity
 
 @dataclass
 class DeviceRegistrationPolicy(Entity):
-    # Specifies the authorization policy for controlling registration of new devices using Azure AD Join within your organization. Required. For more information, see What is a device identity?.
+    # Specifies the authorization policy for controlling registration of new devices using Microsoft Entra join within your organization. Required. For more information, see What is a device identity?.
     azure_a_d_join: Optional[AzureAdJoinPolicy] = None
-    # Specifies the authorization policy for controlling registration of new devices using Azure AD registered within your organization. Required. For more information, see What is a device identity?.
+    # Specifies the authorization policy for controlling registration of new devices using Microsoft Entra registered within your organization. Required. For more information, see What is a device identity?.
     azure_a_d_registration: Optional[AzureADRegistrationPolicy] = None
-    # The description of the device registration policy. It is always set to Tenant-wide policy that manages intial provisioning controls using quota restrictions, additional authentication and authorization checks. Read-only.
+    # The description of the device registration policy. It's always set to Tenant-wide policy that manages intial provisioning controls using quota restrictions, additional authentication and authorization checks. Read-only.
     description: Optional[str] = None
-    # The name of the device registration policy. It is always set to Device Registration Policy. Read-only.
+    # The name of the device registration policy. It's always set to Device Registration Policy. Read-only.
     display_name: Optional[str] = None
     # Specifies the setting for Local Admin Password Solution (LAPS) within your organization.
     local_admin_password: Optional[LocalAdminPasswordSettings] = None
@@ -28,7 +28,7 @@ class DeviceRegistrationPolicy(Entity):
     multi_factor_auth_configuration: Optional[MultiFactorAuthConfiguration] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Specifies the maximum number of devices that a user can have within your organization before blocking new device registrations. The default value is set to 50. If this property is not specified during the policy update operation, it is automatically reset to 0 to indicate that users are not allowed to join any devices.
+    # Specifies the maximum number of devices that a user can have within your organization before blocking new device registrations. The default value is set to 50. If this property isn't specified during the policy update operation, it's automatically reset to 0 to indicate that users aren't allowed to join any devices.
     user_device_quota: Optional[int] = None
     
     @staticmethod

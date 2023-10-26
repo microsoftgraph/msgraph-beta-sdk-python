@@ -81,7 +81,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, BackedModel, Parsable):
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
             "managedDeviceName": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
             "managementAgent": lambda n : setattr(self, 'management_agent', n.get_enum_value(ManagementAgentType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(ManagedDeviceOwnerType)),
             "retireAfterDateTime": lambda n : setattr(self, 'retire_after_date_time', n.get_datetime_value()),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
@@ -104,7 +104,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("managedDeviceId", self.managed_device_id)
         writer.write_str_value("managedDeviceName", self.managed_device_name)
         writer.write_enum_value("managementAgent", self.management_agent)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("ownerType", self.owner_type)
         writer.write_datetime_value("retireAfterDateTime", self.retire_after_date_time)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)

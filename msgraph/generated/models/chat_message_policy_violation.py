@@ -25,9 +25,9 @@ class ChatMessagePolicyViolation(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Information to display to the message sender about why the message was flagged as a violation.
     policy_tip: Optional[ChatMessagePolicyViolationPolicyTip] = None
-    # Indicates the action taken by the user on a message blocked by the DLP provider. Supported values are: NoneOverrideReportFalsePositiveWhen the DLP provider is updating the message for blocking sensitive content, userAction is not required.
+    # Indicates the action taken by the user on a message blocked by the DLP provider. Supported values are: NoneOverrideReportFalsePositiveWhen the DLP provider is updating the message for blocking sensitive content, userAction isn't required.
     user_action: Optional[ChatMessagePolicyViolationUserActionTypes] = None
-    # Indicates what actions the sender may take in response to the policy violation. Supported values are: NoneAllowFalsePositiveOverride -- Allows the sender to declare the policyViolation to be an error in the DLP app and its rules, and allow readers to see the message again if the dlpAction had hidden it.AllowOverrideWithoutJustification -- Allows the sender to overriide the DLP violation and allow readers to see the message again if the dlpAction had hidden it, without needing to provide an explanation for doing so. AllowOverrideWithJustification -- Allows the sender to overriide the DLP violation and allow readers to see the message again if the dlpAction had hidden it, after providing an explanation for doing so.AllowOverrideWithoutJustification and AllowOverrideWithJustification are mutually exclusive.
+    # Indicates what actions the sender may take in response to the policy violation. Supported values are: NoneAllowFalsePositiveOverride -- Allows the sender to declare the policyViolation to be an error in the DLP app and its rules, and allow readers to see the message again if it was hidden by dlpAction.AllowOverrideWithoutJustification -- Allows the sender to override the DLP violation and allow readers to see the message again if the dlpAction hides it, without needing to provide an explanation for doing so. AllowOverrideWithJustification -- Allows the sender to override the DLP violation and allow readers to see the message again if the dlpAction hides it, after providing an explanation for doing so.AllowOverrideWithoutJustification and AllowOverrideWithJustification are mutually exclusive.
     verdict_details: Optional[ChatMessagePolicyViolationVerdictDetailsTypes] = None
     
     @staticmethod
@@ -57,12 +57,12 @@ class ChatMessagePolicyViolation(AdditionalDataHolder, BackedModel, Parsable):
         from .chat_message_policy_violation_verdict_details_types import ChatMessagePolicyViolationVerdictDetailsTypes
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "dlpAction": lambda n : setattr(self, 'dlp_action', n.get_enum_value(ChatMessagePolicyViolationDlpActionTypes)),
+            "dlpAction": lambda n : setattr(self, 'dlp_action', n.get_collection_of_enum_values(ChatMessagePolicyViolationDlpActionTypes)),
             "justificationText": lambda n : setattr(self, 'justification_text', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyTip": lambda n : setattr(self, 'policy_tip', n.get_object_value(ChatMessagePolicyViolationPolicyTip)),
-            "userAction": lambda n : setattr(self, 'user_action', n.get_enum_value(ChatMessagePolicyViolationUserActionTypes)),
-            "verdictDetails": lambda n : setattr(self, 'verdict_details', n.get_enum_value(ChatMessagePolicyViolationVerdictDetailsTypes)),
+            "userAction": lambda n : setattr(self, 'user_action', n.get_collection_of_enum_values(ChatMessagePolicyViolationUserActionTypes)),
+            "verdictDetails": lambda n : setattr(self, 'verdict_details', n.get_collection_of_enum_values(ChatMessagePolicyViolationVerdictDetailsTypes)),
         }
         return fields
     
@@ -76,7 +76,7 @@ class ChatMessagePolicyViolation(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("dlpAction", self.dlp_action)
         writer.write_str_value("justificationText", self.justification_text)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("policyTip", self.policy_tip)
         writer.write_enum_value("userAction", self.user_action)
         writer.write_enum_value("verdictDetails", self.verdict_details)

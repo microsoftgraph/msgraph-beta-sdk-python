@@ -69,7 +69,7 @@ class IosNotificationSettings(AdditionalDataHolder, BackedModel, Parsable):
             "badgesEnabled": lambda n : setattr(self, 'badges_enabled', n.get_bool_value()),
             "bundleID": lambda n : setattr(self, 'bundle_i_d', n.get_str_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "previewVisibility": lambda n : setattr(self, 'preview_visibility', n.get_enum_value(IosNotificationPreviewVisibility)),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
             "showInNotificationCenter": lambda n : setattr(self, 'show_in_notification_center', n.get_bool_value()),
@@ -91,7 +91,7 @@ class IosNotificationSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("badgesEnabled", self.badges_enabled)
         writer.write_str_value("bundleID", self.bundle_i_d)
         writer.write_bool_value("enabled", self.enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("previewVisibility", self.preview_visibility)
         writer.write_str_value("publisher", self.publisher)
         writer.write_bool_value("showInNotificationCenter", self.show_in_notification_center)

@@ -12,7 +12,7 @@ from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
 class FeatureUpdateCatalogEntry(SoftwareUpdateCatalogEntry):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.featureUpdateCatalogEntry"
-    # The buildNumber property
+    # The build number of the feature update. Read-only.
     build_number: Optional[str] = None
     # The version of the feature update. Read-only.
     version: Optional[str] = None

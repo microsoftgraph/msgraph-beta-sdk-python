@@ -67,7 +67,7 @@ class ParentLabelDetails(AdditionalDataHolder, BackedModel, Parsable):
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isActive": lambda n : setattr(self, 'is_active', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "parent": lambda n : setattr(self, 'parent', n.get_object_value(ParentLabelDetails)),
             "sensitivity": lambda n : setattr(self, 'sensitivity', n.get_int_value()),
             "tooltip": lambda n : setattr(self, 'tooltip', n.get_str_value()),
@@ -87,7 +87,7 @@ class ParentLabelDetails(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("id", self.id)
         writer.write_bool_value("isActive", self.is_active)
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("parent", self.parent)
         writer.write_int_value("sensitivity", self.sensitivity)
         writer.write_str_value("tooltip", self.tooltip)

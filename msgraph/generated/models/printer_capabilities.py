@@ -6,12 +6,12 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .integer_range import IntegerRange
+    from .printer_feed_direction import PrinterFeedDirection
+    from .printer_feed_orientation import PrinterFeedOrientation
     from .print_color_configuration import PrintColorConfiguration
     from .print_color_mode import PrintColorMode
     from .print_duplex_configuration import PrintDuplexConfiguration
     from .print_duplex_mode import PrintDuplexMode
-    from .printer_feed_direction import PrinterFeedDirection
-    from .printer_feed_orientation import PrinterFeedOrientation
     from .print_finishing import PrintFinishing
     from .print_media_type import PrintMediaType
     from .print_multipage_layout import PrintMultipageLayout
@@ -29,11 +29,11 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # A list of supported bottom margins(in microns) for the printer.
     bottom_margins: Optional[List[int]] = None
-    # True if the printer supports collating when printing muliple copies of a multi-page document; false otherwise.
+    # True if the printer supports collating when printing multiple copies of a multi-page document; false otherwise.
     collation: Optional[bool] = None
     # The color modes supported by the printer. Valid values are described in the following table.
     color_modes: Optional[List[PrintColorMode]] = None
-    # A list of supported content (MIME) types that the printer supports. It is not guaranteed that the Universal Print service supports printing all of these MIME types.
+    # A list of supported content (MIME) types that the printer supports. It isn't guaranteed that the Universal Print service supports printing all of these MIME types.
     content_types: Optional[List[str]] = None
     # The range of copies per job supported by the printer.
     copies_per_job: Optional[IntegerRange] = None
@@ -55,7 +55,7 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
     is_page_range_supported: Optional[bool] = None
     # A list of supported left margins(in microns) for the printer.
     left_margins: Optional[List[int]] = None
-    # The media (i.e., paper) colors supported by the printer.
+    # The media (that is, paper) colors supported by the printer.
     media_colors: Optional[List[str]] = None
     # The media sizes supported by the printer. Supports standard size names for ISO and ANSI media sizes. Valid values are in the following table.
     media_sizes: Optional[List[str]] = None
@@ -125,12 +125,12 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .integer_range import IntegerRange
+        from .printer_feed_direction import PrinterFeedDirection
+        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_color_configuration import PrintColorConfiguration
         from .print_color_mode import PrintColorMode
         from .print_duplex_configuration import PrintDuplexConfiguration
         from .print_duplex_mode import PrintDuplexMode
-        from .printer_feed_direction import PrinterFeedDirection
-        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_finishing import PrintFinishing
         from .print_media_type import PrintMediaType
         from .print_multipage_layout import PrintMultipageLayout
@@ -140,12 +140,12 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
         from .print_scaling import PrintScaling
 
         from .integer_range import IntegerRange
+        from .printer_feed_direction import PrinterFeedDirection
+        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_color_configuration import PrintColorConfiguration
         from .print_color_mode import PrintColorMode
         from .print_duplex_configuration import PrintDuplexConfiguration
         from .print_duplex_mode import PrintDuplexMode
-        from .printer_feed_direction import PrinterFeedDirection
-        from .printer_feed_orientation import PrinterFeedOrientation
         from .print_finishing import PrintFinishing
         from .print_media_type import PrintMediaType
         from .print_multipage_layout import PrintMultipageLayout
@@ -173,7 +173,7 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
             "mediaSizes": lambda n : setattr(self, 'media_sizes', n.get_collection_of_primitive_values(str)),
             "mediaTypes": lambda n : setattr(self, 'media_types', n.get_collection_of_primitive_values(str)),
             "multipageLayouts": lambda n : setattr(self, 'multipage_layouts', n.get_collection_of_enum_values(PrintMultipageLayout)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "orientations": lambda n : setattr(self, 'orientations', n.get_collection_of_enum_values(PrintOrientation)),
             "outputBins": lambda n : setattr(self, 'output_bins', n.get_collection_of_primitive_values(str)),
             "pagesPerSheet": lambda n : setattr(self, 'pages_per_sheet', n.get_collection_of_primitive_values(int)),
@@ -224,7 +224,7 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_primitive_values("mediaSizes", self.media_sizes)
         writer.write_collection_of_primitive_values("mediaTypes", self.media_types)
         writer.write_collection_of_enum_values("multipageLayouts", self.multipage_layouts)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_enum_values("orientations", self.orientations)
         writer.write_collection_of_primitive_values("outputBins", self.output_bins)
         writer.write_collection_of_primitive_values("pagesPerSheet", self.pages_per_sheet)

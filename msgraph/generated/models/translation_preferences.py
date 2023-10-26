@@ -48,7 +48,7 @@ class TranslationPreferences(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "languageOverrides": lambda n : setattr(self, 'language_overrides', n.get_collection_of_object_values(TranslationLanguageOverride)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "translationBehavior": lambda n : setattr(self, 'translation_behavior', n.get_enum_value(TranslationBehavior)),
             "untranslatedLanguages": lambda n : setattr(self, 'untranslated_languages', n.get_collection_of_primitive_values(str)),
         }
@@ -63,7 +63,7 @@ class TranslationPreferences(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("languageOverrides", self.language_overrides)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("translationBehavior", self.translation_behavior)
         writer.write_collection_of_primitive_values("untranslatedLanguages", self.untranslated_languages)
         writer.write_additional_data_value(self.additional_data)

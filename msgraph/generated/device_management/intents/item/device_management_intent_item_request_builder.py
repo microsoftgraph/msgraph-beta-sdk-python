@@ -123,12 +123,13 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json, application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -138,14 +139,14 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[DeviceManagementIntent] = None, request_configuration: Optional[DeviceManagementIntentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -158,13 +159,13 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -176,7 +177,7 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DeviceManagementIntentItemRequestBuilder(raw_url, self.request_adapter)
+        return DeviceManagementIntentItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def assign(self) -> AssignRequestBuilder:
@@ -224,15 +225,6 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         return DeviceSettingStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_states(self) -> DeviceStatesRequestBuilder:
-        """
-        Provides operations to manage the deviceStates property of the microsoft.graph.deviceManagementIntent entity.
-        """
-        from .device_states.device_states_request_builder import DeviceStatesRequestBuilder
-
-        return DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def device_state_summary(self) -> DeviceStateSummaryRequestBuilder:
         """
         Provides operations to manage the deviceStateSummary property of the microsoft.graph.deviceManagementIntent entity.
@@ -240,6 +232,15 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         from .device_state_summary.device_state_summary_request_builder import DeviceStateSummaryRequestBuilder
 
         return DeviceStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_states(self) -> DeviceStatesRequestBuilder:
+        """
+        Provides operations to manage the deviceStates property of the microsoft.graph.deviceManagementIntent entity.
+        """
+        from .device_states.device_states_request_builder import DeviceStatesRequestBuilder
+
+        return DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_customized_settings(self) -> GetCustomizedSettingsRequestBuilder:
@@ -278,15 +279,6 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         return UpdateSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_states(self) -> UserStatesRequestBuilder:
-        """
-        Provides operations to manage the userStates property of the microsoft.graph.deviceManagementIntent entity.
-        """
-        from .user_states.user_states_request_builder import UserStatesRequestBuilder
-
-        return UserStatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def user_state_summary(self) -> UserStateSummaryRequestBuilder:
         """
         Provides operations to manage the userStateSummary property of the microsoft.graph.deviceManagementIntent entity.
@@ -294,6 +286,15 @@ class DeviceManagementIntentItemRequestBuilder(BaseRequestBuilder):
         from .user_state_summary.user_state_summary_request_builder import UserStateSummaryRequestBuilder
 
         return UserStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_states(self) -> UserStatesRequestBuilder:
+        """
+        Provides operations to manage the userStates property of the microsoft.graph.deviceManagementIntent entity.
+        """
+        from .user_states.user_states_request_builder import UserStatesRequestBuilder
+
+        return UserStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

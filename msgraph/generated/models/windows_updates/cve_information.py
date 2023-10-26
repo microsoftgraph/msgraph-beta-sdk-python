@@ -11,11 +11,11 @@ class CveInformation(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The number property
+    # Identifies the number of the CVE. Read-only.
     number: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The url property
+    # URL to the full CVE information. Read-only.
     url: Optional[str] = None
     
     @staticmethod
@@ -36,7 +36,7 @@ class CveInformation(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
         return fields
@@ -50,7 +50,7 @@ class CveInformation(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("number", self.number)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("url", self.url)
         writer.write_additional_data_value(self.additional_data)
     

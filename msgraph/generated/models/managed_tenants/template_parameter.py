@@ -52,7 +52,7 @@ class TemplateParameter(AdditionalDataHolder, BackedModel, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "jsonAllowedValues": lambda n : setattr(self, 'json_allowed_values', n.get_str_value()),
             "jsonDefaultValue": lambda n : setattr(self, 'json_default_value', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "valueType": lambda n : setattr(self, 'value_type', n.get_enum_value(ManagementParameterValueType)),
         }
         return fields
@@ -69,7 +69,7 @@ class TemplateParameter(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("jsonAllowedValues", self.json_allowed_values)
         writer.write_str_value("jsonDefaultValue", self.json_default_value)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("valueType", self.value_type)
         writer.write_additional_data_value(self.additional_data)
     

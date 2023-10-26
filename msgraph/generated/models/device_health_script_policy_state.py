@@ -89,7 +89,7 @@ class DeviceHealthScriptPolicyState(AdditionalDataHolder, BackedModel, Parsable)
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "lastStateUpdateDateTime": lambda n : setattr(self, 'last_state_update_date_time', n.get_datetime_value()),
             "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
             "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
             "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
@@ -119,7 +119,7 @@ class DeviceHealthScriptPolicyState(AdditionalDataHolder, BackedModel, Parsable)
         writer.write_str_value("id", self.id)
         writer.write_datetime_value("lastStateUpdateDateTime", self.last_state_update_date_time)
         writer.write_datetime_value("lastSyncDateTime", self.last_sync_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("osVersion", self.os_version)
         writer.write_str_value("policyId", self.policy_id)
         writer.write_str_value("policyName", self.policy_name)

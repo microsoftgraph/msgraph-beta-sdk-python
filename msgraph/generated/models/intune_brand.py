@@ -125,7 +125,7 @@ class IntuneBrand(AdditionalDataHolder, BackedModel, Parsable):
             "isRemoveDeviceDisabled": lambda n : setattr(self, 'is_remove_device_disabled', n.get_bool_value()),
             "landingPageCustomizedImage": lambda n : setattr(self, 'landing_page_customized_image', n.get_object_value(MimeContent)),
             "lightBackgroundLogo": lambda n : setattr(self, 'light_background_logo', n.get_object_value(MimeContent)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "onlineSupportSiteName": lambda n : setattr(self, 'online_support_site_name', n.get_str_value()),
             "onlineSupportSiteUrl": lambda n : setattr(self, 'online_support_site_url', n.get_str_value()),
             "privacyUrl": lambda n : setattr(self, 'privacy_url', n.get_str_value()),
@@ -166,7 +166,7 @@ class IntuneBrand(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("isRemoveDeviceDisabled", self.is_remove_device_disabled)
         writer.write_object_value("landingPageCustomizedImage", self.landing_page_customized_image)
         writer.write_object_value("lightBackgroundLogo", self.light_background_logo)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("onlineSupportSiteName", self.online_support_site_name)
         writer.write_str_value("onlineSupportSiteUrl", self.online_support_site_url)
         writer.write_str_value("privacyUrl", self.privacy_url)

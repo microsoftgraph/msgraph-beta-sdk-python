@@ -58,7 +58,7 @@ class PrinterStatus(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "details": lambda n : setattr(self, 'details', n.get_collection_of_enum_values(PrinterProcessingStateDetail)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "processingState": lambda n : setattr(self, 'processing_state', n.get_enum_value(PrinterProcessingState)),
             "processingStateDescription": lambda n : setattr(self, 'processing_state_description', n.get_str_value()),
             "processingStateReasons": lambda n : setattr(self, 'processing_state_reasons', n.get_collection_of_enum_values(PrinterProcessingStateReason)),
@@ -76,7 +76,7 @@ class PrinterStatus(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("description", self.description)
         writer.write_collection_of_enum_values("details", self.details)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("processingState", self.processing_state)
         writer.write_str_value("processingStateDescription", self.processing_state_description)
         writer.write_collection_of_enum_values("processingStateReasons", self.processing_state_reasons)

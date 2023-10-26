@@ -14,25 +14,25 @@ class SslCertificateEntity(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The address property
+    # A physical address of the entity.
     address: Optional[PhysicalAddress] = None
-    # The alternateNames property
+    # Alternate names for this entity that are part of the certificate.
     alternate_names: Optional[List[str]] = None
-    # The commonName property
+    # A common name for this entity.
     common_name: Optional[str] = None
-    # The email property
+    # An email for this entity.
     email: Optional[str] = None
-    # The givenName property
+    # If the entity is a person, this is the person's given name (first name).
     given_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The organizationName property
+    # If the entity is an organization, this is the name of the organization.
     organization_name: Optional[str] = None
-    # The organizationUnitName property
+    # If the entity is an organization, this communicates if a unit in the organization is named on the entity.
     organization_unit_name: Optional[str] = None
-    # The serialNumber property
+    # A serial number assigned to the entity; usually only available if the entity is the issuer.
     serial_number: Optional[str] = None
-    # The surname property
+    # If the entity is a person, this is the person's surname (last name).
     surname: Optional[str] = None
     
     @staticmethod
@@ -61,7 +61,7 @@ class SslCertificateEntity(AdditionalDataHolder, BackedModel, Parsable):
             "commonName": lambda n : setattr(self, 'common_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "givenName": lambda n : setattr(self, 'given_name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "organizationName": lambda n : setattr(self, 'organization_name', n.get_str_value()),
             "organizationUnitName": lambda n : setattr(self, 'organization_unit_name', n.get_str_value()),
             "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
@@ -82,7 +82,7 @@ class SslCertificateEntity(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("commonName", self.common_name)
         writer.write_str_value("email", self.email)
         writer.write_str_value("givenName", self.given_name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("organizationName", self.organization_name)
         writer.write_str_value("organizationUnitName", self.organization_unit_name)
         writer.write_str_value("serialNumber", self.serial_number)

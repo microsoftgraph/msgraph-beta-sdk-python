@@ -49,7 +49,7 @@ class DeviceManagementUserRightsSetting(AdditionalDataHolder, BackedModel, Parsa
 
         fields: Dict[str, Callable[[Any], None]] = {
             "localUsersOrGroups": lambda n : setattr(self, 'local_users_or_groups', n.get_collection_of_object_values(DeviceManagementUserRightsLocalUserOrGroup)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(StateManagementSetting)),
         }
         return fields
@@ -63,7 +63,7 @@ class DeviceManagementUserRightsSetting(AdditionalDataHolder, BackedModel, Parsa
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("localUsersOrGroups", self.local_users_or_groups)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("state", self.state)
         writer.write_additional_data_value(self.additional_data)
     

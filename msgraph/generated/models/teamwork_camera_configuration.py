@@ -50,7 +50,7 @@ class TeamworkCameraConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             "cameras": lambda n : setattr(self, 'cameras', n.get_collection_of_object_values(TeamworkPeripheral)),
             "contentCameraConfiguration": lambda n : setattr(self, 'content_camera_configuration', n.get_object_value(TeamworkContentCameraConfiguration)),
             "defaultContentCamera": lambda n : setattr(self, 'default_content_camera', n.get_object_value(TeamworkPeripheral)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -65,7 +65,7 @@ class TeamworkCameraConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("cameras", self.cameras)
         writer.write_object_value("contentCameraConfiguration", self.content_camera_configuration)
         writer.write_object_value("defaultContentCamera", self.default_content_camera)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

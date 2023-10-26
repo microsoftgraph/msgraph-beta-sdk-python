@@ -42,7 +42,7 @@ class IntegerRange(AdditionalDataHolder, BackedModel, Parsable):
             "end": lambda n : setattr(self, 'end', n.get_int_value()),
             "maximum": lambda n : setattr(self, 'maximum', n.get_int_value()),
             "minimum": lambda n : setattr(self, 'minimum', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "start": lambda n : setattr(self, 'start', n.get_int_value()),
         }
         return fields
@@ -58,7 +58,7 @@ class IntegerRange(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("end", self.end)
         writer.write_int_value("maximum", self.maximum)
         writer.write_int_value("minimum", self.minimum)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("start", self.start)
         writer.write_additional_data_value(self.additional_data)
     

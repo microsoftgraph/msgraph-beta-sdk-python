@@ -56,7 +56,7 @@ class NotificationMessageTemplate(Entity):
         from .notification_template_branding_options import NotificationTemplateBrandingOptions
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "brandingOptions": lambda n : setattr(self, 'branding_options', n.get_enum_value(NotificationTemplateBrandingOptions)),
+            "brandingOptions": lambda n : setattr(self, 'branding_options', n.get_collection_of_enum_values(NotificationTemplateBrandingOptions)),
             "defaultLocale": lambda n : setattr(self, 'default_locale', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),

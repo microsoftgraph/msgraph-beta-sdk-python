@@ -29,7 +29,7 @@ class MicrosoftGraphManagedTenantsApplyRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ApplyPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphManagedTenantsApplyRequestBuilderPostRequestConfiguration] = None) -> Optional[ManagementActionDeploymentStatus]:
         """
-        Applies a management action against a specific managed tenant. By performing this operation the appropriate configurations will be made and policies created. As example when applying the require multi-factor authentication for admins management action will create an Azure Active Directory conditional access policy that requires multi-factor authentication for all users that have been assigned an administrative directory role.
+        Applies a management action against a specific managed tenant. By performing this operation the appropriate configurations will be made and policies created. As example when applying the require multifactor authentication for admins management action creates a Microsoft Entra Conditional Access policy that requires multifactor authentication for all users that have been assigned an administrative directory role. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagementActionDeploymentStatus]
@@ -54,7 +54,7 @@ class MicrosoftGraphManagedTenantsApplyRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ApplyPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphManagedTenantsApplyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Applies a management action against a specific managed tenant. By performing this operation the appropriate configurations will be made and policies created. As example when applying the require multi-factor authentication for admins management action will create an Azure Active Directory conditional access policy that requires multi-factor authentication for all users that have been assigned an administrative directory role.
+        Applies a management action against a specific managed tenant. By performing this operation the appropriate configurations will be made and policies created. As example when applying the require multifactor authentication for admins management action creates a Microsoft Entra Conditional Access policy that requires multifactor authentication for all users that have been assigned an administrative directory role. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -62,13 +62,13 @@ class MicrosoftGraphManagedTenantsApplyRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -80,7 +80,7 @@ class MicrosoftGraphManagedTenantsApplyRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphManagedTenantsApplyRequestBuilder(raw_url, self.request_adapter)
+        return MicrosoftGraphManagedTenantsApplyRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

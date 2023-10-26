@@ -43,7 +43,7 @@ class PlannerFieldRules(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "defaultRules": lambda n : setattr(self, 'default_rules', n.get_collection_of_primitive_values(str)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "overrides": lambda n : setattr(self, 'overrides', n.get_collection_of_object_values(PlannerRuleOverride)),
         }
         return fields
@@ -57,7 +57,7 @@ class PlannerFieldRules(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("defaultRules", self.default_rules)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("overrides", self.overrides)
         writer.write_additional_data_value(self.additional_data)
     

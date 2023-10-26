@@ -12,9 +12,9 @@ from .meeting_registrant_base import MeetingRegistrantBase
 class ExternalMeetingRegistrant(MeetingRegistrantBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.externalMeetingRegistrant"
-    # The tenant ID of this registrant if in Azure Active Directory.
+    # The tenant ID of this registrant if in Microsoft Entra ID.
     tenant_id: Optional[str] = None
-    # The user ID of this registrant if in Azure Active Directory.
+    # The user ID of this registrant if in Microsoft Entra ID.
     user_id: Optional[str] = None
     
     @staticmethod

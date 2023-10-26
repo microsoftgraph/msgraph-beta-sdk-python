@@ -46,7 +46,7 @@ class AndroidPermissionAction(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(AndroidPermissionActionType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "permission": lambda n : setattr(self, 'permission', n.get_str_value()),
         }
         return fields
@@ -60,7 +60,7 @@ class AndroidPermissionAction(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("action", self.action)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("permission", self.permission)
         writer.write_additional_data_value(self.additional_data)
     

@@ -29,7 +29,7 @@ class ValidatePasswordRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ValidatePasswordPostRequestBody] = None, request_configuration: Optional[ValidatePasswordRequestBuilderPostRequestConfiguration] = None) -> Optional[PasswordValidationInformation]:
         """
-        Check a user's password against the organization's password validation policy and report whether the password is valid. Use this action to provide real-time feedback on password strength while the user types their password.
+        Check a user's password against the organization's password validation policy and report whether the password is valid. Use this action to provide real-time feedback on password strength while the user types their password. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PasswordValidationInformation]
@@ -54,7 +54,7 @@ class ValidatePasswordRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ValidatePasswordPostRequestBody] = None, request_configuration: Optional[ValidatePasswordRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Check a user's password against the organization's password validation policy and report whether the password is valid. Use this action to provide real-time feedback on password strength while the user types their password.
+        Check a user's password against the organization's password validation policy and report whether the password is valid. Use this action to provide real-time feedback on password strength while the user types their password. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -62,13 +62,13 @@ class ValidatePasswordRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -80,7 +80,7 @@ class ValidatePasswordRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ValidatePasswordRequestBuilder(raw_url, self.request_adapter)
+        return ValidatePasswordRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

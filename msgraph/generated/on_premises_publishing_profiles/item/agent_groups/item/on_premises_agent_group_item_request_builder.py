@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.o_data_errors.o_data_error import ODataError
     from .....models.on_premises_agent_group import OnPremisesAgentGroup
+    from .....models.o_data_errors.o_data_error import ODataError
     from .agents.agents_request_builder import AgentsRequestBuilder
     from .published_resources.published_resources_request_builder import PublishedResourcesRequestBuilder
 
@@ -30,7 +30,7 @@ class OnPremisesAgentGroupItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an onPremisesAgentGroup object.
+        Delete an onPremisesAgentGroup object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/onpremisesagentgroup-delete?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class OnPremisesAgentGroupItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[OnPremisesAgentGroup]:
         """
-        Retrieve the properties and relationships of an onPremisesAgentGroup object.
+        Retrieve the properties and relationships of an onPremisesAgentGroup object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesAgentGroup]
         Find more info here: https://learn.microsoft.com/graph/api/onpremisesagentgroup-get?view=graph-rest-1.0
@@ -72,7 +72,7 @@ class OnPremisesAgentGroupItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[OnPremisesAgentGroup] = None, request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[OnPremisesAgentGroup]:
         """
-        Update the properties of an onPremisesAgentGroup object.
+        Update the properties of an onPremisesAgentGroup object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesAgentGroup]
@@ -97,39 +97,40 @@ class OnPremisesAgentGroupItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an onPremisesAgentGroup object.
+        Delete an onPremisesAgentGroup object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json, application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an onPremisesAgentGroup object.
+        Retrieve the properties and relationships of an onPremisesAgentGroup object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[OnPremisesAgentGroup] = None, request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an onPremisesAgentGroup object.
+        Update the properties of an onPremisesAgentGroup object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,13 +138,13 @@ class OnPremisesAgentGroupItemRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -155,7 +156,7 @@ class OnPremisesAgentGroupItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OnPremisesAgentGroupItemRequestBuilder(raw_url, self.request_adapter)
+        return OnPremisesAgentGroupItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def agents(self) -> AgentsRequestBuilder:
@@ -188,7 +189,7 @@ class OnPremisesAgentGroupItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OnPremisesAgentGroupItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an onPremisesAgentGroup object.
+        Retrieve the properties and relationships of an onPremisesAgentGroup object. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

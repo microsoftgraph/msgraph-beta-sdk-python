@@ -7,8 +7,6 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .insights_settings import InsightsSettings
     from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
-    from .profile_card_property import ProfileCardProperty
-    from .pronouns_settings import PronounsSettings
 
 from .entity import Entity
 
@@ -24,10 +22,6 @@ class OrganizationSettings(Entity):
     odata_type: Optional[str] = None
     # Contains the properties that are configured by an administrator for the visibility of a list of people relevant and working with a user in Microsoft 365. List peopleInsights returns the settings to display or return people insights in an organization.
     people_insights: Optional[InsightsSettings] = None
-    # The profileCardProperties property
-    profile_card_properties: Optional[List[ProfileCardProperty]] = None
-    # The pronouns property
-    pronouns: Optional[PronounsSettings] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OrganizationSettings:
@@ -48,22 +42,16 @@ class OrganizationSettings(Entity):
         from .entity import Entity
         from .insights_settings import InsightsSettings
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
-        from .profile_card_property import ProfileCardProperty
-        from .pronouns_settings import PronounsSettings
 
         from .entity import Entity
         from .insights_settings import InsightsSettings
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
-        from .profile_card_property import ProfileCardProperty
-        from .pronouns_settings import PronounsSettings
 
         fields: Dict[str, Callable[[Any], None]] = {
             "contactInsights": lambda n : setattr(self, 'contact_insights', n.get_object_value(InsightsSettings)),
             "itemInsights": lambda n : setattr(self, 'item_insights', n.get_object_value(InsightsSettings)),
             "microsoftApplicationDataAccess": lambda n : setattr(self, 'microsoft_application_data_access', n.get_object_value(MicrosoftApplicationDataAccessSettings)),
             "peopleInsights": lambda n : setattr(self, 'people_insights', n.get_object_value(InsightsSettings)),
-            "profileCardProperties": lambda n : setattr(self, 'profile_card_properties', n.get_collection_of_object_values(ProfileCardProperty)),
-            "pronouns": lambda n : setattr(self, 'pronouns', n.get_object_value(PronounsSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -82,7 +70,5 @@ class OrganizationSettings(Entity):
         writer.write_object_value("itemInsights", self.item_insights)
         writer.write_object_value("microsoftApplicationDataAccess", self.microsoft_application_data_access)
         writer.write_object_value("peopleInsights", self.people_insights)
-        writer.write_collection_of_object_values("profileCardProperties", self.profile_card_properties)
-        writer.write_object_value("pronouns", self.pronouns)
     
 

@@ -25,7 +25,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, BackedModel, Parsab
     cloud_app_security: Optional[CloudAppSecuritySessionControl] = None
     # Session control for continuous access evaluation settings.
     continuous_access_evaluation: Optional[ContinuousAccessEvaluationSessionControl] = None
-    # Session control that determines whether it is acceptable for Azure AD to extend existing sessions based on information collected prior to an outage or not.
+    # Session control that determines whether it's acceptable for Microsoft Entra ID to extend existing sessions based on information collected prior to an outage or not.
     disable_resilience_defaults: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -71,7 +71,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, BackedModel, Parsab
             "cloudAppSecurity": lambda n : setattr(self, 'cloud_app_security', n.get_object_value(CloudAppSecuritySessionControl)),
             "continuousAccessEvaluation": lambda n : setattr(self, 'continuous_access_evaluation', n.get_object_value(ContinuousAccessEvaluationSessionControl)),
             "disableResilienceDefaults": lambda n : setattr(self, 'disable_resilience_defaults', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "persistentBrowser": lambda n : setattr(self, 'persistent_browser', n.get_object_value(PersistentBrowserSessionControl)),
             "secureSignInSession": lambda n : setattr(self, 'secure_sign_in_session', n.get_object_value(SecureSignInSessionControl)),
             "signInFrequency": lambda n : setattr(self, 'sign_in_frequency', n.get_object_value(SignInFrequencySessionControl)),
@@ -90,7 +90,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, BackedModel, Parsab
         writer.write_object_value("cloudAppSecurity", self.cloud_app_security)
         writer.write_object_value("continuousAccessEvaluation", self.continuous_access_evaluation)
         writer.write_bool_value("disableResilienceDefaults", self.disable_resilience_defaults)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("persistentBrowser", self.persistent_browser)
         writer.write_object_value("secureSignInSession", self.secure_sign_in_session)
         writer.write_object_value("signInFrequency", self.sign_in_frequency)

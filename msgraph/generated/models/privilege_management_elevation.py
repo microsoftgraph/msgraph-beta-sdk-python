@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .privilege_management_elevation_type import PrivilegeManagementElevationType
     from .privilege_management_end_user_type import PrivilegeManagementEndUserType
+    from .privilege_management_process_type import PrivilegeManagementProcessType
 
 from .entity import Entity
 
@@ -42,10 +43,20 @@ class PrivilegeManagementElevation(Entity):
     justification: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The name of parent process associated with the elevated process. This is always populated for both parent and child process types
+    parent_process_name: Optional[str] = None
+    # Unique Identifier of the policy configured to run the application with elevated access
+    policy_id: Optional[str] = None
+    # The name of the policy configured to run the application in elevated access
+    policy_name: Optional[str] = None
+    # Indicates the type of elevated process
+    process_type: Optional[PrivilegeManagementProcessType] = None
     # The product name of the application. This value is set by the creator of the application. Example: `Visual Studio`
     product_name: Optional[str] = None
     # The result of the elevation action with 0 being success, and everything else being exit code if the elevation was unsuccessful. The value will always be 0 on all unmanaged elevation. Example: `0`. Valid values 0 to 2147483647
     result: Optional[int] = None
+    # Unique identifier of the rule configured to run the application with elevated access
+    rule_id: Optional[str] = None
     # The User Principal Name of the user who performed the elevation. Example: `john@domain.com`
     upn: Optional[str] = None
     # The type of user account on Windows that was used to performed the elevation.
@@ -70,10 +81,12 @@ class PrivilegeManagementElevation(Entity):
         from .entity import Entity
         from .privilege_management_elevation_type import PrivilegeManagementElevationType
         from .privilege_management_end_user_type import PrivilegeManagementEndUserType
+        from .privilege_management_process_type import PrivilegeManagementProcessType
 
         from .entity import Entity
         from .privilege_management_elevation_type import PrivilegeManagementElevationType
         from .privilege_management_end_user_type import PrivilegeManagementEndUserType
+        from .privilege_management_process_type import PrivilegeManagementProcessType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "certificatePayload": lambda n : setattr(self, 'certificate_payload', n.get_str_value()),
@@ -88,8 +101,13 @@ class PrivilegeManagementElevation(Entity):
             "hash": lambda n : setattr(self, 'hash', n.get_str_value()),
             "internalName": lambda n : setattr(self, 'internal_name', n.get_str_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
+            "parentProcessName": lambda n : setattr(self, 'parent_process_name', n.get_str_value()),
+            "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
+            "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
+            "processType": lambda n : setattr(self, 'process_type', n.get_enum_value(PrivilegeManagementProcessType)),
             "productName": lambda n : setattr(self, 'product_name', n.get_str_value()),
             "result": lambda n : setattr(self, 'result', n.get_int_value()),
+            "ruleId": lambda n : setattr(self, 'rule_id', n.get_str_value()),
             "upn": lambda n : setattr(self, 'upn', n.get_str_value()),
             "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(PrivilegeManagementEndUserType)),
         }
@@ -118,8 +136,13 @@ class PrivilegeManagementElevation(Entity):
         writer.write_str_value("hash", self.hash)
         writer.write_str_value("internalName", self.internal_name)
         writer.write_str_value("justification", self.justification)
+        writer.write_str_value("parentProcessName", self.parent_process_name)
+        writer.write_str_value("policyId", self.policy_id)
+        writer.write_str_value("policyName", self.policy_name)
+        writer.write_enum_value("processType", self.process_type)
         writer.write_str_value("productName", self.product_name)
         writer.write_int_value("result", self.result)
+        writer.write_str_value("ruleId", self.rule_id)
         writer.write_str_value("upn", self.upn)
         writer.write_enum_value("userType", self.user_type)
     

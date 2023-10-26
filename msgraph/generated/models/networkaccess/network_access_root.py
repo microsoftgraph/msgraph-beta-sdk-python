@@ -19,11 +19,11 @@ from ..entity import Entity
 class NetworkAccessRoot(Entity):
     # Connectivity represents all the connectivity components in Global Secure Access.
     connectivity: Optional[Connectivity] = None
-    # A forwarding policy defines the specific traffic that is routed through the Gloval Secure Access Service. It is then added to a forwarding profile.
+    # A forwarding policy defines the specific traffic that is routed through the Global Secure Access Service. It's then added to a forwarding profile.
     forwarding_policies: Optional[List[ForwardingPolicy]] = None
     # A forwarding profile determines which types of traffic are routed through the Global Secure Access services and which ones are skipped. The handling of specific traffic is determined by the forwarding policies that are added to the forwarding profile.
     forwarding_profiles: Optional[List[ForwardingProfile]] = None
-    # Represnts network connections that are routed through Global Secure Access.
+    # Represents network connections that are routed through Global Secure Access.
     logs: Optional[Logs] = None
     # The OdataType property
     odata_type: Optional[str] = None

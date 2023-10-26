@@ -22,7 +22,7 @@ class MobilityManagementPolicy(Entity):
     discovery_url: Optional[str] = None
     # Display name of the mobility management application.
     display_name: Optional[str] = None
-    # Azure AD groups under the scope of the mobility management application if appliesTo is selected
+    # Microsoft Entra groups under the scope of the mobility management application if appliesTo is selected
     included_groups: Optional[List[Group]] = None
     # Whether policy is valid. Invalid policies may not be updated and should be deleted.
     is_valid: Optional[bool] = None

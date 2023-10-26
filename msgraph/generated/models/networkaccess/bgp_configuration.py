@@ -42,7 +42,7 @@ class BgpConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             "asn": lambda n : setattr(self, 'asn', n.get_int_value()),
             "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
             "localIpAddress": lambda n : setattr(self, 'local_ip_address', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "peerIpAddress": lambda n : setattr(self, 'peer_ip_address', n.get_str_value()),
         }
         return fields
@@ -58,7 +58,7 @@ class BgpConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("asn", self.asn)
         writer.write_str_value("ipAddress", self.ip_address)
         writer.write_str_value("localIpAddress", self.local_ip_address)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("peerIpAddress", self.peer_ip_address)
         writer.write_additional_data_value(self.additional_data)
     

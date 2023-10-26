@@ -16,11 +16,11 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Specifies whether the tenant allow block list is an allow or block. The possible values are: allow, block, and unkownFutureValue.
+    # Specifies whether the tenant allow-or-block list is an allow or block. The possible values are: allow, block, and unkownFutureValue.
     action: Optional[TenantAllowBlockListAction] = None
     # Specifies when the tenant allow-block-list expires in date time.
     expiration_date_time: Optional[datetime.datetime] = None
-    # Specifies the note added to the tenant allow block list entry in the format of string.
+    # Specifies the note added to the tenant allow-or-block list entry in the format of string.
     note: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -53,7 +53,7 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
             "action": lambda n : setattr(self, 'action', n.get_enum_value(TenantAllowBlockListAction)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "note": lambda n : setattr(self, 'note', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "results": lambda n : setattr(self, 'results', n.get_collection_of_object_values(TenantAllowBlockListEntryResult)),
         }
         return fields
@@ -69,7 +69,7 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("action", self.action)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("note", self.note)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("results", self.results)
         writer.write_additional_data_value(self.additional_data)
     

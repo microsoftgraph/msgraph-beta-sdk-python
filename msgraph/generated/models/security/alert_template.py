@@ -59,7 +59,7 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "impactedAssets": lambda n : setattr(self, 'impacted_assets', n.get_collection_of_object_values(ImpactedAsset)),
             "mitreTechniques": lambda n : setattr(self, 'mitre_techniques', n.get_collection_of_primitive_values(str)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recommendedActions": lambda n : setattr(self, 'recommended_actions', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(AlertSeverity)),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
@@ -78,7 +78,7 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("description", self.description)
         writer.write_collection_of_object_values("impactedAssets", self.impacted_assets)
         writer.write_collection_of_primitive_values("mitreTechniques", self.mitre_techniques)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("recommendedActions", self.recommended_actions)
         writer.write_enum_value("severity", self.severity)
         writer.write_str_value("title", self.title)

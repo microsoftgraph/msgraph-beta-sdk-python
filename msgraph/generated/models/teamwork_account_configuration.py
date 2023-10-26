@@ -45,7 +45,7 @@ class TeamworkAccountConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         from .teamwork_supported_client import TeamworkSupportedClient
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "onPremisesCalendarSyncConfiguration": lambda n : setattr(self, 'on_premises_calendar_sync_configuration', n.get_object_value(TeamworkOnPremisesCalendarSyncConfiguration)),
             "supportedClient": lambda n : setattr(self, 'supported_client', n.get_enum_value(TeamworkSupportedClient)),
         }
@@ -59,7 +59,7 @@ class TeamworkAccountConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("onPremisesCalendarSyncConfiguration", self.on_premises_calendar_sync_configuration)
         writer.write_enum_value("supportedClient", self.supported_client)
         writer.write_additional_data_value(self.additional_data)

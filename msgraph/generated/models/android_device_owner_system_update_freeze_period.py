@@ -44,7 +44,7 @@ class AndroidDeviceOwnerSystemUpdateFreezePeriod(AdditionalDataHolder, BackedMod
         fields: Dict[str, Callable[[Any], None]] = {
             "endDay": lambda n : setattr(self, 'end_day', n.get_int_value()),
             "endMonth": lambda n : setattr(self, 'end_month', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "startDay": lambda n : setattr(self, 'start_day', n.get_int_value()),
             "startMonth": lambda n : setattr(self, 'start_month', n.get_int_value()),
         }
@@ -60,7 +60,7 @@ class AndroidDeviceOwnerSystemUpdateFreezePeriod(AdditionalDataHolder, BackedMod
             raise TypeError("writer cannot be null.")
         writer.write_int_value("endDay", self.end_day)
         writer.write_int_value("endMonth", self.end_month)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("startDay", self.start_day)
         writer.write_int_value("startMonth", self.start_month)
         writer.write_additional_data_value(self.additional_data)

@@ -25,7 +25,7 @@ class SearchAnswer(Entity):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Search answer URL link. When users click this search answer in search results, they will go to this URL.
+    # Search answer URL link. When users click this search answer in search results, they'll go to this URL.
     web_url: Optional[str] = None
     
     @staticmethod

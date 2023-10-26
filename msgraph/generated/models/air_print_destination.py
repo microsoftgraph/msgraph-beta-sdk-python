@@ -44,7 +44,7 @@ class AirPrintDestination(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "forceTls": lambda n : setattr(self, 'force_tls', n.get_bool_value()),
             "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
             "resourcePath": lambda n : setattr(self, 'resource_path', n.get_str_value()),
         }
@@ -60,7 +60,7 @@ class AirPrintDestination(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("forceTls", self.force_tls)
         writer.write_str_value("ipAddress", self.ip_address)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("port", self.port)
         writer.write_str_value("resourcePath", self.resource_path)
         writer.write_additional_data_value(self.additional_data)

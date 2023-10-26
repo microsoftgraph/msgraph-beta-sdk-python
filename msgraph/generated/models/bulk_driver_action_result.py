@@ -42,7 +42,7 @@ class BulkDriverActionResult(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "failedDriverIds": lambda n : setattr(self, 'failed_driver_ids', n.get_collection_of_primitive_values(str)),
             "notFoundDriverIds": lambda n : setattr(self, 'not_found_driver_ids', n.get_collection_of_primitive_values(str)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "successfulDriverIds": lambda n : setattr(self, 'successful_driver_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
@@ -57,7 +57,7 @@ class BulkDriverActionResult(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("failedDriverIds", self.failed_driver_ids)
         writer.write_collection_of_primitive_values("notFoundDriverIds", self.not_found_driver_ids)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_primitive_values("successfulDriverIds", self.successful_driver_ids)
         writer.write_additional_data_value(self.additional_data)
     

@@ -16,7 +16,7 @@ class OutboundSharedUserProfile(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The collection of external Azure AD tenants that the user has shared profile data with. Read-only.
+    # The collection of external Microsoft Entra tenants that the user has shared profile data with. Read-only.
     tenants: Optional[List[TenantReference]] = None
     # The object id of the external user. Read-only.
     user_id: Optional[str] = None
@@ -42,7 +42,7 @@ class OutboundSharedUserProfile(AdditionalDataHolder, BackedModel, Parsable):
         from .tenant_reference import TenantReference
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "tenants": lambda n : setattr(self, 'tenants', n.get_collection_of_object_values(TenantReference)),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
@@ -56,7 +56,7 @@ class OutboundSharedUserProfile(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("tenants", self.tenants)
         writer.write_str_value("userId", self.user_id)
         writer.write_additional_data_value(self.additional_data)

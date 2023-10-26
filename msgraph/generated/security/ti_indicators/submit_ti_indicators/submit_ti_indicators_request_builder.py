@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .submit_ti_indicators_post_request_body import SubmitTiIndicatorsPostRequestBody
-    from .submit_ti_indicators_response import SubmitTiIndicatorsResponse
+    from .submit_ti_indicators_post_response import SubmitTiIndicatorsPostResponse
 
 class SubmitTiIndicatorsRequestBuilder(BaseRequestBuilder):
     """
@@ -27,12 +27,12 @@ class SubmitTiIndicatorsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/tiIndicators/submitTiIndicators", path_parameters)
     
-    async def post(self,body: Optional[SubmitTiIndicatorsPostRequestBody] = None, request_configuration: Optional[SubmitTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[SubmitTiIndicatorsResponse]:
+    async def post(self,body: Optional[SubmitTiIndicatorsPostRequestBody] = None, request_configuration: Optional[SubmitTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[SubmitTiIndicatorsPostResponse]:
         """
-        Upload multiple threat intelligence (TI) indicators in one request instead of multiple requests.
+        Upload multiple threat intelligence (TI) indicators in one request instead of multiple requests. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[SubmitTiIndicatorsResponse]
+        Returns: Optional[SubmitTiIndicatorsPostResponse]
         Find more info here: https://learn.microsoft.com/graph/api/tiindicator-submittiindicators?view=graph-rest-1.0
         """
         if not body:
@@ -48,13 +48,13 @@ class SubmitTiIndicatorsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .submit_ti_indicators_response import SubmitTiIndicatorsResponse
+        from .submit_ti_indicators_post_response import SubmitTiIndicatorsPostResponse
 
-        return await self.request_adapter.send_async(request_info, SubmitTiIndicatorsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, SubmitTiIndicatorsPostResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[SubmitTiIndicatorsPostRequestBody] = None, request_configuration: Optional[SubmitTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Upload multiple threat intelligence (TI) indicators in one request instead of multiple requests.
+        Upload multiple threat intelligence (TI) indicators in one request instead of multiple requests. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -62,13 +62,13 @@ class SubmitTiIndicatorsRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -80,7 +80,7 @@ class SubmitTiIndicatorsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SubmitTiIndicatorsRequestBuilder(raw_url, self.request_adapter)
+        return SubmitTiIndicatorsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

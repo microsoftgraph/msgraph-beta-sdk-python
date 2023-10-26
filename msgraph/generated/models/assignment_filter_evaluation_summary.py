@@ -75,7 +75,7 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, BackedModel, Parsa
             "assignmentFilterTypeAndEvaluationResults": lambda n : setattr(self, 'assignment_filter_type_and_evaluation_results', n.get_collection_of_object_values(AssignmentFilterTypeAndEvaluationResult)),
             "evaluationDateTime": lambda n : setattr(self, 'evaluation_date_time', n.get_datetime_value()),
             "evaluationResult": lambda n : setattr(self, 'evaluation_result', n.get_enum_value(AssignmentFilterEvaluationResult)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -95,7 +95,7 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, BackedModel, Parsa
         writer.write_collection_of_object_values("assignmentFilterTypeAndEvaluationResults", self.assignment_filter_type_and_evaluation_results)
         writer.write_datetime_value("evaluationDateTime", self.evaluation_date_time)
         writer.write_enum_value("evaluationResult", self.evaluation_result)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

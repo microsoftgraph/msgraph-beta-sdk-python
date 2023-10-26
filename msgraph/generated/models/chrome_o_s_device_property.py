@@ -43,7 +43,7 @@ class ChromeOSDeviceProperty(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "updatable": lambda n : setattr(self, 'updatable', n.get_bool_value()),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
             "valueType": lambda n : setattr(self, 'value_type', n.get_str_value()),
@@ -59,7 +59,7 @@ class ChromeOSDeviceProperty(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("updatable", self.updatable)
         writer.write_str_value("value", self.value)
         writer.write_str_value("valueType", self.value_type)

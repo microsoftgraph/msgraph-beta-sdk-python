@@ -25,7 +25,7 @@ class AccessPackageResourceEnvironment(Entity):
     description: Optional[str] = None
     # The display name of this object.
     display_name: Optional[str] = None
-    # Determines whether this is default environment or not. It is set to true for all static origin systems, such as Azure AD groups and Azure AD Applications.
+    # Determines whether this is default environment or not. It is set to true for all static origin systems, such as Microsoft Entra groups and Microsoft Entra Applications.
     is_default_environment: Optional[bool] = None
     # The display name of the entity that last modified this object.
     modified_by: Optional[str] = None

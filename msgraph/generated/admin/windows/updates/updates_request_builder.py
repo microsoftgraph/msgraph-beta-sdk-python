@@ -13,8 +13,8 @@ if TYPE_CHECKING:
     from ....models.admin_windows_updates import AdminWindowsUpdates
     from ....models.o_data_errors.o_data_error import ODataError
     from .catalog.catalog_request_builder import CatalogRequestBuilder
-    from .deployment_audiences.deployment_audiences_request_builder import DeploymentAudiencesRequestBuilder
     from .deployments.deployments_request_builder import DeploymentsRequestBuilder
+    from .deployment_audiences.deployment_audiences_request_builder import DeploymentAudiencesRequestBuilder
     from .resource_connections.resource_connections_request_builder import ResourceConnectionsRequestBuilder
     from .updatable_assets.updatable_assets_request_builder import UpdatableAssetsRequestBuilder
     from .update_policies.update_policies_request_builder import UpdatePoliciesRequestBuilder
@@ -103,12 +103,13 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json, application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[UpdatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -118,14 +119,14 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[AdminWindowsUpdates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -138,13 +139,13 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -156,7 +157,7 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UpdatesRequestBuilder(raw_url, self.request_adapter)
+        return UpdatesRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def catalog(self) -> CatalogRequestBuilder:

@@ -48,7 +48,7 @@ class WorkloadStatus(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "offboardedDateTime": lambda n : setattr(self, 'offboarded_date_time', n.get_datetime_value()),
             "onboardedDateTime": lambda n : setattr(self, 'onboarded_date_time', n.get_datetime_value()),
             "onboardingStatus": lambda n : setattr(self, 'onboarding_status', n.get_enum_value(WorkloadOnboardingStatus)),
@@ -64,7 +64,7 @@ class WorkloadStatus(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("displayName", self.display_name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_datetime_value("offboardedDateTime", self.offboarded_date_time)
         writer.write_datetime_value("onboardedDateTime", self.onboarded_date_time)
         writer.write_enum_value("onboardingStatus", self.onboarding_status)

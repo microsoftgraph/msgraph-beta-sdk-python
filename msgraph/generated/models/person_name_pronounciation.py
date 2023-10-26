@@ -46,7 +46,7 @@ class PersonNamePronounciation(AdditionalDataHolder, BackedModel, Parsable):
             "last": lambda n : setattr(self, 'last', n.get_str_value()),
             "maiden": lambda n : setattr(self, 'maiden', n.get_str_value()),
             "middle": lambda n : setattr(self, 'middle', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -63,7 +63,7 @@ class PersonNamePronounciation(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("last", self.last)
         writer.write_str_value("maiden", self.maiden)
         writer.write_str_value("middle", self.middle)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

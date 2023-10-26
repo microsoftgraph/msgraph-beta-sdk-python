@@ -62,7 +62,7 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, BackedModel, Parsable):
             "enableBitLockerAfterRecoveryInformationToStore": lambda n : setattr(self, 'enable_bit_locker_after_recovery_information_to_store', n.get_bool_value()),
             "enableRecoveryInformationSaveToStore": lambda n : setattr(self, 'enable_recovery_information_save_to_store', n.get_bool_value()),
             "hideRecoveryOptions": lambda n : setattr(self, 'hide_recovery_options', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recoveryInformationToStore": lambda n : setattr(self, 'recovery_information_to_store', n.get_enum_value(BitLockerRecoveryInformationType)),
             "recoveryKeyUsage": lambda n : setattr(self, 'recovery_key_usage', n.get_enum_value(ConfigurationUsage)),
             "recoveryPasswordUsage": lambda n : setattr(self, 'recovery_password_usage', n.get_enum_value(ConfigurationUsage)),
@@ -81,7 +81,7 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("enableBitLockerAfterRecoveryInformationToStore", self.enable_bit_locker_after_recovery_information_to_store)
         writer.write_bool_value("enableRecoveryInformationSaveToStore", self.enable_recovery_information_save_to_store)
         writer.write_bool_value("hideRecoveryOptions", self.hide_recovery_options)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("recoveryInformationToStore", self.recovery_information_to_store)
         writer.write_enum_value("recoveryKeyUsage", self.recovery_key_usage)
         writer.write_enum_value("recoveryPasswordUsage", self.recovery_password_usage)

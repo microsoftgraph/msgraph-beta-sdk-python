@@ -45,7 +45,7 @@ class TransactionSummary(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "blockedCount": lambda n : setattr(self, 'blocked_count', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "totalCount": lambda n : setattr(self, 'total_count', n.get_int_value()),
             "trafficType": lambda n : setattr(self, 'traffic_type', n.get_enum_value(TrafficType)),
         }
@@ -60,7 +60,7 @@ class TransactionSummary(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_int_value("blockedCount", self.blocked_count)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("totalCount", self.total_count)
         writer.write_enum_value("trafficType", self.traffic_type)
         writer.write_additional_data_value(self.additional_data)

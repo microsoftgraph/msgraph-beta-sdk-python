@@ -47,7 +47,7 @@ class CloudPcOnPremisesConnectionStatusDetails(AdditionalDataHolder, BackedModel
         fields: Dict[str, Callable[[Any], None]] = {
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "healthChecks": lambda n : setattr(self, 'health_checks', n.get_collection_of_object_values(CloudPcOnPremisesConnectionHealthCheck)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
         }
         return fields
@@ -62,7 +62,7 @@ class CloudPcOnPremisesConnectionStatusDetails(AdditionalDataHolder, BackedModel
             raise TypeError("writer cannot be null.")
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_collection_of_object_values("healthChecks", self.health_checks)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_additional_data_value(self.additional_data)
     

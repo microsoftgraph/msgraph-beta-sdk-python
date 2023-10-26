@@ -91,7 +91,7 @@ class ItemActionSet(AdditionalDataHolder, BackedModel, Parsable):
             "edit": lambda n : setattr(self, 'edit', n.get_object_value(EditAction)),
             "mention": lambda n : setattr(self, 'mention', n.get_object_value(MentionAction)),
             "move": lambda n : setattr(self, 'move', n.get_object_value(MoveAction)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "rename": lambda n : setattr(self, 'rename', n.get_object_value(RenameAction)),
             "restore": lambda n : setattr(self, 'restore', n.get_object_value(RestoreAction)),
             "share": lambda n : setattr(self, 'share', n.get_object_value(ShareAction)),
@@ -113,7 +113,7 @@ class ItemActionSet(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("edit", self.edit)
         writer.write_object_value("mention", self.mention)
         writer.write_object_value("move", self.move)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("rename", self.rename)
         writer.write_object_value("restore", self.restore)
         writer.write_object_value("share", self.share)

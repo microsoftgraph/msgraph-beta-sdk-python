@@ -41,7 +41,7 @@ class WindowsUpdateRolloutSettings(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "offerEndDateTimeInUTC": lambda n : setattr(self, 'offer_end_date_time_in_u_t_c', n.get_datetime_value()),
             "offerIntervalInDays": lambda n : setattr(self, 'offer_interval_in_days', n.get_int_value()),
             "offerStartDateTimeInUTC": lambda n : setattr(self, 'offer_start_date_time_in_u_t_c', n.get_datetime_value()),
@@ -56,7 +56,7 @@ class WindowsUpdateRolloutSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_datetime_value("offerEndDateTimeInUTC", self.offer_end_date_time_in_u_t_c)
         writer.write_int_value("offerIntervalInDays", self.offer_interval_in_days)
         writer.write_datetime_value("offerStartDateTimeInUTC", self.offer_start_date_time_in_u_t_c)

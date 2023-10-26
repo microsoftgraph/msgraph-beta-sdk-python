@@ -64,7 +64,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, BackedModel, Parsable)
             "displayVersion": lambda n : setattr(self, 'display_version', n.get_str_value()),
             "installState": lambda n : setattr(self, 'install_state', n.get_enum_value(ResultantAppState)),
             "mobileAppIntent": lambda n : setattr(self, 'mobile_app_intent', n.get_enum_value(MobileAppIntent)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "supportedDeviceTypes": lambda n : setattr(self, 'supported_device_types', n.get_collection_of_object_values(MobileAppSupportedDeviceType)),
         }
         return fields
@@ -82,7 +82,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, BackedModel, Parsable)
         writer.write_str_value("displayVersion", self.display_version)
         writer.write_enum_value("installState", self.install_state)
         writer.write_enum_value("mobileAppIntent", self.mobile_app_intent)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("supportedDeviceTypes", self.supported_device_types)
         writer.write_additional_data_value(self.additional_data)
     

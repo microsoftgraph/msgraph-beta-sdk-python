@@ -27,7 +27,7 @@ class Reminder(AdditionalDataHolder, BackedModel, Parsable):
     event_start_time: Optional[DateTimeTimeZone] = None
     # The text of the event's subject line.
     event_subject: Optional[str] = None
-    # The URL to open the event in Outlook on the web.The event will open in the browser if you are logged in to your mailbox via Outlook on the web. You will be prompted to login if you are not already logged in with the browser.This URL cannot be accessed from within an iFrame.
+    # The URL to open the event in Outlook on the web.The event opens in the browser if you're logged in to your mailbox via Outlook on the web. You're prompted to log in if you aren't already logged in with the browser.This URL can't be accessed from within an iFrame.
     event_web_link: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -64,7 +64,7 @@ class Reminder(AdditionalDataHolder, BackedModel, Parsable):
             "eventStartTime": lambda n : setattr(self, 'event_start_time', n.get_object_value(DateTimeTimeZone)),
             "eventSubject": lambda n : setattr(self, 'event_subject', n.get_str_value()),
             "eventWebLink": lambda n : setattr(self, 'event_web_link', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reminderFireTime": lambda n : setattr(self, 'reminder_fire_time', n.get_object_value(DateTimeTimeZone)),
         }
         return fields
@@ -84,7 +84,7 @@ class Reminder(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("eventStartTime", self.event_start_time)
         writer.write_str_value("eventSubject", self.event_subject)
         writer.write_str_value("eventWebLink", self.event_web_link)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("reminderFireTime", self.reminder_fire_time)
         writer.write_additional_data_value(self.additional_data)
     

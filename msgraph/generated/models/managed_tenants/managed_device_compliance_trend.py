@@ -26,7 +26,7 @@ class ManagedDeviceComplianceTrend(Entity):
     odata_type: Optional[str] = None
     # The display name for the managed tenant. Optional. Read-only.
     tenant_display_name: Optional[str] = None
-    # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
+    # The Microsoft Entra tenant identifier for the managed tenant. Optional. Read-only.
     tenant_id: Optional[str] = None
     # The number of devices in an unknown status. Required. Read-only.
     unknown_device_count: Optional[int] = None

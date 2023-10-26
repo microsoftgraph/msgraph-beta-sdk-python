@@ -48,7 +48,7 @@ class SecurityBaselineContributingPolicy(AdditionalDataHolder, BackedModel, Pars
 
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "sourceId": lambda n : setattr(self, 'source_id', n.get_str_value()),
             "sourceType": lambda n : setattr(self, 'source_type', n.get_enum_value(SecurityBaselinePolicySourceType)),
         }
@@ -63,7 +63,7 @@ class SecurityBaselineContributingPolicy(AdditionalDataHolder, BackedModel, Pars
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("displayName", self.display_name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("sourceId", self.source_id)
         writer.write_enum_value("sourceType", self.source_type)
         writer.write_additional_data_value(self.additional_data)

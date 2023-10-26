@@ -24,13 +24,15 @@ class DelegatedAdminRelationship(Entity):
     access_details: Optional[DelegatedAdminAccessDetails] = None
     # The date and time in ISO 8601 format and in UTC time when the relationship became active. Read-only.
     activated_date_time: Optional[datetime.datetime] = None
+    # The duration by which the validity of the relationship is automatically extended, denoted in ISO 8601 format. Supported values are: P0D, PT0S, P180D. Default value is PT0S. PT0S indicates that the relationship expires when the endDateTime is reached and it is not automatically extended.
+    auto_extend_duration: Optional[datetime.timedelta] = None
     # The date and time in ISO 8601 format and in UTC time when the relationship was created. Read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # The display name and unique identifier of the customer of the relationship. This is configured either by the partner at the time the relationship is created or by the system after the customer approves the relationship. Cannot be changed by the customer.
+    # The display name and unique identifier of the customer of the relationship. This is configured either by the partner at the time the relationship is created or by the system after the customer approves the relationship. Can't be changed by the customer.
     customer: Optional[DelegatedAdminRelationshipCustomerParticipant] = None
-    # The display name of the relationship used for ease of identification. Must be unique across all delegated admin relationships of the partner. This is set by the partner only when the relationship is in the created status and cannot be changed by the customer.
+    # The display name of the relationship used for ease of identification. Must be unique across all delegated admin relationships of the partner. This is set by the partner only when the relationship is in the created status and can't be changed by the customer.
     display_name: Optional[str] = None
-    # The duration of the relationship in ISO 8601 format. Must be a value between P1D and P2Y inclusive. This is set by the partner only when the relationship is in the created status and cannot be changed by the customer.
+    # The duration of the relationship in ISO 8601 format. Must be a value between P1D and P2Y inclusive. This is set by the partner only when the relationship is in the created status and can't be changed by the customer.
     duration: Optional[datetime.timedelta] = None
     # The date and time in ISO 8601 format and in UTC time when the status of relationship changes to either terminated or expired. Calculated as endDateTime = activatedDateTime + duration. Read-only.
     end_date_time: Optional[datetime.datetime] = None
@@ -42,7 +44,7 @@ class DelegatedAdminRelationship(Entity):
     operations: Optional[List[DelegatedAdminRelationshipOperation]] = None
     # The requests associated with the delegated admin relationship.
     requests: Optional[List[DelegatedAdminRelationshipRequest]] = None
-    # The status of the relationship. Read Only. The possible values are: activating, active, approvalPending, approved, created, expired, expiring, terminated, terminating, terminationRequested, unknownFutureValue. Supports $orderBy.
+    # The status of the relationship. Read Only. The possible values are: activating, active, approvalPending, approved, created, expired, expiring, terminated, terminating, terminationRequested, unknownFutureValue. Supports $orderby.
     status: Optional[DelegatedAdminRelationshipStatus] = None
     
     @staticmethod
@@ -91,6 +93,7 @@ class DelegatedAdminRelationship(Entity):
             "accessAssignments": lambda n : setattr(self, 'access_assignments', n.get_collection_of_object_values(DelegatedAdminAccessAssignment)),
             "accessDetails": lambda n : setattr(self, 'access_details', n.get_object_value(DelegatedAdminAccessDetails)),
             "activatedDateTime": lambda n : setattr(self, 'activated_date_time', n.get_datetime_value()),
+            "autoExtendDuration": lambda n : setattr(self, 'auto_extend_duration', n.get_timedelta_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "customer": lambda n : setattr(self, 'customer', n.get_object_value(DelegatedAdminRelationshipCustomerParticipant)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -117,6 +120,7 @@ class DelegatedAdminRelationship(Entity):
         writer.write_collection_of_object_values("accessAssignments", self.access_assignments)
         writer.write_object_value("accessDetails", self.access_details)
         writer.write_datetime_value("activatedDateTime", self.activated_date_time)
+        writer.write_timedelta_value("autoExtendDuration", self.auto_extend_duration)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("customer", self.customer)
         writer.write_str_value("displayName", self.display_name)

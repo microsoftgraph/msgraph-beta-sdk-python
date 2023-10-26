@@ -16,13 +16,15 @@ class AuthenticationMethodsRegistrationCampaign(AdditionalDataHolder, BackedMode
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # Specifies whether a user is required to perform registration after snoozing 3 times. If true, the user is required to register after 3 snoozes. If false, the user can snooze indefinitely. The default value is true.
+    enforce_registration_after_allowed_snoozes: Optional[bool] = None
     # Users and groups of users that are excluded from being prompted to set up the authentication method.
     exclude_targets: Optional[List[ExcludeTarget]] = None
     # Users and groups of users that are prompted to set up the authentication method.
     include_targets: Optional[List[AuthenticationMethodsRegistrationCampaignIncludeTarget]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Specifies the number of days that the user sees a prompt again if they select 'Not now' and snoozes the prompt. Minimum 0 days. Maximum: 14 days. If the value is '0' – The user is prompted during every MFA attempt.
+    # Specifies the number of days that the user sees a prompt again if they select 'Not now' and snoozes the prompt. Minimum 0 days. Maximum: 14 days. If the value is 0 – The user is prompted during every MFA attempt.
     snooze_duration_in_days: Optional[int] = None
     # The state property
     state: Optional[AdvancedConfigState] = None
@@ -52,9 +54,10 @@ class AuthenticationMethodsRegistrationCampaign(AdditionalDataHolder, BackedMode
         from .exclude_target import ExcludeTarget
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "enforceRegistrationAfterAllowedSnoozes": lambda n : setattr(self, 'enforce_registration_after_allowed_snoozes', n.get_bool_value()),
             "excludeTargets": lambda n : setattr(self, 'exclude_targets', n.get_collection_of_object_values(ExcludeTarget)),
             "includeTargets": lambda n : setattr(self, 'include_targets', n.get_collection_of_object_values(AuthenticationMethodsRegistrationCampaignIncludeTarget)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "snoozeDurationInDays": lambda n : setattr(self, 'snooze_duration_in_days', n.get_int_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(AdvancedConfigState)),
         }
@@ -68,9 +71,10 @@ class AuthenticationMethodsRegistrationCampaign(AdditionalDataHolder, BackedMode
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        writer.write_bool_value("enforceRegistrationAfterAllowedSnoozes", self.enforce_registration_after_allowed_snoozes)
         writer.write_collection_of_object_values("excludeTargets", self.exclude_targets)
         writer.write_collection_of_object_values("includeTargets", self.include_targets)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("snoozeDurationInDays", self.snooze_duration_in_days)
         writer.write_enum_value("state", self.state)
         writer.write_additional_data_value(self.additional_data)

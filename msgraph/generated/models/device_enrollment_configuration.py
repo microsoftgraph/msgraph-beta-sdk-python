@@ -9,8 +9,8 @@ if TYPE_CHECKING:
     from .device_enrollment_configuration_type import DeviceEnrollmentConfigurationType
     from .device_enrollment_limit_configuration import DeviceEnrollmentLimitConfiguration
     from .device_enrollment_notification_configuration import DeviceEnrollmentNotificationConfiguration
-    from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
     from .device_enrollment_platform_restrictions_configuration import DeviceEnrollmentPlatformRestrictionsConfiguration
+    from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
     from .device_enrollment_windows_hello_for_business_configuration import DeviceEnrollmentWindowsHelloForBusinessConfiguration
     from .enrollment_configuration_assignment import EnrollmentConfigurationAssignment
     from .entity import Entity
@@ -96,8 +96,8 @@ class DeviceEnrollmentConfiguration(Entity):
         from .device_enrollment_configuration_type import DeviceEnrollmentConfigurationType
         from .device_enrollment_limit_configuration import DeviceEnrollmentLimitConfiguration
         from .device_enrollment_notification_configuration import DeviceEnrollmentNotificationConfiguration
-        from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
         from .device_enrollment_platform_restrictions_configuration import DeviceEnrollmentPlatformRestrictionsConfiguration
+        from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
         from .device_enrollment_windows_hello_for_business_configuration import DeviceEnrollmentWindowsHelloForBusinessConfiguration
         from .enrollment_configuration_assignment import EnrollmentConfigurationAssignment
         from .entity import Entity
@@ -107,8 +107,8 @@ class DeviceEnrollmentConfiguration(Entity):
         from .device_enrollment_configuration_type import DeviceEnrollmentConfigurationType
         from .device_enrollment_limit_configuration import DeviceEnrollmentLimitConfiguration
         from .device_enrollment_notification_configuration import DeviceEnrollmentNotificationConfiguration
-        from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
         from .device_enrollment_platform_restrictions_configuration import DeviceEnrollmentPlatformRestrictionsConfiguration
+        from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
         from .device_enrollment_windows_hello_for_business_configuration import DeviceEnrollmentWindowsHelloForBusinessConfiguration
         from .enrollment_configuration_assignment import EnrollmentConfigurationAssignment
         from .entity import Entity

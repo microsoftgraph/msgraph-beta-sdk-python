@@ -44,7 +44,7 @@ class IosAvailableUpdateVersion(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "postingDateTime": lambda n : setattr(self, 'posting_date_time', n.get_datetime_value()),
             "productVersion": lambda n : setattr(self, 'product_version', n.get_str_value()),
             "supportedDevices": lambda n : setattr(self, 'supported_devices', n.get_collection_of_primitive_values(str)),
@@ -60,7 +60,7 @@ class IosAvailableUpdateVersion(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_datetime_value("postingDateTime", self.posting_date_time)
         writer.write_str_value("productVersion", self.product_version)
         writer.write_collection_of_primitive_values("supportedDevices", self.supported_devices)

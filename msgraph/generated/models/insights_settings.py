@@ -10,7 +10,7 @@ from .entity import Entity
 
 @dataclass
 class InsightsSettings(Entity):
-    # The ID of an Azure Active Directory group, of which the specified type of insights are disabled for its members. Default is empty. Optional.
+    # The ID of a Microsoft Entra group, of which the specified type of insights are disabled for its members. Default is empty. Optional.
     disabled_for_group: Optional[str] = None
     # true if the specified type of insights are enabled for the organization; false if the specified type of insights are disabled for all users without exceptions. Default is true. Optional.
     is_enabled_in_organization: Optional[bool] = None

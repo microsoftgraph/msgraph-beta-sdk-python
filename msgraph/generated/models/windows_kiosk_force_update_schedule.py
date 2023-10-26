@@ -57,7 +57,7 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, BackedModel, Parsabl
         fields: Dict[str, Callable[[Any], None]] = {
             "dayofMonth": lambda n : setattr(self, 'dayof_month', n.get_int_value()),
             "dayofWeek": lambda n : setattr(self, 'dayof_week', n.get_enum_value(DayOfWeek)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_enum_value(Windows10AppsUpdateRecurrence)),
             "runImmediatelyIfAfterStartDateTime": lambda n : setattr(self, 'run_immediately_if_after_start_date_time', n.get_bool_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
@@ -74,7 +74,7 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, BackedModel, Parsabl
             raise TypeError("writer cannot be null.")
         writer.write_int_value("dayofMonth", self.dayof_month)
         writer.write_enum_value("dayofWeek", self.dayof_week)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("recurrence", self.recurrence)
         writer.write_bool_value("runImmediatelyIfAfterStartDateTime", self.run_immediately_if_after_start_date_time)
         writer.write_datetime_value("startDateTime", self.start_date_time)

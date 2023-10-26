@@ -56,7 +56,7 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, BackedModel, Parsa
             "dataType": lambda n : setattr(self, 'data_type', n.get_str_value()),
             "isCollection": lambda n : setattr(self, 'is_collection', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "propertyRegexConstraint": lambda n : setattr(self, 'property_regex_constraint', n.get_str_value()),
             "supportedOperators": lambda n : setattr(self, 'supported_operators', n.get_collection_of_enum_values(AssignmentFilterOperator)),
             "supportedValues": lambda n : setattr(self, 'supported_values', n.get_collection_of_primitive_values(str)),
@@ -74,7 +74,7 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, BackedModel, Parsa
         writer.write_str_value("dataType", self.data_type)
         writer.write_bool_value("isCollection", self.is_collection)
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("propertyRegexConstraint", self.property_regex_constraint)
         writer.write_collection_of_enum_values("supportedOperators", self.supported_operators)
         writer.write_collection_of_primitive_values("supportedValues", self.supported_values)

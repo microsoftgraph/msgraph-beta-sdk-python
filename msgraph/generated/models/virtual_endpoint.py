@@ -4,7 +4,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .cloud_p_c import CloudPC
     from .cloud_pc_audit_event import CloudPcAuditEvent
     from .cloud_pc_bulk_action import CloudPcBulkAction
     from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
@@ -21,6 +20,7 @@ if TYPE_CHECKING:
     from .cloud_pc_snapshot import CloudPcSnapshot
     from .cloud_pc_supported_region import CloudPcSupportedRegion
     from .cloud_pc_user_setting import CloudPcUserSetting
+    from .cloud_p_c import CloudPC
     from .entity import Entity
 
 from .entity import Entity
@@ -39,7 +39,7 @@ class VirtualEndpoint(Entity):
     device_images: Optional[List[CloudPcDeviceImage]] = None
     # The external partner settings on a Cloud PC.
     external_partner_settings: Optional[List[CloudPcExternalPartnerSetting]] = None
-    # The frontLineServicePlans property
+    # Front-line service plans for a Cloud PC.
     front_line_service_plans: Optional[List[CloudPcFrontLineServicePlan]] = None
     # The gallery image resource on Cloud PC.
     gallery_images: Optional[List[CloudPcGalleryImage]] = None
@@ -55,7 +55,7 @@ class VirtualEndpoint(Entity):
     reports: Optional[CloudPcReports] = None
     # Cloud PC service plans.
     service_plans: Optional[List[CloudPcServicePlan]] = None
-    # Cloud PC shared-use service plans.
+    # The sharedUseServicePlans property
     shared_use_service_plans: Optional[List[CloudPcSharedUseServicePlan]] = None
     # Cloud PC snapshots.
     snapshots: Optional[List[CloudPcSnapshot]] = None
@@ -80,7 +80,6 @@ class VirtualEndpoint(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .cloud_p_c import CloudPC
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
@@ -97,9 +96,9 @@ class VirtualEndpoint(Entity):
         from .cloud_pc_snapshot import CloudPcSnapshot
         from .cloud_pc_supported_region import CloudPcSupportedRegion
         from .cloud_pc_user_setting import CloudPcUserSetting
+        from .cloud_p_c import CloudPC
         from .entity import Entity
 
-        from .cloud_p_c import CloudPC
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
@@ -116,6 +115,7 @@ class VirtualEndpoint(Entity):
         from .cloud_pc_snapshot import CloudPcSnapshot
         from .cloud_pc_supported_region import CloudPcSupportedRegion
         from .cloud_pc_user_setting import CloudPcUserSetting
+        from .cloud_p_c import CloudPC
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {

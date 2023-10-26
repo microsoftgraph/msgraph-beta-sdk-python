@@ -85,14 +85,14 @@ class PrintRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Print] = None, request_configuration: Optional[PrintRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -105,13 +105,13 @@ class PrintRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -123,7 +123,7 @@ class PrintRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return PrintRequestBuilder(raw_url, self.request_adapter)
+        return PrintRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def connectors(self) -> ConnectorsRequestBuilder:
@@ -144,15 +144,6 @@ class PrintRequestBuilder(BaseRequestBuilder):
         return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def printers(self) -> PrintersRequestBuilder:
-        """
-        Provides operations to manage the printers property of the microsoft.graph.print entity.
-        """
-        from .printers.printers_request_builder import PrintersRequestBuilder
-
-        return PrintersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def printer_shares(self) -> PrinterSharesRequestBuilder:
         """
         Provides operations to manage the printerShares property of the microsoft.graph.print entity.
@@ -160,6 +151,15 @@ class PrintRequestBuilder(BaseRequestBuilder):
         from .printer_shares.printer_shares_request_builder import PrinterSharesRequestBuilder
 
         return PrinterSharesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def printers(self) -> PrintersRequestBuilder:
+        """
+        Provides operations to manage the printers property of the microsoft.graph.print entity.
+        """
+        from .printers.printers_request_builder import PrintersRequestBuilder
+
+        return PrintersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def services(self) -> ServicesRequestBuilder:

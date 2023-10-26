@@ -19,9 +19,9 @@ class CaseExportOperation(CaseOperation):
     azure_blob_token: Optional[str] = None
     # The description provided for the export.
     description: Optional[str] = None
-    # The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
+    # The options provided for the export. For more information, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
     export_options: Optional[ExportOptions] = None
-    # The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
+    # The options provided specify the structure of the export. For more information, see reviewSet: export. Possible values are: none, directory, pst.
     export_structure: Optional[ExportFileStructure] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -62,7 +62,7 @@ class CaseExportOperation(CaseOperation):
             "azureBlobContainer": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
             "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "exportOptions": lambda n : setattr(self, 'export_options', n.get_enum_value(ExportOptions)),
+            "exportOptions": lambda n : setattr(self, 'export_options', n.get_collection_of_enum_values(ExportOptions)),
             "exportStructure": lambda n : setattr(self, 'export_structure', n.get_enum_value(ExportFileStructure)),
             "outputFolderId": lambda n : setattr(self, 'output_folder_id', n.get_str_value()),
             "outputName": lambda n : setattr(self, 'output_name', n.get_str_value()),

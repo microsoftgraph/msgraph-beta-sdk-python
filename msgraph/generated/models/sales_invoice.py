@@ -154,7 +154,7 @@ class SalesInvoice(AdditionalDataHolder, BackedModel, Parsable):
             "invoiceDate": lambda n : setattr(self, 'invoice_date', n.get_date_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "orderId": lambda n : setattr(self, 'order_id', n.get_uuid_value()),
             "orderNumber": lambda n : setattr(self, 'order_number', n.get_str_value()),
             "paymentTerm": lambda n : setattr(self, 'payment_term', n.get_object_value(PaymentTerm)),
@@ -205,7 +205,7 @@ class SalesInvoice(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_date_value("invoiceDate", self.invoice_date)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("number", self.number)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_uuid_value("orderId", self.order_id)
         writer.write_str_value("orderNumber", self.order_number)
         writer.write_object_value("paymentTerm", self.payment_term)

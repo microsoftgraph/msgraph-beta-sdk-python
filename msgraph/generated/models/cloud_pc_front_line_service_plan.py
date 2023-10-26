@@ -10,13 +10,13 @@ from .entity import Entity
 
 @dataclass
 class CloudPcFrontLineServicePlan(Entity):
-    # The displayName property
+    # The display name of the front-line service plan. For example, 2vCPU/8GB/128GB Front-line or 4vCPU/16GB/256GB Front-line.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The totalCount property
+    # The total number of front-line service plans purchased by the customer.
     total_count: Optional[int] = None
-    # The usedCount property
+    # The number of service plans that have been used for the account.
     used_count: Optional[int] = None
     
     @staticmethod

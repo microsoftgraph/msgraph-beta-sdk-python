@@ -52,7 +52,7 @@ class TimeCardBreak(AdditionalDataHolder, BackedModel, Parsable):
             "breakId": lambda n : setattr(self, 'break_id', n.get_str_value()),
             "end": lambda n : setattr(self, 'end', n.get_object_value(TimeCardEvent)),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(ItemBody)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "start": lambda n : setattr(self, 'start', n.get_object_value(TimeCardEvent)),
         }
         return fields
@@ -68,7 +68,7 @@ class TimeCardBreak(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("breakId", self.break_id)
         writer.write_object_value("end", self.end)
         writer.write_object_value("notes", self.notes)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("start", self.start)
         writer.write_additional_data_value(self.additional_data)
     

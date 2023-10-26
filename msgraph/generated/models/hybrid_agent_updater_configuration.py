@@ -47,7 +47,7 @@ class HybridAgentUpdaterConfiguration(AdditionalDataHolder, BackedModel, Parsabl
         fields: Dict[str, Callable[[Any], None]] = {
             "allowUpdateConfigurationOverride": lambda n : setattr(self, 'allow_update_configuration_override', n.get_bool_value()),
             "deferUpdateDateTime": lambda n : setattr(self, 'defer_update_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "updateWindow": lambda n : setattr(self, 'update_window', n.get_object_value(UpdateWindow)),
         }
         return fields
@@ -62,7 +62,7 @@ class HybridAgentUpdaterConfiguration(AdditionalDataHolder, BackedModel, Parsabl
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("allowUpdateConfigurationOverride", self.allow_update_configuration_override)
         writer.write_datetime_value("deferUpdateDateTime", self.defer_update_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("updateWindow", self.update_window)
         writer.write_additional_data_value(self.additional_data)
     

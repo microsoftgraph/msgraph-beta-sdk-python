@@ -46,7 +46,7 @@ class TeamworkFeaturesConfiguration(AdditionalDataHolder, BackedModel, Parsable)
             "isBluetoothBeaconingEnabled": lambda n : setattr(self, 'is_bluetooth_beaconing_enabled', n.get_bool_value()),
             "isHideMeetingNamesEnabled": lambda n : setattr(self, 'is_hide_meeting_names_enabled', n.get_bool_value()),
             "isSendLogsAndFeedbackEnabled": lambda n : setattr(self, 'is_send_logs_and_feedback_enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -63,7 +63,7 @@ class TeamworkFeaturesConfiguration(AdditionalDataHolder, BackedModel, Parsable)
         writer.write_bool_value("isBluetoothBeaconingEnabled", self.is_bluetooth_beaconing_enabled)
         writer.write_bool_value("isHideMeetingNamesEnabled", self.is_hide_meeting_names_enabled)
         writer.write_bool_value("isSendLogsAndFeedbackEnabled", self.is_send_logs_and_feedback_enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -22,9 +22,9 @@ class AccessReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
     activity_duration_in_days: Optional[int] = None
     # Indicates whether the auto-apply capability, to automatically change the target object access resource, is enabled.  If not enabled, a user must, after the review completes, apply the access review.
     auto_apply_review_results_enabled: Optional[bool] = None
-    # Indicates whether a decision should be set if the reviewer did not supply one. For use when auto-apply is enabled. If you don't want to have a review decision recorded unless the reviewer makes an explicit choice, set it to false.
+    # Indicates whether a decision should be set if the reviewer didn't supply one. For use when, auto-apply is enabled. If you don't want to have a review decision recorded unless the reviewer makes an explicit choice, set it to false.
     auto_review_enabled: Optional[bool] = None
-    # Detailed settings for how the feature should set the review decision. For use when auto-apply is enabled.
+    # Detailed settings for how the feature should set the review decision. For use when, auto-apply is enabled.
     auto_review_settings: Optional[AutoReviewSettings] = None
     # Indicates whether reviewers are required to provide a justification when reviewing access.
     justification_required_on_approval: Optional[bool] = None
@@ -77,7 +77,7 @@ class AccessReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
             "autoReviewSettings": lambda n : setattr(self, 'auto_review_settings', n.get_object_value(AutoReviewSettings)),
             "justificationRequiredOnApproval": lambda n : setattr(self, 'justification_required_on_approval', n.get_bool_value()),
             "mailNotificationsEnabled": lambda n : setattr(self, 'mail_notifications_enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recurrenceSettings": lambda n : setattr(self, 'recurrence_settings', n.get_object_value(AccessReviewRecurrenceSettings)),
             "remindersEnabled": lambda n : setattr(self, 'reminders_enabled', n.get_bool_value()),
         }
@@ -98,7 +98,7 @@ class AccessReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("autoReviewSettings", self.auto_review_settings)
         writer.write_bool_value("justificationRequiredOnApproval", self.justification_required_on_approval)
         writer.write_bool_value("mailNotificationsEnabled", self.mail_notifications_enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("recurrenceSettings", self.recurrence_settings)
         writer.write_bool_value("remindersEnabled", self.reminders_enabled)
         writer.write_additional_data_value(self.additional_data)

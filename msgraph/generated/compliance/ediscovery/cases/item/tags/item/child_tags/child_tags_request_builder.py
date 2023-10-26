@@ -44,7 +44,7 @@ class ChildTagsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ChildTagsRequestBuilderGetRequestConfiguration] = None) -> Optional[TagCollectionResponse]:
         """
-        Get a list of child tag objects associated with a tag.
+        Get a list of child tag objects associated with a tag. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TagCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-tag-childtags?view=graph-rest-1.0
@@ -66,19 +66,19 @@ class ChildTagsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ChildTagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of child tag objects associated with a tag.
+        Get a list of child tag objects associated with a tag. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> ChildTagsRequestBuilder:
@@ -89,7 +89,7 @@ class ChildTagsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return ChildTagsRequestBuilder(raw_url, self.request_adapter)
+        return ChildTagsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -103,7 +103,7 @@ class ChildTagsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ChildTagsRequestBuilderGetQueryParameters():
         """
-        Get a list of child tag objects associated with a tag.
+        Get a list of child tag objects associated with a tag. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

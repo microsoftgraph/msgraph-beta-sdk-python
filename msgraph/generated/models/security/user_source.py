@@ -44,7 +44,7 @@ class UserSource(DataSource):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "includedSources": lambda n : setattr(self, 'included_sources', n.get_enum_value(SourceType)),
+            "includedSources": lambda n : setattr(self, 'included_sources', n.get_collection_of_enum_values(SourceType)),
             "siteWebUrl": lambda n : setattr(self, 'site_web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

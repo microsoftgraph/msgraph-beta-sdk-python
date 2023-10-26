@@ -69,7 +69,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, BackedModel, P
             "failedLicensesCount": lambda n : setattr(self, 'failed_licenses_count', n.get_int_value()),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "totalLicensesCount": lambda n : setattr(self, 'total_licenses_count', n.get_int_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
@@ -90,7 +90,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, BackedModel, P
         writer.write_int_value("failedLicensesCount", self.failed_licenses_count)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_str_value("managedDeviceId", self.managed_device_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_int_value("totalLicensesCount", self.total_licenses_count)
         writer.write_str_value("userId", self.user_id)

@@ -41,7 +41,7 @@ class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel,
 
         fields: Dict[str, Callable[[Any], None]] = {
             "checklistRequirement": lambda n : setattr(self, 'checklist_requirement', n.get_object_value(PlannerChecklistRequirement)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -54,7 +54,7 @@ class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel,
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("checklistRequirement", self.checklist_requirement)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

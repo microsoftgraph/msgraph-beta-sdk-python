@@ -155,7 +155,7 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "meid": lambda n : setattr(self, 'meid', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operatingSystemEdition": lambda n : setattr(self, 'operating_system_edition', n.get_str_value()),
             "operatingSystemLanguage": lambda n : setattr(self, 'operating_system_language', n.get_str_value()),
             "operatingSystemProductType": lambda n : setattr(self, 'operating_system_product_type', n.get_int_value()),
@@ -207,7 +207,7 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("manufacturer", self.manufacturer)
         writer.write_str_value("meid", self.meid)
         writer.write_str_value("model", self.model)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("operatingSystemEdition", self.operating_system_edition)
         writer.write_str_value("operatingSystemLanguage", self.operating_system_language)
         writer.write_int_value("operatingSystemProductType", self.operating_system_product_type)

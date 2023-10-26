@@ -59,7 +59,7 @@ class MatchingDlpRule(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(DlpActionInfo)),
             "isMostRestrictive": lambda n : setattr(self, 'is_most_restrictive', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
             "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
@@ -79,7 +79,7 @@ class MatchingDlpRule(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_bool_value("isMostRestrictive", self.is_most_restrictive)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("policyId", self.policy_id)
         writer.write_str_value("policyName", self.policy_name)
         writer.write_int_value("priority", self.priority)

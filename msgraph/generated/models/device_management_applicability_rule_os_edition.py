@@ -48,7 +48,7 @@ class DeviceManagementApplicabilityRuleOsEdition(AdditionalDataHolder, BackedMod
 
         fields: Dict[str, Callable[[Any], None]] = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "osEditionTypes": lambda n : setattr(self, 'os_edition_types', n.get_collection_of_enum_values(Windows10EditionType)),
             "ruleType": lambda n : setattr(self, 'rule_type', n.get_enum_value(DeviceManagementApplicabilityRuleType)),
         }
@@ -63,7 +63,7 @@ class DeviceManagementApplicabilityRuleOsEdition(AdditionalDataHolder, BackedMod
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_enum_values("osEditionTypes", self.os_edition_types)
         writer.write_enum_value("ruleType", self.rule_type)
         writer.write_additional_data_value(self.additional_data)

@@ -50,7 +50,7 @@ class OnPremisesApplicationSegment(AdditionalDataHolder, BackedModel, Parsable):
             "corsConfigurations": lambda n : setattr(self, 'cors_configurations', n.get_collection_of_object_values(CorsConfiguration)),
             "externalUrl": lambda n : setattr(self, 'external_url', n.get_str_value()),
             "internalUrl": lambda n : setattr(self, 'internal_url', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class OnPremisesApplicationSegment(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("corsConfigurations", self.cors_configurations)
         writer.write_str_value("externalUrl", self.external_url)
         writer.write_str_value("internalUrl", self.internal_url)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

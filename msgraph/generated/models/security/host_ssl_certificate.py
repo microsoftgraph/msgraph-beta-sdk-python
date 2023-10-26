@@ -16,15 +16,15 @@ from .artifact import Artifact
 class HostSslCertificate(Artifact):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.hostSslCertificate"
-    # The firstSeenDateTime property
+    # The first date and time that this hostSslCertificate was observed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     first_seen_date_time: Optional[datetime.datetime] = None
-    # The host property
+    # The host for this hostSslCertificate.
     host: Optional[Host] = None
-    # The lastSeenDateTime property
+    # The most recent date and time that this hostSslCertificate was observed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_seen_date_time: Optional[datetime.datetime] = None
-    # The ports property
+    # The ports related with this hostSslCertificate.
     ports: Optional[List[HostSslCertificatePort]] = None
-    # The sslCertificate property
+    # The sslCertificate for this hostSslCertificate.
     ssl_certificate: Optional[SslCertificate] = None
     
     @staticmethod

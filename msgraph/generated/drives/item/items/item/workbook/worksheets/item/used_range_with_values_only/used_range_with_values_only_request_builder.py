@@ -25,6 +25,8 @@ class UsedRangeWithValuesOnlyRequestBuilder(BaseRequestBuilder):
         param values_only: Usage: valuesOnly={valuesOnly}
         Returns: None
         """
+        if isinstance(path_parameters, dict):
+            path_parameters['values_only'] = str(values_only)
         super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/usedRange(valuesOnly={valuesOnly})", path_parameters)
     
     async def get(self,request_configuration: Optional[UsedRangeWithValuesOnlyRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookRange]:
@@ -55,13 +57,13 @@ class UsedRangeWithValuesOnlyRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> UsedRangeWithValuesOnlyRequestBuilder:
@@ -72,7 +74,7 @@ class UsedRangeWithValuesOnlyRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return UsedRangeWithValuesOnlyRequestBuilder(raw_url, self.request_adapter)
+        return UsedRangeWithValuesOnlyRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

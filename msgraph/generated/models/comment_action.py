@@ -45,7 +45,7 @@ class CommentAction(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "isReply": lambda n : setattr(self, 'is_reply', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "parentAuthor": lambda n : setattr(self, 'parent_author', n.get_object_value(IdentitySet)),
             "participants": lambda n : setattr(self, 'participants', n.get_collection_of_object_values(IdentitySet)),
         }
@@ -60,7 +60,7 @@ class CommentAction(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("isReply", self.is_reply)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("parentAuthor", self.parent_author)
         writer.write_collection_of_object_values("participants", self.participants)
         writer.write_additional_data_value(self.additional_data)

@@ -43,7 +43,7 @@ class ConfigurationManagerClientInformation(AdditionalDataHolder, BackedModel, P
             "clientIdentifier": lambda n : setattr(self, 'client_identifier', n.get_str_value()),
             "clientVersion": lambda n : setattr(self, 'client_version', n.get_str_value()),
             "isBlocked": lambda n : setattr(self, 'is_blocked', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -58,7 +58,7 @@ class ConfigurationManagerClientInformation(AdditionalDataHolder, BackedModel, P
         writer.write_str_value("clientIdentifier", self.client_identifier)
         writer.write_str_value("clientVersion", self.client_version)
         writer.write_bool_value("isBlocked", self.is_blocked)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

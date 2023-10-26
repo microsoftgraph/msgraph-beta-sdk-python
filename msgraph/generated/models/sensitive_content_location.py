@@ -52,7 +52,7 @@ class SensitiveContentLocation(AdditionalDataHolder, BackedModel, Parsable):
             "evidences": lambda n : setattr(self, 'evidences', n.get_collection_of_object_values(SensitiveContentEvidence)),
             "idMatch": lambda n : setattr(self, 'id_match', n.get_str_value()),
             "length": lambda n : setattr(self, 'length', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "offset": lambda n : setattr(self, 'offset', n.get_int_value()),
         }
         return fields
@@ -69,7 +69,7 @@ class SensitiveContentLocation(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("evidences", self.evidences)
         writer.write_str_value("idMatch", self.id_match)
         writer.write_int_value("length", self.length)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("offset", self.offset)
         writer.write_additional_data_value(self.additional_data)
     

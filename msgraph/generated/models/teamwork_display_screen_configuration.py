@@ -46,7 +46,7 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, BackedModel, Pars
             "backlightTimeout": lambda n : setattr(self, 'backlight_timeout', n.get_timedelta_value()),
             "isHighContrastEnabled": lambda n : setattr(self, 'is_high_contrast_enabled', n.get_bool_value()),
             "isScreensaverEnabled": lambda n : setattr(self, 'is_screensaver_enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "screensaverTimeout": lambda n : setattr(self, 'screensaver_timeout', n.get_timedelta_value()),
         }
         return fields
@@ -63,7 +63,7 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, BackedModel, Pars
         writer.write_timedelta_value("backlightTimeout", self.backlight_timeout)
         writer.write_bool_value("isHighContrastEnabled", self.is_high_contrast_enabled)
         writer.write_bool_value("isScreensaverEnabled", self.is_screensaver_enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_timedelta_value("screensaverTimeout", self.screensaver_timeout)
         writer.write_additional_data_value(self.additional_data)
     

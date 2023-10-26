@@ -74,7 +74,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Backed
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "index": lambda n : setattr(self, 'index', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "parentIndex": lambda n : setattr(self, 'parent_index', n.get_int_value()),
             "schemaItemKey": lambda n : setattr(self, 'schema_item_key', n.get_str_value()),
             "selections": lambda n : setattr(self, 'selections', n.get_collection_of_object_values(KeyValuePair)),
@@ -97,7 +97,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Backed
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_int_value("index", self.index)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("parentIndex", self.parent_index)
         writer.write_str_value("schemaItemKey", self.schema_item_key)
         writer.write_collection_of_object_values("selections", self.selections)

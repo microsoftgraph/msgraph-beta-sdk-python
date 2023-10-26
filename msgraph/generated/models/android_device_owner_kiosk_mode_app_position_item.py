@@ -46,7 +46,7 @@ class AndroidDeviceOwnerKioskModeAppPositionItem(AdditionalDataHolder, BackedMod
 
         fields: Dict[str, Callable[[Any], None]] = {
             "item": lambda n : setattr(self, 'item', n.get_object_value(AndroidDeviceOwnerKioskModeHomeScreenItem)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "position": lambda n : setattr(self, 'position', n.get_int_value()),
         }
         return fields
@@ -60,7 +60,7 @@ class AndroidDeviceOwnerKioskModeAppPositionItem(AdditionalDataHolder, BackedMod
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("item", self.item)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("position", self.position)
         writer.write_additional_data_value(self.additional_data)
     

@@ -14,19 +14,19 @@ class WhoisContact(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The address property
+    # The physical address of the entity.
     address: Optional[PhysicalAddress] = None
-    # The email property
+    # The email of this WHOIS contact.
     email: Optional[str] = None
-    # The fax property
+    # The fax of this WHOIS contact. No format is guaranteed.
     fax: Optional[str] = None
-    # The name property
+    # The name of this WHOIS contact.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The organization property
+    # The organization of this WHOIS contact.
     organization: Optional[str] = None
-    # The telephone property
+    # The telephone of this WHOIS contact. No format is guaranteed.
     telephone: Optional[str] = None
     
     @staticmethod
@@ -54,7 +54,7 @@ class WhoisContact(AdditionalDataHolder, BackedModel, Parsable):
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "fax": lambda n : setattr(self, 'fax', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "organization": lambda n : setattr(self, 'organization', n.get_str_value()),
             "telephone": lambda n : setattr(self, 'telephone', n.get_str_value()),
         }
@@ -72,7 +72,7 @@ class WhoisContact(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("email", self.email)
         writer.write_str_value("fax", self.fax)
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("organization", self.organization)
         writer.write_str_value("telephone", self.telephone)
         writer.write_additional_data_value(self.additional_data)

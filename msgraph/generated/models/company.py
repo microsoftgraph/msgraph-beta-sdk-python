@@ -242,7 +242,7 @@ class Company(AdditionalDataHolder, BackedModel, Parsable):
             "journalLines": lambda n : setattr(self, 'journal_lines', n.get_collection_of_object_values(JournalLine)),
             "journals": lambda n : setattr(self, 'journals', n.get_collection_of_object_values(Journal)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "paymentMethods": lambda n : setattr(self, 'payment_methods', n.get_collection_of_object_values(PaymentMethod)),
             "paymentTerms": lambda n : setattr(self, 'payment_terms', n.get_collection_of_object_values(PaymentTerm)),
             "picture": lambda n : setattr(self, 'picture', n.get_collection_of_object_values(Picture)),
@@ -294,7 +294,7 @@ class Company(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("journalLines", self.journal_lines)
         writer.write_collection_of_object_values("journals", self.journals)
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("paymentMethods", self.payment_methods)
         writer.write_collection_of_object_values("paymentTerms", self.payment_terms)
         writer.write_collection_of_object_values("picture", self.picture)

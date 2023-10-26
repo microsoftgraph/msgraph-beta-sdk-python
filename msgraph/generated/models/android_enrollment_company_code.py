@@ -48,7 +48,7 @@ class AndroidEnrollmentCompanyCode(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "enrollmentToken": lambda n : setattr(self, 'enrollment_token', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "qrCodeContent": lambda n : setattr(self, 'qr_code_content', n.get_str_value()),
             "qrCodeImage": lambda n : setattr(self, 'qr_code_image', n.get_object_value(MimeContent)),
         }
@@ -63,7 +63,7 @@ class AndroidEnrollmentCompanyCode(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("enrollmentToken", self.enrollment_token)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("qrCodeContent", self.qr_code_content)
         writer.write_object_value("qrCodeImage", self.qr_code_image)
         writer.write_additional_data_value(self.additional_data)

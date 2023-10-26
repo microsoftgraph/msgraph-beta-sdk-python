@@ -45,7 +45,7 @@ class OnPremisesConnectionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[OnPremisesConnectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcOnPremisesConnectionCollectionResponse]:
         """
-        List properties and relationships of the cloudPcOnPremisesConnection objects.
+        List properties and relationships of the cloudPcOnPremisesConnection objects. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcOnPremisesConnectionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-onpremisesconnections?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class OnPremisesConnectionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CloudPcOnPremisesConnection] = None, request_configuration: Optional[OnPremisesConnectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcOnPremisesConnection]:
         """
-        Create a new cloudPcOnPremisesConnection object for provisioning Cloud PCs.
+        Create a new cloudPcOnPremisesConnection object for provisioning Cloud PCs. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcOnPremisesConnection]
@@ -92,24 +92,24 @@ class OnPremisesConnectionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[OnPremisesConnectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List properties and relationships of the cloudPcOnPremisesConnection objects.
+        List properties and relationships of the cloudPcOnPremisesConnection objects. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_post_request_information(self,body: Optional[CloudPcOnPremisesConnection] = None, request_configuration: Optional[OnPremisesConnectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new cloudPcOnPremisesConnection object for provisioning Cloud PCs.
+        Create a new cloudPcOnPremisesConnection object for provisioning Cloud PCs. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -117,13 +117,13 @@ class OnPremisesConnectionsRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -135,7 +135,7 @@ class OnPremisesConnectionsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OnPremisesConnectionsRequestBuilder(raw_url, self.request_adapter)
+        return OnPremisesConnectionsRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def count(self) -> CountRequestBuilder:
@@ -149,7 +149,7 @@ class OnPremisesConnectionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OnPremisesConnectionsRequestBuilderGetQueryParameters():
         """
-        List properties and relationships of the cloudPcOnPremisesConnection objects.
+        List properties and relationships of the cloudPcOnPremisesConnection objects. This API is available in the following national cloud deployments.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

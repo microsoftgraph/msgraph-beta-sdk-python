@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
     from .evaluate_classification_results_post_request_body import EvaluateClassificationResultsPostRequestBody
-    from .evaluate_classification_results_response import EvaluateClassificationResultsResponse
+    from .evaluate_classification_results_post_response import EvaluateClassificationResultsPostResponse
 
 class EvaluateClassificationResultsRequestBuilder(BaseRequestBuilder):
     """
@@ -27,12 +27,12 @@ class EvaluateClassificationResultsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/sites/{site%2Did}/informationProtection/policy/labels/evaluateClassificationResults", path_parameters)
     
-    async def post(self,body: Optional[EvaluateClassificationResultsPostRequestBody] = None, request_configuration: Optional[EvaluateClassificationResultsRequestBuilderPostRequestConfiguration] = None) -> Optional[EvaluateClassificationResultsResponse]:
+    async def post(self,body: Optional[EvaluateClassificationResultsPostRequestBody] = None, request_configuration: Optional[EvaluateClassificationResultsRequestBuilderPostRequestConfiguration] = None) -> Optional[EvaluateClassificationResultsPostResponse]:
         """
-        Using classification results, compute the information protection label that should be applied and return the set of actions that must be taken to correctly label the information. This API is useful when a label should be set automatically based on classification of the file contents, rather than labeled directly by a user or service.  To evaluate based on classification results, provide contentInfo, which includes existing content metadata key/value pairs, and classification results. The API returns an informationProtectionAction that contains one of more of the following: 
+        Using classification results, compute the information protection label that should be applied and return the set of actions that must be taken to correctly label the information. This API is useful when a label should be set automatically based on classification of the file contents, rather than labeled directly by a user or service. To evaluate based on classification results, provide contentInfo, which includes existing content metadata key/value pairs, and classification results. The API returns an informationProtectionAction that contains one of more of the following: This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[EvaluateClassificationResultsResponse]
+        Returns: Optional[EvaluateClassificationResultsPostResponse]
         Find more info here: https://learn.microsoft.com/graph/api/informationprotectionlabel-evaluateclassificationresults?view=graph-rest-1.0
         """
         if not body:
@@ -48,13 +48,13 @@ class EvaluateClassificationResultsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .evaluate_classification_results_response import EvaluateClassificationResultsResponse
+        from .evaluate_classification_results_post_response import EvaluateClassificationResultsPostResponse
 
-        return await self.request_adapter.send_async(request_info, EvaluateClassificationResultsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, EvaluateClassificationResultsPostResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[EvaluateClassificationResultsPostRequestBody] = None, request_configuration: Optional[EvaluateClassificationResultsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Using classification results, compute the information protection label that should be applied and return the set of actions that must be taken to correctly label the information. This API is useful when a label should be set automatically based on classification of the file contents, rather than labeled directly by a user or service.  To evaluate based on classification results, provide contentInfo, which includes existing content metadata key/value pairs, and classification results. The API returns an informationProtectionAction that contains one of more of the following: 
+        Using classification results, compute the information protection label that should be applied and return the set of actions that must be taken to correctly label the information. This API is useful when a label should be set automatically based on classification of the file contents, rather than labeled directly by a user or service. To evaluate based on classification results, provide contentInfo, which includes existing content metadata key/value pairs, and classification results. The API returns an informationProtectionAction that contains one of more of the following: This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -62,13 +62,13 @@ class EvaluateClassificationResultsRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -80,7 +80,7 @@ class EvaluateClassificationResultsRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return EvaluateClassificationResultsRequestBuilder(raw_url, self.request_adapter)
+        return EvaluateClassificationResultsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

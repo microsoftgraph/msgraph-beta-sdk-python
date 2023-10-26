@@ -19,9 +19,9 @@ class TiIndicator(Entity):
     action: Optional[TiAction] = None
     # The cyber threat intelligence name(s) for the parties responsible for the malicious activity covered by the threat indicator.
     activity_group_names: Optional[List[str]] = None
-    # A catchall area into which extra data from the indicator not covered by the other tiIndicator properties may be placed. Data placed into additionalInformation will typically not be utilized by the targetProduct security tool.
+    # A catchall area for extra data from the indicator that is not specifically covered by other tiIndicator properties. The security tool specified by targetProduct typically does not utilize this data.
     additional_information: Optional[str] = None
-    # Stamped by the system when the indicator is ingested. The Azure Active Directory tenant id of submitting client. Required.
+    # Stamped by the system when the indicator is ingested. The Microsoft Entra tenant id of submitting client. Required.
     azure_tenant_id: Optional[str] = None
     # An integer representing the confidence the data within the indicator accurately identifies malicious behavior. Acceptable values are 0 – 100 with 100 being the highest.
     confidence: Optional[int] = None
@@ -51,7 +51,7 @@ class TiIndicator(Entity):
     email_x_mailer: Optional[str] = None
     # DateTime string indicating when the Indicator expires. All indicators must have an expiration date to avoid stale indicators persisting in the system. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Required.
     expiration_date_time: Optional[datetime.datetime] = None
-    # An identification number that ties the indicator back to the indicator provider’s system (e.g. a foreign key).
+    # An identification number that ties the indicator back to the indicator provider’s system (for example, a foreign key).
     external_id: Optional[str] = None
     # The fileCompileDateTime property
     file_compile_date_time: Optional[datetime.datetime] = None
@@ -83,7 +83,7 @@ class TiIndicator(Entity):
     known_false_positives: Optional[str] = None
     # The last time the indicator was seen. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     last_reported_date_time: Optional[datetime.datetime] = None
-    # The malware family name associated with an indicator if it exists. Microsoft prefers the Microsoft malware family name if at all possible which can be found via the Windows Defender Security Intelligence threat encyclopedia.
+    # The malware family name associated with an indicator if it exists. Microsoft prefers the Microsoft malware family name if at all possible that can be found via the Windows Defender Security Intelligence threat encyclopedia.
     malware_family_names: Optional[List[str]] = None
     # The networkCidrBlock property
     network_cidr_block: Optional[str] = None
@@ -117,9 +117,9 @@ class TiIndicator(Entity):
     network_source_port: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Determines if the indicator should trigger an event that is visible to an end-user. When set to ‘true,’ security tools will not notify the end user that a ‘hit’ has occurred. This is most often treated as audit or silent mode by security products where they will simply log that a match occurred but will not perform the action. Default value is false.
+    # Determines if the indicator should trigger an event that is visible to an end-user. When set to ‘true,’ security tools won't notify the end user that a ‘hit’ has occurred. This is most often treated as audit or silent mode by security products where they'll simply log that a match occurred but won't perform the action. Default value is false.
     passive_only: Optional[bool] = None
-    # An integer representing the severity of the malicious behavior identified by the data within the indicator. Acceptable values are 0 – 5 where 5 is the most severe and zero is not severe at all. Default value is 3.
+    # An integer representing the severity of the malicious behavior identified by the data within the indicator. Acceptable values are 0 – 5 where 5 is the most severe and zero isn't severe at all. Default value is 3.
     severity: Optional[int] = None
     # A JSON array of strings that stores arbitrary tags/keywords.
     tags: Optional[List[str]] = None

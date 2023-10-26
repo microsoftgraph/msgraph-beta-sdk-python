@@ -57,7 +57,7 @@ class PayloadDetail(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "coachmarks": lambda n : setattr(self, 'coachmarks', n.get_collection_of_object_values(PayloadCoachmark)),
             "content": lambda n : setattr(self, 'content', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "phishingUrl": lambda n : setattr(self, 'phishing_url', n.get_str_value()),
         }
         return fields
@@ -72,7 +72,7 @@ class PayloadDetail(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("coachmarks", self.coachmarks)
         writer.write_str_value("content", self.content)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("phishingUrl", self.phishing_url)
         writer.write_additional_data_value(self.additional_data)
     

@@ -53,7 +53,7 @@ class CompanyDetail(AdditionalDataHolder, BackedModel, Parsable):
             "address": lambda n : setattr(self, 'address', n.get_object_value(PhysicalAddress)),
             "department": lambda n : setattr(self, 'department', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "officeLocation": lambda n : setattr(self, 'office_location', n.get_str_value()),
             "pronunciation": lambda n : setattr(self, 'pronunciation', n.get_str_value()),
             "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
@@ -71,7 +71,7 @@ class CompanyDetail(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("address", self.address)
         writer.write_str_value("department", self.department)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("officeLocation", self.office_location)
         writer.write_str_value("pronunciation", self.pronunciation)
         writer.write_str_value("webUrl", self.web_url)

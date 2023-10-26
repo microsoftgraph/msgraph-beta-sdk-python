@@ -28,7 +28,7 @@ class GetDailyAggregatedRemoteConnectionReportsRequestBuilder(BaseRequestBuilder
     
     async def post(self,body: Optional[GetDailyAggregatedRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[GetDailyAggregatedRemoteConnectionReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Get the daily aggregated remote connection reports, such as round trip time, available bandwidth, and so on, in a given period.
+        Get the daily aggregated remote connection reports, such as round trip time, available bandwidth, and so on, in a given period. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
@@ -51,7 +51,7 @@ class GetDailyAggregatedRemoteConnectionReportsRequestBuilder(BaseRequestBuilder
     
     def to_post_request_information(self,body: Optional[GetDailyAggregatedRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[GetDailyAggregatedRemoteConnectionReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the daily aggregated remote connection reports, such as round trip time, available bandwidth, and so on, in a given period.
+        Get the daily aggregated remote connection reports, such as round trip time, available bandwidth, and so on, in a given period. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -59,12 +59,13 @@ class GetDailyAggregatedRemoteConnectionReportsRequestBuilder(BaseRequestBuilder
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/octet-stream, application/json, application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -76,7 +77,7 @@ class GetDailyAggregatedRemoteConnectionReportsRequestBuilder(BaseRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return GetDailyAggregatedRemoteConnectionReportsRequestBuilder(raw_url, self.request_adapter)
+        return GetDailyAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, raw_url)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

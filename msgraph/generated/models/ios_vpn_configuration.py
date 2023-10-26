@@ -7,8 +7,8 @@ if TYPE_CHECKING:
     from .apple_vpn_configuration import AppleVpnConfiguration
     from .app_list_item import AppListItem
     from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-    from .ios_certificate_profile_base import IosCertificateProfileBase
     from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
+    from .ios_certificate_profile_base import IosCertificateProfileBase
 
 from .apple_vpn_configuration import AppleVpnConfiguration
 
@@ -63,14 +63,14 @@ class IosVpnConfiguration(AppleVpnConfiguration):
         from .apple_vpn_configuration import AppleVpnConfiguration
         from .app_list_item import AppListItem
         from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-        from .ios_certificate_profile_base import IosCertificateProfileBase
         from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
+        from .ios_certificate_profile_base import IosCertificateProfileBase
 
         from .apple_vpn_configuration import AppleVpnConfiguration
         from .app_list_item import AppListItem
         from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-        from .ios_certificate_profile_base import IosCertificateProfileBase
         from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
+        from .ios_certificate_profile_base import IosCertificateProfileBase
 
         fields: Dict[str, Callable[[Any], None]] = {
             "cloudName": lambda n : setattr(self, 'cloud_name', n.get_str_value()),

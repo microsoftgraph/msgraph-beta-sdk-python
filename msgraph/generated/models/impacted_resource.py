@@ -17,9 +17,9 @@ class ImpactedResource(Entity):
     added_date_time: Optional[datetime.datetime] = None
     # Additional information unique to the impactedResource to help contextualize the recommendation.
     additional_details: Optional[List[KeyValue]] = None
-    # The URL link to the corresponding Azure AD resource.
+    # The URL link to the corresponding Microsoft Entra resource.
     api_url: Optional[str] = None
-    # Friendly name of the Azure AD resource.
+    # Friendly name of the Microsoft Entra resource.
     display_name: Optional[str] = None
     # Name of the user or service that last updated the status.
     last_modified_by: Optional[str] = None
@@ -29,7 +29,7 @@ class ImpactedResource(Entity):
     odata_type: Optional[str] = None
     # The user responsible for maintaining the resource.
     owner: Optional[str] = None
-    # The URL link to the corresponding Azure AD portal page of the resource.
+    # The URL link to the corresponding Microsoft Entra admin center page of the resource.
     portal_url: Optional[str] = None
     # The future date and time when the status of a postponed impactedResource will be active again.
     postpone_until_date_time: Optional[datetime.datetime] = None
@@ -37,7 +37,7 @@ class ImpactedResource(Entity):
     rank: Optional[int] = None
     # The unique identifier of the recommendation that the resource is associated with.
     recommendation_id: Optional[str] = None
-    # Indicates the type of Azure AD resource. Examples include user, application.
+    # Indicates the type of Microsoft Entra resource. Examples include user, application.
     resource_type: Optional[str] = None
     # The status property
     status: Optional[RecommendationStatus] = None

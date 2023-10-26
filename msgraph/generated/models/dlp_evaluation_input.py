@@ -58,7 +58,7 @@ class DlpEvaluationInput(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "currentLabel": lambda n : setattr(self, 'current_label', n.get_object_value(CurrentLabel)),
             "discoveredSensitiveTypes": lambda n : setattr(self, 'discovered_sensitive_types', n.get_collection_of_object_values(DiscoveredSensitiveType)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class DlpEvaluationInput(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_object_value("currentLabel", self.current_label)
         writer.write_collection_of_object_values("discoveredSensitiveTypes", self.discovered_sensitive_types)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -41,7 +41,7 @@ class CloudPcLaunchInfo(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "cloudPcId": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
             "cloudPcLaunchUrl": lambda n : setattr(self, 'cloud_pc_launch_url', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "windows365SwitchCompatible": lambda n : setattr(self, 'windows365_switch_compatible', n.get_bool_value()),
             "windows365SwitchNotCompatibleReason": lambda n : setattr(self, 'windows365_switch_not_compatible_reason', n.get_str_value()),
         }
@@ -57,7 +57,7 @@ class CloudPcLaunchInfo(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("cloudPcId", self.cloud_pc_id)
         writer.write_str_value("cloudPcLaunchUrl", self.cloud_pc_launch_url)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("windows365SwitchCompatible", self.windows365_switch_compatible)
         writer.write_str_value("windows365SwitchNotCompatibleReason", self.windows365_switch_not_compatible_reason)
         writer.write_additional_data_value(self.additional_data)

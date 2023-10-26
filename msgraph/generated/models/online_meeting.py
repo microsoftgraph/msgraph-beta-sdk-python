@@ -46,19 +46,19 @@ class OnlineMeeting(Entity):
     allow_transcription: Optional[bool] = None
     # Specifies who can be a presenter in a meeting.
     allowed_presenters: Optional[OnlineMeetingPresenters] = None
-    # The content stream of the alternative recording of a Microsoft Teams live event. Read-only.
+    # The alternativeRecording property
     alternative_recording: Optional[bytes] = None
     # Specifies whose identity will be anonymized in the meeting. Possible values are: attendee. The attendee value cannot be removed through a PATCH operation once added.
     anonymize_identity_for_roles: Optional[List[OnlineMeetingRole]] = None
     # The attendance reports of an online meeting. Read-only.
     attendance_reports: Optional[List[MeetingAttendanceReport]] = None
-    # The content stream of the attendee report of a Teams live event. Read-only.
+    # The attendeeReport property
     attendee_report: Optional[bytes] = None
     # The phone access (dial-in) information for an online meeting. Read-only.
     audio_conferencing: Optional[AudioConferencing] = None
     # The broadcastRecording property
     broadcast_recording: Optional[bytes] = None
-    # Settings related to a live event.
+    # The broadcastSettings property
     broadcast_settings: Optional[BroadcastMeetingSettings] = None
     # The capabilities property
     capabilities: Optional[List[MeetingCapabilities]] = None
@@ -72,8 +72,10 @@ class OnlineMeeting(Entity):
     end_date_time: Optional[datetime.datetime] = None
     # The external ID. A custom ID. Optional.
     external_id: Optional[str] = None
-    # Indicates whether this is a Teams live event.
+    # The isBroadcast property
     is_broadcast: Optional[bool] = None
+    # The isEndToEndEncryptionEnabled property
+    is_end_to_end_encryption_enabled: Optional[bool] = None
     # Indicates whether to announce when callers join or leave.
     is_entry_exit_announced: Optional[bool] = None
     # The join information in the language and locale variant specified in 'Accept-Language' request HTTP header. Read-only.
@@ -94,7 +96,7 @@ class OnlineMeeting(Entity):
     participants: Optional[MeetingParticipants] = None
     # Indicates whether to record the meeting automatically.
     record_automatically: Optional[bool] = None
-    # The content stream of the recording of a Teams live event. Read-only.
+    # The recording property
     recording: Optional[bytes] = None
     # The recordings of an online meeting. Read-only.
     recordings: Optional[List[CallRecording]] = None
@@ -202,6 +204,7 @@ class OnlineMeeting(Entity):
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "isBroadcast": lambda n : setattr(self, 'is_broadcast', n.get_bool_value()),
+            "isEndToEndEncryptionEnabled": lambda n : setattr(self, 'is_end_to_end_encryption_enabled', n.get_bool_value()),
             "isEntryExitAnnounced": lambda n : setattr(self, 'is_entry_exit_announced', n.get_bool_value()),
             "joinInformation": lambda n : setattr(self, 'join_information', n.get_object_value(ItemBody)),
             "joinMeetingIdSettings": lambda n : setattr(self, 'join_meeting_id_settings', n.get_object_value(JoinMeetingIdSettings)),
@@ -256,6 +259,7 @@ class OnlineMeeting(Entity):
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_str_value("externalId", self.external_id)
         writer.write_bool_value("isBroadcast", self.is_broadcast)
+        writer.write_bool_value("isEndToEndEncryptionEnabled", self.is_end_to_end_encryption_enabled)
         writer.write_bool_value("isEntryExitAnnounced", self.is_entry_exit_announced)
         writer.write_object_value("joinInformation", self.join_information)
         writer.write_object_value("joinMeetingIdSettings", self.join_meeting_id_settings)

@@ -55,7 +55,7 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, BackedModel, Parsabl
             "assignmentTarget": lambda n : setattr(self, 'assignment_target', n.get_object_value(DeviceAndAppManagementAssignmentTarget)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "target": lambda n : setattr(self, 'target', n.get_object_value(AndroidFotaDeploymentAssignmentTarget)),
         }
         return fields
@@ -71,7 +71,7 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, BackedModel, Parsabl
         writer.write_object_value("assignmentTarget", self.assignment_target)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("id", self.id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("target", self.target)
         writer.write_additional_data_value(self.additional_data)
     

@@ -62,7 +62,7 @@ class RoleManagement(AdditionalDataHolder, BackedModel, Parsable):
             "enterpriseApps": lambda n : setattr(self, 'enterprise_apps', n.get_collection_of_object_values(RbacApplication)),
             "entitlementManagement": lambda n : setattr(self, 'entitlement_management', n.get_object_value(RbacApplication)),
             "exchange": lambda n : setattr(self, 'exchange', n.get_object_value(UnifiedRbacApplication)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -80,7 +80,7 @@ class RoleManagement(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("enterpriseApps", self.enterprise_apps)
         writer.write_object_value("entitlementManagement", self.entitlement_management)
         writer.write_object_value("exchange", self.exchange)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

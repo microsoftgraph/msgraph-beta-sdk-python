@@ -48,7 +48,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "defaultRule": lambda n : setattr(self, 'default_rule', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "propertyRule": lambda n : setattr(self, 'property_rule', n.get_object_value(PlannerTaskPropertyRule)),
             "role": lambda n : setattr(self, 'role', n.get_object_value(PlannerTaskConfigurationRoleBase)),
         }
@@ -63,7 +63,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("defaultRule", self.default_rule)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("propertyRule", self.property_rule)
         writer.write_object_value("role", self.role)
         writer.write_additional_data_value(self.additional_data)

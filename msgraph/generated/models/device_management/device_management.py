@@ -60,9 +60,9 @@ if TYPE_CHECKING:
     from ..device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
     from ..device_management_reusable_policy_setting import DeviceManagementReusablePolicySetting
     from ..device_management_script import DeviceManagementScript
+    from ..device_management_settings import DeviceManagementSettings
     from ..device_management_setting_category import DeviceManagementSettingCategory
     from ..device_management_setting_definition import DeviceManagementSettingDefinition
-    from ..device_management_settings import DeviceManagementSettings
     from ..device_management_subscriptions import DeviceManagementSubscriptions
     from ..device_management_subscription_state import DeviceManagementSubscriptionState
     from ..device_management_template import DeviceManagementTemplate
@@ -613,9 +613,9 @@ class DeviceManagement(Entity):
         from ..device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
         from ..device_management_reusable_policy_setting import DeviceManagementReusablePolicySetting
         from ..device_management_script import DeviceManagementScript
+        from ..device_management_settings import DeviceManagementSettings
         from ..device_management_setting_category import DeviceManagementSettingCategory
         from ..device_management_setting_definition import DeviceManagementSettingDefinition
-        from ..device_management_settings import DeviceManagementSettings
         from ..device_management_subscriptions import DeviceManagementSubscriptions
         from ..device_management_subscription_state import DeviceManagementSubscriptionState
         from ..device_management_template import DeviceManagementTemplate
@@ -780,9 +780,9 @@ class DeviceManagement(Entity):
         from ..device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
         from ..device_management_reusable_policy_setting import DeviceManagementReusablePolicySetting
         from ..device_management_script import DeviceManagementScript
+        from ..device_management_settings import DeviceManagementSettings
         from ..device_management_setting_category import DeviceManagementSettingCategory
         from ..device_management_setting_definition import DeviceManagementSettingDefinition
-        from ..device_management_settings import DeviceManagementSettings
         from ..device_management_subscriptions import DeviceManagementSubscriptions
         from ..device_management_subscription_state import DeviceManagementSubscriptionState
         from ..device_management_template import DeviceManagementTemplate
@@ -1003,7 +1003,7 @@ class DeviceManagement(Entity):
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(DeviceManagementSettings)),
             "softwareUpdateStatusSummary": lambda n : setattr(self, 'software_update_status_summary', n.get_object_value(SoftwareUpdateStatusSummary)),
             "subscriptionState": lambda n : setattr(self, 'subscription_state', n.get_enum_value(DeviceManagementSubscriptionState)),
-            "subscriptions": lambda n : setattr(self, 'subscriptions', n.get_enum_value(DeviceManagementSubscriptions)),
+            "subscriptions": lambda n : setattr(self, 'subscriptions', n.get_collection_of_enum_values(DeviceManagementSubscriptions)),
             "telecomExpenseManagementPartners": lambda n : setattr(self, 'telecom_expense_management_partners', n.get_collection_of_object_values(TelecomExpenseManagementPartner)),
             "templateInsights": lambda n : setattr(self, 'template_insights', n.get_collection_of_object_values(DeviceManagementTemplateInsightsDefinition)),
             "templateSettings": lambda n : setattr(self, 'template_settings', n.get_collection_of_object_values(DeviceManagementConfigurationSettingTemplate)),

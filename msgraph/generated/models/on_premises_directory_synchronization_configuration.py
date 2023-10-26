@@ -66,7 +66,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Back
             "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
             "currentExportData": lambda n : setattr(self, 'current_export_data', n.get_object_value(OnPremisesCurrentExportData)),
             "customerRequestedSynchronizationInterval": lambda n : setattr(self, 'customer_requested_synchronization_interval', n.get_timedelta_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "synchronizationClientVersion": lambda n : setattr(self, 'synchronization_client_version', n.get_str_value()),
             "synchronizationInterval": lambda n : setattr(self, 'synchronization_interval', n.get_timedelta_value()),
             "writebackConfiguration": lambda n : setattr(self, 'writeback_configuration', n.get_object_value(OnPremisesWritebackConfiguration)),
@@ -86,7 +86,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Back
         writer.write_str_value("applicationId", self.application_id)
         writer.write_object_value("currentExportData", self.current_export_data)
         writer.write_timedelta_value("customerRequestedSynchronizationInterval", self.customer_requested_synchronization_interval)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("synchronizationClientVersion", self.synchronization_client_version)
         writer.write_timedelta_value("synchronizationInterval", self.synchronization_interval)
         writer.write_object_value("writebackConfiguration", self.writeback_configuration)

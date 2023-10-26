@@ -11,7 +11,7 @@ class OnPremisesCurrentExportData(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The name of the onPremises client machine which ran the last export.
+    # The name of the onPremises client machine that ran the last export.
     client_machine_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -21,11 +21,11 @@ class OnPremisesCurrentExportData(AdditionalDataHolder, BackedModel, Parsable):
     pending_objects_deletion: Optional[int] = None
     # The count of pending updates from on-premises directory.
     pending_objects_update: Optional[int] = None
-    # The name of the dirsync service account which is configured to connect to the directory.
+    # The name of the dirsync service account that is configured to connect to the directory.
     service_account: Optional[str] = None
     # The count of updated links during the current directory sync export run.
     successful_links_provisioning_count: Optional[int] = None
-    # The count of objects which were successfully provisioned during the current directory sync export run.
+    # The count of objects that were successfully provisioned during the current directory sync export run.
     successful_objects_provisioning_count: Optional[int] = None
     # The total number of objects in the AAD Connector Space.
     total_connector_space_objects: Optional[int] = None
@@ -48,7 +48,7 @@ class OnPremisesCurrentExportData(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "clientMachineName": lambda n : setattr(self, 'client_machine_name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "pendingObjectsAddition": lambda n : setattr(self, 'pending_objects_addition', n.get_int_value()),
             "pendingObjectsDeletion": lambda n : setattr(self, 'pending_objects_deletion', n.get_int_value()),
             "pendingObjectsUpdate": lambda n : setattr(self, 'pending_objects_update', n.get_int_value()),
@@ -68,7 +68,7 @@ class OnPremisesCurrentExportData(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("clientMachineName", self.client_machine_name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("pendingObjectsAddition", self.pending_objects_addition)
         writer.write_int_value("pendingObjectsDeletion", self.pending_objects_deletion)
         writer.write_int_value("pendingObjectsUpdate", self.pending_objects_update)

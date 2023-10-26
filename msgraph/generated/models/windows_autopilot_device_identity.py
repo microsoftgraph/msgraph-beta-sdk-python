@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .windows_autopilot_device_remediation_state import WindowsAutopilotDeviceRemediationState
     from .windows_autopilot_profile_assignment_detailed_status import WindowsAutopilotProfileAssignmentDetailedStatus
     from .windows_autopilot_profile_assignment_status import WindowsAutopilotProfileAssignmentStatus
+    from .windows_autopilot_userless_enrollment_status import WindowsAutopilotUserlessEnrollmentStatus
 
 from .entity import Entity
 
@@ -75,6 +76,8 @@ class WindowsAutopilotDeviceIdentity(Entity):
     system_family: Optional[str] = None
     # User Principal Name.
     user_principal_name: Optional[str] = None
+    # Userless enrollment block status, indicating whether the next device enrollment will be blocked.
+    userless_enrollment_status: Optional[WindowsAutopilotUserlessEnrollmentStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsAutopilotDeviceIdentity:
@@ -98,6 +101,7 @@ class WindowsAutopilotDeviceIdentity(Entity):
         from .windows_autopilot_device_remediation_state import WindowsAutopilotDeviceRemediationState
         from .windows_autopilot_profile_assignment_detailed_status import WindowsAutopilotProfileAssignmentDetailedStatus
         from .windows_autopilot_profile_assignment_status import WindowsAutopilotProfileAssignmentStatus
+        from .windows_autopilot_userless_enrollment_status import WindowsAutopilotUserlessEnrollmentStatus
 
         from .enrollment_state import EnrollmentState
         from .entity import Entity
@@ -105,6 +109,7 @@ class WindowsAutopilotDeviceIdentity(Entity):
         from .windows_autopilot_device_remediation_state import WindowsAutopilotDeviceRemediationState
         from .windows_autopilot_profile_assignment_detailed_status import WindowsAutopilotProfileAssignmentDetailedStatus
         from .windows_autopilot_profile_assignment_status import WindowsAutopilotProfileAssignmentStatus
+        from .windows_autopilot_userless_enrollment_status import WindowsAutopilotUserlessEnrollmentStatus
 
         fields: Dict[str, Callable[[Any], None]] = {
             "addressableUserName": lambda n : setattr(self, 'addressable_user_name', n.get_str_value()),
@@ -134,6 +139,7 @@ class WindowsAutopilotDeviceIdentity(Entity):
             "skuNumber": lambda n : setattr(self, 'sku_number', n.get_str_value()),
             "systemFamily": lambda n : setattr(self, 'system_family', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userlessEnrollmentStatus": lambda n : setattr(self, 'userless_enrollment_status', n.get_enum_value(WindowsAutopilotUserlessEnrollmentStatus)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -175,5 +181,6 @@ class WindowsAutopilotDeviceIdentity(Entity):
         writer.write_str_value("skuNumber", self.sku_number)
         writer.write_str_value("systemFamily", self.system_family)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
+        writer.write_enum_value("userlessEnrollmentStatus", self.userless_enrollment_status)
     
 

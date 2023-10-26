@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
     from .cross_tenant_access_policy_configuration_partner import CrossTenantAccessPolicyConfigurationPartner
+    from .policy_template import PolicyTemplate
     from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
 
 from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
@@ -16,10 +17,12 @@ class CrossTenantAccessPolicy(TenantRelationshipAccessPolicyBase):
     odata_type: Optional[str] = "#microsoft.graph.crossTenantAccessPolicy"
     # Used to specify which Microsoft clouds an organization would like to collaborate with. By default, this value is empty. Supported values for this field are: microsoftonline.com, microsoftonline.us, and partner.microsoftonline.cn.
     allowed_cloud_endpoints: Optional[List[str]] = None
-    # Defines the default configuration for how your organization interacts with external Azure Active Directory organizations.
+    # Defines the default configuration for how your organization interacts with external Microsoft Entra organizations.
     default: Optional[CrossTenantAccessPolicyConfigurationDefault] = None
-    # Defines partner-specific configurations for external Azure Active Directory organizations.
+    # Defines partner-specific configurations for external Microsoft Entra organizations.
     partners: Optional[List[CrossTenantAccessPolicyConfigurationPartner]] = None
+    # Represents the base policy in the directory for multi-tenant organization settings.
+    templates: Optional[PolicyTemplate] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CrossTenantAccessPolicy:
@@ -39,16 +42,19 @@ class CrossTenantAccessPolicy(TenantRelationshipAccessPolicyBase):
         """
         from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
         from .cross_tenant_access_policy_configuration_partner import CrossTenantAccessPolicyConfigurationPartner
+        from .policy_template import PolicyTemplate
         from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
 
         from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
         from .cross_tenant_access_policy_configuration_partner import CrossTenantAccessPolicyConfigurationPartner
+        from .policy_template import PolicyTemplate
         from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowedCloudEndpoints": lambda n : setattr(self, 'allowed_cloud_endpoints', n.get_collection_of_primitive_values(str)),
             "default": lambda n : setattr(self, 'default', n.get_object_value(CrossTenantAccessPolicyConfigurationDefault)),
             "partners": lambda n : setattr(self, 'partners', n.get_collection_of_object_values(CrossTenantAccessPolicyConfigurationPartner)),
+            "templates": lambda n : setattr(self, 'templates', n.get_object_value(PolicyTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,5 +72,6 @@ class CrossTenantAccessPolicy(TenantRelationshipAccessPolicyBase):
         writer.write_collection_of_primitive_values("allowedCloudEndpoints", self.allowed_cloud_endpoints)
         writer.write_object_value("default", self.default)
         writer.write_collection_of_object_values("partners", self.partners)
+        writer.write_object_value("templates", self.templates)
     
 

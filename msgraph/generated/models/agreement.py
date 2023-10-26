@@ -23,7 +23,7 @@ class Agreement(Entity):
     file: Optional[AgreementFile] = None
     # PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
     files: Optional[List[AgreementFileLocalization]] = None
-    # This setting enables you to require end users to accept this agreement on every device that they are accessing it from. The end user will be required to register their device in Azure AD, if they haven't already done so. Supports $filter (eq).
+    # This setting enables you to require end users to accept this agreement on every device that they are accessing it from. The end user will be required to register their device in Microsoft Entra ID, if they haven't already done so. Supports $filter (eq).
     is_per_device_acceptance_required: Optional[bool] = None
     # Indicates whether the user has to expand the agreement before accepting. Supports $filter (eq).
     is_viewing_before_acceptance_required: Optional[bool] = None

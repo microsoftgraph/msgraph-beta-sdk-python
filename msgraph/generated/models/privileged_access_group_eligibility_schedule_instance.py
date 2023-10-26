@@ -16,19 +16,19 @@ from .privileged_access_schedule_instance import PrivilegedAccessScheduleInstanc
 class PrivilegedAccessGroupEligibilityScheduleInstance(PrivilegedAccessScheduleInstance):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.privilegedAccessGroupEligibilityScheduleInstance"
-    # The identifier of the membership or ownership eligibility relationship to the group. Required. The possible values are: owner, member.
+    # The identifier of the membership or ownership eligibility relationship to the group. Required. The possible values are: owner, member. Supports $filter (eq).
     access_id: Optional[PrivilegedAccessGroupRelationships] = None
-    # The identifier of the privilegedAccessGroupEligibilitySchedule from which this instance was created. Required.
+    # The identifier of the privilegedAccessGroupEligibilitySchedule from which this instance was created. Required. Supports $filter (eq, ne).
     eligibility_schedule_id: Optional[str] = None
     # References the group that is the scope of the membership or ownership eligibility through PIM for groups. Supports $expand.
     group: Optional[Group] = None
-    # The identifier of the group representing the scope of the membership or ownership eligibility through PIM for groups. Required.
+    # The identifier of the group representing the scope of the membership or ownership eligibility through PIM for groups. Required. Supports $filter (eq).
     group_id: Optional[str] = None
-    # Indicates whether the assignment is derived from a group assignment. It can further imply whether the calling principal can manage the assignment schedule. Required. The possible values are: direct, group, unknownFutureValue.
+    # Indicates whether the assignment is derived from a group assignment. It can further imply whether the calling principal can manage the assignment schedule. Required. The possible values are: direct, group, unknownFutureValue. Supports $filter (eq).
     member_type: Optional[PrivilegedAccessGroupMemberType] = None
     # References the principal that's in the scope of the membership or ownership eligibility request through the group that's governed by PIM. Supports $expand.
     principal: Optional[DirectoryObject] = None
-    # The identifier of the principal whose membership or ownership eligibility to the group is managed through PIM for groups. Required.
+    # The identifier of the principal whose membership or ownership eligibility to the group is managed through PIM for groups. Required. Supports $filter (eq).
     principal_id: Optional[str] = None
     
     @staticmethod

@@ -17,7 +17,7 @@ class CloudPcAuditActor(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Name of the application.
     application_display_name: Optional[str] = None
-    # Azure AD application ID.
+    # Microsoft Entra application ID.
     application_id: Optional[str] = None
     # IP address.
     ip_address: Optional[str] = None
@@ -31,7 +31,7 @@ class CloudPcAuditActor(AdditionalDataHolder, BackedModel, Parsable):
     service_principal_name: Optional[str] = None
     # The type property
     type: Optional[CloudPcAuditActorType] = None
-    # Azure AD user ID.
+    # Microsoft Entra user ID.
     user_id: Optional[str] = None
     # List of user permissions and application permissions when the audit event was performed.
     user_permissions: Optional[List[str]] = None
@@ -66,7 +66,7 @@ class CloudPcAuditActor(AdditionalDataHolder, BackedModel, Parsable):
             "applicationDisplayName": lambda n : setattr(self, 'application_display_name', n.get_str_value()),
             "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
             "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "remoteTenantId": lambda n : setattr(self, 'remote_tenant_id', n.get_str_value()),
             "remoteUserId": lambda n : setattr(self, 'remote_user_id', n.get_str_value()),
             "servicePrincipalName": lambda n : setattr(self, 'service_principal_name', n.get_str_value()),
@@ -89,7 +89,7 @@ class CloudPcAuditActor(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("applicationDisplayName", self.application_display_name)
         writer.write_str_value("applicationId", self.application_id)
         writer.write_str_value("ipAddress", self.ip_address)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("remoteTenantId", self.remote_tenant_id)
         writer.write_str_value("remoteUserId", self.remote_user_id)
         writer.write_str_value("servicePrincipalName", self.service_principal_name)

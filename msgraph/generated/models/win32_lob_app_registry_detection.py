@@ -59,7 +59,7 @@ class Win32LobAppRegistryDetection(Win32LobAppDetection):
             "detectionType": lambda n : setattr(self, 'detection_type', n.get_enum_value(Win32LobAppRegistryDetectionType)),
             "detectionValue": lambda n : setattr(self, 'detection_value', n.get_str_value()),
             "keyPath": lambda n : setattr(self, 'key_path', n.get_str_value()),
-            "operator": lambda n : setattr(self, 'operator', n.get_enum_value(Win32LobAppDetectionOperator)),
+            "operator": lambda n : setattr(self, 'operator', n.get_collection_of_enum_values(Win32LobAppDetectionOperator)),
             "valueName": lambda n : setattr(self, 'value_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

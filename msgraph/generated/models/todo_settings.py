@@ -40,7 +40,7 @@ class TodoSettings(AdditionalDataHolder, BackedModel, Parsable):
             "isExternalJoinEnabled": lambda n : setattr(self, 'is_external_join_enabled', n.get_bool_value()),
             "isExternalShareEnabled": lambda n : setattr(self, 'is_external_share_enabled', n.get_bool_value()),
             "isPushNotificationEnabled": lambda n : setattr(self, 'is_push_notification_enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -55,7 +55,7 @@ class TodoSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("isExternalJoinEnabled", self.is_external_join_enabled)
         writer.write_bool_value("isExternalShareEnabled", self.is_external_share_enabled)
         writer.write_bool_value("isPushNotificationEnabled", self.is_push_notification_enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

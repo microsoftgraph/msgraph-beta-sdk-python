@@ -57,8 +57,8 @@ class TextClassificationRequest(Entity):
         fields: Dict[str, Callable[[Any], None]] = {
             "contentMetaData": lambda n : setattr(self, 'content_meta_data', n.get_object_value(ClassificationRequestContentMetaData)),
             "fileExtension": lambda n : setattr(self, 'file_extension', n.get_str_value()),
-            "matchTolerancesToInclude": lambda n : setattr(self, 'match_tolerances_to_include', n.get_enum_value(MlClassificationMatchTolerance)),
-            "scopesToRun": lambda n : setattr(self, 'scopes_to_run', n.get_enum_value(SensitiveTypeScope)),
+            "matchTolerancesToInclude": lambda n : setattr(self, 'match_tolerances_to_include', n.get_collection_of_enum_values(MlClassificationMatchTolerance)),
+            "scopesToRun": lambda n : setattr(self, 'scopes_to_run', n.get_collection_of_enum_values(SensitiveTypeScope)),
             "sensitiveTypeIds": lambda n : setattr(self, 'sensitive_type_ids', n.get_collection_of_primitive_values(str)),
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
         }

@@ -26,19 +26,19 @@ from .entity import Entity
 class DeviceManagementConfigurationSettingDefinition(Entity):
     # The accessTypes property
     access_types: Optional[DeviceManagementConfigurationSettingAccessTypes] = None
-    # Details which device setting is applicable on
+    # Details which device setting is applicable on. Supports: $filters.
     applicability: Optional[DeviceManagementConfigurationSettingApplicability] = None
     # Base CSP Path
     base_uri: Optional[str] = None
-    # Specifies the area group under which the setting is configured in a specified configuration service provider (CSP)
+    # Specify category in which the setting is under. Support $filters.
     category_id: Optional[str] = None
-    # Description of the item
+    # Description of the setting.
     description: Optional[str] = None
-    # Display name of the item
+    # Name of the setting. For example: Allow Toast.
     display_name: Optional[str] = None
-    # Help text of the item
+    # Help text of the setting. Give more details of the setting.
     help_text: Optional[str] = None
-    # List of links more info for the setting can be found at
+    # List of links more info for the setting can be found at.
     info_urls: Optional[List[str]] = None
     # Tokens which to search settings on
     keywords: Optional[List[str]] = None
@@ -52,7 +52,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity):
     offset_uri: Optional[str] = None
     # List of referred setting information.
     referred_setting_information_list: Optional[List[DeviceManagementConfigurationReferredSettingInformation]] = None
-    # Root setting definition if the setting is a child setting.
+    # Root setting definition id if the setting is a child setting.
     root_definition_id: Optional[str] = None
     # Supported setting types
     setting_usage: Optional[DeviceManagementConfigurationSettingUsage] = None
@@ -144,7 +144,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity):
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "accessTypes": lambda n : setattr(self, 'access_types', n.get_enum_value(DeviceManagementConfigurationSettingAccessTypes)),
+            "accessTypes": lambda n : setattr(self, 'access_types', n.get_collection_of_enum_values(DeviceManagementConfigurationSettingAccessTypes)),
             "applicability": lambda n : setattr(self, 'applicability', n.get_object_value(DeviceManagementConfigurationSettingApplicability)),
             "baseUri": lambda n : setattr(self, 'base_uri', n.get_str_value()),
             "categoryId": lambda n : setattr(self, 'category_id', n.get_str_value()),
@@ -158,10 +158,10 @@ class DeviceManagementConfigurationSettingDefinition(Entity):
             "offsetUri": lambda n : setattr(self, 'offset_uri', n.get_str_value()),
             "referredSettingInformationList": lambda n : setattr(self, 'referred_setting_information_list', n.get_collection_of_object_values(DeviceManagementConfigurationReferredSettingInformation)),
             "rootDefinitionId": lambda n : setattr(self, 'root_definition_id', n.get_str_value()),
-            "settingUsage": lambda n : setattr(self, 'setting_usage', n.get_enum_value(DeviceManagementConfigurationSettingUsage)),
+            "settingUsage": lambda n : setattr(self, 'setting_usage', n.get_collection_of_enum_values(DeviceManagementConfigurationSettingUsage)),
             "uxBehavior": lambda n : setattr(self, 'ux_behavior', n.get_enum_value(DeviceManagementConfigurationControlType)),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
-            "visibility": lambda n : setattr(self, 'visibility', n.get_enum_value(DeviceManagementConfigurationSettingVisibility)),
+            "visibility": lambda n : setattr(self, 'visibility', n.get_collection_of_enum_values(DeviceManagementConfigurationSettingVisibility)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

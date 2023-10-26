@@ -51,7 +51,7 @@ class DetectionAction(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "alertTemplate": lambda n : setattr(self, 'alert_template', n.get_object_value(AlertTemplate)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "organizationalScope": lambda n : setattr(self, 'organizational_scope', n.get_object_value(OrganizationalScope)),
             "responseActions": lambda n : setattr(self, 'response_actions', n.get_collection_of_object_values(ResponseAction)),
         }
@@ -66,7 +66,7 @@ class DetectionAction(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("alertTemplate", self.alert_template)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("organizationalScope", self.organizational_scope)
         writer.write_collection_of_object_values("responseActions", self.response_actions)
         writer.write_additional_data_value(self.additional_data)

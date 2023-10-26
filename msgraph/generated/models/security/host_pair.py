@@ -18,7 +18,7 @@ class HostPair(Entity):
     first_seen_date_time: Optional[datetime.datetime] = None
     # The last date and time when Microsoft Defender Threat Intelligence observed the hostPair. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z.
     last_seen_date_time: Optional[datetime.datetime] = None
-    # The reason the two hosts are identified as hostPairs.
+    # The reason that two hosts are identified as hostPair.
     link_kind: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

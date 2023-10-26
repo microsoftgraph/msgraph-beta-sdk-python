@@ -5,8 +5,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .authentication_method_configuration import AuthenticationMethodConfiguration
     from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
+    from .authentication_method_configuration import AuthenticationMethodConfiguration
     from .entity import Entity
     from .registration_enforcement import RegistrationEnforcement
     from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
@@ -26,7 +26,7 @@ class AuthenticationMethodsPolicy(Entity):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authenication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
+    # The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authentication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Don't use.
     policy_migration_state: Optional[AuthenticationMethodsPolicyMigrationState] = None
     # The version of the policy in use.
     policy_version: Optional[str] = None
@@ -55,15 +55,15 @@ class AuthenticationMethodsPolicy(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .authentication_method_configuration import AuthenticationMethodConfiguration
         from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
+        from .authentication_method_configuration import AuthenticationMethodConfiguration
         from .entity import Entity
         from .registration_enforcement import RegistrationEnforcement
         from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
         from .system_credential_preferences import SystemCredentialPreferences
 
-        from .authentication_method_configuration import AuthenticationMethodConfiguration
         from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
+        from .authentication_method_configuration import AuthenticationMethodConfiguration
         from .entity import Entity
         from .registration_enforcement import RegistrationEnforcement
         from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings

@@ -46,7 +46,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Backe
             "informationalSeverityAnomalyCount": lambda n : setattr(self, 'informational_severity_anomaly_count', n.get_int_value()),
             "lowSeverityAnomalyCount": lambda n : setattr(self, 'low_severity_anomaly_count', n.get_int_value()),
             "mediumSeverityAnomalyCount": lambda n : setattr(self, 'medium_severity_anomaly_count', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -62,7 +62,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Backe
         writer.write_int_value("informationalSeverityAnomalyCount", self.informational_severity_anomaly_count)
         writer.write_int_value("lowSeverityAnomalyCount", self.low_severity_anomaly_count)
         writer.write_int_value("mediumSeverityAnomalyCount", self.medium_severity_anomaly_count)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

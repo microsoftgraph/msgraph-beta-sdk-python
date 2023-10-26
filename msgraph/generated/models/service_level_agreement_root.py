@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class ServiceLevelAgreementRoot(Entity):
-    # Collects the Azure AD SLA attainment for each month for an Azure AD tenant.
+    # Collects the Microsoft Entra SLA attainment for each month for a Microsoft Entra tenant.
     azure_a_d_authentication: Optional[AzureADAuthentication] = None
     # The OdataType property
     odata_type: Optional[str] = None

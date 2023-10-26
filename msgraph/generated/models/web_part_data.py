@@ -15,7 +15,7 @@ class WebPartData(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Audience information of the web part. By using this property, specific content will be prioritized to specific audiences.
+    # Audience information of the web part. By using this property, specific content is prioritized to specific audiences.
     audiences: Optional[List[str]] = None
     # Data version of the web part. The value is defined by the web part developer. Different dataVersions usually refers to a different property structure.
     data_version: Optional[str] = None
@@ -56,7 +56,7 @@ class WebPartData(AdditionalDataHolder, BackedModel, Parsable):
             "audiences": lambda n : setattr(self, 'audiences', n.get_collection_of_primitive_values(str)),
             "dataVersion": lambda n : setattr(self, 'data_version', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "properties": lambda n : setattr(self, 'properties', n.get_object_value(Json)),
             "serverProcessedContent": lambda n : setattr(self, 'server_processed_content', n.get_object_value(ServerProcessedContent)),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
@@ -74,7 +74,7 @@ class WebPartData(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_primitive_values("audiences", self.audiences)
         writer.write_str_value("dataVersion", self.data_version)
         writer.write_str_value("description", self.description)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("properties", self.properties)
         writer.write_object_value("serverProcessedContent", self.server_processed_content)
         writer.write_str_value("title", self.title)

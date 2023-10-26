@@ -50,7 +50,7 @@ class AssignmentFilterTypeAndEvaluationResult(AdditionalDataHolder, BackedModel,
         fields: Dict[str, Callable[[Any], None]] = {
             "assignmentFilterType": lambda n : setattr(self, 'assignment_filter_type', n.get_enum_value(DeviceAndAppManagementAssignmentFilterType)),
             "evaluationResult": lambda n : setattr(self, 'evaluation_result', n.get_enum_value(AssignmentFilterEvaluationResult)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -64,7 +64,7 @@ class AssignmentFilterTypeAndEvaluationResult(AdditionalDataHolder, BackedModel,
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("assignmentFilterType", self.assignment_filter_type)
         writer.write_enum_value("evaluationResult", self.evaluation_result)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

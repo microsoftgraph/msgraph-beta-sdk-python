@@ -39,7 +39,7 @@ class ClassificationResult(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "confidenceLevel": lambda n : setattr(self, 'confidence_level', n.get_int_value()),
             "count": lambda n : setattr(self, 'count', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "sensitiveTypeId": lambda n : setattr(self, 'sensitive_type_id', n.get_str_value()),
         }
         return fields
@@ -54,7 +54,7 @@ class ClassificationResult(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_int_value("confidenceLevel", self.confidence_level)
         writer.write_int_value("count", self.count)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("sensitiveTypeId", self.sensitive_type_id)
         writer.write_additional_data_value(self.additional_data)
     

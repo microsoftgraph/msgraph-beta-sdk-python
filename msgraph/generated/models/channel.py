@@ -47,7 +47,7 @@ class Channel(Entity):
     summary: Optional[ChannelSummary] = None
     # A collection of all the tabs in the channel. A navigation property.
     tabs: Optional[List[TeamsTab]] = None
-    # The ID of the Azure Active Directory tenant.
+    # The ID of the Microsoft Entra tenant.
     tenant_id: Optional[str] = None
     # A hyperlink that will go to the channel in Microsoft Teams. This is the URL that you get when you right-click a channel in Microsoft Teams and select Get link to channel. This URL should be treated as an opaque blob, and not parsed. Read-only.
     web_url: Optional[str] = None

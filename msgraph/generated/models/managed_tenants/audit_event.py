@@ -11,13 +11,13 @@ from ..entity import Entity
 
 @dataclass
 class AuditEvent(Entity):
-    # A string which uniquely represents the operation that occurred. Required. Read-only.
+    # A string that uniquely represents the operation that occurred. Required. Read-only.
     activity: Optional[str] = None
-    # The time when the activity ocurred. Required. Read-only.
+    # The time when the activity occurred. Required. Read-only.
     activity_date_time: Optional[datetime.datetime] = None
     # The identifier of the activity request that made the audit event. Required. Read-only.
     activity_id: Optional[str] = None
-    # A category which represents a logical grouping of activities. Required. Read-only.
+    # A category that represents a logical grouping of activities. Required. Read-only.
     category: Optional[str] = None
     # The HTTP verb that was used when making the API request. Required. Read-only.
     http_verb: Optional[str] = None
@@ -35,9 +35,9 @@ class AuditEvent(Entity):
     request_body: Optional[str] = None
     # The raw HTTP request URL. Required. Read-only.
     request_url: Optional[str] = None
-    # The collection of Azure Active Directory tenant identifiers for the managed tenants that were impacted by this change. This is formatted as a list of comma-separated values. Required. Read-only.
+    # The collection of Microsoft Entra tenant identifiers for the managed tenants that were affected by a change, and is formatted as a list of comma-separated values. Required. Read-only.
     tenant_ids: Optional[str] = None
-    # The collection of tenant names that were impacted by this change. This is formatted as a list of comma-separated values. Required. Read-only.
+    # The collection of tenant names that were affected by a change, and is formatted as a list of comma-separated values. Required. Read-only.
     tenant_names: Optional[str] = None
     
     @staticmethod

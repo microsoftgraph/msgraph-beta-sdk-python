@@ -16,7 +16,7 @@ class RelyingPartyDetailedSummary(Entity):
     failed_sign_in_count: Optional[int] = None
     # The migrationStatus property
     migration_status: Optional[MigrationStatus] = None
-    # Specifies all the validations check done on applications configuration details to evaluate if the application is ready to be moved to Azure AD.
+    # Specifies all the validations check done on applications configuration details to evaluate if the application is ready to be moved to Microsoft Entra ID.
     migration_validation_details: Optional[List[KeyValuePair]] = None
     # The OdataType property
     odata_type: Optional[str] = None

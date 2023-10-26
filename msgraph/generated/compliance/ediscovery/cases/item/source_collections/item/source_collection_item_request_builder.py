@@ -35,7 +35,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[SourceCollectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a sourceCollection object.
+        Delete a sourceCollection object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-delete?view=graph-rest-1.0
@@ -76,7 +76,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[SourceCollection] = None, request_configuration: Optional[SourceCollectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SourceCollection]:
         """
-        Update the properties of a sourceCollection object.
+        Update the properties of a sourceCollection object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SourceCollection]
@@ -101,17 +101,18 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[SourceCollectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a sourceCollection object.
+        Delete a sourceCollection object. This API is available in the following national cloud deployments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json, application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[SourceCollectionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -121,19 +122,19 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def to_patch_request_information(self,body: Optional[SourceCollection] = None, request_configuration: Optional[SourceCollectionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a sourceCollection object.
+        Update the properties of a sourceCollection object. This API is available in the following national cloud deployments.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,13 +142,13 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -159,16 +160,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return SourceCollectionItemRequestBuilder(raw_url, self.request_adapter)
-    
-    @property
-    def additional_sources(self) -> AdditionalSourcesRequestBuilder:
-        """
-        Provides operations to manage the additionalSources property of the microsoft.graph.ediscovery.sourceCollection entity.
-        """
-        from .additional_sources.additional_sources_request_builder import AdditionalSourcesRequestBuilder
-
-        return AdditionalSourcesRequestBuilder(self.request_adapter, self.path_parameters)
+        return SourceCollectionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def add_to_review_set_operation(self) -> AddToReviewSetOperationRequestBuilder:
@@ -178,6 +170,15 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
         from .add_to_review_set_operation.add_to_review_set_operation_request_builder import AddToReviewSetOperationRequestBuilder
 
         return AddToReviewSetOperationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def additional_sources(self) -> AdditionalSourcesRequestBuilder:
+        """
+        Provides operations to manage the additionalSources property of the microsoft.graph.ediscovery.sourceCollection entity.
+        """
+        from .additional_sources.additional_sources_request_builder import AdditionalSourcesRequestBuilder
+
+        return AdditionalSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def custodian_sources(self) -> CustodianSourcesRequestBuilder:

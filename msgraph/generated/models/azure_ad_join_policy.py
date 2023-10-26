@@ -50,7 +50,7 @@ class AzureAdJoinPolicy(AdditionalDataHolder, BackedModel, Parsable):
             "allowedUsers": lambda n : setattr(self, 'allowed_users', n.get_collection_of_primitive_values(str)),
             "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(PolicyScope)),
             "isAdminConfigurable": lambda n : setattr(self, 'is_admin_configurable', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class AzureAdJoinPolicy(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_primitive_values("allowedUsers", self.allowed_users)
         writer.write_enum_value("appliesTo", self.applies_to)
         writer.write_bool_value("isAdminConfigurable", self.is_admin_configurable)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

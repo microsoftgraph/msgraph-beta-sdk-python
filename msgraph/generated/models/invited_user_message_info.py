@@ -14,7 +14,7 @@ class InvitedUserMessageInfo(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Additional recipients the invitation message should be sent to. Currently only 1 additional recipient is supported.
+    # Additional recipients the invitation message should be sent to. Currently only one additional recipient is supported.
     cc_recipients: Optional[List[Recipient]] = None
     # Customized message body you want to send if you don't want the default message.
     customized_message_body: Optional[str] = None
@@ -47,7 +47,7 @@ class InvitedUserMessageInfo(AdditionalDataHolder, BackedModel, Parsable):
             "ccRecipients": lambda n : setattr(self, 'cc_recipients', n.get_collection_of_object_values(Recipient)),
             "customizedMessageBody": lambda n : setattr(self, 'customized_message_body', n.get_str_value()),
             "messageLanguage": lambda n : setattr(self, 'message_language', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -62,7 +62,7 @@ class InvitedUserMessageInfo(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("ccRecipients", self.cc_recipients)
         writer.write_str_value("customizedMessageBody", self.customized_message_body)
         writer.write_str_value("messageLanguage", self.message_language)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

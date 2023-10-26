@@ -48,7 +48,7 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, BackedModel, Pars
             "eligibleCount": lambda n : setattr(self, 'eligible_count', n.get_int_value()),
             "ineligibleCount": lambda n : setattr(self, 'ineligible_count', n.get_int_value()),
             "needsOsUpdateCount": lambda n : setattr(self, 'needs_os_update_count', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "scheduledForEnrollmentCount": lambda n : setattr(self, 'scheduled_for_enrollment_count', n.get_int_value()),
         }
         return fields
@@ -66,7 +66,7 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, BackedModel, Pars
         writer.write_int_value("eligibleCount", self.eligible_count)
         writer.write_int_value("ineligibleCount", self.ineligible_count)
         writer.write_int_value("needsOsUpdateCount", self.needs_os_update_count)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("scheduledForEnrollmentCount", self.scheduled_for_enrollment_count)
         writer.write_additional_data_value(self.additional_data)
     

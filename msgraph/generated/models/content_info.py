@@ -55,7 +55,7 @@ class ContentInfo(AdditionalDataHolder, BackedModel, Parsable):
             "format": lambda n : setattr(self, 'format', n.get_enum_value(ContentFormat)),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
             "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(KeyValuePair)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(ContentState)),
         }
         return fields
@@ -71,7 +71,7 @@ class ContentInfo(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("format", self.format)
         writer.write_str_value("identifier", self.identifier)
         writer.write_collection_of_object_values("metadata", self.metadata)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("state", self.state)
         writer.write_additional_data_value(self.additional_data)
     

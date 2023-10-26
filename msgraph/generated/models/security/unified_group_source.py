@@ -45,7 +45,7 @@ class UnifiedGroupSource(DataSource):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "group": lambda n : setattr(self, 'group', n.get_object_value(Group)),
-            "includedSources": lambda n : setattr(self, 'included_sources', n.get_enum_value(SourceType)),
+            "includedSources": lambda n : setattr(self, 'included_sources', n.get_collection_of_enum_values(SourceType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

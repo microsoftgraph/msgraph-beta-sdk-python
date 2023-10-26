@@ -17,7 +17,7 @@ class AccessReviewStage(Entity):
     decisions: Optional[List[AccessReviewInstanceDecisionItem]] = None
     # DateTime when review stage is scheduled to end. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. This property is the cumulative total of the durationInDays for all stages. Read-only.
     end_date_time: Optional[datetime.datetime] = None
-    # This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers will be notified to take action if no users are found from the list of reviewers specified. This could occur when either the group owner is specified as the reviewer but the group owner does not exist, or manager is specified as reviewer but a user's manager does not exist.
+    # This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers are notified to take action if no users are found from the list of reviewers specified. This can occur when either the group owner is specified as the reviewer but the group owner does not exist, or manager is specified as reviewer but a user's manager does not exist.
     fallback_reviewers: Optional[List[AccessReviewReviewerScope]] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -40,7 +40,7 @@ class TeamworkContentCameraConfiguration(AdditionalDataHolder, BackedModel, Pars
             "isContentCameraInverted": lambda n : setattr(self, 'is_content_camera_inverted', n.get_bool_value()),
             "isContentCameraOptional": lambda n : setattr(self, 'is_content_camera_optional', n.get_bool_value()),
             "isContentEnhancementEnabled": lambda n : setattr(self, 'is_content_enhancement_enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -55,7 +55,7 @@ class TeamworkContentCameraConfiguration(AdditionalDataHolder, BackedModel, Pars
         writer.write_bool_value("isContentCameraInverted", self.is_content_camera_inverted)
         writer.write_bool_value("isContentCameraOptional", self.is_content_camera_optional)
         writer.write_bool_value("isContentEnhancementEnabled", self.is_content_enhancement_enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

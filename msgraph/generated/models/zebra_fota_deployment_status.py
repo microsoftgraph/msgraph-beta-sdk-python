@@ -79,7 +79,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable):
             "completeOrCanceledDateTime": lambda n : setattr(self, 'complete_or_canceled_date_time', n.get_datetime_value()),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_enum_value(ZebraFotaErrorCode)),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(ZebraFotaDeploymentState)),
             "totalAwaitingInstall": lambda n : setattr(self, 'total_awaiting_install', n.get_int_value()),
             "totalCanceled": lambda n : setattr(self, 'total_canceled', n.get_int_value()),
@@ -106,7 +106,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_datetime_value("completeOrCanceledDateTime", self.complete_or_canceled_date_time)
         writer.write_enum_value("errorCode", self.error_code)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("state", self.state)
         writer.write_int_value("totalAwaitingInstall", self.total_awaiting_install)
         writer.write_int_value("totalCanceled", self.total_canceled)

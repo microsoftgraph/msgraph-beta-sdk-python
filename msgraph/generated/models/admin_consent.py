@@ -45,7 +45,7 @@ class AdminConsent(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_consent_state import AdminConsentState
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "shareAPNSData": lambda n : setattr(self, 'share_a_p_n_s_data', n.get_enum_value(AdminConsentState)),
             "shareUserExperienceAnalyticsData": lambda n : setattr(self, 'share_user_experience_analytics_data', n.get_enum_value(AdminConsentState)),
         }
@@ -59,7 +59,7 @@ class AdminConsent(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("shareAPNSData", self.share_a_p_n_s_data)
         writer.write_enum_value("shareUserExperienceAnalyticsData", self.share_user_experience_analytics_data)
         writer.write_additional_data_value(self.additional_data)

@@ -81,7 +81,7 @@ class VpnTrafficRule(AdditionalDataHolder, BackedModel, Parsable):
             "localAddressRanges": lambda n : setattr(self, 'local_address_ranges', n.get_collection_of_object_values(IPv4Range)),
             "localPortRanges": lambda n : setattr(self, 'local_port_ranges', n.get_collection_of_object_values(NumberRange)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "protocols": lambda n : setattr(self, 'protocols', n.get_int_value()),
             "remoteAddressRanges": lambda n : setattr(self, 'remote_address_ranges', n.get_collection_of_object_values(IPv4Range)),
             "remotePortRanges": lambda n : setattr(self, 'remote_port_ranges', n.get_collection_of_object_values(NumberRange)),
@@ -104,7 +104,7 @@ class VpnTrafficRule(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("localAddressRanges", self.local_address_ranges)
         writer.write_collection_of_object_values("localPortRanges", self.local_port_ranges)
         writer.write_str_value("name", self.name)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("protocols", self.protocols)
         writer.write_collection_of_object_values("remoteAddressRanges", self.remote_address_ranges)
         writer.write_collection_of_object_values("remotePortRanges", self.remote_port_ranges)

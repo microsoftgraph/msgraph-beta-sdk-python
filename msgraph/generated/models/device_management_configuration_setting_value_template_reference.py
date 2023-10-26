@@ -38,7 +38,7 @@ class DeviceManagementConfigurationSettingValueTemplateReference(AdditionalDataH
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "settingValueTemplateId": lambda n : setattr(self, 'setting_value_template_id', n.get_str_value()),
             "useTemplateDefault": lambda n : setattr(self, 'use_template_default', n.get_bool_value()),
         }
@@ -52,7 +52,7 @@ class DeviceManagementConfigurationSettingValueTemplateReference(AdditionalDataH
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("settingValueTemplateId", self.setting_value_template_id)
         writer.write_bool_value("useTemplateDefault", self.use_template_default)
         writer.write_additional_data_value(self.additional_data)

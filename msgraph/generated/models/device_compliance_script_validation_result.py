@@ -50,7 +50,7 @@ class DeviceComplianceScriptValidationResult(AdditionalDataHolder, BackedModel, 
         from .device_compliance_script_rule_error import DeviceComplianceScriptRuleError
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ruleErrors": lambda n : setattr(self, 'rule_errors', n.get_collection_of_object_values(DeviceComplianceScriptRuleError)),
             "rules": lambda n : setattr(self, 'rules', n.get_collection_of_object_values(DeviceComplianceScriptRule)),
             "scriptErrors": lambda n : setattr(self, 'script_errors', n.get_collection_of_object_values(DeviceComplianceScriptError)),
@@ -65,7 +65,7 @@ class DeviceComplianceScriptValidationResult(AdditionalDataHolder, BackedModel, 
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("ruleErrors", self.rule_errors)
         writer.write_collection_of_object_values("rules", self.rules)
         writer.write_collection_of_object_values("scriptErrors", self.script_errors)

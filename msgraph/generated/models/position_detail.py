@@ -57,7 +57,7 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "endMonthYear": lambda n : setattr(self, 'end_month_year', n.get_date_value()),
             "jobTitle": lambda n : setattr(self, 'job_title', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "role": lambda n : setattr(self, 'role', n.get_str_value()),
             "startMonthYear": lambda n : setattr(self, 'start_month_year', n.get_date_value()),
             "summary": lambda n : setattr(self, 'summary', n.get_str_value()),
@@ -76,7 +76,7 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("description", self.description)
         writer.write_date_value("endMonthYear", self.end_month_year)
         writer.write_str_value("jobTitle", self.job_title)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("role", self.role)
         writer.write_date_value("startMonthYear", self.start_month_year)
         writer.write_str_value("summary", self.summary)

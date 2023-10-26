@@ -14,7 +14,7 @@ class AccessPackageLocalizedContent(AdditionalDataHolder, BackedModel, Parsable)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The fallback string, which is used when a requested localization is not available. Required.
+    # The fallback string, which is used when a requested localization isn't available. Required.
     default_text: Optional[str] = None
     # Content represented in a format for a specific locale.
     localized_texts: Optional[List[AccessPackageLocalizedText]] = None
@@ -44,7 +44,7 @@ class AccessPackageLocalizedContent(AdditionalDataHolder, BackedModel, Parsable)
         fields: Dict[str, Callable[[Any], None]] = {
             "defaultText": lambda n : setattr(self, 'default_text', n.get_str_value()),
             "localizedTexts": lambda n : setattr(self, 'localized_texts', n.get_collection_of_object_values(AccessPackageLocalizedText)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -58,7 +58,7 @@ class AccessPackageLocalizedContent(AdditionalDataHolder, BackedModel, Parsable)
             raise TypeError("writer cannot be null.")
         writer.write_str_value("defaultText", self.default_text)
         writer.write_collection_of_object_values("localizedTexts", self.localized_texts)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

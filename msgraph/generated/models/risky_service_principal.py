@@ -6,10 +6,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
     from .risk_detail import RiskDetail
     from .risk_level import RiskLevel
     from .risk_state import RiskState
-    from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
 
 from .entity import Entity
 
@@ -21,11 +21,11 @@ class RiskyServicePrincipal(Entity):
     app_id: Optional[str] = None
     # The display name for the service principal.
     display_name: Optional[str] = None
-    # Represents the risk history of Azure AD service principals.
+    # Represents the risk history of Microsoft Entra service principals.
     history: Optional[List[RiskyServicePrincipalHistoryItem]] = None
     # The isEnabled property
     is_enabled: Optional[bool] = None
-    # Indicates whether Azure AD is currently processing the service principal's risky state.
+    # Indicates whether Microsoft Entra ID Protection is currently processing the service principal's risky state.
     is_processing: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -37,7 +37,7 @@ class RiskyServicePrincipal(Entity):
     risk_level: Optional[RiskLevel] = None
     # State of the service principal's risk. The possible values are: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, unknownFutureValue.
     risk_state: Optional[RiskState] = None
-    # Identifies whether the service principal represents an Application, a ManagedIdentity, or a legacy application (socialIdp). This is set by Azure AD internally and is inherited from servicePrincipal.
+    # Identifies whether the service principal represents an Application, a ManagedIdentity, or a legacy application (socialIdp). This is set by Microsoft Entra ID internally and is inherited from servicePrincipal.
     service_principal_type: Optional[str] = None
     
     @staticmethod
@@ -65,16 +65,16 @@ class RiskyServicePrincipal(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
         from .risk_detail import RiskDetail
         from .risk_level import RiskLevel
         from .risk_state import RiskState
-        from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
 
         from .entity import Entity
+        from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
         from .risk_detail import RiskDetail
         from .risk_level import RiskLevel
         from .risk_state import RiskState
-        from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accountEnabled": lambda n : setattr(self, 'account_enabled', n.get_bool_value()),

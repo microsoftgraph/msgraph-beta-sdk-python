@@ -21,7 +21,7 @@ from .planner_delta import PlannerDelta
 class PlannerPlan(PlannerDelta):
     # Collection of buckets in the plan. Read-only. Nullable.
     buckets: Optional[List[PlannerBucket]] = None
-    # Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it is set, this property can’t be updated. Required.
+    # Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it's set, this property can’t be updated. Required.
     container: Optional[PlannerPlanContainer] = None
     # Read-only. Additional user experiences in which this plan is used, represented as plannerPlanContext entries.
     contexts: Optional[PlannerPlanContextCollection] = None

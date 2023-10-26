@@ -59,7 +59,7 @@ class EducationRoot(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "classes": lambda n : setattr(self, 'classes', n.get_collection_of_object_values(EducationClass)),
             "me": lambda n : setattr(self, 'me', n.get_object_value(EducationUser)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "schools": lambda n : setattr(self, 'schools', n.get_collection_of_object_values(EducationSchool)),
             "synchronizationProfiles": lambda n : setattr(self, 'synchronization_profiles', n.get_collection_of_object_values(EducationSynchronizationProfile)),
             "users": lambda n : setattr(self, 'users', n.get_collection_of_object_values(EducationUser)),
@@ -76,7 +76,7 @@ class EducationRoot(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("classes", self.classes)
         writer.write_object_value("me", self.me)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("schools", self.schools)
         writer.write_collection_of_object_values("synchronizationProfiles", self.synchronization_profiles)
         writer.write_collection_of_object_values("users", self.users)

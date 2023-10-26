@@ -30,6 +30,8 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
     v15_0: Optional[bool] = None
     # When TRUE, only Version 16.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
     v16_0: Optional[bool] = None
+    # When TRUE, only Version 17.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    v17_0: Optional[bool] = None
     # When TRUE, only Version 8.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
     v8_0: Optional[bool] = None
     # When TRUE, only Version 9.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
@@ -52,7 +54,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "v10_0": lambda n : setattr(self, 'v10_0', n.get_bool_value()),
             "v11_0": lambda n : setattr(self, 'v11_0', n.get_bool_value()),
             "v12_0": lambda n : setattr(self, 'v12_0', n.get_bool_value()),
@@ -60,6 +62,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
             "v14_0": lambda n : setattr(self, 'v14_0', n.get_bool_value()),
             "v15_0": lambda n : setattr(self, 'v15_0', n.get_bool_value()),
             "v16_0": lambda n : setattr(self, 'v16_0', n.get_bool_value()),
+            "v17_0": lambda n : setattr(self, 'v17_0', n.get_bool_value()),
             "v8_0": lambda n : setattr(self, 'v8_0', n.get_bool_value()),
             "v9_0": lambda n : setattr(self, 'v9_0', n.get_bool_value()),
         }
@@ -73,7 +76,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("v10_0", self.v10_0)
         writer.write_bool_value("v11_0", self.v11_0)
         writer.write_bool_value("v12_0", self.v12_0)
@@ -81,6 +84,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("v14_0", self.v14_0)
         writer.write_bool_value("v15_0", self.v15_0)
         writer.write_bool_value("v16_0", self.v16_0)
+        writer.write_bool_value("v17_0", self.v17_0)
         writer.write_bool_value("v8_0", self.v8_0)
         writer.write_bool_value("v9_0", self.v9_0)
         writer.write_additional_data_value(self.additional_data)

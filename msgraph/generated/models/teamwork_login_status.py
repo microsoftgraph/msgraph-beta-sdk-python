@@ -45,7 +45,7 @@ class TeamworkLoginStatus(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "exchangeConnection": lambda n : setattr(self, 'exchange_connection', n.get_object_value(TeamworkConnection)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "skypeConnection": lambda n : setattr(self, 'skype_connection', n.get_object_value(TeamworkConnection)),
             "teamsConnection": lambda n : setattr(self, 'teams_connection', n.get_object_value(TeamworkConnection)),
         }
@@ -60,7 +60,7 @@ class TeamworkLoginStatus(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("exchangeConnection", self.exchange_connection)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("skypeConnection", self.skype_connection)
         writer.write_object_value("teamsConnection", self.teams_connection)
         writer.write_additional_data_value(self.additional_data)

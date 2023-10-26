@@ -51,7 +51,7 @@ class BusinessScenarioTaskTargetBase(AdditionalDataHolder, BackedModel, Parsable
         from .planner_task_target_kind import PlannerTaskTargetKind
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "taskTargetKind": lambda n : setattr(self, 'task_target_kind', n.get_enum_value(PlannerTaskTargetKind)),
         }
         return fields
@@ -64,7 +64,7 @@ class BusinessScenarioTaskTargetBase(AdditionalDataHolder, BackedModel, Parsable
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_enum_value("taskTargetKind", self.task_target_kind)
         writer.write_additional_data_value(self.additional_data)
     

@@ -18,7 +18,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(DeviceManagement
     odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition"
     # Supported file types for this setting.
     file_types: Optional[List[str]] = None
-    # The format property
+    # Pre-defined format of the string. Possible values are: none, email, guid, ip, base64, url, version, xml, date, time, binary, regEx, json, dateTime, surfaceHub, bashScript, unknownFutureValue.
     format: Optional[DeviceManagementConfigurationStringFormat] = None
     # Regular expression or any xml or json schema that the input string should match
     input_validation_schema: Optional[str] = None

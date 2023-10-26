@@ -44,7 +44,7 @@ class Media(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "isTranscriptionShown": lambda n : setattr(self, 'is_transcription_shown', n.get_bool_value()),
             "mediaSource": lambda n : setattr(self, 'media_source', n.get_object_value(MediaSource)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -58,7 +58,7 @@ class Media(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("isTranscriptionShown", self.is_transcription_shown)
         writer.write_object_value("mediaSource", self.media_source)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -16,7 +16,7 @@ class UserMatchingSetting(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The RefUserMatchTarget for matching a user from the source with an Azure Active Directory user object.
+    # The RefUserMatchTarget for matching a user from the source with a Microsoft Entra user object.
     match_target: Optional[UserMatchTargetReferenceValue] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -53,7 +53,7 @@ class UserMatchingSetting(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "matchTarget": lambda n : setattr(self, 'match_target', n.get_object_value(UserMatchTargetReferenceValue)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "priorityOrder": lambda n : setattr(self, 'priority_order', n.get_int_value()),
             "roleGroup": lambda n : setattr(self, 'role_group', n.get_object_value(RoleGroup)),
             "sourceIdentifier": lambda n : setattr(self, 'source_identifier', n.get_object_value(IdentifierTypeReferenceValue)),
@@ -69,7 +69,7 @@ class UserMatchingSetting(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("matchTarget", self.match_target)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("priorityOrder", self.priority_order)
         writer.write_object_value("roleGroup", self.role_group)
         writer.write_object_value("sourceIdentifier", self.source_identifier)

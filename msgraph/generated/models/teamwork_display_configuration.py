@@ -56,7 +56,7 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             "inBuiltDisplayScreenConfiguration": lambda n : setattr(self, 'in_built_display_screen_configuration', n.get_object_value(TeamworkDisplayScreenConfiguration)),
             "isContentDuplicationAllowed": lambda n : setattr(self, 'is_content_duplication_allowed', n.get_bool_value()),
             "isDualDisplayModeEnabled": lambda n : setattr(self, 'is_dual_display_mode_enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -73,7 +73,7 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("inBuiltDisplayScreenConfiguration", self.in_built_display_screen_configuration)
         writer.write_bool_value("isContentDuplicationAllowed", self.is_content_duplication_allowed)
         writer.write_bool_value("isDualDisplayModeEnabled", self.is_dual_display_mode_enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

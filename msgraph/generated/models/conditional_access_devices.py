@@ -53,7 +53,7 @@ class ConditionalAccessDevices(AdditionalDataHolder, BackedModel, Parsable):
             "excludeDevices": lambda n : setattr(self, 'exclude_devices', n.get_collection_of_primitive_values(str)),
             "includeDeviceStates": lambda n : setattr(self, 'include_device_states', n.get_collection_of_primitive_values(str)),
             "includeDevices": lambda n : setattr(self, 'include_devices', n.get_collection_of_primitive_values(str)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -70,7 +70,7 @@ class ConditionalAccessDevices(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_primitive_values("excludeDevices", self.exclude_devices)
         writer.write_collection_of_primitive_values("includeDeviceStates", self.include_device_states)
         writer.write_collection_of_primitive_values("includeDevices", self.include_devices)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

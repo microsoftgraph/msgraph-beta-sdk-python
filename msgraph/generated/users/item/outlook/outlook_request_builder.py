@@ -10,15 +10,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models.o_data_errors.o_data_error import ODataError
     from ....models.outlook_user import OutlookUser
+    from ....models.o_data_errors.o_data_error import ODataError
     from .master_categories.master_categories_request_builder import MasterCategoriesRequestBuilder
     from .supported_languages.supported_languages_request_builder import SupportedLanguagesRequestBuilder
     from .supported_time_zones.supported_time_zones_request_builder import SupportedTimeZonesRequestBuilder
     from .supported_time_zones_with_time_zone_standard.supported_time_zones_with_time_zone_standard_request_builder import SupportedTimeZonesWithTimeZoneStandardRequestBuilder
+    from .tasks.tasks_request_builder import TasksRequestBuilder
     from .task_folders.task_folders_request_builder import TaskFoldersRequestBuilder
     from .task_groups.task_groups_request_builder import TaskGroupsRequestBuilder
-    from .tasks.tasks_request_builder import TasksRequestBuilder
 
 class OutlookRequestBuilder(BaseRequestBuilder):
     """
@@ -73,14 +73,14 @@ class OutlookRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = ["application/json"]
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
+        request_info.headers.try_add("Accept", "application/json;q=1")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> OutlookRequestBuilder:
@@ -91,7 +91,7 @@ class OutlookRequestBuilder(BaseRequestBuilder):
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return OutlookRequestBuilder(raw_url, self.request_adapter)
+        return OutlookRequestBuilder(self.request_adapter, raw_url)
     
     @property
     def master_categories(self) -> MasterCategoriesRequestBuilder:

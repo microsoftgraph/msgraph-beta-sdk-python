@@ -40,6 +40,8 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
     v12_0: Optional[bool] = None
     # When TRUE, indicates macOS 13.0 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.
     v13_0: Optional[bool] = None
+    # When TRUE, indicates macOS 14.0 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.
+    v14_0: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSMinimumOperatingSystem:
@@ -58,7 +60,7 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "v10_10": lambda n : setattr(self, 'v10_10', n.get_bool_value()),
             "v10_11": lambda n : setattr(self, 'v10_11', n.get_bool_value()),
             "v10_12": lambda n : setattr(self, 'v10_12', n.get_bool_value()),
@@ -71,6 +73,7 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
             "v11_0": lambda n : setattr(self, 'v11_0', n.get_bool_value()),
             "v12_0": lambda n : setattr(self, 'v12_0', n.get_bool_value()),
             "v13_0": lambda n : setattr(self, 'v13_0', n.get_bool_value()),
+            "v14_0": lambda n : setattr(self, 'v14_0', n.get_bool_value()),
         }
         return fields
     
@@ -82,7 +85,7 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_bool_value("v10_10", self.v10_10)
         writer.write_bool_value("v10_11", self.v10_11)
         writer.write_bool_value("v10_12", self.v10_12)
@@ -95,6 +98,7 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("v11_0", self.v11_0)
         writer.write_bool_value("v12_0", self.v12_0)
         writer.write_bool_value("v13_0", self.v13_0)
+        writer.write_bool_value("v14_0", self.v14_0)
         writer.write_additional_data_value(self.additional_data)
     
 

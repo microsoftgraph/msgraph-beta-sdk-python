@@ -47,7 +47,7 @@ class DeviceManagementConfigurationOptionDefinitionTemplate(AdditionalDataHolder
         fields: Dict[str, Callable[[Any], None]] = {
             "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(DeviceManagementConfigurationSettingInstanceTemplate)),
             "itemId": lambda n : setattr(self, 'item_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -61,7 +61,7 @@ class DeviceManagementConfigurationOptionDefinitionTemplate(AdditionalDataHolder
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("children", self.children)
         writer.write_str_value("itemId", self.item_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

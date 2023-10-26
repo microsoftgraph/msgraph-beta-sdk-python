@@ -39,7 +39,7 @@ class DeviceUsageSummary(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "activeDeviceCount": lambda n : setattr(self, 'active_device_count', n.get_int_value()),
             "inactiveDeviceCount": lambda n : setattr(self, 'inactive_device_count', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "totalDeviceCount": lambda n : setattr(self, 'total_device_count', n.get_int_value()),
         }
         return fields
@@ -54,7 +54,7 @@ class DeviceUsageSummary(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_int_value("activeDeviceCount", self.active_device_count)
         writer.write_int_value("inactiveDeviceCount", self.inactive_device_count)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_int_value("totalDeviceCount", self.total_device_count)
         writer.write_additional_data_value(self.additional_data)
     

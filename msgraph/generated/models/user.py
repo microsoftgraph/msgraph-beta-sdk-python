@@ -7,9 +7,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .access_review_instance import AccessReviewInstance
     from .agreement_acceptance import AgreementAcceptance
+    from .approval import Approval
     from .app_consent_request import AppConsentRequest
     from .app_role_assignment import AppRoleAssignment
-    from .approval import Approval
     from .assigned_license import AssignedLicense
     from .assigned_plan import AssignedPlan
     from .authentication import Authentication
@@ -46,7 +46,6 @@ if TYPE_CHECKING:
     from .mobile_app_intent_and_state import MobileAppIntentAndState
     from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
     from .notification import Notification
-    from .o_auth2_permission_grant import OAuth2PermissionGrant
     from .object_identity import ObjectIdentity
     from .onenote import Onenote
     from .online_meeting import OnlineMeeting
@@ -54,6 +53,7 @@ if TYPE_CHECKING:
     from .on_premises_provisioning_error import OnPremisesProvisioningError
     from .on_premises_sip_info import OnPremisesSipInfo
     from .outlook_user import OutlookUser
+    from .o_auth2_permission_grant import OAuth2PermissionGrant
     from .password_profile import PasswordProfile
     from .person import Person
     from .planner_user import PlannerUser
@@ -76,6 +76,7 @@ if TYPE_CHECKING:
     from .user_print import UserPrint
     from .user_settings import UserSettings
     from .user_teamwork import UserTeamwork
+    from .user_virtual_events_root import UserVirtualEventsRoot
     from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
 
 from .directory_object import DirectoryObject
@@ -90,7 +91,7 @@ class User(DirectoryObject):
     account_enabled: Optional[bool] = None
     # The user's activities across devices. Read-only. Nullable.
     activities: Optional[List[UserActivity]] = None
-    # Sets the age group of the user. Allowed values: null, Minor, NotAdult and Adult. Refer to the legal age group property definitions for further information. Supports $filter (eq, ne, not, and in).
+    # Sets the age group of the user. Allowed values: null, Minor, NotAdult and Adult. For more information, see legal age group property definitions. Supports $filter (eq, ne, not, and in).
     age_group: Optional[str] = None
     # The user's terms of use acceptance statuses. Read-only. Nullable.
     agreement_acceptances: Optional[List[AgreementAcceptance]] = None
@@ -104,7 +105,7 @@ class User(DirectoryObject):
     app_role_assignments: Optional[List[AppRoleAssignment]] = None
     # The approvals property
     approvals: Optional[List[Approval]] = None
-    # The licenses that are assigned to the user, including inherited (group-based) licenses. This property doesn't differentiate directly-assigned and inherited licenses. Use the licenseAssignmentStates property to identify the directly-assigned and inherited licenses. Not nullable. Supports $filter (eq, not, /$count eq 0, /$count ne 0).
+    # The licenses that are assigned to the user, including inherited (group-based) licenses. This property doesn't differentiate directly assigned and inherited licenses. Use the licenseAssignmentStates property to identify the directly assigned and inherited licenses. Not nullable. Supports $filter (eq, not, /$count eq 0, /$count ne 0).
     assigned_licenses: Optional[List[AssignedLicense]] = None
     # The plans that are assigned to the user. Read-only. Not nullable.Supports $filter (eq and not).
     assigned_plans: Optional[List[AssignedPlan]] = None
@@ -126,13 +127,13 @@ class User(DirectoryObject):
     calendars: Optional[List[Calendar]] = None
     # The chats property
     chats: Optional[List[Chat]] = None
-    # The city in which the user is located. Maximum length is 128 characters. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
+    # The city where the user is located. Maximum length is 128 characters. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     city: Optional[str] = None
     # The cloudPCs property
     cloud_p_cs: Optional[List[CloudPC]] = None
     # Microsoft realtime communication information related to the user.  Supports $filter (eq, ne,not).
     cloud_realtime_communication_info: Optional[CloudRealtimeCommunicationInfo] = None
-    # The company name which the user is associated. This property can be useful for describing the company that an external user comes from. The maximum length is 64 characters.Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
+    # The name of the company that the user is associated with. This property can be useful for describing the company that an external user comes from. The maximum length is 64 characters.Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     company_name: Optional[str] = None
     # Sets whether consent has been obtained for minors. Allowed values: null, Granted, Denied and NotRequired. Refer to the legal age group property definitions for further information. Supports $filter (eq, ne, not, and in).
     consent_provided_for_minor: Optional[str] = None
@@ -140,11 +141,11 @@ class User(DirectoryObject):
     contact_folders: Optional[List[ContactFolder]] = None
     # The user's contacts. Read-only. Nullable.
     contacts: Optional[List[Contact]] = None
-    # The country/region in which the user is located; for example, US or UK. Maximum length is 128 characters. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
+    # The country or region where the user is located; for example, US or UK. Maximum length is 128 characters. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     country: Optional[str] = None
-    # The date and time the user was created, in ISO 8601 format and in UTC time. The value cannot be modified and is automatically populated when the entity is created. Nullable. For on-premises users, the value represents when they were first created in Azure AD. Property is null for some users created before June 2018 and on-premises users that were synced to Azure AD before June 2018. Read-only. Supports $filter (eq, ne, not , ge, le, in).
+    # The date and time the user was created, in ISO 8601 format and in UTC time. The value cannot be modified and is automatically populated when the entity is created. Nullable. For on-premises users, the value represents when they were first created in Microsoft Entra ID. Property is null for some users created before June 2018 and on-premises users that were synced to Microsoft Entra ID before June 2018. Read-only. Supports $filter (eq, ne, not , ge, le, in).
     created_date_time: Optional[datetime.datetime] = None
-    # Directory objects that were created by the user. Read-only. Nullable.
+    # Directory objects that the user created. Read-only. Nullable.
     created_objects: Optional[List[DirectoryObject]] = None
     # Indicates whether the user account was created through one of the following methods:  As a regular school or work account (null). As an external account (Invitation). As a local account for an Azure Active Directory B2C tenant (LocalAccount). Through self-service sign-up by an internal user using email verification (EmailVerified). Through self-service sign-up by an external user signing up through a link that is part of a user flow (SelfServiceSignUp).  Read-only.Supports $filter (eq, ne, not, and in).
     creation_type: Optional[str] = None
@@ -164,7 +165,7 @@ class User(DirectoryObject):
     devices: Optional[List[Device]] = None
     # The users and contacts that report to the user. (The users and contacts that have their manager property set to this user.) Read-only. Nullable. Supports $expand.
     direct_reports: Optional[List[DirectoryObject]] = None
-    # The name displayed in the address book for the user. This value is usually the combination of the user's first name, middle initial, and last name. This property is required when a user is created and it cannot be cleared during updates. Maximum length is 256 characters. Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values), $orderBy, and $search.
+    # The name displayed in the address book for the user. This value is usually the combination of the user's first name, middle initial, and last name. This property is required when a user is created and it cannot be cleared during updates. Maximum length is 256 characters. Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values), $orderby, and $search.
     display_name: Optional[str] = None
     # The user's OneDrive. Read-only.
     drive: Optional[Drive] = None
@@ -176,9 +177,9 @@ class User(DirectoryObject):
     employee_hire_date: Optional[datetime.datetime] = None
     # The employee identifier assigned to the user by the organization. The maximum length is 16 characters.Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values).
     employee_id: Optional[str] = None
-    # The date and time when the user left or will leave the organization. To read this property, the calling app must be assigned the User-LifeCycleInfo.Read.All permission. To write this property, the calling app must be assigned the User.Read.All and User-LifeCycleInfo.ReadWrite.All permissions. To read this property in delegated scenarios, the admin needs one of the following Azure AD roles: Lifecycle Workflows Administrator, Global Reader, or Global Administrator. To write this property in delegated scenarios, the admin needs the Global Administrator role. Supports $filter (eq, ne, not , ge, le, in). For more information, see Configure the employeeLeaveDateTime property for a user.
+    # The date and time when the user left or will leave the organization. To read this property, the calling app must be assigned the User-LifeCycleInfo.Read.All permission. To write this property, the calling app must be assigned the User.Read.All and User-LifeCycleInfo.ReadWrite.All permissions. To read this property in delegated scenarios, the admin needs one of the following Microsoft Entra roles: Lifecycle Workflows Administrator, Global Reader, or Global Administrator. To write this property in delegated scenarios, the admin needs the Global Administrator role. Supports $filter (eq, ne, not , ge, le, in). For more information, see Configure the employeeLeaveDateTime property for a user.
     employee_leave_date_time: Optional[datetime.datetime] = None
-    # Represents organization data (e.g. division and costCenter) associated with a user. Supports $filter (eq, ne, not , ge, le, in).
+    # Represents organization data (for example, division and costCenter) associated with a user. Supports $filter (eq, ne, not , ge, le, in).
     employee_org_data: Optional[EmployeeOrgData] = None
     # Captures enterprise worker type. For example, Employee, Contractor, Consultant, or Vendor. Supports $filter (eq, ne, not , ge, le, in, startsWith).
     employee_type: Optional[str] = None
@@ -202,7 +203,7 @@ class User(DirectoryObject):
     identities: Optional[List[ObjectIdentity]] = None
     # The instant message voice over IP (VOIP) session initiation protocol (SIP) addresses for the user. Read-only. Supports $filter (eq, not, ge, le, startsWith).
     im_addresses: Optional[List[str]] = None
-    # Relevance classification of the user's messages based on explicit designations which override inferred relevance or importance.
+    # Relevance classification of the user's messages based on explicit designations that override inferred relevance or importance.
     inference_classification: Optional[InferenceClassification] = None
     # Identifies the info segments assigned to the user.  Supports $filter (eq, not, ge, le, startsWith).
     info_catalogs: Optional[List[str]] = None
@@ -224,15 +225,15 @@ class User(DirectoryObject):
     joined_groups: Optional[List[Group]] = None
     # The Microsoft Teams teams that the user is a member of. Read-only. Nullable.
     joined_teams: Optional[List[Team]] = None
-    # The time when this Azure AD user last changed their password or when their password was created, , whichever date the latest action was performed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Returned only on $select.
+    # The time when this Microsoft Entra user last changed their password or when their password was created, whichever date the latest action was performed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Returned only on $select.
     last_password_change_date_time: Optional[datetime.datetime] = None
-    # Used by enterprise applications to determine the legal age group of the user. This property is read-only and calculated based on ageGroup and consentProvidedForMinor properties. Allowed values: null, MinorWithOutParentalConsent, MinorWithParentalConsent, MinorNoParentalConsentRequired, NotAdult and Adult. Refer to the legal age group property definitions for further information. Returned only on $select.
+    # Used by enterprise applications to determine the legal age group of the user. This property is read-only and calculated based on ageGroup and consentProvidedForMinor properties. Allowed values: null, MinorWithOutParentalConsent, MinorWithParentalConsent, MinorNoParentalConsentRequired, NotAdult and Adult. For more information, see legal age group property definitions. Returned only on $select.
     legal_age_group_classification: Optional[str] = None
-    # State of license assignments for this user. Also indicates licenses that are directly-assigned and those that the user has inherited through group memberships. Read-only. Returned only on $select.
+    # State of license assignments for this user. Also indicates licenses that are directly assigned and those that the user has inherited through group memberships. Read-only. Returned only on $select.
     license_assignment_states: Optional[List[LicenseAssignmentState]] = None
     # The licenseDetails property
     license_details: Optional[List[LicenseDetails]] = None
-    # The SMTP address for the user, for example, admin@contoso.com. Changes to this property will also update the user's proxyAddresses collection to include the value as an SMTP address. This property cannot contain accent characters.  NOTE: We do not recommend updating this property for Azure AD B2C user profiles. Use the otherMails property instead.  Supports $filter (eq, ne, not, ge, le, in, startsWith, endsWith, and eq on null values).
+    # The SMTP address for the user, for example, admin@contoso.com. Changes to this property also updates the user's proxyAddresses collection to include the value as an SMTP address. This property can't contain accent characters.  NOTE: We don't recommend updating this property for Azure AD B2C user profiles. Use the otherMails property instead.  Supports $filter (eq, ne, not, ge, le, in, startsWith, endsWith, and eq on null values).
     mail: Optional[str] = None
     # The user's mail folders. Read-only. Nullable.
     mail_folders: Optional[List[MailFolder]] = None
@@ -264,33 +265,33 @@ class User(DirectoryObject):
     oauth2_permission_grants: Optional[List[OAuth2PermissionGrant]] = None
     # The office location in the user's place of business. Maximum length is 128 characters. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     office_location: Optional[str] = None
-    # Contains the on-premises Active Directory distinguished name or DN. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect. Read-only.
+    # Contains the on-premises Active Directory distinguished name or DN. The property is only populated for customers who are synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect. Read-only.
     on_premises_distinguished_name: Optional[str] = None
-    # Contains the on-premises domainFQDN, also called dnsDomainName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect. Read-only.
+    # Contains the on-premises domainFQDN, also called dnsDomainName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect. Read-only.
     on_premises_domain_name: Optional[str] = None
     # Contains extensionAttributes1-15 for the user. These extension attributes are also known as Exchange custom attributes 1-15. For an onPremisesSyncEnabled user, the source of authority for this set of properties is the on-premises and is read-only. For a cloud-only user (where onPremisesSyncEnabled is false), these properties can be set during creation or update of a user object.  For a cloud-only user previously synced from on-premises Active Directory, these properties are read-only in Microsoft Graph but can be fully managed through the Exchange Admin Center or the Exchange Online V2 module in PowerShell. Supports $filter (eq, ne, not, in).
     on_premises_extension_attributes: Optional[OnPremisesExtensionAttributes] = None
-    # This property is used to associate an on-premises Active Directory user account to their Azure AD user object. This property must be specified when creating a new user account in the Graph if you are using a federated domain for the user's userPrincipalName (UPN) property. Note: The $ and _ characters cannot be used when specifying this property. Supports $filter (eq, ne, not, ge, le, in).
+    # This property is used to associate an on-premises Active Directory user account to their Microsoft Entra user object. This property must be specified when creating a new user account in the Graph if you're using a federated domain for the user's userPrincipalName (UPN) property. Note: The $ and _ characters can't be used when specifying this property. Supports $filter (eq, ne, not, ge, le, in).
     on_premises_immutable_id: Optional[str] = None
     # Indicates the last time at which the object was synced with the on-premises directory; for example: '2013-02-16T03:04:54Z'. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, in).
     on_premises_last_sync_date_time: Optional[datetime.datetime] = None
     # Errors when using Microsoft synchronization product during provisioning.  Supports $filter (eq, not, ge, le).
     on_premises_provisioning_errors: Optional[List[OnPremisesProvisioningError]] = None
-    # Contains the on-premises sAMAccountName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect. Read-only. Supports $filter (eq, ne, not, ge, le, in, startsWith).
+    # Contains the on-premises sAMAccountName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect. Read-only. Supports $filter (eq, ne, not, ge, le, in, startsWith).
     on_premises_sam_account_name: Optional[str] = None
     # Contains the on-premises security identifier (SID) for the user that was synchronized from on-premises to the cloud. Read-only. Supports $filter (eq including on null values).
     on_premises_security_identifier: Optional[str] = None
     # Contains all on-premises Session Initiation Protocol (SIP) information related to the user. Read-only.
     on_premises_sip_info: Optional[OnPremisesSipInfo] = None
-    # true if this user object is currently being synced from an on-premises Active Directory (AD); otherwise the user isn't being synced and can be managed in Azure Active Directory (Azure AD). Read-only. Supports $filter (eq, ne, not, in, and eq on null values).
+    # true if this user object is currently being synced from an on-premises Active Directory (AD); otherwise the user isn't being synced and can be managed in Microsoft Entra ID. Read-only. Supports $filter (eq, ne, not, in, and eq on null values).
     on_premises_sync_enabled: Optional[bool] = None
-    # Contains the on-premises userPrincipalName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect. Read-only. Supports $filter (eq, ne, not, ge, le, in, startsWith).
+    # Contains the on-premises userPrincipalName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect. Read-only. Supports $filter (eq, ne, not, ge, le, in, startsWith).
     on_premises_user_principal_name: Optional[str] = None
     # The onenote property
     onenote: Optional[Onenote] = None
     # Information about a meeting, including the URL used to join a meeting, the attendees' list, and the description.
     online_meetings: Optional[List[OnlineMeeting]] = None
-    # A list of additional email addresses for the user; for example: ['bob@contoso.com', 'Robert@fabrikam.com'].NOTE: This property cannot contain accent characters.Supports $filter (eq, not, ge, le, in, startsWith, endsWith, /$count eq 0, /$count ne 0).
+    # A list of additional email addresses for the user; for example: ['bob@contoso.com', 'Robert@fabrikam.com'].NOTE: This property can't contain accent characters.Supports $filter (eq, not, ge, le, in, startsWith, endsWith, /$count eq 0, /$count ne 0).
     other_mails: Optional[List[str]] = None
     # Selective Outlook services available to the user. Read-only. Nullable.
     outlook: Optional[OutlookUser] = None
@@ -298,7 +299,7 @@ class User(DirectoryObject):
     owned_devices: Optional[List[DirectoryObject]] = None
     # Directory objects that are owned by the user. Read-only. Nullable. Supports $expand, $select nested in $expand, and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
     owned_objects: Optional[List[DirectoryObject]] = None
-    # Specifies password policies for the user. This value is an enumeration with one possible value being DisableStrongPassword, which allows weaker passwords than the default policy to be specified. DisablePasswordExpiration can also be specified. The two may be specified together; for example: DisablePasswordExpiration, DisableStrongPassword. For more information on the default password policies, see Azure AD pasword policies. Supports $filter (ne, not, and eq on null values).
+    # Specifies password policies for the user. This value is an enumeration with one possible value being DisableStrongPassword, which allows weaker passwords than the default policy to be specified. DisablePasswordExpiration can also be specified. The two may be specified together; for example: DisablePasswordExpiration, DisableStrongPassword. For more information on the default password policies, see Microsoft Entra password policies. Supports $filter (ne, not, and eq on null values).
     password_policies: Optional[str] = None
     # Specifies the password profile for the user. The profile contains the user's password. This property is required when a user is created. The password in the profile must satisfy minimum requirements as specified by the passwordPolicies property. By default, a strong password is required. Supports $filter (eq, ne, not, in, and eq on null values).
     password_profile: Optional[PasswordProfile] = None
@@ -320,7 +321,7 @@ class User(DirectoryObject):
     postal_code: Optional[str] = None
     # The preferred data location for the user. For more information, see OneDrive Online Multi-Geo.
     preferred_data_location: Optional[str] = None
-    # The preferred language for the user. Should follow ISO 639-1 Code; for example en-US. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
+    # The preferred language for the user. The preferred language format is based on RFC 4646. The name is a combination of an ISO 639 two-letter lowercase culture code associated with the language, and an ISO 3166 two-letter uppercase subculture code associated with the country or region. Example: 'en-US', or 'es-ES'. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     preferred_language: Optional[str] = None
     # The preferred name for the user. Not Supported. This attribute returns an empty string.Returned only on $select.
     preferred_name: Optional[str] = None
@@ -332,11 +333,11 @@ class User(DirectoryObject):
     profile: Optional[Profile] = None
     # The plans that are provisioned for the user. Read-only. Not nullable. Supports $filter (eq, not, ge, le).
     provisioned_plans: Optional[List[ProvisionedPlan]] = None
-    # For example: ['SMTP: bob@contoso.com', 'smtp: bob@sales.contoso.com']. Changes to the mail property will also update this collection to include the value as an SMTP address. For more information, see mail and proxyAddresses properties. The proxy address prefixed with SMTP (capitalized) is the primary proxy address while those prefixed with smtp are the secondary proxy addresses. For Azure AD B2C accounts, this property has a limit of ten unique addresses. Read-only in Microsoft Graph; you can update this property only through the Microsoft 365 admin center. Not nullable. Supports $filter (eq, not, ge, le, startsWith, endsWith, /$count eq 0, /$count ne 0).
+    # For example: ['SMTP: bob@contoso.com', 'smtp: bob@sales.contoso.com']. Changes to the mail property will also update this collection to include the value as an SMTP address. For more information, see mail and proxyAddresses properties. The proxy address prefixed with SMTP (capitalized) is the primary proxy address while those prefixed with smtp are the secondary proxy addresses. For Azure AD B2C accounts, this property has a limit of 10 unique addresses. Read-only in Microsoft Graph; you can update this property only through the Microsoft 365 admin center. Not nullable. Supports $filter (eq, not, ge, le, startsWith, endsWith, /$count eq 0, /$count ne 0).
     proxy_addresses: Optional[List[str]] = None
-    # Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications will get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph).  If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint. Read-only. Use invalidateAllRefreshTokens to reset.
+    # Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph).  If this happens, the application needs to acquire a new refresh token by making a request to the authorize endpoint. Read-only. Use invalidateAllRefreshTokens to reset.
     refresh_tokens_valid_from_date_time: Optional[datetime.datetime] = None
-    # Devices that are registered for the user. Read-only. Nullable. Supports $expand.
+    # Devices that are registered for the user. Read-only. Nullable. Supports $expand and returns up to 100 objects.
     registered_devices: Optional[List[DirectoryObject]] = None
     # A list for the user to enumerate their responsibilities. Returned only on $select.
     responsibilities: Optional[List[str]] = None
@@ -348,15 +349,15 @@ class User(DirectoryObject):
     security: Optional[Security] = None
     # Security identifier (SID) of the user, used in Windows scenarios. Read-only. Returned by default. Supports $select and $filter (eq, not, ge, le, startsWith).
     security_identifier: Optional[str] = None
-    # Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a user object .  Supports $filter (eq, not, for isResolved and serviceInstance).
+    # Errors published by a federated service describing a nontransient, service-specific error regarding the properties or link from a user object.  Supports $filter (eq, not, for isResolved and serviceInstance).
     service_provisioning_errors: Optional[List[ServiceProvisioningError]] = None
     # The settings property
     settings: Optional[UserSettings] = None
     # Do not use in Microsoft Graph. Manage this property through the Microsoft 365 admin center instead. Represents whether the user should be included in the Outlook global address list. See Known issue.
     show_in_address_list: Optional[bool] = None
-    # Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.This property is not returned for a user who has never signed in or last signed in before April 2020.
+    # Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note:  Details for this property require a Microsoft Entra ID P1 or P2 license and the AuditLog.Read.All permission.This property is not returned for a user who has never signed in or last signed in before April 2020.
     sign_in_activity: Optional[SignInActivity] = None
-    # Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications will get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph).  If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint. Read-only. Use revokeSignInSessions to reset.
+    # Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph).  If this happens, the application needs to acquire a new refresh token by making a request to the authorize endpoint. Read-only. Use revokeSignInSessions to reset.
     sign_in_sessions_valid_from_date_time: Optional[datetime.datetime] = None
     # A list for the user to enumerate their skills. Returned only on $select.
     skills: Optional[List[str]] = None
@@ -376,14 +377,16 @@ class User(DirectoryObject):
     transitive_member_of: Optional[List[DirectoryObject]] = None
     # The transitive reports for a user. Read-only.
     transitive_reports: Optional[List[DirectoryObject]] = None
-    # A two letter country code (ISO standard 3166). Required for users that will be assigned licenses due to legal requirement to check for availability of services in countries.  Examples include: US, JP, and GB. Not nullable. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
+    # A two letter country code (ISO standard 3166). Required for users that are assigned licenses due to legal requirement to check for availability of services in countries.  Examples include: US, JP, and GB. Not nullable. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     usage_location: Optional[str] = None
     # Represents the usage rights a user has been granted.
     usage_rights: Optional[List[UsageRight]] = None
-    # The user principal name (UPN) of the user. The UPN is an Internet-style login name for the user based on the Internet standard RFC 822. By convention, this should map to the user's email name. The general format is alias@domain, where domain must be present in the tenant's collection of verified domains. This property is required when a user is created. The verified domains for the tenant can be accessed from the verifiedDomains property of organization.NOTE: This property cannot contain accent characters. Only the following characters are allowed A - Z, a - z, 0 - 9, ' . - _ ! # ^ ~. For the complete list of allowed characters, see username policies. Supports $filter (eq, ne, not, ge, le, in, startsWith, endsWith) and $orderBy.
+    # The user principal name (UPN) of the user. The UPN is an Internet-style sign-in name for the user based on the Internet standard RFC 822. By convention, this should map to the user's email name. The general format is alias@domain, where domain must be present in the tenant's collection of verified domains. This property is required when a user is created. The verified domains for the tenant can be accessed from the verifiedDomains property of organization.NOTE: This property can't contain accent characters. Only the following characters are allowed A - Z, a - z, 0 - 9, ' . - _ ! # ^ ~. For the complete list of allowed characters, see username policies. Supports $filter (eq, ne, not, ge, le, in, startsWith, endsWith) and $orderby.
     user_principal_name: Optional[str] = None
-    # A String value that can be used to classify user types in your directory, such as Member and Guest. Supports $filter (eq, ne, not, in, and eq on null values). NOTE: For more information about the permissions for member and guest users, see What are the default user permissions in Azure Active Directory?
+    # A String value that can be used to classify user types in your directory, such as Member and Guest. Supports $filter (eq, ne, not, in, and eq on null values). NOTE: For more information about the permissions for member and guest users, see What are the default user permissions in Microsoft Entra ID?
     user_type: Optional[str] = None
+    # The virtualEvents property
+    virtual_events: Optional[UserVirtualEventsRoot] = None
     # Zero or more WIP device registrations that belong to the user.
     windows_information_protection_device_registrations: Optional[List[WindowsInformationProtectionDeviceRegistration]] = None
     
@@ -405,9 +408,9 @@ class User(DirectoryObject):
         """
         from .access_review_instance import AccessReviewInstance
         from .agreement_acceptance import AgreementAcceptance
+        from .approval import Approval
         from .app_consent_request import AppConsentRequest
         from .app_role_assignment import AppRoleAssignment
-        from .approval import Approval
         from .assigned_license import AssignedLicense
         from .assigned_plan import AssignedPlan
         from .authentication import Authentication
@@ -444,7 +447,6 @@ class User(DirectoryObject):
         from .mobile_app_intent_and_state import MobileAppIntentAndState
         from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
         from .notification import Notification
-        from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .object_identity import ObjectIdentity
         from .onenote import Onenote
         from .online_meeting import OnlineMeeting
@@ -452,6 +454,7 @@ class User(DirectoryObject):
         from .on_premises_provisioning_error import OnPremisesProvisioningError
         from .on_premises_sip_info import OnPremisesSipInfo
         from .outlook_user import OutlookUser
+        from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .password_profile import PasswordProfile
         from .person import Person
         from .planner_user import PlannerUser
@@ -474,13 +477,14 @@ class User(DirectoryObject):
         from .user_print import UserPrint
         from .user_settings import UserSettings
         from .user_teamwork import UserTeamwork
+        from .user_virtual_events_root import UserVirtualEventsRoot
         from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
 
         from .access_review_instance import AccessReviewInstance
         from .agreement_acceptance import AgreementAcceptance
+        from .approval import Approval
         from .app_consent_request import AppConsentRequest
         from .app_role_assignment import AppRoleAssignment
-        from .approval import Approval
         from .assigned_license import AssignedLicense
         from .assigned_plan import AssignedPlan
         from .authentication import Authentication
@@ -517,7 +521,6 @@ class User(DirectoryObject):
         from .mobile_app_intent_and_state import MobileAppIntentAndState
         from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
         from .notification import Notification
-        from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .object_identity import ObjectIdentity
         from .onenote import Onenote
         from .online_meeting import OnlineMeeting
@@ -525,6 +528,7 @@ class User(DirectoryObject):
         from .on_premises_provisioning_error import OnPremisesProvisioningError
         from .on_premises_sip_info import OnPremisesSipInfo
         from .outlook_user import OutlookUser
+        from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .password_profile import PasswordProfile
         from .person import Person
         from .planner_user import PlannerUser
@@ -547,6 +551,7 @@ class User(DirectoryObject):
         from .user_print import UserPrint
         from .user_settings import UserSettings
         from .user_teamwork import UserTeamwork
+        from .user_virtual_events_root import UserVirtualEventsRoot
         from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -700,6 +705,7 @@ class User(DirectoryObject):
             "usageRights": lambda n : setattr(self, 'usage_rights', n.get_collection_of_object_values(UsageRight)),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
             "userType": lambda n : setattr(self, 'user_type', n.get_str_value()),
+            "virtualEvents": lambda n : setattr(self, 'virtual_events', n.get_object_value(UserVirtualEventsRoot)),
             "windowsInformationProtectionDeviceRegistrations": lambda n : setattr(self, 'windows_information_protection_device_registrations', n.get_collection_of_object_values(WindowsInformationProtectionDeviceRegistration)),
         }
         super_fields = super().get_field_deserializers()
@@ -865,6 +871,7 @@ class User(DirectoryObject):
         writer.write_collection_of_object_values("usageRights", self.usage_rights)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
         writer.write_str_value("userType", self.user_type)
+        writer.write_object_value("virtualEvents", self.virtual_events)
         writer.write_collection_of_object_values("windowsInformationProtectionDeviceRegistrations", self.windows_information_protection_device_registrations)
     
 

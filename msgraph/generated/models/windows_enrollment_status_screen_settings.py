@@ -55,7 +55,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, BackedModel, P
             "customErrorMessage": lambda n : setattr(self, 'custom_error_message', n.get_str_value()),
             "hideInstallationProgress": lambda n : setattr(self, 'hide_installation_progress', n.get_bool_value()),
             "installProgressTimeoutInMinutes": lambda n : setattr(self, 'install_progress_timeout_in_minutes', n.get_int_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -74,7 +74,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, BackedModel, P
         writer.write_str_value("customErrorMessage", self.custom_error_message)
         writer.write_bool_value("hideInstallationProgress", self.hide_installation_progress)
         writer.write_int_value("installProgressTimeoutInMinutes", self.install_progress_timeout_in_minutes)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

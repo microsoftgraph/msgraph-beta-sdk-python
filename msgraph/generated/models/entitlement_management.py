@@ -50,7 +50,7 @@ class EntitlementManagement(Entity):
     connected_organizations: Optional[List[ConnectedOrganization]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Represents the settings that control the behavior of Azure AD entitlement management.
+    # Represents the settings that control the behavior of Microsoft Entra entitlement management.
     settings: Optional[EntitlementManagementSettings] = None
     # Represents the subjects within entitlement management.
     subjects: Optional[List[AccessPackageSubject]] = None

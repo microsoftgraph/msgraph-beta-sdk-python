@@ -72,7 +72,7 @@ class GeneralLedgerEntry(AdditionalDataHolder, BackedModel, Parsable):
             "documentType": lambda n : setattr(self, 'document_type', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_uuid_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "postingDate": lambda n : setattr(self, 'posting_date', n.get_date_value()),
         }
         return fields
@@ -95,7 +95,7 @@ class GeneralLedgerEntry(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("documentType", self.document_type)
         writer.write_uuid_value("id", self.id)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_date_value("postingDate", self.posting_date)
         writer.write_additional_data_value(self.additional_data)
     

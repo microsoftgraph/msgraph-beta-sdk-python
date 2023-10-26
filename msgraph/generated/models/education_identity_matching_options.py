@@ -22,7 +22,7 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, BackedModel, Parsab
     source_property_name: Optional[str] = None
     # The domain to suffix with the source property to match on the target. If provided as null, the source property will be used to match with the target property.
     target_domain: Optional[str] = None
-    # The name of the target property, which should be a valid property in Azure AD. This property is case-sensitive.
+    # The name of the target property, which should be a valid property in Microsoft Entra ID. This property is case-sensitive.
     target_property_name: Optional[str] = None
     
     @staticmethod
@@ -47,7 +47,7 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, BackedModel, Parsab
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(EducationUserRole)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "sourcePropertyName": lambda n : setattr(self, 'source_property_name', n.get_str_value()),
             "targetDomain": lambda n : setattr(self, 'target_domain', n.get_str_value()),
             "targetPropertyName": lambda n : setattr(self, 'target_property_name', n.get_str_value()),
@@ -63,7 +63,7 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, BackedModel, Parsab
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("appliesTo", self.applies_to)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("sourcePropertyName", self.source_property_name)
         writer.write_str_value("targetDomain", self.target_domain)
         writer.write_str_value("targetPropertyName", self.target_property_name)

@@ -56,7 +56,7 @@ class LabelingOptions(AdditionalDataHolder, BackedModel, Parsable):
             "downgradeJustification": lambda n : setattr(self, 'downgrade_justification', n.get_object_value(DowngradeJustification)),
             "extendedProperties": lambda n : setattr(self, 'extended_properties', n.get_collection_of_object_values(KeyValuePair)),
             "labelId": lambda n : setattr(self, 'label_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class LabelingOptions(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("downgradeJustification", self.downgrade_justification)
         writer.write_collection_of_object_values("extendedProperties", self.extended_properties)
         writer.write_str_value("labelId", self.label_id)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

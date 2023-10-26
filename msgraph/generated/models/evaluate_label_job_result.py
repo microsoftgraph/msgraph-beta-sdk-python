@@ -50,7 +50,7 @@ class EvaluateLabelJobResult(AdditionalDataHolder, BackedModel, Parsable):
         from .responsible_sensitive_type import ResponsibleSensitiveType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "responsiblePolicy": lambda n : setattr(self, 'responsible_policy', n.get_object_value(ResponsiblePolicy)),
             "responsibleSensitiveTypes": lambda n : setattr(self, 'responsible_sensitive_types', n.get_collection_of_object_values(ResponsibleSensitiveType)),
             "sensitivityLabel": lambda n : setattr(self, 'sensitivity_label', n.get_object_value(MatchingLabel)),
@@ -65,7 +65,7 @@ class EvaluateLabelJobResult(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_object_value("responsiblePolicy", self.responsible_policy)
         writer.write_collection_of_object_values("responsibleSensitiveTypes", self.responsible_sensitive_types)
         writer.write_object_value("sensitivityLabel", self.sensitivity_label)

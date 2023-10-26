@@ -14,9 +14,9 @@ class ApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The number of days that a request can be pending a response before it is automatically denied.
+    # The number of days that a request can be pending a response before it's automatically denied.
     approval_stage_time_out_in_days: Optional[int] = None
-    # If escalation is enabled and the primary approvers do not respond before the escalation time, the escalationApprovers are the users who will be asked to approve requests. This can be a collection of singleUser, groupMembers, requestorManager, internalSponsors and externalSponsors.  When creating or updating a policy, if there are no escalation approvers, or escalation approvers are not required for the stage, the value of this property should be an empty collection.
+    # If escalation is enabled and the primary approvers don't respond before the escalation time, the escalationApprovers are the users who will be asked to approve requests. This can be a collection of singleUser, groupMembers, requestorManager, internalSponsors and externalSponsors.  When creating or updating a policy, if there are no escalation approvers, or escalation approvers aren't required for the stage, the value of this property should be an empty collection.
     escalation_approvers: Optional[List[UserSet]] = None
     # If escalation is required, the time a request can be pending a response from a primary approver.
     escalation_time_in_minutes: Optional[int] = None
@@ -26,7 +26,7 @@ class ApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
     is_escalation_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The users who will be asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors, externalSponsors and targetUserSponsors. When creating or updating a policy, include at least one userSet in this collection.
+    # The users who are asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors, externalSponsors and targetUserSponsors. When creating or updating a policy, include at least one userSet in this collection.
     primary_approvers: Optional[List[UserSet]] = None
     
     @staticmethod
@@ -55,7 +55,7 @@ class ApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
             "escalationTimeInMinutes": lambda n : setattr(self, 'escalation_time_in_minutes', n.get_int_value()),
             "isApproverJustificationRequired": lambda n : setattr(self, 'is_approver_justification_required', n.get_bool_value()),
             "isEscalationEnabled": lambda n : setattr(self, 'is_escalation_enabled', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "primaryApprovers": lambda n : setattr(self, 'primary_approvers', n.get_collection_of_object_values(UserSet)),
         }
         return fields
@@ -73,7 +73,7 @@ class ApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("escalationTimeInMinutes", self.escalation_time_in_minutes)
         writer.write_bool_value("isApproverJustificationRequired", self.is_approver_justification_required)
         writer.write_bool_value("isEscalationEnabled", self.is_escalation_enabled)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_collection_of_object_values("primaryApprovers", self.primary_approvers)
         writer.write_additional_data_value(self.additional_data)
     

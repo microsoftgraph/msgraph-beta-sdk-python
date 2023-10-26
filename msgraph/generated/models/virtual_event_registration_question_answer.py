@@ -44,7 +44,7 @@ class VirtualEventRegistrationQuestionAnswer(AdditionalDataHolder, BackedModel, 
             "booleanValue": lambda n : setattr(self, 'boolean_value', n.get_bool_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "multiChoiceValues": lambda n : setattr(self, 'multi_choice_values', n.get_collection_of_primitive_values(str)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "questionId": lambda n : setattr(self, 'question_id', n.get_str_value()),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
         }
@@ -61,7 +61,7 @@ class VirtualEventRegistrationQuestionAnswer(AdditionalDataHolder, BackedModel, 
         writer.write_bool_value("booleanValue", self.boolean_value)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_primitive_values("multiChoiceValues", self.multi_choice_values)
-        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("OdataType", self.odata_type)
         writer.write_str_value("questionId", self.question_id)
         writer.write_str_value("value", self.value)
         writer.write_additional_data_value(self.additional_data)

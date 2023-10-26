@@ -11,13 +11,13 @@ from .entity import Entity
 
 @dataclass
 class AuthenticationFlowsPolicy(Entity):
-    # Inherited property. A description of the policy. This property is not a key. Optional. Read-only.
+    # Inherited property. A description of the policy. This property isn't a key. Optional. Read-only.
     description: Optional[str] = None
-    # Inherited property. The human-readable name of the policy. This property is not a key. Optional. Read-only.
+    # Inherited property. The human-readable name of the policy. This property isn't a key. Optional. Read-only.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Contains selfServiceSignUpAuthenticationFlowConfiguration settings that convey whether self-service sign-up is enabled or disabled. This property is not a key. Optional. Read-only.
+    # Contains selfServiceSignUpAuthenticationFlowConfiguration settings that convey whether self-service sign-up is enabled or disabled. This property isn't a key. Optional. Read-only.
     self_service_sign_up: Optional[SelfServiceSignUpAuthenticationFlowConfiguration] = None
     
     @staticmethod
