@@ -4,9 +4,7 @@
 import asyncio
 
 from azure.identity import ClientSecretCredential
-from kiota_abstractions.api_error import APIError
-from kiota_authentication_azure.azure_identity_authentication_provider import AzureIdentityAuthenticationProvider
-from msgraph import GraphRequestAdapter, GraphServiceClient
+from msgraph_beta import GraphServiceClient
 
 # Set the event loop policy for Windows
 asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy()) 
@@ -18,25 +16,18 @@ credential = ClientSecretCredential(
     client_secret='CLIENT_SECRET'
 )
 scopes = ['https://graph.microsoft.com/.default']
-auth_provider = AzureIdentityAuthenticationProvider(credential, scopes=scopes)
 
-# Initialize a request adapter with the auth provider.
-request_adapter = GraphRequestAdapter(auth_provider)
-
-# Create an API client with the request adapter.
-client = GraphServiceClient(request_adapter)
+a# Create an API client with the credentials and scopes.
+client = GraphServiceClient(credential, scopes=scopes)
 ```
 
 ## 1. LIST ALL GROUPS IN THE TENANT (GET /groups)
 ```py
 async def get_groups():
-    try:
-        groups = await client.groups.get()
-        if groups and groups.value:
-            for group in groups.value:
-                print(group.id, group.display_name)
-    except APIError as e:
-        print(e.error.message)
+    groups = await client.groups.get()
+    if groups and groups.value:
+        for group in groups.value:
+            print(group.id, group.display_name)
 asyncio.run(get_groups())
 ```
 
@@ -44,13 +35,10 @@ asyncio.run(get_groups())
 
 ```py
 async def get_group():
-    try:
-        group = await client.groups.by_group_id('GROUP_ID').get()
-        if group:
-            print(group.id, group.display_name, group.description, group.group_types,
-                group.security_enabled)
-    except APIError as e:
-        print(e.error.message)
+    group = await client.groups.by_group_id('GROUP_ID').get()
+    if group:
+        print(group.id, group.display_name, group.description, group.group_types,
+            group.security_enabled)
 asyncio.run(get_group())
 ```
 
@@ -58,15 +46,12 @@ asyncio.run(get_group())
 
 ```py
 async def get_group_members():
-    try:
-        members = await client.groups.by_group_id('GROUP_ID').members.get()
-        if members and members.value:
-            for member in members.value:
-                user = await client.users.by_user_id(member.id).get()
-                if user:
-                    print(user.display_name, user.mail)
-    except APIError as e:
-        print(e.error.message)
+    members = await client.groups.by_group_id('GROUP_ID').members.get()
+    if members and members.value:
+        for member in members.value:
+            user = await client.users.by_user_id(member.id).get()
+            if user:
+                print(user.display_name, user.mail)
 asyncio.run(get_group_members())
 ```
 
@@ -74,13 +59,10 @@ asyncio.run(get_group_members())
 
 ```py
 async def get_group_sites():
-    try:
-        sites = await client.groups.by_group_id('GROUP_ID').sites.get()
-        if sites and sites.value:
-            for site in sites.value:
-                print(site.id, site.web_url)
-    except APIError as e:
-        print(e.error.message)
+    sites = await client.groups.by_group_id('GROUP_ID').sites.get()
+    if sites and sites.value:
+        for site in sites.value:
+            print(site.id, site.web_url)
 asyncio.run(get_group_sites())
 ```
 
@@ -88,17 +70,14 @@ asyncio.run(get_group_sites())
 
 ```py
 async def get_group_transitive_members():
-    try:
-        members = await client.groups.by_group_id('GROUP_ID').transitive_members.get()
-        if members and members.value:
-            for member in members.value:
-                obj = await client.directory_objects.by_directory_object_id(member.id).get()
-                if obj and obj.odata_type == '#microsoft.graph.user':
-                    user = await client.users.by_user_id(obj.id).get()
-                    if user:
-                        print(user.id, user.display_name, user.mail)
-    except Exception as e:
-        print(e)
+    members = await client.groups.by_group_id('GROUP_ID').transitive_members.get()
+    if members and members.value:
+        for member in members.value:
+            obj = await client.directory_objects.by_directory_object_id(member.id).get()
+            if obj and obj.odata_type == '#microsoft.graph.user':
+                user = await client.users.by_user_id(obj.id).get()
+                if user:
+                    print(user.id, user.display_name, user.mail)
 asyncio.run(get_group_transitive_members())
 ```
 
@@ -106,13 +85,10 @@ asyncio.run(get_group_transitive_members())
 
 ```py
 async def get_group_drives():
-    try:
-        drives = await client.groups.by_group_id('GROUP_ID').drives.get()
-        if drives and drives.value:
-            for drive in drives.value:
-                print(drive.id, drive.name)
-    except Exception as e:
-        print(e)
+    drives = await client.groups.by_group_id('GROUP_ID').drives.get()
+    if drives and drives.value:
+        for drive in drives.value:
+            print(drive.id, drive.name)
 asyncio.run(get_group_drives())
 ```
 
@@ -120,15 +96,12 @@ asyncio.run(get_group_drives())
 
 ```py
 async def get_group_drive():
-    try:
-        drive = await client.groups.by_group_id(
-            'GROUP_ID'
-            ).drives.by_drive_id(
-                'DRIVE_ID'
-                ).get()
-        if drive:
-            print(drive.id, drive.drive_type, drive.name, drive.web_url, drive.items)
-    except APIError as e:
-        print(e.error.message)
+    drive = await client.groups.by_group_id(
+        'GROUP_ID'
+        ).drives.by_drive_id(
+            'DRIVE_ID'
+            ).get()
+    if drive:
+        print(drive.id, drive.drive_type, drive.name, drive.web_url, drive.items)
 asyncio.run(get_group_drive())
 ```

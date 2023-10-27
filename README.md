@@ -18,52 +18,22 @@ pip install msgraph-beta-sdk
 
 Register your application by following the steps at [Register your app with the Microsoft Identity Platform](https://docs.microsoft.com/graph/auth-register-app-v2).
 
-### 2.2 Create an AuthenticationProvider object
+### 2.3 Get a GraphServiceClient object
 
-An instance of the **GraphServiceClient** class handles building client. To create a new instance of this class, you need to provide an instance of **AuthenticationProvider**, which can authenticate requests to Microsoft Graph.
+You must get a **GraphServiceClient** object to make requests against the service.
+
+An instance of the **GraphServiceClient** class handles building client. To create a new instance of this class, you need to provide an instance of **Credential**, which can authenticate requests to Microsoft Graph.
 
 > **Note**: For authentication we support both `sync` and `async` credential classes from `azure.identity`. Please see the azure identity [docs](https://learn.microsoft.com/en-us/python/api/azure-identity/azure.identity?view=azure-python) for more information.
 
 ```py
 # Example using async credentials.
 from azure.identity.aio import EnvironmentCredential
-from kiota_authentication_azure.azure_identity_authentication_provider import AzureIdentityAuthenticationProvider
+from msgraph_beta import GraphServiceClient
 
 scopes = ['User.Read', 'Mail.Read']
 credential=EnvironmentCredential()
-auth_provider = AzureIdentityAuthenticationProvider(credential, scopes=scopes)
-```
-
-### 2.3 Initialise a GraphRequestAdapter object
-
-The SDK uses an adapter object that handles the HTTP concerns. This HTTP adapter object is used to build the Graph client for making requests.
-
-To initialise one using the authentication provider created in the previous step:
-
-```py
-from msgraph import GraphRequestAdapter
-
-adapter = GraphRequestAdapter(auth_provider)
-```
-
-We currently use [HTTPX](https://www.python-httpx.org/) as our HTTP client. You can pass your custom configured `httpx.AsyncClient` using:
-
-```py
-from msgraph import GraphRequestAdapter
-from msgraph_core import GraphClientFactory
-
-http_Client = GraphClientFactory.create_with_default_middleware(client=httpx.AsyncClient())
-request_adapter = GraphRequestAdapter(auth_Provider, http_client)
-```
-
-### 2.3 Get a GraphServiceClient object
-
-You must get a **GraphServiceClient** object to make requests against the service.
-
-```py
-from msgraph import GraphServiceClient
-
-client = GraphServiceClient(request_adapter)
+client = GraphServiceClient(credentials, scopes=scopes)
 ```
 
 ## 3. Make requests against the service
@@ -77,9 +47,7 @@ The following is a complete example that shows how to fetch a user from Microsof
 ```py
 import asyncio
 from azure.identity.aio import ClientSecretCredential
-from kiota_authentication_azure.azure_identity_authentication_provider import AzureIdentityAuthenticationProvider
-from msgraph import GraphRequestAdapter
-from msgraph import GraphServiceClient
+from msgraph_beta import GraphServiceClient
 
 credential = ClientSecretCredential(
     'tenant_id',
@@ -87,15 +55,12 @@ credential = ClientSecretCredential(
     'client_secret'
 )
 scopes = ['https://graph.microsoft.com/.default']
-auth_provider = AzureIdentityAuthenticationProvider(credential, scopes=scopes)
-request_adapter = GraphRequestAdapter(auth_provider)
-client = GraphServiceClient(request_adapter)
+client = GraphServiceClient(credential, scopes=scopes)
 
 async def get_user():
     user = await client.users.by_user_id('userPrincipalName').get()
     if user:
       print(user.display_name)
-
 asyncio.run(get_user())
 ```
 
@@ -104,21 +69,16 @@ Note that to calling `me` requires a signed-in user and therefore delegated perm
 ```py
 import asyncio
 from azure.identity import InteractiveBrowserCredential
-from kiota_authentication_azure.azure_identity_authentication_provider import AzureIdentityAuthenticationProvider
-from msgraph import GraphRequestAdapter
-from msgraph import GraphServiceClient
+from msgraph_beta import GraphServiceClient
 
 credential = InteractiveBrowserCredential()
 scopes=['User.Read']
-auth_provider = AzureIdentityAuthenticationProvider(credential, scopes=scopes)
-request_adapter = GraphRequestAdapter(auth_provider)
-client = GraphServiceClient(request_adapter)
+client = GraphServiceClient(credential, scopes=scopes)
 
 async def me():
     me = await client.me.get()
     if me:
         print(me.display_name)
-
 asyncio.run(me())
 ```
 
@@ -133,11 +93,8 @@ async def get_user():
         print(user.user_principal_name, user.display_name, user.id)
     except APIError as e:
         print(f'Error: {e.error.message}')
-
 asyncio.run(get_user())
 ```
-
-
 ## Documentation and resources
 
 * [Overview](https://docs.microsoft.com/graph/overview)

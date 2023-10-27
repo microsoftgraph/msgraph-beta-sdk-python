@@ -1,0 +1,64 @@
+from __future__ import annotations
+from dataclasses import dataclass, field
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from .entity import Entity
+
+from .entity import Entity
+
+@dataclass
+class AuthenticationContextClassReference(Entity):
+    # A short explanation of the policies that are enforced by authenticationContextClassReference. This value should be used to provide secondary text to describe the authentication context class reference when building user facing admin experiences. For example, selection UX.
+    description: Optional[str] = None
+    # A friendly name that identifies the authenticationContextClassReference object when building user-facing admin experiences. For example, a selection UX.
+    display_name: Optional[str] = None
+    # Indicates whether the authenticationContextClassReference has been published by the security admin and is ready for use by apps. When it's set to false, it shouldn't be shown in selection UX used to tag resources with authentication context class values. It will still be shown in the Conditional Access policy authoring experience.  Supports $filter (eq).
+    is_available: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    
+    @staticmethod
+    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationContextClassReference:
+        """
+        Creates a new instance of the appropriate class based on discriminator value
+        param parse_node: The parse node to use to read the discriminator value and create the object
+        Returns: AuthenticationContextClassReference
+        """
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        return AuthenticationContextClassReference()
+    
+    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+        """
+        The deserialization information for the current model
+        Returns: Dict[str, Callable[[ParseNode], None]]
+        """
+        from .entity import Entity
+
+        from .entity import Entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "description": lambda n : setattr(self, 'description', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isAvailable": lambda n : setattr(self, 'is_available', n.get_bool_value()),
+        }
+        super_fields = super().get_field_deserializers()
+        fields.update(super_fields)
+        return fields
+    
+    def serialize(self,writer: SerializationWriter) -> None:
+        """
+        Serializes information the current object
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
+        """
+        if not writer:
+            raise TypeError("writer cannot be null.")
+        super().serialize(writer)
+        writer.write_str_value("description", self.description)
+        writer.write_str_value("displayName", self.display_name)
+        writer.write_bool_value("isAvailable", self.is_available)
+    
+

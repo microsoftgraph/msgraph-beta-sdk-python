@@ -81,6 +81,7 @@ disable=long-suffix,
         R0801,
         R0904,
         line-too-long,
+        import-outside-toplevel,
 
 
 # Enable the message, report, category or checker with the given id(s). You can
