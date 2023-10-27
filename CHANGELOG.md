@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Changed the request builders api to include indexers as part of the path. [#2528](https://github.com/microsoft/kiota/issues/2528)
 
+## [1.0.0a8] - 2023-04-25
+
+### Added
+
+### Changed
+
+- Changed the request builders api to include indexers as part of the path. [#2528](https://github.com/microsoft/kiota/issues/2528)
+
 ## [1.0.0a7] - 2023-04-12
 
 ### Added
