@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0rc0] - 2023-10-27
+
+### Added
+- Added request translation method to native request object
+- Added opentelemetry to support observability.
+- Added support for continous access evaluation.
+- Added backing store support and enabled backing store by default.
+
+
+### Changed
+- Refactored request headers from dictionary to HeaderCollection class.
+- Fix issue with using raw url in request builder due to incorrect parameter order.
+- Switched from uritemplate to std-uritemplate for URI templating.
+- Simplified the creation of a graph client.
+
+
 ## [1.0.0a8] - 2023-04-25
 
 ### Added
