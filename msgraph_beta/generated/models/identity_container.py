@@ -99,7 +99,7 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
             "continuousAccessEvaluationPolicy": lambda n : setattr(self, 'continuous_access_evaluation_policy', n.get_object_value(ContinuousAccessEvaluationPolicy)),
             "customAuthenticationExtensions": lambda n : setattr(self, 'custom_authentication_extensions', n.get_collection_of_object_values(CustomAuthenticationExtension)),
             "identityProviders": lambda n : setattr(self, 'identity_providers', n.get_collection_of_object_values(IdentityProviderBase)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "userFlowAttributes": lambda n : setattr(self, 'user_flow_attributes', n.get_collection_of_object_values(IdentityUserFlowAttribute)),
             "userFlows": lambda n : setattr(self, 'user_flows', n.get_collection_of_object_values(IdentityUserFlow)),
         }
@@ -122,7 +122,7 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("continuousAccessEvaluationPolicy", self.continuous_access_evaluation_policy)
         writer.write_collection_of_object_values("customAuthenticationExtensions", self.custom_authentication_extensions)
         writer.write_collection_of_object_values("identityProviders", self.identity_providers)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("userFlowAttributes", self.user_flow_attributes)
         writer.write_collection_of_object_values("userFlows", self.user_flows)
         writer.write_additional_data_value(self.additional_data)

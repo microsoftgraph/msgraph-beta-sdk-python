@@ -54,7 +54,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
             "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
             "installStatus": lambda n : setattr(self, 'install_status', n.get_enum_value(CloudPcPartnerAgentInstallStatus)),
             "isThirdPartyPartner": lambda n : setattr(self, 'is_third_party_partner', n.get_bool_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "partnerAgentName": lambda n : setattr(self, 'partner_agent_name', n.get_enum_value(CloudPcPartnerAgentName)),
             "retriable": lambda n : setattr(self, 'retriable', n.get_bool_value()),
         }
@@ -71,7 +71,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
         writer.write_str_value("errorMessage", self.error_message)
         writer.write_enum_value("installStatus", self.install_status)
         writer.write_bool_value("isThirdPartyPartner", self.is_third_party_partner)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("partnerAgentName", self.partner_agent_name)
         writer.write_bool_value("retriable", self.retriable)
         writer.write_additional_data_value(self.additional_data)

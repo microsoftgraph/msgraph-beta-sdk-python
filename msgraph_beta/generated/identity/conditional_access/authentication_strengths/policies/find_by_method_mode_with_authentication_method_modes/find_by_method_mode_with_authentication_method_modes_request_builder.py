@@ -26,7 +26,7 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['authentication_method_modes'] = str(authentication_method_modes)
+            path_parameters['authenticationMethodModes'] = str(authentication_method_modes)
         super().__init__(request_adapter, "{+baseurl}/identity/conditionalAccess/authenticationStrengths/policies/findByMethodMode(authenticationMethodModes={authenticationMethodModes}){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
     async def get(self,request_configuration: Optional[FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetRequestConfiguration] = None) -> Optional[FindByMethodModeWithAuthenticationMethodModesGetResponse]:

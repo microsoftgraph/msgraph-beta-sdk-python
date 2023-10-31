@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ......models.planner_plan import PlannerPlan
     from .buckets.buckets_request_builder import BucketsRequestBuilder
     from .details.details_request_builder import DetailsRequestBuilder
+    from .move_to_container.move_to_container_request_builder import MoveToContainerRequestBuilder
     from .tasks.tasks_request_builder import TasksRequestBuilder
 
 class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
@@ -173,6 +174,15 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         from .details.details_request_builder import DetailsRequestBuilder
 
         return DetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def move_to_container(self) -> MoveToContainerRequestBuilder:
+        """
+        Provides operations to call the moveToContainer method.
+        """
+        from .move_to_container.move_to_container_request_builder import MoveToContainerRequestBuilder
+
+        return MoveToContainerRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def tasks(self) -> TasksRequestBuilder:

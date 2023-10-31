@@ -49,7 +49,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
         from .cloud_pc_region_group import CloudPcRegionGroup
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "onPremisesConnectionId": lambda n : setattr(self, 'on_premises_connection_id', n.get_str_value()),
             "regionGroup": lambda n : setattr(self, 'region_group', n.get_enum_value(CloudPcRegionGroup)),
             "regionName": lambda n : setattr(self, 'region_name', n.get_str_value()),
@@ -65,7 +65,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("onPremisesConnectionId", self.on_premises_connection_id)
         writer.write_enum_value("regionGroup", self.region_group)
         writer.write_str_value("regionName", self.region_name)

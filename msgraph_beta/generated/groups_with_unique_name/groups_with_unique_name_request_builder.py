@@ -26,7 +26,7 @@ class GroupsWithUniqueNameRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['unique_name'] = str(unique_name)
+            path_parameters['uniqueName'] = str(unique_name)
         super().__init__(request_adapter, "{+baseurl}/groups(uniqueName='{uniqueName}'){?%24select,%24expand}", path_parameters)
     
     async def delete(self,request_configuration: Optional[GroupsWithUniqueNameRequestBuilderDeleteRequestConfiguration] = None) -> None:

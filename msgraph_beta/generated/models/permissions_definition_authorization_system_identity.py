@@ -49,7 +49,7 @@ class PermissionsDefinitionAuthorizationSystemIdentity(AdditionalDataHolder, Bac
         fields: Dict[str, Callable[[Any], None]] = {
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "identityType": lambda n : setattr(self, 'identity_type', n.get_enum_value(PermissionsDefinitionIdentityType)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "source": lambda n : setattr(self, 'source', n.get_object_value(PermissionsDefinitionIdentitySource)),
         }
         return fields
@@ -64,7 +64,7 @@ class PermissionsDefinitionAuthorizationSystemIdentity(AdditionalDataHolder, Bac
             raise TypeError("writer cannot be null.")
         writer.write_str_value("externalId", self.external_id)
         writer.write_enum_value("identityType", self.identity_type)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("source", self.source)
         writer.write_additional_data_value(self.additional_data)
     

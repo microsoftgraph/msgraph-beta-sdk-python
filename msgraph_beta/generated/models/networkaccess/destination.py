@@ -65,7 +65,7 @@ class Destination(AdditionalDataHolder, BackedModel, Parsable):
             "ip": lambda n : setattr(self, 'ip', n.get_str_value()),
             "lastAccessDateTime": lambda n : setattr(self, 'last_access_date_time', n.get_datetime_value()),
             "networkingProtocol": lambda n : setattr(self, 'networking_protocol', n.get_enum_value(NetworkingProtocol)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
             "trafficType": lambda n : setattr(self, 'traffic_type', n.get_enum_value(TrafficType)),
             "transactionCount": lambda n : setattr(self, 'transaction_count', n.get_int_value()),
@@ -86,7 +86,7 @@ class Destination(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("ip", self.ip)
         writer.write_datetime_value("lastAccessDateTime", self.last_access_date_time)
         writer.write_enum_value("networkingProtocol", self.networking_protocol)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("port", self.port)
         writer.write_enum_value("trafficType", self.traffic_type)
         writer.write_int_value("transactionCount", self.transaction_count)

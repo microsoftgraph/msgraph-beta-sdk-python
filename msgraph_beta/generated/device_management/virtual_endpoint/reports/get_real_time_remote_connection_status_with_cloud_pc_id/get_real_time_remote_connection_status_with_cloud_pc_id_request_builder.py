@@ -25,7 +25,7 @@ class GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder(BaseRequestBu
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['cloud_pc_id'] = str(cloud_pc_id)
+            path_parameters['cloudPcId'] = str(cloud_pc_id)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/reports/getRealTimeRemoteConnectionStatus(cloudPcId='{cloudPcId}')", path_parameters)
     
     async def get(self,request_configuration: Optional[GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilderGetRequestConfiguration] = None) -> bytes:

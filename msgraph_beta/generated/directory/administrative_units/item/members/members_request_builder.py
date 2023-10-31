@@ -38,7 +38,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     def by_directory_object_id(self,directory_object_id: str) -> DirectoryObjectItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.directory.administrativeUnits.item.members.item collection
+        Gets an item from the msgraph_beta.generated.directory.administrativeUnits.item.members.item collection
         param directory_object_id: Unique identifier of the item
         Returns: DirectoryObjectItemRequestBuilder
         """

@@ -31,7 +31,7 @@ class IncompatibleAccessPackagesRequestBuilder(BaseRequestBuilder):
     
     def by_access_package_id(self,access_package_id: str) -> AccessPackageItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.identityGovernance.entitlementManagement.accessPackageAssignments.item.accessPackage.incompatibleAccessPackages.item collection
+        Gets an item from the msgraph_beta.generated.identityGovernance.entitlementManagement.accessPackageAssignments.item.accessPackage.incompatibleAccessPackages.item collection
         param access_package_id: Unique identifier of the item
         Returns: AccessPackageItemRequestBuilder
         """

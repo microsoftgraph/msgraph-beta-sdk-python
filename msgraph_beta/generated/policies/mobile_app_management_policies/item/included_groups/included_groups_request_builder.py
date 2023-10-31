@@ -31,7 +31,7 @@ class IncludedGroupsRequestBuilder(BaseRequestBuilder):
     
     def by_group_id(self,group_id: str) -> GroupItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.policies.mobileAppManagementPolicies.item.includedGroups.item collection
+        Gets an item from the msgraph_beta.generated.policies.mobileAppManagementPolicies.item.includedGroups.item collection
         param group_id: Unique identifier of the item
         Returns: GroupItemRequestBuilder
         """

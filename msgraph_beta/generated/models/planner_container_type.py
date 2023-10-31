@@ -6,4 +6,5 @@ class PlannerContainerType(str, Enum):
     Roster = "roster",
     Project = "project",
     DriveItem = "driveItem",
+    User = "user",
 

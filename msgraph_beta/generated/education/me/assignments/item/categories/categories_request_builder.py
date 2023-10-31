@@ -33,7 +33,7 @@ class CategoriesRequestBuilder(BaseRequestBuilder):
     
     def by_education_category_id(self,education_category_id: str) -> EducationCategoryItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.education.me.assignments.item.categories.item collection
+        Gets an item from the msgraph_beta.generated.education.me.assignments.item.categories.item collection
         param education_category_id: Unique identifier of the item
         Returns: EducationCategoryItemRequestBuilder
         """

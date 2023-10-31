@@ -63,7 +63,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, BackedModel, 
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "errorType": lambda n : setattr(self, 'error_type', n.get_enum_value(CloudPcOnPremisesConnectionHealthCheckErrorType)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recommendedAction": lambda n : setattr(self, 'recommended_action', n.get_str_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcOnPremisesConnectionStatus)),
@@ -83,7 +83,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, BackedModel, 
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_enum_value("errorType", self.error_type)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("recommendedAction", self.recommended_action)
         writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_enum_value("status", self.status)

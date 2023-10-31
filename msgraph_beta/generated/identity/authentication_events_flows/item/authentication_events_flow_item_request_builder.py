@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.authentication_events_flow import AuthenticationEventsFlow
     from ....models.o_data_errors.o_data_error import ODataError
+    from .graph_external_users_self_service_sign_up_events_flow.graph_external_users_self_service_sign_up_events_flow_request_builder import GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder
 
 class AuthenticationEventsFlowItemRequestBuilder(BaseRequestBuilder):
     """
@@ -155,6 +156,15 @@ class AuthenticationEventsFlowItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return AuthenticationEventsFlowItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def graph_external_users_self_service_sign_up_events_flow(self) -> GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder:
+        """
+        Casts the previous resource to externalUsersSelfServiceSignUpEventsFlow.
+        """
+        from .graph_external_users_self_service_sign_up_events_flow.graph_external_users_self_service_sign_up_events_flow_request_builder import GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder
+
+        return GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

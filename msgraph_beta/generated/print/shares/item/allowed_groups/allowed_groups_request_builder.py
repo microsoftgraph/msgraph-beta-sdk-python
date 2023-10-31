@@ -31,7 +31,7 @@ class AllowedGroupsRequestBuilder(BaseRequestBuilder):
     
     def by_group_id(self,group_id: str) -> GroupItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.print.shares.item.allowedGroups.item collection
+        Gets an item from the msgraph_beta.generated.print.shares.item.allowedGroups.item collection
         param group_id: Unique identifier of the item
         Returns: GroupItemRequestBuilder
         """

@@ -40,7 +40,7 @@ class ActionSummary(AdditionalDataHolder, BackedModel, Parsable):
             "assigned": lambda n : setattr(self, 'assigned', n.get_int_value()),
             "available": lambda n : setattr(self, 'available', n.get_int_value()),
             "exercised": lambda n : setattr(self, 'exercised', n.get_int_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -55,7 +55,7 @@ class ActionSummary(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("assigned", self.assigned)
         writer.write_int_value("available", self.available)
         writer.write_int_value("exercised", self.exercised)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

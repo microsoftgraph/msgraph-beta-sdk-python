@@ -47,7 +47,7 @@ class NotificationChannel(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "notificationChannelType": lambda n : setattr(self, 'notification_channel_type', n.get_enum_value(NotificationChannelType)),
             "notificationReceivers": lambda n : setattr(self, 'notification_receivers', n.get_collection_of_object_values(NotificationReceiver)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -61,7 +61,7 @@ class NotificationChannel(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("notificationChannelType", self.notification_channel_type)
         writer.write_collection_of_object_values("notificationReceivers", self.notification_receivers)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

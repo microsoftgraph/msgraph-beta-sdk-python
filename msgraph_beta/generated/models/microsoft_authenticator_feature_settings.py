@@ -50,7 +50,7 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, BackedModel, P
             "displayAppInformationRequiredState": lambda n : setattr(self, 'display_app_information_required_state', n.get_object_value(AuthenticationMethodFeatureConfiguration)),
             "displayLocationInformationRequiredState": lambda n : setattr(self, 'display_location_information_required_state', n.get_object_value(AuthenticationMethodFeatureConfiguration)),
             "numberMatchingRequiredState": lambda n : setattr(self, 'number_matching_required_state', n.get_object_value(AuthenticationMethodFeatureConfiguration)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, BackedModel, P
         writer.write_object_value("displayAppInformationRequiredState", self.display_app_information_required_state)
         writer.write_object_value("displayLocationInformationRequiredState", self.display_location_information_required_state)
         writer.write_object_value("numberMatchingRequiredState", self.number_matching_required_state)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

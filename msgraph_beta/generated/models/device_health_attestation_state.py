@@ -143,7 +143,7 @@ class DeviceHealthAttestationState(AdditionalDataHolder, BackedModel, Parsable):
             "lastUpdateDateTime": lambda n : setattr(self, 'last_update_date_time', n.get_str_value()),
             "memoryAccessProtection": lambda n : setattr(self, 'memory_access_protection', n.get_enum_value(AzureAttestationSettingStatus)),
             "memoryIntegrityProtection": lambda n : setattr(self, 'memory_integrity_protection', n.get_enum_value(AzureAttestationSettingStatus)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operatingSystemKernelDebugging": lambda n : setattr(self, 'operating_system_kernel_debugging', n.get_str_value()),
             "operatingSystemRevListInfo": lambda n : setattr(self, 'operating_system_rev_list_info', n.get_str_value()),
             "pcrHashAlgorithm": lambda n : setattr(self, 'pcr_hash_algorithm', n.get_str_value()),
@@ -193,7 +193,7 @@ class DeviceHealthAttestationState(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("lastUpdateDateTime", self.last_update_date_time)
         writer.write_enum_value("memoryAccessProtection", self.memory_access_protection)
         writer.write_enum_value("memoryIntegrityProtection", self.memory_integrity_protection)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("operatingSystemKernelDebugging", self.operating_system_kernel_debugging)
         writer.write_str_value("operatingSystemRevListInfo", self.operating_system_rev_list_info)
         writer.write_str_value("pcrHashAlgorithm", self.pcr_hash_algorithm)

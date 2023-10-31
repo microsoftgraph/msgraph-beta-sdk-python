@@ -31,7 +31,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     
     def by_on_premises_agent_group_id(self,on_premises_agent_group_id: str) -> OnPremisesAgentGroupItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.onPremisesPublishingProfiles.item.agents.item.agentGroups.item collection
+        Gets an item from the msgraph_beta.generated.onPremisesPublishingProfiles.item.agents.item.agentGroups.item collection
         param on_premises_agent_group_id: Unique identifier of the item
         Returns: OnPremisesAgentGroupItemRequestBuilder
         """

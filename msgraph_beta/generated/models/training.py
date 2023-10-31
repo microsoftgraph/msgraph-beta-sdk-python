@@ -16,7 +16,7 @@ from .entity import Entity
 
 @dataclass
 class Training(Entity):
-    # Training availability status.Possible values are: unknown, notAvailable, available, archive, delete, unknownFutureValue.
+    # Training availability status. Possible values are: unknown, notAvailable, available, archive, delete, unknownFutureValue.
     availability_status: Optional[TrainingAvailabilityStatus] = None
     # Identity of the user who created the training.
     created_by: Optional[EmailIdentity] = None

@@ -53,7 +53,7 @@ class UserMatchingSetting(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "matchTarget": lambda n : setattr(self, 'match_target', n.get_object_value(UserMatchTargetReferenceValue)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "priorityOrder": lambda n : setattr(self, 'priority_order', n.get_int_value()),
             "roleGroup": lambda n : setattr(self, 'role_group', n.get_object_value(RoleGroup)),
             "sourceIdentifier": lambda n : setattr(self, 'source_identifier', n.get_object_value(IdentifierTypeReferenceValue)),
@@ -69,7 +69,7 @@ class UserMatchingSetting(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("matchTarget", self.match_target)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("priorityOrder", self.priority_order)
         writer.write_object_value("roleGroup", self.role_group)
         writer.write_object_value("sourceIdentifier", self.source_identifier)

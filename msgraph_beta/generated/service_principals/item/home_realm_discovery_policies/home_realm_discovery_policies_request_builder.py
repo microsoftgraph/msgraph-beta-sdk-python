@@ -31,7 +31,7 @@ class HomeRealmDiscoveryPoliciesRequestBuilder(BaseRequestBuilder):
     
     def by_home_realm_discovery_policy_id(self,home_realm_discovery_policy_id: str) -> HomeRealmDiscoveryPolicyItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.servicePrincipals.item.homeRealmDiscoveryPolicies.item collection
+        Gets an item from the msgraph_beta.generated.servicePrincipals.item.homeRealmDiscoveryPolicies.item collection
         param home_realm_discovery_policy_id: Unique identifier of the item
         Returns: HomeRealmDiscoveryPolicyItemRequestBuilder
         """

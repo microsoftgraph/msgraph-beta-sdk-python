@@ -67,7 +67,7 @@ class AuthenticationAttributeCollectionInputConfiguration(AdditionalDataHolder, 
             "hidden": lambda n : setattr(self, 'hidden', n.get_bool_value()),
             "inputType": lambda n : setattr(self, 'input_type', n.get_enum_value(AuthenticationAttributeCollectionInputType)),
             "label": lambda n : setattr(self, 'label', n.get_str_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "options": lambda n : setattr(self, 'options', n.get_collection_of_object_values(AuthenticationAttributeCollectionOptionConfiguration)),
             "required": lambda n : setattr(self, 'required', n.get_bool_value()),
             "validationRegEx": lambda n : setattr(self, 'validation_reg_ex', n.get_str_value()),
@@ -89,7 +89,7 @@ class AuthenticationAttributeCollectionInputConfiguration(AdditionalDataHolder, 
         writer.write_bool_value("hidden", self.hidden)
         writer.write_enum_value("inputType", self.input_type)
         writer.write_str_value("label", self.label)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("options", self.options)
         writer.write_bool_value("required", self.required)
         writer.write_str_value("validationRegEx", self.validation_reg_ex)

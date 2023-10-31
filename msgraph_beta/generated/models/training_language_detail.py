@@ -16,7 +16,7 @@ class TrainingLanguageDetail(Entity):
     content: Optional[str] = None
     # Identity of the user who created the language details.
     created_by: Optional[EmailIdentity] = None
-    # Date and time when the language details were created.
+    # Date and time when the language details were created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
     # Description as defined by the user.
     description: Optional[str] = None

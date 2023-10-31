@@ -60,7 +60,7 @@ class AwsStatement(AdditionalDataHolder, BackedModel, Parsable):
             "effect": lambda n : setattr(self, 'effect', n.get_enum_value(AwsStatementEffect)),
             "notActions": lambda n : setattr(self, 'not_actions', n.get_collection_of_primitive_values(str)),
             "notResources": lambda n : setattr(self, 'not_resources', n.get_collection_of_primitive_values(str)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "resources": lambda n : setattr(self, 'resources', n.get_collection_of_primitive_values(str)),
             "statementId": lambda n : setattr(self, 'statement_id', n.get_str_value()),
         }
@@ -79,7 +79,7 @@ class AwsStatement(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("effect", self.effect)
         writer.write_collection_of_primitive_values("notActions", self.not_actions)
         writer.write_collection_of_primitive_values("notResources", self.not_resources)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_primitive_values("resources", self.resources)
         writer.write_str_value("statementId", self.statement_id)
         writer.write_additional_data_value(self.additional_data)

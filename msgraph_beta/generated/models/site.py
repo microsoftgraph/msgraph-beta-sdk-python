@@ -61,7 +61,7 @@ class Site(BaseItem):
     pages: Optional[List[BaseSitePage]] = None
     # The permissions associated with the site. Nullable.
     permissions: Optional[List[Permission]] = None
-    # The collection of recycleBinItems under this site.
+    # A container for a collection of recycleBinItem resources in this site.
     recycle_bin: Optional[RecycleBin] = None
     # If present, indicates that this is the root site in the site collection. Read-only.
     root: Optional[Root] = None

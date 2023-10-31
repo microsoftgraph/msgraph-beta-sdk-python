@@ -39,7 +39,7 @@ class TicketInfo(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ticketApproverIdentityId": lambda n : setattr(self, 'ticket_approver_identity_id', n.get_str_value()),
             "ticketNumber": lambda n : setattr(self, 'ticket_number', n.get_str_value()),
             "ticketSubmitterIdentityId": lambda n : setattr(self, 'ticket_submitter_identity_id', n.get_str_value()),
@@ -55,7 +55,7 @@ class TicketInfo(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("ticketApproverIdentityId", self.ticket_approver_identity_id)
         writer.write_str_value("ticketNumber", self.ticket_number)
         writer.write_str_value("ticketSubmitterIdentityId", self.ticket_submitter_identity_id)

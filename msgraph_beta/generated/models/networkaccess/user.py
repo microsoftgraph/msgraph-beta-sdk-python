@@ -56,7 +56,7 @@ class User(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastAccessDateTime": lambda n : setattr(self, 'last_access_date_time', n.get_datetime_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "trafficType": lambda n : setattr(self, 'traffic_type', n.get_enum_value(TrafficType)),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
@@ -74,7 +74,7 @@ class User(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastAccessDateTime", self.last_access_date_time)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("trafficType", self.traffic_type)
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userPrincipalName", self.user_principal_name)

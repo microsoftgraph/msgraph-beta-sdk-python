@@ -31,7 +31,7 @@ class UserFlowIdentityProvidersRequestBuilder(BaseRequestBuilder):
     
     def by_identity_provider_base_id(self,identity_provider_base_id: str) -> IdentityProviderBaseItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.identity.b2xUserFlows.item.userFlowIdentityProviders.item collection
+        Gets an item from the msgraph_beta.generated.identity.b2xUserFlows.item.userFlowIdentityProviders.item collection
         param identity_provider_base_id: Unique identifier of the item
         Returns: IdentityProviderBaseItemRequestBuilder
         """

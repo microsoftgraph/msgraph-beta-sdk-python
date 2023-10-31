@@ -55,7 +55,7 @@ class CrossTenantAccess(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
             "lastAccessDateTime": lambda n : setattr(self, 'last_access_date_time', n.get_datetime_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "resourceTenantId": lambda n : setattr(self, 'resource_tenant_id', n.get_str_value()),
             "resourceTenantName": lambda n : setattr(self, 'resource_tenant_name', n.get_str_value()),
             "resourceTenantPrimaryDomain": lambda n : setattr(self, 'resource_tenant_primary_domain', n.get_str_value()),
@@ -74,7 +74,7 @@ class CrossTenantAccess(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_int_value("deviceCount", self.device_count)
         writer.write_datetime_value("lastAccessDateTime", self.last_access_date_time)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("resourceTenantId", self.resource_tenant_id)
         writer.write_str_value("resourceTenantName", self.resource_tenant_name)
         writer.write_str_value("resourceTenantPrimaryDomain", self.resource_tenant_primary_domain)

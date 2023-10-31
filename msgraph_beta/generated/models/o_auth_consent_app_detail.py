@@ -47,7 +47,7 @@ class OAuthConsentAppDetail(AdditionalDataHolder, BackedModel, Parsable):
             "appScope": lambda n : setattr(self, 'app_scope', n.get_enum_value(OAuthAppScope)),
             "displayLogo": lambda n : setattr(self, 'display_logo', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -62,7 +62,7 @@ class OAuthConsentAppDetail(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("appScope", self.app_scope)
         writer.write_str_value("displayLogo", self.display_logo)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

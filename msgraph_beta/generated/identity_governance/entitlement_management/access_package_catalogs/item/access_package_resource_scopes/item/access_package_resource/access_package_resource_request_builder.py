@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .access_package_resource_environment.access_package_resource_environment_request_builder import AccessPackageResourceEnvironmentRequestBuilder
     from .access_package_resource_roles.access_package_resource_roles_request_builder import AccessPackageResourceRolesRequestBuilder
     from .access_package_resource_scopes.access_package_resource_scopes_request_builder import AccessPackageResourceScopesRequestBuilder
+    from .refresh.refresh_request_builder import RefreshRequestBuilder
 
 class AccessPackageResourceRequestBuilder(BaseRequestBuilder):
     """
@@ -182,6 +183,15 @@ class AccessPackageResourceRequestBuilder(BaseRequestBuilder):
         from .access_package_resource_scopes.access_package_resource_scopes_request_builder import AccessPackageResourceScopesRequestBuilder
 
         return AccessPackageResourceScopesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def refresh(self) -> RefreshRequestBuilder:
+        """
+        Provides operations to call the refresh method.
+        """
+        from .refresh.refresh_request_builder import RefreshRequestBuilder
+
+        return RefreshRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

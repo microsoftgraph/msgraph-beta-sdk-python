@@ -53,7 +53,7 @@ class External(AdditionalDataHolder, BackedModel, Parsable):
             "authorizationSystems": lambda n : setattr(self, 'authorization_systems', n.get_collection_of_object_values(AuthorizationSystem)),
             "connections": lambda n : setattr(self, 'connections', n.get_collection_of_object_values(ExternalConnection)),
             "industryData": lambda n : setattr(self, 'industry_data', n.get_object_value(IndustryDataRoot)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -68,7 +68,7 @@ class External(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("authorizationSystems", self.authorization_systems)
         writer.write_collection_of_object_values("connections", self.connections)
         writer.write_object_value("industryData", self.industry_data)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

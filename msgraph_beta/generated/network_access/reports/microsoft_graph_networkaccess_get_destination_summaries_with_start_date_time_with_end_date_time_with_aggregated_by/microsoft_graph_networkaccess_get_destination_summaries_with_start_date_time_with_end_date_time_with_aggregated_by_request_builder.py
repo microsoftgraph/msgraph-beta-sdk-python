@@ -29,9 +29,9 @@ class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEnd
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['aggregated_by'] = str(aggregated_by)
-            path_parameters['end_date_time'] = str(end_date_time)
-            path_parameters['start_date_time'] = str(start_date_time)
+            path_parameters['aggregatedBy'] = str(aggregated_by)
+            path_parameters['endDateTime'] = str(end_date_time)
+            path_parameters['startDateTime'] = str(start_date_time)
         super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.getDestinationSummaries(startDateTime={startDateTime},endDateTime={endDateTime},aggregatedBy='{aggregatedBy}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
     async def get(self,request_configuration: Optional[MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilderGetRequestConfiguration] = None) -> Optional[GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByGetResponse]:

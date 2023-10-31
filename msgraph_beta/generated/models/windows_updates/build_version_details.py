@@ -42,7 +42,7 @@ class BuildVersionDetails(AdditionalDataHolder, BackedModel, Parsable):
             "buildNumber": lambda n : setattr(self, 'build_number', n.get_int_value()),
             "majorVersion": lambda n : setattr(self, 'major_version', n.get_int_value()),
             "minorVersion": lambda n : setattr(self, 'minor_version', n.get_int_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "updateBuildRevision": lambda n : setattr(self, 'update_build_revision', n.get_int_value()),
         }
         return fields
@@ -58,7 +58,7 @@ class BuildVersionDetails(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("buildNumber", self.build_number)
         writer.write_int_value("majorVersion", self.major_version)
         writer.write_int_value("minorVersion", self.minor_version)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("updateBuildRevision", self.update_build_revision)
         writer.write_additional_data_value(self.additional_data)
     
