@@ -26,7 +26,7 @@ class GetLicensesForAppWithBundleIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['bundle_id'] = str(bundle_id)
+            path_parameters['bundleId'] = str(bundle_id)
         super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/vppTokens/getLicensesForApp(bundleId='{bundleId}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
     
     async def get(self,request_configuration: Optional[GetLicensesForAppWithBundleIdRequestBuilderGetRequestConfiguration] = None) -> Optional[GetLicensesForAppWithBundleIdGetResponse]:

@@ -31,7 +31,7 @@ class ClassesRequestBuilder(BaseRequestBuilder):
     
     def by_education_class_id(self,education_class_id: str) -> EducationClassItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.education.schools.item.classes.item collection
+        Gets an item from the msgraph_beta.generated.education.schools.item.classes.item collection
         param education_class_id: Unique identifier of the item
         Returns: EducationClassItemRequestBuilder
         """

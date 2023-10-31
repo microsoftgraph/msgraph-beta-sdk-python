@@ -42,7 +42,7 @@ class GcpScope(AdditionalDataHolder, BackedModel, Parsable):
         from .authorization_system_type_service import AuthorizationSystemTypeService
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "resourceType": lambda n : setattr(self, 'resource_type', n.get_str_value()),
             "service": lambda n : setattr(self, 'service', n.get_object_value(AuthorizationSystemTypeService)),
         }
@@ -56,7 +56,7 @@ class GcpScope(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("resourceType", self.resource_type)
         writer.write_object_value("service", self.service)
         writer.write_additional_data_value(self.additional_data)

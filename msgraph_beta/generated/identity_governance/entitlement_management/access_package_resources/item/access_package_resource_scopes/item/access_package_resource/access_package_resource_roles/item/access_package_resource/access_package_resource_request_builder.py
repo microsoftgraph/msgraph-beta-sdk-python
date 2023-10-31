@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...........models.access_package_resource import AccessPackageResource
     from ...........models.o_data_errors.o_data_error import ODataError
     from .access_package_resource_environment.access_package_resource_environment_request_builder import AccessPackageResourceEnvironmentRequestBuilder
+    from .refresh.refresh_request_builder import RefreshRequestBuilder
 
 class AccessPackageResourceRequestBuilder(BaseRequestBuilder):
     """
@@ -162,6 +163,15 @@ class AccessPackageResourceRequestBuilder(BaseRequestBuilder):
         from .access_package_resource_environment.access_package_resource_environment_request_builder import AccessPackageResourceEnvironmentRequestBuilder
 
         return AccessPackageResourceEnvironmentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def refresh(self) -> RefreshRequestBuilder:
+        """
+        Provides operations to call the refresh method.
+        """
+        from .refresh.refresh_request_builder import RefreshRequestBuilder
+
+        return RefreshRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

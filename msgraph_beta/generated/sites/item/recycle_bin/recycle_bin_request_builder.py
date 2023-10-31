@@ -50,7 +50,7 @@ class RecycleBinRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RecycleBinRequestBuilderGetRequestConfiguration] = None) -> Optional[RecycleBin]:
         """
-        The collection of recycleBinItems under this site.
+        A container for a collection of recycleBinItem resources in this site.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RecycleBin]
         """
@@ -111,7 +111,7 @@ class RecycleBinRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RecycleBinRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The collection of recycleBinItems under this site.
+        A container for a collection of recycleBinItem resources in this site.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -196,7 +196,7 @@ class RecycleBinRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RecycleBinRequestBuilderGetQueryParameters():
         """
-        The collection of recycleBinItems under this site.
+        A container for a collection of recycleBinItem resources in this site.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

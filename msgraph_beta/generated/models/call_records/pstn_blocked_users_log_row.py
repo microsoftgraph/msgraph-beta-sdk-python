@@ -57,7 +57,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "blockDateTime": lambda n : setattr(self, 'block_date_time', n.get_datetime_value()),
             "blockReason": lambda n : setattr(self, 'block_reason', n.get_str_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "remediationId": lambda n : setattr(self, 'remediation_id', n.get_str_value()),
             "userBlockMode": lambda n : setattr(self, 'user_block_mode', n.get_enum_value(PstnUserBlockMode)),
             "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
@@ -77,7 +77,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_datetime_value("blockDateTime", self.block_date_time)
         writer.write_str_value("blockReason", self.block_reason)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("remediationId", self.remediation_id)
         writer.write_enum_value("userBlockMode", self.user_block_mode)
         writer.write_str_value("userDisplayName", self.user_display_name)

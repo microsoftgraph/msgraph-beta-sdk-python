@@ -37,7 +37,7 @@ class RiskProfile(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "humanCount": lambda n : setattr(self, 'human_count', n.get_int_value()),
             "nonHumanCount": lambda n : setattr(self, 'non_human_count', n.get_int_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -51,7 +51,7 @@ class RiskProfile(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_int_value("humanCount", self.human_count)
         writer.write_int_value("nonHumanCount", self.non_human_count)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

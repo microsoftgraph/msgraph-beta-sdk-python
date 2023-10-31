@@ -46,7 +46,7 @@ class CrossTenantSummary(AdditionalDataHolder, BackedModel, Parsable):
             "authTransactionCount": lambda n : setattr(self, 'auth_transaction_count', n.get_int_value()),
             "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
             "newTenantCount": lambda n : setattr(self, 'new_tenant_count', n.get_int_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "rarelyUsedTenantCount": lambda n : setattr(self, 'rarely_used_tenant_count', n.get_int_value()),
             "tenantCount": lambda n : setattr(self, 'tenant_count', n.get_int_value()),
             "userCount": lambda n : setattr(self, 'user_count', n.get_int_value()),
@@ -64,7 +64,7 @@ class CrossTenantSummary(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("authTransactionCount", self.auth_transaction_count)
         writer.write_int_value("deviceCount", self.device_count)
         writer.write_int_value("newTenantCount", self.new_tenant_count)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("rarelyUsedTenantCount", self.rarely_used_tenant_count)
         writer.write_int_value("tenantCount", self.tenant_count)
         writer.write_int_value("userCount", self.user_count)

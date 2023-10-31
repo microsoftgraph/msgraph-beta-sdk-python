@@ -125,7 +125,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "headers": lambda n : setattr(self, 'headers', n.get_object_value(Headers)),
             "initiatingProcessName": lambda n : setattr(self, 'initiating_process_name', n.get_str_value()),
             "networkProtocol": lambda n : setattr(self, 'network_protocol', n.get_enum_value(NetworkingProtocol)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
             "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
             "policyRuleId": lambda n : setattr(self, 'policy_rule_id', n.get_str_value()),
@@ -168,7 +168,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("headers", self.headers)
         writer.write_str_value("initiatingProcessName", self.initiating_process_name)
         writer.write_enum_value("networkProtocol", self.network_protocol)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("policyId", self.policy_id)
         writer.write_str_value("policyName", self.policy_name)
         writer.write_str_value("policyRuleId", self.policy_rule_id)

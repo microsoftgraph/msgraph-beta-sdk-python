@@ -61,7 +61,7 @@ class DeviceComplianceScriptError(AdditionalDataHolder, BackedModel, Parsable):
             "code": lambda n : setattr(self, 'code', n.get_enum_value(Code)),
             "deviceComplianceScriptRulesValidationError": lambda n : setattr(self, 'device_compliance_script_rules_validation_error', n.get_enum_value(DeviceComplianceScriptRulesValidationError)),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -76,7 +76,7 @@ class DeviceComplianceScriptError(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("code", self.code)
         writer.write_enum_value("deviceComplianceScriptRulesValidationError", self.device_compliance_script_rules_validation_error)
         writer.write_str_value("message", self.message)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

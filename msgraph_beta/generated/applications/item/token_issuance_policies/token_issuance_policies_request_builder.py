@@ -31,7 +31,7 @@ class TokenIssuancePoliciesRequestBuilder(BaseRequestBuilder):
     
     def by_token_issuance_policy_id(self,token_issuance_policy_id: str) -> TokenIssuancePolicyItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.applications.item.tokenIssuancePolicies.item collection
+        Gets an item from the msgraph_beta.generated.applications.item.tokenIssuancePolicies.item collection
         param token_issuance_policy_id: Unique identifier of the item
         Returns: TokenIssuancePolicyItemRequestBuilder
         """

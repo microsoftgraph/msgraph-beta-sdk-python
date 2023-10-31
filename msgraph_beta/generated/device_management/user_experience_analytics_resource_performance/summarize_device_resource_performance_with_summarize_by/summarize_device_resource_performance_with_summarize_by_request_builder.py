@@ -26,7 +26,7 @@ class SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder(BaseReques
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['summarize_by'] = str(summarize_by)
+            path_parameters['summarizeBy'] = str(summarize_by)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/userExperienceAnalyticsResourcePerformance/summarizeDeviceResourcePerformance(summarizeBy='{summarizeBy}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
     async def get(self,request_configuration: Optional[SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilderGetRequestConfiguration] = None) -> Optional[SummarizeDeviceResourcePerformanceWithSummarizeByGetResponse]:

@@ -72,7 +72,7 @@ class PermissionsDefinition(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "authorizationSystemInfo": lambda n : setattr(self, 'authorization_system_info', n.get_object_value(PermissionsDefinitionAuthorizationSystem)),
             "identityInfo": lambda n : setattr(self, 'identity_info', n.get_object_value(PermissionsDefinitionAuthorizationSystemIdentity)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -86,7 +86,7 @@ class PermissionsDefinition(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_object_value("authorizationSystemInfo", self.authorization_system_info)
         writer.write_object_value("identityInfo", self.identity_info)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

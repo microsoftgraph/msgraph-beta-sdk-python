@@ -61,7 +61,7 @@ class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
             "detail": lambda n : setattr(self, 'detail', n.get_enum_value(SubmissionResultDetail)),
             "detectedFiles": lambda n : setattr(self, 'detected_files', n.get_collection_of_object_values(SubmissionDetectedFile)),
             "detectedUrls": lambda n : setattr(self, 'detected_urls', n.get_collection_of_primitive_values(str)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "userMailboxSetting": lambda n : setattr(self, 'user_mailbox_setting', n.get_collection_of_enum_values(UserMailboxSetting)),
         }
         return fields
@@ -78,7 +78,7 @@ class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("detail", self.detail)
         writer.write_collection_of_object_values("detectedFiles", self.detected_files)
         writer.write_collection_of_primitive_values("detectedUrls", self.detected_urls)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("userMailboxSetting", self.user_mailbox_setting)
         writer.write_additional_data_value(self.additional_data)
     

@@ -31,7 +31,7 @@ class IncompatibleGroupsRequestBuilder(BaseRequestBuilder):
     
     def by_group_id(self,group_id: str) -> GroupItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.identityGovernance.entitlementManagement.accessPackageAssignments.item.accessPackage.incompatibleGroups.item collection
+        Gets an item from the msgraph_beta.generated.identityGovernance.entitlementManagement.accessPackageAssignments.item.accessPackage.incompatibleGroups.item collection
         param group_id: Unique identifier of the item
         Returns: GroupItemRequestBuilder
         """

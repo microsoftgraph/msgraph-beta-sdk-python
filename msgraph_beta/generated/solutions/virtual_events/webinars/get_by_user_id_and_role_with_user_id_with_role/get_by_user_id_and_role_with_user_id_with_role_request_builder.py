@@ -28,7 +28,7 @@ class GetByUserIdAndRoleWithUserIdWithRoleRequestBuilder(BaseRequestBuilder):
         """
         if isinstance(path_parameters, dict):
             path_parameters['role'] = str(role)
-            path_parameters['user_id'] = str(user_id)
+            path_parameters['userId'] = str(user_id)
         super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/webinars/getByUserIdAndRole(userId='{userId}',role='{role}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
     async def get(self,request_configuration: Optional[GetByUserIdAndRoleWithUserIdWithRoleRequestBuilderGetRequestConfiguration] = None) -> Optional[GetByUserIdAndRoleWithUserIdWithRoleGetResponse]:

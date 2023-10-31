@@ -36,6 +36,8 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     is_accessible_via_z_t_n_a_client: Optional[bool] = None
     # Indicates whether backend SSL certificate validation is enabled for the application. For all new Application Proxy apps, the property is set to true by default. For all existing apps, the property is set to false.
     is_backend_certificate_validation_enabled: Optional[bool] = None
+    # The isDnsResolutionEnabled property
+    is_dns_resolution_enabled: Optional[bool] = None
     # Indicates if the HTTPOnly cookie flag should be set in the HTTP response headers. Set this value to true to have Application Proxy cookies include the HTTPOnly flag in the HTTP response headers. If using Remote Desktop Services, set this value to False. Default value is false.
     is_http_only_cookie_enabled: Optional[bool] = None
     # Indicates if the application is currently being published via Application Proxy or not. This is preset by the system. Read-only.
@@ -108,6 +110,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
             "internalUrl": lambda n : setattr(self, 'internal_url', n.get_str_value()),
             "isAccessibleViaZTNAClient": lambda n : setattr(self, 'is_accessible_via_z_t_n_a_client', n.get_bool_value()),
             "isBackendCertificateValidationEnabled": lambda n : setattr(self, 'is_backend_certificate_validation_enabled', n.get_bool_value()),
+            "isDnsResolutionEnabled": lambda n : setattr(self, 'is_dns_resolution_enabled', n.get_bool_value()),
             "isHttpOnlyCookieEnabled": lambda n : setattr(self, 'is_http_only_cookie_enabled', n.get_bool_value()),
             "isOnPremPublishingEnabled": lambda n : setattr(self, 'is_on_prem_publishing_enabled', n.get_bool_value()),
             "isPersistentCookieEnabled": lambda n : setattr(self, 'is_persistent_cookie_enabled', n.get_bool_value()),
@@ -115,7 +118,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
             "isStateSessionEnabled": lambda n : setattr(self, 'is_state_session_enabled', n.get_bool_value()),
             "isTranslateHostHeaderEnabled": lambda n : setattr(self, 'is_translate_host_header_enabled', n.get_bool_value()),
             "isTranslateLinksInBodyEnabled": lambda n : setattr(self, 'is_translate_links_in_body_enabled', n.get_bool_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "onPremisesApplicationSegments": lambda n : setattr(self, 'on_premises_application_segments', n.get_collection_of_object_values(OnPremisesApplicationSegment)),
             "segmentsConfiguration": lambda n : setattr(self, 'segments_configuration', n.get_object_value(SegmentConfiguration)),
             "singleSignOnSettings": lambda n : setattr(self, 'single_sign_on_settings', n.get_object_value(OnPremisesPublishingSingleSignOn)),
@@ -142,6 +145,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("internalUrl", self.internal_url)
         writer.write_bool_value("isAccessibleViaZTNAClient", self.is_accessible_via_z_t_n_a_client)
         writer.write_bool_value("isBackendCertificateValidationEnabled", self.is_backend_certificate_validation_enabled)
+        writer.write_bool_value("isDnsResolutionEnabled", self.is_dns_resolution_enabled)
         writer.write_bool_value("isHttpOnlyCookieEnabled", self.is_http_only_cookie_enabled)
         writer.write_bool_value("isOnPremPublishingEnabled", self.is_on_prem_publishing_enabled)
         writer.write_bool_value("isPersistentCookieEnabled", self.is_persistent_cookie_enabled)
@@ -149,7 +153,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("isStateSessionEnabled", self.is_state_session_enabled)
         writer.write_bool_value("isTranslateHostHeaderEnabled", self.is_translate_host_header_enabled)
         writer.write_bool_value("isTranslateLinksInBodyEnabled", self.is_translate_links_in_body_enabled)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("onPremisesApplicationSegments", self.on_premises_application_segments)
         writer.write_object_value("segmentsConfiguration", self.segments_configuration)
         writer.write_object_value("singleSignOnSettings", self.single_sign_on_settings)

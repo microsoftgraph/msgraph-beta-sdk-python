@@ -24,7 +24,7 @@ class AuthorizationPolicy(PolicyBase):
     allow_user_consent_for_risky_apps: Optional[bool] = None
     # Indicates whether users can sign up for email based subscriptions.
     allowed_to_sign_up_email_based_subscriptions: Optional[bool] = None
-    # Indicates whether the Admin Self-Serve Password Reset feature is enabled on the tenant.
+    # Indicates whether users can use the Self-Service Password Reset feature on the tenant.
     allowed_to_use_s_s_p_r: Optional[bool] = None
     # To disable the use of the MSOnline PowerShell module set this property to true. This will also disable user-based access to the legacy service endpoint used by the MSOnline PowerShell module. This doesn't affect Microsoft Entra Connect or Microsoft Graph.
     block_msol_power_shell: Optional[bool] = None

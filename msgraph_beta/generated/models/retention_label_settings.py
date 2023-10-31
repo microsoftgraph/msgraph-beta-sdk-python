@@ -56,7 +56,7 @@ class RetentionLabelSettings(AdditionalDataHolder, BackedModel, Parsable):
             "isLabelUpdateAllowed": lambda n : setattr(self, 'is_label_update_allowed', n.get_bool_value()),
             "isMetadataUpdateAllowed": lambda n : setattr(self, 'is_metadata_update_allowed', n.get_bool_value()),
             "isRecordLocked": lambda n : setattr(self, 'is_record_locked', n.get_bool_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -74,7 +74,7 @@ class RetentionLabelSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("isLabelUpdateAllowed", self.is_label_update_allowed)
         writer.write_bool_value("isMetadataUpdateAllowed", self.is_metadata_update_allowed)
         writer.write_bool_value("isRecordLocked", self.is_record_locked)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

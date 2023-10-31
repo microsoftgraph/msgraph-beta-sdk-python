@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ...models.authentication_events_flow_collection_response import AuthenticationEventsFlowCollectionResponse
     from ...models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
+    from .graph_external_users_self_service_sign_up_events_flow.graph_external_users_self_service_sign_up_events_flow_request_builder import GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder
     from .item.authentication_events_flow_item_request_builder import AuthenticationEventsFlowItemRequestBuilder
 
 class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
@@ -145,6 +146,15 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_external_users_self_service_sign_up_events_flow(self) -> GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder:
+        """
+        Casts the previous resource to externalUsersSelfServiceSignUpEventsFlow.
+        """
+        from .graph_external_users_self_service_sign_up_events_flow.graph_external_users_self_service_sign_up_events_flow_request_builder import GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder
+
+        return GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AuthenticationEventsFlowsRequestBuilderGetQueryParameters():

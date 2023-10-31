@@ -26,7 +26,7 @@ class GetPolicySummaryWithPolicyIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['policy_id'] = str(policy_id)
+            path_parameters['policyId'] = str(policy_id)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/configManagerCollections/getPolicySummary(policyId='{policyId}')", path_parameters)
     
     async def get(self,request_configuration: Optional[GetPolicySummaryWithPolicyIdRequestBuilderGetRequestConfiguration] = None) -> Optional[ConfigManagerPolicySummary]:

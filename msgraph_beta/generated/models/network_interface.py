@@ -46,7 +46,7 @@ class NetworkInterface(AdditionalDataHolder, BackedModel, Parsable):
             "ipV6Address": lambda n : setattr(self, 'ip_v6_address', n.get_str_value()),
             "localIpV6Address": lambda n : setattr(self, 'local_ip_v6_address', n.get_str_value()),
             "macAddress": lambda n : setattr(self, 'mac_address', n.get_str_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -63,7 +63,7 @@ class NetworkInterface(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("ipV6Address", self.ip_v6_address)
         writer.write_str_value("localIpV6Address", self.local_ip_v6_address)
         writer.write_str_value("macAddress", self.mac_address)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

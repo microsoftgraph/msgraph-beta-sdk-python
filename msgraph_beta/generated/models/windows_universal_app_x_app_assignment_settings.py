@@ -15,7 +15,7 @@ class WindowsUniversalAppXAppAssignmentSettings(MobileAppAssignmentSettings):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUniversalAppXAppAssignmentSettings"
-    # Whether or not to use device execution context for Windows Universal AppX mobile app.
+    # If true, uses device execution context for Windows Universal AppX mobile app. Device-context install is not allowed when this type of app is targeted with Available intent. Defaults to false.
     use_device_context: Optional[bool] = None
     
     @staticmethod

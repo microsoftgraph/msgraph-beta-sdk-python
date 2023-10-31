@@ -31,7 +31,7 @@ class TokenLifetimePoliciesRequestBuilder(BaseRequestBuilder):
     
     def by_token_lifetime_policy_id(self,token_lifetime_policy_id: str) -> TokenLifetimePolicyItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.applications.item.tokenLifetimePolicies.item collection
+        Gets an item from the msgraph_beta.generated.applications.item.tokenLifetimePolicies.item collection
         param token_lifetime_policy_id: Unique identifier of the item
         Returns: TokenLifetimePolicyItemRequestBuilder
         """

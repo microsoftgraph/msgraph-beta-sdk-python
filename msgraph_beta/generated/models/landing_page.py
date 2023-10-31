@@ -21,7 +21,7 @@ class LandingPage(Entity):
     created_date_time: Optional[datetime.datetime] = None
     # Description of the landing page as defined by the user.
     description: Optional[str] = None
-    # The details property
+    # The detail information for a landing page associated with a simulation during its creation.
     details: Optional[List[LandingPageDetail]] = None
     # The display name of the landing page.
     display_name: Optional[str] = None

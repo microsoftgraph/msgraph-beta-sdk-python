@@ -115,7 +115,7 @@ class PstnCallLogRow(AdditionalDataHolder, BackedModel, Parsable):
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "inventoryType": lambda n : setattr(self, 'inventory_type', n.get_str_value()),
             "licenseCapability": lambda n : setattr(self, 'license_capability', n.get_str_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operator": lambda n : setattr(self, 'operator', n.get_str_value()),
             "otherPartyCountryCode": lambda n : setattr(self, 'other_party_country_code', n.get_str_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
@@ -155,7 +155,7 @@ class PstnCallLogRow(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("id", self.id)
         writer.write_str_value("inventoryType", self.inventory_type)
         writer.write_str_value("licenseCapability", self.license_capability)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("operator", self.operator)
         writer.write_str_value("otherPartyCountryCode", self.other_party_country_code)
         writer.write_datetime_value("startDateTime", self.start_date_time)

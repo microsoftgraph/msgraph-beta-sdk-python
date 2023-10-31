@@ -46,7 +46,7 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, BackedModel, Parsabl
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowedTypes": lambda n : setattr(self, 'allowed_types', n.get_collection_of_enum_values(MacOSSystemExtensionType)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "teamIdentifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),
         }
         return fields
@@ -60,7 +60,7 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, BackedModel, Parsabl
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("allowedTypes", self.allowed_types)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("teamIdentifier", self.team_identifier)
         writer.write_additional_data_value(self.additional_data)
     

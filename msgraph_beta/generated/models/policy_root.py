@@ -194,7 +194,7 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
             "identitySecurityDefaultsEnforcementPolicy": lambda n : setattr(self, 'identity_security_defaults_enforcement_policy', n.get_object_value(IdentitySecurityDefaultsEnforcementPolicy)),
             "mobileAppManagementPolicies": lambda n : setattr(self, 'mobile_app_management_policies', n.get_collection_of_object_values(MobilityManagementPolicy)),
             "mobileDeviceManagementPolicies": lambda n : setattr(self, 'mobile_device_management_policies', n.get_collection_of_object_values(MobilityManagementPolicy)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "permissionGrantPolicies": lambda n : setattr(self, 'permission_grant_policies', n.get_collection_of_object_values(PermissionGrantPolicy)),
             "roleManagementPolicies": lambda n : setattr(self, 'role_management_policies', n.get_collection_of_object_values(UnifiedRoleManagementPolicy)),
             "roleManagementPolicyAssignments": lambda n : setattr(self, 'role_management_policy_assignments', n.get_collection_of_object_values(UnifiedRoleManagementPolicyAssignment)),
@@ -234,7 +234,7 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("identitySecurityDefaultsEnforcementPolicy", self.identity_security_defaults_enforcement_policy)
         writer.write_collection_of_object_values("mobileAppManagementPolicies", self.mobile_app_management_policies)
         writer.write_collection_of_object_values("mobileDeviceManagementPolicies", self.mobile_device_management_policies)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("permissionGrantPolicies", self.permission_grant_policies)
         writer.write_collection_of_object_values("roleManagementPolicies", self.role_management_policies)
         writer.write_collection_of_object_values("roleManagementPolicyAssignments", self.role_management_policy_assignments)

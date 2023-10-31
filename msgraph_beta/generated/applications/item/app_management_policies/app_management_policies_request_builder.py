@@ -31,7 +31,7 @@ class AppManagementPoliciesRequestBuilder(BaseRequestBuilder):
     
     def by_app_management_policy_id(self,app_management_policy_id: str) -> AppManagementPolicyItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.applications.item.appManagementPolicies.item collection
+        Gets an item from the msgraph_beta.generated.applications.item.appManagementPolicies.item collection
         param app_management_policy_id: Unique identifier of the item
         Returns: AppManagementPolicyItemRequestBuilder
         """

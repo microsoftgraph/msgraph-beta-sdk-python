@@ -55,7 +55,7 @@ class Device(AdditionalDataHolder, BackedModel, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "isCompliant": lambda n : setattr(self, 'is_compliant', n.get_bool_value()),
             "lastAccessDateTime": lambda n : setattr(self, 'last_access_date_time', n.get_datetime_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operatingSystem": lambda n : setattr(self, 'operating_system', n.get_str_value()),
             "trafficType": lambda n : setattr(self, 'traffic_type', n.get_enum_value(TrafficType)),
         }
@@ -73,7 +73,7 @@ class Device(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("isCompliant", self.is_compliant)
         writer.write_datetime_value("lastAccessDateTime", self.last_access_date_time)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("operatingSystem", self.operating_system)
         writer.write_enum_value("trafficType", self.traffic_type)
         writer.write_additional_data_value(self.additional_data)

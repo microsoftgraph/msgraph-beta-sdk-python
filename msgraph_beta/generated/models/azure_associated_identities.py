@@ -57,7 +57,7 @@ class AzureAssociatedIdentities(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "all": lambda n : setattr(self, 'all', n.get_collection_of_object_values(AzureIdentity)),
             "managedIdentities": lambda n : setattr(self, 'managed_identities', n.get_collection_of_object_values(AzureManagedIdentity)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "servicePrincipals": lambda n : setattr(self, 'service_principals', n.get_collection_of_object_values(AzureServicePrincipal)),
             "users": lambda n : setattr(self, 'users', n.get_collection_of_object_values(AzureUser)),
         }
@@ -73,7 +73,7 @@ class AzureAssociatedIdentities(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("all", self.all)
         writer.write_collection_of_object_values("managedIdentities", self.managed_identities)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("servicePrincipals", self.service_principals)
         writer.write_collection_of_object_values("users", self.users)
         writer.write_additional_data_value(self.additional_data)

@@ -48,7 +48,7 @@ class OnPremisesCurrentExportData(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "clientMachineName": lambda n : setattr(self, 'client_machine_name', n.get_str_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "pendingObjectsAddition": lambda n : setattr(self, 'pending_objects_addition', n.get_int_value()),
             "pendingObjectsDeletion": lambda n : setattr(self, 'pending_objects_deletion', n.get_int_value()),
             "pendingObjectsUpdate": lambda n : setattr(self, 'pending_objects_update', n.get_int_value()),
@@ -68,7 +68,7 @@ class OnPremisesCurrentExportData(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("clientMachineName", self.client_machine_name)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("pendingObjectsAddition", self.pending_objects_addition)
         writer.write_int_value("pendingObjectsDeletion", self.pending_objects_deletion)
         writer.write_int_value("pendingObjectsUpdate", self.pending_objects_update)

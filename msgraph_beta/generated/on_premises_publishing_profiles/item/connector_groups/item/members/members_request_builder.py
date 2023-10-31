@@ -31,7 +31,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     def by_connector_id(self,connector_id: str) -> ConnectorItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.onPremisesPublishingProfiles.item.connectorGroups.item.members.item collection
+        Gets an item from the msgraph_beta.generated.onPremisesPublishingProfiles.item.connectorGroups.item.members.item collection
         param connector_id: Unique identifier of the item
         Returns: ConnectorItemRequestBuilder
         """

@@ -42,7 +42,7 @@ class PasswordSingleSignOnField(AdditionalDataHolder, BackedModel, Parsable):
             "customizedLabel": lambda n : setattr(self, 'customized_label', n.get_str_value()),
             "defaultLabel": lambda n : setattr(self, 'default_label', n.get_str_value()),
             "fieldId": lambda n : setattr(self, 'field_id', n.get_str_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         return fields
@@ -58,7 +58,7 @@ class PasswordSingleSignOnField(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("customizedLabel", self.customized_label)
         writer.write_str_value("defaultLabel", self.default_label)
         writer.write_str_value("fieldId", self.field_id)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)
     

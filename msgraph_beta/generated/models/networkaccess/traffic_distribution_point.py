@@ -44,7 +44,7 @@ class TrafficDistributionPoint(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "internetAccessTrafficCount": lambda n : setattr(self, 'internet_access_traffic_count', n.get_int_value()),
             "microsoft365AccessTrafficCount": lambda n : setattr(self, 'microsoft365_access_traffic_count', n.get_int_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "privateAccessTrafficCount": lambda n : setattr(self, 'private_access_traffic_count', n.get_int_value()),
             "timeStampDateTime": lambda n : setattr(self, 'time_stamp_date_time', n.get_datetime_value()),
             "totalTrafficCount": lambda n : setattr(self, 'total_traffic_count', n.get_int_value()),
@@ -61,7 +61,7 @@ class TrafficDistributionPoint(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_int_value("internetAccessTrafficCount", self.internet_access_traffic_count)
         writer.write_int_value("microsoft365AccessTrafficCount", self.microsoft365_access_traffic_count)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("privateAccessTrafficCount", self.private_access_traffic_count)
         writer.write_datetime_value("timeStampDateTime", self.time_stamp_date_time)
         writer.write_int_value("totalTrafficCount", self.total_traffic_count)

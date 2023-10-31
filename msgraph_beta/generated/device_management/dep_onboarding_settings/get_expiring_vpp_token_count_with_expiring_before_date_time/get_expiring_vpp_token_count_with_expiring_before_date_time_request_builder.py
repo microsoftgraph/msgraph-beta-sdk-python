@@ -26,7 +26,7 @@ class GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(BaseReque
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['expiring_before_date_time'] = str(expiring_before_date_time)
+            path_parameters['expiringBeforeDateTime'] = str(expiring_before_date_time)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/depOnboardingSettings/getExpiringVppTokenCount(expiringBeforeDateTime='{expiringBeforeDateTime}')", path_parameters)
     
     async def get(self,request_configuration: Optional[GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[GetExpiringVppTokenCountWithExpiringBeforeDateTimeGetResponse]:

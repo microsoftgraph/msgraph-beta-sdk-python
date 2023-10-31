@@ -49,7 +49,7 @@ class AlertImpact(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "aggregationType": lambda n : setattr(self, 'aggregation_type', n.get_enum_value(AggregationType)),
             "alertImpactDetails": lambda n : setattr(self, 'alert_impact_details', n.get_collection_of_object_values(KeyValuePair)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "value": lambda n : setattr(self, 'value', n.get_int_value()),
         }
         return fields
@@ -64,7 +64,7 @@ class AlertImpact(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("aggregationType", self.aggregation_type)
         writer.write_collection_of_object_values("alertImpactDetails", self.alert_impact_details)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("value", self.value)
         writer.write_additional_data_value(self.additional_data)
     

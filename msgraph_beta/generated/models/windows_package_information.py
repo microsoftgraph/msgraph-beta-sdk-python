@@ -65,7 +65,7 @@ class WindowsPackageInformation(AdditionalDataHolder, BackedModel, Parsable):
             "identityResourceIdentifier": lambda n : setattr(self, 'identity_resource_identifier', n.get_str_value()),
             "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
             "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(WindowsMinimumOperatingSystem)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
     
@@ -84,7 +84,7 @@ class WindowsPackageInformation(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("identityResourceIdentifier", self.identity_resource_identifier)
         writer.write_str_value("identityVersion", self.identity_version)
         writer.write_object_value("minimumSupportedOperatingSystem", self.minimum_supported_operating_system)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
 

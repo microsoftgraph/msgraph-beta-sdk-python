@@ -78,7 +78,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, BackedModel, Parsable
             "excludeRulesSatisfied": lambda n : setattr(self, 'exclude_rules_satisfied', n.get_collection_of_object_values(ConditionalAccessRuleSatisfied)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "includeRulesSatisfied": lambda n : setattr(self, 'include_rules_satisfied', n.get_collection_of_object_values(ConditionalAccessRuleSatisfied)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "result": lambda n : setattr(self, 'result', n.get_enum_value(AppliedConditionalAccessPolicyResult)),
             "sessionControlsNotSatisfied": lambda n : setattr(self, 'session_controls_not_satisfied', n.get_collection_of_primitive_values(str)),
         }
@@ -101,7 +101,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, BackedModel, Parsable
         writer.write_collection_of_object_values("excludeRulesSatisfied", self.exclude_rules_satisfied)
         writer.write_str_value("id", self.id)
         writer.write_collection_of_object_values("includeRulesSatisfied", self.include_rules_satisfied)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("result", self.result)
         writer.write_collection_of_primitive_values("sessionControlsNotSatisfied", self.session_controls_not_satisfied)
         writer.write_additional_data_value(self.additional_data)

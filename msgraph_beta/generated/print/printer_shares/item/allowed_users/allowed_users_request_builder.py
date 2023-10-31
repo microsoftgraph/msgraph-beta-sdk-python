@@ -31,7 +31,7 @@ class AllowedUsersRequestBuilder(BaseRequestBuilder):
     
     def by_user_id(self,user_id: str) -> UserItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.print.printerShares.item.allowedUsers.item collection
+        Gets an item from the msgraph_beta.generated.print.printerShares.item.allowedUsers.item collection
         param user_id: Unique identifier of the item
         Returns: UserItemRequestBuilder
         """

@@ -75,7 +75,7 @@ class SmsLogRow(AdditionalDataHolder, BackedModel, Parsable):
             "destinationNumber": lambda n : setattr(self, 'destination_number', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "licenseCapability": lambda n : setattr(self, 'license_capability', n.get_str_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "otherPartyCountryCode": lambda n : setattr(self, 'other_party_country_code', n.get_str_value()),
             "sentDateTime": lambda n : setattr(self, 'sent_date_time', n.get_datetime_value()),
             "smsId": lambda n : setattr(self, 'sms_id', n.get_str_value()),
@@ -105,7 +105,7 @@ class SmsLogRow(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("destinationNumber", self.destination_number)
         writer.write_str_value("id", self.id)
         writer.write_str_value("licenseCapability", self.license_capability)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("otherPartyCountryCode", self.other_party_country_code)
         writer.write_datetime_value("sentDateTime", self.sent_date_time)
         writer.write_str_value("smsId", self.sms_id)

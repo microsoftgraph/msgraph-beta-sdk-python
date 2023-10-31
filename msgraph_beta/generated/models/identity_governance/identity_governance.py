@@ -84,7 +84,7 @@ class IdentityGovernance(AdditionalDataHolder, BackedModel, Parsable):
             "appConsent": lambda n : setattr(self, 'app_consent', n.get_object_value(AppConsentApprovalRoute)),
             "entitlementManagement": lambda n : setattr(self, 'entitlement_management', n.get_object_value(EntitlementManagement)),
             "lifecycleWorkflows": lambda n : setattr(self, 'lifecycle_workflows', n.get_object_value(LifecycleWorkflowsContainer)),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "permissionsAnalytics": lambda n : setattr(self, 'permissions_analytics', n.get_object_value(PermissionsAnalyticsAggregation)),
             "permissionsManagement": lambda n : setattr(self, 'permissions_management', n.get_object_value(PermissionsManagement)),
             "privilegedAccess": lambda n : setattr(self, 'privileged_access', n.get_object_value(PrivilegedAccessRoot)),
@@ -105,7 +105,7 @@ class IdentityGovernance(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("appConsent", self.app_consent)
         writer.write_object_value("entitlementManagement", self.entitlement_management)
         writer.write_object_value("lifecycleWorkflows", self.lifecycle_workflows)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("permissionsAnalytics", self.permissions_analytics)
         writer.write_object_value("permissionsManagement", self.permissions_management)
         writer.write_object_value("privilegedAccess", self.privileged_access)

@@ -46,7 +46,7 @@ class SignIn(Entity):
     app_id: Optional[str] = None
     # The appTokenProtectionStatus property
     app_token_protection_status: Optional[TokenProtectionStatus] = None
-    # A list of conditional access policies that are triggered by the corresponding sign-in activity.
+    # A list of conditional access policies that are triggered by the corresponding sign-in activity. Apps need additional Conditional Access-related privileges to read the details of this property. For more information, see Viewing applied conditional access (CA) policies in sign-ins.
     applied_conditional_access_policies: Optional[List[AppliedConditionalAccessPolicy]] = None
     # Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, that were triggered by the corresponding events in the sign-in event.
     applied_event_listeners: Optional[List[AppliedAuthenticationEventListener]] = None

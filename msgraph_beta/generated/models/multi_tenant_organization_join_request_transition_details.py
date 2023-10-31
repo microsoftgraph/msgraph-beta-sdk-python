@@ -49,7 +49,7 @@ class MultiTenantOrganizationJoinRequestTransitionDetails(AdditionalDataHolder, 
         fields: Dict[str, Callable[[Any], None]] = {
             "desiredMemberState": lambda n : setattr(self, 'desired_member_state', n.get_enum_value(MultiTenantOrganizationMemberState)),
             "details": lambda n : setattr(self, 'details', n.get_str_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(MultiTenantOrganizationMemberProcessingStatus)),
         }
         return fields
@@ -64,7 +64,7 @@ class MultiTenantOrganizationJoinRequestTransitionDetails(AdditionalDataHolder, 
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("desiredMemberState", self.desired_member_state)
         writer.write_str_value("details", self.details)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
     

@@ -31,7 +31,7 @@ class ClaimsMappingPoliciesRequestBuilder(BaseRequestBuilder):
     
     def by_claims_mapping_policy_id(self,claims_mapping_policy_id: str) -> ClaimsMappingPolicyItemRequestBuilder:
         """
-        Gets an item from the msgraph.generated.servicePrincipals.item.claimsMappingPolicies.item collection
+        Gets an item from the msgraph_beta.generated.servicePrincipals.item.claimsMappingPolicies.item collection
         param claims_mapping_policy_id: Unique identifier of the item
         Returns: ClaimsMappingPolicyItemRequestBuilder
         """

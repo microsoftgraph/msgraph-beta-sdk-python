@@ -73,7 +73,7 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
             "kty": lambda n : setattr(self, 'kty', n.get_str_value()),
             "n": lambda n : setattr(self, 'n', n.get_str_value()),
             "nbf": lambda n : setattr(self, 'nbf', n.get_int_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "p": lambda n : setattr(self, 'p', n.get_str_value()),
             "q": lambda n : setattr(self, 'q', n.get_str_value()),
             "qi": lambda n : setattr(self, 'qi', n.get_str_value()),
@@ -101,7 +101,7 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("kty", self.kty)
         writer.write_str_value("n", self.n)
         writer.write_int_value("nbf", self.nbf)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("p", self.p)
         writer.write_str_value("q", self.q)
         writer.write_str_value("qi", self.qi)

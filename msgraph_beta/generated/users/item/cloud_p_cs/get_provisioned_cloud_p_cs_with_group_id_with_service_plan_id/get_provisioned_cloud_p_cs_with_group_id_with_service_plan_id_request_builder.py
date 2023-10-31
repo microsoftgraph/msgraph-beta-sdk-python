@@ -27,8 +27,8 @@ class GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder(BaseReque
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['group_id'] = str(group_id)
-            path_parameters['service_plan_id'] = str(service_plan_id)
+            path_parameters['groupId'] = str(group_id)
+            path_parameters['servicePlanId'] = str(service_plan_id)
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/cloudPCs/getProvisionedCloudPCs(groupId='{groupId}',servicePlanId='{servicePlanId}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
     
     async def get(self,request_configuration: Optional[GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilderGetRequestConfiguration] = None) -> Optional[GetProvisionedCloudPCsWithGroupIdWithServicePlanIdGetResponse]:

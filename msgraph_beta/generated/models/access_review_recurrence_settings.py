@@ -40,7 +40,7 @@ class AccessReviewRecurrenceSettings(AdditionalDataHolder, BackedModel, Parsable
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
-            "OdataType": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recurrenceCount": lambda n : setattr(self, 'recurrence_count', n.get_int_value()),
             "recurrenceEndType": lambda n : setattr(self, 'recurrence_end_type', n.get_str_value()),
             "recurrenceType": lambda n : setattr(self, 'recurrence_type', n.get_str_value()),
@@ -56,7 +56,7 @@ class AccessReviewRecurrenceSettings(AdditionalDataHolder, BackedModel, Parsable
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_int_value("durationInDays", self.duration_in_days)
-        writer.write_str_value("OdataType", self.odata_type)
+        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("recurrenceCount", self.recurrence_count)
         writer.write_str_value("recurrenceEndType", self.recurrence_end_type)
         writer.write_str_value("recurrenceType", self.recurrence_type)
