@@ -60,11 +60,11 @@ msgraph-core==1.0.0a4
 
 multidict==6.0.4
 
-opentelemetry-api==1.20.0
+opentelemetry-api==1.21.0
 
-opentelemetry-sdk==1.20.0
+opentelemetry-sdk==1.21.0
 
-opentelemetry-semantic-conventions==0.41b0
+opentelemetry-semantic-conventions==0.42b0
 
 portalocker==2.8.2
 
