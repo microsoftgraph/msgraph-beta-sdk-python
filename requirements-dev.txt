@@ -14,7 +14,7 @@ azure-core==1.29.5
 
 azure-identity==1.15.0
 
-certifi==2023.7.22
+certifi==2023.11.17
 
 cffi==1.16.0
 
