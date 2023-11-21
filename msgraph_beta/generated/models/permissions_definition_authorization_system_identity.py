@@ -15,7 +15,7 @@ class PermissionsDefinitionAuthorizationSystemIdentity(AdditionalDataHolder, Bac
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The externalId property
+    # Unique ID of the identity within the external system. Prefixed with rsn: if this is a SAML or ED user in AWS. Alternate key.
     external_id: Optional[str] = None
     # The identityType property
     identity_type: Optional[PermissionsDefinitionIdentityType] = None

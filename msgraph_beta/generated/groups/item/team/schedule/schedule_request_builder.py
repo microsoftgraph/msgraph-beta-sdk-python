@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .....models.schedule import Schedule
+    from .day_notes.day_notes_request_builder import DayNotesRequestBuilder
     from .offer_shift_requests.offer_shift_requests_request_builder import OfferShiftRequestsRequestBuilder
     from .open_shifts.open_shifts_request_builder import OpenShiftsRequestBuilder
     from .open_shift_change_requests.open_shift_change_requests_request_builder import OpenShiftChangeRequestsRequestBuilder
@@ -115,7 +116,7 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[ScheduleRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -132,7 +133,7 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_put_request_information(self,body: Optional[Schedule] = None, request_configuration: Optional[ScheduleRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
@@ -151,7 +152,7 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PUT
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -164,6 +165,15 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ScheduleRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def day_notes(self) -> DayNotesRequestBuilder:
+        """
+        Provides operations to manage the dayNotes property of the microsoft.graph.schedule entity.
+        """
+        from .day_notes.day_notes_request_builder import DayNotesRequestBuilder
+
+        return DayNotesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def offer_shift_requests(self) -> OfferShiftRequestsRequestBuilder:

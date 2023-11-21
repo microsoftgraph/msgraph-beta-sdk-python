@@ -48,6 +48,8 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
     filter_open_in_to_only_managed_apps: Optional[bool] = None
     # A list of custom urls that are allowed to invocate a managed app
     managed_universal_links: Optional[List[str]] = None
+    # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app url redirect schemes which are allowed to be used.
+    messaging_redirect_app_url_scheme: Optional[str] = None
     # Versions less than the specified version will block the managed app from accessing company data.
     minimum_required_sdk_version: Optional[str] = None
     # Versions less than the specified version will result in warning message on the managed app from accessing company data.
@@ -104,6 +106,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
             "faceIdBlocked": lambda n : setattr(self, 'face_id_blocked', n.get_bool_value()),
             "filterOpenInToOnlyManagedApps": lambda n : setattr(self, 'filter_open_in_to_only_managed_apps', n.get_bool_value()),
             "managedUniversalLinks": lambda n : setattr(self, 'managed_universal_links', n.get_collection_of_primitive_values(str)),
+            "messagingRedirectAppUrlScheme": lambda n : setattr(self, 'messaging_redirect_app_url_scheme', n.get_str_value()),
             "minimumRequiredSdkVersion": lambda n : setattr(self, 'minimum_required_sdk_version', n.get_str_value()),
             "minimumWarningSdkVersion": lambda n : setattr(self, 'minimum_warning_sdk_version', n.get_str_value()),
             "minimumWipeSdkVersion": lambda n : setattr(self, 'minimum_wipe_sdk_version', n.get_str_value()),
@@ -137,6 +140,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
         writer.write_bool_value("faceIdBlocked", self.face_id_blocked)
         writer.write_bool_value("filterOpenInToOnlyManagedApps", self.filter_open_in_to_only_managed_apps)
         writer.write_collection_of_primitive_values("managedUniversalLinks", self.managed_universal_links)
+        writer.write_str_value("messagingRedirectAppUrlScheme", self.messaging_redirect_app_url_scheme)
         writer.write_str_value("minimumRequiredSdkVersion", self.minimum_required_sdk_version)
         writer.write_str_value("minimumWarningSdkVersion", self.minimum_warning_sdk_version)
         writer.write_str_value("minimumWipeSdkVersion", self.minimum_wipe_sdk_version)

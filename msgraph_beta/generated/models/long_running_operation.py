@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .attack_simulation_operation import AttackSimulationOperation
     from .entity import Entity
+    from .goals_export_job import GoalsExportJob
     from .industry_data.file_validate_operation import FileValidateOperation
     from .industry_data.validate_operation import ValidateOperation
     from .long_running_operation_status import LongRunningOperationStatus
@@ -46,6 +47,10 @@ class LongRunningOperation(Entity):
             from .attack_simulation_operation import AttackSimulationOperation
 
             return AttackSimulationOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.goalsExportJob".casefold():
+            from .goals_export_job import GoalsExportJob
+
+            return GoalsExportJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.fileValidateOperation".casefold():
             from .industry_data.file_validate_operation import FileValidateOperation
 
@@ -67,6 +72,7 @@ class LongRunningOperation(Entity):
         """
         from .attack_simulation_operation import AttackSimulationOperation
         from .entity import Entity
+        from .goals_export_job import GoalsExportJob
         from .industry_data.file_validate_operation import FileValidateOperation
         from .industry_data.validate_operation import ValidateOperation
         from .long_running_operation_status import LongRunningOperationStatus
@@ -74,6 +80,7 @@ class LongRunningOperation(Entity):
 
         from .attack_simulation_operation import AttackSimulationOperation
         from .entity import Entity
+        from .goals_export_job import GoalsExportJob
         from .industry_data.file_validate_operation import FileValidateOperation
         from .industry_data.validate_operation import ValidateOperation
         from .long_running_operation_status import LongRunningOperationStatus

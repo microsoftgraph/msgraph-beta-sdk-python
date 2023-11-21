@@ -19,8 +19,14 @@ class OpenShift(ChangeTrackedEntity):
     is_staged_for_deletion: Optional[bool] = None
     # ID for the scheduling group that the open shift belongs to.
     scheduling_group_id: Optional[str] = None
+    # The schedulingGroupName property
+    scheduling_group_name: Optional[str] = None
     # A published open shift.
     shared_open_shift: Optional[OpenShiftItem] = None
+    # The teamId property
+    team_id: Optional[str] = None
+    # The teamName property
+    team_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OpenShift:
@@ -48,7 +54,10 @@ class OpenShift(ChangeTrackedEntity):
             "draftOpenShift": lambda n : setattr(self, 'draft_open_shift', n.get_object_value(OpenShiftItem)),
             "isStagedForDeletion": lambda n : setattr(self, 'is_staged_for_deletion', n.get_bool_value()),
             "schedulingGroupId": lambda n : setattr(self, 'scheduling_group_id', n.get_str_value()),
+            "schedulingGroupName": lambda n : setattr(self, 'scheduling_group_name', n.get_str_value()),
             "sharedOpenShift": lambda n : setattr(self, 'shared_open_shift', n.get_object_value(OpenShiftItem)),
+            "teamId": lambda n : setattr(self, 'team_id', n.get_str_value()),
+            "teamName": lambda n : setattr(self, 'team_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

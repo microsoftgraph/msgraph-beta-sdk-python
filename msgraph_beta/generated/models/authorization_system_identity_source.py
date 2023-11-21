@@ -18,7 +18,7 @@ class AuthorizationSystemIdentitySource(AdditionalDataHolder, BackedModel, Parsa
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The identityProviderType property
+    # Type of identity provider. Read-only.
     identity_provider_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

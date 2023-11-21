@@ -44,9 +44,10 @@ class PlatformCredentialMethodsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PlatformCredentialMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[PlatformCredentialAuthenticationMethodCollectionResponse]:
         """
-        Get platformCredentialMethods from users
+        Get a list of the platformCredentialAuthenticationMethod objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlatformCredentialAuthenticationMethodCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/platformcredentialauthenticationmethod-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +66,7 @@ class PlatformCredentialMethodsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PlatformCredentialMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get platformCredentialMethods from users
+        Get a list of the platformCredentialAuthenticationMethod objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +78,7 @@ class PlatformCredentialMethodsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> PlatformCredentialMethodsRequestBuilder:
@@ -102,7 +103,7 @@ class PlatformCredentialMethodsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlatformCredentialMethodsRequestBuilderGetQueryParameters():
         """
-        Get platformCredentialMethods from users
+        Get a list of the platformCredentialAuthenticationMethod objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

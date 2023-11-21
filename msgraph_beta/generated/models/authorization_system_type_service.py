@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class AuthorizationSystemTypeService(Entity):
-    # The actions property
+    # List of actions for the service in an authorization system that is onboarded to Permissions Management.
     actions: Optional[List[AuthorizationSystemTypeAction]] = None
     # The OdataType property
     odata_type: Optional[str] = None

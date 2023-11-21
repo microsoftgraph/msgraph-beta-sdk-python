@@ -13,8 +13,10 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.virtual_event import VirtualEvent
     from ....models.virtual_event_collection_response import VirtualEventCollectionResponse
+    from .cancel.cancel_request_builder import CancelRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .item.virtual_event_item_request_builder import VirtualEventItemRequestBuilder
+    from .publish.publish_request_builder import PublishRequestBuilder
 
 class EventsRequestBuilder(BaseRequestBuilder):
     """
@@ -102,7 +104,7 @@ class EventsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[VirtualEvent] = None, request_configuration: Optional[EventsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -121,7 +123,7 @@ class EventsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -136,6 +138,15 @@ class EventsRequestBuilder(BaseRequestBuilder):
         return EventsRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def cancel(self) -> CancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        from .cancel.cancel_request_builder import CancelRequestBuilder
+
+        return CancelRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -143,6 +154,15 @@ class EventsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def publish(self) -> PublishRequestBuilder:
+        """
+        Provides operations to call the publish method.
+        """
+        from .publish.publish_request_builder import PublishRequestBuilder
+
+        return PublishRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class EventsRequestBuilderGetQueryParameters():

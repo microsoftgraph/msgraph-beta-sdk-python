@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .print_usage_by_printer import PrintUsageByPrinter
     from .print_usage_by_user import PrintUsageByUser
     from .security_reports_root import SecurityReportsRoot
+    from .service_activity import ServiceActivity
     from .service_level_agreement_root import ServiceLevelAgreementRoot
     from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
     from .user_credential_usage_details import UserCredentialUsageDetails
@@ -52,6 +53,8 @@ class ReportRoot(Entity):
     odata_type: Optional[str] = None
     # Provides the ability to launch a realistically simulated phishing attack that organizations can learn from.
     security: Optional[SecurityReportsRoot] = None
+    # A placeholder to the Microsoft Entra service activity.
+    service_activity: Optional[ServiceActivity] = None
     # Represents a collection of sign-in activities of service principals.
     service_principal_sign_in_activities: Optional[List[ServicePrincipalSignInActivity]] = None
     # A placeholder to allow for the desired URL path for SLA.
@@ -86,6 +89,7 @@ class ReportRoot(Entity):
         from .print_usage_by_printer import PrintUsageByPrinter
         from .print_usage_by_user import PrintUsageByUser
         from .security_reports_root import SecurityReportsRoot
+        from .service_activity import ServiceActivity
         from .service_level_agreement_root import ServiceLevelAgreementRoot
         from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
         from .user_credential_usage_details import UserCredentialUsageDetails
@@ -100,6 +104,7 @@ class ReportRoot(Entity):
         from .print_usage_by_printer import PrintUsageByPrinter
         from .print_usage_by_user import PrintUsageByUser
         from .security_reports_root import SecurityReportsRoot
+        from .service_activity import ServiceActivity
         from .service_level_agreement_root import ServiceLevelAgreementRoot
         from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
         from .user_credential_usage_details import UserCredentialUsageDetails
@@ -120,6 +125,7 @@ class ReportRoot(Entity):
             "monthlyPrintUsageSummariesByPrinter": lambda n : setattr(self, 'monthly_print_usage_summaries_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
             "monthlyPrintUsageSummariesByUser": lambda n : setattr(self, 'monthly_print_usage_summaries_by_user', n.get_collection_of_object_values(PrintUsageByUser)),
             "security": lambda n : setattr(self, 'security', n.get_object_value(SecurityReportsRoot)),
+            "serviceActivity": lambda n : setattr(self, 'service_activity', n.get_object_value(ServiceActivity)),
             "servicePrincipalSignInActivities": lambda n : setattr(self, 'service_principal_sign_in_activities', n.get_collection_of_object_values(ServicePrincipalSignInActivity)),
             "sla": lambda n : setattr(self, 'sla', n.get_object_value(ServiceLevelAgreementRoot)),
             "userCredentialUsageDetails": lambda n : setattr(self, 'user_credential_usage_details', n.get_collection_of_object_values(UserCredentialUsageDetails)),
@@ -152,6 +158,7 @@ class ReportRoot(Entity):
         writer.write_collection_of_object_values("monthlyPrintUsageSummariesByPrinter", self.monthly_print_usage_summaries_by_printer)
         writer.write_collection_of_object_values("monthlyPrintUsageSummariesByUser", self.monthly_print_usage_summaries_by_user)
         writer.write_object_value("security", self.security)
+        writer.write_object_value("serviceActivity", self.service_activity)
         writer.write_collection_of_object_values("servicePrincipalSignInActivities", self.service_principal_sign_in_activities)
         writer.write_object_value("sla", self.sla)
         writer.write_collection_of_object_values("userCredentialUsageDetails", self.user_credential_usage_details)

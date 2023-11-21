@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..models.employee_experience import EmployeeExperience
     from ..models.o_data_errors.o_data_error import ODataError
+    from .goals.goals_request_builder import GoalsRequestBuilder
     from .learning_course_activities.learning_course_activities_request_builder import LearningCourseActivitiesRequestBuilder
     from .learning_providers.learning_providers_request_builder import LearningProvidersRequestBuilder
 
@@ -87,7 +88,7 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[EmployeeExperience] = None, request_configuration: Optional[EmployeeExperienceRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -106,7 +107,7 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -119,6 +120,15 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return EmployeeExperienceRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def goals(self) -> GoalsRequestBuilder:
+        """
+        Provides operations to manage the goals property of the microsoft.graph.employeeExperience entity.
+        """
+        from .goals.goals_request_builder import GoalsRequestBuilder
+
+        return GoalsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def learning_course_activities(self) -> LearningCourseActivitiesRequestBuilder:

@@ -24,7 +24,7 @@ class DeviceRegistrationPolicyRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/policies/deviceRegistrationPolicy{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/policies/deviceRegistrationPolicy{?%24select}", path_parameters)
     
     async def get(self,request_configuration: Optional[DeviceRegistrationPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceRegistrationPolicy]:
         """
@@ -35,31 +35,6 @@ class DeviceRegistrationPolicyRequestBuilder(BaseRequestBuilder):
         """
         request_info = self.to_get_request_information(
             request_configuration
-        )
-        from ...models.o_data_errors.o_data_error import ODataError
-
-        error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
-        }
-        if not self.request_adapter:
-            raise Exception("Http core is null") 
-        from ...models.device_registration_policy import DeviceRegistrationPolicy
-
-        return await self.request_adapter.send_async(request_info, DeviceRegistrationPolicy, error_mapping)
-    
-    async def patch(self,body: Optional[DeviceRegistrationPolicy] = None, request_configuration: Optional[DeviceRegistrationPolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceRegistrationPolicy]:
-        """
-        Update the properties of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization.
-        param body: The request body
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[DeviceRegistrationPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/deviceregistrationpolicy-update?view=graph-rest-1.0
-        """
-        if not body:
-            raise TypeError("body cannot be null.")
-        request_info = self.to_patch_request_information(
-            body, request_configuration
         )
         from ...models.o_data_errors.o_data_error import ODataError
 
@@ -87,27 +62,7 @@ class DeviceRegistrationPolicyRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
-        return request_info
-    
-    def to_patch_request_information(self,body: Optional[DeviceRegistrationPolicy] = None, request_configuration: Optional[DeviceRegistrationPolicyRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
-        """
-        Update the properties of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization.
-        param body: The request body
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        if not body:
-            raise TypeError("body cannot be null.")
-        request_info = RequestInformation()
-        if request_configuration:
-            request_info.headers.add_all(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
-        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> DeviceRegistrationPolicyRequestBuilder:
@@ -133,15 +88,10 @@ class DeviceRegistrationPolicyRequestBuilder(BaseRequestBuilder):
             """
             if not original_name:
                 raise TypeError("original_name cannot be null.")
-            if original_name == "expand":
-                return "%24expand"
             if original_name == "select":
                 return "%24select"
             return original_name
         
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
         # Select properties to be returned
         select: Optional[List[str]] = None
 
@@ -158,15 +108,5 @@ class DeviceRegistrationPolicyRequestBuilder(BaseRequestBuilder):
         # Request query parameters
         query_parameters: Optional[DeviceRegistrationPolicyRequestBuilder.DeviceRegistrationPolicyRequestBuilderGetQueryParameters] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceRegistrationPolicyRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

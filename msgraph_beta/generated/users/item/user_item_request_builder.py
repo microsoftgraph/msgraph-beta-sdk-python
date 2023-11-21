@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     from .contacts.contacts_request_builder import ContactsRequestBuilder
     from .contact_folders.contact_folders_request_builder import ContactFoldersRequestBuilder
     from .created_objects.created_objects_request_builder import CreatedObjectsRequestBuilder
+    from .delete_password_single_sign_on_credentials.delete_password_single_sign_on_credentials_request_builder import DeletePasswordSingleSignOnCredentialsRequestBuilder
     from .devices.devices_request_builder import DevicesRequestBuilder
     from .device_enrollment_configurations.device_enrollment_configurations_request_builder import DeviceEnrollmentConfigurationsRequestBuilder
     from .device_management_troubleshooting_events.device_management_troubleshooting_events_request_builder import DeviceManagementTroubleshootingEventsRequestBuilder
@@ -59,6 +60,7 @@ if TYPE_CHECKING:
     from .get_managed_devices_with_failed_or_pending_apps.get_managed_devices_with_failed_or_pending_apps_request_builder import GetManagedDevicesWithFailedOrPendingAppsRequestBuilder
     from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
     from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
+    from .get_password_single_sign_on_credentials.get_password_single_sign_on_credentials_request_builder import GetPasswordSingleSignOnCredentialsRequestBuilder
     from .inference_classification.inference_classification_request_builder import InferenceClassificationRequestBuilder
     from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
     from .insights.insights_request_builder import InsightsRequestBuilder
@@ -253,7 +255,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[UserItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -270,7 +272,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[User] = None, request_configuration: Optional[UserItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -289,7 +291,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -491,6 +493,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .created_objects.created_objects_request_builder import CreatedObjectsRequestBuilder
 
         return CreatedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def delete_password_single_sign_on_credentials(self) -> DeletePasswordSingleSignOnCredentialsRequestBuilder:
+        """
+        Provides operations to call the deletePasswordSingleSignOnCredentials method.
+        """
+        from .delete_password_single_sign_on_credentials.delete_password_single_sign_on_credentials_request_builder import DeletePasswordSingleSignOnCredentialsRequestBuilder
+
+        return DeletePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def device_enrollment_configurations(self) -> DeviceEnrollmentConfigurationsRequestBuilder:
@@ -707,6 +718,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
 
         return GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_password_single_sign_on_credentials(self) -> GetPasswordSingleSignOnCredentialsRequestBuilder:
+        """
+        Provides operations to call the getPasswordSingleSignOnCredentials method.
+        """
+        from .get_password_single_sign_on_credentials.get_password_single_sign_on_credentials_request_builder import GetPasswordSingleSignOnCredentialsRequestBuilder
+
+        return GetPasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def inference_classification(self) -> InferenceClassificationRequestBuilder:

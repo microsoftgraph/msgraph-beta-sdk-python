@@ -15,21 +15,21 @@ class AwsStatement(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The actions property
+    # The AWS actions.
     actions: Optional[List[str]] = None
-    # The condition property
+    # The AWS conditions associated with the statement.
     condition: Optional[AwsCondition] = None
     # The effect property
     effect: Optional[AwsStatementEffect] = None
-    # The notActions property
+    # AWS Not Actions
     not_actions: Optional[List[str]] = None
-    # The notResources property
+    # AWS Not Resources
     not_resources: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resources property
+    # The AWS resources associated with the statement.
     resources: Optional[List[str]] = None
-    # The statementId property
+    # The ID of the AWS statement.
     statement_id: Optional[str] = None
     
     @staticmethod

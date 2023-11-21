@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
-    from ......models.virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
+    from ......models.virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
 
 class RegistrationConfigurationRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class RegistrationConfigurationRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}/registrationConfiguration{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RegistrationConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventRegistrationConfiguration]:
+    async def get(self,request_configuration: Optional[RegistrationConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventWebinarRegistrationConfiguration]:
         """
-        Registration configuration of the webinar.
+        Get registrationConfiguration from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[VirtualEventRegistrationConfiguration]
+        Returns: Optional[VirtualEventWebinarRegistrationConfiguration]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,13 +43,13 @@ class RegistrationConfigurationRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
+        from ......models.virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
 
-        return await self.request_adapter.send_async(request_info, VirtualEventRegistrationConfiguration, error_mapping)
+        return await self.request_adapter.send_async(request_info, VirtualEventWebinarRegistrationConfiguration, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RegistrationConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Registration configuration of the webinar.
+        Get registrationConfiguration from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +61,7 @@ class RegistrationConfigurationRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> RegistrationConfigurationRequestBuilder:
@@ -77,7 +77,7 @@ class RegistrationConfigurationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RegistrationConfigurationRequestBuilderGetQueryParameters():
         """
-        Registration configuration of the webinar.
+        Get registrationConfiguration from solutions
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

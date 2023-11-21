@@ -80,6 +80,10 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
     fingerprint_and_biometric_enabled: Optional[bool] = None
     # Indicates if keyboard restriction is enabled. If enabled list of approved keyboards must be provided as well.
     keyboards_restricted: Optional[bool] = None
+    # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app name which is allowed to be used.
+    messaging_redirect_app_display_name: Optional[str] = None
+    # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app package id which is allowed to be used.
+    messaging_redirect_app_package_id: Optional[str] = None
     # Minimum version of the Company portal that must be installed on the device or app access will be blocked
     minimum_required_company_portal_version: Optional[str] = None
     # Define the oldest required Android security patch level a user can have to gain secure access to the app.
@@ -173,6 +177,8 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
             "exemptedAppPackages": lambda n : setattr(self, 'exempted_app_packages', n.get_collection_of_object_values(KeyValuePair)),
             "fingerprintAndBiometricEnabled": lambda n : setattr(self, 'fingerprint_and_biometric_enabled', n.get_bool_value()),
             "keyboardsRestricted": lambda n : setattr(self, 'keyboards_restricted', n.get_bool_value()),
+            "messagingRedirectAppDisplayName": lambda n : setattr(self, 'messaging_redirect_app_display_name', n.get_str_value()),
+            "messagingRedirectAppPackageId": lambda n : setattr(self, 'messaging_redirect_app_package_id', n.get_str_value()),
             "minimumRequiredCompanyPortalVersion": lambda n : setattr(self, 'minimum_required_company_portal_version', n.get_str_value()),
             "minimumRequiredPatchVersion": lambda n : setattr(self, 'minimum_required_patch_version', n.get_str_value()),
             "minimumWarningCompanyPortalVersion": lambda n : setattr(self, 'minimum_warning_company_portal_version', n.get_str_value()),
@@ -230,6 +236,8 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
         writer.write_collection_of_object_values("exemptedAppPackages", self.exempted_app_packages)
         writer.write_bool_value("fingerprintAndBiometricEnabled", self.fingerprint_and_biometric_enabled)
         writer.write_bool_value("keyboardsRestricted", self.keyboards_restricted)
+        writer.write_str_value("messagingRedirectAppDisplayName", self.messaging_redirect_app_display_name)
+        writer.write_str_value("messagingRedirectAppPackageId", self.messaging_redirect_app_package_id)
         writer.write_str_value("minimumRequiredCompanyPortalVersion", self.minimum_required_company_portal_version)
         writer.write_str_value("minimumRequiredPatchVersion", self.minimum_required_patch_version)
         writer.write_str_value("minimumWarningCompanyPortalVersion", self.minimum_warning_company_portal_version)

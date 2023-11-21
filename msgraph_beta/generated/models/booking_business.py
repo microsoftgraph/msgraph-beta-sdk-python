@@ -19,7 +19,7 @@ from .booking_named_entity import BookingNamedEntity
 @dataclass
 class BookingBusiness(BookingNamedEntity):
     """
-    Represents a Microsot Bookings Business.
+    Represents a Microsoft Bookings Business.
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.bookingBusiness"

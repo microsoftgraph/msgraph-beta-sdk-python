@@ -12,11 +12,11 @@ from .entity import Entity
 
 @dataclass
 class PermissionsAnalytics(Entity):
-    # The findings property
+    # The output of the permissions usage data analysis performed by Permissions Management to assess risk with identities and resources.
     findings: Optional[List[Finding]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The permissionsCreepIndexDistributions property
+    # Represents the Permissions Creep Index (PCI) for the authorization system. PCI distribution chart shows the classification of human and nonhuman identities based on the PCI score in three buckets (low, medium, high).
     permissions_creep_index_distributions: Optional[List[PermissionsCreepIndexDistribution]] = None
     
     @staticmethod

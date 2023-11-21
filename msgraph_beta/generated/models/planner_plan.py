@@ -21,9 +21,9 @@ from .planner_delta import PlannerDelta
 class PlannerPlan(PlannerDelta):
     # Collection of buckets in the plan. Read-only. Nullable.
     buckets: Optional[List[PlannerBucket]] = None
-    # Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it's set, this property can’t be updated. Required.
+    # Identifies the container of the plan. Either specify all properties, or specify only the url, the containerId, and type. After it's set, this property can’t be updated. It changes when a plan is moved from one container to another, using plan move to container. Required.
     container: Optional[PlannerPlanContainer] = None
-    # Read-only. Additional user experiences in which this plan is used, represented as plannerPlanContext entries.
+    # Read-only. Other user experiences in which this plan is used, represented as plannerPlanContext entries.
     contexts: Optional[PlannerPlanContextCollection] = None
     # Read-only. The user who created the plan.
     created_by: Optional[IdentitySet] = None
@@ -31,7 +31,7 @@ class PlannerPlan(PlannerDelta):
     created_date_time: Optional[datetime.datetime] = None
     # Contains information about the origin of the plan.
     creation_source: Optional[PlannerPlanCreation] = None
-    # Additional details about the plan. Read-only. Nullable.
+    # Extra details about the plan. Read-only. Nullable.
     details: Optional[PlannerPlanDetails] = None
     # The OdataType property
     odata_type: Optional[str] = None

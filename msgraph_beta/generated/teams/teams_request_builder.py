@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .all_messages.all_messages_request_builder import AllMessagesRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .get_all_messages.get_all_messages_request_builder import GetAllMessagesRequestBuilder
+    from .get_open_shifts.get_open_shifts_request_builder import GetOpenShiftsRequestBuilder
     from .item.team_item_request_builder import TeamItemRequestBuilder
 
 class TeamsRequestBuilder(BaseRequestBuilder):
@@ -106,7 +107,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[Team] = None, request_configuration: Optional[TeamsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -125,7 +126,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -165,6 +166,15 @@ class TeamsRequestBuilder(BaseRequestBuilder):
         from .get_all_messages.get_all_messages_request_builder import GetAllMessagesRequestBuilder
 
         return GetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_open_shifts(self) -> GetOpenShiftsRequestBuilder:
+        """
+        Provides operations to call the getOpenShifts method.
+        """
+        from .get_open_shifts.get_open_shifts_request_builder import GetOpenShiftsRequestBuilder
+
+        return GetOpenShiftsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TeamsRequestBuilderGetQueryParameters():

@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from .authorization_system_resource import AuthorizationSystemResource
     from .finding import Finding
     from .inbound_ports import InboundPorts
+    from .virtual_machine_details import VirtualMachineDetails
 
 from .finding import Finding
 
@@ -18,8 +19,8 @@ class OpenNetworkAzureSecurityGroupFinding(Finding):
     odata_type: Optional[str] = None
     # The securityGroup property
     security_group: Optional[AuthorizationSystemResource] = None
-    # The virtualMachines property
-    virtual_machines: Optional[List[AuthorizationSystemResource]] = None
+    # Represents a virtual machine in an authorization system.
+    virtual_machines: Optional[List[VirtualMachineDetails]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OpenNetworkAzureSecurityGroupFinding:
@@ -40,15 +41,17 @@ class OpenNetworkAzureSecurityGroupFinding(Finding):
         from .authorization_system_resource import AuthorizationSystemResource
         from .finding import Finding
         from .inbound_ports import InboundPorts
+        from .virtual_machine_details import VirtualMachineDetails
 
         from .authorization_system_resource import AuthorizationSystemResource
         from .finding import Finding
         from .inbound_ports import InboundPorts
+        from .virtual_machine_details import VirtualMachineDetails
 
         fields: Dict[str, Callable[[Any], None]] = {
             "inboundPorts": lambda n : setattr(self, 'inbound_ports', n.get_object_value(InboundPorts)),
             "securityGroup": lambda n : setattr(self, 'security_group', n.get_object_value(AuthorizationSystemResource)),
-            "virtualMachines": lambda n : setattr(self, 'virtual_machines', n.get_collection_of_object_values(AuthorizationSystemResource)),
+            "virtualMachines": lambda n : setattr(self, 'virtual_machines', n.get_collection_of_object_values(VirtualMachineDetails)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

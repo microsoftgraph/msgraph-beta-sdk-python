@@ -16,15 +16,15 @@ from .authentication_method import AuthenticationMethod
 class PlatformCredentialAuthenticationMethod(AuthenticationMethod):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.platformCredentialAuthenticationMethod"
-    # The createdDateTime property
+    # The date and time that this Platform Credential Key was registered.
     created_date_time: Optional[datetime.datetime] = None
-    # The device property
+    # The registered device on which this Platform Credential resides. Supports $expand. When you get a user's Platform Credential registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/platformCredentialAuthenticationMethod/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.
     device: Optional[Device] = None
-    # The displayName property
+    # The name of the device on which Platform Credential is registered.
     display_name: Optional[str] = None
-    # The keyStrength property
+    # Key strength of this Platform Credential key. Possible values are: normal, weak, unknown.
     key_strength: Optional[AuthenticationMethodKeyStrength] = None
-    # The platform property
+    # Platform on which this Platform Credential key is present. Possible values are: unknown, windows, macOS,iOS, android, linux.
     platform: Optional[AuthenticationMethodPlatform] = None
     
     @staticmethod
