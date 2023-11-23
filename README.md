@@ -39,8 +39,8 @@ from azure.identity.aio import EnvironmentCredential
 from msgraph_beta import GraphServiceClient
 
 scopes = ['User.Read', 'Mail.Read']
-credential=EnvironmentCredential()
-client = GraphServiceClient(credentials, scopes=scopes)
+credential = EnvironmentCredential()
+client = GraphServiceClient(credential, scopes=scopes)
 ```
 
 ## 3. Make requests against the service
