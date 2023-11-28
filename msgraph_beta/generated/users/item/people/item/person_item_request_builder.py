@@ -28,7 +28,7 @@ class PersonItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PersonItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Person]:
         """
-        Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
+        Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration, and business relationships. A person aggregates information from mail, contacts, and social networks.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Person]
         """
@@ -49,7 +49,7 @@ class PersonItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PersonItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
+        Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration, and business relationships. A person aggregates information from mail, contacts, and social networks.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +61,7 @@ class PersonItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> PersonItemRequestBuilder:
@@ -77,7 +77,7 @@ class PersonItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PersonItemRequestBuilderGetQueryParameters():
         """
-        Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
+        Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration, and business relationships. A person aggregates information from mail, contacts, and social networks.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

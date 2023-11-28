@@ -15,21 +15,21 @@ class CrossTenantAccess(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The deviceCount property
+    # The number of devices that accessed the external tenant.
     device_count: Optional[int] = None
-    # The lastAccessDateTime property
+    # The timestamp of the most recent access to the external tenant.
     last_access_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resourceTenantId property
+    # The tenant ID of the external tenant.
     resource_tenant_id: Optional[str] = None
-    # The resourceTenantName property
+    # The name of the external tenant.
     resource_tenant_name: Optional[str] = None
-    # The resourceTenantPrimaryDomain property
+    # The domain of the external tenant.
     resource_tenant_primary_domain: Optional[str] = None
     # The usageStatus property
     usage_status: Optional[UsageStatus] = None
-    # The userCount property
+    # The number of users that accessed the external tenant.
     user_count: Optional[int] = None
     
     @staticmethod

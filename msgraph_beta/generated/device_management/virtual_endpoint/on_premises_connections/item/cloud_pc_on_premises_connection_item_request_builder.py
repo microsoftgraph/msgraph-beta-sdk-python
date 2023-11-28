@@ -30,7 +30,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a specific cloudPcOnPremisesConnection object. When you delete an Azure network connection, permissions to the service are removed from the specified Azure resources. You cannot delete an Azure network connection when it's in use, as indicated by the inUse property. This API is available in the following national cloud deployments.
+        Delete a specific cloudPcOnPremisesConnection object. When you delete an Azure network connection, permissions to the service are removed from the specified Azure resources. You cannot delete an Azure network connection when it's in use, as indicated by the inUse property.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-delete?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcOnPremisesConnection]:
         """
-        Read the properties and relationships of the cloudPcOnPremisesConnection object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of the cloudPcOnPremisesConnection object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcOnPremisesConnection]
         Find more info here: https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-get?view=graph-rest-1.0
@@ -72,7 +72,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[CloudPcOnPremisesConnection] = None, request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CloudPcOnPremisesConnection]:
         """
-        Update the properties of a cloudPcOnPremisesConnection object. This API is available in the following national cloud deployments.
+        Update the properties of a cloudPcOnPremisesConnection object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcOnPremisesConnection]
@@ -97,7 +97,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a specific cloudPcOnPremisesConnection object. When you delete an Azure network connection, permissions to the service are removed from the specified Azure resources. You cannot delete an Azure network connection when it's in use, as indicated by the inUse property. This API is available in the following national cloud deployments.
+        Delete a specific cloudPcOnPremisesConnection object. When you delete an Azure network connection, permissions to the service are removed from the specified Azure resources. You cannot delete an Azure network connection when it's in use, as indicated by the inUse property.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,12 +108,12 @@ class CloudPcOnPremisesConnectionItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of the cloudPcOnPremisesConnection object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of the cloudPcOnPremisesConnection object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -125,12 +125,12 @@ class CloudPcOnPremisesConnectionItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[CloudPcOnPremisesConnection] = None, request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a cloudPcOnPremisesConnection object. This API is available in the following national cloud deployments.
+        Update the properties of a cloudPcOnPremisesConnection object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +144,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -189,7 +189,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcOnPremisesConnectionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of the cloudPcOnPremisesConnection object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of the cloudPcOnPremisesConnection object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

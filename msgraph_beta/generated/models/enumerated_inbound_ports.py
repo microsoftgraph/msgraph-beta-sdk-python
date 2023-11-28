@@ -12,7 +12,7 @@ from .inbound_ports import InboundPorts
 class EnumeratedInboundPorts(InboundPorts):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.enumeratedInboundPorts"
-    # The ports property
+    # Collection of ports that allow inbound traffic.
     ports: Optional[List[str]] = None
     
     @staticmethod

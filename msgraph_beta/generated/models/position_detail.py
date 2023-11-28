@@ -23,9 +23,9 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
     end_month_year: Optional[datetime.date] = None
     # The title held when in that position.
     job_title: Optional[str] = None
-    # The layer property
+    # The place where the employee is within the organizational hierarchy.
     layer: Optional[int] = None
-    # The level property
+    # The employee’s experience or management level.
     level: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -33,7 +33,7 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
     role: Optional[str] = None
     # The start month and year of the position.
     start_month_year: Optional[datetime.date] = None
-    # Short summary of the position.
+    # summary of the position.
     summary: Optional[str] = None
     
     @staticmethod

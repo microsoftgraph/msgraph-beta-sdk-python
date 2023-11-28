@@ -26,7 +26,7 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/employeeExperience{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/employeeExperience{?%24select}", path_parameters)
     
     async def get(self,request_configuration: Optional[EmployeeExperienceRequestBuilderGetRequestConfiguration] = None) -> Optional[EmployeeExperience]:
         """
@@ -87,7 +87,7 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[EmployeeExperience] = None, request_configuration: Optional[EmployeeExperienceRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -106,7 +106,7 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -151,15 +151,10 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
             """
             if not original_name:
                 raise TypeError("original_name cannot be null.")
-            if original_name == "expand":
-                return "%24expand"
             if original_name == "select":
                 return "%24select"
             return original_name
         
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
         # Select properties to be returned
         select: Optional[List[str]] = None
 

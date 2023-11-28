@@ -28,7 +28,7 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[JoinRequestRequestBuilderGetRequestConfiguration] = None) -> Optional[MultiTenantOrganizationJoinRequestRecord]:
         """
-        Get the status of a tenant joining a multi-tenant organization. This API is available in the following national cloud deployments.
+        Get the status of a tenant joining a multi-tenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationJoinRequestRecord]
         Find more info here: https://learn.microsoft.com/graph/api/multitenantorganizationjoinrequestrecord-get?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[MultiTenantOrganizationJoinRequestRecord] = None, request_configuration: Optional[JoinRequestRequestBuilderPatchRequestConfiguration] = None) -> Optional[MultiTenantOrganizationJoinRequestRecord]:
         """
-        Join a multi-tenant organization, after the owner of the multi-tenant organization has added your tenant to the multi-tenant organization as pending. Before a tenant added to a multi-tenant organization can participate in the multi-tenant organization, the administrator of the joining tenant must submit a join request. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization. Furthermore, to allow for asynchronous processing, you must wait up to 4 hours before joining a multi-tenant organization is completed. This API is available in the following national cloud deployments.
+        Join a multi-tenant organization, after the owner of the multi-tenant organization has added your tenant to the multi-tenant organization as pending. Before a tenant added to a multi-tenant organization can participate in the multi-tenant organization, the administrator of the joining tenant must submit a join request. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization. Furthermore, to allow for asynchronous processing, you must wait up to 4 hours before joining a multi-tenant organization is completed.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationJoinRequestRecord]
@@ -75,7 +75,7 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[JoinRequestRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the status of a tenant joining a multi-tenant organization. This API is available in the following national cloud deployments.
+        Get the status of a tenant joining a multi-tenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -87,12 +87,12 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[MultiTenantOrganizationJoinRequestRecord] = None, request_configuration: Optional[JoinRequestRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Join a multi-tenant organization, after the owner of the multi-tenant organization has added your tenant to the multi-tenant organization as pending. Before a tenant added to a multi-tenant organization can participate in the multi-tenant organization, the administrator of the joining tenant must submit a join request. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization. Furthermore, to allow for asynchronous processing, you must wait up to 4 hours before joining a multi-tenant organization is completed. This API is available in the following national cloud deployments.
+        Join a multi-tenant organization, after the owner of the multi-tenant organization has added your tenant to the multi-tenant organization as pending. Before a tenant added to a multi-tenant organization can participate in the multi-tenant organization, the administrator of the joining tenant must submit a join request. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization. Furthermore, to allow for asynchronous processing, you must wait up to 4 hours before joining a multi-tenant organization is completed.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -106,7 +106,7 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -123,7 +123,7 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
     @dataclass
     class JoinRequestRequestBuilderGetQueryParameters():
         """
-        Get the status of a tenant joining a multi-tenant organization. This API is available in the following national cloud deployments.
+        Get the status of a tenant joining a multi-tenant organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -28,7 +28,7 @@ class InsightSummaryItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[InsightSummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[InsightSummary]:
         """
-        Get summary from reports
+        Summary of all usage insights on apps registered in the tenant for a specified period.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InsightSummary]
         """
@@ -49,7 +49,7 @@ class InsightSummaryItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[InsightSummaryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get summary from reports
+        Summary of all usage insights on apps registered in the tenant for a specified period.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +61,7 @@ class InsightSummaryItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> InsightSummaryItemRequestBuilder:
@@ -77,7 +77,7 @@ class InsightSummaryItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InsightSummaryItemRequestBuilderGetQueryParameters():
         """
-        Get summary from reports
+        Summary of all usage insights on apps registered in the tenant for a specified period.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

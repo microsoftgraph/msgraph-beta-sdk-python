@@ -46,7 +46,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AuthenticationEventsFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[AuthenticationEventsFlowCollectionResponse]:
         """
-        Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned. This API is available in the following national cloud deployments.
+        Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventsFlowCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-list-authenticationeventsflows?view=graph-rest-1.0
@@ -68,7 +68,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AuthenticationEventsFlow] = None, request_configuration: Optional[AuthenticationEventsFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[AuthenticationEventsFlow]:
         """
-        Create a new authenticationEventsFlow object that is of the type specified in the request body. You can create only an externalUsersSelfServiceSignupEventsFlow object type. This API is available in the following national cloud deployments.
+        Create a new authenticationEventsFlow object that is of the type specified in the request body. You can create only an externalUsersSelfServiceSignupEventsFlow object type.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventsFlow]
@@ -93,7 +93,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationEventsFlowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned. This API is available in the following national cloud deployments.
+        Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,12 +105,12 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[AuthenticationEventsFlow] = None, request_configuration: Optional[AuthenticationEventsFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new authenticationEventsFlow object that is of the type specified in the request body. You can create only an externalUsersSelfServiceSignupEventsFlow object type. This API is available in the following national cloud deployments.
+        Create a new authenticationEventsFlow object that is of the type specified in the request body. You can create only an externalUsersSelfServiceSignupEventsFlow object type.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -124,7 +124,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -159,7 +159,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuthenticationEventsFlowsRequestBuilderGetQueryParameters():
         """
-        Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned. This API is available in the following national cloud deployments.
+        Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

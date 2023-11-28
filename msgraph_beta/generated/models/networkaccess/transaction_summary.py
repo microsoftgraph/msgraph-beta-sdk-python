@@ -14,11 +14,11 @@ class TransactionSummary(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Count of transactions that were blocked.
+    # The number of transactions that were blocked.
     blocked_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Count of transactions.
+    # The total number of transactions.
     total_count: Optional[int] = None
     # The trafficType property
     traffic_type: Optional[TrafficType] = None

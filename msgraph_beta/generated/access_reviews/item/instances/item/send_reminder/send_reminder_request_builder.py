@@ -27,7 +27,7 @@ class SendReminderRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[SendReminderRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        In the Microsoft Entra access reviews feature, send a reminder to the reviewers of a currently active accessReview.  The target object can be either a one-time access review, or an instance of a recurring access review.  This API is available in the following national cloud deployments.
+        In the Microsoft Entra access reviews feature, send a reminder to the reviewers of a currently active accessReview.  The target object can be either a one-time access review, or an instance of a recurring access review. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/accessreview-sendreminder?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class SendReminderRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[SendReminderRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Microsoft Entra access reviews feature, send a reminder to the reviewers of a currently active accessReview.  The target object can be either a one-time access review, or an instance of a recurring access review.  This API is available in the following national cloud deployments.
+        In the Microsoft Entra access reviews feature, send a reminder to the reviewers of a currently active accessReview.  The target object can be either a one-time access review, or an instance of a recurring access review. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -58,7 +58,7 @@ class SendReminderRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> SendReminderRequestBuilder:

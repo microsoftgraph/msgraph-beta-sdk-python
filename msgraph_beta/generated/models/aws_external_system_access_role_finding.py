@@ -12,7 +12,7 @@ from .finding import Finding
 
 @dataclass
 class AwsExternalSystemAccessRoleFinding(Finding):
-    # The accessibleSystemIds property
+    # The IDs of the accounts that this role is able to access.
     accessible_system_ids: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

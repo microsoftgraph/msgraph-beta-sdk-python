@@ -25,6 +25,8 @@ if TYPE_CHECKING:
     from .organization_settings.organization_settings_request_builder import OrganizationSettingsRequestBuilder
     from .provisioning_policies.provisioning_policies_request_builder import ProvisioningPoliciesRequestBuilder
     from .reports.reports_request_builder import ReportsRequestBuilder
+    from .retrieve_scoped_permissions.retrieve_scoped_permissions_request_builder import RetrieveScopedPermissionsRequestBuilder
+    from .retrieve_tenant_encryption_setting.retrieve_tenant_encryption_setting_request_builder import RetrieveTenantEncryptionSettingRequestBuilder
     from .service_plans.service_plans_request_builder import ServicePlansRequestBuilder
     from .shared_use_service_plans.shared_use_service_plans_request_builder import SharedUseServicePlansRequestBuilder
     from .snapshots.snapshots_request_builder import SnapshotsRequestBuilder
@@ -121,7 +123,7 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[VirtualEndpointRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -138,7 +140,7 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[VirtualEndpoint] = None, request_configuration: Optional[VirtualEndpointRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -157,7 +159,7 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -287,6 +289,24 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         from .reports.reports_request_builder import ReportsRequestBuilder
 
         return ReportsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_scoped_permissions(self) -> RetrieveScopedPermissionsRequestBuilder:
+        """
+        Provides operations to call the retrieveScopedPermissions method.
+        """
+        from .retrieve_scoped_permissions.retrieve_scoped_permissions_request_builder import RetrieveScopedPermissionsRequestBuilder
+
+        return RetrieveScopedPermissionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_tenant_encryption_setting(self) -> RetrieveTenantEncryptionSettingRequestBuilder:
+        """
+        Provides operations to call the retrieveTenantEncryptionSetting method.
+        """
+        from .retrieve_tenant_encryption_setting.retrieve_tenant_encryption_setting_request_builder import RetrieveTenantEncryptionSettingRequestBuilder
+
+        return RetrieveTenantEncryptionSettingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def service_plans(self) -> ServicePlansRequestBuilder:

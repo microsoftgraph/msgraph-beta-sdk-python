@@ -14,11 +14,11 @@ class AuthorizationSystemInfo(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The authorizationSystemType property
+    # The type of authorization system.The possible values are: azure, gcp, aws, unknownFutureValue.
     authorization_system_type: Optional[AuthorizationSystemType] = None
-    # The displayName property
+    # Display name for the authorization system.
     display_name: Optional[str] = None
-    # The id property
+    # Unique identifier for the authorization system.
     id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

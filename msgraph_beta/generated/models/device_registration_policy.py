@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .azure_ad_join_policy import AzureAdJoinPolicy
+    from .azure_a_d_join_policy import AzureADJoinPolicy
     from .azure_a_d_registration_policy import AzureADRegistrationPolicy
     from .entity import Entity
     from .local_admin_password_settings import LocalAdminPasswordSettings
@@ -15,7 +15,7 @@ from .entity import Entity
 @dataclass
 class DeviceRegistrationPolicy(Entity):
     # Specifies the authorization policy for controlling registration of new devices using Microsoft Entra join within your organization. Required. For more information, see What is a device identity?.
-    azure_a_d_join: Optional[AzureAdJoinPolicy] = None
+    azure_a_d_join: Optional[AzureADJoinPolicy] = None
     # Specifies the authorization policy for controlling registration of new devices using Microsoft Entra registered within your organization. Required. For more information, see What is a device identity?.
     azure_a_d_registration: Optional[AzureADRegistrationPolicy] = None
     # The description of the device registration policy. It's always set to Tenant-wide policy that manages intial provisioning controls using quota restrictions, additional authentication and authorization checks. Read-only.
@@ -47,20 +47,20 @@ class DeviceRegistrationPolicy(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .azure_ad_join_policy import AzureAdJoinPolicy
+        from .azure_a_d_join_policy import AzureADJoinPolicy
         from .azure_a_d_registration_policy import AzureADRegistrationPolicy
         from .entity import Entity
         from .local_admin_password_settings import LocalAdminPasswordSettings
         from .multi_factor_auth_configuration import MultiFactorAuthConfiguration
 
-        from .azure_ad_join_policy import AzureAdJoinPolicy
+        from .azure_a_d_join_policy import AzureADJoinPolicy
         from .azure_a_d_registration_policy import AzureADRegistrationPolicy
         from .entity import Entity
         from .local_admin_password_settings import LocalAdminPasswordSettings
         from .multi_factor_auth_configuration import MultiFactorAuthConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "azureADJoin": lambda n : setattr(self, 'azure_a_d_join', n.get_object_value(AzureAdJoinPolicy)),
+            "azureADJoin": lambda n : setattr(self, 'azure_a_d_join', n.get_object_value(AzureADJoinPolicy)),
             "azureADRegistration": lambda n : setattr(self, 'azure_a_d_registration', n.get_object_value(AzureADRegistrationPolicy)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

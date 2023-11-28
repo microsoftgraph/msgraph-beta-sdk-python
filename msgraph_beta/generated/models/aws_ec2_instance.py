@@ -13,7 +13,7 @@ from .aws_identity import AwsIdentity
 class AwsEc2Instance(AwsIdentity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsEc2Instance"
-    # The resource property
+    # Represents the resources in an authorization system.
     resource: Optional[AwsAuthorizationSystemResource] = None
     
     @staticmethod

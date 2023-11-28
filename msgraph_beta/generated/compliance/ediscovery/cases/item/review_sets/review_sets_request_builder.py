@@ -45,7 +45,7 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ReviewSetsRequestBuilderGetRequestConfiguration] = None) -> Optional[ReviewSetCollectionResponse]:
         """
-        Retrieve the properties and relationships of a reviewSet object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a reviewSet object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReviewSetCollectionResponse]
         """
@@ -66,7 +66,7 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> Optional[ReviewSet]:
         """
-        Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property. This API is available in the following national cloud deployments.
+        Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReviewSet]
@@ -91,7 +91,7 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ReviewSetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a reviewSet object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a reviewSet object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,12 +103,12 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[ReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property. This API is available in the following national cloud deployments.
+        Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -122,7 +122,7 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -148,7 +148,7 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ReviewSetsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a reviewSet object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a reviewSet object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -55,6 +55,8 @@ class CloudPcProvisioningPolicy(Entity):
     on_premises_connection_id: Optional[str] = None
     # Specifies the type of license used when provisioning Cloud PCs using this policy. By default, the license type is dedicated if the provisioningType isn't specified when you create the cloudPcProvisioningPolicy. You can't change this property after the cloudPcProvisioningPolicy was created. Possible values are: dedicated, shared, unknownFutureValue.
     provisioning_type: Optional[CloudPcProvisioningType] = None
+    # The scopeIds property
+    scope_ids: Optional[List[str]] = None
     # Specific Windows settings to configure while creating Cloud PCs for this provisioning policy.
     windows_settings: Optional[CloudPcWindowsSettings] = None
     
@@ -111,6 +113,7 @@ class CloudPcProvisioningPolicy(Entity):
             "microsoftManagedDesktop": lambda n : setattr(self, 'microsoft_managed_desktop', n.get_object_value(MicrosoftManagedDesktop)),
             "onPremisesConnectionId": lambda n : setattr(self, 'on_premises_connection_id', n.get_str_value()),
             "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
+            "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
             "windowsSettings": lambda n : setattr(self, 'windows_settings', n.get_object_value(CloudPcWindowsSettings)),
         }
         super_fields = super().get_field_deserializers()
@@ -144,6 +147,7 @@ class CloudPcProvisioningPolicy(Entity):
         writer.write_object_value("microsoftManagedDesktop", self.microsoft_managed_desktop)
         writer.write_str_value("onPremisesConnectionId", self.on_premises_connection_id)
         writer.write_enum_value("provisioningType", self.provisioning_type)
+        writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
         writer.write_object_value("windowsSettings", self.windows_settings)
     
 

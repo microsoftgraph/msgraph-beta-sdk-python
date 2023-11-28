@@ -37,7 +37,7 @@ class IdentityFinding(Finding):
     action_summary: Optional[ActionSummary] = None
     # The identity property
     identity: Optional[AuthorizationSystemIdentity] = None
-    # The identityDetails property
+    # An identity's information details.
     identity_details: Optional[IdentityDetails] = None
     # The OdataType property
     odata_type: Optional[str] = None

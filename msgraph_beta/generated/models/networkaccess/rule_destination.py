@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .ip_range import IpRange
     from .ip_subnet import IpSubnet
     from .url import Url
+    from .web_category import WebCategory
 
 @dataclass
 class RuleDestination(AdditionalDataHolder, BackedModel, Parsable):
@@ -54,6 +55,10 @@ class RuleDestination(AdditionalDataHolder, BackedModel, Parsable):
             from .url import Url
 
             return Url()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategory".casefold():
+            from .web_category import WebCategory
+
+            return WebCategory()
         return RuleDestination()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -66,12 +71,14 @@ class RuleDestination(AdditionalDataHolder, BackedModel, Parsable):
         from .ip_range import IpRange
         from .ip_subnet import IpSubnet
         from .url import Url
+        from .web_category import WebCategory
 
         from .fqdn import Fqdn
         from .ip_address import IpAddress
         from .ip_range import IpRange
         from .ip_subnet import IpSubnet
         from .url import Url
+        from .web_category import WebCategory
 
         fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

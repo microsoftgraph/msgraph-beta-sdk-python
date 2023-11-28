@@ -13,7 +13,7 @@ from .aws_permissions_definition_action import AwsPermissionsDefinitionAction
 class AwsActionsPermissionsDefinitionAction(AwsPermissionsDefinitionAction):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsActionsPermissionsDefinitionAction"
-    # The assignToRoleId property
+    # Defines AWS statements.
     assign_to_role_id: Optional[str] = None
     # The statements property
     statements: Optional[List[AwsStatement]] = None

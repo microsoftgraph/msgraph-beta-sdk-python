@@ -11,19 +11,19 @@ from .entity import Entity
 
 @dataclass
 class MfaCompletionMetric(Entity):
-    # The appId property
+    # The ID of the Microsoft Entra application. Supports $filter (eq).
     app_id: Optional[str] = None
-    # The attemptsCount property
+    # Number of users who attempted to sign up. Supports $filter (eq).
     attempts_count: Optional[int] = None
-    # The factDate property
+    # The date of the user insight.
     fact_date: Optional[datetime.date] = None
-    # The mfaMethod property
+    # The MFA authentication method used by the customers. Supports $filter (eq).
     mfa_method: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The os property
+    # The platform of the device that the customers used. Supports $filter (eq).
     os: Optional[str] = None
-    # The successCount property
+    # Number of users who signed up successfully. Supports $filter (eq).
     success_count: Optional[int] = None
     
     @staticmethod

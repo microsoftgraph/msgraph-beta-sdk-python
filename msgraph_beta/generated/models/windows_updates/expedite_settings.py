@@ -13,6 +13,8 @@ class ExpediteSettings(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # True indicates that the deployment of the content is expedited.
     is_expedited: Optional[bool] = None
+    # The isReadinessTest property
+    is_readiness_test: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -34,6 +36,7 @@ class ExpediteSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "isExpedited": lambda n : setattr(self, 'is_expedited', n.get_bool_value()),
+            "isReadinessTest": lambda n : setattr(self, 'is_readiness_test', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -47,6 +50,7 @@ class ExpediteSettings(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("isExpedited", self.is_expedited)
+        writer.write_bool_value("isReadinessTest", self.is_readiness_test)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

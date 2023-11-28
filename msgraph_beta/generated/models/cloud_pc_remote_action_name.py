@@ -11,4 +11,8 @@ class CloudPcRemoteActionName(str, Enum):
     Troubleshoot = "troubleshoot",
     PlaceUnderReview = "placeUnderReview",
     UnknownFutureValue = "unknownFutureValue",
+    CreateSnapshot = "createSnapshot",
+    PowerOn = "powerOn",
+    PowerOff = "powerOff",
+    MoveRegion = "moveRegion",
 

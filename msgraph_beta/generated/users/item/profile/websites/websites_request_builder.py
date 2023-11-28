@@ -45,7 +45,7 @@ class WebsitesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WebsitesRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonWebsiteCollectionResponse]:
         """
-        Retrieve a list of personWebsite objects from a user's profile. This API is available in the following national cloud deployments.
+        Retrieve a list of personWebsite objects from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonWebsiteCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/profile-list-websites?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class WebsitesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PersonWebsite] = None, request_configuration: Optional[WebsitesRequestBuilderPostRequestConfiguration] = None) -> Optional[PersonWebsite]:
         """
-        Create a new personWebsite object in a user's profile. This API is available in the following national cloud deployments.
+        Create a new personWebsite object in a user's profile.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonWebsite]
@@ -92,7 +92,7 @@ class WebsitesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[WebsitesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personWebsite objects from a user's profile. This API is available in the following national cloud deployments.
+        Retrieve a list of personWebsite objects from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,12 +104,12 @@ class WebsitesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[PersonWebsite] = None, request_configuration: Optional[WebsitesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personWebsite object in a user's profile. This API is available in the following national cloud deployments.
+        Create a new personWebsite object in a user's profile.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class WebsitesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -149,7 +149,7 @@ class WebsitesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WebsitesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personWebsite objects from a user's profile. This API is available in the following national cloud deployments.
+        Retrieve a list of personWebsite objects from a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -4,6 +4,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .web_category import WebCategory
+
 @dataclass
 class WebCategoriesSummary(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -11,14 +14,16 @@ class WebCategoriesSummary(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The deviceCount property
+    # The number of unique devices that were seen.
     device_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The transactionCount property
+    # The number of transactions that were seen.
     transaction_count: Optional[int] = None
-    # The userCount property
+    # The number of unique Microsoft Entra ID users that were seen.
     user_count: Optional[int] = None
+    # The webCategory property
+    web_category: Optional[WebCategory] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WebCategoriesSummary:
@@ -36,11 +41,16 @@ class WebCategoriesSummary(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .web_category import WebCategory
+
+        from .web_category import WebCategory
+
         fields: Dict[str, Callable[[Any], None]] = {
             "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "transactionCount": lambda n : setattr(self, 'transaction_count', n.get_int_value()),
             "userCount": lambda n : setattr(self, 'user_count', n.get_int_value()),
+            "webCategory": lambda n : setattr(self, 'web_category', n.get_object_value(WebCategory)),
         }
         return fields
     
@@ -56,6 +66,7 @@ class WebCategoriesSummary(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("transactionCount", self.transaction_count)
         writer.write_int_value("userCount", self.user_count)
+        writer.write_object_value("webCategory", self.web_category)
         writer.write_additional_data_value(self.additional_data)
     
 

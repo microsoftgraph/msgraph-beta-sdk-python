@@ -79,9 +79,12 @@ class DeviceManagementCachedReportConfiguration(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("filter", self.filter)
+        writer.write_datetime_value("lastRefreshDateTime", self.last_refresh_date_time)
         writer.write_str_value("metadata", self.metadata)
         writer.write_collection_of_primitive_values("orderBy", self.order_by)
+        writer.write_str_value("reportName", self.report_name)
         writer.write_collection_of_primitive_values("select", self.select)
         writer.write_enum_value("status", self.status)
     
