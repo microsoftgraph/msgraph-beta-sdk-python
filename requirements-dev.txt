@@ -40,7 +40,7 @@ hyperframe==6.0.1
 
 idna==3.6
 
-importlib-metadata==6.8.0
+importlib-metadata==7.0.0
 
 microsoft-kiota-abstractions==1.0.0
 
