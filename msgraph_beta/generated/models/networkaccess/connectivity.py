@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .branch_site import BranchSite
+    from .web_category import WebCategory
 
 from ..entity import Entity
 
@@ -15,6 +16,8 @@ class Connectivity(Entity):
     branches: Optional[List[BranchSite]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The webCategories property
+    web_categories: Optional[List[WebCategory]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Connectivity:
@@ -34,12 +37,15 @@ class Connectivity(Entity):
         """
         from ..entity import Entity
         from .branch_site import BranchSite
+        from .web_category import WebCategory
 
         from ..entity import Entity
         from .branch_site import BranchSite
+        from .web_category import WebCategory
 
         fields: Dict[str, Callable[[Any], None]] = {
             "branches": lambda n : setattr(self, 'branches', n.get_collection_of_object_values(BranchSite)),
+            "webCategories": lambda n : setattr(self, 'web_categories', n.get_collection_of_object_values(WebCategory)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,5 +61,6 @@ class Connectivity(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("branches", self.branches)
+        writer.write_collection_of_object_values("webCategories", self.web_categories)
     
 

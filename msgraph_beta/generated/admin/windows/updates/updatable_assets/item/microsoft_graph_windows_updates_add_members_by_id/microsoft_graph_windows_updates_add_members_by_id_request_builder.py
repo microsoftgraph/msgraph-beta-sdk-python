@@ -28,7 +28,7 @@ class MicrosoftGraphWindowsUpdatesAddMembersByIdRequestBuilder(BaseRequestBuilde
     
     async def post(self,body: Optional[AddMembersByIdPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphWindowsUpdatesAddMembersByIdRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Add members of the same type to an updatableAssetGroup. You can also use the method addMembers to add members. This API is available in the following national cloud deployments.
+        Add members of the same type to an updatableAssetGroup. You can also use the method addMembers to add members.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class MicrosoftGraphWindowsUpdatesAddMembersByIdRequestBuilder(BaseRequestBuilde
     
     def to_post_request_information(self,body: Optional[AddMembersByIdPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphWindowsUpdatesAddMembersByIdRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Add members of the same type to an updatableAssetGroup. You can also use the method addMembers to add members. This API is available in the following national cloud deployments.
+        Add members of the same type to an updatableAssetGroup. You can also use the method addMembers to add members.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -65,7 +65,7 @@ class MicrosoftGraphWindowsUpdatesAddMembersByIdRequestBuilder(BaseRequestBuilde
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

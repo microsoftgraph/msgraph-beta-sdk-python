@@ -32,10 +32,10 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an updatableAssetGroup object. When an updatableAssetGroup object, its member updatableAsset objects are not deleted. This API is available in the following national cloud deployments.
+        Delete an azureADDevice object. When a Microsoft Entra device is deleted, it is unregistered from the deployment service and automatically unenrolled from management by the service for all update categories, as well as removed from every deploymentAudience and updatableAssetGroup.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-updatableassetgroup-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-azureaddevice-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -52,10 +52,10 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UpdatableAsset]:
         """
-        Read the properties and relationships of an updatableAsset object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of an updatableAssetGroup object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatableAsset]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-updatableasset-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-updatableassetgroup-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -98,7 +98,7 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an updatableAssetGroup object. When an updatableAssetGroup object, its member updatableAsset objects are not deleted. This API is available in the following national cloud deployments.
+        Delete an azureADDevice object. When a Microsoft Entra device is deleted, it is unregistered from the deployment service and automatically unenrolled from management by the service for all update categories, as well as removed from every deploymentAudience and updatableAssetGroup.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,12 +109,12 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an updatableAsset object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of an updatableAssetGroup object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +126,7 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[UpdatableAsset] = None, request_configuration: Optional[UpdatableAssetItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -145,7 +145,7 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -208,7 +208,7 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UpdatableAssetItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an updatableAsset object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of an updatableAssetGroup object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

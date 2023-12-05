@@ -29,7 +29,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(B
     
     async def delete(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Deletes a user's Microsoft Authenticator Passwordless Phone Sign-in method object. This API is available in the following national cloud deployments.
+        Deletes a user's Microsoft Authenticator Passwordless Phone Sign-in method object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/passwordlessmicrosoftauthenticatorauthenticationmethod-delete?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(B
     
     async def get(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethod]:
         """
-        Retrieve a user's single Microsoft Authenticator Passwordless Phone Sign-in method object. This API is available in the following national cloud deployments.
+        Retrieve a user's single Microsoft Authenticator Passwordless Phone Sign-in method object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethod]
         Find more info here: https://learn.microsoft.com/graph/api/passwordlessmicrosoftauthenticatorauthenticationmethod-get?view=graph-rest-1.0
@@ -71,7 +71,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(B
     
     def to_delete_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes a user's Microsoft Authenticator Passwordless Phone Sign-in method object. This API is available in the following national cloud deployments.
+        Deletes a user's Microsoft Authenticator Passwordless Phone Sign-in method object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -82,12 +82,12 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(B
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a user's single Microsoft Authenticator Passwordless Phone Sign-in method object. This API is available in the following national cloud deployments.
+        Retrieve a user's single Microsoft Authenticator Passwordless Phone Sign-in method object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +99,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(B
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder:
@@ -134,7 +134,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(B
     @dataclass
     class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetQueryParameters():
         """
-        Retrieve a user's single Microsoft Authenticator Passwordless Phone Sign-in method object. This API is available in the following national cloud deployments.
+        Retrieve a user's single Microsoft Authenticator Passwordless Phone Sign-in method object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

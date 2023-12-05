@@ -20,9 +20,9 @@ class RelatedPerson(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Possible values are: manager, colleague, directReport, dotLineReport, assistant, dotLineManager, alternateContact, friend, spouse, sibling, child, parent, sponsor, emergencyContact, other, unknownFutureValue.
     relationship: Optional[PersonRelationship] = None
-    # The userId property
+    # The user's directory object ID (Microsoft Entra ID or CID).
     user_id: Optional[str] = None
-    # Email address or reference to person within organization.
+    # Email address or reference to person within the organization.
     user_principal_name: Optional[str] = None
     
     @staticmethod

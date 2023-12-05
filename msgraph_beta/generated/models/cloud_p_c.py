@@ -64,6 +64,8 @@ class CloudPC(Entity):
     provisioning_policy_name: Optional[str] = None
     # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. Default value is dedicated.
     provisioning_type: Optional[CloudPcProvisioningType] = None
+    # The scopeIds property
+    scope_ids: Optional[List[str]] = None
     # The service plan ID of the Cloud PC.
     service_plan_id: Optional[str] = None
     # The service plan name of the Cloud PC.
@@ -145,6 +147,7 @@ class CloudPC(Entity):
             "provisioningPolicyId": lambda n : setattr(self, 'provisioning_policy_id', n.get_str_value()),
             "provisioningPolicyName": lambda n : setattr(self, 'provisioning_policy_name', n.get_str_value()),
             "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
+            "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
             "servicePlanId": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
             "servicePlanName": lambda n : setattr(self, 'service_plan_name', n.get_str_value()),
             "servicePlanType": lambda n : setattr(self, 'service_plan_type', n.get_enum_value(CloudPcServicePlanType)),
@@ -185,6 +188,7 @@ class CloudPC(Entity):
         writer.write_str_value("provisioningPolicyId", self.provisioning_policy_id)
         writer.write_str_value("provisioningPolicyName", self.provisioning_policy_name)
         writer.write_enum_value("provisioningType", self.provisioning_type)
+        writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
         writer.write_str_value("servicePlanId", self.service_plan_id)
         writer.write_str_value("servicePlanName", self.service_plan_name)
         writer.write_enum_value("servicePlanType", self.service_plan_type)

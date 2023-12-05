@@ -13,7 +13,7 @@ from .gcp_identity import GcpIdentity
 class GcpCloudFunction(GcpIdentity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gcpCloudFunction"
-    # The resource property
+    # Represents the resources in an authorization system..
     resource: Optional[GcpAuthorizationSystemResource] = None
     
     @staticmethod

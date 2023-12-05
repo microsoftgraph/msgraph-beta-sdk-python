@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ........models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .item.identity_user_flow_attribute_item_request_builder import IdentityUserFlowAttributeItemRequestBuilder
+    from .ref.ref_request_builder import RefRequestBuilder
 
 class AttributesRequestBuilder(BaseRequestBuilder):
     """
@@ -30,8 +31,8 @@ class AttributesRequestBuilder(BaseRequestBuilder):
     
     def by_identity_user_flow_attribute_id(self,identity_user_flow_attribute_id: str) -> IdentityUserFlowAttributeItemRequestBuilder:
         """
-        Provides operations to manage the attributes property of the microsoft.graph.onAttributeCollectionExternalUsersSelfServiceSignUp entity.
-        param identity_user_flow_attribute_id: The unique identifier of identityUserFlowAttribute
+        Gets an item from the msgraph_beta.generated.identity.authenticationEventsFlows.item.graphExternalUsersSelfServiceSignUpEventsFlow.onAttributeCollection.graphOnAttributeCollectionExternalUsersSelfServiceSignUp.attributes.item collection
+        param identity_user_flow_attribute_id: Unique identifier of the item
         Returns: IdentityUserFlowAttributeItemRequestBuilder
         """
         if not identity_user_flow_attribute_id:
@@ -77,7 +78,7 @@ class AttributesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> AttributesRequestBuilder:
@@ -98,6 +99,15 @@ class AttributesRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ref(self) -> RefRequestBuilder:
+        """
+        Provides operations to manage the collection of identityContainer entities.
+        """
+        from .ref.ref_request_builder import RefRequestBuilder
+
+        return RefRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AttributesRequestBuilderGetQueryParameters():

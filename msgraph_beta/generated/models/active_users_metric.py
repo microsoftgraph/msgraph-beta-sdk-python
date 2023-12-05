@@ -11,9 +11,9 @@ from .entity import Entity
 
 @dataclass
 class ActiveUsersMetric(Entity):
-    # The count property
+    # The total number of users who made at least one authentication request within the specified time period.
     count: Optional[int] = None
-    # The factDate property
+    # Date of the insight.
     fact_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -44,7 +44,7 @@ class PlansRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PlansRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerPlanCollectionResponse]:
         """
-        Get the plannerPlans contained by the plannerRoster. This API is available in the following national cloud deployments.
+        Get the plannerPlans contained by the plannerRoster.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlanCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/plannerroster-list-plans?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class PlansRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the plannerPlans contained by the plannerRoster. This API is available in the following national cloud deployments.
+        Get the plannerPlans contained by the plannerRoster.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -78,7 +78,7 @@ class PlansRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> PlansRequestBuilder:
@@ -103,7 +103,7 @@ class PlansRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlansRequestBuilderGetQueryParameters():
         """
-        Get the plannerPlans contained by the plannerRoster. This API is available in the following national cloud deployments.
+        Get the plannerPlans contained by the plannerRoster.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

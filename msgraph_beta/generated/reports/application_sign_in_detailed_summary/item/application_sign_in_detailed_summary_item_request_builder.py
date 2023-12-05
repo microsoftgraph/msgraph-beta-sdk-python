@@ -47,7 +47,7 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ApplicationSignInDetailedSummary]:
         """
-        Retrieve the properties and relationships of an applicationSignInDetailedSummary object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of an applicationSignInDetailedSummary object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApplicationSignInDetailedSummary]
         Find more info here: https://learn.microsoft.com/graph/api/applicationsignindetailedsummary-get?view=graph-rest-1.0
@@ -104,12 +104,12 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an applicationSignInDetailedSummary object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of an applicationSignInDetailedSummary object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -121,7 +121,7 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[ApplicationSignInDetailedSummary] = None, request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -140,7 +140,7 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -167,7 +167,7 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApplicationSignInDetailedSummaryItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an applicationSignInDetailedSummary object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of an applicationSignInDetailedSummary object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

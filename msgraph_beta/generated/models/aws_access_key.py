@@ -13,7 +13,7 @@ from .aws_identity import AwsIdentity
 class AwsAccessKey(AwsIdentity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsAccessKey"
-    # The owner property
+    # Represents the owner of the access key.
     owner: Optional[AwsUser] = None
     
     @staticmethod

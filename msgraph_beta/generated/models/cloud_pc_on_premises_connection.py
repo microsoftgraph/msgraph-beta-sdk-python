@@ -38,6 +38,8 @@ class CloudPcOnPremisesConnection(Entity):
     organizational_unit: Optional[str] = None
     # The ID of the target resource group. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}.
     resource_group_id: Optional[str] = None
+    # The scopeIds property
+    scope_ids: Optional[List[str]] = None
     # The ID of the target subnet. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkId}/subnets/{subnetName}.
     subnet_id: Optional[str] = None
     # The ID of the target Azure subscription that’s associated with your tenant.
@@ -91,6 +93,7 @@ class CloudPcOnPremisesConnection(Entity):
             "managedBy": lambda n : setattr(self, 'managed_by', n.get_collection_of_enum_values(CloudPcManagementService)),
             "organizationalUnit": lambda n : setattr(self, 'organizational_unit', n.get_str_value()),
             "resourceGroupId": lambda n : setattr(self, 'resource_group_id', n.get_str_value()),
+            "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
             "subnetId": lambda n : setattr(self, 'subnet_id', n.get_str_value()),
             "subscriptionId": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
             "subscriptionName": lambda n : setattr(self, 'subscription_name', n.get_str_value()),
@@ -122,6 +125,7 @@ class CloudPcOnPremisesConnection(Entity):
         writer.write_enum_value("managedBy", self.managed_by)
         writer.write_str_value("organizationalUnit", self.organizational_unit)
         writer.write_str_value("resourceGroupId", self.resource_group_id)
+        writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
         writer.write_str_value("subnetId", self.subnet_id)
         writer.write_str_value("subscriptionId", self.subscription_id)
         writer.write_str_value("subscriptionName", self.subscription_name)

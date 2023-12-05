@@ -47,7 +47,7 @@ class FormsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[FormsRequestBuilderGetRequestConfiguration] = None) -> Optional[AdminForms]:
         """
-        Read the properties and relationships of a adminForms object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a adminForms object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdminForms]
         Find more info here: https://learn.microsoft.com/graph/api/adminforms-get?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class FormsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[AdminForms] = None, request_configuration: Optional[FormsRequestBuilderPatchRequestConfiguration] = None) -> Optional[AdminForms]:
         """
-        Update the properties of a adminForms object. This API is available in the following national cloud deployments.
+        Update the properties of a adminForms object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdminForms]
@@ -105,12 +105,12 @@ class FormsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[FormsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a adminForms object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a adminForms object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -122,12 +122,12 @@ class FormsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[AdminForms] = None, request_configuration: Optional[FormsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a adminForms object. This API is available in the following national cloud deployments.
+        Update the properties of a adminForms object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +141,7 @@ class FormsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -168,7 +168,7 @@ class FormsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FormsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a adminForms object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a adminForms object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

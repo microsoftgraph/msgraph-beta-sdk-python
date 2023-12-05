@@ -12,7 +12,7 @@ from .authorization_system_identity_source import AuthorizationSystemIdentitySou
 class GsuiteSource(AuthorizationSystemIdentitySource):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gsuiteSource"
-    # The domain property
+    # Domain name
     domain: Optional[str] = None
     
     @staticmethod

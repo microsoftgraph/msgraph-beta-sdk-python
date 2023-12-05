@@ -11,13 +11,13 @@ from .entity import Entity
 
 @dataclass
 class UserSignUpMetric(Entity):
-    # The count property
+    # The total number of users who signed up in the specified period. Supports $filter (eq).
     count: Optional[int] = None
-    # The factDate property
+    # The date of the user insight.
     fact_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The os property
+    # The device plaform that the customers used. Supports $filter (eq).
     os: Optional[str] = None
     
     @staticmethod

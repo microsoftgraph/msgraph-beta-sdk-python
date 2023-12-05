@@ -45,7 +45,7 @@ class CustomQuestionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CustomQuestionsRequestBuilderGetRequestConfiguration] = None) -> Optional[MeetingRegistrationQuestionCollectionResponse]:
         """
-        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer. This API is available in the following national cloud deployments.
+        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MeetingRegistrationQuestionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/meetingregistration-list-customquestions?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class CustomQuestionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[MeetingRegistrationQuestion] = None, request_configuration: Optional[CustomQuestionsRequestBuilderPostRequestConfiguration] = None) -> Optional[MeetingRegistrationQuestion]:
         """
-        Create a custom registration question associated with a meetingRegistration object on behalf of the organizer. This API is available in the following national cloud deployments.
+        Create a custom registration question associated with a meetingRegistration object on behalf of the organizer.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MeetingRegistrationQuestion]
@@ -92,7 +92,7 @@ class CustomQuestionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CustomQuestionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer. This API is available in the following national cloud deployments.
+        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,12 +104,12 @@ class CustomQuestionsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[MeetingRegistrationQuestion] = None, request_configuration: Optional[CustomQuestionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a custom registration question associated with a meetingRegistration object on behalf of the organizer. This API is available in the following national cloud deployments.
+        Create a custom registration question associated with a meetingRegistration object on behalf of the organizer.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class CustomQuestionsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -149,7 +149,7 @@ class CustomQuestionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustomQuestionsRequestBuilderGetQueryParameters():
         """
-        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer. This API is available in the following national cloud deployments.
+        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

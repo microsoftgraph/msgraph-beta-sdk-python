@@ -38,7 +38,7 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[CaseItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a case object. This API is available in the following national cloud deployments.
+        Delete a case object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-delete?view=graph-rest-1.0
@@ -58,7 +58,7 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CaseItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Case]:
         """
-        Retrieve the properties and relationships of a case object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a case object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Case]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-get?view=graph-rest-1.0
@@ -80,7 +80,7 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Case] = None, request_configuration: Optional[CaseItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Case]:
         """
-        Update the properties of a case object. This API is available in the following national cloud deployments.
+        Update the properties of a case object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Case]
@@ -105,7 +105,7 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[CaseItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a case object. This API is available in the following national cloud deployments.
+        Delete a case object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,12 +116,12 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[CaseItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a case object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a case object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,12 +133,12 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Case] = None, request_configuration: Optional[CaseItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a case object. This API is available in the following national cloud deployments.
+        Update the properties of a case object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -269,7 +269,7 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CaseItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a case object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a case object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

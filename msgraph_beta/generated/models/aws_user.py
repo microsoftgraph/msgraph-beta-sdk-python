@@ -13,7 +13,7 @@ from .aws_identity import AwsIdentity
 class AwsUser(AwsIdentity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsUser"
-    # The assumableRoles property
+    # Roles assumed by the user.
     assumable_roles: Optional[List[AwsRole]] = None
     
     @staticmethod

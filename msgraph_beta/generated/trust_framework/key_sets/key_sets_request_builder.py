@@ -45,7 +45,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> Optional[TrustFrameworkKeySetCollectionResponse]:
         """
-        Retrieve a list of trustFrameworkKeySets. This API is available in the following national cloud deployments.
+        Retrieve a list of trustFrameworkKeySets.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKeySetCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/trustframework-list-keysets?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
         """
-        Create a new trustFrameworkKeySet. The ID of the trustFrameworkKeySet is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header. This API is available in the following national cloud deployments.
+        Create a new trustFrameworkKeySet. The ID of the trustFrameworkKeySet is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKeySet]
@@ -92,7 +92,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of trustFrameworkKeySets. This API is available in the following national cloud deployments.
+        Retrieve a list of trustFrameworkKeySets.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,12 +104,12 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new trustFrameworkKeySet. The ID of the trustFrameworkKeySet is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header. This API is available in the following national cloud deployments.
+        Create a new trustFrameworkKeySet. The ID of the trustFrameworkKeySet is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -149,7 +149,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class KeySetsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of trustFrameworkKeySets. This API is available in the following national cloud deployments.
+        Retrieve a list of trustFrameworkKeySets.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

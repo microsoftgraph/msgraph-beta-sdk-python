@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .managed_app_policy import ManagedAppPolicy
     from .managed_app_remediation_action import ManagedAppRemediationAction
     from .managed_browser_type import ManagedBrowserType
+    from .messaging_redirect_app_type import MessagingRedirectAppType
     from .mobile_threat_defense_partner_priority import MobileThreatDefensePartnerPriority
     from .targeted_managed_app_protection import TargetedManagedAppProtection
 
@@ -119,6 +120,8 @@ class ManagedAppProtection(ManagedAppPolicy):
     previous_pin_block_count: Optional[int] = None
     # Indicates whether printing is allowed from managed apps.
     print_blocked: Optional[bool] = None
+    # Defines how app messaging redirection is protected by an App Protection Policy. Default is anyApp.
+    protected_messaging_redirect_app_type: Optional[MessagingRedirectAppType] = None
     # Indicates whether users may use the 'Save As' menu item to save a copy of protected files.
     save_as_blocked: Optional[bool] = None
     # Indicates whether simplePin is blocked.
@@ -174,6 +177,7 @@ class ManagedAppProtection(ManagedAppPolicy):
         from .managed_app_policy import ManagedAppPolicy
         from .managed_app_remediation_action import ManagedAppRemediationAction
         from .managed_browser_type import ManagedBrowserType
+        from .messaging_redirect_app_type import MessagingRedirectAppType
         from .mobile_threat_defense_partner_priority import MobileThreatDefensePartnerPriority
         from .targeted_managed_app_protection import TargetedManagedAppProtection
 
@@ -191,6 +195,7 @@ class ManagedAppProtection(ManagedAppPolicy):
         from .managed_app_policy import ManagedAppPolicy
         from .managed_app_remediation_action import ManagedAppRemediationAction
         from .managed_browser_type import ManagedBrowserType
+        from .messaging_redirect_app_type import MessagingRedirectAppType
         from .mobile_threat_defense_partner_priority import MobileThreatDefensePartnerPriority
         from .targeted_managed_app_protection import TargetedManagedAppProtection
 
@@ -239,6 +244,7 @@ class ManagedAppProtection(ManagedAppPolicy):
             "pinRequiredInsteadOfBiometricTimeout": lambda n : setattr(self, 'pin_required_instead_of_biometric_timeout', n.get_timedelta_value()),
             "previousPinBlockCount": lambda n : setattr(self, 'previous_pin_block_count', n.get_int_value()),
             "printBlocked": lambda n : setattr(self, 'print_blocked', n.get_bool_value()),
+            "protectedMessagingRedirectAppType": lambda n : setattr(self, 'protected_messaging_redirect_app_type', n.get_enum_value(MessagingRedirectAppType)),
             "saveAsBlocked": lambda n : setattr(self, 'save_as_blocked', n.get_bool_value()),
             "simplePinBlocked": lambda n : setattr(self, 'simple_pin_blocked', n.get_bool_value()),
         }
@@ -299,6 +305,7 @@ class ManagedAppProtection(ManagedAppPolicy):
         writer.write_timedelta_value("pinRequiredInsteadOfBiometricTimeout", self.pin_required_instead_of_biometric_timeout)
         writer.write_int_value("previousPinBlockCount", self.previous_pin_block_count)
         writer.write_bool_value("printBlocked", self.print_blocked)
+        writer.write_enum_value("protectedMessagingRedirectAppType", self.protected_messaging_redirect_app_type)
         writer.write_bool_value("saveAsBlocked", self.save_as_blocked)
         writer.write_bool_value("simplePinBlocked", self.simple_pin_blocked)
     

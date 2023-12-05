@@ -13,4 +13,5 @@ class CloudPcReportName(str, Enum):
     RemoteConnectionQualityReports = "remoteConnectionQualityReports",
     InaccessibleCloudPcReports = "inaccessibleCloudPcReports",
     RawRemoteConnectionReports = "rawRemoteConnectionReports",
+    CloudPcUsageCategoryReports = "cloudPcUsageCategoryReports",
 

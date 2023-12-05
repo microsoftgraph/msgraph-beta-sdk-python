@@ -28,7 +28,7 @@ class GetInaccessibleCloudPcReportsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GetInaccessibleCloudPcReportsPostRequestBody] = None, request_configuration: Optional[GetInaccessibleCloudPcReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Get inaccessible Cloud PCs with details, including the latest health state, failed connection count, failed health check count, and system status. An inaccessible Cloud PC represents a Cloud PC that is in an unavailable state (at least one of the health checks failed) or has consecutive user connections failure. This API is available in the following national cloud deployments.
+        Get inaccessible Cloud PCs with details, including the latest health state, failed connection count, failed health check count, and system status. An inaccessible Cloud PC represents a Cloud PC that is in an unavailable state (at least one of the health checks failed) or has consecutive user connections failure.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
@@ -51,7 +51,7 @@ class GetInaccessibleCloudPcReportsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GetInaccessibleCloudPcReportsPostRequestBody] = None, request_configuration: Optional[GetInaccessibleCloudPcReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Get inaccessible Cloud PCs with details, including the latest health state, failed connection count, failed health check count, and system status. An inaccessible Cloud PC represents a Cloud PC that is in an unavailable state (at least one of the health checks failed) or has consecutive user connections failure. This API is available in the following national cloud deployments.
+        Get inaccessible Cloud PCs with details, including the latest health state, failed connection count, failed health check count, and system status. An inaccessible Cloud PC represents a Cloud PC that is in an unavailable state (at least one of the health checks failed) or has consecutive user connections failure.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -65,7 +65,7 @@ class GetInaccessibleCloudPcReportsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/octet-stream, application/json, application/json")
+        request_info.headers.try_add("Accept", "application/octet-stream, application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

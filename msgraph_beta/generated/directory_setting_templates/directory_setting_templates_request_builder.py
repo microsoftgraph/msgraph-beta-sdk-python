@@ -49,7 +49,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DirectorySettingTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectorySettingTemplateCollectionResponse]:
         """
-        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects. This API is available in the following national cloud deployments.
+        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectorySettingTemplateCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/directorysettingtemplate-list?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DirectorySettingTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects. This API is available in the following national cloud deployments.
+        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +107,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[DirectorySettingTemplate] = None, request_configuration: Optional[DirectorySettingTemplatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -126,7 +126,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -188,7 +188,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DirectorySettingTemplatesRequestBuilderGetQueryParameters():
         """
-        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects. This API is available in the following national cloud deployments.
+        Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.external_users_self_service_sign_up_events_flow import ExternalUsersSelfServiceSignUpEventsFlow
     from .....models.o_data_errors.o_data_error import ODataError
+    from .conditions.conditions_request_builder import ConditionsRequestBuilder
     from .on_attribute_collection.on_attribute_collection_request_builder import OnAttributeCollectionRequestBuilder
     from .on_authentication_method_load_start.on_authentication_method_load_start_request_builder import OnAuthenticationMethodLoadStartRequestBuilder
 
@@ -63,7 +64,7 @@ class GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder(BaseRequestBui
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder:
@@ -75,6 +76,15 @@ class GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder(BaseRequestBui
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def conditions(self) -> ConditionsRequestBuilder:
+        """
+        The conditions property
+        """
+        from .conditions.conditions_request_builder import ConditionsRequestBuilder
+
+        return ConditionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def on_attribute_collection(self) -> OnAttributeCollectionRequestBuilder:
