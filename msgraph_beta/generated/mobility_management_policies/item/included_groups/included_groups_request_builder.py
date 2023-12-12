@@ -32,7 +32,7 @@ class IncludedGroupsRequestBuilder(BaseRequestBuilder):
     def by_group_id(self,group_id: str) -> GroupItemRequestBuilder:
         """
         Gets an item from the msgraph_beta.generated.mobilityManagementPolicies.item.includedGroups.item collection
-        param group_id: Unique identifier of the item
+        param group_id: The unique identifier of group
         Returns: GroupItemRequestBuilder
         """
         if not group_id:
@@ -45,7 +45,7 @@ class IncludedGroupsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[IncludedGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupCollectionResponse]:
         """
-        Get the list of groups that are included in a mobile app management policy. This API is available in the following national cloud deployments.
+        Get the list of groups that are included in a mobile app management policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GroupCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/mobileappmanagementpolicies-list-includedgroups?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class IncludedGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[IncludedGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of groups that are included in a mobile app management policy. This API is available in the following national cloud deployments.
+        Get the list of groups that are included in a mobile app management policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +79,7 @@ class IncludedGroupsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> IncludedGroupsRequestBuilder:
@@ -113,7 +113,7 @@ class IncludedGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IncludedGroupsRequestBuilderGetQueryParameters():
         """
-        Get the list of groups that are included in a mobile app management policy. This API is available in the following national cloud deployments.
+        Get the list of groups that are included in a mobile app management policy.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

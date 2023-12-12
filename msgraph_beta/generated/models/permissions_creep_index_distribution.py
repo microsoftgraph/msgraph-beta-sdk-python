@@ -15,7 +15,7 @@ from .entity import Entity
 class PermissionsCreepIndexDistribution(Entity):
     # The authorizationSystem property
     authorization_system: Optional[AuthorizationSystem] = None
-    # The createdDateTime property
+    # Defines when the PCI distribution was created.
     created_date_time: Optional[datetime.datetime] = None
     # The highRiskProfile property
     high_risk_profile: Optional[RiskProfile] = None

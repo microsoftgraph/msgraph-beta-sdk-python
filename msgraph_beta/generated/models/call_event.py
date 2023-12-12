@@ -1,12 +1,13 @@
 from __future__ import annotations
+import datetime
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .call_direction import CallDirection
     from .call_event_type import CallEventType
     from .entity import Entity
+    from .participant import Participant
 
 from .entity import Entity
 
@@ -14,12 +15,12 @@ from .entity import Entity
 class CallEvent(Entity):
     # The callEventType property
     call_event_type: Optional[CallEventType] = None
-    # The direction property
-    direction: Optional[CallDirection] = None
-    # The joinCallUrl property
-    join_call_url: Optional[str] = None
+    # The eventDateTime property
+    event_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The participants property
+    participants: Optional[List[Participant]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CallEvent:
@@ -37,18 +38,18 @@ class CallEvent(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .call_direction import CallDirection
         from .call_event_type import CallEventType
         from .entity import Entity
+        from .participant import Participant
 
-        from .call_direction import CallDirection
         from .call_event_type import CallEventType
         from .entity import Entity
+        from .participant import Participant
 
         fields: Dict[str, Callable[[Any], None]] = {
             "callEventType": lambda n : setattr(self, 'call_event_type', n.get_enum_value(CallEventType)),
-            "direction": lambda n : setattr(self, 'direction', n.get_enum_value(CallDirection)),
-            "joinCallUrl": lambda n : setattr(self, 'join_call_url', n.get_str_value()),
+            "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
+            "participants": lambda n : setattr(self, 'participants', n.get_collection_of_object_values(Participant)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +65,7 @@ class CallEvent(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("callEventType", self.call_event_type)
-        writer.write_enum_value("direction", self.direction)
-        writer.write_str_value("joinCallUrl", self.join_call_url)
+        writer.write_datetime_value("eventDateTime", self.event_date_time)
+        writer.write_collection_of_object_values("participants", self.participants)
     
 

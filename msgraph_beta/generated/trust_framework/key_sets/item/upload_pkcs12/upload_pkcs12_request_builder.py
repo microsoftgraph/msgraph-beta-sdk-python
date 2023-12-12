@@ -29,7 +29,7 @@ class UploadPkcs12RequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[UploadPkcs12PostRequestBody] = None, request_configuration: Optional[UploadPkcs12RequestBuilderPostRequestConfiguration] = None) -> Optional[TrustFrameworkKey]:
         """
-        Upload a PKCS12 format key (PFX) to a trustFrameworkKeyset. The input is a base-64 encoded value of the Pfx certificate contents. This method returns trustFrameworkKey. This API is available in the following national cloud deployments.
+        Upload a PKCS12 format key (PFX) to a trustFrameworkKeyset. The input is a base-64 encoded value of the Pfx certificate contents. This method returns trustFrameworkKey.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKey]
@@ -54,7 +54,7 @@ class UploadPkcs12RequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[UploadPkcs12PostRequestBody] = None, request_configuration: Optional[UploadPkcs12RequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Upload a PKCS12 format key (PFX) to a trustFrameworkKeyset. The input is a base-64 encoded value of the Pfx certificate contents. This method returns trustFrameworkKey. This API is available in the following national cloud deployments.
+        Upload a PKCS12 format key (PFX) to a trustFrameworkKeyset. The input is a base-64 encoded value of the Pfx certificate contents. This method returns trustFrameworkKey.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -68,7 +68,7 @@ class UploadPkcs12RequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

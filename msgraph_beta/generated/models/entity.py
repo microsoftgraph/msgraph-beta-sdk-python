@@ -267,6 +267,9 @@ if TYPE_CHECKING:
     from .call_event import CallEvent
     from .call_recording import CallRecording
     from .call_records.call_record import CallRecord
+    from .call_records.organizer import Organizer
+    from .call_records.participant import Participant
+    from .call_records.participant_base import ParticipantBase
     from .call_records.segment import Segment
     from .call_records.session import Session
     from .call_transcript import CallTranscript
@@ -366,6 +369,7 @@ if TYPE_CHECKING:
     from .data_loss_prevention_policy import DataLossPreventionPolicy
     from .data_policy_operation import DataPolicyOperation
     from .data_sharing_consent import DataSharingConsent
+    from .day_note import DayNote
     from .default_device_compliance_policy import DefaultDeviceCompliancePolicy
     from .default_managed_app_protection import DefaultManagedAppProtection
     from .default_user_role_override import DefaultUserRoleOverride
@@ -662,6 +666,8 @@ if TYPE_CHECKING:
     from .gcp_role import GcpRole
     from .gcp_service_account import GcpServiceAccount
     from .gcp_user import GcpUser
+    from .goals import Goals
+    from .goals_export_job import GoalsExportJob
     from .governance_insight import GovernanceInsight
     from .governance_policy_template import GovernancePolicyTemplate
     from .governance_resource import GovernanceResource
@@ -1016,11 +1022,17 @@ if TYPE_CHECKING:
     from .networkaccess.cross_tenant_access_settings import CrossTenantAccessSettings
     from .networkaccess.device_link import DeviceLink
     from .networkaccess.enriched_audit_logs import EnrichedAuditLogs
+    from .networkaccess.filtering_policy import FilteringPolicy
+    from .networkaccess.filtering_policy_link import FilteringPolicyLink
+    from .networkaccess.filtering_profile import FilteringProfile
+    from .networkaccess.filtering_rule import FilteringRule
     from .networkaccess.forwarding_options import ForwardingOptions
     from .networkaccess.forwarding_policy import ForwardingPolicy
     from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
     from .networkaccess.forwarding_profile import ForwardingProfile
     from .networkaccess.forwarding_rule import ForwardingRule
+    from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
+    from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
     from .networkaccess.logs import Logs
     from .networkaccess.m365_forwarding_rule import M365ForwardingRule
     from .networkaccess.network_access_root import NetworkAccessRoot
@@ -1029,9 +1041,11 @@ if TYPE_CHECKING:
     from .networkaccess.policy_rule import PolicyRule
     from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
     from .networkaccess.profile import Profile
+    from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
     from .networkaccess.reports import Reports
     from .networkaccess.settings import Settings
     from .networkaccess.tenant_status import TenantStatus
+    from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
     from .note import Note
     from .notebook import Notebook
     from .notification import Notification
@@ -1058,6 +1072,7 @@ if TYPE_CHECKING:
     from .onenote_resource import OnenoteResource
     from .onenote_section import OnenoteSection
     from .online_meeting import OnlineMeeting
+    from .online_meeting_base import OnlineMeetingBase
     from .on_attribute_collection_listener import OnAttributeCollectionListener
     from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
     from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
@@ -1149,6 +1164,7 @@ if TYPE_CHECKING:
     from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
     from .play_prompt_operation import PlayPromptOperation
     from .policy_base import PolicyBase
+    from .policy_root import PolicyRoot
     from .policy_set import PolicySet
     from .policy_set_assignment import PolicySetAssignment
     from .policy_set_item import PolicySetItem
@@ -1199,6 +1215,7 @@ if TYPE_CHECKING:
     from .privilege_escalation_gcp_service_account_finding import PrivilegeEscalationGcpServiceAccountFinding
     from .privilege_escalation_user_finding import PrivilegeEscalationUserFinding
     from .privilege_management_elevation import PrivilegeManagementElevation
+    from .privilege_management_elevation_request import PrivilegeManagementElevationRequest
     from .profile import Profile
     from .profile_card_property import ProfileCardProperty
     from .profile_photo import ProfilePhoto
@@ -1277,6 +1294,9 @@ if TYPE_CHECKING:
     from .security.article import Article
     from .security.article_indicator import ArticleIndicator
     from .security.artifact import Artifact
+    from .security.audit_core_root import AuditCoreRoot
+    from .security.audit_log_query import AuditLogQuery
+    from .security.audit_log_record import AuditLogRecord
     from .security.authority_template import AuthorityTemplate
     from .security.case import Case
     from .security.cases_root import CasesRoot
@@ -1376,11 +1396,13 @@ if TYPE_CHECKING:
     from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
     from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
     from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
+    from .send_dtmf_tones_operation import SendDtmfTonesOperation
     from .sensitive_type import SensitiveType
     from .sensitivity_label import SensitivityLabel
     from .sensitivity_policy_settings import SensitivityPolicySettings
     from .sequential_activation_renewals_alert_configuration import SequentialActivationRenewalsAlertConfiguration
     from .sequential_activation_renewals_alert_incident import SequentialActivationRenewalsAlertIncident
+    from .service_activity import ServiceActivity
     from .service_announcement import ServiceAnnouncement
     from .service_announcement_attachment import ServiceAnnouncementAttachment
     from .service_announcement_base import ServiceAnnouncementBase
@@ -1625,10 +1647,14 @@ if TYPE_CHECKING:
     from .virtual_event_presenter import VirtualEventPresenter
     from .virtual_event_registration import VirtualEventRegistration
     from .virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
-    from .virtual_event_registration_question import VirtualEventRegistrationQuestion
+    from .virtual_event_registration_predefined_question import VirtualEventRegistrationPredefinedQuestion
+    from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
+    from .virtual_event_registratio_custom_question import VirtualEventRegistratioCustomQuestion
     from .virtual_event_session import VirtualEventSession
+    from .virtual_event_townhall import VirtualEventTownhall
     from .virtual_event_webinar import VirtualEventWebinar
     from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
+    from .virtual_machine_details import VirtualMachineDetails
     from .virtual_machine_with_aws_storage_bucket_access_finding import VirtualMachineWithAwsStorageBucketAccessFinding
     from .voice_authentication_method_configuration import VoiceAuthenticationMethodConfiguration
     from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
@@ -1812,6 +1838,7 @@ if TYPE_CHECKING:
     from .workspace import Workspace
     from .work_position import WorkPosition
     from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
+    from .x509_certificate_combination_configuration import X509CertificateCombinationConfiguration
     from .zebra_fota_artifact import ZebraFotaArtifact
     from .zebra_fota_connector import ZebraFotaConnector
     from .zebra_fota_deployment import ZebraFotaDeployment
@@ -2891,6 +2918,19 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .call_records.call_record import CallRecord
 
             return CallRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.callRecords.organizer".casefold():
+            from .call_records.organizer import Organizer
+
+            return Organizer()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.callRecords.participant".casefold():
+            from .call_records.participant import Participant
+            from .participant import Participant
+
+            return Participant()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.callRecords.participantBase".casefold():
+            from .call_records.participant_base import ParticipantBase
+
+            return ParticipantBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.callRecords.segment".casefold():
             from .call_records.segment import Segment
 
@@ -3289,6 +3329,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .data_sharing_consent import DataSharingConsent
 
             return DataSharingConsent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.dayNote".casefold():
+            from .day_note import DayNote
+
+            return DayNote()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.defaultDeviceCompliancePolicy".casefold():
             from .default_device_compliance_policy import DefaultDeviceCompliancePolicy
 
@@ -4490,6 +4534,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .gcp_user import GcpUser
 
             return GcpUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.goals".casefold():
+            from .goals import Goals
+
+            return Goals()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.goalsExportJob".casefold():
+            from .goals_export_job import GoalsExportJob
+
+            return GoalsExportJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.governanceInsight".casefold():
             from .governance_insight import GovernanceInsight
 
@@ -5913,6 +5965,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.enriched_audit_logs import EnrichedAuditLogs
 
             return EnrichedAuditLogs()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringPolicy".casefold():
+            from .networkaccess.filtering_policy import FilteringPolicy
+
+            return FilteringPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringPolicyLink".casefold():
+            from .networkaccess.filtering_policy_link import FilteringPolicyLink
+
+            return FilteringPolicyLink()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringProfile".casefold():
+            from .networkaccess.filtering_profile import FilteringProfile
+
+            return FilteringProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringRule".casefold():
+            from .networkaccess.filtering_rule import FilteringRule
+
+            return FilteringRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingOptions".casefold():
             from .networkaccess.forwarding_options import ForwardingOptions
 
@@ -5933,6 +6001,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.forwarding_rule import ForwardingRule
 
             return ForwardingRule()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.fqdnFilteringRule".casefold():
+            from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
+
+            return FqdnFilteringRule()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.internetAccessForwardingRule".casefold():
+            from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
+
+            return InternetAccessForwardingRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.logs".casefold():
             from .networkaccess.logs import Logs
 
@@ -5966,6 +6042,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .profile import Profile
 
             return Profile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.remoteNetworkHealthEvent".casefold():
+            from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
+
+            return RemoteNetworkHealthEvent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.reports".casefold():
             from .networkaccess.reports import Reports
 
@@ -5978,6 +6058,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.tenant_status import TenantStatus
 
             return TenantStatus()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategoryFilteringRule".casefold():
+            from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
+
+            return WebCategoryFilteringRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.noMfaOnRoleActivationAlertConfiguration".casefold():
             from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
 
@@ -6098,6 +6182,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .online_meeting import OnlineMeeting
 
             return OnlineMeeting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onlineMeetingBase".casefold():
+            from .online_meeting_base import OnlineMeetingBase
+
+            return OnlineMeetingBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPremisesAgent".casefold():
             from .on_premises_agent import OnPremisesAgent
 
@@ -6235,6 +6323,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return OverprovisionedUserFinding()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.participant".casefold():
+            from .call_records.participant import Participant
             from .participant import Participant
 
             return Participant()
@@ -6447,6 +6536,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.policy_base import PolicyBase
 
             return PolicyBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyRoot".casefold():
+            from .policy_root import PolicyRoot
+
+            return PolicyRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.policySet".casefold():
             from .policy_set import PolicySet
 
@@ -6647,6 +6740,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .privilege_management_elevation import PrivilegeManagementElevation
 
             return PrivilegeManagementElevation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeManagementElevationRequest".casefold():
+            from .privilege_management_elevation_request import PrivilegeManagementElevationRequest
+
+            return PrivilegeManagementElevationRequest()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.profile".casefold():
             from .networkaccess.profile import Profile
             from .profile import Profile
@@ -6966,6 +7063,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.artifact import Artifact
 
             return Artifact()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.auditCoreRoot".casefold():
+            from .security.audit_core_root import AuditCoreRoot
+
+            return AuditCoreRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.auditLogQuery".casefold():
+            from .security.audit_log_query import AuditLogQuery
+
+            return AuditLogQuery()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.auditLogRecord".casefold():
+            from .security.audit_log_record import AuditLogRecord
+
+            return AuditLogRecord()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.authorityTemplate".casefold():
             from .security.authority_template import AuthorityTemplate
 
@@ -7373,6 +7482,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
 
             return SecurityToolAwsUserAdministratorFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sendDtmfTonesOperation".casefold():
+            from .send_dtmf_tones_operation import SendDtmfTonesOperation
+
+            return SendDtmfTonesOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sensitiveType".casefold():
             from .sensitive_type import SensitiveType
 
@@ -7394,6 +7507,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .sequential_activation_renewals_alert_incident import SequentialActivationRenewalsAlertIncident
 
             return SequentialActivationRenewalsAlertIncident()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceActivity".casefold():
+            from .service_activity import ServiceActivity
+
+            return ServiceActivity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceAnnouncement".casefold():
             from .service_announcement import ServiceAnnouncement
 
@@ -8359,6 +8476,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .virtual_event_presenter import VirtualEventPresenter
 
             return VirtualEventPresenter()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventRegistratioCustomQuestion".casefold():
+            from .virtual_event_registratio_custom_question import VirtualEventRegistratioCustomQuestion
+
+            return VirtualEventRegistratioCustomQuestion()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventRegistration".casefold():
             from .virtual_event_registration import VirtualEventRegistration
 
@@ -8367,10 +8488,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
 
             return VirtualEventRegistrationConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventRegistrationQuestion".casefold():
-            from .virtual_event_registration_question import VirtualEventRegistrationQuestion
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventRegistrationPredefinedQuestion".casefold():
+            from .virtual_event_registration_predefined_question import VirtualEventRegistrationPredefinedQuestion
 
-            return VirtualEventRegistrationQuestion()
+            return VirtualEventRegistrationPredefinedQuestion()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventRegistrationQuestionBase".casefold():
+            from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
+
+            return VirtualEventRegistrationQuestionBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventSession".casefold():
             from .virtual_event_session import VirtualEventSession
 
@@ -8379,6 +8504,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .virtual_events_root import VirtualEventsRoot
 
             return VirtualEventsRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventTownhall".casefold():
+            from .virtual_event_townhall import VirtualEventTownhall
+
+            return VirtualEventTownhall()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventWebinar".casefold():
             from .virtual_event_webinar import VirtualEventWebinar
 
@@ -8387,6 +8516,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
 
             return VirtualEventWebinarRegistrationConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualMachineDetails".casefold():
+            from .virtual_machine_details import VirtualMachineDetails
+
+            return VirtualMachineDetails()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualMachineWithAwsStorageBucketAccessFinding".casefold():
             from .virtual_machine_with_aws_storage_bucket_access_finding import VirtualMachineWithAwsStorageBucketAccessFinding
 
@@ -9121,6 +9254,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
 
             return X509CertificateAuthenticationMethodConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.x509CertificateCombinationConfiguration".casefold():
+            from .x509_certificate_combination_configuration import X509CertificateCombinationConfiguration
+
+            return X509CertificateCombinationConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.zebraFotaArtifact".casefold():
             from .zebra_fota_artifact import ZebraFotaArtifact
 
@@ -9402,6 +9539,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .call_event import CallEvent
         from .call_recording import CallRecording
         from .call_records.call_record import CallRecord
+        from .call_records.organizer import Organizer
+        from .call_records.participant import Participant
+        from .call_records.participant_base import ParticipantBase
         from .call_records.segment import Segment
         from .call_records.session import Session
         from .call_transcript import CallTranscript
@@ -9501,6 +9641,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .data_loss_prevention_policy import DataLossPreventionPolicy
         from .data_policy_operation import DataPolicyOperation
         from .data_sharing_consent import DataSharingConsent
+        from .day_note import DayNote
         from .default_device_compliance_policy import DefaultDeviceCompliancePolicy
         from .default_managed_app_protection import DefaultManagedAppProtection
         from .default_user_role_override import DefaultUserRoleOverride
@@ -9797,6 +9938,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .gcp_role import GcpRole
         from .gcp_service_account import GcpServiceAccount
         from .gcp_user import GcpUser
+        from .goals import Goals
+        from .goals_export_job import GoalsExportJob
         from .governance_insight import GovernanceInsight
         from .governance_policy_template import GovernancePolicyTemplate
         from .governance_resource import GovernanceResource
@@ -10151,11 +10294,17 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.cross_tenant_access_settings import CrossTenantAccessSettings
         from .networkaccess.device_link import DeviceLink
         from .networkaccess.enriched_audit_logs import EnrichedAuditLogs
+        from .networkaccess.filtering_policy import FilteringPolicy
+        from .networkaccess.filtering_policy_link import FilteringPolicyLink
+        from .networkaccess.filtering_profile import FilteringProfile
+        from .networkaccess.filtering_rule import FilteringRule
         from .networkaccess.forwarding_options import ForwardingOptions
         from .networkaccess.forwarding_policy import ForwardingPolicy
         from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
         from .networkaccess.forwarding_profile import ForwardingProfile
         from .networkaccess.forwarding_rule import ForwardingRule
+        from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
+        from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
         from .networkaccess.logs import Logs
         from .networkaccess.m365_forwarding_rule import M365ForwardingRule
         from .networkaccess.network_access_root import NetworkAccessRoot
@@ -10164,9 +10313,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.policy_rule import PolicyRule
         from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
         from .networkaccess.profile import Profile
+        from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
         from .networkaccess.tenant_status import TenantStatus
+        from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
         from .note import Note
         from .notebook import Notebook
         from .notification import Notification
@@ -10193,6 +10344,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .onenote_resource import OnenoteResource
         from .onenote_section import OnenoteSection
         from .online_meeting import OnlineMeeting
+        from .online_meeting_base import OnlineMeetingBase
         from .on_attribute_collection_listener import OnAttributeCollectionListener
         from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
@@ -10284,6 +10436,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
+        from .policy_root import PolicyRoot
         from .policy_set import PolicySet
         from .policy_set_assignment import PolicySetAssignment
         from .policy_set_item import PolicySetItem
@@ -10334,6 +10487,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .privilege_escalation_gcp_service_account_finding import PrivilegeEscalationGcpServiceAccountFinding
         from .privilege_escalation_user_finding import PrivilegeEscalationUserFinding
         from .privilege_management_elevation import PrivilegeManagementElevation
+        from .privilege_management_elevation_request import PrivilegeManagementElevationRequest
         from .profile import Profile
         from .profile_card_property import ProfileCardProperty
         from .profile_photo import ProfilePhoto
@@ -10412,6 +10566,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.article import Article
         from .security.article_indicator import ArticleIndicator
         from .security.artifact import Artifact
+        from .security.audit_core_root import AuditCoreRoot
+        from .security.audit_log_query import AuditLogQuery
+        from .security.audit_log_record import AuditLogRecord
         from .security.authority_template import AuthorityTemplate
         from .security.case import Case
         from .security.cases_root import CasesRoot
@@ -10511,11 +10668,13 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
         from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
         from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
+        from .send_dtmf_tones_operation import SendDtmfTonesOperation
         from .sensitive_type import SensitiveType
         from .sensitivity_label import SensitivityLabel
         from .sensitivity_policy_settings import SensitivityPolicySettings
         from .sequential_activation_renewals_alert_configuration import SequentialActivationRenewalsAlertConfiguration
         from .sequential_activation_renewals_alert_incident import SequentialActivationRenewalsAlertIncident
+        from .service_activity import ServiceActivity
         from .service_announcement import ServiceAnnouncement
         from .service_announcement_attachment import ServiceAnnouncementAttachment
         from .service_announcement_base import ServiceAnnouncementBase
@@ -10760,10 +10919,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .virtual_event_presenter import VirtualEventPresenter
         from .virtual_event_registration import VirtualEventRegistration
         from .virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
-        from .virtual_event_registration_question import VirtualEventRegistrationQuestion
+        from .virtual_event_registration_predefined_question import VirtualEventRegistrationPredefinedQuestion
+        from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
+        from .virtual_event_registratio_custom_question import VirtualEventRegistratioCustomQuestion
         from .virtual_event_session import VirtualEventSession
+        from .virtual_event_townhall import VirtualEventTownhall
         from .virtual_event_webinar import VirtualEventWebinar
         from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
+        from .virtual_machine_details import VirtualMachineDetails
         from .virtual_machine_with_aws_storage_bucket_access_finding import VirtualMachineWithAwsStorageBucketAccessFinding
         from .voice_authentication_method_configuration import VoiceAuthenticationMethodConfiguration
         from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
@@ -10947,6 +11110,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workspace import Workspace
         from .work_position import WorkPosition
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
+        from .x509_certificate_combination_configuration import X509CertificateCombinationConfiguration
         from .zebra_fota_artifact import ZebraFotaArtifact
         from .zebra_fota_connector import ZebraFotaConnector
         from .zebra_fota_deployment import ZebraFotaDeployment
@@ -11213,6 +11377,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .call_event import CallEvent
         from .call_recording import CallRecording
         from .call_records.call_record import CallRecord
+        from .call_records.organizer import Organizer
+        from .call_records.participant import Participant
+        from .call_records.participant_base import ParticipantBase
         from .call_records.segment import Segment
         from .call_records.session import Session
         from .call_transcript import CallTranscript
@@ -11312,6 +11479,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .data_loss_prevention_policy import DataLossPreventionPolicy
         from .data_policy_operation import DataPolicyOperation
         from .data_sharing_consent import DataSharingConsent
+        from .day_note import DayNote
         from .default_device_compliance_policy import DefaultDeviceCompliancePolicy
         from .default_managed_app_protection import DefaultManagedAppProtection
         from .default_user_role_override import DefaultUserRoleOverride
@@ -11608,6 +11776,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .gcp_role import GcpRole
         from .gcp_service_account import GcpServiceAccount
         from .gcp_user import GcpUser
+        from .goals import Goals
+        from .goals_export_job import GoalsExportJob
         from .governance_insight import GovernanceInsight
         from .governance_policy_template import GovernancePolicyTemplate
         from .governance_resource import GovernanceResource
@@ -11962,11 +12132,17 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.cross_tenant_access_settings import CrossTenantAccessSettings
         from .networkaccess.device_link import DeviceLink
         from .networkaccess.enriched_audit_logs import EnrichedAuditLogs
+        from .networkaccess.filtering_policy import FilteringPolicy
+        from .networkaccess.filtering_policy_link import FilteringPolicyLink
+        from .networkaccess.filtering_profile import FilteringProfile
+        from .networkaccess.filtering_rule import FilteringRule
         from .networkaccess.forwarding_options import ForwardingOptions
         from .networkaccess.forwarding_policy import ForwardingPolicy
         from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
         from .networkaccess.forwarding_profile import ForwardingProfile
         from .networkaccess.forwarding_rule import ForwardingRule
+        from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
+        from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
         from .networkaccess.logs import Logs
         from .networkaccess.m365_forwarding_rule import M365ForwardingRule
         from .networkaccess.network_access_root import NetworkAccessRoot
@@ -11975,9 +12151,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.policy_rule import PolicyRule
         from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
         from .networkaccess.profile import Profile
+        from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
         from .networkaccess.tenant_status import TenantStatus
+        from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
         from .note import Note
         from .notebook import Notebook
         from .notification import Notification
@@ -12004,6 +12182,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .onenote_resource import OnenoteResource
         from .onenote_section import OnenoteSection
         from .online_meeting import OnlineMeeting
+        from .online_meeting_base import OnlineMeetingBase
         from .on_attribute_collection_listener import OnAttributeCollectionListener
         from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
@@ -12095,6 +12274,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
+        from .policy_root import PolicyRoot
         from .policy_set import PolicySet
         from .policy_set_assignment import PolicySetAssignment
         from .policy_set_item import PolicySetItem
@@ -12145,6 +12325,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .privilege_escalation_gcp_service_account_finding import PrivilegeEscalationGcpServiceAccountFinding
         from .privilege_escalation_user_finding import PrivilegeEscalationUserFinding
         from .privilege_management_elevation import PrivilegeManagementElevation
+        from .privilege_management_elevation_request import PrivilegeManagementElevationRequest
         from .profile import Profile
         from .profile_card_property import ProfileCardProperty
         from .profile_photo import ProfilePhoto
@@ -12223,6 +12404,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.article import Article
         from .security.article_indicator import ArticleIndicator
         from .security.artifact import Artifact
+        from .security.audit_core_root import AuditCoreRoot
+        from .security.audit_log_query import AuditLogQuery
+        from .security.audit_log_record import AuditLogRecord
         from .security.authority_template import AuthorityTemplate
         from .security.case import Case
         from .security.cases_root import CasesRoot
@@ -12322,11 +12506,13 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
         from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
         from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
+        from .send_dtmf_tones_operation import SendDtmfTonesOperation
         from .sensitive_type import SensitiveType
         from .sensitivity_label import SensitivityLabel
         from .sensitivity_policy_settings import SensitivityPolicySettings
         from .sequential_activation_renewals_alert_configuration import SequentialActivationRenewalsAlertConfiguration
         from .sequential_activation_renewals_alert_incident import SequentialActivationRenewalsAlertIncident
+        from .service_activity import ServiceActivity
         from .service_announcement import ServiceAnnouncement
         from .service_announcement_attachment import ServiceAnnouncementAttachment
         from .service_announcement_base import ServiceAnnouncementBase
@@ -12571,10 +12757,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .virtual_event_presenter import VirtualEventPresenter
         from .virtual_event_registration import VirtualEventRegistration
         from .virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
-        from .virtual_event_registration_question import VirtualEventRegistrationQuestion
+        from .virtual_event_registration_predefined_question import VirtualEventRegistrationPredefinedQuestion
+        from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
+        from .virtual_event_registratio_custom_question import VirtualEventRegistratioCustomQuestion
         from .virtual_event_session import VirtualEventSession
+        from .virtual_event_townhall import VirtualEventTownhall
         from .virtual_event_webinar import VirtualEventWebinar
         from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
+        from .virtual_machine_details import VirtualMachineDetails
         from .virtual_machine_with_aws_storage_bucket_access_finding import VirtualMachineWithAwsStorageBucketAccessFinding
         from .voice_authentication_method_configuration import VoiceAuthenticationMethodConfiguration
         from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
@@ -12758,6 +12948,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workspace import Workspace
         from .work_position import WorkPosition
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
+        from .x509_certificate_combination_configuration import X509CertificateCombinationConfiguration
         from .zebra_fota_artifact import ZebraFotaArtifact
         from .zebra_fota_connector import ZebraFotaConnector
         from .zebra_fota_deployment import ZebraFotaDeployment

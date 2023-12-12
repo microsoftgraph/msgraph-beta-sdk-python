@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .all_messages.all_messages_request_builder import AllMessagesRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .get_all_messages.get_all_messages_request_builder import GetAllMessagesRequestBuilder
+    from .get_all_retained_messages.get_all_retained_messages_request_builder import GetAllRetainedMessagesRequestBuilder
     from .item.chat_item_request_builder import ChatItemRequestBuilder
 
 class ChatsRequestBuilder(BaseRequestBuilder):
@@ -47,7 +48,7 @@ class ChatsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ChatsRequestBuilderGetRequestConfiguration] = None) -> Optional[ChatCollectionResponse]:
         """
-        Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to. This API is available in the following national cloud deployments.
+        Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChatCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/chat-list?view=graph-rest-1.0
@@ -93,7 +94,7 @@ class ChatsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ChatsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to. This API is available in the following national cloud deployments.
+        Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +106,7 @@ class ChatsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[Chat] = None, request_configuration: Optional[ChatsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -124,7 +125,7 @@ class ChatsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -165,10 +166,19 @@ class ChatsRequestBuilder(BaseRequestBuilder):
 
         return GetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def get_all_retained_messages(self) -> GetAllRetainedMessagesRequestBuilder:
+        """
+        Provides operations to call the getAllRetainedMessages method.
+        """
+        from .get_all_retained_messages.get_all_retained_messages_request_builder import GetAllRetainedMessagesRequestBuilder
+
+        return GetAllRetainedMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ChatsRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to. This API is available in the following national cloud deployments.
+        Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

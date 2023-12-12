@@ -16,17 +16,17 @@ class User(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The displayName property
+    # User display Name.
     display_name: Optional[str] = None
-    # The lastAccessDateTime property
+    # The date and time of the most recent access.
     last_access_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The trafficType property
     traffic_type: Optional[TrafficType] = None
-    # The userId property
+    # The ID for the user.
     user_id: Optional[str] = None
-    # The userPrincipalName property
+    # A unique identifier that is associated with a user in a system or directory. Typically, this value is an email address that is used for user authentication and identification.
     user_principal_name: Optional[str] = None
     # The userType property
     user_type: Optional[UserType] = None

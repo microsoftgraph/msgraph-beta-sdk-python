@@ -28,7 +28,7 @@ class GetRawRemoteConnectionReportsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GetRawRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[GetRawRemoteConnectionReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Get the raw real-time remote connection report for a Cloud PC without any calculation, such as roundTripTime or available bandwidth, which are aggregated hourly from the raw event data. This API is available in the following national cloud deployments.
+        Get the raw real-time remote connection report for a Cloud PC without any calculation, such as roundTripTime or available bandwidth, which are aggregated hourly from the raw event data.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
@@ -51,7 +51,7 @@ class GetRawRemoteConnectionReportsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GetRawRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[GetRawRemoteConnectionReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the raw real-time remote connection report for a Cloud PC without any calculation, such as roundTripTime or available bandwidth, which are aggregated hourly from the raw event data. This API is available in the following national cloud deployments.
+        Get the raw real-time remote connection report for a Cloud PC without any calculation, such as roundTripTime or available bandwidth, which are aggregated hourly from the raw event data.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -65,7 +65,7 @@ class GetRawRemoteConnectionReportsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/octet-stream, application/json, application/json")
+        request_info.headers.try_add("Accept", "application/octet-stream, application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

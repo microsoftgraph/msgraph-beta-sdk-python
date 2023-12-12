@@ -28,7 +28,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an existing userFlow object. This API is available in the following national cloud deployments.
+        Delete an existing userFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[IdentityUserFlow]:
         """
-        Retrieve the properties and associations for an userFlow object. This API is available in the following national cloud deployments.
+        Retrieve the properties and associations for an userFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityUserFlow]
         Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-get?view=graph-rest-1.0
@@ -94,7 +94,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an existing userFlow object. This API is available in the following national cloud deployments.
+        Delete an existing userFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,12 +105,12 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[IdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and associations for an userFlow object. This API is available in the following national cloud deployments.
+        Retrieve the properties and associations for an userFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -122,7 +122,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[IdentityUserFlow] = None, request_configuration: Optional[IdentityUserFlowItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -141,7 +141,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -168,7 +168,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IdentityUserFlowItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and associations for an userFlow object. This API is available in the following national cloud deployments.
+        Retrieve the properties and associations for an userFlow object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -14,15 +14,15 @@ class EntitiesSummary(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Count of unique devices that were seen.
+    # The number of unique devices that were seen.
     device_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The trafficType property
     traffic_type: Optional[TrafficType] = None
-    # Count of unique Microsoft Entra users that were seen.
+    # The number of unique Microsoft Entra ID users that were seen.
     user_count: Optional[int] = None
-    # Count of unique target workloads or hosts that were seen.
+    # The number of unique target workloads/hosts that were seen.
     workload_count: Optional[int] = None
     
     @staticmethod

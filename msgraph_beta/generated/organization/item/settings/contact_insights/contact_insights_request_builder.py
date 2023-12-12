@@ -47,7 +47,7 @@ class ContactInsightsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ContactInsightsRequestBuilderGetRequestConfiguration] = None) -> Optional[InsightsSettings]:
         """
-        Get the properties of an insightsSettings object for displaying or returning contact insights in an organization. This API is available in the following national cloud deployments.
+        Get the properties of an insightsSettings object for displaying or returning contact insights in an organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InsightsSettings]
         Find more info here: https://learn.microsoft.com/graph/api/organizationsettings-list-contactinsights?view=graph-rest-1.0
@@ -69,7 +69,7 @@ class ContactInsightsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[InsightsSettings] = None, request_configuration: Optional[ContactInsightsRequestBuilderPatchRequestConfiguration] = None) -> Optional[InsightsSettings]:
         """
-        Update privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy This API is available in the following national cloud deployments.
+        Update privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InsightsSettings]
@@ -105,12 +105,12 @@ class ContactInsightsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[ContactInsightsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of an insightsSettings object for displaying or returning contact insights in an organization. This API is available in the following national cloud deployments.
+        Get the properties of an insightsSettings object for displaying or returning contact insights in an organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -122,12 +122,12 @@ class ContactInsightsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[InsightsSettings] = None, request_configuration: Optional[ContactInsightsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy This API is available in the following national cloud deployments.
+        Update privacy settings to display or return the specified type of insights in an organization. The type of settings can be contact insights, item insights, or people insights. To learn more about customizing insights privacy for your organization, see:-  Customize item insights privacy -  Customize people insights privacy
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +141,7 @@ class ContactInsightsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -168,7 +168,7 @@ class ContactInsightsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContactInsightsRequestBuilderGetQueryParameters():
         """
-        Get the properties of an insightsSettings object for displaying or returning contact insights in an organization. This API is available in the following national cloud deployments.
+        Get the properties of an insightsSettings object for displaying or returning contact insights in an organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

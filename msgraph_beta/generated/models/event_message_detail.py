@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .channel_description_updated_event_message_detail import ChannelDescriptionUpdatedEventMessageDetail
     from .channel_renamed_event_message_detail import ChannelRenamedEventMessageDetail
     from .channel_set_as_favorite_by_default_event_message_detail import ChannelSetAsFavoriteByDefaultEventMessageDetail
+    from .channel_sharing_updated_event_message_detail import ChannelSharingUpdatedEventMessageDetail
     from .channel_unset_as_favorite_by_default_event_message_detail import ChannelUnsetAsFavoriteByDefaultEventMessageDetail
     from .chat_renamed_event_message_detail import ChatRenamedEventMessageDetail
     from .conversation_member_role_updated_event_message_detail import ConversationMemberRoleUpdatedEventMessageDetail
@@ -95,6 +96,10 @@ class EventMessageDetail(AdditionalDataHolder, BackedModel, Parsable):
             from .channel_set_as_favorite_by_default_event_message_detail import ChannelSetAsFavoriteByDefaultEventMessageDetail
 
             return ChannelSetAsFavoriteByDefaultEventMessageDetail()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.channelSharingUpdatedEventMessageDetail".casefold():
+            from .channel_sharing_updated_event_message_detail import ChannelSharingUpdatedEventMessageDetail
+
+            return ChannelSharingUpdatedEventMessageDetail()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.channelUnsetAsFavoriteByDefaultEventMessageDetail".casefold():
             from .channel_unset_as_favorite_by_default_event_message_detail import ChannelUnsetAsFavoriteByDefaultEventMessageDetail
 
@@ -195,6 +200,7 @@ class EventMessageDetail(AdditionalDataHolder, BackedModel, Parsable):
         from .channel_description_updated_event_message_detail import ChannelDescriptionUpdatedEventMessageDetail
         from .channel_renamed_event_message_detail import ChannelRenamedEventMessageDetail
         from .channel_set_as_favorite_by_default_event_message_detail import ChannelSetAsFavoriteByDefaultEventMessageDetail
+        from .channel_sharing_updated_event_message_detail import ChannelSharingUpdatedEventMessageDetail
         from .channel_unset_as_favorite_by_default_event_message_detail import ChannelUnsetAsFavoriteByDefaultEventMessageDetail
         from .chat_renamed_event_message_detail import ChatRenamedEventMessageDetail
         from .conversation_member_role_updated_event_message_detail import ConversationMemberRoleUpdatedEventMessageDetail
@@ -226,6 +232,7 @@ class EventMessageDetail(AdditionalDataHolder, BackedModel, Parsable):
         from .channel_description_updated_event_message_detail import ChannelDescriptionUpdatedEventMessageDetail
         from .channel_renamed_event_message_detail import ChannelRenamedEventMessageDetail
         from .channel_set_as_favorite_by_default_event_message_detail import ChannelSetAsFavoriteByDefaultEventMessageDetail
+        from .channel_sharing_updated_event_message_detail import ChannelSharingUpdatedEventMessageDetail
         from .channel_unset_as_favorite_by_default_event_message_detail import ChannelUnsetAsFavoriteByDefaultEventMessageDetail
         from .chat_renamed_event_message_detail import ChatRenamedEventMessageDetail
         from .conversation_member_role_updated_event_message_detail import ConversationMemberRoleUpdatedEventMessageDetail

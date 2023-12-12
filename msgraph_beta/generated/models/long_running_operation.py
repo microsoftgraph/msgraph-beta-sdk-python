@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .attack_simulation_operation import AttackSimulationOperation
     from .entity import Entity
+    from .goals_export_job import GoalsExportJob
     from .industry_data.file_validate_operation import FileValidateOperation
     from .industry_data.validate_operation import ValidateOperation
     from .long_running_operation_status import LongRunningOperationStatus
@@ -16,9 +17,9 @@ from .entity import Entity
 
 @dataclass
 class LongRunningOperation(Entity):
-    # The start time of the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The start time of the operation. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The time of the last action in the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The time of the last action in the operation. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_action_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -46,6 +47,10 @@ class LongRunningOperation(Entity):
             from .attack_simulation_operation import AttackSimulationOperation
 
             return AttackSimulationOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.goalsExportJob".casefold():
+            from .goals_export_job import GoalsExportJob
+
+            return GoalsExportJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.fileValidateOperation".casefold():
             from .industry_data.file_validate_operation import FileValidateOperation
 
@@ -67,6 +72,7 @@ class LongRunningOperation(Entity):
         """
         from .attack_simulation_operation import AttackSimulationOperation
         from .entity import Entity
+        from .goals_export_job import GoalsExportJob
         from .industry_data.file_validate_operation import FileValidateOperation
         from .industry_data.validate_operation import ValidateOperation
         from .long_running_operation_status import LongRunningOperationStatus
@@ -74,6 +80,7 @@ class LongRunningOperation(Entity):
 
         from .attack_simulation_operation import AttackSimulationOperation
         from .entity import Entity
+        from .goals_export_job import GoalsExportJob
         from .industry_data.file_validate_operation import FileValidateOperation
         from .industry_data.validate_operation import ValidateOperation
         from .long_running_operation_status import LongRunningOperationStatus

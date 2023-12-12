@@ -44,9 +44,10 @@ class UserCountRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[UserCountRequestBuilderGetRequestConfiguration] = None) -> Optional[UserCountMetricCollectionResponse]:
         """
-        Get userCount from reports
+        Get a list of daily user count on apps registered in your tenant configured for Microsoft Entra External ID for customers.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserCountMetricCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/dailyuserinsightmetricsroot-list-usercount?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +66,7 @@ class UserCountRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[UserCountRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get userCount from reports
+        Get a list of daily user count on apps registered in your tenant configured for Microsoft Entra External ID for customers.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +78,7 @@ class UserCountRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> UserCountRequestBuilder:
@@ -102,7 +103,7 @@ class UserCountRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserCountRequestBuilderGetQueryParameters():
         """
-        Get userCount from reports
+        Get a list of daily user count on apps registered in your tenant configured for Microsoft Entra External ID for customers.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

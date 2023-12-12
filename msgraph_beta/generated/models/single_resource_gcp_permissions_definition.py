@@ -15,7 +15,7 @@ class SingleResourceGcpPermissionsDefinition(PermissionsDefinition):
     odata_type: Optional[str] = "#microsoft.graph.singleResourceGcpPermissionsDefinition"
     # The actionInfo property
     action_info: Optional[GcpPermissionsDefinitionAction] = None
-    # The resourceId property
+    # Identifier for the resource.
     resource_id: Optional[str] = None
     
     @staticmethod

@@ -11,13 +11,13 @@ from .entity import Entity
 
 @dataclass
 class AzureRoleDefinition(Entity):
-    # The assignableScopes property
+    # Scopes at which the Azure role can be assigned. For more information about common patterns, see Understand Azure role definitions: AssignableScopes. Supports $filter (eq).
     assignable_scopes: Optional[List[str]] = None
     # The azureRoleDefinitionType property
     azure_role_definition_type: Optional[AzureRoleDefinitionType] = None
-    # The displayName property
+    # Name of the Azure role. Supports $filter (eq, contains).
     display_name: Optional[str] = None
-    # The externalId property
+    # Identifier of an Azure role defined by Microsoft Azure. Alternate key. Supports $filter (eq).
     external_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

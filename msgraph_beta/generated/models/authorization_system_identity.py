@@ -30,15 +30,15 @@ from .entity import Entity
 
 @dataclass
 class AuthorizationSystemIdentity(Entity):
-    # The authorizationSystem property
+    # Navigation to the authorizationSystem object
     authorization_system: Optional[AuthorizationSystem] = None
-    # The displayName property
+    # The name of the identity. Read-only. Supports $filter and (eq,contains).
     display_name: Optional[str] = None
-    # The externalId property
+    # Unique ID of the identity within the external system. Read-only.
     external_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The source property
+    # Represents details of the source of the identity.
     source: Optional[AuthorizationSystemIdentitySource] = None
     
     @staticmethod

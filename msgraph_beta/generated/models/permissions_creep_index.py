@@ -13,7 +13,7 @@ class PermissionsCreepIndex(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The score property
+    # This value represents how much risk an identity poses. This risk range is classified in three buckets: 0-33: low, 34-66: medium, 67-100: high..
     score: Optional[int] = None
     
     @staticmethod

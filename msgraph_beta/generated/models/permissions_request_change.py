@@ -13,17 +13,17 @@ from .entity import Entity
 
 @dataclass
 class PermissionsRequestChange(Entity):
-    # The activeOccurrenceStatus property
+    # The status of the active occurence of the schedule if one exists. The possible values are: grantingFailed, granted, granting, revoked, revoking, revokingFailed, unknownFutureValue.
     active_occurrence_status: Optional[PermissionsRequestOccurrenceStatus] = None
-    # The modificationDateTime property
+    # Time when the change occurred.
     modification_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The permissionsRequestId property
+    # The ID of the scheduledPermissionsRequest object.
     permissions_request_id: Optional[str] = None
     # The statusDetail property
     status_detail: Optional[StatusDetail] = None
-    # The ticketId property
+    # Represents the ticketing system identifier.
     ticket_id: Optional[str] = None
     
     @staticmethod

@@ -60,7 +60,7 @@ from .entity import Entity
 
 @dataclass
 class Finding(Entity):
-    # The createdDateTime property
+    # Defines when the finding was created.
     created_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

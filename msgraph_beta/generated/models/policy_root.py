@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
-from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
@@ -19,6 +18,7 @@ if TYPE_CHECKING:
     from .cross_tenant_access_policy import CrossTenantAccessPolicy
     from .device_registration_policy import DeviceRegistrationPolicy
     from .directory_role_access_review_policy import DirectoryRoleAccessReviewPolicy
+    from .entity import Entity
     from .external_identities_policy import ExternalIdentitiesPolicy
     from .feature_rollout_policy import FeatureRolloutPolicy
     from .federated_token_validation_policy import FederatedTokenValidationPolicy
@@ -33,13 +33,10 @@ if TYPE_CHECKING:
     from .unified_role_management_policy import UnifiedRoleManagementPolicy
     from .unified_role_management_policy_assignment import UnifiedRoleManagementPolicyAssignment
 
-@dataclass
-class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
-    # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+from .entity import Entity
 
-    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+@dataclass
+class PolicyRoot(Entity):
     # The policy that contains directory-level access review settings.
     access_review_policy: Optional[AccessReviewPolicy] = None
     # The policy that controls the idle time-out for web sessions for applications.
@@ -129,6 +126,7 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .device_registration_policy import DeviceRegistrationPolicy
         from .directory_role_access_review_policy import DirectoryRoleAccessReviewPolicy
+        from .entity import Entity
         from .external_identities_policy import ExternalIdentitiesPolicy
         from .feature_rollout_policy import FeatureRolloutPolicy
         from .federated_token_validation_policy import FederatedTokenValidationPolicy
@@ -157,6 +155,7 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .device_registration_policy import DeviceRegistrationPolicy
         from .directory_role_access_review_policy import DirectoryRoleAccessReviewPolicy
+        from .entity import Entity
         from .external_identities_policy import ExternalIdentitiesPolicy
         from .feature_rollout_policy import FeatureRolloutPolicy
         from .federated_token_validation_policy import FederatedTokenValidationPolicy
@@ -194,7 +193,6 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
             "identitySecurityDefaultsEnforcementPolicy": lambda n : setattr(self, 'identity_security_defaults_enforcement_policy', n.get_object_value(IdentitySecurityDefaultsEnforcementPolicy)),
             "mobileAppManagementPolicies": lambda n : setattr(self, 'mobile_app_management_policies', n.get_collection_of_object_values(MobilityManagementPolicy)),
             "mobileDeviceManagementPolicies": lambda n : setattr(self, 'mobile_device_management_policies', n.get_collection_of_object_values(MobilityManagementPolicy)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "permissionGrantPolicies": lambda n : setattr(self, 'permission_grant_policies', n.get_collection_of_object_values(PermissionGrantPolicy)),
             "roleManagementPolicies": lambda n : setattr(self, 'role_management_policies', n.get_collection_of_object_values(UnifiedRoleManagementPolicy)),
             "roleManagementPolicyAssignments": lambda n : setattr(self, 'role_management_policy_assignments', n.get_collection_of_object_values(UnifiedRoleManagementPolicyAssignment)),
@@ -202,6 +200,8 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
             "tokenIssuancePolicies": lambda n : setattr(self, 'token_issuance_policies', n.get_collection_of_object_values(TokenIssuancePolicy)),
             "tokenLifetimePolicies": lambda n : setattr(self, 'token_lifetime_policies', n.get_collection_of_object_values(TokenLifetimePolicy)),
         }
+        super_fields = super().get_field_deserializers()
+        fields.update(super_fields)
         return fields
     
     def serialize(self,writer: SerializationWriter) -> None:
@@ -212,6 +212,7 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        super().serialize(writer)
         writer.write_object_value("accessReviewPolicy", self.access_review_policy)
         writer.write_collection_of_object_values("activityBasedTimeoutPolicies", self.activity_based_timeout_policies)
         writer.write_object_value("adminConsentRequestPolicy", self.admin_consent_request_policy)
@@ -234,13 +235,11 @@ class PolicyRoot(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("identitySecurityDefaultsEnforcementPolicy", self.identity_security_defaults_enforcement_policy)
         writer.write_collection_of_object_values("mobileAppManagementPolicies", self.mobile_app_management_policies)
         writer.write_collection_of_object_values("mobileDeviceManagementPolicies", self.mobile_device_management_policies)
-        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("permissionGrantPolicies", self.permission_grant_policies)
         writer.write_collection_of_object_values("roleManagementPolicies", self.role_management_policies)
         writer.write_collection_of_object_values("roleManagementPolicyAssignments", self.role_management_policy_assignments)
         writer.write_collection_of_object_values("servicePrincipalCreationPolicies", self.service_principal_creation_policies)
         writer.write_collection_of_object_values("tokenIssuancePolicies", self.token_issuance_policies)
         writer.write_collection_of_object_values("tokenLifetimePolicies", self.token_lifetime_policies)
-        writer.write_additional_data_value(self.additional_data)
     
 

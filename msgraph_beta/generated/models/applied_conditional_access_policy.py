@@ -20,9 +20,9 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, BackedModel, Parsable
     # The custom authentication strength enforced in a Conditional Access policy.
     authentication_strength: Optional[AuthenticationStrength] = None
     # Refers to the conditional access policy conditions that aren't satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk, authenticationFlows, insiderRisk . You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk, authenticationFlows, insiderRisk. conditionalAccessConditions is a multi-valued enumeration and the property can contain multiple values in a comma-separated list.
-    conditions_not_satisfied: Optional[List[ConditionalAccessConditions]] = None
+    conditions_not_satisfied: Optional[ConditionalAccessConditions] = None
     # Refers to the conditional access policy conditions that are satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk, authenticationFlows, insiderRisk. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk, authenticationFlows, insiderRisk. conditionalAccessConditions is a multi-valued enumeration and the property can contain multiple values in a comma-separated list.
-    conditions_satisfied: Optional[List[ConditionalAccessConditions]] = None
+    conditions_satisfied: Optional[ConditionalAccessConditions] = None
     # Name of the conditional access policy.
     display_name: Optional[str] = None
     # Refers to the grant controls enforced by the conditional access policy (example: 'Require multi-factor authentication').
@@ -93,8 +93,8 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, BackedModel, Parsable
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("authenticationStrength", self.authentication_strength)
-        writer.write_collection_of_enum_values("conditionsNotSatisfied", self.conditions_not_satisfied)
-        writer.write_collection_of_enum_values("conditionsSatisfied", self.conditions_satisfied)
+        writer.write_enum_value("conditionsNotSatisfied", self.conditions_not_satisfied)
+        writer.write_enum_value("conditionsSatisfied", self.conditions_satisfied)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_primitive_values("enforcedGrantControls", self.enforced_grant_controls)
         writer.write_collection_of_primitive_values("enforcedSessionControls", self.enforced_session_controls)

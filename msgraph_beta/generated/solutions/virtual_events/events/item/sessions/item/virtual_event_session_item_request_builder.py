@@ -12,16 +12,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
     from .......models.virtual_event_session import VirtualEventSession
-    from .alternative_recording.alternative_recording_request_builder import AlternativeRecordingRequestBuilder
     from .attendance_reports.attendance_reports_request_builder import AttendanceReportsRequestBuilder
-    from .attendee_report.attendee_report_request_builder import AttendeeReportRequestBuilder
-    from .broadcast_recording.broadcast_recording_request_builder import BroadcastRecordingRequestBuilder
-    from .meeting_attendance_report.meeting_attendance_report_request_builder import MeetingAttendanceReportRequestBuilder
-    from .recording.recording_request_builder import RecordingRequestBuilder
-    from .recordings.recordings_request_builder import RecordingsRequestBuilder
-    from .registration.registration_request_builder import RegistrationRequestBuilder
+    from .presenters.presenters_request_builder import PresentersRequestBuilder
     from .registrations.registrations_request_builder import RegistrationsRequestBuilder
-    from .transcripts.transcripts_request_builder import TranscriptsRequestBuilder
 
 class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
     """
@@ -113,7 +106,7 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[VirtualEventSessionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -130,7 +123,7 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[VirtualEventSession] = None, request_configuration: Optional[VirtualEventSessionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -149,7 +142,7 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -164,76 +157,22 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
         return VirtualEventSessionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def alternative_recording(self) -> AlternativeRecordingRequestBuilder:
-        """
-        Provides operations to manage the media for the solutionsRoot entity.
-        """
-        from .alternative_recording.alternative_recording_request_builder import AlternativeRecordingRequestBuilder
-
-        return AlternativeRecordingRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def attendance_reports(self) -> AttendanceReportsRequestBuilder:
         """
-        Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeeting entity.
+        Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeetingBase entity.
         """
         from .attendance_reports.attendance_reports_request_builder import AttendanceReportsRequestBuilder
 
         return AttendanceReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def attendee_report(self) -> AttendeeReportRequestBuilder:
+    def presenters(self) -> PresentersRequestBuilder:
         """
-        Provides operations to manage the media for the solutionsRoot entity.
+        Provides operations to manage the presenters property of the microsoft.graph.virtualEventSession entity.
         """
-        from .attendee_report.attendee_report_request_builder import AttendeeReportRequestBuilder
+        from .presenters.presenters_request_builder import PresentersRequestBuilder
 
-        return AttendeeReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def broadcast_recording(self) -> BroadcastRecordingRequestBuilder:
-        """
-        Provides operations to manage the media for the solutionsRoot entity.
-        """
-        from .broadcast_recording.broadcast_recording_request_builder import BroadcastRecordingRequestBuilder
-
-        return BroadcastRecordingRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def meeting_attendance_report(self) -> MeetingAttendanceReportRequestBuilder:
-        """
-        Provides operations to manage the meetingAttendanceReport property of the microsoft.graph.onlineMeeting entity.
-        """
-        from .meeting_attendance_report.meeting_attendance_report_request_builder import MeetingAttendanceReportRequestBuilder
-
-        return MeetingAttendanceReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def recording(self) -> RecordingRequestBuilder:
-        """
-        Provides operations to manage the media for the solutionsRoot entity.
-        """
-        from .recording.recording_request_builder import RecordingRequestBuilder
-
-        return RecordingRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def recordings(self) -> RecordingsRequestBuilder:
-        """
-        Provides operations to manage the recordings property of the microsoft.graph.onlineMeeting entity.
-        """
-        from .recordings.recordings_request_builder import RecordingsRequestBuilder
-
-        return RecordingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def registration(self) -> RegistrationRequestBuilder:
-        """
-        Provides operations to manage the registration property of the microsoft.graph.onlineMeeting entity.
-        """
-        from .registration.registration_request_builder import RegistrationRequestBuilder
-
-        return RegistrationRequestBuilder(self.request_adapter, self.path_parameters)
+        return PresentersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def registrations(self) -> RegistrationsRequestBuilder:
@@ -243,15 +182,6 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
         from .registrations.registrations_request_builder import RegistrationsRequestBuilder
 
         return RegistrationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def transcripts(self) -> TranscriptsRequestBuilder:
-        """
-        Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
-        """
-        from .transcripts.transcripts_request_builder import TranscriptsRequestBuilder
-
-        return TranscriptsRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

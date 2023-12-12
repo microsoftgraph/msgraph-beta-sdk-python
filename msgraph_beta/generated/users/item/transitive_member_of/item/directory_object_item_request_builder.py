@@ -31,7 +31,7 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectoryObject]:
         """
-        The groups, including nested groups, and directory roles that a user is a member of. Nullable.
+        The groups, including nested groups and directory roles that a user is a member of. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObject]
         """
@@ -52,7 +52,7 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The groups, including nested groups, and directory roles that a user is a member of. Nullable.
+        The groups, including nested groups and directory roles that a user is a member of. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -64,7 +64,7 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> DirectoryObjectItemRequestBuilder:
@@ -107,7 +107,7 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DirectoryObjectItemRequestBuilderGetQueryParameters():
         """
-        The groups, including nested groups, and directory roles that a user is a member of. Nullable.
+        The groups, including nested groups and directory roles that a user is a member of. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

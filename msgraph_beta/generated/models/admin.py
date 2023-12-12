@@ -33,7 +33,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
     forms: Optional[AdminForms] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The people property
+    # Represents a setting to control people-related admin settings in the tenant.
     people: Optional[PeopleAdminSettings] = None
     # A container for administrative resources to manage reports.
     report_settings: Optional[AdminReportSettings] = None

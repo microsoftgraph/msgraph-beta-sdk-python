@@ -45,7 +45,7 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageAssignmentPolicyCollectionResponse]:
         """
-        In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=accessPackageAssignmentPolicies in the query. This API is available in the following national cloud deployments.
+        In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=accessPackageAssignmentPolicies in the query.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignmentPolicyCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackageassignmentpolicies?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AccessPackageAssignmentPolicy] = None, request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[AccessPackageAssignmentPolicy]:
         """
-        In Microsoft Entra entitlement management, create a new accessPackageAssignmentPolicy object. This API is available in the following national cloud deployments.
+        In Microsoft Entra entitlement management, create a new accessPackageAssignmentPolicy object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignmentPolicy]
@@ -92,7 +92,7 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=accessPackageAssignmentPolicies in the query. This API is available in the following national cloud deployments.
+        In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=accessPackageAssignmentPolicies in the query.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,12 +104,12 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[AccessPackageAssignmentPolicy] = None, request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In Microsoft Entra entitlement management, create a new accessPackageAssignmentPolicy object. This API is available in the following national cloud deployments.
+        In Microsoft Entra entitlement management, create a new accessPackageAssignmentPolicy object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -149,7 +149,7 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageAssignmentPoliciesRequestBuilderGetQueryParameters():
         """
-        In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=accessPackageAssignmentPolicies in the query. This API is available in the following national cloud deployments.
+        In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=accessPackageAssignmentPolicies in the query.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

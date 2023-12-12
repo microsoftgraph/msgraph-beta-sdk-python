@@ -43,7 +43,7 @@ class Authentication(Entity):
     phone_methods: Optional[List[PhoneAuthenticationMethod]] = None
     # The platformCredentialMethods property
     platform_credential_methods: Optional[List[PlatformCredentialAuthenticationMethod]] = None
-    # The settings and preferences for to the sign-in experience of a user.
+    # The settings and preferences for to the sign-in experience of a user. Use this property to configure the user's default multifactor authentication (MFA) method.
     sign_in_preferences: Optional[SignInPreferences] = None
     # The softwareOathMethods property
     software_oath_methods: Optional[List[SoftwareOathAuthenticationMethod]] = None

@@ -47,7 +47,7 @@ class ProvisioningObjectSummaryItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ProvisioningObjectSummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ProvisioningObjectSummary]:
         """
-        Get provisioning from auditLogs
+        Represents an action performed by the Microsoft Entra provisioning service and its associated properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProvisioningObjectSummary]
         """
@@ -103,12 +103,12 @@ class ProvisioningObjectSummaryItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[ProvisioningObjectSummaryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get provisioning from auditLogs
+        Represents an action performed by the Microsoft Entra provisioning service and its associated properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +120,7 @@ class ProvisioningObjectSummaryItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[ProvisioningObjectSummary] = None, request_configuration: Optional[ProvisioningObjectSummaryItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -139,7 +139,7 @@ class ProvisioningObjectSummaryItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -166,7 +166,7 @@ class ProvisioningObjectSummaryItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProvisioningObjectSummaryItemRequestBuilderGetQueryParameters():
         """
-        Get provisioning from auditLogs
+        Represents an action performed by the Microsoft Entra provisioning service and its associated properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
