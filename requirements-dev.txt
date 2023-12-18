@@ -24,7 +24,7 @@ cryptography==41.0.7
 
 Deprecated==1.2.14
 
-frozenlist==1.4.0
+frozenlist==1.4.1
 
 h11==0.14.0
 
