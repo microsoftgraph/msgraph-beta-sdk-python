@@ -37,7 +37,7 @@ class EdiscoverySearchItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an ediscoverySearch object. This API is available in the following national cloud deployments.
+        Delete an ediscoverySearch object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0
@@ -57,7 +57,7 @@ class EdiscoverySearchItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EdiscoverySearch]:
         """
-        Read the properties and relationships of an ediscoverySearch object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of an ediscoverySearch object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EdiscoverySearch]
         Find more info here: https://learn.microsoft.com/graph/api/security-ediscoverysearch-get?view=graph-rest-1.0
@@ -79,7 +79,7 @@ class EdiscoverySearchItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[EdiscoverySearch] = None, request_configuration: Optional[EdiscoverySearchItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EdiscoverySearch]:
         """
-        Update the properties of an ediscoverySearch object. This API is available in the following national cloud deployments.
+        Update the properties of an ediscoverySearch object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EdiscoverySearch]
@@ -104,7 +104,7 @@ class EdiscoverySearchItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an ediscoverySearch object. This API is available in the following national cloud deployments.
+        Delete an ediscoverySearch object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,12 +115,12 @@ class EdiscoverySearchItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[EdiscoverySearchItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an ediscoverySearch object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of an ediscoverySearch object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -132,12 +132,12 @@ class EdiscoverySearchItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[EdiscoverySearch] = None, request_configuration: Optional[EdiscoverySearchItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an ediscoverySearch object. This API is available in the following national cloud deployments.
+        Update the properties of an ediscoverySearch object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -151,7 +151,7 @@ class EdiscoverySearchItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -259,7 +259,7 @@ class EdiscoverySearchItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EdiscoverySearchItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an ediscoverySearch object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of an ediscoverySearch object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

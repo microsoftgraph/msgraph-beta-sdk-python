@@ -13,6 +13,8 @@ if TYPE_CHECKING:
     from .custom_extension_endpoint_configuration import CustomExtensionEndpointConfiguration
     from .entity import Entity
     from .identity_governance.custom_task_extension import CustomTaskExtension
+    from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
+    from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
     from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
 from .entity import Entity
@@ -65,6 +67,14 @@ class CustomCalloutExtension(Entity):
             from .identity_governance.custom_task_extension import CustomTaskExtension
 
             return CustomTaskExtension()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onAttributeCollectionStartCustomExtension".casefold():
+            from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
+
+            return OnAttributeCollectionStartCustomExtension()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onAttributeCollectionSubmitCustomExtension".casefold():
+            from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
+
+            return OnAttributeCollectionSubmitCustomExtension()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onTokenIssuanceStartCustomExtension".casefold():
             from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
@@ -85,6 +95,8 @@ class CustomCalloutExtension(Entity):
         from .custom_extension_endpoint_configuration import CustomExtensionEndpointConfiguration
         from .entity import Entity
         from .identity_governance.custom_task_extension import CustomTaskExtension
+        from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
+        from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
         from .access_package_assignment_request_workflow_extension import AccessPackageAssignmentRequestWorkflowExtension
@@ -96,6 +108,8 @@ class CustomCalloutExtension(Entity):
         from .custom_extension_endpoint_configuration import CustomExtensionEndpointConfiguration
         from .entity import Entity
         from .identity_governance.custom_task_extension import CustomTaskExtension
+        from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
+        from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
         fields: Dict[str, Callable[[Any], None]] = {

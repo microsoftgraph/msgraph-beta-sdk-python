@@ -5,6 +5,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_callout_extension import CustomCalloutExtension
+    from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
+    from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
     from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
 from .custom_callout_extension import CustomCalloutExtension
@@ -27,6 +29,14 @@ class CustomAuthenticationExtension(CustomCalloutExtension):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onAttributeCollectionStartCustomExtension".casefold():
+            from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
+
+            return OnAttributeCollectionStartCustomExtension()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onAttributeCollectionSubmitCustomExtension".casefold():
+            from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
+
+            return OnAttributeCollectionSubmitCustomExtension()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onTokenIssuanceStartCustomExtension".casefold():
             from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
@@ -39,9 +49,13 @@ class CustomAuthenticationExtension(CustomCalloutExtension):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .custom_callout_extension import CustomCalloutExtension
+        from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
+        from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
         from .custom_callout_extension import CustomCalloutExtension
+        from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
+        from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
         fields: Dict[str, Callable[[Any], None]] = {

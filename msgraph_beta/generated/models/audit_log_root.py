@@ -17,7 +17,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The customSecurityAttributeAudits property
+    # Represents a custom security attribute audit log.
     custom_security_attribute_audits: Optional[List[CustomSecurityAttributeAudit]] = None
     # The directoryAudits property
     directory_audits: Optional[List[DirectoryAudit]] = None
@@ -25,7 +25,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
     directory_provisioning: Optional[List[ProvisioningObjectSummary]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The provisioning property
+    # Represents an action performed by the Microsoft Entra provisioning service and its associated properties.
     provisioning: Optional[List[ProvisioningObjectSummary]] = None
     # The signIns property
     sign_ins: Optional[List[SignIn]] = None

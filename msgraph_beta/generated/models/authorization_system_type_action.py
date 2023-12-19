@@ -15,13 +15,13 @@ from .entity import Entity
 
 @dataclass
 class AuthorizationSystemTypeAction(Entity):
-    # The actionType property
+    # The type of action allowed in the authorization system's service. The possible values are: delete, read, unknownFutureValue. Supports $filter and (eq).
     action_type: Optional[AuthorizationSystemActionType] = None
-    # The externalId property
+    # The display name of an action. Read-only. Supports $filter and (eq).
     external_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resourceTypes property
+    # The resource types in the authorization system's service where the action can be performed. Supports $filter and (eq).
     resource_types: Optional[List[str]] = None
     # The severity property
     severity: Optional[AuthorizationSystemActionSeverity] = None

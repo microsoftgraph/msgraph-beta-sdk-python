@@ -13,7 +13,7 @@ from .finding import Finding
 
 @dataclass
 class OpenAwsSecurityGroupFinding(Finding):
-    # The assignedComputeInstancesDetails property
+    # A set of AWS EC2 compute instances related to this open security group.
     assigned_compute_instances_details: Optional[List[AssignedComputeInstanceDetails]] = None
     # The inboundPorts property
     inbound_ports: Optional[InboundPorts] = None
@@ -21,7 +21,7 @@ class OpenAwsSecurityGroupFinding(Finding):
     odata_type: Optional[str] = None
     # The securityGroup property
     security_group: Optional[AwsAuthorizationSystemResource] = None
-    # The totalStorageBucketCount property
+    # The number of storage buckets accessed by the assigned compute instances.
     total_storage_bucket_count: Optional[int] = None
     
     @staticmethod

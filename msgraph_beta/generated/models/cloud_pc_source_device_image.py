@@ -17,6 +17,8 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, BackedModel, Parsable):
     id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The resourceId property
+    resource_id: Optional[str] = None
     # The display name of subscription that hosts the source image.
     subscription_display_name: Optional[str] = None
     # The ID of subscription that hosts the source image.
@@ -42,6 +44,7 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, BackedModel, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
             "subscriptionDisplayName": lambda n : setattr(self, 'subscription_display_name', n.get_str_value()),
             "subscriptionId": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
         }
@@ -58,6 +61,7 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("id", self.id)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("resourceId", self.resource_id)
         writer.write_str_value("subscriptionDisplayName", self.subscription_display_name)
         writer.write_str_value("subscriptionId", self.subscription_id)
         writer.write_additional_data_value(self.additional_data)

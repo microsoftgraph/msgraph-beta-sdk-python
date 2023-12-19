@@ -152,6 +152,7 @@ if TYPE_CHECKING:
     from .monthly_print_usage_summaries_by_printer.monthly_print_usage_summaries_by_printer_request_builder import MonthlyPrintUsageSummariesByPrinterRequestBuilder
     from .monthly_print_usage_summaries_by_user.monthly_print_usage_summaries_by_user_request_builder import MonthlyPrintUsageSummariesByUserRequestBuilder
     from .security.security_request_builder import SecurityRequestBuilder
+    from .service_activity.service_activity_request_builder import ServiceActivityRequestBuilder
     from .service_principal_sign_in_activities.service_principal_sign_in_activities_request_builder import ServicePrincipalSignInActivitiesRequestBuilder
     from .sla.sla_request_builder import SlaRequestBuilder
     from .user_credential_usage_details.user_credential_usage_details_request_builder import UserCredentialUsageDetailsRequestBuilder
@@ -1630,7 +1631,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[ReportRoot] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -1649,7 +1650,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -1896,6 +1897,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .security.security_request_builder import SecurityRequestBuilder
 
         return SecurityRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def service_activity(self) -> ServiceActivityRequestBuilder:
+        """
+        Provides operations to manage the serviceActivity property of the microsoft.graph.reportRoot entity.
+        """
+        from .service_activity.service_activity_request_builder import ServiceActivityRequestBuilder
+
+        return ServiceActivityRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def service_principal_sign_in_activities(self) -> ServicePrincipalSignInActivitiesRequestBuilder:

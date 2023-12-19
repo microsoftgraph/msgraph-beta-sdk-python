@@ -35,7 +35,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[SourceCollectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a sourceCollection object. This API is available in the following national cloud deployments.
+        Delete a sourceCollection object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-delete?view=graph-rest-1.0
@@ -76,7 +76,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[SourceCollection] = None, request_configuration: Optional[SourceCollectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SourceCollection]:
         """
-        Update the properties of a sourceCollection object. This API is available in the following national cloud deployments.
+        Update the properties of a sourceCollection object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SourceCollection]
@@ -101,7 +101,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[SourceCollectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a sourceCollection object. This API is available in the following national cloud deployments.
+        Delete a sourceCollection object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +112,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[SourceCollectionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -129,12 +129,12 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[SourceCollection] = None, request_configuration: Optional[SourceCollectionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a sourceCollection object. This API is available in the following national cloud deployments.
+        Update the properties of a sourceCollection object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,7 +148,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

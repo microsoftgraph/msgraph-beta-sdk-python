@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .identity_set import IdentitySet
+    from .planner_archival_info import PlannerArchivalInfo
     from .planner_bucket import PlannerBucket
     from .planner_delta import PlannerDelta
     from .planner_plan_container import PlannerPlanContainer
@@ -19,11 +20,13 @@ from .planner_delta import PlannerDelta
 
 @dataclass
 class PlannerPlan(PlannerDelta):
+    # The archivalInfo property
+    archival_info: Optional[PlannerArchivalInfo] = None
     # Collection of buckets in the plan. Read-only. Nullable.
     buckets: Optional[List[PlannerBucket]] = None
-    # Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it's set, this property can’t be updated. Required.
+    # Identifies the container of the plan. Either specify all properties, or specify only the url, the containerId, and type. After it's set, this property can’t be updated. It changes when a plan is moved from one container to another, using plan move to container. Required.
     container: Optional[PlannerPlanContainer] = None
-    # Read-only. Additional user experiences in which this plan is used, represented as plannerPlanContext entries.
+    # Read-only. Other user experiences in which this plan is used, represented as plannerPlanContext entries.
     contexts: Optional[PlannerPlanContextCollection] = None
     # Read-only. The user who created the plan.
     created_by: Optional[IdentitySet] = None
@@ -31,8 +34,10 @@ class PlannerPlan(PlannerDelta):
     created_date_time: Optional[datetime.datetime] = None
     # Contains information about the origin of the plan.
     creation_source: Optional[PlannerPlanCreation] = None
-    # Additional details about the plan. Read-only. Nullable.
+    # Extra details about the plan. Read-only. Nullable.
     details: Optional[PlannerPlanDetails] = None
+    # The isArchived property
+    is_archived: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The owner property
@@ -61,6 +66,7 @@ class PlannerPlan(PlannerDelta):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .identity_set import IdentitySet
+        from .planner_archival_info import PlannerArchivalInfo
         from .planner_bucket import PlannerBucket
         from .planner_delta import PlannerDelta
         from .planner_plan_container import PlannerPlanContainer
@@ -71,6 +77,7 @@ class PlannerPlan(PlannerDelta):
         from .planner_task import PlannerTask
 
         from .identity_set import IdentitySet
+        from .planner_archival_info import PlannerArchivalInfo
         from .planner_bucket import PlannerBucket
         from .planner_delta import PlannerDelta
         from .planner_plan_container import PlannerPlanContainer
@@ -81,6 +88,7 @@ class PlannerPlan(PlannerDelta):
         from .planner_task import PlannerTask
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "archivalInfo": lambda n : setattr(self, 'archival_info', n.get_object_value(PlannerArchivalInfo)),
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_object_values(PlannerBucket)),
             "container": lambda n : setattr(self, 'container', n.get_object_value(PlannerPlanContainer)),
             "contexts": lambda n : setattr(self, 'contexts', n.get_object_value(PlannerPlanContextCollection)),
@@ -88,6 +96,7 @@ class PlannerPlan(PlannerDelta):
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "creationSource": lambda n : setattr(self, 'creation_source', n.get_object_value(PlannerPlanCreation)),
             "details": lambda n : setattr(self, 'details', n.get_object_value(PlannerPlanDetails)),
+            "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
             "owner": lambda n : setattr(self, 'owner', n.get_str_value()),
             "sharedWithContainers": lambda n : setattr(self, 'shared_with_containers', n.get_collection_of_object_values(PlannerSharedWithContainer)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(PlannerTask)),
@@ -106,6 +115,7 @@ class PlannerPlan(PlannerDelta):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("archivalInfo", self.archival_info)
         writer.write_collection_of_object_values("buckets", self.buckets)
         writer.write_object_value("container", self.container)
         writer.write_object_value("contexts", self.contexts)
@@ -113,6 +123,7 @@ class PlannerPlan(PlannerDelta):
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("creationSource", self.creation_source)
         writer.write_object_value("details", self.details)
+        writer.write_bool_value("isArchived", self.is_archived)
         writer.write_str_value("owner", self.owner)
         writer.write_collection_of_object_values("sharedWithContainers", self.shared_with_containers)
         writer.write_collection_of_object_values("tasks", self.tasks)

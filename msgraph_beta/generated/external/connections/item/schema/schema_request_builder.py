@@ -28,7 +28,7 @@ class SchemaRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> Optional[Schema]:
         """
-        Retrieve the properties of a schema for an externalConnection. This API is available in the following national cloud deployments.
+        Retrieve the properties of a schema for an externalConnection.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Schema]
         Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
@@ -50,11 +50,11 @@ class SchemaRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Schema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> Optional[Schema]:
         """
-        Create the schema for a Microsoft Search connection. This API is available in the following national cloud deployments.
+        Update the properties of a schema for an externalConnection.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Schema]
-        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-patch-schema?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-schema-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -75,7 +75,7 @@ class SchemaRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of a schema for an externalConnection. This API is available in the following national cloud deployments.
+        Retrieve the properties of a schema for an externalConnection.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -87,12 +87,12 @@ class SchemaRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Schema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Create the schema for a Microsoft Search connection. This API is available in the following national cloud deployments.
+        Update the properties of a schema for an externalConnection.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -106,7 +106,7 @@ class SchemaRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -123,7 +123,7 @@ class SchemaRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SchemaRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a schema for an externalConnection. This API is available in the following national cloud deployments.
+        Retrieve the properties of a schema for an externalConnection.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

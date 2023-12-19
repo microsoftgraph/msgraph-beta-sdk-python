@@ -95,6 +95,12 @@ class DefaultManagedAppProtection(ManagedAppProtection):
     filter_open_in_to_only_managed_apps: Optional[bool] = None
     # Indicate to the client to enable both biometrics and fingerprints for the app.
     fingerprint_and_biometric_enabled: Optional[bool] = None
+    # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app name which are allowed to be used.
+    messaging_redirect_app_display_name: Optional[str] = None
+    # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app package ids which are allowed to be used.
+    messaging_redirect_app_package_id: Optional[str] = None
+    # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app url redirect schemes which are allowed to be used.
+    messaging_redirect_app_url_scheme: Optional[str] = None
     # Minimum version of the Company portal that must be installed on the device or app access will be blocked
     minimum_required_company_portal_version: Optional[str] = None
     # Define the oldest required Android security patch level a user can have to gain secure access to the app. (Android only)
@@ -207,6 +213,9 @@ class DefaultManagedAppProtection(ManagedAppProtection):
             "faceIdBlocked": lambda n : setattr(self, 'face_id_blocked', n.get_bool_value()),
             "filterOpenInToOnlyManagedApps": lambda n : setattr(self, 'filter_open_in_to_only_managed_apps', n.get_bool_value()),
             "fingerprintAndBiometricEnabled": lambda n : setattr(self, 'fingerprint_and_biometric_enabled', n.get_bool_value()),
+            "messagingRedirectAppDisplayName": lambda n : setattr(self, 'messaging_redirect_app_display_name', n.get_str_value()),
+            "messagingRedirectAppPackageId": lambda n : setattr(self, 'messaging_redirect_app_package_id', n.get_str_value()),
+            "messagingRedirectAppUrlScheme": lambda n : setattr(self, 'messaging_redirect_app_url_scheme', n.get_str_value()),
             "minimumRequiredCompanyPortalVersion": lambda n : setattr(self, 'minimum_required_company_portal_version', n.get_str_value()),
             "minimumRequiredPatchVersion": lambda n : setattr(self, 'minimum_required_patch_version', n.get_str_value()),
             "minimumRequiredSdkVersion": lambda n : setattr(self, 'minimum_required_sdk_version', n.get_str_value()),
@@ -276,6 +285,9 @@ class DefaultManagedAppProtection(ManagedAppProtection):
         writer.write_bool_value("faceIdBlocked", self.face_id_blocked)
         writer.write_bool_value("filterOpenInToOnlyManagedApps", self.filter_open_in_to_only_managed_apps)
         writer.write_bool_value("fingerprintAndBiometricEnabled", self.fingerprint_and_biometric_enabled)
+        writer.write_str_value("messagingRedirectAppDisplayName", self.messaging_redirect_app_display_name)
+        writer.write_str_value("messagingRedirectAppPackageId", self.messaging_redirect_app_package_id)
+        writer.write_str_value("messagingRedirectAppUrlScheme", self.messaging_redirect_app_url_scheme)
         writer.write_str_value("minimumRequiredCompanyPortalVersion", self.minimum_required_company_portal_version)
         writer.write_str_value("minimumRequiredPatchVersion", self.minimum_required_patch_version)
         writer.write_str_value("minimumRequiredSdkVersion", self.minimum_required_sdk_version)

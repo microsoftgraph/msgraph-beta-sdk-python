@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .operations.operations_request_builder import OperationsRequestBuilder
     from .permission_grants.permission_grants_request_builder import PermissionGrantsRequestBuilder
     from .pinned_messages.pinned_messages_request_builder import PinnedMessagesRequestBuilder
+    from .remove_all_access_for_user.remove_all_access_for_user_request_builder import RemoveAllAccessForUserRequestBuilder
     from .send_activity_notification.send_activity_notification_request_builder import SendActivityNotificationRequestBuilder
     from .tabs.tabs_request_builder import TabsRequestBuilder
     from .unhide_for_user.unhide_for_user_request_builder import UnhideForUserRequestBuilder
@@ -60,7 +61,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ChatItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Chat]:
         """
-        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from. This API is available in the following national cloud deployments.
+        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Chat]
         Find more info here: https://learn.microsoft.com/graph/api/chat-get?view=graph-rest-1.0
@@ -117,12 +118,12 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[ChatItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from. This API is available in the following national cloud deployments.
+        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -134,7 +135,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Chat] = None, request_configuration: Optional[ChatItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -153,7 +154,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -258,6 +259,15 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
         return PinnedMessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def remove_all_access_for_user(self) -> RemoveAllAccessForUserRequestBuilder:
+        """
+        Provides operations to call the removeAllAccessForUser method.
+        """
+        from .remove_all_access_for_user.remove_all_access_for_user_request_builder import RemoveAllAccessForUserRequestBuilder
+
+        return RemoveAllAccessForUserRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def send_activity_notification(self) -> SendActivityNotificationRequestBuilder:
         """
         Provides operations to call the sendActivityNotification method.
@@ -297,7 +307,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ChatItemRequestBuilderGetQueryParameters():
         """
-        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from. This API is available in the following national cloud deployments.
+        Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

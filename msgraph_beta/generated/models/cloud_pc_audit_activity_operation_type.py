@@ -4,5 +4,5 @@ class CloudPcAuditActivityOperationType(str, Enum):
     Create = "create",
     Delete = "delete",
     Patch = "patch",
-    Other = "other",
+    UnknownFutureValue = "unknownFutureValue",
 

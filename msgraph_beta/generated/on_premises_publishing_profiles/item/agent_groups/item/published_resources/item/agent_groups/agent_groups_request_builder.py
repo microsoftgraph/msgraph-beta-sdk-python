@@ -33,7 +33,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     def by_on_premises_agent_group_id1(self,on_premises_agent_group_id1: str) -> OnPremisesAgentGroupItemRequestBuilder:
         """
         Gets an item from the msgraph_beta.generated.onPremisesPublishingProfiles.item.agentGroups.item.publishedResources.item.agentGroups.item collection
-        param on_premises_agent_group_id1: Unique identifier of the item
+        param on_premises_agent_group_id1: The unique identifier of onPremisesAgentGroup
         Returns: OnPremisesAgentGroupItemRequestBuilder
         """
         if not on_premises_agent_group_id1:
@@ -103,7 +103,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[OnPremisesAgentGroup] = None, request_configuration: Optional[AgentGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -122,7 +122,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

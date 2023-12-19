@@ -28,7 +28,7 @@ class BookmarkItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[BookmarkItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a bookmark object. This API is available in the following national cloud deployments.
+        Delete a bookmark object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/search-bookmark-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class BookmarkItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[BookmarkItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Bookmark]:
         """
-        Read the properties and relationships of a bookmark object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a bookmark object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Bookmark]
         Find more info here: https://learn.microsoft.com/graph/api/search-bookmark-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class BookmarkItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Bookmark] = None, request_configuration: Optional[BookmarkItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Bookmark]:
         """
-        Update the properties of a bookmark object. This API is available in the following national cloud deployments.
+        Update the properties of a bookmark object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Bookmark]
@@ -95,7 +95,7 @@ class BookmarkItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[BookmarkItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a bookmark object. This API is available in the following national cloud deployments.
+        Delete a bookmark object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,12 +106,12 @@ class BookmarkItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[BookmarkItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a bookmark object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a bookmark object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -123,12 +123,12 @@ class BookmarkItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Bookmark] = None, request_configuration: Optional[BookmarkItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a bookmark object. This API is available in the following national cloud deployments.
+        Update the properties of a bookmark object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -142,7 +142,7 @@ class BookmarkItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -169,7 +169,7 @@ class BookmarkItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BookmarkItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a bookmark object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a bookmark object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

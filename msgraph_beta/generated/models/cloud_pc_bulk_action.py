@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
+    from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
     from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
     from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
     from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
@@ -43,6 +44,10 @@ class CloudPcBulkAction(Entity):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkModifyDiskEncryptionType".casefold():
+            from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
+
+            return CloudPcBulkModifyDiskEncryptionType()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkPowerOff".casefold():
             from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
 
@@ -79,6 +84,7 @@ class CloudPcBulkAction(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
+        from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
         from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
         from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
         from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
@@ -89,6 +95,7 @@ class CloudPcBulkAction(Entity):
         from .entity import Entity
 
         from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
+        from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
         from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
         from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
         from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision

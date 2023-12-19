@@ -11,9 +11,9 @@ from .entity import Entity
 
 @dataclass
 class UserCountMetric(Entity):
-    # The count property
+    # The total number of users in the tenant over time.
     count: Optional[int] = None
-    # The factDate property
+    # The date of the insight.
     fact_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None

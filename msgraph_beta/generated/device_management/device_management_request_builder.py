@@ -63,6 +63,7 @@ if TYPE_CHECKING:
     from .device_management_scripts.device_management_scripts_request_builder import DeviceManagementScriptsRequestBuilder
     from .device_shell_scripts.device_shell_scripts_request_builder import DeviceShellScriptsRequestBuilder
     from .domain_join_connectors.domain_join_connectors_request_builder import DomainJoinConnectorsRequestBuilder
+    from .elevation_requests.elevation_requests_request_builder import ElevationRequestsRequestBuilder
     from .embedded_s_i_m_activation_code_pools.embedded_s_i_m_activation_code_pools_request_builder import EmbeddedSIMActivationCodePoolsRequestBuilder
     from .enable_android_device_administrator_enrollment.enable_android_device_administrator_enrollment_request_builder import EnableAndroidDeviceAdministratorEnrollmentRequestBuilder
     from .enable_legacy_pc_management.enable_legacy_pc_management_request_builder import EnableLegacyPcManagementRequestBuilder
@@ -324,7 +325,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[DeviceManagement] = None, request_configuration: Optional[DeviceManagementRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -343,7 +344,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -827,6 +828,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .domain_join_connectors.domain_join_connectors_request_builder import DomainJoinConnectorsRequestBuilder
 
         return DomainJoinConnectorsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def elevation_requests(self) -> ElevationRequestsRequestBuilder:
+        """
+        Provides operations to manage the elevationRequests property of the microsoft.graph.deviceManagement entity.
+        """
+        from .elevation_requests.elevation_requests_request_builder import ElevationRequestsRequestBuilder
+
+        return ElevationRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def embedded_s_i_m_activation_code_pools(self) -> EmbeddedSIMActivationCodePoolsRequestBuilder:

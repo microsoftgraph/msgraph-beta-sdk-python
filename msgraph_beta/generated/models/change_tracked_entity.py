@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .day_note import DayNote
     from .entity import Entity
     from .identity_set import IdentitySet
     from .offer_shift_request import OfferShiftRequest
@@ -49,6 +50,10 @@ class ChangeTrackedEntity(Entity):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.dayNote".casefold():
+            from .day_note import DayNote
+
+            return DayNote()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.offerShiftRequest".casefold():
             from .offer_shift_request import OfferShiftRequest
 
@@ -108,6 +113,7 @@ class ChangeTrackedEntity(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .day_note import DayNote
         from .entity import Entity
         from .identity_set import IdentitySet
         from .offer_shift_request import OfferShiftRequest
@@ -124,6 +130,7 @@ class ChangeTrackedEntity(Entity):
         from .time_off_request import TimeOffRequest
         from .workforce_integration import WorkforceIntegration
 
+        from .day_note import DayNote
         from .entity import Entity
         from .identity_set import IdentitySet
         from .offer_shift_request import OfferShiftRequest

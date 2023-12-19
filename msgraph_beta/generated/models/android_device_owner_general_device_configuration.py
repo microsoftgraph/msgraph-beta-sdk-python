@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .android_device_owner_kiosk_mode_icon_size import AndroidDeviceOwnerKioskModeIconSize
     from .android_device_owner_kiosk_mode_managed_folder import AndroidDeviceOwnerKioskModeManagedFolder
     from .android_device_owner_kiosk_mode_screen_orientation import AndroidDeviceOwnerKioskModeScreenOrientation
+    from .android_device_owner_location_mode import AndroidDeviceOwnerLocationMode
     from .android_device_owner_play_store_mode import AndroidDeviceOwnerPlayStoreMode
     from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
     from .android_device_owner_required_password_unlock import AndroidDeviceOwnerRequiredPasswordUnlock
@@ -79,6 +80,8 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     date_time_configuration_blocked: Optional[bool] = None
     # Represents the customized detailed help text provided to users when they attempt to modify managed settings on their device.
     detailed_help_text: Optional[AndroidDeviceOwnerUserFacingMessage] = None
+    # Indicates the location setting configuration for fully managed devices (COBO) and corporate owned devices with a work profile (COPE)
+    device_location_mode: Optional[AndroidDeviceOwnerLocationMode] = None
     # Represents the customized lock screen message provided to users when they attempt to modify managed settings on their device.
     device_owner_lock_screen_message: Optional[AndroidDeviceOwnerUserFacingMessage] = None
     # Android Device Owner Enrollment Profile types.
@@ -257,6 +260,8 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     security_developer_settings_enabled: Optional[bool] = None
     # Indicates whether or not verify apps is required.
     security_require_verify_apps: Optional[bool] = None
+    # Indicates whether or not location sharing is disabled for fully managed devices (COBO), and corporate owned devices with a work profile (COPE)
+    share_device_location_disabled: Optional[bool] = None
     # Represents the customized short help text provided to users when they attempt to modify managed settings on their device.
     short_help_text: Optional[AndroidDeviceOwnerUserFacingMessage] = None
     # Indicates whether or the status bar is disabled, including notifications, quick settings and other screen overlays.
@@ -348,6 +353,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
         from .android_device_owner_kiosk_mode_icon_size import AndroidDeviceOwnerKioskModeIconSize
         from .android_device_owner_kiosk_mode_managed_folder import AndroidDeviceOwnerKioskModeManagedFolder
         from .android_device_owner_kiosk_mode_screen_orientation import AndroidDeviceOwnerKioskModeScreenOrientation
+        from .android_device_owner_location_mode import AndroidDeviceOwnerLocationMode
         from .android_device_owner_play_store_mode import AndroidDeviceOwnerPlayStoreMode
         from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
         from .android_device_owner_required_password_unlock import AndroidDeviceOwnerRequiredPasswordUnlock
@@ -378,6 +384,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
         from .android_device_owner_kiosk_mode_icon_size import AndroidDeviceOwnerKioskModeIconSize
         from .android_device_owner_kiosk_mode_managed_folder import AndroidDeviceOwnerKioskModeManagedFolder
         from .android_device_owner_kiosk_mode_screen_orientation import AndroidDeviceOwnerKioskModeScreenOrientation
+        from .android_device_owner_location_mode import AndroidDeviceOwnerLocationMode
         from .android_device_owner_play_store_mode import AndroidDeviceOwnerPlayStoreMode
         from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
         from .android_device_owner_required_password_unlock import AndroidDeviceOwnerRequiredPasswordUnlock
@@ -413,6 +420,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
             "dataRoamingBlocked": lambda n : setattr(self, 'data_roaming_blocked', n.get_bool_value()),
             "dateTimeConfigurationBlocked": lambda n : setattr(self, 'date_time_configuration_blocked', n.get_bool_value()),
             "detailedHelpText": lambda n : setattr(self, 'detailed_help_text', n.get_object_value(AndroidDeviceOwnerUserFacingMessage)),
+            "deviceLocationMode": lambda n : setattr(self, 'device_location_mode', n.get_enum_value(AndroidDeviceOwnerLocationMode)),
             "deviceOwnerLockScreenMessage": lambda n : setattr(self, 'device_owner_lock_screen_message', n.get_object_value(AndroidDeviceOwnerUserFacingMessage)),
             "enrollmentProfile": lambda n : setattr(self, 'enrollment_profile', n.get_enum_value(AndroidDeviceOwnerEnrollmentProfileType)),
             "factoryResetBlocked": lambda n : setattr(self, 'factory_reset_blocked', n.get_bool_value()),
@@ -502,6 +510,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
             "securityCommonCriteriaModeEnabled": lambda n : setattr(self, 'security_common_criteria_mode_enabled', n.get_bool_value()),
             "securityDeveloperSettingsEnabled": lambda n : setattr(self, 'security_developer_settings_enabled', n.get_bool_value()),
             "securityRequireVerifyApps": lambda n : setattr(self, 'security_require_verify_apps', n.get_bool_value()),
+            "shareDeviceLocationDisabled": lambda n : setattr(self, 'share_device_location_disabled', n.get_bool_value()),
             "shortHelpText": lambda n : setattr(self, 'short_help_text', n.get_object_value(AndroidDeviceOwnerUserFacingMessage)),
             "statusBarBlocked": lambda n : setattr(self, 'status_bar_blocked', n.get_bool_value()),
             "stayOnModes": lambda n : setattr(self, 'stay_on_modes', n.get_collection_of_enum_values(AndroidDeviceOwnerBatteryPluggedMode)),
@@ -564,6 +573,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
         writer.write_bool_value("dataRoamingBlocked", self.data_roaming_blocked)
         writer.write_bool_value("dateTimeConfigurationBlocked", self.date_time_configuration_blocked)
         writer.write_object_value("detailedHelpText", self.detailed_help_text)
+        writer.write_enum_value("deviceLocationMode", self.device_location_mode)
         writer.write_object_value("deviceOwnerLockScreenMessage", self.device_owner_lock_screen_message)
         writer.write_enum_value("enrollmentProfile", self.enrollment_profile)
         writer.write_bool_value("factoryResetBlocked", self.factory_reset_blocked)
@@ -653,6 +663,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
         writer.write_bool_value("securityCommonCriteriaModeEnabled", self.security_common_criteria_mode_enabled)
         writer.write_bool_value("securityDeveloperSettingsEnabled", self.security_developer_settings_enabled)
         writer.write_bool_value("securityRequireVerifyApps", self.security_require_verify_apps)
+        writer.write_bool_value("shareDeviceLocationDisabled", self.share_device_location_disabled)
         writer.write_object_value("shortHelpText", self.short_help_text)
         writer.write_bool_value("statusBarBlocked", self.status_bar_blocked)
         writer.write_collection_of_enum_values("stayOnModes", self.stay_on_modes)

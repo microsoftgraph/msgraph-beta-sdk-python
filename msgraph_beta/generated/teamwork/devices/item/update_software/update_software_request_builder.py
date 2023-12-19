@@ -28,7 +28,7 @@ class UpdateSoftwareRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[UpdateSoftwarePostRequestBody] = None, request_configuration: Optional[UpdateSoftwareRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Update the software for a Microsoft Teams-enabled device. This API triggers a long-running operation. This API is available in the following national cloud deployments.
+        Update the software for a Microsoft Teams-enabled device. This API triggers a long-running operation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class UpdateSoftwareRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[UpdateSoftwarePostRequestBody] = None, request_configuration: Optional[UpdateSoftwareRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the software for a Microsoft Teams-enabled device. This API triggers a long-running operation. This API is available in the following national cloud deployments.
+        Update the software for a Microsoft Teams-enabled device. This API triggers a long-running operation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -65,7 +65,7 @@ class UpdateSoftwareRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

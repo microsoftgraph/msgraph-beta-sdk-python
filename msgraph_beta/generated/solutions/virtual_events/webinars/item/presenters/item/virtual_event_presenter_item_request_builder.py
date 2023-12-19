@@ -12,6 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
     from .......models.virtual_event_presenter import VirtualEventPresenter
+    from .profile_photo.profile_photo_request_builder import ProfilePhotoRequestBuilder
+    from .sessions.sessions_request_builder import SessionsRequestBuilder
 
 class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
     """
@@ -47,7 +49,7 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[VirtualEventPresenterItemRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventPresenter]:
         """
-        Presenters' information of the virtual event.
+        The virtual event presenters.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventPresenter]
         """
@@ -103,12 +105,12 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[VirtualEventPresenterItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Presenters' information of the virtual event.
+        The virtual event presenters.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +122,7 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[VirtualEventPresenter] = None, request_configuration: Optional[VirtualEventPresenterItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -139,7 +141,7 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -152,6 +154,24 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return VirtualEventPresenterItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def profile_photo(self) -> ProfilePhotoRequestBuilder:
+        """
+        Provides operations to manage the media for the solutionsRoot entity.
+        """
+        from .profile_photo.profile_photo_request_builder import ProfilePhotoRequestBuilder
+
+        return ProfilePhotoRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sessions(self) -> SessionsRequestBuilder:
+        """
+        Provides operations to manage the sessions property of the microsoft.graph.virtualEventPresenter entity.
+        """
+        from .sessions.sessions_request_builder import SessionsRequestBuilder
+
+        return SessionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -166,7 +186,7 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class VirtualEventPresenterItemRequestBuilderGetQueryParameters():
         """
-        Presenters' information of the virtual event.
+        The virtual event presenters.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

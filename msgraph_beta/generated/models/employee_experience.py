@@ -5,6 +5,9 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .community import Community
+    from .engagement_async_operation import EngagementAsyncOperation
+    from .goals import Goals
     from .learning_course_activity import LearningCourseActivity
     from .learning_provider import LearningProvider
 
@@ -15,6 +18,12 @@ class EmployeeExperience(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # A collection of communities in Viva Engage.
+    communities: Optional[List[Community]] = None
+    # A collection of long-running, asynchronous operations related to Viva Engage.
+    engagement_async_operations: Optional[List[EngagementAsyncOperation]] = None
+    # Represents a collection of goals in a Viva Goals organization.
+    goals: Optional[Goals] = None
     # The learningCourseActivities property
     learning_course_activities: Optional[List[LearningCourseActivity]] = None
     # A collection of learning providers.
@@ -38,13 +47,22 @@ class EmployeeExperience(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .community import Community
+        from .engagement_async_operation import EngagementAsyncOperation
+        from .goals import Goals
         from .learning_course_activity import LearningCourseActivity
         from .learning_provider import LearningProvider
 
+        from .community import Community
+        from .engagement_async_operation import EngagementAsyncOperation
+        from .goals import Goals
         from .learning_course_activity import LearningCourseActivity
         from .learning_provider import LearningProvider
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "communities": lambda n : setattr(self, 'communities', n.get_collection_of_object_values(Community)),
+            "engagementAsyncOperations": lambda n : setattr(self, 'engagement_async_operations', n.get_collection_of_object_values(EngagementAsyncOperation)),
+            "goals": lambda n : setattr(self, 'goals', n.get_object_value(Goals)),
             "learningCourseActivities": lambda n : setattr(self, 'learning_course_activities', n.get_collection_of_object_values(LearningCourseActivity)),
             "learningProviders": lambda n : setattr(self, 'learning_providers', n.get_collection_of_object_values(LearningProvider)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -59,6 +77,9 @@ class EmployeeExperience(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        writer.write_collection_of_object_values("communities", self.communities)
+        writer.write_collection_of_object_values("engagementAsyncOperations", self.engagement_async_operations)
+        writer.write_object_value("goals", self.goals)
         writer.write_collection_of_object_values("learningCourseActivities", self.learning_course_activities)
         writer.write_collection_of_object_values("learningProviders", self.learning_providers)
         writer.write_str_value("@odata.type", self.odata_type)

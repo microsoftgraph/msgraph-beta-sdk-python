@@ -48,7 +48,7 @@ class LearningContentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[LearningContentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[LearningContent]:
         """
-        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content. This API is available in the following national cloud deployments.
+        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LearningContent]
         Find more info here: https://learn.microsoft.com/graph/api/learningcontent-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class LearningContentItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[LearningContent] = None, request_configuration: Optional[LearningContentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[LearningContent]:
         """
-        Update the specified learningContent resource. Used by a learning provider to ingest or update the metadata for their content in Viva Learning. If the specified learning content doesn't yet exist for the specified provider, this operation creates the metadata for the new content. Otherwise, this operation replaces the metadata of the existing content. This API is available in the following national cloud deployments.
+        Update the specified learningContent resource. Used by a learning provider to ingest or update the metadata for their content in Viva Learning. If the specified learning content doesn't yet exist for the specified provider, this operation creates the metadata for the new content. Otherwise, this operation replaces the metadata of the existing content.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LearningContent]
@@ -106,12 +106,12 @@ class LearningContentItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[LearningContentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content. This API is available in the following national cloud deployments.
+        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -123,12 +123,12 @@ class LearningContentItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[LearningContent] = None, request_configuration: Optional[LearningContentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the specified learningContent resource. Used by a learning provider to ingest or update the metadata for their content in Viva Learning. If the specified learning content doesn't yet exist for the specified provider, this operation creates the metadata for the new content. Otherwise, this operation replaces the metadata of the existing content. This API is available in the following national cloud deployments.
+        Update the specified learningContent resource. Used by a learning provider to ingest or update the metadata for their content in Viva Learning. If the specified learning content doesn't yet exist for the specified provider, this operation creates the metadata for the new content. Otherwise, this operation replaces the metadata of the existing content.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -142,7 +142,7 @@ class LearningContentItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -169,7 +169,7 @@ class LearningContentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LearningContentItemRequestBuilderGetQueryParameters():
         """
-        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content. This API is available in the following national cloud deployments.
+        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

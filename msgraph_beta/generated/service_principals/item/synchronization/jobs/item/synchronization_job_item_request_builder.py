@@ -35,7 +35,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is. This API is available in the following national cloud deployments.
+        Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-delete?view=graph-rest-1.0
@@ -55,7 +55,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SynchronizationJob]:
         """
-        Retrieve the existing synchronization job and its properties. This API is available in the following national cloud deployments.
+        Retrieve the existing synchronization job and its properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SynchronizationJob]
         Find more info here: https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-get?view=graph-rest-1.0
@@ -101,7 +101,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is. This API is available in the following national cloud deployments.
+        Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,12 +112,12 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the existing synchronization job and its properties. This API is available in the following national cloud deployments.
+        Retrieve the existing synchronization job and its properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -129,7 +129,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[SynchronizationJob] = None, request_configuration: Optional[SynchronizationJobItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -148,7 +148,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -238,7 +238,7 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SynchronizationJobItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the existing synchronization job and its properties. This API is available in the following national cloud deployments.
+        Retrieve the existing synchronization job and its properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

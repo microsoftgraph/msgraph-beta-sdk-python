@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
+    from .planner_forms_dictionary import PlannerFormsDictionary
     from .result_template_dictionary import ResultTemplateDictionary
 
 @dataclass
@@ -35,6 +36,10 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
             from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
 
             return CustomAppScopeAttributesDictionary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerFormsDictionary".casefold():
+            from .planner_forms_dictionary import PlannerFormsDictionary
+
+            return PlannerFormsDictionary()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.resultTemplateDictionary".casefold():
             from .result_template_dictionary import ResultTemplateDictionary
 
@@ -47,9 +52,11 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
+        from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
 
         from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
+        from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
 
         fields: Dict[str, Callable[[Any], None]] = {
