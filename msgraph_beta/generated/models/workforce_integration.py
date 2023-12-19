@@ -5,9 +5,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .change_tracked_entity import ChangeTrackedEntity
-    from .eligibility_filtering_enabled_entities import EligibilityFilteringEnabledEntities
+    from .workforce_integration_eligibility_filtering_enabled_entities import WorkforceIntegration_eligibilityFilteringEnabledEntities
     from .workforce_integration_encryption import WorkforceIntegrationEncryption
-    from .workforce_integration_supported_entities import WorkforceIntegrationSupportedEntities
+    from .workforce_integration_supported_entities import WorkforceIntegration_supportedEntities
+    from .workforce_integration_supports import WorkforceIntegration_supports
 
 from .change_tracked_entity import ChangeTrackedEntity
 
@@ -20,15 +21,15 @@ class WorkforceIntegration(ChangeTrackedEntity):
     # Name of the workforce integration.
     display_name: Optional[str] = None
     # The eligibilityFilteringEnabledEntities property
-    eligibility_filtering_enabled_entities: Optional[EligibilityFilteringEnabledEntities] = None
+    eligibility_filtering_enabled_entities: Optional[WorkforceIntegration_eligibilityFilteringEnabledEntities] = None
     # The workforce integration encryption resource.
     encryption: Optional[WorkforceIntegrationEncryption] = None
     # Indicates whether this workforce integration is currently active and available.
     is_active: Optional[bool] = None
     # This property has replaced supports in v1.0. We recommend that you use this property instead of supports. The supports property is still supported in beta for the time being. The possible values are: none, shift, swapRequest, openshift, openShiftRequest, userShiftPreferences, offerShiftRequest, unknownFutureValue, timeCard, timeOffReason, timeOff, timeOffRequest. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: timeCard, timeOffReason, timeOff, timeOffRequest. If selecting more than one value, all values must start with the first letter in uppercase.
-    supported_entities: Optional[WorkforceIntegrationSupportedEntities] = None
+    supported_entities: Optional[WorkforceIntegration_supportedEntities] = None
     # The Shifts entities supported for synchronous change notifications. Shifts make a callback to the url provided on client changes on those entities added here. By default, no entities are supported for change notifications. The possible values are: none, shift, swapRequest, openshift, openShiftRequest, userShiftPreferences, offerShiftRequest, unknownFutureValue, timeCard, timeOffReason, timeOff, timeOffRequest. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: timeCard, timeOffReason, timeOff, timeOffRequest. If selecting more than one value, all values must start with the first letter in uppercase.
-    supports: Optional[WorkforceIntegrationSupportedEntities] = None
+    supports: Optional[WorkforceIntegration_supports] = None
     # Workforce Integration URL for callbacks from the Shifts service.
     url: Optional[str] = None
     
@@ -49,23 +50,25 @@ class WorkforceIntegration(ChangeTrackedEntity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .change_tracked_entity import ChangeTrackedEntity
-        from .eligibility_filtering_enabled_entities import EligibilityFilteringEnabledEntities
+        from .workforce_integration_eligibility_filtering_enabled_entities import WorkforceIntegration_eligibilityFilteringEnabledEntities
         from .workforce_integration_encryption import WorkforceIntegrationEncryption
-        from .workforce_integration_supported_entities import WorkforceIntegrationSupportedEntities
+        from .workforce_integration_supported_entities import WorkforceIntegration_supportedEntities
+        from .workforce_integration_supports import WorkforceIntegration_supports
 
         from .change_tracked_entity import ChangeTrackedEntity
-        from .eligibility_filtering_enabled_entities import EligibilityFilteringEnabledEntities
+        from .workforce_integration_eligibility_filtering_enabled_entities import WorkforceIntegration_eligibilityFilteringEnabledEntities
         from .workforce_integration_encryption import WorkforceIntegrationEncryption
-        from .workforce_integration_supported_entities import WorkforceIntegrationSupportedEntities
+        from .workforce_integration_supported_entities import WorkforceIntegration_supportedEntities
+        from .workforce_integration_supports import WorkforceIntegration_supports
 
         fields: Dict[str, Callable[[Any], None]] = {
             "apiVersion": lambda n : setattr(self, 'api_version', n.get_int_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "eligibilityFilteringEnabledEntities": lambda n : setattr(self, 'eligibility_filtering_enabled_entities', n.get_collection_of_enum_values(EligibilityFilteringEnabledEntities)),
+            "eligibilityFilteringEnabledEntities": lambda n : setattr(self, 'eligibility_filtering_enabled_entities', n.get_enum_value(WorkforceIntegration_eligibilityFilteringEnabledEntities)),
             "encryption": lambda n : setattr(self, 'encryption', n.get_object_value(WorkforceIntegrationEncryption)),
             "isActive": lambda n : setattr(self, 'is_active', n.get_bool_value()),
-            "supportedEntities": lambda n : setattr(self, 'supported_entities', n.get_collection_of_enum_values(WorkforceIntegrationSupportedEntities)),
-            "supports": lambda n : setattr(self, 'supports', n.get_collection_of_enum_values(WorkforceIntegrationSupportedEntities)),
+            "supportedEntities": lambda n : setattr(self, 'supported_entities', n.get_enum_value(WorkforceIntegration_supportedEntities)),
+            "supports": lambda n : setattr(self, 'supports', n.get_enum_value(WorkforceIntegration_supports)),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .server_processed_content import ServerProcessedContent
-    from .title_area_layout_type import TitleAreaLayoutType
-    from .title_area_text_alignment_type import TitleAreaTextAlignmentType
+    from .title_area_layout import TitleArea_layout
+    from .title_area_text_alignment import TitleArea_textAlignment
 
 @dataclass
 class TitleArea(AdditionalDataHolder, BackedModel, Parsable):
@@ -23,7 +23,7 @@ class TitleArea(AdditionalDataHolder, BackedModel, Parsable):
     # URL of the image in the title area.
     image_web_url: Optional[str] = None
     # Enumeration value that indicates the layout of the title area. The possible values are: imageAndTitle, plain, colorBlock, overlap, unknownFutureValue.
-    layout: Optional[TitleAreaLayoutType] = None
+    layout: Optional[TitleArea_layout] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Contains collections of data that can be processed by server side services like search index and link fixup.
@@ -37,7 +37,7 @@ class TitleArea(AdditionalDataHolder, BackedModel, Parsable):
     # The text above title line.
     text_above_title: Optional[str] = None
     # Enumeration value that indicates the text alignment of the title area. The possible values are: left, center, unknownFutureValue.
-    text_alignment: Optional[TitleAreaTextAlignmentType] = None
+    text_alignment: Optional[TitleArea_textAlignment] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TitleArea:
@@ -56,25 +56,25 @@ class TitleArea(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .server_processed_content import ServerProcessedContent
-        from .title_area_layout_type import TitleAreaLayoutType
-        from .title_area_text_alignment_type import TitleAreaTextAlignmentType
+        from .title_area_layout import TitleArea_layout
+        from .title_area_text_alignment import TitleArea_textAlignment
 
         from .server_processed_content import ServerProcessedContent
-        from .title_area_layout_type import TitleAreaLayoutType
-        from .title_area_text_alignment_type import TitleAreaTextAlignmentType
+        from .title_area_layout import TitleArea_layout
+        from .title_area_text_alignment import TitleArea_textAlignment
 
         fields: Dict[str, Callable[[Any], None]] = {
             "alternativeText": lambda n : setattr(self, 'alternative_text', n.get_str_value()),
             "enableGradientEffect": lambda n : setattr(self, 'enable_gradient_effect', n.get_bool_value()),
             "imageWebUrl": lambda n : setattr(self, 'image_web_url', n.get_str_value()),
-            "layout": lambda n : setattr(self, 'layout', n.get_enum_value(TitleAreaLayoutType)),
+            "layout": lambda n : setattr(self, 'layout', n.get_enum_value(TitleArea_layout)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "serverProcessedContent": lambda n : setattr(self, 'server_processed_content', n.get_object_value(ServerProcessedContent)),
             "showAuthor": lambda n : setattr(self, 'show_author', n.get_bool_value()),
             "showPublishedDate": lambda n : setattr(self, 'show_published_date', n.get_bool_value()),
             "showTextBlockAboveTitle": lambda n : setattr(self, 'show_text_block_above_title', n.get_bool_value()),
             "textAboveTitle": lambda n : setattr(self, 'text_above_title', n.get_str_value()),
-            "textAlignment": lambda n : setattr(self, 'text_alignment', n.get_enum_value(TitleAreaTextAlignmentType)),
+            "textAlignment": lambda n : setattr(self, 'text_alignment', n.get_enum_value(TitleArea_textAlignment)),
         }
         return fields
     

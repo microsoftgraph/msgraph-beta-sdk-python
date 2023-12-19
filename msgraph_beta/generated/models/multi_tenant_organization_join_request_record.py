@@ -5,9 +5,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .multi_tenant_organization_join_request_record_member_state import MultiTenantOrganizationJoinRequestRecord_memberState
+    from .multi_tenant_organization_join_request_record_role import MultiTenantOrganizationJoinRequestRecord_role
     from .multi_tenant_organization_join_request_transition_details import MultiTenantOrganizationJoinRequestTransitionDetails
-    from .multi_tenant_organization_member_role import MultiTenantOrganizationMemberRole
-    from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
 
 from .entity import Entity
 
@@ -16,11 +16,11 @@ class MultiTenantOrganizationJoinRequestRecord(Entity):
     # Tenant ID of the Microsoft Entra tenant that added a tenant to the multi-tenant organization. To reset a failed join request, set addedByTenantId to 00000000-0000-0000-0000-000000000000. Required.
     added_by_tenant_id: Optional[str] = None
     # State of the tenant in the multi-tenant organization. The possible values are: pending, active, removed, unknownFutureValue. Tenants in the pending state must join the multi-tenant organization to participate in the multi-tenant organization. Tenants in the active state can participate in the multi-tenant organization. Tenants in the removed state are in the process of being removed from the multi-tenant organization. Read-only.
-    member_state: Optional[MultiTenantOrganizationMemberState] = None
+    member_state: Optional[MultiTenantOrganizationJoinRequestRecord_memberState] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Role of the tenant in the multi-tenant organization. The possible values are: owner, member (default), unknownFutureValue. Tenants with the owner role can manage the multi-tenant organization. There can be multiple tenants with the owner role in a multi-tenant organization. Tenants with the member role can participate in a multi-tenant organization.
-    role: Optional[MultiTenantOrganizationMemberRole] = None
+    role: Optional[MultiTenantOrganizationJoinRequestRecord_role] = None
     # Details of the processing status for a tenant joining a multi-tenant organization. Read-only.
     transition_details: Optional[MultiTenantOrganizationJoinRequestTransitionDetails] = None
     
@@ -41,19 +41,19 @@ class MultiTenantOrganizationJoinRequestRecord(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .multi_tenant_organization_join_request_record_member_state import MultiTenantOrganizationJoinRequestRecord_memberState
+        from .multi_tenant_organization_join_request_record_role import MultiTenantOrganizationJoinRequestRecord_role
         from .multi_tenant_organization_join_request_transition_details import MultiTenantOrganizationJoinRequestTransitionDetails
-        from .multi_tenant_organization_member_role import MultiTenantOrganizationMemberRole
-        from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
 
         from .entity import Entity
+        from .multi_tenant_organization_join_request_record_member_state import MultiTenantOrganizationJoinRequestRecord_memberState
+        from .multi_tenant_organization_join_request_record_role import MultiTenantOrganizationJoinRequestRecord_role
         from .multi_tenant_organization_join_request_transition_details import MultiTenantOrganizationJoinRequestTransitionDetails
-        from .multi_tenant_organization_member_role import MultiTenantOrganizationMemberRole
-        from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
 
         fields: Dict[str, Callable[[Any], None]] = {
             "addedByTenantId": lambda n : setattr(self, 'added_by_tenant_id', n.get_str_value()),
-            "memberState": lambda n : setattr(self, 'member_state', n.get_enum_value(MultiTenantOrganizationMemberState)),
-            "role": lambda n : setattr(self, 'role', n.get_enum_value(MultiTenantOrganizationMemberRole)),
+            "memberState": lambda n : setattr(self, 'member_state', n.get_enum_value(MultiTenantOrganizationJoinRequestRecord_memberState)),
+            "role": lambda n : setattr(self, 'role', n.get_enum_value(MultiTenantOrganizationJoinRequestRecord_role)),
             "transitionDetails": lambda n : setattr(self, 'transition_details', n.get_object_value(MultiTenantOrganizationJoinRequestTransitionDetails)),
         }
         super_fields = super().get_field_deserializers()

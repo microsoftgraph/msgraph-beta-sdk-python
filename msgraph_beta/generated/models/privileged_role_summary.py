@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .role_summary_status import RoleSummaryStatus
+    from .privileged_role_summary_status import PrivilegedRoleSummary_status
 
 from .entity import Entity
 
@@ -20,7 +20,7 @@ class PrivilegedRoleSummary(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The status property
-    status: Optional[RoleSummaryStatus] = None
+    status: Optional[PrivilegedRoleSummary_status] = None
     # The usersCount property
     users_count: Optional[int] = None
     
@@ -41,16 +41,16 @@ class PrivilegedRoleSummary(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .role_summary_status import RoleSummaryStatus
+        from .privileged_role_summary_status import PrivilegedRoleSummary_status
 
         from .entity import Entity
-        from .role_summary_status import RoleSummaryStatus
+        from .privileged_role_summary_status import PrivilegedRoleSummary_status
 
         fields: Dict[str, Callable[[Any], None]] = {
             "elevatedCount": lambda n : setattr(self, 'elevated_count', n.get_int_value()),
             "managedCount": lambda n : setattr(self, 'managed_count', n.get_int_value()),
             "mfaEnabled": lambda n : setattr(self, 'mfa_enabled', n.get_bool_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(RoleSummaryStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(PrivilegedRoleSummary_status)),
             "usersCount": lambda n : setattr(self, 'users_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()

@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .forwarding_rule_action import ForwardingRuleAction
+    from .internet_access_forwarding_rule import InternetAccessForwardingRule
     from .m365_forwarding_rule import M365ForwardingRule
     from .network_destination_type import NetworkDestinationType
     from .policy_rule import PolicyRule
@@ -37,6 +38,10 @@ class ForwardingRule(PolicyRule):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.internetAccessForwardingRule".casefold():
+            from .internet_access_forwarding_rule import InternetAccessForwardingRule
+
+            return InternetAccessForwardingRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.m365ForwardingRule".casefold():
             from .m365_forwarding_rule import M365ForwardingRule
 
@@ -53,6 +58,7 @@ class ForwardingRule(PolicyRule):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .forwarding_rule_action import ForwardingRuleAction
+        from .internet_access_forwarding_rule import InternetAccessForwardingRule
         from .m365_forwarding_rule import M365ForwardingRule
         from .network_destination_type import NetworkDestinationType
         from .policy_rule import PolicyRule
@@ -60,6 +66,7 @@ class ForwardingRule(PolicyRule):
         from .rule_destination import RuleDestination
 
         from .forwarding_rule_action import ForwardingRuleAction
+        from .internet_access_forwarding_rule import InternetAccessForwardingRule
         from .m365_forwarding_rule import M365ForwardingRule
         from .network_destination_type import NetworkDestinationType
         from .policy_rule import PolicyRule

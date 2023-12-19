@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .application_mode import ApplicationMode
     from .label_action_base import LabelActionBase
+    from .matching_label_application_mode import MatchingLabel_applicationMode
 
 @dataclass
 class MatchingLabel(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,7 +16,7 @@ class MatchingLabel(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The applicationMode property
-    application_mode: Optional[ApplicationMode] = None
+    application_mode: Optional[MatchingLabel_applicationMode] = None
     # The description property
     description: Optional[str] = None
     # The displayName property
@@ -54,14 +54,14 @@ class MatchingLabel(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .application_mode import ApplicationMode
         from .label_action_base import LabelActionBase
+        from .matching_label_application_mode import MatchingLabel_applicationMode
 
-        from .application_mode import ApplicationMode
         from .label_action_base import LabelActionBase
+        from .matching_label_application_mode import MatchingLabel_applicationMode
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(ApplicationMode)),
+            "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(MatchingLabel_applicationMode)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),

@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .email_address import EmailAddress
-    from .email_type import EmailType
+    from .typed_email_address_type import TypedEmailAddress_type
 
 from .email_address import EmailAddress
 
@@ -16,7 +16,7 @@ class TypedEmailAddress(EmailAddress):
     # To specify a custom type of email address, set type to other, and assign otherLabel to a custom string. For example, you may use a specific email address for your volunteer activities. Set type to other, and set otherLabel to a custom string such as Volunteer work.
     other_label: Optional[str] = None
     # The type of email address. Possible values are: unknown, work, personal, main, other. The default value is unknown, which means address has not been set as a specific type.
-    type: Optional[EmailType] = None
+    type: Optional[TypedEmailAddress_type] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TypedEmailAddress:
@@ -35,14 +35,14 @@ class TypedEmailAddress(EmailAddress):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .email_address import EmailAddress
-        from .email_type import EmailType
+        from .typed_email_address_type import TypedEmailAddress_type
 
         from .email_address import EmailAddress
-        from .email_type import EmailType
+        from .typed_email_address_type import TypedEmailAddress_type
 
         fields: Dict[str, Callable[[Any], None]] = {
             "otherLabel": lambda n : setattr(self, 'other_label', n.get_str_value()),
-            "type": lambda n : setattr(self, 'type', n.get_enum_value(EmailType)),
+            "type": lambda n : setattr(self, 'type', n.get_enum_value(TypedEmailAddress_type)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

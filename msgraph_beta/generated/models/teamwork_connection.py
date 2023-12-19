@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .teamwork_connection_status import TeamworkConnectionStatus
+    from .teamwork_connection_connection_status import TeamworkConnection_connectionStatus
 
 @dataclass
 class TeamworkConnection(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,7 +16,7 @@ class TeamworkConnection(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Indicates whether a component/peripheral is connected/disconnected or its state is unknown. The possible values are: unknown, connected, disconnected, unknownFutureValue.
-    connection_status: Optional[TeamworkConnectionStatus] = None
+    connection_status: Optional[TeamworkConnection_connectionStatus] = None
     # Time at which the state was last changed. For example, indicates connected since when the state is connected and disconnected since when the state is disconnected.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -38,12 +38,12 @@ class TeamworkConnection(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .teamwork_connection_status import TeamworkConnectionStatus
+        from .teamwork_connection_connection_status import TeamworkConnection_connectionStatus
 
-        from .teamwork_connection_status import TeamworkConnectionStatus
+        from .teamwork_connection_connection_status import TeamworkConnection_connectionStatus
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "connectionStatus": lambda n : setattr(self, 'connection_status', n.get_enum_value(TeamworkConnectionStatus)),
+            "connectionStatus": lambda n : setattr(self, 'connection_status', n.get_enum_value(TeamworkConnection_connectionStatus)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

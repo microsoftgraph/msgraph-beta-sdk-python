@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authorization_system_action_severity import AuthorizationSystemActionSeverity
-    from .authorization_system_action_type import AuthorizationSystemActionType
+    from .authorization_system_type_action_action_type import AuthorizationSystemTypeAction_actionType
     from .aws_authorization_system_type_action import AwsAuthorizationSystemTypeAction
     from .azure_authorization_system_type_action import AzureAuthorizationSystemTypeAction
     from .entity import Entity
@@ -15,13 +15,13 @@ from .entity import Entity
 
 @dataclass
 class AuthorizationSystemTypeAction(Entity):
-    # The actionType property
-    action_type: Optional[AuthorizationSystemActionType] = None
-    # The externalId property
+    # The type of action allowed in the authorization system's service. The possible values are: delete, read, unknownFutureValue. Supports $filter and (eq).
+    action_type: Optional[AuthorizationSystemTypeAction_actionType] = None
+    # The display name of an action. Read-only. Supports $filter and (eq).
     external_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resourceTypes property
+    # The resource types in the authorization system's service where the action can be performed. Supports $filter and (eq).
     resource_types: Optional[List[str]] = None
     # The severity property
     severity: Optional[AuthorizationSystemActionSeverity] = None
@@ -59,21 +59,21 @@ class AuthorizationSystemTypeAction(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .authorization_system_action_severity import AuthorizationSystemActionSeverity
-        from .authorization_system_action_type import AuthorizationSystemActionType
+        from .authorization_system_type_action_action_type import AuthorizationSystemTypeAction_actionType
         from .aws_authorization_system_type_action import AwsAuthorizationSystemTypeAction
         from .azure_authorization_system_type_action import AzureAuthorizationSystemTypeAction
         from .entity import Entity
         from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
 
         from .authorization_system_action_severity import AuthorizationSystemActionSeverity
-        from .authorization_system_action_type import AuthorizationSystemActionType
+        from .authorization_system_type_action_action_type import AuthorizationSystemTypeAction_actionType
         from .aws_authorization_system_type_action import AwsAuthorizationSystemTypeAction
         from .azure_authorization_system_type_action import AzureAuthorizationSystemTypeAction
         from .entity import Entity
         from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "actionType": lambda n : setattr(self, 'action_type', n.get_enum_value(AuthorizationSystemActionType)),
+            "actionType": lambda n : setattr(self, 'action_type', n.get_enum_value(AuthorizationSystemTypeAction_actionType)),
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "resourceTypes": lambda n : setattr(self, 'resource_types', n.get_collection_of_primitive_values(str)),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(AuthorizationSystemActionSeverity)),

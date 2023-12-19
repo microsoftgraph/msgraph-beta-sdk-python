@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .education_module_resource import EducationModuleResource
-    from .education_module_status import EducationModuleStatus
+    from .education_module_status import EducationModule_status
     from .entity import Entity
     from .identity_set import IdentitySet
 
@@ -35,7 +35,7 @@ class EducationModule(Entity):
     # Folder URL where all the file resources for this module are stored.
     resources_folder_url: Optional[str] = None
     # Status of the module.  You can't use a PATCH operation to update this value. Possible values are: draft and published.
-    status: Optional[EducationModuleStatus] = None
+    status: Optional[EducationModule_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationModule:
@@ -54,12 +54,12 @@ class EducationModule(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .education_module_resource import EducationModuleResource
-        from .education_module_status import EducationModuleStatus
+        from .education_module_status import EducationModule_status
         from .entity import Entity
         from .identity_set import IdentitySet
 
         from .education_module_resource import EducationModuleResource
-        from .education_module_status import EducationModuleStatus
+        from .education_module_status import EducationModule_status
         from .entity import Entity
         from .identity_set import IdentitySet
 
@@ -73,7 +73,7 @@ class EducationModule(Entity):
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "resources": lambda n : setattr(self, 'resources', n.get_collection_of_object_values(EducationModuleResource)),
             "resourcesFolderUrl": lambda n : setattr(self, 'resources_folder_url', n.get_str_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(EducationModuleStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(EducationModule_status)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

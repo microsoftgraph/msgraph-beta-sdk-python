@@ -4,14 +4,14 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .advanced_bit_locker_state import AdvancedBitLockerState
     from .compliance_status import ComplianceStatus
     from .device_types import DeviceTypes
     from .encryption_readiness_state import EncryptionReadinessState
     from .encryption_report_policy_details import EncryptionReportPolicyDetails
     from .encryption_state import EncryptionState
     from .entity import Entity
-    from .file_vault_state import FileVaultState
+    from .managed_device_encryption_state_advanced_bit_locker_states import ManagedDeviceEncryptionState_advancedBitLockerStates
+    from .managed_device_encryption_state_file_vault_states import ManagedDeviceEncryptionState_fileVaultStates
 
 from .entity import Entity
 
@@ -21,7 +21,7 @@ class ManagedDeviceEncryptionState(Entity):
     Encryption report per device
     """
     # Advanced BitLocker State. Possible values are: success, noUserConsent, osVolumeUnprotected, osVolumeTpmRequired, osVolumeTpmOnlyRequired, osVolumeTpmPinRequired, osVolumeTpmStartupKeyRequired, osVolumeTpmPinStartupKeyRequired, osVolumeEncryptionMethodMismatch, recoveryKeyBackupFailed, fixedDriveNotEncrypted, fixedDriveEncryptionMethodMismatch, loggedOnUserNonAdmin, windowsRecoveryEnvironmentNotConfigured, tpmNotAvailable, tpmNotReady, networkError.
-    advanced_bit_locker_states: Optional[AdvancedBitLockerState] = None
+    advanced_bit_locker_states: Optional[ManagedDeviceEncryptionState_advancedBitLockerStates] = None
     # Device name
     device_name: Optional[str] = None
     # Device type.
@@ -33,7 +33,7 @@ class ManagedDeviceEncryptionState(Entity):
     # Encryption state
     encryption_state: Optional[EncryptionState] = None
     # FileVault State. Possible values are: success, driveEncryptedByUser, userDeferredEncryption, escrowNotEnabled.
-    file_vault_states: Optional[FileVaultState] = None
+    file_vault_states: Optional[ManagedDeviceEncryptionState_fileVaultStates] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Operating system version of the device
@@ -61,32 +61,32 @@ class ManagedDeviceEncryptionState(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .advanced_bit_locker_state import AdvancedBitLockerState
         from .compliance_status import ComplianceStatus
         from .device_types import DeviceTypes
         from .encryption_readiness_state import EncryptionReadinessState
         from .encryption_report_policy_details import EncryptionReportPolicyDetails
         from .encryption_state import EncryptionState
         from .entity import Entity
-        from .file_vault_state import FileVaultState
+        from .managed_device_encryption_state_advanced_bit_locker_states import ManagedDeviceEncryptionState_advancedBitLockerStates
+        from .managed_device_encryption_state_file_vault_states import ManagedDeviceEncryptionState_fileVaultStates
 
-        from .advanced_bit_locker_state import AdvancedBitLockerState
         from .compliance_status import ComplianceStatus
         from .device_types import DeviceTypes
         from .encryption_readiness_state import EncryptionReadinessState
         from .encryption_report_policy_details import EncryptionReportPolicyDetails
         from .encryption_state import EncryptionState
         from .entity import Entity
-        from .file_vault_state import FileVaultState
+        from .managed_device_encryption_state_advanced_bit_locker_states import ManagedDeviceEncryptionState_advancedBitLockerStates
+        from .managed_device_encryption_state_file_vault_states import ManagedDeviceEncryptionState_fileVaultStates
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "advancedBitLockerStates": lambda n : setattr(self, 'advanced_bit_locker_states', n.get_collection_of_enum_values(AdvancedBitLockerState)),
+            "advancedBitLockerStates": lambda n : setattr(self, 'advanced_bit_locker_states', n.get_enum_value(ManagedDeviceEncryptionState_advancedBitLockerStates)),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(DeviceTypes)),
             "encryptionPolicySettingState": lambda n : setattr(self, 'encryption_policy_setting_state', n.get_enum_value(ComplianceStatus)),
             "encryptionReadinessState": lambda n : setattr(self, 'encryption_readiness_state', n.get_enum_value(EncryptionReadinessState)),
             "encryptionState": lambda n : setattr(self, 'encryption_state', n.get_enum_value(EncryptionState)),
-            "fileVaultStates": lambda n : setattr(self, 'file_vault_states', n.get_collection_of_enum_values(FileVaultState)),
+            "fileVaultStates": lambda n : setattr(self, 'file_vault_states', n.get_enum_value(ManagedDeviceEncryptionState_fileVaultStates)),
             "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
             "policyDetails": lambda n : setattr(self, 'policy_details', n.get_collection_of_object_values(EncryptionReportPolicyDetails)),
             "tpmSpecificationVersion": lambda n : setattr(self, 'tpm_specification_version', n.get_str_value()),

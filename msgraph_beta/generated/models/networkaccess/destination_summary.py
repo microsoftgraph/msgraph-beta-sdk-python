@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .traffic_type import TrafficType
+    from .destination_summary_traffic_type import DestinationSummary_trafficType
 
 @dataclass
 class DestinationSummary(AdditionalDataHolder, BackedModel, Parsable):
@@ -14,14 +14,14 @@ class DestinationSummary(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Count of the aggregation.
+    # The number of the destinationSummary objects, aggregated by Global Secure Access service.
     count: Optional[int] = None
-    # Destination FQDN or IP address.
+    # The IP address or FQDN of the destination.
     destination: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The trafficType property
-    traffic_type: Optional[TrafficType] = None
+    # The traffic classification. The allowed values are internet, private, microsoft365, all, and unknownFutureValue.
+    traffic_type: Optional[DestinationSummary_trafficType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DestinationSummary:
@@ -39,15 +39,15 @@ class DestinationSummary(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .traffic_type import TrafficType
+        from .destination_summary_traffic_type import DestinationSummary_trafficType
 
-        from .traffic_type import TrafficType
+        from .destination_summary_traffic_type import DestinationSummary_trafficType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "count": lambda n : setattr(self, 'count', n.get_int_value()),
             "destination": lambda n : setattr(self, 'destination', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "trafficType": lambda n : setattr(self, 'traffic_type', n.get_enum_value(TrafficType)),
+            "trafficType": lambda n : setattr(self, 'traffic_type', n.get_enum_value(DestinationSummary_trafficType)),
         }
         return fields
     

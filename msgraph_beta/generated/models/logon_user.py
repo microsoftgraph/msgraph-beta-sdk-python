@@ -6,8 +6,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .logon_type import LogonType
-    from .user_account_security_type import UserAccountSecurityType
+    from .logon_user_account_type import LogonUser_accountType
+    from .logon_user_logon_types import LogonUser_logonTypes
 
 @dataclass
 class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
@@ -21,7 +21,7 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
     # Account name of user account used to logon.
     account_name: Optional[str] = None
     # User Account type, per Windows definition. Possible values are: unknown, standard, power, administrator.
-    account_type: Optional[UserAccountSecurityType] = None
+    account_type: Optional[LogonUser_accountType] = None
     # DateTime at which the earliest logon by this user account occurred (provider-determined period). The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     first_seen_date_time: Optional[datetime.datetime] = None
     # DateTime at which the latest logon by this user account occurred. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
@@ -29,7 +29,7 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
     # User logon ID.
     logon_id: Optional[str] = None
     # Collection of the logon types observed for the logged on user from when first to last seen. Possible values are: unknown, interactive, remoteInteractive, network, batch, service.
-    logon_types: Optional[List[LogonType]] = None
+    logon_types: Optional[List[LogonUser_logonTypes]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -49,20 +49,20 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .logon_type import LogonType
-        from .user_account_security_type import UserAccountSecurityType
+        from .logon_user_account_type import LogonUser_accountType
+        from .logon_user_logon_types import LogonUser_logonTypes
 
-        from .logon_type import LogonType
-        from .user_account_security_type import UserAccountSecurityType
+        from .logon_user_account_type import LogonUser_accountType
+        from .logon_user_logon_types import LogonUser_logonTypes
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accountDomain": lambda n : setattr(self, 'account_domain', n.get_str_value()),
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
-            "accountType": lambda n : setattr(self, 'account_type', n.get_enum_value(UserAccountSecurityType)),
+            "accountType": lambda n : setattr(self, 'account_type', n.get_enum_value(LogonUser_accountType)),
             "firstSeenDateTime": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
             "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
             "logonId": lambda n : setattr(self, 'logon_id', n.get_str_value()),
-            "logonTypes": lambda n : setattr(self, 'logon_types', n.get_collection_of_enum_values(LogonType)),
+            "logonTypes": lambda n : setattr(self, 'logon_types', n.get_collection_of_enum_values(LogonUser_logonTypes)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

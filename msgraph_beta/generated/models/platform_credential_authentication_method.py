@@ -6,9 +6,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_method import AuthenticationMethod
-    from .authentication_method_key_strength import AuthenticationMethodKeyStrength
-    from .authentication_method_platform import AuthenticationMethodPlatform
     from .device import Device
+    from .platform_credential_authentication_method_key_strength import PlatformCredentialAuthenticationMethod_keyStrength
+    from .platform_credential_authentication_method_platform import PlatformCredentialAuthenticationMethod_platform
 
 from .authentication_method import AuthenticationMethod
 
@@ -16,16 +16,16 @@ from .authentication_method import AuthenticationMethod
 class PlatformCredentialAuthenticationMethod(AuthenticationMethod):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.platformCredentialAuthenticationMethod"
-    # The createdDateTime property
+    # The date and time that this Platform Credential Key was registered.
     created_date_time: Optional[datetime.datetime] = None
-    # The device property
+    # The registered device on which this Platform Credential resides. Supports $expand. When you get a user's Platform Credential registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/platformCredentialAuthenticationMethod/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.
     device: Optional[Device] = None
-    # The displayName property
+    # The name of the device on which Platform Credential is registered.
     display_name: Optional[str] = None
-    # The keyStrength property
-    key_strength: Optional[AuthenticationMethodKeyStrength] = None
-    # The platform property
-    platform: Optional[AuthenticationMethodPlatform] = None
+    # Key strength of this Platform Credential key. Possible values are: normal, weak, unknown.
+    key_strength: Optional[PlatformCredentialAuthenticationMethod_keyStrength] = None
+    # Platform on which this Platform Credential key is present. Possible values are: unknown, windows, macOS,iOS, android, linux.
+    platform: Optional[PlatformCredentialAuthenticationMethod_platform] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlatformCredentialAuthenticationMethod:
@@ -44,21 +44,21 @@ class PlatformCredentialAuthenticationMethod(AuthenticationMethod):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_method import AuthenticationMethod
-        from .authentication_method_key_strength import AuthenticationMethodKeyStrength
-        from .authentication_method_platform import AuthenticationMethodPlatform
         from .device import Device
+        from .platform_credential_authentication_method_key_strength import PlatformCredentialAuthenticationMethod_keyStrength
+        from .platform_credential_authentication_method_platform import PlatformCredentialAuthenticationMethod_platform
 
         from .authentication_method import AuthenticationMethod
-        from .authentication_method_key_strength import AuthenticationMethodKeyStrength
-        from .authentication_method_platform import AuthenticationMethodPlatform
         from .device import Device
+        from .platform_credential_authentication_method_key_strength import PlatformCredentialAuthenticationMethod_keyStrength
+        from .platform_credential_authentication_method_platform import PlatformCredentialAuthenticationMethod_platform
 
         fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "device": lambda n : setattr(self, 'device', n.get_object_value(Device)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "keyStrength": lambda n : setattr(self, 'key_strength', n.get_enum_value(AuthenticationMethodKeyStrength)),
-            "platform": lambda n : setattr(self, 'platform', n.get_enum_value(AuthenticationMethodPlatform)),
+            "keyStrength": lambda n : setattr(self, 'key_strength', n.get_enum_value(PlatformCredentialAuthenticationMethod_keyStrength)),
+            "platform": lambda n : setattr(self, 'platform', n.get_enum_value(PlatformCredentialAuthenticationMethod_platform)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .branch_connectivity_configuration import BranchConnectivityConfiguration
-    from .connectivity_state import ConnectivityState
+    from .branch_site_connectivity_state import BranchSite_connectivityState
     from .device_link import DeviceLink
     from .forwarding_profile import ForwardingProfile
     from .region import Region
@@ -18,10 +18,10 @@ from ..entity import Entity
 class BranchSite(Entity):
     # Determines the maximum allowed Mbps (megabits per second) bandwidth from a branch site. The possible values are:250,500,750,1000.
     bandwidth_capacity: Optional[int] = None
-    # The connectivityConfiguration property
+    # Specifies the connectivity details of all device links associated with a branch.
     connectivity_configuration: Optional[BranchConnectivityConfiguration] = None
     # Determines the branch site status. The possible values are: pending, connected, inactive, error.
-    connectivity_state: Optional[ConnectivityState] = None
+    connectivity_state: Optional[BranchSite_connectivityState] = None
     # The branch site is created in the specified country.
     country: Optional[str] = None
     # Each unique CPE device associated with a branch is specified. Supports $expand.
@@ -57,14 +57,14 @@ class BranchSite(Entity):
         """
         from ..entity import Entity
         from .branch_connectivity_configuration import BranchConnectivityConfiguration
-        from .connectivity_state import ConnectivityState
+        from .branch_site_connectivity_state import BranchSite_connectivityState
         from .device_link import DeviceLink
         from .forwarding_profile import ForwardingProfile
         from .region import Region
 
         from ..entity import Entity
         from .branch_connectivity_configuration import BranchConnectivityConfiguration
-        from .connectivity_state import ConnectivityState
+        from .branch_site_connectivity_state import BranchSite_connectivityState
         from .device_link import DeviceLink
         from .forwarding_profile import ForwardingProfile
         from .region import Region
@@ -72,7 +72,7 @@ class BranchSite(Entity):
         fields: Dict[str, Callable[[Any], None]] = {
             "bandwidthCapacity": lambda n : setattr(self, 'bandwidth_capacity', n.get_int_value()),
             "connectivityConfiguration": lambda n : setattr(self, 'connectivity_configuration', n.get_object_value(BranchConnectivityConfiguration)),
-            "connectivityState": lambda n : setattr(self, 'connectivity_state', n.get_enum_value(ConnectivityState)),
+            "connectivityState": lambda n : setattr(self, 'connectivity_state', n.get_enum_value(BranchSite_connectivityState)),
             "country": lambda n : setattr(self, 'country', n.get_str_value()),
             "deviceLinks": lambda n : setattr(self, 'device_links', n.get_collection_of_object_values(DeviceLink)),
             "forwardingProfiles": lambda n : setattr(self, 'forwarding_profiles', n.get_collection_of_object_values(ForwardingProfile)),

@@ -4,6 +4,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .cloud_pc_restore_point_setting_frequency_type import CloudPcRestorePointSetting_frequencyType
+
 @dataclass
 class CloudPcRestorePointSetting(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -13,6 +16,8 @@ class CloudPcRestorePointSetting(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The time interval in hours to take snapshots (restore points) of a Cloud PC automatically. Possible values are 4, 6, 12, 16, and 24. The default frequency is 12 hours.
     frequency_in_hours: Optional[int] = None
+    # The frequencyType property
+    frequency_type: Optional[CloudPcRestorePointSetting_frequencyType] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # If true, the user has the ability to use snapshots to restore Cloud PCs. If false, non-admin users can't use snapshots to restore the Cloud PC.
@@ -34,8 +39,13 @@ class CloudPcRestorePointSetting(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .cloud_pc_restore_point_setting_frequency_type import CloudPcRestorePointSetting_frequencyType
+
+        from .cloud_pc_restore_point_setting_frequency_type import CloudPcRestorePointSetting_frequencyType
+
         fields: Dict[str, Callable[[Any], None]] = {
             "frequencyInHours": lambda n : setattr(self, 'frequency_in_hours', n.get_int_value()),
+            "frequencyType": lambda n : setattr(self, 'frequency_type', n.get_enum_value(CloudPcRestorePointSetting_frequencyType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "userRestoreEnabled": lambda n : setattr(self, 'user_restore_enabled', n.get_bool_value()),
         }
@@ -50,6 +60,7 @@ class CloudPcRestorePointSetting(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_int_value("frequencyInHours", self.frequency_in_hours)
+        writer.write_enum_value("frequencyType", self.frequency_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bool_value("userRestoreEnabled", self.user_restore_enabled)
         writer.write_additional_data_value(self.additional_data)

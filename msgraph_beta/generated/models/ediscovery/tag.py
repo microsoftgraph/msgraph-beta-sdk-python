@@ -7,14 +7,14 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from ..identity_set import IdentitySet
-    from .child_selectability import ChildSelectability
+    from .tag_child_selectability import Tag_childSelectability
 
 from ..entity import Entity
 
 @dataclass
 class Tag(Entity):
     # Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.  This value controls whether the UX presents the tags as checkboxes or a radio button group.
-    child_selectability: Optional[ChildSelectability] = None
+    child_selectability: Optional[Tag_childSelectability] = None
     # Returns the tags that are a child of a tag.
     child_tags: Optional[List[Tag]] = None
     # The user who created the tag.
@@ -48,14 +48,14 @@ class Tag(Entity):
         """
         from ..entity import Entity
         from ..identity_set import IdentitySet
-        from .child_selectability import ChildSelectability
+        from .tag_child_selectability import Tag_childSelectability
 
         from ..entity import Entity
         from ..identity_set import IdentitySet
-        from .child_selectability import ChildSelectability
+        from .tag_child_selectability import Tag_childSelectability
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "childSelectability": lambda n : setattr(self, 'child_selectability', n.get_enum_value(ChildSelectability)),
+            "childSelectability": lambda n : setattr(self, 'child_selectability', n.get_enum_value(Tag_childSelectability)),
             "childTags": lambda n : setattr(self, 'child_tags', n.get_collection_of_object_values(Tag)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

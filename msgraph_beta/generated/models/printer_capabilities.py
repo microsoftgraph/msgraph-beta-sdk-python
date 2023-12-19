@@ -6,19 +6,22 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .integer_range import IntegerRange
-    from .printer_feed_direction import PrinterFeedDirection
-    from .printer_feed_orientation import PrinterFeedOrientation
+    from .printer_capabilities_color_modes import PrinterCapabilities_colorModes
+    from .printer_capabilities_duplex_modes import PrinterCapabilities_duplexModes
+    from .printer_capabilities_feed_directions import PrinterCapabilities_feedDirections
+    from .printer_capabilities_feed_orientations import PrinterCapabilities_feedOrientations
+    from .printer_capabilities_finishings import PrinterCapabilities_finishings
+    from .printer_capabilities_multipage_layouts import PrinterCapabilities_multipageLayouts
+    from .printer_capabilities_orientations import PrinterCapabilities_orientations
+    from .printer_capabilities_qualities import PrinterCapabilities_qualities
+    from .printer_capabilities_scalings import PrinterCapabilities_scalings
     from .print_color_configuration import PrintColorConfiguration
-    from .print_color_mode import PrintColorMode
     from .print_duplex_configuration import PrintDuplexConfiguration
-    from .print_duplex_mode import PrintDuplexMode
     from .print_finishing import PrintFinishing
     from .print_media_type import PrintMediaType
-    from .print_multipage_layout import PrintMultipageLayout
     from .print_orientation import PrintOrientation
     from .print_presentation_direction import PrintPresentationDirection
     from .print_quality import PrintQuality
-    from .print_scaling import PrintScaling
 
 @dataclass
 class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
@@ -32,7 +35,7 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
     # True if the printer supports collating when printing multiple copies of a multi-page document; false otherwise.
     collation: Optional[bool] = None
     # The color modes supported by the printer. Valid values are described in the following table.
-    color_modes: Optional[List[PrintColorMode]] = None
+    color_modes: Optional[List[PrinterCapabilities_colorModes]] = None
     # A list of supported content (MIME) types that the printer supports. It isn't guaranteed that the Universal Print service supports printing all of these MIME types.
     content_types: Optional[List[str]] = None
     # The range of copies per job supported by the printer.
@@ -40,13 +43,13 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
     # The list of print resolutions in DPI that are supported by the printer.
     dpis: Optional[List[int]] = None
     # The list of duplex modes that are supported by the printer. Valid values are described in the following table.
-    duplex_modes: Optional[List[PrintDuplexMode]] = None
+    duplex_modes: Optional[List[PrinterCapabilities_duplexModes]] = None
     # The feedDirections property
-    feed_directions: Optional[List[PrinterFeedDirection]] = None
+    feed_directions: Optional[List[PrinterCapabilities_feedDirections]] = None
     # The list of feed orientations that are supported by the printer.
-    feed_orientations: Optional[List[PrinterFeedOrientation]] = None
+    feed_orientations: Optional[List[PrinterCapabilities_feedOrientations]] = None
     # Finishing processes the printer supports for a printed document.
-    finishings: Optional[List[PrintFinishing]] = None
+    finishings: Optional[List[PrinterCapabilities_finishings]] = None
     # Supported input bins for the printer.
     input_bins: Optional[List[str]] = None
     # True if color printing is supported by the printer; false otherwise. Read-only.
@@ -62,21 +65,21 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
     # The media types supported by the printer.
     media_types: Optional[List[str]] = None
     # The presentation directions supported by the printer. Supported values are described in the following table.
-    multipage_layouts: Optional[List[PrintMultipageLayout]] = None
+    multipage_layouts: Optional[List[PrinterCapabilities_multipageLayouts]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The print orientations supported by the printer. Valid values are described in the following table.
-    orientations: Optional[List[PrintOrientation]] = None
+    orientations: Optional[List[PrinterCapabilities_orientations]] = None
     # The printer's supported output bins (trays).
     output_bins: Optional[List[str]] = None
     # Supported number of Input Pages to impose upon a single Impression.
     pages_per_sheet: Optional[List[int]] = None
     # The print qualities supported by the printer.
-    qualities: Optional[List[PrintQuality]] = None
+    qualities: Optional[List[PrinterCapabilities_qualities]] = None
     # A list of supported right margins(in microns) for the printer.
     right_margins: Optional[List[int]] = None
     # Supported print scalings.
-    scalings: Optional[List[PrintScaling]] = None
+    scalings: Optional[List[PrinterCapabilities_scalings]] = None
     # The supportedColorConfigurations property
     supported_color_configurations: Optional[List[PrintColorConfiguration]] = None
     # The supportedCopiesPerJob property
@@ -125,46 +128,52 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .integer_range import IntegerRange
-        from .printer_feed_direction import PrinterFeedDirection
-        from .printer_feed_orientation import PrinterFeedOrientation
+        from .printer_capabilities_color_modes import PrinterCapabilities_colorModes
+        from .printer_capabilities_duplex_modes import PrinterCapabilities_duplexModes
+        from .printer_capabilities_feed_directions import PrinterCapabilities_feedDirections
+        from .printer_capabilities_feed_orientations import PrinterCapabilities_feedOrientations
+        from .printer_capabilities_finishings import PrinterCapabilities_finishings
+        from .printer_capabilities_multipage_layouts import PrinterCapabilities_multipageLayouts
+        from .printer_capabilities_orientations import PrinterCapabilities_orientations
+        from .printer_capabilities_qualities import PrinterCapabilities_qualities
+        from .printer_capabilities_scalings import PrinterCapabilities_scalings
         from .print_color_configuration import PrintColorConfiguration
-        from .print_color_mode import PrintColorMode
         from .print_duplex_configuration import PrintDuplexConfiguration
-        from .print_duplex_mode import PrintDuplexMode
         from .print_finishing import PrintFinishing
         from .print_media_type import PrintMediaType
-        from .print_multipage_layout import PrintMultipageLayout
         from .print_orientation import PrintOrientation
         from .print_presentation_direction import PrintPresentationDirection
         from .print_quality import PrintQuality
-        from .print_scaling import PrintScaling
 
         from .integer_range import IntegerRange
-        from .printer_feed_direction import PrinterFeedDirection
-        from .printer_feed_orientation import PrinterFeedOrientation
+        from .printer_capabilities_color_modes import PrinterCapabilities_colorModes
+        from .printer_capabilities_duplex_modes import PrinterCapabilities_duplexModes
+        from .printer_capabilities_feed_directions import PrinterCapabilities_feedDirections
+        from .printer_capabilities_feed_orientations import PrinterCapabilities_feedOrientations
+        from .printer_capabilities_finishings import PrinterCapabilities_finishings
+        from .printer_capabilities_multipage_layouts import PrinterCapabilities_multipageLayouts
+        from .printer_capabilities_orientations import PrinterCapabilities_orientations
+        from .printer_capabilities_qualities import PrinterCapabilities_qualities
+        from .printer_capabilities_scalings import PrinterCapabilities_scalings
         from .print_color_configuration import PrintColorConfiguration
-        from .print_color_mode import PrintColorMode
         from .print_duplex_configuration import PrintDuplexConfiguration
-        from .print_duplex_mode import PrintDuplexMode
         from .print_finishing import PrintFinishing
         from .print_media_type import PrintMediaType
-        from .print_multipage_layout import PrintMultipageLayout
         from .print_orientation import PrintOrientation
         from .print_presentation_direction import PrintPresentationDirection
         from .print_quality import PrintQuality
-        from .print_scaling import PrintScaling
 
         fields: Dict[str, Callable[[Any], None]] = {
             "bottomMargins": lambda n : setattr(self, 'bottom_margins', n.get_collection_of_primitive_values(int)),
             "collation": lambda n : setattr(self, 'collation', n.get_bool_value()),
-            "colorModes": lambda n : setattr(self, 'color_modes', n.get_collection_of_enum_values(PrintColorMode)),
+            "colorModes": lambda n : setattr(self, 'color_modes', n.get_collection_of_enum_values(PrinterCapabilities_colorModes)),
             "contentTypes": lambda n : setattr(self, 'content_types', n.get_collection_of_primitive_values(str)),
             "copiesPerJob": lambda n : setattr(self, 'copies_per_job', n.get_object_value(IntegerRange)),
             "dpis": lambda n : setattr(self, 'dpis', n.get_collection_of_primitive_values(int)),
-            "duplexModes": lambda n : setattr(self, 'duplex_modes', n.get_collection_of_enum_values(PrintDuplexMode)),
-            "feedDirections": lambda n : setattr(self, 'feed_directions', n.get_collection_of_enum_values(PrinterFeedDirection)),
-            "feedOrientations": lambda n : setattr(self, 'feed_orientations', n.get_collection_of_enum_values(PrinterFeedOrientation)),
-            "finishings": lambda n : setattr(self, 'finishings', n.get_collection_of_enum_values(PrintFinishing)),
+            "duplexModes": lambda n : setattr(self, 'duplex_modes', n.get_collection_of_enum_values(PrinterCapabilities_duplexModes)),
+            "feedDirections": lambda n : setattr(self, 'feed_directions', n.get_collection_of_enum_values(PrinterCapabilities_feedDirections)),
+            "feedOrientations": lambda n : setattr(self, 'feed_orientations', n.get_collection_of_enum_values(PrinterCapabilities_feedOrientations)),
+            "finishings": lambda n : setattr(self, 'finishings', n.get_collection_of_enum_values(PrinterCapabilities_finishings)),
             "inputBins": lambda n : setattr(self, 'input_bins', n.get_collection_of_primitive_values(str)),
             "isColorPrintingSupported": lambda n : setattr(self, 'is_color_printing_supported', n.get_bool_value()),
             "isPageRangeSupported": lambda n : setattr(self, 'is_page_range_supported', n.get_bool_value()),
@@ -172,14 +181,14 @@ class PrinterCapabilities(AdditionalDataHolder, BackedModel, Parsable):
             "mediaColors": lambda n : setattr(self, 'media_colors', n.get_collection_of_primitive_values(str)),
             "mediaSizes": lambda n : setattr(self, 'media_sizes', n.get_collection_of_primitive_values(str)),
             "mediaTypes": lambda n : setattr(self, 'media_types', n.get_collection_of_primitive_values(str)),
-            "multipageLayouts": lambda n : setattr(self, 'multipage_layouts', n.get_collection_of_enum_values(PrintMultipageLayout)),
+            "multipageLayouts": lambda n : setattr(self, 'multipage_layouts', n.get_collection_of_enum_values(PrinterCapabilities_multipageLayouts)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "orientations": lambda n : setattr(self, 'orientations', n.get_collection_of_enum_values(PrintOrientation)),
+            "orientations": lambda n : setattr(self, 'orientations', n.get_collection_of_enum_values(PrinterCapabilities_orientations)),
             "outputBins": lambda n : setattr(self, 'output_bins', n.get_collection_of_primitive_values(str)),
             "pagesPerSheet": lambda n : setattr(self, 'pages_per_sheet', n.get_collection_of_primitive_values(int)),
-            "qualities": lambda n : setattr(self, 'qualities', n.get_collection_of_enum_values(PrintQuality)),
+            "qualities": lambda n : setattr(self, 'qualities', n.get_collection_of_enum_values(PrinterCapabilities_qualities)),
             "rightMargins": lambda n : setattr(self, 'right_margins', n.get_collection_of_primitive_values(int)),
-            "scalings": lambda n : setattr(self, 'scalings', n.get_collection_of_enum_values(PrintScaling)),
+            "scalings": lambda n : setattr(self, 'scalings', n.get_collection_of_enum_values(PrinterCapabilities_scalings)),
             "supportedColorConfigurations": lambda n : setattr(self, 'supported_color_configurations', n.get_collection_of_enum_values(PrintColorConfiguration)),
             "supportedCopiesPerJob": lambda n : setattr(self, 'supported_copies_per_job', n.get_object_value(IntegerRange)),
             "supportedDocumentMimeTypes": lambda n : setattr(self, 'supported_document_mime_types', n.get_collection_of_primitive_values(str)),

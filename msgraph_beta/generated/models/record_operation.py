@@ -5,14 +5,14 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .comms_operation import CommsOperation
-    from .record_completion_reason import RecordCompletionReason
+    from .record_operation_completion_reason import RecordOperation_completionReason
 
 from .comms_operation import CommsOperation
 
 @dataclass
 class RecordOperation(CommsOperation):
     # Possible values are: operationCanceled, stopToneDetected, maxRecordDurationReached, initialSilenceTimeout, maxSilenceTimeout, playPromptFailed, playBeepFailed, mediaReceiveTimeout, unspecifiedError, none.
-    completion_reason: Optional[RecordCompletionReason] = None
+    completion_reason: Optional[RecordOperation_completionReason] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The access token required to retrieve the recording.
@@ -37,13 +37,13 @@ class RecordOperation(CommsOperation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .comms_operation import CommsOperation
-        from .record_completion_reason import RecordCompletionReason
+        from .record_operation_completion_reason import RecordOperation_completionReason
 
         from .comms_operation import CommsOperation
-        from .record_completion_reason import RecordCompletionReason
+        from .record_operation_completion_reason import RecordOperation_completionReason
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "completionReason": lambda n : setattr(self, 'completion_reason', n.get_enum_value(RecordCompletionReason)),
+            "completionReason": lambda n : setattr(self, 'completion_reason', n.get_enum_value(RecordOperation_completionReason)),
             "recordingAccessToken": lambda n : setattr(self, 'recording_access_token', n.get_str_value()),
             "recordingLocation": lambda n : setattr(self, 'recording_location', n.get_str_value()),
         }

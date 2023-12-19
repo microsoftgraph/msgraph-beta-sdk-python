@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .action_state import ActionState
+    from .cloud_pc_remote_action_result_action_state import CloudPcRemoteActionResult_actionState
     from .cloud_pc_status_details import CloudPcStatusDetails
 
 @dataclass
@@ -19,7 +19,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
     # The specified action. Supported values in the Microsoft Endpoint Manager portal are: Reprovision, Resize, Restore. Supported values in enterprise Cloud PC devices are: Reboot, Rename, Reprovision, Troubleshoot.
     action_name: Optional[str] = None
     # State of the action. Possible values are: None, pending, canceled, active, done, failed, notSupported. Read-only.
-    action_state: Optional[ActionState] = None
+    action_state: Optional[CloudPcRemoteActionResult_actionState] = None
     # The ID of the Cloud PC device on which the remote action is performed. Read-only.
     cloud_pc_id: Optional[str] = None
     # Last update time for action. The Timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
@@ -49,15 +49,15 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .action_state import ActionState
+        from .cloud_pc_remote_action_result_action_state import CloudPcRemoteActionResult_actionState
         from .cloud_pc_status_details import CloudPcStatusDetails
 
-        from .action_state import ActionState
+        from .cloud_pc_remote_action_result_action_state import CloudPcRemoteActionResult_actionState
         from .cloud_pc_status_details import CloudPcStatusDetails
 
         fields: Dict[str, Callable[[Any], None]] = {
             "actionName": lambda n : setattr(self, 'action_name', n.get_str_value()),
-            "actionState": lambda n : setattr(self, 'action_state', n.get_enum_value(ActionState)),
+            "actionState": lambda n : setattr(self, 'action_state', n.get_enum_value(CloudPcRemoteActionResult_actionState)),
             "cloudPcId": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),

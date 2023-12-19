@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .cloud_pc_management_service import CloudPcManagementService
     from .cloud_pc_region_group import CloudPcRegionGroup
-    from .cloud_pc_supported_region_status import CloudPcSupportedRegionStatus
+    from .cloud_pc_supported_region_region_status import CloudPcSupportedRegion_regionStatus
     from .entity import Entity
 
 from .entity import Entity
@@ -20,7 +20,7 @@ class CloudPcSupportedRegion(Entity):
     # The regionGroup property
     region_group: Optional[CloudPcRegionGroup] = None
     # The status of the supported region. Possible values are: available, restricted, unavailable, unknownFutureValue. Read-only.
-    region_status: Optional[CloudPcSupportedRegionStatus] = None
+    region_status: Optional[CloudPcSupportedRegion_regionStatus] = None
     # The supportedSolution property
     supported_solution: Optional[CloudPcManagementService] = None
     
@@ -42,18 +42,18 @@ class CloudPcSupportedRegion(Entity):
         """
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_region_group import CloudPcRegionGroup
-        from .cloud_pc_supported_region_status import CloudPcSupportedRegionStatus
+        from .cloud_pc_supported_region_region_status import CloudPcSupportedRegion_regionStatus
         from .entity import Entity
 
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_region_group import CloudPcRegionGroup
-        from .cloud_pc_supported_region_status import CloudPcSupportedRegionStatus
+        from .cloud_pc_supported_region_region_status import CloudPcSupportedRegion_regionStatus
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "regionGroup": lambda n : setattr(self, 'region_group', n.get_enum_value(CloudPcRegionGroup)),
-            "regionStatus": lambda n : setattr(self, 'region_status', n.get_enum_value(CloudPcSupportedRegionStatus)),
+            "regionStatus": lambda n : setattr(self, 'region_status', n.get_enum_value(CloudPcSupportedRegion_regionStatus)),
             "supportedSolution": lambda n : setattr(self, 'supported_solution', n.get_collection_of_enum_values(CloudPcManagementService)),
         }
         super_fields = super().get_field_deserializers()

@@ -1,7 +1,5 @@
 from enum import Enum
 
-class EducationModuleStatus(str, Enum):
-    Draft = "draft",
-    Published = "published",
-    UnknownFutureValue = "unknownFutureValue",
+class EducationModule_status(str, Enum):
+    pass
 

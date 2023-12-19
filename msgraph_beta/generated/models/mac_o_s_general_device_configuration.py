@@ -7,8 +7,8 @@ if TYPE_CHECKING:
     from .app_list_item import AppListItem
     from .app_list_type import AppListType
     from .device_configuration import DeviceConfiguration
+    from .mac_o_s_general_device_configuration_update_delay_policy import MacOSGeneralDeviceConfiguration_updateDelayPolicy
     from .mac_o_s_privacy_access_control_item import MacOSPrivacyAccessControlItem
-    from .mac_o_s_software_update_delay_policy import MacOSSoftwareUpdateDelayPolicy
     from .required_password_type import RequiredPasswordType
 
 from .device_configuration import DeviceConfiguration
@@ -137,7 +137,7 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration):
     # Maximum hours after which the user must enter their password to unlock the device instead of using Touch ID. Available for devices running macOS 12 and later. Valid values 0 to 2147483647
     touch_id_timeout_in_hours: Optional[int] = None
     # Determines whether to delay OS and/or app updates for macOS. Possible values are: none, delayOSUpdateVisibility, delayAppUpdateVisibility, unknownFutureValue, delayMajorOsUpdateVisibility.
-    update_delay_policy: Optional[MacOSSoftwareUpdateDelayPolicy] = None
+    update_delay_policy: Optional[MacOSGeneralDeviceConfiguration_updateDelayPolicy] = None
     # TRUE prevents the wallpaper from being changed. FALSE allows the wallpaper to be changed. Available for devices running macOS versions 10.13 and later.
     wallpaper_modification_blocked: Optional[bool] = None
     
@@ -160,15 +160,15 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration):
         from .app_list_item import AppListItem
         from .app_list_type import AppListType
         from .device_configuration import DeviceConfiguration
+        from .mac_o_s_general_device_configuration_update_delay_policy import MacOSGeneralDeviceConfiguration_updateDelayPolicy
         from .mac_o_s_privacy_access_control_item import MacOSPrivacyAccessControlItem
-        from .mac_o_s_software_update_delay_policy import MacOSSoftwareUpdateDelayPolicy
         from .required_password_type import RequiredPasswordType
 
         from .app_list_item import AppListItem
         from .app_list_type import AppListType
         from .device_configuration import DeviceConfiguration
+        from .mac_o_s_general_device_configuration_update_delay_policy import MacOSGeneralDeviceConfiguration_updateDelayPolicy
         from .mac_o_s_privacy_access_control_item import MacOSPrivacyAccessControlItem
-        from .mac_o_s_software_update_delay_policy import MacOSSoftwareUpdateDelayPolicy
         from .required_password_type import RequiredPasswordType
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -230,7 +230,7 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration):
             "softwareUpdatesEnforcedDelayInDays": lambda n : setattr(self, 'software_updates_enforced_delay_in_days', n.get_int_value()),
             "spotlightBlockInternetResults": lambda n : setattr(self, 'spotlight_block_internet_results', n.get_bool_value()),
             "touchIdTimeoutInHours": lambda n : setattr(self, 'touch_id_timeout_in_hours', n.get_int_value()),
-            "updateDelayPolicy": lambda n : setattr(self, 'update_delay_policy', n.get_collection_of_enum_values(MacOSSoftwareUpdateDelayPolicy)),
+            "updateDelayPolicy": lambda n : setattr(self, 'update_delay_policy', n.get_enum_value(MacOSGeneralDeviceConfiguration_updateDelayPolicy)),
             "wallpaperModificationBlocked": lambda n : setattr(self, 'wallpaper_modification_blocked', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()

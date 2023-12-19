@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
     from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
+    from .android_device_owner_pkcs_certificate_profile_certificate_access_type import AndroidDeviceOwnerPkcsCertificateProfile_certificateAccessType
     from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
     from .certificate_store import CertificateStore
     from .custom_subject_alternative_name import CustomSubjectAlternativeName
@@ -22,7 +22,7 @@ class AndroidDeviceOwnerPkcsCertificateProfile(AndroidDeviceOwnerCertificateProf
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerPkcsCertificateProfile"
     # Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
-    certificate_access_type: Optional[AndroidDeviceOwnerCertificateAccessType] = None
+    certificate_access_type: Optional[AndroidDeviceOwnerPkcsCertificateProfile_certificateAccessType] = None
     # CertificateStore types
     certificate_store: Optional[CertificateStore] = None
     # PKCS Certificate Template Name
@@ -60,16 +60,16 @@ class AndroidDeviceOwnerPkcsCertificateProfile(AndroidDeviceOwnerCertificateProf
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
         from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
+        from .android_device_owner_pkcs_certificate_profile_certificate_access_type import AndroidDeviceOwnerPkcsCertificateProfile_certificateAccessType
         from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
         from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .device_management_certification_authority import DeviceManagementCertificationAuthority
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
         from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
+        from .android_device_owner_pkcs_certificate_profile_certificate_access_type import AndroidDeviceOwnerPkcsCertificateProfile_certificateAccessType
         from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
         from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
@@ -77,7 +77,7 @@ class AndroidDeviceOwnerPkcsCertificateProfile(AndroidDeviceOwnerCertificateProf
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(AndroidDeviceOwnerCertificateAccessType)),
+            "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(AndroidDeviceOwnerPkcsCertificateProfile_certificateAccessType)),
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
             "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
             "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),

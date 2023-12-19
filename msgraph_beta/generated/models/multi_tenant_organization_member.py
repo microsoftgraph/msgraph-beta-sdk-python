@@ -7,8 +7,8 @@ from uuid import UUID
 
 if TYPE_CHECKING:
     from .directory_object import DirectoryObject
-    from .multi_tenant_organization_member_role import MultiTenantOrganizationMemberRole
-    from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
+    from .multi_tenant_organization_member_role import MultiTenantOrganizationMember_role
+    from .multi_tenant_organization_member_state import MultiTenantOrganizationMember_state
     from .multi_tenant_organization_member_transition_details import MultiTenantOrganizationMemberTransitionDetails
 
 from .directory_object import DirectoryObject
@@ -26,9 +26,9 @@ class MultiTenantOrganizationMember(DirectoryObject):
     # Date and time when the tenant joined the multitenant organization. Read-only.
     joined_date_time: Optional[datetime.datetime] = None
     # Role of the tenant in the multitenant organization. The possible values are: owner, member (default), unknownFutureValue. Tenants with the owner role can manage the multitenant organization but tenants with the member role can only participate in a multitenant organization. There can be multiple tenants with the owner role in a multitenant organization.
-    role: Optional[MultiTenantOrganizationMemberRole] = None
+    role: Optional[MultiTenantOrganizationMember_role] = None
     # State of the tenant in the multitenant organization. The possible values are: pending, active, removed, unknownFutureValue. Tenants in the pending state must join the multitenant organization to participate in the multitenant organization. Tenants in the active state can participate in the multitenant organization. Tenants in the removed state are in the process of being removed from the multitenant organization. Read-only.
-    state: Optional[MultiTenantOrganizationMemberState] = None
+    state: Optional[MultiTenantOrganizationMember_state] = None
     # Tenant ID of the Microsoft Entra tenant added to the multitenant organization. Set at the time tenant is added.Supports $filter. Key.
     tenant_id: Optional[str] = None
     # Details of the processing status for a tenant in a multitenant organization. Read-only. Nullable.
@@ -51,13 +51,13 @@ class MultiTenantOrganizationMember(DirectoryObject):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .directory_object import DirectoryObject
-        from .multi_tenant_organization_member_role import MultiTenantOrganizationMemberRole
-        from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
+        from .multi_tenant_organization_member_role import MultiTenantOrganizationMember_role
+        from .multi_tenant_organization_member_state import MultiTenantOrganizationMember_state
         from .multi_tenant_organization_member_transition_details import MultiTenantOrganizationMemberTransitionDetails
 
         from .directory_object import DirectoryObject
-        from .multi_tenant_organization_member_role import MultiTenantOrganizationMemberRole
-        from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
+        from .multi_tenant_organization_member_role import MultiTenantOrganizationMember_role
+        from .multi_tenant_organization_member_state import MultiTenantOrganizationMember_state
         from .multi_tenant_organization_member_transition_details import MultiTenantOrganizationMemberTransitionDetails
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -65,8 +65,8 @@ class MultiTenantOrganizationMember(DirectoryObject):
             "addedDateTime": lambda n : setattr(self, 'added_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "joinedDateTime": lambda n : setattr(self, 'joined_date_time', n.get_datetime_value()),
-            "role": lambda n : setattr(self, 'role', n.get_enum_value(MultiTenantOrganizationMemberRole)),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(MultiTenantOrganizationMemberState)),
+            "role": lambda n : setattr(self, 'role', n.get_enum_value(MultiTenantOrganizationMember_role)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(MultiTenantOrganizationMember_state)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "transitionDetails": lambda n : setattr(self, 'transition_details', n.get_object_value(MultiTenantOrganizationMemberTransitionDetails)),
         }

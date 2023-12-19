@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .application import Application
     from .connector import Connector
-    from .connector_group_region import ConnectorGroupRegion
+    from .connector_group_region import ConnectorGroup_region
     from .connector_group_type import ConnectorGroupType
     from .entity import Entity
 
@@ -27,7 +27,7 @@ class ConnectorGroup(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The region the connectorGroup is assigned to and will optimize traffic for. This region can only be set if no connectors or applications are assigned to the connectorGroup. The possible values are: nam (for North America), eur (for Europe), aus (for Australia), asia (for Asia), ind (for India), and unknownFutureValue.
-    region: Optional[ConnectorGroupRegion] = None
+    region: Optional[ConnectorGroup_region] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConnectorGroup:
@@ -47,13 +47,13 @@ class ConnectorGroup(Entity):
         """
         from .application import Application
         from .connector import Connector
-        from .connector_group_region import ConnectorGroupRegion
+        from .connector_group_region import ConnectorGroup_region
         from .connector_group_type import ConnectorGroupType
         from .entity import Entity
 
         from .application import Application
         from .connector import Connector
-        from .connector_group_region import ConnectorGroupRegion
+        from .connector_group_region import ConnectorGroup_region
         from .connector_group_type import ConnectorGroupType
         from .entity import Entity
 
@@ -63,7 +63,7 @@ class ConnectorGroup(Entity):
             "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(Connector)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "region": lambda n : setattr(self, 'region', n.get_enum_value(ConnectorGroupRegion)),
+            "region": lambda n : setattr(self, 'region', n.get_enum_value(ConnectorGroup_region)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.cloud_pc_policy_setting_type import CloudPcPolicySettingType
+    from .apply_config_post_request_body_policy_settings import ApplyConfigPostRequestBody_policySettings
 
 @dataclass
 class ApplyConfigPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -17,7 +17,7 @@ class ApplyConfigPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # The cloudPcIds property
     cloud_pc_ids: Optional[List[str]] = None
     # The policySettings property
-    policy_settings: Optional[CloudPcPolicySettingType] = None
+    policy_settings: Optional[ApplyConfigPostRequestBody_policySettings] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ApplyConfigPostRequestBody:
@@ -35,13 +35,13 @@ class ApplyConfigPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .....models.cloud_pc_policy_setting_type import CloudPcPolicySettingType
+        from .apply_config_post_request_body_policy_settings import ApplyConfigPostRequestBody_policySettings
 
-        from .....models.cloud_pc_policy_setting_type import CloudPcPolicySettingType
+        from .apply_config_post_request_body_policy_settings import ApplyConfigPostRequestBody_policySettings
 
         fields: Dict[str, Callable[[Any], None]] = {
             "cloudPcIds": lambda n : setattr(self, 'cloud_pc_ids', n.get_collection_of_primitive_values(str)),
-            "policySettings": lambda n : setattr(self, 'policy_settings', n.get_collection_of_enum_values(CloudPcPolicySettingType)),
+            "policySettings": lambda n : setattr(self, 'policy_settings', n.get_enum_value(ApplyConfigPostRequestBody_policySettings)),
         }
         return fields
     

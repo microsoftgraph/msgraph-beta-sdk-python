@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .dlp_action_info import DlpActionInfo
-    from .rule_mode import RuleMode
+    from .matching_dlp_rule_rule_mode import MatchingDlpRule_ruleMode
 
 @dataclass
 class MatchingDlpRule(AdditionalDataHolder, BackedModel, Parsable):
@@ -30,7 +30,7 @@ class MatchingDlpRule(AdditionalDataHolder, BackedModel, Parsable):
     # The ruleId property
     rule_id: Optional[str] = None
     # The ruleMode property
-    rule_mode: Optional[RuleMode] = None
+    rule_mode: Optional[MatchingDlpRule_ruleMode] = None
     # The ruleName property
     rule_name: Optional[str] = None
     
@@ -51,10 +51,10 @@ class MatchingDlpRule(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .dlp_action_info import DlpActionInfo
-        from .rule_mode import RuleMode
+        from .matching_dlp_rule_rule_mode import MatchingDlpRule_ruleMode
 
         from .dlp_action_info import DlpActionInfo
-        from .rule_mode import RuleMode
+        from .matching_dlp_rule_rule_mode import MatchingDlpRule_ruleMode
 
         fields: Dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(DlpActionInfo)),
@@ -64,7 +64,7 @@ class MatchingDlpRule(AdditionalDataHolder, BackedModel, Parsable):
             "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
             "ruleId": lambda n : setattr(self, 'rule_id', n.get_str_value()),
-            "ruleMode": lambda n : setattr(self, 'rule_mode', n.get_enum_value(RuleMode)),
+            "ruleMode": lambda n : setattr(self, 'rule_mode', n.get_enum_value(MatchingDlpRule_ruleMode)),
             "ruleName": lambda n : setattr(self, 'rule_name', n.get_str_value()),
         }
         return fields

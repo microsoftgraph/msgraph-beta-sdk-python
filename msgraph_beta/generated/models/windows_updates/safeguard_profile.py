@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .safeguard_category import SafeguardCategory
+    from .safeguard_profile_category import SafeguardProfile_category
 
 @dataclass
 class SafeguardProfile(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,7 +15,7 @@ class SafeguardProfile(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Specifies the category of safeguards. The possible values are: likelyIssues, unknownFutureValue.
-    category: Optional[SafeguardCategory] = None
+    category: Optional[SafeguardProfile_category] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -35,12 +35,12 @@ class SafeguardProfile(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .safeguard_category import SafeguardCategory
+        from .safeguard_profile_category import SafeguardProfile_category
 
-        from .safeguard_category import SafeguardCategory
+        from .safeguard_profile_category import SafeguardProfile_category
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "category": lambda n : setattr(self, 'category', n.get_enum_value(SafeguardCategory)),
+            "category": lambda n : setattr(self, 'category', n.get_enum_value(SafeguardProfile_category)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

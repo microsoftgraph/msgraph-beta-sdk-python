@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .monitoring_action import MonitoringAction
-    from .monitoring_signal import MonitoringSignal
+    from .monitoring_rule_action import MonitoringRule_action
+    from .monitoring_rule_signal import MonitoringRule_signal
 
 @dataclass
 class MonitoringRule(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,11 +16,11 @@ class MonitoringRule(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The action triggered when the threshold for the given signal is reached. Possible values are: alertError, pauseDeployment, offerFallback, unknownFutureValue. The offerFallback member is only supported on feature update deployments of Windows 11 and must be paired with the ineligible signal. The fallback version offered is the version 22H2 of Windows 10.
-    action: Optional[MonitoringAction] = None
+    action: Optional[MonitoringRule_action] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The signal to monitor. Possible values are: rollback, ineligible, unknownFutureValue. The ineligible member is only supported on feature update deployments of Windows 11 and must be paired with the offerFallback action.
-    signal: Optional[MonitoringSignal] = None
+    signal: Optional[MonitoringRule_signal] = None
     # The threshold for a signal at which to trigger the action. An integer from 1 to 100 (inclusive). This value is ignored when the signal is ineligible and the action is offerFallback.
     threshold: Optional[int] = None
     
@@ -40,16 +40,16 @@ class MonitoringRule(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .monitoring_action import MonitoringAction
-        from .monitoring_signal import MonitoringSignal
+        from .monitoring_rule_action import MonitoringRule_action
+        from .monitoring_rule_signal import MonitoringRule_signal
 
-        from .monitoring_action import MonitoringAction
-        from .monitoring_signal import MonitoringSignal
+        from .monitoring_rule_action import MonitoringRule_action
+        from .monitoring_rule_signal import MonitoringRule_signal
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "action": lambda n : setattr(self, 'action', n.get_enum_value(MonitoringAction)),
+            "action": lambda n : setattr(self, 'action', n.get_enum_value(MonitoringRule_action)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "signal": lambda n : setattr(self, 'signal', n.get_enum_value(MonitoringSignal)),
+            "signal": lambda n : setattr(self, 'signal', n.get_enum_value(MonitoringRule_signal)),
             "threshold": lambda n : setattr(self, 'threshold', n.get_int_value()),
         }
         return fields

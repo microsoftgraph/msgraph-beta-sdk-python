@@ -5,10 +5,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
-    from .metered_connection_limit_type import MeteredConnectionLimitType
+    from .windows_wifi_configuration_metered_connection_limit import WindowsWifiConfiguration_meteredConnectionLimit
+    from .windows_wifi_configuration_proxy_setting import WindowsWifiConfiguration_proxySetting
+    from .windows_wifi_configuration_wifi_security_type import WindowsWifiConfiguration_wifiSecurityType
     from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
-    from .wi_fi_proxy_setting import WiFiProxySetting
-    from .wi_fi_security_type import WiFiSecurityType
 
 from .device_configuration import DeviceConfiguration
 
@@ -28,7 +28,7 @@ class WindowsWifiConfiguration(DeviceConfiguration):
     # Specify whether to force FIPS compliance.
     force_f_i_p_s_compliance: Optional[bool] = None
     # Specify the metered connection limit type for the wifi connection. Possible values are: unrestricted, fixed, variable.
-    metered_connection_limit: Optional[MeteredConnectionLimitType] = None
+    metered_connection_limit: Optional[WindowsWifiConfiguration_meteredConnectionLimit] = None
     # Specify the network configuration name.
     network_name: Optional[str] = None
     # This is the pre-shared key for WPA Personal Wi-Fi network.
@@ -40,11 +40,11 @@ class WindowsWifiConfiguration(DeviceConfiguration):
     # Specify the port for the proxy server.
     proxy_manual_port: Optional[int] = None
     # Specify the proxy setting for Wi-Fi configuration. Possible values are: none, manual, automatic.
-    proxy_setting: Optional[WiFiProxySetting] = None
+    proxy_setting: Optional[WindowsWifiConfiguration_proxySetting] = None
     # Specify the SSID of the wifi connection.
     ssid: Optional[str] = None
     # Specify the Wifi Security Type. Possible values are: open, wpaPersonal, wpaEnterprise, wep, wpa2Personal, wpa2Enterprise.
-    wifi_security_type: Optional[WiFiSecurityType] = None
+    wifi_security_type: Optional[WindowsWifiConfiguration_wifiSecurityType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsWifiConfiguration:
@@ -71,31 +71,31 @@ class WindowsWifiConfiguration(DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
-        from .metered_connection_limit_type import MeteredConnectionLimitType
+        from .windows_wifi_configuration_metered_connection_limit import WindowsWifiConfiguration_meteredConnectionLimit
+        from .windows_wifi_configuration_proxy_setting import WindowsWifiConfiguration_proxySetting
+        from .windows_wifi_configuration_wifi_security_type import WindowsWifiConfiguration_wifiSecurityType
         from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
-        from .wi_fi_proxy_setting import WiFiProxySetting
-        from .wi_fi_security_type import WiFiSecurityType
 
         from .device_configuration import DeviceConfiguration
-        from .metered_connection_limit_type import MeteredConnectionLimitType
+        from .windows_wifi_configuration_metered_connection_limit import WindowsWifiConfiguration_meteredConnectionLimit
+        from .windows_wifi_configuration_proxy_setting import WindowsWifiConfiguration_proxySetting
+        from .windows_wifi_configuration_wifi_security_type import WindowsWifiConfiguration_wifiSecurityType
         from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
-        from .wi_fi_proxy_setting import WiFiProxySetting
-        from .wi_fi_security_type import WiFiSecurityType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
             "connectToPreferredNetwork": lambda n : setattr(self, 'connect_to_preferred_network', n.get_bool_value()),
             "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
             "forceFIPSCompliance": lambda n : setattr(self, 'force_f_i_p_s_compliance', n.get_bool_value()),
-            "meteredConnectionLimit": lambda n : setattr(self, 'metered_connection_limit', n.get_enum_value(MeteredConnectionLimitType)),
+            "meteredConnectionLimit": lambda n : setattr(self, 'metered_connection_limit', n.get_enum_value(WindowsWifiConfiguration_meteredConnectionLimit)),
             "networkName": lambda n : setattr(self, 'network_name', n.get_str_value()),
             "preSharedKey": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
             "proxyAutomaticConfigurationUrl": lambda n : setattr(self, 'proxy_automatic_configuration_url', n.get_str_value()),
             "proxyManualAddress": lambda n : setattr(self, 'proxy_manual_address', n.get_str_value()),
             "proxyManualPort": lambda n : setattr(self, 'proxy_manual_port', n.get_int_value()),
-            "proxySetting": lambda n : setattr(self, 'proxy_setting', n.get_enum_value(WiFiProxySetting)),
+            "proxySetting": lambda n : setattr(self, 'proxy_setting', n.get_enum_value(WindowsWifiConfiguration_proxySetting)),
             "ssid": lambda n : setattr(self, 'ssid', n.get_str_value()),
-            "wifiSecurityType": lambda n : setattr(self, 'wifi_security_type', n.get_enum_value(WiFiSecurityType)),
+            "wifiSecurityType": lambda n : setattr(self, 'wifi_security_type', n.get_enum_value(WindowsWifiConfiguration_wifiSecurityType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

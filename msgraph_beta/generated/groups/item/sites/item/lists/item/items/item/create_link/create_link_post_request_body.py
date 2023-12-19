@@ -17,6 +17,8 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The expirationDateTime property
     expiration_date_time: Optional[datetime.datetime] = None
+    # The message property
+    message: Optional[str] = None
     # The password property
     password: Optional[str] = None
     # The recipients property
@@ -52,6 +54,7 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "password": lambda n : setattr(self, 'password', n.get_str_value()),
             "recipients": lambda n : setattr(self, 'recipients', n.get_collection_of_object_values(DriveRecipient)),
             "retainInheritedPermissions": lambda n : setattr(self, 'retain_inherited_permissions', n.get_bool_value()),
@@ -70,6 +73,7 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
+        writer.write_str_value("message", self.message)
         writer.write_str_value("password", self.password)
         writer.write_collection_of_object_values("recipients", self.recipients)
         writer.write_bool_value("retainInheritedPermissions", self.retain_inherited_permissions)

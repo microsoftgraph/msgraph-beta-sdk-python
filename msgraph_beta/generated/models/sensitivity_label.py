@@ -4,21 +4,21 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .application_mode import ApplicationMode
     from .auto_labeling import AutoLabeling
     from .entity import Entity
     from .label_action_base import LabelActionBase
     from .label_policy import LabelPolicy
-    from .sensitivity_label_target import SensitivityLabelTarget
+    from .sensitivity_label_applicable_to import SensitivityLabel_applicableTo
+    from .sensitivity_label_application_mode import SensitivityLabel_applicationMode
 
 from .entity import Entity
 
 @dataclass
 class SensitivityLabel(Entity):
     # The applicableTo property
-    applicable_to: Optional[SensitivityLabelTarget] = None
+    applicable_to: Optional[SensitivityLabel_applicableTo] = None
     # The applicationMode property
-    application_mode: Optional[ApplicationMode] = None
+    application_mode: Optional[SensitivityLabel_applicationMode] = None
     # The assignedPolicies property
     assigned_policies: Optional[List[LabelPolicy]] = None
     # The autoLabeling property
@@ -60,23 +60,23 @@ class SensitivityLabel(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .application_mode import ApplicationMode
         from .auto_labeling import AutoLabeling
         from .entity import Entity
         from .label_action_base import LabelActionBase
         from .label_policy import LabelPolicy
-        from .sensitivity_label_target import SensitivityLabelTarget
+        from .sensitivity_label_applicable_to import SensitivityLabel_applicableTo
+        from .sensitivity_label_application_mode import SensitivityLabel_applicationMode
 
-        from .application_mode import ApplicationMode
         from .auto_labeling import AutoLabeling
         from .entity import Entity
         from .label_action_base import LabelActionBase
         from .label_policy import LabelPolicy
-        from .sensitivity_label_target import SensitivityLabelTarget
+        from .sensitivity_label_applicable_to import SensitivityLabel_applicableTo
+        from .sensitivity_label_application_mode import SensitivityLabel_applicationMode
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_collection_of_enum_values(SensitivityLabelTarget)),
-            "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(ApplicationMode)),
+            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_enum_value(SensitivityLabel_applicableTo)),
+            "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(SensitivityLabel_applicationMode)),
             "assignedPolicies": lambda n : setattr(self, 'assigned_policies', n.get_collection_of_object_values(LabelPolicy)),
             "autoLabeling": lambda n : setattr(self, 'auto_labeling', n.get_object_value(AutoLabeling)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

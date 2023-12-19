@@ -6,6 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .authentication_events_flow import AuthenticationEventsFlow
     from .on_attribute_collection_handler import OnAttributeCollectionHandler
+    from .on_attribute_collection_start_handler import OnAttributeCollectionStartHandler
+    from .on_attribute_collection_submit_handler import OnAttributeCollectionSubmitHandler
     from .on_authentication_method_load_start_handler import OnAuthenticationMethodLoadStartHandler
     from .on_interactive_auth_flow_start_handler import OnInteractiveAuthFlowStartHandler
     from .on_user_create_start_handler import OnUserCreateStartHandler
@@ -18,6 +20,10 @@ class ExternalUsersSelfServiceSignUpEventsFlow(AuthenticationEventsFlow):
     odata_type: Optional[str] = "#microsoft.graph.externalUsersSelfServiceSignUpEventsFlow"
     # The configuration for what to invoke when attributes are ready to be collected from the user.
     on_attribute_collection: Optional[OnAttributeCollectionHandler] = None
+    # The onAttributeCollectionStart property
+    on_attribute_collection_start: Optional[OnAttributeCollectionStartHandler] = None
+    # The onAttributeCollectionSubmit property
+    on_attribute_collection_submit: Optional[OnAttributeCollectionSubmitHandler] = None
     # Required. The configuration for what to invoke when authentication methods are ready to be presented to the user. Must have at least one identity provider linked.
     on_authentication_method_load_start: Optional[OnAuthenticationMethodLoadStartHandler] = None
     # Required. The configuration for what to invoke when an authentication flow is ready to be initiated.
@@ -43,18 +49,24 @@ class ExternalUsersSelfServiceSignUpEventsFlow(AuthenticationEventsFlow):
         """
         from .authentication_events_flow import AuthenticationEventsFlow
         from .on_attribute_collection_handler import OnAttributeCollectionHandler
+        from .on_attribute_collection_start_handler import OnAttributeCollectionStartHandler
+        from .on_attribute_collection_submit_handler import OnAttributeCollectionSubmitHandler
         from .on_authentication_method_load_start_handler import OnAuthenticationMethodLoadStartHandler
         from .on_interactive_auth_flow_start_handler import OnInteractiveAuthFlowStartHandler
         from .on_user_create_start_handler import OnUserCreateStartHandler
 
         from .authentication_events_flow import AuthenticationEventsFlow
         from .on_attribute_collection_handler import OnAttributeCollectionHandler
+        from .on_attribute_collection_start_handler import OnAttributeCollectionStartHandler
+        from .on_attribute_collection_submit_handler import OnAttributeCollectionSubmitHandler
         from .on_authentication_method_load_start_handler import OnAuthenticationMethodLoadStartHandler
         from .on_interactive_auth_flow_start_handler import OnInteractiveAuthFlowStartHandler
         from .on_user_create_start_handler import OnUserCreateStartHandler
 
         fields: Dict[str, Callable[[Any], None]] = {
             "onAttributeCollection": lambda n : setattr(self, 'on_attribute_collection', n.get_object_value(OnAttributeCollectionHandler)),
+            "onAttributeCollectionStart": lambda n : setattr(self, 'on_attribute_collection_start', n.get_object_value(OnAttributeCollectionStartHandler)),
+            "onAttributeCollectionSubmit": lambda n : setattr(self, 'on_attribute_collection_submit', n.get_object_value(OnAttributeCollectionSubmitHandler)),
             "onAuthenticationMethodLoadStart": lambda n : setattr(self, 'on_authentication_method_load_start', n.get_object_value(OnAuthenticationMethodLoadStartHandler)),
             "onInteractiveAuthFlowStart": lambda n : setattr(self, 'on_interactive_auth_flow_start', n.get_object_value(OnInteractiveAuthFlowStartHandler)),
             "onUserCreateStart": lambda n : setattr(self, 'on_user_create_start', n.get_object_value(OnUserCreateStartHandler)),
@@ -73,6 +85,8 @@ class ExternalUsersSelfServiceSignUpEventsFlow(AuthenticationEventsFlow):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("onAttributeCollection", self.on_attribute_collection)
+        writer.write_object_value("onAttributeCollectionStart", self.on_attribute_collection_start)
+        writer.write_object_value("onAttributeCollectionSubmit", self.on_attribute_collection_submit)
         writer.write_object_value("onAuthenticationMethodLoadStart", self.on_authentication_method_load_start)
         writer.write_object_value("onInteractiveAuthFlowStart", self.on_interactive_auth_flow_start)
         writer.write_object_value("onUserCreateStart", self.on_user_create_start)

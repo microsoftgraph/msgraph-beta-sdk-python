@@ -5,11 +5,11 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .case_operation import CaseOperation
+    from .ediscovery_export_operation_export_options import EdiscoveryExportOperation_exportOptions
+    from .ediscovery_export_operation_export_structure import EdiscoveryExportOperation_exportStructure
     from .ediscovery_review_set import EdiscoveryReviewSet
     from .ediscovery_review_set_query import EdiscoveryReviewSetQuery
     from .export_file_metadata import ExportFileMetadata
-    from .export_file_structure import ExportFileStructure
-    from .export_options import ExportOptions
 
 from .case_operation import CaseOperation
 
@@ -24,9 +24,9 @@ class EdiscoveryExportOperation(CaseOperation):
     # The exportFileMetadata property
     export_file_metadata: Optional[List[ExportFileMetadata]] = None
     # The options provided for the export. For more information, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags. The fileInfo member is deprecated and will stop returning data on April 30, 2023. Going forward, the summary and load file are always included.
-    export_options: Optional[ExportOptions] = None
+    export_options: Optional[EdiscoveryExportOperation_exportOptions] = None
     # The options provided that specify the structure of the export. For more information, see reviewSet: export. Possible values are: none, directory, pst.
-    export_structure: Optional[ExportFileStructure] = None
+    export_structure: Optional[EdiscoveryExportOperation_exportStructure] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The outputFolderId property
@@ -55,26 +55,26 @@ class EdiscoveryExportOperation(CaseOperation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .case_operation import CaseOperation
+        from .ediscovery_export_operation_export_options import EdiscoveryExportOperation_exportOptions
+        from .ediscovery_export_operation_export_structure import EdiscoveryExportOperation_exportStructure
         from .ediscovery_review_set import EdiscoveryReviewSet
         from .ediscovery_review_set_query import EdiscoveryReviewSetQuery
         from .export_file_metadata import ExportFileMetadata
-        from .export_file_structure import ExportFileStructure
-        from .export_options import ExportOptions
 
         from .case_operation import CaseOperation
+        from .ediscovery_export_operation_export_options import EdiscoveryExportOperation_exportOptions
+        from .ediscovery_export_operation_export_structure import EdiscoveryExportOperation_exportStructure
         from .ediscovery_review_set import EdiscoveryReviewSet
         from .ediscovery_review_set_query import EdiscoveryReviewSetQuery
         from .export_file_metadata import ExportFileMetadata
-        from .export_file_structure import ExportFileStructure
-        from .export_options import ExportOptions
 
         fields: Dict[str, Callable[[Any], None]] = {
             "azureBlobContainer": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
             "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "exportFileMetadata": lambda n : setattr(self, 'export_file_metadata', n.get_collection_of_object_values(ExportFileMetadata)),
-            "exportOptions": lambda n : setattr(self, 'export_options', n.get_collection_of_enum_values(ExportOptions)),
-            "exportStructure": lambda n : setattr(self, 'export_structure', n.get_enum_value(ExportFileStructure)),
+            "exportOptions": lambda n : setattr(self, 'export_options', n.get_enum_value(EdiscoveryExportOperation_exportOptions)),
+            "exportStructure": lambda n : setattr(self, 'export_structure', n.get_enum_value(EdiscoveryExportOperation_exportStructure)),
             "outputFolderId": lambda n : setattr(self, 'output_folder_id', n.get_str_value()),
             "outputName": lambda n : setattr(self, 'output_name', n.get_str_value()),
             "reviewSet": lambda n : setattr(self, 'review_set', n.get_object_value(EdiscoveryReviewSet)),

@@ -9,11 +9,11 @@ if TYPE_CHECKING:
     from ..identity_set import IdentitySet
     from ..result_info import ResultInfo
     from .add_to_review_set_operation import AddToReviewSetOperation
-    from .case_action import CaseAction
     from .case_export_operation import CaseExportOperation
     from .case_hold_operation import CaseHoldOperation
     from .case_index_operation import CaseIndexOperation
-    from .case_operation_status import CaseOperationStatus
+    from .case_operation_action import CaseOperation_action
+    from .case_operation_status import CaseOperation_status
     from .estimate_statistics_operation import EstimateStatisticsOperation
     from .purge_data_operation import PurgeDataOperation
     from .tag_operation import TagOperation
@@ -23,7 +23,7 @@ from ..entity import Entity
 @dataclass
 class CaseOperation(Entity):
     # The type of action the operation represents. Possible values are: addToReviewSet,applyTags,contentExport,convertToPdf,estimateStatistics, purgeData
-    action: Optional[CaseAction] = None
+    action: Optional[CaseOperation_action] = None
     # The date and time the operation was completed.
     completed_date_time: Optional[datetime.datetime] = None
     # The user that created the operation.
@@ -37,7 +37,7 @@ class CaseOperation(Entity):
     # Contains success and failure-specific result information.
     result_info: Optional[ResultInfo] = None
     # The status of the case operation. Possible values are: notStarted, submissionFailed, running, succeeded, partiallySucceeded, failed.
-    status: Optional[CaseOperationStatus] = None
+    status: Optional[CaseOperation_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CaseOperation:
@@ -91,11 +91,11 @@ class CaseOperation(Entity):
         from ..identity_set import IdentitySet
         from ..result_info import ResultInfo
         from .add_to_review_set_operation import AddToReviewSetOperation
-        from .case_action import CaseAction
         from .case_export_operation import CaseExportOperation
         from .case_hold_operation import CaseHoldOperation
         from .case_index_operation import CaseIndexOperation
-        from .case_operation_status import CaseOperationStatus
+        from .case_operation_action import CaseOperation_action
+        from .case_operation_status import CaseOperation_status
         from .estimate_statistics_operation import EstimateStatisticsOperation
         from .purge_data_operation import PurgeDataOperation
         from .tag_operation import TagOperation
@@ -104,23 +104,23 @@ class CaseOperation(Entity):
         from ..identity_set import IdentitySet
         from ..result_info import ResultInfo
         from .add_to_review_set_operation import AddToReviewSetOperation
-        from .case_action import CaseAction
         from .case_export_operation import CaseExportOperation
         from .case_hold_operation import CaseHoldOperation
         from .case_index_operation import CaseIndexOperation
-        from .case_operation_status import CaseOperationStatus
+        from .case_operation_action import CaseOperation_action
+        from .case_operation_status import CaseOperation_status
         from .estimate_statistics_operation import EstimateStatisticsOperation
         from .purge_data_operation import PurgeDataOperation
         from .tag_operation import TagOperation
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "action": lambda n : setattr(self, 'action', n.get_enum_value(CaseAction)),
+            "action": lambda n : setattr(self, 'action', n.get_enum_value(CaseOperation_action)),
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "percentProgress": lambda n : setattr(self, 'percent_progress', n.get_int_value()),
             "resultInfo": lambda n : setattr(self, 'result_info', n.get_object_value(ResultInfo)),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(CaseOperationStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(CaseOperation_status)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

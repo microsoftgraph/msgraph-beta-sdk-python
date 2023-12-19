@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .continuous_access_evaluation_mode import ContinuousAccessEvaluationMode
+    from .continuous_access_evaluation_session_control_mode import ContinuousAccessEvaluationSessionControl_mode
 
 @dataclass
 class ContinuousAccessEvaluationSessionControl(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,7 +15,7 @@ class ContinuousAccessEvaluationSessionControl(AdditionalDataHolder, BackedModel
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Specifies continuous access evaluation settings. The possible values are: strictEnforcement, disabled, unknownFutureValue, strictLocation. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: strictLocation.
-    mode: Optional[ContinuousAccessEvaluationMode] = None
+    mode: Optional[ContinuousAccessEvaluationSessionControl_mode] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -35,12 +35,12 @@ class ContinuousAccessEvaluationSessionControl(AdditionalDataHolder, BackedModel
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .continuous_access_evaluation_mode import ContinuousAccessEvaluationMode
+        from .continuous_access_evaluation_session_control_mode import ContinuousAccessEvaluationSessionControl_mode
 
-        from .continuous_access_evaluation_mode import ContinuousAccessEvaluationMode
+        from .continuous_access_evaluation_session_control_mode import ContinuousAccessEvaluationSessionControl_mode
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "mode": lambda n : setattr(self, 'mode', n.get_enum_value(ContinuousAccessEvaluationMode)),
+            "mode": lambda n : setattr(self, 'mode', n.get_enum_value(ContinuousAccessEvaluationSessionControl_mode)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .alert_severity import AlertSeverity
     from .entity import Entity
+    from .unified_role_management_alert_definition_severity_level import UnifiedRoleManagementAlertDefinition_severityLevel
 
 from .entity import Entity
 
@@ -32,7 +32,7 @@ class UnifiedRoleManagementAlertDefinition(Entity):
     # Security impact of the alert. For example, it could be information leaks or unauthorized access.
     security_impact: Optional[str] = None
     # Severity level of the alert. The possible values are: unknown, informational, low, medium, high, unknownFutureValue.
-    severity_level: Optional[AlertSeverity] = None
+    severity_level: Optional[UnifiedRoleManagementAlertDefinition_severityLevel] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRoleManagementAlertDefinition:
@@ -50,11 +50,11 @@ class UnifiedRoleManagementAlertDefinition(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .alert_severity import AlertSeverity
         from .entity import Entity
+        from .unified_role_management_alert_definition_severity_level import UnifiedRoleManagementAlertDefinition_severityLevel
 
-        from .alert_severity import AlertSeverity
         from .entity import Entity
+        from .unified_role_management_alert_definition_severity_level import UnifiedRoleManagementAlertDefinition_severityLevel
 
         fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -66,7 +66,7 @@ class UnifiedRoleManagementAlertDefinition(Entity):
             "scopeId": lambda n : setattr(self, 'scope_id', n.get_str_value()),
             "scopeType": lambda n : setattr(self, 'scope_type', n.get_str_value()),
             "securityImpact": lambda n : setattr(self, 'security_impact', n.get_str_value()),
-            "severityLevel": lambda n : setattr(self, 'severity_level', n.get_enum_value(AlertSeverity)),
+            "severityLevel": lambda n : setattr(self, 'severity_level', n.get_enum_value(UnifiedRoleManagementAlertDefinition_severityLevel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

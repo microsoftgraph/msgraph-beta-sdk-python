@@ -12,7 +12,7 @@ from .azure_permissions_definition_action import AzurePermissionsDefinitionActio
 class AzureActionPermissionsDefinitionAction(AzurePermissionsDefinitionAction):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureActionPermissionsDefinitionAction"
-    # The actions property
+    # List of actions relating to the Azure permission.
     actions: Optional[List[str]] = None
     
     @staticmethod

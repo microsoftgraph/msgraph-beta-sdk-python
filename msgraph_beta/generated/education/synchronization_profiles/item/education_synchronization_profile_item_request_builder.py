@@ -35,7 +35,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a school data synchronization profile in the tenant based on the identifier. This API is available in the following national cloud deployments.
+        Delete a school data synchronization profile in the tenant based on the identifier.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-delete?view=graph-rest-1.0
@@ -55,7 +55,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationSynchronizationProfile]:
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier. This API is available in the following national cloud deployments.
+        Retrieve a school data synchronization profile in the tenant based on the identifier.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSynchronizationProfile]
         Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-get?view=graph-rest-1.0
@@ -101,7 +101,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a school data synchronization profile in the tenant based on the identifier. This API is available in the following national cloud deployments.
+        Delete a school data synchronization profile in the tenant based on the identifier.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,12 +112,12 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier. This API is available in the following national cloud deployments.
+        Retrieve a school data synchronization profile in the tenant based on the identifier.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -129,7 +129,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[EducationSynchronizationProfile] = None, request_configuration: Optional[EducationSynchronizationProfileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -148,7 +148,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -238,7 +238,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EducationSynchronizationProfileItemRequestBuilderGetQueryParameters():
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier. This API is available in the following national cloud deployments.
+        Retrieve a school data synchronization profile in the tenant based on the identifier.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

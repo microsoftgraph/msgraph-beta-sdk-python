@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .planner_checklist_requirement import PlannerChecklistRequirement
+    from .planner_forms_requirement import PlannerFormsRequirement
 
 @dataclass
 class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,6 +17,8 @@ class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel,
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Information about the requirements for completing the checklist.
     checklist_requirement: Optional[PlannerChecklistRequirement] = None
+    # The formsRequirement property
+    forms_requirement: Optional[PlannerFormsRequirement] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -36,11 +39,14 @@ class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel,
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .planner_checklist_requirement import PlannerChecklistRequirement
+        from .planner_forms_requirement import PlannerFormsRequirement
 
         from .planner_checklist_requirement import PlannerChecklistRequirement
+        from .planner_forms_requirement import PlannerFormsRequirement
 
         fields: Dict[str, Callable[[Any], None]] = {
             "checklistRequirement": lambda n : setattr(self, 'checklist_requirement', n.get_object_value(PlannerChecklistRequirement)),
+            "formsRequirement": lambda n : setattr(self, 'forms_requirement', n.get_object_value(PlannerFormsRequirement)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -54,6 +60,7 @@ class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel,
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("checklistRequirement", self.checklist_requirement)
+        writer.write_object_value("formsRequirement", self.forms_requirement)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

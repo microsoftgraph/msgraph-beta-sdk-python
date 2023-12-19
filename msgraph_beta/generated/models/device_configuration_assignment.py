@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .device_and_app_management_assignment_source import DeviceAndAppManagementAssignmentSource
     from .device_and_app_management_assignment_target import DeviceAndAppManagementAssignmentTarget
-    from .device_config_assignment_intent import DeviceConfigAssignmentIntent
+    from .device_configuration_assignment_intent import DeviceConfigurationAssignment_intent
     from .entity import Entity
 
 from .entity import Entity
@@ -17,7 +17,7 @@ class DeviceConfigurationAssignment(Entity):
     The device configuration assignment entity assigns an AAD group to a specific device configuration.
     """
     # The admin intent to apply or remove the profile. Possible values are: apply, remove.
-    intent: Optional[DeviceConfigAssignmentIntent] = None
+    intent: Optional[DeviceConfigurationAssignment_intent] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents source of assignment.
@@ -45,16 +45,16 @@ class DeviceConfigurationAssignment(Entity):
         """
         from .device_and_app_management_assignment_source import DeviceAndAppManagementAssignmentSource
         from .device_and_app_management_assignment_target import DeviceAndAppManagementAssignmentTarget
-        from .device_config_assignment_intent import DeviceConfigAssignmentIntent
+        from .device_configuration_assignment_intent import DeviceConfigurationAssignment_intent
         from .entity import Entity
 
         from .device_and_app_management_assignment_source import DeviceAndAppManagementAssignmentSource
         from .device_and_app_management_assignment_target import DeviceAndAppManagementAssignmentTarget
-        from .device_config_assignment_intent import DeviceConfigAssignmentIntent
+        from .device_configuration_assignment_intent import DeviceConfigurationAssignment_intent
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "intent": lambda n : setattr(self, 'intent', n.get_enum_value(DeviceConfigAssignmentIntent)),
+            "intent": lambda n : setattr(self, 'intent', n.get_enum_value(DeviceConfigurationAssignment_intent)),
             "source": lambda n : setattr(self, 'source', n.get_enum_value(DeviceAndAppManagementAssignmentSource)),
             "sourceId": lambda n : setattr(self, 'source_id', n.get_str_value()),
             "target": lambda n : setattr(self, 'target', n.get_object_value(DeviceAndAppManagementAssignmentTarget)),

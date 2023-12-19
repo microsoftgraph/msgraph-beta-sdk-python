@@ -9,11 +9,11 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .impacted_resource import ImpactedResource
     from .recommendation import Recommendation
+    from .recommendation_base_feature_areas import RecommendationBase_featureAreas
+    from .recommendation_base_recommendation_type import RecommendationBase_recommendationType
     from .recommendation_category import RecommendationCategory
-    from .recommendation_feature_areas import RecommendationFeatureAreas
     from .recommendation_priority import RecommendationPriority
     from .recommendation_status import RecommendationStatus
-    from .recommendation_type import RecommendationType
 
 from .entity import Entity
 
@@ -32,7 +32,7 @@ class RecommendationBase(Entity):
     # The title of the recommendation.
     display_name: Optional[str] = None
     # The directory feature that the recommendation is related to.
-    feature_areas: Optional[List[RecommendationFeatureAreas]] = None
+    feature_areas: Optional[List[RecommendationBase_featureAreas]] = None
     # The future date and time when a recommendation should be completed.
     impact_start_date_time: Optional[datetime.datetime] = None
     # Indicates the scope of impact of a recommendation. Tenant level indicates that the recommendation impacts the whole tenant. Other possible values include users, applications.
@@ -55,8 +55,8 @@ class RecommendationBase(Entity):
     postpone_until_date_time: Optional[datetime.datetime] = None
     # The priority property
     priority: Optional[RecommendationPriority] = None
-    # Friendly shortname to identify the recommendation. The possible values are: adfsAppsMigration, enableDesktopSSO, enablePHS, enableProvisioning, switchFromPerUserMFA, tenantMFA, thirdPartyApps, turnOffPerUserMFA, useAuthenticatorApp, useMyApps, staleApps, staleAppCreds, applicationCredentialExpiry, servicePrincipalKeyExpiry, adminMFAV2, blockLegacyAuthentication, integratedApps, mfaRegistrationV2, pwagePolicyNew, passwordHashSync, oneAdmin, roleOverlap, selfServicePasswordReset, signinRiskPolicy, userRiskPolicy, verifyAppPublisher, privateLinkForAAD, appRoleAssignmentsGroups, appRoleAssignmentsUsers, managedIdentity, overprivilegedApps, unknownFutureValue.
-    recommendation_type: Optional[RecommendationType] = None
+    # Friendly shortname to identify the recommendation. The possible values are: adfsAppsMigration, enableDesktopSSO, enablePHS, enableProvisioning, switchFromPerUserMFA, tenantMFA, thirdPartyApps, turnOffPerUserMFA, useAuthenticatorApp, useMyApps, staleApps, staleAppCreds, applicationCredentialExpiry, servicePrincipalKeyExpiry, adminMFAV2, blockLegacyAuthentication, integratedApps, mfaRegistrationV2, pwagePolicyNew, passwordHashSync, oneAdmin, roleOverlap, selfServicePasswordReset, signinRiskPolicy, userRiskPolicy, verifyAppPublisher, privateLinkForAAD, appRoleAssignmentsGroups, appRoleAssignmentsUsers, managedIdentity, overprivilegedApps, unknownFutureValue, longLivedCredentials, aadConnectDeprecated, adalToMsalMigration, ownerlessApps, inactiveGuests. Also, please note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: longLivedCredentials, aadConnectDeprecated, adalToMsalMigration, ownerlessApps, inactiveGuests.
+    recommendation_type: Optional[RecommendationBase_recommendationType] = None
     # The current release type of the recommendation. The possible values are: preview, generallyAvailable, unknownFutureValue.
     release_type: Optional[str] = None
     # Description of the impact on users of the remediation. Only applies to recommendations with category set to identitySecureScore.
@@ -92,21 +92,21 @@ class RecommendationBase(Entity):
         from .entity import Entity
         from .impacted_resource import ImpactedResource
         from .recommendation import Recommendation
+        from .recommendation_base_feature_areas import RecommendationBase_featureAreas
+        from .recommendation_base_recommendation_type import RecommendationBase_recommendationType
         from .recommendation_category import RecommendationCategory
-        from .recommendation_feature_areas import RecommendationFeatureAreas
         from .recommendation_priority import RecommendationPriority
         from .recommendation_status import RecommendationStatus
-        from .recommendation_type import RecommendationType
 
         from .action_step import ActionStep
         from .entity import Entity
         from .impacted_resource import ImpactedResource
         from .recommendation import Recommendation
+        from .recommendation_base_feature_areas import RecommendationBase_featureAreas
+        from .recommendation_base_recommendation_type import RecommendationBase_recommendationType
         from .recommendation_category import RecommendationCategory
-        from .recommendation_feature_areas import RecommendationFeatureAreas
         from .recommendation_priority import RecommendationPriority
         from .recommendation_status import RecommendationStatus
-        from .recommendation_type import RecommendationType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "actionSteps": lambda n : setattr(self, 'action_steps', n.get_collection_of_object_values(ActionStep)),
@@ -115,7 +115,7 @@ class RecommendationBase(Entity):
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "currentScore": lambda n : setattr(self, 'current_score', n.get_float_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "featureAreas": lambda n : setattr(self, 'feature_areas', n.get_collection_of_enum_values(RecommendationFeatureAreas)),
+            "featureAreas": lambda n : setattr(self, 'feature_areas', n.get_collection_of_enum_values(RecommendationBase_featureAreas)),
             "impactStartDateTime": lambda n : setattr(self, 'impact_start_date_time', n.get_datetime_value()),
             "impactType": lambda n : setattr(self, 'impact_type', n.get_str_value()),
             "impactedResources": lambda n : setattr(self, 'impacted_resources', n.get_collection_of_object_values(ImpactedResource)),
@@ -126,7 +126,7 @@ class RecommendationBase(Entity):
             "maxScore": lambda n : setattr(self, 'max_score', n.get_float_value()),
             "postponeUntilDateTime": lambda n : setattr(self, 'postpone_until_date_time', n.get_datetime_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_enum_value(RecommendationPriority)),
-            "recommendationType": lambda n : setattr(self, 'recommendation_type', n.get_enum_value(RecommendationType)),
+            "recommendationType": lambda n : setattr(self, 'recommendation_type', n.get_enum_value(RecommendationBase_recommendationType)),
             "releaseType": lambda n : setattr(self, 'release_type', n.get_str_value()),
             "remediationImpact": lambda n : setattr(self, 'remediation_impact', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(RecommendationStatus)),

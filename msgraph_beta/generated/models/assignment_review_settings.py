@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .access_review_timeout_behavior import AccessReviewTimeoutBehavior
+    from .assignment_review_settings_access_review_timeout_behavior import AssignmentReviewSettings_accessReviewTimeoutBehavior
     from .user_set import UserSet
 
 @dataclass
@@ -17,7 +17,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The default decision to apply if the request isn't reviewed within the period specified in durationInDays. The possible values are: acceptAccessRecommendation, keepAccess, removeAccess, and unknownFutureValue.
-    access_review_timeout_behavior: Optional[AccessReviewTimeoutBehavior] = None
+    access_review_timeout_behavior: Optional[AssignmentReviewSettings_accessReviewTimeoutBehavior] = None
     # The number of days within which reviewers should provide input.
     duration_in_days: Optional[int] = None
     # Specifies whether to display recommendations to the reviewer. The default value is true
@@ -53,14 +53,14 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .access_review_timeout_behavior import AccessReviewTimeoutBehavior
+        from .assignment_review_settings_access_review_timeout_behavior import AssignmentReviewSettings_accessReviewTimeoutBehavior
         from .user_set import UserSet
 
-        from .access_review_timeout_behavior import AccessReviewTimeoutBehavior
+        from .assignment_review_settings_access_review_timeout_behavior import AssignmentReviewSettings_accessReviewTimeoutBehavior
         from .user_set import UserSet
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "accessReviewTimeoutBehavior": lambda n : setattr(self, 'access_review_timeout_behavior', n.get_enum_value(AccessReviewTimeoutBehavior)),
+            "accessReviewTimeoutBehavior": lambda n : setattr(self, 'access_review_timeout_behavior', n.get_enum_value(AssignmentReviewSettings_accessReviewTimeoutBehavior)),
             "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
             "isAccessRecommendationEnabled": lambda n : setattr(self, 'is_access_recommendation_enabled', n.get_bool_value()),
             "isApprovalJustificationRequired": lambda n : setattr(self, 'is_approval_justification_required', n.get_bool_value()),

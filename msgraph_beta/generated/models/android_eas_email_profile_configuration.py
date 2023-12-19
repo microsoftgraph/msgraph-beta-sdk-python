@@ -5,9 +5,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_certificate_profile_base import AndroidCertificateProfileBase
+    from .android_eas_email_profile_configuration_user_domain_name_source import AndroidEasEmailProfileConfiguration_userDomainNameSource
     from .android_username_source import AndroidUsernameSource
     from .device_configuration import DeviceConfiguration
-    from .domain_name_source import DomainNameSource
     from .eas_authentication_method import EasAuthenticationMethod
     from .email_sync_duration import EmailSyncDuration
     from .email_sync_schedule import EmailSyncSchedule
@@ -53,7 +53,7 @@ class AndroidEasEmailProfileConfiguration(DeviceConfiguration):
     # Toggles syncing tasks. If set to false tasks are turned off on the device.
     sync_tasks: Optional[bool] = None
     # UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: fullDomainName, netBiosDomainName.
-    user_domain_name_source: Optional[DomainNameSource] = None
+    user_domain_name_source: Optional[AndroidEasEmailProfileConfiguration_userDomainNameSource] = None
     # Android username source.
     username_source: Optional[AndroidUsernameSource] = None
     
@@ -74,18 +74,18 @@ class AndroidEasEmailProfileConfiguration(DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .android_certificate_profile_base import AndroidCertificateProfileBase
+        from .android_eas_email_profile_configuration_user_domain_name_source import AndroidEasEmailProfileConfiguration_userDomainNameSource
         from .android_username_source import AndroidUsernameSource
         from .device_configuration import DeviceConfiguration
-        from .domain_name_source import DomainNameSource
         from .eas_authentication_method import EasAuthenticationMethod
         from .email_sync_duration import EmailSyncDuration
         from .email_sync_schedule import EmailSyncSchedule
         from .user_email_source import UserEmailSource
 
         from .android_certificate_profile_base import AndroidCertificateProfileBase
+        from .android_eas_email_profile_configuration_user_domain_name_source import AndroidEasEmailProfileConfiguration_userDomainNameSource
         from .android_username_source import AndroidUsernameSource
         from .device_configuration import DeviceConfiguration
-        from .domain_name_source import DomainNameSource
         from .eas_authentication_method import EasAuthenticationMethod
         from .email_sync_duration import EmailSyncDuration
         from .email_sync_schedule import EmailSyncSchedule
@@ -107,7 +107,7 @@ class AndroidEasEmailProfileConfiguration(DeviceConfiguration):
             "syncContacts": lambda n : setattr(self, 'sync_contacts', n.get_bool_value()),
             "syncNotes": lambda n : setattr(self, 'sync_notes', n.get_bool_value()),
             "syncTasks": lambda n : setattr(self, 'sync_tasks', n.get_bool_value()),
-            "userDomainNameSource": lambda n : setattr(self, 'user_domain_name_source', n.get_enum_value(DomainNameSource)),
+            "userDomainNameSource": lambda n : setattr(self, 'user_domain_name_source', n.get_enum_value(AndroidEasEmailProfileConfiguration_userDomainNameSource)),
             "usernameSource": lambda n : setattr(self, 'username_source', n.get_enum_value(AndroidUsernameSource)),
         }
         super_fields = super().get_field_deserializers()

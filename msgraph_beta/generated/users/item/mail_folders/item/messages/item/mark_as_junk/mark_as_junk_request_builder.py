@@ -29,7 +29,7 @@ class MarkAsJunkRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[MarkAsJunkPostRequestBody] = None, request_configuration: Optional[MarkAsJunkRequestBuilderPostRequestConfiguration] = None) -> Optional[Message]:
         """
-        Mark a message as junk. This API adds the sender to the list of blocked senders and moves the message to the Junk Email folder, when moveToJunk is true. This API is available in the following national cloud deployments.
+        Mark a message as junk. This API adds the sender to the list of blocked senders and moves the message to the Junk Email folder, when moveToJunk is true.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Message]
@@ -54,7 +54,7 @@ class MarkAsJunkRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[MarkAsJunkPostRequestBody] = None, request_configuration: Optional[MarkAsJunkRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Mark a message as junk. This API adds the sender to the list of blocked senders and moves the message to the Junk Email folder, when moveToJunk is true. This API is available in the following national cloud deployments.
+        Mark a message as junk. This API adds the sender to the list of blocked senders and moves the message to the Junk Email folder, when moveToJunk is true.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -68,7 +68,7 @@ class MarkAsJunkRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

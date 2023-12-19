@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .access_package_custom_extension_stage import AccessPackageCustomExtensionStage
     from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
+    from .custom_extension_handler_stage import CustomExtensionHandler_stage
     from .entity import Entity
 
 from .entity import Entity
@@ -17,7 +17,7 @@ class CustomExtensionHandler(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # Indicates the stage of the access package assignment request workflow when the access package custom extension runs. The possible values are: assignmentRequestCreated, assignmentRequestApproved, assignmentRequestGranted, assignmentRequestRemoved, assignmentFourteenDaysBeforeExpiration, assignmentOneDayBeforeExpiration, unknownFutureValue.
-    stage: Optional[AccessPackageCustomExtensionStage] = None
+    stage: Optional[CustomExtensionHandler_stage] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomExtensionHandler:
@@ -35,17 +35,17 @@ class CustomExtensionHandler(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .access_package_custom_extension_stage import AccessPackageCustomExtensionStage
         from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
+        from .custom_extension_handler_stage import CustomExtensionHandler_stage
         from .entity import Entity
 
-        from .access_package_custom_extension_stage import AccessPackageCustomExtensionStage
         from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
+        from .custom_extension_handler_stage import CustomExtensionHandler_stage
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "customExtension": lambda n : setattr(self, 'custom_extension', n.get_object_value(CustomAccessPackageWorkflowExtension)),
-            "stage": lambda n : setattr(self, 'stage', n.get_enum_value(AccessPackageCustomExtensionStage)),
+            "stage": lambda n : setattr(self, 'stage', n.get_enum_value(CustomExtensionHandler_stage)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

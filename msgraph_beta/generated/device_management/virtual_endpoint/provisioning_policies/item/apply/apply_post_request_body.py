@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.cloud_pc_policy_setting_type import CloudPcPolicySettingType
+    from .apply_post_request_body_policy_settings import ApplyPostRequestBody_policySettings
 
 @dataclass
 class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,7 +15,7 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The policySettings property
-    policy_settings: Optional[CloudPcPolicySettingType] = None
+    policy_settings: Optional[ApplyPostRequestBody_policySettings] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ApplyPostRequestBody:
@@ -33,12 +33,12 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ......models.cloud_pc_policy_setting_type import CloudPcPolicySettingType
+        from .apply_post_request_body_policy_settings import ApplyPostRequestBody_policySettings
 
-        from ......models.cloud_pc_policy_setting_type import CloudPcPolicySettingType
+        from .apply_post_request_body_policy_settings import ApplyPostRequestBody_policySettings
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "policySettings": lambda n : setattr(self, 'policy_settings', n.get_collection_of_enum_values(CloudPcPolicySettingType)),
+            "policySettings": lambda n : setattr(self, 'policy_settings', n.get_enum_value(ApplyPostRequestBody_policySettings)),
         }
         return fields
     

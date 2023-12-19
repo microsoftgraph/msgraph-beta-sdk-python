@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .cloud_pc_partner_agent_install_status import CloudPcPartnerAgentInstallStatus
-    from .cloud_pc_partner_agent_name import CloudPcPartnerAgentName
+    from .cloud_pc_partner_agent_install_result_install_status import CloudPcPartnerAgentInstallResult_installStatus
+    from .cloud_pc_partner_agent_install_result_partner_agent_name import CloudPcPartnerAgentInstallResult_partnerAgentName
 
 @dataclass
 class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsable):
@@ -18,13 +18,13 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
     # The errorMessage property
     error_message: Optional[str] = None
     # The status of a partner agent installation. Possible values are: installed, installFailed, installing, uninstalling, uninstallFailed and licensed. Read-Only.
-    install_status: Optional[CloudPcPartnerAgentInstallStatus] = None
+    install_status: Optional[CloudPcPartnerAgentInstallResult_installStatus] = None
     # Indicates if the partner agent is a third party. When 'TRUE' the agent is a third-party (non-Microsoft) agent and when 'FALSE' the agent is a Microsoft agent or isn't known.  The default value is 'FALSE'
     is_third_party_partner: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The name of the partner agent, whether first party or third party. Possible values for third-party partners are Citrix and VMware. Read-Only.
-    partner_agent_name: Optional[CloudPcPartnerAgentName] = None
+    # The name of the first-party or third-party partner agent. Possible values for third-party partners are Citrix, VMware and HP. Read-Only.
+    partner_agent_name: Optional[CloudPcPartnerAgentInstallResult_partnerAgentName] = None
     # Indicates if the partner agent is a third party. When 'TRUE' the agent is a third-party (non-Microsoft) agent and when 'FALSE' the agent is a Microsoft agent or isn't known. The default value is 'FALSE'
     retriable: Optional[bool] = None
     
@@ -44,18 +44,18 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .cloud_pc_partner_agent_install_status import CloudPcPartnerAgentInstallStatus
-        from .cloud_pc_partner_agent_name import CloudPcPartnerAgentName
+        from .cloud_pc_partner_agent_install_result_install_status import CloudPcPartnerAgentInstallResult_installStatus
+        from .cloud_pc_partner_agent_install_result_partner_agent_name import CloudPcPartnerAgentInstallResult_partnerAgentName
 
-        from .cloud_pc_partner_agent_install_status import CloudPcPartnerAgentInstallStatus
-        from .cloud_pc_partner_agent_name import CloudPcPartnerAgentName
+        from .cloud_pc_partner_agent_install_result_install_status import CloudPcPartnerAgentInstallResult_installStatus
+        from .cloud_pc_partner_agent_install_result_partner_agent_name import CloudPcPartnerAgentInstallResult_partnerAgentName
 
         fields: Dict[str, Callable[[Any], None]] = {
             "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
-            "installStatus": lambda n : setattr(self, 'install_status', n.get_enum_value(CloudPcPartnerAgentInstallStatus)),
+            "installStatus": lambda n : setattr(self, 'install_status', n.get_enum_value(CloudPcPartnerAgentInstallResult_installStatus)),
             "isThirdPartyPartner": lambda n : setattr(self, 'is_third_party_partner', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "partnerAgentName": lambda n : setattr(self, 'partner_agent_name', n.get_enum_value(CloudPcPartnerAgentName)),
+            "partnerAgentName": lambda n : setattr(self, 'partner_agent_name', n.get_enum_value(CloudPcPartnerAgentInstallResult_partnerAgentName)),
             "retriable": lambda n : setattr(self, 'retriable', n.get_bool_value()),
         }
         return fields

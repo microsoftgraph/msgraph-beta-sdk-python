@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
-    from ......models.shift_work_cloud_pc_access_state import ShiftWorkCloudPcAccessState
+    from .get_shift_work_cloud_pc_access_state_get_response import GetShiftWorkCloudPcAccessStateGetResponse
 
 class GetShiftWorkCloudPcAccessStateRequestBuilder(BaseRequestBuilder):
     """
@@ -26,11 +26,11 @@ class GetShiftWorkCloudPcAccessStateRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/cloudPCs/{cloudPC%2Did}/getShiftWorkCloudPcAccessState()", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetShiftWorkCloudPcAccessStateRequestBuilderGetRequestConfiguration] = None) -> Optional[shiftWorkCloudPcAccessState]:
+    async def get(self,request_configuration: Optional[GetShiftWorkCloudPcAccessStateRequestBuilderGetRequestConfiguration] = None) -> Optional[getShiftWorkCloudPcAccessStateGetResponse]:
         """
         Invoke function getShiftWorkCloudPcAccessState
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[shiftWorkCloudPcAccessState]
+        Returns: Optional[getShiftWorkCloudPcAccessStateGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -43,9 +43,9 @@ class GetShiftWorkCloudPcAccessStateRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.shift_work_cloud_pc_access_state import ShiftWorkCloudPcAccessState
+        from .get_shift_work_cloud_pc_access_state_get_response import GetShiftWorkCloudPcAccessStateGetResponse
 
-        return await self.request_adapter.send_async(request_info, shiftWorkCloudPcAccessState, error_mapping)
+        return await self.request_adapter.send_async(request_info, getShiftWorkCloudPcAccessStateGetResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetShiftWorkCloudPcAccessStateRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -60,7 +60,7 @@ class GetShiftWorkCloudPcAccessStateRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> GetShiftWorkCloudPcAccessStateRequestBuilder:

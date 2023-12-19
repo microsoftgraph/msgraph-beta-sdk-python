@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .kerberos_sign_on_settings import KerberosSignOnSettings
-    from .single_sign_on_mode import SingleSignOnMode
+    from .on_premises_publishing_single_sign_on_single_sign_on_mode import OnPremisesPublishingSingleSignOn_singleSignOnMode
 
 @dataclass
 class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, BackedModel, Parsable):
@@ -20,7 +20,7 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, BackedModel, Parsab
     # The OdataType property
     odata_type: Optional[str] = None
     # The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased, oAuthToken.
-    single_sign_on_mode: Optional[SingleSignOnMode] = None
+    single_sign_on_mode: Optional[OnPremisesPublishingSingleSignOn_singleSignOnMode] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnPremisesPublishingSingleSignOn:
@@ -39,15 +39,15 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, BackedModel, Parsab
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .kerberos_sign_on_settings import KerberosSignOnSettings
-        from .single_sign_on_mode import SingleSignOnMode
+        from .on_premises_publishing_single_sign_on_single_sign_on_mode import OnPremisesPublishingSingleSignOn_singleSignOnMode
 
         from .kerberos_sign_on_settings import KerberosSignOnSettings
-        from .single_sign_on_mode import SingleSignOnMode
+        from .on_premises_publishing_single_sign_on_single_sign_on_mode import OnPremisesPublishingSingleSignOn_singleSignOnMode
 
         fields: Dict[str, Callable[[Any], None]] = {
             "kerberosSignOnSettings": lambda n : setattr(self, 'kerberos_sign_on_settings', n.get_object_value(KerberosSignOnSettings)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "singleSignOnMode": lambda n : setattr(self, 'single_sign_on_mode', n.get_enum_value(SingleSignOnMode)),
+            "singleSignOnMode": lambda n : setattr(self, 'single_sign_on_mode', n.get_enum_value(OnPremisesPublishingSingleSignOn_singleSignOnMode)),
         }
         return fields
     

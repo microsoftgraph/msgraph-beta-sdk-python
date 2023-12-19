@@ -5,13 +5,14 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-    from .eas_authentication_method import EasAuthenticationMethod
     from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
-    from .eas_services import EasServices
-    from .email_certificate_type import EmailCertificateType
     from .email_sync_duration import EmailSyncDuration
     from .ios_certificate_profile import IosCertificateProfile
     from .ios_certificate_profile_base import IosCertificateProfileBase
+    from .ios_eas_email_profile_configuration_authentication_method import IosEasEmailProfileConfiguration_authenticationMethod
+    from .ios_eas_email_profile_configuration_eas_services import IosEasEmailProfileConfiguration_easServices
+    from .ios_eas_email_profile_configuration_encryption_certificate_type import IosEasEmailProfileConfiguration_encryptionCertificateType
+    from .ios_eas_email_profile_configuration_signing_certificate_type import IosEasEmailProfileConfiguration_signingCertificateType
     from .user_email_source import UserEmailSource
 
 from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
@@ -26,7 +27,7 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase):
     # Account name.
     account_name: Optional[str] = None
     # Authentication method for this Email profile. Possible values are: usernameAndPassword, certificate, derivedCredential.
-    authentication_method: Optional[EasAuthenticationMethod] = None
+    authentication_method: Optional[IosEasEmailProfileConfiguration_authenticationMethod] = None
     # Indicates whether or not to block moving messages to other email accounts.
     block_moving_messages_to_other_email_accounts: Optional[bool] = None
     # Indicates whether or not to block sending email from third party apps.
@@ -38,13 +39,13 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase):
     # Possible values for email sync duration.
     duration_of_email_to_sync: Optional[EmailSyncDuration] = None
     # Exchange data to sync. Possible values are: none, calendars, contacts, email, notes, reminders.
-    eas_services: Optional[EasServices] = None
+    eas_services: Optional[IosEasEmailProfileConfiguration_easServices] = None
     # Allow users to change sync settings.
     eas_services_user_override_enabled: Optional[bool] = None
     # Possible values for username source or email source.
     email_address_source: Optional[UserEmailSource] = None
     # Encryption Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
-    encryption_certificate_type: Optional[EmailCertificateType] = None
+    encryption_certificate_type: Optional[IosEasEmailProfileConfiguration_encryptionCertificateType] = None
     # Exchange location that (URL) that the native mail app connects to.
     host_name: Optional[str] = None
     # Identity certificate.
@@ -56,7 +57,7 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase):
     # Indicates whether or not to use SSL.
     require_ssl: Optional[bool] = None
     # Signing Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
-    signing_certificate_type: Optional[EmailCertificateType] = None
+    signing_certificate_type: Optional[IosEasEmailProfileConfiguration_signingCertificateType] = None
     # Indicates whether or not to allow unencrypted emails.
     smime_enable_per_message_switch: Optional[bool] = None
     # If set to true S/MIME encryption is enabled by default.
@@ -95,43 +96,45 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-        from .eas_authentication_method import EasAuthenticationMethod
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
-        from .eas_services import EasServices
-        from .email_certificate_type import EmailCertificateType
         from .email_sync_duration import EmailSyncDuration
         from .ios_certificate_profile import IosCertificateProfile
         from .ios_certificate_profile_base import IosCertificateProfileBase
+        from .ios_eas_email_profile_configuration_authentication_method import IosEasEmailProfileConfiguration_authenticationMethod
+        from .ios_eas_email_profile_configuration_eas_services import IosEasEmailProfileConfiguration_easServices
+        from .ios_eas_email_profile_configuration_encryption_certificate_type import IosEasEmailProfileConfiguration_encryptionCertificateType
+        from .ios_eas_email_profile_configuration_signing_certificate_type import IosEasEmailProfileConfiguration_signingCertificateType
         from .user_email_source import UserEmailSource
 
         from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-        from .eas_authentication_method import EasAuthenticationMethod
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
-        from .eas_services import EasServices
-        from .email_certificate_type import EmailCertificateType
         from .email_sync_duration import EmailSyncDuration
         from .ios_certificate_profile import IosCertificateProfile
         from .ios_certificate_profile_base import IosCertificateProfileBase
+        from .ios_eas_email_profile_configuration_authentication_method import IosEasEmailProfileConfiguration_authenticationMethod
+        from .ios_eas_email_profile_configuration_eas_services import IosEasEmailProfileConfiguration_easServices
+        from .ios_eas_email_profile_configuration_encryption_certificate_type import IosEasEmailProfileConfiguration_encryptionCertificateType
+        from .ios_eas_email_profile_configuration_signing_certificate_type import IosEasEmailProfileConfiguration_signingCertificateType
         from .user_email_source import UserEmailSource
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
-            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(EasAuthenticationMethod)),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(IosEasEmailProfileConfiguration_authenticationMethod)),
             "blockMovingMessagesToOtherEmailAccounts": lambda n : setattr(self, 'block_moving_messages_to_other_email_accounts', n.get_bool_value()),
             "blockSendingEmailFromThirdPartyApps": lambda n : setattr(self, 'block_sending_email_from_third_party_apps', n.get_bool_value()),
             "blockSyncingRecentlyUsedEmailAddresses": lambda n : setattr(self, 'block_syncing_recently_used_email_addresses', n.get_bool_value()),
             "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(DeviceManagementDerivedCredentialSettings)),
             "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(EmailSyncDuration)),
-            "easServices": lambda n : setattr(self, 'eas_services', n.get_collection_of_enum_values(EasServices)),
+            "easServices": lambda n : setattr(self, 'eas_services', n.get_enum_value(IosEasEmailProfileConfiguration_easServices)),
             "easServicesUserOverrideEnabled": lambda n : setattr(self, 'eas_services_user_override_enabled', n.get_bool_value()),
             "emailAddressSource": lambda n : setattr(self, 'email_address_source', n.get_enum_value(UserEmailSource)),
-            "encryptionCertificateType": lambda n : setattr(self, 'encryption_certificate_type', n.get_enum_value(EmailCertificateType)),
+            "encryptionCertificateType": lambda n : setattr(self, 'encryption_certificate_type', n.get_enum_value(IosEasEmailProfileConfiguration_encryptionCertificateType)),
             "hostName": lambda n : setattr(self, 'host_name', n.get_str_value()),
             "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(IosCertificateProfileBase)),
             "perAppVPNProfileId": lambda n : setattr(self, 'per_app_v_p_n_profile_id', n.get_str_value()),
             "requireSmime": lambda n : setattr(self, 'require_smime', n.get_bool_value()),
             "requireSsl": lambda n : setattr(self, 'require_ssl', n.get_bool_value()),
-            "signingCertificateType": lambda n : setattr(self, 'signing_certificate_type', n.get_enum_value(EmailCertificateType)),
+            "signingCertificateType": lambda n : setattr(self, 'signing_certificate_type', n.get_enum_value(IosEasEmailProfileConfiguration_signingCertificateType)),
             "smimeEnablePerMessageSwitch": lambda n : setattr(self, 'smime_enable_per_message_switch', n.get_bool_value()),
             "smimeEncryptByDefaultEnabled": lambda n : setattr(self, 'smime_encrypt_by_default_enabled', n.get_bool_value()),
             "smimeEncryptByDefaultUserOverrideEnabled": lambda n : setattr(self, 'smime_encrypt_by_default_user_override_enabled', n.get_bool_value()),

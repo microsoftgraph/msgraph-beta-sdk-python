@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from ..identity_set import IdentitySet
     from .case_operation import CaseOperation
     from .case_settings import CaseSettings
-    from .case_status import CaseStatus
+    from .case_status import Case_status
     from .custodian import Custodian
     from .legal_hold import LegalHold
     from .noncustodial_data_source import NoncustodialDataSource
@@ -54,7 +54,7 @@ class Case(Entity):
     # Returns a list of sourceCollection objects associated with this case.
     source_collections: Optional[List[SourceCollection]] = None
     # The case status. Possible values are unknown, active, pendingDelete, closing, closed, and closedWithError. For details, see the following table.
-    status: Optional[CaseStatus] = None
+    status: Optional[Case_status] = None
     # Returns a list of tag objects associated to this case.
     tags: Optional[List[Tag]] = None
     
@@ -78,7 +78,7 @@ class Case(Entity):
         from ..identity_set import IdentitySet
         from .case_operation import CaseOperation
         from .case_settings import CaseSettings
-        from .case_status import CaseStatus
+        from .case_status import Case_status
         from .custodian import Custodian
         from .legal_hold import LegalHold
         from .noncustodial_data_source import NoncustodialDataSource
@@ -90,7 +90,7 @@ class Case(Entity):
         from ..identity_set import IdentitySet
         from .case_operation import CaseOperation
         from .case_settings import CaseSettings
-        from .case_status import CaseStatus
+        from .case_status import Case_status
         from .custodian import Custodian
         from .legal_hold import LegalHold
         from .noncustodial_data_source import NoncustodialDataSource
@@ -114,7 +114,7 @@ class Case(Entity):
             "reviewSets": lambda n : setattr(self, 'review_sets', n.get_collection_of_object_values(ReviewSet)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(CaseSettings)),
             "sourceCollections": lambda n : setattr(self, 'source_collections', n.get_collection_of_object_values(SourceCollection)),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(CaseStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(Case_status)),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_object_values(Tag)),
         }
         super_fields = super().get_field_deserializers()

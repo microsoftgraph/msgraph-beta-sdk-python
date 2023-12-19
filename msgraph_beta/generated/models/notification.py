@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .notification_priority import Notification_priority
     from .payload_types import PayloadTypes
-    from .priority import Priority
     from .target_policy_endpoints import TargetPolicyEndpoints
 
 from .entity import Entity
@@ -25,7 +25,7 @@ class Notification(Entity):
     # The payload property
     payload: Optional[PayloadTypes] = None
     # Indicates the priority of a raw user notification. Visual notifications are sent with high priority by default. Valid values are None, High and Low.
-    priority: Optional[Priority] = None
+    priority: Optional[Notification_priority] = None
     # Represents the host name of the app to which the calling service wants to post the notification, for the given user. If targeting web endpoints (see targetPolicy.platformTypes), ensure that targetHostName is the same as the name used when creating a subscription on the client side within the application JSON property.
     target_host_name: Optional[str] = None
     # Target policy object handles notification delivery policy for endpoint types that should be targeted (Windows, iOS, Android and WebPush) for the given user.
@@ -48,13 +48,13 @@ class Notification(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .notification_priority import Notification_priority
         from .payload_types import PayloadTypes
-        from .priority import Priority
         from .target_policy_endpoints import TargetPolicyEndpoints
 
         from .entity import Entity
+        from .notification_priority import Notification_priority
         from .payload_types import PayloadTypes
-        from .priority import Priority
         from .target_policy_endpoints import TargetPolicyEndpoints
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -62,7 +62,7 @@ class Notification(Entity):
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "groupName": lambda n : setattr(self, 'group_name', n.get_str_value()),
             "payload": lambda n : setattr(self, 'payload', n.get_object_value(PayloadTypes)),
-            "priority": lambda n : setattr(self, 'priority', n.get_enum_value(Priority)),
+            "priority": lambda n : setattr(self, 'priority', n.get_enum_value(Notification_priority)),
             "targetHostName": lambda n : setattr(self, 'target_host_name', n.get_str_value()),
             "targetPolicy": lambda n : setattr(self, 'target_policy', n.get_object_value(TargetPolicyEndpoints)),
         }

@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
     from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
+    from .android_device_owner_imported_p_f_x_certificate_profile_certificate_access_type import AndroidDeviceOwnerImportedPFXCertificateProfile_certificateAccessType
     from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
     from .intended_purpose import IntendedPurpose
     from .managed_device_certificate_state import ManagedDeviceCertificateState
@@ -20,7 +20,7 @@ class AndroidDeviceOwnerImportedPFXCertificateProfile(AndroidDeviceOwnerCertific
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerImportedPFXCertificateProfile"
     # Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
-    certificate_access_type: Optional[AndroidDeviceOwnerCertificateAccessType] = None
+    certificate_access_type: Optional[AndroidDeviceOwnerImportedPFXCertificateProfile_certificateAccessType] = None
     # PFX Import Options.
     intended_purpose: Optional[IntendedPurpose] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
@@ -44,20 +44,20 @@ class AndroidDeviceOwnerImportedPFXCertificateProfile(AndroidDeviceOwnerCertific
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
         from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
+        from .android_device_owner_imported_p_f_x_certificate_profile_certificate_access_type import AndroidDeviceOwnerImportedPFXCertificateProfile_certificateAccessType
         from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
         from .intended_purpose import IntendedPurpose
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
         from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
+        from .android_device_owner_imported_p_f_x_certificate_profile_certificate_access_type import AndroidDeviceOwnerImportedPFXCertificateProfile_certificateAccessType
         from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
         from .intended_purpose import IntendedPurpose
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(AndroidDeviceOwnerCertificateAccessType)),
+            "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(AndroidDeviceOwnerImportedPFXCertificateProfile_certificateAccessType)),
             "intendedPurpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(IntendedPurpose)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),
             "silentCertificateAccessDetails": lambda n : setattr(self, 'silent_certificate_access_details', n.get_collection_of_object_values(AndroidDeviceOwnerSilentCertificateAccess)),

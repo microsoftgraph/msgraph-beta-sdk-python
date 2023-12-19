@@ -7,29 +7,29 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from ..identity_set import IdentitySet
-    from .action_after_retention_period import ActionAfterRetentionPeriod
-    from .behavior_during_retention_period import BehaviorDuringRetentionPeriod
-    from .default_record_behavior import DefaultRecordBehavior
     from .disposition_review_stage import DispositionReviewStage
     from .file_plan_descriptor import FilePlanDescriptor
     from .retention_duration import RetentionDuration
     from .retention_event_type import RetentionEventType
-    from .retention_trigger import RetentionTrigger
+    from .retention_label_action_after_retention_period import RetentionLabel_actionAfterRetentionPeriod
+    from .retention_label_behavior_during_retention_period import RetentionLabel_behaviorDuringRetentionPeriod
+    from .retention_label_default_record_behavior import RetentionLabel_defaultRecordBehavior
+    from .retention_label_retention_trigger import RetentionLabel_retentionTrigger
 
 from ..entity import Entity
 
 @dataclass
 class RetentionLabel(Entity):
     # Specifies the action to take on a document with this label applied during the retention period. The possible values are: none, delete, startDispositionReview, unknownFutureValue.
-    action_after_retention_period: Optional[ActionAfterRetentionPeriod] = None
+    action_after_retention_period: Optional[RetentionLabel_actionAfterRetentionPeriod] = None
     # Specifies how the behavior of a document with this label should be during the retention period. The possible values are: doNotRetain, retain, retainAsRecord, retainAsRegulatoryRecord, unknownFutureValue.
-    behavior_during_retention_period: Optional[BehaviorDuringRetentionPeriod] = None
+    behavior_during_retention_period: Optional[RetentionLabel_behaviorDuringRetentionPeriod] = None
     # Represents the user who created the retentionLabel.
     created_by: Optional[IdentitySet] = None
     # Represents the date and time in which the retentionLabel is created.
     created_date_time: Optional[datetime.datetime] = None
     # Specifies the locked or unlocked state of a record label when it is created.The possible values are: startLocked, startUnlocked, unknownFutureValue.
-    default_record_behavior: Optional[DefaultRecordBehavior] = None
+    default_record_behavior: Optional[RetentionLabel_defaultRecordBehavior] = None
     # Provides label information for the admin. Optional.
     description_for_admins: Optional[str] = None
     # Provides the label information for the user. Optional.
@@ -55,7 +55,7 @@ class RetentionLabel(Entity):
     # Represents the type associated with a retention event.
     retention_event_type: Optional[RetentionEventType] = None
     # Specifies whether the retention duration is calculated from the content creation date, labeled date, or last modification date. The possible values are: dateLabeled, dateCreated, dateModified, dateOfEvent, unknownFutureValue.
-    retention_trigger: Optional[RetentionTrigger] = None
+    retention_trigger: Optional[RetentionLabel_retentionTrigger] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RetentionLabel:
@@ -75,32 +75,32 @@ class RetentionLabel(Entity):
         """
         from ..entity import Entity
         from ..identity_set import IdentitySet
-        from .action_after_retention_period import ActionAfterRetentionPeriod
-        from .behavior_during_retention_period import BehaviorDuringRetentionPeriod
-        from .default_record_behavior import DefaultRecordBehavior
         from .disposition_review_stage import DispositionReviewStage
         from .file_plan_descriptor import FilePlanDescriptor
         from .retention_duration import RetentionDuration
         from .retention_event_type import RetentionEventType
-        from .retention_trigger import RetentionTrigger
+        from .retention_label_action_after_retention_period import RetentionLabel_actionAfterRetentionPeriod
+        from .retention_label_behavior_during_retention_period import RetentionLabel_behaviorDuringRetentionPeriod
+        from .retention_label_default_record_behavior import RetentionLabel_defaultRecordBehavior
+        from .retention_label_retention_trigger import RetentionLabel_retentionTrigger
 
         from ..entity import Entity
         from ..identity_set import IdentitySet
-        from .action_after_retention_period import ActionAfterRetentionPeriod
-        from .behavior_during_retention_period import BehaviorDuringRetentionPeriod
-        from .default_record_behavior import DefaultRecordBehavior
         from .disposition_review_stage import DispositionReviewStage
         from .file_plan_descriptor import FilePlanDescriptor
         from .retention_duration import RetentionDuration
         from .retention_event_type import RetentionEventType
-        from .retention_trigger import RetentionTrigger
+        from .retention_label_action_after_retention_period import RetentionLabel_actionAfterRetentionPeriod
+        from .retention_label_behavior_during_retention_period import RetentionLabel_behaviorDuringRetentionPeriod
+        from .retention_label_default_record_behavior import RetentionLabel_defaultRecordBehavior
+        from .retention_label_retention_trigger import RetentionLabel_retentionTrigger
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "actionAfterRetentionPeriod": lambda n : setattr(self, 'action_after_retention_period', n.get_enum_value(ActionAfterRetentionPeriod)),
-            "behaviorDuringRetentionPeriod": lambda n : setattr(self, 'behavior_during_retention_period', n.get_enum_value(BehaviorDuringRetentionPeriod)),
+            "actionAfterRetentionPeriod": lambda n : setattr(self, 'action_after_retention_period', n.get_enum_value(RetentionLabel_actionAfterRetentionPeriod)),
+            "behaviorDuringRetentionPeriod": lambda n : setattr(self, 'behavior_during_retention_period', n.get_enum_value(RetentionLabel_behaviorDuringRetentionPeriod)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "defaultRecordBehavior": lambda n : setattr(self, 'default_record_behavior', n.get_enum_value(DefaultRecordBehavior)),
+            "defaultRecordBehavior": lambda n : setattr(self, 'default_record_behavior', n.get_enum_value(RetentionLabel_defaultRecordBehavior)),
             "descriptionForAdmins": lambda n : setattr(self, 'description_for_admins', n.get_str_value()),
             "descriptionForUsers": lambda n : setattr(self, 'description_for_users', n.get_str_value()),
             "descriptors": lambda n : setattr(self, 'descriptors', n.get_object_value(FilePlanDescriptor)),
@@ -112,7 +112,7 @@ class RetentionLabel(Entity):
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "retentionDuration": lambda n : setattr(self, 'retention_duration', n.get_object_value(RetentionDuration)),
             "retentionEventType": lambda n : setattr(self, 'retention_event_type', n.get_object_value(RetentionEventType)),
-            "retentionTrigger": lambda n : setattr(self, 'retention_trigger', n.get_enum_value(RetentionTrigger)),
+            "retentionTrigger": lambda n : setattr(self, 'retention_trigger', n.get_enum_value(RetentionLabel_retentionTrigger)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

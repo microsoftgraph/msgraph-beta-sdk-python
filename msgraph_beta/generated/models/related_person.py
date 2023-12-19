@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .person_relationship import PersonRelationship
+    from .related_person_relationship import RelatedPerson_relationship
 
 @dataclass
 class RelatedPerson(AdditionalDataHolder, BackedModel, Parsable):
@@ -19,10 +19,10 @@ class RelatedPerson(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Possible values are: manager, colleague, directReport, dotLineReport, assistant, dotLineManager, alternateContact, friend, spouse, sibling, child, parent, sponsor, emergencyContact, other, unknownFutureValue.
-    relationship: Optional[PersonRelationship] = None
-    # The userId property
+    relationship: Optional[RelatedPerson_relationship] = None
+    # The user's directory object ID (Microsoft Entra ID or CID).
     user_id: Optional[str] = None
-    # Email address or reference to person within organization.
+    # Email address or reference to person within the organization.
     user_principal_name: Optional[str] = None
     
     @staticmethod
@@ -41,14 +41,14 @@ class RelatedPerson(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .person_relationship import PersonRelationship
+        from .related_person_relationship import RelatedPerson_relationship
 
-        from .person_relationship import PersonRelationship
+        from .related_person_relationship import RelatedPerson_relationship
 
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "relationship": lambda n : setattr(self, 'relationship', n.get_enum_value(PersonRelationship)),
+            "relationship": lambda n : setattr(self, 'relationship', n.get_enum_value(RelatedPerson_relationship)),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }

@@ -25,6 +25,8 @@ class PlannerTaskPropertyRule(PlannerPropertyRule):
     delete: Optional[List[str]] = None
     # Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
     due_date: Optional[List[str]] = None
+    # The forms property
+    forms: Optional[PlannerFieldRules] = None
     # Rules and restrictions for moving the task between buckets or plans. Accepted values are allow, moveBetweenPlans, moveBetweenBuckets, and block.
     move: Optional[List[str]] = None
     # Rules and restrictions for changing the notes of the task. Accepted values are allow and block.
@@ -73,6 +75,7 @@ class PlannerTaskPropertyRule(PlannerPropertyRule):
             "completionRequirements": lambda n : setattr(self, 'completion_requirements', n.get_collection_of_primitive_values(str)),
             "delete": lambda n : setattr(self, 'delete', n.get_collection_of_primitive_values(str)),
             "dueDate": lambda n : setattr(self, 'due_date', n.get_collection_of_primitive_values(str)),
+            "forms": lambda n : setattr(self, 'forms', n.get_object_value(PlannerFieldRules)),
             "move": lambda n : setattr(self, 'move', n.get_collection_of_primitive_values(str)),
             "notes": lambda n : setattr(self, 'notes', n.get_collection_of_primitive_values(str)),
             "order": lambda n : setattr(self, 'order', n.get_collection_of_primitive_values(str)),
@@ -102,6 +105,7 @@ class PlannerTaskPropertyRule(PlannerPropertyRule):
         writer.write_collection_of_primitive_values("completionRequirements", self.completion_requirements)
         writer.write_collection_of_primitive_values("delete", self.delete)
         writer.write_collection_of_primitive_values("dueDate", self.due_date)
+        writer.write_object_value("forms", self.forms)
         writer.write_collection_of_primitive_values("move", self.move)
         writer.write_collection_of_primitive_values("notes", self.notes)
         writer.write_collection_of_primitive_values("order", self.order)

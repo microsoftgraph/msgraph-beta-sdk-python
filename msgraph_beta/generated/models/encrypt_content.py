@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .encrypt_with import EncryptWith
+    from .encrypt_content_encrypt_with import EncryptContent_encryptWith
     from .encrypt_with_template import EncryptWithTemplate
     from .encrypt_with_user_defined_rights import EncryptWithUserDefinedRights
     from .label_action_base import LabelActionBase
@@ -16,7 +16,7 @@ class EncryptContent(LabelActionBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.encryptContent"
     # The encryptWith property
-    encrypt_with: Optional[EncryptWith] = None
+    encrypt_with: Optional[EncryptContent_encryptWith] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EncryptContent:
@@ -46,18 +46,18 @@ class EncryptContent(LabelActionBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .encrypt_with import EncryptWith
+        from .encrypt_content_encrypt_with import EncryptContent_encryptWith
         from .encrypt_with_template import EncryptWithTemplate
         from .encrypt_with_user_defined_rights import EncryptWithUserDefinedRights
         from .label_action_base import LabelActionBase
 
-        from .encrypt_with import EncryptWith
+        from .encrypt_content_encrypt_with import EncryptContent_encryptWith
         from .encrypt_with_template import EncryptWithTemplate
         from .encrypt_with_user_defined_rights import EncryptWithUserDefinedRights
         from .label_action_base import LabelActionBase
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "encryptWith": lambda n : setattr(self, 'encrypt_with', n.get_enum_value(EncryptWith)),
+            "encryptWith": lambda n : setattr(self, 'encrypt_with', n.get_enum_value(EncryptContent_encryptWith)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

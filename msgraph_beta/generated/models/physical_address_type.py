@@ -1,8 +1,5 @@
 from enum import Enum
 
-class PhysicalAddressType(str, Enum):
-    Unknown = "unknown",
-    Home = "home",
-    Business = "business",
-    Other = "other",
+class PhysicalAddress_type(str, Enum):
+    pass
 

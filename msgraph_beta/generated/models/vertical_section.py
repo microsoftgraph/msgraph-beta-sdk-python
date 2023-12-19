@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .section_emphasis_type import SectionEmphasisType
+    from .vertical_section_emphasis import VerticalSection_emphasis
     from .web_part import WebPart
 
 from .entity import Entity
@@ -13,7 +13,7 @@ from .entity import Entity
 @dataclass
 class VerticalSection(Entity):
     # Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.
-    emphasis: Optional[SectionEmphasisType] = None
+    emphasis: Optional[VerticalSection_emphasis] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The set of web parts in this section.
@@ -36,15 +36,15 @@ class VerticalSection(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .section_emphasis_type import SectionEmphasisType
+        from .vertical_section_emphasis import VerticalSection_emphasis
         from .web_part import WebPart
 
         from .entity import Entity
-        from .section_emphasis_type import SectionEmphasisType
+        from .vertical_section_emphasis import VerticalSection_emphasis
         from .web_part import WebPart
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "emphasis": lambda n : setattr(self, 'emphasis', n.get_enum_value(SectionEmphasisType)),
+            "emphasis": lambda n : setattr(self, 'emphasis', n.get_enum_value(VerticalSection_emphasis)),
             "webparts": lambda n : setattr(self, 'webparts', n.get_collection_of_object_values(WebPart)),
         }
         super_fields = super().get_field_deserializers()

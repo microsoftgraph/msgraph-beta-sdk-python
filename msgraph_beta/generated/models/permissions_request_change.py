@@ -6,24 +6,24 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .permissions_request_occurrence_status import PermissionsRequestOccurrenceStatus
+    from .permissions_request_change_active_occurrence_status import PermissionsRequestChange_activeOccurrenceStatus
     from .status_detail import StatusDetail
 
 from .entity import Entity
 
 @dataclass
 class PermissionsRequestChange(Entity):
-    # The activeOccurrenceStatus property
-    active_occurrence_status: Optional[PermissionsRequestOccurrenceStatus] = None
-    # The modificationDateTime property
+    # The status of the active occurence of the schedule if one exists. The possible values are: grantingFailed, granted, granting, revoked, revoking, revokingFailed, unknownFutureValue.
+    active_occurrence_status: Optional[PermissionsRequestChange_activeOccurrenceStatus] = None
+    # Time when the change occurred.
     modification_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The permissionsRequestId property
+    # The ID of the scheduledPermissionsRequest object.
     permissions_request_id: Optional[str] = None
     # The statusDetail property
     status_detail: Optional[StatusDetail] = None
-    # The ticketId property
+    # Represents the ticketing system identifier.
     ticket_id: Optional[str] = None
     
     @staticmethod
@@ -43,15 +43,15 @@ class PermissionsRequestChange(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .permissions_request_occurrence_status import PermissionsRequestOccurrenceStatus
+        from .permissions_request_change_active_occurrence_status import PermissionsRequestChange_activeOccurrenceStatus
         from .status_detail import StatusDetail
 
         from .entity import Entity
-        from .permissions_request_occurrence_status import PermissionsRequestOccurrenceStatus
+        from .permissions_request_change_active_occurrence_status import PermissionsRequestChange_activeOccurrenceStatus
         from .status_detail import StatusDetail
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "activeOccurrenceStatus": lambda n : setattr(self, 'active_occurrence_status', n.get_enum_value(PermissionsRequestOccurrenceStatus)),
+            "activeOccurrenceStatus": lambda n : setattr(self, 'active_occurrence_status', n.get_enum_value(PermissionsRequestChange_activeOccurrenceStatus)),
             "modificationDateTime": lambda n : setattr(self, 'modification_date_time', n.get_datetime_value()),
             "permissionsRequestId": lambda n : setattr(self, 'permissions_request_id', n.get_str_value()),
             "statusDetail": lambda n : setattr(self, 'status_detail', n.get_enum_value(StatusDetail)),

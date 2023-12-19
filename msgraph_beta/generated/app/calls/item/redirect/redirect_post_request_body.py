@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.call_disposition import CallDisposition
     from .....models.invitation_participant_info import InvitationParticipantInfo
+    from .redirect_post_request_body_target_disposition import RedirectPostRequestBody_targetDisposition
 
 @dataclass
 class RedirectPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -22,7 +22,7 @@ class RedirectPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # The maskCaller property
     mask_caller: Optional[bool] = None
     # The targetDisposition property
-    target_disposition: Optional[CallDisposition] = None
+    target_disposition: Optional[RedirectPostRequestBody_targetDisposition] = None
     # The targets property
     targets: Optional[List[InvitationParticipantInfo]] = None
     # The timeout property
@@ -44,17 +44,17 @@ class RedirectPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .....models.call_disposition import CallDisposition
         from .....models.invitation_participant_info import InvitationParticipantInfo
+        from .redirect_post_request_body_target_disposition import RedirectPostRequestBody_targetDisposition
 
-        from .....models.call_disposition import CallDisposition
         from .....models.invitation_participant_info import InvitationParticipantInfo
+        from .redirect_post_request_body_target_disposition import RedirectPostRequestBody_targetDisposition
 
         fields: Dict[str, Callable[[Any], None]] = {
             "callbackUri": lambda n : setattr(self, 'callback_uri', n.get_str_value()),
             "maskCallee": lambda n : setattr(self, 'mask_callee', n.get_bool_value()),
             "maskCaller": lambda n : setattr(self, 'mask_caller', n.get_bool_value()),
-            "targetDisposition": lambda n : setattr(self, 'target_disposition', n.get_enum_value(CallDisposition)),
+            "targetDisposition": lambda n : setattr(self, 'target_disposition', n.get_enum_value(RedirectPostRequestBody_targetDisposition)),
             "targets": lambda n : setattr(self, 'targets', n.get_collection_of_object_values(InvitationParticipantInfo)),
             "timeout": lambda n : setattr(self, 'timeout', n.get_int_value()),
         }

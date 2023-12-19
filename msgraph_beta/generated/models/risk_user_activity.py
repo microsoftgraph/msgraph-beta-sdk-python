@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .risk_detail import RiskDetail
-    from .risk_event_type import RiskEventType
+    from .risk_user_activity_detail import RiskUserActivity_detail
+    from .risk_user_activity_event_types import RiskUserActivity_eventTypes
 
 @dataclass
 class RiskUserActivity(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,9 +16,9 @@ class RiskUserActivity(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The possible values are none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue.
-    detail: Optional[RiskDetail] = None
+    detail: Optional[RiskUserActivity_detail] = None
     # The eventTypes property
-    event_types: Optional[List[RiskEventType]] = None
+    event_types: Optional[List[RiskUserActivity_eventTypes]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The riskEventTypes property
@@ -40,15 +40,15 @@ class RiskUserActivity(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .risk_detail import RiskDetail
-        from .risk_event_type import RiskEventType
+        from .risk_user_activity_detail import RiskUserActivity_detail
+        from .risk_user_activity_event_types import RiskUserActivity_eventTypes
 
-        from .risk_detail import RiskDetail
-        from .risk_event_type import RiskEventType
+        from .risk_user_activity_detail import RiskUserActivity_detail
+        from .risk_user_activity_event_types import RiskUserActivity_eventTypes
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "detail": lambda n : setattr(self, 'detail', n.get_enum_value(RiskDetail)),
-            "eventTypes": lambda n : setattr(self, 'event_types', n.get_collection_of_enum_values(RiskEventType)),
+            "detail": lambda n : setattr(self, 'detail', n.get_enum_value(RiskUserActivity_detail)),
+            "eventTypes": lambda n : setattr(self, 'event_types', n.get_collection_of_enum_values(RiskUserActivity_eventTypes)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "riskEventTypes": lambda n : setattr(self, 'risk_event_types', n.get_collection_of_primitive_values(str)),
         }

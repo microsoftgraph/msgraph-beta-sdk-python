@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .alert_impact import AlertImpact
-    from .alert_rule_template import AlertRuleTemplate
-    from .rule_severity_type import RuleSeverityType
+    from .portal_notification_alert_rule_template import PortalNotification_alertRuleTemplate
+    from .portal_notification_severity import PortalNotification_severity
 
 @dataclass
 class PortalNotification(AdditionalDataHolder, BackedModel, Parsable):
@@ -25,7 +25,7 @@ class PortalNotification(AdditionalDataHolder, BackedModel, Parsable):
     # The associated alert rule name.
     alert_rule_name: Optional[str] = None
     # The associated alert rule template. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue, cloudPcInGracePeriodScenario. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: cloudPcInGracePeriodScenario.
-    alert_rule_template: Optional[AlertRuleTemplate] = None
+    alert_rule_template: Optional[PortalNotification_alertRuleTemplate] = None
     # The unique identifier for the portal notification.
     id: Optional[str] = None
     # true if the portal notification has already been sent to the user; false otherwise.
@@ -33,7 +33,7 @@ class PortalNotification(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The associated alert rule severity. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
-    severity: Optional[RuleSeverityType] = None
+    severity: Optional[PortalNotification_severity] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PortalNotification:
@@ -52,23 +52,23 @@ class PortalNotification(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .alert_impact import AlertImpact
-        from .alert_rule_template import AlertRuleTemplate
-        from .rule_severity_type import RuleSeverityType
+        from .portal_notification_alert_rule_template import PortalNotification_alertRuleTemplate
+        from .portal_notification_severity import PortalNotification_severity
 
         from .alert_impact import AlertImpact
-        from .alert_rule_template import AlertRuleTemplate
-        from .rule_severity_type import RuleSeverityType
+        from .portal_notification_alert_rule_template import PortalNotification_alertRuleTemplate
+        from .portal_notification_severity import PortalNotification_severity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "alertImpact": lambda n : setattr(self, 'alert_impact', n.get_object_value(AlertImpact)),
             "alertRecordId": lambda n : setattr(self, 'alert_record_id', n.get_str_value()),
             "alertRuleId": lambda n : setattr(self, 'alert_rule_id', n.get_str_value()),
             "alertRuleName": lambda n : setattr(self, 'alert_rule_name', n.get_str_value()),
-            "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(AlertRuleTemplate)),
+            "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(PortalNotification_alertRuleTemplate)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isPortalNotificationSent": lambda n : setattr(self, 'is_portal_notification_sent', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(RuleSeverityType)),
+            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(PortalNotification_severity)),
         }
         return fields
     

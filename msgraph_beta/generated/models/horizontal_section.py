@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .horizontal_section_column import HorizontalSectionColumn
-    from .horizontal_section_layout_type import HorizontalSectionLayoutType
-    from .section_emphasis_type import SectionEmphasisType
+    from .horizontal_section_emphasis import HorizontalSection_emphasis
+    from .horizontal_section_layout import HorizontalSection_layout
 
 from .entity import Entity
 
@@ -16,9 +16,9 @@ class HorizontalSection(Entity):
     # The set of vertical columns in this section.
     columns: Optional[List[HorizontalSectionColumn]] = None
     # Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.
-    emphasis: Optional[SectionEmphasisType] = None
+    emphasis: Optional[HorizontalSection_emphasis] = None
     # Layout type of the section. The possible values are: none, oneColumn, twoColumns, threeColumns, oneThirdLeftColumn, oneThirdRightColumn, fullWidth, unknownFutureValue.
-    layout: Optional[HorizontalSectionLayoutType] = None
+    layout: Optional[HorizontalSection_layout] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -40,18 +40,18 @@ class HorizontalSection(Entity):
         """
         from .entity import Entity
         from .horizontal_section_column import HorizontalSectionColumn
-        from .horizontal_section_layout_type import HorizontalSectionLayoutType
-        from .section_emphasis_type import SectionEmphasisType
+        from .horizontal_section_emphasis import HorizontalSection_emphasis
+        from .horizontal_section_layout import HorizontalSection_layout
 
         from .entity import Entity
         from .horizontal_section_column import HorizontalSectionColumn
-        from .horizontal_section_layout_type import HorizontalSectionLayoutType
-        from .section_emphasis_type import SectionEmphasisType
+        from .horizontal_section_emphasis import HorizontalSection_emphasis
+        from .horizontal_section_layout import HorizontalSection_layout
 
         fields: Dict[str, Callable[[Any], None]] = {
             "columns": lambda n : setattr(self, 'columns', n.get_collection_of_object_values(HorizontalSectionColumn)),
-            "emphasis": lambda n : setattr(self, 'emphasis', n.get_enum_value(SectionEmphasisType)),
-            "layout": lambda n : setattr(self, 'layout', n.get_enum_value(HorizontalSectionLayoutType)),
+            "emphasis": lambda n : setattr(self, 'emphasis', n.get_enum_value(HorizontalSection_emphasis)),
+            "layout": lambda n : setattr(self, 'layout', n.get_enum_value(HorizontalSection_layout)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

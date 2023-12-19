@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .bit_locker_encryption_method import BitLockerEncryptionMethod
+    from .bit_locker_fixed_drive_policy_encryption_method import BitLockerFixedDrivePolicy_encryptionMethod
     from .bit_locker_recovery_options import BitLockerRecoveryOptions
 
 @dataclass
@@ -19,7 +19,7 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Select the encryption method for fixed drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
-    encryption_method: Optional[BitLockerEncryptionMethod] = None
+    encryption_method: Optional[BitLockerFixedDrivePolicy_encryptionMethod] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # This policy setting allows you to control how BitLocker-protected fixed data drives are recovered in the absence of the required credentials. This policy setting is applied when you turn on BitLocker.
@@ -43,14 +43,14 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .bit_locker_encryption_method import BitLockerEncryptionMethod
+        from .bit_locker_fixed_drive_policy_encryption_method import BitLockerFixedDrivePolicy_encryptionMethod
         from .bit_locker_recovery_options import BitLockerRecoveryOptions
 
-        from .bit_locker_encryption_method import BitLockerEncryptionMethod
+        from .bit_locker_fixed_drive_policy_encryption_method import BitLockerFixedDrivePolicy_encryptionMethod
         from .bit_locker_recovery_options import BitLockerRecoveryOptions
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(BitLockerEncryptionMethod)),
+            "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(BitLockerFixedDrivePolicy_encryptionMethod)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recoveryOptions": lambda n : setattr(self, 'recovery_options', n.get_object_value(BitLockerRecoveryOptions)),
             "requireEncryptionForWriteAccess": lambda n : setattr(self, 'require_encryption_for_write_access', n.get_bool_value()),

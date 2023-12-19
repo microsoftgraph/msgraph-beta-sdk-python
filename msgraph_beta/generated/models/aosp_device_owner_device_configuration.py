@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+    from .aosp_device_owner_device_configuration_password_required_type import AospDeviceOwnerDeviceConfiguration_passwordRequiredType
     from .device_configuration import DeviceConfiguration
 
 from .device_configuration import DeviceConfiguration
@@ -31,7 +31,7 @@ class AospDeviceOwnerDeviceConfiguration(DeviceConfiguration):
     # Minutes of inactivity before the screen times out.
     password_minutes_of_inactivity_before_screen_timeout: Optional[int] = None
     # Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-    password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
+    password_required_type: Optional[AospDeviceOwnerDeviceConfiguration_passwordRequiredType] = None
     # Indicates the number of times a user can enter an incorrect password before the device is wiped. Valid values 4 to 11
     password_sign_in_failure_count_before_factory_reset: Optional[int] = None
     # Indicates whether or not to disable the capability to take screenshots.
@@ -61,10 +61,10 @@ class AospDeviceOwnerDeviceConfiguration(DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+        from .aosp_device_owner_device_configuration_password_required_type import AospDeviceOwnerDeviceConfiguration_passwordRequiredType
         from .device_configuration import DeviceConfiguration
 
-        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+        from .aosp_device_owner_device_configuration_password_required_type import AospDeviceOwnerDeviceConfiguration_passwordRequiredType
         from .device_configuration import DeviceConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -75,7 +75,7 @@ class AospDeviceOwnerDeviceConfiguration(DeviceConfiguration):
             "factoryResetBlocked": lambda n : setattr(self, 'factory_reset_blocked', n.get_bool_value()),
             "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
             "passwordMinutesOfInactivityBeforeScreenTimeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
-            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(AndroidDeviceOwnerRequiredPasswordType)),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(AospDeviceOwnerDeviceConfiguration_passwordRequiredType)),
             "passwordSignInFailureCountBeforeFactoryReset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
             "screenCaptureBlocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
             "securityAllowDebuggingFeatures": lambda n : setattr(self, 'security_allow_debugging_features', n.get_bool_value()),

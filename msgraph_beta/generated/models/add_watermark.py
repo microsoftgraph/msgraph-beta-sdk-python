@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .add_watermark_orientation import AddWatermark_orientation
     from .mark_content import MarkContent
-    from .page_orientation import PageOrientation
 
 from .mark_content import MarkContent
 
@@ -14,7 +14,7 @@ class AddWatermark(MarkContent):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.addWatermark"
     # The orientation property
-    orientation: Optional[PageOrientation] = None
+    orientation: Optional[AddWatermark_orientation] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddWatermark:
@@ -32,14 +32,14 @@ class AddWatermark(MarkContent):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .add_watermark_orientation import AddWatermark_orientation
         from .mark_content import MarkContent
-        from .page_orientation import PageOrientation
 
+        from .add_watermark_orientation import AddWatermark_orientation
         from .mark_content import MarkContent
-        from .page_orientation import PageOrientation
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "orientation": lambda n : setattr(self, 'orientation', n.get_enum_value(PageOrientation)),
+            "orientation": lambda n : setattr(self, 'orientation', n.get_enum_value(AddWatermark_orientation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

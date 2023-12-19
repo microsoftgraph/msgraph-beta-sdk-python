@@ -5,11 +5,14 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .audio_routing_group import AudioRoutingGroup
-    from .call_direction import CallDirection
+    from .call_active_modalities import Call_activeModalities
+    from .call_direction import Call_direction
     from .call_media_state import CallMediaState
     from .call_options import CallOptions
+    from .call_requested_modalities import Call_requestedModalities
     from .call_route import CallRoute
-    from .call_state import CallState
+    from .call_routing_policies import Call_routingPolicies
+    from .call_state import Call_state
     from .call_transcription_info import CallTranscriptionInfo
     from .chat_info import ChatInfo
     from .comms_operation import CommsOperation
@@ -20,11 +23,9 @@ if TYPE_CHECKING:
     from .media_config import MediaConfig
     from .meeting_capability import MeetingCapability
     from .meeting_info import MeetingInfo
-    from .modality import Modality
     from .participant import Participant
     from .participant_info import ParticipantInfo
     from .result_info import ResultInfo
-    from .routing_policy import RoutingPolicy
     from .tone_info import ToneInfo
 
 from .entity import Entity
@@ -32,7 +33,7 @@ from .entity import Entity
 @dataclass
 class Call(Entity):
     # The list of active modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data. Read-only.
-    active_modalities: Optional[List[Modality]] = None
+    active_modalities: Optional[List[Call_activeModalities]] = None
     # The participant that answered the call. Read-only.
     answered_by: Optional[ParticipantInfo] = None
     # The audioRoutingGroups property
@@ -50,7 +51,7 @@ class Call(Entity):
     # The contentSharingSessions property
     content_sharing_sessions: Optional[List[ContentSharingSession]] = None
     # The direction of the call. The possible values are incoming or outgoing. Read-only.
-    direction: Optional[CallDirection] = None
+    direction: Optional[Call_direction] = None
     # The context associated with an incoming call. Read-only. Server generated.
     incoming_context: Optional[IncomingContext] = None
     # The media configuration. Required information for creating peer to peer calls or joining meetings.
@@ -70,17 +71,17 @@ class Call(Entity):
     # The participants property
     participants: Optional[List[Participant]] = None
     # The requestedModalities property
-    requested_modalities: Optional[List[Modality]] = None
+    requested_modalities: Optional[List[Call_requestedModalities]] = None
     # The resultInfo property
     result_info: Optional[ResultInfo] = None
     # The ringingTimeoutInSeconds property
     ringing_timeout_in_seconds: Optional[int] = None
     # The routingPolicies property
-    routing_policies: Optional[List[RoutingPolicy]] = None
+    routing_policies: Optional[List[Call_routingPolicies]] = None
     # The source property
     source: Optional[ParticipantInfo] = None
     # The state property
-    state: Optional[CallState] = None
+    state: Optional[Call_state] = None
     # The subject property
     subject: Optional[str] = None
     # The targets property
@@ -111,11 +112,14 @@ class Call(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .audio_routing_group import AudioRoutingGroup
-        from .call_direction import CallDirection
+        from .call_active_modalities import Call_activeModalities
+        from .call_direction import Call_direction
         from .call_media_state import CallMediaState
         from .call_options import CallOptions
+        from .call_requested_modalities import Call_requestedModalities
         from .call_route import CallRoute
-        from .call_state import CallState
+        from .call_routing_policies import Call_routingPolicies
+        from .call_state import Call_state
         from .call_transcription_info import CallTranscriptionInfo
         from .chat_info import ChatInfo
         from .comms_operation import CommsOperation
@@ -126,19 +130,20 @@ class Call(Entity):
         from .media_config import MediaConfig
         from .meeting_capability import MeetingCapability
         from .meeting_info import MeetingInfo
-        from .modality import Modality
         from .participant import Participant
         from .participant_info import ParticipantInfo
         from .result_info import ResultInfo
-        from .routing_policy import RoutingPolicy
         from .tone_info import ToneInfo
 
         from .audio_routing_group import AudioRoutingGroup
-        from .call_direction import CallDirection
+        from .call_active_modalities import Call_activeModalities
+        from .call_direction import Call_direction
         from .call_media_state import CallMediaState
         from .call_options import CallOptions
+        from .call_requested_modalities import Call_requestedModalities
         from .call_route import CallRoute
-        from .call_state import CallState
+        from .call_routing_policies import Call_routingPolicies
+        from .call_state import Call_state
         from .call_transcription_info import CallTranscriptionInfo
         from .chat_info import ChatInfo
         from .comms_operation import CommsOperation
@@ -149,15 +154,13 @@ class Call(Entity):
         from .media_config import MediaConfig
         from .meeting_capability import MeetingCapability
         from .meeting_info import MeetingInfo
-        from .modality import Modality
         from .participant import Participant
         from .participant_info import ParticipantInfo
         from .result_info import ResultInfo
-        from .routing_policy import RoutingPolicy
         from .tone_info import ToneInfo
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "activeModalities": lambda n : setattr(self, 'active_modalities', n.get_collection_of_enum_values(Modality)),
+            "activeModalities": lambda n : setattr(self, 'active_modalities', n.get_collection_of_enum_values(Call_activeModalities)),
             "answeredBy": lambda n : setattr(self, 'answered_by', n.get_object_value(ParticipantInfo)),
             "audioRoutingGroups": lambda n : setattr(self, 'audio_routing_groups', n.get_collection_of_object_values(AudioRoutingGroup)),
             "callChainId": lambda n : setattr(self, 'call_chain_id', n.get_str_value()),
@@ -166,7 +169,7 @@ class Call(Entity):
             "callbackUri": lambda n : setattr(self, 'callback_uri', n.get_str_value()),
             "chatInfo": lambda n : setattr(self, 'chat_info', n.get_object_value(ChatInfo)),
             "contentSharingSessions": lambda n : setattr(self, 'content_sharing_sessions', n.get_collection_of_object_values(ContentSharingSession)),
-            "direction": lambda n : setattr(self, 'direction', n.get_enum_value(CallDirection)),
+            "direction": lambda n : setattr(self, 'direction', n.get_enum_value(Call_direction)),
             "incomingContext": lambda n : setattr(self, 'incoming_context', n.get_object_value(IncomingContext)),
             "mediaConfig": lambda n : setattr(self, 'media_config', n.get_object_value(MediaConfig)),
             "mediaState": lambda n : setattr(self, 'media_state', n.get_object_value(CallMediaState)),
@@ -175,12 +178,12 @@ class Call(Entity):
             "myParticipantId": lambda n : setattr(self, 'my_participant_id', n.get_str_value()),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(CommsOperation)),
             "participants": lambda n : setattr(self, 'participants', n.get_collection_of_object_values(Participant)),
-            "requestedModalities": lambda n : setattr(self, 'requested_modalities', n.get_collection_of_enum_values(Modality)),
+            "requestedModalities": lambda n : setattr(self, 'requested_modalities', n.get_collection_of_enum_values(Call_requestedModalities)),
             "resultInfo": lambda n : setattr(self, 'result_info', n.get_object_value(ResultInfo)),
             "ringingTimeoutInSeconds": lambda n : setattr(self, 'ringing_timeout_in_seconds', n.get_int_value()),
-            "routingPolicies": lambda n : setattr(self, 'routing_policies', n.get_collection_of_enum_values(RoutingPolicy)),
+            "routingPolicies": lambda n : setattr(self, 'routing_policies', n.get_collection_of_enum_values(Call_routingPolicies)),
             "source": lambda n : setattr(self, 'source', n.get_object_value(ParticipantInfo)),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(CallState)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(Call_state)),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
             "targets": lambda n : setattr(self, 'targets', n.get_collection_of_object_values(InvitationParticipantInfo)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),

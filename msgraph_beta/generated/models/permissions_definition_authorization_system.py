@@ -11,9 +11,9 @@ class PermissionsDefinitionAuthorizationSystem(AdditionalDataHolder, BackedModel
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The authorizationSystemId property
+    # ID of the authorization system retrieved from the customer cloud environment.
     authorization_system_id: Optional[str] = None
-    # The authorizationSystemType property
+    # The type of authorization system.
     authorization_system_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

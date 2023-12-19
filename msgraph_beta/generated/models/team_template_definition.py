@@ -8,14 +8,14 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .identity_set import IdentitySet
     from .team import Team
-    from .team_template_audience import TeamTemplateAudience
+    from .team_template_definition_audience import TeamTemplateDefinition_audience
 
 from .entity import Entity
 
 @dataclass
 class TeamTemplateDefinition(Entity):
     # Describes the audience the team template is available to. The possible values are: organization, user, public, unknownFutureValue.
-    audience: Optional[TeamTemplateAudience] = None
+    audience: Optional[TeamTemplateDefinition_audience] = None
     # The assigned categories for the team template.
     categories: Optional[List[str]] = None
     # A brief description of the team template as it will appear to the users in Microsoft Teams.
@@ -60,15 +60,15 @@ class TeamTemplateDefinition(Entity):
         from .entity import Entity
         from .identity_set import IdentitySet
         from .team import Team
-        from .team_template_audience import TeamTemplateAudience
+        from .team_template_definition_audience import TeamTemplateDefinition_audience
 
         from .entity import Entity
         from .identity_set import IdentitySet
         from .team import Team
-        from .team_template_audience import TeamTemplateAudience
+        from .team_template_definition_audience import TeamTemplateDefinition_audience
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "audience": lambda n : setattr(self, 'audience', n.get_enum_value(TeamTemplateAudience)),
+            "audience": lambda n : setattr(self, 'audience', n.get_enum_value(TeamTemplateDefinition_audience)),
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

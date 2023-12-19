@@ -7,8 +7,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..action_url import ActionUrl
     from ..entity import Entity
-    from .management_category import ManagementCategory
     from .management_template import ManagementTemplate
+    from .management_template_step_category import ManagementTemplateStep_category
     from .management_template_step_version import ManagementTemplateStepVersion
 
 from ..entity import Entity
@@ -18,7 +18,7 @@ class ManagementTemplateStep(Entity):
     # The acceptedVersion property
     accepted_version: Optional[ManagementTemplateStepVersion] = None
     # The category property
-    category: Optional[ManagementCategory] = None
+    category: Optional[ManagementTemplateStep_category] = None
     # The createdByUserId property
     created_by_user_id: Optional[str] = None
     # The createdDateTime property
@@ -60,19 +60,19 @@ class ManagementTemplateStep(Entity):
         """
         from ..action_url import ActionUrl
         from ..entity import Entity
-        from .management_category import ManagementCategory
         from .management_template import ManagementTemplate
+        from .management_template_step_category import ManagementTemplateStep_category
         from .management_template_step_version import ManagementTemplateStepVersion
 
         from ..action_url import ActionUrl
         from ..entity import Entity
-        from .management_category import ManagementCategory
         from .management_template import ManagementTemplate
+        from .management_template_step_category import ManagementTemplateStep_category
         from .management_template_step_version import ManagementTemplateStepVersion
 
         fields: Dict[str, Callable[[Any], None]] = {
             "acceptedVersion": lambda n : setattr(self, 'accepted_version', n.get_object_value(ManagementTemplateStepVersion)),
-            "category": lambda n : setattr(self, 'category', n.get_enum_value(ManagementCategory)),
+            "category": lambda n : setattr(self, 'category', n.get_enum_value(ManagementTemplateStep_category)),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

@@ -5,13 +5,13 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .allowed_audiences import AllowedAudiences
     from .educational_activity import EducationalActivity
     from .entity import Entity
     from .identity_set import IdentitySet
     from .inference_data import InferenceData
     from .item_address import ItemAddress
     from .item_email import ItemEmail
+    from .item_facet_allowed_audiences import ItemFacet_allowedAudiences
     from .item_patent import ItemPatent
     from .item_phone import ItemPhone
     from .item_publication import ItemPublication
@@ -36,7 +36,7 @@ from .entity import Entity
 @dataclass
 class ItemFacet(Entity):
     # The audiences that are able to see the values contained within the associated entity. Possible values are: me, family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
-    allowed_audiences: Optional[AllowedAudiences] = None
+    allowed_audiences: Optional[ItemFacet_allowedAudiences] = None
     # The createdBy property
     created_by: Optional[IdentitySet] = None
     # Provides the dateTimeOffset for when the entity was created.
@@ -154,13 +154,13 @@ class ItemFacet(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .allowed_audiences import AllowedAudiences
         from .educational_activity import EducationalActivity
         from .entity import Entity
         from .identity_set import IdentitySet
         from .inference_data import InferenceData
         from .item_address import ItemAddress
         from .item_email import ItemEmail
+        from .item_facet_allowed_audiences import ItemFacet_allowedAudiences
         from .item_patent import ItemPatent
         from .item_phone import ItemPhone
         from .item_publication import ItemPublication
@@ -180,13 +180,13 @@ class ItemFacet(Entity):
         from .web_account import WebAccount
         from .work_position import WorkPosition
 
-        from .allowed_audiences import AllowedAudiences
         from .educational_activity import EducationalActivity
         from .entity import Entity
         from .identity_set import IdentitySet
         from .inference_data import InferenceData
         from .item_address import ItemAddress
         from .item_email import ItemEmail
+        from .item_facet_allowed_audiences import ItemFacet_allowedAudiences
         from .item_patent import ItemPatent
         from .item_phone import ItemPhone
         from .item_publication import ItemPublication
@@ -207,7 +207,7 @@ class ItemFacet(Entity):
         from .work_position import WorkPosition
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedAudiences": lambda n : setattr(self, 'allowed_audiences', n.get_collection_of_enum_values(AllowedAudiences)),
+            "allowedAudiences": lambda n : setattr(self, 'allowed_audiences', n.get_enum_value(ItemFacet_allowedAudiences)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "inference": lambda n : setattr(self, 'inference', n.get_object_value(InferenceData)),

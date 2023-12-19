@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .notification_channel_type import NotificationChannelType
+    from .notification_channel_notification_channel_type import NotificationChannel_notificationChannelType
     from .notification_receiver import NotificationReceiver
 
 @dataclass
@@ -16,7 +16,7 @@ class NotificationChannel(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The type of the notification channel. The possible values are: portal, email, phoneCall, sms, unknownFutureValue.
-    notification_channel_type: Optional[NotificationChannelType] = None
+    notification_channel_type: Optional[NotificationChannel_notificationChannelType] = None
     # Information about the notification receivers, such as locale and contact information. For example, en-us for locale and serena.davis@contoso.com for contact information.
     notification_receivers: Optional[List[NotificationReceiver]] = None
     # The OdataType property
@@ -38,14 +38,14 @@ class NotificationChannel(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .notification_channel_type import NotificationChannelType
+        from .notification_channel_notification_channel_type import NotificationChannel_notificationChannelType
         from .notification_receiver import NotificationReceiver
 
-        from .notification_channel_type import NotificationChannelType
+        from .notification_channel_notification_channel_type import NotificationChannel_notificationChannelType
         from .notification_receiver import NotificationReceiver
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "notificationChannelType": lambda n : setattr(self, 'notification_channel_type', n.get_enum_value(NotificationChannelType)),
+            "notificationChannelType": lambda n : setattr(self, 'notification_channel_type', n.get_enum_value(NotificationChannel_notificationChannelType)),
             "notificationReceivers": lambda n : setattr(self, 'notification_receivers', n.get_collection_of_object_values(NotificationReceiver)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

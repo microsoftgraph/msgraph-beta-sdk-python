@@ -5,8 +5,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .application_segment import ApplicationSegment
-    from .private_network_destination_type import PrivateNetworkDestinationType
-    from .private_network_protocol import PrivateNetworkProtocol
+    from .ip_application_segment_destination_type import IpApplicationSegment_destinationType
+    from .ip_application_segment_protocol import IpApplicationSegment_protocol
 
 from .application_segment import ApplicationSegment
 
@@ -17,13 +17,13 @@ class IpApplicationSegment(ApplicationSegment):
     # The destinationHost property
     destination_host: Optional[str] = None
     # The destinationType property
-    destination_type: Optional[PrivateNetworkDestinationType] = None
+    destination_type: Optional[IpApplicationSegment_destinationType] = None
     # The port property
     port: Optional[int] = None
     # The ports property
     ports: Optional[List[str]] = None
     # The protocol property
-    protocol: Optional[PrivateNetworkProtocol] = None
+    protocol: Optional[IpApplicationSegment_protocol] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IpApplicationSegment:
@@ -42,19 +42,19 @@ class IpApplicationSegment(ApplicationSegment):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .application_segment import ApplicationSegment
-        from .private_network_destination_type import PrivateNetworkDestinationType
-        from .private_network_protocol import PrivateNetworkProtocol
+        from .ip_application_segment_destination_type import IpApplicationSegment_destinationType
+        from .ip_application_segment_protocol import IpApplicationSegment_protocol
 
         from .application_segment import ApplicationSegment
-        from .private_network_destination_type import PrivateNetworkDestinationType
-        from .private_network_protocol import PrivateNetworkProtocol
+        from .ip_application_segment_destination_type import IpApplicationSegment_destinationType
+        from .ip_application_segment_protocol import IpApplicationSegment_protocol
 
         fields: Dict[str, Callable[[Any], None]] = {
             "destinationHost": lambda n : setattr(self, 'destination_host', n.get_str_value()),
-            "destinationType": lambda n : setattr(self, 'destination_type', n.get_enum_value(PrivateNetworkDestinationType)),
+            "destinationType": lambda n : setattr(self, 'destination_type', n.get_enum_value(IpApplicationSegment_destinationType)),
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
             "ports": lambda n : setattr(self, 'ports', n.get_collection_of_primitive_values(str)),
-            "protocol": lambda n : setattr(self, 'protocol', n.get_collection_of_enum_values(PrivateNetworkProtocol)),
+            "protocol": lambda n : setattr(self, 'protocol', n.get_enum_value(IpApplicationSegment_protocol)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

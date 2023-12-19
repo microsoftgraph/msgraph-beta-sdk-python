@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .requirement_provider import RequirementProvider
+    from .authentication_requirement_policy_requirement_provider import AuthenticationRequirementPolicy_requirementProvider
 
 @dataclass
 class AuthenticationRequirementPolicy(AdditionalDataHolder, BackedModel, Parsable):
@@ -19,7 +19,7 @@ class AuthenticationRequirementPolicy(AdditionalDataHolder, BackedModel, Parsabl
     # The OdataType property
     odata_type: Optional[str] = None
     # Identifies what Microsoft Entra feature requires MFA in this policy. Possible values are: user, request, servicePrincipal, v1ConditionalAccess, multiConditionalAccess, tenantSessionRiskPolicy, accountCompromisePolicies, v1ConditionalAccessDependency, v1ConditionalAccessPolicyIdRequested, mfaRegistrationRequiredByIdentityProtectionPolicy, baselineProtection, mfaRegistrationRequiredByBaselineProtection, mfaRegistrationRequiredByMultiConditionalAccess, enforcedForCspAdmins, securityDefaults, mfaRegistrationRequiredBySecurityDefaults, proofUpCodeRequest, crossTenantOutboundRule, gpsLocationCondition, riskBasedPolicy, unknownFutureValue.
-    requirement_provider: Optional[RequirementProvider] = None
+    requirement_provider: Optional[AuthenticationRequirementPolicy_requirementProvider] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationRequirementPolicy:
@@ -37,14 +37,14 @@ class AuthenticationRequirementPolicy(AdditionalDataHolder, BackedModel, Parsabl
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .requirement_provider import RequirementProvider
+        from .authentication_requirement_policy_requirement_provider import AuthenticationRequirementPolicy_requirementProvider
 
-        from .requirement_provider import RequirementProvider
+        from .authentication_requirement_policy_requirement_provider import AuthenticationRequirementPolicy_requirementProvider
 
         fields: Dict[str, Callable[[Any], None]] = {
             "detail": lambda n : setattr(self, 'detail', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "requirementProvider": lambda n : setattr(self, 'requirement_provider', n.get_enum_value(RequirementProvider)),
+            "requirementProvider": lambda n : setattr(self, 'requirement_provider', n.get_enum_value(AuthenticationRequirementPolicy_requirementProvider)),
         }
         return fields
     

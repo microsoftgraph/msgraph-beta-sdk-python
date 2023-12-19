@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .applied_authentication_event_listener_event_type import AppliedAuthenticationEventListener_eventType
     from .authentication_event_handler_result import AuthenticationEventHandlerResult
-    from .authentication_event_type import AuthenticationEventType
 
 @dataclass
 class AppliedAuthenticationEventListener(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,7 +16,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, BackedModel, Pars
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The type of authentication event that triggered the custom authentication extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
-    event_type: Optional[AuthenticationEventType] = None
+    event_type: Optional[AppliedAuthenticationEventListener_eventType] = None
     # ID of the authentication event listener that was executed.
     executed_listener_id: Optional[str] = None
     # The result from the listening client, such as an Azure Logic App and Azure Functions, of this authentication event.
@@ -40,14 +40,14 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, BackedModel, Pars
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .applied_authentication_event_listener_event_type import AppliedAuthenticationEventListener_eventType
         from .authentication_event_handler_result import AuthenticationEventHandlerResult
-        from .authentication_event_type import AuthenticationEventType
 
+        from .applied_authentication_event_listener_event_type import AppliedAuthenticationEventListener_eventType
         from .authentication_event_handler_result import AuthenticationEventHandlerResult
-        from .authentication_event_type import AuthenticationEventType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "eventType": lambda n : setattr(self, 'event_type', n.get_enum_value(AuthenticationEventType)),
+            "eventType": lambda n : setattr(self, 'event_type', n.get_enum_value(AppliedAuthenticationEventListener_eventType)),
             "executedListenerId": lambda n : setattr(self, 'executed_listener_id', n.get_str_value()),
             "handlerResult": lambda n : setattr(self, 'handler_result', n.get_object_value(AuthenticationEventHandlerResult)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

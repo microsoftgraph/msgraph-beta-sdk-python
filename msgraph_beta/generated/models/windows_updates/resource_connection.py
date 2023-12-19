@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .operational_insights_connection import OperationalInsightsConnection
-    from .resource_connection_state import ResourceConnectionState
+    from .resource_connection_state import ResourceConnection_state
 
 from ..entity import Entity
 
@@ -15,7 +15,7 @@ class ResourceConnection(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The state of the connection. The possible values are: connected, notAuthorized, notFound, unknownFutureValue.
-    state: Optional[ResourceConnectionState] = None
+    state: Optional[ResourceConnection_state] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ResourceConnection:
@@ -43,14 +43,14 @@ class ResourceConnection(Entity):
         """
         from ..entity import Entity
         from .operational_insights_connection import OperationalInsightsConnection
-        from .resource_connection_state import ResourceConnectionState
+        from .resource_connection_state import ResourceConnection_state
 
         from ..entity import Entity
         from .operational_insights_connection import OperationalInsightsConnection
-        from .resource_connection_state import ResourceConnectionState
+        from .resource_connection_state import ResourceConnection_state
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(ResourceConnectionState)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(ResourceConnection_state)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

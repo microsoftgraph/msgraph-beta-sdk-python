@@ -5,12 +5,12 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .classification_attribute import ClassificationAttribute
-    from .classification_method import ClassificationMethod
     from .detected_sensitive_content_base import DetectedSensitiveContentBase
+    from .detected_sensitive_content_classification_method import DetectedSensitiveContent_classificationMethod
+    from .detected_sensitive_content_scope import DetectedSensitiveContent_scope
+    from .detected_sensitive_content_sensitive_type_source import DetectedSensitiveContent_sensitiveTypeSource
     from .machine_learning_detected_sensitive_content import MachineLearningDetectedSensitiveContent
     from .sensitive_content_location import SensitiveContentLocation
-    from .sensitive_type_scope import SensitiveTypeScope
-    from .sensitive_type_source import SensitiveTypeSource
 
 from .detected_sensitive_content_base import DetectedSensitiveContentBase
 
@@ -19,15 +19,15 @@ class DetectedSensitiveContent(DetectedSensitiveContentBase):
     # The classificationAttributes property
     classification_attributes: Optional[List[ClassificationAttribute]] = None
     # The classificationMethod property
-    classification_method: Optional[ClassificationMethod] = None
+    classification_method: Optional[DetectedSensitiveContent_classificationMethod] = None
     # The matches property
     matches: Optional[List[SensitiveContentLocation]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The scope property
-    scope: Optional[SensitiveTypeScope] = None
+    scope: Optional[DetectedSensitiveContent_scope] = None
     # The sensitiveTypeSource property
-    sensitive_type_source: Optional[SensitiveTypeSource] = None
+    sensitive_type_source: Optional[DetectedSensitiveContent_sensitiveTypeSource] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DetectedSensitiveContent:
@@ -54,27 +54,27 @@ class DetectedSensitiveContent(DetectedSensitiveContentBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .classification_attribute import ClassificationAttribute
-        from .classification_method import ClassificationMethod
         from .detected_sensitive_content_base import DetectedSensitiveContentBase
+        from .detected_sensitive_content_classification_method import DetectedSensitiveContent_classificationMethod
+        from .detected_sensitive_content_scope import DetectedSensitiveContent_scope
+        from .detected_sensitive_content_sensitive_type_source import DetectedSensitiveContent_sensitiveTypeSource
         from .machine_learning_detected_sensitive_content import MachineLearningDetectedSensitiveContent
         from .sensitive_content_location import SensitiveContentLocation
-        from .sensitive_type_scope import SensitiveTypeScope
-        from .sensitive_type_source import SensitiveTypeSource
 
         from .classification_attribute import ClassificationAttribute
-        from .classification_method import ClassificationMethod
         from .detected_sensitive_content_base import DetectedSensitiveContentBase
+        from .detected_sensitive_content_classification_method import DetectedSensitiveContent_classificationMethod
+        from .detected_sensitive_content_scope import DetectedSensitiveContent_scope
+        from .detected_sensitive_content_sensitive_type_source import DetectedSensitiveContent_sensitiveTypeSource
         from .machine_learning_detected_sensitive_content import MachineLearningDetectedSensitiveContent
         from .sensitive_content_location import SensitiveContentLocation
-        from .sensitive_type_scope import SensitiveTypeScope
-        from .sensitive_type_source import SensitiveTypeSource
 
         fields: Dict[str, Callable[[Any], None]] = {
             "classificationAttributes": lambda n : setattr(self, 'classification_attributes', n.get_collection_of_object_values(ClassificationAttribute)),
-            "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(ClassificationMethod)),
+            "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(DetectedSensitiveContent_classificationMethod)),
             "matches": lambda n : setattr(self, 'matches', n.get_collection_of_object_values(SensitiveContentLocation)),
-            "scope": lambda n : setattr(self, 'scope', n.get_collection_of_enum_values(SensitiveTypeScope)),
-            "sensitiveTypeSource": lambda n : setattr(self, 'sensitive_type_source', n.get_enum_value(SensitiveTypeSource)),
+            "scope": lambda n : setattr(self, 'scope', n.get_enum_value(DetectedSensitiveContent_scope)),
+            "sensitiveTypeSource": lambda n : setattr(self, 'sensitive_type_source', n.get_enum_value(DetectedSensitiveContent_sensitiveTypeSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

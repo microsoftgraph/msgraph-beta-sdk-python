@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .classification_request_content_meta_data import ClassificationRequestContentMetaData
     from .entity import Entity
-    from .ml_classification_match_tolerance import MlClassificationMatchTolerance
-    from .sensitive_type_scope import SensitiveTypeScope
+    from .text_classification_request_match_tolerances_to_include import TextClassificationRequest_matchTolerancesToInclude
+    from .text_classification_request_scopes_to_run import TextClassificationRequest_scopesToRun
 
 from .entity import Entity
 
@@ -18,11 +18,11 @@ class TextClassificationRequest(Entity):
     # The fileExtension property
     file_extension: Optional[str] = None
     # The matchTolerancesToInclude property
-    match_tolerances_to_include: Optional[MlClassificationMatchTolerance] = None
+    match_tolerances_to_include: Optional[TextClassificationRequest_matchTolerancesToInclude] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The scopesToRun property
-    scopes_to_run: Optional[SensitiveTypeScope] = None
+    scopes_to_run: Optional[TextClassificationRequest_scopesToRun] = None
     # The sensitiveTypeIds property
     sensitive_type_ids: Optional[List[str]] = None
     # The text property
@@ -46,19 +46,19 @@ class TextClassificationRequest(Entity):
         """
         from .classification_request_content_meta_data import ClassificationRequestContentMetaData
         from .entity import Entity
-        from .ml_classification_match_tolerance import MlClassificationMatchTolerance
-        from .sensitive_type_scope import SensitiveTypeScope
+        from .text_classification_request_match_tolerances_to_include import TextClassificationRequest_matchTolerancesToInclude
+        from .text_classification_request_scopes_to_run import TextClassificationRequest_scopesToRun
 
         from .classification_request_content_meta_data import ClassificationRequestContentMetaData
         from .entity import Entity
-        from .ml_classification_match_tolerance import MlClassificationMatchTolerance
-        from .sensitive_type_scope import SensitiveTypeScope
+        from .text_classification_request_match_tolerances_to_include import TextClassificationRequest_matchTolerancesToInclude
+        from .text_classification_request_scopes_to_run import TextClassificationRequest_scopesToRun
 
         fields: Dict[str, Callable[[Any], None]] = {
             "contentMetaData": lambda n : setattr(self, 'content_meta_data', n.get_object_value(ClassificationRequestContentMetaData)),
             "fileExtension": lambda n : setattr(self, 'file_extension', n.get_str_value()),
-            "matchTolerancesToInclude": lambda n : setattr(self, 'match_tolerances_to_include', n.get_collection_of_enum_values(MlClassificationMatchTolerance)),
-            "scopesToRun": lambda n : setattr(self, 'scopes_to_run', n.get_collection_of_enum_values(SensitiveTypeScope)),
+            "matchTolerancesToInclude": lambda n : setattr(self, 'match_tolerances_to_include', n.get_enum_value(TextClassificationRequest_matchTolerancesToInclude)),
+            "scopesToRun": lambda n : setattr(self, 'scopes_to_run', n.get_enum_value(TextClassificationRequest_scopesToRun)),
             "sensitiveTypeIds": lambda n : setattr(self, 'sensitive_type_ids', n.get_collection_of_primitive_values(str)),
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
         }

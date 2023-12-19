@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.cloud_pc_operating_system import CloudPcOperatingSystem
-    from ......models.cloud_pc_user_account_type import CloudPcUserAccountType
+    from .reprovision_post_request_body_os_version import ReprovisionPostRequestBody_osVersion
+    from .reprovision_post_request_body_user_account_type import ReprovisionPostRequestBody_userAccountType
 
 @dataclass
 class ReprovisionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,9 +16,9 @@ class ReprovisionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The osVersion property
-    os_version: Optional[CloudPcOperatingSystem] = None
+    os_version: Optional[ReprovisionPostRequestBody_osVersion] = None
     # The userAccountType property
-    user_account_type: Optional[CloudPcUserAccountType] = None
+    user_account_type: Optional[ReprovisionPostRequestBody_userAccountType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ReprovisionPostRequestBody:
@@ -36,15 +36,15 @@ class ReprovisionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ......models.cloud_pc_operating_system import CloudPcOperatingSystem
-        from ......models.cloud_pc_user_account_type import CloudPcUserAccountType
+        from .reprovision_post_request_body_os_version import ReprovisionPostRequestBody_osVersion
+        from .reprovision_post_request_body_user_account_type import ReprovisionPostRequestBody_userAccountType
 
-        from ......models.cloud_pc_operating_system import CloudPcOperatingSystem
-        from ......models.cloud_pc_user_account_type import CloudPcUserAccountType
+        from .reprovision_post_request_body_os_version import ReprovisionPostRequestBody_osVersion
+        from .reprovision_post_request_body_user_account_type import ReprovisionPostRequestBody_userAccountType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(CloudPcOperatingSystem)),
-            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(CloudPcUserAccountType)),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(ReprovisionPostRequestBody_osVersion)),
+            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(ReprovisionPostRequestBody_userAccountType)),
         }
         return fields
     

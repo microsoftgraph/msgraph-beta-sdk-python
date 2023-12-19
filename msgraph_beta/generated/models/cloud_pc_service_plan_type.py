@@ -1,7 +1,5 @@
 from enum import Enum
 
-class CloudPcServicePlanType(str, Enum):
-    Enterprise = "enterprise",
-    Business = "business",
-    UnknownFutureValue = "unknownFutureValue",
+class CloudPcServicePlan_type(str, Enum):
+    pass
 

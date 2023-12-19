@@ -7,8 +7,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .ediscovery_file import EdiscoveryFile
-    from .file_processing_status import FileProcessingStatus
-    from .source_type import SourceType
+    from .file_processing_status import File_processingStatus
+    from .file_source_type import File_sourceType
     from .string_value_dictionary import StringValueDictionary
 
 from ..entity import Entity
@@ -32,13 +32,13 @@ class File(Entity):
     # The otherProperties property
     other_properties: Optional[StringValueDictionary] = None
     # The processingStatus property
-    processing_status: Optional[FileProcessingStatus] = None
+    processing_status: Optional[File_processingStatus] = None
     # The senderOrAuthors property
     sender_or_authors: Optional[List[str]] = None
     # The size property
     size: Optional[int] = None
     # The sourceType property
-    source_type: Optional[SourceType] = None
+    source_type: Optional[File_sourceType] = None
     # The subjectTitle property
     subject_title: Optional[str] = None
     
@@ -68,14 +68,14 @@ class File(Entity):
         """
         from ..entity import Entity
         from .ediscovery_file import EdiscoveryFile
-        from .file_processing_status import FileProcessingStatus
-        from .source_type import SourceType
+        from .file_processing_status import File_processingStatus
+        from .file_source_type import File_sourceType
         from .string_value_dictionary import StringValueDictionary
 
         from ..entity import Entity
         from .ediscovery_file import EdiscoveryFile
-        from .file_processing_status import FileProcessingStatus
-        from .source_type import SourceType
+        from .file_processing_status import File_processingStatus
+        from .file_source_type import File_sourceType
         from .string_value_dictionary import StringValueDictionary
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -86,10 +86,10 @@ class File(Entity):
             "mediaType": lambda n : setattr(self, 'media_type', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "otherProperties": lambda n : setattr(self, 'other_properties', n.get_object_value(StringValueDictionary)),
-            "processingStatus": lambda n : setattr(self, 'processing_status', n.get_enum_value(FileProcessingStatus)),
+            "processingStatus": lambda n : setattr(self, 'processing_status', n.get_enum_value(File_processingStatus)),
             "senderOrAuthors": lambda n : setattr(self, 'sender_or_authors', n.get_collection_of_primitive_values(str)),
             "size": lambda n : setattr(self, 'size', n.get_int_value()),
-            "sourceType": lambda n : setattr(self, 'source_type', n.get_collection_of_enum_values(SourceType)),
+            "sourceType": lambda n : setattr(self, 'source_type', n.get_enum_value(File_sourceType)),
             "subjectTitle": lambda n : setattr(self, 'subject_title', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

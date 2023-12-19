@@ -45,7 +45,7 @@ class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ExternalPartnerSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcExternalPartnerSettingCollectionResponse]:
         """
-        Get a list of the cloudPcExternalPartnerSetting objects and their properties. This API is available in the following national cloud deployments.
+        Get a list of the cloudPcExternalPartnerSetting objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcExternalPartnerSettingCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-externalpartnersettings?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CloudPcExternalPartnerSetting] = None, request_configuration: Optional[ExternalPartnerSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcExternalPartnerSetting]:
         """
-        Create a new cloudPcExternalPartnerSetting object. This API is available in the following national cloud deployments.
+        Create a new cloudPcExternalPartnerSetting object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcExternalPartnerSetting]
@@ -92,7 +92,7 @@ class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ExternalPartnerSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the cloudPcExternalPartnerSetting objects and their properties. This API is available in the following national cloud deployments.
+        Get a list of the cloudPcExternalPartnerSetting objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,12 +104,12 @@ class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[CloudPcExternalPartnerSetting] = None, request_configuration: Optional[ExternalPartnerSettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new cloudPcExternalPartnerSetting object. This API is available in the following national cloud deployments.
+        Create a new cloudPcExternalPartnerSetting object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -149,7 +149,7 @@ class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExternalPartnerSettingsRequestBuilderGetQueryParameters():
         """
-        Get a list of the cloudPcExternalPartnerSetting objects and their properties. This API is available in the following national cloud deployments.
+        Get a list of the cloudPcExternalPartnerSetting objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

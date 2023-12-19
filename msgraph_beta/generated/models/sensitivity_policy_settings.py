@@ -5,14 +5,14 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .sensitivity_label_target import SensitivityLabelTarget
+    from .sensitivity_policy_settings_applicable_to import SensitivityPolicySettings_applicableTo
 
 from .entity import Entity
 
 @dataclass
 class SensitivityPolicySettings(Entity):
     # The applicableTo property
-    applicable_to: Optional[SensitivityLabelTarget] = None
+    applicable_to: Optional[SensitivityPolicySettings_applicableTo] = None
     # The downgradeSensitivityRequiresJustification property
     downgrade_sensitivity_requires_justification: Optional[bool] = None
     # The helpWebUrl property
@@ -39,13 +39,13 @@ class SensitivityPolicySettings(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .sensitivity_label_target import SensitivityLabelTarget
+        from .sensitivity_policy_settings_applicable_to import SensitivityPolicySettings_applicableTo
 
         from .entity import Entity
-        from .sensitivity_label_target import SensitivityLabelTarget
+        from .sensitivity_policy_settings_applicable_to import SensitivityPolicySettings_applicableTo
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_collection_of_enum_values(SensitivityLabelTarget)),
+            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_enum_value(SensitivityPolicySettings_applicableTo)),
             "downgradeSensitivityRequiresJustification": lambda n : setattr(self, 'downgrade_sensitivity_requires_justification', n.get_bool_value()),
             "helpWebUrl": lambda n : setattr(self, 'help_web_url', n.get_str_value()),
             "isMandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),

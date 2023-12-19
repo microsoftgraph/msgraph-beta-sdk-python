@@ -8,10 +8,10 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .identity_set import IdentitySet
     from .teamwork_device_activity import TeamworkDeviceActivity
-    from .teamwork_device_activity_state import TeamworkDeviceActivityState
+    from .teamwork_device_activity_state import TeamworkDevice_activityState
     from .teamwork_device_configuration import TeamworkDeviceConfiguration
     from .teamwork_device_health import TeamworkDeviceHealth
-    from .teamwork_device_health_status import TeamworkDeviceHealthStatus
+    from .teamwork_device_health_status import TeamworkDevice_healthStatus
     from .teamwork_device_operation import TeamworkDeviceOperation
     from .teamwork_device_type import TeamworkDeviceType
     from .teamwork_hardware_detail import TeamworkHardwareDetail
@@ -24,7 +24,7 @@ class TeamworkDevice(Entity):
     # The activity properties that change based on the device usage.
     activity: Optional[TeamworkDeviceActivity] = None
     # The activity state of the device. The possible values are: unknown, busy, idle, unavailable, unknownFutureValue.
-    activity_state: Optional[TeamworkDeviceActivityState] = None
+    activity_state: Optional[TeamworkDevice_activityState] = None
     # The company asset tag assigned by the admin on the device.
     company_asset_tag: Optional[str] = None
     # The configuration properties of the device.
@@ -42,7 +42,7 @@ class TeamworkDevice(Entity):
     # The health properties of the device.
     health: Optional[TeamworkDeviceHealth] = None
     # The health status of the device. The possible values are: unknown, offline, critical, nonUrgent, healthy, unknownFutureValue.
-    health_status: Optional[TeamworkDeviceHealthStatus] = None
+    health_status: Optional[TeamworkDevice_healthStatus] = None
     # Identity of the user who last modified the device details.
     last_modified_by: Optional[IdentitySet] = None
     # The UTC date and time when the device detail was last modified.
@@ -73,10 +73,10 @@ class TeamworkDevice(Entity):
         from .entity import Entity
         from .identity_set import IdentitySet
         from .teamwork_device_activity import TeamworkDeviceActivity
-        from .teamwork_device_activity_state import TeamworkDeviceActivityState
+        from .teamwork_device_activity_state import TeamworkDevice_activityState
         from .teamwork_device_configuration import TeamworkDeviceConfiguration
         from .teamwork_device_health import TeamworkDeviceHealth
-        from .teamwork_device_health_status import TeamworkDeviceHealthStatus
+        from .teamwork_device_health_status import TeamworkDevice_healthStatus
         from .teamwork_device_operation import TeamworkDeviceOperation
         from .teamwork_device_type import TeamworkDeviceType
         from .teamwork_hardware_detail import TeamworkHardwareDetail
@@ -85,10 +85,10 @@ class TeamworkDevice(Entity):
         from .entity import Entity
         from .identity_set import IdentitySet
         from .teamwork_device_activity import TeamworkDeviceActivity
-        from .teamwork_device_activity_state import TeamworkDeviceActivityState
+        from .teamwork_device_activity_state import TeamworkDevice_activityState
         from .teamwork_device_configuration import TeamworkDeviceConfiguration
         from .teamwork_device_health import TeamworkDeviceHealth
-        from .teamwork_device_health_status import TeamworkDeviceHealthStatus
+        from .teamwork_device_health_status import TeamworkDevice_healthStatus
         from .teamwork_device_operation import TeamworkDeviceOperation
         from .teamwork_device_type import TeamworkDeviceType
         from .teamwork_hardware_detail import TeamworkHardwareDetail
@@ -96,7 +96,7 @@ class TeamworkDevice(Entity):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "activity": lambda n : setattr(self, 'activity', n.get_object_value(TeamworkDeviceActivity)),
-            "activityState": lambda n : setattr(self, 'activity_state', n.get_enum_value(TeamworkDeviceActivityState)),
+            "activityState": lambda n : setattr(self, 'activity_state', n.get_enum_value(TeamworkDevice_activityState)),
             "companyAssetTag": lambda n : setattr(self, 'company_asset_tag', n.get_str_value()),
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(TeamworkDeviceConfiguration)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
@@ -105,7 +105,7 @@ class TeamworkDevice(Entity):
             "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(TeamworkDeviceType)),
             "hardwareDetail": lambda n : setattr(self, 'hardware_detail', n.get_object_value(TeamworkHardwareDetail)),
             "health": lambda n : setattr(self, 'health', n.get_object_value(TeamworkDeviceHealth)),
-            "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(TeamworkDeviceHealthStatus)),
+            "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(TeamworkDevice_healthStatus)),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),

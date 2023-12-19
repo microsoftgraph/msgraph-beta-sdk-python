@@ -7,13 +7,13 @@ if TYPE_CHECKING:
     from .certificate_validity_period_scale import CertificateValidityPeriodScale
     from .device_configuration import DeviceConfiguration
     from .key_storage_provider_option import KeyStorageProviderOption
-    from .subject_alternative_name_type import SubjectAlternativeNameType
     from .subject_name_format import SubjectNameFormat
     from .windows10_certificate_profile_base import Windows10CertificateProfileBase
     from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
     from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
     from .windows81_certificate_profile_base import Windows81CertificateProfileBase
     from .windows81_s_c_e_p_certificate_profile import Windows81SCEPCertificateProfile
+    from .windows_certificate_profile_base_subject_alternative_name_type import WindowsCertificateProfileBase_subjectAlternativeNameType
     from .windows_phone81_imported_p_f_x_certificate_profile import WindowsPhone81ImportedPFXCertificateProfile
 
 from .device_configuration import DeviceConfiguration
@@ -34,7 +34,7 @@ class WindowsCertificateProfileBase(DeviceConfiguration):
     # Certificate renewal threshold percentage. Valid values 1 to 99
     renewal_threshold_percentage: Optional[int] = None
     # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-    subject_alternative_name_type: Optional[SubjectAlternativeNameType] = None
+    subject_alternative_name_type: Optional[WindowsCertificateProfileBase_subjectAlternativeNameType] = None
     # Subject Name Format Options.
     subject_name_format: Optional[SubjectNameFormat] = None
     
@@ -85,25 +85,25 @@ class WindowsCertificateProfileBase(DeviceConfiguration):
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
         from .device_configuration import DeviceConfiguration
         from .key_storage_provider_option import KeyStorageProviderOption
-        from .subject_alternative_name_type import SubjectAlternativeNameType
         from .subject_name_format import SubjectNameFormat
         from .windows10_certificate_profile_base import Windows10CertificateProfileBase
         from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
         from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
         from .windows81_certificate_profile_base import Windows81CertificateProfileBase
         from .windows81_s_c_e_p_certificate_profile import Windows81SCEPCertificateProfile
+        from .windows_certificate_profile_base_subject_alternative_name_type import WindowsCertificateProfileBase_subjectAlternativeNameType
         from .windows_phone81_imported_p_f_x_certificate_profile import WindowsPhone81ImportedPFXCertificateProfile
 
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
         from .device_configuration import DeviceConfiguration
         from .key_storage_provider_option import KeyStorageProviderOption
-        from .subject_alternative_name_type import SubjectAlternativeNameType
         from .subject_name_format import SubjectNameFormat
         from .windows10_certificate_profile_base import Windows10CertificateProfileBase
         from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
         from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
         from .windows81_certificate_profile_base import Windows81CertificateProfileBase
         from .windows81_s_c_e_p_certificate_profile import Windows81SCEPCertificateProfile
+        from .windows_certificate_profile_base_subject_alternative_name_type import WindowsCertificateProfileBase_subjectAlternativeNameType
         from .windows_phone81_imported_p_f_x_certificate_profile import WindowsPhone81ImportedPFXCertificateProfile
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -111,7 +111,7 @@ class WindowsCertificateProfileBase(DeviceConfiguration):
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
             "keyStorageProvider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(KeyStorageProviderOption)),
             "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
-            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_collection_of_enum_values(SubjectAlternativeNameType)),
+            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(WindowsCertificateProfileBase_subjectAlternativeNameType)),
             "subjectNameFormat": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(SubjectNameFormat)),
         }
         super_fields = super().get_field_deserializers()

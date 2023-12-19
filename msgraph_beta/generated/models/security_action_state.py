@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .operation_status import OperationStatus
+    from .security_action_state_status import SecurityActionState_status
 
 @dataclass
 class SecurityActionState(AdditionalDataHolder, BackedModel, Parsable):
@@ -20,7 +20,7 @@ class SecurityActionState(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Status of the securityAction in this update. Possible values are: NotStarted, Running, Completed, Failed.
-    status: Optional[OperationStatus] = None
+    status: Optional[SecurityActionState_status] = None
     # Timestamp when the actionState was updated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     updated_date_time: Optional[datetime.datetime] = None
     # The user principal name of the signed-in user that submitted an update (PATCH) to the action. The user should be extracted from the auth token and not entered manually by the calling application.
@@ -42,14 +42,14 @@ class SecurityActionState(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .operation_status import OperationStatus
+        from .security_action_state_status import SecurityActionState_status
 
-        from .operation_status import OperationStatus
+        from .security_action_state_status import SecurityActionState_status
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(OperationStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(SecurityActionState_status)),
             "updatedDateTime": lambda n : setattr(self, 'updated_date_time', n.get_datetime_value()),
             "user": lambda n : setattr(self, 'user', n.get_str_value()),
         }

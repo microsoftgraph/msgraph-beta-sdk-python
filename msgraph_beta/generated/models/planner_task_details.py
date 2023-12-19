@@ -8,8 +8,9 @@ if TYPE_CHECKING:
     from .planner_checklist_items import PlannerChecklistItems
     from .planner_delta import PlannerDelta
     from .planner_external_references import PlannerExternalReferences
-    from .planner_preview_type import PlannerPreviewType
+    from .planner_forms_dictionary import PlannerFormsDictionary
     from .planner_task_completion_requirement_details import PlannerTaskCompletionRequirementDetails
+    from .planner_task_details_preview_type import PlannerTaskDetails_previewType
 
 from .planner_delta import PlannerDelta
 
@@ -21,12 +22,14 @@ class PlannerTaskDetails(PlannerDelta):
     completion_requirements: Optional[PlannerTaskCompletionRequirementDetails] = None
     # Description of the task.
     description: Optional[str] = None
+    # The forms property
+    forms: Optional[PlannerFormsDictionary] = None
     # Rich text description of the task. To be used by HTML-aware clients. For backwards compatibility, a plain-text version of the HTML description will be synced to the 'description' field. If this field hasn't previously been set but 'description' has been, the existing description is synchronized to 'notes' with minimal whitespace-preserving HTML markup. Setting both 'description' and 'notes' is an error and will result in an exception.
     notes: Optional[ItemBody] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # This sets the type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference. When set to automatic the displayed preview is chosen by the app viewing the task.
-    preview_type: Optional[PlannerPreviewType] = None
+    preview_type: Optional[PlannerTaskDetails_previewType] = None
     # The collection of references on the task.
     references: Optional[PlannerExternalReferences] = None
     
@@ -50,22 +53,25 @@ class PlannerTaskDetails(PlannerDelta):
         from .planner_checklist_items import PlannerChecklistItems
         from .planner_delta import PlannerDelta
         from .planner_external_references import PlannerExternalReferences
-        from .planner_preview_type import PlannerPreviewType
+        from .planner_forms_dictionary import PlannerFormsDictionary
         from .planner_task_completion_requirement_details import PlannerTaskCompletionRequirementDetails
+        from .planner_task_details_preview_type import PlannerTaskDetails_previewType
 
         from .item_body import ItemBody
         from .planner_checklist_items import PlannerChecklistItems
         from .planner_delta import PlannerDelta
         from .planner_external_references import PlannerExternalReferences
-        from .planner_preview_type import PlannerPreviewType
+        from .planner_forms_dictionary import PlannerFormsDictionary
         from .planner_task_completion_requirement_details import PlannerTaskCompletionRequirementDetails
+        from .planner_task_details_preview_type import PlannerTaskDetails_previewType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "checklist": lambda n : setattr(self, 'checklist', n.get_object_value(PlannerChecklistItems)),
             "completionRequirements": lambda n : setattr(self, 'completion_requirements', n.get_object_value(PlannerTaskCompletionRequirementDetails)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
+            "forms": lambda n : setattr(self, 'forms', n.get_object_value(PlannerFormsDictionary)),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(ItemBody)),
-            "previewType": lambda n : setattr(self, 'preview_type', n.get_enum_value(PlannerPreviewType)),
+            "previewType": lambda n : setattr(self, 'preview_type', n.get_enum_value(PlannerTaskDetails_previewType)),
             "references": lambda n : setattr(self, 'references', n.get_object_value(PlannerExternalReferences)),
         }
         super_fields = super().get_field_deserializers()
@@ -84,6 +90,7 @@ class PlannerTaskDetails(PlannerDelta):
         writer.write_object_value("checklist", self.checklist)
         writer.write_object_value("completionRequirements", self.completion_requirements)
         writer.write_str_value("description", self.description)
+        writer.write_object_value("forms", self.forms)
         writer.write_object_value("notes", self.notes)
         writer.write_enum_value("previewType", self.preview_type)
         writer.write_object_value("references", self.references)

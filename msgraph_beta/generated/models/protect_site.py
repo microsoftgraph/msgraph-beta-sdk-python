@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .label_action_base import LabelActionBase
-    from .site_access_type import SiteAccessType
+    from .protect_site_access_type import ProtectSite_accessType
 
 from .label_action_base import LabelActionBase
 
@@ -14,7 +14,7 @@ class ProtectSite(LabelActionBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.protectSite"
     # The accessType property
-    access_type: Optional[SiteAccessType] = None
+    access_type: Optional[ProtectSite_accessType] = None
     # The conditionalAccessProtectionLevelId property
     conditional_access_protection_level_id: Optional[str] = None
     
@@ -35,13 +35,13 @@ class ProtectSite(LabelActionBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .label_action_base import LabelActionBase
-        from .site_access_type import SiteAccessType
+        from .protect_site_access_type import ProtectSite_accessType
 
         from .label_action_base import LabelActionBase
-        from .site_access_type import SiteAccessType
+        from .protect_site_access_type import ProtectSite_accessType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "accessType": lambda n : setattr(self, 'access_type', n.get_enum_value(SiteAccessType)),
+            "accessType": lambda n : setattr(self, 'access_type', n.get_enum_value(ProtectSite_accessType)),
             "conditionalAccessProtectionLevelId": lambda n : setattr(self, 'conditional_access_protection_level_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

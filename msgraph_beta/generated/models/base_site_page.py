@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .base_item import BaseItem
-    from .page_layout_type import PageLayoutType
+    from .base_site_page_page_layout import BaseSitePage_pageLayout
     from .publication_facet import PublicationFacet
     from .site_page import SitePage
 
@@ -16,7 +16,7 @@ class BaseSitePage(BaseItem):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.baseSitePage"
     # The name of the page layout of the page. The possible values are: microsoftReserved, article, home, unknownFutureValue.
-    page_layout: Optional[PageLayoutType] = None
+    page_layout: Optional[BaseSitePage_pageLayout] = None
     # The publishing status and the MM.mm version of the page.
     publishing_state: Optional[PublicationFacet] = None
     # Title of the sitePage.
@@ -47,17 +47,17 @@ class BaseSitePage(BaseItem):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .base_item import BaseItem
-        from .page_layout_type import PageLayoutType
+        from .base_site_page_page_layout import BaseSitePage_pageLayout
         from .publication_facet import PublicationFacet
         from .site_page import SitePage
 
         from .base_item import BaseItem
-        from .page_layout_type import PageLayoutType
+        from .base_site_page_page_layout import BaseSitePage_pageLayout
         from .publication_facet import PublicationFacet
         from .site_page import SitePage
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "pageLayout": lambda n : setattr(self, 'page_layout', n.get_enum_value(PageLayoutType)),
+            "pageLayout": lambda n : setattr(self, 'page_layout', n.get_enum_value(BaseSitePage_pageLayout)),
             "publishingState": lambda n : setattr(self, 'publishing_state', n.get_object_value(PublicationFacet)),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }

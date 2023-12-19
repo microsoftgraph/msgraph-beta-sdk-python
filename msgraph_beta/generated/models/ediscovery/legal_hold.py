@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from ..identity_set import IdentitySet
-    from .legal_hold_status import LegalHoldStatus
+    from .legal_hold_status import LegalHold_status
     from .site_source import SiteSource
     from .unified_group_source import UnifiedGroupSource
     from .user_source import UserSource
@@ -39,7 +39,7 @@ class LegalHold(Entity):
     # Data source entity for SharePoint sites associated with the legal hold.
     site_sources: Optional[List[SiteSource]] = None
     # The status of the legal hold. Possible values are: Pending, Error, Success, UnknownFutureValue.
-    status: Optional[LegalHoldStatus] = None
+    status: Optional[LegalHold_status] = None
     # The unifiedGroupSources property
     unified_group_sources: Optional[List[UnifiedGroupSource]] = None
     # Data source entity for a the legal hold. This is the container for a mailbox and OneDrive for Business site.
@@ -63,14 +63,14 @@ class LegalHold(Entity):
         """
         from ..entity import Entity
         from ..identity_set import IdentitySet
-        from .legal_hold_status import LegalHoldStatus
+        from .legal_hold_status import LegalHold_status
         from .site_source import SiteSource
         from .unified_group_source import UnifiedGroupSource
         from .user_source import UserSource
 
         from ..entity import Entity
         from ..identity_set import IdentitySet
-        from .legal_hold_status import LegalHoldStatus
+        from .legal_hold_status import LegalHold_status
         from .site_source import SiteSource
         from .unified_group_source import UnifiedGroupSource
         from .user_source import UserSource
@@ -86,7 +86,7 @@ class LegalHold(Entity):
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "siteSources": lambda n : setattr(self, 'site_sources', n.get_collection_of_object_values(SiteSource)),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(LegalHoldStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(LegalHold_status)),
             "unifiedGroupSources": lambda n : setattr(self, 'unified_group_sources', n.get_collection_of_object_values(UnifiedGroupSource)),
             "userSources": lambda n : setattr(self, 'user_sources', n.get_collection_of_object_values(UserSource)),
         }

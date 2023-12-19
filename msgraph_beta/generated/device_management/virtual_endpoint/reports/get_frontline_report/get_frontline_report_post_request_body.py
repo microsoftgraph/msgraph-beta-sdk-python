@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.cloud_pc_report_name import CloudPcReportName
+    from .get_frontline_report_post_request_body_report_name import GetFrontlineReportPostRequestBody_reportName
 
 @dataclass
 class GetFrontlineReportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -21,7 +21,7 @@ class GetFrontlineReportPostRequestBody(AdditionalDataHolder, BackedModel, Parsa
     # The orderBy property
     order_by: Optional[List[str]] = None
     # The reportName property
-    report_name: Optional[CloudPcReportName] = None
+    report_name: Optional[GetFrontlineReportPostRequestBody_reportName] = None
     # The search property
     search: Optional[str] = None
     # The select property
@@ -47,15 +47,15 @@ class GetFrontlineReportPostRequestBody(AdditionalDataHolder, BackedModel, Parsa
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .....models.cloud_pc_report_name import CloudPcReportName
+        from .get_frontline_report_post_request_body_report_name import GetFrontlineReportPostRequestBody_reportName
 
-        from .....models.cloud_pc_report_name import CloudPcReportName
+        from .get_frontline_report_post_request_body_report_name import GetFrontlineReportPostRequestBody_reportName
 
         fields: Dict[str, Callable[[Any], None]] = {
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
             "groupBy": lambda n : setattr(self, 'group_by', n.get_collection_of_primitive_values(str)),
             "orderBy": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
-            "reportName": lambda n : setattr(self, 'report_name', n.get_enum_value(CloudPcReportName)),
+            "reportName": lambda n : setattr(self, 'report_name', n.get_enum_value(GetFrontlineReportPostRequestBody_reportName)),
             "search": lambda n : setattr(self, 'search', n.get_str_value()),
             "select": lambda n : setattr(self, 'select', n.get_collection_of_primitive_values(str)),
             "skip": lambda n : setattr(self, 'skip', n.get_int_value()),

@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
-    from .certificate_store import CertificateStore
+    from .android_work_profile_pkcs_certificate_profile_certificate_store import AndroidWorkProfilePkcsCertificateProfile_certificateStore
     from .custom_subject_alternative_name import CustomSubjectAlternativeName
     from .managed_device_certificate_state import ManagedDeviceCertificateState
 
@@ -19,7 +19,7 @@ class AndroidWorkProfilePkcsCertificateProfile(AndroidWorkProfileCertificateProf
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidWorkProfilePkcsCertificateProfile"
     # Target store certificate. Possible values are: user, machine.
-    certificate_store: Optional[CertificateStore] = None
+    certificate_store: Optional[AndroidWorkProfilePkcsCertificateProfile_certificateStore] = None
     # PKCS Certificate Template Name
     certificate_template_name: Optional[str] = None
     # PKCS Certification Authority
@@ -52,17 +52,17 @@ class AndroidWorkProfilePkcsCertificateProfile(AndroidWorkProfileCertificateProf
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
-        from .certificate_store import CertificateStore
+        from .android_work_profile_pkcs_certificate_profile_certificate_store import AndroidWorkProfilePkcsCertificateProfile_certificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
-        from .certificate_store import CertificateStore
+        from .android_work_profile_pkcs_certificate_profile_certificate_store import AndroidWorkProfilePkcsCertificateProfile_certificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(AndroidWorkProfilePkcsCertificateProfile_certificateStore)),
             "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
             "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
             "certificationAuthorityName": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),

@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ..device_platform_type import DevicePlatformType
+    from .answer_variant_platform import AnswerVariant_platform
 
 @dataclass
 class AnswerVariant(AdditionalDataHolder, BackedModel, Parsable):
@@ -23,7 +23,7 @@ class AnswerVariant(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The platform property
-    platform: Optional[DevicePlatformType] = None
+    platform: Optional[AnswerVariant_platform] = None
     # Answer variation URL link. When users click this answer variation in search results, they will go to this URL.
     web_url: Optional[str] = None
     
@@ -43,16 +43,16 @@ class AnswerVariant(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ..device_platform_type import DevicePlatformType
+        from .answer_variant_platform import AnswerVariant_platform
 
-        from ..device_platform_type import DevicePlatformType
+        from .answer_variant_platform import AnswerVariant_platform
 
         fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "platform": lambda n : setattr(self, 'platform', n.get_enum_value(DevicePlatformType)),
+            "platform": lambda n : setattr(self, 'platform', n.get_enum_value(AnswerVariant_platform)),
             "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         return fields

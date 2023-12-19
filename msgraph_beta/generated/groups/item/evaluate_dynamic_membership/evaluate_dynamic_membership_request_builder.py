@@ -29,7 +29,7 @@ class EvaluateDynamicMembershipRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[EvaluateDynamicMembershipPostRequestBody] = None, request_configuration: Optional[EvaluateDynamicMembershipRequestBuilderPostRequestConfiguration] = None) -> Optional[EvaluateDynamicMembershipResult]:
         """
-        Evaluate whether a user or device is or would be a member of a dynamic group. The membership rule is returned along with other details that were used in the evaluation. You can complete this operation in the following ways: This API is available in the following national cloud deployments.
+        Evaluate whether a user or device is or would be a member of a dynamic group. The membership rule is returned along with other details that were used in the evaluation. You can complete this operation in the following ways:
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EvaluateDynamicMembershipResult]
@@ -54,7 +54,7 @@ class EvaluateDynamicMembershipRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[EvaluateDynamicMembershipPostRequestBody] = None, request_configuration: Optional[EvaluateDynamicMembershipRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Evaluate whether a user or device is or would be a member of a dynamic group. The membership rule is returned along with other details that were used in the evaluation. You can complete this operation in the following ways: This API is available in the following national cloud deployments.
+        Evaluate whether a user or device is or would be a member of a dynamic group. The membership rule is returned along with other details that were used in the evaluation. You can complete this operation in the following ways:
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -68,7 +68,7 @@ class EvaluateDynamicMembershipRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

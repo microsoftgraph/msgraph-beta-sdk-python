@@ -8,16 +8,17 @@ if TYPE_CHECKING:
     from .business_scenario_task import BusinessScenarioTask
     from .identity_set import IdentitySet
     from .planner_applied_categories import PlannerAppliedCategories
+    from .planner_archival_info import PlannerArchivalInfo
     from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
     from .planner_assignments import PlannerAssignments
     from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
     from .planner_delta import PlannerDelta
-    from .planner_preview_type import PlannerPreviewType
     from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
-    from .planner_task_completion_requirements import PlannerTaskCompletionRequirements
     from .planner_task_creation import PlannerTaskCreation
     from .planner_task_details import PlannerTaskDetails
+    from .planner_task_preview_type import PlannerTask_previewType
     from .planner_task_recurrence import PlannerTaskRecurrence
+    from .planner_task_specified_completion_requirements import PlannerTask_specifiedCompletionRequirements
 
 from .planner_delta import PlannerDelta
 
@@ -27,6 +28,8 @@ class PlannerTask(PlannerDelta):
     active_checklist_item_count: Optional[int] = None
     # The categories to which the task has been applied. See applied Categories for possible values.
     applied_categories: Optional[PlannerAppliedCategories] = None
+    # The archivalInfo property
+    archival_info: Optional[PlannerArchivalInfo] = None
     # Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.
     assigned_to_task_board_format: Optional[PlannerAssignedToTaskBoardTaskFormat] = None
     # Hint used to order items of this type in a list view. The format is defined as outlined here.
@@ -57,6 +60,12 @@ class PlannerTask(PlannerDelta):
     due_date_time: Optional[datetime.datetime] = None
     # Read-only. Value is true if the details object of the task has a nonempty description and false otherwise.
     has_description: Optional[bool] = None
+    # The isArchived property
+    is_archived: Optional[bool] = None
+    # The isOnMyDay property
+    is_on_my_day: Optional[bool] = None
+    # The isOnMyDayLastModifiedDate property
+    is_on_my_day_last_modified_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Hint used to order items of this type in a list view. The format is defined as outlined here.
@@ -66,7 +75,7 @@ class PlannerTask(PlannerDelta):
     # Plan ID to which the task belongs.
     plan_id: Optional[str] = None
     # This sets the type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference.
-    preview_type: Optional[PlannerPreviewType] = None
+    preview_type: Optional[PlannerTask_previewType] = None
     # Priority of the task. Valid range of values is between 0 and 10 (inclusive), with increasing value being lower priority (0 has the highest priority and 10 has the lowest priority).  Currently, Planner interprets values 0 and 1 as 'urgent', 2 and 3 and 4 as 'important', 5, 6, and 7 as 'medium', and 8, 9, and 10 as 'low'.  Currently, Planner sets the value 1 for 'urgent', 3 for 'important', 5 for 'medium', and 9 for 'low'.
     priority: Optional[int] = None
     # Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
@@ -76,7 +85,7 @@ class PlannerTask(PlannerDelta):
     # Number of external references that exist on the task.
     reference_count: Optional[int] = None
     # Indicates all the requirements specified on the plannerTask. Possible values are: none, checklistCompletion, unknownFutureValue. Read-only. The plannerTaskCompletionRequirementDetails in plannerTaskDetails has details of the requirements specified, if any.
-    specified_completion_requirements: Optional[PlannerTaskCompletionRequirements] = None
+    specified_completion_requirements: Optional[PlannerTask_specifiedCompletionRequirements] = None
     # Date and time at which the task starts. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     start_date_time: Optional[datetime.datetime] = None
     # Title of the task.
@@ -109,34 +118,37 @@ class PlannerTask(PlannerDelta):
         from .business_scenario_task import BusinessScenarioTask
         from .identity_set import IdentitySet
         from .planner_applied_categories import PlannerAppliedCategories
+        from .planner_archival_info import PlannerArchivalInfo
         from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
         from .planner_assignments import PlannerAssignments
         from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
         from .planner_delta import PlannerDelta
-        from .planner_preview_type import PlannerPreviewType
         from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
-        from .planner_task_completion_requirements import PlannerTaskCompletionRequirements
         from .planner_task_creation import PlannerTaskCreation
         from .planner_task_details import PlannerTaskDetails
+        from .planner_task_preview_type import PlannerTask_previewType
         from .planner_task_recurrence import PlannerTaskRecurrence
+        from .planner_task_specified_completion_requirements import PlannerTask_specifiedCompletionRequirements
 
         from .business_scenario_task import BusinessScenarioTask
         from .identity_set import IdentitySet
         from .planner_applied_categories import PlannerAppliedCategories
+        from .planner_archival_info import PlannerArchivalInfo
         from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
         from .planner_assignments import PlannerAssignments
         from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
         from .planner_delta import PlannerDelta
-        from .planner_preview_type import PlannerPreviewType
         from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
-        from .planner_task_completion_requirements import PlannerTaskCompletionRequirements
         from .planner_task_creation import PlannerTaskCreation
         from .planner_task_details import PlannerTaskDetails
+        from .planner_task_preview_type import PlannerTask_previewType
         from .planner_task_recurrence import PlannerTaskRecurrence
+        from .planner_task_specified_completion_requirements import PlannerTask_specifiedCompletionRequirements
 
         fields: Dict[str, Callable[[Any], None]] = {
             "activeChecklistItemCount": lambda n : setattr(self, 'active_checklist_item_count', n.get_int_value()),
             "appliedCategories": lambda n : setattr(self, 'applied_categories', n.get_object_value(PlannerAppliedCategories)),
+            "archivalInfo": lambda n : setattr(self, 'archival_info', n.get_object_value(PlannerArchivalInfo)),
             "assignedToTaskBoardFormat": lambda n : setattr(self, 'assigned_to_task_board_format', n.get_object_value(PlannerAssignedToTaskBoardTaskFormat)),
             "assigneePriority": lambda n : setattr(self, 'assignee_priority', n.get_str_value()),
             "assignments": lambda n : setattr(self, 'assignments', n.get_object_value(PlannerAssignments)),
@@ -152,15 +164,18 @@ class PlannerTask(PlannerDelta):
             "details": lambda n : setattr(self, 'details', n.get_object_value(PlannerTaskDetails)),
             "dueDateTime": lambda n : setattr(self, 'due_date_time', n.get_datetime_value()),
             "hasDescription": lambda n : setattr(self, 'has_description', n.get_bool_value()),
+            "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
+            "isOnMyDay": lambda n : setattr(self, 'is_on_my_day', n.get_bool_value()),
+            "isOnMyDayLastModifiedDate": lambda n : setattr(self, 'is_on_my_day_last_modified_date', n.get_date_value()),
             "orderHint": lambda n : setattr(self, 'order_hint', n.get_str_value()),
             "percentComplete": lambda n : setattr(self, 'percent_complete', n.get_int_value()),
             "planId": lambda n : setattr(self, 'plan_id', n.get_str_value()),
-            "previewType": lambda n : setattr(self, 'preview_type', n.get_enum_value(PlannerPreviewType)),
+            "previewType": lambda n : setattr(self, 'preview_type', n.get_enum_value(PlannerTask_previewType)),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
             "progressTaskBoardFormat": lambda n : setattr(self, 'progress_task_board_format', n.get_object_value(PlannerProgressTaskBoardTaskFormat)),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_object_value(PlannerTaskRecurrence)),
             "referenceCount": lambda n : setattr(self, 'reference_count', n.get_int_value()),
-            "specifiedCompletionRequirements": lambda n : setattr(self, 'specified_completion_requirements', n.get_collection_of_enum_values(PlannerTaskCompletionRequirements)),
+            "specifiedCompletionRequirements": lambda n : setattr(self, 'specified_completion_requirements', n.get_enum_value(PlannerTask_specifiedCompletionRequirements)),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }
@@ -179,6 +194,7 @@ class PlannerTask(PlannerDelta):
         super().serialize(writer)
         writer.write_int_value("activeChecklistItemCount", self.active_checklist_item_count)
         writer.write_object_value("appliedCategories", self.applied_categories)
+        writer.write_object_value("archivalInfo", self.archival_info)
         writer.write_object_value("assignedToTaskBoardFormat", self.assigned_to_task_board_format)
         writer.write_str_value("assigneePriority", self.assignee_priority)
         writer.write_object_value("assignments", self.assignments)
@@ -194,6 +210,9 @@ class PlannerTask(PlannerDelta):
         writer.write_object_value("details", self.details)
         writer.write_datetime_value("dueDateTime", self.due_date_time)
         writer.write_bool_value("hasDescription", self.has_description)
+        writer.write_bool_value("isArchived", self.is_archived)
+        writer.write_bool_value("isOnMyDay", self.is_on_my_day)
+        writer.write_date_value("isOnMyDayLastModifiedDate", self.is_on_my_day_last_modified_date)
         writer.write_str_value("orderHint", self.order_hint)
         writer.write_int_value("percentComplete", self.percent_complete)
         writer.write_str_value("planId", self.plan_id)

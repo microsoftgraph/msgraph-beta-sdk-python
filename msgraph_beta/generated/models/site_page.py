@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .base_site_page import BaseSitePage
     from .canvas_layout import CanvasLayout
-    from .page_promotion_type import PagePromotionType
     from .reactions_facet import ReactionsFacet
+    from .site_page_promotion_kind import SitePage_promotionKind
     from .title_area import TitleArea
     from .web_part import WebPart
 
@@ -20,7 +20,7 @@ class SitePage(BaseSitePage):
     # The OdataType property
     odata_type: Optional[str] = None
     # Indicates the promotion kind of the sitePage. The possible values are: microsoftReserved, page, newsPost, unknownFutureValue.
-    promotion_kind: Optional[PagePromotionType] = None
+    promotion_kind: Optional[SitePage_promotionKind] = None
     # Reactions information for the page.
     reactions: Optional[ReactionsFacet] = None
     # Determines whether or not to show comments at the bottom of the page.
@@ -52,21 +52,21 @@ class SitePage(BaseSitePage):
         """
         from .base_site_page import BaseSitePage
         from .canvas_layout import CanvasLayout
-        from .page_promotion_type import PagePromotionType
         from .reactions_facet import ReactionsFacet
+        from .site_page_promotion_kind import SitePage_promotionKind
         from .title_area import TitleArea
         from .web_part import WebPart
 
         from .base_site_page import BaseSitePage
         from .canvas_layout import CanvasLayout
-        from .page_promotion_type import PagePromotionType
         from .reactions_facet import ReactionsFacet
+        from .site_page_promotion_kind import SitePage_promotionKind
         from .title_area import TitleArea
         from .web_part import WebPart
 
         fields: Dict[str, Callable[[Any], None]] = {
             "canvasLayout": lambda n : setattr(self, 'canvas_layout', n.get_object_value(CanvasLayout)),
-            "promotionKind": lambda n : setattr(self, 'promotion_kind', n.get_enum_value(PagePromotionType)),
+            "promotionKind": lambda n : setattr(self, 'promotion_kind', n.get_enum_value(SitePage_promotionKind)),
             "reactions": lambda n : setattr(self, 'reactions', n.get_object_value(ReactionsFacet)),
             "showComments": lambda n : setattr(self, 'show_comments', n.get_bool_value()),
             "showRecommendedPages": lambda n : setattr(self, 'show_recommended_pages', n.get_bool_value()),

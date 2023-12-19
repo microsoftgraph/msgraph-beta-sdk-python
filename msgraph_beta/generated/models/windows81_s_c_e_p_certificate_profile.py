@@ -4,12 +4,12 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .certificate_store import CertificateStore
     from .hash_algorithms import HashAlgorithms
     from .key_size import KeySize
     from .key_usages import KeyUsages
     from .managed_device_certificate_state import ManagedDeviceCertificateState
     from .windows81_certificate_profile_base import Windows81CertificateProfileBase
+    from .windows81_s_c_e_p_certificate_profile_certificate_store import Windows81SCEPCertificateProfile_certificateStore
     from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
 
 from .windows81_certificate_profile_base import Windows81CertificateProfileBase
@@ -22,7 +22,7 @@ class Windows81SCEPCertificateProfile(Windows81CertificateProfileBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windows81SCEPCertificateProfile"
     # Target store certificate. Possible values are: user, machine.
-    certificate_store: Optional[CertificateStore] = None
+    certificate_store: Optional[Windows81SCEPCertificateProfile_certificateStore] = None
     # Hash Algorithm Options.
     hash_algorithm: Optional[HashAlgorithms] = None
     # Key Size Options.
@@ -56,24 +56,24 @@ class Windows81SCEPCertificateProfile(Windows81CertificateProfileBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .certificate_store import CertificateStore
         from .hash_algorithms import HashAlgorithms
         from .key_size import KeySize
         from .key_usages import KeyUsages
         from .managed_device_certificate_state import ManagedDeviceCertificateState
         from .windows81_certificate_profile_base import Windows81CertificateProfileBase
+        from .windows81_s_c_e_p_certificate_profile_certificate_store import Windows81SCEPCertificateProfile_certificateStore
         from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
 
-        from .certificate_store import CertificateStore
         from .hash_algorithms import HashAlgorithms
         from .key_size import KeySize
         from .key_usages import KeyUsages
         from .managed_device_certificate_state import ManagedDeviceCertificateState
         from .windows81_certificate_profile_base import Windows81CertificateProfileBase
+        from .windows81_s_c_e_p_certificate_profile_certificate_store import Windows81SCEPCertificateProfile_certificateStore
         from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(Windows81SCEPCertificateProfile_certificateStore)),
             "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_collection_of_enum_values(HashAlgorithms)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(KeySize)),
             "keyUsage": lambda n : setattr(self, 'key_usage', n.get_collection_of_enum_values(KeyUsages)),

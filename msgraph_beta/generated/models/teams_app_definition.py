@@ -8,9 +8,9 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .identity_set import IdentitySet
     from .teams_app_authorization import TeamsAppAuthorization
+    from .teams_app_definition_allowed_installation_scopes import TeamsAppDefinition_allowedInstallationScopes
+    from .teams_app_definition_publishing_state import TeamsAppDefinition_publishingState
     from .teams_app_icon import TeamsAppIcon
-    from .teams_app_installation_scopes import TeamsAppInstallationScopes
-    from .teams_app_publishing_state import TeamsAppPublishingState
     from .teamwork_bot import TeamworkBot
 
 from .entity import Entity
@@ -18,7 +18,7 @@ from .entity import Entity
 @dataclass
 class TeamsAppDefinition(Entity):
     # A collection of scopes where the Teams app can be installed. Possible values are:team—Indicates that the Teams app can be installed within a team and is authorized to access that team's data. groupChat—Indicates that the Teams app can be installed within a group chat and is authorized to access that group chat's data.  personal—Indicates that the Teams app can be installed in the personal scope of a user and is authorized to access that user's data.
-    allowed_installation_scopes: Optional[TeamsAppInstallationScopes] = None
+    allowed_installation_scopes: Optional[TeamsAppDefinition_allowedInstallationScopes] = None
     # Authorization requirements specified in the Teams app manifest.
     authorization: Optional[TeamsAppAuthorization] = None
     # The WebApplicationInfo.Id from the Teams app manifest.
@@ -40,7 +40,7 @@ class TeamsAppDefinition(Entity):
     # The outline version of the Teams app's icon.
     outline_icon: Optional[TeamsAppIcon] = None
     # The published status of a specific version of a Teams app. Possible values are:submitted—The specific version of the Teams app has been submitted and is under review. published—The request to publish the specific version of the Teams app has been approved by the admin and the app is published.  rejected — The request to publish the specific version of the Teams app was rejected by the admin.
-    publishing_state: Optional[TeamsAppPublishingState] = None
+    publishing_state: Optional[TeamsAppDefinition_publishingState] = None
     # The shortdescription property
     shortdescription: Optional[str] = None
     # The ID from the Teams app manifest.
@@ -67,21 +67,21 @@ class TeamsAppDefinition(Entity):
         from .entity import Entity
         from .identity_set import IdentitySet
         from .teams_app_authorization import TeamsAppAuthorization
+        from .teams_app_definition_allowed_installation_scopes import TeamsAppDefinition_allowedInstallationScopes
+        from .teams_app_definition_publishing_state import TeamsAppDefinition_publishingState
         from .teams_app_icon import TeamsAppIcon
-        from .teams_app_installation_scopes import TeamsAppInstallationScopes
-        from .teams_app_publishing_state import TeamsAppPublishingState
         from .teamwork_bot import TeamworkBot
 
         from .entity import Entity
         from .identity_set import IdentitySet
         from .teams_app_authorization import TeamsAppAuthorization
+        from .teams_app_definition_allowed_installation_scopes import TeamsAppDefinition_allowedInstallationScopes
+        from .teams_app_definition_publishing_state import TeamsAppDefinition_publishingState
         from .teams_app_icon import TeamsAppIcon
-        from .teams_app_installation_scopes import TeamsAppInstallationScopes
-        from .teams_app_publishing_state import TeamsAppPublishingState
         from .teamwork_bot import TeamworkBot
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedInstallationScopes": lambda n : setattr(self, 'allowed_installation_scopes', n.get_collection_of_enum_values(TeamsAppInstallationScopes)),
+            "allowedInstallationScopes": lambda n : setattr(self, 'allowed_installation_scopes', n.get_enum_value(TeamsAppDefinition_allowedInstallationScopes)),
             "authorization": lambda n : setattr(self, 'authorization', n.get_object_value(TeamsAppAuthorization)),
             "azureADAppId": lambda n : setattr(self, 'azure_a_d_app_id', n.get_str_value()),
             "bot": lambda n : setattr(self, 'bot', n.get_object_value(TeamworkBot)),
@@ -91,7 +91,7 @@ class TeamsAppDefinition(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "outlineIcon": lambda n : setattr(self, 'outline_icon', n.get_object_value(TeamsAppIcon)),
-            "publishingState": lambda n : setattr(self, 'publishing_state', n.get_enum_value(TeamsAppPublishingState)),
+            "publishingState": lambda n : setattr(self, 'publishing_state', n.get_enum_value(TeamsAppDefinition_publishingState)),
             "shortdescription": lambda n : setattr(self, 'shortdescription', n.get_str_value()),
             "teamsAppId": lambda n : setattr(self, 'teams_app_id', n.get_str_value()),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),

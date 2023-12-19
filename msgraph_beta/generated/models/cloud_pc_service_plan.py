@@ -5,8 +5,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_management_service import CloudPcManagementService
-    from .cloud_pc_provisioning_type import CloudPcProvisioningType
-    from .cloud_pc_service_plan_type import CloudPcServicePlanType
+    from .cloud_pc_service_plan_provisioning_type import CloudPcServicePlan_provisioningType
+    from .cloud_pc_service_plan_type import CloudPcServicePlan_type
     from .entity import Entity
 
 from .entity import Entity
@@ -18,7 +18,7 @@ class CloudPcServicePlan(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # Specifies the type of license used when provisioning Cloud PCs. By default, the license type is dedicated. Possible values are: dedicated, shared, unknownFutureValue.
-    provisioning_type: Optional[CloudPcProvisioningType] = None
+    provisioning_type: Optional[CloudPcServicePlan_provisioningType] = None
     # The size of the RAM in GB. Read-only.
     ram_in_g_b: Optional[int] = None
     # The size of the OS Disk in GB. Read-only.
@@ -26,7 +26,7 @@ class CloudPcServicePlan(Entity):
     # The supportedSolution property
     supported_solution: Optional[CloudPcManagementService] = None
     # The type of the service plan. Possible values are: enterprise, business, unknownFutureValue. Read-only.
-    type: Optional[CloudPcServicePlanType] = None
+    type: Optional[CloudPcServicePlan_type] = None
     # The size of the user profile disk in GB. Read-only.
     user_profile_in_g_b: Optional[int] = None
     # The number of vCPUs. Read-only.
@@ -49,22 +49,22 @@ class CloudPcServicePlan(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_management_service import CloudPcManagementService
-        from .cloud_pc_provisioning_type import CloudPcProvisioningType
-        from .cloud_pc_service_plan_type import CloudPcServicePlanType
+        from .cloud_pc_service_plan_provisioning_type import CloudPcServicePlan_provisioningType
+        from .cloud_pc_service_plan_type import CloudPcServicePlan_type
         from .entity import Entity
 
         from .cloud_pc_management_service import CloudPcManagementService
-        from .cloud_pc_provisioning_type import CloudPcProvisioningType
-        from .cloud_pc_service_plan_type import CloudPcServicePlanType
+        from .cloud_pc_service_plan_provisioning_type import CloudPcServicePlan_provisioningType
+        from .cloud_pc_service_plan_type import CloudPcServicePlan_type
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
+            "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcServicePlan_provisioningType)),
             "ramInGB": lambda n : setattr(self, 'ram_in_g_b', n.get_int_value()),
             "storageInGB": lambda n : setattr(self, 'storage_in_g_b', n.get_int_value()),
             "supportedSolution": lambda n : setattr(self, 'supported_solution', n.get_collection_of_enum_values(CloudPcManagementService)),
-            "type": lambda n : setattr(self, 'type', n.get_enum_value(CloudPcServicePlanType)),
+            "type": lambda n : setattr(self, 'type', n.get_enum_value(CloudPcServicePlan_type)),
             "userProfileInGB": lambda n : setattr(self, 'user_profile_in_g_b', n.get_int_value()),
             "vCpuCount": lambda n : setattr(self, 'v_cpu_count', n.get_int_value()),
         }

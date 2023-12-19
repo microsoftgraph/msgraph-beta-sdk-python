@@ -5,14 +5,14 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .comms_operation import CommsOperation
-    from .play_prompt_completion_reason import PlayPromptCompletionReason
+    from .play_prompt_operation_completion_reason import PlayPromptOperation_completionReason
 
 from .comms_operation import CommsOperation
 
 @dataclass
 class PlayPromptOperation(CommsOperation):
     # Possible values are: unknown, completedSuccessfully, mediaOperationCanceled.
-    completion_reason: Optional[PlayPromptCompletionReason] = None
+    completion_reason: Optional[PlayPromptOperation_completionReason] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -33,13 +33,13 @@ class PlayPromptOperation(CommsOperation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .comms_operation import CommsOperation
-        from .play_prompt_completion_reason import PlayPromptCompletionReason
+        from .play_prompt_operation_completion_reason import PlayPromptOperation_completionReason
 
         from .comms_operation import CommsOperation
-        from .play_prompt_completion_reason import PlayPromptCompletionReason
+        from .play_prompt_operation_completion_reason import PlayPromptOperation_completionReason
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "completionReason": lambda n : setattr(self, 'completion_reason', n.get_enum_value(PlayPromptCompletionReason)),
+            "completionReason": lambda n : setattr(self, 'completion_reason', n.get_enum_value(PlayPromptOperation_completionReason)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

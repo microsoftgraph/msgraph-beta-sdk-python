@@ -4,11 +4,11 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .certificate_store import CertificateStore
     from .custom_subject_alternative_name import CustomSubjectAlternativeName
     from .extended_key_usage import ExtendedKeyUsage
     from .managed_device_certificate_state import ManagedDeviceCertificateState
     from .windows10_certificate_profile_base import Windows10CertificateProfileBase
+    from .windows10_pkcs_certificate_profile_certificate_store import Windows10PkcsCertificateProfile_certificateStore
 
 from .windows10_certificate_profile_base import Windows10CertificateProfileBase
 
@@ -20,7 +20,7 @@ class Windows10PkcsCertificateProfile(Windows10CertificateProfileBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windows10PkcsCertificateProfile"
     # Target store certificate. Possible values are: user, machine.
-    certificate_store: Optional[CertificateStore] = None
+    certificate_store: Optional[Windows10PkcsCertificateProfile_certificateStore] = None
     # PKCS Certificate Template Name
     certificate_template_name: Optional[str] = None
     # PKCS Certification Authority
@@ -54,20 +54,20 @@ class Windows10PkcsCertificateProfile(Windows10CertificateProfileBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .extended_key_usage import ExtendedKeyUsage
         from .managed_device_certificate_state import ManagedDeviceCertificateState
         from .windows10_certificate_profile_base import Windows10CertificateProfileBase
+        from .windows10_pkcs_certificate_profile_certificate_store import Windows10PkcsCertificateProfile_certificateStore
 
-        from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .extended_key_usage import ExtendedKeyUsage
         from .managed_device_certificate_state import ManagedDeviceCertificateState
         from .windows10_certificate_profile_base import Windows10CertificateProfileBase
+        from .windows10_pkcs_certificate_profile_certificate_store import Windows10PkcsCertificateProfile_certificateStore
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(Windows10PkcsCertificateProfile_certificateStore)),
             "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
             "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
             "certificationAuthorityName": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),

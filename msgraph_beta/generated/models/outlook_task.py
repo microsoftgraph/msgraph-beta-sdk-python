@@ -6,14 +6,14 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .attachment import Attachment
     from .date_time_time_zone import DateTimeTimeZone
-    from .importance import Importance
     from .item_body import ItemBody
     from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
     from .outlook_item import OutlookItem
+    from .outlook_task_importance import OutlookTask_importance
+    from .outlook_task_sensitivity import OutlookTask_sensitivity
+    from .outlook_task_status import OutlookTask_status
     from .patterned_recurrence import PatternedRecurrence
-    from .sensitivity import Sensitivity
     from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-    from .task_status import TaskStatus
 
 from .outlook_item import OutlookItem
 
@@ -34,7 +34,7 @@ class OutlookTask(OutlookItem):
     # Set to true if the task has attachments.
     has_attachments: Optional[bool] = None
     # The importance property
-    importance: Optional[Importance] = None
+    importance: Optional[OutlookTask_importance] = None
     # The isReminderOn property
     is_reminder_on: Optional[bool] = None
     # The collection of multi-value extended properties defined for the task. Read-only. Nullable.
@@ -48,13 +48,13 @@ class OutlookTask(OutlookItem):
     # The reminderDateTime property
     reminder_date_time: Optional[DateTimeTimeZone] = None
     # The sensitivity property
-    sensitivity: Optional[Sensitivity] = None
+    sensitivity: Optional[OutlookTask_sensitivity] = None
     # The collection of single-value extended properties defined for the task. Read-only. Nullable.
     single_value_extended_properties: Optional[List[SingleValueLegacyExtendedProperty]] = None
     # The startDateTime property
     start_date_time: Optional[DateTimeTimeZone] = None
     # The status property
-    status: Optional[TaskStatus] = None
+    status: Optional[OutlookTask_status] = None
     # The subject property
     subject: Optional[str] = None
     
@@ -76,25 +76,25 @@ class OutlookTask(OutlookItem):
         """
         from .attachment import Attachment
         from .date_time_time_zone import DateTimeTimeZone
-        from .importance import Importance
         from .item_body import ItemBody
         from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
         from .outlook_item import OutlookItem
+        from .outlook_task_importance import OutlookTask_importance
+        from .outlook_task_sensitivity import OutlookTask_sensitivity
+        from .outlook_task_status import OutlookTask_status
         from .patterned_recurrence import PatternedRecurrence
-        from .sensitivity import Sensitivity
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-        from .task_status import TaskStatus
 
         from .attachment import Attachment
         from .date_time_time_zone import DateTimeTimeZone
-        from .importance import Importance
         from .item_body import ItemBody
         from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
         from .outlook_item import OutlookItem
+        from .outlook_task_importance import OutlookTask_importance
+        from .outlook_task_sensitivity import OutlookTask_sensitivity
+        from .outlook_task_status import OutlookTask_status
         from .patterned_recurrence import PatternedRecurrence
-        from .sensitivity import Sensitivity
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-        from .task_status import TaskStatus
 
         fields: Dict[str, Callable[[Any], None]] = {
             "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
@@ -103,17 +103,17 @@ class OutlookTask(OutlookItem):
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_object_value(DateTimeTimeZone)),
             "dueDateTime": lambda n : setattr(self, 'due_date_time', n.get_object_value(DateTimeTimeZone)),
             "hasAttachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
-            "importance": lambda n : setattr(self, 'importance', n.get_enum_value(Importance)),
+            "importance": lambda n : setattr(self, 'importance', n.get_enum_value(OutlookTask_importance)),
             "isReminderOn": lambda n : setattr(self, 'is_reminder_on', n.get_bool_value()),
             "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(MultiValueLegacyExtendedProperty)),
             "owner": lambda n : setattr(self, 'owner', n.get_str_value()),
             "parentFolderId": lambda n : setattr(self, 'parent_folder_id', n.get_str_value()),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_object_value(PatternedRecurrence)),
             "reminderDateTime": lambda n : setattr(self, 'reminder_date_time', n.get_object_value(DateTimeTimeZone)),
-            "sensitivity": lambda n : setattr(self, 'sensitivity', n.get_enum_value(Sensitivity)),
+            "sensitivity": lambda n : setattr(self, 'sensitivity', n.get_enum_value(OutlookTask_sensitivity)),
             "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(SingleValueLegacyExtendedProperty)),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_object_value(DateTimeTimeZone)),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(TaskStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(OutlookTask_status)),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .label import Label
+    from .property_labels import Property_labels
     from .property_type import PropertyType
 
 @dataclass
@@ -26,7 +26,7 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
     # The isSearchable property
     is_searchable: Optional[bool] = None
     # The labels property
-    labels: Optional[List[Label]] = None
+    labels: Optional[List[Property_labels]] = None
     # The name property
     name: Optional[str] = None
     # The OdataType property
@@ -50,10 +50,10 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .label import Label
+        from .property_labels import Property_labels
         from .property_type import PropertyType
 
-        from .label import Label
+        from .property_labels import Property_labels
         from .property_type import PropertyType
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -62,7 +62,7 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
             "isRefinable": lambda n : setattr(self, 'is_refinable', n.get_bool_value()),
             "isRetrievable": lambda n : setattr(self, 'is_retrievable', n.get_bool_value()),
             "isSearchable": lambda n : setattr(self, 'is_searchable', n.get_bool_value()),
-            "labels": lambda n : setattr(self, 'labels', n.get_collection_of_enum_values(Label)),
+            "labels": lambda n : setattr(self, 'labels', n.get_collection_of_enum_values(Property_labels)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(PropertyType)),

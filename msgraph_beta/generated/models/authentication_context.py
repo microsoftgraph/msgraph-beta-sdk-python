@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .authentication_context_detail import AuthenticationContextDetail
+    from .authentication_context_detail import AuthenticationContext_detail
 
 @dataclass
 class AuthenticationContext(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,7 +15,7 @@ class AuthenticationContext(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Describes how the conditional access authentication context was triggered. A value of previouslySatisfied means the auth context was because the user already satisfied the requirements for that authentication context in some previous authentication event. A value of required means the user had to meet the authentication context requirement as part of the sign-in flow. The possible values are: required, previouslySatisfied, notApplicable, unknownFutureValue.
-    detail: Optional[AuthenticationContextDetail] = None
+    detail: Optional[AuthenticationContext_detail] = None
     # The identifier of an authentication context in your tenant.
     id: Optional[str] = None
     # The OdataType property
@@ -37,12 +37,12 @@ class AuthenticationContext(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .authentication_context_detail import AuthenticationContextDetail
+        from .authentication_context_detail import AuthenticationContext_detail
 
-        from .authentication_context_detail import AuthenticationContextDetail
+        from .authentication_context_detail import AuthenticationContext_detail
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "detail": lambda n : setattr(self, 'detail', n.get_enum_value(AuthenticationContextDetail)),
+            "detail": lambda n : setattr(self, 'detail', n.get_enum_value(AuthenticationContext_detail)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

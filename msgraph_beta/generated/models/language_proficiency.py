@@ -5,7 +5,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .item_facet import ItemFacet
-    from .language_proficiency_level import LanguageProficiencyLevel
+    from .language_proficiency_proficiency import LanguageProficiency_proficiency
+    from .language_proficiency_reading import LanguageProficiency_reading
+    from .language_proficiency_spoken import LanguageProficiency_spoken
+    from .language_proficiency_written import LanguageProficiency_written
 
 from .item_facet import ItemFacet
 
@@ -16,17 +19,17 @@ class LanguageProficiency(ItemFacet):
     # Contains the long-form name for the language.
     display_name: Optional[str] = None
     # The proficiency property
-    proficiency: Optional[LanguageProficiencyLevel] = None
+    proficiency: Optional[LanguageProficiency_proficiency] = None
     # Represents the users reading comprehension for the language represented by the object. Possible values are: elementary, conversational, limitedWorking, professionalWorking, fullProfessional, nativeOrBilingual, unknownFutureValue.
-    reading: Optional[LanguageProficiencyLevel] = None
+    reading: Optional[LanguageProficiency_reading] = None
     # Represents the users spoken proficiency for the language represented by the object. Possible values are: elementary, conversational, limitedWorking, professionalWorking, fullProfessional, nativeOrBilingual, unknownFutureValue.
-    spoken: Optional[LanguageProficiencyLevel] = None
+    spoken: Optional[LanguageProficiency_spoken] = None
     # Contains the four-character BCP47 name for the language (en-US, no-NB, en-AU).
     tag: Optional[str] = None
     # The thumbnailUrl property
     thumbnail_url: Optional[str] = None
     # Represents the users written proficiency for the language represented by the object. Possible values are: elementary, conversational, limitedWorking, professionalWorking, fullProfessional, nativeOrBilingual, unknownFutureValue.
-    written: Optional[LanguageProficiencyLevel] = None
+    written: Optional[LanguageProficiency_written] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> LanguageProficiency:
@@ -45,19 +48,25 @@ class LanguageProficiency(ItemFacet):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .item_facet import ItemFacet
-        from .language_proficiency_level import LanguageProficiencyLevel
+        from .language_proficiency_proficiency import LanguageProficiency_proficiency
+        from .language_proficiency_reading import LanguageProficiency_reading
+        from .language_proficiency_spoken import LanguageProficiency_spoken
+        from .language_proficiency_written import LanguageProficiency_written
 
         from .item_facet import ItemFacet
-        from .language_proficiency_level import LanguageProficiencyLevel
+        from .language_proficiency_proficiency import LanguageProficiency_proficiency
+        from .language_proficiency_reading import LanguageProficiency_reading
+        from .language_proficiency_spoken import LanguageProficiency_spoken
+        from .language_proficiency_written import LanguageProficiency_written
 
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "proficiency": lambda n : setattr(self, 'proficiency', n.get_enum_value(LanguageProficiencyLevel)),
-            "reading": lambda n : setattr(self, 'reading', n.get_enum_value(LanguageProficiencyLevel)),
-            "spoken": lambda n : setattr(self, 'spoken', n.get_enum_value(LanguageProficiencyLevel)),
+            "proficiency": lambda n : setattr(self, 'proficiency', n.get_enum_value(LanguageProficiency_proficiency)),
+            "reading": lambda n : setattr(self, 'reading', n.get_enum_value(LanguageProficiency_reading)),
+            "spoken": lambda n : setattr(self, 'spoken', n.get_enum_value(LanguageProficiency_spoken)),
             "tag": lambda n : setattr(self, 'tag', n.get_str_value()),
             "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
-            "written": lambda n : setattr(self, 'written', n.get_enum_value(LanguageProficiencyLevel)),
+            "written": lambda n : setattr(self, 'written', n.get_enum_value(LanguageProficiency_written)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -14,14 +14,10 @@ if TYPE_CHECKING:
     from .bit_locker_removable_drive_policy import BitLockerRemovableDrivePolicy
     from .bit_locker_system_drive_policy import BitLockerSystemDrivePolicy
     from .defender_attack_surface_type import DefenderAttackSurfaceType
-    from .defender_cloud_block_level_type import DefenderCloudBlockLevelType
     from .defender_detected_malware_actions import DefenderDetectedMalwareActions
     from .defender_protection_type import DefenderProtectionType
-    from .defender_realtime_scan_direction import DefenderRealtimeScanDirection
-    from .defender_scan_type import DefenderScanType
     from .defender_security_center_i_t_contact_display_type import DefenderSecurityCenterITContactDisplayType
     from .defender_security_center_notifications_from_app_type import DefenderSecurityCenterNotificationsFromAppType
-    from .defender_submit_samples_consent_type import DefenderSubmitSamplesConsentType
     from .device_configuration import DeviceConfiguration
     from .device_guard_local_system_authority_credential_guard_type import DeviceGuardLocalSystemAuthorityCredentialGuardType
     from .device_management_user_rights_setting import DeviceManagementUserRightsSetting
@@ -41,7 +37,12 @@ if TYPE_CHECKING:
     from .local_security_options_standard_user_elevation_prompt_behavior_type import LocalSecurityOptionsStandardUserElevationPromptBehaviorType
     from .secure_boot_with_d_m_a_type import SecureBootWithDMAType
     from .service_start_type import ServiceStartType
-    from .weekly_schedule import WeeklySchedule
+    from .windows10_endpoint_protection_configuration_defender_cloud_block_level import Windows10EndpointProtectionConfiguration_defenderCloudBlockLevel
+    from .windows10_endpoint_protection_configuration_defender_potentially_unwanted_app_action import Windows10EndpointProtectionConfiguration_defenderPotentiallyUnwantedAppAction
+    from .windows10_endpoint_protection_configuration_defender_scan_direction import Windows10EndpointProtectionConfiguration_defenderScanDirection
+    from .windows10_endpoint_protection_configuration_defender_scan_type import Windows10EndpointProtectionConfiguration_defenderScanType
+    from .windows10_endpoint_protection_configuration_defender_scheduled_scan_day import Windows10EndpointProtectionConfiguration_defenderScheduledScanDay
+    from .windows10_endpoint_protection_configuration_defender_submit_samples_consent_type import Windows10EndpointProtectionConfiguration_defenderSubmitSamplesConsentType
     from .windows_defender_tamper_protection_options import WindowsDefenderTamperProtectionOptions
     from .windows_firewall_network_profile import WindowsFirewallNetworkProfile
     from .windows_firewall_rule import WindowsFirewallRule
@@ -140,7 +141,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
     # This policy setting allows you to manage whether a check for new virus and spyware definitions will occur before running a scan.
     defender_check_for_signatures_before_running_scan: Optional[bool] = None
     # Added in Windows 10, version 1709. This policy setting determines how aggressive Windows Defender Antivirus will be in blocking and scanning suspicious files. Value type is integer. This feature requires the 'Join Microsoft MAPS' setting enabled in order to function. Possible values are: notConfigured, high, highPlus, zeroTolerance.
-    defender_cloud_block_level: Optional[DefenderCloudBlockLevelType] = None
+    defender_cloud_block_level: Optional[Windows10EndpointProtectionConfiguration_defenderCloudBlockLevel] = None
     # Added in Windows 10, version 1709. This feature allows Windows Defender Antivirus to block a suspicious file for up to 60 seconds, and scan it in the cloud to make sure it's safe. Value type is integer, range is 0 - 50. This feature depends on three other MAPS settings the must all be enabled- 'Configure the 'Block at First Sight' feature; 'Join Microsoft MAPS'; 'Send file samples when further analysis is required'. Valid values 0 to 50
     defender_cloud_extended_timeout_in_seconds: Optional[int] = None
     # Time period (in days) that quarantine items will be stored on the system. Valid values 0 to 90
@@ -214,7 +215,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
     # Possible values of Defender Attack Surface Reduction Rules
     defender_office_macro_code_allow_win32_imports_type: Optional[DefenderAttackSurfaceType] = None
     # Added in Windows 10, version 1607. Specifies the level of detection for potentially unwanted applications (PUAs). Windows Defender alerts you when potentially unwanted software is being downloaded or attempts to install itself on your computer. Possible values are: userDefined, enable, auditMode, warn, notConfigured.
-    defender_potentially_unwanted_app_action: Optional[DefenderProtectionType] = None
+    defender_potentially_unwanted_app_action: Optional[Windows10EndpointProtectionConfiguration_defenderPotentiallyUnwantedAppAction] = None
     # Possible values of Defender PUA Protection
     defender_prevent_credential_stealing_type: Optional[DefenderProtectionType] = None
     # Possible values of Defender PUA Protection
@@ -224,15 +225,15 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
     # Processes to exclude from scans and real time protection.
     defender_processes_to_exclude: Optional[List[str]] = None
     # Controls which sets of files should be monitored. Possible values are: monitorAllFiles, monitorIncomingFilesOnly, monitorOutgoingFilesOnly.
-    defender_scan_direction: Optional[DefenderRealtimeScanDirection] = None
+    defender_scan_direction: Optional[Windows10EndpointProtectionConfiguration_defenderScanDirection] = None
     # Represents the average CPU load factor for the Windows Defender scan (in percent). The default value is 50. Valid values 0 to 100
     defender_scan_max_cpu_percentage: Optional[int] = None
     # Selects whether to perform a quick scan or full scan. Possible values are: userDefined, disabled, quick, full.
-    defender_scan_type: Optional[DefenderScanType] = None
+    defender_scan_type: Optional[Windows10EndpointProtectionConfiguration_defenderScanType] = None
     # Selects the time of day that the Windows Defender quick scan should run. For example, a value of 0=12:00AM, a value of 60=1:00AM, a value of 120=2:00, and so on, up to a value of 1380=11:00PM. The default value is 120
     defender_scheduled_quick_scan_time: Optional[datetime.time] = None
     # Selects the day that the Windows Defender scan should run. Possible values are: userDefined, everyday, sunday, monday, tuesday, wednesday, thursday, friday, saturday, noScheduledScan.
-    defender_scheduled_scan_day: Optional[WeeklySchedule] = None
+    defender_scheduled_scan_day: Optional[Windows10EndpointProtectionConfiguration_defenderScheduledScanDay] = None
     # Selects the time of day that the Windows Defender scan should run.
     defender_scheduled_scan_time: Optional[datetime.time] = None
     # Possible values of Defender PUA Protection
@@ -286,7 +287,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
     # Specifies the interval (in hours) that will be used to check for signatures, so instead of using the ScheduleDay and ScheduleTime the check for new signatures will be set according to the interval. Valid values 0 to 24
     defender_signature_update_interval_in_hours: Optional[int] = None
     # Checks for the user consent level in Windows Defender to send data. Possible values are: sendSafeSamplesAutomatically, alwaysPrompt, neverSend, sendAllSamplesAutomatically.
-    defender_submit_samples_consent_type: Optional[DefenderSubmitSamplesConsentType] = None
+    defender_submit_samples_consent_type: Optional[Windows10EndpointProtectionConfiguration_defenderSubmitSamplesConsentType] = None
     # Possible values of Defender PUA Protection
     defender_untrusted_executable: Optional[DefenderProtectionType] = None
     # Possible values of Defender Attack Surface Reduction Rules
@@ -533,14 +534,10 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
         from .bit_locker_removable_drive_policy import BitLockerRemovableDrivePolicy
         from .bit_locker_system_drive_policy import BitLockerSystemDrivePolicy
         from .defender_attack_surface_type import DefenderAttackSurfaceType
-        from .defender_cloud_block_level_type import DefenderCloudBlockLevelType
         from .defender_detected_malware_actions import DefenderDetectedMalwareActions
         from .defender_protection_type import DefenderProtectionType
-        from .defender_realtime_scan_direction import DefenderRealtimeScanDirection
-        from .defender_scan_type import DefenderScanType
         from .defender_security_center_i_t_contact_display_type import DefenderSecurityCenterITContactDisplayType
         from .defender_security_center_notifications_from_app_type import DefenderSecurityCenterNotificationsFromAppType
-        from .defender_submit_samples_consent_type import DefenderSubmitSamplesConsentType
         from .device_configuration import DeviceConfiguration
         from .device_guard_local_system_authority_credential_guard_type import DeviceGuardLocalSystemAuthorityCredentialGuardType
         from .device_management_user_rights_setting import DeviceManagementUserRightsSetting
@@ -560,7 +557,12 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
         from .local_security_options_standard_user_elevation_prompt_behavior_type import LocalSecurityOptionsStandardUserElevationPromptBehaviorType
         from .secure_boot_with_d_m_a_type import SecureBootWithDMAType
         from .service_start_type import ServiceStartType
-        from .weekly_schedule import WeeklySchedule
+        from .windows10_endpoint_protection_configuration_defender_cloud_block_level import Windows10EndpointProtectionConfiguration_defenderCloudBlockLevel
+        from .windows10_endpoint_protection_configuration_defender_potentially_unwanted_app_action import Windows10EndpointProtectionConfiguration_defenderPotentiallyUnwantedAppAction
+        from .windows10_endpoint_protection_configuration_defender_scan_direction import Windows10EndpointProtectionConfiguration_defenderScanDirection
+        from .windows10_endpoint_protection_configuration_defender_scan_type import Windows10EndpointProtectionConfiguration_defenderScanType
+        from .windows10_endpoint_protection_configuration_defender_scheduled_scan_day import Windows10EndpointProtectionConfiguration_defenderScheduledScanDay
+        from .windows10_endpoint_protection_configuration_defender_submit_samples_consent_type import Windows10EndpointProtectionConfiguration_defenderSubmitSamplesConsentType
         from .windows_defender_tamper_protection_options import WindowsDefenderTamperProtectionOptions
         from .windows_firewall_network_profile import WindowsFirewallNetworkProfile
         from .windows_firewall_rule import WindowsFirewallRule
@@ -574,14 +576,10 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
         from .bit_locker_removable_drive_policy import BitLockerRemovableDrivePolicy
         from .bit_locker_system_drive_policy import BitLockerSystemDrivePolicy
         from .defender_attack_surface_type import DefenderAttackSurfaceType
-        from .defender_cloud_block_level_type import DefenderCloudBlockLevelType
         from .defender_detected_malware_actions import DefenderDetectedMalwareActions
         from .defender_protection_type import DefenderProtectionType
-        from .defender_realtime_scan_direction import DefenderRealtimeScanDirection
-        from .defender_scan_type import DefenderScanType
         from .defender_security_center_i_t_contact_display_type import DefenderSecurityCenterITContactDisplayType
         from .defender_security_center_notifications_from_app_type import DefenderSecurityCenterNotificationsFromAppType
-        from .defender_submit_samples_consent_type import DefenderSubmitSamplesConsentType
         from .device_configuration import DeviceConfiguration
         from .device_guard_local_system_authority_credential_guard_type import DeviceGuardLocalSystemAuthorityCredentialGuardType
         from .device_management_user_rights_setting import DeviceManagementUserRightsSetting
@@ -601,7 +599,12 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
         from .local_security_options_standard_user_elevation_prompt_behavior_type import LocalSecurityOptionsStandardUserElevationPromptBehaviorType
         from .secure_boot_with_d_m_a_type import SecureBootWithDMAType
         from .service_start_type import ServiceStartType
-        from .weekly_schedule import WeeklySchedule
+        from .windows10_endpoint_protection_configuration_defender_cloud_block_level import Windows10EndpointProtectionConfiguration_defenderCloudBlockLevel
+        from .windows10_endpoint_protection_configuration_defender_potentially_unwanted_app_action import Windows10EndpointProtectionConfiguration_defenderPotentiallyUnwantedAppAction
+        from .windows10_endpoint_protection_configuration_defender_scan_direction import Windows10EndpointProtectionConfiguration_defenderScanDirection
+        from .windows10_endpoint_protection_configuration_defender_scan_type import Windows10EndpointProtectionConfiguration_defenderScanType
+        from .windows10_endpoint_protection_configuration_defender_scheduled_scan_day import Windows10EndpointProtectionConfiguration_defenderScheduledScanDay
+        from .windows10_endpoint_protection_configuration_defender_submit_samples_consent_type import Windows10EndpointProtectionConfiguration_defenderSubmitSamplesConsentType
         from .windows_defender_tamper_protection_options import WindowsDefenderTamperProtectionOptions
         from .windows_firewall_network_profile import WindowsFirewallNetworkProfile
         from .windows_firewall_rule import WindowsFirewallRule
@@ -649,7 +652,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
             "defenderBlockEndUserAccess": lambda n : setattr(self, 'defender_block_end_user_access', n.get_bool_value()),
             "defenderBlockPersistenceThroughWmiType": lambda n : setattr(self, 'defender_block_persistence_through_wmi_type', n.get_enum_value(DefenderAttackSurfaceType)),
             "defenderCheckForSignaturesBeforeRunningScan": lambda n : setattr(self, 'defender_check_for_signatures_before_running_scan', n.get_bool_value()),
-            "defenderCloudBlockLevel": lambda n : setattr(self, 'defender_cloud_block_level', n.get_enum_value(DefenderCloudBlockLevelType)),
+            "defenderCloudBlockLevel": lambda n : setattr(self, 'defender_cloud_block_level', n.get_enum_value(Windows10EndpointProtectionConfiguration_defenderCloudBlockLevel)),
             "defenderCloudExtendedTimeoutInSeconds": lambda n : setattr(self, 'defender_cloud_extended_timeout_in_seconds', n.get_int_value()),
             "defenderDaysBeforeDeletingQuarantinedMalware": lambda n : setattr(self, 'defender_days_before_deleting_quarantined_malware', n.get_int_value()),
             "defenderDetectedMalwareActions": lambda n : setattr(self, 'defender_detected_malware_actions', n.get_object_value(DefenderDetectedMalwareActions)),
@@ -686,16 +689,16 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
             "defenderOfficeCommunicationAppsLaunchChildProcess": lambda n : setattr(self, 'defender_office_communication_apps_launch_child_process', n.get_enum_value(DefenderProtectionType)),
             "defenderOfficeMacroCodeAllowWin32Imports": lambda n : setattr(self, 'defender_office_macro_code_allow_win32_imports', n.get_enum_value(DefenderProtectionType)),
             "defenderOfficeMacroCodeAllowWin32ImportsType": lambda n : setattr(self, 'defender_office_macro_code_allow_win32_imports_type', n.get_enum_value(DefenderAttackSurfaceType)),
-            "defenderPotentiallyUnwantedAppAction": lambda n : setattr(self, 'defender_potentially_unwanted_app_action', n.get_enum_value(DefenderProtectionType)),
+            "defenderPotentiallyUnwantedAppAction": lambda n : setattr(self, 'defender_potentially_unwanted_app_action', n.get_enum_value(Windows10EndpointProtectionConfiguration_defenderPotentiallyUnwantedAppAction)),
             "defenderPreventCredentialStealingType": lambda n : setattr(self, 'defender_prevent_credential_stealing_type', n.get_enum_value(DefenderProtectionType)),
             "defenderProcessCreation": lambda n : setattr(self, 'defender_process_creation', n.get_enum_value(DefenderProtectionType)),
             "defenderProcessCreationType": lambda n : setattr(self, 'defender_process_creation_type', n.get_enum_value(DefenderAttackSurfaceType)),
             "defenderProcessesToExclude": lambda n : setattr(self, 'defender_processes_to_exclude', n.get_collection_of_primitive_values(str)),
-            "defenderScanDirection": lambda n : setattr(self, 'defender_scan_direction', n.get_enum_value(DefenderRealtimeScanDirection)),
+            "defenderScanDirection": lambda n : setattr(self, 'defender_scan_direction', n.get_enum_value(Windows10EndpointProtectionConfiguration_defenderScanDirection)),
             "defenderScanMaxCpuPercentage": lambda n : setattr(self, 'defender_scan_max_cpu_percentage', n.get_int_value()),
-            "defenderScanType": lambda n : setattr(self, 'defender_scan_type', n.get_enum_value(DefenderScanType)),
+            "defenderScanType": lambda n : setattr(self, 'defender_scan_type', n.get_enum_value(Windows10EndpointProtectionConfiguration_defenderScanType)),
             "defenderScheduledQuickScanTime": lambda n : setattr(self, 'defender_scheduled_quick_scan_time', n.get_time_value()),
-            "defenderScheduledScanDay": lambda n : setattr(self, 'defender_scheduled_scan_day', n.get_enum_value(WeeklySchedule)),
+            "defenderScheduledScanDay": lambda n : setattr(self, 'defender_scheduled_scan_day', n.get_enum_value(Windows10EndpointProtectionConfiguration_defenderScheduledScanDay)),
             "defenderScheduledScanTime": lambda n : setattr(self, 'defender_scheduled_scan_time', n.get_time_value()),
             "defenderScriptDownloadedPayloadExecution": lambda n : setattr(self, 'defender_script_downloaded_payload_execution', n.get_enum_value(DefenderProtectionType)),
             "defenderScriptDownloadedPayloadExecutionType": lambda n : setattr(self, 'defender_script_downloaded_payload_execution_type', n.get_enum_value(DefenderAttackSurfaceType)),
@@ -722,7 +725,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
             "defenderSecurityCenterNotificationsFromApp": lambda n : setattr(self, 'defender_security_center_notifications_from_app', n.get_enum_value(DefenderSecurityCenterNotificationsFromAppType)),
             "defenderSecurityCenterOrganizationDisplayName": lambda n : setattr(self, 'defender_security_center_organization_display_name', n.get_str_value()),
             "defenderSignatureUpdateIntervalInHours": lambda n : setattr(self, 'defender_signature_update_interval_in_hours', n.get_int_value()),
-            "defenderSubmitSamplesConsentType": lambda n : setattr(self, 'defender_submit_samples_consent_type', n.get_enum_value(DefenderSubmitSamplesConsentType)),
+            "defenderSubmitSamplesConsentType": lambda n : setattr(self, 'defender_submit_samples_consent_type', n.get_enum_value(Windows10EndpointProtectionConfiguration_defenderSubmitSamplesConsentType)),
             "defenderUntrustedExecutable": lambda n : setattr(self, 'defender_untrusted_executable', n.get_enum_value(DefenderProtectionType)),
             "defenderUntrustedExecutableType": lambda n : setattr(self, 'defender_untrusted_executable_type', n.get_enum_value(DefenderAttackSurfaceType)),
             "defenderUntrustedUSBProcess": lambda n : setattr(self, 'defender_untrusted_u_s_b_process', n.get_enum_value(DefenderProtectionType)),

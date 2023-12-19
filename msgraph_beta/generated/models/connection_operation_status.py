@@ -1,8 +1,5 @@
 from enum import Enum
 
-class ConnectionOperationStatus(str, Enum):
-    Unspecified = "unspecified",
-    Inprogress = "inprogress",
-    Completed = "completed",
-    Failed = "failed",
+class ConnectionOperation_status(str, Enum):
+    pass
 

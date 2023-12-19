@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .....models.obliteration_behavior import ObliterationBehavior
+    from .wipe_post_request_body_obliteration_behavior import WipePostRequestBody_obliterationBehavior
 
 @dataclass
 class WipePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -21,7 +21,7 @@ class WipePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # The macOsUnlockCode property
     mac_os_unlock_code: Optional[str] = None
     # The obliterationBehavior property
-    obliteration_behavior: Optional[ObliterationBehavior] = None
+    obliteration_behavior: Optional[WipePostRequestBody_obliterationBehavior] = None
     # The persistEsimDataPlan property
     persist_esim_data_plan: Optional[bool] = None
     # The useProtectedWipe property
@@ -43,15 +43,15 @@ class WipePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .....models.obliteration_behavior import ObliterationBehavior
+        from .wipe_post_request_body_obliteration_behavior import WipePostRequestBody_obliterationBehavior
 
-        from .....models.obliteration_behavior import ObliterationBehavior
+        from .wipe_post_request_body_obliteration_behavior import WipePostRequestBody_obliterationBehavior
 
         fields: Dict[str, Callable[[Any], None]] = {
             "keepEnrollmentData": lambda n : setattr(self, 'keep_enrollment_data', n.get_bool_value()),
             "keepUserData": lambda n : setattr(self, 'keep_user_data', n.get_bool_value()),
             "macOsUnlockCode": lambda n : setattr(self, 'mac_os_unlock_code', n.get_str_value()),
-            "obliterationBehavior": lambda n : setattr(self, 'obliteration_behavior', n.get_enum_value(ObliterationBehavior)),
+            "obliterationBehavior": lambda n : setattr(self, 'obliteration_behavior', n.get_enum_value(WipePostRequestBody_obliterationBehavior)),
             "persistEsimDataPlan": lambda n : setattr(self, 'persist_esim_data_plan', n.get_bool_value()),
             "useProtectedWipe": lambda n : setattr(self, 'use_protected_wipe', n.get_bool_value()),
         }

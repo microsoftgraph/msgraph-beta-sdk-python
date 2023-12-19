@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .education_user_role import EducationUserRole
+    from .education_synchronization_license_assignment_applies_to import EducationSynchronizationLicenseAssignment_appliesTo
 
 @dataclass
 class EducationSynchronizationLicenseAssignment(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,7 +15,7 @@ class EducationSynchronizationLicenseAssignment(AdditionalDataHolder, BackedMode
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The user role type to assign to license. Possible values are: student, teacher, faculty.
-    applies_to: Optional[EducationUserRole] = None
+    applies_to: Optional[EducationSynchronizationLicenseAssignment_appliesTo] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents the SKU identifiers of the licenses to assign.
@@ -37,12 +37,12 @@ class EducationSynchronizationLicenseAssignment(AdditionalDataHolder, BackedMode
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .education_user_role import EducationUserRole
+        from .education_synchronization_license_assignment_applies_to import EducationSynchronizationLicenseAssignment_appliesTo
 
-        from .education_user_role import EducationUserRole
+        from .education_synchronization_license_assignment_applies_to import EducationSynchronizationLicenseAssignment_appliesTo
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(EducationUserRole)),
+            "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(EducationSynchronizationLicenseAssignment_appliesTo)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "skuIds": lambda n : setattr(self, 'sku_ids', n.get_collection_of_primitive_values(str)),
         }

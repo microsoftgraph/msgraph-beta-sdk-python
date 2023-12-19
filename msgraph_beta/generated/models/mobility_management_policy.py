@@ -6,14 +6,14 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .group import Group
-    from .policy_scope import PolicyScope
+    from .mobility_management_policy_applies_to import MobilityManagementPolicy_appliesTo
 
 from .entity import Entity
 
 @dataclass
 class MobilityManagementPolicy(Entity):
     # Indicates the user scope of the mobility management policy. Possible values are: none, all, selected.
-    applies_to: Optional[PolicyScope] = None
+    applies_to: Optional[MobilityManagementPolicy_appliesTo] = None
     # Compliance URL of the mobility management application.
     compliance_url: Optional[str] = None
     # Description of the mobility management application.
@@ -49,14 +49,14 @@ class MobilityManagementPolicy(Entity):
         """
         from .entity import Entity
         from .group import Group
-        from .policy_scope import PolicyScope
+        from .mobility_management_policy_applies_to import MobilityManagementPolicy_appliesTo
 
         from .entity import Entity
         from .group import Group
-        from .policy_scope import PolicyScope
+        from .mobility_management_policy_applies_to import MobilityManagementPolicy_appliesTo
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(PolicyScope)),
+            "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(MobilityManagementPolicy_appliesTo)),
             "complianceUrl": lambda n : setattr(self, 'compliance_url', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "discoveryUrl": lambda n : setattr(self, 'discovery_url', n.get_str_value()),

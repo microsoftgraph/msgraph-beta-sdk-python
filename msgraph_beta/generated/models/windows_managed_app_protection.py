@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
     from .windows_managed_app_clipboard_sharing_level import WindowsManagedAppClipboardSharingLevel
     from .windows_managed_app_data_transfer_level import WindowsManagedAppDataTransferLevel
+    from .windows_managed_app_protection_app_action_if_unable_to_authenticate_user import WindowsManagedAppProtection_appActionIfUnableToAuthenticateUser
 
 from .managed_app_policy import ManagedAppPolicy
 
@@ -29,7 +30,7 @@ class WindowsManagedAppProtection(ManagedAppPolicy):
     # Data can be transferred from/to these classes of apps
     allowed_outbound_data_transfer_destinations: Optional[WindowsManagedAppDataTransferLevel] = None
     # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Some possible values are block or wipe. If this property is not set, no action will be taken. Possible values are: block, wipe, warn.
-    app_action_if_unable_to_authenticate_user: Optional[ManagedAppRemediationAction] = None
+    app_action_if_unable_to_authenticate_user: Optional[WindowsManagedAppProtection_appActionIfUnableToAuthenticateUser] = None
     # List of apps to which the policy is deployed.
     apps: Optional[List[ManagedMobileApp]] = None
     # Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
@@ -94,6 +95,7 @@ class WindowsManagedAppProtection(ManagedAppPolicy):
         from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
         from .windows_managed_app_clipboard_sharing_level import WindowsManagedAppClipboardSharingLevel
         from .windows_managed_app_data_transfer_level import WindowsManagedAppDataTransferLevel
+        from .windows_managed_app_protection_app_action_if_unable_to_authenticate_user import WindowsManagedAppProtection_appActionIfUnableToAuthenticateUser
 
         from .managed_app_device_threat_level import ManagedAppDeviceThreatLevel
         from .managed_app_policy import ManagedAppPolicy
@@ -102,12 +104,13 @@ class WindowsManagedAppProtection(ManagedAppPolicy):
         from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
         from .windows_managed_app_clipboard_sharing_level import WindowsManagedAppClipboardSharingLevel
         from .windows_managed_app_data_transfer_level import WindowsManagedAppDataTransferLevel
+        from .windows_managed_app_protection_app_action_if_unable_to_authenticate_user import WindowsManagedAppProtection_appActionIfUnableToAuthenticateUser
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowedInboundDataTransferSources": lambda n : setattr(self, 'allowed_inbound_data_transfer_sources', n.get_enum_value(WindowsManagedAppDataTransferLevel)),
             "allowedOutboundClipboardSharingLevel": lambda n : setattr(self, 'allowed_outbound_clipboard_sharing_level', n.get_enum_value(WindowsManagedAppClipboardSharingLevel)),
             "allowedOutboundDataTransferDestinations": lambda n : setattr(self, 'allowed_outbound_data_transfer_destinations', n.get_enum_value(WindowsManagedAppDataTransferLevel)),
-            "appActionIfUnableToAuthenticateUser": lambda n : setattr(self, 'app_action_if_unable_to_authenticate_user', n.get_enum_value(ManagedAppRemediationAction)),
+            "appActionIfUnableToAuthenticateUser": lambda n : setattr(self, 'app_action_if_unable_to_authenticate_user', n.get_enum_value(WindowsManagedAppProtection_appActionIfUnableToAuthenticateUser)),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(ManagedMobileApp)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(TargetedManagedAppPolicyAssignment)),
             "deployedAppCount": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),

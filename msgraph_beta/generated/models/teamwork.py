@@ -22,8 +22,12 @@ class Teamwork(Entity):
     deleted_teams: Optional[List[DeletedTeam]] = None
     # The Teams devices provisioned for the tenant.
     devices: Optional[List[TeamworkDevice]] = None
+    # Indicates whether Microsoft Teams is enabled for the organization.
+    is_teams_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Represents the region of the organization.
+    region: Optional[str] = None
     # The templates associated with a team.
     team_templates: Optional[List[TeamTemplate]] = None
     # Represents tenant-wide settings for all Teams apps in the tenant.
@@ -67,6 +71,8 @@ class Teamwork(Entity):
             "deletedChats": lambda n : setattr(self, 'deleted_chats', n.get_collection_of_object_values(DeletedChat)),
             "deletedTeams": lambda n : setattr(self, 'deleted_teams', n.get_collection_of_object_values(DeletedTeam)),
             "devices": lambda n : setattr(self, 'devices', n.get_collection_of_object_values(TeamworkDevice)),
+            "isTeamsEnabled": lambda n : setattr(self, 'is_teams_enabled', n.get_bool_value()),
+            "region": lambda n : setattr(self, 'region', n.get_str_value()),
             "teamTemplates": lambda n : setattr(self, 'team_templates', n.get_collection_of_object_values(TeamTemplate)),
             "teamsAppSettings": lambda n : setattr(self, 'teams_app_settings', n.get_object_value(TeamsAppSettings)),
             "workforceIntegrations": lambda n : setattr(self, 'workforce_integrations', n.get_collection_of_object_values(WorkforceIntegration)),
@@ -87,6 +93,8 @@ class Teamwork(Entity):
         writer.write_collection_of_object_values("deletedChats", self.deleted_chats)
         writer.write_collection_of_object_values("deletedTeams", self.deleted_teams)
         writer.write_collection_of_object_values("devices", self.devices)
+        writer.write_bool_value("isTeamsEnabled", self.is_teams_enabled)
+        writer.write_str_value("region", self.region)
         writer.write_collection_of_object_values("teamTemplates", self.team_templates)
         writer.write_object_value("teamsAppSettings", self.teams_app_settings)
         writer.write_collection_of_object_values("workforceIntegrations", self.workforce_integrations)

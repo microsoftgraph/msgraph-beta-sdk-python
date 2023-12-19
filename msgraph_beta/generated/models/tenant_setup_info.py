@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .privileged_role_settings import PrivilegedRoleSettings
-    from .setup_status import SetupStatus
+    from .tenant_setup_info_setup_status import TenantSetupInfo_setupStatus
 
 from .entity import Entity
 
@@ -21,7 +21,7 @@ class TenantSetupInfo(Entity):
     # The relevantRolesSettings property
     relevant_roles_settings: Optional[List[str]] = None
     # The setupStatus property
-    setup_status: Optional[SetupStatus] = None
+    setup_status: Optional[TenantSetupInfo_setupStatus] = None
     # The skipSetup property
     skip_setup: Optional[bool] = None
     # The userRolesActions property
@@ -45,17 +45,17 @@ class TenantSetupInfo(Entity):
         """
         from .entity import Entity
         from .privileged_role_settings import PrivilegedRoleSettings
-        from .setup_status import SetupStatus
+        from .tenant_setup_info_setup_status import TenantSetupInfo_setupStatus
 
         from .entity import Entity
         from .privileged_role_settings import PrivilegedRoleSettings
-        from .setup_status import SetupStatus
+        from .tenant_setup_info_setup_status import TenantSetupInfo_setupStatus
 
         fields: Dict[str, Callable[[Any], None]] = {
             "defaultRolesSettings": lambda n : setattr(self, 'default_roles_settings', n.get_object_value(PrivilegedRoleSettings)),
             "firstTimeSetup": lambda n : setattr(self, 'first_time_setup', n.get_bool_value()),
             "relevantRolesSettings": lambda n : setattr(self, 'relevant_roles_settings', n.get_collection_of_primitive_values(str)),
-            "setupStatus": lambda n : setattr(self, 'setup_status', n.get_enum_value(SetupStatus)),
+            "setupStatus": lambda n : setattr(self, 'setup_status', n.get_enum_value(TenantSetupInfo_setupStatus)),
             "skipSetup": lambda n : setattr(self, 'skip_setup', n.get_bool_value()),
             "userRolesActions": lambda n : setattr(self, 'user_roles_actions', n.get_str_value()),
         }

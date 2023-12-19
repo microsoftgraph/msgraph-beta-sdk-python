@@ -13,7 +13,7 @@ from .azure_identity import AzureIdentity
 class AzureServerlessFunction(AzureIdentity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureServerlessFunction"
-    # The resource property
+    # Represents the resources in an authorization system.
     resource: Optional[AzureAuthorizationSystemResource] = None
     
     @staticmethod

@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .security.behavior_during_retention_period import BehaviorDuringRetentionPeriod
+    from .retention_label_settings_behavior_during_retention_period import RetentionLabelSettings_behaviorDuringRetentionPeriod
 
 @dataclass
 class RetentionLabelSettings(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,7 +15,7 @@ class RetentionLabelSettings(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Describes the item behavior during retention period. Possible values are: doNotRetain, retain, retainAsRecord, retainAsRegulatoryRecord, unknownFutureValue. Read-only.
-    behavior_during_retention_period: Optional[BehaviorDuringRetentionPeriod] = None
+    behavior_during_retention_period: Optional[RetentionLabelSettings_behaviorDuringRetentionPeriod] = None
     # Specifies whether updates to document content are allowed. Read-only.
     is_content_update_allowed: Optional[bool] = None
     # Specifies whether the document deletion is allowed. Read-only.
@@ -45,12 +45,12 @@ class RetentionLabelSettings(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .security.behavior_during_retention_period import BehaviorDuringRetentionPeriod
+        from .retention_label_settings_behavior_during_retention_period import RetentionLabelSettings_behaviorDuringRetentionPeriod
 
-        from .security.behavior_during_retention_period import BehaviorDuringRetentionPeriod
+        from .retention_label_settings_behavior_during_retention_period import RetentionLabelSettings_behaviorDuringRetentionPeriod
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "behaviorDuringRetentionPeriod": lambda n : setattr(self, 'behavior_during_retention_period', n.get_enum_value(BehaviorDuringRetentionPeriod)),
+            "behaviorDuringRetentionPeriod": lambda n : setattr(self, 'behavior_during_retention_period', n.get_enum_value(RetentionLabelSettings_behaviorDuringRetentionPeriod)),
             "isContentUpdateAllowed": lambda n : setattr(self, 'is_content_update_allowed', n.get_bool_value()),
             "isDeleteAllowed": lambda n : setattr(self, 'is_delete_allowed', n.get_bool_value()),
             "isLabelUpdateAllowed": lambda n : setattr(self, 'is_label_update_allowed', n.get_bool_value()),

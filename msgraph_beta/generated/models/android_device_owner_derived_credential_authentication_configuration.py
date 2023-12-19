@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
+    from .android_device_owner_derived_credential_authentication_configuration_certificate_access_type import AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration_certificateAccessType
     from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
     from .device_configuration import DeviceConfiguration
     from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
@@ -19,7 +19,7 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(DeviceConfi
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerDerivedCredentialAuthenticationConfiguration"
     # Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
-    certificate_access_type: Optional[AndroidDeviceOwnerCertificateAccessType] = None
+    certificate_access_type: Optional[AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration_certificateAccessType] = None
     # Tenant level settings for the Derived Credentials to be used for authentication.
     derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None
     # Certificate access information. This collection can contain a maximum of 50 elements.
@@ -41,18 +41,18 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(DeviceConfi
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
+        from .android_device_owner_derived_credential_authentication_configuration_certificate_access_type import AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration_certificateAccessType
         from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
         from .device_configuration import DeviceConfiguration
         from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
 
-        from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
+        from .android_device_owner_derived_credential_authentication_configuration_certificate_access_type import AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration_certificateAccessType
         from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
         from .device_configuration import DeviceConfiguration
         from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(AndroidDeviceOwnerCertificateAccessType)),
+            "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration_certificateAccessType)),
             "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(DeviceManagementDerivedCredentialSettings)),
             "silentCertificateAccessDetails": lambda n : setattr(self, 'silent_certificate_access_details', n.get_collection_of_object_values(AndroidDeviceOwnerSilentCertificateAccess)),
         }

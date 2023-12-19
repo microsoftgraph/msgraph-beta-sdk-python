@@ -6,16 +6,16 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .integer_range import IntegerRange
-    from .printer_feed_direction import PrinterFeedDirection
-    from .printer_feed_orientation import PrinterFeedOrientation
-    from .print_color_mode import PrintColorMode
-    from .print_duplex_mode import PrintDuplexMode
-    from .print_finishing import PrintFinishing
+    from .printer_document_configuration_color_mode import PrinterDocumentConfiguration_colorMode
+    from .printer_document_configuration_duplex_mode import PrinterDocumentConfiguration_duplexMode
+    from .printer_document_configuration_feed_direction import PrinterDocumentConfiguration_feedDirection
+    from .printer_document_configuration_feed_orientation import PrinterDocumentConfiguration_feedOrientation
+    from .printer_document_configuration_finishings import PrinterDocumentConfiguration_finishings
+    from .printer_document_configuration_multipage_layout import PrinterDocumentConfiguration_multipageLayout
+    from .printer_document_configuration_orientation import PrinterDocumentConfiguration_orientation
+    from .printer_document_configuration_quality import PrinterDocumentConfiguration_quality
+    from .printer_document_configuration_scaling import PrinterDocumentConfiguration_scaling
     from .print_margin import PrintMargin
-    from .print_multipage_layout import PrintMultipageLayout
-    from .print_orientation import PrintOrientation
-    from .print_quality import PrintQuality
-    from .print_scaling import PrintScaling
 
 @dataclass
 class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
@@ -27,19 +27,19 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # The collate property
     collate: Optional[bool] = None
     # The colorMode property
-    color_mode: Optional[PrintColorMode] = None
+    color_mode: Optional[PrinterDocumentConfiguration_colorMode] = None
     # The copies property
     copies: Optional[int] = None
     # The dpi property
     dpi: Optional[int] = None
     # The duplexMode property
-    duplex_mode: Optional[PrintDuplexMode] = None
+    duplex_mode: Optional[PrinterDocumentConfiguration_duplexMode] = None
     # The feedDirection property
-    feed_direction: Optional[PrinterFeedDirection] = None
+    feed_direction: Optional[PrinterDocumentConfiguration_feedDirection] = None
     # The feedOrientation property
-    feed_orientation: Optional[PrinterFeedOrientation] = None
+    feed_orientation: Optional[PrinterDocumentConfiguration_feedOrientation] = None
     # The finishings property
-    finishings: Optional[List[PrintFinishing]] = None
+    finishings: Optional[List[PrinterDocumentConfiguration_finishings]] = None
     # The fitPdfToPage property
     fit_pdf_to_page: Optional[bool] = None
     # The inputBin property
@@ -51,11 +51,11 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # The mediaType property
     media_type: Optional[str] = None
     # The multipageLayout property
-    multipage_layout: Optional[PrintMultipageLayout] = None
+    multipage_layout: Optional[PrinterDocumentConfiguration_multipageLayout] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The orientation property
-    orientation: Optional[PrintOrientation] = None
+    orientation: Optional[PrinterDocumentConfiguration_orientation] = None
     # The outputBin property
     output_bin: Optional[str] = None
     # The pageRanges property
@@ -63,9 +63,9 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # The pagesPerSheet property
     pages_per_sheet: Optional[int] = None
     # The quality property
-    quality: Optional[PrintQuality] = None
+    quality: Optional[PrinterDocumentConfiguration_quality] = None
     # The scaling property
-    scaling: Optional[PrintScaling] = None
+    scaling: Optional[PrinterDocumentConfiguration_scaling] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrinterDocumentConfiguration:
@@ -84,51 +84,51 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .integer_range import IntegerRange
-        from .printer_feed_direction import PrinterFeedDirection
-        from .printer_feed_orientation import PrinterFeedOrientation
-        from .print_color_mode import PrintColorMode
-        from .print_duplex_mode import PrintDuplexMode
-        from .print_finishing import PrintFinishing
+        from .printer_document_configuration_color_mode import PrinterDocumentConfiguration_colorMode
+        from .printer_document_configuration_duplex_mode import PrinterDocumentConfiguration_duplexMode
+        from .printer_document_configuration_feed_direction import PrinterDocumentConfiguration_feedDirection
+        from .printer_document_configuration_feed_orientation import PrinterDocumentConfiguration_feedOrientation
+        from .printer_document_configuration_finishings import PrinterDocumentConfiguration_finishings
+        from .printer_document_configuration_multipage_layout import PrinterDocumentConfiguration_multipageLayout
+        from .printer_document_configuration_orientation import PrinterDocumentConfiguration_orientation
+        from .printer_document_configuration_quality import PrinterDocumentConfiguration_quality
+        from .printer_document_configuration_scaling import PrinterDocumentConfiguration_scaling
         from .print_margin import PrintMargin
-        from .print_multipage_layout import PrintMultipageLayout
-        from .print_orientation import PrintOrientation
-        from .print_quality import PrintQuality
-        from .print_scaling import PrintScaling
 
         from .integer_range import IntegerRange
-        from .printer_feed_direction import PrinterFeedDirection
-        from .printer_feed_orientation import PrinterFeedOrientation
-        from .print_color_mode import PrintColorMode
-        from .print_duplex_mode import PrintDuplexMode
-        from .print_finishing import PrintFinishing
+        from .printer_document_configuration_color_mode import PrinterDocumentConfiguration_colorMode
+        from .printer_document_configuration_duplex_mode import PrinterDocumentConfiguration_duplexMode
+        from .printer_document_configuration_feed_direction import PrinterDocumentConfiguration_feedDirection
+        from .printer_document_configuration_feed_orientation import PrinterDocumentConfiguration_feedOrientation
+        from .printer_document_configuration_finishings import PrinterDocumentConfiguration_finishings
+        from .printer_document_configuration_multipage_layout import PrinterDocumentConfiguration_multipageLayout
+        from .printer_document_configuration_orientation import PrinterDocumentConfiguration_orientation
+        from .printer_document_configuration_quality import PrinterDocumentConfiguration_quality
+        from .printer_document_configuration_scaling import PrinterDocumentConfiguration_scaling
         from .print_margin import PrintMargin
-        from .print_multipage_layout import PrintMultipageLayout
-        from .print_orientation import PrintOrientation
-        from .print_quality import PrintQuality
-        from .print_scaling import PrintScaling
 
         fields: Dict[str, Callable[[Any], None]] = {
             "collate": lambda n : setattr(self, 'collate', n.get_bool_value()),
-            "colorMode": lambda n : setattr(self, 'color_mode', n.get_enum_value(PrintColorMode)),
+            "colorMode": lambda n : setattr(self, 'color_mode', n.get_enum_value(PrinterDocumentConfiguration_colorMode)),
             "copies": lambda n : setattr(self, 'copies', n.get_int_value()),
             "dpi": lambda n : setattr(self, 'dpi', n.get_int_value()),
-            "duplexMode": lambda n : setattr(self, 'duplex_mode', n.get_enum_value(PrintDuplexMode)),
-            "feedDirection": lambda n : setattr(self, 'feed_direction', n.get_enum_value(PrinterFeedDirection)),
-            "feedOrientation": lambda n : setattr(self, 'feed_orientation', n.get_enum_value(PrinterFeedOrientation)),
-            "finishings": lambda n : setattr(self, 'finishings', n.get_collection_of_enum_values(PrintFinishing)),
+            "duplexMode": lambda n : setattr(self, 'duplex_mode', n.get_enum_value(PrinterDocumentConfiguration_duplexMode)),
+            "feedDirection": lambda n : setattr(self, 'feed_direction', n.get_enum_value(PrinterDocumentConfiguration_feedDirection)),
+            "feedOrientation": lambda n : setattr(self, 'feed_orientation', n.get_enum_value(PrinterDocumentConfiguration_feedOrientation)),
+            "finishings": lambda n : setattr(self, 'finishings', n.get_collection_of_enum_values(PrinterDocumentConfiguration_finishings)),
             "fitPdfToPage": lambda n : setattr(self, 'fit_pdf_to_page', n.get_bool_value()),
             "inputBin": lambda n : setattr(self, 'input_bin', n.get_str_value()),
             "margin": lambda n : setattr(self, 'margin', n.get_object_value(PrintMargin)),
             "mediaSize": lambda n : setattr(self, 'media_size', n.get_str_value()),
             "mediaType": lambda n : setattr(self, 'media_type', n.get_str_value()),
-            "multipageLayout": lambda n : setattr(self, 'multipage_layout', n.get_enum_value(PrintMultipageLayout)),
+            "multipageLayout": lambda n : setattr(self, 'multipage_layout', n.get_enum_value(PrinterDocumentConfiguration_multipageLayout)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "orientation": lambda n : setattr(self, 'orientation', n.get_enum_value(PrintOrientation)),
+            "orientation": lambda n : setattr(self, 'orientation', n.get_enum_value(PrinterDocumentConfiguration_orientation)),
             "outputBin": lambda n : setattr(self, 'output_bin', n.get_str_value()),
             "pageRanges": lambda n : setattr(self, 'page_ranges', n.get_collection_of_object_values(IntegerRange)),
             "pagesPerSheet": lambda n : setattr(self, 'pages_per_sheet', n.get_int_value()),
-            "quality": lambda n : setattr(self, 'quality', n.get_enum_value(PrintQuality)),
-            "scaling": lambda n : setattr(self, 'scaling', n.get_enum_value(PrintScaling)),
+            "quality": lambda n : setattr(self, 'quality', n.get_enum_value(PrinterDocumentConfiguration_quality)),
+            "scaling": lambda n : setattr(self, 'scaling', n.get_enum_value(PrinterDocumentConfiguration_scaling)),
         }
         return fields
     

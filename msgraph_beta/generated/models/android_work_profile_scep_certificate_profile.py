@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
-    from .certificate_store import CertificateStore
+    from .android_work_profile_scep_certificate_profile_certificate_store import AndroidWorkProfileScepCertificateProfile_certificateStore
     from .custom_subject_alternative_name import CustomSubjectAlternativeName
     from .hash_algorithms import HashAlgorithms
     from .key_size import KeySize
@@ -22,7 +22,7 @@ class AndroidWorkProfileScepCertificateProfile(AndroidWorkProfileCertificateProf
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidWorkProfileScepCertificateProfile"
     # Target store certificate. Possible values are: user, machine.
-    certificate_store: Optional[CertificateStore] = None
+    certificate_store: Optional[AndroidWorkProfileScepCertificateProfile_certificateStore] = None
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
     custom_subject_alternative_names: Optional[List[CustomSubjectAlternativeName]] = None
     # Hash Algorithm Options.
@@ -57,7 +57,7 @@ class AndroidWorkProfileScepCertificateProfile(AndroidWorkProfileCertificateProf
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
-        from .certificate_store import CertificateStore
+        from .android_work_profile_scep_certificate_profile_certificate_store import AndroidWorkProfileScepCertificateProfile_certificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .hash_algorithms import HashAlgorithms
         from .key_size import KeySize
@@ -65,7 +65,7 @@ class AndroidWorkProfileScepCertificateProfile(AndroidWorkProfileCertificateProf
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
-        from .certificate_store import CertificateStore
+        from .android_work_profile_scep_certificate_profile_certificate_store import AndroidWorkProfileScepCertificateProfile_certificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .hash_algorithms import HashAlgorithms
         from .key_size import KeySize
@@ -73,7 +73,7 @@ class AndroidWorkProfileScepCertificateProfile(AndroidWorkProfileCertificateProf
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(AndroidWorkProfileScepCertificateProfile_certificateStore)),
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(CustomSubjectAlternativeName)),
             "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_collection_of_enum_values(HashAlgorithms)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(KeySize)),

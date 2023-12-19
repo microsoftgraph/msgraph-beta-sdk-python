@@ -28,7 +28,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[WebAccountItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a webAccount object from a user's profile. This API is available in the following national cloud deployments.
+        Delete a webAccount object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/webaccount-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[WebAccountItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WebAccount]:
         """
-        Retrieve the properties and relationships of a webAccount object from a user's profile. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a webAccount object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebAccount]
         Find more info here: https://learn.microsoft.com/graph/api/webaccount-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[WebAccount] = None, request_configuration: Optional[WebAccountItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[WebAccount]:
         """
-        Update the properties of a webAccount object in a user's profile. This API is available in the following national cloud deployments.
+        Update the properties of a webAccount object in a user's profile.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebAccount]
@@ -95,7 +95,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[WebAccountItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a webAccount object from a user's profile. This API is available in the following national cloud deployments.
+        Delete a webAccount object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,12 +106,12 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[WebAccountItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a webAccount object from a user's profile. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a webAccount object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -123,12 +123,12 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[WebAccount] = None, request_configuration: Optional[WebAccountItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a webAccount object in a user's profile. This API is available in the following national cloud deployments.
+        Update the properties of a webAccount object in a user's profile.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -142,7 +142,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -169,7 +169,7 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WebAccountItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a webAccount object from a user's profile. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a webAccount object from a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

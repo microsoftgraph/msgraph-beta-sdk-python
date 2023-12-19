@@ -21,10 +21,10 @@ if TYPE_CHECKING:
     from .team_guest_settings import TeamGuestSettings
     from .team_member_settings import TeamMemberSettings
     from .team_messaging_settings import TeamMessagingSettings
-    from .team_specialization import TeamSpecialization
+    from .team_specialization import Team_specialization
     from .team_summary import TeamSummary
     from .team_template_definition import TeamTemplateDefinition
-    from .team_visibility_type import TeamVisibilityType
+    from .team_visibility import Team_visibility
     from .user import User
 
 from .entity import Entity
@@ -82,7 +82,7 @@ class Team(Entity):
     # The schedule of shifts for this team.
     schedule: Optional[Schedule] = None
     # Optional. Indicates whether the team is intended for a particular use case.  Each team specialization has access to unique behaviors and experiences targeted to its use case.
-    specialization: Optional[TeamSpecialization] = None
+    specialization: Optional[Team_specialization] = None
     # Contains summary information about the team, including number of owners, members, and guests.
     summary: Optional[TeamSummary] = None
     # The tags associated with the team.
@@ -94,7 +94,7 @@ class Team(Entity):
     # The ID of the Microsoft Entra tenant.
     tenant_id: Optional[str] = None
     # The visibility of the group and team. Defaults to Public.
-    visibility: Optional[TeamVisibilityType] = None
+    visibility: Optional[Team_visibility] = None
     # A hyperlink that will go to the team in the Microsoft Teams client. This is the URL that you get when you right-click a team in the Microsoft Teams client and select Get link to team. This URL should be treated as an opaque blob, and not parsed.
     web_url: Optional[str] = None
     
@@ -130,10 +130,10 @@ class Team(Entity):
         from .team_guest_settings import TeamGuestSettings
         from .team_member_settings import TeamMemberSettings
         from .team_messaging_settings import TeamMessagingSettings
-        from .team_specialization import TeamSpecialization
+        from .team_specialization import Team_specialization
         from .team_summary import TeamSummary
         from .team_template_definition import TeamTemplateDefinition
-        from .team_visibility_type import TeamVisibilityType
+        from .team_visibility import Team_visibility
         from .user import User
 
         from .channel import Channel
@@ -152,10 +152,10 @@ class Team(Entity):
         from .team_guest_settings import TeamGuestSettings
         from .team_member_settings import TeamMemberSettings
         from .team_messaging_settings import TeamMessagingSettings
-        from .team_specialization import TeamSpecialization
+        from .team_specialization import Team_specialization
         from .team_summary import TeamSummary
         from .team_template_definition import TeamTemplateDefinition
-        from .team_visibility_type import TeamVisibilityType
+        from .team_visibility import Team_visibility
         from .user import User
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -183,13 +183,13 @@ class Team(Entity):
             "photo": lambda n : setattr(self, 'photo', n.get_object_value(ProfilePhoto)),
             "primaryChannel": lambda n : setattr(self, 'primary_channel', n.get_object_value(Channel)),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(Schedule)),
-            "specialization": lambda n : setattr(self, 'specialization', n.get_enum_value(TeamSpecialization)),
+            "specialization": lambda n : setattr(self, 'specialization', n.get_enum_value(Team_specialization)),
             "summary": lambda n : setattr(self, 'summary', n.get_object_value(TeamSummary)),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_object_values(TeamworkTag)),
             "template": lambda n : setattr(self, 'template', n.get_object_value(TeamsTemplate)),
             "templateDefinition": lambda n : setattr(self, 'template_definition', n.get_object_value(TeamTemplateDefinition)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
-            "visibility": lambda n : setattr(self, 'visibility', n.get_enum_value(TeamVisibilityType)),
+            "visibility": lambda n : setattr(self, 'visibility', n.get_enum_value(Team_visibility)),
             "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

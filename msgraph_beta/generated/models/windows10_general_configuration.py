@@ -11,11 +11,9 @@ if TYPE_CHECKING:
     from .defender_cloud_block_level_type import DefenderCloudBlockLevelType
     from .defender_detected_malware_actions import DefenderDetectedMalwareActions
     from .defender_monitor_file_activity import DefenderMonitorFileActivity
-    from .defender_potentially_unwanted_app_action import DefenderPotentiallyUnwantedAppAction
     from .defender_prompt_for_sample_submission import DefenderPromptForSampleSubmission
     from .defender_protection_type import DefenderProtectionType
     from .defender_scan_type import DefenderScanType
-    from .defender_submit_samples_consent_type import DefenderSubmitSamplesConsentType
     from .device_configuration import DeviceConfiguration
     from .diagnostic_data_submission_mode import DiagnosticDataSubmissionMode
     from .edge_cookie_policy import EdgeCookiePolicy
@@ -35,6 +33,8 @@ if TYPE_CHECKING:
     from .visibility_setting import VisibilitySetting
     from .weekly_schedule import WeeklySchedule
     from .windows10_apps_force_update_schedule import Windows10AppsForceUpdateSchedule
+    from .windows10_general_configuration_defender_potentially_unwanted_app_action import Windows10GeneralConfiguration_defenderPotentiallyUnwantedAppAction
+    from .windows10_general_configuration_defender_submit_samples_consent_type import Windows10GeneralConfiguration_defenderSubmitSamplesConsentType
     from .windows10_network_proxy_server import Windows10NetworkProxyServer
     from .windows_privacy_data_access_control_item import WindowsPrivacyDataAccessControlItem
     from .windows_spotlight_enablement_settings import WindowsSpotlightEnablementSettings
@@ -133,7 +133,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration):
     # Possible values for monitoring file activity.
     defender_monitor_file_activity: Optional[DefenderMonitorFileActivity] = None
     # Gets or sets Defender’s action to take on Potentially Unwanted Application (PUA), which includes software with behaviors of ad-injection, software bundling, persistent solicitation for payment or subscription, etc. Defender alerts user when PUA is being downloaded or attempts to install itself. Added in Windows 10 for desktop. Possible values are: deviceDefault, block, audit.
-    defender_potentially_unwanted_app_action: Optional[DefenderPotentiallyUnwantedAppAction] = None
+    defender_potentially_unwanted_app_action: Optional[Windows10GeneralConfiguration_defenderPotentiallyUnwantedAppAction] = None
     # Possible values of Defender PUA Protection
     defender_potentially_unwanted_app_action_setting: Optional[DefenderProtectionType] = None
     # Processes to exclude from scans and real time protection.
@@ -175,7 +175,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration):
     # The signature update interval in hours. Specify 0 not to check. Valid values 0 to 24
     defender_signature_update_interval_in_hours: Optional[int] = None
     # Checks for the user consent level in Windows Defender to send data. Possible values are: sendSafeSamplesAutomatically, alwaysPrompt, neverSend, sendAllSamplesAutomatically.
-    defender_submit_samples_consent_type: Optional[DefenderSubmitSamplesConsentType] = None
+    defender_submit_samples_consent_type: Optional[Windows10GeneralConfiguration_defenderSubmitSamplesConsentType] = None
     # Possible values for a weekly schedule.
     defender_system_scan_schedule: Optional[WeeklySchedule] = None
     # State Management Setting.
@@ -639,11 +639,9 @@ class Windows10GeneralConfiguration(DeviceConfiguration):
         from .defender_cloud_block_level_type import DefenderCloudBlockLevelType
         from .defender_detected_malware_actions import DefenderDetectedMalwareActions
         from .defender_monitor_file_activity import DefenderMonitorFileActivity
-        from .defender_potentially_unwanted_app_action import DefenderPotentiallyUnwantedAppAction
         from .defender_prompt_for_sample_submission import DefenderPromptForSampleSubmission
         from .defender_protection_type import DefenderProtectionType
         from .defender_scan_type import DefenderScanType
-        from .defender_submit_samples_consent_type import DefenderSubmitSamplesConsentType
         from .device_configuration import DeviceConfiguration
         from .diagnostic_data_submission_mode import DiagnosticDataSubmissionMode
         from .edge_cookie_policy import EdgeCookiePolicy
@@ -663,6 +661,8 @@ class Windows10GeneralConfiguration(DeviceConfiguration):
         from .visibility_setting import VisibilitySetting
         from .weekly_schedule import WeeklySchedule
         from .windows10_apps_force_update_schedule import Windows10AppsForceUpdateSchedule
+        from .windows10_general_configuration_defender_potentially_unwanted_app_action import Windows10GeneralConfiguration_defenderPotentiallyUnwantedAppAction
+        from .windows10_general_configuration_defender_submit_samples_consent_type import Windows10GeneralConfiguration_defenderSubmitSamplesConsentType
         from .windows10_network_proxy_server import Windows10NetworkProxyServer
         from .windows_privacy_data_access_control_item import WindowsPrivacyDataAccessControlItem
         from .windows_spotlight_enablement_settings import WindowsSpotlightEnablementSettings
@@ -675,11 +675,9 @@ class Windows10GeneralConfiguration(DeviceConfiguration):
         from .defender_cloud_block_level_type import DefenderCloudBlockLevelType
         from .defender_detected_malware_actions import DefenderDetectedMalwareActions
         from .defender_monitor_file_activity import DefenderMonitorFileActivity
-        from .defender_potentially_unwanted_app_action import DefenderPotentiallyUnwantedAppAction
         from .defender_prompt_for_sample_submission import DefenderPromptForSampleSubmission
         from .defender_protection_type import DefenderProtectionType
         from .defender_scan_type import DefenderScanType
-        from .defender_submit_samples_consent_type import DefenderSubmitSamplesConsentType
         from .device_configuration import DeviceConfiguration
         from .diagnostic_data_submission_mode import DiagnosticDataSubmissionMode
         from .edge_cookie_policy import EdgeCookiePolicy
@@ -699,6 +697,8 @@ class Windows10GeneralConfiguration(DeviceConfiguration):
         from .visibility_setting import VisibilitySetting
         from .weekly_schedule import WeeklySchedule
         from .windows10_apps_force_update_schedule import Windows10AppsForceUpdateSchedule
+        from .windows10_general_configuration_defender_potentially_unwanted_app_action import Windows10GeneralConfiguration_defenderPotentiallyUnwantedAppAction
+        from .windows10_general_configuration_defender_submit_samples_consent_type import Windows10GeneralConfiguration_defenderSubmitSamplesConsentType
         from .windows10_network_proxy_server import Windows10NetworkProxyServer
         from .windows_privacy_data_access_control_item import WindowsPrivacyDataAccessControlItem
         from .windows_spotlight_enablement_settings import WindowsSpotlightEnablementSettings
@@ -747,7 +747,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration):
             "defenderFileExtensionsToExclude": lambda n : setattr(self, 'defender_file_extensions_to_exclude', n.get_collection_of_primitive_values(str)),
             "defenderFilesAndFoldersToExclude": lambda n : setattr(self, 'defender_files_and_folders_to_exclude', n.get_collection_of_primitive_values(str)),
             "defenderMonitorFileActivity": lambda n : setattr(self, 'defender_monitor_file_activity', n.get_enum_value(DefenderMonitorFileActivity)),
-            "defenderPotentiallyUnwantedAppAction": lambda n : setattr(self, 'defender_potentially_unwanted_app_action', n.get_enum_value(DefenderPotentiallyUnwantedAppAction)),
+            "defenderPotentiallyUnwantedAppAction": lambda n : setattr(self, 'defender_potentially_unwanted_app_action', n.get_enum_value(Windows10GeneralConfiguration_defenderPotentiallyUnwantedAppAction)),
             "defenderPotentiallyUnwantedAppActionSetting": lambda n : setattr(self, 'defender_potentially_unwanted_app_action_setting', n.get_enum_value(DefenderProtectionType)),
             "defenderProcessesToExclude": lambda n : setattr(self, 'defender_processes_to_exclude', n.get_collection_of_primitive_values(str)),
             "defenderPromptForSampleSubmission": lambda n : setattr(self, 'defender_prompt_for_sample_submission', n.get_enum_value(DefenderPromptForSampleSubmission)),
@@ -768,7 +768,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration):
             "defenderScheduledQuickScanTime": lambda n : setattr(self, 'defender_scheduled_quick_scan_time', n.get_time_value()),
             "defenderScheduledScanTime": lambda n : setattr(self, 'defender_scheduled_scan_time', n.get_time_value()),
             "defenderSignatureUpdateIntervalInHours": lambda n : setattr(self, 'defender_signature_update_interval_in_hours', n.get_int_value()),
-            "defenderSubmitSamplesConsentType": lambda n : setattr(self, 'defender_submit_samples_consent_type', n.get_enum_value(DefenderSubmitSamplesConsentType)),
+            "defenderSubmitSamplesConsentType": lambda n : setattr(self, 'defender_submit_samples_consent_type', n.get_enum_value(Windows10GeneralConfiguration_defenderSubmitSamplesConsentType)),
             "defenderSystemScanSchedule": lambda n : setattr(self, 'defender_system_scan_schedule', n.get_enum_value(WeeklySchedule)),
             "developerUnlockSetting": lambda n : setattr(self, 'developer_unlock_setting', n.get_enum_value(StateManagementSetting)),
             "deviceManagementBlockFactoryResetOnMobile": lambda n : setattr(self, 'device_management_block_factory_reset_on_mobile', n.get_bool_value()),

@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .endpoint_type import EndpointType
     from .identity_set import IdentitySet
+    from .invitation_participant_info_endpoint_type import InvitationParticipantInfo_endpointType
 
 @dataclass
 class InvitationParticipantInfo(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,7 +16,7 @@ class InvitationParticipantInfo(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The type of endpoint. Possible values are: default, voicemail, skypeForBusiness, skypeForBusinessVoipPhone and unknownFutureValue.
-    endpoint_type: Optional[EndpointType] = None
+    endpoint_type: Optional[InvitationParticipantInfo_endpointType] = None
     # Optional. Whether to hide the participant from the roster.
     hidden: Optional[bool] = None
     # The identity property
@@ -46,14 +46,14 @@ class InvitationParticipantInfo(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .endpoint_type import EndpointType
         from .identity_set import IdentitySet
+        from .invitation_participant_info_endpoint_type import InvitationParticipantInfo_endpointType
 
-        from .endpoint_type import EndpointType
         from .identity_set import IdentitySet
+        from .invitation_participant_info_endpoint_type import InvitationParticipantInfo_endpointType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "endpointType": lambda n : setattr(self, 'endpoint_type', n.get_enum_value(EndpointType)),
+            "endpointType": lambda n : setattr(self, 'endpoint_type', n.get_enum_value(InvitationParticipantInfo_endpointType)),
             "hidden": lambda n : setattr(self, 'hidden', n.get_bool_value()),
             "identity": lambda n : setattr(self, 'identity', n.get_object_value(IdentitySet)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

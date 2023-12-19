@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_type import AccessType
+    from .acl_identity_source import Acl_identitySource
     from .acl_type import AclType
-    from .identity_source_type import IdentitySourceType
 
 @dataclass
 class Acl(AdditionalDataHolder, BackedModel, Parsable):
@@ -19,7 +19,7 @@ class Acl(AdditionalDataHolder, BackedModel, Parsable):
     # The accessType property
     access_type: Optional[AccessType] = None
     # The source of identity. Possible values are azureActiveDirectory or external.
-    identity_source: Optional[IdentitySourceType] = None
+    identity_source: Optional[Acl_identitySource] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The type property
@@ -44,16 +44,16 @@ class Acl(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .access_type import AccessType
+        from .acl_identity_source import Acl_identitySource
         from .acl_type import AclType
-        from .identity_source_type import IdentitySourceType
 
         from .access_type import AccessType
+        from .acl_identity_source import Acl_identitySource
         from .acl_type import AclType
-        from .identity_source_type import IdentitySourceType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accessType": lambda n : setattr(self, 'access_type', n.get_enum_value(AccessType)),
-            "identitySource": lambda n : setattr(self, 'identity_source', n.get_enum_value(IdentitySourceType)),
+            "identitySource": lambda n : setattr(self, 'identity_source', n.get_enum_value(Acl_identitySource)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(AclType)),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),

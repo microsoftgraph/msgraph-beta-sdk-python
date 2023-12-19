@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ........models.ediscovery.export_file_structure import ExportFileStructure
-    from ........models.ediscovery.export_options import ExportOptions
+    from .export_post_request_body_export_options import ExportPostRequestBody_exportOptions
 
 @dataclass
 class ExportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -22,7 +22,7 @@ class ExportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # The description property
     description: Optional[str] = None
     # The exportOptions property
-    export_options: Optional[ExportOptions] = None
+    export_options: Optional[ExportPostRequestBody_exportOptions] = None
     # The exportStructure property
     export_structure: Optional[ExportFileStructure] = None
     # The outputName property
@@ -45,16 +45,16 @@ class ExportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ........models.ediscovery.export_file_structure import ExportFileStructure
-        from ........models.ediscovery.export_options import ExportOptions
+        from .export_post_request_body_export_options import ExportPostRequestBody_exportOptions
 
         from ........models.ediscovery.export_file_structure import ExportFileStructure
-        from ........models.ediscovery.export_options import ExportOptions
+        from .export_post_request_body_export_options import ExportPostRequestBody_exportOptions
 
         fields: Dict[str, Callable[[Any], None]] = {
             "azureBlobContainer": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
             "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "exportOptions": lambda n : setattr(self, 'export_options', n.get_collection_of_enum_values(ExportOptions)),
+            "exportOptions": lambda n : setattr(self, 'export_options', n.get_enum_value(ExportPostRequestBody_exportOptions)),
             "exportStructure": lambda n : setattr(self, 'export_structure', n.get_enum_value(ExportFileStructure)),
             "outputName": lambda n : setattr(self, 'output_name', n.get_str_value()),
         }

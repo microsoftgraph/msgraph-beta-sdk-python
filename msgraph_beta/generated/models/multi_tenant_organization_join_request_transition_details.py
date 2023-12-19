@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .multi_tenant_organization_member_processing_status import MultiTenantOrganizationMemberProcessingStatus
-    from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
+    from .multi_tenant_organization_join_request_transition_details_desired_member_state import MultiTenantOrganizationJoinRequestTransitionDetails_desiredMemberState
+    from .multi_tenant_organization_join_request_transition_details_status import MultiTenantOrganizationJoinRequestTransitionDetails_status
 
 @dataclass
 class MultiTenantOrganizationJoinRequestTransitionDetails(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,13 +16,13 @@ class MultiTenantOrganizationJoinRequestTransitionDetails(AdditionalDataHolder, 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # State of the tenant in the multitenant organization currently being processed. The possible values are: pending, active, removed, unknownFutureValue. Read-only.
-    desired_member_state: Optional[MultiTenantOrganizationMemberState] = None
+    desired_member_state: Optional[MultiTenantOrganizationJoinRequestTransitionDetails_desiredMemberState] = None
     # Details that explain the processing status if any. Read-only.
     details: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Processing state of the asynchronous job. The possible values are: notStarted, running, succeeded, failed, unknownFutureValue. Read-only.
-    status: Optional[MultiTenantOrganizationMemberProcessingStatus] = None
+    status: Optional[MultiTenantOrganizationJoinRequestTransitionDetails_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MultiTenantOrganizationJoinRequestTransitionDetails:
@@ -40,17 +40,17 @@ class MultiTenantOrganizationJoinRequestTransitionDetails(AdditionalDataHolder, 
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .multi_tenant_organization_member_processing_status import MultiTenantOrganizationMemberProcessingStatus
-        from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
+        from .multi_tenant_organization_join_request_transition_details_desired_member_state import MultiTenantOrganizationJoinRequestTransitionDetails_desiredMemberState
+        from .multi_tenant_organization_join_request_transition_details_status import MultiTenantOrganizationJoinRequestTransitionDetails_status
 
-        from .multi_tenant_organization_member_processing_status import MultiTenantOrganizationMemberProcessingStatus
-        from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
+        from .multi_tenant_organization_join_request_transition_details_desired_member_state import MultiTenantOrganizationJoinRequestTransitionDetails_desiredMemberState
+        from .multi_tenant_organization_join_request_transition_details_status import MultiTenantOrganizationJoinRequestTransitionDetails_status
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "desiredMemberState": lambda n : setattr(self, 'desired_member_state', n.get_enum_value(MultiTenantOrganizationMemberState)),
+            "desiredMemberState": lambda n : setattr(self, 'desired_member_state', n.get_enum_value(MultiTenantOrganizationJoinRequestTransitionDetails_desiredMemberState)),
             "details": lambda n : setattr(self, 'details', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(MultiTenantOrganizationMemberProcessingStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(MultiTenantOrganizationJoinRequestTransitionDetails_status)),
         }
         return fields
     

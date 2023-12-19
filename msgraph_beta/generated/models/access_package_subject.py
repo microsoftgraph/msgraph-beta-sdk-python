@@ -5,7 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .access_package_subject_lifecycle import AccessPackageSubjectLifecycle
+    from .access_package_subject_subject_lifecycle import AccessPackageSubject_subjectLifecycle
     from .connected_organization import ConnectedOrganization
     from .entity import Entity
 
@@ -34,7 +34,7 @@ class AccessPackageSubject(Entity):
     # The principal name, if known, of the subject.
     principal_name: Optional[str] = None
     # The lifecycle of the subject user, if a guest. The possible values are: notDefined, notGoverned, governed, unknownFutureValue.
-    subject_lifecycle: Optional[AccessPackageSubjectLifecycle] = None
+    subject_lifecycle: Optional[AccessPackageSubject_subjectLifecycle] = None
     # The resource type of the subject.
     type: Optional[str] = None
     
@@ -54,11 +54,11 @@ class AccessPackageSubject(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .access_package_subject_lifecycle import AccessPackageSubjectLifecycle
+        from .access_package_subject_subject_lifecycle import AccessPackageSubject_subjectLifecycle
         from .connected_organization import ConnectedOrganization
         from .entity import Entity
 
-        from .access_package_subject_lifecycle import AccessPackageSubjectLifecycle
+        from .access_package_subject_subject_lifecycle import AccessPackageSubject_subjectLifecycle
         from .connected_organization import ConnectedOrganization
         from .entity import Entity
 
@@ -72,7 +72,7 @@ class AccessPackageSubject(Entity):
             "objectId": lambda n : setattr(self, 'object_id', n.get_str_value()),
             "onPremisesSecurityIdentifier": lambda n : setattr(self, 'on_premises_security_identifier', n.get_str_value()),
             "principalName": lambda n : setattr(self, 'principal_name', n.get_str_value()),
-            "subjectLifecycle": lambda n : setattr(self, 'subject_lifecycle', n.get_enum_value(AccessPackageSubjectLifecycle)),
+            "subjectLifecycle": lambda n : setattr(self, 'subject_lifecycle', n.get_enum_value(AccessPackageSubject_subjectLifecycle)),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

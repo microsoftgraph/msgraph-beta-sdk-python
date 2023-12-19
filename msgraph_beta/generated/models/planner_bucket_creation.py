@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .planner_creation_source_kind import PlannerCreationSourceKind
+    from .planner_bucket_creation_creation_source_kind import PlannerBucketCreation_creationSourceKind
     from .planner_external_bucket_source import PlannerExternalBucketSource
 
 @dataclass
@@ -16,7 +16,7 @@ class PlannerBucketCreation(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Specifies what kind of creation source the bucket is created with. The possible values are: external, publication and unknownFutureValue.
-    creation_source_kind: Optional[PlannerCreationSourceKind] = None
+    creation_source_kind: Optional[PlannerBucketCreation_creationSourceKind] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -44,14 +44,14 @@ class PlannerBucketCreation(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .planner_creation_source_kind import PlannerCreationSourceKind
+        from .planner_bucket_creation_creation_source_kind import PlannerBucketCreation_creationSourceKind
         from .planner_external_bucket_source import PlannerExternalBucketSource
 
-        from .planner_creation_source_kind import PlannerCreationSourceKind
+        from .planner_bucket_creation_creation_source_kind import PlannerBucketCreation_creationSourceKind
         from .planner_external_bucket_source import PlannerExternalBucketSource
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "creationSourceKind": lambda n : setattr(self, 'creation_source_kind', n.get_enum_value(PlannerCreationSourceKind)),
+            "creationSourceKind": lambda n : setattr(self, 'creation_source_kind', n.get_enum_value(PlannerBucketCreation_creationSourceKind)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

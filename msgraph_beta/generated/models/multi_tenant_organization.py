@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
     from .multi_tenant_organization_member import MultiTenantOrganizationMember
-    from .multi_tenant_organization_state import MultiTenantOrganizationState
+    from .multi_tenant_organization_state import MultiTenantOrganization_state
 
 from .entity import Entity
 
@@ -25,7 +25,7 @@ class MultiTenantOrganization(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # State of the multitenant organization. The possible values are: active, inactive, unknownFutureValue. active indicates the multitenant organization is created. inactive indicates the multitenant organization isn't created. Read-only.
-    state: Optional[MultiTenantOrganizationState] = None
+    state: Optional[MultiTenantOrganization_state] = None
     # Defines tenants added to a multitenant organization.
     tenants: Optional[List[MultiTenantOrganizationMember]] = None
     
@@ -48,19 +48,19 @@ class MultiTenantOrganization(Entity):
         from .entity import Entity
         from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
-        from .multi_tenant_organization_state import MultiTenantOrganizationState
+        from .multi_tenant_organization_state import MultiTenantOrganization_state
 
         from .entity import Entity
         from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
-        from .multi_tenant_organization_state import MultiTenantOrganizationState
+        from .multi_tenant_organization_state import MultiTenantOrganization_state
 
         fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "joinRequest": lambda n : setattr(self, 'join_request', n.get_object_value(MultiTenantOrganizationJoinRequestRecord)),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(MultiTenantOrganizationState)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(MultiTenantOrganization_state)),
             "tenants": lambda n : setattr(self, 'tenants', n.get_collection_of_object_values(MultiTenantOrganizationMember)),
         }
         super_fields = super().get_field_deserializers()

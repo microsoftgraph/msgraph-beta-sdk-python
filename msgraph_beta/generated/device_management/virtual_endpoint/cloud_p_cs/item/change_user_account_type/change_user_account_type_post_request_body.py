@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ......models.cloud_pc_user_account_type import CloudPcUserAccountType
+    from .change_user_account_type_post_request_body_user_account_type import ChangeUserAccountTypePostRequestBody_userAccountType
 
 @dataclass
 class ChangeUserAccountTypePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,7 +15,7 @@ class ChangeUserAccountTypePostRequestBody(AdditionalDataHolder, BackedModel, Pa
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The userAccountType property
-    user_account_type: Optional[CloudPcUserAccountType] = None
+    user_account_type: Optional[ChangeUserAccountTypePostRequestBody_userAccountType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ChangeUserAccountTypePostRequestBody:
@@ -33,12 +33,12 @@ class ChangeUserAccountTypePostRequestBody(AdditionalDataHolder, BackedModel, Pa
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ......models.cloud_pc_user_account_type import CloudPcUserAccountType
+        from .change_user_account_type_post_request_body_user_account_type import ChangeUserAccountTypePostRequestBody_userAccountType
 
-        from ......models.cloud_pc_user_account_type import CloudPcUserAccountType
+        from .change_user_account_type_post_request_body_user_account_type import ChangeUserAccountTypePostRequestBody_userAccountType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(CloudPcUserAccountType)),
+            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(ChangeUserAccountTypePostRequestBody_userAccountType)),
         }
         return fields
     

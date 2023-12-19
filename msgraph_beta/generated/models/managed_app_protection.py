@@ -17,9 +17,11 @@ if TYPE_CHECKING:
     from .managed_app_phone_number_redirect_level import ManagedAppPhoneNumberRedirectLevel
     from .managed_app_pin_character_set import ManagedAppPinCharacterSet
     from .managed_app_policy import ManagedAppPolicy
+    from .managed_app_protection_app_action_if_unable_to_authenticate_user import ManagedAppProtection_appActionIfUnableToAuthenticateUser
+    from .managed_app_protection_mobile_threat_defense_partner_priority import ManagedAppProtection_mobileThreatDefensePartnerPriority
     from .managed_app_remediation_action import ManagedAppRemediationAction
     from .managed_browser_type import ManagedBrowserType
-    from .mobile_threat_defense_partner_priority import MobileThreatDefensePartnerPriority
+    from .messaging_redirect_app_type import MessagingRedirectAppType
     from .targeted_managed_app_protection import TargetedManagedAppProtection
 
 from .managed_app_policy import ManagedAppPolicy
@@ -48,7 +50,7 @@ class ManagedAppProtection(ManagedAppPolicy):
     # An admin initiated action to be applied on a managed app.
     app_action_if_maximum_pin_retries_exceeded: Optional[ManagedAppRemediationAction] = None
     # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Possible values are: block, wipe, warn.
-    app_action_if_unable_to_authenticate_user: Optional[ManagedAppRemediationAction] = None
+    app_action_if_unable_to_authenticate_user: Optional[ManagedAppProtection_appActionIfUnableToAuthenticateUser] = None
     # Indicates whether a user can bring data into org documents.
     block_data_ingestion_into_organization_documents: Optional[bool] = None
     # Indicates whether contacts can be synced to the user's device.
@@ -94,7 +96,7 @@ class ManagedAppProtection(ManagedAppPolicy):
     # Versions less than or equal to the specified version will wipe the managed app and the associated company data.
     minimum_wipe_os_version: Optional[str] = None
     # Indicates how to prioritize which Mobile Threat Defense (MTD) partner is enabled for a given platform, when more than one is enabled. An app can only be actively using a single Mobile Threat Defense partner. When NULL, Microsoft Defender will be given preference. Otherwise setting the value to defenderOverThirdPartyPartner or thirdPartyPartnerOverDefender will make explicit which partner to prioritize. Possible values are: null, defenderOverThirdPartyPartner, thirdPartyPartnerOverDefender and unknownFutureValue. Default value is null. Possible values are: defenderOverThirdPartyPartner, thirdPartyPartnerOverDefender, unknownFutureValue.
-    mobile_threat_defense_partner_priority: Optional[MobileThreatDefensePartnerPriority] = None
+    mobile_threat_defense_partner_priority: Optional[ManagedAppProtection_mobileThreatDefensePartnerPriority] = None
     # An admin initiated action to be applied on a managed app.
     mobile_threat_defense_remediation_action: Optional[ManagedAppRemediationAction] = None
     # Restrict managed app notification
@@ -119,6 +121,8 @@ class ManagedAppProtection(ManagedAppPolicy):
     previous_pin_block_count: Optional[int] = None
     # Indicates whether printing is allowed from managed apps.
     print_blocked: Optional[bool] = None
+    # Defines how app messaging redirection is protected by an App Protection Policy. Default is anyApp.
+    protected_messaging_redirect_app_type: Optional[MessagingRedirectAppType] = None
     # Indicates whether users may use the 'Save As' menu item to save a copy of protected files.
     save_as_blocked: Optional[bool] = None
     # Indicates whether simplePin is blocked.
@@ -172,9 +176,11 @@ class ManagedAppProtection(ManagedAppPolicy):
         from .managed_app_phone_number_redirect_level import ManagedAppPhoneNumberRedirectLevel
         from .managed_app_pin_character_set import ManagedAppPinCharacterSet
         from .managed_app_policy import ManagedAppPolicy
+        from .managed_app_protection_app_action_if_unable_to_authenticate_user import ManagedAppProtection_appActionIfUnableToAuthenticateUser
+        from .managed_app_protection_mobile_threat_defense_partner_priority import ManagedAppProtection_mobileThreatDefensePartnerPriority
         from .managed_app_remediation_action import ManagedAppRemediationAction
         from .managed_browser_type import ManagedBrowserType
-        from .mobile_threat_defense_partner_priority import MobileThreatDefensePartnerPriority
+        from .messaging_redirect_app_type import MessagingRedirectAppType
         from .targeted_managed_app_protection import TargetedManagedAppProtection
 
         from .android_managed_app_protection import AndroidManagedAppProtection
@@ -189,9 +195,11 @@ class ManagedAppProtection(ManagedAppPolicy):
         from .managed_app_phone_number_redirect_level import ManagedAppPhoneNumberRedirectLevel
         from .managed_app_pin_character_set import ManagedAppPinCharacterSet
         from .managed_app_policy import ManagedAppPolicy
+        from .managed_app_protection_app_action_if_unable_to_authenticate_user import ManagedAppProtection_appActionIfUnableToAuthenticateUser
+        from .managed_app_protection_mobile_threat_defense_partner_priority import ManagedAppProtection_mobileThreatDefensePartnerPriority
         from .managed_app_remediation_action import ManagedAppRemediationAction
         from .managed_browser_type import ManagedBrowserType
-        from .mobile_threat_defense_partner_priority import MobileThreatDefensePartnerPriority
+        from .messaging_redirect_app_type import MessagingRedirectAppType
         from .targeted_managed_app_protection import TargetedManagedAppProtection
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -203,7 +211,7 @@ class ManagedAppProtection(ManagedAppPolicy):
             "allowedOutboundDataTransferDestinations": lambda n : setattr(self, 'allowed_outbound_data_transfer_destinations', n.get_enum_value(ManagedAppDataTransferLevel)),
             "appActionIfDeviceComplianceRequired": lambda n : setattr(self, 'app_action_if_device_compliance_required', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfMaximumPinRetriesExceeded": lambda n : setattr(self, 'app_action_if_maximum_pin_retries_exceeded', n.get_enum_value(ManagedAppRemediationAction)),
-            "appActionIfUnableToAuthenticateUser": lambda n : setattr(self, 'app_action_if_unable_to_authenticate_user', n.get_enum_value(ManagedAppRemediationAction)),
+            "appActionIfUnableToAuthenticateUser": lambda n : setattr(self, 'app_action_if_unable_to_authenticate_user', n.get_enum_value(ManagedAppProtection_appActionIfUnableToAuthenticateUser)),
             "blockDataIngestionIntoOrganizationDocuments": lambda n : setattr(self, 'block_data_ingestion_into_organization_documents', n.get_bool_value()),
             "contactSyncBlocked": lambda n : setattr(self, 'contact_sync_blocked', n.get_bool_value()),
             "dataBackupBlocked": lambda n : setattr(self, 'data_backup_blocked', n.get_bool_value()),
@@ -226,7 +234,7 @@ class ManagedAppProtection(ManagedAppPolicy):
             "minimumWarningOsVersion": lambda n : setattr(self, 'minimum_warning_os_version', n.get_str_value()),
             "minimumWipeAppVersion": lambda n : setattr(self, 'minimum_wipe_app_version', n.get_str_value()),
             "minimumWipeOsVersion": lambda n : setattr(self, 'minimum_wipe_os_version', n.get_str_value()),
-            "mobileThreatDefensePartnerPriority": lambda n : setattr(self, 'mobile_threat_defense_partner_priority', n.get_enum_value(MobileThreatDefensePartnerPriority)),
+            "mobileThreatDefensePartnerPriority": lambda n : setattr(self, 'mobile_threat_defense_partner_priority', n.get_enum_value(ManagedAppProtection_mobileThreatDefensePartnerPriority)),
             "mobileThreatDefenseRemediationAction": lambda n : setattr(self, 'mobile_threat_defense_remediation_action', n.get_enum_value(ManagedAppRemediationAction)),
             "notificationRestriction": lambda n : setattr(self, 'notification_restriction', n.get_enum_value(ManagedAppNotificationRestriction)),
             "organizationalCredentialsRequired": lambda n : setattr(self, 'organizational_credentials_required', n.get_bool_value()),
@@ -239,6 +247,7 @@ class ManagedAppProtection(ManagedAppPolicy):
             "pinRequiredInsteadOfBiometricTimeout": lambda n : setattr(self, 'pin_required_instead_of_biometric_timeout', n.get_timedelta_value()),
             "previousPinBlockCount": lambda n : setattr(self, 'previous_pin_block_count', n.get_int_value()),
             "printBlocked": lambda n : setattr(self, 'print_blocked', n.get_bool_value()),
+            "protectedMessagingRedirectAppType": lambda n : setattr(self, 'protected_messaging_redirect_app_type', n.get_enum_value(MessagingRedirectAppType)),
             "saveAsBlocked": lambda n : setattr(self, 'save_as_blocked', n.get_bool_value()),
             "simplePinBlocked": lambda n : setattr(self, 'simple_pin_blocked', n.get_bool_value()),
         }
@@ -299,6 +308,7 @@ class ManagedAppProtection(ManagedAppPolicy):
         writer.write_timedelta_value("pinRequiredInsteadOfBiometricTimeout", self.pin_required_instead_of_biometric_timeout)
         writer.write_int_value("previousPinBlockCount", self.previous_pin_block_count)
         writer.write_bool_value("printBlocked", self.print_blocked)
+        writer.write_enum_value("protectedMessagingRedirectAppType", self.protected_messaging_redirect_app_type)
         writer.write_bool_value("saveAsBlocked", self.save_as_blocked)
         writer.write_bool_value("simplePinBlocked", self.simple_pin_blocked)
     

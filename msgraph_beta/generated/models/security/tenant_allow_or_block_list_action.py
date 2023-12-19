@@ -6,8 +6,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .tenant_allow_block_list_action import TenantAllowBlockListAction
     from .tenant_allow_block_list_entry_result import TenantAllowBlockListEntryResult
+    from .tenant_allow_or_block_list_action_action import TenantAllowOrBlockListAction_action
 
 @dataclass
 class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
@@ -17,7 +17,7 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Specifies whether the tenant allow-or-block list is an allow or block. The possible values are: allow, block, and unkownFutureValue.
-    action: Optional[TenantAllowBlockListAction] = None
+    action: Optional[TenantAllowOrBlockListAction_action] = None
     # Specifies when the tenant allow-block-list expires in date time.
     expiration_date_time: Optional[datetime.datetime] = None
     # Specifies the note added to the tenant allow-or-block list entry in the format of string.
@@ -43,14 +43,14 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .tenant_allow_block_list_action import TenantAllowBlockListAction
         from .tenant_allow_block_list_entry_result import TenantAllowBlockListEntryResult
+        from .tenant_allow_or_block_list_action_action import TenantAllowOrBlockListAction_action
 
-        from .tenant_allow_block_list_action import TenantAllowBlockListAction
         from .tenant_allow_block_list_entry_result import TenantAllowBlockListEntryResult
+        from .tenant_allow_or_block_list_action_action import TenantAllowOrBlockListAction_action
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "action": lambda n : setattr(self, 'action', n.get_enum_value(TenantAllowBlockListAction)),
+            "action": lambda n : setattr(self, 'action', n.get_enum_value(TenantAllowOrBlockListAction_action)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "note": lambda n : setattr(self, 'note', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

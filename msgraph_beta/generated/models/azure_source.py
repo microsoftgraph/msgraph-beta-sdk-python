@@ -12,7 +12,7 @@ from .authorization_system_identity_source import AuthorizationSystemIdentitySou
 class AzureSource(AuthorizationSystemIdentitySource):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureSource"
-    # The subscriptionId property
+    # Azure subscription ID.
     subscription_id: Optional[str] = None
     
     @staticmethod

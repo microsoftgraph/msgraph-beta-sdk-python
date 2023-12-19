@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .media_source_content_category import MediaSourceContentCategory
+    from .media_source_content_category import MediaSource_contentCategory
 
 @dataclass
 class MediaSource(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,7 +15,7 @@ class MediaSource(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Enumeration value that indicates the media content category.
-    content_category: Optional[MediaSourceContentCategory] = None
+    content_category: Optional[MediaSource_contentCategory] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -35,12 +35,12 @@ class MediaSource(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .media_source_content_category import MediaSourceContentCategory
+        from .media_source_content_category import MediaSource_contentCategory
 
-        from .media_source_content_category import MediaSourceContentCategory
+        from .media_source_content_category import MediaSource_contentCategory
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "contentCategory": lambda n : setattr(self, 'content_category', n.get_enum_value(MediaSourceContentCategory)),
+            "contentCategory": lambda n : setattr(self, 'content_category', n.get_enum_value(MediaSource_contentCategory)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

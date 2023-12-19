@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .product_revision import ProductRevision
-    from .quality_update_cadence import QualityUpdateCadence
+    from .quality_update_catalog_entry_quality_update_cadence import QualityUpdateCatalogEntry_qualityUpdateCadence
     from .quality_update_classification import QualityUpdateClassification
     from .quality_update_cve_severity_information import QualityUpdateCveSeverityInformation
     from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
@@ -25,7 +25,7 @@ class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry):
     # The operating system product revisions that are released as part of this quality update.
     product_revisions: Optional[List[ProductRevision]] = None
     # The publishing cadence of the quality update. Possible values are: monthly, outOfBand, unknownFutureValue. Read-only.
-    quality_update_cadence: Optional[QualityUpdateCadence] = None
+    quality_update_cadence: Optional[QualityUpdateCatalogEntry_qualityUpdateCadence] = None
     # The qualityUpdateClassification property
     quality_update_classification: Optional[QualityUpdateClassification] = None
     # The short name of the content. Read-only.
@@ -48,13 +48,13 @@ class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .product_revision import ProductRevision
-        from .quality_update_cadence import QualityUpdateCadence
+        from .quality_update_catalog_entry_quality_update_cadence import QualityUpdateCatalogEntry_qualityUpdateCadence
         from .quality_update_classification import QualityUpdateClassification
         from .quality_update_cve_severity_information import QualityUpdateCveSeverityInformation
         from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
 
         from .product_revision import ProductRevision
-        from .quality_update_cadence import QualityUpdateCadence
+        from .quality_update_catalog_entry_quality_update_cadence import QualityUpdateCatalogEntry_qualityUpdateCadence
         from .quality_update_classification import QualityUpdateClassification
         from .quality_update_cve_severity_information import QualityUpdateCveSeverityInformation
         from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
@@ -64,7 +64,7 @@ class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry):
             "cveSeverityInformation": lambda n : setattr(self, 'cve_severity_information', n.get_object_value(QualityUpdateCveSeverityInformation)),
             "isExpeditable": lambda n : setattr(self, 'is_expeditable', n.get_bool_value()),
             "productRevisions": lambda n : setattr(self, 'product_revisions', n.get_collection_of_object_values(ProductRevision)),
-            "qualityUpdateCadence": lambda n : setattr(self, 'quality_update_cadence', n.get_enum_value(QualityUpdateCadence)),
+            "qualityUpdateCadence": lambda n : setattr(self, 'quality_update_cadence', n.get_enum_value(QualityUpdateCatalogEntry_qualityUpdateCadence)),
             "qualityUpdateClassification": lambda n : setattr(self, 'quality_update_classification', n.get_enum_value(QualityUpdateClassification)),
             "shortName": lambda n : setattr(self, 'short_name', n.get_str_value()),
         }

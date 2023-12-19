@@ -1,8 +1,5 @@
 from enum import Enum
 
-class VirtualEventStatus(str, Enum):
-    Draft = "draft",
-    Published = "published",
-    Canceled = "canceled",
-    UnknownFutureValue = "unknownFutureValue",
+class VirtualEvent_status(str, Enum):
+    pass
 

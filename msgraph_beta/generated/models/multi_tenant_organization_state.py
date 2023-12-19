@@ -1,7 +1,5 @@
 from enum import Enum
 
-class MultiTenantOrganizationState(str, Enum):
-    Active = "active",
-    Inactive = "inactive",
-    UnknownFutureValue = "unknownFutureValue",
+class MultiTenantOrganization_state(str, Enum):
+    pass
 

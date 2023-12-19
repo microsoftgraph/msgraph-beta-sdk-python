@@ -4,9 +4,10 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+    from .android_device_owner_compliance_policy_advanced_threat_protection_required_security_level import AndroidDeviceOwnerCompliancePolicy_advancedThreatProtectionRequiredSecurityLevel
+    from .android_device_owner_compliance_policy_device_threat_protection_required_security_level import AndroidDeviceOwnerCompliancePolicy_deviceThreatProtectionRequiredSecurityLevel
+    from .android_device_owner_compliance_policy_password_required_type import AndroidDeviceOwnerCompliancePolicy_passwordRequiredType
     from .device_compliance_policy import DeviceCompliancePolicy
-    from .device_threat_protection_level import DeviceThreatProtectionLevel
 
 from .device_compliance_policy import DeviceCompliancePolicy
 
@@ -18,11 +19,11 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerCompliancePolicy"
     # MDATP Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.
-    advanced_threat_protection_required_security_level: Optional[DeviceThreatProtectionLevel] = None
+    advanced_threat_protection_required_security_level: Optional[AndroidDeviceOwnerCompliancePolicy_advancedThreatProtectionRequiredSecurityLevel] = None
     # Require that devices have enabled device threat protection.
     device_threat_protection_enabled: Optional[bool] = None
     # Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.
-    device_threat_protection_required_security_level: Optional[DeviceThreatProtectionLevel] = None
+    device_threat_protection_required_security_level: Optional[AndroidDeviceOwnerCompliancePolicy_deviceThreatProtectionRequiredSecurityLevel] = None
     # Minimum Android security patch level.
     min_android_security_patch_level: Optional[str] = None
     # Maximum Android version.
@@ -52,7 +53,9 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
     # Require a password to unlock device.
     password_required: Optional[bool] = None
     # Type of characters in password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-    password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
+    password_required_type: Optional[AndroidDeviceOwnerCompliancePolicy_passwordRequiredType] = None
+    # Require device to have no pending Android system updates.
+    require_no_pending_system_updates: Optional[bool] = None
     # If setting is set to true, checks that the Intune app installed on fully managed, dedicated, or corporate-owned work profile Android Enterprise enrolled devices, is the one provided by Microsoft from the Managed Google Playstore. If the check fails, the device will be reported as non-compliant.
     security_require_intune_app_integrity: Optional[bool] = None
     # Require the device to pass the SafetyNet basic integrity check.
@@ -78,18 +81,20 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+        from .android_device_owner_compliance_policy_advanced_threat_protection_required_security_level import AndroidDeviceOwnerCompliancePolicy_advancedThreatProtectionRequiredSecurityLevel
+        from .android_device_owner_compliance_policy_device_threat_protection_required_security_level import AndroidDeviceOwnerCompliancePolicy_deviceThreatProtectionRequiredSecurityLevel
+        from .android_device_owner_compliance_policy_password_required_type import AndroidDeviceOwnerCompliancePolicy_passwordRequiredType
         from .device_compliance_policy import DeviceCompliancePolicy
-        from .device_threat_protection_level import DeviceThreatProtectionLevel
 
-        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+        from .android_device_owner_compliance_policy_advanced_threat_protection_required_security_level import AndroidDeviceOwnerCompliancePolicy_advancedThreatProtectionRequiredSecurityLevel
+        from .android_device_owner_compliance_policy_device_threat_protection_required_security_level import AndroidDeviceOwnerCompliancePolicy_deviceThreatProtectionRequiredSecurityLevel
+        from .android_device_owner_compliance_policy_password_required_type import AndroidDeviceOwnerCompliancePolicy_passwordRequiredType
         from .device_compliance_policy import DeviceCompliancePolicy
-        from .device_threat_protection_level import DeviceThreatProtectionLevel
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "advancedThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(DeviceThreatProtectionLevel)),
+            "advancedThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(AndroidDeviceOwnerCompliancePolicy_advancedThreatProtectionRequiredSecurityLevel)),
             "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
-            "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(DeviceThreatProtectionLevel)),
+            "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(AndroidDeviceOwnerCompliancePolicy_deviceThreatProtectionRequiredSecurityLevel)),
             "minAndroidSecurityPatchLevel": lambda n : setattr(self, 'min_android_security_patch_level', n.get_str_value()),
             "osMaximumVersion": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
             "osMinimumVersion": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
@@ -104,7 +109,8 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
             "passwordMinutesOfInactivityBeforeLock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
             "passwordPreviousPasswordCountToBlock": lambda n : setattr(self, 'password_previous_password_count_to_block', n.get_int_value()),
             "passwordRequired": lambda n : setattr(self, 'password_required', n.get_bool_value()),
-            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(AndroidDeviceOwnerRequiredPasswordType)),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(AndroidDeviceOwnerCompliancePolicy_passwordRequiredType)),
+            "requireNoPendingSystemUpdates": lambda n : setattr(self, 'require_no_pending_system_updates', n.get_bool_value()),
             "securityRequireIntuneAppIntegrity": lambda n : setattr(self, 'security_require_intune_app_integrity', n.get_bool_value()),
             "securityRequireSafetyNetAttestationBasicIntegrity": lambda n : setattr(self, 'security_require_safety_net_attestation_basic_integrity', n.get_bool_value()),
             "securityRequireSafetyNetAttestationCertifiedDevice": lambda n : setattr(self, 'security_require_safety_net_attestation_certified_device', n.get_bool_value()),
@@ -141,6 +147,7 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
         writer.write_int_value("passwordPreviousPasswordCountToBlock", self.password_previous_password_count_to_block)
         writer.write_bool_value("passwordRequired", self.password_required)
         writer.write_enum_value("passwordRequiredType", self.password_required_type)
+        writer.write_bool_value("requireNoPendingSystemUpdates", self.require_no_pending_system_updates)
         writer.write_bool_value("securityRequireIntuneAppIntegrity", self.security_require_intune_app_integrity)
         writer.write_bool_value("securityRequireSafetyNetAttestationBasicIntegrity", self.security_require_safety_net_attestation_basic_integrity)
         writer.write_bool_value("securityRequireSafetyNetAttestationCertifiedDevice", self.security_require_safety_net_attestation_certified_device)

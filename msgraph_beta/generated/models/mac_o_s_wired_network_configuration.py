@@ -5,13 +5,13 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
-    from .eap_fast_configuration import EapFastConfiguration
     from .eap_type import EapType
     from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
     from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
-    from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
+    from .mac_o_s_wired_network_configuration_authentication_method import MacOSWiredNetworkConfiguration_authenticationMethod
+    from .mac_o_s_wired_network_configuration_eap_fast_configuration import MacOSWiredNetworkConfiguration_eapFastConfiguration
+    from .mac_o_s_wired_network_configuration_non_eap_authentication_method_for_eap_ttls import MacOSWiredNetworkConfiguration_nonEapAuthenticationMethodForEapTtls
     from .wired_network_interface import WiredNetworkInterface
-    from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
 from .device_configuration import DeviceConfiguration
 
@@ -23,9 +23,9 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOSWiredNetworkConfiguration"
     # Authentication Method when EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
-    authentication_method: Optional[WiFiAuthenticationMethod] = None
+    authentication_method: Optional[MacOSWiredNetworkConfiguration_authenticationMethod] = None
     # EAP-FAST Configuration Option when EAP-FAST is the selected EAP Type. Possible values are: noProtectedAccessCredential, useProtectedAccessCredential, useProtectedAccessCredentialAndProvision, useProtectedAccessCredentialAndProvisionAnonymously.
-    eap_fast_configuration: Optional[EapFastConfiguration] = None
+    eap_fast_configuration: Optional[MacOSWiredNetworkConfiguration_eapFastConfiguration] = None
     # Extensible Authentication Protocol (EAP) configuration types.
     eap_type: Optional[EapType] = None
     # Enable identity privacy (Outer Identity) when EAP Type is configured to EAP-TTLS, EAP-FAST or PEAP. This property masks usernames with the text you enter. For example, if you use 'anonymous', each user that authenticates with this wired network using their real username is displayed as 'anonymous'.
@@ -37,7 +37,7 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration):
     # Network Name
     network_name: Optional[str] = None
     # Non-EAP Method for Authentication (Inner Identity) when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
-    non_eap_authentication_method_for_eap_ttls: Optional[NonEapAuthenticationMethodForEapTtlsType] = None
+    non_eap_authentication_method_for_eap_ttls: Optional[MacOSWiredNetworkConfiguration_nonEapAuthenticationMethodForEapTtls] = None
     # Trusted Root Certificate for Server Validation when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP.
     root_certificate_for_server_validation: Optional[MacOSTrustedRootCertificate] = None
     # Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users devices when they connect to this wired network.
@@ -60,32 +60,32 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
-        from .eap_fast_configuration import EapFastConfiguration
         from .eap_type import EapType
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
         from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
-        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
+        from .mac_o_s_wired_network_configuration_authentication_method import MacOSWiredNetworkConfiguration_authenticationMethod
+        from .mac_o_s_wired_network_configuration_eap_fast_configuration import MacOSWiredNetworkConfiguration_eapFastConfiguration
+        from .mac_o_s_wired_network_configuration_non_eap_authentication_method_for_eap_ttls import MacOSWiredNetworkConfiguration_nonEapAuthenticationMethodForEapTtls
         from .wired_network_interface import WiredNetworkInterface
-        from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
         from .device_configuration import DeviceConfiguration
-        from .eap_fast_configuration import EapFastConfiguration
         from .eap_type import EapType
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
         from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
-        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
+        from .mac_o_s_wired_network_configuration_authentication_method import MacOSWiredNetworkConfiguration_authenticationMethod
+        from .mac_o_s_wired_network_configuration_eap_fast_configuration import MacOSWiredNetworkConfiguration_eapFastConfiguration
+        from .mac_o_s_wired_network_configuration_non_eap_authentication_method_for_eap_ttls import MacOSWiredNetworkConfiguration_nonEapAuthenticationMethodForEapTtls
         from .wired_network_interface import WiredNetworkInterface
-        from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WiFiAuthenticationMethod)),
-            "eapFastConfiguration": lambda n : setattr(self, 'eap_fast_configuration', n.get_enum_value(EapFastConfiguration)),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(MacOSWiredNetworkConfiguration_authenticationMethod)),
+            "eapFastConfiguration": lambda n : setattr(self, 'eap_fast_configuration', n.get_enum_value(MacOSWiredNetworkConfiguration_eapFastConfiguration)),
             "eapType": lambda n : setattr(self, 'eap_type', n.get_enum_value(EapType)),
             "enableOuterIdentityPrivacy": lambda n : setattr(self, 'enable_outer_identity_privacy', n.get_str_value()),
             "identityCertificateForClientAuthentication": lambda n : setattr(self, 'identity_certificate_for_client_authentication', n.get_object_value(MacOSCertificateProfileBase)),
             "networkInterface": lambda n : setattr(self, 'network_interface', n.get_enum_value(WiredNetworkInterface)),
             "networkName": lambda n : setattr(self, 'network_name', n.get_str_value()),
-            "nonEapAuthenticationMethodForEapTtls": lambda n : setattr(self, 'non_eap_authentication_method_for_eap_ttls', n.get_enum_value(NonEapAuthenticationMethodForEapTtlsType)),
+            "nonEapAuthenticationMethodForEapTtls": lambda n : setattr(self, 'non_eap_authentication_method_for_eap_ttls', n.get_enum_value(MacOSWiredNetworkConfiguration_nonEapAuthenticationMethodForEapTtls)),
             "rootCertificateForServerValidation": lambda n : setattr(self, 'root_certificate_for_server_validation', n.get_object_value(MacOSTrustedRootCertificate)),
             "trustedServerCertificateNames": lambda n : setattr(self, 'trusted_server_certificate_names', n.get_collection_of_primitive_values(str)),
         }

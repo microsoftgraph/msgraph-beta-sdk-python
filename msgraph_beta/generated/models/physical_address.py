@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .physical_address_type import PhysicalAddressType
+    from .physical_address_type import PhysicalAddress_type
 
 @dataclass
 class PhysicalAddress(AdditionalDataHolder, BackedModel, Parsable):
@@ -29,7 +29,7 @@ class PhysicalAddress(AdditionalDataHolder, BackedModel, Parsable):
     # The street.
     street: Optional[str] = None
     # The type of address. Possible values are: unknown, home, business, other.
-    type: Optional[PhysicalAddressType] = None
+    type: Optional[PhysicalAddress_type] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PhysicalAddress:
@@ -47,9 +47,9 @@ class PhysicalAddress(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .physical_address_type import PhysicalAddressType
+        from .physical_address_type import PhysicalAddress_type
 
-        from .physical_address_type import PhysicalAddressType
+        from .physical_address_type import PhysicalAddress_type
 
         fields: Dict[str, Callable[[Any], None]] = {
             "city": lambda n : setattr(self, 'city', n.get_str_value()),
@@ -59,7 +59,7 @@ class PhysicalAddress(AdditionalDataHolder, BackedModel, Parsable):
             "postalCode": lambda n : setattr(self, 'postal_code', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
             "street": lambda n : setattr(self, 'street', n.get_str_value()),
-            "type": lambda n : setattr(self, 'type', n.get_enum_value(PhysicalAddressType)),
+            "type": lambda n : setattr(self, 'type', n.get_enum_value(PhysicalAddress_type)),
         }
         return fields
     

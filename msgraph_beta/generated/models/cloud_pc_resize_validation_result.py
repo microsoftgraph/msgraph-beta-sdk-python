@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .cloud_pc_resize_validation_code import CloudPcResizeValidationCode
+    from .cloud_pc_resize_validation_result_validation_result import CloudPcResizeValidationResult_validationResult
 
 @dataclass
 class CloudPcResizeValidationResult(AdditionalDataHolder, BackedModel, Parsable):
@@ -19,7 +19,7 @@ class CloudPcResizeValidationResult(AdditionalDataHolder, BackedModel, Parsable)
     # The OdataType property
     odata_type: Optional[str] = None
     # Describes a list of the validation result for the Cloud PC resize action. The possible values are: success, cloudPcNotFound, operationCnflict, operationNotSupported, targetLicenseHasAssigned, internalServerError, and unknownFutureValue.
-    validation_result: Optional[CloudPcResizeValidationCode] = None
+    validation_result: Optional[CloudPcResizeValidationResult_validationResult] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcResizeValidationResult:
@@ -37,14 +37,14 @@ class CloudPcResizeValidationResult(AdditionalDataHolder, BackedModel, Parsable)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .cloud_pc_resize_validation_code import CloudPcResizeValidationCode
+        from .cloud_pc_resize_validation_result_validation_result import CloudPcResizeValidationResult_validationResult
 
-        from .cloud_pc_resize_validation_code import CloudPcResizeValidationCode
+        from .cloud_pc_resize_validation_result_validation_result import CloudPcResizeValidationResult_validationResult
 
         fields: Dict[str, Callable[[Any], None]] = {
             "cloudPcId": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "validationResult": lambda n : setattr(self, 'validation_result', n.get_enum_value(CloudPcResizeValidationCode)),
+            "validationResult": lambda n : setattr(self, 'validation_result', n.get_enum_value(CloudPcResizeValidationResult_validationResult)),
         }
         return fields
     

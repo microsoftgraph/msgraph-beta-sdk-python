@@ -4,15 +4,15 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .answer_input_type import AnswerInputType
     from .entity import Entity
+    from .meeting_registration_question_answer_input_type import MeetingRegistrationQuestion_answerInputType
 
 from .entity import Entity
 
 @dataclass
 class MeetingRegistrationQuestion(Entity):
     # Answer input type of the custom registration question.
-    answer_input_type: Optional[AnswerInputType] = None
+    answer_input_type: Optional[MeetingRegistrationQuestion_answerInputType] = None
     # Answer options when answerInputType is radioButton.
     answer_options: Optional[List[str]] = None
     # Display name of the custom registration question.
@@ -38,14 +38,14 @@ class MeetingRegistrationQuestion(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .answer_input_type import AnswerInputType
         from .entity import Entity
+        from .meeting_registration_question_answer_input_type import MeetingRegistrationQuestion_answerInputType
 
-        from .answer_input_type import AnswerInputType
         from .entity import Entity
+        from .meeting_registration_question_answer_input_type import MeetingRegistrationQuestion_answerInputType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "answerInputType": lambda n : setattr(self, 'answer_input_type', n.get_enum_value(AnswerInputType)),
+            "answerInputType": lambda n : setattr(self, 'answer_input_type', n.get_enum_value(MeetingRegistrationQuestion_answerInputType)),
             "answerOptions": lambda n : setattr(self, 'answer_options', n.get_collection_of_primitive_values(str)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "isRequired": lambda n : setattr(self, 'is_required', n.get_bool_value()),

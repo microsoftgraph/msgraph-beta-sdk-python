@@ -5,7 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .channel_membership_type import ChannelMembershipType
+    from .channel_membership_type import Channel_membershipType
     from .channel_moderation_settings import ChannelModerationSettings
     from .channel_summary import ChannelSummary
     from .chat_message import ChatMessage
@@ -29,12 +29,14 @@ class Channel(Entity):
     email: Optional[str] = None
     # Metadata for the location where the channel's files are stored.
     files_folder: Optional[DriveItem] = None
+    # The isArchived property
+    is_archived: Optional[bool] = None
     # Indicates whether the channel should automatically be marked 'favorite' for all members of the team. Can only be set programmatically with Create team. Default: false.
     is_favorite_by_default: Optional[bool] = None
     # A collection of membership records associated with the channel.
     members: Optional[List[ConversationMember]] = None
     # The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.
-    membership_type: Optional[ChannelMembershipType] = None
+    membership_type: Optional[Channel_membershipType] = None
     # A collection of all the messages in the channel. A navigation property. Nullable.
     messages: Optional[List[ChatMessage]] = None
     # Settings to configure channel moderation to control who can start new posts and reply to posts in that channel.
@@ -68,7 +70,7 @@ class Channel(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .channel_membership_type import ChannelMembershipType
+        from .channel_membership_type import Channel_membershipType
         from .channel_moderation_settings import ChannelModerationSettings
         from .channel_summary import ChannelSummary
         from .chat_message import ChatMessage
@@ -78,7 +80,7 @@ class Channel(Entity):
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
         from .teams_tab import TeamsTab
 
-        from .channel_membership_type import ChannelMembershipType
+        from .channel_membership_type import Channel_membershipType
         from .channel_moderation_settings import ChannelModerationSettings
         from .channel_summary import ChannelSummary
         from .chat_message import ChatMessage
@@ -94,9 +96,10 @@ class Channel(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "filesFolder": lambda n : setattr(self, 'files_folder', n.get_object_value(DriveItem)),
+            "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
             "isFavoriteByDefault": lambda n : setattr(self, 'is_favorite_by_default', n.get_bool_value()),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(ConversationMember)),
-            "membershipType": lambda n : setattr(self, 'membership_type', n.get_enum_value(ChannelMembershipType)),
+            "membershipType": lambda n : setattr(self, 'membership_type', n.get_enum_value(Channel_membershipType)),
             "messages": lambda n : setattr(self, 'messages', n.get_collection_of_object_values(ChatMessage)),
             "moderationSettings": lambda n : setattr(self, 'moderation_settings', n.get_object_value(ChannelModerationSettings)),
             "sharedWithTeams": lambda n : setattr(self, 'shared_with_teams', n.get_collection_of_object_values(SharedWithChannelTeamInfo)),
@@ -123,6 +126,7 @@ class Channel(Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("email", self.email)
         writer.write_object_value("filesFolder", self.files_folder)
+        writer.write_bool_value("isArchived", self.is_archived)
         writer.write_bool_value("isFavoriteByDefault", self.is_favorite_by_default)
         writer.write_collection_of_object_values("members", self.members)
         writer.write_enum_value("membershipType", self.membership_type)

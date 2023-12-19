@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .custom_question_answer import CustomQuestionAnswer
     from .meeting_registrant_base import MeetingRegistrantBase
-    from .meeting_registrant_status import MeetingRegistrantStatus
+    from .meeting_registrant_status import MeetingRegistrant_status
 
 from .meeting_registrant_base import MeetingRegistrantBase
 
@@ -26,7 +26,7 @@ class MeetingRegistrant(MeetingRegistrantBase):
     # Time in UTC when the registrant registers for the meeting. Read-only.
     registration_date_time: Optional[datetime.datetime] = None
     # The registration status of the registrant. Read-only.
-    status: Optional[MeetingRegistrantStatus] = None
+    status: Optional[MeetingRegistrant_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MeetingRegistrant:
@@ -46,11 +46,11 @@ class MeetingRegistrant(MeetingRegistrantBase):
         """
         from .custom_question_answer import CustomQuestionAnswer
         from .meeting_registrant_base import MeetingRegistrantBase
-        from .meeting_registrant_status import MeetingRegistrantStatus
+        from .meeting_registrant_status import MeetingRegistrant_status
 
         from .custom_question_answer import CustomQuestionAnswer
         from .meeting_registrant_base import MeetingRegistrantBase
-        from .meeting_registrant_status import MeetingRegistrantStatus
+        from .meeting_registrant_status import MeetingRegistrant_status
 
         fields: Dict[str, Callable[[Any], None]] = {
             "customQuestionAnswers": lambda n : setattr(self, 'custom_question_answers', n.get_collection_of_object_values(CustomQuestionAnswer)),
@@ -58,7 +58,7 @@ class MeetingRegistrant(MeetingRegistrantBase):
             "firstName": lambda n : setattr(self, 'first_name', n.get_str_value()),
             "lastName": lambda n : setattr(self, 'last_name', n.get_str_value()),
             "registrationDateTime": lambda n : setattr(self, 'registration_date_time', n.get_datetime_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(MeetingRegistrantStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(MeetingRegistrant_status)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

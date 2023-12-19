@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+    from .aosp_device_owner_compliance_policy_password_required_type import AospDeviceOwnerCompliancePolicy_passwordRequiredType
     from .device_compliance_policy import DeviceCompliancePolicy
 
 from .device_compliance_policy import DeviceCompliancePolicy
@@ -29,7 +29,7 @@ class AospDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
     # Require a password to unlock device.
     password_required: Optional[bool] = None
     # Type of characters in password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-    password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
+    password_required_type: Optional[AospDeviceOwnerCompliancePolicy_passwordRequiredType] = None
     # Devices must not be jailbroken or rooted.
     security_block_jailbroken_devices: Optional[bool] = None
     # Require encryption on Android devices.
@@ -51,10 +51,10 @@ class AospDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+        from .aosp_device_owner_compliance_policy_password_required_type import AospDeviceOwnerCompliancePolicy_passwordRequiredType
         from .device_compliance_policy import DeviceCompliancePolicy
 
-        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+        from .aosp_device_owner_compliance_policy_password_required_type import AospDeviceOwnerCompliancePolicy_passwordRequiredType
         from .device_compliance_policy import DeviceCompliancePolicy
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -64,7 +64,7 @@ class AospDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
             "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
             "passwordMinutesOfInactivityBeforeLock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
             "passwordRequired": lambda n : setattr(self, 'password_required', n.get_bool_value()),
-            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(AndroidDeviceOwnerRequiredPasswordType)),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(AospDeviceOwnerCompliancePolicy_passwordRequiredType)),
             "securityBlockJailbrokenDevices": lambda n : setattr(self, 'security_block_jailbroken_devices', n.get_bool_value()),
             "storageRequireEncryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
         }

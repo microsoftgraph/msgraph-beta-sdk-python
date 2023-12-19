@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .membership_rule_processing_status_details import MembershipRuleProcessingStatusDetails
+    from .membership_rule_processing_status_status import MembershipRuleProcessingStatus_status
 
 @dataclass
 class MembershipRuleProcessingStatus(AdditionalDataHolder, BackedModel, Parsable):
@@ -22,7 +22,7 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, BackedModel, Parsable
     # The OdataType property
     odata_type: Optional[str] = None
     # Current status of a dynamic group processing. Possible values are: NotStarted, Running, Succeeded, Failed, and UnknownFutureValue.  Required. Read-only.
-    status: Optional[MembershipRuleProcessingStatusDetails] = None
+    status: Optional[MembershipRuleProcessingStatus_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MembershipRuleProcessingStatus:
@@ -40,15 +40,15 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, BackedModel, Parsable
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .membership_rule_processing_status_details import MembershipRuleProcessingStatusDetails
+        from .membership_rule_processing_status_status import MembershipRuleProcessingStatus_status
 
-        from .membership_rule_processing_status_details import MembershipRuleProcessingStatusDetails
+        from .membership_rule_processing_status_status import MembershipRuleProcessingStatus_status
 
         fields: Dict[str, Callable[[Any], None]] = {
             "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
             "lastMembershipUpdated": lambda n : setattr(self, 'last_membership_updated', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(MembershipRuleProcessingStatusDetails)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(MembershipRuleProcessingStatus_status)),
         }
         return fields
     

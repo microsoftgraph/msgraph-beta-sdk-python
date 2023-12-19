@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .item_facet import ItemFacet
-    from .person_annual_event_type import PersonAnnualEventType
+    from .person_annual_event_type import PersonAnnualEvent_type
 
 from .item_facet import ItemFacet
 
@@ -19,7 +19,7 @@ class PersonAnnualEvent(ItemFacet):
     # The displayName property
     display_name: Optional[str] = None
     # The type property
-    type: Optional[PersonAnnualEventType] = None
+    type: Optional[PersonAnnualEvent_type] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonAnnualEvent:
@@ -38,15 +38,15 @@ class PersonAnnualEvent(ItemFacet):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .item_facet import ItemFacet
-        from .person_annual_event_type import PersonAnnualEventType
+        from .person_annual_event_type import PersonAnnualEvent_type
 
         from .item_facet import ItemFacet
-        from .person_annual_event_type import PersonAnnualEventType
+        from .person_annual_event_type import PersonAnnualEvent_type
 
         fields: Dict[str, Callable[[Any], None]] = {
             "date": lambda n : setattr(self, 'date', n.get_date_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "type": lambda n : setattr(self, 'type', n.get_enum_value(PersonAnnualEventType)),
+            "type": lambda n : setattr(self, 'type', n.get_enum_value(PersonAnnualEvent_type)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

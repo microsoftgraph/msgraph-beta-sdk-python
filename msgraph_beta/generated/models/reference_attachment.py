@@ -5,8 +5,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .attachment import Attachment
-    from .reference_attachment_permission import ReferenceAttachmentPermission
-    from .reference_attachment_provider import ReferenceAttachmentProvider
+    from .reference_attachment_permission import ReferenceAttachment_permission
+    from .reference_attachment_provider_type import ReferenceAttachment_providerType
 
 from .attachment import Attachment
 
@@ -17,11 +17,11 @@ class ReferenceAttachment(Attachment):
     # Specifies whether the attachment is a link to a folder. Must set this to true if sourceUrl is a link to a folder. Optional.
     is_folder: Optional[bool] = None
     # Specifies the permissions granted for the attachment by the type of provider in providerType. Possible values are: other, view, edit, anonymousView, anonymousEdit, organizationView, organizationEdit. Optional.
-    permission: Optional[ReferenceAttachmentPermission] = None
+    permission: Optional[ReferenceAttachment_permission] = None
     # Applies to only a reference attachment of an image - URL to get a preview image. Use thumbnailUrl and previewUrl only when sourceUrl identifies an image file. Optional.
     preview_url: Optional[str] = None
     # The type of provider that supports an attachment of this contentType. Possible values are: other, oneDriveBusiness, oneDriveConsumer, dropbox. Optional.
-    provider_type: Optional[ReferenceAttachmentProvider] = None
+    provider_type: Optional[ReferenceAttachment_providerType] = None
     # URL to get the attachment content. If this is a URL to a folder, then for the folder to be displayed correctly in Outlook or Outlook on the web, set isFolder to true. Required.
     source_url: Optional[str] = None
     # Applies to only a reference attachment of an image - URL to get a thumbnail image. Use thumbnailUrl and previewUrl only when sourceUrl identifies an image file. Optional.
@@ -44,18 +44,18 @@ class ReferenceAttachment(Attachment):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .attachment import Attachment
-        from .reference_attachment_permission import ReferenceAttachmentPermission
-        from .reference_attachment_provider import ReferenceAttachmentProvider
+        from .reference_attachment_permission import ReferenceAttachment_permission
+        from .reference_attachment_provider_type import ReferenceAttachment_providerType
 
         from .attachment import Attachment
-        from .reference_attachment_permission import ReferenceAttachmentPermission
-        from .reference_attachment_provider import ReferenceAttachmentProvider
+        from .reference_attachment_permission import ReferenceAttachment_permission
+        from .reference_attachment_provider_type import ReferenceAttachment_providerType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "isFolder": lambda n : setattr(self, 'is_folder', n.get_bool_value()),
-            "permission": lambda n : setattr(self, 'permission', n.get_enum_value(ReferenceAttachmentPermission)),
+            "permission": lambda n : setattr(self, 'permission', n.get_enum_value(ReferenceAttachment_permission)),
             "previewUrl": lambda n : setattr(self, 'preview_url', n.get_str_value()),
-            "providerType": lambda n : setattr(self, 'provider_type', n.get_enum_value(ReferenceAttachmentProvider)),
+            "providerType": lambda n : setattr(self, 'provider_type', n.get_enum_value(ReferenceAttachment_providerType)),
             "sourceUrl": lambda n : setattr(self, 'source_url', n.get_str_value()),
             "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
         }

@@ -10,8 +10,8 @@ if TYPE_CHECKING:
     from .configuration import Configuration
     from .connection_operation import ConnectionOperation
     from .connection_quota import ConnectionQuota
-    from .connection_state import ConnectionState
-    from .content_experience_type import ContentExperienceType
+    from .external_connection_enabled_content_experiences import ExternalConnection_enabledContentExperiences
+    from .external_connection_state import ExternalConnection_state
     from .external_group import ExternalGroup
     from .external_item import ExternalItem
     from .schema import Schema
@@ -32,7 +32,7 @@ class ExternalConnection(Entity):
     # Description of the connection displayed in the Microsoft 365 admin center. Optional.
     description: Optional[str] = None
     # The list of content experiences the connection will participate in. Possible values are search.
-    enabled_content_experiences: Optional[ContentExperienceType] = None
+    enabled_content_experiences: Optional[ExternalConnection_enabledContentExperiences] = None
     # The groups property
     groups: Optional[List[ExternalGroup]] = None
     # The number of items ingested into a connection. This value is refreshed every 15 minutes. If the connection state is draft, then ingestedItemsCount will be null.
@@ -52,7 +52,7 @@ class ExternalConnection(Entity):
     # The settings configuring the search experience for content in this connection, such as the display templates for search results.
     search_settings: Optional[SearchSettings] = None
     # Indicates the current state of the connection. Possible values are draft, ready, obsolete, and limitExceeded. Required.
-    state: Optional[ConnectionState] = None
+    state: Optional[ExternalConnection_state] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExternalConnection:
@@ -76,8 +76,8 @@ class ExternalConnection(Entity):
         from .configuration import Configuration
         from .connection_operation import ConnectionOperation
         from .connection_quota import ConnectionQuota
-        from .connection_state import ConnectionState
-        from .content_experience_type import ContentExperienceType
+        from .external_connection_enabled_content_experiences import ExternalConnection_enabledContentExperiences
+        from .external_connection_state import ExternalConnection_state
         from .external_group import ExternalGroup
         from .external_item import ExternalItem
         from .schema import Schema
@@ -89,8 +89,8 @@ class ExternalConnection(Entity):
         from .configuration import Configuration
         from .connection_operation import ConnectionOperation
         from .connection_quota import ConnectionQuota
-        from .connection_state import ConnectionState
-        from .content_experience_type import ContentExperienceType
+        from .external_connection_enabled_content_experiences import ExternalConnection_enabledContentExperiences
+        from .external_connection_state import ExternalConnection_state
         from .external_group import ExternalGroup
         from .external_item import ExternalItem
         from .schema import Schema
@@ -102,7 +102,7 @@ class ExternalConnection(Entity):
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(Configuration)),
             "connectorId": lambda n : setattr(self, 'connector_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "enabledContentExperiences": lambda n : setattr(self, 'enabled_content_experiences', n.get_collection_of_enum_values(ContentExperienceType)),
+            "enabledContentExperiences": lambda n : setattr(self, 'enabled_content_experiences', n.get_enum_value(ExternalConnection_enabledContentExperiences)),
             "groups": lambda n : setattr(self, 'groups', n.get_collection_of_object_values(ExternalGroup)),
             "ingestedItemsCount": lambda n : setattr(self, 'ingested_items_count', n.get_int_value()),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(ExternalItem)),
@@ -111,7 +111,7 @@ class ExternalConnection(Entity):
             "quota": lambda n : setattr(self, 'quota', n.get_object_value(ConnectionQuota)),
             "schema": lambda n : setattr(self, 'schema', n.get_object_value(Schema)),
             "searchSettings": lambda n : setattr(self, 'search_settings', n.get_object_value(SearchSettings)),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(ConnectionState)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(ExternalConnection_state)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

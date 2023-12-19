@@ -7,11 +7,11 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .attachment import Attachment
     from .extension import Extension
-    from .importance import Importance
     from .item_body import ItemBody
     from .mention import Mention
     from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
     from .outlook_item import OutlookItem
+    from .post_importance import Post_importance
     from .recipient import Recipient
     from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
@@ -36,7 +36,7 @@ class Post(OutlookItem):
     # Indicates whether the post has at least one attachment. This is a default property.
     has_attachments: Optional[bool] = None
     # The importance of a group post: low, normal, high.
-    importance: Optional[Importance] = None
+    importance: Optional[Post_importance] = None
     # The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
     in_reply_to: Optional[Post] = None
     # The mentions property
@@ -70,21 +70,21 @@ class Post(OutlookItem):
         """
         from .attachment import Attachment
         from .extension import Extension
-        from .importance import Importance
         from .item_body import ItemBody
         from .mention import Mention
         from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
         from .outlook_item import OutlookItem
+        from .post_importance import Post_importance
         from .recipient import Recipient
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
         from .attachment import Attachment
         from .extension import Extension
-        from .importance import Importance
         from .item_body import ItemBody
         from .mention import Mention
         from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
         from .outlook_item import OutlookItem
+        from .post_importance import Post_importance
         from .recipient import Recipient
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
@@ -96,7 +96,7 @@ class Post(OutlookItem):
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(Extension)),
             "from": lambda n : setattr(self, 'from_', n.get_object_value(Recipient)),
             "hasAttachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
-            "importance": lambda n : setattr(self, 'importance', n.get_enum_value(Importance)),
+            "importance": lambda n : setattr(self, 'importance', n.get_enum_value(Post_importance)),
             "inReplyTo": lambda n : setattr(self, 'in_reply_to', n.get_object_value(Post)),
             "mentions": lambda n : setattr(self, 'mentions', n.get_collection_of_object_values(Mention)),
             "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(MultiValueLegacyExtendedProperty)),

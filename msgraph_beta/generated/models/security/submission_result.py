@@ -6,9 +6,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .submission_detected_file import SubmissionDetectedFile
-    from .submission_result_category import SubmissionResultCategory
-    from .submission_result_detail import SubmissionResultDetail
-    from .user_mailbox_setting import UserMailboxSetting
+    from .submission_result_category import SubmissionResult_category
+    from .submission_result_detail import SubmissionResult_detail
+    from .submission_result_user_mailbox_setting import SubmissionResult_userMailboxSetting
 
 @dataclass
 class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
@@ -18,9 +18,9 @@ class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The submission result category. The possible values are: notJunk, spam, phishing, malware, allowedByPolicy, blockedByPolicy, spoof, unknown, noResultAvailable and unkownFutureValue.
-    category: Optional[SubmissionResultCategory] = None
+    category: Optional[SubmissionResult_category] = None
     # Specifies the extra details provided by Microsoft to substantiate their analysis result.
-    detail: Optional[SubmissionResultDetail] = None
+    detail: Optional[SubmissionResult_detail] = None
     # Specifies the files detected by Microsoft in the submitted emails.
     detected_files: Optional[List[SubmissionDetectedFile]] = None
     # Specifies the URLs detected by Microsoft in the submitted email.
@@ -28,7 +28,7 @@ class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Specifies the setting for user mailbox denoted by a comma-separated string.
-    user_mailbox_setting: Optional[UserMailboxSetting] = None
+    user_mailbox_setting: Optional[SubmissionResult_userMailboxSetting] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SubmissionResult:
@@ -47,22 +47,22 @@ class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .submission_detected_file import SubmissionDetectedFile
-        from .submission_result_category import SubmissionResultCategory
-        from .submission_result_detail import SubmissionResultDetail
-        from .user_mailbox_setting import UserMailboxSetting
+        from .submission_result_category import SubmissionResult_category
+        from .submission_result_detail import SubmissionResult_detail
+        from .submission_result_user_mailbox_setting import SubmissionResult_userMailboxSetting
 
         from .submission_detected_file import SubmissionDetectedFile
-        from .submission_result_category import SubmissionResultCategory
-        from .submission_result_detail import SubmissionResultDetail
-        from .user_mailbox_setting import UserMailboxSetting
+        from .submission_result_category import SubmissionResult_category
+        from .submission_result_detail import SubmissionResult_detail
+        from .submission_result_user_mailbox_setting import SubmissionResult_userMailboxSetting
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "category": lambda n : setattr(self, 'category', n.get_enum_value(SubmissionResultCategory)),
-            "detail": lambda n : setattr(self, 'detail', n.get_enum_value(SubmissionResultDetail)),
+            "category": lambda n : setattr(self, 'category', n.get_enum_value(SubmissionResult_category)),
+            "detail": lambda n : setattr(self, 'detail', n.get_enum_value(SubmissionResult_detail)),
             "detectedFiles": lambda n : setattr(self, 'detected_files', n.get_collection_of_object_values(SubmissionDetectedFile)),
             "detectedUrls": lambda n : setattr(self, 'detected_urls', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "userMailboxSetting": lambda n : setattr(self, 'user_mailbox_setting', n.get_collection_of_enum_values(UserMailboxSetting)),
+            "userMailboxSetting": lambda n : setattr(self, 'user_mailbox_setting', n.get_enum_value(SubmissionResult_userMailboxSetting)),
         }
         return fields
     

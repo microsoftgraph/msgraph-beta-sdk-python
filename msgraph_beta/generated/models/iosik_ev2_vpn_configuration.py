@@ -5,12 +5,12 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_vpn_always_on_configuration import AppleVpnAlwaysOnConfiguration
+    from .iosik_ev2_vpn_configuration_dead_peer_detection_rate import IosikEv2VpnConfiguration_deadPeerDetectionRate
+    from .iosik_ev2_vpn_configuration_server_certificate_type import IosikEv2VpnConfiguration_serverCertificateType
     from .ios_vpn_configuration import IosVpnConfiguration
     from .ios_vpn_security_association_parameters import IosVpnSecurityAssociationParameters
     from .vpn_client_authentication_type import VpnClientAuthenticationType
-    from .vpn_dead_peer_detection_rate import VpnDeadPeerDetectionRate
     from .vpn_local_identifier import VpnLocalIdentifier
-    from .vpn_server_certificate_type import VpnServerCertificateType
 
 from .ios_vpn_configuration import IosVpnConfiguration
 
@@ -32,7 +32,7 @@ class IosikEv2VpnConfiguration(IosVpnConfiguration):
     # The type of VPN client authentication type
     client_authentication_type: Optional[VpnClientAuthenticationType] = None
     # Determine how often to check if a peer connection is still active. . Possible values are: medium, none, low, high.
-    dead_peer_detection_rate: Optional[VpnDeadPeerDetectionRate] = None
+    dead_peer_detection_rate: Optional[IosikEv2VpnConfiguration_deadPeerDetectionRate] = None
     # Disable MOBIKE
     disable_mobility_and_multihoming: Optional[bool] = None
     # Disable Redirect
@@ -60,7 +60,7 @@ class IosikEv2VpnConfiguration(IosVpnConfiguration):
     # Issuer Common name of the IKEv2 Server Certificate issuer used in Authentication
     server_certificate_issuer_common_name: Optional[str] = None
     # The type of certificate the VPN server will present to the VPN client for authentication. Possible values are: rsa, ecdsa256, ecdsa384, ecdsa521.
-    server_certificate_type: Optional[VpnServerCertificateType] = None
+    server_certificate_type: Optional[IosikEv2VpnConfiguration_serverCertificateType] = None
     # Used when Shared Secret Authentication is selected
     shared_secret: Optional[str] = None
     # The maximum TLS version to be used with EAP-TLS authentication
@@ -85,20 +85,20 @@ class IosikEv2VpnConfiguration(IosVpnConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .apple_vpn_always_on_configuration import AppleVpnAlwaysOnConfiguration
+        from .iosik_ev2_vpn_configuration_dead_peer_detection_rate import IosikEv2VpnConfiguration_deadPeerDetectionRate
+        from .iosik_ev2_vpn_configuration_server_certificate_type import IosikEv2VpnConfiguration_serverCertificateType
         from .ios_vpn_configuration import IosVpnConfiguration
         from .ios_vpn_security_association_parameters import IosVpnSecurityAssociationParameters
         from .vpn_client_authentication_type import VpnClientAuthenticationType
-        from .vpn_dead_peer_detection_rate import VpnDeadPeerDetectionRate
         from .vpn_local_identifier import VpnLocalIdentifier
-        from .vpn_server_certificate_type import VpnServerCertificateType
 
         from .apple_vpn_always_on_configuration import AppleVpnAlwaysOnConfiguration
+        from .iosik_ev2_vpn_configuration_dead_peer_detection_rate import IosikEv2VpnConfiguration_deadPeerDetectionRate
+        from .iosik_ev2_vpn_configuration_server_certificate_type import IosikEv2VpnConfiguration_serverCertificateType
         from .ios_vpn_configuration import IosVpnConfiguration
         from .ios_vpn_security_association_parameters import IosVpnSecurityAssociationParameters
         from .vpn_client_authentication_type import VpnClientAuthenticationType
-        from .vpn_dead_peer_detection_rate import VpnDeadPeerDetectionRate
         from .vpn_local_identifier import VpnLocalIdentifier
-        from .vpn_server_certificate_type import VpnServerCertificateType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowDefaultChildSecurityAssociationParameters": lambda n : setattr(self, 'allow_default_child_security_association_parameters', n.get_bool_value()),
@@ -106,7 +106,7 @@ class IosikEv2VpnConfiguration(IosVpnConfiguration):
             "alwaysOnConfiguration": lambda n : setattr(self, 'always_on_configuration', n.get_object_value(AppleVpnAlwaysOnConfiguration)),
             "childSecurityAssociationParameters": lambda n : setattr(self, 'child_security_association_parameters', n.get_object_value(IosVpnSecurityAssociationParameters)),
             "clientAuthenticationType": lambda n : setattr(self, 'client_authentication_type', n.get_enum_value(VpnClientAuthenticationType)),
-            "deadPeerDetectionRate": lambda n : setattr(self, 'dead_peer_detection_rate', n.get_enum_value(VpnDeadPeerDetectionRate)),
+            "deadPeerDetectionRate": lambda n : setattr(self, 'dead_peer_detection_rate', n.get_enum_value(IosikEv2VpnConfiguration_deadPeerDetectionRate)),
             "disableMobilityAndMultihoming": lambda n : setattr(self, 'disable_mobility_and_multihoming', n.get_bool_value()),
             "disableRedirect": lambda n : setattr(self, 'disable_redirect', n.get_bool_value()),
             "enableAlwaysOnConfiguration": lambda n : setattr(self, 'enable_always_on_configuration', n.get_bool_value()),
@@ -120,7 +120,7 @@ class IosikEv2VpnConfiguration(IosVpnConfiguration):
             "securityAssociationParameters": lambda n : setattr(self, 'security_association_parameters', n.get_object_value(IosVpnSecurityAssociationParameters)),
             "serverCertificateCommonName": lambda n : setattr(self, 'server_certificate_common_name', n.get_str_value()),
             "serverCertificateIssuerCommonName": lambda n : setattr(self, 'server_certificate_issuer_common_name', n.get_str_value()),
-            "serverCertificateType": lambda n : setattr(self, 'server_certificate_type', n.get_enum_value(VpnServerCertificateType)),
+            "serverCertificateType": lambda n : setattr(self, 'server_certificate_type', n.get_enum_value(IosikEv2VpnConfiguration_serverCertificateType)),
             "sharedSecret": lambda n : setattr(self, 'shared_secret', n.get_str_value()),
             "tlsMaximumVersion": lambda n : setattr(self, 'tls_maximum_version', n.get_str_value()),
             "tlsMinimumVersion": lambda n : setattr(self, 'tls_minimum_version', n.get_str_value()),

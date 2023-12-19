@@ -1,8 +1,5 @@
 from enum import Enum
 
-class AuthenticationContextDetail(str, Enum):
-    Required = "required",
-    PreviouslySatisfied = "previouslySatisfied",
-    NotApplicable = "notApplicable",
-    UnknownFutureValue = "unknownFutureValue",
+class AuthenticationContext_detail(str, Enum):
+    pass
 

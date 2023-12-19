@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .virtual_event_attendee_registration_status import VirtualEventAttendeeRegistrationStatus
     from .virtual_event_registration_question_answer import VirtualEventRegistrationQuestionAnswer
+    from .virtual_event_registration_status import VirtualEventRegistration_status
     from .virtual_event_session import VirtualEventSession
 
 from .entity import Entity
@@ -28,10 +28,10 @@ class VirtualEventRegistration(Entity):
     registration_date_time: Optional[datetime.datetime] = None
     # The registrant's answer to the registration questions.
     registration_question_answers: Optional[List[VirtualEventRegistrationQuestionAnswer]] = None
-    # Sessions of the webinar.
+    # The sessions property
     sessions: Optional[List[VirtualEventSession]] = None
-    # Registration status of the registrant. Read-only. Possible values are: registered, canceled, waitlisted, pendingApproval, rejectedByOrganizer, unknownFutureValue.
-    status: Optional[VirtualEventAttendeeRegistrationStatus] = None
+    # Registration status of the registrant. Read-only.
+    status: Optional[VirtualEventRegistration_status] = None
     # The registrant's ID in Microsoft Entra ID. Only appears when the registrant is registered in Microsoft Entra ID.
     user_id: Optional[str] = None
     
@@ -52,13 +52,13 @@ class VirtualEventRegistration(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .virtual_event_attendee_registration_status import VirtualEventAttendeeRegistrationStatus
         from .virtual_event_registration_question_answer import VirtualEventRegistrationQuestionAnswer
+        from .virtual_event_registration_status import VirtualEventRegistration_status
         from .virtual_event_session import VirtualEventSession
 
         from .entity import Entity
-        from .virtual_event_attendee_registration_status import VirtualEventAttendeeRegistrationStatus
         from .virtual_event_registration_question_answer import VirtualEventRegistrationQuestionAnswer
+        from .virtual_event_registration_status import VirtualEventRegistration_status
         from .virtual_event_session import VirtualEventSession
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -69,7 +69,7 @@ class VirtualEventRegistration(Entity):
             "registrationDateTime": lambda n : setattr(self, 'registration_date_time', n.get_datetime_value()),
             "registrationQuestionAnswers": lambda n : setattr(self, 'registration_question_answers', n.get_collection_of_object_values(VirtualEventRegistrationQuestionAnswer)),
             "sessions": lambda n : setattr(self, 'sessions', n.get_collection_of_object_values(VirtualEventSession)),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(VirtualEventAttendeeRegistrationStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(VirtualEventRegistration_status)),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

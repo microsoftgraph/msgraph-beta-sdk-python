@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .planner_external_task_source_display_type import PlannerExternalTaskSourceDisplayType
+    from .planner_external_task_source_display_link_type import PlannerExternalTaskSource_displayLinkType
     from .planner_task_creation import PlannerTaskCreation
 
 from .planner_task_creation import PlannerTaskCreation
@@ -16,7 +16,7 @@ class PlannerExternalTaskSource(PlannerTaskCreation):
     # Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
     context_scenario_id: Optional[str] = None
     # Specifies how an application should display the link to the associated plannerExternalTaskSource. The possible values are: none, default.
-    display_link_type: Optional[PlannerExternalTaskSourceDisplayType] = None
+    display_link_type: Optional[PlannerExternalTaskSource_displayLinkType] = None
     # The segments of the name of the external experience. Segments represent a hierarchical structure that allows other apps to display the relationship.
     display_name_segments: Optional[List[str]] = None
     # Nullable. The id of the external entity's containing entity or context.
@@ -44,15 +44,15 @@ class PlannerExternalTaskSource(PlannerTaskCreation):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .planner_external_task_source_display_type import PlannerExternalTaskSourceDisplayType
+        from .planner_external_task_source_display_link_type import PlannerExternalTaskSource_displayLinkType
         from .planner_task_creation import PlannerTaskCreation
 
-        from .planner_external_task_source_display_type import PlannerExternalTaskSourceDisplayType
+        from .planner_external_task_source_display_link_type import PlannerExternalTaskSource_displayLinkType
         from .planner_task_creation import PlannerTaskCreation
 
         fields: Dict[str, Callable[[Any], None]] = {
             "contextScenarioId": lambda n : setattr(self, 'context_scenario_id', n.get_str_value()),
-            "displayLinkType": lambda n : setattr(self, 'display_link_type', n.get_enum_value(PlannerExternalTaskSourceDisplayType)),
+            "displayLinkType": lambda n : setattr(self, 'display_link_type', n.get_enum_value(PlannerExternalTaskSource_displayLinkType)),
             "displayNameSegments": lambda n : setattr(self, 'display_name_segments', n.get_collection_of_primitive_values(str)),
             "externalContextId": lambda n : setattr(self, 'external_context_id', n.get_str_value()),
             "externalObjectId": lambda n : setattr(self, 'external_object_id', n.get_str_value()),

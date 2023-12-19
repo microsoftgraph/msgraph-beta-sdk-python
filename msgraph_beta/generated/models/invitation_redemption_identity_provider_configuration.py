@@ -5,8 +5,9 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .b2b_identity_providers_type import B2bIdentityProvidersType
     from .default_invitation_redemption_identity_provider_configuration import DefaultInvitationRedemptionIdentityProviderConfiguration
+    from .invitation_redemption_identity_provider_configuration_fallback_identity_provider import InvitationRedemptionIdentityProviderConfiguration_fallbackIdentityProvider
+    from .invitation_redemption_identity_provider_configuration_primary_identity_provider_precedence_order import InvitationRedemptionIdentityProviderConfiguration_primaryIdentityProviderPrecedenceOrder
 
 @dataclass
 class InvitationRedemptionIdentityProviderConfiguration(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,12 +16,12 @@ class InvitationRedemptionIdentityProviderConfiguration(AdditionalDataHolder, Ba
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The fallbackIdentityProvider property
-    fallback_identity_provider: Optional[B2bIdentityProvidersType] = None
+    # The fallback identity provider to be used in case no primary identity provider can be used for guest invitation redemption. Possible values are: defaultConfiguredIdp, emailOneTimePasscode, or microsoftAccount.
+    fallback_identity_provider: Optional[InvitationRedemptionIdentityProviderConfiguration_fallbackIdentityProvider] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The primaryIdentityProviderPrecedenceOrder property
-    primary_identity_provider_precedence_order: Optional[List[B2bIdentityProvidersType]] = None
+    # Collection of identity providers in priority order of preference to be used for guest invitation redemption. Possible values are: azureActiveDirectory, externalFederation, or socialIdentityProviders.
+    primary_identity_provider_precedence_order: Optional[List[InvitationRedemptionIdentityProviderConfiguration_primaryIdentityProviderPrecedenceOrder]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InvitationRedemptionIdentityProviderConfiguration:
@@ -46,16 +47,18 @@ class InvitationRedemptionIdentityProviderConfiguration(AdditionalDataHolder, Ba
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .b2b_identity_providers_type import B2bIdentityProvidersType
         from .default_invitation_redemption_identity_provider_configuration import DefaultInvitationRedemptionIdentityProviderConfiguration
+        from .invitation_redemption_identity_provider_configuration_fallback_identity_provider import InvitationRedemptionIdentityProviderConfiguration_fallbackIdentityProvider
+        from .invitation_redemption_identity_provider_configuration_primary_identity_provider_precedence_order import InvitationRedemptionIdentityProviderConfiguration_primaryIdentityProviderPrecedenceOrder
 
-        from .b2b_identity_providers_type import B2bIdentityProvidersType
         from .default_invitation_redemption_identity_provider_configuration import DefaultInvitationRedemptionIdentityProviderConfiguration
+        from .invitation_redemption_identity_provider_configuration_fallback_identity_provider import InvitationRedemptionIdentityProviderConfiguration_fallbackIdentityProvider
+        from .invitation_redemption_identity_provider_configuration_primary_identity_provider_precedence_order import InvitationRedemptionIdentityProviderConfiguration_primaryIdentityProviderPrecedenceOrder
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "fallbackIdentityProvider": lambda n : setattr(self, 'fallback_identity_provider', n.get_enum_value(B2bIdentityProvidersType)),
+            "fallbackIdentityProvider": lambda n : setattr(self, 'fallback_identity_provider', n.get_enum_value(InvitationRedemptionIdentityProviderConfiguration_fallbackIdentityProvider)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "primaryIdentityProviderPrecedenceOrder": lambda n : setattr(self, 'primary_identity_provider_precedence_order', n.get_collection_of_enum_values(B2bIdentityProvidersType)),
+            "primaryIdentityProviderPrecedenceOrder": lambda n : setattr(self, 'primary_identity_provider_precedence_order', n.get_collection_of_enum_values(InvitationRedemptionIdentityProviderConfiguration_primaryIdentityProviderPrecedenceOrder)),
         }
         return fields
     

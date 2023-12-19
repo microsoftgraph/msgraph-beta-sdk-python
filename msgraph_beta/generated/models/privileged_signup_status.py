@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .setup_status import SetupStatus
+    from .privileged_signup_status_status import PrivilegedSignupStatus_status
 
 from .entity import Entity
 
@@ -16,7 +16,7 @@ class PrivilegedSignupStatus(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The status property
-    status: Optional[SetupStatus] = None
+    status: Optional[PrivilegedSignupStatus_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedSignupStatus:
@@ -35,14 +35,14 @@ class PrivilegedSignupStatus(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .setup_status import SetupStatus
+        from .privileged_signup_status_status import PrivilegedSignupStatus_status
 
         from .entity import Entity
-        from .setup_status import SetupStatus
+        from .privileged_signup_status_status import PrivilegedSignupStatus_status
 
         fields: Dict[str, Callable[[Any], None]] = {
             "isRegistered": lambda n : setattr(self, 'is_registered', n.get_bool_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(SetupStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(PrivilegedSignupStatus_status)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

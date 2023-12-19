@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .network_type import NetworkType
+    from .network_location_detail_network_type import NetworkLocationDetail_networkType
 
 @dataclass
 class NetworkLocationDetail(AdditionalDataHolder, BackedModel, Parsable):
@@ -17,7 +17,7 @@ class NetworkLocationDetail(AdditionalDataHolder, BackedModel, Parsable):
     # Provides the name of the network used when signing in.
     network_names: Optional[List[str]] = None
     # Provides the type of network used when signing in. Possible values are: intranet, extranet, namedNetwork, trusted, unknownFutureValue.
-    network_type: Optional[NetworkType] = None
+    network_type: Optional[NetworkLocationDetail_networkType] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -37,13 +37,13 @@ class NetworkLocationDetail(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .network_type import NetworkType
+        from .network_location_detail_network_type import NetworkLocationDetail_networkType
 
-        from .network_type import NetworkType
+        from .network_location_detail_network_type import NetworkLocationDetail_networkType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "networkNames": lambda n : setattr(self, 'network_names', n.get_collection_of_primitive_values(str)),
-            "networkType": lambda n : setattr(self, 'network_type', n.get_enum_value(NetworkType)),
+            "networkType": lambda n : setattr(self, 'network_type', n.get_enum_value(NetworkLocationDetail_networkType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

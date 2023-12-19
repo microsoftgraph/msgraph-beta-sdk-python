@@ -28,7 +28,7 @@ class ActiveUsersMetricItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ActiveUsersMetricItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ActiveUsersMetric]:
         """
-        Get activeUsers from reports
+        Insights for active users on apps registered in the tenant for a specified period.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ActiveUsersMetric]
         """
@@ -49,7 +49,7 @@ class ActiveUsersMetricItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ActiveUsersMetricItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get activeUsers from reports
+        Insights for active users on apps registered in the tenant for a specified period.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +61,7 @@ class ActiveUsersMetricItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> ActiveUsersMetricItemRequestBuilder:
@@ -77,7 +77,7 @@ class ActiveUsersMetricItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ActiveUsersMetricItemRequestBuilderGetQueryParameters():
         """
-        Get activeUsers from reports
+        Insights for active users on apps registered in the tenant for a specified period.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

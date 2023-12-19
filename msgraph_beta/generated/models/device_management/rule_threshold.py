@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .aggregation_type import AggregationType
-    from .operator_type import OperatorType
+    from .rule_threshold_aggregation import RuleThreshold_aggregation
+    from .rule_threshold_operator import RuleThreshold_operator
 
 @dataclass
 class RuleThreshold(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,11 +16,11 @@ class RuleThreshold(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Indicates the built-in aggregation methods. The possible values are: count, percentage, affectedCloudPcCount, affectedCloudPcPercentage, unknownFutureValue.
-    aggregation: Optional[AggregationType] = None
+    aggregation: Optional[RuleThreshold_aggregation] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Indicates the built-in operator. The possible values are: greaterOrEqual, equal, greater, less, lessOrEqual, notEqual, unknownFutureValue.
-    operator: Optional[OperatorType] = None
+    operator: Optional[RuleThreshold_operator] = None
     # The target threshold value.
     target: Optional[int] = None
     
@@ -40,16 +40,16 @@ class RuleThreshold(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .aggregation_type import AggregationType
-        from .operator_type import OperatorType
+        from .rule_threshold_aggregation import RuleThreshold_aggregation
+        from .rule_threshold_operator import RuleThreshold_operator
 
-        from .aggregation_type import AggregationType
-        from .operator_type import OperatorType
+        from .rule_threshold_aggregation import RuleThreshold_aggregation
+        from .rule_threshold_operator import RuleThreshold_operator
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "aggregation": lambda n : setattr(self, 'aggregation', n.get_enum_value(AggregationType)),
+            "aggregation": lambda n : setattr(self, 'aggregation', n.get_enum_value(RuleThreshold_aggregation)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "operator": lambda n : setattr(self, 'operator', n.get_enum_value(OperatorType)),
+            "operator": lambda n : setattr(self, 'operator', n.get_enum_value(RuleThreshold_operator)),
             "target": lambda n : setattr(self, 'target', n.get_int_value()),
         }
         return fields

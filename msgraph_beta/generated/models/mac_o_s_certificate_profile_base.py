@@ -7,10 +7,10 @@ if TYPE_CHECKING:
     from .apple_subject_name_format import AppleSubjectNameFormat
     from .certificate_validity_period_scale import CertificateValidityPeriodScale
     from .device_configuration import DeviceConfiguration
+    from .mac_o_s_certificate_profile_base_subject_alternative_name_type import MacOSCertificateProfileBase_subjectAlternativeNameType
     from .mac_o_s_imported_p_f_x_certificate_profile import MacOSImportedPFXCertificateProfile
     from .mac_o_s_pkcs_certificate_profile import MacOSPkcsCertificateProfile
     from .mac_o_s_scep_certificate_profile import MacOSScepCertificateProfile
-    from .subject_alternative_name_type import SubjectAlternativeNameType
 
 from .device_configuration import DeviceConfiguration
 
@@ -28,7 +28,7 @@ class MacOSCertificateProfileBase(DeviceConfiguration):
     # Certificate renewal threshold percentage.
     renewal_threshold_percentage: Optional[int] = None
     # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-    subject_alternative_name_type: Optional[SubjectAlternativeNameType] = None
+    subject_alternative_name_type: Optional[MacOSCertificateProfileBase_subjectAlternativeNameType] = None
     # Subject Name Format Options for Apple devices.
     subject_name_format: Optional[AppleSubjectNameFormat] = None
     
@@ -67,24 +67,24 @@ class MacOSCertificateProfileBase(DeviceConfiguration):
         from .apple_subject_name_format import AppleSubjectNameFormat
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
         from .device_configuration import DeviceConfiguration
+        from .mac_o_s_certificate_profile_base_subject_alternative_name_type import MacOSCertificateProfileBase_subjectAlternativeNameType
         from .mac_o_s_imported_p_f_x_certificate_profile import MacOSImportedPFXCertificateProfile
         from .mac_o_s_pkcs_certificate_profile import MacOSPkcsCertificateProfile
         from .mac_o_s_scep_certificate_profile import MacOSScepCertificateProfile
-        from .subject_alternative_name_type import SubjectAlternativeNameType
 
         from .apple_subject_name_format import AppleSubjectNameFormat
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
         from .device_configuration import DeviceConfiguration
+        from .mac_o_s_certificate_profile_base_subject_alternative_name_type import MacOSCertificateProfileBase_subjectAlternativeNameType
         from .mac_o_s_imported_p_f_x_certificate_profile import MacOSImportedPFXCertificateProfile
         from .mac_o_s_pkcs_certificate_profile import MacOSPkcsCertificateProfile
         from .mac_o_s_scep_certificate_profile import MacOSScepCertificateProfile
-        from .subject_alternative_name_type import SubjectAlternativeNameType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
             "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
-            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_collection_of_enum_values(SubjectAlternativeNameType)),
+            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(MacOSCertificateProfileBase_subjectAlternativeNameType)),
             "subjectNameFormat": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(AppleSubjectNameFormat)),
         }
         super_fields = super().get_field_deserializers()

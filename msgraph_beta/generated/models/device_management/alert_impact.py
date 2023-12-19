@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..key_value_pair import KeyValuePair
-    from .aggregation_type import AggregationType
+    from .alert_impact_aggregation_type import AlertImpact_aggregationType
 
 @dataclass
 class AlertImpact(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,7 +16,7 @@ class AlertImpact(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The aggregation type of the impact. The possible values are: count, percentage, affectedCloudPcCount, affectedCloudPcPercentage, unknownFutureValue.
-    aggregation_type: Optional[AggregationType] = None
+    aggregation_type: Optional[AlertImpact_aggregationType] = None
     # The detail information of the impact. For example, if the Frontline Cloud PCs near concurrency limit alert is triggered, the details contain the impacted Frontline license SKU name, such as Windows 365 Frontline 2 vCPU/8GB/128GB, and the corresponding impacted value.
     alert_impact_details: Optional[List[KeyValuePair]] = None
     # The OdataType property
@@ -41,13 +41,13 @@ class AlertImpact(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ..key_value_pair import KeyValuePair
-        from .aggregation_type import AggregationType
+        from .alert_impact_aggregation_type import AlertImpact_aggregationType
 
         from ..key_value_pair import KeyValuePair
-        from .aggregation_type import AggregationType
+        from .alert_impact_aggregation_type import AlertImpact_aggregationType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "aggregationType": lambda n : setattr(self, 'aggregation_type', n.get_enum_value(AggregationType)),
+            "aggregationType": lambda n : setattr(self, 'aggregation_type', n.get_enum_value(AlertImpact_aggregationType)),
             "alertImpactDetails": lambda n : setattr(self, 'alert_impact_details', n.get_collection_of_object_values(KeyValuePair)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "value": lambda n : setattr(self, 'value', n.get_int_value()),

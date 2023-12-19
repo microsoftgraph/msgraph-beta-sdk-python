@@ -5,7 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .analytics_activity_type import AnalyticsActivityType
+    from .activity_statistics_activity import ActivityStatistics_activity
     from .call_activity_statistics import CallActivityStatistics
     from .chat_activity_statistics import ChatActivityStatistics
     from .email_activity_statistics import EmailActivityStatistics
@@ -18,7 +18,7 @@ from .entity import Entity
 @dataclass
 class ActivityStatistics(Entity):
     # The type of activity for which statistics are returned. The possible values are: call, chat, email, focus, and meeting.
-    activity: Optional[AnalyticsActivityType] = None
+    activity: Optional[ActivityStatistics_activity] = None
     # Total hours spent on the activity. The value is represented in ISO 8601 format for durations.
     duration: Optional[datetime.timedelta] = None
     # Date when the activity ended, expressed in ISO 8601 format for calendar dates. For example, the property value could be '2019-07-03' that follows the YYYY-MM-DD format.
@@ -70,7 +70,7 @@ class ActivityStatistics(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .analytics_activity_type import AnalyticsActivityType
+        from .activity_statistics_activity import ActivityStatistics_activity
         from .call_activity_statistics import CallActivityStatistics
         from .chat_activity_statistics import ChatActivityStatistics
         from .email_activity_statistics import EmailActivityStatistics
@@ -78,7 +78,7 @@ class ActivityStatistics(Entity):
         from .focus_activity_statistics import FocusActivityStatistics
         from .meeting_activity_statistics import MeetingActivityStatistics
 
-        from .analytics_activity_type import AnalyticsActivityType
+        from .activity_statistics_activity import ActivityStatistics_activity
         from .call_activity_statistics import CallActivityStatistics
         from .chat_activity_statistics import ChatActivityStatistics
         from .email_activity_statistics import EmailActivityStatistics
@@ -87,7 +87,7 @@ class ActivityStatistics(Entity):
         from .meeting_activity_statistics import MeetingActivityStatistics
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "activity": lambda n : setattr(self, 'activity', n.get_enum_value(AnalyticsActivityType)),
+            "activity": lambda n : setattr(self, 'activity', n.get_enum_value(ActivityStatistics_activity)),
             "duration": lambda n : setattr(self, 'duration', n.get_timedelta_value()),
             "endDate": lambda n : setattr(self, 'end_date', n.get_date_value()),
             "startDate": lambda n : setattr(self, 'start_date', n.get_date_value()),

@@ -7,9 +7,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .alert_impact import AlertImpact
-    from .alert_rule_template import AlertRuleTemplate
-    from .alert_status_type import AlertStatusType
-    from .rule_severity_type import RuleSeverityType
+    from .alert_record_alert_rule_template import AlertRecord_alertRuleTemplate
+    from .alert_record_severity import AlertRecord_severity
+    from .alert_record_status import AlertRecord_status
 
 from ..entity import Entity
 
@@ -20,7 +20,7 @@ class AlertRecord(Entity):
     # The corresponding ID of the alert rule.
     alert_rule_id: Optional[str] = None
     # The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue, cloudPcInGracePeriodScenario. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: cloudPcInGracePeriodScenario.
-    alert_rule_template: Optional[AlertRuleTemplate] = None
+    alert_rule_template: Optional[AlertRecord_alertRuleTemplate] = None
     # The date and time when the alert event was detected. The Timestamp type represents date and time information using ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     detected_date_time: Optional[datetime.datetime] = None
     # The display name of the alert record.
@@ -32,9 +32,9 @@ class AlertRecord(Entity):
     # The date and time when the alert event was resolved. The Timestamp type represents date and time information using ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     resolved_date_time: Optional[datetime.datetime] = None
     # The severity of the alert event. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
-    severity: Optional[RuleSeverityType] = None
+    severity: Optional[AlertRecord_severity] = None
     # The status of the alert record. The possible values are: active, resolved, unknownFutureValue.
-    status: Optional[AlertStatusType] = None
+    status: Optional[AlertRecord_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AlertRecord:
@@ -54,26 +54,26 @@ class AlertRecord(Entity):
         """
         from ..entity import Entity
         from .alert_impact import AlertImpact
-        from .alert_rule_template import AlertRuleTemplate
-        from .alert_status_type import AlertStatusType
-        from .rule_severity_type import RuleSeverityType
+        from .alert_record_alert_rule_template import AlertRecord_alertRuleTemplate
+        from .alert_record_severity import AlertRecord_severity
+        from .alert_record_status import AlertRecord_status
 
         from ..entity import Entity
         from .alert_impact import AlertImpact
-        from .alert_rule_template import AlertRuleTemplate
-        from .alert_status_type import AlertStatusType
-        from .rule_severity_type import RuleSeverityType
+        from .alert_record_alert_rule_template import AlertRecord_alertRuleTemplate
+        from .alert_record_severity import AlertRecord_severity
+        from .alert_record_status import AlertRecord_status
 
         fields: Dict[str, Callable[[Any], None]] = {
             "alertImpact": lambda n : setattr(self, 'alert_impact', n.get_object_value(AlertImpact)),
             "alertRuleId": lambda n : setattr(self, 'alert_rule_id', n.get_str_value()),
-            "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(AlertRuleTemplate)),
+            "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(AlertRecord_alertRuleTemplate)),
             "detectedDateTime": lambda n : setattr(self, 'detected_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "resolvedDateTime": lambda n : setattr(self, 'resolved_date_time', n.get_datetime_value()),
-            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(RuleSeverityType)),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(AlertStatusType)),
+            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(AlertRecord_severity)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(AlertRecord_status)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

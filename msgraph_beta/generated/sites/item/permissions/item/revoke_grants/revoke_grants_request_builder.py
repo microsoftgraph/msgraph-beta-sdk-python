@@ -29,7 +29,7 @@ class RevokeGrantsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RevokeGrantsPostRequestBody] = None, request_configuration: Optional[RevokeGrantsRequestBuilderPostRequestConfiguration] = None) -> Optional[Permission]:
         """
-        Revoke access to a listItem][] or [driveItem][] granted via a sharing link by removing the specified [recipient][] from the link. This API is available in the following [national cloud deployments.
+        Revoke access to a [listItem][] or [driveItem][] granted via a sharing link by removing the specified [recipient][] from the link.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Permission]
@@ -54,7 +54,7 @@ class RevokeGrantsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RevokeGrantsPostRequestBody] = None, request_configuration: Optional[RevokeGrantsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Revoke access to a listItem][] or [driveItem][] granted via a sharing link by removing the specified [recipient][] from the link. This API is available in the following [national cloud deployments.
+        Revoke access to a [listItem][] or [driveItem][] granted via a sharing link by removing the specified [recipient][] from the link.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -68,7 +68,7 @@ class RevokeGrantsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

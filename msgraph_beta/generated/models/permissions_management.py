@@ -14,9 +14,9 @@ from .entity import Entity
 class PermissionsManagement(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
-    # The permissionsRequestChanges property
+    # Represents a change event of the scheduledPermissionsRequest entity.
     permissions_request_changes: Optional[List[PermissionsRequestChange]] = None
-    # The scheduledPermissionsRequests property
+    # Represents a permissions request that Permissions Management uses to manage permissions for an identity on resources in the authorization system. This request can be granted, rejected or canceled by identities in Permissions Management.
     scheduled_permissions_requests: Optional[List[ScheduledPermissionsRequest]] = None
     
     @staticmethod

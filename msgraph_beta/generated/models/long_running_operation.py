@@ -6,26 +6,28 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .attack_simulation_operation import AttackSimulationOperation
+    from .engagement_async_operation import EngagementAsyncOperation
     from .entity import Entity
+    from .goals_export_job import GoalsExportJob
     from .industry_data.file_validate_operation import FileValidateOperation
     from .industry_data.validate_operation import ValidateOperation
-    from .long_running_operation_status import LongRunningOperationStatus
+    from .long_running_operation_status import LongRunningOperation_status
     from .rich_long_running_operation import RichLongRunningOperation
 
 from .entity import Entity
 
 @dataclass
 class LongRunningOperation(Entity):
-    # The start time of the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The start time of the operation. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The time of the last action in the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The time of the last action in the operation. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_action_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # URI of the resource that the operation is performed on.
     resource_location: Optional[str] = None
     # The status of the operation. The possible values are: notStarted, running, succeeded, failed, unknownFutureValue.
-    status: Optional[LongRunningOperationStatus] = None
+    status: Optional[LongRunningOperation_status] = None
     # Details about the status of the operation.
     status_detail: Optional[str] = None
     
@@ -46,6 +48,14 @@ class LongRunningOperation(Entity):
             from .attack_simulation_operation import AttackSimulationOperation
 
             return AttackSimulationOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementAsyncOperation".casefold():
+            from .engagement_async_operation import EngagementAsyncOperation
+
+            return EngagementAsyncOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.goalsExportJob".casefold():
+            from .goals_export_job import GoalsExportJob
+
+            return GoalsExportJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.fileValidateOperation".casefold():
             from .industry_data.file_validate_operation import FileValidateOperation
 
@@ -66,24 +76,28 @@ class LongRunningOperation(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .attack_simulation_operation import AttackSimulationOperation
+        from .engagement_async_operation import EngagementAsyncOperation
         from .entity import Entity
+        from .goals_export_job import GoalsExportJob
         from .industry_data.file_validate_operation import FileValidateOperation
         from .industry_data.validate_operation import ValidateOperation
-        from .long_running_operation_status import LongRunningOperationStatus
+        from .long_running_operation_status import LongRunningOperation_status
         from .rich_long_running_operation import RichLongRunningOperation
 
         from .attack_simulation_operation import AttackSimulationOperation
+        from .engagement_async_operation import EngagementAsyncOperation
         from .entity import Entity
+        from .goals_export_job import GoalsExportJob
         from .industry_data.file_validate_operation import FileValidateOperation
         from .industry_data.validate_operation import ValidateOperation
-        from .long_running_operation_status import LongRunningOperationStatus
+        from .long_running_operation_status import LongRunningOperation_status
         from .rich_long_running_operation import RichLongRunningOperation
 
         fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "resourceLocation": lambda n : setattr(self, 'resource_location', n.get_str_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(LongRunningOperationStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(LongRunningOperation_status)),
             "statusDetail": lambda n : setattr(self, 'status_detail', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

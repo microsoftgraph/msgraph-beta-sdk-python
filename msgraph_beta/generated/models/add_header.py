@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .alignment import Alignment
+    from .add_header_alignment import AddHeader_alignment
     from .mark_content import MarkContent
 
 from .mark_content import MarkContent
@@ -14,7 +14,7 @@ class AddHeader(MarkContent):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.addHeader"
     # The alignment property
-    alignment: Optional[Alignment] = None
+    alignment: Optional[AddHeader_alignment] = None
     # The margin property
     margin: Optional[int] = None
     
@@ -34,14 +34,14 @@ class AddHeader(MarkContent):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .alignment import Alignment
+        from .add_header_alignment import AddHeader_alignment
         from .mark_content import MarkContent
 
-        from .alignment import Alignment
+        from .add_header_alignment import AddHeader_alignment
         from .mark_content import MarkContent
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "alignment": lambda n : setattr(self, 'alignment', n.get_enum_value(Alignment)),
+            "alignment": lambda n : setattr(self, 'alignment', n.get_enum_value(AddHeader_alignment)),
             "margin": lambda n : setattr(self, 'margin', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()

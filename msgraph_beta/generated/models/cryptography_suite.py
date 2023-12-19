@@ -5,11 +5,12 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .authentication_transform_constant import AuthenticationTransformConstant
-    from .diffie_hellman_group import DiffieHellmanGroup
-    from .perfect_forward_secrecy_group import PerfectForwardSecrecyGroup
-    from .vpn_encryption_algorithm_type import VpnEncryptionAlgorithmType
-    from .vpn_integrity_algorithm_type import VpnIntegrityAlgorithmType
+    from .cryptography_suite_authentication_transform_constants import CryptographySuite_authenticationTransformConstants
+    from .cryptography_suite_cipher_transform_constants import CryptographySuite_cipherTransformConstants
+    from .cryptography_suite_dh_group import CryptographySuite_dhGroup
+    from .cryptography_suite_encryption_method import CryptographySuite_encryptionMethod
+    from .cryptography_suite_integrity_check_method import CryptographySuite_integrityCheckMethod
+    from .cryptography_suite_pfs_group import CryptographySuite_pfsGroup
 
 @dataclass
 class CryptographySuite(AdditionalDataHolder, BackedModel, Parsable):
@@ -22,19 +23,19 @@ class CryptographySuite(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Authentication Transform Constants. Possible values are: md596, sha196, sha256128, aes128Gcm, aes192Gcm, aes256Gcm.
-    authentication_transform_constants: Optional[AuthenticationTransformConstant] = None
+    authentication_transform_constants: Optional[CryptographySuite_authenticationTransformConstants] = None
     # Cipher Transform Constants. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
-    cipher_transform_constants: Optional[VpnEncryptionAlgorithmType] = None
+    cipher_transform_constants: Optional[CryptographySuite_cipherTransformConstants] = None
     # Diffie Hellman Group. Possible values are: group1, group2, group14, ecp256, ecp384, group24.
-    dh_group: Optional[DiffieHellmanGroup] = None
+    dh_group: Optional[CryptographySuite_dhGroup] = None
     # Encryption Method. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
-    encryption_method: Optional[VpnEncryptionAlgorithmType] = None
+    encryption_method: Optional[CryptographySuite_encryptionMethod] = None
     # Integrity Check Method. Possible values are: sha2256, sha196, sha1160, sha2384, sha2_512, md5.
-    integrity_check_method: Optional[VpnIntegrityAlgorithmType] = None
+    integrity_check_method: Optional[CryptographySuite_integrityCheckMethod] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Perfect Forward Secrecy Group. Possible values are: pfs1, pfs2, pfs2048, ecp256, ecp384, pfsMM, pfs24.
-    pfs_group: Optional[PerfectForwardSecrecyGroup] = None
+    pfs_group: Optional[CryptographySuite_pfsGroup] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CryptographySuite:
@@ -52,26 +53,28 @@ class CryptographySuite(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .authentication_transform_constant import AuthenticationTransformConstant
-        from .diffie_hellman_group import DiffieHellmanGroup
-        from .perfect_forward_secrecy_group import PerfectForwardSecrecyGroup
-        from .vpn_encryption_algorithm_type import VpnEncryptionAlgorithmType
-        from .vpn_integrity_algorithm_type import VpnIntegrityAlgorithmType
+        from .cryptography_suite_authentication_transform_constants import CryptographySuite_authenticationTransformConstants
+        from .cryptography_suite_cipher_transform_constants import CryptographySuite_cipherTransformConstants
+        from .cryptography_suite_dh_group import CryptographySuite_dhGroup
+        from .cryptography_suite_encryption_method import CryptographySuite_encryptionMethod
+        from .cryptography_suite_integrity_check_method import CryptographySuite_integrityCheckMethod
+        from .cryptography_suite_pfs_group import CryptographySuite_pfsGroup
 
-        from .authentication_transform_constant import AuthenticationTransformConstant
-        from .diffie_hellman_group import DiffieHellmanGroup
-        from .perfect_forward_secrecy_group import PerfectForwardSecrecyGroup
-        from .vpn_encryption_algorithm_type import VpnEncryptionAlgorithmType
-        from .vpn_integrity_algorithm_type import VpnIntegrityAlgorithmType
+        from .cryptography_suite_authentication_transform_constants import CryptographySuite_authenticationTransformConstants
+        from .cryptography_suite_cipher_transform_constants import CryptographySuite_cipherTransformConstants
+        from .cryptography_suite_dh_group import CryptographySuite_dhGroup
+        from .cryptography_suite_encryption_method import CryptographySuite_encryptionMethod
+        from .cryptography_suite_integrity_check_method import CryptographySuite_integrityCheckMethod
+        from .cryptography_suite_pfs_group import CryptographySuite_pfsGroup
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "authenticationTransformConstants": lambda n : setattr(self, 'authentication_transform_constants', n.get_enum_value(AuthenticationTransformConstant)),
-            "cipherTransformConstants": lambda n : setattr(self, 'cipher_transform_constants', n.get_enum_value(VpnEncryptionAlgorithmType)),
-            "dhGroup": lambda n : setattr(self, 'dh_group', n.get_enum_value(DiffieHellmanGroup)),
-            "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(VpnEncryptionAlgorithmType)),
-            "integrityCheckMethod": lambda n : setattr(self, 'integrity_check_method', n.get_enum_value(VpnIntegrityAlgorithmType)),
+            "authenticationTransformConstants": lambda n : setattr(self, 'authentication_transform_constants', n.get_enum_value(CryptographySuite_authenticationTransformConstants)),
+            "cipherTransformConstants": lambda n : setattr(self, 'cipher_transform_constants', n.get_enum_value(CryptographySuite_cipherTransformConstants)),
+            "dhGroup": lambda n : setattr(self, 'dh_group', n.get_enum_value(CryptographySuite_dhGroup)),
+            "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(CryptographySuite_encryptionMethod)),
+            "integrityCheckMethod": lambda n : setattr(self, 'integrity_check_method', n.get_enum_value(CryptographySuite_integrityCheckMethod)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "pfsGroup": lambda n : setattr(self, 'pfs_group', n.get_enum_value(PerfectForwardSecrecyGroup)),
+            "pfsGroup": lambda n : setattr(self, 'pfs_group', n.get_enum_value(CryptographySuite_pfsGroup)),
         }
         return fields
     

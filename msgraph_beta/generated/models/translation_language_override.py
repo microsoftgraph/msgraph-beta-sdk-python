@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .translation_behavior import TranslationBehavior
+    from .translation_language_override_translation_behavior import TranslationLanguageOverride_translationBehavior
 
 @dataclass
 class TranslationLanguageOverride(AdditionalDataHolder, BackedModel, Parsable):
@@ -19,7 +19,7 @@ class TranslationLanguageOverride(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The translation override behavior for the language, if any.Returned by default. Not nullable.
-    translation_behavior: Optional[TranslationBehavior] = None
+    translation_behavior: Optional[TranslationLanguageOverride_translationBehavior] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TranslationLanguageOverride:
@@ -37,14 +37,14 @@ class TranslationLanguageOverride(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .translation_behavior import TranslationBehavior
+        from .translation_language_override_translation_behavior import TranslationLanguageOverride_translationBehavior
 
-        from .translation_behavior import TranslationBehavior
+        from .translation_language_override_translation_behavior import TranslationLanguageOverride_translationBehavior
 
         fields: Dict[str, Callable[[Any], None]] = {
             "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "translationBehavior": lambda n : setattr(self, 'translation_behavior', n.get_enum_value(TranslationBehavior)),
+            "translationBehavior": lambda n : setattr(self, 'translation_behavior', n.get_enum_value(TranslationLanguageOverride_translationBehavior)),
         }
         return fields
     

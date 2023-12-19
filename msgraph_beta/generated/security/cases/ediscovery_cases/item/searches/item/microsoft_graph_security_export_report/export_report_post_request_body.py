@@ -5,9 +5,9 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models.security.additional_options import AdditionalOptions
-    from ........models.security.export_criteria import ExportCriteria
-    from ........models.security.export_location import ExportLocation
+    from .export_report_post_request_body_additional_options import ExportReportPostRequestBody_additionalOptions
+    from .export_report_post_request_body_export_criteria import ExportReportPostRequestBody_exportCriteria
+    from .export_report_post_request_body_export_location import ExportReportPostRequestBody_exportLocation
 
 @dataclass
 class ExportReportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -17,15 +17,15 @@ class ExportReportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The additionalOptions property
-    additional_options: Optional[AdditionalOptions] = None
+    additional_options: Optional[ExportReportPostRequestBody_additionalOptions] = None
     # The description property
     description: Optional[str] = None
     # The displayName property
     display_name: Optional[str] = None
     # The exportCriteria property
-    export_criteria: Optional[ExportCriteria] = None
+    export_criteria: Optional[ExportReportPostRequestBody_exportCriteria] = None
     # The exportLocation property
-    export_location: Optional[ExportLocation] = None
+    export_location: Optional[ExportReportPostRequestBody_exportLocation] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExportReportPostRequestBody:
@@ -43,20 +43,20 @@ class ExportReportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ........models.security.additional_options import AdditionalOptions
-        from ........models.security.export_criteria import ExportCriteria
-        from ........models.security.export_location import ExportLocation
+        from .export_report_post_request_body_additional_options import ExportReportPostRequestBody_additionalOptions
+        from .export_report_post_request_body_export_criteria import ExportReportPostRequestBody_exportCriteria
+        from .export_report_post_request_body_export_location import ExportReportPostRequestBody_exportLocation
 
-        from ........models.security.additional_options import AdditionalOptions
-        from ........models.security.export_criteria import ExportCriteria
-        from ........models.security.export_location import ExportLocation
+        from .export_report_post_request_body_additional_options import ExportReportPostRequestBody_additionalOptions
+        from .export_report_post_request_body_export_criteria import ExportReportPostRequestBody_exportCriteria
+        from .export_report_post_request_body_export_location import ExportReportPostRequestBody_exportLocation
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "additionalOptions": lambda n : setattr(self, 'additional_options', n.get_collection_of_enum_values(AdditionalOptions)),
+            "additionalOptions": lambda n : setattr(self, 'additional_options', n.get_enum_value(ExportReportPostRequestBody_additionalOptions)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "exportCriteria": lambda n : setattr(self, 'export_criteria', n.get_collection_of_enum_values(ExportCriteria)),
-            "exportLocation": lambda n : setattr(self, 'export_location', n.get_collection_of_enum_values(ExportLocation)),
+            "exportCriteria": lambda n : setattr(self, 'export_criteria', n.get_enum_value(ExportReportPostRequestBody_exportCriteria)),
+            "exportLocation": lambda n : setattr(self, 'export_location', n.get_enum_value(ExportReportPostRequestBody_exportLocation)),
         }
         return fields
     

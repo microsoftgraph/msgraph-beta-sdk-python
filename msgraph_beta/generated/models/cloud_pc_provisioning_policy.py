@@ -8,7 +8,8 @@ if TYPE_CHECKING:
     from .cloud_pc_management_service import CloudPcManagementService
     from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
     from .cloud_pc_provisioning_policy_image_type import CloudPcProvisioningPolicyImageType
-    from .cloud_pc_provisioning_type import CloudPcProvisioningType
+    from .cloud_pc_provisioning_policy_provisioning_type import CloudPcProvisioningPolicy_provisioningType
+    from .cloud_pc_windows_setting import CloudPcWindowsSetting
     from .cloud_pc_windows_settings import CloudPcWindowsSettings
     from .entity import Entity
     from .microsoft_managed_desktop import MicrosoftManagedDesktop
@@ -54,7 +55,11 @@ class CloudPcProvisioningPolicy(Entity):
     # The ID of the cloudPcOnPremisesConnection. To ensure that Cloud PCs have network connectivity and that they domain join, choose a connection with a virtual network that’s validated by the Cloud PC service.
     on_premises_connection_id: Optional[str] = None
     # Specifies the type of license used when provisioning Cloud PCs using this policy. By default, the license type is dedicated if the provisioningType isn't specified when you create the cloudPcProvisioningPolicy. You can't change this property after the cloudPcProvisioningPolicy was created. Possible values are: dedicated, shared, unknownFutureValue.
-    provisioning_type: Optional[CloudPcProvisioningType] = None
+    provisioning_type: Optional[CloudPcProvisioningPolicy_provisioningType] = None
+    # The scopeIds property
+    scope_ids: Optional[List[str]] = None
+    # The windowsSetting property
+    windows_setting: Optional[CloudPcWindowsSetting] = None
     # Specific Windows settings to configure while creating Cloud PCs for this provisioning policy.
     windows_settings: Optional[CloudPcWindowsSettings] = None
     
@@ -78,7 +83,8 @@ class CloudPcProvisioningPolicy(Entity):
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
         from .cloud_pc_provisioning_policy_image_type import CloudPcProvisioningPolicyImageType
-        from .cloud_pc_provisioning_type import CloudPcProvisioningType
+        from .cloud_pc_provisioning_policy_provisioning_type import CloudPcProvisioningPolicy_provisioningType
+        from .cloud_pc_windows_setting import CloudPcWindowsSetting
         from .cloud_pc_windows_settings import CloudPcWindowsSettings
         from .entity import Entity
         from .microsoft_managed_desktop import MicrosoftManagedDesktop
@@ -87,7 +93,8 @@ class CloudPcProvisioningPolicy(Entity):
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
         from .cloud_pc_provisioning_policy_image_type import CloudPcProvisioningPolicyImageType
-        from .cloud_pc_provisioning_type import CloudPcProvisioningType
+        from .cloud_pc_provisioning_policy_provisioning_type import CloudPcProvisioningPolicy_provisioningType
+        from .cloud_pc_windows_setting import CloudPcWindowsSetting
         from .cloud_pc_windows_settings import CloudPcWindowsSettings
         from .entity import Entity
         from .microsoft_managed_desktop import MicrosoftManagedDesktop
@@ -110,7 +117,9 @@ class CloudPcProvisioningPolicy(Entity):
             "managedBy": lambda n : setattr(self, 'managed_by', n.get_collection_of_enum_values(CloudPcManagementService)),
             "microsoftManagedDesktop": lambda n : setattr(self, 'microsoft_managed_desktop', n.get_object_value(MicrosoftManagedDesktop)),
             "onPremisesConnectionId": lambda n : setattr(self, 'on_premises_connection_id', n.get_str_value()),
-            "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
+            "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningPolicy_provisioningType)),
+            "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
+            "windowsSetting": lambda n : setattr(self, 'windows_setting', n.get_object_value(CloudPcWindowsSetting)),
             "windowsSettings": lambda n : setattr(self, 'windows_settings', n.get_object_value(CloudPcWindowsSettings)),
         }
         super_fields = super().get_field_deserializers()
@@ -144,6 +153,8 @@ class CloudPcProvisioningPolicy(Entity):
         writer.write_object_value("microsoftManagedDesktop", self.microsoft_managed_desktop)
         writer.write_str_value("onPremisesConnectionId", self.on_premises_connection_id)
         writer.write_enum_value("provisioningType", self.provisioning_type)
+        writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
+        writer.write_object_value("windowsSetting", self.windows_setting)
         writer.write_object_value("windowsSettings", self.windows_settings)
     
 

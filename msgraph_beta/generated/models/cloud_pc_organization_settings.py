@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .cloud_pc_operating_system import CloudPcOperatingSystem
-    from .cloud_pc_user_account_type import CloudPcUserAccountType
+    from .cloud_pc_organization_settings_os_version import CloudPcOrganizationSettings_osVersion
+    from .cloud_pc_organization_settings_user_account_type import CloudPcOrganizationSettings_userAccountType
     from .cloud_pc_windows_settings import CloudPcWindowsSettings
     from .entity import Entity
 
@@ -20,9 +20,9 @@ class CloudPcOrganizationSettings(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The version of the operating system (OS) to provision on Cloud PCs. The possible values are: windows10, windows11, unknownFutureValue.
-    os_version: Optional[CloudPcOperatingSystem] = None
+    os_version: Optional[CloudPcOrganizationSettings_osVersion] = None
     # The account type of the user on provisioned Cloud PCs. The possible values are: standardUser, administrator, unknownFutureValue.
-    user_account_type: Optional[CloudPcUserAccountType] = None
+    user_account_type: Optional[CloudPcOrganizationSettings_userAccountType] = None
     # Represents the Cloud PC organization settings for a tenant. A tenant has only one cloudPcOrganizationSettings object. The default language value en-US.
     windows_settings: Optional[CloudPcWindowsSettings] = None
     
@@ -42,21 +42,21 @@ class CloudPcOrganizationSettings(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .cloud_pc_operating_system import CloudPcOperatingSystem
-        from .cloud_pc_user_account_type import CloudPcUserAccountType
+        from .cloud_pc_organization_settings_os_version import CloudPcOrganizationSettings_osVersion
+        from .cloud_pc_organization_settings_user_account_type import CloudPcOrganizationSettings_userAccountType
         from .cloud_pc_windows_settings import CloudPcWindowsSettings
         from .entity import Entity
 
-        from .cloud_pc_operating_system import CloudPcOperatingSystem
-        from .cloud_pc_user_account_type import CloudPcUserAccountType
+        from .cloud_pc_organization_settings_os_version import CloudPcOrganizationSettings_osVersion
+        from .cloud_pc_organization_settings_user_account_type import CloudPcOrganizationSettings_userAccountType
         from .cloud_pc_windows_settings import CloudPcWindowsSettings
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "enableMEMAutoEnroll": lambda n : setattr(self, 'enable_m_e_m_auto_enroll', n.get_bool_value()),
             "enableSingleSignOn": lambda n : setattr(self, 'enable_single_sign_on', n.get_bool_value()),
-            "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(CloudPcOperatingSystem)),
-            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(CloudPcUserAccountType)),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(CloudPcOrganizationSettings_osVersion)),
+            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(CloudPcOrganizationSettings_userAccountType)),
             "windowsSettings": lambda n : setattr(self, 'windows_settings', n.get_object_value(CloudPcWindowsSettings)),
         }
         super_fields = super().get_field_deserializers()

@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .allowed_role_principal_types import AllowedRolePrincipalTypes
     from .entity import Entity
+    from .unified_role_definition_allowed_principal_types import UnifiedRoleDefinition_allowedPrincipalTypes
     from .unified_role_permission import UnifiedRolePermission
 
 from .entity import Entity
@@ -13,7 +13,7 @@ from .entity import Entity
 @dataclass
 class UnifiedRoleDefinition(Entity):
     # Types of principals that can be assigned the role. Read-only. The possible values are: user, servicePrincipal, group, unknownFutureValue. This is a multi-valued enumeration that can contain up to three values as a comma-separated string. For example, user, group. Supports $filter (eq).
-    allowed_principal_types: Optional[AllowedRolePrincipalTypes] = None
+    allowed_principal_types: Optional[UnifiedRoleDefinition_allowedPrincipalTypes] = None
     # The description for the unifiedRoleDefinition. Read-only when isBuiltIn is true.
     description: Optional[str] = None
     # The display name for the unifiedRoleDefinition. Read-only when isBuiltIn is true. Required.  Supports $filter (eq and startsWith).
@@ -53,16 +53,16 @@ class UnifiedRoleDefinition(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .allowed_role_principal_types import AllowedRolePrincipalTypes
         from .entity import Entity
+        from .unified_role_definition_allowed_principal_types import UnifiedRoleDefinition_allowedPrincipalTypes
         from .unified_role_permission import UnifiedRolePermission
 
-        from .allowed_role_principal_types import AllowedRolePrincipalTypes
         from .entity import Entity
+        from .unified_role_definition_allowed_principal_types import UnifiedRoleDefinition_allowedPrincipalTypes
         from .unified_role_permission import UnifiedRolePermission
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedPrincipalTypes": lambda n : setattr(self, 'allowed_principal_types', n.get_collection_of_enum_values(AllowedRolePrincipalTypes)),
+            "allowedPrincipalTypes": lambda n : setattr(self, 'allowed_principal_types', n.get_enum_value(UnifiedRoleDefinition_allowedPrincipalTypes)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "inheritsPermissionsFrom": lambda n : setattr(self, 'inherits_permissions_from', n.get_collection_of_object_values(UnifiedRoleDefinition)),

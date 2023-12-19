@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .built_in_identity_provider_state import BuiltInIdentityProvider_state
     from .identity_provider_base import IdentityProviderBase
-    from .identity_provider_state import IdentityProviderState
 
 from .identity_provider_base import IdentityProviderBase
 
@@ -16,7 +16,7 @@ class BuiltInIdentityProvider(IdentityProviderBase):
     # The identity provider type. For a B2B scenario, possible values: AADSignup, MicrosoftAccount, EmailOTP. Required.
     identity_provider_type: Optional[str] = None
     # The state property
-    state: Optional[IdentityProviderState] = None
+    state: Optional[BuiltInIdentityProvider_state] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BuiltInIdentityProvider:
@@ -34,15 +34,15 @@ class BuiltInIdentityProvider(IdentityProviderBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .built_in_identity_provider_state import BuiltInIdentityProvider_state
         from .identity_provider_base import IdentityProviderBase
-        from .identity_provider_state import IdentityProviderState
 
+        from .built_in_identity_provider_state import BuiltInIdentityProvider_state
         from .identity_provider_base import IdentityProviderBase
-        from .identity_provider_state import IdentityProviderState
 
         fields: Dict[str, Callable[[Any], None]] = {
             "identityProviderType": lambda n : setattr(self, 'identity_provider_type', n.get_str_value()),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(IdentityProviderState)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(BuiltInIdentityProvider_state)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

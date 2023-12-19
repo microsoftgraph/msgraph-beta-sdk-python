@@ -4,10 +4,10 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .certificate_store import CertificateStore
     from .custom_subject_alternative_name import CustomSubjectAlternativeName
     from .extended_key_usage import ExtendedKeyUsage
     from .ios_certificate_profile_base import IosCertificateProfileBase
+    from .ios_scep_certificate_profile_certificate_store import IosScepCertificateProfile_certificateStore
     from .ios_trusted_root_certificate import IosTrustedRootCertificate
     from .key_size import KeySize
     from .key_usages import KeyUsages
@@ -23,7 +23,7 @@ class IosScepCertificateProfile(IosCertificateProfileBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.iosScepCertificateProfile"
     # Target store certificate. Possible values are: user, machine.
-    certificate_store: Optional[CertificateStore] = None
+    certificate_store: Optional[IosScepCertificateProfile_certificateStore] = None
     # Custom Subject Alternative Name Settings. The OnPremisesUserPrincipalName variable is support as well as others documented here: https://go.microsoft.com/fwlink/?LinkId=2027630. This collection can contain a maximum of 500 elements.
     custom_subject_alternative_names: Optional[List[CustomSubjectAlternativeName]] = None
     # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
@@ -59,26 +59,26 @@ class IosScepCertificateProfile(IosCertificateProfileBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .extended_key_usage import ExtendedKeyUsage
         from .ios_certificate_profile_base import IosCertificateProfileBase
+        from .ios_scep_certificate_profile_certificate_store import IosScepCertificateProfile_certificateStore
         from .ios_trusted_root_certificate import IosTrustedRootCertificate
         from .key_size import KeySize
         from .key_usages import KeyUsages
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .extended_key_usage import ExtendedKeyUsage
         from .ios_certificate_profile_base import IosCertificateProfileBase
+        from .ios_scep_certificate_profile_certificate_store import IosScepCertificateProfile_certificateStore
         from .ios_trusted_root_certificate import IosTrustedRootCertificate
         from .key_size import KeySize
         from .key_usages import KeyUsages
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(IosScepCertificateProfile_certificateStore)),
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(CustomSubjectAlternativeName)),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(KeySize)),

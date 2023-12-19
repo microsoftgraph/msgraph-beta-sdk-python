@@ -4,6 +4,11 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .android_managed_app_protection_app_action_if_account_is_clocked_out import AndroidManagedAppProtection_appActionIfAccountIsClockedOut
+    from .android_managed_app_protection_app_action_if_device_passcode_complexity_less_than_high import AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanHigh
+    from .android_managed_app_protection_app_action_if_device_passcode_complexity_less_than_low import AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanLow
+    from .android_managed_app_protection_app_action_if_device_passcode_complexity_less_than_medium import AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanMedium
+    from .android_managed_app_protection_app_action_if_samsung_knox_attestation_required import AndroidManagedAppProtection_appActionIfSamsungKnoxAttestationRequired
     from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
     from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
     from .android_managed_app_safety_net_evaluation_type import AndroidManagedAppSafetyNetEvaluationType
@@ -27,7 +32,7 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
     # List of device models allowed, as a string, for the managed app to work.
     allowed_android_device_models: Optional[List[str]] = None
     # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time).
-    app_action_if_account_is_clocked_out: Optional[ManagedAppRemediationAction] = None
+    app_action_if_account_is_clocked_out: Optional[AndroidManagedAppProtection_appActionIfAccountIsClockedOut] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_android_device_manufacturer_not_allowed: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
@@ -39,13 +44,13 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
     # An admin initiated action to be applied on a managed app.
     app_action_if_device_lock_not_set: Optional[ManagedAppRemediationAction] = None
     # If the device does not have a passcode of high complexity or higher, trigger the stored action.
-    app_action_if_device_passcode_complexity_less_than_high: Optional[ManagedAppRemediationAction] = None
+    app_action_if_device_passcode_complexity_less_than_high: Optional[AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanHigh] = None
     # If the device does not have a passcode of low complexity or higher, trigger the stored action.
-    app_action_if_device_passcode_complexity_less_than_low: Optional[ManagedAppRemediationAction] = None
+    app_action_if_device_passcode_complexity_less_than_low: Optional[AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanLow] = None
     # If the device does not have a passcode of medium complexity or higher, trigger the stored action.
-    app_action_if_device_passcode_complexity_less_than_medium: Optional[ManagedAppRemediationAction] = None
+    app_action_if_device_passcode_complexity_less_than_medium: Optional[AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanMedium] = None
     # Defines the behavior of a managed app when Samsung Knox Attestation is required. Possible values are null, warn, block & wipe. If the admin does not set this action, the default is null, which indicates this setting is not configured.
-    app_action_if_samsung_knox_attestation_required: Optional[ManagedAppRemediationAction] = None
+    app_action_if_samsung_knox_attestation_required: Optional[AndroidManagedAppProtection_appActionIfSamsungKnoxAttestationRequired] = None
     # If Keyboard Restriction is enabled, only keyboards in this approved list will be allowed. A key should be Android package id for a keyboard and value should be a friendly name
     approved_keyboards: Optional[List[KeyValuePair]] = None
     # List of apps to which the policy is deployed.
@@ -80,6 +85,10 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
     fingerprint_and_biometric_enabled: Optional[bool] = None
     # Indicates if keyboard restriction is enabled. If enabled list of approved keyboards must be provided as well.
     keyboards_restricted: Optional[bool] = None
+    # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app name which is allowed to be used.
+    messaging_redirect_app_display_name: Optional[str] = None
+    # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app package id which is allowed to be used.
+    messaging_redirect_app_package_id: Optional[str] = None
     # Minimum version of the Company portal that must be installed on the device or app access will be blocked
     minimum_required_company_portal_version: Optional[str] = None
     # Define the oldest required Android security patch level a user can have to gain secure access to the app.
@@ -125,6 +134,11 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .android_managed_app_protection_app_action_if_account_is_clocked_out import AndroidManagedAppProtection_appActionIfAccountIsClockedOut
+        from .android_managed_app_protection_app_action_if_device_passcode_complexity_less_than_high import AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanHigh
+        from .android_managed_app_protection_app_action_if_device_passcode_complexity_less_than_low import AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanLow
+        from .android_managed_app_protection_app_action_if_device_passcode_complexity_less_than_medium import AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanMedium
+        from .android_managed_app_protection_app_action_if_samsung_knox_attestation_required import AndroidManagedAppProtection_appActionIfSamsungKnoxAttestationRequired
         from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
         from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
         from .android_managed_app_safety_net_evaluation_type import AndroidManagedAppSafetyNetEvaluationType
@@ -134,6 +148,11 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
         from .managed_mobile_app import ManagedMobileApp
         from .targeted_managed_app_protection import TargetedManagedAppProtection
 
+        from .android_managed_app_protection_app_action_if_account_is_clocked_out import AndroidManagedAppProtection_appActionIfAccountIsClockedOut
+        from .android_managed_app_protection_app_action_if_device_passcode_complexity_less_than_high import AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanHigh
+        from .android_managed_app_protection_app_action_if_device_passcode_complexity_less_than_low import AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanLow
+        from .android_managed_app_protection_app_action_if_device_passcode_complexity_less_than_medium import AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanMedium
+        from .android_managed_app_protection_app_action_if_samsung_knox_attestation_required import AndroidManagedAppProtection_appActionIfSamsungKnoxAttestationRequired
         from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
         from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
         from .android_managed_app_safety_net_evaluation_type import AndroidManagedAppSafetyNetEvaluationType
@@ -146,16 +165,16 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
         fields: Dict[str, Callable[[Any], None]] = {
             "allowedAndroidDeviceManufacturers": lambda n : setattr(self, 'allowed_android_device_manufacturers', n.get_str_value()),
             "allowedAndroidDeviceModels": lambda n : setattr(self, 'allowed_android_device_models', n.get_collection_of_primitive_values(str)),
-            "appActionIfAccountIsClockedOut": lambda n : setattr(self, 'app_action_if_account_is_clocked_out', n.get_enum_value(ManagedAppRemediationAction)),
+            "appActionIfAccountIsClockedOut": lambda n : setattr(self, 'app_action_if_account_is_clocked_out', n.get_enum_value(AndroidManagedAppProtection_appActionIfAccountIsClockedOut)),
             "appActionIfAndroidDeviceManufacturerNotAllowed": lambda n : setattr(self, 'app_action_if_android_device_manufacturer_not_allowed', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfAndroidDeviceModelNotAllowed": lambda n : setattr(self, 'app_action_if_android_device_model_not_allowed', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfAndroidSafetyNetAppsVerificationFailed": lambda n : setattr(self, 'app_action_if_android_safety_net_apps_verification_failed', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfAndroidSafetyNetDeviceAttestationFailed": lambda n : setattr(self, 'app_action_if_android_safety_net_device_attestation_failed', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfDeviceLockNotSet": lambda n : setattr(self, 'app_action_if_device_lock_not_set', n.get_enum_value(ManagedAppRemediationAction)),
-            "appActionIfDevicePasscodeComplexityLessThanHigh": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_high', n.get_enum_value(ManagedAppRemediationAction)),
-            "appActionIfDevicePasscodeComplexityLessThanLow": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_low', n.get_enum_value(ManagedAppRemediationAction)),
-            "appActionIfDevicePasscodeComplexityLessThanMedium": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_medium', n.get_enum_value(ManagedAppRemediationAction)),
-            "appActionIfSamsungKnoxAttestationRequired": lambda n : setattr(self, 'app_action_if_samsung_knox_attestation_required', n.get_enum_value(ManagedAppRemediationAction)),
+            "appActionIfDevicePasscodeComplexityLessThanHigh": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_high', n.get_enum_value(AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanHigh)),
+            "appActionIfDevicePasscodeComplexityLessThanLow": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_low', n.get_enum_value(AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanLow)),
+            "appActionIfDevicePasscodeComplexityLessThanMedium": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_medium', n.get_enum_value(AndroidManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanMedium)),
+            "appActionIfSamsungKnoxAttestationRequired": lambda n : setattr(self, 'app_action_if_samsung_knox_attestation_required', n.get_enum_value(AndroidManagedAppProtection_appActionIfSamsungKnoxAttestationRequired)),
             "approvedKeyboards": lambda n : setattr(self, 'approved_keyboards', n.get_collection_of_object_values(KeyValuePair)),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(ManagedMobileApp)),
             "biometricAuthenticationBlocked": lambda n : setattr(self, 'biometric_authentication_blocked', n.get_bool_value()),
@@ -173,6 +192,8 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
             "exemptedAppPackages": lambda n : setattr(self, 'exempted_app_packages', n.get_collection_of_object_values(KeyValuePair)),
             "fingerprintAndBiometricEnabled": lambda n : setattr(self, 'fingerprint_and_biometric_enabled', n.get_bool_value()),
             "keyboardsRestricted": lambda n : setattr(self, 'keyboards_restricted', n.get_bool_value()),
+            "messagingRedirectAppDisplayName": lambda n : setattr(self, 'messaging_redirect_app_display_name', n.get_str_value()),
+            "messagingRedirectAppPackageId": lambda n : setattr(self, 'messaging_redirect_app_package_id', n.get_str_value()),
             "minimumRequiredCompanyPortalVersion": lambda n : setattr(self, 'minimum_required_company_portal_version', n.get_str_value()),
             "minimumRequiredPatchVersion": lambda n : setattr(self, 'minimum_required_patch_version', n.get_str_value()),
             "minimumWarningCompanyPortalVersion": lambda n : setattr(self, 'minimum_warning_company_portal_version', n.get_str_value()),
@@ -230,6 +251,8 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
         writer.write_collection_of_object_values("exemptedAppPackages", self.exempted_app_packages)
         writer.write_bool_value("fingerprintAndBiometricEnabled", self.fingerprint_and_biometric_enabled)
         writer.write_bool_value("keyboardsRestricted", self.keyboards_restricted)
+        writer.write_str_value("messagingRedirectAppDisplayName", self.messaging_redirect_app_display_name)
+        writer.write_str_value("messagingRedirectAppPackageId", self.messaging_redirect_app_package_id)
         writer.write_str_value("minimumRequiredCompanyPortalVersion", self.minimum_required_company_portal_version)
         writer.write_str_value("minimumRequiredPatchVersion", self.minimum_required_patch_version)
         writer.write_str_value("minimumWarningCompanyPortalVersion", self.minimum_warning_company_portal_version)

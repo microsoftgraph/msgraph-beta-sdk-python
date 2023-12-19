@@ -6,10 +6,13 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .device_category import DeviceCategory
     from .headers import Headers
-    from .networking_protocol import NetworkingProtocol
+    from .network_access_traffic_action import NetworkAccessTraffic_action
+    from .network_access_traffic_device_category import NetworkAccessTraffic_deviceCategory
+    from .network_access_traffic_network_protocol import NetworkAccessTraffic_networkProtocol
+    from .network_access_traffic_transport_protocol import NetworkAccessTraffic_transportProtocol
     from .traffic_type import TrafficType
+    from .web_category import WebCategory
 
 @dataclass
 class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
@@ -18,6 +21,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The action property
+    action: Optional[NetworkAccessTraffic_action] = None
     # Represents the version of the Global Secure Access client agent software. Supports $filter (eq) and $orderby.
     agent_version: Optional[str] = None
     # Represents a unique identifier assigned to a connection. Supports $filter (eq) and $orderby.
@@ -30,8 +35,10 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     destination_ip: Optional[str] = None
     # Represents the network port number on the destination host or server in a network communication. Supports $filter (eq) and $orderby.
     destination_port: Optional[int] = None
+    # The destinationWebCategory property
+    destination_web_category: Optional[WebCategory] = None
     # Represents the category classification of a device within a network infrastructure. The possible values are: client, branch, unknownFutureValue. Supports $filter (eq) and $orderby.
-    device_category: Optional[DeviceCategory] = None
+    device_category: Optional[NetworkAccessTraffic_deviceCategory] = None
     # Represents a unique identifier assigned to a device within a network infrastructure. Supports $filter (eq) and $orderby.
     device_id: Optional[str] = None
     # Represents the operating system installed on a device within a network infrastructure. Supports $filter (eq) and $orderby.
@@ -47,7 +54,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     # The initiatingProcessName property
     initiating_process_name: Optional[str] = None
     # Represents the networking protocol used for communication.The possible values are: ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII, unknownFutureValue. Supports $filter (eq) and $orderby.
-    network_protocol: Optional[NetworkingProtocol] = None
+    network_protocol: Optional[NetworkAccessTraffic_networkProtocol] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents a unique identifier assigned to a policy. Supports $filter (eq) and $orderby.
@@ -77,7 +84,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     # Represents a unique identifier assigned to a specific transaction or operation. Key. Supports $filter (eq) and $orderby.
     transaction_id: Optional[str] = None
     # Represents the transport protocol used for communication.The possible values are: ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII, unknownFutureValue. Supports $filter (eq) and $orderby.
-    transport_protocol: Optional[NetworkingProtocol] = None
+    transport_protocol: Optional[NetworkAccessTraffic_transportProtocol] = None
     # Represents a unique identifier assigned to a user. Supports $filter (eq) and $orderby.
     user_id: Optional[str] = None
     # Represents the user principal name (UPN) associated with a user. Supports $filter (eq) and $orderby.
@@ -99,24 +106,32 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .device_category import DeviceCategory
         from .headers import Headers
-        from .networking_protocol import NetworkingProtocol
+        from .network_access_traffic_action import NetworkAccessTraffic_action
+        from .network_access_traffic_device_category import NetworkAccessTraffic_deviceCategory
+        from .network_access_traffic_network_protocol import NetworkAccessTraffic_networkProtocol
+        from .network_access_traffic_transport_protocol import NetworkAccessTraffic_transportProtocol
         from .traffic_type import TrafficType
+        from .web_category import WebCategory
 
-        from .device_category import DeviceCategory
         from .headers import Headers
-        from .networking_protocol import NetworkingProtocol
+        from .network_access_traffic_action import NetworkAccessTraffic_action
+        from .network_access_traffic_device_category import NetworkAccessTraffic_deviceCategory
+        from .network_access_traffic_network_protocol import NetworkAccessTraffic_networkProtocol
+        from .network_access_traffic_transport_protocol import NetworkAccessTraffic_transportProtocol
         from .traffic_type import TrafficType
+        from .web_category import WebCategory
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "action": lambda n : setattr(self, 'action', n.get_enum_value(NetworkAccessTraffic_action)),
             "agentVersion": lambda n : setattr(self, 'agent_version', n.get_str_value()),
             "connectionId": lambda n : setattr(self, 'connection_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "destinationFQDN": lambda n : setattr(self, 'destination_f_q_d_n', n.get_str_value()),
             "destinationIp": lambda n : setattr(self, 'destination_ip', n.get_str_value()),
             "destinationPort": lambda n : setattr(self, 'destination_port', n.get_int_value()),
-            "deviceCategory": lambda n : setattr(self, 'device_category', n.get_enum_value(DeviceCategory)),
+            "destinationWebCategory": lambda n : setattr(self, 'destination_web_category', n.get_object_value(WebCategory)),
+            "deviceCategory": lambda n : setattr(self, 'device_category', n.get_enum_value(NetworkAccessTraffic_deviceCategory)),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceOperatingSystem": lambda n : setattr(self, 'device_operating_system', n.get_str_value()),
             "deviceOperatingSystemVersion": lambda n : setattr(self, 'device_operating_system_version', n.get_str_value()),
@@ -124,7 +139,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "filteringProfileName": lambda n : setattr(self, 'filtering_profile_name', n.get_str_value()),
             "headers": lambda n : setattr(self, 'headers', n.get_object_value(Headers)),
             "initiatingProcessName": lambda n : setattr(self, 'initiating_process_name', n.get_str_value()),
-            "networkProtocol": lambda n : setattr(self, 'network_protocol', n.get_enum_value(NetworkingProtocol)),
+            "networkProtocol": lambda n : setattr(self, 'network_protocol', n.get_enum_value(NetworkAccessTraffic_networkProtocol)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
             "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
@@ -139,7 +154,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "trafficType": lambda n : setattr(self, 'traffic_type', n.get_enum_value(TrafficType)),
             "transactionId": lambda n : setattr(self, 'transaction_id', n.get_str_value()),
-            "transportProtocol": lambda n : setattr(self, 'transport_protocol', n.get_enum_value(NetworkingProtocol)),
+            "transportProtocol": lambda n : setattr(self, 'transport_protocol', n.get_enum_value(NetworkAccessTraffic_transportProtocol)),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
@@ -153,12 +168,14 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("action", self.action)
         writer.write_str_value("agentVersion", self.agent_version)
         writer.write_str_value("connectionId", self.connection_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("destinationFQDN", self.destination_f_q_d_n)
         writer.write_str_value("destinationIp", self.destination_ip)
         writer.write_int_value("destinationPort", self.destination_port)
+        writer.write_object_value("destinationWebCategory", self.destination_web_category)
         writer.write_enum_value("deviceCategory", self.device_category)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("deviceOperatingSystem", self.device_operating_system)

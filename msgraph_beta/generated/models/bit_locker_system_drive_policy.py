@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .bit_locker_encryption_method import BitLockerEncryptionMethod
     from .bit_locker_recovery_options import BitLockerRecoveryOptions
+    from .bit_locker_system_drive_policy_encryption_method import BitLockerSystemDrivePolicy_encryptionMethod
     from .configuration_usage import ConfigurationUsage
 
 @dataclass
@@ -20,7 +20,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Select the encryption method for operating system drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
-    encryption_method: Optional[BitLockerEncryptionMethod] = None
+    encryption_method: Optional[BitLockerSystemDrivePolicy_encryptionMethod] = None
     # Indicates the minimum length of startup pin. Valid values 4 to 20
     minimum_pin_length: Optional[int] = None
     # The OdataType property
@@ -62,16 +62,16 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .bit_locker_encryption_method import BitLockerEncryptionMethod
         from .bit_locker_recovery_options import BitLockerRecoveryOptions
+        from .bit_locker_system_drive_policy_encryption_method import BitLockerSystemDrivePolicy_encryptionMethod
         from .configuration_usage import ConfigurationUsage
 
-        from .bit_locker_encryption_method import BitLockerEncryptionMethod
         from .bit_locker_recovery_options import BitLockerRecoveryOptions
+        from .bit_locker_system_drive_policy_encryption_method import BitLockerSystemDrivePolicy_encryptionMethod
         from .configuration_usage import ConfigurationUsage
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(BitLockerEncryptionMethod)),
+            "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(BitLockerSystemDrivePolicy_encryptionMethod)),
             "minimumPinLength": lambda n : setattr(self, 'minimum_pin_length', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "prebootRecoveryEnableMessageAndUrl": lambda n : setattr(self, 'preboot_recovery_enable_message_and_url', n.get_bool_value()),

@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from ..entity import Entity
     from ..identity_set import IdentitySet
     from .ediscovery_hold_policy import EdiscoveryHoldPolicy
-    from .policy_status import PolicyStatus
+    from .policy_base_status import PolicyBase_status
 
 from ..entity import Entity
 
@@ -29,7 +29,7 @@ class PolicyBase(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The status property
-    status: Optional[PolicyStatus] = None
+    status: Optional[PolicyBase_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PolicyBase:
@@ -58,12 +58,12 @@ class PolicyBase(Entity):
         from ..entity import Entity
         from ..identity_set import IdentitySet
         from .ediscovery_hold_policy import EdiscoveryHoldPolicy
-        from .policy_status import PolicyStatus
+        from .policy_base_status import PolicyBase_status
 
         from ..entity import Entity
         from ..identity_set import IdentitySet
         from .ediscovery_hold_policy import EdiscoveryHoldPolicy
-        from .policy_status import PolicyStatus
+        from .policy_base_status import PolicyBase_status
 
         fields: Dict[str, Callable[[Any], None]] = {
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
@@ -72,7 +72,7 @@ class PolicyBase(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(PolicyStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(PolicyBase_status)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

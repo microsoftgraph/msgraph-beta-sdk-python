@@ -4,14 +4,14 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .aosp_device_owner_certificate_profile_base_subject_alternative_name_type import AospDeviceOwnerCertificateProfileBase_subjectAlternativeNameType
+    from .aosp_device_owner_certificate_profile_base_subject_name_format import AospDeviceOwnerCertificateProfileBase_subjectNameFormat
     from .aosp_device_owner_pkcs_certificate_profile import AospDeviceOwnerPkcsCertificateProfile
     from .aosp_device_owner_scep_certificate_profile import AospDeviceOwnerScepCertificateProfile
     from .aosp_device_owner_trusted_root_certificate import AospDeviceOwnerTrustedRootCertificate
     from .certificate_validity_period_scale import CertificateValidityPeriodScale
     from .device_configuration import DeviceConfiguration
     from .extended_key_usage import ExtendedKeyUsage
-    from .subject_alternative_name_type import SubjectAlternativeNameType
-    from .subject_name_format import SubjectNameFormat
 
 from .device_configuration import DeviceConfiguration
 
@@ -33,9 +33,9 @@ class AospDeviceOwnerCertificateProfileBase(DeviceConfiguration):
     # Trusted Root Certificate.
     root_certificate: Optional[AospDeviceOwnerTrustedRootCertificate] = None
     # Certificate Subject Alternative Name Type. This collection can contain a maximum of 500 elements. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-    subject_alternative_name_type: Optional[SubjectAlternativeNameType] = None
+    subject_alternative_name_type: Optional[AospDeviceOwnerCertificateProfileBase_subjectAlternativeNameType] = None
     # Certificate Subject Name Format. This collection can contain a maximum of 500 elements. Possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
-    subject_name_format: Optional[SubjectNameFormat] = None
+    subject_name_format: Optional[AospDeviceOwnerCertificateProfileBase_subjectNameFormat] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AospDeviceOwnerCertificateProfileBase:
@@ -65,23 +65,23 @@ class AospDeviceOwnerCertificateProfileBase(DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .aosp_device_owner_certificate_profile_base_subject_alternative_name_type import AospDeviceOwnerCertificateProfileBase_subjectAlternativeNameType
+        from .aosp_device_owner_certificate_profile_base_subject_name_format import AospDeviceOwnerCertificateProfileBase_subjectNameFormat
         from .aosp_device_owner_pkcs_certificate_profile import AospDeviceOwnerPkcsCertificateProfile
         from .aosp_device_owner_scep_certificate_profile import AospDeviceOwnerScepCertificateProfile
         from .aosp_device_owner_trusted_root_certificate import AospDeviceOwnerTrustedRootCertificate
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
         from .device_configuration import DeviceConfiguration
         from .extended_key_usage import ExtendedKeyUsage
-        from .subject_alternative_name_type import SubjectAlternativeNameType
-        from .subject_name_format import SubjectNameFormat
 
+        from .aosp_device_owner_certificate_profile_base_subject_alternative_name_type import AospDeviceOwnerCertificateProfileBase_subjectAlternativeNameType
+        from .aosp_device_owner_certificate_profile_base_subject_name_format import AospDeviceOwnerCertificateProfileBase_subjectNameFormat
         from .aosp_device_owner_pkcs_certificate_profile import AospDeviceOwnerPkcsCertificateProfile
         from .aosp_device_owner_scep_certificate_profile import AospDeviceOwnerScepCertificateProfile
         from .aosp_device_owner_trusted_root_certificate import AospDeviceOwnerTrustedRootCertificate
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
         from .device_configuration import DeviceConfiguration
         from .extended_key_usage import ExtendedKeyUsage
-        from .subject_alternative_name_type import SubjectAlternativeNameType
-        from .subject_name_format import SubjectNameFormat
 
         fields: Dict[str, Callable[[Any], None]] = {
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(CertificateValidityPeriodScale)),
@@ -89,8 +89,8 @@ class AospDeviceOwnerCertificateProfileBase(DeviceConfiguration):
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
             "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
             "rootCertificate": lambda n : setattr(self, 'root_certificate', n.get_object_value(AospDeviceOwnerTrustedRootCertificate)),
-            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_collection_of_enum_values(SubjectAlternativeNameType)),
-            "subjectNameFormat": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(SubjectNameFormat)),
+            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(AospDeviceOwnerCertificateProfileBase_subjectAlternativeNameType)),
+            "subjectNameFormat": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(AospDeviceOwnerCertificateProfileBase_subjectNameFormat)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

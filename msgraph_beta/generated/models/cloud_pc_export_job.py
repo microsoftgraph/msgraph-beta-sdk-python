@@ -5,8 +5,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .cloud_pc_export_job_status import CloudPcExportJobStatus
-    from .cloud_pc_report_name import CloudPcReportName
+    from .cloud_pc_export_job_export_job_status import CloudPcExportJob_exportJobStatus
+    from .cloud_pc_export_job_report_name import CloudPcExportJob_reportName
     from .entity import Entity
 
 from .entity import Entity
@@ -16,7 +16,7 @@ class CloudPcExportJob(Entity):
     # The date and time when the export job expires.
     expiration_date_time: Optional[datetime.datetime] = None
     # The status of the export job. The possible values are: notStarted, inProgress, completed, unknownFutureValue. Read-only.
-    export_job_status: Optional[CloudPcExportJobStatus] = None
+    export_job_status: Optional[CloudPcExportJob_exportJobStatus] = None
     # The storage account URL of the exported report. It can be used to download the file.
     export_url: Optional[str] = None
     # The filter applied on the report.
@@ -25,8 +25,8 @@ class CloudPcExportJob(Entity):
     format: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, sharedUseLicenseUsageReport, sharedUseLicenseUsageRealTimeReport, unknownFutureValue,  noLicenseAvailableConnectivityFailureReport, frontlineLicenseUsageReport, frontlineLicenseUsageRealTimeReport,  remoteConnectionQualityReports, inaccessibleCloudPcReports. You must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: noLicenseAvailableConnectivityFailureReport, frontlineLicenseUsageReport, frontlineLicenseUsageRealTimeReport, inaccessibleCloudPcReports.
-    report_name: Optional[CloudPcReportName] = None
+    # The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, sharedUseLicenseUsageReport, sharedUseLicenseUsageRealTimeReport, unknownFutureValue,  noLicenseAvailableConnectivityFailureReport, frontlineLicenseUsageReport, frontlineLicenseUsageRealTimeReport,  remoteConnectionQualityReports, inaccessibleCloudPcReports, rawRemoteConnectionReports. You must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: noLicenseAvailableConnectivityFailureReport, frontlineLicenseUsageReport, frontlineLicenseUsageRealTimeReport, remoteConnectionQualityReports, inaccessibleCloudPcReports, rawRemoteConnectionReports.
+    report_name: Optional[CloudPcExportJob_reportName] = None
     # The date and time when the export job was requested.
     request_date_time: Optional[datetime.datetime] = None
     # The selected columns of the report.
@@ -48,21 +48,21 @@ class CloudPcExportJob(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .cloud_pc_export_job_status import CloudPcExportJobStatus
-        from .cloud_pc_report_name import CloudPcReportName
+        from .cloud_pc_export_job_export_job_status import CloudPcExportJob_exportJobStatus
+        from .cloud_pc_export_job_report_name import CloudPcExportJob_reportName
         from .entity import Entity
 
-        from .cloud_pc_export_job_status import CloudPcExportJobStatus
-        from .cloud_pc_report_name import CloudPcReportName
+        from .cloud_pc_export_job_export_job_status import CloudPcExportJob_exportJobStatus
+        from .cloud_pc_export_job_report_name import CloudPcExportJob_reportName
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "exportJobStatus": lambda n : setattr(self, 'export_job_status', n.get_enum_value(CloudPcExportJobStatus)),
+            "exportJobStatus": lambda n : setattr(self, 'export_job_status', n.get_enum_value(CloudPcExportJob_exportJobStatus)),
             "exportUrl": lambda n : setattr(self, 'export_url', n.get_str_value()),
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
             "format": lambda n : setattr(self, 'format', n.get_str_value()),
-            "reportName": lambda n : setattr(self, 'report_name', n.get_enum_value(CloudPcReportName)),
+            "reportName": lambda n : setattr(self, 'report_name', n.get_enum_value(CloudPcExportJob_reportName)),
             "requestDateTime": lambda n : setattr(self, 'request_date_time', n.get_datetime_value()),
             "select": lambda n : setattr(self, 'select', n.get_collection_of_primitive_values(str)),
         }

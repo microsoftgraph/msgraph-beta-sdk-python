@@ -6,8 +6,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .hunting_rule_error_code import HuntingRuleErrorCode
-    from .hunting_rule_run_status import HuntingRuleRunStatus
+    from .run_details_error_code import RunDetails_errorCode
+    from .run_details_status import RunDetails_status
 
 @dataclass
 class RunDetails(AdditionalDataHolder, BackedModel, Parsable):
@@ -17,7 +17,7 @@ class RunDetails(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The errorCode property
-    error_code: Optional[HuntingRuleErrorCode] = None
+    error_code: Optional[RunDetails_errorCode] = None
     # The failureReason property
     failure_reason: Optional[str] = None
     # The lastRunDateTime property
@@ -25,7 +25,7 @@ class RunDetails(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The status property
-    status: Optional[HuntingRuleRunStatus] = None
+    status: Optional[RunDetails_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RunDetails:
@@ -43,18 +43,18 @@ class RunDetails(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .hunting_rule_error_code import HuntingRuleErrorCode
-        from .hunting_rule_run_status import HuntingRuleRunStatus
+        from .run_details_error_code import RunDetails_errorCode
+        from .run_details_status import RunDetails_status
 
-        from .hunting_rule_error_code import HuntingRuleErrorCode
-        from .hunting_rule_run_status import HuntingRuleRunStatus
+        from .run_details_error_code import RunDetails_errorCode
+        from .run_details_status import RunDetails_status
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "errorCode": lambda n : setattr(self, 'error_code', n.get_enum_value(HuntingRuleErrorCode)),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_enum_value(RunDetails_errorCode)),
             "failureReason": lambda n : setattr(self, 'failure_reason', n.get_str_value()),
             "lastRunDateTime": lambda n : setattr(self, 'last_run_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(HuntingRuleRunStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(RunDetails_status)),
         }
         return fields
     

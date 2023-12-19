@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .print_job_processing_state import PrintJobProcessingState
     from .print_job_state_detail import PrintJobStateDetail
+    from .print_job_status_processing_state import PrintJobStatus_processingState
 
 @dataclass
 class PrintJobStatus(AdditionalDataHolder, BackedModel, Parsable):
@@ -26,7 +27,7 @@ class PrintJobStatus(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The processingState property
-    processing_state: Optional[PrintJobProcessingState] = None
+    processing_state: Optional[PrintJobStatus_processingState] = None
     # The processingStateDescription property
     processing_state_description: Optional[str] = None
     # The state property
@@ -50,9 +51,11 @@ class PrintJobStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .print_job_processing_state import PrintJobProcessingState
         from .print_job_state_detail import PrintJobStateDetail
+        from .print_job_status_processing_state import PrintJobStatus_processingState
 
         from .print_job_processing_state import PrintJobProcessingState
         from .print_job_state_detail import PrintJobStateDetail
+        from .print_job_status_processing_state import PrintJobStatus_processingState
 
         fields: Dict[str, Callable[[Any], None]] = {
             "acquiredByPrinter": lambda n : setattr(self, 'acquired_by_printer', n.get_bool_value()),
@@ -60,7 +63,7 @@ class PrintJobStatus(AdditionalDataHolder, BackedModel, Parsable):
             "details": lambda n : setattr(self, 'details', n.get_collection_of_enum_values(PrintJobStateDetail)),
             "isAcquiredByPrinter": lambda n : setattr(self, 'is_acquired_by_printer', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "processingState": lambda n : setattr(self, 'processing_state', n.get_enum_value(PrintJobProcessingState)),
+            "processingState": lambda n : setattr(self, 'processing_state', n.get_enum_value(PrintJobStatus_processingState)),
             "processingStateDescription": lambda n : setattr(self, 'processing_state_description', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(PrintJobProcessingState)),
         }

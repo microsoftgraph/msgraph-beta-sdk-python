@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .reply_restriction import ReplyRestriction
-    from .user_new_message_restriction import UserNewMessageRestriction
+    from .channel_moderation_settings_reply_restriction import ChannelModerationSettings_replyRestriction
+    from .channel_moderation_settings_user_new_message_restriction import ChannelModerationSettings_userNewMessageRestriction
 
 @dataclass
 class ChannelModerationSettings(AdditionalDataHolder, BackedModel, Parsable):
@@ -22,9 +22,9 @@ class ChannelModerationSettings(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Indicates who is allowed to reply to the teams channel. Possible values are: everyone, authorAndModerators, unknownFutureValue.
-    reply_restriction: Optional[ReplyRestriction] = None
+    reply_restriction: Optional[ChannelModerationSettings_replyRestriction] = None
     # Indicates who is allowed to post messages to teams channel. Possible values are: everyone, everyoneExceptGuests, moderators, unknownFutureValue.
-    user_new_message_restriction: Optional[UserNewMessageRestriction] = None
+    user_new_message_restriction: Optional[ChannelModerationSettings_userNewMessageRestriction] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ChannelModerationSettings:
@@ -42,18 +42,18 @@ class ChannelModerationSettings(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .reply_restriction import ReplyRestriction
-        from .user_new_message_restriction import UserNewMessageRestriction
+        from .channel_moderation_settings_reply_restriction import ChannelModerationSettings_replyRestriction
+        from .channel_moderation_settings_user_new_message_restriction import ChannelModerationSettings_userNewMessageRestriction
 
-        from .reply_restriction import ReplyRestriction
-        from .user_new_message_restriction import UserNewMessageRestriction
+        from .channel_moderation_settings_reply_restriction import ChannelModerationSettings_replyRestriction
+        from .channel_moderation_settings_user_new_message_restriction import ChannelModerationSettings_userNewMessageRestriction
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowNewMessageFromBots": lambda n : setattr(self, 'allow_new_message_from_bots', n.get_bool_value()),
             "allowNewMessageFromConnectors": lambda n : setattr(self, 'allow_new_message_from_connectors', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "replyRestriction": lambda n : setattr(self, 'reply_restriction', n.get_enum_value(ReplyRestriction)),
-            "userNewMessageRestriction": lambda n : setattr(self, 'user_new_message_restriction', n.get_enum_value(UserNewMessageRestriction)),
+            "replyRestriction": lambda n : setattr(self, 'reply_restriction', n.get_enum_value(ChannelModerationSettings_replyRestriction)),
+            "userNewMessageRestriction": lambda n : setattr(self, 'user_new_message_restriction', n.get_enum_value(ChannelModerationSettings_userNewMessageRestriction)),
         }
         return fields
     

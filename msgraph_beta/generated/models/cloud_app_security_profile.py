@@ -5,7 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .application_permissions_required import ApplicationPermissionsRequired
+    from .cloud_app_security_profile_permissions_required import CloudAppSecurityProfile_permissionsRequired
     from .entity import Entity
     from .security_vendor_information import SecurityVendorInformation
 
@@ -34,7 +34,7 @@ class CloudAppSecurityProfile(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The permissionsRequired property
-    permissions_required: Optional[ApplicationPermissionsRequired] = None
+    permissions_required: Optional[CloudAppSecurityProfile_permissionsRequired] = None
     # The platform property
     platform: Optional[str] = None
     # The policyName property
@@ -66,11 +66,11 @@ class CloudAppSecurityProfile(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .application_permissions_required import ApplicationPermissionsRequired
+        from .cloud_app_security_profile_permissions_required import CloudAppSecurityProfile_permissionsRequired
         from .entity import Entity
         from .security_vendor_information import SecurityVendorInformation
 
-        from .application_permissions_required import ApplicationPermissionsRequired
+        from .cloud_app_security_profile_permissions_required import CloudAppSecurityProfile_permissionsRequired
         from .entity import Entity
         from .security_vendor_information import SecurityVendorInformation
 
@@ -84,7 +84,7 @@ class CloudAppSecurityProfile(Entity):
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "manifest": lambda n : setattr(self, 'manifest', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "permissionsRequired": lambda n : setattr(self, 'permissions_required', n.get_enum_value(ApplicationPermissionsRequired)),
+            "permissionsRequired": lambda n : setattr(self, 'permissions_required', n.get_enum_value(CloudAppSecurityProfile_permissionsRequired)),
             "platform": lambda n : setattr(self, 'platform', n.get_str_value()),
             "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),

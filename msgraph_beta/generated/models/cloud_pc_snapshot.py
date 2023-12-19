@@ -5,8 +5,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .cloud_pc_snapshot_status import CloudPcSnapshotStatus
-    from .cloud_pc_snapshot_type import CloudPcSnapshotType
+    from .cloud_pc_snapshot_snapshot_type import CloudPcSnapshot_snapshotType
+    from .cloud_pc_snapshot_status import CloudPcSnapshot_status
     from .entity import Entity
 
 from .entity import Entity
@@ -24,9 +24,9 @@ class CloudPcSnapshot(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The type of snapshot that indicates how to create the snapshot. Possible values are automatic, manual. Default value is automatic.
-    snapshot_type: Optional[CloudPcSnapshotType] = None
+    snapshot_type: Optional[CloudPcSnapshot_snapshotType] = None
     # The status of the Cloud PC snapshot. The possible values are: ready, unknownFutureValue.
-    status: Optional[CloudPcSnapshotStatus] = None
+    status: Optional[CloudPcSnapshot_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcSnapshot:
@@ -44,12 +44,12 @@ class CloudPcSnapshot(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .cloud_pc_snapshot_status import CloudPcSnapshotStatus
-        from .cloud_pc_snapshot_type import CloudPcSnapshotType
+        from .cloud_pc_snapshot_snapshot_type import CloudPcSnapshot_snapshotType
+        from .cloud_pc_snapshot_status import CloudPcSnapshot_status
         from .entity import Entity
 
-        from .cloud_pc_snapshot_status import CloudPcSnapshotStatus
-        from .cloud_pc_snapshot_type import CloudPcSnapshotType
+        from .cloud_pc_snapshot_snapshot_type import CloudPcSnapshot_snapshotType
+        from .cloud_pc_snapshot_status import CloudPcSnapshot_status
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -57,8 +57,8 @@ class CloudPcSnapshot(Entity):
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "lastRestoredDateTime": lambda n : setattr(self, 'last_restored_date_time', n.get_datetime_value()),
-            "snapshotType": lambda n : setattr(self, 'snapshot_type', n.get_enum_value(CloudPcSnapshotType)),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcSnapshotStatus)),
+            "snapshotType": lambda n : setattr(self, 'snapshot_type', n.get_enum_value(CloudPcSnapshot_snapshotType)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcSnapshot_status)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

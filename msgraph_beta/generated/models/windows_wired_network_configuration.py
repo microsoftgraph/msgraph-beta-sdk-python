@@ -6,11 +6,12 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
     from .eap_type import EapType
-    from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
     from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
     from .windows_certificate_profile_base import WindowsCertificateProfileBase
-    from .wired_network_authentication_method import WiredNetworkAuthenticationMethod
-    from .wired_network_authentication_type import WiredNetworkAuthenticationType
+    from .windows_wired_network_configuration_authentication_method import WindowsWiredNetworkConfiguration_authenticationMethod
+    from .windows_wired_network_configuration_authentication_type import WindowsWiredNetworkConfiguration_authenticationType
+    from .windows_wired_network_configuration_inner_authentication_protocol_for_e_a_p_t_t_l_s import WindowsWiredNetworkConfiguration_innerAuthenticationProtocolForEAPTTLS
+    from .windows_wired_network_configuration_secondary_authentication_method import WindowsWiredNetworkConfiguration_secondaryAuthenticationMethod
 
 from .device_configuration import DeviceConfiguration
 
@@ -24,13 +25,13 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration):
     # Specify the duration for which automatic authentication attempts will be blocked from occuring after a failed authentication attempt.
     authentication_block_period_in_minutes: Optional[int] = None
     # Specify the authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential. Possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
-    authentication_method: Optional[WiredNetworkAuthenticationMethod] = None
+    authentication_method: Optional[WindowsWiredNetworkConfiguration_authenticationMethod] = None
     # Specify the number of seconds for the client to wait after an authentication attempt before failing. Valid range 1-3600.
     authentication_period_in_seconds: Optional[int] = None
     # Specify the number of seconds between a failed authentication and the next authentication attempt. Valid range 1-3600.
     authentication_retry_delay_period_in_seconds: Optional[int] = None
     # Specify whether to authenticate the user, the device, either, or to use guest authentication (none). If you're using certificate authentication, make sure the certificate type matches the authentication type. Possible values are: none, user, machine, machineOrUser, guest. Possible values are: none, user, machine, machineOrUser, guest, unknownFutureValue.
-    authentication_type: Optional[WiredNetworkAuthenticationType] = None
+    authentication_type: Optional[WindowsWiredNetworkConfiguration_authenticationType] = None
     # When TRUE, caches user credentials on the device so that users don't need to keep entering them each time they connect. When FALSE, do not cache credentials. Default value is FALSE.
     cache_credentials: Optional[bool] = None
     # When TRUE, prevents the user from being prompted to authorize new servers for trusted certification authorities when EAP type is selected as PEAP. When FALSE, does not prevent the user from being prompted. Default value is FALSE.
@@ -46,7 +47,7 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration):
     # Specify identity certificate for client authentication.
     identity_certificate_for_client_authentication: Optional[WindowsCertificateProfileBase] = None
     # Specify inner authentication protocol for EAP TTLS. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
-    inner_authentication_protocol_for_e_a_p_t_t_l_s: Optional[NonEapAuthenticationMethodForEapTtlsType] = None
+    inner_authentication_protocol_for_e_a_p_t_t_l_s: Optional[WindowsWiredNetworkConfiguration_innerAuthenticationProtocolForEAPTTLS] = None
     # Specify the maximum authentication failures allowed for a set of credentials. Valid range 1-100.
     maximum_authentication_failures: Optional[int] = None
     # Specify the maximum number of EAPOL (Extensible Authentication Protocol over LAN) Start messages to be sent before returning failure. Valid range 1-100.
@@ -62,7 +63,7 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration):
     # Specify root certificates for server validation. This collection can contain a maximum of 500 elements.
     root_certificates_for_server_validation: Optional[List[Windows81TrustedRootCertificate]] = None
     # Specify the secondary authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential. Possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
-    secondary_authentication_method: Optional[WiredNetworkAuthenticationMethod] = None
+    secondary_authentication_method: Optional[WindowsWiredNetworkConfiguration_secondaryAuthenticationMethod] = None
     # Specify secondary identity certificate for client authentication.
     secondary_identity_certificate_for_client_authentication: Optional[WindowsCertificateProfileBase] = None
     # Specify secondary root certificate for client validation.
@@ -88,26 +89,28 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration):
         """
         from .device_configuration import DeviceConfiguration
         from .eap_type import EapType
-        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
         from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
         from .windows_certificate_profile_base import WindowsCertificateProfileBase
-        from .wired_network_authentication_method import WiredNetworkAuthenticationMethod
-        from .wired_network_authentication_type import WiredNetworkAuthenticationType
+        from .windows_wired_network_configuration_authentication_method import WindowsWiredNetworkConfiguration_authenticationMethod
+        from .windows_wired_network_configuration_authentication_type import WindowsWiredNetworkConfiguration_authenticationType
+        from .windows_wired_network_configuration_inner_authentication_protocol_for_e_a_p_t_t_l_s import WindowsWiredNetworkConfiguration_innerAuthenticationProtocolForEAPTTLS
+        from .windows_wired_network_configuration_secondary_authentication_method import WindowsWiredNetworkConfiguration_secondaryAuthenticationMethod
 
         from .device_configuration import DeviceConfiguration
         from .eap_type import EapType
-        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
         from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
         from .windows_certificate_profile_base import WindowsCertificateProfileBase
-        from .wired_network_authentication_method import WiredNetworkAuthenticationMethod
-        from .wired_network_authentication_type import WiredNetworkAuthenticationType
+        from .windows_wired_network_configuration_authentication_method import WindowsWiredNetworkConfiguration_authenticationMethod
+        from .windows_wired_network_configuration_authentication_type import WindowsWiredNetworkConfiguration_authenticationType
+        from .windows_wired_network_configuration_inner_authentication_protocol_for_e_a_p_t_t_l_s import WindowsWiredNetworkConfiguration_innerAuthenticationProtocolForEAPTTLS
+        from .windows_wired_network_configuration_secondary_authentication_method import WindowsWiredNetworkConfiguration_secondaryAuthenticationMethod
 
         fields: Dict[str, Callable[[Any], None]] = {
             "authenticationBlockPeriodInMinutes": lambda n : setattr(self, 'authentication_block_period_in_minutes', n.get_int_value()),
-            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WiredNetworkAuthenticationMethod)),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WindowsWiredNetworkConfiguration_authenticationMethod)),
             "authenticationPeriodInSeconds": lambda n : setattr(self, 'authentication_period_in_seconds', n.get_int_value()),
             "authenticationRetryDelayPeriodInSeconds": lambda n : setattr(self, 'authentication_retry_delay_period_in_seconds', n.get_int_value()),
-            "authenticationType": lambda n : setattr(self, 'authentication_type', n.get_enum_value(WiredNetworkAuthenticationType)),
+            "authenticationType": lambda n : setattr(self, 'authentication_type', n.get_enum_value(WindowsWiredNetworkConfiguration_authenticationType)),
             "cacheCredentials": lambda n : setattr(self, 'cache_credentials', n.get_bool_value()),
             "disableUserPromptForServerValidation": lambda n : setattr(self, 'disable_user_prompt_for_server_validation', n.get_bool_value()),
             "eapType": lambda n : setattr(self, 'eap_type', n.get_enum_value(EapType)),
@@ -115,7 +118,7 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration):
             "enforce8021X": lambda n : setattr(self, 'enforce8021_x', n.get_bool_value()),
             "forceFIPSCompliance": lambda n : setattr(self, 'force_f_i_p_s_compliance', n.get_bool_value()),
             "identityCertificateForClientAuthentication": lambda n : setattr(self, 'identity_certificate_for_client_authentication', n.get_object_value(WindowsCertificateProfileBase)),
-            "innerAuthenticationProtocolForEAPTTLS": lambda n : setattr(self, 'inner_authentication_protocol_for_e_a_p_t_t_l_s', n.get_enum_value(NonEapAuthenticationMethodForEapTtlsType)),
+            "innerAuthenticationProtocolForEAPTTLS": lambda n : setattr(self, 'inner_authentication_protocol_for_e_a_p_t_t_l_s', n.get_enum_value(WindowsWiredNetworkConfiguration_innerAuthenticationProtocolForEAPTTLS)),
             "maximumAuthenticationFailures": lambda n : setattr(self, 'maximum_authentication_failures', n.get_int_value()),
             "maximumEAPOLStartMessages": lambda n : setattr(self, 'maximum_e_a_p_o_l_start_messages', n.get_int_value()),
             "outerIdentityPrivacyTemporaryValue": lambda n : setattr(self, 'outer_identity_privacy_temporary_value', n.get_str_value()),
@@ -123,7 +126,7 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration):
             "requireCryptographicBinding": lambda n : setattr(self, 'require_cryptographic_binding', n.get_bool_value()),
             "rootCertificateForClientValidation": lambda n : setattr(self, 'root_certificate_for_client_validation', n.get_object_value(Windows81TrustedRootCertificate)),
             "rootCertificatesForServerValidation": lambda n : setattr(self, 'root_certificates_for_server_validation', n.get_collection_of_object_values(Windows81TrustedRootCertificate)),
-            "secondaryAuthenticationMethod": lambda n : setattr(self, 'secondary_authentication_method', n.get_enum_value(WiredNetworkAuthenticationMethod)),
+            "secondaryAuthenticationMethod": lambda n : setattr(self, 'secondary_authentication_method', n.get_enum_value(WindowsWiredNetworkConfiguration_secondaryAuthenticationMethod)),
             "secondaryIdentityCertificateForClientAuthentication": lambda n : setattr(self, 'secondary_identity_certificate_for_client_authentication', n.get_object_value(WindowsCertificateProfileBase)),
             "secondaryRootCertificateForClientValidation": lambda n : setattr(self, 'secondary_root_certificate_for_client_validation', n.get_object_value(Windows81TrustedRootCertificate)),
             "trustedServerCertificateNames": lambda n : setattr(self, 'trusted_server_certificate_names', n.get_collection_of_primitive_values(str)),

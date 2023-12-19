@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .on_user_create_start_external_users_self_service_sign_up_user_type_to_create import OnUserCreateStartExternalUsersSelfServiceSignUp_userTypeToCreate
     from .on_user_create_start_handler import OnUserCreateStartHandler
-    from .user_type import UserType
 
 from .on_user_create_start_handler import OnUserCreateStartHandler
 
@@ -14,7 +14,7 @@ class OnUserCreateStartExternalUsersSelfServiceSignUp(OnUserCreateStartHandler):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onUserCreateStartExternalUsersSelfServiceSignUp"
     # The type of user object to create. The possible values are: member, guest, unknownFutureValue.
-    user_type_to_create: Optional[UserType] = None
+    user_type_to_create: Optional[OnUserCreateStartExternalUsersSelfServiceSignUp_userTypeToCreate] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnUserCreateStartExternalUsersSelfServiceSignUp:
@@ -32,14 +32,14 @@ class OnUserCreateStartExternalUsersSelfServiceSignUp(OnUserCreateStartHandler):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .on_user_create_start_external_users_self_service_sign_up_user_type_to_create import OnUserCreateStartExternalUsersSelfServiceSignUp_userTypeToCreate
         from .on_user_create_start_handler import OnUserCreateStartHandler
-        from .user_type import UserType
 
+        from .on_user_create_start_external_users_self_service_sign_up_user_type_to_create import OnUserCreateStartExternalUsersSelfServiceSignUp_userTypeToCreate
         from .on_user_create_start_handler import OnUserCreateStartHandler
-        from .user_type import UserType
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "userTypeToCreate": lambda n : setattr(self, 'user_type_to_create', n.get_enum_value(UserType)),
+            "userTypeToCreate": lambda n : setattr(self, 'user_type_to_create', n.get_enum_value(OnUserCreateStartExternalUsersSelfServiceSignUp_userTypeToCreate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

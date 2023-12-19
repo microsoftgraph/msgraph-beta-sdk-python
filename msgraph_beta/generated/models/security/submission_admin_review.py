@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .submission_result_category import SubmissionResultCategory
+    from .submission_admin_review_review_result import SubmissionAdminReview_reviewResult
 
 @dataclass
 class SubmissionAdminReview(AdditionalDataHolder, BackedModel, Parsable):
@@ -22,7 +22,7 @@ class SubmissionAdminReview(AdditionalDataHolder, BackedModel, Parsable):
     # Specifies the date time when the review occurred.
     review_date_time: Optional[datetime.datetime] = None
     # Specifies what the review result was. The possible values are: notJunk, spam, phishing, malware, allowedByPolicy, blockedByPolicy, spoof, unknown, noResultAvailable, and unknownFutureValue.
-    review_result: Optional[SubmissionResultCategory] = None
+    review_result: Optional[SubmissionAdminReview_reviewResult] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SubmissionAdminReview:
@@ -40,15 +40,15 @@ class SubmissionAdminReview(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .submission_result_category import SubmissionResultCategory
+        from .submission_admin_review_review_result import SubmissionAdminReview_reviewResult
 
-        from .submission_result_category import SubmissionResultCategory
+        from .submission_admin_review_review_result import SubmissionAdminReview_reviewResult
 
         fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reviewBy": lambda n : setattr(self, 'review_by', n.get_str_value()),
             "reviewDateTime": lambda n : setattr(self, 'review_date_time', n.get_datetime_value()),
-            "reviewResult": lambda n : setattr(self, 'review_result', n.get_enum_value(SubmissionResultCategory)),
+            "reviewResult": lambda n : setattr(self, 'review_result', n.get_enum_value(SubmissionAdminReview_reviewResult)),
         }
         return fields
     

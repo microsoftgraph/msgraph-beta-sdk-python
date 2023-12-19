@@ -5,9 +5,9 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .external_authentication_type import ExternalAuthenticationType
     from .key_credential import KeyCredential
     from .on_premises_application_segment import OnPremisesApplicationSegment
+    from .on_premises_publishing_external_authentication_type import OnPremisesPublishing_externalAuthenticationType
     from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
     from .password_credential import PasswordCredential
     from .segment_configuration import SegmentConfiguration
@@ -27,7 +27,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     # Indicates if this application is an Application Proxy configured application. This is pre-set by the system. Read-only.
     application_type: Optional[str] = None
     # Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Pass through doesn't require authentication. Possible values are: passthru, aadPreAuthentication.
-    external_authentication_type: Optional[ExternalAuthenticationType] = None
+    external_authentication_type: Optional[OnPremisesPublishing_externalAuthenticationType] = None
     # The published external url for the application. For example, https://intranet-contoso.msappproxy.net/.
     external_url: Optional[str] = None
     # The internal url of the application. For example, https://intranet/.
@@ -85,17 +85,17 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .external_authentication_type import ExternalAuthenticationType
         from .key_credential import KeyCredential
         from .on_premises_application_segment import OnPremisesApplicationSegment
+        from .on_premises_publishing_external_authentication_type import OnPremisesPublishing_externalAuthenticationType
         from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
         from .password_credential import PasswordCredential
         from .segment_configuration import SegmentConfiguration
         from .verified_custom_domain_certificates_metadata import VerifiedCustomDomainCertificatesMetadata
 
-        from .external_authentication_type import ExternalAuthenticationType
         from .key_credential import KeyCredential
         from .on_premises_application_segment import OnPremisesApplicationSegment
+        from .on_premises_publishing_external_authentication_type import OnPremisesPublishing_externalAuthenticationType
         from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
         from .password_credential import PasswordCredential
         from .segment_configuration import SegmentConfiguration
@@ -105,7 +105,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
             "alternateUrl": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
             "applicationServerTimeout": lambda n : setattr(self, 'application_server_timeout', n.get_str_value()),
             "applicationType": lambda n : setattr(self, 'application_type', n.get_str_value()),
-            "externalAuthenticationType": lambda n : setattr(self, 'external_authentication_type', n.get_enum_value(ExternalAuthenticationType)),
+            "externalAuthenticationType": lambda n : setattr(self, 'external_authentication_type', n.get_enum_value(OnPremisesPublishing_externalAuthenticationType)),
             "externalUrl": lambda n : setattr(self, 'external_url', n.get_str_value()),
             "internalUrl": lambda n : setattr(self, 'internal_url', n.get_str_value()),
             "isAccessibleViaZTNAClient": lambda n : setattr(self, 'is_accessible_via_z_t_n_a_client', n.get_bool_value()),

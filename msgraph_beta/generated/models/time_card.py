@@ -5,12 +5,12 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .change_tracked_entity import ChangeTrackedEntity
-    from .confirmed_by import ConfirmedBy
     from .item_body import ItemBody
     from .time_card_break import TimeCardBreak
+    from .time_card_confirmed_by import TimeCard_confirmedBy
     from .time_card_entry import TimeCardEntry
     from .time_card_event import TimeCardEvent
-    from .time_card_state import TimeCardState
+    from .time_card_state import TimeCard_state
 
 from .change_tracked_entity import ChangeTrackedEntity
 
@@ -25,13 +25,13 @@ class TimeCard(ChangeTrackedEntity):
     # The clock-out event of the timeCard.
     clock_out_event: Optional[TimeCardEvent] = None
     # Indicates whether this timeCard entry is confirmed. Possible values are none, user, manager, unknownFutureValue.
-    confirmed_by: Optional[ConfirmedBy] = None
+    confirmed_by: Optional[TimeCard_confirmedBy] = None
     # Notes about the timeCard.
     notes: Optional[ItemBody] = None
     # The original timeCardEntry of the timeCard, before user edits.
     original_entry: Optional[TimeCardEntry] = None
     # The current state of the timeCard during its life cycle.Possible values are: clockedIn, onBreak, clockedOut, unknownFutureValue.
-    state: Optional[TimeCardState] = None
+    state: Optional[TimeCard_state] = None
     # User ID to which  the timeCard belongs.
     user_id: Optional[str] = None
     
@@ -52,29 +52,29 @@ class TimeCard(ChangeTrackedEntity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .change_tracked_entity import ChangeTrackedEntity
-        from .confirmed_by import ConfirmedBy
         from .item_body import ItemBody
         from .time_card_break import TimeCardBreak
+        from .time_card_confirmed_by import TimeCard_confirmedBy
         from .time_card_entry import TimeCardEntry
         from .time_card_event import TimeCardEvent
-        from .time_card_state import TimeCardState
+        from .time_card_state import TimeCard_state
 
         from .change_tracked_entity import ChangeTrackedEntity
-        from .confirmed_by import ConfirmedBy
         from .item_body import ItemBody
         from .time_card_break import TimeCardBreak
+        from .time_card_confirmed_by import TimeCard_confirmedBy
         from .time_card_entry import TimeCardEntry
         from .time_card_event import TimeCardEvent
-        from .time_card_state import TimeCardState
+        from .time_card_state import TimeCard_state
 
         fields: Dict[str, Callable[[Any], None]] = {
             "breaks": lambda n : setattr(self, 'breaks', n.get_collection_of_object_values(TimeCardBreak)),
             "clockInEvent": lambda n : setattr(self, 'clock_in_event', n.get_object_value(TimeCardEvent)),
             "clockOutEvent": lambda n : setattr(self, 'clock_out_event', n.get_object_value(TimeCardEvent)),
-            "confirmedBy": lambda n : setattr(self, 'confirmed_by', n.get_collection_of_enum_values(ConfirmedBy)),
+            "confirmedBy": lambda n : setattr(self, 'confirmed_by', n.get_enum_value(TimeCard_confirmedBy)),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(ItemBody)),
             "originalEntry": lambda n : setattr(self, 'original_entry', n.get_object_value(TimeCardEntry)),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(TimeCardState)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(TimeCard_state)),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

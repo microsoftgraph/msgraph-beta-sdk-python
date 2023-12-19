@@ -1,7 +1,5 @@
 from enum import Enum
 
-class SignInUserType(str, Enum):
-    Member = "member",
-    Guest = "guest",
-    UnknownFutureValue = "unknownFutureValue",
+class SignIn_userType(str, Enum):
+    pass
 

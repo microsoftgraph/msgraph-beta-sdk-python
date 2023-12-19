@@ -5,8 +5,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .approval_state import ApprovalState
     from .entity import Entity
+    from .privileged_approval_approval_state import PrivilegedApproval_approvalState
     from .privileged_role import PrivilegedRole
     from .privileged_role_assignment_request import PrivilegedRoleAssignmentRequest
 
@@ -17,7 +17,7 @@ class PrivilegedApproval(Entity):
     # The approvalDuration property
     approval_duration: Optional[datetime.timedelta] = None
     # The approvalState property
-    approval_state: Optional[ApprovalState] = None
+    approval_state: Optional[PrivilegedApproval_approvalState] = None
     # The approvalType property
     approval_type: Optional[str] = None
     # The approverReason property
@@ -55,19 +55,19 @@ class PrivilegedApproval(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .approval_state import ApprovalState
         from .entity import Entity
+        from .privileged_approval_approval_state import PrivilegedApproval_approvalState
         from .privileged_role import PrivilegedRole
         from .privileged_role_assignment_request import PrivilegedRoleAssignmentRequest
 
-        from .approval_state import ApprovalState
         from .entity import Entity
+        from .privileged_approval_approval_state import PrivilegedApproval_approvalState
         from .privileged_role import PrivilegedRole
         from .privileged_role_assignment_request import PrivilegedRoleAssignmentRequest
 
         fields: Dict[str, Callable[[Any], None]] = {
             "approvalDuration": lambda n : setattr(self, 'approval_duration', n.get_timedelta_value()),
-            "approvalState": lambda n : setattr(self, 'approval_state', n.get_enum_value(ApprovalState)),
+            "approvalState": lambda n : setattr(self, 'approval_state', n.get_enum_value(PrivilegedApproval_approvalState)),
             "approvalType": lambda n : setattr(self, 'approval_type', n.get_str_value()),
             "approverReason": lambda n : setattr(self, 'approver_reason', n.get_str_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),

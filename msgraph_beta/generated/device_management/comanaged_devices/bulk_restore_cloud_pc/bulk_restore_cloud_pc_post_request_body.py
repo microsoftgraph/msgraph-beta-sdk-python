@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models.restore_time_range import RestoreTimeRange
+    from .bulk_restore_cloud_pc_post_request_body_time_range import BulkRestoreCloudPcPostRequestBody_timeRange
 
 @dataclass
 class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -20,7 +20,7 @@ class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, BackedModel, Parsa
     # The restorePointDateTime property
     restore_point_date_time: Optional[datetime.datetime] = None
     # The timeRange property
-    time_range: Optional[RestoreTimeRange] = None
+    time_range: Optional[BulkRestoreCloudPcPostRequestBody_timeRange] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BulkRestoreCloudPcPostRequestBody:
@@ -38,14 +38,14 @@ class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, BackedModel, Parsa
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ....models.restore_time_range import RestoreTimeRange
+        from .bulk_restore_cloud_pc_post_request_body_time_range import BulkRestoreCloudPcPostRequestBody_timeRange
 
-        from ....models.restore_time_range import RestoreTimeRange
+        from .bulk_restore_cloud_pc_post_request_body_time_range import BulkRestoreCloudPcPostRequestBody_timeRange
 
         fields: Dict[str, Callable[[Any], None]] = {
             "managedDeviceIds": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
             "restorePointDateTime": lambda n : setattr(self, 'restore_point_date_time', n.get_datetime_value()),
-            "timeRange": lambda n : setattr(self, 'time_range', n.get_enum_value(RestoreTimeRange)),
+            "timeRange": lambda n : setattr(self, 'time_range', n.get_enum_value(BulkRestoreCloudPcPostRequestBody_timeRange)),
         }
         return fields
     

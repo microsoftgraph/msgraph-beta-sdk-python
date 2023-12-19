@@ -7,9 +7,9 @@ if TYPE_CHECKING:
     from .apple_subject_name_format import AppleSubjectNameFormat
     from .certificate_validity_period_scale import CertificateValidityPeriodScale
     from .ios_certificate_profile import IosCertificateProfile
+    from .ios_certificate_profile_base_subject_alternative_name_type import IosCertificateProfileBase_subjectAlternativeNameType
     from .ios_pkcs_certificate_profile import IosPkcsCertificateProfile
     from .ios_scep_certificate_profile import IosScepCertificateProfile
-    from .subject_alternative_name_type import SubjectAlternativeNameType
 
 from .ios_certificate_profile import IosCertificateProfile
 
@@ -27,7 +27,7 @@ class IosCertificateProfileBase(IosCertificateProfile):
     # Certificate renewal threshold percentage. Valid values 1 to 99
     renewal_threshold_percentage: Optional[int] = None
     # Certificate Subject Alternative Name type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-    subject_alternative_name_type: Optional[SubjectAlternativeNameType] = None
+    subject_alternative_name_type: Optional[IosCertificateProfileBase_subjectAlternativeNameType] = None
     # Subject Name Format Options for Apple devices.
     subject_name_format: Optional[AppleSubjectNameFormat] = None
     
@@ -62,22 +62,22 @@ class IosCertificateProfileBase(IosCertificateProfile):
         from .apple_subject_name_format import AppleSubjectNameFormat
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
         from .ios_certificate_profile import IosCertificateProfile
+        from .ios_certificate_profile_base_subject_alternative_name_type import IosCertificateProfileBase_subjectAlternativeNameType
         from .ios_pkcs_certificate_profile import IosPkcsCertificateProfile
         from .ios_scep_certificate_profile import IosScepCertificateProfile
-        from .subject_alternative_name_type import SubjectAlternativeNameType
 
         from .apple_subject_name_format import AppleSubjectNameFormat
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
         from .ios_certificate_profile import IosCertificateProfile
+        from .ios_certificate_profile_base_subject_alternative_name_type import IosCertificateProfileBase_subjectAlternativeNameType
         from .ios_pkcs_certificate_profile import IosPkcsCertificateProfile
         from .ios_scep_certificate_profile import IosScepCertificateProfile
-        from .subject_alternative_name_type import SubjectAlternativeNameType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
             "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
-            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_collection_of_enum_values(SubjectAlternativeNameType)),
+            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(IosCertificateProfileBase_subjectAlternativeNameType)),
             "subjectNameFormat": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(AppleSubjectNameFormat)),
         }
         super_fields = super().get_field_deserializers()

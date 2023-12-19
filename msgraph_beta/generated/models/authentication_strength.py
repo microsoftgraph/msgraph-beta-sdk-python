@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .authentication_strength_result import AuthenticationStrengthResult
+    from .authentication_strength_authentication_strength_result import AuthenticationStrength_authenticationStrengthResult
 
 @dataclass
 class AuthenticationStrength(AdditionalDataHolder, BackedModel, Parsable):
@@ -17,7 +17,7 @@ class AuthenticationStrength(AdditionalDataHolder, BackedModel, Parsable):
     # Identifier of the authentication strength.
     authentication_strength_id: Optional[str] = None
     # The result of the authentication strength. The possible values are: notSet, skippedForProofUp, satisfied, singleChallengeRequired, multipleChallengesRequired, singleRegistrationRequired, multipleRegistrationsRequired, cannotSatisfyDueToCombinationConfiguration, cannotSatisfy, unknownFutureValue.
-    authentication_strength_result: Optional[AuthenticationStrengthResult] = None
+    authentication_strength_result: Optional[AuthenticationStrength_authenticationStrengthResult] = None
     # The name of the authentication strength.
     display_name: Optional[str] = None
     # The OdataType property
@@ -39,13 +39,13 @@ class AuthenticationStrength(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .authentication_strength_result import AuthenticationStrengthResult
+        from .authentication_strength_authentication_strength_result import AuthenticationStrength_authenticationStrengthResult
 
-        from .authentication_strength_result import AuthenticationStrengthResult
+        from .authentication_strength_authentication_strength_result import AuthenticationStrength_authenticationStrengthResult
 
         fields: Dict[str, Callable[[Any], None]] = {
             "authenticationStrengthId": lambda n : setattr(self, 'authentication_strength_id', n.get_str_value()),
-            "authenticationStrengthResult": lambda n : setattr(self, 'authentication_strength_result', n.get_enum_value(AuthenticationStrengthResult)),
+            "authenticationStrengthResult": lambda n : setattr(self, 'authentication_strength_result', n.get_enum_value(AuthenticationStrength_authenticationStrengthResult)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

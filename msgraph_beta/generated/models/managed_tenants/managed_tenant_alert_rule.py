@@ -6,10 +6,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
-    from .alert_severity import AlertSeverity
     from .managed_tenant_alert import ManagedTenantAlert
     from .managed_tenant_alert_rule_definition import ManagedTenantAlertRuleDefinition
-    from .notification_destination import NotificationDestination
+    from .managed_tenant_alert_rule_notification_final_destinations import ManagedTenantAlertRule_notificationFinalDestinations
+    from .managed_tenant_alert_rule_severity import ManagedTenantAlertRule_severity
     from .notification_target import NotificationTarget
     from .tenant_info import TenantInfo
 
@@ -38,13 +38,13 @@ class ManagedTenantAlertRule(Entity):
     # The lastRunDateTime property
     last_run_date_time: Optional[datetime.datetime] = None
     # The notificationFinalDestinations property
-    notification_final_destinations: Optional[NotificationDestination] = None
+    notification_final_destinations: Optional[ManagedTenantAlertRule_notificationFinalDestinations] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The ruleDefinition property
     rule_definition: Optional[ManagedTenantAlertRuleDefinition] = None
     # The severity property
-    severity: Optional[AlertSeverity] = None
+    severity: Optional[ManagedTenantAlertRule_severity] = None
     # The targets property
     targets: Optional[List[NotificationTarget]] = None
     # The tenantIds property
@@ -67,18 +67,18 @@ class ManagedTenantAlertRule(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
-        from .alert_severity import AlertSeverity
         from .managed_tenant_alert import ManagedTenantAlert
         from .managed_tenant_alert_rule_definition import ManagedTenantAlertRuleDefinition
-        from .notification_destination import NotificationDestination
+        from .managed_tenant_alert_rule_notification_final_destinations import ManagedTenantAlertRule_notificationFinalDestinations
+        from .managed_tenant_alert_rule_severity import ManagedTenantAlertRule_severity
         from .notification_target import NotificationTarget
         from .tenant_info import TenantInfo
 
         from ..entity import Entity
-        from .alert_severity import AlertSeverity
         from .managed_tenant_alert import ManagedTenantAlert
         from .managed_tenant_alert_rule_definition import ManagedTenantAlertRuleDefinition
-        from .notification_destination import NotificationDestination
+        from .managed_tenant_alert_rule_notification_final_destinations import ManagedTenantAlertRule_notificationFinalDestinations
+        from .managed_tenant_alert_rule_severity import ManagedTenantAlertRule_severity
         from .notification_target import NotificationTarget
         from .tenant_info import TenantInfo
 
@@ -93,9 +93,9 @@ class ManagedTenantAlertRule(Entity):
             "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
             "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "lastRunDateTime": lambda n : setattr(self, 'last_run_date_time', n.get_datetime_value()),
-            "notificationFinalDestinations": lambda n : setattr(self, 'notification_final_destinations', n.get_collection_of_enum_values(NotificationDestination)),
+            "notificationFinalDestinations": lambda n : setattr(self, 'notification_final_destinations', n.get_enum_value(ManagedTenantAlertRule_notificationFinalDestinations)),
             "ruleDefinition": lambda n : setattr(self, 'rule_definition', n.get_object_value(ManagedTenantAlertRuleDefinition)),
-            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(AlertSeverity)),
+            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(ManagedTenantAlertRule_severity)),
             "targets": lambda n : setattr(self, 'targets', n.get_collection_of_object_values(NotificationTarget)),
             "tenantIds": lambda n : setattr(self, 'tenant_ids', n.get_collection_of_object_values(TenantInfo)),
         }

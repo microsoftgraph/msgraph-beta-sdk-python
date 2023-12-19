@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .alert_severity import AlertSeverity
+    from .alert_rule_definition_template_default_severity import AlertRuleDefinitionTemplate_defaultSeverity
 
 @dataclass
 class AlertRuleDefinitionTemplate(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,7 +15,7 @@ class AlertRuleDefinitionTemplate(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The defaultSeverity property
-    default_severity: Optional[AlertSeverity] = None
+    default_severity: Optional[AlertRuleDefinitionTemplate_defaultSeverity] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -35,12 +35,12 @@ class AlertRuleDefinitionTemplate(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .alert_severity import AlertSeverity
+        from .alert_rule_definition_template_default_severity import AlertRuleDefinitionTemplate_defaultSeverity
 
-        from .alert_severity import AlertSeverity
+        from .alert_rule_definition_template_default_severity import AlertRuleDefinitionTemplate_defaultSeverity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "defaultSeverity": lambda n : setattr(self, 'default_severity', n.get_enum_value(AlertSeverity)),
+            "defaultSeverity": lambda n : setattr(self, 'default_severity', n.get_enum_value(AlertRuleDefinitionTemplate_defaultSeverity)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

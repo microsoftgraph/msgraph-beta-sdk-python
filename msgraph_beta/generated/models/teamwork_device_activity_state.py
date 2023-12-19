@@ -1,9 +1,5 @@
 from enum import Enum
 
-class TeamworkDeviceActivityState(str, Enum):
-    Unknown = "unknown",
-    Busy = "busy",
-    Idle = "idle",
-    Unavailable = "unavailable",
-    UnknownFutureValue = "unknownFutureValue",
+class TeamworkDevice_activityState(str, Enum):
+    pass
 

@@ -4,35 +4,38 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .android_device_owner_app_auto_update_policy_type import AndroidDeviceOwnerAppAutoUpdatePolicyType
     from .android_device_owner_battery_plugged_mode import AndroidDeviceOwnerBatteryPluggedMode
-    from .android_device_owner_cross_profile_data_sharing import AndroidDeviceOwnerCrossProfileDataSharing
-    from .android_device_owner_default_app_permission_policy_type import AndroidDeviceOwnerDefaultAppPermissionPolicyType
     from .android_device_owner_delegated_scope_app_setting import AndroidDeviceOwnerDelegatedScopeAppSetting
     from .android_device_owner_enrollment_profile_type import AndroidDeviceOwnerEnrollmentProfileType
+    from .android_device_owner_general_device_configuration_apps_auto_update_policy import AndroidDeviceOwnerGeneralDeviceConfiguration_appsAutoUpdatePolicy
+    from .android_device_owner_general_device_configuration_apps_default_permission_policy import AndroidDeviceOwnerGeneralDeviceConfiguration_appsDefaultPermissionPolicy
+    from .android_device_owner_general_device_configuration_cross_profile_policies_allow_data_sharing import AndroidDeviceOwnerGeneralDeviceConfiguration_crossProfilePoliciesAllowDataSharing
+    from .android_device_owner_general_device_configuration_device_location_mode import AndroidDeviceOwnerGeneralDeviceConfiguration_deviceLocationMode
+    from .android_device_owner_general_device_configuration_kiosk_customization_status_bar import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskCustomizationStatusBar
+    from .android_device_owner_general_device_configuration_kiosk_customization_system_navigation import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskCustomizationSystemNavigation
+    from .android_device_owner_general_device_configuration_kiosk_mode_folder_icon import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeFolderIcon
+    from .android_device_owner_general_device_configuration_kiosk_mode_icon_size import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeIconSize
+    from .android_device_owner_general_device_configuration_kiosk_mode_managed_home_screen_pin_complexity import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeManagedHomeScreenPinComplexity
+    from .android_device_owner_general_device_configuration_kiosk_mode_screen_orientation import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeScreenOrientation
+    from .android_device_owner_general_device_configuration_kiosk_mode_use_managed_home_screen_app import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeUseManagedHomeScreenApp
+    from .android_device_owner_general_device_configuration_kiosk_mode_virtual_home_button_type import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeVirtualHomeButtonType
+    from .android_device_owner_general_device_configuration_microsoft_launcher_dock_presence_configuration import AndroidDeviceOwnerGeneralDeviceConfiguration_microsoftLauncherDockPresenceConfiguration
+    from .android_device_owner_general_device_configuration_microsoft_launcher_search_bar_placement_configuration import AndroidDeviceOwnerGeneralDeviceConfiguration_microsoftLauncherSearchBarPlacementConfiguration
+    from .android_device_owner_general_device_configuration_password_required_type import AndroidDeviceOwnerGeneralDeviceConfiguration_passwordRequiredType
+    from .android_device_owner_general_device_configuration_password_require_unlock import AndroidDeviceOwnerGeneralDeviceConfiguration_passwordRequireUnlock
+    from .android_device_owner_general_device_configuration_personal_profile_play_store_mode import AndroidDeviceOwnerGeneralDeviceConfiguration_personalProfilePlayStoreMode
+    from .android_device_owner_general_device_configuration_play_store_mode import AndroidDeviceOwnerGeneralDeviceConfiguration_playStoreMode
+    from .android_device_owner_general_device_configuration_system_update_install_type import AndroidDeviceOwnerGeneralDeviceConfiguration_systemUpdateInstallType
+    from .android_device_owner_general_device_configuration_work_profile_password_required_type import AndroidDeviceOwnerGeneralDeviceConfiguration_workProfilePasswordRequiredType
+    from .android_device_owner_general_device_configuration_work_profile_password_require_unlock import AndroidDeviceOwnerGeneralDeviceConfiguration_workProfilePasswordRequireUnlock
     from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
-    from .android_device_owner_kiosk_customization_status_bar import AndroidDeviceOwnerKioskCustomizationStatusBar
-    from .android_device_owner_kiosk_customization_system_navigation import AndroidDeviceOwnerKioskCustomizationSystemNavigation
     from .android_device_owner_kiosk_mode_app_position_item import AndroidDeviceOwnerKioskModeAppPositionItem
-    from .android_device_owner_kiosk_mode_folder_icon import AndroidDeviceOwnerKioskModeFolderIcon
-    from .android_device_owner_kiosk_mode_icon_size import AndroidDeviceOwnerKioskModeIconSize
     from .android_device_owner_kiosk_mode_managed_folder import AndroidDeviceOwnerKioskModeManagedFolder
-    from .android_device_owner_kiosk_mode_screen_orientation import AndroidDeviceOwnerKioskModeScreenOrientation
-    from .android_device_owner_play_store_mode import AndroidDeviceOwnerPlayStoreMode
-    from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
-    from .android_device_owner_required_password_unlock import AndroidDeviceOwnerRequiredPasswordUnlock
     from .android_device_owner_system_update_freeze_period import AndroidDeviceOwnerSystemUpdateFreezePeriod
-    from .android_device_owner_system_update_install_type import AndroidDeviceOwnerSystemUpdateInstallType
     from .android_device_owner_user_facing_message import AndroidDeviceOwnerUserFacingMessage
-    from .android_device_owner_virtual_home_button_type import AndroidDeviceOwnerVirtualHomeButtonType
     from .android_keyguard_feature import AndroidKeyguardFeature
     from .app_list_item import AppListItem
     from .device_configuration import DeviceConfiguration
-    from .kiosk_mode_managed_home_screen_pin_complexity import KioskModeManagedHomeScreenPinComplexity
-    from .kiosk_mode_type import KioskModeType
-    from .microsoft_launcher_dock_presence import MicrosoftLauncherDockPresence
-    from .microsoft_launcher_search_bar_placement import MicrosoftLauncherSearchBarPlacement
-    from .personal_profile_personal_play_store_mode import PersonalProfilePersonalPlayStoreMode
 
 from .device_configuration import DeviceConfiguration
 
@@ -50,9 +53,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Indicates whether or not the user is allowed to enable to unknown sources setting.
     apps_allow_install_from_unknown_sources: Optional[bool] = None
     # Indicates the value of the app auto update policy. Possible values are: notConfigured, userChoice, never, wiFiOnly, always.
-    apps_auto_update_policy: Optional[AndroidDeviceOwnerAppAutoUpdatePolicyType] = None
+    apps_auto_update_policy: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_appsAutoUpdatePolicy] = None
     # Indicates the permission policy for requests for runtime permissions if one is not defined for the app specifically. Possible values are: deviceDefault, prompt, autoGrant, autoDeny.
-    apps_default_permission_policy: Optional[AndroidDeviceOwnerDefaultAppPermissionPolicyType] = None
+    apps_default_permission_policy: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_appsDefaultPermissionPolicy] = None
     # Whether or not to recommend all apps skip any first-time-use hints they may have added.
     apps_recommend_skipping_first_use_hints: Optional[bool] = None
     # A list of managed apps that will have their data cleared during a global sign-out in AAD shared device mode. This collection can contain a maximum of 500 elements.
@@ -70,7 +73,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Indicates whether or not text copied from one profile (personal or work) can be pasted in the other.
     cross_profile_policies_allow_copy_paste: Optional[bool] = None
     # Indicates whether data from one profile (personal or work) can be shared with apps in the other profile. Possible values are: notConfigured, crossProfileDataSharingBlocked, dataSharingFromWorkToPersonalBlocked, crossProfileDataSharingAllowed, unkownFutureValue.
-    cross_profile_policies_allow_data_sharing: Optional[AndroidDeviceOwnerCrossProfileDataSharing] = None
+    cross_profile_policies_allow_data_sharing: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_crossProfilePoliciesAllowDataSharing] = None
     # Indicates whether or not contacts stored in work profile are shown in personal profile contact searches/incoming calls.
     cross_profile_policies_show_work_contacts_in_personal_profile: Optional[bool] = None
     # Indicates whether or not to block a user from data roaming.
@@ -79,6 +82,8 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     date_time_configuration_blocked: Optional[bool] = None
     # Represents the customized detailed help text provided to users when they attempt to modify managed settings on their device.
     detailed_help_text: Optional[AndroidDeviceOwnerUserFacingMessage] = None
+    # Indicates the location setting configuration for fully managed devices (COBO) and corporate owned devices with a work profile (COPE)
+    device_location_mode: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_deviceLocationMode] = None
     # Represents the customized lock screen message provided to users when they attempt to modify managed settings on their device.
     device_owner_lock_screen_message: Optional[AndroidDeviceOwnerUserFacingMessage] = None
     # Android Device Owner Enrollment Profile types.
@@ -96,11 +101,11 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Whether the power menu is shown when a user long presses the Power button of a device in Kiosk Mode.
     kiosk_customization_power_button_actions_blocked: Optional[bool] = None
     # Indicates whether system info and notifications are disabled in Kiosk Mode. Possible values are: notConfigured, notificationsAndSystemInfoEnabled, systemInfoOnly.
-    kiosk_customization_status_bar: Optional[AndroidDeviceOwnerKioskCustomizationStatusBar] = None
+    kiosk_customization_status_bar: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_kioskCustomizationStatusBar] = None
     # Indicates whether system error dialogs for crashed or unresponsive apps are shown in Kiosk Mode.
     kiosk_customization_system_error_warnings: Optional[bool] = None
     # Indicates which navigation features are enabled in Kiosk Mode. Possible values are: notConfigured, navigationEnabled, homeButtonOnly.
-    kiosk_customization_system_navigation: Optional[AndroidDeviceOwnerKioskCustomizationSystemNavigation] = None
+    kiosk_customization_system_navigation: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_kioskCustomizationSystemNavigation] = None
     # Whether or not to enable app ordering in Kiosk Mode.
     kiosk_mode_app_order_enabled: Optional[bool] = None
     # The ordering of items on Kiosk Mode Managed Home Screen. This collection can contain a maximum of 500 elements.
@@ -118,13 +123,13 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Whether or not to allow a user to use the flashlight in Kiosk Mode.
     kiosk_mode_flashlight_configuration_enabled: Optional[bool] = None
     # Folder icon configuration for managed home screen in Kiosk Mode. Possible values are: notConfigured, darkSquare, darkCircle, lightSquare, lightCircle.
-    kiosk_mode_folder_icon: Optional[AndroidDeviceOwnerKioskModeFolderIcon] = None
+    kiosk_mode_folder_icon: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeFolderIcon] = None
     # Number of rows for Managed Home Screen grid with app ordering enabled in Kiosk Mode. Valid values 1 to 9999999
     kiosk_mode_grid_height: Optional[int] = None
     # Number of columns for Managed Home Screen grid with app ordering enabled in Kiosk Mode. Valid values 1 to 9999999
     kiosk_mode_grid_width: Optional[int] = None
     # Icon size configuration for managed home screen in Kiosk Mode. Possible values are: notConfigured, smallest, small, regular, large, largest.
-    kiosk_mode_icon_size: Optional[AndroidDeviceOwnerKioskModeIconSize] = None
+    kiosk_mode_icon_size: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeIconSize] = None
     # Whether or not to lock home screen to the end user in Kiosk Mode.
     kiosk_mode_lock_home_screen: Optional[bool] = None
     # A list of managed folders for a device in Kiosk Mode. This collection can contain a maximum of 500 elements.
@@ -136,7 +141,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Number of seconds device is inactive before automatically signing user out for Managed Home Screen. Valid values 0 to 9999999
     kiosk_mode_managed_home_screen_inactive_sign_out_notice_in_seconds: Optional[int] = None
     # Complexity of PIN for sign-in session for Managed Home Screen. Possible values are: notConfigured, simple, complex.
-    kiosk_mode_managed_home_screen_pin_complexity: Optional[KioskModeManagedHomeScreenPinComplexity] = None
+    kiosk_mode_managed_home_screen_pin_complexity: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeManagedHomeScreenPinComplexity] = None
     # Whether or not require user to set a PIN for sign-in session for Managed Home Screen.
     kiosk_mode_managed_home_screen_pin_required: Optional[bool] = None
     # Whether or not required user to enter session PIN if screensaver has appeared for Managed Home Screen.
@@ -152,7 +157,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Whether or not to allow a user to change the media volume in Kiosk Mode.
     kiosk_mode_media_volume_configuration_enabled: Optional[bool] = None
     # Screen orientation configuration for managed home screen in Kiosk Mode. Possible values are: notConfigured, portrait, landscape, autoRotate.
-    kiosk_mode_screen_orientation: Optional[AndroidDeviceOwnerKioskModeScreenOrientation] = None
+    kiosk_mode_screen_orientation: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeScreenOrientation] = None
     # Whether or not to enable screen saver mode or not in Kiosk Mode.
     kiosk_mode_screen_saver_configuration_enabled: Optional[bool] = None
     # Whether or not the device screen should show the screen saver if audio/video is playing in Kiosk Mode.
@@ -168,11 +173,11 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Whether or not to allow a user to access basic device information.
     kiosk_mode_show_device_info: Optional[bool] = None
     # Whether or not to use single app kiosk mode or multi-app kiosk mode. Possible values are: notConfigured, singleAppMode, multiAppMode.
-    kiosk_mode_use_managed_home_screen_app: Optional[KioskModeType] = None
+    kiosk_mode_use_managed_home_screen_app: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeUseManagedHomeScreenApp] = None
     # Whether or not to display a virtual home button when the device is in Kiosk Mode.
     kiosk_mode_virtual_home_button_enabled: Optional[bool] = None
     # Indicates whether the virtual home button is a swipe up home button or a floating home button. Possible values are: notConfigured, swipeUp, floating.
-    kiosk_mode_virtual_home_button_type: Optional[AndroidDeviceOwnerVirtualHomeButtonType] = None
+    kiosk_mode_virtual_home_button_type: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeVirtualHomeButtonType] = None
     # URL to a publicly accessible image to use for the wallpaper when the device is in Kiosk Mode.
     kiosk_mode_wallpaper_url: Optional[str] = None
     # Whether or not to allow a user to configure Wi-Fi settings in Kiosk Mode.
@@ -196,13 +201,13 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Indicates whether or not the user can modify the device dock configuration on the device.
     microsoft_launcher_dock_presence_allow_user_modification: Optional[bool] = None
     # Indicates whether or not you want to configure the device dock. Possible values are: notConfigured, show, hide, disabled.
-    microsoft_launcher_dock_presence_configuration: Optional[MicrosoftLauncherDockPresence] = None
+    microsoft_launcher_dock_presence_configuration: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_microsoftLauncherDockPresenceConfiguration] = None
     # Indicates whether or not the user can modify the launcher feed on the device.
     microsoft_launcher_feed_allow_user_modification: Optional[bool] = None
     # Indicates whether or not you want to enable the launcher feed on the device.
     microsoft_launcher_feed_enabled: Optional[bool] = None
     # Indicates the search bar placement configuration on the device. Possible values are: notConfigured, top, bottom, hide.
-    microsoft_launcher_search_bar_placement_configuration: Optional[MicrosoftLauncherSearchBarPlacement] = None
+    microsoft_launcher_search_bar_placement_configuration: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_microsoftLauncherSearchBarPlacementConfiguration] = None
     # Indicates whether or not the device will allow connecting to a temporary network connection at boot time.
     network_escape_hatch_allowed: Optional[bool] = None
     # Indicates whether or not to block NFC outgoing beam.
@@ -232,9 +237,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Indicates the length of password history, where the user will not be able to enter a new password that is the same as any password in the history. Valid values 0 to 24
     password_previous_password_count_to_block: Optional[int] = None
     # Indicates the timeout period after which a device must be unlocked using a form of strong authentication. Possible values are: deviceDefault, daily, unkownFutureValue.
-    password_require_unlock: Optional[AndroidDeviceOwnerRequiredPasswordUnlock] = None
+    password_require_unlock: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_passwordRequireUnlock] = None
     # Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-    password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
+    password_required_type: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_passwordRequiredType] = None
     # Indicates the number of times a user can enter an incorrect password before the device is wiped. Valid values 4 to 11
     password_sign_in_failure_count_before_factory_reset: Optional[int] = None
     # Indicates whether the user can install apps from unknown sources on the personal profile.
@@ -244,11 +249,11 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Policy applied to applications in the personal profile. This collection can contain a maximum of 500 elements.
     personal_profile_personal_applications: Optional[List[AppListItem]] = None
     # Used together with PersonalProfilePersonalApplications to control how apps in the personal profile are allowed or blocked. Possible values are: notConfigured, blockedApps, allowedApps.
-    personal_profile_play_store_mode: Optional[PersonalProfilePersonalPlayStoreMode] = None
+    personal_profile_play_store_mode: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_personalProfilePlayStoreMode] = None
     # Indicates whether to disable the capability to take screenshots on the personal profile.
     personal_profile_screen_capture_blocked: Optional[bool] = None
     # Indicates the Play Store mode of the device. Possible values are: notConfigured, allowList, blockList.
-    play_store_mode: Optional[AndroidDeviceOwnerPlayStoreMode] = None
+    play_store_mode: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_playStoreMode] = None
     # Indicates whether or not to disable the capability to take screenshots.
     screen_capture_blocked: Optional[bool] = None
     # Represents the security common criteria mode enabled provided to users when they attempt to modify managed settings on their device.
@@ -257,6 +262,8 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     security_developer_settings_enabled: Optional[bool] = None
     # Indicates whether or not verify apps is required.
     security_require_verify_apps: Optional[bool] = None
+    # Indicates whether or not location sharing is disabled for fully managed devices (COBO), and corporate owned devices with a work profile (COPE)
+    share_device_location_disabled: Optional[bool] = None
     # Represents the customized short help text provided to users when they attempt to modify managed settings on their device.
     short_help_text: Optional[AndroidDeviceOwnerUserFacingMessage] = None
     # Indicates whether or the status bar is disabled, including notifications, quick settings and other screen overlays.
@@ -272,7 +279,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Indicates the annually repeating time periods during which system updates are postponed. This collection can contain a maximum of 500 elements.
     system_update_freeze_periods: Optional[List[AndroidDeviceOwnerSystemUpdateFreezePeriod]] = None
     # The type of system update configuration. Possible values are: deviceDefault, postpone, windowed, automatic.
-    system_update_install_type: Optional[AndroidDeviceOwnerSystemUpdateInstallType] = None
+    system_update_install_type: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_systemUpdateInstallType] = None
     # Indicates the number of minutes after midnight that the system update window ends. Valid values 0 to 1440
     system_update_window_end_minutes_after_midnight: Optional[int] = None
     # Indicates the number of minutes after midnight that the system update window starts. Valid values 0 to 1440
@@ -312,9 +319,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     # Indicates the length of the work profile password history, where the user will not be able to enter a new password that is the same as any password in the history. Valid values 0 to 24
     work_profile_password_previous_password_count_to_block: Optional[int] = None
     # Indicates the timeout period after which a work profile must be unlocked using a form of strong authentication. Possible values are: deviceDefault, daily, unkownFutureValue.
-    work_profile_password_require_unlock: Optional[AndroidDeviceOwnerRequiredPasswordUnlock] = None
+    work_profile_password_require_unlock: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_workProfilePasswordRequireUnlock] = None
     # Indicates the minimum password quality required on the work profile password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-    work_profile_password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
+    work_profile_password_required_type: Optional[AndroidDeviceOwnerGeneralDeviceConfiguration_workProfilePasswordRequiredType] = None
     # Indicates the number of times a user can enter an incorrect work profile password before the device is wiped. Valid values 4 to 11
     work_profile_password_sign_in_failure_count_before_factory_reset: Optional[int] = None
     
@@ -334,72 +341,78 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .android_device_owner_app_auto_update_policy_type import AndroidDeviceOwnerAppAutoUpdatePolicyType
         from .android_device_owner_battery_plugged_mode import AndroidDeviceOwnerBatteryPluggedMode
-        from .android_device_owner_cross_profile_data_sharing import AndroidDeviceOwnerCrossProfileDataSharing
-        from .android_device_owner_default_app_permission_policy_type import AndroidDeviceOwnerDefaultAppPermissionPolicyType
         from .android_device_owner_delegated_scope_app_setting import AndroidDeviceOwnerDelegatedScopeAppSetting
         from .android_device_owner_enrollment_profile_type import AndroidDeviceOwnerEnrollmentProfileType
+        from .android_device_owner_general_device_configuration_apps_auto_update_policy import AndroidDeviceOwnerGeneralDeviceConfiguration_appsAutoUpdatePolicy
+        from .android_device_owner_general_device_configuration_apps_default_permission_policy import AndroidDeviceOwnerGeneralDeviceConfiguration_appsDefaultPermissionPolicy
+        from .android_device_owner_general_device_configuration_cross_profile_policies_allow_data_sharing import AndroidDeviceOwnerGeneralDeviceConfiguration_crossProfilePoliciesAllowDataSharing
+        from .android_device_owner_general_device_configuration_device_location_mode import AndroidDeviceOwnerGeneralDeviceConfiguration_deviceLocationMode
+        from .android_device_owner_general_device_configuration_kiosk_customization_status_bar import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskCustomizationStatusBar
+        from .android_device_owner_general_device_configuration_kiosk_customization_system_navigation import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskCustomizationSystemNavigation
+        from .android_device_owner_general_device_configuration_kiosk_mode_folder_icon import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeFolderIcon
+        from .android_device_owner_general_device_configuration_kiosk_mode_icon_size import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeIconSize
+        from .android_device_owner_general_device_configuration_kiosk_mode_managed_home_screen_pin_complexity import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeManagedHomeScreenPinComplexity
+        from .android_device_owner_general_device_configuration_kiosk_mode_screen_orientation import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeScreenOrientation
+        from .android_device_owner_general_device_configuration_kiosk_mode_use_managed_home_screen_app import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeUseManagedHomeScreenApp
+        from .android_device_owner_general_device_configuration_kiosk_mode_virtual_home_button_type import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeVirtualHomeButtonType
+        from .android_device_owner_general_device_configuration_microsoft_launcher_dock_presence_configuration import AndroidDeviceOwnerGeneralDeviceConfiguration_microsoftLauncherDockPresenceConfiguration
+        from .android_device_owner_general_device_configuration_microsoft_launcher_search_bar_placement_configuration import AndroidDeviceOwnerGeneralDeviceConfiguration_microsoftLauncherSearchBarPlacementConfiguration
+        from .android_device_owner_general_device_configuration_password_required_type import AndroidDeviceOwnerGeneralDeviceConfiguration_passwordRequiredType
+        from .android_device_owner_general_device_configuration_password_require_unlock import AndroidDeviceOwnerGeneralDeviceConfiguration_passwordRequireUnlock
+        from .android_device_owner_general_device_configuration_personal_profile_play_store_mode import AndroidDeviceOwnerGeneralDeviceConfiguration_personalProfilePlayStoreMode
+        from .android_device_owner_general_device_configuration_play_store_mode import AndroidDeviceOwnerGeneralDeviceConfiguration_playStoreMode
+        from .android_device_owner_general_device_configuration_system_update_install_type import AndroidDeviceOwnerGeneralDeviceConfiguration_systemUpdateInstallType
+        from .android_device_owner_general_device_configuration_work_profile_password_required_type import AndroidDeviceOwnerGeneralDeviceConfiguration_workProfilePasswordRequiredType
+        from .android_device_owner_general_device_configuration_work_profile_password_require_unlock import AndroidDeviceOwnerGeneralDeviceConfiguration_workProfilePasswordRequireUnlock
         from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
-        from .android_device_owner_kiosk_customization_status_bar import AndroidDeviceOwnerKioskCustomizationStatusBar
-        from .android_device_owner_kiosk_customization_system_navigation import AndroidDeviceOwnerKioskCustomizationSystemNavigation
         from .android_device_owner_kiosk_mode_app_position_item import AndroidDeviceOwnerKioskModeAppPositionItem
-        from .android_device_owner_kiosk_mode_folder_icon import AndroidDeviceOwnerKioskModeFolderIcon
-        from .android_device_owner_kiosk_mode_icon_size import AndroidDeviceOwnerKioskModeIconSize
         from .android_device_owner_kiosk_mode_managed_folder import AndroidDeviceOwnerKioskModeManagedFolder
-        from .android_device_owner_kiosk_mode_screen_orientation import AndroidDeviceOwnerKioskModeScreenOrientation
-        from .android_device_owner_play_store_mode import AndroidDeviceOwnerPlayStoreMode
-        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
-        from .android_device_owner_required_password_unlock import AndroidDeviceOwnerRequiredPasswordUnlock
         from .android_device_owner_system_update_freeze_period import AndroidDeviceOwnerSystemUpdateFreezePeriod
-        from .android_device_owner_system_update_install_type import AndroidDeviceOwnerSystemUpdateInstallType
         from .android_device_owner_user_facing_message import AndroidDeviceOwnerUserFacingMessage
-        from .android_device_owner_virtual_home_button_type import AndroidDeviceOwnerVirtualHomeButtonType
         from .android_keyguard_feature import AndroidKeyguardFeature
         from .app_list_item import AppListItem
         from .device_configuration import DeviceConfiguration
-        from .kiosk_mode_managed_home_screen_pin_complexity import KioskModeManagedHomeScreenPinComplexity
-        from .kiosk_mode_type import KioskModeType
-        from .microsoft_launcher_dock_presence import MicrosoftLauncherDockPresence
-        from .microsoft_launcher_search_bar_placement import MicrosoftLauncherSearchBarPlacement
-        from .personal_profile_personal_play_store_mode import PersonalProfilePersonalPlayStoreMode
 
-        from .android_device_owner_app_auto_update_policy_type import AndroidDeviceOwnerAppAutoUpdatePolicyType
         from .android_device_owner_battery_plugged_mode import AndroidDeviceOwnerBatteryPluggedMode
-        from .android_device_owner_cross_profile_data_sharing import AndroidDeviceOwnerCrossProfileDataSharing
-        from .android_device_owner_default_app_permission_policy_type import AndroidDeviceOwnerDefaultAppPermissionPolicyType
         from .android_device_owner_delegated_scope_app_setting import AndroidDeviceOwnerDelegatedScopeAppSetting
         from .android_device_owner_enrollment_profile_type import AndroidDeviceOwnerEnrollmentProfileType
+        from .android_device_owner_general_device_configuration_apps_auto_update_policy import AndroidDeviceOwnerGeneralDeviceConfiguration_appsAutoUpdatePolicy
+        from .android_device_owner_general_device_configuration_apps_default_permission_policy import AndroidDeviceOwnerGeneralDeviceConfiguration_appsDefaultPermissionPolicy
+        from .android_device_owner_general_device_configuration_cross_profile_policies_allow_data_sharing import AndroidDeviceOwnerGeneralDeviceConfiguration_crossProfilePoliciesAllowDataSharing
+        from .android_device_owner_general_device_configuration_device_location_mode import AndroidDeviceOwnerGeneralDeviceConfiguration_deviceLocationMode
+        from .android_device_owner_general_device_configuration_kiosk_customization_status_bar import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskCustomizationStatusBar
+        from .android_device_owner_general_device_configuration_kiosk_customization_system_navigation import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskCustomizationSystemNavigation
+        from .android_device_owner_general_device_configuration_kiosk_mode_folder_icon import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeFolderIcon
+        from .android_device_owner_general_device_configuration_kiosk_mode_icon_size import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeIconSize
+        from .android_device_owner_general_device_configuration_kiosk_mode_managed_home_screen_pin_complexity import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeManagedHomeScreenPinComplexity
+        from .android_device_owner_general_device_configuration_kiosk_mode_screen_orientation import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeScreenOrientation
+        from .android_device_owner_general_device_configuration_kiosk_mode_use_managed_home_screen_app import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeUseManagedHomeScreenApp
+        from .android_device_owner_general_device_configuration_kiosk_mode_virtual_home_button_type import AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeVirtualHomeButtonType
+        from .android_device_owner_general_device_configuration_microsoft_launcher_dock_presence_configuration import AndroidDeviceOwnerGeneralDeviceConfiguration_microsoftLauncherDockPresenceConfiguration
+        from .android_device_owner_general_device_configuration_microsoft_launcher_search_bar_placement_configuration import AndroidDeviceOwnerGeneralDeviceConfiguration_microsoftLauncherSearchBarPlacementConfiguration
+        from .android_device_owner_general_device_configuration_password_required_type import AndroidDeviceOwnerGeneralDeviceConfiguration_passwordRequiredType
+        from .android_device_owner_general_device_configuration_password_require_unlock import AndroidDeviceOwnerGeneralDeviceConfiguration_passwordRequireUnlock
+        from .android_device_owner_general_device_configuration_personal_profile_play_store_mode import AndroidDeviceOwnerGeneralDeviceConfiguration_personalProfilePlayStoreMode
+        from .android_device_owner_general_device_configuration_play_store_mode import AndroidDeviceOwnerGeneralDeviceConfiguration_playStoreMode
+        from .android_device_owner_general_device_configuration_system_update_install_type import AndroidDeviceOwnerGeneralDeviceConfiguration_systemUpdateInstallType
+        from .android_device_owner_general_device_configuration_work_profile_password_required_type import AndroidDeviceOwnerGeneralDeviceConfiguration_workProfilePasswordRequiredType
+        from .android_device_owner_general_device_configuration_work_profile_password_require_unlock import AndroidDeviceOwnerGeneralDeviceConfiguration_workProfilePasswordRequireUnlock
         from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
-        from .android_device_owner_kiosk_customization_status_bar import AndroidDeviceOwnerKioskCustomizationStatusBar
-        from .android_device_owner_kiosk_customization_system_navigation import AndroidDeviceOwnerKioskCustomizationSystemNavigation
         from .android_device_owner_kiosk_mode_app_position_item import AndroidDeviceOwnerKioskModeAppPositionItem
-        from .android_device_owner_kiosk_mode_folder_icon import AndroidDeviceOwnerKioskModeFolderIcon
-        from .android_device_owner_kiosk_mode_icon_size import AndroidDeviceOwnerKioskModeIconSize
         from .android_device_owner_kiosk_mode_managed_folder import AndroidDeviceOwnerKioskModeManagedFolder
-        from .android_device_owner_kiosk_mode_screen_orientation import AndroidDeviceOwnerKioskModeScreenOrientation
-        from .android_device_owner_play_store_mode import AndroidDeviceOwnerPlayStoreMode
-        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
-        from .android_device_owner_required_password_unlock import AndroidDeviceOwnerRequiredPasswordUnlock
         from .android_device_owner_system_update_freeze_period import AndroidDeviceOwnerSystemUpdateFreezePeriod
-        from .android_device_owner_system_update_install_type import AndroidDeviceOwnerSystemUpdateInstallType
         from .android_device_owner_user_facing_message import AndroidDeviceOwnerUserFacingMessage
-        from .android_device_owner_virtual_home_button_type import AndroidDeviceOwnerVirtualHomeButtonType
         from .android_keyguard_feature import AndroidKeyguardFeature
         from .app_list_item import AppListItem
         from .device_configuration import DeviceConfiguration
-        from .kiosk_mode_managed_home_screen_pin_complexity import KioskModeManagedHomeScreenPinComplexity
-        from .kiosk_mode_type import KioskModeType
-        from .microsoft_launcher_dock_presence import MicrosoftLauncherDockPresence
-        from .microsoft_launcher_search_bar_placement import MicrosoftLauncherSearchBarPlacement
-        from .personal_profile_personal_play_store_mode import PersonalProfilePersonalPlayStoreMode
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accountsBlockModification": lambda n : setattr(self, 'accounts_block_modification', n.get_bool_value()),
             "androidDeviceOwnerDelegatedScopeAppSettings": lambda n : setattr(self, 'android_device_owner_delegated_scope_app_settings', n.get_collection_of_object_values(AndroidDeviceOwnerDelegatedScopeAppSetting)),
             "appsAllowInstallFromUnknownSources": lambda n : setattr(self, 'apps_allow_install_from_unknown_sources', n.get_bool_value()),
-            "appsAutoUpdatePolicy": lambda n : setattr(self, 'apps_auto_update_policy', n.get_enum_value(AndroidDeviceOwnerAppAutoUpdatePolicyType)),
-            "appsDefaultPermissionPolicy": lambda n : setattr(self, 'apps_default_permission_policy', n.get_enum_value(AndroidDeviceOwnerDefaultAppPermissionPolicyType)),
+            "appsAutoUpdatePolicy": lambda n : setattr(self, 'apps_auto_update_policy', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_appsAutoUpdatePolicy)),
+            "appsDefaultPermissionPolicy": lambda n : setattr(self, 'apps_default_permission_policy', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_appsDefaultPermissionPolicy)),
             "appsRecommendSkippingFirstUseHints": lambda n : setattr(self, 'apps_recommend_skipping_first_use_hints', n.get_bool_value()),
             "azureAdSharedDeviceDataClearApps": lambda n : setattr(self, 'azure_ad_shared_device_data_clear_apps', n.get_collection_of_object_values(AppListItem)),
             "bluetoothBlockConfiguration": lambda n : setattr(self, 'bluetooth_block_configuration', n.get_bool_value()),
@@ -408,11 +421,12 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
             "cellularBlockWiFiTethering": lambda n : setattr(self, 'cellular_block_wi_fi_tethering', n.get_bool_value()),
             "certificateCredentialConfigurationDisabled": lambda n : setattr(self, 'certificate_credential_configuration_disabled', n.get_bool_value()),
             "crossProfilePoliciesAllowCopyPaste": lambda n : setattr(self, 'cross_profile_policies_allow_copy_paste', n.get_bool_value()),
-            "crossProfilePoliciesAllowDataSharing": lambda n : setattr(self, 'cross_profile_policies_allow_data_sharing', n.get_enum_value(AndroidDeviceOwnerCrossProfileDataSharing)),
+            "crossProfilePoliciesAllowDataSharing": lambda n : setattr(self, 'cross_profile_policies_allow_data_sharing', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_crossProfilePoliciesAllowDataSharing)),
             "crossProfilePoliciesShowWorkContactsInPersonalProfile": lambda n : setattr(self, 'cross_profile_policies_show_work_contacts_in_personal_profile', n.get_bool_value()),
             "dataRoamingBlocked": lambda n : setattr(self, 'data_roaming_blocked', n.get_bool_value()),
             "dateTimeConfigurationBlocked": lambda n : setattr(self, 'date_time_configuration_blocked', n.get_bool_value()),
             "detailedHelpText": lambda n : setattr(self, 'detailed_help_text', n.get_object_value(AndroidDeviceOwnerUserFacingMessage)),
+            "deviceLocationMode": lambda n : setattr(self, 'device_location_mode', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_deviceLocationMode)),
             "deviceOwnerLockScreenMessage": lambda n : setattr(self, 'device_owner_lock_screen_message', n.get_object_value(AndroidDeviceOwnerUserFacingMessage)),
             "enrollmentProfile": lambda n : setattr(self, 'enrollment_profile', n.get_enum_value(AndroidDeviceOwnerEnrollmentProfileType)),
             "factoryResetBlocked": lambda n : setattr(self, 'factory_reset_blocked', n.get_bool_value()),
@@ -421,9 +435,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
             "googleAccountsBlocked": lambda n : setattr(self, 'google_accounts_blocked', n.get_bool_value()),
             "kioskCustomizationDeviceSettingsBlocked": lambda n : setattr(self, 'kiosk_customization_device_settings_blocked', n.get_bool_value()),
             "kioskCustomizationPowerButtonActionsBlocked": lambda n : setattr(self, 'kiosk_customization_power_button_actions_blocked', n.get_bool_value()),
-            "kioskCustomizationStatusBar": lambda n : setattr(self, 'kiosk_customization_status_bar', n.get_enum_value(AndroidDeviceOwnerKioskCustomizationStatusBar)),
+            "kioskCustomizationStatusBar": lambda n : setattr(self, 'kiosk_customization_status_bar', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_kioskCustomizationStatusBar)),
             "kioskCustomizationSystemErrorWarnings": lambda n : setattr(self, 'kiosk_customization_system_error_warnings', n.get_bool_value()),
-            "kioskCustomizationSystemNavigation": lambda n : setattr(self, 'kiosk_customization_system_navigation', n.get_enum_value(AndroidDeviceOwnerKioskCustomizationSystemNavigation)),
+            "kioskCustomizationSystemNavigation": lambda n : setattr(self, 'kiosk_customization_system_navigation', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_kioskCustomizationSystemNavigation)),
             "kioskModeAppOrderEnabled": lambda n : setattr(self, 'kiosk_mode_app_order_enabled', n.get_bool_value()),
             "kioskModeAppPositions": lambda n : setattr(self, 'kiosk_mode_app_positions', n.get_collection_of_object_values(AndroidDeviceOwnerKioskModeAppPositionItem)),
             "kioskModeApps": lambda n : setattr(self, 'kiosk_mode_apps', n.get_collection_of_object_values(AppListItem)),
@@ -432,16 +446,16 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
             "kioskModeDebugMenuEasyAccessEnabled": lambda n : setattr(self, 'kiosk_mode_debug_menu_easy_access_enabled', n.get_bool_value()),
             "kioskModeExitCode": lambda n : setattr(self, 'kiosk_mode_exit_code', n.get_str_value()),
             "kioskModeFlashlightConfigurationEnabled": lambda n : setattr(self, 'kiosk_mode_flashlight_configuration_enabled', n.get_bool_value()),
-            "kioskModeFolderIcon": lambda n : setattr(self, 'kiosk_mode_folder_icon', n.get_enum_value(AndroidDeviceOwnerKioskModeFolderIcon)),
+            "kioskModeFolderIcon": lambda n : setattr(self, 'kiosk_mode_folder_icon', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeFolderIcon)),
             "kioskModeGridHeight": lambda n : setattr(self, 'kiosk_mode_grid_height', n.get_int_value()),
             "kioskModeGridWidth": lambda n : setattr(self, 'kiosk_mode_grid_width', n.get_int_value()),
-            "kioskModeIconSize": lambda n : setattr(self, 'kiosk_mode_icon_size', n.get_enum_value(AndroidDeviceOwnerKioskModeIconSize)),
+            "kioskModeIconSize": lambda n : setattr(self, 'kiosk_mode_icon_size', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeIconSize)),
             "kioskModeLockHomeScreen": lambda n : setattr(self, 'kiosk_mode_lock_home_screen', n.get_bool_value()),
             "kioskModeManagedFolders": lambda n : setattr(self, 'kiosk_mode_managed_folders', n.get_collection_of_object_values(AndroidDeviceOwnerKioskModeManagedFolder)),
             "kioskModeManagedHomeScreenAutoSignout": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_auto_signout', n.get_bool_value()),
             "kioskModeManagedHomeScreenInactiveSignOutDelayInSeconds": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_inactive_sign_out_delay_in_seconds', n.get_int_value()),
             "kioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_inactive_sign_out_notice_in_seconds', n.get_int_value()),
-            "kioskModeManagedHomeScreenPinComplexity": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_pin_complexity', n.get_enum_value(KioskModeManagedHomeScreenPinComplexity)),
+            "kioskModeManagedHomeScreenPinComplexity": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_pin_complexity', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeManagedHomeScreenPinComplexity)),
             "kioskModeManagedHomeScreenPinRequired": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_pin_required', n.get_bool_value()),
             "kioskModeManagedHomeScreenPinRequiredToResume": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_pin_required_to_resume', n.get_bool_value()),
             "kioskModeManagedHomeScreenSignInBackground": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_sign_in_background', n.get_str_value()),
@@ -449,7 +463,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
             "kioskModeManagedHomeScreenSignInEnabled": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_sign_in_enabled', n.get_bool_value()),
             "kioskModeManagedSettingsEntryDisabled": lambda n : setattr(self, 'kiosk_mode_managed_settings_entry_disabled', n.get_bool_value()),
             "kioskModeMediaVolumeConfigurationEnabled": lambda n : setattr(self, 'kiosk_mode_media_volume_configuration_enabled', n.get_bool_value()),
-            "kioskModeScreenOrientation": lambda n : setattr(self, 'kiosk_mode_screen_orientation', n.get_enum_value(AndroidDeviceOwnerKioskModeScreenOrientation)),
+            "kioskModeScreenOrientation": lambda n : setattr(self, 'kiosk_mode_screen_orientation', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeScreenOrientation)),
             "kioskModeScreenSaverConfigurationEnabled": lambda n : setattr(self, 'kiosk_mode_screen_saver_configuration_enabled', n.get_bool_value()),
             "kioskModeScreenSaverDetectMediaDisabled": lambda n : setattr(self, 'kiosk_mode_screen_saver_detect_media_disabled', n.get_bool_value()),
             "kioskModeScreenSaverDisplayTimeInSeconds": lambda n : setattr(self, 'kiosk_mode_screen_saver_display_time_in_seconds', n.get_int_value()),
@@ -457,9 +471,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
             "kioskModeScreenSaverStartDelayInSeconds": lambda n : setattr(self, 'kiosk_mode_screen_saver_start_delay_in_seconds', n.get_int_value()),
             "kioskModeShowAppNotificationBadge": lambda n : setattr(self, 'kiosk_mode_show_app_notification_badge', n.get_bool_value()),
             "kioskModeShowDeviceInfo": lambda n : setattr(self, 'kiosk_mode_show_device_info', n.get_bool_value()),
-            "kioskModeUseManagedHomeScreenApp": lambda n : setattr(self, 'kiosk_mode_use_managed_home_screen_app', n.get_enum_value(KioskModeType)),
+            "kioskModeUseManagedHomeScreenApp": lambda n : setattr(self, 'kiosk_mode_use_managed_home_screen_app', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeUseManagedHomeScreenApp)),
             "kioskModeVirtualHomeButtonEnabled": lambda n : setattr(self, 'kiosk_mode_virtual_home_button_enabled', n.get_bool_value()),
-            "kioskModeVirtualHomeButtonType": lambda n : setattr(self, 'kiosk_mode_virtual_home_button_type', n.get_enum_value(AndroidDeviceOwnerVirtualHomeButtonType)),
+            "kioskModeVirtualHomeButtonType": lambda n : setattr(self, 'kiosk_mode_virtual_home_button_type', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_kioskModeVirtualHomeButtonType)),
             "kioskModeWallpaperUrl": lambda n : setattr(self, 'kiosk_mode_wallpaper_url', n.get_str_value()),
             "kioskModeWiFiConfigurationEnabled": lambda n : setattr(self, 'kiosk_mode_wi_fi_configuration_enabled', n.get_bool_value()),
             "kioskModeWifiAllowedSsids": lambda n : setattr(self, 'kiosk_mode_wifi_allowed_ssids', n.get_collection_of_primitive_values(str)),
@@ -471,10 +485,10 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
             "microsoftLauncherCustomWallpaperEnabled": lambda n : setattr(self, 'microsoft_launcher_custom_wallpaper_enabled', n.get_bool_value()),
             "microsoftLauncherCustomWallpaperImageUrl": lambda n : setattr(self, 'microsoft_launcher_custom_wallpaper_image_url', n.get_str_value()),
             "microsoftLauncherDockPresenceAllowUserModification": lambda n : setattr(self, 'microsoft_launcher_dock_presence_allow_user_modification', n.get_bool_value()),
-            "microsoftLauncherDockPresenceConfiguration": lambda n : setattr(self, 'microsoft_launcher_dock_presence_configuration', n.get_enum_value(MicrosoftLauncherDockPresence)),
+            "microsoftLauncherDockPresenceConfiguration": lambda n : setattr(self, 'microsoft_launcher_dock_presence_configuration', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_microsoftLauncherDockPresenceConfiguration)),
             "microsoftLauncherFeedAllowUserModification": lambda n : setattr(self, 'microsoft_launcher_feed_allow_user_modification', n.get_bool_value()),
             "microsoftLauncherFeedEnabled": lambda n : setattr(self, 'microsoft_launcher_feed_enabled', n.get_bool_value()),
-            "microsoftLauncherSearchBarPlacementConfiguration": lambda n : setattr(self, 'microsoft_launcher_search_bar_placement_configuration', n.get_enum_value(MicrosoftLauncherSearchBarPlacement)),
+            "microsoftLauncherSearchBarPlacementConfiguration": lambda n : setattr(self, 'microsoft_launcher_search_bar_placement_configuration', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_microsoftLauncherSearchBarPlacementConfiguration)),
             "networkEscapeHatchAllowed": lambda n : setattr(self, 'network_escape_hatch_allowed', n.get_bool_value()),
             "nfcBlockOutgoingBeam": lambda n : setattr(self, 'nfc_block_outgoing_beam', n.get_bool_value()),
             "passwordBlockKeyguard": lambda n : setattr(self, 'password_block_keyguard', n.get_bool_value()),
@@ -489,19 +503,20 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
             "passwordMinimumUpperCaseCharacters": lambda n : setattr(self, 'password_minimum_upper_case_characters', n.get_int_value()),
             "passwordMinutesOfInactivityBeforeScreenTimeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
             "passwordPreviousPasswordCountToBlock": lambda n : setattr(self, 'password_previous_password_count_to_block', n.get_int_value()),
-            "passwordRequireUnlock": lambda n : setattr(self, 'password_require_unlock', n.get_enum_value(AndroidDeviceOwnerRequiredPasswordUnlock)),
-            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(AndroidDeviceOwnerRequiredPasswordType)),
+            "passwordRequireUnlock": lambda n : setattr(self, 'password_require_unlock', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_passwordRequireUnlock)),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_passwordRequiredType)),
             "passwordSignInFailureCountBeforeFactoryReset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
             "personalProfileAppsAllowInstallFromUnknownSources": lambda n : setattr(self, 'personal_profile_apps_allow_install_from_unknown_sources', n.get_bool_value()),
             "personalProfileCameraBlocked": lambda n : setattr(self, 'personal_profile_camera_blocked', n.get_bool_value()),
             "personalProfilePersonalApplications": lambda n : setattr(self, 'personal_profile_personal_applications', n.get_collection_of_object_values(AppListItem)),
-            "personalProfilePlayStoreMode": lambda n : setattr(self, 'personal_profile_play_store_mode', n.get_enum_value(PersonalProfilePersonalPlayStoreMode)),
+            "personalProfilePlayStoreMode": lambda n : setattr(self, 'personal_profile_play_store_mode', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_personalProfilePlayStoreMode)),
             "personalProfileScreenCaptureBlocked": lambda n : setattr(self, 'personal_profile_screen_capture_blocked', n.get_bool_value()),
-            "playStoreMode": lambda n : setattr(self, 'play_store_mode', n.get_enum_value(AndroidDeviceOwnerPlayStoreMode)),
+            "playStoreMode": lambda n : setattr(self, 'play_store_mode', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_playStoreMode)),
             "screenCaptureBlocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
             "securityCommonCriteriaModeEnabled": lambda n : setattr(self, 'security_common_criteria_mode_enabled', n.get_bool_value()),
             "securityDeveloperSettingsEnabled": lambda n : setattr(self, 'security_developer_settings_enabled', n.get_bool_value()),
             "securityRequireVerifyApps": lambda n : setattr(self, 'security_require_verify_apps', n.get_bool_value()),
+            "shareDeviceLocationDisabled": lambda n : setattr(self, 'share_device_location_disabled', n.get_bool_value()),
             "shortHelpText": lambda n : setattr(self, 'short_help_text', n.get_object_value(AndroidDeviceOwnerUserFacingMessage)),
             "statusBarBlocked": lambda n : setattr(self, 'status_bar_blocked', n.get_bool_value()),
             "stayOnModes": lambda n : setattr(self, 'stay_on_modes', n.get_collection_of_enum_values(AndroidDeviceOwnerBatteryPluggedMode)),
@@ -509,7 +524,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
             "storageBlockExternalMedia": lambda n : setattr(self, 'storage_block_external_media', n.get_bool_value()),
             "storageBlockUsbFileTransfer": lambda n : setattr(self, 'storage_block_usb_file_transfer', n.get_bool_value()),
             "systemUpdateFreezePeriods": lambda n : setattr(self, 'system_update_freeze_periods', n.get_collection_of_object_values(AndroidDeviceOwnerSystemUpdateFreezePeriod)),
-            "systemUpdateInstallType": lambda n : setattr(self, 'system_update_install_type', n.get_enum_value(AndroidDeviceOwnerSystemUpdateInstallType)),
+            "systemUpdateInstallType": lambda n : setattr(self, 'system_update_install_type', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_systemUpdateInstallType)),
             "systemUpdateWindowEndMinutesAfterMidnight": lambda n : setattr(self, 'system_update_window_end_minutes_after_midnight', n.get_int_value()),
             "systemUpdateWindowStartMinutesAfterMidnight": lambda n : setattr(self, 'system_update_window_start_minutes_after_midnight', n.get_int_value()),
             "systemWindowsBlocked": lambda n : setattr(self, 'system_windows_blocked', n.get_bool_value()),
@@ -529,8 +544,8 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
             "workProfilePasswordMinimumSymbolCharacters": lambda n : setattr(self, 'work_profile_password_minimum_symbol_characters', n.get_int_value()),
             "workProfilePasswordMinimumUpperCaseCharacters": lambda n : setattr(self, 'work_profile_password_minimum_upper_case_characters', n.get_int_value()),
             "workProfilePasswordPreviousPasswordCountToBlock": lambda n : setattr(self, 'work_profile_password_previous_password_count_to_block', n.get_int_value()),
-            "workProfilePasswordRequireUnlock": lambda n : setattr(self, 'work_profile_password_require_unlock', n.get_enum_value(AndroidDeviceOwnerRequiredPasswordUnlock)),
-            "workProfilePasswordRequiredType": lambda n : setattr(self, 'work_profile_password_required_type', n.get_enum_value(AndroidDeviceOwnerRequiredPasswordType)),
+            "workProfilePasswordRequireUnlock": lambda n : setattr(self, 'work_profile_password_require_unlock', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_workProfilePasswordRequireUnlock)),
+            "workProfilePasswordRequiredType": lambda n : setattr(self, 'work_profile_password_required_type', n.get_enum_value(AndroidDeviceOwnerGeneralDeviceConfiguration_workProfilePasswordRequiredType)),
             "workProfilePasswordSignInFailureCountBeforeFactoryReset": lambda n : setattr(self, 'work_profile_password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -564,6 +579,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
         writer.write_bool_value("dataRoamingBlocked", self.data_roaming_blocked)
         writer.write_bool_value("dateTimeConfigurationBlocked", self.date_time_configuration_blocked)
         writer.write_object_value("detailedHelpText", self.detailed_help_text)
+        writer.write_enum_value("deviceLocationMode", self.device_location_mode)
         writer.write_object_value("deviceOwnerLockScreenMessage", self.device_owner_lock_screen_message)
         writer.write_enum_value("enrollmentProfile", self.enrollment_profile)
         writer.write_bool_value("factoryResetBlocked", self.factory_reset_blocked)
@@ -653,6 +669,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
         writer.write_bool_value("securityCommonCriteriaModeEnabled", self.security_common_criteria_mode_enabled)
         writer.write_bool_value("securityDeveloperSettingsEnabled", self.security_developer_settings_enabled)
         writer.write_bool_value("securityRequireVerifyApps", self.security_require_verify_apps)
+        writer.write_bool_value("shareDeviceLocationDisabled", self.share_device_location_disabled)
         writer.write_object_value("shortHelpText", self.short_help_text)
         writer.write_bool_value("statusBarBlocked", self.status_bar_blocked)
         writer.write_collection_of_enum_values("stayOnModes", self.stay_on_modes)

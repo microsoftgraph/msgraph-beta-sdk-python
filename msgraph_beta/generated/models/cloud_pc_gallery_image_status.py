@@ -1,8 +1,5 @@
 from enum import Enum
 
-class CloudPcGalleryImageStatus(str, Enum):
-    Supported = "supported",
-    SupportedWithWarning = "supportedWithWarning",
-    NotSupported = "notSupported",
-    UnknownFutureValue = "unknownFutureValue",
+class CloudPcGalleryImage_status(str, Enum):
+    pass
 

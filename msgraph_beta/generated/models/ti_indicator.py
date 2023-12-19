@@ -5,18 +5,18 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .diamond_model import DiamondModel
     from .entity import Entity
-    from .file_hash_type import FileHashType
-    from .ti_action import TiAction
-    from .tlp_level import TlpLevel
+    from .ti_indicator_action import TiIndicator_action
+    from .ti_indicator_diamond_model import TiIndicator_diamondModel
+    from .ti_indicator_file_hash_type import TiIndicator_fileHashType
+    from .ti_indicator_tlp_level import TiIndicator_tlpLevel
 
 from .entity import Entity
 
 @dataclass
 class TiIndicator(Entity):
     # The action to apply if the indicator is matched from within the targetProduct security tool. Possible values are: unknown, allow, block, alert. Required.
-    action: Optional[TiAction] = None
+    action: Optional[TiIndicator_action] = None
     # The cyber threat intelligence name(s) for the parties responsible for the malicious activity covered by the threat indicator.
     activity_group_names: Optional[List[str]] = None
     # A catchall area for extra data from the indicator that is not specifically covered by other tiIndicator properties. The security tool specified by targetProduct typically does not utilize this data.
@@ -28,7 +28,7 @@ class TiIndicator(Entity):
     # Brief description (100 characters or less) of the threat represented by the indicator. Required.
     description: Optional[str] = None
     # The area of the Diamond Model in which this indicator exists. Possible values are: unknown, adversary, capability, infrastructure, victim.
-    diamond_model: Optional[DiamondModel] = None
+    diamond_model: Optional[TiIndicator_diamondModel] = None
     # The domainName property
     domain_name: Optional[str] = None
     # The emailEncoding property
@@ -58,7 +58,7 @@ class TiIndicator(Entity):
     # The fileCreatedDateTime property
     file_created_date_time: Optional[datetime.datetime] = None
     # The fileHashType property
-    file_hash_type: Optional[FileHashType] = None
+    file_hash_type: Optional[TiIndicator_fileHashType] = None
     # The fileHashValue property
     file_hash_value: Optional[str] = None
     # The fileMutexName property
@@ -128,7 +128,7 @@ class TiIndicator(Entity):
     # Each indicator must have a valid Indicator Threat Type. Possible values are: Botnet, C2, CryptoMining, Darknet, DDoS, MaliciousUrl, Malware, Phishing, Proxy, PUA, WatchList. Required.
     threat_type: Optional[str] = None
     # Traffic Light Protocol value for the indicator. Possible values are: unknown, white, green, amber, red. Required.
-    tlp_level: Optional[TlpLevel] = None
+    tlp_level: Optional[TiIndicator_tlpLevel] = None
     # The url property
     url: Optional[str] = None
     # The userAgent property
@@ -150,26 +150,26 @@ class TiIndicator(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .diamond_model import DiamondModel
         from .entity import Entity
-        from .file_hash_type import FileHashType
-        from .ti_action import TiAction
-        from .tlp_level import TlpLevel
+        from .ti_indicator_action import TiIndicator_action
+        from .ti_indicator_diamond_model import TiIndicator_diamondModel
+        from .ti_indicator_file_hash_type import TiIndicator_fileHashType
+        from .ti_indicator_tlp_level import TiIndicator_tlpLevel
 
-        from .diamond_model import DiamondModel
         from .entity import Entity
-        from .file_hash_type import FileHashType
-        from .ti_action import TiAction
-        from .tlp_level import TlpLevel
+        from .ti_indicator_action import TiIndicator_action
+        from .ti_indicator_diamond_model import TiIndicator_diamondModel
+        from .ti_indicator_file_hash_type import TiIndicator_fileHashType
+        from .ti_indicator_tlp_level import TiIndicator_tlpLevel
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "action": lambda n : setattr(self, 'action', n.get_enum_value(TiAction)),
+            "action": lambda n : setattr(self, 'action', n.get_enum_value(TiIndicator_action)),
             "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
             "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_str_value()),
             "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
             "confidence": lambda n : setattr(self, 'confidence', n.get_int_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "diamondModel": lambda n : setattr(self, 'diamond_model', n.get_enum_value(DiamondModel)),
+            "diamondModel": lambda n : setattr(self, 'diamond_model', n.get_enum_value(TiIndicator_diamondModel)),
             "domainName": lambda n : setattr(self, 'domain_name', n.get_str_value()),
             "emailEncoding": lambda n : setattr(self, 'email_encoding', n.get_str_value()),
             "emailLanguage": lambda n : setattr(self, 'email_language', n.get_str_value()),
@@ -184,7 +184,7 @@ class TiIndicator(Entity):
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "fileCompileDateTime": lambda n : setattr(self, 'file_compile_date_time', n.get_datetime_value()),
             "fileCreatedDateTime": lambda n : setattr(self, 'file_created_date_time', n.get_datetime_value()),
-            "fileHashType": lambda n : setattr(self, 'file_hash_type', n.get_enum_value(FileHashType)),
+            "fileHashType": lambda n : setattr(self, 'file_hash_type', n.get_enum_value(TiIndicator_fileHashType)),
             "fileHashValue": lambda n : setattr(self, 'file_hash_value', n.get_str_value()),
             "fileMutexName": lambda n : setattr(self, 'file_mutex_name', n.get_str_value()),
             "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
@@ -218,7 +218,7 @@ class TiIndicator(Entity):
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
             "targetProduct": lambda n : setattr(self, 'target_product', n.get_str_value()),
             "threatType": lambda n : setattr(self, 'threat_type', n.get_str_value()),
-            "tlpLevel": lambda n : setattr(self, 'tlp_level', n.get_enum_value(TlpLevel)),
+            "tlpLevel": lambda n : setattr(self, 'tlp_level', n.get_enum_value(TiIndicator_tlpLevel)),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
             "userAgent": lambda n : setattr(self, 'user_agent', n.get_str_value()),
         }

@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .setting import Setting
-    from .workload_action_category import WorkloadActionCategory
+    from .workload_action_category import WorkloadAction_category
 
 @dataclass
 class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
@@ -18,7 +18,7 @@ class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
     # The unique identifier for the workload action. Required. Read-only.
     action_id: Optional[str] = None
     # The category for the workload action. Possible values are: automated, manual, unknownFutureValue. Optional. Read-only.
-    category: Optional[WorkloadActionCategory] = None
+    category: Optional[WorkloadAction_category] = None
     # The description for the workload action. Optional. Read-only.
     description: Optional[str] = None
     # The display name for the workload action. Optional. Read-only.
@@ -49,14 +49,14 @@ class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .setting import Setting
-        from .workload_action_category import WorkloadActionCategory
+        from .workload_action_category import WorkloadAction_category
 
         from .setting import Setting
-        from .workload_action_category import WorkloadActionCategory
+        from .workload_action_category import WorkloadAction_category
 
         fields: Dict[str, Callable[[Any], None]] = {
             "actionId": lambda n : setattr(self, 'action_id', n.get_str_value()),
-            "category": lambda n : setattr(self, 'category', n.get_enum_value(WorkloadActionCategory)),
+            "category": lambda n : setattr(self, 'category', n.get_enum_value(WorkloadAction_category)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "licenses": lambda n : setattr(self, 'licenses', n.get_collection_of_primitive_values(str)),

@@ -5,7 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .microsoft_managed_desktop_type import MicrosoftManagedDesktopType
+    from .microsoft_managed_desktop_managed_type import MicrosoftManagedDesktop_managedType
+    from .microsoft_managed_desktop_type import MicrosoftManagedDesktop_type
 
 @dataclass
 class MicrosoftManagedDesktop(AdditionalDataHolder, BackedModel, Parsable):
@@ -14,12 +15,14 @@ class MicrosoftManagedDesktop(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The managedType property
+    managed_type: Optional[MicrosoftManagedDesktop_managedType] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The name of the Microsoft Managed Desktop profile that the Windows 365 Cloud PC is associated with.
     profile: Optional[str] = None
     # Indicates whether the provisioning policy enables Microsoft Managed Desktop. It indicates the type of plan under which the device is managed if the provisioning policy is enabled. Possible values are: notManaged, premiumManaged, standardManaged, starterManaged, unknownFutureValue.
-    type: Optional[MicrosoftManagedDesktopType] = None
+    type: Optional[MicrosoftManagedDesktop_type] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MicrosoftManagedDesktop:
@@ -37,14 +40,17 @@ class MicrosoftManagedDesktop(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .microsoft_managed_desktop_type import MicrosoftManagedDesktopType
+        from .microsoft_managed_desktop_managed_type import MicrosoftManagedDesktop_managedType
+        from .microsoft_managed_desktop_type import MicrosoftManagedDesktop_type
 
-        from .microsoft_managed_desktop_type import MicrosoftManagedDesktopType
+        from .microsoft_managed_desktop_managed_type import MicrosoftManagedDesktop_managedType
+        from .microsoft_managed_desktop_type import MicrosoftManagedDesktop_type
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "managedType": lambda n : setattr(self, 'managed_type', n.get_enum_value(MicrosoftManagedDesktop_managedType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "profile": lambda n : setattr(self, 'profile', n.get_str_value()),
-            "type": lambda n : setattr(self, 'type', n.get_enum_value(MicrosoftManagedDesktopType)),
+            "type": lambda n : setattr(self, 'type', n.get_enum_value(MicrosoftManagedDesktop_type)),
         }
         return fields
     
@@ -56,6 +62,7 @@ class MicrosoftManagedDesktop(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("managedType", self.managed_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("profile", self.profile)
         writer.write_enum_value("type", self.type)

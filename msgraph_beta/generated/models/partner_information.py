@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .partner_tenant_type import PartnerTenantType
+    from .partner_information_company_type import PartnerInformation_companyType
 
 @dataclass
 class PartnerInformation(AdditionalDataHolder, BackedModel, Parsable):
@@ -19,7 +19,7 @@ class PartnerInformation(AdditionalDataHolder, BackedModel, Parsable):
     # The companyName property
     company_name: Optional[str] = None
     # The companyType property
-    company_type: Optional[PartnerTenantType] = None
+    company_type: Optional[PartnerInformation_companyType] = None
     # The helpUrl property
     help_url: Optional[str] = None
     # The OdataType property
@@ -49,14 +49,14 @@ class PartnerInformation(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .partner_tenant_type import PartnerTenantType
+        from .partner_information_company_type import PartnerInformation_companyType
 
-        from .partner_tenant_type import PartnerTenantType
+        from .partner_information_company_type import PartnerInformation_companyType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "commerceUrl": lambda n : setattr(self, 'commerce_url', n.get_str_value()),
             "companyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
-            "companyType": lambda n : setattr(self, 'company_type', n.get_enum_value(PartnerTenantType)),
+            "companyType": lambda n : setattr(self, 'company_type', n.get_enum_value(PartnerInformation_companyType)),
             "helpUrl": lambda n : setattr(self, 'help_url', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "partnerTenantId": lambda n : setattr(self, 'partner_tenant_id', n.get_str_value()),

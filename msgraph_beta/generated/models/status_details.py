@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .provisioning_status_error_category import ProvisioningStatusErrorCategory
     from .status_base import StatusBase
+    from .status_details_error_category import StatusDetails_errorCategory
 
 from .status_base import StatusBase
 
@@ -16,7 +16,7 @@ class StatusDetails(StatusBase):
     # Additional details if there is an error.
     additional_details: Optional[str] = None
     # Categorizes the error code. Possible values are Failure, NonServiceFailure, Success.
-    error_category: Optional[ProvisioningStatusErrorCategory] = None
+    error_category: Optional[StatusDetails_errorCategory] = None
     # Unique error code if any occurred. Learn more
     error_code: Optional[str] = None
     # Summarizes the status and describes why the status happened.
@@ -40,15 +40,15 @@ class StatusDetails(StatusBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .provisioning_status_error_category import ProvisioningStatusErrorCategory
         from .status_base import StatusBase
+        from .status_details_error_category import StatusDetails_errorCategory
 
-        from .provisioning_status_error_category import ProvisioningStatusErrorCategory
         from .status_base import StatusBase
+        from .status_details_error_category import StatusDetails_errorCategory
 
         fields: Dict[str, Callable[[Any], None]] = {
             "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_str_value()),
-            "errorCategory": lambda n : setattr(self, 'error_category', n.get_enum_value(ProvisioningStatusErrorCategory)),
+            "errorCategory": lambda n : setattr(self, 'error_category', n.get_enum_value(StatusDetails_errorCategory)),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
             "reason": lambda n : setattr(self, 'reason', n.get_str_value()),
             "recommendedAction": lambda n : setattr(self, 'recommended_action', n.get_str_value()),

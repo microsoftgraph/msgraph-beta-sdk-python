@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
     from .email_sync_duration import EmailSyncDuration
     from .email_sync_schedule import EmailSyncSchedule
-    from .user_email_source import UserEmailSource
+    from .windows_phone_e_a_s_email_profile_configuration_email_address_source import WindowsPhoneEASEmailProfileConfiguration_emailAddressSource
 
 from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
 
@@ -25,7 +25,7 @@ class WindowsPhoneEASEmailProfileConfiguration(EasEmailProfileConfigurationBase)
     # Possible values for email sync duration.
     duration_of_email_to_sync: Optional[EmailSyncDuration] = None
     # Email attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: userPrincipalName, primarySmtpAddress.
-    email_address_source: Optional[UserEmailSource] = None
+    email_address_source: Optional[WindowsPhoneEASEmailProfileConfiguration_emailAddressSource] = None
     # Possible values for email sync schedule.
     email_sync_schedule: Optional[EmailSyncSchedule] = None
     # Exchange location that (URL) that the native mail app connects to.
@@ -58,18 +58,18 @@ class WindowsPhoneEASEmailProfileConfiguration(EasEmailProfileConfigurationBase)
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
         from .email_sync_duration import EmailSyncDuration
         from .email_sync_schedule import EmailSyncSchedule
-        from .user_email_source import UserEmailSource
+        from .windows_phone_e_a_s_email_profile_configuration_email_address_source import WindowsPhoneEASEmailProfileConfiguration_emailAddressSource
 
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
         from .email_sync_duration import EmailSyncDuration
         from .email_sync_schedule import EmailSyncSchedule
-        from .user_email_source import UserEmailSource
+        from .windows_phone_e_a_s_email_profile_configuration_email_address_source import WindowsPhoneEASEmailProfileConfiguration_emailAddressSource
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
             "applyOnlyToWindowsPhone81": lambda n : setattr(self, 'apply_only_to_windows_phone81', n.get_bool_value()),
             "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(EmailSyncDuration)),
-            "emailAddressSource": lambda n : setattr(self, 'email_address_source', n.get_enum_value(UserEmailSource)),
+            "emailAddressSource": lambda n : setattr(self, 'email_address_source', n.get_enum_value(WindowsPhoneEASEmailProfileConfiguration_emailAddressSource)),
             "emailSyncSchedule": lambda n : setattr(self, 'email_sync_schedule', n.get_enum_value(EmailSyncSchedule)),
             "hostName": lambda n : setattr(self, 'host_name', n.get_str_value()),
             "requireSsl": lambda n : setattr(self, 'require_ssl', n.get_bool_value()),

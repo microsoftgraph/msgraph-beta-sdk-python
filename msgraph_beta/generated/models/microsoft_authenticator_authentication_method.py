@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .authentication_method import AuthenticationMethod
     from .device import Device
-    from .microsoft_authenticator_authentication_method_client_app_name import MicrosoftAuthenticatorAuthenticationMethodClientAppName
+    from .microsoft_authenticator_authentication_method_client_app_name import MicrosoftAuthenticatorAuthenticationMethod_clientAppName
 
 from .authentication_method import AuthenticationMethod
 
@@ -16,7 +16,7 @@ class MicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"
     # The app that the user has registered to use to approve push notifications. The possible values are: microsoftAuthenticator, outlookMobile, unknownFutureValue.
-    client_app_name: Optional[MicrosoftAuthenticatorAuthenticationMethodClientAppName] = None
+    client_app_name: Optional[MicrosoftAuthenticatorAuthenticationMethod_clientAppName] = None
     # The date and time that this app was registered. This property is null if the device is not registered for passwordless Phone Sign-In.
     created_date_time: Optional[datetime.datetime] = None
     # The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.
@@ -46,14 +46,14 @@ class MicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod):
         """
         from .authentication_method import AuthenticationMethod
         from .device import Device
-        from .microsoft_authenticator_authentication_method_client_app_name import MicrosoftAuthenticatorAuthenticationMethodClientAppName
+        from .microsoft_authenticator_authentication_method_client_app_name import MicrosoftAuthenticatorAuthenticationMethod_clientAppName
 
         from .authentication_method import AuthenticationMethod
         from .device import Device
-        from .microsoft_authenticator_authentication_method_client_app_name import MicrosoftAuthenticatorAuthenticationMethodClientAppName
+        from .microsoft_authenticator_authentication_method_client_app_name import MicrosoftAuthenticatorAuthenticationMethod_clientAppName
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "clientAppName": lambda n : setattr(self, 'client_app_name', n.get_enum_value(MicrosoftAuthenticatorAuthenticationMethodClientAppName)),
+            "clientAppName": lambda n : setattr(self, 'client_app_name', n.get_enum_value(MicrosoftAuthenticatorAuthenticationMethod_clientAppName)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "device": lambda n : setattr(self, 'device', n.get_object_value(Device)),
             "deviceTag": lambda n : setattr(self, 'device_tag', n.get_str_value()),

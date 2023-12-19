@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .application_mode import ApplicationMode
+    from .current_label_application_mode import CurrentLabel_applicationMode
 
 @dataclass
 class CurrentLabel(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,7 +15,7 @@ class CurrentLabel(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The applicationMode property
-    application_mode: Optional[ApplicationMode] = None
+    application_mode: Optional[CurrentLabel_applicationMode] = None
     # The id property
     id: Optional[str] = None
     # The OdataType property
@@ -37,12 +37,12 @@ class CurrentLabel(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .application_mode import ApplicationMode
+        from .current_label_application_mode import CurrentLabel_applicationMode
 
-        from .application_mode import ApplicationMode
+        from .current_label_application_mode import CurrentLabel_applicationMode
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(ApplicationMode)),
+            "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(CurrentLabel_applicationMode)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

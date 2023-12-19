@@ -28,7 +28,7 @@ class GetRemoteConnectionHistoricalReportsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GetRemoteConnectionHistoricalReportsPostRequestBody] = None, request_configuration: Optional[GetRemoteConnectionHistoricalReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Get the remote connection history records of a Cloud PC during a given period. This report contains data such as signInDateTime, signOutDateTime, usageInHour, remoteSignInTimeInSec and roundTripTimeInMsP50, and so on. This data is aggregated hourly for a specified time period, such as the last seven days. This API is available in the following national cloud deployments.
+        Get the remote connection history records of a Cloud PC during a given period. This report contains data such as signInDateTime, signOutDateTime, usageInHour, remoteSignInTimeInSec and roundTripTimeInMsP50, and so on. This data is aggregated hourly for a specified time period, such as the last seven days.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
@@ -51,7 +51,7 @@ class GetRemoteConnectionHistoricalReportsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GetRemoteConnectionHistoricalReportsPostRequestBody] = None, request_configuration: Optional[GetRemoteConnectionHistoricalReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the remote connection history records of a Cloud PC during a given period. This report contains data such as signInDateTime, signOutDateTime, usageInHour, remoteSignInTimeInSec and roundTripTimeInMsP50, and so on. This data is aggregated hourly for a specified time period, such as the last seven days. This API is available in the following national cloud deployments.
+        Get the remote connection history records of a Cloud PC during a given period. This report contains data such as signInDateTime, signOutDateTime, usageInHour, remoteSignInTimeInSec and roundTripTimeInMsP50, and so on. This data is aggregated hourly for a specified time period, such as the last seven days.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -65,7 +65,7 @@ class GetRemoteConnectionHistoricalReportsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/octet-stream, application/json, application/json")
+        request_info.headers.try_add("Accept", "application/octet-stream, application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

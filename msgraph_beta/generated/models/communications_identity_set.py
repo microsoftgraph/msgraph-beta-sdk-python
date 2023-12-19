@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .endpoint_type import EndpointType
+    from .communications_identity_set_endpoint_type import CommunicationsIdentitySet_endpointType
     from .identity import Identity
     from .identity_set import IdentitySet
 
@@ -22,13 +22,13 @@ class CommunicationsIdentitySet(IdentitySet):
     azure_communication_services_user: Optional[Identity] = None
     # The encrypted user associated with this action.
     encrypted: Optional[Identity] = None
-    # Type of endpoint the participant is using. Possible values are: default, voicemail, skypeForBusiness, skypeForBusinessVoipPhone and unknownFutureValue.
-    endpoint_type: Optional[EndpointType] = None
+    # Type of endpoint the participant uses. Possible values are: default, voicemail, skypeForBusiness, skypeForBusinessVoipPhone and unknownFutureValue.
+    endpoint_type: Optional[CommunicationsIdentitySet_endpointType] = None
     # The guest user associated with this action.
     guest: Optional[Identity] = None
-    # The Skype for Business On-Premises user associated with this action.
+    # The Skype for Business on-premises user associated with this action.
     on_premises: Optional[Identity] = None
-    # Inherited from identitySet. The phone user associated with this action.
+    # The phone user associated with this action.
     phone: Optional[Identity] = None
     
     @staticmethod
@@ -47,11 +47,11 @@ class CommunicationsIdentitySet(IdentitySet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .endpoint_type import EndpointType
+        from .communications_identity_set_endpoint_type import CommunicationsIdentitySet_endpointType
         from .identity import Identity
         from .identity_set import IdentitySet
 
-        from .endpoint_type import EndpointType
+        from .communications_identity_set_endpoint_type import CommunicationsIdentitySet_endpointType
         from .identity import Identity
         from .identity_set import IdentitySet
 
@@ -60,7 +60,7 @@ class CommunicationsIdentitySet(IdentitySet):
             "assertedIdentity": lambda n : setattr(self, 'asserted_identity', n.get_object_value(Identity)),
             "azureCommunicationServicesUser": lambda n : setattr(self, 'azure_communication_services_user', n.get_object_value(Identity)),
             "encrypted": lambda n : setattr(self, 'encrypted', n.get_object_value(Identity)),
-            "endpointType": lambda n : setattr(self, 'endpoint_type', n.get_enum_value(EndpointType)),
+            "endpointType": lambda n : setattr(self, 'endpoint_type', n.get_enum_value(CommunicationsIdentitySet_endpointType)),
             "guest": lambda n : setattr(self, 'guest', n.get_object_value(Identity)),
             "onPremises": lambda n : setattr(self, 'on_premises', n.get_object_value(Identity)),
             "phone": lambda n : setattr(self, 'phone', n.get_object_value(Identity)),

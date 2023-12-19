@@ -4,7 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .connection_operation_status import ConnectionOperationStatus
+    from .connection_operation_status import ConnectionOperation_status
     from .entity import Entity
     from .public_error import PublicError
 
@@ -17,7 +17,7 @@ class ConnectionOperation(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The status property
-    status: Optional[ConnectionOperationStatus] = None
+    status: Optional[ConnectionOperation_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConnectionOperation:
@@ -35,17 +35,17 @@ class ConnectionOperation(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .connection_operation_status import ConnectionOperationStatus
+        from .connection_operation_status import ConnectionOperation_status
         from .entity import Entity
         from .public_error import PublicError
 
-        from .connection_operation_status import ConnectionOperationStatus
+        from .connection_operation_status import ConnectionOperation_status
         from .entity import Entity
         from .public_error import PublicError
 
         fields: Dict[str, Callable[[Any], None]] = {
             "error": lambda n : setattr(self, 'error', n.get_object_value(PublicError)),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(ConnectionOperationStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(ConnectionOperation_status)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

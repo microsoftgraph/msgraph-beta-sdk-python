@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cve_information import CveInformation
-    from .cve_severity_level import CveSeverityLevel
+    from .quality_update_cve_severity_information_max_severity import QualityUpdateCveSeverityInformation_maxSeverity
 
 @dataclass
 class QualityUpdateCveSeverityInformation(AdditionalDataHolder, BackedModel, Parsable):
@@ -20,7 +20,7 @@ class QualityUpdateCveSeverityInformation(AdditionalDataHolder, BackedModel, Par
     # Highest base score that occurs of any CVE addressed by the quality update. Read-only.
     max_base_score: Optional[float] = None
     # The maxSeverity property
-    max_severity: Optional[CveSeverityLevel] = None
+    max_severity: Optional[QualityUpdateCveSeverityInformation_maxSeverity] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -41,15 +41,15 @@ class QualityUpdateCveSeverityInformation(AdditionalDataHolder, BackedModel, Par
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .cve_information import CveInformation
-        from .cve_severity_level import CveSeverityLevel
+        from .quality_update_cve_severity_information_max_severity import QualityUpdateCveSeverityInformation_maxSeverity
 
         from .cve_information import CveInformation
-        from .cve_severity_level import CveSeverityLevel
+        from .quality_update_cve_severity_information_max_severity import QualityUpdateCveSeverityInformation_maxSeverity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "exploitedCves": lambda n : setattr(self, 'exploited_cves', n.get_collection_of_object_values(CveInformation)),
             "maxBaseScore": lambda n : setattr(self, 'max_base_score', n.get_float_value()),
-            "maxSeverity": lambda n : setattr(self, 'max_severity', n.get_enum_value(CveSeverityLevel)),
+            "maxSeverity": lambda n : setattr(self, 'max_severity', n.get_enum_value(QualityUpdateCveSeverityInformation_maxSeverity)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

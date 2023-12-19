@@ -5,10 +5,10 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models.security.additional_options import AdditionalOptions
-    from ........models.security.export_criteria import ExportCriteria
-    from ........models.security.export_format import ExportFormat
-    from ........models.security.export_location import ExportLocation
+    from .export_result_post_request_body_additional_options import ExportResultPostRequestBody_additionalOptions
+    from .export_result_post_request_body_export_criteria import ExportResultPostRequestBody_exportCriteria
+    from .export_result_post_request_body_export_format import ExportResultPostRequestBody_exportFormat
+    from .export_result_post_request_body_export_location import ExportResultPostRequestBody_exportLocation
 
 @dataclass
 class ExportResultPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -18,17 +18,17 @@ class ExportResultPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The additionalOptions property
-    additional_options: Optional[AdditionalOptions] = None
+    additional_options: Optional[ExportResultPostRequestBody_additionalOptions] = None
     # The description property
     description: Optional[str] = None
     # The displayName property
     display_name: Optional[str] = None
     # The exportCriteria property
-    export_criteria: Optional[ExportCriteria] = None
+    export_criteria: Optional[ExportResultPostRequestBody_exportCriteria] = None
     # The exportFormat property
-    export_format: Optional[ExportFormat] = None
+    export_format: Optional[ExportResultPostRequestBody_exportFormat] = None
     # The exportLocation property
-    export_location: Optional[ExportLocation] = None
+    export_location: Optional[ExportResultPostRequestBody_exportLocation] = None
     # The exportSingleItems property
     export_single_items: Optional[bool] = None
     
@@ -48,23 +48,23 @@ class ExportResultPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from ........models.security.additional_options import AdditionalOptions
-        from ........models.security.export_criteria import ExportCriteria
-        from ........models.security.export_format import ExportFormat
-        from ........models.security.export_location import ExportLocation
+        from .export_result_post_request_body_additional_options import ExportResultPostRequestBody_additionalOptions
+        from .export_result_post_request_body_export_criteria import ExportResultPostRequestBody_exportCriteria
+        from .export_result_post_request_body_export_format import ExportResultPostRequestBody_exportFormat
+        from .export_result_post_request_body_export_location import ExportResultPostRequestBody_exportLocation
 
-        from ........models.security.additional_options import AdditionalOptions
-        from ........models.security.export_criteria import ExportCriteria
-        from ........models.security.export_format import ExportFormat
-        from ........models.security.export_location import ExportLocation
+        from .export_result_post_request_body_additional_options import ExportResultPostRequestBody_additionalOptions
+        from .export_result_post_request_body_export_criteria import ExportResultPostRequestBody_exportCriteria
+        from .export_result_post_request_body_export_format import ExportResultPostRequestBody_exportFormat
+        from .export_result_post_request_body_export_location import ExportResultPostRequestBody_exportLocation
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "additionalOptions": lambda n : setattr(self, 'additional_options', n.get_collection_of_enum_values(AdditionalOptions)),
+            "additionalOptions": lambda n : setattr(self, 'additional_options', n.get_enum_value(ExportResultPostRequestBody_additionalOptions)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "exportCriteria": lambda n : setattr(self, 'export_criteria', n.get_collection_of_enum_values(ExportCriteria)),
-            "exportFormat": lambda n : setattr(self, 'export_format', n.get_enum_value(ExportFormat)),
-            "exportLocation": lambda n : setattr(self, 'export_location', n.get_collection_of_enum_values(ExportLocation)),
+            "exportCriteria": lambda n : setattr(self, 'export_criteria', n.get_enum_value(ExportResultPostRequestBody_exportCriteria)),
+            "exportFormat": lambda n : setattr(self, 'export_format', n.get_enum_value(ExportResultPostRequestBody_exportFormat)),
+            "exportLocation": lambda n : setattr(self, 'export_location', n.get_enum_value(ExportResultPostRequestBody_exportLocation)),
             "exportSingleItems": lambda n : setattr(self, 'export_single_items', n.get_bool_value()),
         }
         return fields

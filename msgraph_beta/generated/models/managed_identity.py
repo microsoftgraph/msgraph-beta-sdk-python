@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .msi_type import MsiType
+    from .managed_identity_msi_type import ManagedIdentity_msiType
 
 @dataclass
 class ManagedIdentity(AdditionalDataHolder, BackedModel, Parsable):
@@ -21,7 +21,7 @@ class ManagedIdentity(AdditionalDataHolder, BackedModel, Parsable):
     # The issuer of the federated token.
     federated_token_issuer: Optional[str] = None
     # The possible values are: none, userAssigned, systemAssigned, unknownFutureValue.
-    msi_type: Optional[MsiType] = None
+    msi_type: Optional[ManagedIdentity_msiType] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -41,15 +41,15 @@ class ManagedIdentity(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .msi_type import MsiType
+        from .managed_identity_msi_type import ManagedIdentity_msiType
 
-        from .msi_type import MsiType
+        from .managed_identity_msi_type import ManagedIdentity_msiType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "associatedResourceId": lambda n : setattr(self, 'associated_resource_id', n.get_str_value()),
             "federatedTokenId": lambda n : setattr(self, 'federated_token_id', n.get_str_value()),
             "federatedTokenIssuer": lambda n : setattr(self, 'federated_token_issuer', n.get_str_value()),
-            "msiType": lambda n : setattr(self, 'msi_type', n.get_enum_value(MsiType)),
+            "msiType": lambda n : setattr(self, 'msi_type', n.get_enum_value(ManagedIdentity_msiType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

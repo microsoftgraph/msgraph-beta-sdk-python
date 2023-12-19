@@ -11,8 +11,8 @@ if TYPE_CHECKING:
     from .vpn_traffic_rule import VpnTrafficRule
     from .windows10_associated_apps import Windows10AssociatedApps
     from .windows10_vpn_authentication_method import Windows10VpnAuthenticationMethod
+    from .windows10_vpn_configuration_profile_target import Windows10VpnConfiguration_profileTarget
     from .windows10_vpn_connection_type import Windows10VpnConnectionType
-    from .windows10_vpn_profile_target import Windows10VpnProfileTarget
     from .windows10_vpn_proxy_server import Windows10VpnProxyServer
     from .windows_certificate_profile_base import WindowsCertificateProfileBase
     from .windows_vpn_configuration import WindowsVpnConfiguration
@@ -59,7 +59,7 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration):
     # Only associated Apps can use connection (per-app VPN).
     only_associated_apps_can_use_connection: Optional[bool] = None
     # Profile target type. Possible values are: user, device, autoPilotDevice.
-    profile_target: Optional[Windows10VpnProfileTarget] = None
+    profile_target: Optional[Windows10VpnConfiguration_profileTarget] = None
     # Proxy Server.
     proxy_server: Optional[Windows10VpnProxyServer] = None
     # Remember user credentials.
@@ -100,8 +100,8 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration):
         from .vpn_traffic_rule import VpnTrafficRule
         from .windows10_associated_apps import Windows10AssociatedApps
         from .windows10_vpn_authentication_method import Windows10VpnAuthenticationMethod
+        from .windows10_vpn_configuration_profile_target import Windows10VpnConfiguration_profileTarget
         from .windows10_vpn_connection_type import Windows10VpnConnectionType
-        from .windows10_vpn_profile_target import Windows10VpnProfileTarget
         from .windows10_vpn_proxy_server import Windows10VpnProxyServer
         from .windows_certificate_profile_base import WindowsCertificateProfileBase
         from .windows_vpn_configuration import WindowsVpnConfiguration
@@ -113,8 +113,8 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration):
         from .vpn_traffic_rule import VpnTrafficRule
         from .windows10_associated_apps import Windows10AssociatedApps
         from .windows10_vpn_authentication_method import Windows10VpnAuthenticationMethod
+        from .windows10_vpn_configuration_profile_target import Windows10VpnConfiguration_profileTarget
         from .windows10_vpn_connection_type import Windows10VpnConnectionType
-        from .windows10_vpn_profile_target import Windows10VpnProfileTarget
         from .windows10_vpn_proxy_server import Windows10VpnProxyServer
         from .windows_certificate_profile_base import WindowsCertificateProfileBase
         from .windows_vpn_configuration import WindowsVpnConfiguration
@@ -136,7 +136,7 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration):
             "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(WindowsCertificateProfileBase)),
             "microsoftTunnelSiteId": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
             "onlyAssociatedAppsCanUseConnection": lambda n : setattr(self, 'only_associated_apps_can_use_connection', n.get_bool_value()),
-            "profileTarget": lambda n : setattr(self, 'profile_target', n.get_enum_value(Windows10VpnProfileTarget)),
+            "profileTarget": lambda n : setattr(self, 'profile_target', n.get_enum_value(Windows10VpnConfiguration_profileTarget)),
             "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(Windows10VpnProxyServer)),
             "rememberUserCredentials": lambda n : setattr(self, 'remember_user_credentials', n.get_bool_value()),
             "routes": lambda n : setattr(self, 'routes', n.get_collection_of_object_values(VpnRoute)),

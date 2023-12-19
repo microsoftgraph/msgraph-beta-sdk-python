@@ -4,32 +4,32 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .additional_options import AdditionalOptions
     from .case_operation import CaseOperation
     from .ediscovery_search import EdiscoverySearch
-    from .export_criteria import ExportCriteria
+    from .ediscovery_search_export_operation_additional_options import EdiscoverySearchExportOperation_additionalOptions
+    from .ediscovery_search_export_operation_export_criteria import EdiscoverySearchExportOperation_exportCriteria
+    from .ediscovery_search_export_operation_export_format import EdiscoverySearchExportOperation_exportFormat
+    from .ediscovery_search_export_operation_export_location import EdiscoverySearchExportOperation_exportLocation
     from .export_file_metadata import ExportFileMetadata
-    from .export_format import ExportFormat
-    from .export_location import ExportLocation
 
 from .case_operation import CaseOperation
 
 @dataclass
 class EdiscoverySearchExportOperation(CaseOperation):
     # The additionalOptions property
-    additional_options: Optional[AdditionalOptions] = None
+    additional_options: Optional[EdiscoverySearchExportOperation_additionalOptions] = None
     # The description property
     description: Optional[str] = None
     # The displayName property
     display_name: Optional[str] = None
     # The exportCriteria property
-    export_criteria: Optional[ExportCriteria] = None
+    export_criteria: Optional[EdiscoverySearchExportOperation_exportCriteria] = None
     # The exportFileMetadata property
     export_file_metadata: Optional[List[ExportFileMetadata]] = None
     # The exportFormat property
-    export_format: Optional[ExportFormat] = None
+    export_format: Optional[EdiscoverySearchExportOperation_exportFormat] = None
     # The exportLocation property
-    export_location: Optional[ExportLocation] = None
+    export_location: Optional[EdiscoverySearchExportOperation_exportLocation] = None
     # The exportSingleItems property
     export_single_items: Optional[bool] = None
     # The OdataType property
@@ -53,30 +53,30 @@ class EdiscoverySearchExportOperation(CaseOperation):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .additional_options import AdditionalOptions
         from .case_operation import CaseOperation
         from .ediscovery_search import EdiscoverySearch
-        from .export_criteria import ExportCriteria
+        from .ediscovery_search_export_operation_additional_options import EdiscoverySearchExportOperation_additionalOptions
+        from .ediscovery_search_export_operation_export_criteria import EdiscoverySearchExportOperation_exportCriteria
+        from .ediscovery_search_export_operation_export_format import EdiscoverySearchExportOperation_exportFormat
+        from .ediscovery_search_export_operation_export_location import EdiscoverySearchExportOperation_exportLocation
         from .export_file_metadata import ExportFileMetadata
-        from .export_format import ExportFormat
-        from .export_location import ExportLocation
 
-        from .additional_options import AdditionalOptions
         from .case_operation import CaseOperation
         from .ediscovery_search import EdiscoverySearch
-        from .export_criteria import ExportCriteria
+        from .ediscovery_search_export_operation_additional_options import EdiscoverySearchExportOperation_additionalOptions
+        from .ediscovery_search_export_operation_export_criteria import EdiscoverySearchExportOperation_exportCriteria
+        from .ediscovery_search_export_operation_export_format import EdiscoverySearchExportOperation_exportFormat
+        from .ediscovery_search_export_operation_export_location import EdiscoverySearchExportOperation_exportLocation
         from .export_file_metadata import ExportFileMetadata
-        from .export_format import ExportFormat
-        from .export_location import ExportLocation
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "additionalOptions": lambda n : setattr(self, 'additional_options', n.get_collection_of_enum_values(AdditionalOptions)),
+            "additionalOptions": lambda n : setattr(self, 'additional_options', n.get_enum_value(EdiscoverySearchExportOperation_additionalOptions)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "exportCriteria": lambda n : setattr(self, 'export_criteria', n.get_collection_of_enum_values(ExportCriteria)),
+            "exportCriteria": lambda n : setattr(self, 'export_criteria', n.get_enum_value(EdiscoverySearchExportOperation_exportCriteria)),
             "exportFileMetadata": lambda n : setattr(self, 'export_file_metadata', n.get_collection_of_object_values(ExportFileMetadata)),
-            "exportFormat": lambda n : setattr(self, 'export_format', n.get_enum_value(ExportFormat)),
-            "exportLocation": lambda n : setattr(self, 'export_location', n.get_collection_of_enum_values(ExportLocation)),
+            "exportFormat": lambda n : setattr(self, 'export_format', n.get_enum_value(EdiscoverySearchExportOperation_exportFormat)),
+            "exportLocation": lambda n : setattr(self, 'export_location', n.get_enum_value(EdiscoverySearchExportOperation_exportLocation)),
             "exportSingleItems": lambda n : setattr(self, 'export_single_items', n.get_bool_value()),
             "search": lambda n : setattr(self, 'search', n.get_object_value(EdiscoverySearch)),
         }

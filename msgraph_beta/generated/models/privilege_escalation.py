@@ -12,15 +12,15 @@ from .entity import Entity
 
 @dataclass
 class PrivilegeEscalation(Entity):
-    # The actions property
+    # The list of actions that the identity could perform.
     actions: Optional[List[AuthorizationSystemTypeAction]] = None
-    # The description property
+    # A detailed description of the privilege escalation.
     description: Optional[str] = None
-    # The displayName property
+    # The name of the policy that defines the escalation
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resources property
+    # The list of resources that the identity could perform actions on.
     resources: Optional[List[AuthorizationSystemResource]] = None
     
     @staticmethod

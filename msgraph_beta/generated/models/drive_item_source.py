@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .drive_item_source_application import DriveItemSourceApplication
+    from .drive_item_source_application import DriveItemSource_application
 
 @dataclass
 class DriveItemSource(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,7 +15,7 @@ class DriveItemSource(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Enumeration value that indicates the source application where the file was created.
-    application: Optional[DriveItemSourceApplication] = None
+    application: Optional[DriveItemSource_application] = None
     # The external identifier for the drive item from the source.
     external_id: Optional[str] = None
     # The OdataType property
@@ -37,12 +37,12 @@ class DriveItemSource(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .drive_item_source_application import DriveItemSourceApplication
+        from .drive_item_source_application import DriveItemSource_application
 
-        from .drive_item_source_application import DriveItemSourceApplication
+        from .drive_item_source_application import DriveItemSource_application
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "application": lambda n : setattr(self, 'application', n.get_enum_value(DriveItemSourceApplication)),
+            "application": lambda n : setattr(self, 'application', n.get_enum_value(DriveItemSource_application)),
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

@@ -7,6 +7,10 @@ if TYPE_CHECKING:
     from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
     from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
     from .android_managed_app_safety_net_evaluation_type import AndroidManagedAppSafetyNetEvaluationType
+    from .default_managed_app_protection_app_action_if_account_is_clocked_out import DefaultManagedAppProtection_appActionIfAccountIsClockedOut
+    from .default_managed_app_protection_app_action_if_device_passcode_complexity_less_than_high import DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanHigh
+    from .default_managed_app_protection_app_action_if_device_passcode_complexity_less_than_low import DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanLow
+    from .default_managed_app_protection_app_action_if_device_passcode_complexity_less_than_medium import DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanMedium
     from .key_value_pair import KeyValuePair
     from .managed_app_data_encryption_type import ManagedAppDataEncryptionType
     from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
@@ -30,7 +34,7 @@ class DefaultManagedAppProtection(ManagedAppProtection):
     # Semicolon seperated list of device models allowed, as a string, for the managed app to work. (iOS Only)
     allowed_ios_device_models: Optional[str] = None
     # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). Possible values are: block, wipe, warn.
-    app_action_if_account_is_clocked_out: Optional[ManagedAppRemediationAction] = None
+    app_action_if_account_is_clocked_out: Optional[DefaultManagedAppProtection_appActionIfAccountIsClockedOut] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_android_device_manufacturer_not_allowed: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
@@ -42,11 +46,11 @@ class DefaultManagedAppProtection(ManagedAppProtection):
     # An admin initiated action to be applied on a managed app.
     app_action_if_device_lock_not_set: Optional[ManagedAppRemediationAction] = None
     # If the device does not have a passcode of high complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
-    app_action_if_device_passcode_complexity_less_than_high: Optional[ManagedAppRemediationAction] = None
+    app_action_if_device_passcode_complexity_less_than_high: Optional[DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanHigh] = None
     # If the device does not have a passcode of low complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
-    app_action_if_device_passcode_complexity_less_than_low: Optional[ManagedAppRemediationAction] = None
+    app_action_if_device_passcode_complexity_less_than_low: Optional[DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanLow] = None
     # If the device does not have a passcode of medium complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
-    app_action_if_device_passcode_complexity_less_than_medium: Optional[ManagedAppRemediationAction] = None
+    app_action_if_device_passcode_complexity_less_than_medium: Optional[DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanMedium] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_ios_device_model_not_allowed: Optional[ManagedAppRemediationAction] = None
     # Represents the level to which app data is encrypted for managed apps
@@ -95,6 +99,12 @@ class DefaultManagedAppProtection(ManagedAppProtection):
     filter_open_in_to_only_managed_apps: Optional[bool] = None
     # Indicate to the client to enable both biometrics and fingerprints for the app.
     fingerprint_and_biometric_enabled: Optional[bool] = None
+    # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app name which are allowed to be used.
+    messaging_redirect_app_display_name: Optional[str] = None
+    # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app package ids which are allowed to be used.
+    messaging_redirect_app_package_id: Optional[str] = None
+    # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app url redirect schemes which are allowed to be used.
+    messaging_redirect_app_url_scheme: Optional[str] = None
     # Minimum version of the Company portal that must be installed on the device or app access will be blocked
     minimum_required_company_portal_version: Optional[str] = None
     # Define the oldest required Android security patch level a user can have to gain secure access to the app. (Android only)
@@ -153,6 +163,10 @@ class DefaultManagedAppProtection(ManagedAppProtection):
         from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
         from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
         from .android_managed_app_safety_net_evaluation_type import AndroidManagedAppSafetyNetEvaluationType
+        from .default_managed_app_protection_app_action_if_account_is_clocked_out import DefaultManagedAppProtection_appActionIfAccountIsClockedOut
+        from .default_managed_app_protection_app_action_if_device_passcode_complexity_less_than_high import DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanHigh
+        from .default_managed_app_protection_app_action_if_device_passcode_complexity_less_than_low import DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanLow
+        from .default_managed_app_protection_app_action_if_device_passcode_complexity_less_than_medium import DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanMedium
         from .key_value_pair import KeyValuePair
         from .managed_app_data_encryption_type import ManagedAppDataEncryptionType
         from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
@@ -163,6 +177,10 @@ class DefaultManagedAppProtection(ManagedAppProtection):
         from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
         from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
         from .android_managed_app_safety_net_evaluation_type import AndroidManagedAppSafetyNetEvaluationType
+        from .default_managed_app_protection_app_action_if_account_is_clocked_out import DefaultManagedAppProtection_appActionIfAccountIsClockedOut
+        from .default_managed_app_protection_app_action_if_device_passcode_complexity_less_than_high import DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanHigh
+        from .default_managed_app_protection_app_action_if_device_passcode_complexity_less_than_low import DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanLow
+        from .default_managed_app_protection_app_action_if_device_passcode_complexity_less_than_medium import DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanMedium
         from .key_value_pair import KeyValuePair
         from .managed_app_data_encryption_type import ManagedAppDataEncryptionType
         from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
@@ -174,15 +192,15 @@ class DefaultManagedAppProtection(ManagedAppProtection):
             "allowedAndroidDeviceManufacturers": lambda n : setattr(self, 'allowed_android_device_manufacturers', n.get_str_value()),
             "allowedAndroidDeviceModels": lambda n : setattr(self, 'allowed_android_device_models', n.get_collection_of_primitive_values(str)),
             "allowedIosDeviceModels": lambda n : setattr(self, 'allowed_ios_device_models', n.get_str_value()),
-            "appActionIfAccountIsClockedOut": lambda n : setattr(self, 'app_action_if_account_is_clocked_out', n.get_enum_value(ManagedAppRemediationAction)),
+            "appActionIfAccountIsClockedOut": lambda n : setattr(self, 'app_action_if_account_is_clocked_out', n.get_enum_value(DefaultManagedAppProtection_appActionIfAccountIsClockedOut)),
             "appActionIfAndroidDeviceManufacturerNotAllowed": lambda n : setattr(self, 'app_action_if_android_device_manufacturer_not_allowed', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfAndroidDeviceModelNotAllowed": lambda n : setattr(self, 'app_action_if_android_device_model_not_allowed', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfAndroidSafetyNetAppsVerificationFailed": lambda n : setattr(self, 'app_action_if_android_safety_net_apps_verification_failed', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfAndroidSafetyNetDeviceAttestationFailed": lambda n : setattr(self, 'app_action_if_android_safety_net_device_attestation_failed', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfDeviceLockNotSet": lambda n : setattr(self, 'app_action_if_device_lock_not_set', n.get_enum_value(ManagedAppRemediationAction)),
-            "appActionIfDevicePasscodeComplexityLessThanHigh": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_high', n.get_enum_value(ManagedAppRemediationAction)),
-            "appActionIfDevicePasscodeComplexityLessThanLow": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_low', n.get_enum_value(ManagedAppRemediationAction)),
-            "appActionIfDevicePasscodeComplexityLessThanMedium": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_medium', n.get_enum_value(ManagedAppRemediationAction)),
+            "appActionIfDevicePasscodeComplexityLessThanHigh": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_high', n.get_enum_value(DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanHigh)),
+            "appActionIfDevicePasscodeComplexityLessThanLow": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_low', n.get_enum_value(DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanLow)),
+            "appActionIfDevicePasscodeComplexityLessThanMedium": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_medium', n.get_enum_value(DefaultManagedAppProtection_appActionIfDevicePasscodeComplexityLessThanMedium)),
             "appActionIfIosDeviceModelNotAllowed": lambda n : setattr(self, 'app_action_if_ios_device_model_not_allowed', n.get_enum_value(ManagedAppRemediationAction)),
             "appDataEncryptionType": lambda n : setattr(self, 'app_data_encryption_type', n.get_enum_value(ManagedAppDataEncryptionType)),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(ManagedMobileApp)),
@@ -207,6 +225,9 @@ class DefaultManagedAppProtection(ManagedAppProtection):
             "faceIdBlocked": lambda n : setattr(self, 'face_id_blocked', n.get_bool_value()),
             "filterOpenInToOnlyManagedApps": lambda n : setattr(self, 'filter_open_in_to_only_managed_apps', n.get_bool_value()),
             "fingerprintAndBiometricEnabled": lambda n : setattr(self, 'fingerprint_and_biometric_enabled', n.get_bool_value()),
+            "messagingRedirectAppDisplayName": lambda n : setattr(self, 'messaging_redirect_app_display_name', n.get_str_value()),
+            "messagingRedirectAppPackageId": lambda n : setattr(self, 'messaging_redirect_app_package_id', n.get_str_value()),
+            "messagingRedirectAppUrlScheme": lambda n : setattr(self, 'messaging_redirect_app_url_scheme', n.get_str_value()),
             "minimumRequiredCompanyPortalVersion": lambda n : setattr(self, 'minimum_required_company_portal_version', n.get_str_value()),
             "minimumRequiredPatchVersion": lambda n : setattr(self, 'minimum_required_patch_version', n.get_str_value()),
             "minimumRequiredSdkVersion": lambda n : setattr(self, 'minimum_required_sdk_version', n.get_str_value()),
@@ -276,6 +297,9 @@ class DefaultManagedAppProtection(ManagedAppProtection):
         writer.write_bool_value("faceIdBlocked", self.face_id_blocked)
         writer.write_bool_value("filterOpenInToOnlyManagedApps", self.filter_open_in_to_only_managed_apps)
         writer.write_bool_value("fingerprintAndBiometricEnabled", self.fingerprint_and_biometric_enabled)
+        writer.write_str_value("messagingRedirectAppDisplayName", self.messaging_redirect_app_display_name)
+        writer.write_str_value("messagingRedirectAppPackageId", self.messaging_redirect_app_package_id)
+        writer.write_str_value("messagingRedirectAppUrlScheme", self.messaging_redirect_app_url_scheme)
         writer.write_str_value("minimumRequiredCompanyPortalVersion", self.minimum_required_company_portal_version)
         writer.write_str_value("minimumRequiredPatchVersion", self.minimum_required_patch_version)
         writer.write_str_value("minimumRequiredSdkVersion", self.minimum_required_sdk_version)

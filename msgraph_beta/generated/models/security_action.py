@@ -7,9 +7,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .key_value_pair import KeyValuePair
-    from .operation_status import OperationStatus
     from .result_info import ResultInfo
     from .security_action_state import SecurityActionState
+    from .security_action_status import SecurityAction_status
     from .security_vendor_information import SecurityVendorInformation
 
 from .entity import Entity
@@ -41,7 +41,7 @@ class SecurityAction(Entity):
     # Collection of securityActionState to keep the history of an action.
     states: Optional[List[SecurityActionState]] = None
     # Status of the action. Possible values are: NotStarted, Running, Completed, Failed.
-    status: Optional[OperationStatus] = None
+    status: Optional[SecurityAction_status] = None
     # The user principal name of the signed-in user that submitted  (POST) the action. The user should be extracted from the auth token and not entered manually by the calling application.
     user: Optional[str] = None
     # Complex Type containing details about the Security product/service vendor, provider, and sub-provider (for example, vendor=Microsoft; provider=Windows Defender ATP; sub-provider=AppLocker).
@@ -65,16 +65,16 @@ class SecurityAction(Entity):
         """
         from .entity import Entity
         from .key_value_pair import KeyValuePair
-        from .operation_status import OperationStatus
         from .result_info import ResultInfo
         from .security_action_state import SecurityActionState
+        from .security_action_status import SecurityAction_status
         from .security_vendor_information import SecurityVendorInformation
 
         from .entity import Entity
         from .key_value_pair import KeyValuePair
-        from .operation_status import OperationStatus
         from .result_info import ResultInfo
         from .security_action_state import SecurityActionState
+        from .security_action_status import SecurityAction_status
         from .security_vendor_information import SecurityVendorInformation
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -89,7 +89,7 @@ class SecurityAction(Entity):
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "parameters": lambda n : setattr(self, 'parameters', n.get_collection_of_object_values(KeyValuePair)),
             "states": lambda n : setattr(self, 'states', n.get_collection_of_object_values(SecurityActionState)),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(OperationStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(SecurityAction_status)),
             "user": lambda n : setattr(self, 'user', n.get_str_value()),
             "vendorInformation": lambda n : setattr(self, 'vendor_information', n.get_object_value(SecurityVendorInformation)),
         }

@@ -8,10 +8,10 @@ if TYPE_CHECKING:
     from ..entity import Entity
     from .alert_data import AlertData
     from .alert_data_reference_string import AlertDataReferenceString
-    from .alert_severity import AlertSeverity
-    from .alert_status import AlertStatus
     from .managed_tenant_alert_log import ManagedTenantAlertLog
     from .managed_tenant_alert_rule import ManagedTenantAlertRule
+    from .managed_tenant_alert_severity import ManagedTenantAlert_severity
+    from .managed_tenant_alert_status import ManagedTenantAlert_status
     from .managed_tenant_api_notification import ManagedTenantApiNotification
     from .managed_tenant_email_notification import ManagedTenantEmailNotification
 
@@ -52,9 +52,9 @@ class ManagedTenantAlert(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The severity property
-    severity: Optional[AlertSeverity] = None
+    severity: Optional[ManagedTenantAlert_severity] = None
     # The status property
-    status: Optional[AlertStatus] = None
+    status: Optional[ManagedTenantAlert_status] = None
     # The tenantId property
     tenant_id: Optional[str] = None
     # The title property
@@ -79,20 +79,20 @@ class ManagedTenantAlert(Entity):
         from ..entity import Entity
         from .alert_data import AlertData
         from .alert_data_reference_string import AlertDataReferenceString
-        from .alert_severity import AlertSeverity
-        from .alert_status import AlertStatus
         from .managed_tenant_alert_log import ManagedTenantAlertLog
         from .managed_tenant_alert_rule import ManagedTenantAlertRule
+        from .managed_tenant_alert_severity import ManagedTenantAlert_severity
+        from .managed_tenant_alert_status import ManagedTenantAlert_status
         from .managed_tenant_api_notification import ManagedTenantApiNotification
         from .managed_tenant_email_notification import ManagedTenantEmailNotification
 
         from ..entity import Entity
         from .alert_data import AlertData
         from .alert_data_reference_string import AlertDataReferenceString
-        from .alert_severity import AlertSeverity
-        from .alert_status import AlertStatus
         from .managed_tenant_alert_log import ManagedTenantAlertLog
         from .managed_tenant_alert_rule import ManagedTenantAlertRule
+        from .managed_tenant_alert_severity import ManagedTenantAlert_severity
+        from .managed_tenant_alert_status import ManagedTenantAlert_status
         from .managed_tenant_api_notification import ManagedTenantApiNotification
         from .managed_tenant_email_notification import ManagedTenantEmailNotification
 
@@ -112,8 +112,8 @@ class ManagedTenantAlert(Entity):
             "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
             "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
-            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(AlertSeverity)),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(AlertStatus)),
+            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(ManagedTenantAlert_severity)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(ManagedTenantAlert_status)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }

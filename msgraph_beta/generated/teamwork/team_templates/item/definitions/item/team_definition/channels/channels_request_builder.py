@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .all_messages.all_messages_request_builder import AllMessagesRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .get_all_messages.get_all_messages_request_builder import GetAllMessagesRequestBuilder
+    from .get_all_retained_messages.get_all_retained_messages_request_builder import GetAllRetainedMessagesRequestBuilder
     from .item.channel_item_request_builder import ChannelItemRequestBuilder
 
 class ChannelsRequestBuilder(BaseRequestBuilder):
@@ -47,7 +48,7 @@ class ChannelsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ChannelsRequestBuilderGetRequestConfiguration] = None) -> Optional[ChannelCollectionResponse]:
         """
-        Retrieve the list of channels in this team. This API is available in the following national cloud deployments.
+        Retrieve the list of channels in this team.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChannelCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/channel-list?view=graph-rest-1.0
@@ -69,7 +70,7 @@ class ChannelsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[Channel] = None, request_configuration: Optional[ChannelsRequestBuilderPostRequestConfiguration] = None) -> Optional[Channel]:
         """
-        Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel's displayName is 50 characters. This is the name that appears to the user in Microsoft Teams. You can add a maximum of 200 members when you create a private channel. This API is available in the following national cloud deployments.
+        Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel's displayName is 50 characters. This is the name that appears to the user in Microsoft Teams. You can add a maximum of 200 members when you create a private channel.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Channel]
@@ -94,7 +95,7 @@ class ChannelsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ChannelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the list of channels in this team. This API is available in the following national cloud deployments.
+        Retrieve the list of channels in this team.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,12 +107,12 @@ class ChannelsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[Channel] = None, request_configuration: Optional[ChannelsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel's displayName is 50 characters. This is the name that appears to the user in Microsoft Teams. You can add a maximum of 200 members when you create a private channel. This API is available in the following national cloud deployments.
+        Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel's displayName is 50 characters. This is the name that appears to the user in Microsoft Teams. You can add a maximum of 200 members when you create a private channel.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -125,7 +126,7 @@ class ChannelsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -166,10 +167,19 @@ class ChannelsRequestBuilder(BaseRequestBuilder):
 
         return GetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def get_all_retained_messages(self) -> GetAllRetainedMessagesRequestBuilder:
+        """
+        Provides operations to call the getAllRetainedMessages method.
+        """
+        from .get_all_retained_messages.get_all_retained_messages_request_builder import GetAllRetainedMessagesRequestBuilder
+
+        return GetAllRetainedMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ChannelsRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of channels in this team. This API is available in the following national cloud deployments.
+        Retrieve the list of channels in this team.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

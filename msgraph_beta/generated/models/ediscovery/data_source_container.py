@@ -8,8 +8,8 @@ if TYPE_CHECKING:
     from ..entity import Entity
     from .case_index_operation import CaseIndexOperation
     from .custodian import Custodian
-    from .data_source_container_status import DataSourceContainerStatus
-    from .data_source_hold_status import DataSourceHoldStatus
+    from .data_source_container_hold_status import DataSourceContainer_holdStatus
+    from .data_source_container_status import DataSourceContainer_status
     from .noncustodial_data_source import NoncustodialDataSource
 
 from ..entity import Entity
@@ -21,7 +21,7 @@ class DataSourceContainer(Entity):
     # Display name of the dataSourceContainer entity.
     display_name: Optional[str] = None
     # The holdStatus property
-    hold_status: Optional[DataSourceHoldStatus] = None
+    hold_status: Optional[DataSourceContainer_holdStatus] = None
     # The lastIndexOperation property
     last_index_operation: Optional[CaseIndexOperation] = None
     # Last modified date and time of the dataSourceContainer.
@@ -31,7 +31,7 @@ class DataSourceContainer(Entity):
     # Date and time that the dataSourceContainer was released from the case.
     released_date_time: Optional[datetime.datetime] = None
     # Latest status of the dataSourceContainer. Possible values are: Active, Released.
-    status: Optional[DataSourceContainerStatus] = None
+    status: Optional[DataSourceContainer_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DataSourceContainer:
@@ -64,25 +64,25 @@ class DataSourceContainer(Entity):
         from ..entity import Entity
         from .case_index_operation import CaseIndexOperation
         from .custodian import Custodian
-        from .data_source_container_status import DataSourceContainerStatus
-        from .data_source_hold_status import DataSourceHoldStatus
+        from .data_source_container_hold_status import DataSourceContainer_holdStatus
+        from .data_source_container_status import DataSourceContainer_status
         from .noncustodial_data_source import NoncustodialDataSource
 
         from ..entity import Entity
         from .case_index_operation import CaseIndexOperation
         from .custodian import Custodian
-        from .data_source_container_status import DataSourceContainerStatus
-        from .data_source_hold_status import DataSourceHoldStatus
+        from .data_source_container_hold_status import DataSourceContainer_holdStatus
+        from .data_source_container_status import DataSourceContainer_status
         from .noncustodial_data_source import NoncustodialDataSource
 
         fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "holdStatus": lambda n : setattr(self, 'hold_status', n.get_enum_value(DataSourceHoldStatus)),
+            "holdStatus": lambda n : setattr(self, 'hold_status', n.get_enum_value(DataSourceContainer_holdStatus)),
             "lastIndexOperation": lambda n : setattr(self, 'last_index_operation', n.get_object_value(CaseIndexOperation)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "releasedDateTime": lambda n : setattr(self, 'released_date_time', n.get_datetime_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(DataSourceContainerStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(DataSourceContainer_status)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

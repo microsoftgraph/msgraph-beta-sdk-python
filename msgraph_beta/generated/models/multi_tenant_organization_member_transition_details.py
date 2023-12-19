@@ -5,9 +5,9 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .multi_tenant_organization_member_processing_status import MultiTenantOrganizationMemberProcessingStatus
-    from .multi_tenant_organization_member_role import MultiTenantOrganizationMemberRole
-    from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
+    from .multi_tenant_organization_member_transition_details_desired_role import MultiTenantOrganizationMemberTransitionDetails_desiredRole
+    from .multi_tenant_organization_member_transition_details_desired_state import MultiTenantOrganizationMemberTransitionDetails_desiredState
+    from .multi_tenant_organization_member_transition_details_status import MultiTenantOrganizationMemberTransitionDetails_status
 
 @dataclass
 class MultiTenantOrganizationMemberTransitionDetails(AdditionalDataHolder, BackedModel, Parsable):
@@ -17,15 +17,15 @@ class MultiTenantOrganizationMemberTransitionDetails(AdditionalDataHolder, Backe
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Role of the tenant in the multitenant organization. The possible values are: owner, member, unknownFutureValue.
-    desired_role: Optional[MultiTenantOrganizationMemberRole] = None
+    desired_role: Optional[MultiTenantOrganizationMemberTransitionDetails_desiredRole] = None
     # State of the tenant in the multitenant organization currently being processed. The possible values are: pending, active, removed, unknownFutureValue. Read-only.
-    desired_state: Optional[MultiTenantOrganizationMemberState] = None
+    desired_state: Optional[MultiTenantOrganizationMemberTransitionDetails_desiredState] = None
     # Details that explain the processing status if any. Read-only.
     details: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Processing state of the asynchronous job. The possible values are: notStarted, running, succeeded, failed, unknownFutureValue. Read-only.
-    status: Optional[MultiTenantOrganizationMemberProcessingStatus] = None
+    status: Optional[MultiTenantOrganizationMemberTransitionDetails_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MultiTenantOrganizationMemberTransitionDetails:
@@ -43,20 +43,20 @@ class MultiTenantOrganizationMemberTransitionDetails(AdditionalDataHolder, Backe
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .multi_tenant_organization_member_processing_status import MultiTenantOrganizationMemberProcessingStatus
-        from .multi_tenant_organization_member_role import MultiTenantOrganizationMemberRole
-        from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
+        from .multi_tenant_organization_member_transition_details_desired_role import MultiTenantOrganizationMemberTransitionDetails_desiredRole
+        from .multi_tenant_organization_member_transition_details_desired_state import MultiTenantOrganizationMemberTransitionDetails_desiredState
+        from .multi_tenant_organization_member_transition_details_status import MultiTenantOrganizationMemberTransitionDetails_status
 
-        from .multi_tenant_organization_member_processing_status import MultiTenantOrganizationMemberProcessingStatus
-        from .multi_tenant_organization_member_role import MultiTenantOrganizationMemberRole
-        from .multi_tenant_organization_member_state import MultiTenantOrganizationMemberState
+        from .multi_tenant_organization_member_transition_details_desired_role import MultiTenantOrganizationMemberTransitionDetails_desiredRole
+        from .multi_tenant_organization_member_transition_details_desired_state import MultiTenantOrganizationMemberTransitionDetails_desiredState
+        from .multi_tenant_organization_member_transition_details_status import MultiTenantOrganizationMemberTransitionDetails_status
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "desiredRole": lambda n : setattr(self, 'desired_role', n.get_enum_value(MultiTenantOrganizationMemberRole)),
-            "desiredState": lambda n : setattr(self, 'desired_state', n.get_enum_value(MultiTenantOrganizationMemberState)),
+            "desiredRole": lambda n : setattr(self, 'desired_role', n.get_enum_value(MultiTenantOrganizationMemberTransitionDetails_desiredRole)),
+            "desiredState": lambda n : setattr(self, 'desired_state', n.get_enum_value(MultiTenantOrganizationMemberTransitionDetails_desiredState)),
             "details": lambda n : setattr(self, 'details', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(MultiTenantOrganizationMemberProcessingStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(MultiTenantOrganizationMemberTransitionDetails_status)),
         }
         return fields
     

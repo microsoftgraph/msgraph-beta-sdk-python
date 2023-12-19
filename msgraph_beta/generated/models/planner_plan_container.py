@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .planner_container_type import PlannerContainerType
+    from .planner_plan_container_type import PlannerPlanContainer_type
     from .planner_shared_with_container import PlannerSharedWithContainer
 
 @dataclass
@@ -19,8 +19,8 @@ class PlannerPlanContainer(AdditionalDataHolder, BackedModel, Parsable):
     container_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The type of the resource that contains the plan. For supported types, see the previous table. Possible values are: group, unknownFutureValue, roster, project and driveItem. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: roster, project, driveItem. Optional.
-    type: Optional[PlannerContainerType] = None
+    # The type of the resource that contains the plan. For supported types, see the previous table. Possible values are: group, unknownFutureValue, roster, project, driveItem, and user. You must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: roster, project, driveItem, and user. Optional.
+    type: Optional[PlannerPlanContainer_type] = None
     # The full canonical URL of the container. Optional.
     url: Optional[str] = None
     
@@ -48,16 +48,16 @@ class PlannerPlanContainer(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .planner_container_type import PlannerContainerType
+        from .planner_plan_container_type import PlannerPlanContainer_type
         from .planner_shared_with_container import PlannerSharedWithContainer
 
-        from .planner_container_type import PlannerContainerType
+        from .planner_plan_container_type import PlannerPlanContainer_type
         from .planner_shared_with_container import PlannerSharedWithContainer
 
         fields: Dict[str, Callable[[Any], None]] = {
             "containerId": lambda n : setattr(self, 'container_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "type": lambda n : setattr(self, 'type', n.get_enum_value(PlannerContainerType)),
+            "type": lambda n : setattr(self, 'type', n.get_enum_value(PlannerPlanContainer_type)),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
         return fields

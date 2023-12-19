@@ -28,7 +28,7 @@ class RecordAllDecisionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RecordAllDecisionsPostRequestBody] = None, request_configuration: Optional[RecordAllDecisionsRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        As a reviewer of an access review, record a decision for an accessReviewInstanceDecisionItem that is assigned to you and that matches the principal or resource IDs specified. If no IDs are specified, the decisions will apply to every accessReviewInstanceDecisionItem for which you are the reviewer. This API is available in the following national cloud deployments.
+        As a reviewer of an access review, record a decision for an accessReviewInstanceDecisionItem that is assigned to you and that matches the principal or resource IDs specified. If no IDs are specified, the decisions will apply to every accessReviewInstanceDecisionItem for which you are the reviewer.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class RecordAllDecisionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RecordAllDecisionsPostRequestBody] = None, request_configuration: Optional[RecordAllDecisionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        As a reviewer of an access review, record a decision for an accessReviewInstanceDecisionItem that is assigned to you and that matches the principal or resource IDs specified. If no IDs are specified, the decisions will apply to every accessReviewInstanceDecisionItem for which you are the reviewer. This API is available in the following national cloud deployments.
+        As a reviewer of an access review, record a decision for an accessReviewInstanceDecisionItem that is assigned to you and that matches the principal or resource IDs specified. If no IDs are specified, the decisions will apply to every accessReviewInstanceDecisionItem for which you are the reviewer.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -65,7 +65,7 @@ class RecordAllDecisionsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

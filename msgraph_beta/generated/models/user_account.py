@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .account_status import AccountStatus
+    from .user_account_status import UserAccount_status
 
 @dataclass
 class UserAccount(AdditionalDataHolder, BackedModel, Parsable):
@@ -28,7 +28,7 @@ class UserAccount(AdditionalDataHolder, BackedModel, Parsable):
     # The signinName property
     signin_name: Optional[str] = None
     # The status property
-    status: Optional[AccountStatus] = None
+    status: Optional[UserAccount_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserAccount:
@@ -46,9 +46,9 @@ class UserAccount(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .account_status import AccountStatus
+        from .user_account_status import UserAccount_status
 
-        from .account_status import AccountStatus
+        from .user_account_status import UserAccount_status
 
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -57,7 +57,7 @@ class UserAccount(AdditionalDataHolder, BackedModel, Parsable):
             "riskScore": lambda n : setattr(self, 'risk_score', n.get_str_value()),
             "service": lambda n : setattr(self, 'service', n.get_str_value()),
             "signinName": lambda n : setattr(self, 'signin_name', n.get_str_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(AccountStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(UserAccount_status)),
         }
         return fields
     

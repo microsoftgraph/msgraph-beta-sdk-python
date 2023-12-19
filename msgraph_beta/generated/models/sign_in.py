@@ -12,29 +12,31 @@ if TYPE_CHECKING:
     from .authentication_context import AuthenticationContext
     from .authentication_detail import AuthenticationDetail
     from .authentication_requirement_policy import AuthenticationRequirementPolicy
-    from .client_credential_type import ClientCredentialType
-    from .conditional_access_status import ConditionalAccessStatus
     from .device_detail import DeviceDetail
     from .entity import Entity
-    from .incoming_token_type import IncomingTokenType
     from .key_value import KeyValue
     from .managed_identity import ManagedIdentity
     from .mfa_detail import MfaDetail
     from .network_location_detail import NetworkLocationDetail
-    from .original_transfer_methods import OriginalTransferMethods
     from .private_link_details import PrivateLinkDetails
-    from .protocol_type import ProtocolType
-    from .risk_detail import RiskDetail
-    from .risk_level import RiskLevel
-    from .risk_state import RiskState
     from .session_lifetime_policy import SessionLifetimePolicy
-    from .sign_in_access_type import SignInAccessType
-    from .sign_in_identifier_type import SignInIdentifierType
+    from .sign_in_app_token_protection_status import SignIn_appTokenProtectionStatus
+    from .sign_in_authentication_protocol import SignIn_authenticationProtocol
+    from .sign_in_client_credential_type import SignIn_clientCredentialType
+    from .sign_in_conditional_access_status import SignIn_conditionalAccessStatus
+    from .sign_in_cross_tenant_access_type import SignIn_crossTenantAccessType
+    from .sign_in_incoming_token_type import SignIn_incomingTokenType
     from .sign_in_location import SignInLocation
+    from .sign_in_original_transfer_method import SignIn_originalTransferMethod
+    from .sign_in_risk_detail import SignIn_riskDetail
+    from .sign_in_risk_level_aggregated import SignIn_riskLevelAggregated
+    from .sign_in_risk_level_during_sign_in import SignIn_riskLevelDuringSignIn
+    from .sign_in_risk_state import SignIn_riskState
+    from .sign_in_sign_in_identifier_type import SignIn_signInIdentifierType
+    from .sign_in_sign_in_token_protection_status import SignIn_signInTokenProtectionStatus
     from .sign_in_status import SignInStatus
-    from .sign_in_user_type import SignInUserType
-    from .token_issuer_type import TokenIssuerType
-    from .token_protection_status import TokenProtectionStatus
+    from .sign_in_token_issuer_type import SignIn_tokenIssuerType
+    from .sign_in_user_type import SignIn_userType
 
 from .entity import Entity
 
@@ -45,10 +47,10 @@ class SignIn(Entity):
     # The application identifier in Microsoft Entra ID.  Supports $filter (eq).
     app_id: Optional[str] = None
     # The appTokenProtectionStatus property
-    app_token_protection_status: Optional[TokenProtectionStatus] = None
+    app_token_protection_status: Optional[SignIn_appTokenProtectionStatus] = None
     # A list of conditional access policies that are triggered by the corresponding sign-in activity. Apps need additional Conditional Access-related privileges to read the details of this property. For more information, see Viewing applied conditional access (CA) policies in sign-ins.
     applied_conditional_access_policies: Optional[List[AppliedConditionalAccessPolicy]] = None
-    # Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, that were triggered by the corresponding events in the sign-in event.
+    # Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, which were triggered by the corresponding events in the sign-in event.
     applied_event_listeners: Optional[List[AppliedAuthenticationEventListener]] = None
     # Provides details about the app and device used during a Microsoft Entra authentication step.
     authentication_app_device_details: Optional[AuthenticationAppDeviceDetails] = None
@@ -62,8 +64,8 @@ class SignIn(Entity):
     authentication_methods_used: Optional[List[str]] = None
     # More authentication processing details, such as the agent name for  PTA and PHS, or a server or farm name for federated authentication.
     authentication_processing_details: Optional[List[KeyValue]] = None
-    # Lists the protocol type or grant type used in the authentication. The possible values are: oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue, authenticationTransfer, and none. Use none for all authentications that do not have a specific value in that list.
-    authentication_protocol: Optional[ProtocolType] = None
+    # Lists the protocol type or grant type used in the authentication. The possible values are: oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue, authenticationTransfer, and none. Use none for all authentications that don't have a specific value in that list.
+    authentication_protocol: Optional[SignIn_authenticationProtocol] = None
     # This holds the highest level of authentication needed through all the sign-in steps, for sign-in to succeed.  Supports $filter (eq, startsWith).
     authentication_requirement: Optional[str] = None
     # Sources of authentication requirement, such as conditional access, per-user MFA, identity protection, and security defaults.
@@ -74,31 +76,31 @@ class SignIn(Entity):
     azure_resource_id: Optional[str] = None
     # The legacy client used for sign-in activity. For example: Browser, Exchange ActiveSync, Modern clients, IMAP, MAPI, SMTP, or POP.  Supports $filter (eq).
     client_app_used: Optional[str] = None
-    # Describes the credential type that a user client or service principal provided to Microsoft Entra ID to authenticate itself. You may wish to review clientCredentialType to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
-    client_credential_type: Optional[ClientCredentialType] = None
+    # Describes the credential type that a user client or service principal provided to Microsoft Entra ID to authenticate itself. You can review this property to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
+    client_credential_type: Optional[SignIn_clientCredentialType] = None
     # The status of the conditional access policy triggered. Possible values: success, failure, notApplied, or unknownFutureValue.  Supports $filter (eq).
-    conditional_access_status: Optional[ConditionalAccessStatus] = None
+    conditional_access_status: Optional[SignIn_conditionalAccessStatus] = None
     # The identifier that's sent from the client when sign-in is initiated. This is used for troubleshooting the corresponding sign-in activity when calling for support.  Supports $filter (eq).
     correlation_id: Optional[str] = None
     # The date and time the sign-in was initiated. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $orderby, $filter (eq, le, and ge).
     created_date_time: Optional[datetime.datetime] = None
-    # Describes the type of cross-tenant access used by the actor to access the resource. Possible values are: none, b2bCollaboration, b2bDirectConnect, microsoftSupport, serviceProvider, unknownFutureValue. If the sign in didn't cross tenant boundaries, the value is none.
-    cross_tenant_access_type: Optional[SignInAccessType] = None
+    # Describes the type of cross-tenant access used by the actor to access the resource. Possible values are: none, b2bCollaboration, b2bDirectConnect, microsoftSupport, serviceProvider, unknownFutureValue, passthrough. Also, please note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: passthrough. If the sign in didn't cross tenant boundaries, the value is none.
+    cross_tenant_access_type: Optional[SignIn_crossTenantAccessType] = None
     # The device information from where the sign-in occurred. Includes information such as deviceId, OS, and browser.  Supports $filter (eq, startsWith) on browser and operatingSystem properties.
     device_detail: Optional[DeviceDetail] = None
     # Contains the identifier of an application's federated identity credential, if a federated identity credential was used to sign in.
     federated_credential_id: Optional[str] = None
-    # During a failed sign in, a user may select a button in the Azure portal to mark the failed event for tenant admins. If a user clicked the button to flag the failed sign in, this value is true.
+    # During a failed sign-in, a user can select a button in the Azure portal to mark the failed event for tenant admins. If a user selects the button to flag the failed sign-in, this value is true.
     flagged_for_review: Optional[bool] = None
-    # The tenant identifier of the user initiating the sign in. Not applicable in Managed Identity or service principal sign ins.
+    # The tenant identifier of the user initiating the sign-in. Not applicable in Managed Identity or service principal sign ins.
     home_tenant_id: Optional[str] = None
     # For user sign ins, the identifier of the tenant that the user is a member of. Only populated in cases where the home tenant has provided affirmative consent to Microsoft Entra ID to show the tenant content.
     home_tenant_name: Optional[str] = None
-    # Indicates the token types that were presented to Microsoft Entra ID to authenticate the actor in the sign in. The possible values are: none, primaryRefreshToken, saml11, saml20, unknownFutureValue, remoteDesktopToken.  NOTE Microsoft Entra ID may have also used token types not listed in this Enum type to authenticate the actor. Don't infer the lack of a token if it isn't one of the types listed. Also, please note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: remoteDesktopToken.
-    incoming_token_type: Optional[IncomingTokenType] = None
+    # Indicates the token types that were presented to Microsoft Entra ID to authenticate the actor in the sign in. The possible values are: none, primaryRefreshToken, saml11, saml20, unknownFutureValue, remoteDesktopToken.  NOTE Microsoft Entra ID might have also used token types not listed in this enum type to authenticate the actor. Don't infer the lack of a token if it isn't one of the types listed. Also, please note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: remoteDesktopToken.
+    incoming_token_type: Optional[SignIn_incomingTokenType] = None
     # The IP address of the client from where the sign-in occurred.  Supports $filter (eq, startsWith).
     ip_address: Optional[str] = None
-    # The IP address a user used to reach a resource provider, used to determine Conditional Access compliance for some policies. For example, when a user interacts with Exchange Online, the IP address Exchange receives from the user may be recorded here. This value is often null.
+    # The IP address a user used to reach a resource provider, used to determine Conditional Access compliance for some policies. For example, when a user interacts with Exchange Online, the IP address that Microsoft Exchange receives from the user can be recorded here. This value is often null.
     ip_address_from_resource_provider: Optional[str] = None
     # Indicates whether a user sign in is interactive. In interactive sign in, the user provides an authentication factor to Microsoft Entra ID. These factors include passwords, responses to MFA challenges, biometric factors, or QR codes that a user provides to Microsoft Entra ID or an associated app. In non-interactive sign in, the user doesn't provide an authentication factor. Instead, the client app uses a token or code to authenticate or access a resource on behalf of a user. Non-interactive sign ins are commonly used for a client to sign in on a user's behalf in a process transparent to the user.
     is_interactive: Optional[bool] = None
@@ -117,7 +119,7 @@ class SignIn(Entity):
     # The request identifier of the first request in the authentication sequence.  Supports $filter (eq).
     original_request_id: Optional[str] = None
     # Transfer method used to initiate a session throughout all subsequent request. The possible values are: none, deviceCodeFlow, authenticationTransfer, unknownFutureValue.
-    original_transfer_method: Optional[OriginalTransferMethods] = None
+    original_transfer_method: Optional[SignIn_originalTransferMethod] = None
     # Contains information about the Microsoft Entra Private Link policy that is associated with the sign in event.
     private_link_details: Optional[PrivateLinkDetails] = None
     # The request processing time in milliseconds in AD STS.
@@ -130,16 +132,16 @@ class SignIn(Entity):
     resource_service_principal_id: Optional[str] = None
     # The tenant identifier of the resource referenced in the sign in.
     resource_tenant_id: Optional[str] = None
-    # The reason behind a specific state of a risky user, sign-in, or a risk event. Possible values: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, or unknownFutureValue. The value none means that no action has been performed on the user or sign-in so far.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
-    risk_detail: Optional[RiskDetail] = None
+    # The reason behind a specific state of a risky user, sign-in, or a risk event. Possible values: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, or unknownFutureValue. The value none means that Microsoft Entra risk detection has not flagged the user or the sign-in as a risky event so far.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
+    risk_detail: Optional[SignIn_riskDetail] = None
     # The list of risk event types associated with the sign-in. Possible values: unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence,  generic, or unknownFutureValue.  Supports $filter (eq, startsWith).
     risk_event_types_v2: Optional[List[str]] = None
-    # The aggregated risk level. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in was not enabled for Microsoft Entra ID Protection.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
-    risk_level_aggregated: Optional[RiskLevel] = None
+    # The aggregated risk level. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in wasn't enabled for Microsoft Entra ID Protection.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
+    risk_level_aggregated: Optional[SignIn_riskLevelAggregated] = None
     # The risk level during sign-in. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in wasn't enabled for Microsoft Entra ID Protection.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
-    risk_level_during_sign_in: Optional[RiskLevel] = None
+    risk_level_during_sign_in: Optional[SignIn_riskLevelDuringSignIn] = None
     # The risk state of a risky user, sign-in, or a risk event. Possible values: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, or unknownFutureValue.  Supports $filter (eq).
-    risk_state: Optional[RiskState] = None
+    risk_state: Optional[SignIn_riskState] = None
     # The unique identifier of the key credential used by the service principal to authenticate.
     service_principal_credential_key_id: Optional[str] = None
     # The certificate thumbprint of the certificate used by the service principal to authenticate.
@@ -150,20 +152,20 @@ class SignIn(Entity):
     service_principal_name: Optional[str] = None
     # Any conditional access session management policies that were applied during the sign-in event.
     session_lifetime_policies: Optional[List[SessionLifetimePolicy]] = None
-    # Indicates the category of sign in that the event represents. For user sign ins, the category can be interactiveUser or nonInteractiveUser and corresponds to the value for the isInteractive property on the signin resource. For managed identity sign ins, the category is managedIdentity. For service principal sign ins, the category is servicePrincipal. Possible values are: interactiveUser, nonInteractiveUser, servicePrincipal, managedIdentity, unknownFutureValue.  Supports $filter (eq, ne).
+    # Indicates the category of sign in that the event represents. For user sign ins, the category can be interactiveUser or nonInteractiveUser and corresponds to the value for the isInteractive property on the signin resource. For managed identity sign ins, the category is managedIdentity. For service principal sign-ins, the category is servicePrincipal. Possible values are: interactiveUser, nonInteractiveUser, servicePrincipal, managedIdentity, unknownFutureValue.  Supports $filter (eq, ne).
     sign_in_event_types: Optional[List[str]] = None
-    # The identification that the user provided to sign in. It may be the userPrincipalName but it's also populated when a user signs in using other identifiers.
+    # The identification that the user provided to sign in. It can be the userPrincipalName, but is also populated when a user signs in using other identifiers.
     sign_in_identifier: Optional[str] = None
     # The type of sign in identifier. Possible values are: userPrincipalName, phoneNumber, proxyAddress, qrCode, onPremisesUserPrincipalName, unknownFutureValue.
-    sign_in_identifier_type: Optional[SignInIdentifierType] = None
-    # Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the signin token was bound to the device or not. The possible values are: none, bound, unbound, unknownFutureValue.
-    sign_in_token_protection_status: Optional[TokenProtectionStatus] = None
+    sign_in_identifier_type: Optional[SignIn_signInIdentifierType] = None
+    # Token protection creates a cryptographically secure tie between the token and the device it is issued to. This field indicates whether the signin token was bound to the device or not. The possible values are: none, bound, unbound, unknownFutureValue.
+    sign_in_token_protection_status: Optional[SignIn_signInTokenProtectionStatus] = None
     # The sign-in status. Includes the error code and description of the error (for a sign-in failure).  Supports $filter (eq) on errorCode property.
     status: Optional[SignInStatus] = None
     # The name of the identity provider. For example, sts.microsoft.com.  Supports $filter (eq).
     token_issuer_name: Optional[str] = None
     # The type of identity provider. The possible values are: AzureAD, ADFederationServices, UnknownFutureValue, AzureADBackupAuth, ADFederationServicesMFAAdapter, NPSExtension. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: AzureADBackupAuth , ADFederationServicesMFAAdapter , NPSExtension.
-    token_issuer_type: Optional[TokenIssuerType] = None
+    token_issuer_type: Optional[SignIn_tokenIssuerType] = None
     # A unique base64 encoded request identifier used to track tokens issued by Microsoft Entra ID as they're redeemed at resource providers.
     unique_token_identifier: Optional[str] = None
     # The user agent information related to sign-in.  Supports $filter (eq, startsWith).
@@ -175,7 +177,7 @@ class SignIn(Entity):
     # The UPN of the user.  Supports $filter (eq, startsWith).
     user_principal_name: Optional[str] = None
     # Identifies whether the user is a member or guest in the tenant. Possible values are: member, guest, unknownFutureValue.
-    user_type: Optional[SignInUserType] = None
+    user_type: Optional[SignIn_userType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SignIn:
@@ -200,29 +202,31 @@ class SignIn(Entity):
         from .authentication_context import AuthenticationContext
         from .authentication_detail import AuthenticationDetail
         from .authentication_requirement_policy import AuthenticationRequirementPolicy
-        from .client_credential_type import ClientCredentialType
-        from .conditional_access_status import ConditionalAccessStatus
         from .device_detail import DeviceDetail
         from .entity import Entity
-        from .incoming_token_type import IncomingTokenType
         from .key_value import KeyValue
         from .managed_identity import ManagedIdentity
         from .mfa_detail import MfaDetail
         from .network_location_detail import NetworkLocationDetail
-        from .original_transfer_methods import OriginalTransferMethods
         from .private_link_details import PrivateLinkDetails
-        from .protocol_type import ProtocolType
-        from .risk_detail import RiskDetail
-        from .risk_level import RiskLevel
-        from .risk_state import RiskState
         from .session_lifetime_policy import SessionLifetimePolicy
-        from .sign_in_access_type import SignInAccessType
-        from .sign_in_identifier_type import SignInIdentifierType
+        from .sign_in_app_token_protection_status import SignIn_appTokenProtectionStatus
+        from .sign_in_authentication_protocol import SignIn_authenticationProtocol
+        from .sign_in_client_credential_type import SignIn_clientCredentialType
+        from .sign_in_conditional_access_status import SignIn_conditionalAccessStatus
+        from .sign_in_cross_tenant_access_type import SignIn_crossTenantAccessType
+        from .sign_in_incoming_token_type import SignIn_incomingTokenType
         from .sign_in_location import SignInLocation
+        from .sign_in_original_transfer_method import SignIn_originalTransferMethod
+        from .sign_in_risk_detail import SignIn_riskDetail
+        from .sign_in_risk_level_aggregated import SignIn_riskLevelAggregated
+        from .sign_in_risk_level_during_sign_in import SignIn_riskLevelDuringSignIn
+        from .sign_in_risk_state import SignIn_riskState
+        from .sign_in_sign_in_identifier_type import SignIn_signInIdentifierType
+        from .sign_in_sign_in_token_protection_status import SignIn_signInTokenProtectionStatus
         from .sign_in_status import SignInStatus
-        from .sign_in_user_type import SignInUserType
-        from .token_issuer_type import TokenIssuerType
-        from .token_protection_status import TokenProtectionStatus
+        from .sign_in_token_issuer_type import SignIn_tokenIssuerType
+        from .sign_in_user_type import SignIn_userType
 
         from .applied_authentication_event_listener import AppliedAuthenticationEventListener
         from .applied_conditional_access_policy import AppliedConditionalAccessPolicy
@@ -231,34 +235,36 @@ class SignIn(Entity):
         from .authentication_context import AuthenticationContext
         from .authentication_detail import AuthenticationDetail
         from .authentication_requirement_policy import AuthenticationRequirementPolicy
-        from .client_credential_type import ClientCredentialType
-        from .conditional_access_status import ConditionalAccessStatus
         from .device_detail import DeviceDetail
         from .entity import Entity
-        from .incoming_token_type import IncomingTokenType
         from .key_value import KeyValue
         from .managed_identity import ManagedIdentity
         from .mfa_detail import MfaDetail
         from .network_location_detail import NetworkLocationDetail
-        from .original_transfer_methods import OriginalTransferMethods
         from .private_link_details import PrivateLinkDetails
-        from .protocol_type import ProtocolType
-        from .risk_detail import RiskDetail
-        from .risk_level import RiskLevel
-        from .risk_state import RiskState
         from .session_lifetime_policy import SessionLifetimePolicy
-        from .sign_in_access_type import SignInAccessType
-        from .sign_in_identifier_type import SignInIdentifierType
+        from .sign_in_app_token_protection_status import SignIn_appTokenProtectionStatus
+        from .sign_in_authentication_protocol import SignIn_authenticationProtocol
+        from .sign_in_client_credential_type import SignIn_clientCredentialType
+        from .sign_in_conditional_access_status import SignIn_conditionalAccessStatus
+        from .sign_in_cross_tenant_access_type import SignIn_crossTenantAccessType
+        from .sign_in_incoming_token_type import SignIn_incomingTokenType
         from .sign_in_location import SignInLocation
+        from .sign_in_original_transfer_method import SignIn_originalTransferMethod
+        from .sign_in_risk_detail import SignIn_riskDetail
+        from .sign_in_risk_level_aggregated import SignIn_riskLevelAggregated
+        from .sign_in_risk_level_during_sign_in import SignIn_riskLevelDuringSignIn
+        from .sign_in_risk_state import SignIn_riskState
+        from .sign_in_sign_in_identifier_type import SignIn_signInIdentifierType
+        from .sign_in_sign_in_token_protection_status import SignIn_signInTokenProtectionStatus
         from .sign_in_status import SignInStatus
-        from .sign_in_user_type import SignInUserType
-        from .token_issuer_type import TokenIssuerType
-        from .token_protection_status import TokenProtectionStatus
+        from .sign_in_token_issuer_type import SignIn_tokenIssuerType
+        from .sign_in_user_type import SignIn_userType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
-            "appTokenProtectionStatus": lambda n : setattr(self, 'app_token_protection_status', n.get_enum_value(TokenProtectionStatus)),
+            "appTokenProtectionStatus": lambda n : setattr(self, 'app_token_protection_status', n.get_enum_value(SignIn_appTokenProtectionStatus)),
             "appliedConditionalAccessPolicies": lambda n : setattr(self, 'applied_conditional_access_policies', n.get_collection_of_object_values(AppliedConditionalAccessPolicy)),
             "appliedEventListeners": lambda n : setattr(self, 'applied_event_listeners', n.get_collection_of_object_values(AppliedAuthenticationEventListener)),
             "authenticationAppDeviceDetails": lambda n : setattr(self, 'authentication_app_device_details', n.get_object_value(AuthenticationAppDeviceDetails)),
@@ -267,23 +273,23 @@ class SignIn(Entity):
             "authenticationDetails": lambda n : setattr(self, 'authentication_details', n.get_collection_of_object_values(AuthenticationDetail)),
             "authenticationMethodsUsed": lambda n : setattr(self, 'authentication_methods_used', n.get_collection_of_primitive_values(str)),
             "authenticationProcessingDetails": lambda n : setattr(self, 'authentication_processing_details', n.get_collection_of_object_values(KeyValue)),
-            "authenticationProtocol": lambda n : setattr(self, 'authentication_protocol', n.get_collection_of_enum_values(ProtocolType)),
+            "authenticationProtocol": lambda n : setattr(self, 'authentication_protocol', n.get_enum_value(SignIn_authenticationProtocol)),
             "authenticationRequirement": lambda n : setattr(self, 'authentication_requirement', n.get_str_value()),
             "authenticationRequirementPolicies": lambda n : setattr(self, 'authentication_requirement_policies', n.get_collection_of_object_values(AuthenticationRequirementPolicy)),
             "autonomousSystemNumber": lambda n : setattr(self, 'autonomous_system_number', n.get_int_value()),
             "azureResourceId": lambda n : setattr(self, 'azure_resource_id', n.get_str_value()),
             "clientAppUsed": lambda n : setattr(self, 'client_app_used', n.get_str_value()),
-            "clientCredentialType": lambda n : setattr(self, 'client_credential_type', n.get_enum_value(ClientCredentialType)),
-            "conditionalAccessStatus": lambda n : setattr(self, 'conditional_access_status', n.get_enum_value(ConditionalAccessStatus)),
+            "clientCredentialType": lambda n : setattr(self, 'client_credential_type', n.get_enum_value(SignIn_clientCredentialType)),
+            "conditionalAccessStatus": lambda n : setattr(self, 'conditional_access_status', n.get_enum_value(SignIn_conditionalAccessStatus)),
             "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "crossTenantAccessType": lambda n : setattr(self, 'cross_tenant_access_type', n.get_collection_of_enum_values(SignInAccessType)),
+            "crossTenantAccessType": lambda n : setattr(self, 'cross_tenant_access_type', n.get_enum_value(SignIn_crossTenantAccessType)),
             "deviceDetail": lambda n : setattr(self, 'device_detail', n.get_object_value(DeviceDetail)),
             "federatedCredentialId": lambda n : setattr(self, 'federated_credential_id', n.get_str_value()),
             "flaggedForReview": lambda n : setattr(self, 'flagged_for_review', n.get_bool_value()),
             "homeTenantId": lambda n : setattr(self, 'home_tenant_id', n.get_str_value()),
             "homeTenantName": lambda n : setattr(self, 'home_tenant_name', n.get_str_value()),
-            "incomingTokenType": lambda n : setattr(self, 'incoming_token_type', n.get_collection_of_enum_values(IncomingTokenType)),
+            "incomingTokenType": lambda n : setattr(self, 'incoming_token_type', n.get_enum_value(SignIn_incomingTokenType)),
             "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
             "ipAddressFromResourceProvider": lambda n : setattr(self, 'ip_address_from_resource_provider', n.get_str_value()),
             "isInteractive": lambda n : setattr(self, 'is_interactive', n.get_bool_value()),
@@ -293,18 +299,18 @@ class SignIn(Entity):
             "mfaDetail": lambda n : setattr(self, 'mfa_detail', n.get_object_value(MfaDetail)),
             "networkLocationDetails": lambda n : setattr(self, 'network_location_details', n.get_collection_of_object_values(NetworkLocationDetail)),
             "originalRequestId": lambda n : setattr(self, 'original_request_id', n.get_str_value()),
-            "originalTransferMethod": lambda n : setattr(self, 'original_transfer_method', n.get_enum_value(OriginalTransferMethods)),
+            "originalTransferMethod": lambda n : setattr(self, 'original_transfer_method', n.get_enum_value(SignIn_originalTransferMethod)),
             "privateLinkDetails": lambda n : setattr(self, 'private_link_details', n.get_object_value(PrivateLinkDetails)),
             "processingTimeInMilliseconds": lambda n : setattr(self, 'processing_time_in_milliseconds', n.get_int_value()),
             "resourceDisplayName": lambda n : setattr(self, 'resource_display_name', n.get_str_value()),
             "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
             "resourceServicePrincipalId": lambda n : setattr(self, 'resource_service_principal_id', n.get_str_value()),
             "resourceTenantId": lambda n : setattr(self, 'resource_tenant_id', n.get_str_value()),
-            "riskDetail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(RiskDetail)),
+            "riskDetail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(SignIn_riskDetail)),
             "riskEventTypes_v2": lambda n : setattr(self, 'risk_event_types_v2', n.get_collection_of_primitive_values(str)),
-            "riskLevelAggregated": lambda n : setattr(self, 'risk_level_aggregated', n.get_enum_value(RiskLevel)),
-            "riskLevelDuringSignIn": lambda n : setattr(self, 'risk_level_during_sign_in', n.get_enum_value(RiskLevel)),
-            "riskState": lambda n : setattr(self, 'risk_state', n.get_enum_value(RiskState)),
+            "riskLevelAggregated": lambda n : setattr(self, 'risk_level_aggregated', n.get_enum_value(SignIn_riskLevelAggregated)),
+            "riskLevelDuringSignIn": lambda n : setattr(self, 'risk_level_during_sign_in', n.get_enum_value(SignIn_riskLevelDuringSignIn)),
+            "riskState": lambda n : setattr(self, 'risk_state', n.get_enum_value(SignIn_riskState)),
             "servicePrincipalCredentialKeyId": lambda n : setattr(self, 'service_principal_credential_key_id', n.get_str_value()),
             "servicePrincipalCredentialThumbprint": lambda n : setattr(self, 'service_principal_credential_thumbprint', n.get_str_value()),
             "servicePrincipalId": lambda n : setattr(self, 'service_principal_id', n.get_str_value()),
@@ -312,17 +318,17 @@ class SignIn(Entity):
             "sessionLifetimePolicies": lambda n : setattr(self, 'session_lifetime_policies', n.get_collection_of_object_values(SessionLifetimePolicy)),
             "signInEventTypes": lambda n : setattr(self, 'sign_in_event_types', n.get_collection_of_primitive_values(str)),
             "signInIdentifier": lambda n : setattr(self, 'sign_in_identifier', n.get_str_value()),
-            "signInIdentifierType": lambda n : setattr(self, 'sign_in_identifier_type', n.get_enum_value(SignInIdentifierType)),
-            "signInTokenProtectionStatus": lambda n : setattr(self, 'sign_in_token_protection_status', n.get_enum_value(TokenProtectionStatus)),
+            "signInIdentifierType": lambda n : setattr(self, 'sign_in_identifier_type', n.get_enum_value(SignIn_signInIdentifierType)),
+            "signInTokenProtectionStatus": lambda n : setattr(self, 'sign_in_token_protection_status', n.get_enum_value(SignIn_signInTokenProtectionStatus)),
             "status": lambda n : setattr(self, 'status', n.get_object_value(SignInStatus)),
             "tokenIssuerName": lambda n : setattr(self, 'token_issuer_name', n.get_str_value()),
-            "tokenIssuerType": lambda n : setattr(self, 'token_issuer_type', n.get_enum_value(TokenIssuerType)),
+            "tokenIssuerType": lambda n : setattr(self, 'token_issuer_type', n.get_enum_value(SignIn_tokenIssuerType)),
             "uniqueTokenIdentifier": lambda n : setattr(self, 'unique_token_identifier', n.get_str_value()),
             "userAgent": lambda n : setattr(self, 'user_agent', n.get_str_value()),
             "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
-            "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(SignInUserType)),
+            "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(SignIn_userType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

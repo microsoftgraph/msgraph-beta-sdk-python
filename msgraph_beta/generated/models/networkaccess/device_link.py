@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
-    from .bandwidth_capacity_in_mbps import BandwidthCapacityInMbps
     from .bgp_configuration import BgpConfiguration
+    from .device_link_bandwidth_capacity_in_mbps import DeviceLink_bandwidthCapacityInMbps
     from .device_vendor import DeviceVendor
     from .redundancy_configuration import RedundancyConfiguration
     from .tunnel_configuration import TunnelConfiguration
@@ -17,7 +17,7 @@ from ..entity import Entity
 @dataclass
 class DeviceLink(Entity):
     # Determines the maximum allowed Mbps (megabits per second) bandwidth from a branch site. The possible values are:250,500,750,1000.
-    bandwidth_capacity_in_mbps: Optional[BandwidthCapacityInMbps] = None
+    bandwidth_capacity_in_mbps: Optional[DeviceLink_bandwidthCapacityInMbps] = None
     # The bgpConfiguration property
     bgp_configuration: Optional[BgpConfiguration] = None
     # The deviceVendor property
@@ -52,21 +52,21 @@ class DeviceLink(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
-        from .bandwidth_capacity_in_mbps import BandwidthCapacityInMbps
         from .bgp_configuration import BgpConfiguration
+        from .device_link_bandwidth_capacity_in_mbps import DeviceLink_bandwidthCapacityInMbps
         from .device_vendor import DeviceVendor
         from .redundancy_configuration import RedundancyConfiguration
         from .tunnel_configuration import TunnelConfiguration
 
         from ..entity import Entity
-        from .bandwidth_capacity_in_mbps import BandwidthCapacityInMbps
         from .bgp_configuration import BgpConfiguration
+        from .device_link_bandwidth_capacity_in_mbps import DeviceLink_bandwidthCapacityInMbps
         from .device_vendor import DeviceVendor
         from .redundancy_configuration import RedundancyConfiguration
         from .tunnel_configuration import TunnelConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "bandwidthCapacityInMbps": lambda n : setattr(self, 'bandwidth_capacity_in_mbps', n.get_enum_value(BandwidthCapacityInMbps)),
+            "bandwidthCapacityInMbps": lambda n : setattr(self, 'bandwidth_capacity_in_mbps', n.get_enum_value(DeviceLink_bandwidthCapacityInMbps)),
             "bgpConfiguration": lambda n : setattr(self, 'bgp_configuration', n.get_object_value(BgpConfiguration)),
             "deviceVendor": lambda n : setattr(self, 'device_vendor', n.get_enum_value(DeviceVendor)),
             "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),

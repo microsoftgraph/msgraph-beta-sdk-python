@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .action_capability import ActionCapability
-    from .cloud_pc_remote_action_name import CloudPcRemoteActionName
+    from .cloud_pc_remote_action_capability_action_capability import CloudPcRemoteActionCapability_actionCapability
+    from .cloud_pc_remote_action_capability_action_name import CloudPcRemoteActionCapability_actionName
 
 @dataclass
 class CloudPcRemoteActionCapability(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,9 +16,9 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, BackedModel, Parsable)
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Indicates the state of the supported action capability to perform a Cloud PC remote action. Possible values are: enabled, disabled. Default value is enabled.
-    action_capability: Optional[ActionCapability] = None
+    action_capability: Optional[CloudPcRemoteActionCapability_actionCapability] = None
     # The name of the supported Cloud PC remote action. Possible values are: unknown, restart, rename, restore, resize, reprovision, troubleShoot, changeUserAccountType, placeUnderReview. Default value is unknown.
-    action_name: Optional[CloudPcRemoteActionName] = None
+    action_name: Optional[CloudPcRemoteActionCapability_actionName] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -38,15 +38,15 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, BackedModel, Parsable)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .action_capability import ActionCapability
-        from .cloud_pc_remote_action_name import CloudPcRemoteActionName
+        from .cloud_pc_remote_action_capability_action_capability import CloudPcRemoteActionCapability_actionCapability
+        from .cloud_pc_remote_action_capability_action_name import CloudPcRemoteActionCapability_actionName
 
-        from .action_capability import ActionCapability
-        from .cloud_pc_remote_action_name import CloudPcRemoteActionName
+        from .cloud_pc_remote_action_capability_action_capability import CloudPcRemoteActionCapability_actionCapability
+        from .cloud_pc_remote_action_capability_action_name import CloudPcRemoteActionCapability_actionName
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "actionCapability": lambda n : setattr(self, 'action_capability', n.get_enum_value(ActionCapability)),
-            "actionName": lambda n : setattr(self, 'action_name', n.get_enum_value(CloudPcRemoteActionName)),
+            "actionCapability": lambda n : setattr(self, 'action_capability', n.get_enum_value(CloudPcRemoteActionCapability_actionCapability)),
+            "actionName": lambda n : setattr(self, 'action_name', n.get_enum_value(CloudPcRemoteActionCapability_actionName)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .apple_vpn_configuration_provider_type import AppleVpnConfiguration_providerType
     from .apple_vpn_connection_type import AppleVpnConnectionType
     from .device_configuration import DeviceConfiguration
     from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
@@ -13,7 +14,6 @@ if TYPE_CHECKING:
     from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
     from .vpn_authentication_method import VpnAuthenticationMethod
     from .vpn_on_demand_rule import VpnOnDemandRule
-    from .vpn_provider_type import VpnProviderType
     from .vpn_proxy_server import VpnProxyServer
     from .vpn_server import VpnServer
 
@@ -59,7 +59,7 @@ class AppleVpnConfiguration(DeviceConfiguration):
     # Opt-In to sharing the device's Id to third-party vpn clients for use during network access control validation.
     opt_in_to_device_id_sharing: Optional[bool] = None
     # Provider type for per-app VPN. Possible values are: notConfigured, appProxy, packetTunnel.
-    provider_type: Optional[VpnProviderType] = None
+    provider_type: Optional[AppleVpnConfiguration_providerType] = None
     # Proxy Server.
     proxy_server: Optional[VpnProxyServer] = None
     # Realm when connection type is set to Pulse Secure.
@@ -103,6 +103,7 @@ class AppleVpnConfiguration(DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .apple_vpn_configuration_provider_type import AppleVpnConfiguration_providerType
         from .apple_vpn_connection_type import AppleVpnConnectionType
         from .device_configuration import DeviceConfiguration
         from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
@@ -112,10 +113,10 @@ class AppleVpnConfiguration(DeviceConfiguration):
         from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
         from .vpn_authentication_method import VpnAuthenticationMethod
         from .vpn_on_demand_rule import VpnOnDemandRule
-        from .vpn_provider_type import VpnProviderType
         from .vpn_proxy_server import VpnProxyServer
         from .vpn_server import VpnServer
 
+        from .apple_vpn_configuration_provider_type import AppleVpnConfiguration_providerType
         from .apple_vpn_connection_type import AppleVpnConnectionType
         from .device_configuration import DeviceConfiguration
         from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
@@ -125,7 +126,6 @@ class AppleVpnConfiguration(DeviceConfiguration):
         from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
         from .vpn_authentication_method import VpnAuthenticationMethod
         from .vpn_on_demand_rule import VpnOnDemandRule
-        from .vpn_provider_type import VpnProviderType
         from .vpn_proxy_server import VpnProxyServer
         from .vpn_server import VpnServer
 
@@ -146,7 +146,7 @@ class AppleVpnConfiguration(DeviceConfiguration):
             "loginGroupOrDomain": lambda n : setattr(self, 'login_group_or_domain', n.get_str_value()),
             "onDemandRules": lambda n : setattr(self, 'on_demand_rules', n.get_collection_of_object_values(VpnOnDemandRule)),
             "optInToDeviceIdSharing": lambda n : setattr(self, 'opt_in_to_device_id_sharing', n.get_bool_value()),
-            "providerType": lambda n : setattr(self, 'provider_type', n.get_enum_value(VpnProviderType)),
+            "providerType": lambda n : setattr(self, 'provider_type', n.get_enum_value(AppleVpnConfiguration_providerType)),
             "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(VpnProxyServer)),
             "realm": lambda n : setattr(self, 'realm', n.get_str_value()),
             "role": lambda n : setattr(self, 'role', n.get_str_value()),

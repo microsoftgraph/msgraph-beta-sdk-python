@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .item_facet import ItemFacet
-    from .skill_proficiency_level import SkillProficiencyLevel
+    from .skill_proficiency_proficiency import SkillProficiency_proficiency
 
 from .item_facet import ItemFacet
 
@@ -20,7 +20,7 @@ class SkillProficiency(ItemFacet):
     # Contains a friendly name for the skill.
     display_name: Optional[str] = None
     # Detail of the users proficiency with this skill. Possible values are: elementary, limitedWorking, generalProfessional, advancedProfessional, expert, unknownFutureValue.
-    proficiency: Optional[SkillProficiencyLevel] = None
+    proficiency: Optional[SkillProficiency_proficiency] = None
     # The thumbnailUrl property
     thumbnail_url: Optional[str] = None
     # Contains a link to an information source about the skill.
@@ -43,16 +43,16 @@ class SkillProficiency(ItemFacet):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .item_facet import ItemFacet
-        from .skill_proficiency_level import SkillProficiencyLevel
+        from .skill_proficiency_proficiency import SkillProficiency_proficiency
 
         from .item_facet import ItemFacet
-        from .skill_proficiency_level import SkillProficiencyLevel
+        from .skill_proficiency_proficiency import SkillProficiency_proficiency
 
         fields: Dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "collaborationTags": lambda n : setattr(self, 'collaboration_tags', n.get_collection_of_primitive_values(str)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "proficiency": lambda n : setattr(self, 'proficiency', n.get_enum_value(SkillProficiencyLevel)),
+            "proficiency": lambda n : setattr(self, 'proficiency', n.get_enum_value(SkillProficiency_proficiency)),
             "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
             "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }

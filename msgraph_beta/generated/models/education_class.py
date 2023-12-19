@@ -8,8 +8,8 @@ if TYPE_CHECKING:
     from .education_assignment_defaults import EducationAssignmentDefaults
     from .education_assignment_settings import EducationAssignmentSettings
     from .education_category import EducationCategory
+    from .education_class_external_source import EducationClass_externalSource
     from .education_course import EducationCourse
-    from .education_external_source import EducationExternalSource
     from .education_module import EducationModule
     from .education_school import EducationSchool
     from .education_term import EducationTerm
@@ -45,7 +45,7 @@ class EducationClass(Entity):
     # Name of the class in the syncing system.
     external_name: Optional[str] = None
     # The type of external source this resource was generated from (automatically determined from externalSourceDetail). Possible values are: sis, lms, or manual.
-    external_source: Optional[EducationExternalSource] = None
+    external_source: Optional[EducationClass_externalSource] = None
     # The name of the external source this resources was generated from.
     external_source_detail: Optional[str] = None
     # Grade level of the class.
@@ -87,8 +87,8 @@ class EducationClass(Entity):
         from .education_assignment_defaults import EducationAssignmentDefaults
         from .education_assignment_settings import EducationAssignmentSettings
         from .education_category import EducationCategory
+        from .education_class_external_source import EducationClass_externalSource
         from .education_course import EducationCourse
-        from .education_external_source import EducationExternalSource
         from .education_module import EducationModule
         from .education_school import EducationSchool
         from .education_term import EducationTerm
@@ -101,8 +101,8 @@ class EducationClass(Entity):
         from .education_assignment_defaults import EducationAssignmentDefaults
         from .education_assignment_settings import EducationAssignmentSettings
         from .education_category import EducationCategory
+        from .education_class_external_source import EducationClass_externalSource
         from .education_course import EducationCourse
-        from .education_external_source import EducationExternalSource
         from .education_module import EducationModule
         from .education_school import EducationSchool
         from .education_term import EducationTerm
@@ -123,7 +123,7 @@ class EducationClass(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "externalName": lambda n : setattr(self, 'external_name', n.get_str_value()),
-            "externalSource": lambda n : setattr(self, 'external_source', n.get_enum_value(EducationExternalSource)),
+            "externalSource": lambda n : setattr(self, 'external_source', n.get_enum_value(EducationClass_externalSource)),
             "externalSourceDetail": lambda n : setattr(self, 'external_source_detail', n.get_str_value()),
             "grade": lambda n : setattr(self, 'grade', n.get_str_value()),
             "group": lambda n : setattr(self, 'group', n.get_object_value(Group)),

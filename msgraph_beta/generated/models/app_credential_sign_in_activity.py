@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .application_key_origin import ApplicationKeyOrigin
-    from .application_key_type import ApplicationKeyType
-    from .application_key_usage import ApplicationKeyUsage
+    from .app_credential_sign_in_activity_key_type import AppCredentialSignInActivity_keyType
+    from .app_credential_sign_in_activity_key_usage import AppCredentialSignInActivity_keyUsage
     from .entity import Entity
     from .sign_in_activity import SignInActivity
 
@@ -28,9 +28,9 @@ class AppCredentialSignInActivity(Entity):
     # The key ID of the credential.
     key_id: Optional[str] = None
     # Specifies the key type. The possible values are: clientSecret, certificate, unknownFutureValue.
-    key_type: Optional[ApplicationKeyType] = None
+    key_type: Optional[AppCredentialSignInActivity_keyType] = None
     # Specifies what the key was used for. The possible values are: sign, verify, unknownFutureValue.
-    key_usage: Optional[ApplicationKeyUsage] = None
+    key_usage: Optional[AppCredentialSignInActivity_keyUsage] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The ID of the accessed resource.
@@ -57,14 +57,14 @@ class AppCredentialSignInActivity(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .application_key_origin import ApplicationKeyOrigin
-        from .application_key_type import ApplicationKeyType
-        from .application_key_usage import ApplicationKeyUsage
+        from .app_credential_sign_in_activity_key_type import AppCredentialSignInActivity_keyType
+        from .app_credential_sign_in_activity_key_usage import AppCredentialSignInActivity_keyUsage
         from .entity import Entity
         from .sign_in_activity import SignInActivity
 
         from .application_key_origin import ApplicationKeyOrigin
-        from .application_key_type import ApplicationKeyType
-        from .application_key_usage import ApplicationKeyUsage
+        from .app_credential_sign_in_activity_key_type import AppCredentialSignInActivity_keyType
+        from .app_credential_sign_in_activity_key_usage import AppCredentialSignInActivity_keyUsage
         from .entity import Entity
         from .sign_in_activity import SignInActivity
 
@@ -75,8 +75,8 @@ class AppCredentialSignInActivity(Entity):
             "credentialOrigin": lambda n : setattr(self, 'credential_origin', n.get_enum_value(ApplicationKeyOrigin)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "keyId": lambda n : setattr(self, 'key_id', n.get_str_value()),
-            "keyType": lambda n : setattr(self, 'key_type', n.get_enum_value(ApplicationKeyType)),
-            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(ApplicationKeyUsage)),
+            "keyType": lambda n : setattr(self, 'key_type', n.get_enum_value(AppCredentialSignInActivity_keyType)),
+            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(AppCredentialSignInActivity_keyUsage)),
             "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
             "servicePrincipalObjectId": lambda n : setattr(self, 'service_principal_object_id', n.get_str_value()),
             "signInActivity": lambda n : setattr(self, 'sign_in_activity', n.get_object_value(SignInActivity)),

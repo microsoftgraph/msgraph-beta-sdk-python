@@ -12,7 +12,7 @@ from .gcp_permissions_definition_action import GcpPermissionsDefinitionAction
 class GcpActionPermissionsDefinitionAction(GcpPermissionsDefinitionAction):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gcpActionPermissionsDefinitionAction"
-    # The actions property
+    # List of actions.
     actions: Optional[List[str]] = None
     
     @staticmethod

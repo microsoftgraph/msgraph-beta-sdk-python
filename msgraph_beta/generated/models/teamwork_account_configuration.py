@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .teamwork_account_configuration_supported_client import TeamworkAccountConfiguration_supportedClient
     from .teamwork_on_premises_calendar_sync_configuration import TeamworkOnPremisesCalendarSyncConfiguration
-    from .teamwork_supported_client import TeamworkSupportedClient
 
 @dataclass
 class TeamworkAccountConfiguration(AdditionalDataHolder, BackedModel, Parsable):
@@ -20,7 +20,7 @@ class TeamworkAccountConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # The account used to sync the calendar.
     on_premises_calendar_sync_configuration: Optional[TeamworkOnPremisesCalendarSyncConfiguration] = None
     # The supported client for Teams Rooms devices. The possible values are: unknown, skypeDefaultAndTeams, teamsDefaultAndSkype, skypeOnly, teamsOnly, unknownFutureValue.
-    supported_client: Optional[TeamworkSupportedClient] = None
+    supported_client: Optional[TeamworkAccountConfiguration_supportedClient] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkAccountConfiguration:
@@ -38,16 +38,16 @@ class TeamworkAccountConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .teamwork_account_configuration_supported_client import TeamworkAccountConfiguration_supportedClient
         from .teamwork_on_premises_calendar_sync_configuration import TeamworkOnPremisesCalendarSyncConfiguration
-        from .teamwork_supported_client import TeamworkSupportedClient
 
+        from .teamwork_account_configuration_supported_client import TeamworkAccountConfiguration_supportedClient
         from .teamwork_on_premises_calendar_sync_configuration import TeamworkOnPremisesCalendarSyncConfiguration
-        from .teamwork_supported_client import TeamworkSupportedClient
 
         fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "onPremisesCalendarSyncConfiguration": lambda n : setattr(self, 'on_premises_calendar_sync_configuration', n.get_object_value(TeamworkOnPremisesCalendarSyncConfiguration)),
-            "supportedClient": lambda n : setattr(self, 'supported_client', n.get_enum_value(TeamworkSupportedClient)),
+            "supportedClient": lambda n : setattr(self, 'supported_client', n.get_enum_value(TeamworkAccountConfiguration_supportedClient)),
         }
         return fields
     

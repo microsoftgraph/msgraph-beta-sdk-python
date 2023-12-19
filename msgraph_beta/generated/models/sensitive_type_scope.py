@@ -1,6 +1,5 @@
 from enum import Enum
 
-class SensitiveTypeScope(str, Enum):
-    FullDocument = "fullDocument",
-    PartialDocument = "partialDocument",
+class SensitiveType_scope(str, Enum):
+    pass
 

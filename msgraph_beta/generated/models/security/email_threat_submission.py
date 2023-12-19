@@ -7,8 +7,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .attack_simulation_info import AttackSimulationInfo
     from .email_content_threat_submission import EmailContentThreatSubmission
+    from .email_threat_submission_original_category import EmailThreatSubmission_originalCategory
     from .email_url_threat_submission import EmailUrlThreatSubmission
-    from .submission_category import SubmissionCategory
     from .tenant_allow_or_block_list_action import TenantAllowOrBlockListAction
     from .threat_submission import ThreatSubmission
 
@@ -23,7 +23,7 @@ class EmailThreatSubmission(ThreatSubmission):
     # Specifies the internet message ID of the email being submitted. This information is present in the email header.
     internet_message_id: Optional[str] = None
     # The original category of the submission. The possible values are: notJunk, spam, phishing, malware and unkownFutureValue.
-    original_category: Optional[SubmissionCategory] = None
+    original_category: Optional[EmailThreatSubmission_originalCategory] = None
     # Specifies the date and time stamp when the email was received.
     received_date_time: Optional[datetime.datetime] = None
     # Specifies the email address (in smtp format) of the recipient who received the email.
@@ -67,22 +67,22 @@ class EmailThreatSubmission(ThreatSubmission):
         """
         from .attack_simulation_info import AttackSimulationInfo
         from .email_content_threat_submission import EmailContentThreatSubmission
+        from .email_threat_submission_original_category import EmailThreatSubmission_originalCategory
         from .email_url_threat_submission import EmailUrlThreatSubmission
-        from .submission_category import SubmissionCategory
         from .tenant_allow_or_block_list_action import TenantAllowOrBlockListAction
         from .threat_submission import ThreatSubmission
 
         from .attack_simulation_info import AttackSimulationInfo
         from .email_content_threat_submission import EmailContentThreatSubmission
+        from .email_threat_submission_original_category import EmailThreatSubmission_originalCategory
         from .email_url_threat_submission import EmailUrlThreatSubmission
-        from .submission_category import SubmissionCategory
         from .tenant_allow_or_block_list_action import TenantAllowOrBlockListAction
         from .threat_submission import ThreatSubmission
 
         fields: Dict[str, Callable[[Any], None]] = {
             "attackSimulationInfo": lambda n : setattr(self, 'attack_simulation_info', n.get_object_value(AttackSimulationInfo)),
             "internetMessageId": lambda n : setattr(self, 'internet_message_id', n.get_str_value()),
-            "originalCategory": lambda n : setattr(self, 'original_category', n.get_enum_value(SubmissionCategory)),
+            "originalCategory": lambda n : setattr(self, 'original_category', n.get_enum_value(EmailThreatSubmission_originalCategory)),
             "receivedDateTime": lambda n : setattr(self, 'received_date_time', n.get_datetime_value()),
             "recipientEmailAddress": lambda n : setattr(self, 'recipient_email_address', n.get_str_value()),
             "sender": lambda n : setattr(self, 'sender', n.get_str_value()),

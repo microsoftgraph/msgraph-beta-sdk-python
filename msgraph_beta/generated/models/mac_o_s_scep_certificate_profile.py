@@ -4,13 +4,13 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .certificate_store import CertificateStore
     from .custom_subject_alternative_name import CustomSubjectAlternativeName
     from .extended_key_usage import ExtendedKeyUsage
-    from .hash_algorithms import HashAlgorithms
     from .key_size import KeySize
     from .key_usages import KeyUsages
     from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+    from .mac_o_s_scep_certificate_profile_certificate_store import MacOSScepCertificateProfile_certificateStore
+    from .mac_o_s_scep_certificate_profile_hash_algorithm import MacOSScepCertificateProfile_hashAlgorithm
     from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
     from .managed_device_certificate_state import ManagedDeviceCertificateState
 
@@ -26,13 +26,13 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase):
     # AllowAllAppsAccess setting
     allow_all_apps_access: Optional[bool] = None
     # Target store certificate. Possible values are: user, machine.
-    certificate_store: Optional[CertificateStore] = None
+    certificate_store: Optional[MacOSScepCertificateProfile_certificateStore] = None
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
     custom_subject_alternative_names: Optional[List[CustomSubjectAlternativeName]] = None
     # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
     extended_key_usages: Optional[List[ExtendedKeyUsage]] = None
     # SCEP Hash Algorithm. Possible values are: sha1, sha2.
-    hash_algorithm: Optional[HashAlgorithms] = None
+    hash_algorithm: Optional[MacOSScepCertificateProfile_hashAlgorithm] = None
     # Key Size Options.
     key_size: Optional[KeySize] = None
     # Key Usage Options.
@@ -64,32 +64,32 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .extended_key_usage import ExtendedKeyUsage
-        from .hash_algorithms import HashAlgorithms
         from .key_size import KeySize
         from .key_usages import KeyUsages
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+        from .mac_o_s_scep_certificate_profile_certificate_store import MacOSScepCertificateProfile_certificateStore
+        from .mac_o_s_scep_certificate_profile_hash_algorithm import MacOSScepCertificateProfile_hashAlgorithm
         from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .extended_key_usage import ExtendedKeyUsage
-        from .hash_algorithms import HashAlgorithms
         from .key_size import KeySize
         from .key_usages import KeyUsages
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+        from .mac_o_s_scep_certificate_profile_certificate_store import MacOSScepCertificateProfile_certificateStore
+        from .mac_o_s_scep_certificate_profile_hash_algorithm import MacOSScepCertificateProfile_hashAlgorithm
         from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowAllAppsAccess": lambda n : setattr(self, 'allow_all_apps_access', n.get_bool_value()),
-            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(MacOSScepCertificateProfile_certificateStore)),
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(CustomSubjectAlternativeName)),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
-            "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_collection_of_enum_values(HashAlgorithms)),
+            "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_enum_value(MacOSScepCertificateProfile_hashAlgorithm)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(KeySize)),
             "keyUsage": lambda n : setattr(self, 'key_usage', n.get_collection_of_enum_values(KeyUsages)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),

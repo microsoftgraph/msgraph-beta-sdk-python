@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .vpn_encryption_algorithm_type import VpnEncryptionAlgorithmType
-    from .vpn_integrity_algorithm_type import VpnIntegrityAlgorithmType
+    from .ios_vpn_security_association_parameters_security_encryption_algorithm import IosVpnSecurityAssociationParameters_securityEncryptionAlgorithm
+    from .ios_vpn_security_association_parameters_security_integrity_algorithm import IosVpnSecurityAssociationParameters_securityIntegrityAlgorithm
 
 @dataclass
 class IosVpnSecurityAssociationParameters(AdditionalDataHolder, BackedModel, Parsable):
@@ -25,9 +25,9 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, BackedModel, Par
     # Diffie-Hellman Group
     security_diffie_hellman_group: Optional[int] = None
     # Encryption algorithm. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
-    security_encryption_algorithm: Optional[VpnEncryptionAlgorithmType] = None
+    security_encryption_algorithm: Optional[IosVpnSecurityAssociationParameters_securityEncryptionAlgorithm] = None
     # Integrity algorithm. Possible values are: sha2256, sha196, sha1160, sha2384, sha2_512, md5.
-    security_integrity_algorithm: Optional[VpnIntegrityAlgorithmType] = None
+    security_integrity_algorithm: Optional[IosVpnSecurityAssociationParameters_securityIntegrityAlgorithm] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosVpnSecurityAssociationParameters:
@@ -45,18 +45,18 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, BackedModel, Par
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .vpn_encryption_algorithm_type import VpnEncryptionAlgorithmType
-        from .vpn_integrity_algorithm_type import VpnIntegrityAlgorithmType
+        from .ios_vpn_security_association_parameters_security_encryption_algorithm import IosVpnSecurityAssociationParameters_securityEncryptionAlgorithm
+        from .ios_vpn_security_association_parameters_security_integrity_algorithm import IosVpnSecurityAssociationParameters_securityIntegrityAlgorithm
 
-        from .vpn_encryption_algorithm_type import VpnEncryptionAlgorithmType
-        from .vpn_integrity_algorithm_type import VpnIntegrityAlgorithmType
+        from .ios_vpn_security_association_parameters_security_encryption_algorithm import IosVpnSecurityAssociationParameters_securityEncryptionAlgorithm
+        from .ios_vpn_security_association_parameters_security_integrity_algorithm import IosVpnSecurityAssociationParameters_securityIntegrityAlgorithm
 
         fields: Dict[str, Callable[[Any], None]] = {
             "lifetimeInMinutes": lambda n : setattr(self, 'lifetime_in_minutes', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "securityDiffieHellmanGroup": lambda n : setattr(self, 'security_diffie_hellman_group', n.get_int_value()),
-            "securityEncryptionAlgorithm": lambda n : setattr(self, 'security_encryption_algorithm', n.get_enum_value(VpnEncryptionAlgorithmType)),
-            "securityIntegrityAlgorithm": lambda n : setattr(self, 'security_integrity_algorithm', n.get_enum_value(VpnIntegrityAlgorithmType)),
+            "securityEncryptionAlgorithm": lambda n : setattr(self, 'security_encryption_algorithm', n.get_enum_value(IosVpnSecurityAssociationParameters_securityEncryptionAlgorithm)),
+            "securityIntegrityAlgorithm": lambda n : setattr(self, 'security_integrity_algorithm', n.get_enum_value(IosVpnSecurityAssociationParameters_securityIntegrityAlgorithm)),
         }
         return fields
     

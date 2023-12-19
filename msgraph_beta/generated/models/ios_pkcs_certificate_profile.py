@@ -4,9 +4,9 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .certificate_store import CertificateStore
     from .custom_subject_alternative_name import CustomSubjectAlternativeName
     from .ios_certificate_profile_base import IosCertificateProfileBase
+    from .ios_pkcs_certificate_profile_certificate_store import IosPkcsCertificateProfile_certificateStore
     from .managed_device_certificate_state import ManagedDeviceCertificateState
 
 from .ios_certificate_profile_base import IosCertificateProfileBase
@@ -19,7 +19,7 @@ class IosPkcsCertificateProfile(IosCertificateProfileBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.iosPkcsCertificateProfile"
     # Target store certificate. Possible values are: user, machine.
-    certificate_store: Optional[CertificateStore] = None
+    certificate_store: Optional[IosPkcsCertificateProfile_certificateStore] = None
     # PKCS Certificate Template Name.
     certificate_template_name: Optional[str] = None
     # PKCS Certification Authority.
@@ -51,18 +51,18 @@ class IosPkcsCertificateProfile(IosCertificateProfileBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .ios_certificate_profile_base import IosCertificateProfileBase
+        from .ios_pkcs_certificate_profile_certificate_store import IosPkcsCertificateProfile_certificateStore
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .ios_certificate_profile_base import IosCertificateProfileBase
+        from .ios_pkcs_certificate_profile_certificate_store import IosPkcsCertificateProfile_certificateStore
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(IosPkcsCertificateProfile_certificateStore)),
             "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
             "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
             "certificationAuthorityName": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),

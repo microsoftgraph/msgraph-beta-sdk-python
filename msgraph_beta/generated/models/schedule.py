@@ -4,11 +4,13 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .day_note import DayNote
     from .entity import Entity
     from .offer_shift_request import OfferShiftRequest
     from .open_shift import OpenShift
     from .open_shift_change_request import OpenShiftChangeRequest
-    from .operation_status import OperationStatus
+    from .schedule_provision_status import Schedule_provisionStatus
+    from .schedule_start_day_of_week import Schedule_startDayOfWeek
     from .scheduling_group import SchedulingGroup
     from .shift import Shift
     from .swap_shifts_change_request import SwapShiftsChangeRequest
@@ -22,6 +24,10 @@ from .entity import Entity
 
 @dataclass
 class Schedule(Entity):
+    # Indicates whether copied shifts should include the activities.
+    activities_included_when_copying_shifts_enabled: Optional[bool] = None
+    # The day notes in the schedule.
+    day_notes: Optional[List[DayNote]] = None
     # Indicates whether the schedule is enabled for the team. Required.
     enabled: Optional[bool] = None
     # The OdataType property
@@ -37,22 +43,24 @@ class Schedule(Entity):
     # Indicates whether open shifts are enabled for the schedule.
     open_shifts_enabled: Optional[bool] = None
     # The status of the schedule provisioning. The possible values are notStarted, running, completed, failed.
-    provision_status: Optional[OperationStatus] = None
+    provision_status: Optional[Schedule_provisionStatus] = None
     # Additional information about why schedule provisioning failed.
     provision_status_code: Optional[str] = None
     # The logical grouping of users in the schedule (usually by role).
     scheduling_groups: Optional[List[SchedulingGroup]] = None
     # The shifts in the schedule.
     shifts: Optional[List[Shift]] = None
+    # Indicates the start day of the week.
+    start_day_of_week: Optional[Schedule_startDayOfWeek] = None
     # The swap requests for shifts in the schedule.
     swap_shifts_change_requests: Optional[List[SwapShiftsChangeRequest]] = None
     # Indicates whether swap shifts requests are enabled for the schedule.
     swap_shifts_requests_enabled: Optional[bool] = None
-    # The timeCards property
+    # The time cards in the schedule.
     time_cards: Optional[List[TimeCard]] = None
     # Indicates whether time clock is enabled for the schedule.
     time_clock_enabled: Optional[bool] = None
-    # The timeClockSettings property
+    # The time clock location settings for this schedule.
     time_clock_settings: Optional[TimeClockSettings] = None
     # The set of reasons for a time off in the schedule.
     time_off_reasons: Optional[List[TimeOffReason]] = None
@@ -64,7 +72,7 @@ class Schedule(Entity):
     time_zone: Optional[str] = None
     # The instances of times off in the schedule.
     times_off: Optional[List[TimeOff]] = None
-    # The workforceIntegrationIds property
+    # The Ids for the workforce integrations associated with this schedule.
     workforce_integration_ids: Optional[List[str]] = None
     
     @staticmethod
@@ -83,11 +91,13 @@ class Schedule(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .day_note import DayNote
         from .entity import Entity
         from .offer_shift_request import OfferShiftRequest
         from .open_shift import OpenShift
         from .open_shift_change_request import OpenShiftChangeRequest
-        from .operation_status import OperationStatus
+        from .schedule_provision_status import Schedule_provisionStatus
+        from .schedule_start_day_of_week import Schedule_startDayOfWeek
         from .scheduling_group import SchedulingGroup
         from .shift import Shift
         from .swap_shifts_change_request import SwapShiftsChangeRequest
@@ -97,11 +107,13 @@ class Schedule(Entity):
         from .time_off_reason import TimeOffReason
         from .time_off_request import TimeOffRequest
 
+        from .day_note import DayNote
         from .entity import Entity
         from .offer_shift_request import OfferShiftRequest
         from .open_shift import OpenShift
         from .open_shift_change_request import OpenShiftChangeRequest
-        from .operation_status import OperationStatus
+        from .schedule_provision_status import Schedule_provisionStatus
+        from .schedule_start_day_of_week import Schedule_startDayOfWeek
         from .scheduling_group import SchedulingGroup
         from .shift import Shift
         from .swap_shifts_change_request import SwapShiftsChangeRequest
@@ -112,16 +124,19 @@ class Schedule(Entity):
         from .time_off_request import TimeOffRequest
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "activitiesIncludedWhenCopyingShiftsEnabled": lambda n : setattr(self, 'activities_included_when_copying_shifts_enabled', n.get_bool_value()),
+            "dayNotes": lambda n : setattr(self, 'day_notes', n.get_collection_of_object_values(DayNote)),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
             "offerShiftRequests": lambda n : setattr(self, 'offer_shift_requests', n.get_collection_of_object_values(OfferShiftRequest)),
             "offerShiftRequestsEnabled": lambda n : setattr(self, 'offer_shift_requests_enabled', n.get_bool_value()),
             "openShiftChangeRequests": lambda n : setattr(self, 'open_shift_change_requests', n.get_collection_of_object_values(OpenShiftChangeRequest)),
             "openShifts": lambda n : setattr(self, 'open_shifts', n.get_collection_of_object_values(OpenShift)),
             "openShiftsEnabled": lambda n : setattr(self, 'open_shifts_enabled', n.get_bool_value()),
-            "provisionStatus": lambda n : setattr(self, 'provision_status', n.get_enum_value(OperationStatus)),
+            "provisionStatus": lambda n : setattr(self, 'provision_status', n.get_enum_value(Schedule_provisionStatus)),
             "provisionStatusCode": lambda n : setattr(self, 'provision_status_code', n.get_str_value()),
             "schedulingGroups": lambda n : setattr(self, 'scheduling_groups', n.get_collection_of_object_values(SchedulingGroup)),
             "shifts": lambda n : setattr(self, 'shifts', n.get_collection_of_object_values(Shift)),
+            "startDayOfWeek": lambda n : setattr(self, 'start_day_of_week', n.get_enum_value(Schedule_startDayOfWeek)),
             "swapShiftsChangeRequests": lambda n : setattr(self, 'swap_shifts_change_requests', n.get_collection_of_object_values(SwapShiftsChangeRequest)),
             "swapShiftsRequestsEnabled": lambda n : setattr(self, 'swap_shifts_requests_enabled', n.get_bool_value()),
             "timeCards": lambda n : setattr(self, 'time_cards', n.get_collection_of_object_values(TimeCard)),
@@ -147,6 +162,8 @@ class Schedule(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_bool_value("activitiesIncludedWhenCopyingShiftsEnabled", self.activities_included_when_copying_shifts_enabled)
+        writer.write_collection_of_object_values("dayNotes", self.day_notes)
         writer.write_bool_value("enabled", self.enabled)
         writer.write_collection_of_object_values("offerShiftRequests", self.offer_shift_requests)
         writer.write_bool_value("offerShiftRequestsEnabled", self.offer_shift_requests_enabled)
@@ -155,6 +172,7 @@ class Schedule(Entity):
         writer.write_bool_value("openShiftsEnabled", self.open_shifts_enabled)
         writer.write_collection_of_object_values("schedulingGroups", self.scheduling_groups)
         writer.write_collection_of_object_values("shifts", self.shifts)
+        writer.write_enum_value("startDayOfWeek", self.start_day_of_week)
         writer.write_collection_of_object_values("swapShiftsChangeRequests", self.swap_shifts_change_requests)
         writer.write_bool_value("swapShiftsRequestsEnabled", self.swap_shifts_requests_enabled)
         writer.write_collection_of_object_values("timeCards", self.time_cards)

@@ -4,8 +4,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .group_privacy import GroupPrivacy
     from .label_action_base import LabelActionBase
+    from .protect_group_privacy import ProtectGroup_privacy
 
 from .label_action_base import LabelActionBase
 
@@ -18,7 +18,7 @@ class ProtectGroup(LabelActionBase):
     # The allowGuestUsers property
     allow_guest_users: Optional[bool] = None
     # The privacy property
-    privacy: Optional[GroupPrivacy] = None
+    privacy: Optional[ProtectGroup_privacy] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProtectGroup:
@@ -36,16 +36,16 @@ class ProtectGroup(LabelActionBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .group_privacy import GroupPrivacy
         from .label_action_base import LabelActionBase
+        from .protect_group_privacy import ProtectGroup_privacy
 
-        from .group_privacy import GroupPrivacy
         from .label_action_base import LabelActionBase
+        from .protect_group_privacy import ProtectGroup_privacy
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowEmailFromGuestUsers": lambda n : setattr(self, 'allow_email_from_guest_users', n.get_bool_value()),
             "allowGuestUsers": lambda n : setattr(self, 'allow_guest_users', n.get_bool_value()),
-            "privacy": lambda n : setattr(self, 'privacy', n.get_enum_value(GroupPrivacy)),
+            "privacy": lambda n : setattr(self, 'privacy', n.get_enum_value(ProtectGroup_privacy)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

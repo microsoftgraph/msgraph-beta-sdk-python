@@ -7,17 +7,17 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .cloud_pc_connection_settings import CloudPcConnectionSettings
     from .cloud_pc_connectivity_result import CloudPcConnectivityResult
-    from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
     from .cloud_pc_login_result import CloudPcLoginResult
-    from .cloud_pc_operating_system import CloudPcOperatingSystem
     from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
-    from .cloud_pc_power_state import CloudPcPowerState
-    from .cloud_pc_provisioning_type import CloudPcProvisioningType
     from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
-    from .cloud_pc_service_plan_type import CloudPcServicePlanType
     from .cloud_pc_status import CloudPcStatus
     from .cloud_pc_status_details import CloudPcStatusDetails
-    from .cloud_pc_user_account_type import CloudPcUserAccountType
+    from .cloud_p_c_disk_encryption_state import CloudPC_diskEncryptionState
+    from .cloud_p_c_os_version import CloudPC_osVersion
+    from .cloud_p_c_power_state import CloudPC_powerState
+    from .cloud_p_c_provisioning_type import CloudPC_provisioningType
+    from .cloud_p_c_service_plan_type import CloudPC_servicePlanType
+    from .cloud_p_c_user_account_type import CloudPC_userAccountType
     from .entity import Entity
 
 from .entity import Entity
@@ -31,7 +31,7 @@ class CloudPC(Entity):
     # The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC can be connected.
     connectivity_result: Optional[CloudPcConnectivityResult] = None
     # The disk encryption applied to the Cloud PC. Possible values: notAvailable, notEncrypted, encryptedUsingPlatformManagedKey, encryptedUsingCustomerManagedKey, and unknownFutureValue.
-    disk_encryption_state: Optional[CloudPcDiskEncryptionState] = None
+    disk_encryption_state: Optional[CloudPC_diskEncryptionState] = None
     # The display name of the Cloud PC.
     display_name: Optional[str] = None
     # The date and time when the grace period ends and reprovisioning or deprovisioning happen. Required only if the status is inGracePeriod. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
@@ -53,29 +53,31 @@ class CloudPC(Entity):
     # The Azure network connection that is applied during the provisioning of Cloud PCs.
     on_premises_connection_name: Optional[str] = None
     # The version of the operating system (OS) to provision on Cloud PCs. Possible values are: windows10, windows11, and unknownFutureValue.
-    os_version: Optional[CloudPcOperatingSystem] = None
+    os_version: Optional[CloudPC_osVersion] = None
     # The results of every partner agent's installation status on Cloud PC.
     partner_agent_install_results: Optional[List[CloudPcPartnerAgentInstallResult]] = None
     # The power state of a Cloud PC. The possible values are: running, poweredOff and unknown. This property only supports shift work Cloud PCs.
-    power_state: Optional[CloudPcPowerState] = None
+    power_state: Optional[CloudPC_powerState] = None
     # The provisioning policy ID of the Cloud PC.
     provisioning_policy_id: Optional[str] = None
     # The provisioning policy that is applied during the provisioning of Cloud PCs.
     provisioning_policy_name: Optional[str] = None
     # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. Default value is dedicated.
-    provisioning_type: Optional[CloudPcProvisioningType] = None
+    provisioning_type: Optional[CloudPC_provisioningType] = None
+    # The scopeIds property
+    scope_ids: Optional[List[str]] = None
     # The service plan ID of the Cloud PC.
     service_plan_id: Optional[str] = None
     # The service plan name of the Cloud PC.
     service_plan_name: Optional[str] = None
     # The service plan type of the Cloud PC.
-    service_plan_type: Optional[CloudPcServicePlanType] = None
+    service_plan_type: Optional[CloudPC_servicePlanType] = None
     # The status property
     status: Optional[CloudPcStatus] = None
     # The details of the Cloud PC status.
     status_details: Optional[CloudPcStatusDetails] = None
     # The account type of the user on provisioned Cloud PCs. Possible values are: standardUser, administrator, and unknownFutureValue.
-    user_account_type: Optional[CloudPcUserAccountType] = None
+    user_account_type: Optional[CloudPC_userAccountType] = None
     # The user principal name (UPN) of the user assigned to the Cloud PC.
     user_principal_name: Optional[str] = None
     
@@ -97,39 +99,39 @@ class CloudPC(Entity):
         """
         from .cloud_pc_connection_settings import CloudPcConnectionSettings
         from .cloud_pc_connectivity_result import CloudPcConnectivityResult
-        from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
         from .cloud_pc_login_result import CloudPcLoginResult
-        from .cloud_pc_operating_system import CloudPcOperatingSystem
         from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
-        from .cloud_pc_power_state import CloudPcPowerState
-        from .cloud_pc_provisioning_type import CloudPcProvisioningType
         from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
-        from .cloud_pc_service_plan_type import CloudPcServicePlanType
         from .cloud_pc_status import CloudPcStatus
         from .cloud_pc_status_details import CloudPcStatusDetails
-        from .cloud_pc_user_account_type import CloudPcUserAccountType
+        from .cloud_p_c_disk_encryption_state import CloudPC_diskEncryptionState
+        from .cloud_p_c_os_version import CloudPC_osVersion
+        from .cloud_p_c_power_state import CloudPC_powerState
+        from .cloud_p_c_provisioning_type import CloudPC_provisioningType
+        from .cloud_p_c_service_plan_type import CloudPC_servicePlanType
+        from .cloud_p_c_user_account_type import CloudPC_userAccountType
         from .entity import Entity
 
         from .cloud_pc_connection_settings import CloudPcConnectionSettings
         from .cloud_pc_connectivity_result import CloudPcConnectivityResult
-        from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
         from .cloud_pc_login_result import CloudPcLoginResult
-        from .cloud_pc_operating_system import CloudPcOperatingSystem
         from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
-        from .cloud_pc_power_state import CloudPcPowerState
-        from .cloud_pc_provisioning_type import CloudPcProvisioningType
         from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
-        from .cloud_pc_service_plan_type import CloudPcServicePlanType
         from .cloud_pc_status import CloudPcStatus
         from .cloud_pc_status_details import CloudPcStatusDetails
-        from .cloud_pc_user_account_type import CloudPcUserAccountType
+        from .cloud_p_c_disk_encryption_state import CloudPC_diskEncryptionState
+        from .cloud_p_c_os_version import CloudPC_osVersion
+        from .cloud_p_c_power_state import CloudPC_powerState
+        from .cloud_p_c_provisioning_type import CloudPC_provisioningType
+        from .cloud_p_c_service_plan_type import CloudPC_servicePlanType
+        from .cloud_p_c_user_account_type import CloudPC_userAccountType
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "aadDeviceId": lambda n : setattr(self, 'aad_device_id', n.get_str_value()),
             "connectionSettings": lambda n : setattr(self, 'connection_settings', n.get_object_value(CloudPcConnectionSettings)),
             "connectivityResult": lambda n : setattr(self, 'connectivity_result', n.get_object_value(CloudPcConnectivityResult)),
-            "diskEncryptionState": lambda n : setattr(self, 'disk_encryption_state', n.get_enum_value(CloudPcDiskEncryptionState)),
+            "diskEncryptionState": lambda n : setattr(self, 'disk_encryption_state', n.get_enum_value(CloudPC_diskEncryptionState)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "gracePeriodEndDateTime": lambda n : setattr(self, 'grace_period_end_date_time', n.get_datetime_value()),
             "imageDisplayName": lambda n : setattr(self, 'image_display_name', n.get_str_value()),
@@ -139,18 +141,19 @@ class CloudPC(Entity):
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
             "managedDeviceName": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
             "onPremisesConnectionName": lambda n : setattr(self, 'on_premises_connection_name', n.get_str_value()),
-            "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(CloudPcOperatingSystem)),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(CloudPC_osVersion)),
             "partnerAgentInstallResults": lambda n : setattr(self, 'partner_agent_install_results', n.get_collection_of_object_values(CloudPcPartnerAgentInstallResult)),
-            "powerState": lambda n : setattr(self, 'power_state', n.get_enum_value(CloudPcPowerState)),
+            "powerState": lambda n : setattr(self, 'power_state', n.get_enum_value(CloudPC_powerState)),
             "provisioningPolicyId": lambda n : setattr(self, 'provisioning_policy_id', n.get_str_value()),
             "provisioningPolicyName": lambda n : setattr(self, 'provisioning_policy_name', n.get_str_value()),
-            "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
+            "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPC_provisioningType)),
+            "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
             "servicePlanId": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
             "servicePlanName": lambda n : setattr(self, 'service_plan_name', n.get_str_value()),
-            "servicePlanType": lambda n : setattr(self, 'service_plan_type', n.get_enum_value(CloudPcServicePlanType)),
+            "servicePlanType": lambda n : setattr(self, 'service_plan_type', n.get_enum_value(CloudPC_servicePlanType)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcStatus)),
             "statusDetails": lambda n : setattr(self, 'status_details', n.get_object_value(CloudPcStatusDetails)),
-            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(CloudPcUserAccountType)),
+            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(CloudPC_userAccountType)),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -185,6 +188,7 @@ class CloudPC(Entity):
         writer.write_str_value("provisioningPolicyId", self.provisioning_policy_id)
         writer.write_str_value("provisioningPolicyName", self.provisioning_policy_name)
         writer.write_enum_value("provisioningType", self.provisioning_type)
+        writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
         writer.write_str_value("servicePlanId", self.service_plan_id)
         writer.write_str_value("servicePlanName", self.service_plan_name)
         writer.write_enum_value("servicePlanType", self.service_plan_type)

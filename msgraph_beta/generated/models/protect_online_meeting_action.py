@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .label_action_base import LabelActionBase
     from .lobby_bypass_settings import LobbyBypassSettings
-    from .online_meeting_forwarders import OnlineMeetingForwarders
-    from .online_meeting_presenters import OnlineMeetingPresenters
+    from .protect_online_meeting_action_allowed_forwarders import ProtectOnlineMeetingAction_allowedForwarders
+    from .protect_online_meeting_action_allowed_presenters import ProtectOnlineMeetingAction_allowedPresenters
 
 from .label_action_base import LabelActionBase
 
@@ -16,9 +16,9 @@ class ProtectOnlineMeetingAction(LabelActionBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.protectOnlineMeetingAction"
     # The allowedForwarders property
-    allowed_forwarders: Optional[OnlineMeetingForwarders] = None
+    allowed_forwarders: Optional[ProtectOnlineMeetingAction_allowedForwarders] = None
     # The allowedPresenters property
-    allowed_presenters: Optional[OnlineMeetingPresenters] = None
+    allowed_presenters: Optional[ProtectOnlineMeetingAction_allowedPresenters] = None
     # The isCopyToClipboardEnabled property
     is_copy_to_clipboard_enabled: Optional[bool] = None
     # The isLobbyEnabled property
@@ -44,17 +44,17 @@ class ProtectOnlineMeetingAction(LabelActionBase):
         """
         from .label_action_base import LabelActionBase
         from .lobby_bypass_settings import LobbyBypassSettings
-        from .online_meeting_forwarders import OnlineMeetingForwarders
-        from .online_meeting_presenters import OnlineMeetingPresenters
+        from .protect_online_meeting_action_allowed_forwarders import ProtectOnlineMeetingAction_allowedForwarders
+        from .protect_online_meeting_action_allowed_presenters import ProtectOnlineMeetingAction_allowedPresenters
 
         from .label_action_base import LabelActionBase
         from .lobby_bypass_settings import LobbyBypassSettings
-        from .online_meeting_forwarders import OnlineMeetingForwarders
-        from .online_meeting_presenters import OnlineMeetingPresenters
+        from .protect_online_meeting_action_allowed_forwarders import ProtectOnlineMeetingAction_allowedForwarders
+        from .protect_online_meeting_action_allowed_presenters import ProtectOnlineMeetingAction_allowedPresenters
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedForwarders": lambda n : setattr(self, 'allowed_forwarders', n.get_enum_value(OnlineMeetingForwarders)),
-            "allowedPresenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(OnlineMeetingPresenters)),
+            "allowedForwarders": lambda n : setattr(self, 'allowed_forwarders', n.get_enum_value(ProtectOnlineMeetingAction_allowedForwarders)),
+            "allowedPresenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(ProtectOnlineMeetingAction_allowedPresenters)),
             "isCopyToClipboardEnabled": lambda n : setattr(self, 'is_copy_to_clipboard_enabled', n.get_bool_value()),
             "isLobbyEnabled": lambda n : setattr(self, 'is_lobby_enabled', n.get_bool_value()),
             "lobbyBypassSettings": lambda n : setattr(self, 'lobby_bypass_settings', n.get_object_value(LobbyBypassSettings)),

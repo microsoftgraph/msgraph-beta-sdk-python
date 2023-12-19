@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .configuration import Configuration
     from .connection_operation import ConnectionOperation
-    from .connection_state import ConnectionState
     from .entity import Entity
+    from .external_connection_state import ExternalConnection_state
     from .external_group import ExternalGroup
     from .external_item import ExternalItem
     from .schema import Schema
@@ -33,7 +33,7 @@ class ExternalConnection(Entity):
     # The schema property
     schema: Optional[Schema] = None
     # The state property
-    state: Optional[ConnectionState] = None
+    state: Optional[ExternalConnection_state] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExternalConnection:
@@ -53,16 +53,16 @@ class ExternalConnection(Entity):
         """
         from .configuration import Configuration
         from .connection_operation import ConnectionOperation
-        from .connection_state import ConnectionState
         from .entity import Entity
+        from .external_connection_state import ExternalConnection_state
         from .external_group import ExternalGroup
         from .external_item import ExternalItem
         from .schema import Schema
 
         from .configuration import Configuration
         from .connection_operation import ConnectionOperation
-        from .connection_state import ConnectionState
         from .entity import Entity
+        from .external_connection_state import ExternalConnection_state
         from .external_group import ExternalGroup
         from .external_item import ExternalItem
         from .schema import Schema
@@ -75,7 +75,7 @@ class ExternalConnection(Entity):
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(ConnectionOperation)),
             "schema": lambda n : setattr(self, 'schema', n.get_object_value(Schema)),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(ConnectionState)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(ExternalConnection_state)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

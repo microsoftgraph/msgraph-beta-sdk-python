@@ -4,13 +4,13 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .android_for_work_certificate_profile_base_subject_alternative_name_type import AndroidForWorkCertificateProfileBase_subjectAlternativeNameType
     from .android_for_work_pkcs_certificate_profile import AndroidForWorkPkcsCertificateProfile
     from .android_for_work_scep_certificate_profile import AndroidForWorkScepCertificateProfile
     from .android_for_work_trusted_root_certificate import AndroidForWorkTrustedRootCertificate
     from .certificate_validity_period_scale import CertificateValidityPeriodScale
     from .device_configuration import DeviceConfiguration
     from .extended_key_usage import ExtendedKeyUsage
-    from .subject_alternative_name_type import SubjectAlternativeNameType
     from .subject_name_format import SubjectNameFormat
 
 from .device_configuration import DeviceConfiguration
@@ -33,7 +33,7 @@ class AndroidForWorkCertificateProfileBase(DeviceConfiguration):
     # Trusted Root Certificate.
     root_certificate: Optional[AndroidForWorkTrustedRootCertificate] = None
     # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
-    subject_alternative_name_type: Optional[SubjectAlternativeNameType] = None
+    subject_alternative_name_type: Optional[AndroidForWorkCertificateProfileBase_subjectAlternativeNameType] = None
     # Subject Name Format Options.
     subject_name_format: Optional[SubjectNameFormat] = None
     
@@ -65,22 +65,22 @@ class AndroidForWorkCertificateProfileBase(DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .android_for_work_certificate_profile_base_subject_alternative_name_type import AndroidForWorkCertificateProfileBase_subjectAlternativeNameType
         from .android_for_work_pkcs_certificate_profile import AndroidForWorkPkcsCertificateProfile
         from .android_for_work_scep_certificate_profile import AndroidForWorkScepCertificateProfile
         from .android_for_work_trusted_root_certificate import AndroidForWorkTrustedRootCertificate
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
         from .device_configuration import DeviceConfiguration
         from .extended_key_usage import ExtendedKeyUsage
-        from .subject_alternative_name_type import SubjectAlternativeNameType
         from .subject_name_format import SubjectNameFormat
 
+        from .android_for_work_certificate_profile_base_subject_alternative_name_type import AndroidForWorkCertificateProfileBase_subjectAlternativeNameType
         from .android_for_work_pkcs_certificate_profile import AndroidForWorkPkcsCertificateProfile
         from .android_for_work_scep_certificate_profile import AndroidForWorkScepCertificateProfile
         from .android_for_work_trusted_root_certificate import AndroidForWorkTrustedRootCertificate
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
         from .device_configuration import DeviceConfiguration
         from .extended_key_usage import ExtendedKeyUsage
-        from .subject_alternative_name_type import SubjectAlternativeNameType
         from .subject_name_format import SubjectNameFormat
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -89,7 +89,7 @@ class AndroidForWorkCertificateProfileBase(DeviceConfiguration):
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
             "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
             "rootCertificate": lambda n : setattr(self, 'root_certificate', n.get_object_value(AndroidForWorkTrustedRootCertificate)),
-            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_collection_of_enum_values(SubjectAlternativeNameType)),
+            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(AndroidForWorkCertificateProfileBase_subjectAlternativeNameType)),
             "subjectNameFormat": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(SubjectNameFormat)),
         }
         super_fields = super().get_field_deserializers()

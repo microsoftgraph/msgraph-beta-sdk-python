@@ -5,7 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .cloud_pc_gallery_image_status import CloudPcGalleryImageStatus
+    from .cloud_pc_gallery_image_status import CloudPcGalleryImage_status
     from .entity import Entity
 
 from .entity import Entity
@@ -24,8 +24,12 @@ class CloudPcGalleryImage(Entity):
     offer: Optional[str] = None
     # The official display offer name of the gallery image. For example, Windows 10 Enterprise + OS Optimizations. Read-only.
     offer_display_name: Optional[str] = None
+    # The offerName property
+    offer_name: Optional[str] = None
     # The publisher name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
     publisher: Optional[str] = None
+    # The publisherName property
+    publisher_name: Optional[str] = None
     # Recommended Cloud PC SKU for this gallery image. Read-only.
     recommended_sku: Optional[str] = None
     # The size of this image in gigabytes. Read-only.
@@ -34,10 +38,12 @@ class CloudPcGalleryImage(Entity):
     sku: Optional[str] = None
     # The official display stock keeping unit (SKU) name of this gallery image. For example, 2004. Read-only.
     sku_display_name: Optional[str] = None
+    # The skuName property
+    sku_name: Optional[str] = None
     # The date when the image becomes available. Read-only.
     start_date: Optional[datetime.date] = None
     # The status of the gallery image on the Cloud PC. Possible values are: supported, supportedWithWarning, notSupported, unknownFutureValue. Read-only.
-    status: Optional[CloudPcGalleryImageStatus] = None
+    status: Optional[CloudPcGalleryImage_status] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcGalleryImage:
@@ -55,10 +61,10 @@ class CloudPcGalleryImage(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .cloud_pc_gallery_image_status import CloudPcGalleryImageStatus
+        from .cloud_pc_gallery_image_status import CloudPcGalleryImage_status
         from .entity import Entity
 
-        from .cloud_pc_gallery_image_status import CloudPcGalleryImageStatus
+        from .cloud_pc_gallery_image_status import CloudPcGalleryImage_status
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -67,13 +73,16 @@ class CloudPcGalleryImage(Entity):
             "expirationDate": lambda n : setattr(self, 'expiration_date', n.get_date_value()),
             "offer": lambda n : setattr(self, 'offer', n.get_str_value()),
             "offerDisplayName": lambda n : setattr(self, 'offer_display_name', n.get_str_value()),
+            "offerName": lambda n : setattr(self, 'offer_name', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
+            "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
             "recommendedSku": lambda n : setattr(self, 'recommended_sku', n.get_str_value()),
             "sizeInGB": lambda n : setattr(self, 'size_in_g_b', n.get_int_value()),
             "sku": lambda n : setattr(self, 'sku', n.get_str_value()),
             "skuDisplayName": lambda n : setattr(self, 'sku_display_name', n.get_str_value()),
+            "skuName": lambda n : setattr(self, 'sku_name', n.get_str_value()),
             "startDate": lambda n : setattr(self, 'start_date', n.get_date_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcGalleryImageStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcGalleryImage_status)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -93,11 +102,14 @@ class CloudPcGalleryImage(Entity):
         writer.write_date_value("expirationDate", self.expiration_date)
         writer.write_str_value("offer", self.offer)
         writer.write_str_value("offerDisplayName", self.offer_display_name)
+        writer.write_str_value("offerName", self.offer_name)
         writer.write_str_value("publisher", self.publisher)
+        writer.write_str_value("publisherName", self.publisher_name)
         writer.write_str_value("recommendedSku", self.recommended_sku)
         writer.write_int_value("sizeInGB", self.size_in_g_b)
         writer.write_str_value("sku", self.sku)
         writer.write_str_value("skuDisplayName", self.sku_display_name)
+        writer.write_str_value("skuName", self.sku_name)
         writer.write_date_value("startDate", self.start_date)
         writer.write_enum_value("status", self.status)
     

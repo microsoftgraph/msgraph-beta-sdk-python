@@ -12,14 +12,14 @@ if TYPE_CHECKING:
     from .file_content_threat_submission import FileContentThreatSubmission
     from .file_threat_submission import FileThreatSubmission
     from .file_url_threat_submission import FileUrlThreatSubmission
-    from .long_running_operation_status import LongRunningOperationStatus
     from .submission_admin_review import SubmissionAdminReview
     from .submission_category import SubmissionCategory
-    from .submission_client_source import SubmissionClientSource
-    from .submission_content_type import SubmissionContentType
     from .submission_result import SubmissionResult
-    from .submission_source import SubmissionSource
     from .submission_user_identity import SubmissionUserIdentity
+    from .threat_submission_client_source import ThreatSubmission_clientSource
+    from .threat_submission_content_type import ThreatSubmission_contentType
+    from .threat_submission_source import ThreatSubmission_source
+    from .threat_submission_status import ThreatSubmission_status
     from .url_threat_submission import UrlThreatSubmission
 
 from ..entity import Entity
@@ -31,9 +31,9 @@ class ThreatSubmission(Entity):
     # The category property
     category: Optional[SubmissionCategory] = None
     # Specifies the source of the submission. The possible values are: microsoft,  other and unkownFutureValue.
-    client_source: Optional[SubmissionClientSource] = None
+    client_source: Optional[ThreatSubmission_clientSource] = None
     # Specifies the type of content being submitted. The possible values are: email, url, file, app and unkownFutureValue.
-    content_type: Optional[SubmissionContentType] = None
+    content_type: Optional[ThreatSubmission_contentType] = None
     # Specifies who submitted the email as a threat. Supports $filter = createdBy/email eq 'value'.
     created_by: Optional[SubmissionUserIdentity] = None
     # Specifies when the threat submission was created. Supports $filter = createdDateTime ge 2022-01-01T00:00:00Z and createdDateTime lt 2022-01-02T00:00:00Z.
@@ -43,9 +43,9 @@ class ThreatSubmission(Entity):
     # Specifies the result of the analysis performed by Microsoft.
     result: Optional[SubmissionResult] = None
     # Specifies the role of the submitter. Supports $filter = source eq 'value'. The possible values are: administrator,  user and unkownFutureValue.
-    source: Optional[SubmissionSource] = None
+    source: Optional[ThreatSubmission_source] = None
     # Indicates whether the threat submission has been analyzed by Microsoft. Supports $filter = status eq 'value'. The possible values are: notStarted, running, succeeded, failed, skipped and unkownFutureValue.
-    status: Optional[LongRunningOperationStatus] = None
+    status: Optional[ThreatSubmission_status] = None
     # Indicates the tenant id of the submitter. Not required when created using a POST operation. It's extracted from the token of the post API call.
     tenant_id: Optional[str] = None
     
@@ -104,14 +104,14 @@ class ThreatSubmission(Entity):
         from .file_content_threat_submission import FileContentThreatSubmission
         from .file_threat_submission import FileThreatSubmission
         from .file_url_threat_submission import FileUrlThreatSubmission
-        from .long_running_operation_status import LongRunningOperationStatus
         from .submission_admin_review import SubmissionAdminReview
         from .submission_category import SubmissionCategory
-        from .submission_client_source import SubmissionClientSource
-        from .submission_content_type import SubmissionContentType
         from .submission_result import SubmissionResult
-        from .submission_source import SubmissionSource
         from .submission_user_identity import SubmissionUserIdentity
+        from .threat_submission_client_source import ThreatSubmission_clientSource
+        from .threat_submission_content_type import ThreatSubmission_contentType
+        from .threat_submission_source import ThreatSubmission_source
+        from .threat_submission_status import ThreatSubmission_status
         from .url_threat_submission import UrlThreatSubmission
 
         from ..entity import Entity
@@ -121,26 +121,26 @@ class ThreatSubmission(Entity):
         from .file_content_threat_submission import FileContentThreatSubmission
         from .file_threat_submission import FileThreatSubmission
         from .file_url_threat_submission import FileUrlThreatSubmission
-        from .long_running_operation_status import LongRunningOperationStatus
         from .submission_admin_review import SubmissionAdminReview
         from .submission_category import SubmissionCategory
-        from .submission_client_source import SubmissionClientSource
-        from .submission_content_type import SubmissionContentType
         from .submission_result import SubmissionResult
-        from .submission_source import SubmissionSource
         from .submission_user_identity import SubmissionUserIdentity
+        from .threat_submission_client_source import ThreatSubmission_clientSource
+        from .threat_submission_content_type import ThreatSubmission_contentType
+        from .threat_submission_source import ThreatSubmission_source
+        from .threat_submission_status import ThreatSubmission_status
         from .url_threat_submission import UrlThreatSubmission
 
         fields: Dict[str, Callable[[Any], None]] = {
             "adminReview": lambda n : setattr(self, 'admin_review', n.get_object_value(SubmissionAdminReview)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(SubmissionCategory)),
-            "clientSource": lambda n : setattr(self, 'client_source', n.get_enum_value(SubmissionClientSource)),
-            "contentType": lambda n : setattr(self, 'content_type', n.get_enum_value(SubmissionContentType)),
+            "clientSource": lambda n : setattr(self, 'client_source', n.get_enum_value(ThreatSubmission_clientSource)),
+            "contentType": lambda n : setattr(self, 'content_type', n.get_enum_value(ThreatSubmission_contentType)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(SubmissionUserIdentity)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "result": lambda n : setattr(self, 'result', n.get_object_value(SubmissionResult)),
-            "source": lambda n : setattr(self, 'source', n.get_enum_value(SubmissionSource)),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(LongRunningOperationStatus)),
+            "source": lambda n : setattr(self, 'source', n.get_enum_value(ThreatSubmission_source)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(ThreatSubmission_status)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from .education_synchronization_data_provider import EducationSynchronizationDataProvider
     from .education_synchronization_error import EducationSynchronizationError
     from .education_synchronization_license_assignment import EducationSynchronizationLicenseAssignment
-    from .education_synchronization_profile_state import EducationSynchronizationProfileState
+    from .education_synchronization_profile_state import EducationSynchronizationProfile_state
     from .education_synchronization_profile_status import EducationSynchronizationProfileStatus
     from .entity import Entity
 
@@ -36,7 +36,7 @@ class EducationSynchronizationProfile(Entity):
     # The synchronization status.
     profile_status: Optional[EducationSynchronizationProfileStatus] = None
     # The state of the profile. Possible values are: provisioning, provisioned, provisioningFailed, deleting, deletionFailed.
-    state: Optional[EducationSynchronizationProfileState] = None
+    state: Optional[EducationSynchronizationProfile_state] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationSynchronizationProfile:
@@ -58,7 +58,7 @@ class EducationSynchronizationProfile(Entity):
         from .education_synchronization_data_provider import EducationSynchronizationDataProvider
         from .education_synchronization_error import EducationSynchronizationError
         from .education_synchronization_license_assignment import EducationSynchronizationLicenseAssignment
-        from .education_synchronization_profile_state import EducationSynchronizationProfileState
+        from .education_synchronization_profile_state import EducationSynchronizationProfile_state
         from .education_synchronization_profile_status import EducationSynchronizationProfileStatus
         from .entity import Entity
 
@@ -66,7 +66,7 @@ class EducationSynchronizationProfile(Entity):
         from .education_synchronization_data_provider import EducationSynchronizationDataProvider
         from .education_synchronization_error import EducationSynchronizationError
         from .education_synchronization_license_assignment import EducationSynchronizationLicenseAssignment
-        from .education_synchronization_profile_state import EducationSynchronizationProfileState
+        from .education_synchronization_profile_state import EducationSynchronizationProfile_state
         from .education_synchronization_profile_status import EducationSynchronizationProfileStatus
         from .entity import Entity
 
@@ -79,7 +79,7 @@ class EducationSynchronizationProfile(Entity):
             "identitySynchronizationConfiguration": lambda n : setattr(self, 'identity_synchronization_configuration', n.get_object_value(EducationIdentitySynchronizationConfiguration)),
             "licensesToAssign": lambda n : setattr(self, 'licenses_to_assign', n.get_collection_of_object_values(EducationSynchronizationLicenseAssignment)),
             "profileStatus": lambda n : setattr(self, 'profile_status', n.get_object_value(EducationSynchronizationProfileStatus)),
-            "state": lambda n : setattr(self, 'state', n.get_enum_value(EducationSynchronizationProfileState)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(EducationSynchronizationProfile_state)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -5,14 +5,14 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .detected_sensitive_content import DetectedSensitiveContent
-    from .ml_classification_match_tolerance import MlClassificationMatchTolerance
+    from .machine_learning_detected_sensitive_content_match_tolerance import MachineLearningDetectedSensitiveContent_matchTolerance
 
 from .detected_sensitive_content import DetectedSensitiveContent
 
 @dataclass
 class MachineLearningDetectedSensitiveContent(DetectedSensitiveContent):
     # The matchTolerance property
-    match_tolerance: Optional[MlClassificationMatchTolerance] = None
+    match_tolerance: Optional[MachineLearningDetectedSensitiveContent_matchTolerance] = None
     # The modelVersion property
     model_version: Optional[str] = None
     # The OdataType property
@@ -35,13 +35,13 @@ class MachineLearningDetectedSensitiveContent(DetectedSensitiveContent):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .detected_sensitive_content import DetectedSensitiveContent
-        from .ml_classification_match_tolerance import MlClassificationMatchTolerance
+        from .machine_learning_detected_sensitive_content_match_tolerance import MachineLearningDetectedSensitiveContent_matchTolerance
 
         from .detected_sensitive_content import DetectedSensitiveContent
-        from .ml_classification_match_tolerance import MlClassificationMatchTolerance
+        from .machine_learning_detected_sensitive_content_match_tolerance import MachineLearningDetectedSensitiveContent_matchTolerance
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "matchTolerance": lambda n : setattr(self, 'match_tolerance', n.get_collection_of_enum_values(MlClassificationMatchTolerance)),
+            "matchTolerance": lambda n : setattr(self, 'match_tolerance', n.get_enum_value(MachineLearningDetectedSensitiveContent_matchTolerance)),
             "modelVersion": lambda n : setattr(self, 'model_version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

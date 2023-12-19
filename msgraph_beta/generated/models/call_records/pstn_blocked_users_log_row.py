@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .pstn_user_block_mode import PstnUserBlockMode
+    from .pstn_blocked_users_log_row_user_block_mode import PstnBlockedUsersLogRow_userBlockMode
 
 @dataclass
 class PstnBlockedUsersLogRow(AdditionalDataHolder, BackedModel, Parsable):
@@ -24,7 +24,7 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, BackedModel, Parsable):
     # Unique identifier (GUID) for the blocking/unblocking action.
     remediation_id: Optional[str] = None
     # Indicates whether the user is blocked or unblocked from making PSTN calls in Microsoft Teams. The possible values are: blocked, unblocked, unknownFutureValue.
-    user_block_mode: Optional[PstnUserBlockMode] = None
+    user_block_mode: Optional[PstnBlockedUsersLogRow_userBlockMode] = None
     # Display name of the user.
     user_display_name: Optional[str] = None
     # The unique identifier (GUID) of the user in Microsoft Entra ID.
@@ -50,16 +50,16 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .pstn_user_block_mode import PstnUserBlockMode
+        from .pstn_blocked_users_log_row_user_block_mode import PstnBlockedUsersLogRow_userBlockMode
 
-        from .pstn_user_block_mode import PstnUserBlockMode
+        from .pstn_blocked_users_log_row_user_block_mode import PstnBlockedUsersLogRow_userBlockMode
 
         fields: Dict[str, Callable[[Any], None]] = {
             "blockDateTime": lambda n : setattr(self, 'block_date_time', n.get_datetime_value()),
             "blockReason": lambda n : setattr(self, 'block_reason', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "remediationId": lambda n : setattr(self, 'remediation_id', n.get_str_value()),
-            "userBlockMode": lambda n : setattr(self, 'user_block_mode', n.get_enum_value(PstnUserBlockMode)),
+            "userBlockMode": lambda n : setattr(self, 'user_block_mode', n.get_enum_value(PstnBlockedUsersLogRow_userBlockMode)),
             "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),

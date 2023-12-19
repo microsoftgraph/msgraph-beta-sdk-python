@@ -9,9 +9,9 @@ if TYPE_CHECKING:
     from ..identity_set import IdentitySet
     from .add_to_review_set_operation import AddToReviewSetOperation
     from .data_source import DataSource
-    from .data_source_scopes import DataSourceScopes
     from .estimate_statistics_operation import EstimateStatisticsOperation
     from .noncustodial_data_source import NoncustodialDataSource
+    from .source_collection_data_source_scopes import SourceCollection_dataSourceScopes
 
 from ..entity import Entity
 
@@ -30,7 +30,7 @@ class SourceCollection(Entity):
     # Custodian sources that are included in the sourceCollection.
     custodian_sources: Optional[List[DataSource]] = None
     # When specified, the collection spans across a service for an entire workload. Possible values are: none, allTenantMailboxes, allTenantSites, allCaseCustodians, allCaseNoncustodialDataSources.
-    data_source_scopes: Optional[DataSourceScopes] = None
+    data_source_scopes: Optional[SourceCollection_dataSourceScopes] = None
     # The description of the sourceCollection.
     description: Optional[str] = None
     # The display name of the sourceCollection.
@@ -66,17 +66,17 @@ class SourceCollection(Entity):
         from ..identity_set import IdentitySet
         from .add_to_review_set_operation import AddToReviewSetOperation
         from .data_source import DataSource
-        from .data_source_scopes import DataSourceScopes
         from .estimate_statistics_operation import EstimateStatisticsOperation
         from .noncustodial_data_source import NoncustodialDataSource
+        from .source_collection_data_source_scopes import SourceCollection_dataSourceScopes
 
         from ..entity import Entity
         from ..identity_set import IdentitySet
         from .add_to_review_set_operation import AddToReviewSetOperation
         from .data_source import DataSource
-        from .data_source_scopes import DataSourceScopes
         from .estimate_statistics_operation import EstimateStatisticsOperation
         from .noncustodial_data_source import NoncustodialDataSource
+        from .source_collection_data_source_scopes import SourceCollection_dataSourceScopes
 
         fields: Dict[str, Callable[[Any], None]] = {
             "addToReviewSetOperation": lambda n : setattr(self, 'add_to_review_set_operation', n.get_object_value(AddToReviewSetOperation)),
@@ -85,7 +85,7 @@ class SourceCollection(Entity):
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "custodianSources": lambda n : setattr(self, 'custodian_sources', n.get_collection_of_object_values(DataSource)),
-            "dataSourceScopes": lambda n : setattr(self, 'data_source_scopes', n.get_collection_of_enum_values(DataSourceScopes)),
+            "dataSourceScopes": lambda n : setattr(self, 'data_source_scopes', n.get_enum_value(SourceCollection_dataSourceScopes)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastEstimateStatisticsOperation": lambda n : setattr(self, 'last_estimate_statistics_operation', n.get_object_value(EstimateStatisticsOperation)),

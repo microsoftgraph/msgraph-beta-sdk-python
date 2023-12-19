@@ -5,8 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .translation_behavior import TranslationBehavior
     from .translation_language_override import TranslationLanguageOverride
+    from .translation_preferences_translation_behavior import TranslationPreferences_translationBehavior
 
 @dataclass
 class TranslationPreferences(AdditionalDataHolder, BackedModel, Parsable):
@@ -20,7 +20,7 @@ class TranslationPreferences(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The user's preferred translation behavior.Returned by default. Not nullable.
-    translation_behavior: Optional[TranslationBehavior] = None
+    translation_behavior: Optional[TranslationPreferences_translationBehavior] = None
     # The list of languages the user does not need translated. This is computed from the authoringLanguages collection in regionalAndLanguageSettings, and the languageOverrides collection in translationPreferences. The list specifies neutral culture values that include the language code without any country or region association. For example, it would specify 'fr' for the neutral French culture, but not 'fr-FR' for the French culture in France. Returned by default. Read only.
     untranslated_languages: Optional[List[str]] = None
     
@@ -40,16 +40,16 @@ class TranslationPreferences(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .translation_behavior import TranslationBehavior
         from .translation_language_override import TranslationLanguageOverride
+        from .translation_preferences_translation_behavior import TranslationPreferences_translationBehavior
 
-        from .translation_behavior import TranslationBehavior
         from .translation_language_override import TranslationLanguageOverride
+        from .translation_preferences_translation_behavior import TranslationPreferences_translationBehavior
 
         fields: Dict[str, Callable[[Any], None]] = {
             "languageOverrides": lambda n : setattr(self, 'language_overrides', n.get_collection_of_object_values(TranslationLanguageOverride)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "translationBehavior": lambda n : setattr(self, 'translation_behavior', n.get_enum_value(TranslationBehavior)),
+            "translationBehavior": lambda n : setattr(self, 'translation_behavior', n.get_enum_value(TranslationPreferences_translationBehavior)),
             "untranslatedLanguages": lambda n : setattr(self, 'untranslated_languages', n.get_collection_of_primitive_values(str)),
         }
         return fields

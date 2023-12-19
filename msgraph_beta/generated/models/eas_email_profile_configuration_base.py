@@ -5,9 +5,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
-    from .domain_name_source import DomainNameSource
+    from .eas_email_profile_configuration_base_username_a_a_d_source import EasEmailProfileConfigurationBase_usernameAADSource
+    from .eas_email_profile_configuration_base_user_domain_name_source import EasEmailProfileConfigurationBase_userDomainNameSource
     from .ios_eas_email_profile_configuration import IosEasEmailProfileConfiguration
-    from .username_source import UsernameSource
     from .user_email_source import UserEmailSource
     from .windows10_eas_email_profile_configuration import Windows10EasEmailProfileConfiguration
     from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
@@ -24,9 +24,9 @@ class EasEmailProfileConfigurationBase(DeviceConfiguration):
     # Custom domain name value used while generating an email profile before installing on the device.
     custom_domain_name: Optional[str] = None
     # UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: fullDomainName, netBiosDomainName.
-    user_domain_name_source: Optional[DomainNameSource] = None
+    user_domain_name_source: Optional[EasEmailProfileConfigurationBase_userDomainNameSource] = None
     # Name of the AAD field, that will be used to retrieve UserName for email profile. Possible values are: userPrincipalName, primarySmtpAddress, samAccountName.
-    username_a_a_d_source: Optional[UsernameSource] = None
+    username_a_a_d_source: Optional[EasEmailProfileConfigurationBase_usernameAADSource] = None
     # Possible values for username source or email source.
     username_source: Optional[UserEmailSource] = None
     
@@ -63,25 +63,25 @@ class EasEmailProfileConfigurationBase(DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
-        from .domain_name_source import DomainNameSource
+        from .eas_email_profile_configuration_base_username_a_a_d_source import EasEmailProfileConfigurationBase_usernameAADSource
+        from .eas_email_profile_configuration_base_user_domain_name_source import EasEmailProfileConfigurationBase_userDomainNameSource
         from .ios_eas_email_profile_configuration import IosEasEmailProfileConfiguration
-        from .username_source import UsernameSource
         from .user_email_source import UserEmailSource
         from .windows10_eas_email_profile_configuration import Windows10EasEmailProfileConfiguration
         from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
 
         from .device_configuration import DeviceConfiguration
-        from .domain_name_source import DomainNameSource
+        from .eas_email_profile_configuration_base_username_a_a_d_source import EasEmailProfileConfigurationBase_usernameAADSource
+        from .eas_email_profile_configuration_base_user_domain_name_source import EasEmailProfileConfigurationBase_userDomainNameSource
         from .ios_eas_email_profile_configuration import IosEasEmailProfileConfiguration
-        from .username_source import UsernameSource
         from .user_email_source import UserEmailSource
         from .windows10_eas_email_profile_configuration import Windows10EasEmailProfileConfiguration
         from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "customDomainName": lambda n : setattr(self, 'custom_domain_name', n.get_str_value()),
-            "userDomainNameSource": lambda n : setattr(self, 'user_domain_name_source', n.get_enum_value(DomainNameSource)),
-            "usernameAADSource": lambda n : setattr(self, 'username_a_a_d_source', n.get_enum_value(UsernameSource)),
+            "userDomainNameSource": lambda n : setattr(self, 'user_domain_name_source', n.get_enum_value(EasEmailProfileConfigurationBase_userDomainNameSource)),
+            "usernameAADSource": lambda n : setattr(self, 'username_a_a_d_source', n.get_enum_value(EasEmailProfileConfigurationBase_usernameAADSource)),
             "usernameSource": lambda n : setattr(self, 'username_source', n.get_enum_value(UserEmailSource)),
         }
         super_fields = super().get_field_deserializers()

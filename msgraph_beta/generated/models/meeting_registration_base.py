@@ -6,16 +6,16 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .external_meeting_registration import ExternalMeetingRegistration
-    from .meeting_audience import MeetingAudience
     from .meeting_registrant_base import MeetingRegistrantBase
     from .meeting_registration import MeetingRegistration
+    from .meeting_registration_base_allowed_registrant import MeetingRegistrationBase_allowedRegistrant
 
 from .entity import Entity
 
 @dataclass
 class MeetingRegistrationBase(Entity):
     # Specifies who can register for the meeting.
-    allowed_registrant: Optional[MeetingAudience] = None
+    allowed_registrant: Optional[MeetingRegistrationBase_allowedRegistrant] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Registrants of the online meeting.
@@ -51,18 +51,18 @@ class MeetingRegistrationBase(Entity):
         """
         from .entity import Entity
         from .external_meeting_registration import ExternalMeetingRegistration
-        from .meeting_audience import MeetingAudience
         from .meeting_registrant_base import MeetingRegistrantBase
         from .meeting_registration import MeetingRegistration
+        from .meeting_registration_base_allowed_registrant import MeetingRegistrationBase_allowedRegistrant
 
         from .entity import Entity
         from .external_meeting_registration import ExternalMeetingRegistration
-        from .meeting_audience import MeetingAudience
         from .meeting_registrant_base import MeetingRegistrantBase
         from .meeting_registration import MeetingRegistration
+        from .meeting_registration_base_allowed_registrant import MeetingRegistrationBase_allowedRegistrant
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "allowedRegistrant": lambda n : setattr(self, 'allowed_registrant', n.get_enum_value(MeetingAudience)),
+            "allowedRegistrant": lambda n : setattr(self, 'allowed_registrant', n.get_enum_value(MeetingRegistrationBase_allowedRegistrant)),
             "registrants": lambda n : setattr(self, 'registrants', n.get_collection_of_object_values(MeetingRegistrantBase)),
         }
         super_fields = super().get_field_deserializers()

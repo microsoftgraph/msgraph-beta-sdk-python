@@ -5,7 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .education_synchronization_status import EducationSynchronizationStatus
+    from .education_synchronization_profile_status_status import EducationSynchronizationProfileStatus_status
     from .entity import Entity
 
 from .entity import Entity
@@ -21,7 +21,7 @@ class EducationSynchronizationProfileStatus(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The status of a sync. The possible values are: paused, inProgress, success, error, validationError, quarantined, unknownFutureValue, extracting, validating. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: extracting, validating.
-    status: Optional[EducationSynchronizationStatus] = None
+    status: Optional[EducationSynchronizationProfileStatus_status] = None
     # Status message for the synchronization stage of the current profile.
     status_message: Optional[str] = None
     
@@ -41,17 +41,17 @@ class EducationSynchronizationProfileStatus(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .education_synchronization_status import EducationSynchronizationStatus
+        from .education_synchronization_profile_status_status import EducationSynchronizationProfileStatus_status
         from .entity import Entity
 
-        from .education_synchronization_status import EducationSynchronizationStatus
+        from .education_synchronization_profile_status_status import EducationSynchronizationProfileStatus_status
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "errorCount": lambda n : setattr(self, 'error_count', n.get_int_value()),
             "lastActivityDateTime": lambda n : setattr(self, 'last_activity_date_time', n.get_datetime_value()),
             "lastSynchronizationDateTime": lambda n : setattr(self, 'last_synchronization_date_time', n.get_datetime_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(EducationSynchronizationStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(EducationSynchronizationProfileStatus_status)),
             "statusMessage": lambda n : setattr(self, 'status_message', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

@@ -11,6 +11,8 @@ class AuthenticationBehaviors(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The blockAzureADGraphAccess property
+    block_azure_a_d_graph_access: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Removes the email claim from tokens sent to an application when the email address's domain can't be verified.
@@ -35,6 +37,7 @@ class AuthenticationBehaviors(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
+            "blockAzureADGraphAccess": lambda n : setattr(self, 'block_azure_a_d_graph_access', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "removeUnverifiedEmailClaim": lambda n : setattr(self, 'remove_unverified_email_claim', n.get_bool_value()),
             "requireClientServicePrincipal": lambda n : setattr(self, 'require_client_service_principal', n.get_bool_value()),
@@ -49,6 +52,7 @@ class AuthenticationBehaviors(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        writer.write_bool_value("blockAzureADGraphAccess", self.block_azure_a_d_graph_access)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bool_value("removeUnverifiedEmailClaim", self.remove_unverified_email_claim)
         writer.write_bool_value("requireClientServicePrincipal", self.require_client_service_principal)

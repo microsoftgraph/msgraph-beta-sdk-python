@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .kerberos_sign_on_mapping_attribute_type import KerberosSignOnMappingAttributeType
+    from .kerberos_sign_on_settings_kerberos_sign_on_mapping_attribute_type import KerberosSignOnSettings_kerberosSignOnMappingAttributeType
 
 @dataclass
 class KerberosSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
@@ -17,7 +17,7 @@ class KerberosSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
     # The Internal Application SPN of the application server. This SPN needs to be in the list of services to which the connector can present delegated credentials.
     kerberos_service_principal_name: Optional[str] = None
     # The Delegated Login Identity for the connector to use on behalf of your users. For more information, see Working with different on-premises and cloud identities . Possible values are: userPrincipalName, onPremisesUserPrincipalName, userPrincipalUsername, onPremisesUserPrincipalUsername, onPremisesSAMAccountName.
-    kerberos_sign_on_mapping_attribute_type: Optional[KerberosSignOnMappingAttributeType] = None
+    kerberos_sign_on_mapping_attribute_type: Optional[KerberosSignOnSettings_kerberosSignOnMappingAttributeType] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -37,13 +37,13 @@ class KerberosSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .kerberos_sign_on_mapping_attribute_type import KerberosSignOnMappingAttributeType
+        from .kerberos_sign_on_settings_kerberos_sign_on_mapping_attribute_type import KerberosSignOnSettings_kerberosSignOnMappingAttributeType
 
-        from .kerberos_sign_on_mapping_attribute_type import KerberosSignOnMappingAttributeType
+        from .kerberos_sign_on_settings_kerberos_sign_on_mapping_attribute_type import KerberosSignOnSettings_kerberosSignOnMappingAttributeType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "kerberosServicePrincipalName": lambda n : setattr(self, 'kerberos_service_principal_name', n.get_str_value()),
-            "kerberosSignOnMappingAttributeType": lambda n : setattr(self, 'kerberos_sign_on_mapping_attribute_type', n.get_enum_value(KerberosSignOnMappingAttributeType)),
+            "kerberosSignOnMappingAttributeType": lambda n : setattr(self, 'kerberos_sign_on_mapping_attribute_type', n.get_enum_value(KerberosSignOnSettings_kerberosSignOnMappingAttributeType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

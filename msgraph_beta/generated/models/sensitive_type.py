@@ -4,17 +4,17 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .classification_method import ClassificationMethod
     from .entity import Entity
-    from .sensitive_type_scope import SensitiveTypeScope
-    from .sensitive_type_source import SensitiveTypeSource
+    from .sensitive_type_classification_method import SensitiveType_classificationMethod
+    from .sensitive_type_scope import SensitiveType_scope
+    from .sensitive_type_sensitive_type_source import SensitiveType_sensitiveTypeSource
 
 from .entity import Entity
 
 @dataclass
 class SensitiveType(Entity):
     # The classificationMethod property
-    classification_method: Optional[ClassificationMethod] = None
+    classification_method: Optional[SensitiveType_classificationMethod] = None
     # The description property
     description: Optional[str] = None
     # The name property
@@ -28,9 +28,9 @@ class SensitiveType(Entity):
     # The rulePackageType property
     rule_package_type: Optional[str] = None
     # The scope property
-    scope: Optional[SensitiveTypeScope] = None
+    scope: Optional[SensitiveType_scope] = None
     # The sensitiveTypeSource property
-    sensitive_type_source: Optional[SensitiveTypeSource] = None
+    sensitive_type_source: Optional[SensitiveType_sensitiveTypeSource] = None
     # The state property
     state: Optional[str] = None
     
@@ -50,25 +50,25 @@ class SensitiveType(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .classification_method import ClassificationMethod
         from .entity import Entity
-        from .sensitive_type_scope import SensitiveTypeScope
-        from .sensitive_type_source import SensitiveTypeSource
+        from .sensitive_type_classification_method import SensitiveType_classificationMethod
+        from .sensitive_type_scope import SensitiveType_scope
+        from .sensitive_type_sensitive_type_source import SensitiveType_sensitiveTypeSource
 
-        from .classification_method import ClassificationMethod
         from .entity import Entity
-        from .sensitive_type_scope import SensitiveTypeScope
-        from .sensitive_type_source import SensitiveTypeSource
+        from .sensitive_type_classification_method import SensitiveType_classificationMethod
+        from .sensitive_type_scope import SensitiveType_scope
+        from .sensitive_type_sensitive_type_source import SensitiveType_sensitiveTypeSource
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(ClassificationMethod)),
+            "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(SensitiveType_classificationMethod)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
             "rulePackageId": lambda n : setattr(self, 'rule_package_id', n.get_str_value()),
             "rulePackageType": lambda n : setattr(self, 'rule_package_type', n.get_str_value()),
-            "scope": lambda n : setattr(self, 'scope', n.get_collection_of_enum_values(SensitiveTypeScope)),
-            "sensitiveTypeSource": lambda n : setattr(self, 'sensitive_type_source', n.get_enum_value(SensitiveTypeSource)),
+            "scope": lambda n : setattr(self, 'scope', n.get_enum_value(SensitiveType_scope)),
+            "sensitiveTypeSource": lambda n : setattr(self, 'sensitive_type_source', n.get_enum_value(SensitiveType_sensitiveTypeSource)),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

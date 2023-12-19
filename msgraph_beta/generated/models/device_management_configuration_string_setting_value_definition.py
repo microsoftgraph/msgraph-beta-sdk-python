@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_configuration_setting_value_definition import DeviceManagementConfigurationSettingValueDefinition
-    from .device_management_configuration_string_format import DeviceManagementConfigurationStringFormat
+    from .device_management_configuration_string_setting_value_definition_format import DeviceManagementConfigurationStringSettingValueDefinition_format
 
 from .device_management_configuration_setting_value_definition import DeviceManagementConfigurationSettingValueDefinition
 
@@ -18,15 +18,15 @@ class DeviceManagementConfigurationStringSettingValueDefinition(DeviceManagement
     odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition"
     # Supported file types for this setting.
     file_types: Optional[List[str]] = None
-    # Pre-defined format of the string. Possible values are: none, email, guid, ip, base64, url, version, xml, date, time, binary, regEx, json, dateTime, surfaceHub.
-    format: Optional[DeviceManagementConfigurationStringFormat] = None
+    # Pre-defined format of the string. Possible values are: none, email, guid, ip, base64, url, version, xml, date, time, binary, regEx, json, dateTime, surfaceHub, bashScript, unknownFutureValue.
+    format: Optional[DeviceManagementConfigurationStringSettingValueDefinition_format] = None
     # Regular expression or any xml or json schema that the input string should match
     input_validation_schema: Optional[str] = None
     # Specifies whether the setting needs to be treated as a secret. Settings marked as yes will be encrypted in transit and at rest and will be displayed as asterisks when represented in the UX.
     is_secret: Optional[bool] = None
-    # Maximum length of string
+    # Maximum length of string. Valid values 0 to 87516
     maximum_length: Optional[int] = None
-    # Minimum length of string
+    # Minimum length of string. Valid values 0 to 87516
     minimum_length: Optional[int] = None
     
     @staticmethod
@@ -46,14 +46,14 @@ class DeviceManagementConfigurationStringSettingValueDefinition(DeviceManagement
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_configuration_setting_value_definition import DeviceManagementConfigurationSettingValueDefinition
-        from .device_management_configuration_string_format import DeviceManagementConfigurationStringFormat
+        from .device_management_configuration_string_setting_value_definition_format import DeviceManagementConfigurationStringSettingValueDefinition_format
 
         from .device_management_configuration_setting_value_definition import DeviceManagementConfigurationSettingValueDefinition
-        from .device_management_configuration_string_format import DeviceManagementConfigurationStringFormat
+        from .device_management_configuration_string_setting_value_definition_format import DeviceManagementConfigurationStringSettingValueDefinition_format
 
         fields: Dict[str, Callable[[Any], None]] = {
             "fileTypes": lambda n : setattr(self, 'file_types', n.get_collection_of_primitive_values(str)),
-            "format": lambda n : setattr(self, 'format', n.get_enum_value(DeviceManagementConfigurationStringFormat)),
+            "format": lambda n : setattr(self, 'format', n.get_enum_value(DeviceManagementConfigurationStringSettingValueDefinition_format)),
             "inputValidationSchema": lambda n : setattr(self, 'input_validation_schema', n.get_str_value()),
             "isSecret": lambda n : setattr(self, 'is_secret', n.get_bool_value()),
             "maximumLength": lambda n : setattr(self, 'maximum_length', n.get_int_value()),

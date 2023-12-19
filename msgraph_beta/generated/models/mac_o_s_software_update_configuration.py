@@ -6,8 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .custom_update_time_window import CustomUpdateTimeWindow
     from .device_configuration import DeviceConfiguration
-    from .mac_o_s_priority import MacOSPriority
     from .mac_o_s_software_update_behavior import MacOSSoftwareUpdateBehavior
+    from .mac_o_s_software_update_configuration_priority import MacOSSoftwareUpdateConfiguration_priority
     from .mac_o_s_software_update_schedule_type import MacOSSoftwareUpdateScheduleType
 
 from .device_configuration import DeviceConfiguration
@@ -32,7 +32,7 @@ class MacOSSoftwareUpdateConfiguration(DeviceConfiguration):
     # The maximum number of times the system allows the user to postpone an update before it’s installed. Supported values: 0 - 366. Valid values 0 to 365
     max_user_deferrals_count: Optional[int] = None
     # The scheduling priority for downloading and preparing the requested update. Default: Low. Possible values: Null, Low, High. Possible values are: low, high, unknownFutureValue.
-    priority: Optional[MacOSPriority] = None
+    priority: Optional[MacOSSoftwareUpdateConfiguration_priority] = None
     # Update schedule type for macOS software updates.
     update_schedule_type: Optional[MacOSSoftwareUpdateScheduleType] = None
     # Minutes indicating UTC offset for each update time window
@@ -56,14 +56,14 @@ class MacOSSoftwareUpdateConfiguration(DeviceConfiguration):
         """
         from .custom_update_time_window import CustomUpdateTimeWindow
         from .device_configuration import DeviceConfiguration
-        from .mac_o_s_priority import MacOSPriority
         from .mac_o_s_software_update_behavior import MacOSSoftwareUpdateBehavior
+        from .mac_o_s_software_update_configuration_priority import MacOSSoftwareUpdateConfiguration_priority
         from .mac_o_s_software_update_schedule_type import MacOSSoftwareUpdateScheduleType
 
         from .custom_update_time_window import CustomUpdateTimeWindow
         from .device_configuration import DeviceConfiguration
-        from .mac_o_s_priority import MacOSPriority
         from .mac_o_s_software_update_behavior import MacOSSoftwareUpdateBehavior
+        from .mac_o_s_software_update_configuration_priority import MacOSSoftwareUpdateConfiguration_priority
         from .mac_o_s_software_update_schedule_type import MacOSSoftwareUpdateScheduleType
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -73,7 +73,7 @@ class MacOSSoftwareUpdateConfiguration(DeviceConfiguration):
             "customUpdateTimeWindows": lambda n : setattr(self, 'custom_update_time_windows', n.get_collection_of_object_values(CustomUpdateTimeWindow)),
             "firmwareUpdateBehavior": lambda n : setattr(self, 'firmware_update_behavior', n.get_enum_value(MacOSSoftwareUpdateBehavior)),
             "maxUserDeferralsCount": lambda n : setattr(self, 'max_user_deferrals_count', n.get_int_value()),
-            "priority": lambda n : setattr(self, 'priority', n.get_enum_value(MacOSPriority)),
+            "priority": lambda n : setattr(self, 'priority', n.get_enum_value(MacOSSoftwareUpdateConfiguration_priority)),
             "updateScheduleType": lambda n : setattr(self, 'update_schedule_type', n.get_enum_value(MacOSSoftwareUpdateScheduleType)),
             "updateTimeWindowUtcOffsetInMinutes": lambda n : setattr(self, 'update_time_window_utc_offset_in_minutes', n.get_int_value()),
         }

@@ -4,9 +4,9 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .certificate_store import CertificateStore
     from .custom_subject_alternative_name import CustomSubjectAlternativeName
     from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+    from .mac_o_s_pkcs_certificate_profile_certificate_store import MacOSPkcsCertificateProfile_certificateStore
     from .managed_device_certificate_state import ManagedDeviceCertificateState
 
 from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
@@ -21,7 +21,7 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase):
     # AllowAllAppsAccess setting
     allow_all_apps_access: Optional[bool] = None
     # Target store certificate. Possible values are: user, machine.
-    certificate_store: Optional[CertificateStore] = None
+    certificate_store: Optional[MacOSPkcsCertificateProfile_certificateStore] = None
     # PKCS certificate template name.
     certificate_template_name: Optional[str] = None
     # PKCS certification authority FQDN.
@@ -53,19 +53,19 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+        from .mac_o_s_pkcs_certificate_profile_certificate_store import MacOSPkcsCertificateProfile_certificateStore
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+        from .mac_o_s_pkcs_certificate_profile_certificate_store import MacOSPkcsCertificateProfile_certificateStore
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowAllAppsAccess": lambda n : setattr(self, 'allow_all_apps_access', n.get_bool_value()),
-            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(MacOSPkcsCertificateProfile_certificateStore)),
             "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
             "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
             "certificationAuthorityName": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),

@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from .education_outcome import EducationOutcome
     from .education_submission_recipient import EducationSubmissionRecipient
     from .education_submission_resource import EducationSubmissionResource
-    from .education_submission_status import EducationSubmissionStatus
+    from .education_submission_status import EducationSubmission_status
     from .entity import Entity
     from .identity_set import IdentitySet
 
@@ -16,6 +16,10 @@ from .entity import Entity
 
 @dataclass
 class EducationSubmission(Entity):
+    # The excusedBy property
+    excused_by: Optional[IdentitySet] = None
+    # The excusedDateTime property
+    excused_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The outcomes property
@@ -35,7 +39,7 @@ class EducationSubmission(Entity):
     # Moment in time when the submission was returned. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     returned_date_time: Optional[datetime.datetime] = None
     # Read-only. Possible values are: working, submitted, returned, unknownFutureValue and reassigned. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: reassigned.
-    status: Optional[EducationSubmissionStatus] = None
+    status: Optional[EducationSubmission_status] = None
     # User who moved the resource into the submitted state.
     submitted_by: Optional[IdentitySet] = None
     # Moment in time when the submission was moved into the submitted state. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
@@ -68,18 +72,20 @@ class EducationSubmission(Entity):
         from .education_outcome import EducationOutcome
         from .education_submission_recipient import EducationSubmissionRecipient
         from .education_submission_resource import EducationSubmissionResource
-        from .education_submission_status import EducationSubmissionStatus
+        from .education_submission_status import EducationSubmission_status
         from .entity import Entity
         from .identity_set import IdentitySet
 
         from .education_outcome import EducationOutcome
         from .education_submission_recipient import EducationSubmissionRecipient
         from .education_submission_resource import EducationSubmissionResource
-        from .education_submission_status import EducationSubmissionStatus
+        from .education_submission_status import EducationSubmission_status
         from .entity import Entity
         from .identity_set import IdentitySet
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "excusedBy": lambda n : setattr(self, 'excused_by', n.get_object_value(IdentitySet)),
+            "excusedDateTime": lambda n : setattr(self, 'excused_date_time', n.get_datetime_value()),
             "outcomes": lambda n : setattr(self, 'outcomes', n.get_collection_of_object_values(EducationOutcome)),
             "reassignedBy": lambda n : setattr(self, 'reassigned_by', n.get_object_value(IdentitySet)),
             "reassignedDateTime": lambda n : setattr(self, 'reassigned_date_time', n.get_datetime_value()),
@@ -88,7 +94,7 @@ class EducationSubmission(Entity):
             "resourcesFolderUrl": lambda n : setattr(self, 'resources_folder_url', n.get_str_value()),
             "returnedBy": lambda n : setattr(self, 'returned_by', n.get_object_value(IdentitySet)),
             "returnedDateTime": lambda n : setattr(self, 'returned_date_time', n.get_datetime_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(EducationSubmissionStatus)),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(EducationSubmission_status)),
             "submittedBy": lambda n : setattr(self, 'submitted_by', n.get_object_value(IdentitySet)),
             "submittedDateTime": lambda n : setattr(self, 'submitted_date_time', n.get_datetime_value()),
             "submittedResources": lambda n : setattr(self, 'submitted_resources', n.get_collection_of_object_values(EducationSubmissionResource)),

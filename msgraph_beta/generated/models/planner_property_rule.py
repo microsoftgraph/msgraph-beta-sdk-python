@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .planner_rule_kind import PlannerRuleKind
+    from .planner_property_rule_rule_kind import PlannerPropertyRule_ruleKind
     from .planner_task_property_rule import PlannerTaskPropertyRule
 
 @dataclass
@@ -18,7 +18,7 @@ class PlannerPropertyRule(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Identifies which type of property rules is represented by this instance. The possible values are: taskRule, bucketRule, planRule, unknownFutureValue.
-    rule_kind: Optional[PlannerRuleKind] = None
+    rule_kind: Optional[PlannerPropertyRule_ruleKind] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerPropertyRule:
@@ -44,15 +44,15 @@ class PlannerPropertyRule(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .planner_rule_kind import PlannerRuleKind
+        from .planner_property_rule_rule_kind import PlannerPropertyRule_ruleKind
         from .planner_task_property_rule import PlannerTaskPropertyRule
 
-        from .planner_rule_kind import PlannerRuleKind
+        from .planner_property_rule_rule_kind import PlannerPropertyRule_ruleKind
         from .planner_task_property_rule import PlannerTaskPropertyRule
 
         fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "ruleKind": lambda n : setattr(self, 'rule_kind', n.get_enum_value(PlannerRuleKind)),
+            "ruleKind": lambda n : setattr(self, 'rule_kind', n.get_enum_value(PlannerPropertyRule_ruleKind)),
         }
         return fields
     
