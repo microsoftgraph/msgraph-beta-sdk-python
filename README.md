@@ -43,6 +43,8 @@ credential = EnvironmentCredential()
 client = GraphServiceClient(credential, scopes=scopes)
 ```
 
+> **Note**: Refer to the [following documentation page](https://learn.microsoft.com/graph/sdks/customize-client?tabs=python#configuring-the-http-proxy-for-the-client) if you need to configure an HTTP proxy.
+
 ## 3. Make requests against the service
 
 After you have a **GraphServiceClient** that is authenticated, you can begin making calls against the service. The requests against the service look like our [REST API](https://docs.microsoft.com/graph/api/overview?view=graph-rest-1.0).
