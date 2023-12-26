@@ -17,6 +17,8 @@ class BookingSchedulingPolicy(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # True if to allow customers to choose a specific person for the booking.
     allow_staff_selection: Optional[bool] = None
+    # Enable sending meeting invite to customers.
+    is_meeting_invite_to_customers_enabled: Optional[bool] = None
     # Maximum number of days in advance that a booking can be made. It follows the ISO 8601 format.
     maximum_advance: Optional[datetime.timedelta] = None
     # The minimum amount of time before which bookings and cancellations must be made. It follows the ISO 8601 format.
@@ -46,6 +48,7 @@ class BookingSchedulingPolicy(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "allowStaffSelection": lambda n : setattr(self, 'allow_staff_selection', n.get_bool_value()),
+            "isMeetingInviteToCustomersEnabled": lambda n : setattr(self, 'is_meeting_invite_to_customers_enabled', n.get_bool_value()),
             "maximumAdvance": lambda n : setattr(self, 'maximum_advance', n.get_timedelta_value()),
             "minimumLeadTime": lambda n : setattr(self, 'minimum_lead_time', n.get_timedelta_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -63,6 +66,7 @@ class BookingSchedulingPolicy(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("allowStaffSelection", self.allow_staff_selection)
+        writer.write_bool_value("isMeetingInviteToCustomersEnabled", self.is_meeting_invite_to_customers_enabled)
         writer.write_timedelta_value("maximumAdvance", self.maximum_advance)
         writer.write_timedelta_value("minimumLeadTime", self.minimum_lead_time)
         writer.write_str_value("@odata.type", self.odata_type)

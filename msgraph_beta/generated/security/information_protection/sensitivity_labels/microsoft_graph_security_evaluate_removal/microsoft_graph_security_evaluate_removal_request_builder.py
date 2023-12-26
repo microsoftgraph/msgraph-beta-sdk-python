@@ -29,7 +29,7 @@ class MicrosoftGraphSecurityEvaluateRemovalRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[EvaluateRemovalPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphSecurityEvaluateRemovalRequestBuilderPostRequestConfiguration] = None) -> Optional[EvaluateRemovalPostResponse]:
         """
-        Indicate to the consuming application what actions it should take to remove the label information. Given contentInfo as an input, which includes existing content metadata key-value pairs, the API returns an informationProtectionAction that contains some combination of one or more of the following:  This API is available in the following national cloud deployments.
+        Indicate to the consuming application what actions it should take to remove the label information. Given contentInfo as an input, which includes existing content metadata key-value pairs, the API returns an informationProtectionAction that contains some combination of one or more of the following: 
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EvaluateRemovalPostResponse]
@@ -54,7 +54,7 @@ class MicrosoftGraphSecurityEvaluateRemovalRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[EvaluateRemovalPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphSecurityEvaluateRemovalRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Indicate to the consuming application what actions it should take to remove the label information. Given contentInfo as an input, which includes existing content metadata key-value pairs, the API returns an informationProtectionAction that contains some combination of one or more of the following:  This API is available in the following national cloud deployments.
+        Indicate to the consuming application what actions it should take to remove the label information. Given contentInfo as an input, which includes existing content metadata key-value pairs, the API returns an informationProtectionAction that contains some combination of one or more of the following: 
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -68,7 +68,7 @@ class MicrosoftGraphSecurityEvaluateRemovalRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

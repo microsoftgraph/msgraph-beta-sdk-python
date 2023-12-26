@@ -100,6 +100,7 @@ if TYPE_CHECKING:
     from ..notification_message_template import NotificationMessageTemplate
     from ..on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
     from ..privilege_management_elevation import PrivilegeManagementElevation
+    from ..privilege_management_elevation_request import PrivilegeManagementElevationRequest
     from ..remote_action_audit import RemoteActionAudit
     from ..remote_assistance_partner import RemoteAssistancePartner
     from ..remote_assistance_settings import RemoteAssistanceSettings
@@ -294,6 +295,8 @@ class DeviceManagement(Entity):
     device_shell_scripts: Optional[List[DeviceShellScript]] = None
     # A list of connector objects.
     domain_join_connectors: Optional[List[DeviceManagementDomainJoinConnector]] = None
+    # List of elevation requests
+    elevation_requests: Optional[List[PrivilegeManagementElevationRequest]] = None
     # The embedded SIM activation code pools created by this account.
     embedded_s_i_m_activation_code_pools: Optional[List[EmbeddedSIMActivationCodePool]] = None
     # The list of Exchange Connectors configured by the tenant.
@@ -653,6 +656,7 @@ class DeviceManagement(Entity):
         from ..notification_message_template import NotificationMessageTemplate
         from ..on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
         from ..privilege_management_elevation import PrivilegeManagementElevation
+        from ..privilege_management_elevation_request import PrivilegeManagementElevationRequest
         from ..remote_action_audit import RemoteActionAudit
         from ..remote_assistance_partner import RemoteAssistancePartner
         from ..remote_assistance_settings import RemoteAssistanceSettings
@@ -820,6 +824,7 @@ class DeviceManagement(Entity):
         from ..notification_message_template import NotificationMessageTemplate
         from ..on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
         from ..privilege_management_elevation import PrivilegeManagementElevation
+        from ..privilege_management_elevation_request import PrivilegeManagementElevationRequest
         from ..remote_action_audit import RemoteActionAudit
         from ..remote_assistance_partner import RemoteAssistancePartner
         from ..remote_assistance_settings import RemoteAssistanceSettings
@@ -951,6 +956,7 @@ class DeviceManagement(Entity):
             "deviceProtectionOverview": lambda n : setattr(self, 'device_protection_overview', n.get_object_value(DeviceProtectionOverview)),
             "deviceShellScripts": lambda n : setattr(self, 'device_shell_scripts', n.get_collection_of_object_values(DeviceShellScript)),
             "domainJoinConnectors": lambda n : setattr(self, 'domain_join_connectors', n.get_collection_of_object_values(DeviceManagementDomainJoinConnector)),
+            "elevationRequests": lambda n : setattr(self, 'elevation_requests', n.get_collection_of_object_values(PrivilegeManagementElevationRequest)),
             "embeddedSIMActivationCodePools": lambda n : setattr(self, 'embedded_s_i_m_activation_code_pools', n.get_collection_of_object_values(EmbeddedSIMActivationCodePool)),
             "exchangeConnectors": lambda n : setattr(self, 'exchange_connectors', n.get_collection_of_object_values(DeviceManagementExchangeConnector)),
             "exchangeOnPremisesPolicies": lambda n : setattr(self, 'exchange_on_premises_policies', n.get_collection_of_object_values(DeviceManagementExchangeOnPremisesPolicy)),
@@ -1144,6 +1150,7 @@ class DeviceManagement(Entity):
         writer.write_object_value("deviceProtectionOverview", self.device_protection_overview)
         writer.write_collection_of_object_values("deviceShellScripts", self.device_shell_scripts)
         writer.write_collection_of_object_values("domainJoinConnectors", self.domain_join_connectors)
+        writer.write_collection_of_object_values("elevationRequests", self.elevation_requests)
         writer.write_collection_of_object_values("embeddedSIMActivationCodePools", self.embedded_s_i_m_activation_code_pools)
         writer.write_collection_of_object_values("exchangeConnectors", self.exchange_connectors)
         writer.write_collection_of_object_values("exchangeOnPremisesPolicies", self.exchange_on_premises_policies)

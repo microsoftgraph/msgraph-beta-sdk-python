@@ -7,4 +7,5 @@ class AlertRuleTemplate(str, Enum):
     UnknownFutureValue = "unknownFutureValue",
     CloudPcInGracePeriodScenario = "cloudPcInGracePeriodScenario",
     CloudPcFrontlineInsufficientLicensesScenario = "cloudPcFrontlineInsufficientLicensesScenario",
+    CloudPcInaccessibleScenario = "cloudPcInaccessibleScenario",
 

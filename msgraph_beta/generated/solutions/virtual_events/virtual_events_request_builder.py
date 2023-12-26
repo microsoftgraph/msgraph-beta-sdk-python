@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.virtual_events_root import VirtualEventsRoot
     from .events.events_request_builder import EventsRequestBuilder
+    from .townhalls.townhalls_request_builder import TownhallsRequestBuilder
     from .webinars.webinars_request_builder import WebinarsRequestBuilder
 
 class VirtualEventsRequestBuilder(BaseRequestBuilder):
@@ -105,7 +106,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[VirtualEventsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -122,7 +123,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[VirtualEventsRoot] = None, request_configuration: Optional[VirtualEventsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -141,7 +142,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -163,6 +164,15 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
         from .events.events_request_builder import EventsRequestBuilder
 
         return EventsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def townhalls(self) -> TownhallsRequestBuilder:
+        """
+        Provides operations to manage the townhalls property of the microsoft.graph.virtualEventsRoot entity.
+        """
+        from .townhalls.townhalls_request_builder import TownhallsRequestBuilder
+
+        return TownhallsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def webinars(self) -> WebinarsRequestBuilder:

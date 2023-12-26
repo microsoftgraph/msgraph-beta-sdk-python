@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .cloud_pc_management_service import CloudPcManagementService
     from .cloud_pc_on_premises_connection_status import CloudPcOnPremisesConnectionStatus
+    from .cloud_pc_on_premises_connection_status_detail import CloudPcOnPremisesConnectionStatusDetail
     from .cloud_pc_on_premises_connection_status_details import CloudPcOnPremisesConnectionStatusDetails
     from .cloud_pc_on_premises_connection_type import CloudPcOnPremisesConnectionType
     from .entity import Entity
@@ -22,10 +23,14 @@ class CloudPcOnPremisesConnection(Entity):
     ad_domain_username: Optional[str] = None
     # The interface URL of the partner service's resource that links to this Azure network connection. Returned only on $select.
     alternate_resource_url: Optional[str] = None
+    # The connectionType property
+    connection_type: Optional[CloudPcOnPremisesConnectionType] = None
     # The display name for the Azure network connection.
     display_name: Optional[str] = None
     # The healthCheckStatus property
     health_check_status: Optional[CloudPcOnPremisesConnectionStatus] = None
+    # The healthCheckStatusDetail property
+    health_check_status_detail: Optional[CloudPcOnPremisesConnectionStatusDetail] = None
     # The details of the connection's health checks and the corresponding results. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
     health_check_status_details: Optional[CloudPcOnPremisesConnectionStatusDetails] = None
     # When true, the Azure network connection is in use. When false, the connection isn't in use. You can't delete a connection that’s in use. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
@@ -38,6 +43,8 @@ class CloudPcOnPremisesConnection(Entity):
     organizational_unit: Optional[str] = None
     # The ID of the target resource group. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}.
     resource_group_id: Optional[str] = None
+    # The scopeIds property
+    scope_ids: Optional[List[str]] = None
     # The ID of the target subnet. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkId}/subnets/{subnetName}.
     subnet_id: Optional[str] = None
     # The ID of the target Azure subscription that’s associated with your tenant.
@@ -69,12 +76,14 @@ class CloudPcOnPremisesConnection(Entity):
         """
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_on_premises_connection_status import CloudPcOnPremisesConnectionStatus
+        from .cloud_pc_on_premises_connection_status_detail import CloudPcOnPremisesConnectionStatusDetail
         from .cloud_pc_on_premises_connection_status_details import CloudPcOnPremisesConnectionStatusDetails
         from .cloud_pc_on_premises_connection_type import CloudPcOnPremisesConnectionType
         from .entity import Entity
 
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_on_premises_connection_status import CloudPcOnPremisesConnectionStatus
+        from .cloud_pc_on_premises_connection_status_detail import CloudPcOnPremisesConnectionStatusDetail
         from .cloud_pc_on_premises_connection_status_details import CloudPcOnPremisesConnectionStatusDetails
         from .cloud_pc_on_premises_connection_type import CloudPcOnPremisesConnectionType
         from .entity import Entity
@@ -84,13 +93,16 @@ class CloudPcOnPremisesConnection(Entity):
             "adDomainPassword": lambda n : setattr(self, 'ad_domain_password', n.get_str_value()),
             "adDomainUsername": lambda n : setattr(self, 'ad_domain_username', n.get_str_value()),
             "alternateResourceUrl": lambda n : setattr(self, 'alternate_resource_url', n.get_str_value()),
+            "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(CloudPcOnPremisesConnectionType)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "healthCheckStatus": lambda n : setattr(self, 'health_check_status', n.get_enum_value(CloudPcOnPremisesConnectionStatus)),
+            "healthCheckStatusDetail": lambda n : setattr(self, 'health_check_status_detail', n.get_object_value(CloudPcOnPremisesConnectionStatusDetail)),
             "healthCheckStatusDetails": lambda n : setattr(self, 'health_check_status_details', n.get_object_value(CloudPcOnPremisesConnectionStatusDetails)),
             "inUse": lambda n : setattr(self, 'in_use', n.get_bool_value()),
             "managedBy": lambda n : setattr(self, 'managed_by', n.get_collection_of_enum_values(CloudPcManagementService)),
             "organizationalUnit": lambda n : setattr(self, 'organizational_unit', n.get_str_value()),
             "resourceGroupId": lambda n : setattr(self, 'resource_group_id', n.get_str_value()),
+            "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
             "subnetId": lambda n : setattr(self, 'subnet_id', n.get_str_value()),
             "subscriptionId": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
             "subscriptionName": lambda n : setattr(self, 'subscription_name', n.get_str_value()),
@@ -115,13 +127,16 @@ class CloudPcOnPremisesConnection(Entity):
         writer.write_str_value("adDomainPassword", self.ad_domain_password)
         writer.write_str_value("adDomainUsername", self.ad_domain_username)
         writer.write_str_value("alternateResourceUrl", self.alternate_resource_url)
+        writer.write_enum_value("connectionType", self.connection_type)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("healthCheckStatus", self.health_check_status)
+        writer.write_object_value("healthCheckStatusDetail", self.health_check_status_detail)
         writer.write_object_value("healthCheckStatusDetails", self.health_check_status_details)
         writer.write_bool_value("inUse", self.in_use)
         writer.write_enum_value("managedBy", self.managed_by)
         writer.write_str_value("organizationalUnit", self.organizational_unit)
         writer.write_str_value("resourceGroupId", self.resource_group_id)
+        writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
         writer.write_str_value("subnetId", self.subnet_id)
         writer.write_str_value("subscriptionId", self.subscription_id)
         writer.write_str_value("subscriptionName", self.subscription_name)

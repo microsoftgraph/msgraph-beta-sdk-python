@@ -58,7 +58,7 @@ class PendingAccessReviewInstancesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessReviewInstanceCollectionResponse]:
         """
-        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer. This API is available in the following national cloud deployments.
+        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewInstanceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/accessreviewinstance-pendingaccessreviewinstances?view=graph-rest-1.0
@@ -104,7 +104,7 @@ class PendingAccessReviewInstancesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer. This API is available in the following national cloud deployments.
+        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +116,7 @@ class PendingAccessReviewInstancesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[AccessReviewInstance] = None, request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -135,7 +135,7 @@ class PendingAccessReviewInstancesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -161,7 +161,7 @@ class PendingAccessReviewInstancesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PendingAccessReviewInstancesRequestBuilderGetQueryParameters():
         """
-        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer. This API is available in the following national cloud deployments.
+        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

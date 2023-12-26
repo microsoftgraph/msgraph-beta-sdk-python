@@ -28,7 +28,7 @@ class AttachmentItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[AttachmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an attachment from a user calendar event, message, Outlook task, or post. This API is available in the following national cloud deployments.
+        Delete an attachment from a user calendar event, message, Outlook task, or post.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/attachment-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class AttachmentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AttachmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Attachment]:
         """
-        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. This API is available in the following national cloud deployments.
+        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Attachment]
         Find more info here: https://learn.microsoft.com/graph/api/attachment-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class AttachmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[AttachmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an attachment from a user calendar event, message, Outlook task, or post. This API is available in the following national cloud deployments.
+        Delete an attachment from a user calendar event, message, Outlook task, or post.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -81,12 +81,12 @@ class AttachmentItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[AttachmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. This API is available in the following national cloud deployments.
+        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,7 +98,7 @@ class AttachmentItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> AttachmentItemRequestBuilder:
@@ -124,7 +124,7 @@ class AttachmentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AttachmentItemRequestBuilderGetQueryParameters():
         """
-        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource. This API is available in the following national cloud deployments.
+        Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, Outlook task, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -28,7 +28,7 @@ class MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder(BaseRequestBuilde
     
     async def post(self,request_configuration: Optional[MicrosoftGraphManagedTenantsOffboardTenantRequestBuilderPostRequestConfiguration] = None) -> Optional[Tenant]:
         """
-        Carries out the appropriate procedures to remove a managed tenant from the multitenant management platform. No relationships, such as commerce and delegate administrative privileges, will be impacted. The only change made by invoking this action is the tenant will be deprovisioned from the multitenant management platform. This API is available in the following national cloud deployments.
+        Carries out the appropriate procedures to remove a managed tenant from the multitenant management platform. No relationships, such as commerce and delegate administrative privileges, will be impacted. The only change made by invoking this action is the tenant will be deprovisioned from the multitenant management platform.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Tenant]
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenant-offboardtenant?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder(BaseRequestBuilde
     
     def to_post_request_information(self,request_configuration: Optional[MicrosoftGraphManagedTenantsOffboardTenantRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Carries out the appropriate procedures to remove a managed tenant from the multitenant management platform. No relationships, such as commerce and delegate administrative privileges, will be impacted. The only change made by invoking this action is the tenant will be deprovisioned from the multitenant management platform. This API is available in the following national cloud deployments.
+        Carries out the appropriate procedures to remove a managed tenant from the multitenant management platform. No relationships, such as commerce and delegate administrative privileges, will be impacted. The only change made by invoking this action is the tenant will be deprovisioned from the multitenant management platform.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +61,7 @@ class MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder(BaseRequestBuilde
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder:

@@ -29,7 +29,7 @@ class BulkRestoreCloudPcRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[BulkRestoreCloudPcPostRequestBody] = None, request_configuration: Optional[BulkRestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcBulkRemoteActionResult]:
         """
-        Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time. This API is available in the following national cloud deployments.
+        Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcBulkRemoteActionResult]
@@ -54,7 +54,7 @@ class BulkRestoreCloudPcRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[BulkRestoreCloudPcPostRequestBody] = None, request_configuration: Optional[BulkRestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time. This API is available in the following national cloud deployments.
+        Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -68,7 +68,7 @@ class BulkRestoreCloudPcRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

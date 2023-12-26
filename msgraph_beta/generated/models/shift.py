@@ -13,13 +13,13 @@ from .change_tracked_entity import ChangeTrackedEntity
 class Shift(ChangeTrackedEntity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.shift"
-    # The draft version of this shift that is viewable by managers. Required.
+    # Draft changes in the shift are only visible to managers until they are shared.
     draft_shift: Optional[ShiftItem] = None
-    # The isStagedForDeletion property
+    # The shift is marked for deletion, a process that is finalized when the schedule is shared.
     is_staged_for_deletion: Optional[bool] = None
     # ID of the scheduling group the shift is part of. Required.
     scheduling_group_id: Optional[str] = None
-    # The shared version of this shift that is viewable by both employees and managers. Required.
+    # The shared version of this shift that is viewable by both employees and managers.
     shared_shift: Optional[ShiftItem] = None
     # ID of the user assigned to the shift. Required.
     user_id: Optional[str] = None

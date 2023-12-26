@@ -13,11 +13,11 @@ class TicketInfo(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The ticketApproverIdentityId property
+    # ID for the request approver.
     ticket_approver_identity_id: Optional[str] = None
     # The ticket number.
     ticket_number: Optional[str] = None
-    # The ticketSubmitterIdentityId property
+    # ID for the request submitter.
     ticket_submitter_identity_id: Optional[str] = None
     # The description of the ticket system.
     ticket_system: Optional[str] = None

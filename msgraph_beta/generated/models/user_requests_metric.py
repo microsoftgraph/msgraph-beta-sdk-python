@@ -11,11 +11,11 @@ from .entity import Entity
 
 @dataclass
 class UserRequestsMetric(Entity):
-    # The factDate property
+    # The date of the user insight.
     fact_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The requestCount property
+    # Number of requests to the tenant. Supports $filter (eq).
     request_count: Optional[int] = None
     
     @staticmethod

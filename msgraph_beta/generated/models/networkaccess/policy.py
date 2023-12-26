@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .filtering_policy import FilteringPolicy
     from .forwarding_policy import ForwardingPolicy
     from .policy_rule import PolicyRule
 
@@ -36,6 +37,10 @@ class Policy(Entity):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringPolicy".casefold():
+            from .filtering_policy import FilteringPolicy
+
+            return FilteringPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingPolicy".casefold():
             from .forwarding_policy import ForwardingPolicy
 
@@ -48,10 +53,12 @@ class Policy(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .filtering_policy import FilteringPolicy
         from .forwarding_policy import ForwardingPolicy
         from .policy_rule import PolicyRule
 
         from ..entity import Entity
+        from .filtering_policy import FilteringPolicy
         from .forwarding_policy import ForwardingPolicy
         from .policy_rule import PolicyRule
 

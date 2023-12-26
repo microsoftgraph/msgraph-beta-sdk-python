@@ -28,7 +28,7 @@ class SetCloudPcReviewStatusRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SetCloudPcReviewStatusPostRequestBody] = None, request_configuration: Optional[SetCloudPcReviewStatusRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Set the review status of a specific Cloud PC device. Use this API to set the review status of a Cloud PC to in review if you consider a Cloud PC as suspicious. After the review is completed, use this API again to set the Cloud PC back to a normal state. This API is available in the following national cloud deployments.
+        Set the review status of a specific Cloud PC device. Use this API to set the review status of a Cloud PC to in review if you consider a Cloud PC as suspicious. After the review is completed, use this API again to set the Cloud PC back to a normal state.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class SetCloudPcReviewStatusRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SetCloudPcReviewStatusPostRequestBody] = None, request_configuration: Optional[SetCloudPcReviewStatusRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Set the review status of a specific Cloud PC device. Use this API to set the review status of a Cloud PC to in review if you consider a Cloud PC as suspicious. After the review is completed, use this API again to set the Cloud PC back to a normal state. This API is available in the following national cloud deployments.
+        Set the review status of a specific Cloud PC device. Use this API to set the review status of a Cloud PC to in review if you consider a Cloud PC as suspicious. After the review is completed, use this API again to set the Cloud PC back to a normal state.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -65,7 +65,7 @@ class SetCloudPcReviewStatusRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

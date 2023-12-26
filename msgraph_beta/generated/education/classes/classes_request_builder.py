@@ -46,7 +46,7 @@ class ClassesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ClassesRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationClassCollectionResponse]:
         """
-        Retrieve a list of all class objects.  This API is available in the following national cloud deployments.
+        Retrieve a list of all class objects. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationClassCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/educationroot-list-classes?view=graph-rest-1.0
@@ -68,7 +68,7 @@ class ClassesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[EducationClass] = None, request_configuration: Optional[ClassesRequestBuilderPostRequestConfiguration] = None) -> Optional[EducationClass]:
         """
-        Create a new class. This will also create a universal group. When you use this API to create a class, it will add special properties to the group, which willadd features such as assignments and special handling within Microsoft Teams when teams are created using the group. Please note that this API only creates the universal group and does not create a team. Microsoft Teams provides a user interface for teachers to create teams for their own classes using the groups created by this API. This API is available in the following national cloud deployments.
+        Create a new class. This will also create a universal group. When you use this API to create a class, it will add special properties to the group, which willadd features such as assignments and special handling within Microsoft Teams when teams are created using the group. Please note that this API only creates the universal group and does not create a team. Microsoft Teams provides a user interface for teachers to create teams for their own classes using the groups created by this API.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationClass]
@@ -93,7 +93,7 @@ class ClassesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ClassesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of all class objects.  This API is available in the following national cloud deployments.
+        Retrieve a list of all class objects. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,12 +105,12 @@ class ClassesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[EducationClass] = None, request_configuration: Optional[ClassesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new class. This will also create a universal group. When you use this API to create a class, it will add special properties to the group, which willadd features such as assignments and special handling within Microsoft Teams when teams are created using the group. Please note that this API only creates the universal group and does not create a team. Microsoft Teams provides a user interface for teachers to create teams for their own classes using the groups created by this API. This API is available in the following national cloud deployments.
+        Create a new class. This will also create a universal group. When you use this API to create a class, it will add special properties to the group, which willadd features such as assignments and special handling within Microsoft Teams when teams are created using the group. Please note that this API only creates the universal group and does not create a team. Microsoft Teams provides a user interface for teachers to create teams for their own classes using the groups created by this API.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -124,7 +124,7 @@ class ClassesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -159,7 +159,7 @@ class ClassesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ClassesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of all class objects.  This API is available in the following national cloud deployments.
+        Retrieve a list of all class objects. 
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

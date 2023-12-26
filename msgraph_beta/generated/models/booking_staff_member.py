@@ -1,4 +1,5 @@
 from __future__ import annotations
+import datetime
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -20,8 +21,12 @@ class BookingStaffMember(BookingPerson):
     availability_is_affected_by_personal_calendar: Optional[bool] = None
     # Identifies a color to represent the staff member. The color corresponds to the color palette in the Staff details page in the Bookings app.
     color_index: Optional[int] = None
+    # The createdDateTime property
+    created_date_time: Optional[datetime.datetime] = None
     # True indicates that a staff member will be notified via email when a booking assigned to them is created or changed.
     is_email_notification_enabled: Optional[bool] = None
+    # The lastUpdatedDateTime property
+    last_updated_date_time: Optional[datetime.datetime] = None
     # The membershipStatus property
     membership_status: Optional[BookingStaffMembershipStatus] = None
     # The OdataType property
@@ -64,7 +69,9 @@ class BookingStaffMember(BookingPerson):
         fields: Dict[str, Callable[[Any], None]] = {
             "availabilityIsAffectedByPersonalCalendar": lambda n : setattr(self, 'availability_is_affected_by_personal_calendar', n.get_bool_value()),
             "colorIndex": lambda n : setattr(self, 'color_index', n.get_int_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "isEmailNotificationEnabled": lambda n : setattr(self, 'is_email_notification_enabled', n.get_bool_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "membershipStatus": lambda n : setattr(self, 'membership_status', n.get_enum_value(BookingStaffMembershipStatus)),
             "role": lambda n : setattr(self, 'role', n.get_enum_value(BookingStaffRole)),
             "timeZone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
@@ -86,7 +93,9 @@ class BookingStaffMember(BookingPerson):
         super().serialize(writer)
         writer.write_bool_value("availabilityIsAffectedByPersonalCalendar", self.availability_is_affected_by_personal_calendar)
         writer.write_int_value("colorIndex", self.color_index)
+        writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_bool_value("isEmailNotificationEnabled", self.is_email_notification_enabled)
+        writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_enum_value("membershipStatus", self.membership_status)
         writer.write_enum_value("role", self.role)
         writer.write_str_value("timeZone", self.time_zone)

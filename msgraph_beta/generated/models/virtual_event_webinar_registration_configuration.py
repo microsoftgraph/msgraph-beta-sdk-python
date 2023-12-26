@@ -10,12 +10,12 @@ from .virtual_event_registration_configuration import VirtualEventRegistrationCo
 
 @dataclass
 class VirtualEventWebinarRegistrationConfiguration(VirtualEventRegistrationConfiguration):
-    # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.virtualEventWebinarRegistrationConfiguration"
     # The isManualApprovalEnabled property
     is_manual_approval_enabled: Optional[bool] = None
     # The isWaitlistEnabled property
     is_waitlist_enabled: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VirtualEventWebinarRegistrationConfiguration:

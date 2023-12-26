@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from .aosp_device_owner_enterprise_wi_fi_configuration import AospDeviceOwnerEnterpriseWiFiConfiguration
     from .aosp_device_owner_wi_fi_security_type import AospDeviceOwnerWiFiSecurityType
     from .device_configuration import DeviceConfiguration
+    from .wi_fi_proxy_setting import WiFiProxySetting
 
 from .device_configuration import DeviceConfiguration
 
@@ -27,6 +28,16 @@ class AospDeviceOwnerWiFiConfiguration(DeviceConfiguration):
     pre_shared_key: Optional[str] = None
     # This is the pre-shared key for WPA Personal Wi-Fi network.
     pre_shared_key_is_set: Optional[bool] = None
+    # Specify the proxy server configuration script URL.
+    proxy_automatic_configuration_url: Optional[str] = None
+    # List of hosts to exclude using the proxy on connections for. These hosts can use wildcards such as *.example.com.
+    proxy_exclusion_list: Optional[List[str]] = None
+    # Specify the proxy server IP address. Both IPv4 and IPv6 addresses are supported. For example: 192.168.1.1.
+    proxy_manual_address: Optional[str] = None
+    # Specify the proxy server port.
+    proxy_manual_port: Optional[int] = None
+    # Wi-Fi Proxy Settings.
+    proxy_setting: Optional[WiFiProxySetting] = None
     # This is the name of the Wi-Fi network that is broadcast to all devices.
     ssid: Optional[str] = None
     # Wi-Fi Security Types for AOSP Device Owner.
@@ -59,10 +70,12 @@ class AospDeviceOwnerWiFiConfiguration(DeviceConfiguration):
         from .aosp_device_owner_enterprise_wi_fi_configuration import AospDeviceOwnerEnterpriseWiFiConfiguration
         from .aosp_device_owner_wi_fi_security_type import AospDeviceOwnerWiFiSecurityType
         from .device_configuration import DeviceConfiguration
+        from .wi_fi_proxy_setting import WiFiProxySetting
 
         from .aosp_device_owner_enterprise_wi_fi_configuration import AospDeviceOwnerEnterpriseWiFiConfiguration
         from .aosp_device_owner_wi_fi_security_type import AospDeviceOwnerWiFiSecurityType
         from .device_configuration import DeviceConfiguration
+        from .wi_fi_proxy_setting import WiFiProxySetting
 
         fields: Dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
@@ -70,6 +83,11 @@ class AospDeviceOwnerWiFiConfiguration(DeviceConfiguration):
             "networkName": lambda n : setattr(self, 'network_name', n.get_str_value()),
             "preSharedKey": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
             "preSharedKeyIsSet": lambda n : setattr(self, 'pre_shared_key_is_set', n.get_bool_value()),
+            "proxyAutomaticConfigurationUrl": lambda n : setattr(self, 'proxy_automatic_configuration_url', n.get_str_value()),
+            "proxyExclusionList": lambda n : setattr(self, 'proxy_exclusion_list', n.get_collection_of_primitive_values(str)),
+            "proxyManualAddress": lambda n : setattr(self, 'proxy_manual_address', n.get_str_value()),
+            "proxyManualPort": lambda n : setattr(self, 'proxy_manual_port', n.get_int_value()),
+            "proxySetting": lambda n : setattr(self, 'proxy_setting', n.get_enum_value(WiFiProxySetting)),
             "ssid": lambda n : setattr(self, 'ssid', n.get_str_value()),
             "wiFiSecurityType": lambda n : setattr(self, 'wi_fi_security_type', n.get_enum_value(AospDeviceOwnerWiFiSecurityType)),
         }
@@ -91,6 +109,11 @@ class AospDeviceOwnerWiFiConfiguration(DeviceConfiguration):
         writer.write_str_value("networkName", self.network_name)
         writer.write_str_value("preSharedKey", self.pre_shared_key)
         writer.write_bool_value("preSharedKeyIsSet", self.pre_shared_key_is_set)
+        writer.write_str_value("proxyAutomaticConfigurationUrl", self.proxy_automatic_configuration_url)
+        writer.write_collection_of_primitive_values("proxyExclusionList", self.proxy_exclusion_list)
+        writer.write_str_value("proxyManualAddress", self.proxy_manual_address)
+        writer.write_int_value("proxyManualPort", self.proxy_manual_port)
+        writer.write_enum_value("proxySetting", self.proxy_setting)
         writer.write_str_value("ssid", self.ssid)
         writer.write_enum_value("wiFiSecurityType", self.wi_fi_security_type)
     

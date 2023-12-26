@@ -11,27 +11,27 @@ from .entity import Entity
 
 @dataclass
 class InsightSummary(Entity):
-    # The activeUsers property
+    # Daily active users.
     active_users: Optional[int] = None
-    # The appId property
+    # The ID of the Microsoft Entra application.
     app_id: Optional[str] = None
-    # The authenticationCompletions property
+    # Daily authentication completions.
     authentication_completions: Optional[int] = None
-    # The authenticationRequests property
+    # Daily authentication requests.
     authentication_requests: Optional[int] = None
-    # The factDate property
+    # The date of the insight.
     fact_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The os property
+    # The platform for the device that the customers used. Supports $filter (eq).
     os: Optional[str] = None
-    # The securityTextCompletions property
+    # Daily MFA SMS completions.
     security_text_completions: Optional[int] = None
-    # The securityTextRequests property
+    # Daily MFA SMS requests.
     security_text_requests: Optional[int] = None
-    # The securityVoiceCompletions property
+    # Daily MFA Voice completions.
     security_voice_completions: Optional[int] = None
-    # The securityVoiceRequests property
+    # Daily MFA Voice requests.
     security_voice_requests: Optional[int] = None
     
     @staticmethod

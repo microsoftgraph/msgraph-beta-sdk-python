@@ -15,6 +15,8 @@ class PlannerTaskPropertyRule(PlannerPropertyRule):
     odata_type: Optional[str] = "#microsoft.graph.plannerTaskPropertyRule"
     # Rules and restrictions for applied categories. This value does not currently support overrides. Accepted values for the default rule and individual overrides are allow, block.
     applied_categories: Optional[PlannerFieldRules] = None
+    # The approvalAttachment property
+    approval_attachment: Optional[PlannerFieldRules] = None
     # Rules and restrictions for assignments. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, addSelf, addOther, remove, removeSelf, removeOther, block.
     assignments: Optional[PlannerFieldRules] = None
     # Rules and restrictions for checklist. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, update, check, reorder, block.
@@ -25,6 +27,8 @@ class PlannerTaskPropertyRule(PlannerPropertyRule):
     delete: Optional[List[str]] = None
     # Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
     due_date: Optional[List[str]] = None
+    # The forms property
+    forms: Optional[PlannerFieldRules] = None
     # Rules and restrictions for moving the task between buckets or plans. Accepted values are allow, moveBetweenPlans, moveBetweenBuckets, and block.
     move: Optional[List[str]] = None
     # Rules and restrictions for changing the notes of the task. Accepted values are allow and block.
@@ -68,11 +72,13 @@ class PlannerTaskPropertyRule(PlannerPropertyRule):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appliedCategories": lambda n : setattr(self, 'applied_categories', n.get_object_value(PlannerFieldRules)),
+            "approvalAttachment": lambda n : setattr(self, 'approval_attachment', n.get_object_value(PlannerFieldRules)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_object_value(PlannerFieldRules)),
             "checkLists": lambda n : setattr(self, 'check_lists', n.get_object_value(PlannerFieldRules)),
             "completionRequirements": lambda n : setattr(self, 'completion_requirements', n.get_collection_of_primitive_values(str)),
             "delete": lambda n : setattr(self, 'delete', n.get_collection_of_primitive_values(str)),
             "dueDate": lambda n : setattr(self, 'due_date', n.get_collection_of_primitive_values(str)),
+            "forms": lambda n : setattr(self, 'forms', n.get_object_value(PlannerFieldRules)),
             "move": lambda n : setattr(self, 'move', n.get_collection_of_primitive_values(str)),
             "notes": lambda n : setattr(self, 'notes', n.get_collection_of_primitive_values(str)),
             "order": lambda n : setattr(self, 'order', n.get_collection_of_primitive_values(str)),
@@ -97,11 +103,13 @@ class PlannerTaskPropertyRule(PlannerPropertyRule):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("appliedCategories", self.applied_categories)
+        writer.write_object_value("approvalAttachment", self.approval_attachment)
         writer.write_object_value("assignments", self.assignments)
         writer.write_object_value("checkLists", self.check_lists)
         writer.write_collection_of_primitive_values("completionRequirements", self.completion_requirements)
         writer.write_collection_of_primitive_values("delete", self.delete)
         writer.write_collection_of_primitive_values("dueDate", self.due_date)
+        writer.write_object_value("forms", self.forms)
         writer.write_collection_of_primitive_values("move", self.move)
         writer.write_collection_of_primitive_values("notes", self.notes)
         writer.write_collection_of_primitive_values("order", self.order)

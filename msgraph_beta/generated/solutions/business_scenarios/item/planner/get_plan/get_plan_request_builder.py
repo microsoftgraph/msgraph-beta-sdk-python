@@ -29,7 +29,7 @@ class GetPlanRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GetPlanPostRequestBody] = None, request_configuration: Optional[GetPlanRequestBuilderPostRequestConfiguration] = None) -> Optional[BusinessScenarioPlanReference]:
         """
-        Get information about the plannerPlan mapped to a given target. If a plannerPlan doesn't exist for the specified target at the time of the request, a new plan will be created for the businessScenario. This API is available in the following national cloud deployments.
+        Get information about the plannerPlan mapped to a given target. If a plannerPlan doesn't exist for the specified target at the time of the request, a new plan will be created for the businessScenario.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenarioPlanReference]
@@ -54,7 +54,7 @@ class GetPlanRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GetPlanPostRequestBody] = None, request_configuration: Optional[GetPlanRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Get information about the plannerPlan mapped to a given target. If a plannerPlan doesn't exist for the specified target at the time of the request, a new plan will be created for the businessScenario. This API is available in the following national cloud deployments.
+        Get information about the plannerPlan mapped to a given target. If a plannerPlan doesn't exist for the specified target at the time of the request, a new plan will be created for the businessScenario.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -68,7 +68,7 @@ class GetPlanRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

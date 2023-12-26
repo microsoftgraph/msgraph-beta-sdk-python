@@ -10,7 +10,7 @@ from .entity import Entity
 
 @dataclass
 class PronounsSettings(Entity):
-    # true to enable pronouns in the organization, false otherwise. The default is false, and pronouns are disabled.
+    # true to enable pronouns in the organization; otherwise, false. The default value is false, and pronouns are disabled.
     is_enabled_in_organization: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

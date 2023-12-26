@@ -35,9 +35,10 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[TeamworkRequestBuilderGetRequestConfiguration] = None) -> Optional[Teamwork]:
         """
-        Get teamwork
+        Get the properties and relationships of a teamwork object, such as the region of the organization and whether Microsoft Teams is enabled.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Teamwork]
+        Find more info here: https://learn.microsoft.com/graph/api/teamwork-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -80,7 +81,7 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[TeamworkRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get teamwork
+        Get the properties and relationships of a teamwork object, such as the region of the organization and whether Microsoft Teams is enabled.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -92,7 +93,7 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Teamwork] = None, request_configuration: Optional[TeamworkRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -111,7 +112,7 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -191,7 +192,7 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamworkRequestBuilderGetQueryParameters():
         """
-        Get teamwork
+        Get the properties and relationships of a teamwork object, such as the region of the organization and whether Microsoft Teams is enabled.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

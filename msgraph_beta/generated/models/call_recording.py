@@ -14,7 +14,7 @@ from .entity import Entity
 class CallRecording(Entity):
     # The content of the recording. Read-only.
     content: Optional[bytes] = None
-    # Date and time at which the recording was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+    # Date and time at which the recording was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     created_date_time: Optional[datetime.datetime] = None
     # The unique identifier of the onlineMeeting related to this recording. Read-only.
     meeting_id: Optional[str] = None

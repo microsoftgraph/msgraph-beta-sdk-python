@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .dynamics.dynamics_request_builder import DynamicsRequestBuilder
     from .edge.edge_request_builder import EdgeRequestBuilder
     from .forms.forms_request_builder import FormsRequestBuilder
+    from .microsoft365_apps.microsoft365_apps_request_builder import Microsoft365AppsRequestBuilder
     from .people.people_request_builder import PeopleRequestBuilder
     from .report_settings.report_settings_request_builder import ReportSettingsRequestBuilder
     from .service_announcement.service_announcement_request_builder import ServiceAnnouncementRequestBuilder
@@ -95,7 +96,7 @@ class AdminRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Admin] = None, request_configuration: Optional[AdminRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -114,7 +115,7 @@ class AdminRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -163,6 +164,15 @@ class AdminRequestBuilder(BaseRequestBuilder):
         from .forms.forms_request_builder import FormsRequestBuilder
 
         return FormsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft365_apps(self) -> Microsoft365AppsRequestBuilder:
+        """
+        Provides operations to manage the microsoft365Apps property of the microsoft.graph.admin entity.
+        """
+        from .microsoft365_apps.microsoft365_apps_request_builder import Microsoft365AppsRequestBuilder
+
+        return Microsoft365AppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def people(self) -> PeopleRequestBuilder:
