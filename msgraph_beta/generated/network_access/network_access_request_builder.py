@@ -13,6 +13,8 @@ if TYPE_CHECKING:
     from ..models.networkaccess.network_access_root import NetworkAccessRoot
     from ..models.o_data_errors.o_data_error import ODataError
     from .connectivity.connectivity_request_builder import ConnectivityRequestBuilder
+    from .filtering_policies.filtering_policies_request_builder import FilteringPoliciesRequestBuilder
+    from .filtering_profiles.filtering_profiles_request_builder import FilteringProfilesRequestBuilder
     from .forwarding_policies.forwarding_policies_request_builder import ForwardingPoliciesRequestBuilder
     from .forwarding_profiles.forwarding_profiles_request_builder import ForwardingProfilesRequestBuilder
     from .logs.logs_request_builder import LogsRequestBuilder
@@ -93,7 +95,7 @@ class NetworkAccessRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[NetworkAccessRoot] = None, request_configuration: Optional[NetworkAccessRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -112,7 +114,7 @@ class NetworkAccessRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -134,6 +136,24 @@ class NetworkAccessRequestBuilder(BaseRequestBuilder):
         from .connectivity.connectivity_request_builder import ConnectivityRequestBuilder
 
         return ConnectivityRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def filtering_policies(self) -> FilteringPoliciesRequestBuilder:
+        """
+        Provides operations to manage the filteringPolicies property of the microsoft.graph.networkaccess.networkAccessRoot entity.
+        """
+        from .filtering_policies.filtering_policies_request_builder import FilteringPoliciesRequestBuilder
+
+        return FilteringPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def filtering_profiles(self) -> FilteringProfilesRequestBuilder:
+        """
+        Provides operations to manage the filteringProfiles property of the microsoft.graph.networkaccess.networkAccessRoot entity.
+        """
+        from .filtering_profiles.filtering_profiles_request_builder import FilteringProfilesRequestBuilder
+
+        return FilteringProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def forwarding_policies(self) -> ForwardingPoliciesRequestBuilder:

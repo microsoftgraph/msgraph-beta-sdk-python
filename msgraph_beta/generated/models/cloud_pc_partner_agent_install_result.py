@@ -23,7 +23,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
     is_third_party_partner: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The name of the partner agent, whether first party or third party. Possible values for third-party partners are Citrix and VMware. Read-Only.
+    # The name of the first-party or third-party partner agent. Possible values for third-party partners are Citrix, VMware and HP. Read-Only.
     partner_agent_name: Optional[CloudPcPartnerAgentName] = None
     # Indicates if the partner agent is a third party. When 'TRUE' the agent is a third-party (non-Microsoft) agent and when 'FALSE' the agent is a Microsoft agent or isn't known. The default value is 'FALSE'
     retriable: Optional[bool] = None

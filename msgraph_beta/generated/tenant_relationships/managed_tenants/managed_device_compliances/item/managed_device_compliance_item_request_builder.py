@@ -47,7 +47,7 @@ class ManagedDeviceComplianceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ManagedDeviceComplianceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedDeviceCompliance]:
         """
-        Read the properties and relationships of a managedDeviceCompliance object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a managedDeviceCompliance object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagedDeviceCompliance]
         Find more info here: https://learn.microsoft.com/graph/api/managedtenants-manageddevicecompliance-get?view=graph-rest-1.0
@@ -104,12 +104,12 @@ class ManagedDeviceComplianceItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[ManagedDeviceComplianceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a managedDeviceCompliance object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a managedDeviceCompliance object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -121,7 +121,7 @@ class ManagedDeviceComplianceItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[ManagedDeviceCompliance] = None, request_configuration: Optional[ManagedDeviceComplianceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -140,7 +140,7 @@ class ManagedDeviceComplianceItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -167,7 +167,7 @@ class ManagedDeviceComplianceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ManagedDeviceComplianceItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a managedDeviceCompliance object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a managedDeviceCompliance object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

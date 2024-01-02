@@ -33,4 +33,9 @@ class RecommendationType(str, Enum):
     ManagedIdentity = "managedIdentity",
     OverprivilegedApps = "overprivilegedApps",
     UnknownFutureValue = "unknownFutureValue",
+    LongLivedCredentials = "longLivedCredentials",
+    AadConnectDeprecated = "aadConnectDeprecated",
+    AdalToMsalMigration = "adalToMsalMigration",
+    OwnerlessApps = "ownerlessApps",
+    InactiveGuests = "inactiveGuests",
 

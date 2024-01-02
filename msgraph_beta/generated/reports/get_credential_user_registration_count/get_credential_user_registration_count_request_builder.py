@@ -28,7 +28,7 @@ class GetCredentialUserRegistrationCountRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[GetCredentialUserRegistrationCountRequestBuilderGetRequestConfiguration] = None) -> Optional[GetCredentialUserRegistrationCountGetResponse]:
         """
-        Report the current state of how many users in your organization are registered for self-service password reset and multifactor authentication (MFA) capabilities. This API is available in the following national cloud deployments.
+        Report the current state of how many users in your organization are registered for self-service password reset and multifactor authentication (MFA) capabilities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetCredentialUserRegistrationCountGetResponse]
         Find more info here: https://learn.microsoft.com/graph/api/reportroot-getcredentialuserregistrationcount?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class GetCredentialUserRegistrationCountRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[GetCredentialUserRegistrationCountRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Report the current state of how many users in your organization are registered for self-service password reset and multifactor authentication (MFA) capabilities. This API is available in the following national cloud deployments.
+        Report the current state of how many users in your organization are registered for self-service password reset and multifactor authentication (MFA) capabilities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -62,7 +62,7 @@ class GetCredentialUserRegistrationCountRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> GetCredentialUserRegistrationCountRequestBuilder:
@@ -78,7 +78,7 @@ class GetCredentialUserRegistrationCountRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GetCredentialUserRegistrationCountRequestBuilderGetQueryParameters():
         """
-        Report the current state of how many users in your organization are registered for self-service password reset and multifactor authentication (MFA) capabilities. This API is available in the following national cloud deployments.
+        Report the current state of how many users in your organization are registered for self-service password reset and multifactor authentication (MFA) capabilities.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

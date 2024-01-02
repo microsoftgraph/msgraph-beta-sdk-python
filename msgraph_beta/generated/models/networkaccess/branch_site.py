@@ -18,7 +18,7 @@ from ..entity import Entity
 class BranchSite(Entity):
     # Determines the maximum allowed Mbps (megabits per second) bandwidth from a branch site. The possible values are:250,500,750,1000.
     bandwidth_capacity: Optional[int] = None
-    # The connectivityConfiguration property
+    # Specifies the connectivity details of all device links associated with a branch.
     connectivity_configuration: Optional[BranchConnectivityConfiguration] = None
     # Determines the branch site status. The possible values are: pending, connected, inactive, error.
     connectivity_state: Optional[ConnectivityState] = None

@@ -13,7 +13,7 @@ from .authorization_system_resource import AuthorizationSystemResource
 class AzureAuthorizationSystemResource(AuthorizationSystemResource):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureAuthorizationSystemResource"
-    # The service property
+    # The service associated with the resource in an Azure authorization system. This object is auto-expanded.
     service: Optional[AuthorizationSystemTypeService] = None
     
     @staticmethod

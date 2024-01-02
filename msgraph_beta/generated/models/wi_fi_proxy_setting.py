@@ -7,4 +7,6 @@ class WiFiProxySetting(str, Enum):
     Manual = "manual",
     # Automatic Proxy Settings via URL.
     Automatic = "automatic",
+    # Unknown future value for evolvable enum patterns.
+    UnknownFutureValue = "unknownFutureValue",
 

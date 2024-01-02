@@ -13,9 +13,9 @@ from .finding import Finding
 
 @dataclass
 class VirtualMachineWithAwsStorageBucketAccessFinding(Finding):
-    # The total number of storage buckets that the EC2 instance can access using the role
+    # The total number of storage buckets that the EC2 instance can access using the role.
     accessible_count: Optional[int] = None
-    # The total number of storage buckets in the authorization system that host the EC2 instance
+    # The total number of storage buckets in the authorization system that hosts the EC2 instance.
     bucket_count: Optional[int] = None
     # The ec2Instance property
     ec2_instance: Optional[AuthorizationSystemResource] = None

@@ -11,9 +11,9 @@ from .entity import Entity
 
 @dataclass
 class AssignedComputeInstanceDetails(Entity):
-    # The accessedStorageBuckets property
+    # Represents a set of S3 buckets accessed by this EC2 instance.
     accessed_storage_buckets: Optional[List[AuthorizationSystemResource]] = None
-    # The assignedComputeInstance property
+    # assigned EC2 instance.
     assigned_compute_instance: Optional[AuthorizationSystemResource] = None
     # The OdataType property
     odata_type: Optional[str] = None

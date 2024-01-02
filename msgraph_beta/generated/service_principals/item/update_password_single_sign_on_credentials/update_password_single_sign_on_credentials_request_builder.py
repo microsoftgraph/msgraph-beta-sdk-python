@@ -28,7 +28,7 @@ class UpdatePasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[UpdatePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[UpdatePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Update single sign-on credentials using a password for a user or group. This API is available in the following national cloud deployments.
+        Update single sign-on credentials using a password for a user or group.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -51,7 +51,7 @@ class UpdatePasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[UpdatePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[UpdatePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Update single sign-on credentials using a password for a user or group. This API is available in the following national cloud deployments.
+        Update single sign-on credentials using a password for a user or group.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -65,7 +65,7 @@ class UpdatePasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

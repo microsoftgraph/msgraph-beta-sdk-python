@@ -28,7 +28,7 @@ class DeviceRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DeviceRequestBuilderGetRequestConfiguration] = None) -> Optional[Device]:
         """
-        Get device from users
+        The registered device on which this Platform Credential resides. Supports $expand. When you get a user's Platform Credential registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/platformCredentialAuthenticationMethod/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Device]
         """
@@ -49,7 +49,7 @@ class DeviceRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DeviceRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get device from users
+        The registered device on which this Platform Credential resides. Supports $expand. When you get a user's Platform Credential registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/platformCredentialAuthenticationMethod/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +61,7 @@ class DeviceRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> DeviceRequestBuilder:
@@ -77,7 +77,7 @@ class DeviceRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceRequestBuilderGetQueryParameters():
         """
-        Get device from users
+        The registered device on which this Platform Credential resides. Supports $expand. When you get a user's Platform Credential registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/platformCredentialAuthenticationMethod/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

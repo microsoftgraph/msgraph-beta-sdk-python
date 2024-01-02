@@ -29,7 +29,7 @@ class ServiceProvisioningErrorsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ServiceProvisioningErrorsRequestBuilderGetRequestConfiguration] = None) -> Optional[ServiceProvisioningErrorCollectionResponse]:
         """
-        Errors published by a federated service describing a nontransient, service-specific error regarding the properties or link from a user object.  Supports $filter (eq, not, for isResolved and serviceInstance).
+        Errors published by a federated service describing a nontransient, service-specific error regarding the properties or link from a user object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServiceProvisioningErrorCollectionResponse]
         """
@@ -50,7 +50,7 @@ class ServiceProvisioningErrorsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ServiceProvisioningErrorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Errors published by a federated service describing a nontransient, service-specific error regarding the properties or link from a user object.  Supports $filter (eq, not, for isResolved and serviceInstance).
+        Errors published by a federated service describing a nontransient, service-specific error regarding the properties or link from a user object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -62,7 +62,7 @@ class ServiceProvisioningErrorsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> ServiceProvisioningErrorsRequestBuilder:
@@ -87,7 +87,7 @@ class ServiceProvisioningErrorsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ServiceProvisioningErrorsRequestBuilderGetQueryParameters():
         """
-        Errors published by a federated service describing a nontransient, service-specific error regarding the properties or link from a user object.  Supports $filter (eq, not, for isResolved and serviceInstance).
+        Errors published by a federated service describing a nontransient, service-specific error regarding the properties or link from a user object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

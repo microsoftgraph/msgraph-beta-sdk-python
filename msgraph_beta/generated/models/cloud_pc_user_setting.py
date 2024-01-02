@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .cloud_pc_cross_region_disaster_recovery_setting import CloudPcCrossRegionDisasterRecoverySetting
     from .cloud_pc_restore_point_setting import CloudPcRestorePointSetting
     from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
     from .entity import Entity
@@ -15,11 +16,13 @@ from .entity import Entity
 class CloudPcUserSetting(Entity):
     # Represents the set of Microsoft 365 groups and security groups in Microsoft Entra ID that have cloudPCUserSetting assigned. Returned only on $expand. For an example, see Get cloudPcUserSettingample.
     assignments: Optional[List[CloudPcUserSettingAssignment]] = None
-    # The date and time the setting was created. The Timestamp type represents the date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 looks like this: '2014-01-01T00:00:00Z'.
+    # The date and time the setting was created. The timestamp type represents the date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 looks like this: '2014-01-01T00:00:00Z'.
     created_date_time: Optional[datetime.datetime] = None
+    # The crossRegionDisasterRecoverySetting property
+    cross_region_disaster_recovery_setting: Optional[CloudPcCrossRegionDisasterRecoverySetting] = None
     # The setting name displayed in the user interface.
     display_name: Optional[str] = None
-    # The last date and time the setting was modified. The Timestamp type represents the date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 looks like this: '2014-01-01T00:00:00Z'.
+    # The last date and time the setting was modified. The timestamp type represents the date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 looks like this: '2014-01-01T00:00:00Z'.
     last_modified_date_time: Optional[datetime.datetime] = None
     # Indicates whether the local admin option is enabled. Default value is false. To enable the local admin option, change the setting to true. If the local admin option is enabled, the end user can be an admin of the Cloud PC device.
     local_admin_enabled: Optional[bool] = None
@@ -29,7 +32,7 @@ class CloudPcUserSetting(Entity):
     reset_enabled: Optional[bool] = None
     # Defines how frequently a restore point is created that is, a snapshot is taken) for users' provisioned Cloud PCs (default is 12 hours), and whether the user is allowed to restore their own Cloud PCs to a backup made at a specific point in time.
     restore_point_setting: Optional[CloudPcRestorePointSetting] = None
-    # Indicates whether the self-service option is enabled. Default value is false. To enable the self-service option, change the setting to true. If the self-service option is enabled, the end user is allowed to perform some self-service operations, such as upgrading the Cloud PC through the end user portal.
+    # The selfServiceEnabled property
     self_service_enabled: Optional[bool] = None
     
     @staticmethod
@@ -48,10 +51,12 @@ class CloudPcUserSetting(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .cloud_pc_cross_region_disaster_recovery_setting import CloudPcCrossRegionDisasterRecoverySetting
         from .cloud_pc_restore_point_setting import CloudPcRestorePointSetting
         from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
         from .entity import Entity
 
+        from .cloud_pc_cross_region_disaster_recovery_setting import CloudPcCrossRegionDisasterRecoverySetting
         from .cloud_pc_restore_point_setting import CloudPcRestorePointSetting
         from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
         from .entity import Entity
@@ -59,6 +64,7 @@ class CloudPcUserSetting(Entity):
         fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(CloudPcUserSettingAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "crossRegionDisasterRecoverySetting": lambda n : setattr(self, 'cross_region_disaster_recovery_setting', n.get_object_value(CloudPcCrossRegionDisasterRecoverySetting)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "localAdminEnabled": lambda n : setattr(self, 'local_admin_enabled', n.get_bool_value()),
@@ -81,6 +87,7 @@ class CloudPcUserSetting(Entity):
         super().serialize(writer)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_object_value("crossRegionDisasterRecoverySetting", self.cross_region_disaster_recovery_setting)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_bool_value("localAdminEnabled", self.local_admin_enabled)

@@ -27,7 +27,7 @@ class RunHealthChecksRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RunHealthChecksRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Run health checks on the cloudPcOnPremisesConnection object. This will trigger a new health check for this cloudPcOnPremisesConnection object and change the healthCheckStatus and healthCheckStatusDetails properties when check finished. This API is available in the following national cloud deployments.
+        Run health checks on the cloudPcOnPremisesConnection object. This will trigger a new health check for this cloudPcOnPremisesConnection object and change the healthCheckStatus and healthCheckStatusDetails properties when check finished.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-runhealthcheck?view=graph-rest-1.0
@@ -47,7 +47,7 @@ class RunHealthChecksRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RunHealthChecksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Run health checks on the cloudPcOnPremisesConnection object. This will trigger a new health check for this cloudPcOnPremisesConnection object and change the healthCheckStatus and healthCheckStatusDetails properties when check finished. This API is available in the following national cloud deployments.
+        Run health checks on the cloudPcOnPremisesConnection object. This will trigger a new health check for this cloudPcOnPremisesConnection object and change the healthCheckStatus and healthCheckStatusDetails properties when check finished.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -58,7 +58,7 @@ class RunHealthChecksRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> RunHealthChecksRequestBuilder:

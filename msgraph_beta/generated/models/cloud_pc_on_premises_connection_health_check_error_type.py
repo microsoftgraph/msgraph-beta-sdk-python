@@ -47,6 +47,7 @@ class CloudPcOnPremisesConnectionHealthCheckErrorType(str, Enum):
     ResourceAvailabilityCheckNoIntuneReaderRoleError = "resourceAvailabilityCheckNoIntuneReaderRoleError",
     ResourceAvailabilityCheckIntuneDefaultWindowsRestrictionViolation = "resourceAvailabilityCheckIntuneDefaultWindowsRestrictionViolation",
     ResourceAvailabilityCheckIntuneCustomWindowsRestrictionViolation = "resourceAvailabilityCheckIntuneCustomWindowsRestrictionViolation",
+    ResourceAvailabilityCheckDeploymentQuotaLimitReached = "resourceAvailabilityCheckDeploymentQuotaLimitReached",
     ResourceAvailabilityCheckTransientServiceError = "resourceAvailabilityCheckTransientServiceError",
     ResourceAvailabilityCheckUnknownError = "resourceAvailabilityCheckUnknownError",
     PermissionCheckNoSubscriptionReaderRole = "permissionCheckNoSubscriptionReaderRole",

@@ -77,7 +77,7 @@ class DriveItem(BaseItem):
     media: Optional[Media] = None
     # If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.
     package: Optional[Package] = None
-    # If present, indicates that indicates that one or more operations that may affect the state of the driveItem are pending completion. Read-only.
+    # If present, indicates that indicates that one or more operations that might affect the state of the driveItem are pending completion. Read-only.
     pending_operations: Optional[PendingOperations] = None
     # The set of permissions for the item. Read-only. Nullable.
     permissions: Optional[List[Permission]] = None
@@ -93,7 +93,7 @@ class DriveItem(BaseItem):
     root: Optional[Root] = None
     # Search metadata, if the item is from a search result. Read-only.
     search_result: Optional[SearchResult] = None
-    # Indicates that the item has been shared with others and provides information about the shared state of the item. Read-only.
+    # Indicates that the item was shared with others and provides information about the shared state of the item. Read-only.
     shared: Optional[Shared] = None
     # Returns identifiers useful for SharePoint REST compatibility. Read-only.
     sharepoint_ids: Optional[SharepointIds] = None
@@ -105,7 +105,7 @@ class DriveItem(BaseItem):
     special_folder: Optional[SpecialFolder] = None
     # The set of subscriptions on the item. Only supported on the root of a drive.
     subscriptions: Optional[List[Subscription]] = None
-    # Collection containing [ThumbnailSet][] objects associated with the item. For more info, see [getting thumbnails][]. Read-only. Nullable.
+    # Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
     thumbnails: Optional[List[ThumbnailSet]] = None
     # The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
     versions: Optional[List[DriveItemVersion]] = None

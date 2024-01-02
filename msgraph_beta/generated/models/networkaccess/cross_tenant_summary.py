@@ -11,19 +11,19 @@ class CrossTenantSummary(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Total numbers of authentication sessions in the time frame between startDateTime and endDateTime.
+    # The total number of authentication sessions between startDateTime and endDateTime.
     auth_transaction_count: Optional[int] = None
-    # Count of unique devices that performed cross-tenant access, in the time frame between startDateTime and endDateTime.
+    # The number of unique devices that performed cross-tenant access.
     device_count: Optional[int] = None
-    # Count of unique tenants that were accessed in the time frame between endDateTime to discoveryPivotDateTime, but haven't been accessed in the time frame between discoveryPivotDateTime to startDateTime.
+    # The number of unique tenants that were accessed between endDateTime and discoveryPivotDateTime, but weren't accessed between discoveryPivotDateTime and startDateTime.
     new_tenant_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The rarelyUsedTenantCount property
     rarely_used_tenant_count: Optional[int] = None
-    # Count of unique tenants that were accessed, that are different from the device's home tenant, in the time frame between startDateTime and endDateTime.
+    # The number of unique tenants that were accessed, not including the device's tenant.
     tenant_count: Optional[int] = None
-    # Count of unique users that performed cross-tenant access, in the time frame between startDateTime and endDateTime.
+    # The number of unique users that performed cross-tenant access.
     user_count: Optional[int] = None
     
     @staticmethod

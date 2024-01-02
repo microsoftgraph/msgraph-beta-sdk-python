@@ -11,9 +11,9 @@ class RiskProfile(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The humanCount property
+    # This is the count of human identities that have been assigned to this riskScoreBracket,
     human_count: Optional[int] = None
-    # The nonHumanCount property
+    # This is the count of nonhuman identities that have been assigned to this riskScoreBracket
     non_human_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None

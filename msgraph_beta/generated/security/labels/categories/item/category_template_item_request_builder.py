@@ -29,7 +29,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a categoryTemplate object. This API is available in the following national cloud deployments.
+        Delete a categoryTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/security-labelsroot-delete-categories?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CategoryTemplate]:
         """
-        Read the properties and relationships of a categoryTemplate object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a categoryTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CategoryTemplate]
         Find more info here: https://learn.microsoft.com/graph/api/security-categorytemplate-get?view=graph-rest-1.0
@@ -95,7 +95,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a categoryTemplate object. This API is available in the following national cloud deployments.
+        Delete a categoryTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,12 +106,12 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a categoryTemplate object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a categoryTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -123,7 +123,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[CategoryTemplate] = None, request_configuration: Optional[CategoryTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -142,7 +142,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -178,7 +178,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CategoryTemplateItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a categoryTemplate object. This API is available in the following national cloud deployments.
+        Read the properties and relationships of a categoryTemplate object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

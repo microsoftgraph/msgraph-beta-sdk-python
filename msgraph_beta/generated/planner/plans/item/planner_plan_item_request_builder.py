@@ -12,10 +12,12 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.planner_plan import PlannerPlan
+    from .archive.archive_request_builder import ArchiveRequestBuilder
     from .buckets.buckets_request_builder import BucketsRequestBuilder
     from .details.details_request_builder import DetailsRequestBuilder
     from .move_to_container.move_to_container_request_builder import MoveToContainerRequestBuilder
     from .tasks.tasks_request_builder import TasksRequestBuilder
+    from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
 
 class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
     """
@@ -32,7 +34,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[PlannerPlanItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a plannerPlan object. This API is available in the following national cloud deployments.
+        Delete a plannerPlan object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/plannerplan-delete?view=graph-rest-1.0
@@ -52,7 +54,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PlannerPlanItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerPlan]:
         """
-        Retrieve the properties and relationships of a plannerplan object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a plannerplan object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlan]
         Find more info here: https://learn.microsoft.com/graph/api/plannerplan-get?view=graph-rest-1.0
@@ -74,7 +76,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[PlannerPlan] = None, request_configuration: Optional[PlannerPlanItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PlannerPlan]:
         """
-        Update the properties of a plannerPlan object. This API is available in the following national cloud deployments.
+        Update the properties of a plannerPlan object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlan]
@@ -99,7 +101,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerPlanItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a plannerPlan object. This API is available in the following national cloud deployments.
+        Delete a plannerPlan object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,12 +112,12 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[PlannerPlanItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a plannerplan object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a plannerplan object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,12 +129,12 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[PlannerPlan] = None, request_configuration: Optional[PlannerPlanItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a plannerPlan object. This API is available in the following national cloud deployments.
+        Update the properties of a plannerPlan object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -146,7 +148,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -159,6 +161,15 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return PlannerPlanItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def archive(self) -> ArchiveRequestBuilder:
+        """
+        Provides operations to call the archive method.
+        """
+        from .archive.archive_request_builder import ArchiveRequestBuilder
+
+        return ArchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def buckets(self) -> BucketsRequestBuilder:
@@ -196,6 +207,15 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
 
         return TasksRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def unarchive(self) -> UnarchiveRequestBuilder:
+        """
+        Provides operations to call the unarchive method.
+        """
+        from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
+
+        return UnarchiveRequestBuilder(self.request_adapter, self.path_parameters)
+    
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
     @dataclass
@@ -209,7 +229,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlannerPlanItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a plannerplan object. This API is available in the following national cloud deployments.
+        Retrieve the properties and relationships of a plannerplan object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

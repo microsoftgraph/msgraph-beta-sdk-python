@@ -17,15 +17,15 @@ from .authorization_system import AuthorizationSystem
 class AwsAuthorizationSystem(AuthorizationSystem):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsAuthorizationSystem"
-    # The actions property
+    # List of actions for service in authorization system.
     actions: Optional[List[AwsAuthorizationSystemTypeAction]] = None
-    # The associatedIdentities property
+    # Identities in the authorization system.
     associated_identities: Optional[AwsAssociatedIdentities] = None
-    # The policies property
+    # Policies associated with the AWS authorization system type.
     policies: Optional[List[AwsPolicy]] = None
-    # The resources property
+    # Resources associated with the authorization system type.
     resources: Optional[List[AwsAuthorizationSystemResource]] = None
-    # The services property
+    # Services associated with the authorization system type.
     services: Optional[List[AuthorizationSystemTypeService]] = None
     
     @staticmethod

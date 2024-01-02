@@ -16,6 +16,8 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, BackedModel, 
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The additionalDetail property
+    additional_detail: Optional[str] = None
     # More details about the health check or the recommended action.
     additional_details: Optional[str] = None
     # The unique identifier of the health check item-related activities. This identifier can be useful in troubleshooting.
@@ -58,6 +60,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, BackedModel, 
         from .cloud_pc_on_premises_connection_status import CloudPcOnPremisesConnectionStatus
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "additionalDetail": lambda n : setattr(self, 'additional_detail', n.get_str_value()),
             "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_str_value()),
             "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -78,6 +81,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, BackedModel, 
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        writer.write_str_value("additionalDetail", self.additional_detail)
         writer.write_str_value("additionalDetails", self.additional_details)
         writer.write_str_value("correlationId", self.correlation_id)
         writer.write_str_value("displayName", self.display_name)

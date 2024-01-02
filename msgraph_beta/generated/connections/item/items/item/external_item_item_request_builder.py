@@ -30,7 +30,7 @@ class ExternalItemItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[ExternalItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an externalitem. This API is available in the following national cloud deployments.
+        Delete an externalitem.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class ExternalItemItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ExternalItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ExternalItem]:
         """
-        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It isn't intended to be used for any other purpose. Repeated requests to this API might result in 429 HTTP errors. This API is available in the following national cloud deployments.
+        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It isn't intended to be used for any other purpose. Repeated requests to this API might result in 429 HTTP errors.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalItem]
         Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
@@ -96,7 +96,7 @@ class ExternalItemItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[ExternalItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an externalitem. This API is available in the following national cloud deployments.
+        Delete an externalitem.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,12 +107,12 @@ class ExternalItemItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[ExternalItemItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It isn't intended to be used for any other purpose. Repeated requests to this API might result in 429 HTTP errors. This API is available in the following national cloud deployments.
+        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It isn't intended to be used for any other purpose. Repeated requests to this API might result in 429 HTTP errors.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -124,7 +124,7 @@ class ExternalItemItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_put_request_information(self,body: Optional[ExternalItem] = None, request_configuration: Optional[ExternalItemItemRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
@@ -143,7 +143,7 @@ class ExternalItemItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PUT
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -188,7 +188,7 @@ class ExternalItemItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExternalItemItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It isn't intended to be used for any other purpose. Repeated requests to this API might result in 429 HTTP errors. This API is available in the following national cloud deployments.
+        Get the properties and relationships of an externalitem object. This API is provided for diagnostic purposes only. It isn't intended to be used for any other purpose. Repeated requests to this API might result in 429 HTTP errors.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

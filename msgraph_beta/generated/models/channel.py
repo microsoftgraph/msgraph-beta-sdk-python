@@ -29,6 +29,8 @@ class Channel(Entity):
     email: Optional[str] = None
     # Metadata for the location where the channel's files are stored.
     files_folder: Optional[DriveItem] = None
+    # The isArchived property
+    is_archived: Optional[bool] = None
     # Indicates whether the channel should automatically be marked 'favorite' for all members of the team. Can only be set programmatically with Create team. Default: false.
     is_favorite_by_default: Optional[bool] = None
     # A collection of membership records associated with the channel.
@@ -94,6 +96,7 @@ class Channel(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "filesFolder": lambda n : setattr(self, 'files_folder', n.get_object_value(DriveItem)),
+            "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
             "isFavoriteByDefault": lambda n : setattr(self, 'is_favorite_by_default', n.get_bool_value()),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(ConversationMember)),
             "membershipType": lambda n : setattr(self, 'membership_type', n.get_enum_value(ChannelMembershipType)),
@@ -123,6 +126,7 @@ class Channel(Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("email", self.email)
         writer.write_object_value("filesFolder", self.files_folder)
+        writer.write_bool_value("isArchived", self.is_archived)
         writer.write_bool_value("isFavoriteByDefault", self.is_favorite_by_default)
         writer.write_collection_of_object_values("members", self.members)
         writer.write_enum_value("membershipType", self.membership_type)

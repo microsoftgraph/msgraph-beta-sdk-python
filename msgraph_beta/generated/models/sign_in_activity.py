@@ -20,6 +20,10 @@ class SignInActivity(AdditionalDataHolder, BackedModel, Parsable):
     last_sign_in_date_time: Optional[datetime.datetime] = None
     # Request identifier of the last interactive sign-in performed by this user.
     last_sign_in_request_id: Optional[str] = None
+    # The datetime of the user's most recent successful sign in activity.
+    last_successful_sign_in_date_time: Optional[datetime.datetime] = None
+    # The requestID of the last successful signIn.
+    last_successful_sign_in_request_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -44,6 +48,8 @@ class SignInActivity(AdditionalDataHolder, BackedModel, Parsable):
             "lastNonInteractiveSignInRequestId": lambda n : setattr(self, 'last_non_interactive_sign_in_request_id', n.get_str_value()),
             "lastSignInDateTime": lambda n : setattr(self, 'last_sign_in_date_time', n.get_datetime_value()),
             "lastSignInRequestId": lambda n : setattr(self, 'last_sign_in_request_id', n.get_str_value()),
+            "lastSuccessfulSignInDateTime": lambda n : setattr(self, 'last_successful_sign_in_date_time', n.get_datetime_value()),
+            "lastSuccessfulSignInRequestId": lambda n : setattr(self, 'last_successful_sign_in_request_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -60,6 +66,8 @@ class SignInActivity(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("lastNonInteractiveSignInRequestId", self.last_non_interactive_sign_in_request_id)
         writer.write_datetime_value("lastSignInDateTime", self.last_sign_in_date_time)
         writer.write_str_value("lastSignInRequestId", self.last_sign_in_request_id)
+        writer.write_datetime_value("lastSuccessfulSignInDateTime", self.last_successful_sign_in_date_time)
+        writer.write_str_value("lastSuccessfulSignInRequestId", self.last_successful_sign_in_request_id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

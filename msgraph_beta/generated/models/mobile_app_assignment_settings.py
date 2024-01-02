@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from .mac_os_lob_app_assignment_settings import MacOsLobAppAssignmentSettings
     from .mac_os_vpp_app_assignment_settings import MacOsVppAppAssignmentSettings
     from .microsoft_store_for_business_app_assignment_settings import MicrosoftStoreForBusinessAppAssignmentSettings
+    from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
     from .win32_lob_app_assignment_settings import Win32LobAppAssignmentSettings
     from .windows_app_x_app_assignment_settings import WindowsAppXAppAssignmentSettings
     from .windows_universal_app_x_app_assignment_settings import WindowsUniversalAppXAppAssignmentSettings
@@ -71,6 +72,10 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
             from .microsoft_store_for_business_app_assignment_settings import MicrosoftStoreForBusinessAppAssignmentSettings
 
             return MicrosoftStoreForBusinessAppAssignmentSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32CatalogAppAssignmentSettings".casefold():
+            from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
+
+            return Win32CatalogAppAssignmentSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppAssignmentSettings".casefold():
             from .win32_lob_app_assignment_settings import Win32LobAppAssignmentSettings
 
@@ -101,6 +106,7 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
         from .mac_os_lob_app_assignment_settings import MacOsLobAppAssignmentSettings
         from .mac_os_vpp_app_assignment_settings import MacOsVppAppAssignmentSettings
         from .microsoft_store_for_business_app_assignment_settings import MicrosoftStoreForBusinessAppAssignmentSettings
+        from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
         from .win32_lob_app_assignment_settings import Win32LobAppAssignmentSettings
         from .windows_app_x_app_assignment_settings import WindowsAppXAppAssignmentSettings
         from .windows_universal_app_x_app_assignment_settings import WindowsUniversalAppXAppAssignmentSettings
@@ -113,6 +119,7 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
         from .mac_os_lob_app_assignment_settings import MacOsLobAppAssignmentSettings
         from .mac_os_vpp_app_assignment_settings import MacOsVppAppAssignmentSettings
         from .microsoft_store_for_business_app_assignment_settings import MicrosoftStoreForBusinessAppAssignmentSettings
+        from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
         from .win32_lob_app_assignment_settings import Win32LobAppAssignmentSettings
         from .windows_app_x_app_assignment_settings import WindowsAppXAppAssignmentSettings
         from .windows_universal_app_x_app_assignment_settings import WindowsUniversalAppXAppAssignmentSettings

@@ -11,17 +11,17 @@ from .entity import Entity
 
 @dataclass
 class ActiveUsersBreakdownMetric(Entity):
-    # The appId property
+    # The ID of the Microsoft Entra application.
     app_id: Optional[str] = None
-    # The appName property
+    # Name of the application users authenticated to.
     app_name: Optional[str] = None
-    # The count property
+    # The total number of users who made at least one authentication request within the specified time period.
     count: Optional[int] = None
-    # The factDate property
+    # The date of the insight.
     fact_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The os property
+    # The platform for the device that the customers used. Supports $filter (eq).
     os: Optional[str] = None
     
     @staticmethod

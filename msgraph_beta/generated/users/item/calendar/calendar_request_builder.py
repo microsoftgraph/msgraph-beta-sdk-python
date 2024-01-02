@@ -43,9 +43,29 @@ class CalendarRequestBuilder(BaseRequestBuilder):
 
         return AllowedCalendarSharingRolesWithUserRequestBuilder(self.request_adapter, self.path_parameters, user)
     
+    async def delete(self,request_configuration: Optional[CalendarRequestBuilderDeleteRequestConfiguration] = None) -> None:
+        """
+        Delete a calendar other than the default calendar.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/calendar-delete?view=graph-rest-1.0
+        """
+        request_info = self.to_delete_request_information(
+            request_configuration
+        )
+        from ....models.o_data_errors.o_data_error import ODataError
+
+        error_mapping: Dict[str, ParsableFactory] = {
+            "4XX": ODataError,
+            "5XX": ODataError,
+        }
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+    
     async def get(self,request_configuration: Optional[CalendarRequestBuilderGetRequestConfiguration] = None) -> Optional[Calendar]:
         """
-        Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar: This API is available in the following national cloud deployments.
+        Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Calendar]
         Find more info here: https://learn.microsoft.com/graph/api/calendar-get?view=graph-rest-1.0
@@ -67,7 +87,7 @@ class CalendarRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Calendar] = None, request_configuration: Optional[CalendarRequestBuilderPatchRequestConfiguration] = None) -> Optional[Calendar]:
         """
-        Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. This API is available in the following national cloud deployments.
+        Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Calendar]
@@ -90,9 +110,25 @@ class CalendarRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Calendar, error_mapping)
     
+    def to_delete_request_information(self,request_configuration: Optional[CalendarRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+        """
+        Delete a calendar other than the default calendar.
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        request_info = RequestInformation()
+        if request_configuration:
+            request_info.headers.add_all(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.DELETE
+        request_info.headers.try_add("Accept", "application/json")
+        return request_info
+    
     def to_get_request_information(self,request_configuration: Optional[CalendarRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar: This API is available in the following national cloud deployments.
+        Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,12 +140,12 @@ class CalendarRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Calendar] = None, request_configuration: Optional[CalendarRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. This API is available in the following national cloud deployments.
+        Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +159,7 @@ class CalendarRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -173,10 +209,20 @@ class CalendarRequestBuilder(BaseRequestBuilder):
 
         return GetScheduleRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CalendarRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class CalendarRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar: This API is available in the following national cloud deployments.
+        Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

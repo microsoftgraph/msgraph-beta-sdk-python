@@ -32,7 +32,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     def by_on_premises_agent_group_id(self,on_premises_agent_group_id: str) -> OnPremisesAgentGroupItemRequestBuilder:
         """
         Gets an item from the msgraph_beta.generated.onPremisesPublishingProfiles.item.agents.item.agentGroups.item collection
-        param on_premises_agent_group_id: Unique identifier of the item
+        param on_premises_agent_group_id: The unique identifier of onPremisesAgentGroup
         Returns: OnPremisesAgentGroupItemRequestBuilder
         """
         if not on_premises_agent_group_id:
@@ -78,7 +78,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> AgentGroupsRequestBuilder:

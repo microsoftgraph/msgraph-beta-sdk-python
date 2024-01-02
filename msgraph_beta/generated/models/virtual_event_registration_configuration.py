@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .virtual_event_registration_question import VirtualEventRegistrationQuestion
+    from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
     from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
 
 from .entity import Entity
@@ -17,7 +17,7 @@ class VirtualEventRegistrationConfiguration(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # Registration questions.
-    questions: Optional[List[VirtualEventRegistrationQuestion]] = None
+    questions: Optional[List[VirtualEventRegistrationQuestionBase]] = None
     # Registration URL of the virtual event.
     registration_web_url: Optional[str] = None
     
@@ -46,16 +46,16 @@ class VirtualEventRegistrationConfiguration(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .virtual_event_registration_question import VirtualEventRegistrationQuestion
+        from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
         from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
 
         from .entity import Entity
-        from .virtual_event_registration_question import VirtualEventRegistrationQuestion
+        from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
         from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "capacity": lambda n : setattr(self, 'capacity', n.get_int_value()),
-            "questions": lambda n : setattr(self, 'questions', n.get_collection_of_object_values(VirtualEventRegistrationQuestion)),
+            "questions": lambda n : setattr(self, 'questions', n.get_collection_of_object_values(VirtualEventRegistrationQuestionBase)),
             "registrationWebUrl": lambda n : setattr(self, 'registration_web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

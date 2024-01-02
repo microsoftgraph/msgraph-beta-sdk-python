@@ -15,7 +15,7 @@ from .entitlements_data_collection_info import EntitlementsDataCollectionInfo
 class EntitlementsDataCollection(EntitlementsDataCollectionInfo):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.entitlementsDataCollection"
-    # The lastCollectionDateTime property
+    # Last transformation time of entitlements.
     last_collection_date_time: Optional[datetime.datetime] = None
     # The permissionsModificationCapability property
     permissions_modification_capability: Optional[PermissionsModificationCapability] = None

@@ -12,7 +12,7 @@ from .authorization_system_identity_source import AuthorizationSystemIdentitySou
 class AwsSource(AuthorizationSystemIdentitySource):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsSource"
-    # The accountId property
+    # AWS account ID.
     account_id: Optional[str] = None
     
     @staticmethod

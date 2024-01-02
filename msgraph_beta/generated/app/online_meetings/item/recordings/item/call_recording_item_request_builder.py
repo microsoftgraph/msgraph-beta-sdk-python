@@ -48,7 +48,7 @@ class CallRecordingItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CallRecordingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CallRecording]:
         """
-        Get a callRecording object associated with a scheduled onlineMeeting. This API doesn't support getting call recordings from channel meetings.  For a recording, this API returns the metadata of the single recording associated with the online meeting. For the content of a recording, this API returns the stream of bytes associated with the recording. This API is available in the following national cloud deployments.
+        Get a callRecording object associated with a scheduled onlineMeeting. This API doesn't support getting call recordings from channel meetings.  For a recording, this API returns the metadata of the single recording associated with the online meeting. For the content of a recording, this API returns the stream of bytes associated with the recording.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CallRecording]
         Find more info here: https://learn.microsoft.com/graph/api/callrecording-get?view=graph-rest-1.0
@@ -105,12 +105,12 @@ class CallRecordingItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[CallRecordingItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a callRecording object associated with a scheduled onlineMeeting. This API doesn't support getting call recordings from channel meetings.  For a recording, this API returns the metadata of the single recording associated with the online meeting. For the content of a recording, this API returns the stream of bytes associated with the recording. This API is available in the following national cloud deployments.
+        Get a callRecording object associated with a scheduled onlineMeeting. This API doesn't support getting call recordings from channel meetings.  For a recording, this API returns the metadata of the single recording associated with the online meeting. For the content of a recording, this API returns the stream of bytes associated with the recording.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -122,7 +122,7 @@ class CallRecordingItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[CallRecording] = None, request_configuration: Optional[CallRecordingItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -141,7 +141,7 @@ class CallRecordingItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -177,7 +177,7 @@ class CallRecordingItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CallRecordingItemRequestBuilderGetQueryParameters():
         """
-        Get a callRecording object associated with a scheduled onlineMeeting. This API doesn't support getting call recordings from channel meetings.  For a recording, this API returns the metadata of the single recording associated with the online meeting. For the content of a recording, this API returns the stream of bytes associated with the recording. This API is available in the following national cloud deployments.
+        Get a callRecording object associated with a scheduled onlineMeeting. This API doesn't support getting call recordings from channel meetings.  For a recording, this API returns the metadata of the single recording associated with the online meeting. For the content of a recording, this API returns the stream of bytes associated with the recording.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
