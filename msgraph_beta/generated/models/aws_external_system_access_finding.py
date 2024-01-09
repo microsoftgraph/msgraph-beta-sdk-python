@@ -21,9 +21,9 @@ class AwsExternalSystemAccessFinding(Finding):
     odata_type: Optional[str] = None
     # The systemWithAccess property
     system_with_access: Optional[AuthorizationSystemInfo] = None
-    # The trustedIdentityCount property
+    # The number of identities in the external system that are trusted, if not all. Supports $orderby.
     trusted_identity_count: Optional[int] = None
-    # The trustsAllIdentities property
+    # Flag that determines if all identities in the external system are trusted, or only a subset.
     trusts_all_identities: Optional[bool] = None
     
     @staticmethod

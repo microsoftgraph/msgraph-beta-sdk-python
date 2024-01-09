@@ -15,11 +15,11 @@ class InvitationRedemptionIdentityProviderConfiguration(AdditionalDataHolder, Ba
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The fallbackIdentityProvider property
+    # The fallback identity provider to be used in case no primary identity provider can be used for guest invitation redemption. Possible values are: defaultConfiguredIdp, emailOneTimePasscode, or microsoftAccount.
     fallback_identity_provider: Optional[B2bIdentityProvidersType] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The primaryIdentityProviderPrecedenceOrder property
+    # Collection of identity providers in priority order of preference to be used for guest invitation redemption. Possible values are: azureActiveDirectory, externalFederation, or socialIdentityProviders.
     primary_identity_provider_precedence_order: Optional[List[B2bIdentityProvidersType]] = None
     
     @staticmethod

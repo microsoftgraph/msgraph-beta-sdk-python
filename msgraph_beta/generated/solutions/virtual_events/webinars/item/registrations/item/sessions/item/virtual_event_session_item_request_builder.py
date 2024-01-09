@@ -12,10 +12,6 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .........models.o_data_errors.o_data_error import ODataError
     from .........models.virtual_event_session import VirtualEventSession
-    from .alternative_recording.alternative_recording_request_builder import AlternativeRecordingRequestBuilder
-    from .attendee_report.attendee_report_request_builder import AttendeeReportRequestBuilder
-    from .broadcast_recording.broadcast_recording_request_builder import BroadcastRecordingRequestBuilder
-    from .recording.recording_request_builder import RecordingRequestBuilder
 
 class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
     """
@@ -32,7 +28,7 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[VirtualEventSessionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventSession]:
         """
-        Sessions of the webinar.
+        Get sessions from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventSession]
         """
@@ -53,7 +49,7 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[VirtualEventSessionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Sessions of the webinar.
+        Get sessions from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -65,7 +61,7 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> VirtualEventSessionItemRequestBuilder:
@@ -78,46 +74,10 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return VirtualEventSessionItemRequestBuilder(self.request_adapter, raw_url)
     
-    @property
-    def alternative_recording(self) -> AlternativeRecordingRequestBuilder:
-        """
-        Provides operations to manage the media for the solutionsRoot entity.
-        """
-        from .alternative_recording.alternative_recording_request_builder import AlternativeRecordingRequestBuilder
-
-        return AlternativeRecordingRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def attendee_report(self) -> AttendeeReportRequestBuilder:
-        """
-        Provides operations to manage the media for the solutionsRoot entity.
-        """
-        from .attendee_report.attendee_report_request_builder import AttendeeReportRequestBuilder
-
-        return AttendeeReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def broadcast_recording(self) -> BroadcastRecordingRequestBuilder:
-        """
-        Provides operations to manage the media for the solutionsRoot entity.
-        """
-        from .broadcast_recording.broadcast_recording_request_builder import BroadcastRecordingRequestBuilder
-
-        return BroadcastRecordingRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def recording(self) -> RecordingRequestBuilder:
-        """
-        Provides operations to manage the media for the solutionsRoot entity.
-        """
-        from .recording.recording_request_builder import RecordingRequestBuilder
-
-        return RecordingRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @dataclass
     class VirtualEventSessionItemRequestBuilderGetQueryParameters():
         """
-        Sessions of the webinar.
+        Get sessions from solutions
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

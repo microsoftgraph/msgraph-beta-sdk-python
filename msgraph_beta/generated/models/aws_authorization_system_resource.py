@@ -13,7 +13,7 @@ from .authorization_system_resource import AuthorizationSystemResource
 class AwsAuthorizationSystemResource(AuthorizationSystemResource):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsAuthorizationSystemResource"
-    # The service property
+    # The service associated with the resource in an AWS authorization system. This is auto-expanded.
     service: Optional[AuthorizationSystemTypeService] = None
     
     @staticmethod

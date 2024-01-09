@@ -12,9 +12,9 @@ from .entity import Entity
 
 @dataclass
 class UserInsightsRoot(Entity):
-    # The daily property
+    # Summaries of daily user activities on apps registered in your tenant that is configured for Microsoft Entra External ID for customers.
     daily: Optional[DailyUserInsightMetricsRoot] = None
-    # The monthly property
+    # Summaries of monthly user activities on apps registered in your tenant that is configured for Microsoft Entra External ID for customers.
     monthly: Optional[MonthlyUserInsightMetricsRoot] = None
     # The OdataType property
     odata_type: Optional[str] = None

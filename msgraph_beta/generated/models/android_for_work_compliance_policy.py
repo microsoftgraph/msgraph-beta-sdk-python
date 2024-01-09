@@ -63,7 +63,7 @@ class AndroidForWorkCompliancePolicy(DeviceCompliancePolicy):
     security_require_up_to_date_security_providers: Optional[bool] = None
     # Require the Android Verify apps feature is turned on.
     security_require_verify_apps: Optional[bool] = None
-    # An enum representing the Android SafetyNet attestation evaluation types.
+    # An enum representing the Android Play Integrity API evaluation types.
     security_required_android_safety_net_evaluation_type: Optional[AndroidSafetyNetEvaluationType] = None
     # Require encryption on Android devices.
     storage_require_encryption: Optional[bool] = None

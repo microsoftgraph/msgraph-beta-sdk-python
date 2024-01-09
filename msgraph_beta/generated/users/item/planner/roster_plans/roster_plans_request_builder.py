@@ -44,7 +44,7 @@ class RosterPlansRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RosterPlansRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerPlanCollectionResponse]:
         """
-        Get the list of plannerPlans that are contained by the plannerRosters of which the user is a member. This API is available in the following national cloud deployments.
+        Get the list of plannerPlans that are contained by the plannerRosters of which the user is a member.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlanCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/planneruser-list-rosterplans?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class RosterPlansRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RosterPlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of plannerPlans that are contained by the plannerRosters of which the user is a member. This API is available in the following national cloud deployments.
+        Get the list of plannerPlans that are contained by the plannerRosters of which the user is a member.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -78,7 +78,7 @@ class RosterPlansRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> RosterPlansRequestBuilder:
@@ -103,7 +103,7 @@ class RosterPlansRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RosterPlansRequestBuilderGetQueryParameters():
         """
-        Get the list of plannerPlans that are contained by the plannerRosters of which the user is a member. This API is available in the following national cloud deployments.
+        Get the list of plannerPlans that are contained by the plannerRosters of which the user is a member.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

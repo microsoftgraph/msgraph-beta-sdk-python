@@ -11,7 +11,7 @@ class GroupFilter(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The includedGroups property
+    # Identifiers of groups that are in scope for a synchronization rule. For Active Directory groups, use the distinguished names. An empty list means no group filtering is configured.
     included_groups: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

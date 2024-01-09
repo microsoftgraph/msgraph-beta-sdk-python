@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .alerts.alerts_request_builder import AlertsRequestBuilder
     from .alerts_v2.alerts_v2_request_builder import Alerts_v2RequestBuilder
     from .attack_simulation.attack_simulation_request_builder import AttackSimulationRequestBuilder
+    from .audit_log.audit_log_request_builder import AuditLogRequestBuilder
     from .cases.cases_request_builder import CasesRequestBuilder
     from .cloud_app_security_profiles.cloud_app_security_profiles_request_builder import CloudAppSecurityProfilesRequestBuilder
     from .domain_security_profiles.domain_security_profiles_request_builder import DomainSecurityProfilesRequestBuilder
@@ -109,7 +110,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -128,7 +129,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -168,6 +169,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .attack_simulation.attack_simulation_request_builder import AttackSimulationRequestBuilder
 
         return AttackSimulationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def audit_log(self) -> AuditLogRequestBuilder:
+        """
+        Provides operations to manage the auditLog property of the microsoft.graph.security entity.
+        """
+        from .audit_log.audit_log_request_builder import AuditLogRequestBuilder
+
+        return AuditLogRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def cases(self) -> CasesRequestBuilder:

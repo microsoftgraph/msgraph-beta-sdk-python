@@ -27,7 +27,7 @@ class ActivitystatisticsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/activitystatistics{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/activitystatistics{?%24top,%24skip,%24search,%24filter,%24count,%24select,%24expand}", path_parameters)
     
     def by_activity_statistics_id(self,activity_statistics_id: str) -> ActivityStatisticsItemRequestBuilder:
         """
@@ -102,7 +102,7 @@ class ActivitystatisticsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[ActivityStatistics] = None, request_configuration: Optional[ActivitystatisticsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -121,7 +121,7 @@ class ActivitystatisticsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -163,8 +163,6 @@ class ActivitystatisticsRequestBuilder(BaseRequestBuilder):
                 return "%24expand"
             if original_name == "filter":
                 return "%24filter"
-            if original_name == "orderby":
-                return "%24orderby"
             if original_name == "search":
                 return "%24search"
             if original_name == "select":
@@ -183,9 +181,6 @@ class ActivitystatisticsRequestBuilder(BaseRequestBuilder):
 
         # Filter items by property values
         filter: Optional[str] = None
-
-        # Order items by property values
-        orderby: Optional[List[str]] = None
 
         # Search items by search phrases
         search: Optional[str] = None

@@ -20,13 +20,13 @@ from .finding import Finding
 class PrivilegeEscalationFinding(Finding):
     # The identity property
     identity: Optional[AuthorizationSystemIdentity] = None
-    # The identityDetails property
+    # An identity's information details. Inherited from finding.
     identity_details: Optional[IdentityDetails] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The permissionsCreepIndex property
     permissions_creep_index: Optional[PermissionsCreepIndex] = None
-    # The privilegeEscalationDetails property
+    # The list of escalations that the identity is capable of performing.
     privilege_escalation_details: Optional[List[PrivilegeEscalation]] = None
     
     @staticmethod

@@ -15,21 +15,21 @@ from .entity import Entity
 
 @dataclass
 class ScheduledPermissionsRequest(Entity):
-    # The createdDateTime property
+    # Defines when the identity created the request.
     created_date_time: Optional[datetime.datetime] = None
-    # The justification property
+    # The identity's justification for the request.
     justification: Optional[str] = None
-    # The notes property
+    # Additional context for the permissions request.
     notes: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The requestedPermissions property
     requested_permissions: Optional[PermissionsDefinition] = None
-    # The scheduleInfo property
+    # When to assign the requested permissions.
     schedule_info: Optional[RequestSchedule] = None
     # The statusDetail property
     status_detail: Optional[StatusDetail] = None
-    # The ticketInfo property
+    # Ticketing-related metadata that you can use to correlate to the request.
     ticket_info: Optional[TicketInfo] = None
     
     @staticmethod

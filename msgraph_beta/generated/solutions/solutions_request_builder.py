@@ -12,6 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from ..models.solutions_root import SolutionsRoot
+    from .booking_businesses.booking_businesses_request_builder import BookingBusinessesRequestBuilder
+    from .booking_currencies.booking_currencies_request_builder import BookingCurrenciesRequestBuilder
     from .business_scenarios.business_scenarios_request_builder import BusinessScenariosRequestBuilder
     from .virtual_events.virtual_events_request_builder import VirtualEventsRequestBuilder
 
@@ -87,7 +89,7 @@ class SolutionsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[SolutionsRoot] = None, request_configuration: Optional[SolutionsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -106,7 +108,7 @@ class SolutionsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -119,6 +121,24 @@ class SolutionsRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return SolutionsRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def booking_businesses(self) -> BookingBusinessesRequestBuilder:
+        """
+        Provides operations to manage the bookingBusinesses property of the microsoft.graph.solutionsRoot entity.
+        """
+        from .booking_businesses.booking_businesses_request_builder import BookingBusinessesRequestBuilder
+
+        return BookingBusinessesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def booking_currencies(self) -> BookingCurrenciesRequestBuilder:
+        """
+        Provides operations to manage the bookingCurrencies property of the microsoft.graph.solutionsRoot entity.
+        """
+        from .booking_currencies.booking_currencies_request_builder import BookingCurrenciesRequestBuilder
+
+        return BookingCurrenciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def business_scenarios(self) -> BusinessScenariosRequestBuilder:

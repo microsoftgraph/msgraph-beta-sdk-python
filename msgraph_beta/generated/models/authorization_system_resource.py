@@ -14,15 +14,15 @@ from .entity import Entity
 
 @dataclass
 class AuthorizationSystemResource(Entity):
-    # The authorizationSystem property
+    # The authorization system that the resource exists in.
     authorization_system: Optional[AuthorizationSystem] = None
-    # The displayName property
+    # The name of the resource. Read-only. Supports $filter (eq,contains).
     display_name: Optional[str] = None
-    # The externalId property
+    # The ID of the resource as defined by the authorization system provider. Read-only. Supports $filter (eq).
     external_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resourceType property
+    # The type of the resource. Read-only. Supports $filter (eq).
     resource_type: Optional[str] = None
     
     @staticmethod

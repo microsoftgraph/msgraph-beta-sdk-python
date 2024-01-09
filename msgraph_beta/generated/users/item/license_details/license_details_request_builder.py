@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.license_details_collection_response import LicenseDetailsCollectionResponse
     from ....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
+    from .get_teams_licensing_details.get_teams_licensing_details_request_builder import GetTeamsLicensingDetailsRequestBuilder
     from .item.license_details_item_request_builder import LicenseDetailsItemRequestBuilder
 
 class LicenseDetailsRequestBuilder(BaseRequestBuilder):
@@ -45,7 +46,7 @@ class LicenseDetailsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[LicenseDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[LicenseDetailsCollectionResponse]:
         """
-        Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups. This API is available in the following national cloud deployments.
+        Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LicenseDetailsCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/user-list-licensedetails?view=graph-rest-1.0
@@ -91,7 +92,7 @@ class LicenseDetailsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[LicenseDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups. This API is available in the following national cloud deployments.
+        Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +104,7 @@ class LicenseDetailsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[LicenseDetails] = None, request_configuration: Optional[LicenseDetailsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -122,7 +123,7 @@ class LicenseDetailsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -145,10 +146,19 @@ class LicenseDetailsRequestBuilder(BaseRequestBuilder):
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def get_teams_licensing_details(self) -> GetTeamsLicensingDetailsRequestBuilder:
+        """
+        Provides operations to call the getTeamsLicensingDetails method.
+        """
+        from .get_teams_licensing_details.get_teams_licensing_details_request_builder import GetTeamsLicensingDetailsRequestBuilder
+
+        return GetTeamsLicensingDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class LicenseDetailsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups. This API is available in the following national cloud deployments.
+        Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

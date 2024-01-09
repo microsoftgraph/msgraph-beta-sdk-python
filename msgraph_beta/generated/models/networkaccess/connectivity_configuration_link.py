@@ -12,9 +12,9 @@ from ..entity import Entity
 
 @dataclass
 class ConnectivityConfigurationLink(Entity):
-    # The displayName property
+    # Specifies the name of the link.
     display_name: Optional[str] = None
-    # The localConfigurations property
+    # Specifies Microsoft's end of the tunnel configuration for a device link.
     local_configurations: Optional[List[LocalConnectivityConfiguration]] = None
     # The OdataType property
     odata_type: Optional[str] = None

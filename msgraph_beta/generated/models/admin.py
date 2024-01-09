@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .admin_apps_and_services import AdminAppsAndServices
     from .admin_dynamics import AdminDynamics
     from .admin_forms import AdminForms
+    from .admin_microsoft365_apps import AdminMicrosoft365Apps
     from .admin_report_settings import AdminReportSettings
     from .admin_todo import AdminTodo
     from .admin_windows import AdminWindows
@@ -31,9 +32,11 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
     edge: Optional[Edge] = None
     # The forms property
     forms: Optional[AdminForms] = None
+    # A container for the Microsoft 365 apps admin functionality.
+    microsoft365_apps: Optional[AdminMicrosoft365Apps] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The people property
+    # Represents a setting to control people-related admin settings in the tenant.
     people: Optional[PeopleAdminSettings] = None
     # A container for administrative resources to manage reports.
     report_settings: Optional[AdminReportSettings] = None
@@ -65,6 +68,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_apps_and_services import AdminAppsAndServices
         from .admin_dynamics import AdminDynamics
         from .admin_forms import AdminForms
+        from .admin_microsoft365_apps import AdminMicrosoft365Apps
         from .admin_report_settings import AdminReportSettings
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
@@ -76,6 +80,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_apps_and_services import AdminAppsAndServices
         from .admin_dynamics import AdminDynamics
         from .admin_forms import AdminForms
+        from .admin_microsoft365_apps import AdminMicrosoft365Apps
         from .admin_report_settings import AdminReportSettings
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
@@ -89,6 +94,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
             "dynamics": lambda n : setattr(self, 'dynamics', n.get_object_value(AdminDynamics)),
             "edge": lambda n : setattr(self, 'edge', n.get_object_value(Edge)),
             "forms": lambda n : setattr(self, 'forms', n.get_object_value(AdminForms)),
+            "microsoft365Apps": lambda n : setattr(self, 'microsoft365_apps', n.get_object_value(AdminMicrosoft365Apps)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "people": lambda n : setattr(self, 'people', n.get_object_value(PeopleAdminSettings)),
             "reportSettings": lambda n : setattr(self, 'report_settings', n.get_object_value(AdminReportSettings)),
@@ -111,6 +117,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("dynamics", self.dynamics)
         writer.write_object_value("edge", self.edge)
         writer.write_object_value("forms", self.forms)
+        writer.write_object_value("microsoft365Apps", self.microsoft365_apps)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("people", self.people)
         writer.write_object_value("reportSettings", self.report_settings)

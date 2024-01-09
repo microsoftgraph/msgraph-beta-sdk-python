@@ -15,7 +15,7 @@ class SingleResourceAzurePermissionsDefinition(PermissionsDefinition):
     odata_type: Optional[str] = "#microsoft.graph.singleResourceAzurePermissionsDefinition"
     # The actionInfo property
     action_info: Optional[AzurePermissionsDefinitionAction] = None
-    # The resourceId property
+    # Identifier for the resource.
     resource_id: Optional[str] = None
     
     @staticmethod

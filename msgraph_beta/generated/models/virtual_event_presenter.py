@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from .communications_user_identity import CommunicationsUserIdentity
     from .entity import Entity
     from .virtual_event_presenter_details import VirtualEventPresenterDetails
+    from .virtual_event_session import VirtualEventSession
 
 from .entity import Entity
 
@@ -20,6 +21,10 @@ class VirtualEventPresenter(Entity):
     odata_type: Optional[str] = None
     # Other detail information of the presenter.
     presenter_details: Optional[VirtualEventPresenterDetails] = None
+    # The profilePhoto property
+    profile_photo: Optional[bytes] = None
+    # The sessions property
+    sessions: Optional[List[VirtualEventSession]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VirtualEventPresenter:
@@ -40,15 +45,19 @@ class VirtualEventPresenter(Entity):
         from .communications_user_identity import CommunicationsUserIdentity
         from .entity import Entity
         from .virtual_event_presenter_details import VirtualEventPresenterDetails
+        from .virtual_event_session import VirtualEventSession
 
         from .communications_user_identity import CommunicationsUserIdentity
         from .entity import Entity
         from .virtual_event_presenter_details import VirtualEventPresenterDetails
+        from .virtual_event_session import VirtualEventSession
 
         fields: Dict[str, Callable[[Any], None]] = {
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "identity": lambda n : setattr(self, 'identity', n.get_object_value(CommunicationsUserIdentity)),
             "presenterDetails": lambda n : setattr(self, 'presenter_details', n.get_object_value(VirtualEventPresenterDetails)),
+            "profilePhoto": lambda n : setattr(self, 'profile_photo', n.get_bytes_value()),
+            "sessions": lambda n : setattr(self, 'sessions', n.get_collection_of_object_values(VirtualEventSession)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,5 +75,7 @@ class VirtualEventPresenter(Entity):
         writer.write_str_value("email", self.email)
         writer.write_object_value("identity", self.identity)
         writer.write_object_value("presenterDetails", self.presenter_details)
+        writer.write_bytes_value("profilePhoto", self.profile_photo)
+        writer.write_collection_of_object_values("sessions", self.sessions)
     
 

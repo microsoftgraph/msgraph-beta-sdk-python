@@ -5,5 +5,5 @@ class CloudPcAuditActivityResult(str, Enum):
     ClientError = "clientError",
     Failure = "failure",
     Timeout = "timeout",
-    Other = "other",
+    UnknownFutureValue = "unknownFutureValue",
 

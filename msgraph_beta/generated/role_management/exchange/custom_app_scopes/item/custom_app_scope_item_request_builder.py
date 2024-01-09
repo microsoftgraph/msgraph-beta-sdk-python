@@ -28,7 +28,7 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[CustomAppScopeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported. This API is available in the following national cloud deployments.
+        Delete a customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/customappscope-delete?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CustomAppScopeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CustomAppScope]:
         """
-        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported. This API is available in the following national cloud deployments.
+        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAppScope]
         Find more info here: https://learn.microsoft.com/graph/api/customappscope-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[CustomAppScope] = None, request_configuration: Optional[CustomAppScopeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CustomAppScope]:
         """
-        Update an existing customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported. This API is available in the following national cloud deployments.
+        Update an existing customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAppScope]
@@ -95,7 +95,7 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[CustomAppScopeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported. This API is available in the following national cloud deployments.
+        Delete a customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,12 +106,12 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[CustomAppScopeItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported. This API is available in the following national cloud deployments.
+        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -123,12 +123,12 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[CustomAppScope] = None, request_configuration: Optional[CustomAppScopeItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update an existing customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported. This API is available in the following national cloud deployments.
+        Update an existing customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -142,7 +142,7 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -169,7 +169,7 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustomAppScopeItemRequestBuilderGetQueryParameters():
         """
-        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported. This API is available in the following national cloud deployments.
+        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

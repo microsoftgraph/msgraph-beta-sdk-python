@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .cloud_pc_connection_settings import CloudPcConnectionSettings
     from .cloud_pc_connectivity_result import CloudPcConnectivityResult
+    from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
     from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
     from .cloud_pc_login_result import CloudPcLoginResult
     from .cloud_pc_operating_system import CloudPcOperatingSystem
@@ -30,6 +31,8 @@ class CloudPC(Entity):
     connection_settings: Optional[CloudPcConnectionSettings] = None
     # The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC can be connected.
     connectivity_result: Optional[CloudPcConnectivityResult] = None
+    # The disasterRecoveryCapability property
+    disaster_recovery_capability: Optional[CloudPcDisasterRecoveryCapability] = None
     # The disk encryption applied to the Cloud PC. Possible values: notAvailable, notEncrypted, encryptedUsingPlatformManagedKey, encryptedUsingCustomerManagedKey, and unknownFutureValue.
     disk_encryption_state: Optional[CloudPcDiskEncryptionState] = None
     # The display name of the Cloud PC.
@@ -64,6 +67,8 @@ class CloudPC(Entity):
     provisioning_policy_name: Optional[str] = None
     # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. Default value is dedicated.
     provisioning_type: Optional[CloudPcProvisioningType] = None
+    # The scopeIds property
+    scope_ids: Optional[List[str]] = None
     # The service plan ID of the Cloud PC.
     service_plan_id: Optional[str] = None
     # The service plan name of the Cloud PC.
@@ -97,6 +102,7 @@ class CloudPC(Entity):
         """
         from .cloud_pc_connection_settings import CloudPcConnectionSettings
         from .cloud_pc_connectivity_result import CloudPcConnectivityResult
+        from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
         from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
         from .cloud_pc_login_result import CloudPcLoginResult
         from .cloud_pc_operating_system import CloudPcOperatingSystem
@@ -112,6 +118,7 @@ class CloudPC(Entity):
 
         from .cloud_pc_connection_settings import CloudPcConnectionSettings
         from .cloud_pc_connectivity_result import CloudPcConnectivityResult
+        from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
         from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
         from .cloud_pc_login_result import CloudPcLoginResult
         from .cloud_pc_operating_system import CloudPcOperatingSystem
@@ -129,6 +136,7 @@ class CloudPC(Entity):
             "aadDeviceId": lambda n : setattr(self, 'aad_device_id', n.get_str_value()),
             "connectionSettings": lambda n : setattr(self, 'connection_settings', n.get_object_value(CloudPcConnectionSettings)),
             "connectivityResult": lambda n : setattr(self, 'connectivity_result', n.get_object_value(CloudPcConnectivityResult)),
+            "disasterRecoveryCapability": lambda n : setattr(self, 'disaster_recovery_capability', n.get_object_value(CloudPcDisasterRecoveryCapability)),
             "diskEncryptionState": lambda n : setattr(self, 'disk_encryption_state', n.get_enum_value(CloudPcDiskEncryptionState)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "gracePeriodEndDateTime": lambda n : setattr(self, 'grace_period_end_date_time', n.get_datetime_value()),
@@ -145,6 +153,7 @@ class CloudPC(Entity):
             "provisioningPolicyId": lambda n : setattr(self, 'provisioning_policy_id', n.get_str_value()),
             "provisioningPolicyName": lambda n : setattr(self, 'provisioning_policy_name', n.get_str_value()),
             "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
+            "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
             "servicePlanId": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
             "servicePlanName": lambda n : setattr(self, 'service_plan_name', n.get_str_value()),
             "servicePlanType": lambda n : setattr(self, 'service_plan_type', n.get_enum_value(CloudPcServicePlanType)),
@@ -169,6 +178,7 @@ class CloudPC(Entity):
         writer.write_str_value("aadDeviceId", self.aad_device_id)
         writer.write_object_value("connectionSettings", self.connection_settings)
         writer.write_object_value("connectivityResult", self.connectivity_result)
+        writer.write_object_value("disasterRecoveryCapability", self.disaster_recovery_capability)
         writer.write_enum_value("diskEncryptionState", self.disk_encryption_state)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("gracePeriodEndDateTime", self.grace_period_end_date_time)
@@ -185,6 +195,7 @@ class CloudPC(Entity):
         writer.write_str_value("provisioningPolicyId", self.provisioning_policy_id)
         writer.write_str_value("provisioningPolicyName", self.provisioning_policy_name)
         writer.write_enum_value("provisioningType", self.provisioning_type)
+        writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
         writer.write_str_value("servicePlanId", self.service_plan_id)
         writer.write_str_value("servicePlanName", self.service_plan_name)
         writer.write_enum_value("servicePlanType", self.service_plan_type)

@@ -11,7 +11,7 @@ class ContainerFilter(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The includedContainers property
+    # The identifiers of containers, such as organizational units, that are in scope for a synchronization rule. For Active Directory organizational units, use the distinguished names. An empty list means no container filtering is configured.
     included_containers: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

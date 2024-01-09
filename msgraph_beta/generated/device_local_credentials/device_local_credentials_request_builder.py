@@ -27,7 +27,7 @@ class DeviceLocalCredentialsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceLocalCredentials{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceLocalCredentials{?%24top,%24search,%24filter,%24count,%24orderby,%24select}", path_parameters)
     
     def by_device_local_credential_info_id(self,device_local_credential_info_id: str) -> DeviceLocalCredentialInfoItemRequestBuilder:
         """
@@ -102,7 +102,7 @@ class DeviceLocalCredentialsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[DeviceLocalCredentialInfo] = None, request_configuration: Optional[DeviceLocalCredentialsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -121,7 +121,7 @@ class DeviceLocalCredentialsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -159,8 +159,6 @@ class DeviceLocalCredentialsRequestBuilder(BaseRequestBuilder):
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
-            if original_name == "expand":
-                return "%24expand"
             if original_name == "filter":
                 return "%24filter"
             if original_name == "orderby":
@@ -169,17 +167,12 @@ class DeviceLocalCredentialsRequestBuilder(BaseRequestBuilder):
                 return "%24search"
             if original_name == "select":
                 return "%24select"
-            if original_name == "skip":
-                return "%24skip"
             if original_name == "top":
                 return "%24top"
             return original_name
         
         # Include count of items
         count: Optional[bool] = None
-
-        # Expand related entities
-        expand: Optional[List[str]] = None
 
         # Filter items by property values
         filter: Optional[str] = None
@@ -192,9 +185,6 @@ class DeviceLocalCredentialsRequestBuilder(BaseRequestBuilder):
 
         # Select properties to be returned
         select: Optional[List[str]] = None
-
-        # Skip the first n items
-        skip: Optional[int] = None
 
         # Show only the first n items
         top: Optional[int] = None

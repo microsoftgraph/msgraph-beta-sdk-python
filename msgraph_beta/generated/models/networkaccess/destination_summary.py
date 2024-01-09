@@ -14,13 +14,13 @@ class DestinationSummary(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Count of the aggregation.
+    # The number of the destinationSummary objects, aggregated by Global Secure Access service.
     count: Optional[int] = None
-    # Destination FQDN or IP address.
+    # The IP address or FQDN of the destination.
     destination: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The trafficType property
+    # The traffic classification. The allowed values are internet, private, microsoft365, all, and unknownFutureValue.
     traffic_type: Optional[TrafficType] = None
     
     @staticmethod

@@ -28,7 +28,7 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[MultiTenantOrganizationMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Remove a tenant from a multitenant organization. A tenant can be removed in the following scenarios: To allow for asynchronous processing, you must wait for up to 2 hours before removal of a tenant is completed. This API is available in the following national cloud deployments.
+        Remove a tenant from a multitenant organization. A tenant can be removed in the following scenarios: To allow for asynchronous processing, you must wait for up to 2 hours before removal of a tenant is completed.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/multitenantorganization-delete-tenants?view=graph-rest-1.0
@@ -48,7 +48,7 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[MultiTenantOrganizationMemberItemRequestBuilderGetRequestConfiguration] = None) -> Optional[MultiTenantOrganizationMember]:
         """
-        Get a tenant and its properties in the multi-tenant organization. This API is available in the following national cloud deployments.
+        Get a tenant and its properties in the multi-tenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationMember]
         Find more info here: https://learn.microsoft.com/graph/api/multitenantorganizationmember-get?view=graph-rest-1.0
@@ -94,7 +94,7 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[MultiTenantOrganizationMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Remove a tenant from a multitenant organization. A tenant can be removed in the following scenarios: To allow for asynchronous processing, you must wait for up to 2 hours before removal of a tenant is completed. This API is available in the following national cloud deployments.
+        Remove a tenant from a multitenant organization. A tenant can be removed in the following scenarios: To allow for asynchronous processing, you must wait for up to 2 hours before removal of a tenant is completed.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,12 +105,12 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[MultiTenantOrganizationMemberItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a tenant and its properties in the multi-tenant organization. This API is available in the following national cloud deployments.
+        Get a tenant and its properties in the multi-tenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -122,7 +122,7 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[MultiTenantOrganizationMember] = None, request_configuration: Optional[MultiTenantOrganizationMemberItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -141,7 +141,7 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -168,7 +168,7 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MultiTenantOrganizationMemberItemRequestBuilderGetQueryParameters():
         """
-        Get a tenant and its properties in the multi-tenant organization. This API is available in the following national cloud deployments.
+        Get a tenant and its properties in the multi-tenant organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

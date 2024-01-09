@@ -16,25 +16,25 @@ class Destination(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The deviceCount property
+    # The number of unique devices that were seen.
     device_count: Optional[int] = None
-    # The fqdn property
+    # The fully qualified domain name (FQDN) of the destination.
     fqdn: Optional[str] = None
-    # The ip property
+    # The internet protocol (IP) used to access the destination.
     ip: Optional[str] = None
-    # The lastAccessDateTime property
+    # The most recent access DateTime.
     last_access_date_time: Optional[datetime.datetime] = None
     # The networkingProtocol property
     networking_protocol: Optional[NetworkingProtocol] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The port property
+    # The numeric identifier that is associated with a specific endpoint in a network.
     port: Optional[int] = None
     # The trafficType property
     traffic_type: Optional[TrafficType] = None
-    # The transactionCount property
+    # The number of transactions.
     transaction_count: Optional[int] = None
-    # The userCount property
+    # The number of unique Microsoft Entra ID users that were seen.
     user_count: Optional[int] = None
     
     @staticmethod

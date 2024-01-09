@@ -29,7 +29,7 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None) -> Optional[DeleteTiIndicatorsByExternalIdPostResponse]:
         """
-        Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs. This API is available in the following national cloud deployments.
+        Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeleteTiIndicatorsByExternalIdPostResponse]
@@ -54,7 +54,7 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs. This API is available in the following national cloud deployments.
+        Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -68,7 +68,7 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     

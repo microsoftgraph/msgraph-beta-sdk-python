@@ -12,15 +12,15 @@ from .entity import Entity
 
 @dataclass
 class GcpRole(Entity):
-    # The displayName property
+    # The name of the GCP role. Supports $filter and (eq,contains).
     display_name: Optional[str] = None
-    # The externalId property
+    # The ID of the GCP role as defined by GCP. Alternate key.
     external_id: Optional[str] = None
     # The gcpRoleType property
     gcp_role_type: Optional[GcpRoleType] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The scopes property
+    # Resources that an identity assigned this GCP role can perform actions on. Supports $filter and (eq).
     scopes: Optional[List[GcpScope]] = None
     
     @staticmethod

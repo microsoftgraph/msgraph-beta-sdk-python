@@ -19,25 +19,25 @@ from .entity import Entity
 
 @dataclass
 class DailyUserInsightMetricsRoot(Entity):
-    # The activeUsers property
+    # Insights for active users on apps registered in the tenant for a specified period.
     active_users: Optional[List[ActiveUsersMetric]] = None
-    # The activeUsersBreakdown property
+    # Insights for the breakdown of users who were active on apps registered in the tenant for a specified period.
     active_users_breakdown: Optional[List[ActiveUsersBreakdownMetric]] = None
-    # The authentications property
+    # Insights for authentications on apps registered in the tenant for a specified period.
     authentications: Optional[List[AuthenticationsMetric]] = None
     # The inactiveUsers property
     inactive_users: Optional[List[DailyInactiveUsersMetric]] = None
     # The inactiveUsersByApplication property
     inactive_users_by_application: Optional[List[DailyInactiveUsersByApplicationMetric]] = None
-    # The mfaCompletions property
+    # Insights for MFA usage on apps registered in the tenant for a specified period.
     mfa_completions: Optional[List[MfaCompletionMetric]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The signUps property
+    # Total sign-ups on apps registered in the tenant for a specified period.
     sign_ups: Optional[List[UserSignUpMetric]] = None
-    # The summary property
+    # Summary of all usage insights on apps registered in the tenant for a specified period.
     summary: Optional[List[InsightSummary]] = None
-    # The userCount property
+    # Insights for total users on apps registered in the tenant for a specified period.
     user_count: Optional[List[UserCountMetric]] = None
     
     @staticmethod

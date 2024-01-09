@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .filtering_profile import FilteringProfile
     from .forwarding_profile import ForwardingProfile
     from .policy_link import PolicyLink
     from .status import Status
@@ -42,6 +43,10 @@ class Profile(Entity):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringProfile".casefold():
+            from .filtering_profile import FilteringProfile
+
+            return FilteringProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfile".casefold():
             from .forwarding_profile import ForwardingProfile
 
@@ -54,11 +59,13 @@ class Profile(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .filtering_profile import FilteringProfile
         from .forwarding_profile import ForwardingProfile
         from .policy_link import PolicyLink
         from .status import Status
 
         from ..entity import Entity
+        from .filtering_profile import FilteringProfile
         from .forwarding_profile import ForwardingProfile
         from .policy_link import PolicyLink
         from .status import Status

@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .network_access_traffic import NetworkAccessTraffic
+    from .remote_network_health_event import RemoteNetworkHealthEvent
 
 from ..entity import Entity
 
@@ -13,7 +14,9 @@ from ..entity import Entity
 class Logs(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
-    # Represents a collection of log entries in the network access traffic log.
+    # A collection of remote network health events.
+    remote_networks: Optional[List[RemoteNetworkHealthEvent]] = None
+    # A network access traffic log entry that contains comprehensive information about network traffic events.
     traffic: Optional[List[NetworkAccessTraffic]] = None
     
     @staticmethod
@@ -34,11 +37,14 @@ class Logs(Entity):
         """
         from ..entity import Entity
         from .network_access_traffic import NetworkAccessTraffic
+        from .remote_network_health_event import RemoteNetworkHealthEvent
 
         from ..entity import Entity
         from .network_access_traffic import NetworkAccessTraffic
+        from .remote_network_health_event import RemoteNetworkHealthEvent
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "remoteNetworks": lambda n : setattr(self, 'remote_networks', n.get_collection_of_object_values(RemoteNetworkHealthEvent)),
             "traffic": lambda n : setattr(self, 'traffic', n.get_collection_of_object_values(NetworkAccessTraffic)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,6 +60,7 @@ class Logs(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("remoteNetworks", self.remote_networks)
         writer.write_collection_of_object_values("traffic", self.traffic)
     
 

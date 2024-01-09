@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .day_note import DayNote
     from .entity import Entity
     from .identity_set import IdentitySet
     from .offer_shift_request import OfferShiftRequest
@@ -25,13 +26,13 @@ from .entity import Entity
 
 @dataclass
 class ChangeTrackedEntity(Entity):
-    # The createdBy property
+    # Identity of the user who created the entity.
     created_by: Optional[IdentitySet] = None
-    # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    # The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # Identity of the person who last modified the entity.
+    # Identity of the user who last modified the entity.
     last_modified_by: Optional[IdentitySet] = None
-    # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    # The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -49,6 +50,10 @@ class ChangeTrackedEntity(Entity):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.dayNote".casefold():
+            from .day_note import DayNote
+
+            return DayNote()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.offerShiftRequest".casefold():
             from .offer_shift_request import OfferShiftRequest
 
@@ -108,6 +113,7 @@ class ChangeTrackedEntity(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .day_note import DayNote
         from .entity import Entity
         from .identity_set import IdentitySet
         from .offer_shift_request import OfferShiftRequest
@@ -124,6 +130,7 @@ class ChangeTrackedEntity(Entity):
         from .time_off_request import TimeOffRequest
         from .workforce_integration import WorkforceIntegration
 
+        from .day_note import DayNote
         from .entity import Entity
         from .identity_set import IdentitySet
         from .offer_shift_request import OfferShiftRequest

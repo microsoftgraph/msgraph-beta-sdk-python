@@ -17,13 +17,13 @@ from .entity import Entity
 class Agreement(Entity):
     # Read-only. Information about acceptances of this agreement.
     acceptances: Optional[List[AgreementAcceptance]] = None
-    # Display name of the agreement. The display name is used for internal tracking of the agreement but is not shown to end users who view the agreement. Supports $filter (eq).
+    # Display name of the agreement. The display name is used for internal tracking of the agreement but isn't shown to end users who view the agreement. Supports $filter (eq).
     display_name: Optional[str] = None
     # Default PDF linked to this agreement.
     file: Optional[AgreementFile] = None
     # PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
     files: Optional[List[AgreementFileLocalization]] = None
-    # This setting enables you to require end users to accept this agreement on every device that they are accessing it from. The end user will be required to register their device in Microsoft Entra ID, if they haven't already done so. Supports $filter (eq).
+    # This setting enables you to require end users to accept this agreement on every device that they're accessing it from. The end user is required to register their device in Microsoft Entra ID, if they haven't already done so. Supports $filter (eq).
     is_per_device_acceptance_required: Optional[bool] = None
     # Indicates whether the user has to expand the agreement before accepting. Supports $filter (eq).
     is_viewing_before_acceptance_required: Optional[bool] = None
@@ -31,7 +31,7 @@ class Agreement(Entity):
     odata_type: Optional[str] = None
     # Expiration schedule and frequency of agreement for all users.  Supports $filter (eq).
     terms_expiration: Optional[TermsExpiration] = None
-    # The duration after which the user must re-accept the terms of use. The value is represented in ISO 8601 format for durations.
+    # The duration after which the user must reaccept the terms of use. The value is represented in ISO 8601 format for durations.
     user_reaccept_required_frequency: Optional[datetime.timedelta] = None
     
     @staticmethod
