@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ....models.channel import Channel
     from ....models.o_data_errors.o_data_error import ODataError
+    from .archive.archive_request_builder import ArchiveRequestBuilder
     from .complete_migration.complete_migration_request_builder import CompleteMigrationRequestBuilder
     from .does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder import DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder
     from .files_folder.files_folder_request_builder import FilesFolderRequestBuilder
@@ -21,6 +22,7 @@ if TYPE_CHECKING:
     from .remove_email.remove_email_request_builder import RemoveEmailRequestBuilder
     from .shared_with_teams.shared_with_teams_request_builder import SharedWithTeamsRequestBuilder
     from .tabs.tabs_request_builder import TabsRequestBuilder
+    from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
 
 class PrimaryChannelRequestBuilder(BaseRequestBuilder):
     """
@@ -56,7 +58,7 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PrimaryChannelRequestBuilderGetRequestConfiguration] = None) -> Optional[Channel]:
         """
-        Get the default channel, General, of a team. This API is available in the following national cloud deployments.
+        Get the default channel, General, of a team.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Channel]
         Find more info here: https://learn.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0
@@ -113,12 +115,12 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[PrimaryChannelRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the default channel, General, of a team. This API is available in the following national cloud deployments.
+        Get the default channel, General, of a team.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -130,7 +132,7 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[Channel] = None, request_configuration: Optional[PrimaryChannelRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -149,7 +151,7 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -162,6 +164,15 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return PrimaryChannelRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def archive(self) -> ArchiveRequestBuilder:
+        """
+        Provides operations to call the archive method.
+        """
+        from .archive.archive_request_builder import ArchiveRequestBuilder
+
+        return ArchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def complete_migration(self) -> CompleteMigrationRequestBuilder:
@@ -244,6 +255,15 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
 
         return TabsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def unarchive(self) -> UnarchiveRequestBuilder:
+        """
+        Provides operations to call the unarchive method.
+        """
+        from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
+
+        return UnarchiveRequestBuilder(self.request_adapter, self.path_parameters)
+    
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
     @dataclass
@@ -257,7 +277,7 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PrimaryChannelRequestBuilderGetQueryParameters():
         """
-        Get the default channel, General, of a team. This API is available in the following national cloud deployments.
+        Get the default channel, General, of a team.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

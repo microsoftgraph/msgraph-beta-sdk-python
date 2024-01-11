@@ -13,14 +13,20 @@ from .change_tracked_entity import ChangeTrackedEntity
 class OpenShift(ChangeTrackedEntity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.openShift"
-    # An unpublished open shift.
+    # Draft changes in the openShift are only visible to managers until they are shared.
     draft_open_shift: Optional[OpenShiftItem] = None
-    # The isStagedForDeletion property
+    # The openShift is marked for deletion, a process that is finalized when the schedule is shared.
     is_staged_for_deletion: Optional[bool] = None
-    # ID for the scheduling group that the open shift belongs to.
+    # The ID of the schedulingGroup that contains the openShift.
     scheduling_group_id: Optional[str] = None
-    # A published open shift.
+    # The name of the schedulingGroup that contains the openShift.
+    scheduling_group_name: Optional[str] = None
+    # The shared version of this openShift that is viewable by both employees and managers.
     shared_open_shift: Optional[OpenShiftItem] = None
+    # The ID of the team in which the openShift is located.
+    team_id: Optional[str] = None
+    # The name of the team in which the openShift is located.
+    team_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OpenShift:
@@ -48,7 +54,10 @@ class OpenShift(ChangeTrackedEntity):
             "draftOpenShift": lambda n : setattr(self, 'draft_open_shift', n.get_object_value(OpenShiftItem)),
             "isStagedForDeletion": lambda n : setattr(self, 'is_staged_for_deletion', n.get_bool_value()),
             "schedulingGroupId": lambda n : setattr(self, 'scheduling_group_id', n.get_str_value()),
+            "schedulingGroupName": lambda n : setattr(self, 'scheduling_group_name', n.get_str_value()),
             "sharedOpenShift": lambda n : setattr(self, 'shared_open_shift', n.get_object_value(OpenShiftItem)),
+            "teamId": lambda n : setattr(self, 'team_id', n.get_str_value()),
+            "teamName": lambda n : setattr(self, 'team_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

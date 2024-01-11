@@ -45,7 +45,7 @@ class BusinessFlowTemplatesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[BusinessFlowTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[BusinessFlowTemplateCollectionResponse]:
         """
-        In the Microsoft Entra access reviews feature, list all the businessFlowTemplate objects. This API is available in the following national cloud deployments.
+        In the Microsoft Entra access reviews feature, list all the businessFlowTemplate objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessFlowTemplateCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/businessflowtemplate-list?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class BusinessFlowTemplatesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[BusinessFlowTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Microsoft Entra access reviews feature, list all the businessFlowTemplate objects. This API is available in the following national cloud deployments.
+        In the Microsoft Entra access reviews feature, list all the businessFlowTemplate objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +103,7 @@ class BusinessFlowTemplatesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[BusinessFlowTemplate] = None, request_configuration: Optional[BusinessFlowTemplatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
@@ -122,7 +122,7 @@ class BusinessFlowTemplatesRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -148,7 +148,7 @@ class BusinessFlowTemplatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BusinessFlowTemplatesRequestBuilderGetQueryParameters():
         """
-        In the Microsoft Entra access reviews feature, list all the businessFlowTemplate objects. This API is available in the following national cloud deployments.
+        In the Microsoft Entra access reviews feature, list all the businessFlowTemplate objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

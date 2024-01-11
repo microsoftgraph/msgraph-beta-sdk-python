@@ -1,4 +1,5 @@
 from __future__ import annotations
+import datetime
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -17,6 +18,10 @@ class BookingCustomer(BookingPerson):
     """
     # Addresses associated with the customer, including home, business and other addresses.
     addresses: Optional[List[PhysicalAddress]] = None
+    # The createdDateTime property
+    created_date_time: Optional[datetime.datetime] = None
+    # The lastUpdatedDateTime property
+    last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Phone numbers associated with the customer, including home, business and mobile numbers.
@@ -48,6 +53,8 @@ class BookingCustomer(BookingPerson):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "addresses": lambda n : setattr(self, 'addresses', n.get_collection_of_object_values(PhysicalAddress)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "phones": lambda n : setattr(self, 'phones', n.get_collection_of_object_values(Phone)),
         }
         super_fields = super().get_field_deserializers()
@@ -64,6 +71,8 @@ class BookingCustomer(BookingPerson):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("addresses", self.addresses)
+        writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_collection_of_object_values("phones", self.phones)
     
 

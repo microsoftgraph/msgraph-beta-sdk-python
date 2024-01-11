@@ -10,4 +10,6 @@ class TeamsAsyncOperationType(str, Enum):
     TeamifyGroup = "teamifyGroup",
     CreateChannel = "createChannel",
     CreateChat = "createChat",
+    ArchiveChannel = "archiveChannel",
+    UnarchiveChannel = "unarchiveChannel",
 

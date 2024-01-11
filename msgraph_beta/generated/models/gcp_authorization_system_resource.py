@@ -13,7 +13,7 @@ from .authorization_system_resource import AuthorizationSystemResource
 class GcpAuthorizationSystemResource(AuthorizationSystemResource):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gcpAuthorizationSystemResource"
-    # The service property
+    # The service associated with the resource in an GCP authorization system. This object is auto-expanded.
     service: Optional[AuthorizationSystemTypeService] = None
     
     @staticmethod

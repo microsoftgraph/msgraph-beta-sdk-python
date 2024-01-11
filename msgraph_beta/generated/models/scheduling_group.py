@@ -12,6 +12,8 @@ from .change_tracked_entity import ChangeTrackedEntity
 class SchedulingGroup(ChangeTrackedEntity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.schedulingGroup"
+    # The code for the schedulingGroup to represent an external identifier.
+    code: Optional[str] = None
     # The display name for the schedulingGroup. Required.
     display_name: Optional[str] = None
     # Indicates whether the schedulingGroup can be used when creating new entities or updating existing ones. Required.
@@ -40,6 +42,7 @@ class SchedulingGroup(ChangeTrackedEntity):
         from .change_tracked_entity import ChangeTrackedEntity
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "code": lambda n : setattr(self, 'code', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "isActive": lambda n : setattr(self, 'is_active', n.get_bool_value()),
             "userIds": lambda n : setattr(self, 'user_ids', n.get_collection_of_primitive_values(str)),
@@ -57,6 +60,7 @@ class SchedulingGroup(ChangeTrackedEntity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("code", self.code)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_primitive_values("userIds", self.user_ids)
     

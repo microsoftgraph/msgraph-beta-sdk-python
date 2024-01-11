@@ -32,7 +32,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     def by_connector_id(self,connector_id: str) -> ConnectorItemRequestBuilder:
         """
         Gets an item from the msgraph_beta.generated.onPremisesPublishingProfiles.item.connectorGroups.item.members.item collection
-        param connector_id: Unique identifier of the item
+        param connector_id: The unique identifier of connector
         Returns: ConnectorItemRequestBuilder
         """
         if not connector_id:
@@ -78,7 +78,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> MembersRequestBuilder:

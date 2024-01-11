@@ -14,13 +14,13 @@ from .entity import Entity
 
 @dataclass
 class AuthorizationSystem(Entity):
-    # The authorizationSystemId property
+    # ID of the authorization system retrieved from the customer cloud environment. Supports $filter(eq, contains) and $orderBy.
     authorization_system_id: Optional[str] = None
-    # The authorizationSystemName property
+    # Name of the authorization system detected after onboarding. Supports $filter(eq,contains) and $orderBy.
     authorization_system_name: Optional[str] = None
-    # The authorizationSystemType property
+    # The type of authorization system. Can be gcp, azure, or aws. Supports $filter(eq).
     authorization_system_type: Optional[str] = None
-    # The dataCollectionInfo property
+    # Defines how and whether Permissions Management collects data from the onboarded authorization system. Supports $filter (eq) as follows:  $filter=dataCollectionInfo/entitlements/permissionsModificationCapability and $filter=dataCollectionInfo/entitlements/status.
     data_collection_info: Optional[DataCollectionInfo] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -13,7 +13,7 @@ from .aws_identity import AwsIdentity
 class AwsLambda(AwsIdentity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsLambda"
-    # The resource property
+    # Represents the resources in an authorization system..
     resource: Optional[AwsAuthorizationSystemResource] = None
     
     @staticmethod

@@ -53,6 +53,8 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
     password_required: Optional[bool] = None
     # Type of characters in password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
     password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
+    # Require device to have no pending Android system updates.
+    require_no_pending_system_updates: Optional[bool] = None
     # If setting is set to true, checks that the Intune app installed on fully managed, dedicated, or corporate-owned work profile Android Enterprise enrolled devices, is the one provided by Microsoft from the Managed Google Playstore. If the check fails, the device will be reported as non-compliant.
     security_require_intune_app_integrity: Optional[bool] = None
     # Require the device to pass the SafetyNet basic integrity check.
@@ -105,6 +107,7 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
             "passwordPreviousPasswordCountToBlock": lambda n : setattr(self, 'password_previous_password_count_to_block', n.get_int_value()),
             "passwordRequired": lambda n : setattr(self, 'password_required', n.get_bool_value()),
             "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(AndroidDeviceOwnerRequiredPasswordType)),
+            "requireNoPendingSystemUpdates": lambda n : setattr(self, 'require_no_pending_system_updates', n.get_bool_value()),
             "securityRequireIntuneAppIntegrity": lambda n : setattr(self, 'security_require_intune_app_integrity', n.get_bool_value()),
             "securityRequireSafetyNetAttestationBasicIntegrity": lambda n : setattr(self, 'security_require_safety_net_attestation_basic_integrity', n.get_bool_value()),
             "securityRequireSafetyNetAttestationCertifiedDevice": lambda n : setattr(self, 'security_require_safety_net_attestation_certified_device', n.get_bool_value()),
@@ -141,6 +144,7 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
         writer.write_int_value("passwordPreviousPasswordCountToBlock", self.password_previous_password_count_to_block)
         writer.write_bool_value("passwordRequired", self.password_required)
         writer.write_enum_value("passwordRequiredType", self.password_required_type)
+        writer.write_bool_value("requireNoPendingSystemUpdates", self.require_no_pending_system_updates)
         writer.write_bool_value("securityRequireIntuneAppIntegrity", self.security_require_intune_app_integrity)
         writer.write_bool_value("securityRequireSafetyNetAttestationBasicIntegrity", self.security_require_safety_net_attestation_basic_integrity)
         writer.write_bool_value("securityRequireSafetyNetAttestationCertifiedDevice", self.security_require_safety_net_attestation_certified_device)

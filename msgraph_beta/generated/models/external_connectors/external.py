@@ -16,7 +16,7 @@ class External(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The authorizationSystems property
+    # Represents an onboarded AWS account, Azure subscription, or GCP project that Microsoft Entra Permissions Management will collect and analyze permissions and actions on.
     authorization_systems: Optional[List[AuthorizationSystem]] = None
     # The connections property
     connections: Optional[List[ExternalConnection]] = None

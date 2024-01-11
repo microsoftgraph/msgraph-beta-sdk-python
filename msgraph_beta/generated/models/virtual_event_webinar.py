@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from .meeting_audience import MeetingAudience
     from .virtual_event import VirtualEvent
     from .virtual_event_registration import VirtualEventRegistration
-    from .virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
+    from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
 
 from .virtual_event import VirtualEvent
 
@@ -20,8 +20,8 @@ class VirtualEventWebinar(VirtualEvent):
     co_organizers: Optional[List[CommunicationsUserIdentity]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Registration configuration of the webinar.
-    registration_configuration: Optional[VirtualEventRegistrationConfiguration] = None
+    # The registrationConfiguration property
+    registration_configuration: Optional[VirtualEventWebinarRegistrationConfiguration] = None
     # Registration records of the webinar.
     registrations: Optional[List[VirtualEventRegistration]] = None
     
@@ -45,18 +45,18 @@ class VirtualEventWebinar(VirtualEvent):
         from .meeting_audience import MeetingAudience
         from .virtual_event import VirtualEvent
         from .virtual_event_registration import VirtualEventRegistration
-        from .virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
+        from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
 
         from .communications_user_identity import CommunicationsUserIdentity
         from .meeting_audience import MeetingAudience
         from .virtual_event import VirtualEvent
         from .virtual_event_registration import VirtualEventRegistration
-        from .virtual_event_registration_configuration import VirtualEventRegistrationConfiguration
+        from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "audience": lambda n : setattr(self, 'audience', n.get_enum_value(MeetingAudience)),
             "coOrganizers": lambda n : setattr(self, 'co_organizers', n.get_collection_of_object_values(CommunicationsUserIdentity)),
-            "registrationConfiguration": lambda n : setattr(self, 'registration_configuration', n.get_object_value(VirtualEventRegistrationConfiguration)),
+            "registrationConfiguration": lambda n : setattr(self, 'registration_configuration', n.get_object_value(VirtualEventWebinarRegistrationConfiguration)),
             "registrations": lambda n : setattr(self, 'registrations', n.get_collection_of_object_values(VirtualEventRegistration)),
         }
         super_fields = super().get_field_deserializers()

@@ -17,11 +17,11 @@ class SynchronizationRule(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The containerFilter property
+    # The names and identifiers of organizational units that are in scope for a synchronization rule. containerFilter and groupFilter are mutually exclusive properties that cannot be configured in the same request. Currently only supported for Azure AD Connect cloud sync scenarios.
     container_filter: Optional[ContainerFilter] = None
     # true if the synchronization rule can be customized; false if this rule is read-only and shouldn't be changed.
     editable: Optional[bool] = None
-    # The groupFilter property
+    # The names and identifiers of groups that are in scope for a synchronization rule. containerFilter and groupFilter are mutually exclusive properties that cannot be configured in the same request. Currently only supported for Azure AD Connect cloud sync scenarios.
     group_filter: Optional[GroupFilter] = None
     # Synchronization rule identifier. Must be one of the identifiers recognized by the synchronization engine. Supported rule identifiers can be found in the synchronization template returned by the API.
     id: Optional[str] = None

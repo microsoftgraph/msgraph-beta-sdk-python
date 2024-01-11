@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .planner_archival_info import PlannerArchivalInfo
     from .planner_bucket_creation import PlannerBucketCreation
     from .planner_delta import PlannerDelta
     from .planner_task import PlannerTask
@@ -12,8 +13,12 @@ from .planner_delta import PlannerDelta
 
 @dataclass
 class PlannerBucket(PlannerDelta):
+    # The archivalInfo property
+    archival_info: Optional[PlannerArchivalInfo] = None
     # Contains information about the origin of the bucket.
     creation_source: Optional[PlannerBucketCreation] = None
+    # The isArchived property
+    is_archived: Optional[bool] = None
     # Name of the bucket.
     name: Optional[str] = None
     # The OdataType property
@@ -41,16 +46,20 @@ class PlannerBucket(PlannerDelta):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .planner_archival_info import PlannerArchivalInfo
         from .planner_bucket_creation import PlannerBucketCreation
         from .planner_delta import PlannerDelta
         from .planner_task import PlannerTask
 
+        from .planner_archival_info import PlannerArchivalInfo
         from .planner_bucket_creation import PlannerBucketCreation
         from .planner_delta import PlannerDelta
         from .planner_task import PlannerTask
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "archivalInfo": lambda n : setattr(self, 'archival_info', n.get_object_value(PlannerArchivalInfo)),
             "creationSource": lambda n : setattr(self, 'creation_source', n.get_object_value(PlannerBucketCreation)),
+            "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "orderHint": lambda n : setattr(self, 'order_hint', n.get_str_value()),
             "planId": lambda n : setattr(self, 'plan_id', n.get_str_value()),
@@ -69,7 +78,9 @@ class PlannerBucket(PlannerDelta):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("archivalInfo", self.archival_info)
         writer.write_object_value("creationSource", self.creation_source)
+        writer.write_bool_value("isArchived", self.is_archived)
         writer.write_str_value("name", self.name)
         writer.write_str_value("orderHint", self.order_hint)
         writer.write_str_value("planId", self.plan_id)

@@ -11,11 +11,11 @@ class ActionSummary(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The assigned property
+    # This is the number of authorization system actions that have been assigned to the identity.
     assigned: Optional[int] = None
-    # The available property
+    # This is the number of authorization system actions that the identity has exercised in the last 90 days.
     available: Optional[int] = None
-    # The exercised property
+    # This is the maximum number of actions that are available in the authorization system.
     exercised: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None

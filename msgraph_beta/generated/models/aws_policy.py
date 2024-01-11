@@ -13,9 +13,9 @@ from .entity import Entity
 class AwsPolicy(Entity):
     # The awsPolicyType property
     aws_policy_type: Optional[AwsPolicyType] = None
-    # The displayName property
+    # The display name for the AWS policy. Read-only. Supports $filter and (eq,contains).
     display_name: Optional[str] = None
-    # The externalId property
+    # The base64 encoded identifier for the AWS policy as defined by AWS. Read-only. Alternate key. Supports $filter and eq.
     external_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

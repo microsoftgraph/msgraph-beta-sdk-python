@@ -16,7 +16,7 @@ class GcpScope(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resourceType property
+    # Type of GCP resource.
     resource_type: Optional[str] = None
     # The service property
     service: Optional[AuthorizationSystemTypeService] = None

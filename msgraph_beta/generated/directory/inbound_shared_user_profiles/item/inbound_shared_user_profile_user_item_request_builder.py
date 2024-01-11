@@ -49,7 +49,7 @@ class InboundSharedUserProfileUserItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[InboundSharedUserProfileUserItemRequestBuilderGetRequestConfiguration] = None) -> Optional[InboundSharedUserProfile]:
         """
-        Read the properties of an inboundSharedUserProfile. This API is available in the following national cloud deployments.
+        Read the properties of an inboundSharedUserProfile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundSharedUserProfile]
         Find more info here: https://learn.microsoft.com/graph/api/inboundshareduserprofile-get?view=graph-rest-1.0
@@ -106,12 +106,12 @@ class InboundSharedUserProfileUserItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.DELETE
-        request_info.headers.try_add("Accept", "application/json, application/json")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[InboundSharedUserProfileUserItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties of an inboundSharedUserProfile. This API is available in the following national cloud deployments.
+        Read the properties of an inboundSharedUserProfile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -123,7 +123,7 @@ class InboundSharedUserProfileUserItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: Optional[InboundSharedUserProfile] = None, request_configuration: Optional[InboundSharedUserProfileUserItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
@@ -142,7 +142,7 @@ class InboundSharedUserProfileUserItemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -187,7 +187,7 @@ class InboundSharedUserProfileUserItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InboundSharedUserProfileUserItemRequestBuilderGetQueryParameters():
         """
-        Read the properties of an inboundSharedUserProfile. This API is available in the following national cloud deployments.
+        Read the properties of an inboundSharedUserProfile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

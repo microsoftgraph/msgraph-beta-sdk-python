@@ -45,7 +45,7 @@ class SourceSystemsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SourceSystemsRequestBuilderGetRequestConfiguration] = None) -> Optional[SourceSystemDefinitionCollectionResponse]:
         """
-        Get a list of the sourceSystemDefinition objects and their properties. This API is available in the following national cloud deployments.
+        Get a list of the sourceSystemDefinition objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SourceSystemDefinitionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/industrydata-sourcesystemdefinition-list?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class SourceSystemsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SourceSystemDefinition] = None, request_configuration: Optional[SourceSystemsRequestBuilderPostRequestConfiguration] = None) -> Optional[SourceSystemDefinition]:
         """
-        Create a new sourceSystemDefinition object. This API is available in the following national cloud deployments.
+        Create a new sourceSystemDefinition object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SourceSystemDefinition]
@@ -92,7 +92,7 @@ class SourceSystemsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SourceSystemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the sourceSystemDefinition objects and their properties. This API is available in the following national cloud deployments.
+        Get a list of the sourceSystemDefinition objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,12 +104,12 @@ class SourceSystemsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_post_request_information(self,body: Optional[SourceSystemDefinition] = None, request_configuration: Optional[SourceSystemsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new sourceSystemDefinition object. This API is available in the following national cloud deployments.
+        Create a new sourceSystemDefinition object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,7 +123,7 @@ class SourceSystemsRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
@@ -149,7 +149,7 @@ class SourceSystemsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SourceSystemsRequestBuilderGetQueryParameters():
         """
-        Get a list of the sourceSystemDefinition objects and their properties. This API is available in the following national cloud deployments.
+        Get a list of the sourceSystemDefinition objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

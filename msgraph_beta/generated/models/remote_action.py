@@ -71,4 +71,6 @@ class RemoteAction(str, Enum):
     RevokeAppleVppLicenses = "revokeAppleVppLicenses",
     # Indicate IT Admin initiates an action to remove devices from Device Firmware Configuration Interface management
     RemoveDeviceFirmwareConfigurationInterfaceManagement = "removeDeviceFirmwareConfigurationInterfaceManagement",
+    # Indicates an action has been initiated to pause configuration refresh for the device.
+    PauseConfigurationRefresh = "pauseConfigurationRefresh",
 

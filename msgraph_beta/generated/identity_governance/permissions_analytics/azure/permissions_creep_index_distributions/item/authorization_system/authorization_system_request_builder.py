@@ -28,7 +28,7 @@ class AuthorizationSystemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AuthorizationSystemRequestBuilderGetRequestConfiguration] = None) -> Optional[AuthorizationSystem]:
         """
-        Get authorizationSystem from identityGovernance
+        Represents an authorization system onboarded to Permissions Management.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthorizationSystem]
         """
@@ -49,7 +49,7 @@ class AuthorizationSystemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AuthorizationSystemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get authorizationSystem from identityGovernance
+        Represents an authorization system onboarded to Permissions Management.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +61,7 @@ class AuthorizationSystemRequestBuilder(BaseRequestBuilder):
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers.try_add("Accept", "application/json;q=1")
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: Optional[str] = None) -> AuthorizationSystemRequestBuilder:
@@ -77,7 +77,7 @@ class AuthorizationSystemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuthorizationSystemRequestBuilderGetQueryParameters():
         """
-        Get authorizationSystem from identityGovernance
+        Represents an authorization system onboarded to Permissions Management.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

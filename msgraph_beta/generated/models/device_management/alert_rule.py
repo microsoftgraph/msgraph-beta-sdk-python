@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from ..entity import Entity
     from .alert_rule_template import AlertRuleTemplate
     from .notification_channel import NotificationChannel
+    from .rule_condition import RuleCondition
     from .rule_severity_type import RuleSeverityType
     from .rule_threshold import RuleThreshold
 
@@ -14,15 +15,17 @@ from ..entity import Entity
 
 @dataclass
 class AlertRule(Entity):
-    # The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue, cloudPcInGracePeriodScenario. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: cloudPcInGracePeriodScenario.
+    # The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, cloudPcInGracePeriodScenario, cloudPcFrontlineInsufficientLicensesScenario, cloudPcInaccessibleScenario. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: cloudPcInGracePeriodScenario.
     alert_rule_template: Optional[AlertRuleTemplate] = None
+    # The conditions that determine when to send alerts. For example, you can configure a condition to send an alert when provisioning fails for six or more Cloud PCs.
+    conditions: Optional[List[RuleCondition]] = None
     # The rule description.
     description: Optional[str] = None
     # The display name of the rule.
     display_name: Optional[str] = None
     # The status of the rule that indicates whether the rule is enabled or disabled. If true, the rule is enabled; otherwise, the rule is disabled.
     enabled: Optional[bool] = None
-    # Indicates whether the rule is a system rule. If true, the rule is a system rule; otherwise, the rule is a custom defined rule and can be edited. System rules are built-in and only a few properties can be edited.
+    # Indicates whether the rule is a system rule. If true, the rule is a system rule; otherwise, the rule is a custom-defined rule and can be edited. System rules are built in and only a few properties can be edited.
     is_system_rule: Optional[bool] = None
     # The notification channels of the rule selected by the user.
     notification_channels: Optional[List[NotificationChannel]] = None
@@ -30,7 +33,7 @@ class AlertRule(Entity):
     odata_type: Optional[str] = None
     # The severity of the rule. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
     severity: Optional[RuleSeverityType] = None
-    # The conditions to send alerts. For example, send alert when provisioning has failed for greater than or equal to 6 Cloud PCs.
+    # The conditions that determine when to send alerts. For example, you can configure a condition to send an alert when provisioning fails for six or more Cloud PCs. This property is deprecated. Use conditions instead.
     threshold: Optional[RuleThreshold] = None
     
     @staticmethod
@@ -52,17 +55,20 @@ class AlertRule(Entity):
         from ..entity import Entity
         from .alert_rule_template import AlertRuleTemplate
         from .notification_channel import NotificationChannel
+        from .rule_condition import RuleCondition
         from .rule_severity_type import RuleSeverityType
         from .rule_threshold import RuleThreshold
 
         from ..entity import Entity
         from .alert_rule_template import AlertRuleTemplate
         from .notification_channel import NotificationChannel
+        from .rule_condition import RuleCondition
         from .rule_severity_type import RuleSeverityType
         from .rule_threshold import RuleThreshold
 
         fields: Dict[str, Callable[[Any], None]] = {
             "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(AlertRuleTemplate)),
+            "conditions": lambda n : setattr(self, 'conditions', n.get_collection_of_object_values(RuleCondition)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
@@ -85,6 +91,7 @@ class AlertRule(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("alertRuleTemplate", self.alert_rule_template)
+        writer.write_collection_of_object_values("conditions", self.conditions)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("enabled", self.enabled)

@@ -15,6 +15,8 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The domainJoinType property
+    domain_join_type: Optional[CloudPcDomainJoinType] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The Azure network connection ID that matches the virtual network IT admins want the provisioning policy to use when they create Cloud PCs. You can use this property in both domain join types: Azure AD joined or Hybrid Microsoft Entra joined. If you enter an onPremisesConnectionId, leave regionName as empty.
@@ -49,6 +51,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
         from .cloud_pc_region_group import CloudPcRegionGroup
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "domainJoinType": lambda n : setattr(self, 'domain_join_type', n.get_enum_value(CloudPcDomainJoinType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "onPremisesConnectionId": lambda n : setattr(self, 'on_premises_connection_id', n.get_str_value()),
             "regionGroup": lambda n : setattr(self, 'region_group', n.get_enum_value(CloudPcRegionGroup)),
@@ -65,6 +68,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("domainJoinType", self.domain_join_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("onPremisesConnectionId", self.on_premises_connection_id)
         writer.write_enum_value("regionGroup", self.region_group)

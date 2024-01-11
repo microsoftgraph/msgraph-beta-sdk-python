@@ -28,9 +28,9 @@ class VirtualEventRegistration(Entity):
     registration_date_time: Optional[datetime.datetime] = None
     # The registrant's answer to the registration questions.
     registration_question_answers: Optional[List[VirtualEventRegistrationQuestionAnswer]] = None
-    # Sessions of the webinar.
+    # The sessions property
     sessions: Optional[List[VirtualEventSession]] = None
-    # Registration status of the registrant. Read-only. Possible values are: registered, canceled, waitlisted, pendingApproval, rejectedByOrganizer, unknownFutureValue.
+    # Registration status of the registrant. Read-only.
     status: Optional[VirtualEventAttendeeRegistrationStatus] = None
     # The registrant's ID in Microsoft Entra ID. Only appears when the registrant is registered in Microsoft Entra ID.
     user_id: Optional[str] = None

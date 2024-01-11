@@ -11,19 +11,19 @@ from .entity import Entity
 
 @dataclass
 class AuthenticationsMetric(Entity):
-    # The appid property
+    # The ID of the Microsoft Entra application. Supports $filter (eq).
     appid: Optional[str] = None
-    # The attemptsCount property
+    # The number of authentication requests made in the specified period. Supports $filter (eq).
     attempts_count: Optional[int] = None
-    # The country property
+    # The location where the customers authenticated from. Supports $filter (eq).
     country: Optional[str] = None
-    # The factDate property
+    # The date of the user insight.
     fact_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The os property
+    # The platform for the device that the customers used. Supports $filter (eq).
     os: Optional[str] = None
-    # The successCount property
+    # Number of successful authentication requests. Supports $filter (eq).
     success_count: Optional[int] = None
     
     @staticmethod

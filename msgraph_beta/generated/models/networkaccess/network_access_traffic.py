@@ -7,9 +7,11 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_category import DeviceCategory
+    from .filtering_policy_action import FilteringPolicyAction
     from .headers import Headers
     from .networking_protocol import NetworkingProtocol
     from .traffic_type import TrafficType
+    from .web_category import WebCategory
 
 @dataclass
 class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
@@ -18,6 +20,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The action property
+    action: Optional[FilteringPolicyAction] = None
     # Represents the version of the Global Secure Access client agent software. Supports $filter (eq) and $orderby.
     agent_version: Optional[str] = None
     # Represents a unique identifier assigned to a connection. Supports $filter (eq) and $orderby.
@@ -30,6 +34,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     destination_ip: Optional[str] = None
     # Represents the network port number on the destination host or server in a network communication. Supports $filter (eq) and $orderby.
     destination_port: Optional[int] = None
+    # The destinationWebCategory property
+    destination_web_category: Optional[WebCategory] = None
     # Represents the category classification of a device within a network infrastructure. The possible values are: client, branch, unknownFutureValue. Supports $filter (eq) and $orderby.
     device_category: Optional[DeviceCategory] = None
     # Represents a unique identifier assigned to a device within a network infrastructure. Supports $filter (eq) and $orderby.
@@ -100,22 +106,28 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .device_category import DeviceCategory
+        from .filtering_policy_action import FilteringPolicyAction
         from .headers import Headers
         from .networking_protocol import NetworkingProtocol
         from .traffic_type import TrafficType
+        from .web_category import WebCategory
 
         from .device_category import DeviceCategory
+        from .filtering_policy_action import FilteringPolicyAction
         from .headers import Headers
         from .networking_protocol import NetworkingProtocol
         from .traffic_type import TrafficType
+        from .web_category import WebCategory
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "action": lambda n : setattr(self, 'action', n.get_enum_value(FilteringPolicyAction)),
             "agentVersion": lambda n : setattr(self, 'agent_version', n.get_str_value()),
             "connectionId": lambda n : setattr(self, 'connection_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "destinationFQDN": lambda n : setattr(self, 'destination_f_q_d_n', n.get_str_value()),
             "destinationIp": lambda n : setattr(self, 'destination_ip', n.get_str_value()),
             "destinationPort": lambda n : setattr(self, 'destination_port', n.get_int_value()),
+            "destinationWebCategory": lambda n : setattr(self, 'destination_web_category', n.get_object_value(WebCategory)),
             "deviceCategory": lambda n : setattr(self, 'device_category', n.get_enum_value(DeviceCategory)),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceOperatingSystem": lambda n : setattr(self, 'device_operating_system', n.get_str_value()),
@@ -153,12 +165,14 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("action", self.action)
         writer.write_str_value("agentVersion", self.agent_version)
         writer.write_str_value("connectionId", self.connection_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("destinationFQDN", self.destination_f_q_d_n)
         writer.write_str_value("destinationIp", self.destination_ip)
         writer.write_int_value("destinationPort", self.destination_port)
+        writer.write_object_value("destinationWebCategory", self.destination_web_category)
         writer.write_enum_value("deviceCategory", self.device_category)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("deviceOperatingSystem", self.device_operating_system)
