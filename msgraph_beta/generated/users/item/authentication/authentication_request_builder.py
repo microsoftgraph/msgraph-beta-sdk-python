@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .password_methods.password_methods_request_builder import PasswordMethodsRequestBuilder
     from .phone_methods.phone_methods_request_builder import PhoneMethodsRequestBuilder
     from .platform_credential_methods.platform_credential_methods_request_builder import PlatformCredentialMethodsRequestBuilder
+    from .sign_in_preferences.sign_in_preferences_request_builder import SignInPreferencesRequestBuilder
     from .software_oath_methods.software_oath_methods_request_builder import SoftwareOathMethodsRequestBuilder
     from .temporary_access_pass_methods.temporary_access_pass_methods_request_builder import TemporaryAccessPassMethodsRequestBuilder
     from .windows_hello_for_business_methods.windows_hello_for_business_methods_request_builder import WindowsHelloForBusinessMethodsRequestBuilder
@@ -245,6 +246,15 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         from .platform_credential_methods.platform_credential_methods_request_builder import PlatformCredentialMethodsRequestBuilder
 
         return PlatformCredentialMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sign_in_preferences(self) -> SignInPreferencesRequestBuilder:
+        """
+        The signInPreferences property
+        """
+        from .sign_in_preferences.sign_in_preferences_request_builder import SignInPreferencesRequestBuilder
+
+        return SignInPreferencesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def software_oath_methods(self) -> SoftwareOathMethodsRequestBuilder:

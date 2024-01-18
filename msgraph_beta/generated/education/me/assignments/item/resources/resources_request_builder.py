@@ -45,7 +45,7 @@ class ResourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationAssignmentResourceCollectionResponse]:
         """
-        Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        Get all the educationAssignmentResource objects for an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationAssignmentResourceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/educationassignment-list-resources?view=graph-rest-1.0
@@ -92,7 +92,7 @@ class ResourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        Get all the educationAssignmentResource objects for an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -149,7 +149,7 @@ class ResourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ResourcesRequestBuilderGetQueryParameters():
         """
-        Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        Get all the educationAssignmentResource objects for an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

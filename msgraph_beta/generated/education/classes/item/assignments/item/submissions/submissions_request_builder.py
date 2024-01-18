@@ -45,7 +45,7 @@ class SubmissionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[SubmissionsRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationSubmissionCollectionResponse]:
         """
-        List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions, a student can only get submissions that they're associated with. Provide the header Prefer: include-unknown-enum-members to properly list submissions with the reassigned status. For details, see the examples section.
+        List all the submission objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions, a student can only get submissions that they're associated with. Provide the header Prefer: include-unknown-enum-members to properly list submissions with the reassigned status. For details, see the examples section.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSubmissionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/educationassignment-list-submissions?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class SubmissionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[SubmissionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions, a student can only get submissions that they're associated with. Provide the header Prefer: include-unknown-enum-members to properly list submissions with the reassigned status. For details, see the examples section.
+        List all the submission objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions, a student can only get submissions that they're associated with. Provide the header Prefer: include-unknown-enum-members to properly list submissions with the reassigned status. For details, see the examples section.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class SubmissionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SubmissionsRequestBuilderGetQueryParameters():
         """
-        List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions, a student can only get submissions that they're associated with. Provide the header Prefer: include-unknown-enum-members to properly list submissions with the reassigned status. For details, see the examples section.
+        List all the submission objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions, a student can only get submissions that they're associated with. Provide the header Prefer: include-unknown-enum-members to properly list submissions with the reassigned status. For details, see the examples section.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
