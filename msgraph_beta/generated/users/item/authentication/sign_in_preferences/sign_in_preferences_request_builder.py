@@ -10,34 +10,32 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ........models.o_data_errors.o_data_error import ODataError
-    from ........models.reference_create import ReferenceCreate
-    from ........models.string_collection_response import StringCollectionResponse
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.sign_in_preferences import SignInPreferences
 
-class RefRequestBuilder(BaseRequestBuilder):
+class SignInPreferencesRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the collection of educationRoot entities.
+    Builds and executes requests for operations under /users/{user-id}/authentication/signInPreferences
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
-        Instantiates a new RefRequestBuilder and sets the default values.
+        Instantiates a new SignInPreferencesRequestBuilder and sets the default values.
         param path_parameters: The raw url or the Url template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/categories/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/authentication/signInPreferences{?%24select,%24expand}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RefRequestBuilderGetRequestConfiguration] = None) -> Optional[StringCollectionResponse]:
+    async def get(self,request_configuration: Optional[SignInPreferencesRequestBuilderGetRequestConfiguration] = None) -> Optional[SignInPreferences]:
         """
-        List all categories for an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        The settings and preferences for to the sign-in experience of a user. Use this property to configure the user's default multifactor authentication (MFA) method.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[StringCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0
+        Returns: Optional[SignInPreferences]
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ........models.o_data_errors.o_data_error import ODataError
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": ODataError,
@@ -45,23 +43,23 @@ class RefRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ........models.string_collection_response import StringCollectionResponse
+        from .....models.sign_in_preferences import SignInPreferences
 
-        return await self.request_adapter.send_async(request_info, StringCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, SignInPreferences, error_mapping)
     
-    async def post(self,body: Optional[ReferenceCreate] = None, request_configuration: Optional[RefRequestBuilderPostRequestConfiguration] = None) -> None:
+    async def patch(self,body: Optional[SignInPreferences] = None, request_configuration: Optional[SignInPreferencesRequestBuilderPatchRequestConfiguration] = None) -> Optional[SignInPreferences]:
         """
-        Create new navigation property ref to categories for education
+        Update property signInPreferences value.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: None
+        Returns: Optional[SignInPreferences]
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = self.to_post_request_information(
+        request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ........models.o_data_errors.o_data_error import ODataError
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": ODataError,
@@ -69,11 +67,13 @@ class RefRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        from .....models.sign_in_preferences import SignInPreferences
+
+        return await self.request_adapter.send_async(request_info, SignInPreferences, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RefRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[SignInPreferencesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List all categories for an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        The settings and preferences for to the sign-in experience of a user. Use this property to configure the user's default multifactor authentication (MFA) method.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -88,9 +88,9 @@ class RefRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ReferenceCreate] = None, request_configuration: Optional[RefRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[SignInPreferences] = None, request_configuration: Optional[SignInPreferencesRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property ref to categories for education
+        Update property signInPreferences value.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -103,25 +103,25 @@ class RefRequestBuilder(BaseRequestBuilder):
             request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.POST
+        request_info.http_method = Method.PATCH
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> RefRequestBuilder:
+    def with_url(self,raw_url: Optional[str] = None) -> SignInPreferencesRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: RefRequestBuilder
+        Returns: SignInPreferencesRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return RefRequestBuilder(self.request_adapter, raw_url)
+        return SignInPreferencesRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class RefRequestBuilderGetQueryParameters():
+    class SignInPreferencesRequestBuilderGetQueryParameters():
         """
-        List all categories for an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        The settings and preferences for to the sign-in experience of a user. Use this property to configure the user's default multifactor authentication (MFA) method.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -131,56 +131,36 @@ class RefRequestBuilder(BaseRequestBuilder):
             """
             if not original_name:
                 raise TypeError("original_name cannot be null.")
-            if original_name == "count":
-                return "%24count"
-            if original_name == "filter":
-                return "%24filter"
-            if original_name == "orderby":
-                return "%24orderby"
-            if original_name == "search":
-                return "%24search"
-            if original_name == "skip":
-                return "%24skip"
-            if original_name == "top":
-                return "%24top"
+            if original_name == "expand":
+                return "%24expand"
+            if original_name == "select":
+                return "%24select"
             return original_name
         
-        # Include count of items
-        count: Optional[bool] = None
+        # Expand related entities
+        expand: Optional[List[str]] = None
 
-        # Filter items by property values
-        filter: Optional[str] = None
-
-        # Order items by property values
-        orderby: Optional[List[str]] = None
-
-        # Search items by search phrases
-        search: Optional[str] = None
-
-        # Skip the first n items
-        skip: Optional[int] = None
-
-        # Show only the first n items
-        top: Optional[int] = None
+        # Select properties to be returned
+        select: Optional[List[str]] = None
 
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
     @dataclass
-    class RefRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+    class SignInPreferencesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
         from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request query parameters
-        query_parameters: Optional[RefRequestBuilder.RefRequestBuilderGetQueryParameters] = None
+        query_parameters: Optional[SignInPreferencesRequestBuilder.SignInPreferencesRequestBuilderGetQueryParameters] = None
 
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
     @dataclass
-    class RefRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+    class SignInPreferencesRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
         from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
         """
