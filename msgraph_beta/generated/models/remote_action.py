@@ -73,4 +73,6 @@ class RemoteAction(str, Enum):
     RemoveDeviceFirmwareConfigurationInterfaceManagement = "removeDeviceFirmwareConfigurationInterfaceManagement",
     # Indicates an action has been initiated to pause configuration refresh for the device.
     PauseConfigurationRefresh = "pauseConfigurationRefresh",
+    # Indicates remote device action to intiate Mobile Device Management (MDM) attestation if device is capable for it.
+    InitiateDeviceAttestation = "initiateDeviceAttestation",
 

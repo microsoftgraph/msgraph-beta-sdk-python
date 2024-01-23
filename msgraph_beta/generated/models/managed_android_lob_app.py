@@ -17,10 +17,6 @@ class ManagedAndroidLobApp(ManagedMobileLobApp):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.managedAndroidLobApp"
-    # The Identity Name. This property is being deprecated in 2302(February 2023).
-    identity_name: Optional[str] = None
-    # The identity version. This property is being deprecated in 2302(February 2023).
-    identity_version: Optional[str] = None
     # The value for the minimum applicable operating system.
     minimum_supported_operating_system: Optional[AndroidMinimumOperatingSystem] = None
     # The package identifier.
@@ -57,8 +53,6 @@ class ManagedAndroidLobApp(ManagedMobileLobApp):
         from .managed_mobile_lob_app import ManagedMobileLobApp
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "identityName": lambda n : setattr(self, 'identity_name', n.get_str_value()),
-            "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
             "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(AndroidMinimumOperatingSystem)),
             "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),
             "targetedPlatforms": lambda n : setattr(self, 'targeted_platforms', n.get_collection_of_enum_values(AndroidTargetedPlatforms)),
@@ -78,8 +72,6 @@ class ManagedAndroidLobApp(ManagedMobileLobApp):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_str_value("identityName", self.identity_name)
-        writer.write_str_value("identityVersion", self.identity_version)
         writer.write_object_value("minimumSupportedOperatingSystem", self.minimum_supported_operating_system)
         writer.write_str_value("packageId", self.package_id)
         writer.write_enum_value("targetedPlatforms", self.targeted_platforms)

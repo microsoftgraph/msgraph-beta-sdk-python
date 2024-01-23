@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ....models.planner_user import PlannerUser
     from .all.all_request_builder import AllRequestBuilder
     from .favorite_plans.favorite_plans_request_builder import FavoritePlansRequestBuilder
+    from .my_day_tasks.my_day_tasks_request_builder import MyDayTasksRequestBuilder
     from .plans.plans_request_builder import PlansRequestBuilder
     from .recent_plans.recent_plans_request_builder import RecentPlansRequestBuilder
     from .roster_plans.roster_plans_request_builder import RosterPlansRequestBuilder
@@ -178,6 +179,15 @@ class PlannerRequestBuilder(BaseRequestBuilder):
         from .favorite_plans.favorite_plans_request_builder import FavoritePlansRequestBuilder
 
         return FavoritePlansRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def my_day_tasks(self) -> MyDayTasksRequestBuilder:
+        """
+        Provides operations to manage the myDayTasks property of the microsoft.graph.plannerUser entity.
+        """
+        from .my_day_tasks.my_day_tasks_request_builder import MyDayTasksRequestBuilder
+
+        return MyDayTasksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def plans(self) -> PlansRequestBuilder:

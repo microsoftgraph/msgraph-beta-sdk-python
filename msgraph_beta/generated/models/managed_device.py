@@ -21,7 +21,6 @@ if TYPE_CHECKING:
     from .device_enrollment_type import DeviceEnrollmentType
     from .device_health_attestation_state import DeviceHealthAttestationState
     from .device_health_script_policy_state import DeviceHealthScriptPolicyState
-    from .device_identity_attestation_detail import DeviceIdentityAttestationDetail
     from .device_log_collection_response import DeviceLogCollectionResponse
     from .device_management_exchange_access_state import DeviceManagementExchangeAccessState
     from .device_management_exchange_access_state_reason import DeviceManagementExchangeAccessStateReason
@@ -106,8 +105,6 @@ class ManagedDevice(Entity):
     device_health_attestation_state: Optional[DeviceHealthAttestationState] = None
     # Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
     device_health_script_states: Optional[List[DeviceHealthScriptPolicyState]] = None
-    # Indicates the attestation status of the managed device. And in which way. Default: Unknown.
-    device_identity_attestation_detail: Optional[DeviceIdentityAttestationDetail] = None
     # Name of the device. This property is read-only.
     device_name: Optional[str] = None
     # Device registration status.
@@ -283,7 +280,6 @@ class ManagedDevice(Entity):
         from .device_enrollment_type import DeviceEnrollmentType
         from .device_health_attestation_state import DeviceHealthAttestationState
         from .device_health_script_policy_state import DeviceHealthScriptPolicyState
-        from .device_identity_attestation_detail import DeviceIdentityAttestationDetail
         from .device_log_collection_response import DeviceLogCollectionResponse
         from .device_management_exchange_access_state import DeviceManagementExchangeAccessState
         from .device_management_exchange_access_state_reason import DeviceManagementExchangeAccessStateReason
@@ -323,7 +319,6 @@ class ManagedDevice(Entity):
         from .device_enrollment_type import DeviceEnrollmentType
         from .device_health_attestation_state import DeviceHealthAttestationState
         from .device_health_script_policy_state import DeviceHealthScriptPolicyState
-        from .device_identity_attestation_detail import DeviceIdentityAttestationDetail
         from .device_log_collection_response import DeviceLogCollectionResponse
         from .device_management_exchange_access_state import DeviceManagementExchangeAccessState
         from .device_management_exchange_access_state_reason import DeviceManagementExchangeAccessStateReason
@@ -375,7 +370,6 @@ class ManagedDevice(Entity):
             "deviceFirmwareConfigurationInterfaceManaged": lambda n : setattr(self, 'device_firmware_configuration_interface_managed', n.get_bool_value()),
             "deviceHealthAttestationState": lambda n : setattr(self, 'device_health_attestation_state', n.get_object_value(DeviceHealthAttestationState)),
             "deviceHealthScriptStates": lambda n : setattr(self, 'device_health_script_states', n.get_collection_of_object_values(DeviceHealthScriptPolicyState)),
-            "deviceIdentityAttestationDetail": lambda n : setattr(self, 'device_identity_attestation_detail', n.get_object_value(DeviceIdentityAttestationDetail)),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "deviceRegistrationState": lambda n : setattr(self, 'device_registration_state', n.get_enum_value(DeviceRegistrationState)),
             "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(DeviceType)),
@@ -470,7 +464,6 @@ class ManagedDevice(Entity):
         writer.write_enum_value("deviceEnrollmentType", self.device_enrollment_type)
         writer.write_bool_value("deviceFirmwareConfigurationInterfaceManaged", self.device_firmware_configuration_interface_managed)
         writer.write_collection_of_object_values("deviceHealthScriptStates", self.device_health_script_states)
-        writer.write_object_value("deviceIdentityAttestationDetail", self.device_identity_attestation_detail)
         writer.write_enum_value("deviceRegistrationState", self.device_registration_state)
         writer.write_enum_value("deviceType", self.device_type)
         writer.write_enum_value("exchangeAccessState", self.exchange_access_state)

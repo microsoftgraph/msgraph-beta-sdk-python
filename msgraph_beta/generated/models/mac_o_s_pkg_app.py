@@ -18,19 +18,19 @@ class MacOSPkgApp(MobileLobApp):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOSPkgApp"
-    # A value indicating whether the app's version will be used to detect the app after it is installed on a device. Set this to true for apps that use a self-update feature. Set this to false to install the app when it is not already installed on the device, or if the deploying app's version number does not match the version that's already installed on the device. The default value is false.
+    # When TRUE, indicates that the app's version will NOT be used to detect if the app is installed on a device. When FALSE, indicates that the app's version will be used to detect if the app is installed on a device. Set this to true for apps that use a self update feature. The default value is FALSE.
     ignore_version_detection: Optional[bool] = None
-    # The list of apps expected to be installed by the .pkg.
+    # The list of apps expected to be installed by the PKG.
     included_apps: Optional[List[MacOSIncludedApp]] = None
-    # The value for the minimum applicable operating system.
+    # ComplexType macOSMinimumOperatingSystem that indicates the minimum operating system applicable for the application.
     minimum_supported_operating_system: Optional[MacOSMinimumOperatingSystem] = None
     # ComplexType macOSAppScript the contains the post-install script for the app. This will execute on the macOS device after the app is installed.
     post_install_script: Optional[MacOSAppScript] = None
     # ComplexType macOSAppScript the contains the post-install script for the app. This will execute on the macOS device after the app is installed.
     pre_install_script: Optional[MacOSAppScript] = None
-    # The primary CFBundleIdentifier of the .pkg.
+    # The bundleId of the primary app in the PKG. This maps to the CFBundleIdentifier in the app's bundle configuration.
     primary_bundle_id: Optional[str] = None
-    # The primary CFBundleVersion of the .pkg.
+    # The version of the primary app in the PKG. This maps to the CFBundleShortVersion in the app's bundle configuration.
     primary_bundle_version: Optional[str] = None
     
     @staticmethod

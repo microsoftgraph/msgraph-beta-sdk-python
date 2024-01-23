@@ -15,17 +15,17 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The errorMessage property
+    # Contains a detailed error message when the partner agent installation failed.
     error_message: Optional[str] = None
     # The status of a partner agent installation. Possible values are: installed, installFailed, installing, uninstalling, uninstallFailed and licensed. Read-Only.
     install_status: Optional[CloudPcPartnerAgentInstallStatus] = None
-    # Indicates if the partner agent is a third party. When 'TRUE' the agent is a third-party (non-Microsoft) agent and when 'FALSE' the agent is a Microsoft agent or isn't known.  The default value is 'FALSE'
+    # Indicates whether the partner agent is a third party. When true, the agent is a third-party (non-Microsoft) agent and when false, the agent is a Microsoft agent or isn't known.  The default value is false.
     is_third_party_partner: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The name of the first-party or third-party partner agent. Possible values for third-party partners are Citrix, VMware and HP. Read-Only.
     partner_agent_name: Optional[CloudPcPartnerAgentName] = None
-    # Indicates if the partner agent is a third party. When 'TRUE' the agent is a third-party (non-Microsoft) agent and when 'FALSE' the agent is a Microsoft agent or isn't known. The default value is 'FALSE'
+    # Indicates whether the partner agent installation should be retried. The default value is false.
     retriable: Optional[bool] = None
     
     @staticmethod

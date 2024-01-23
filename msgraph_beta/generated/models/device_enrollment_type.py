@@ -35,4 +35,8 @@ class DeviceEnrollmentType(str, Enum):
     AndroidEnterpriseFullyManaged = "androidEnterpriseFullyManaged",
     # Android Enterprise Corporate Work Profile
     AndroidEnterpriseCorporateWorkProfile = "androidEnterpriseCorporateWorkProfile",
+    # Indicates the device enrollment is for android device owned by/associated with user using Android Open Source Project (AOSP) on a non-Google mobile services.
+    AndroidAOSPUserOwnedDeviceEnrollment = "androidAOSPUserOwnedDeviceEnrollment",
+    # Indicates the device enrollment is for user less android device using Android Open Source Project (AOSP) on a non-Google mobile services.
+    AndroidAOSPUserlessDeviceEnrollment = "androidAOSPUserlessDeviceEnrollment",
 

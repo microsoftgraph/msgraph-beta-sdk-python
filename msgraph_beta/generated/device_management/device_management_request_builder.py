@@ -106,6 +106,8 @@ if TYPE_CHECKING:
     from .monitoring.monitoring_request_builder import MonitoringRequestBuilder
     from .ndes_connectors.ndes_connectors_request_builder import NdesConnectorsRequestBuilder
     from .notification_message_templates.notification_message_templates_request_builder import NotificationMessageTemplatesRequestBuilder
+    from .operation_approval_policies.operation_approval_policies_request_builder import OperationApprovalPoliciesRequestBuilder
+    from .operation_approval_requests.operation_approval_requests_request_builder import OperationApprovalRequestsRequestBuilder
     from .privilege_management_elevations.privilege_management_elevations_request_builder import PrivilegeManagementElevationsRequestBuilder
     from .remote_action_audits.remote_action_audits_request_builder import RemoteActionAuditsRequestBuilder
     from .remote_assistance_partners.remote_assistance_partners_request_builder import RemoteAssistancePartnersRequestBuilder
@@ -1179,6 +1181,24 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .notification_message_templates.notification_message_templates_request_builder import NotificationMessageTemplatesRequestBuilder
 
         return NotificationMessageTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def operation_approval_policies(self) -> OperationApprovalPoliciesRequestBuilder:
+        """
+        Provides operations to manage the operationApprovalPolicies property of the microsoft.graph.deviceManagement entity.
+        """
+        from .operation_approval_policies.operation_approval_policies_request_builder import OperationApprovalPoliciesRequestBuilder
+
+        return OperationApprovalPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def operation_approval_requests(self) -> OperationApprovalRequestsRequestBuilder:
+        """
+        Provides operations to manage the operationApprovalRequests property of the microsoft.graph.deviceManagement entity.
+        """
+        from .operation_approval_requests.operation_approval_requests_request_builder import OperationApprovalRequestsRequestBuilder
+
+        return OperationApprovalRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def privilege_management_elevations(self) -> PrivilegeManagementElevationsRequestBuilder:

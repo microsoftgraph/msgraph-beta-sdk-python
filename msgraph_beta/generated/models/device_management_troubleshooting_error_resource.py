@@ -18,7 +18,7 @@ class DeviceManagementTroubleshootingErrorResource(AdditionalDataHolder, BackedM
     link: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Not yet documented
+    # The text property
     text: Optional[str] = None
     
     @staticmethod

@@ -1048,6 +1048,7 @@ if TYPE_CHECKING:
     from .networkaccess.policy_rule import PolicyRule
     from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
     from .networkaccess.profile import Profile
+    from .networkaccess.remote_network import RemoteNetwork
     from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
     from .networkaccess.reports import Reports
     from .networkaccess.settings import Settings
@@ -1103,6 +1104,8 @@ if TYPE_CHECKING:
     from .open_shift_change_request import OpenShiftChangeRequest
     from .open_type_extension import OpenTypeExtension
     from .operation import Operation
+    from .operation_approval_policy import OperationApprovalPolicy
+    from .operation_approval_request import OperationApprovalRequest
     from .organization import Organization
     from .organizational_branding import OrganizationalBranding
     from .organizational_branding_localization import OrganizationalBrandingLocalization
@@ -1125,6 +1128,16 @@ if TYPE_CHECKING:
     from .participant import Participant
     from .participant_joining_notification import ParticipantJoiningNotification
     from .participant_left_notification import ParticipantLeftNotification
+    from .partners.billing.azure_usage import AzureUsage
+    from .partners.billing.billed_usage import BilledUsage
+    from .partners.billing.billing import Billing
+    from .partners.billing.export_success_operation import ExportSuccessOperation
+    from .partners.billing.failed_operation import FailedOperation
+    from .partners.billing.manifest import Manifest
+    from .partners.billing.operation import Operation
+    from .partners.billing.running_operation import RunningOperation
+    from .partners.billing.unbilled_usage import UnbilledUsage
+    from .partners.partners import Partners
     from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
     from .password_authentication_method import PasswordAuthenticationMethod
     from .payload import Payload
@@ -1302,6 +1315,7 @@ if TYPE_CHECKING:
     from .secure_score import SecureScore
     from .secure_score_control_profile import SecureScoreControlProfile
     from .security.alert import Alert
+    from .security.analyzed_email import AnalyzedEmail
     from .security.article import Article
     from .security.article_indicator import ArticleIndicator
     from .security.artifact import Artifact
@@ -1314,6 +1328,7 @@ if TYPE_CHECKING:
     from .security.case_operation import CaseOperation
     from .security.category_template import CategoryTemplate
     from .security.citation_template import CitationTemplate
+    from .security.collaboration_root import CollaborationRoot
     from .security.data_set import DataSet
     from .security.data_source import DataSource
     from .security.data_source_container import DataSourceContainer
@@ -1676,6 +1691,7 @@ if TYPE_CHECKING:
     from .web_app import WebApp
     from .web_application_segment import WebApplicationSegment
     from .web_part import WebPart
+    from .win32_catalog_app import Win32CatalogApp
     from .win32_lob_app import Win32LobApp
     from .windows10_certificate_profile_base import Windows10CertificateProfileBase
     from .windows10_compliance_policy import Windows10CompliancePolicy
@@ -6081,6 +6097,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .profile import Profile
 
             return Profile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.remoteNetwork".casefold():
+            from .networkaccess.remote_network import RemoteNetwork
+
+            return RemoteNetwork()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.remoteNetworkHealthEvent".casefold():
             from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
 
@@ -6303,8 +6323,17 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return OpenTypeExtension()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.operation".casefold():
             from .operation import Operation
+            from .partners.billing.operation import Operation
 
             return Operation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.operationApprovalPolicy".casefold():
+            from .operation_approval_policy import OperationApprovalPolicy
+
+            return OperationApprovalPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.operationApprovalRequest".casefold():
+            from .operation_approval_request import OperationApprovalRequest
+
+            return OperationApprovalRequest()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.organization".casefold():
             from .organization import Organization
 
@@ -6390,6 +6419,47 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .participant_left_notification import ParticipantLeftNotification
 
             return ParticipantLeftNotification()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners".casefold():
+            from .partners.partners import Partners
+
+            return Partners()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.azureUsage".casefold():
+            from .partners.billing.azure_usage import AzureUsage
+
+            return AzureUsage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.billedUsage".casefold():
+            from .partners.billing.billed_usage import BilledUsage
+
+            return BilledUsage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.billing".casefold():
+            from .partners.billing.billing import Billing
+
+            return Billing()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.exportSuccessOperation".casefold():
+            from .partners.billing.export_success_operation import ExportSuccessOperation
+
+            return ExportSuccessOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.failedOperation".casefold():
+            from .partners.billing.failed_operation import FailedOperation
+
+            return FailedOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.manifest".casefold():
+            from .partners.billing.manifest import Manifest
+
+            return Manifest()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.operation".casefold():
+            from .operation import Operation
+            from .partners.billing.operation import Operation
+
+            return Operation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.runningOperation".casefold():
+            from .partners.billing.running_operation import RunningOperation
+
+            return RunningOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.unbilledUsage".casefold():
+            from .partners.billing.unbilled_usage import UnbilledUsage
+
+            return UnbilledUsage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.passwordAuthenticationMethod".casefold():
             from .password_authentication_method import PasswordAuthenticationMethod
 
@@ -7106,6 +7176,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.alert import Alert
 
             return Alert()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.analyzedEmail".casefold():
+            from .security.analyzed_email import AnalyzedEmail
+
+            return AnalyzedEmail()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.article".casefold():
             from .security.article import Article
 
@@ -7156,6 +7230,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.citation_template import CitationTemplate
 
             return CitationTemplate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.collaborationRoot".casefold():
+            from .security.collaboration_root import CollaborationRoot
+
+            return CollaborationRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.dataSet".casefold():
             from .security.data_set import DataSet
 
@@ -8615,6 +8693,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .web_part import WebPart
 
             return WebPart()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32CatalogApp".casefold():
+            from .win32_catalog_app import Win32CatalogApp
+
+            return Win32CatalogApp()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobApp".casefold():
             from .win32_lob_app import Win32LobApp
 
@@ -10375,6 +10457,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.policy_rule import PolicyRule
         from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
         from .networkaccess.profile import Profile
+        from .networkaccess.remote_network import RemoteNetwork
         from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
@@ -10430,6 +10513,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .open_shift_change_request import OpenShiftChangeRequest
         from .open_type_extension import OpenTypeExtension
         from .operation import Operation
+        from .operation_approval_policy import OperationApprovalPolicy
+        from .operation_approval_request import OperationApprovalRequest
         from .organization import Organization
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
@@ -10452,6 +10537,16 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .participant import Participant
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification
+        from .partners.billing.azure_usage import AzureUsage
+        from .partners.billing.billed_usage import BilledUsage
+        from .partners.billing.billing import Billing
+        from .partners.billing.export_success_operation import ExportSuccessOperation
+        from .partners.billing.failed_operation import FailedOperation
+        from .partners.billing.manifest import Manifest
+        from .partners.billing.operation import Operation
+        from .partners.billing.running_operation import RunningOperation
+        from .partners.billing.unbilled_usage import UnbilledUsage
+        from .partners.partners import Partners
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
         from .password_authentication_method import PasswordAuthenticationMethod
         from .payload import Payload
@@ -10629,6 +10724,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .secure_score import SecureScore
         from .secure_score_control_profile import SecureScoreControlProfile
         from .security.alert import Alert
+        from .security.analyzed_email import AnalyzedEmail
         from .security.article import Article
         from .security.article_indicator import ArticleIndicator
         from .security.artifact import Artifact
@@ -10641,6 +10737,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.case_operation import CaseOperation
         from .security.category_template import CategoryTemplate
         from .security.citation_template import CitationTemplate
+        from .security.collaboration_root import CollaborationRoot
         from .security.data_set import DataSet
         from .security.data_source import DataSource
         from .security.data_source_container import DataSourceContainer
@@ -11003,6 +11100,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .web_app import WebApp
         from .web_application_segment import WebApplicationSegment
         from .web_part import WebPart
+        from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
         from .windows10_certificate_profile_base import Windows10CertificateProfileBase
         from .windows10_compliance_policy import Windows10CompliancePolicy
@@ -12224,6 +12322,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.policy_rule import PolicyRule
         from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
         from .networkaccess.profile import Profile
+        from .networkaccess.remote_network import RemoteNetwork
         from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
@@ -12279,6 +12378,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .open_shift_change_request import OpenShiftChangeRequest
         from .open_type_extension import OpenTypeExtension
         from .operation import Operation
+        from .operation_approval_policy import OperationApprovalPolicy
+        from .operation_approval_request import OperationApprovalRequest
         from .organization import Organization
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
@@ -12301,6 +12402,16 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .participant import Participant
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification
+        from .partners.billing.azure_usage import AzureUsage
+        from .partners.billing.billed_usage import BilledUsage
+        from .partners.billing.billing import Billing
+        from .partners.billing.export_success_operation import ExportSuccessOperation
+        from .partners.billing.failed_operation import FailedOperation
+        from .partners.billing.manifest import Manifest
+        from .partners.billing.operation import Operation
+        from .partners.billing.running_operation import RunningOperation
+        from .partners.billing.unbilled_usage import UnbilledUsage
+        from .partners.partners import Partners
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
         from .password_authentication_method import PasswordAuthenticationMethod
         from .payload import Payload
@@ -12478,6 +12589,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .secure_score import SecureScore
         from .secure_score_control_profile import SecureScoreControlProfile
         from .security.alert import Alert
+        from .security.analyzed_email import AnalyzedEmail
         from .security.article import Article
         from .security.article_indicator import ArticleIndicator
         from .security.artifact import Artifact
@@ -12490,6 +12602,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.case_operation import CaseOperation
         from .security.category_template import CategoryTemplate
         from .security.citation_template import CitationTemplate
+        from .security.collaboration_root import CollaborationRoot
         from .security.data_set import DataSet
         from .security.data_source import DataSource
         from .security.data_source_container import DataSourceContainer
@@ -12852,6 +12965,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .web_app import WebApp
         from .web_application_segment import WebApplicationSegment
         from .web_part import WebPart
+        from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
         from .windows10_certificate_profile_base import Windows10CertificateProfileBase
         from .windows10_compliance_policy import Windows10CompliancePolicy

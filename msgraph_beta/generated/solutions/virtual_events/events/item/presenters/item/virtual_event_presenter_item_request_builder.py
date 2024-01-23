@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .......models.virtual_event_presenter import VirtualEventPresenter
     from .profile_photo.profile_photo_request_builder import ProfilePhotoRequestBuilder
     from .sessions.sessions_request_builder import SessionsRequestBuilder
+    from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
 
 class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
     """
@@ -91,6 +92,18 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
         from .......models.virtual_event_presenter import VirtualEventPresenter
 
         return await self.request_adapter.send_async(request_info, VirtualEventPresenter, error_mapping)
+    
+    def sessions_with_join_web_url(self,join_web_url: Optional[str] = None) -> SessionsWithJoinWebUrlRequestBuilder:
+        """
+        Provides operations to manage the sessions property of the microsoft.graph.virtualEventPresenter entity.
+        param join_web_url: Alternate key of virtualEventSession
+        Returns: SessionsWithJoinWebUrlRequestBuilder
+        """
+        if not join_web_url:
+            raise TypeError("join_web_url cannot be null.")
+        from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
+
+        return SessionsWithJoinWebUrlRequestBuilder(self.request_adapter, self.path_parameters, join_web_url)
     
     def to_delete_request_information(self,request_configuration: Optional[VirtualEventPresenterItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

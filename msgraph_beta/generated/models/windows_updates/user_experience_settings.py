@@ -15,6 +15,8 @@ class UserExperienceSettings(AdditionalDataHolder, BackedModel, Parsable):
     days_until_forced_reboot: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The offerAsOptional property
+    offer_as_optional: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceSettings:
@@ -35,6 +37,7 @@ class UserExperienceSettings(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "daysUntilForcedReboot": lambda n : setattr(self, 'days_until_forced_reboot', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "offerAsOptional": lambda n : setattr(self, 'offer_as_optional', n.get_bool_value()),
         }
         return fields
     
@@ -48,6 +51,7 @@ class UserExperienceSettings(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_int_value("daysUntilForcedReboot", self.days_until_forced_reboot)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_bool_value("offerAsOptional", self.offer_as_optional)
         writer.write_additional_data_value(self.additional_data)
     
 

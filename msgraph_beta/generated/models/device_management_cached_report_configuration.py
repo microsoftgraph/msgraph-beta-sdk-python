@@ -13,25 +13,25 @@ from .entity import Entity
 @dataclass
 class DeviceManagementCachedReportConfiguration(Entity):
     """
-    Entity representing the configuration of a cached report
+    Entity representing the configuration of a cached report.
     """
-    # Time that the cached report expires. This property is read-only.
+    # Time that the cached report expires.
     expiration_date_time: Optional[datetime.datetime] = None
     # Filters applied on report creation.
     filter: Optional[str] = None
-    # Time that the cached report was last refreshed. This property is read-only.
+    # Time that the cached report was last refreshed.
     last_refresh_date_time: Optional[datetime.datetime] = None
-    # Caller-managed metadata associated with the report
+    # Caller-managed metadata associated with the report.
     metadata: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Ordering of columns in the report
+    # Ordering of columns in the report.
     order_by: Optional[List[str]] = None
-    # Name of the report. This property is read-only.
+    # Name of the report.
     report_name: Optional[str] = None
-    # Columns selected from the report
+    # Columns selected from the report.
     select: Optional[List[str]] = None
-    # Possible statuses associated with a generated report
+    # Possible statuses associated with a generated report.
     status: Optional[DeviceManagementReportStatus] = None
     
     @staticmethod

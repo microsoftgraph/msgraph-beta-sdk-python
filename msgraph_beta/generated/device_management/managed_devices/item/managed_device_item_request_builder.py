@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     from .get_cloud_pc_review_status.get_cloud_pc_review_status_request_builder import GetCloudPcReviewStatusRequestBuilder
     from .get_file_vault_key.get_file_vault_key_request_builder import GetFileVaultKeyRequestBuilder
     from .get_non_compliant_settings.get_non_compliant_settings_request_builder import GetNonCompliantSettingsRequestBuilder
+    from .initiate_device_attestation.initiate_device_attestation_request_builder import InitiateDeviceAttestationRequestBuilder
     from .initiate_mobile_device_management_key_recovery.initiate_mobile_device_management_key_recovery_request_builder import InitiateMobileDeviceManagementKeyRecoveryRequestBuilder
     from .initiate_on_demand_proactive_remediation.initiate_on_demand_proactive_remediation_request_builder import InitiateOnDemandProactiveRemediationRequestBuilder
     from .locate_device.locate_device_request_builder import LocateDeviceRequestBuilder
@@ -389,6 +390,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .get_non_compliant_settings.get_non_compliant_settings_request_builder import GetNonCompliantSettingsRequestBuilder
 
         return GetNonCompliantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def initiate_device_attestation(self) -> InitiateDeviceAttestationRequestBuilder:
+        """
+        Provides operations to call the initiateDeviceAttestation method.
+        """
+        from .initiate_device_attestation.initiate_device_attestation_request_builder import InitiateDeviceAttestationRequestBuilder
+
+        return InitiateDeviceAttestationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def initiate_mobile_device_management_key_recovery(self) -> InitiateMobileDeviceManagementKeyRecoveryRequestBuilder:

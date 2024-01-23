@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .approvals.approvals_request_builder import ApprovalsRequestBuilder
     from .app_consent_requests_for_approval.app_consent_requests_for_approval_request_builder import AppConsentRequestsForApprovalRequestBuilder
     from .app_role_assigned_resources.app_role_assigned_resources_request_builder import AppRoleAssignedResourcesRequestBuilder
+    from .app_role_assigned_resources_with_app_id.app_role_assigned_resources_with_app_id_request_builder import AppRoleAssignedResourcesWithAppIdRequestBuilder
     from .app_role_assignments.app_role_assignments_request_builder import AppRoleAssignmentsRequestBuilder
     from .assign_license.assign_license_request_builder import AssignLicenseRequestBuilder
     from .authentication.authentication_request_builder import AuthenticationRequestBuilder
@@ -35,6 +36,7 @@ if TYPE_CHECKING:
     from .created_objects.created_objects_request_builder import CreatedObjectsRequestBuilder
     from .delete_password_single_sign_on_credentials.delete_password_single_sign_on_credentials_request_builder import DeletePasswordSingleSignOnCredentialsRequestBuilder
     from .devices.devices_request_builder import DevicesRequestBuilder
+    from .devices_with_device_id.devices_with_device_id_request_builder import DevicesWithDeviceIdRequestBuilder
     from .device_enrollment_configurations.device_enrollment_configurations_request_builder import DeviceEnrollmentConfigurationsRequestBuilder
     from .device_management_troubleshooting_events.device_management_troubleshooting_events_request_builder import DeviceManagementTroubleshootingEventsRequestBuilder
     from .direct_reports.direct_reports_request_builder import DirectReportsRequestBuilder
@@ -82,6 +84,7 @@ if TYPE_CHECKING:
     from .oauth2_permission_grants.oauth2_permission_grants_request_builder import Oauth2PermissionGrantsRequestBuilder
     from .onenote.onenote_request_builder import OnenoteRequestBuilder
     from .online_meetings.online_meetings_request_builder import OnlineMeetingsRequestBuilder
+    from .online_meetings_with_join_web_url.online_meetings_with_join_web_url_request_builder import OnlineMeetingsWithJoinWebUrlRequestBuilder
     from .outlook.outlook_request_builder import OutlookRequestBuilder
     from .owned_devices.owned_devices_request_builder import OwnedDevicesRequestBuilder
     from .owned_objects.owned_objects_request_builder import OwnedObjectsRequestBuilder
@@ -133,6 +136,18 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}{?%24select,%24expand}", path_parameters)
     
+    def app_role_assigned_resources_with_app_id(self,app_id: Optional[str] = None) -> AppRoleAssignedResourcesWithAppIdRequestBuilder:
+        """
+        Provides operations to manage the appRoleAssignedResources property of the microsoft.graph.user entity.
+        param app_id: Alternate key of servicePrincipal
+        Returns: AppRoleAssignedResourcesWithAppIdRequestBuilder
+        """
+        if not app_id:
+            raise TypeError("app_id cannot be null.")
+        from .app_role_assigned_resources_with_app_id.app_role_assigned_resources_with_app_id_request_builder import AppRoleAssignedResourcesWithAppIdRequestBuilder
+
+        return AppRoleAssignedResourcesWithAppIdRequestBuilder(self.request_adapter, self.path_parameters, app_id)
+    
     async def delete(self,request_configuration: Optional[UserItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.
@@ -152,6 +167,18 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+    
+    def devices_with_device_id(self,device_id: Optional[str] = None) -> DevicesWithDeviceIdRequestBuilder:
+        """
+        Provides operations to manage the devices property of the microsoft.graph.user entity.
+        param device_id: Alternate key of device
+        Returns: DevicesWithDeviceIdRequestBuilder
+        """
+        if not device_id:
+            raise TypeError("device_id cannot be null.")
+        from .devices_with_device_id.devices_with_device_id_request_builder import DevicesWithDeviceIdRequestBuilder
+
+        return DevicesWithDeviceIdRequestBuilder(self.request_adapter, self.path_parameters, device_id)
     
     def export_device_and_app_management_data_with_skip_with_top(self,skip: Optional[int] = None, top: Optional[int] = None) -> ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder:
         """
@@ -201,6 +228,18 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from ...models.user import User
 
         return await self.request_adapter.send_async(request_info, User, error_mapping)
+    
+    def online_meetings_with_join_web_url(self,join_web_url: Optional[str] = None) -> OnlineMeetingsWithJoinWebUrlRequestBuilder:
+        """
+        Provides operations to manage the onlineMeetings property of the microsoft.graph.user entity.
+        param join_web_url: Alternate key of onlineMeeting
+        Returns: OnlineMeetingsWithJoinWebUrlRequestBuilder
+        """
+        if not join_web_url:
+            raise TypeError("join_web_url cannot be null.")
+        from .online_meetings_with_join_web_url.online_meetings_with_join_web_url_request_builder import OnlineMeetingsWithJoinWebUrlRequestBuilder
+
+        return OnlineMeetingsWithJoinWebUrlRequestBuilder(self.request_adapter, self.path_parameters, join_web_url)
     
     async def patch(self,body: Optional[User] = None, request_configuration: Optional[UserItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[User]:
         """

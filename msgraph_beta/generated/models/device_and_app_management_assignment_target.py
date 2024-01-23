@@ -12,7 +12,6 @@ if TYPE_CHECKING:
     from .device_and_app_management_assignment_filter_type import DeviceAndAppManagementAssignmentFilterType
     from .exclusion_group_assignment_target import ExclusionGroupAssignmentTarget
     from .group_assignment_target import GroupAssignmentTarget
-    from .scope_tag_group_assignment_target import ScopeTagGroupAssignmentTarget
 
 @dataclass
 class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, Parsable):
@@ -68,10 +67,6 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, 
             from .group_assignment_target import GroupAssignmentTarget
 
             return GroupAssignmentTarget()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.scopeTagGroupAssignmentTarget".casefold():
-            from .scope_tag_group_assignment_target import ScopeTagGroupAssignmentTarget
-
-            return ScopeTagGroupAssignmentTarget()
         return DeviceAndAppManagementAssignmentTarget()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -86,7 +81,6 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, 
         from .device_and_app_management_assignment_filter_type import DeviceAndAppManagementAssignmentFilterType
         from .exclusion_group_assignment_target import ExclusionGroupAssignmentTarget
         from .group_assignment_target import GroupAssignmentTarget
-        from .scope_tag_group_assignment_target import ScopeTagGroupAssignmentTarget
 
         from .all_devices_assignment_target import AllDevicesAssignmentTarget
         from .all_licensed_users_assignment_target import AllLicensedUsersAssignmentTarget
@@ -95,7 +89,6 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, 
         from .device_and_app_management_assignment_filter_type import DeviceAndAppManagementAssignmentFilterType
         from .exclusion_group_assignment_target import ExclusionGroupAssignmentTarget
         from .group_assignment_target import GroupAssignmentTarget
-        from .scope_tag_group_assignment_target import ScopeTagGroupAssignmentTarget
 
         fields: Dict[str, Callable[[Any], None]] = {
             "deviceAndAppManagementAssignmentFilterId": lambda n : setattr(self, 'device_and_app_management_assignment_filter_id', n.get_str_value()),

@@ -28,7 +28,7 @@ class AccessPackageResourceEnvironmentRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AccessPackageResourceEnvironmentRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageResourceEnvironment]:
         """
-        Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
+        Contains the environment information for the resource. This environment can be set using either the @odata.bind annotation or the environment's originId. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageResourceEnvironment]
         """
@@ -49,7 +49,7 @@ class AccessPackageResourceEnvironmentRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageResourceEnvironmentRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
+        Contains the environment information for the resource. This environment can be set using either the @odata.bind annotation or the environment's originId. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +77,7 @@ class AccessPackageResourceEnvironmentRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageResourceEnvironmentRequestBuilderGetQueryParameters():
         """
-        Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
+        Contains the environment information for the resource. This environment can be set using either the @odata.bind annotation or the environment's originId. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

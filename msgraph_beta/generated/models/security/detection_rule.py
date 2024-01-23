@@ -18,6 +18,8 @@ class DetectionRule(ProtectionRule):
     odata_type: Optional[str] = "#microsoft.graph.security.detectionRule"
     # The detectionAction property
     detection_action: Optional[DetectionAction] = None
+    # The detectorId property
+    detector_id: Optional[str] = None
     # The lastRunDetails property
     last_run_details: Optional[RunDetails] = None
     # The queryCondition property
@@ -55,6 +57,7 @@ class DetectionRule(ProtectionRule):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "detectionAction": lambda n : setattr(self, 'detection_action', n.get_object_value(DetectionAction)),
+            "detectorId": lambda n : setattr(self, 'detector_id', n.get_str_value()),
             "lastRunDetails": lambda n : setattr(self, 'last_run_details', n.get_object_value(RunDetails)),
             "queryCondition": lambda n : setattr(self, 'query_condition', n.get_object_value(QueryCondition)),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(RuleSchedule)),
@@ -73,6 +76,7 @@ class DetectionRule(ProtectionRule):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("detectionAction", self.detection_action)
+        writer.write_str_value("detectorId", self.detector_id)
         writer.write_object_value("lastRunDetails", self.last_run_details)
         writer.write_object_value("queryCondition", self.query_condition)
         writer.write_object_value("schedule", self.schedule)

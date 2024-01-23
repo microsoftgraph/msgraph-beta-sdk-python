@@ -10,4 +10,5 @@ class HuntingRuleErrorCode(str, Enum):
     AlertReportNotFound = "alertReportNotFound",
     PartialRowsFailed = "partialRowsFailed",
     UnknownFutureValue = "unknownFutureValue",
+    NoImpactedEntity = "noImpactedEntity",
 

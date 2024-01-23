@@ -22,7 +22,7 @@ class ServiceNowConnection(Entity):
     created_date_time: Optional[datetime.datetime] = None
     # Indicates the ServiceNow incident API URL that Intune will use the fetch incidents. Saved in the format of /api/now/table/incident
     incident_api_url: Optional[str] = None
-    # Indicates the ServiceNow instance URL that Intune will connect to. Saved in the format of https://<instance>.service-now.com
+    # Indicates the ServiceNow instance URL that Intune will connect to. Saved in the format of https://.service-now.com
     instance_url: Optional[str] = None
     # Date Time when connection properties were last updated. The value cannot be modified and is automatically populated when the connection properties were updated.
     last_modified_date_time: Optional[datetime.datetime] = None

@@ -30,7 +30,7 @@ class AospDeviceOwnerWiFiConfiguration(DeviceConfiguration):
     pre_shared_key_is_set: Optional[bool] = None
     # Specify the proxy server configuration script URL.
     proxy_automatic_configuration_url: Optional[str] = None
-    # List of hosts to exclude using the proxy on connections for. These hosts can use wildcards such as *.example.com.
+    # List of hosts to exclude using the proxy on connections for. These hosts can use wildcards such as .example.com.
     proxy_exclusion_list: Optional[List[str]] = None
     # Specify the proxy server IP address. Both IPv4 and IPv6 addresses are supported. For example: 192.168.1.1.
     proxy_manual_address: Optional[str] = None

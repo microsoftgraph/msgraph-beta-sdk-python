@@ -17,9 +17,9 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, BackedMo
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Not yet documented
+    # The context property
     context: Optional[str] = None
-    # Not yet documented
+    # The failure property
     failure: Optional[str] = None
     # The detailed description of what went wrong.
     failure_details: Optional[str] = None

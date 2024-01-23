@@ -39,4 +39,6 @@ class ManagedDeviceRemoteAction(str, Enum):
     InitiateOnDemandProactiveRemediation = "initiateOnDemandProactiveRemediation",
     # Evolvable enum member
     UnknownFutureValue = "unknownFutureValue",
+    # Indicates remote device action to intiate Mobile Device Management (MDM) attestation if device is capable for it
+    InitiateDeviceAttestation = "initiateDeviceAttestation",
 

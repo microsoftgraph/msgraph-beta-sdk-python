@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from .calls.calls_request_builder import CallsRequestBuilder
     from .online_meetings.online_meetings_request_builder import OnlineMeetingsRequestBuilder
+    from .online_meetings_with_join_web_url.online_meetings_with_join_web_url_request_builder import OnlineMeetingsWithJoinWebUrlRequestBuilder
 
 class AppRequestBuilder(BaseRequestBuilder):
     """
@@ -48,6 +49,18 @@ class AppRequestBuilder(BaseRequestBuilder):
         from ..models.comms_application import CommsApplication
 
         return await self.request_adapter.send_async(request_info, CommsApplication, error_mapping)
+    
+    def online_meetings_with_join_web_url(self,join_web_url: Optional[str] = None) -> OnlineMeetingsWithJoinWebUrlRequestBuilder:
+        """
+        Provides operations to manage the onlineMeetings property of the microsoft.graph.commsApplication entity.
+        param join_web_url: Alternate key of onlineMeeting
+        Returns: OnlineMeetingsWithJoinWebUrlRequestBuilder
+        """
+        if not join_web_url:
+            raise TypeError("join_web_url cannot be null.")
+        from .online_meetings_with_join_web_url.online_meetings_with_join_web_url_request_builder import OnlineMeetingsWithJoinWebUrlRequestBuilder
+
+        return OnlineMeetingsWithJoinWebUrlRequestBuilder(self.request_adapter, self.path_parameters, join_web_url)
     
     async def patch(self,body: Optional[CommsApplication] = None, request_configuration: Optional[AppRequestBuilderPatchRequestConfiguration] = None) -> Optional[CommsApplication]:
         """

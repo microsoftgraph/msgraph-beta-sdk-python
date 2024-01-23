@@ -38,6 +38,7 @@ if TYPE_CHECKING:
     from .mobile_lob_app import MobileLobApp
     from .office_suite_app import OfficeSuiteApp
     from .web_app import WebApp
+    from .win32_catalog_app import Win32CatalogApp
     from .win32_lob_app import Win32LobApp
     from .windows_app_x import WindowsAppX
     from .windows_microsoft_edge_app import WindowsMicrosoftEdgeApp
@@ -226,6 +227,10 @@ class MobileApp(Entity):
             from .web_app import WebApp
 
             return WebApp()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32CatalogApp".casefold():
+            from .win32_catalog_app import Win32CatalogApp
+
+            return Win32CatalogApp()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobApp".casefold():
             from .win32_lob_app import Win32LobApp
 
@@ -314,6 +319,7 @@ class MobileApp(Entity):
         from .mobile_lob_app import MobileLobApp
         from .office_suite_app import OfficeSuiteApp
         from .web_app import WebApp
+        from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
         from .windows_app_x import WindowsAppX
         from .windows_microsoft_edge_app import WindowsMicrosoftEdgeApp
@@ -360,6 +366,7 @@ class MobileApp(Entity):
         from .mobile_lob_app import MobileLobApp
         from .office_suite_app import OfficeSuiteApp
         from .web_app import WebApp
+        from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
         from .windows_app_x import WindowsAppX
         from .windows_microsoft_edge_app import WindowsMicrosoftEdgeApp

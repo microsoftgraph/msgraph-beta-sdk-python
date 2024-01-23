@@ -16,7 +16,7 @@ class ApplePushNotificationCertificate(Entity):
     """
     # Apple Id of the account used to create the MDM push certificate.
     apple_identifier: Optional[str] = None
-    # Not yet documented
+    # The certificate property
     certificate: Optional[str] = None
     # Certificate serial number. This property is read-only.
     certificate_serial_number: Optional[str] = None

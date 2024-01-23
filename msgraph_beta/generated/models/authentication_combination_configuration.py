@@ -13,7 +13,7 @@ from .entity import Entity
 
 @dataclass
 class AuthenticationCombinationConfiguration(Entity):
-    # Which authentication method combinations this configuration applies to. Must be an allowedCombinations object that's defined for the authenticationStrengthPolicy. The only possible value for fido2combinationConfigurations is 'fido2'.
+    # Which authentication method combinations this configuration applies to. Must be an allowedCombinations object defined for the authenticationStrengthPolicy. For fido2combinationConfigurations use 'fido2', for x509certificatecombinationconfiguration use 'x509CertificateSingleFactor' or 'x509CertificateMultiFactor'.
     applies_to_combinations: Optional[List[AuthenticationMethodModes]] = None
     # The OdataType property
     odata_type: Optional[str] = None

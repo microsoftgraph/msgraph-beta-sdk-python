@@ -80,7 +80,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     date_time_configuration_blocked: Optional[bool] = None
     # Represents the customized detailed help text provided to users when they attempt to modify managed settings on their device.
     detailed_help_text: Optional[AndroidDeviceOwnerUserFacingMessage] = None
-    # Indicates the location setting configuration for fully managed devices (COBO) and corporate owned devices with a work profile (COPE)
+    # Indicates the location setting configuration for fully managed devices (COBO) and corporate owned devices with a work profile (COPE). Possible values are: notConfigured, disabled, unknownFutureValue.
     device_location_mode: Optional[AndroidDeviceOwnerLocationMode] = None
     # Represents the customized lock screen message provided to users when they attempt to modify managed settings on their device.
     device_owner_lock_screen_message: Optional[AndroidDeviceOwnerUserFacingMessage] = None

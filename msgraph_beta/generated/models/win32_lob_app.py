@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mobile_lob_app import MobileLobApp
+    from .win32_catalog_app import Win32CatalogApp
     from .win32_lob_app_detection import Win32LobAppDetection
     from .win32_lob_app_install_experience import Win32LobAppInstallExperience
     from .win32_lob_app_msi_information import Win32LobAppMsiInformation
@@ -69,6 +70,14 @@ class Win32LobApp(MobileLobApp):
         """
         if not parse_node:
             raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32CatalogApp".casefold():
+            from .win32_catalog_app import Win32CatalogApp
+
+            return Win32CatalogApp()
         return Win32LobApp()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -77,6 +86,7 @@ class Win32LobApp(MobileLobApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .mobile_lob_app import MobileLobApp
+        from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app_detection import Win32LobAppDetection
         from .win32_lob_app_install_experience import Win32LobAppInstallExperience
         from .win32_lob_app_msi_information import Win32LobAppMsiInformation
@@ -87,6 +97,7 @@ class Win32LobApp(MobileLobApp):
         from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
 
         from .mobile_lob_app import MobileLobApp
+        from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app_detection import Win32LobAppDetection
         from .win32_lob_app_install_experience import Win32LobAppInstallExperience
         from .win32_lob_app_msi_information import Win32LobAppMsiInformation

@@ -12,9 +12,9 @@ from .authentication_combination_configuration import AuthenticationCombinationC
 class X509CertificateCombinationConfiguration(AuthenticationCombinationConfiguration):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.x509CertificateCombinationConfiguration"
-    # The allowedIssuerSkis property
+    # A list of allowed subject key identifier values.
     allowed_issuer_skis: Optional[List[str]] = None
-    # The allowedPolicyOIDs property
+    # A list of allowed policy OIDs.
     allowed_policy_o_i_ds: Optional[List[str]] = None
     
     @staticmethod

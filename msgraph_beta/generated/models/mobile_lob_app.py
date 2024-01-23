@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .mac_o_s_pkg_app import MacOSPkgApp
     from .mobile_app import MobileApp
     from .mobile_app_content import MobileAppContent
+    from .win32_catalog_app import Win32CatalogApp
     from .win32_lob_app import Win32LobApp
     from .windows_app_x import WindowsAppX
     from .windows_mobile_m_s_i import WindowsMobileMSI
@@ -70,6 +71,10 @@ class MobileLobApp(MobileApp):
             from .mac_o_s_pkg_app import MacOSPkgApp
 
             return MacOSPkgApp()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32CatalogApp".casefold():
+            from .win32_catalog_app import Win32CatalogApp
+
+            return Win32CatalogApp()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobApp".casefold():
             from .win32_lob_app import Win32LobApp
 
@@ -112,6 +117,7 @@ class MobileLobApp(MobileApp):
         from .mac_o_s_pkg_app import MacOSPkgApp
         from .mobile_app import MobileApp
         from .mobile_app_content import MobileAppContent
+        from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
         from .windows_app_x import WindowsAppX
         from .windows_mobile_m_s_i import WindowsMobileMSI
@@ -127,6 +133,7 @@ class MobileLobApp(MobileApp):
         from .mac_o_s_pkg_app import MacOSPkgApp
         from .mobile_app import MobileApp
         from .mobile_app_content import MobileAppContent
+        from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
         from .windows_app_x import WindowsAppX
         from .windows_mobile_m_s_i import WindowsMobileMSI

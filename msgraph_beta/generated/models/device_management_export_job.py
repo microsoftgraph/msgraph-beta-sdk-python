@@ -15,29 +15,31 @@ from .entity import Entity
 @dataclass
 class DeviceManagementExportJob(Entity):
     """
-    Entity representing a job to export a report
+    Entity representing a job to export a report.
     """
-    # Time that the exported report expires. This property is read-only.
+    # Time that the exported report expires.
     expiration_date_time: Optional[datetime.datetime] = None
-    # Filters applied on the report
+    # Filters applied on the report. The maximum length allowed for this property is 2000 characters.
     filter: Optional[str] = None
-    # Possible values for the file format of a report
+    # Possible values for the file format of a report.
     format: Optional[DeviceManagementReportFileFormat] = None
-    # Configures how the requested export job is localized
+    # Configures how the requested export job is localized.
     localization_type: Optional[DeviceManagementExportJobLocalizationType] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Name of the report
+    # Name of the report. The maximum length allowed for this property is 2000 characters.
     report_name: Optional[str] = None
-    # Time that the exported report was requested. This property is read-only.
+    # Time that the exported report was requested.
     request_date_time: Optional[datetime.datetime] = None
-    # Columns selected from the report
+    # Configures a search term to filter the data. The maximum length allowed for this property is 100 characters.
+    search: Optional[str] = None
+    # Columns selected from the report. The maximum number of allowed columns names is 256. The maximum length allowed for each column name in this property is 1000 characters.
     select: Optional[List[str]] = None
-    # A snapshot is an identifiable subset of the dataset represented by the ReportName. A sessionId or CachedReportConfiguration id can be used here. If a sessionId is specified, Filter, Select, and OrderBy are applied to the data represented by the sessionId. Filter, Select, and OrderBy cannot be specified together with a CachedReportConfiguration id.
+    # A snapshot is an identifiable subset of the dataset represented by the ReportName. A sessionId or CachedReportConfiguration id can be used here. If a sessionId is specified, Filter, Select, and OrderBy are applied to the data represented by the sessionId. Filter, Select, and OrderBy cannot be specified together with a CachedReportConfiguration id. The maximum length allowed for this property is 128 characters.
     snapshot_id: Optional[str] = None
-    # Possible statuses associated with a generated report
+    # Possible statuses associated with a generated report.
     status: Optional[DeviceManagementReportStatus] = None
-    # Temporary location of the exported report. This property is read-only.
+    # Temporary location of the exported report.
     url: Optional[str] = None
     
     @staticmethod
@@ -73,6 +75,7 @@ class DeviceManagementExportJob(Entity):
             "localizationType": lambda n : setattr(self, 'localization_type', n.get_enum_value(DeviceManagementExportJobLocalizationType)),
             "reportName": lambda n : setattr(self, 'report_name', n.get_str_value()),
             "requestDateTime": lambda n : setattr(self, 'request_date_time', n.get_datetime_value()),
+            "search": lambda n : setattr(self, 'search', n.get_str_value()),
             "select": lambda n : setattr(self, 'select', n.get_collection_of_primitive_values(str)),
             "snapshotId": lambda n : setattr(self, 'snapshot_id', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(DeviceManagementReportStatus)),
@@ -97,6 +100,7 @@ class DeviceManagementExportJob(Entity):
         writer.write_enum_value("localizationType", self.localization_type)
         writer.write_str_value("reportName", self.report_name)
         writer.write_datetime_value("requestDateTime", self.request_date_time)
+        writer.write_str_value("search", self.search)
         writer.write_collection_of_primitive_values("select", self.select)
         writer.write_str_value("snapshotId", self.snapshot_id)
         writer.write_enum_value("status", self.status)

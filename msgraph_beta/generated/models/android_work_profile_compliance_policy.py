@@ -57,9 +57,9 @@ class AndroidWorkProfileCompliancePolicy(DeviceCompliancePolicy):
     security_require_company_portal_app_integrity: Optional[bool] = None
     # Require Google Play Services to be installed and enabled on the device.
     security_require_google_play_services: Optional[bool] = None
-    # Require the device to pass the SafetyNet basic integrity check.
+    # Require the device to pass the Play Integrity basic integrity check.
     security_require_safety_net_attestation_basic_integrity: Optional[bool] = None
-    # Require the device to pass the SafetyNet certified device check.
+    # Require the device to pass the Play Integrity device integrity check.
     security_require_safety_net_attestation_certified_device: Optional[bool] = None
     # Require the device to have up to date security providers. The device will require Google Play Services to be enabled and up to date.
     security_require_up_to_date_security_providers: Optional[bool] = None

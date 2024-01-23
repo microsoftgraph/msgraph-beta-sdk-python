@@ -35,7 +35,7 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
     defender_enabled: Optional[bool] = None
     # Require Windows Defender Antimalware minimum version on Windows devices.
     defender_version: Optional[str] = None
-    # Not yet documented
+    # The deviceCompliancePolicyScript property
     device_compliance_policy_script: Optional[DeviceCompliancePolicyScript] = None
     # Require that devices have enabled device threat protection.
     device_threat_protection_enabled: Optional[bool] = None

@@ -15,9 +15,9 @@ class DeviceManagementReports(Entity):
     """
     Singleton entity that acts as a container for all reports functionality.
     """
-    # Entity representing the configuration of a cached report
+    # Entity representing the configuration of a cached report.
     cached_report_configurations: Optional[List[DeviceManagementCachedReportConfiguration]] = None
-    # Entity representing a job to export a report
+    # Entity representing a job to export a report.
     export_jobs: Optional[List[DeviceManagementExportJob]] = None
     # The OdataType property
     odata_type: Optional[str] = None

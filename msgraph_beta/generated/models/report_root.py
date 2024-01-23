@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .authentication_methods_root import AuthenticationMethodsRoot
     from .credential_user_registration_details import CredentialUserRegistrationDetails
     from .entity import Entity
+    from .partners.partners import Partners
     from .print_usage import PrintUsage
     from .print_usage_by_printer import PrintUsageByPrinter
     from .print_usage_by_user import PrintUsageByUser
@@ -51,6 +52,8 @@ class ReportRoot(Entity):
     monthly_print_usage_summaries_by_user: Optional[List[PrintUsageByUser]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Represents billing details for a Microsoft direct partner.
+    partners: Optional[Partners] = None
     # Provides the ability to launch a simulated phishing attack that organizations can learn from.
     security: Optional[SecurityReportsRoot] = None
     # Reports that relate to tenant-level authentication activities in Microsoft Entra.
@@ -85,6 +88,7 @@ class ReportRoot(Entity):
         from .authentication_methods_root import AuthenticationMethodsRoot
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .entity import Entity
+        from .partners.partners import Partners
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
         from .print_usage_by_user import PrintUsageByUser
@@ -100,6 +104,7 @@ class ReportRoot(Entity):
         from .authentication_methods_root import AuthenticationMethodsRoot
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .entity import Entity
+        from .partners.partners import Partners
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
         from .print_usage_by_user import PrintUsageByUser
@@ -124,6 +129,7 @@ class ReportRoot(Entity):
             "monthlyPrintUsageByUser": lambda n : setattr(self, 'monthly_print_usage_by_user', n.get_collection_of_object_values(PrintUsageByUser)),
             "monthlyPrintUsageSummariesByPrinter": lambda n : setattr(self, 'monthly_print_usage_summaries_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
             "monthlyPrintUsageSummariesByUser": lambda n : setattr(self, 'monthly_print_usage_summaries_by_user', n.get_collection_of_object_values(PrintUsageByUser)),
+            "partners": lambda n : setattr(self, 'partners', n.get_object_value(Partners)),
             "security": lambda n : setattr(self, 'security', n.get_object_value(SecurityReportsRoot)),
             "serviceActivity": lambda n : setattr(self, 'service_activity', n.get_object_value(ServiceActivity)),
             "servicePrincipalSignInActivities": lambda n : setattr(self, 'service_principal_sign_in_activities', n.get_collection_of_object_values(ServicePrincipalSignInActivity)),
@@ -157,6 +163,7 @@ class ReportRoot(Entity):
         writer.write_collection_of_object_values("monthlyPrintUsageByUser", self.monthly_print_usage_by_user)
         writer.write_collection_of_object_values("monthlyPrintUsageSummariesByPrinter", self.monthly_print_usage_summaries_by_printer)
         writer.write_collection_of_object_values("monthlyPrintUsageSummariesByUser", self.monthly_print_usage_summaries_by_user)
+        writer.write_object_value("partners", self.partners)
         writer.write_object_value("security", self.security)
         writer.write_object_value("serviceActivity", self.service_activity)
         writer.write_collection_of_object_values("servicePrincipalSignInActivities", self.service_principal_sign_in_activities)
