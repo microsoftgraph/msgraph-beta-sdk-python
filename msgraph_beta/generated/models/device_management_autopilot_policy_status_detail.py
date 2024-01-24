@@ -28,7 +28,7 @@ class DeviceManagementAutopilotPolicyStatusDetail(Entity):
     odata_type: Optional[str] = None
     # The policyType property
     policy_type: Optional[DeviceManagementAutopilotPolicyType] = None
-    # Indicates if this prolicy was tracked as part of the autopilot bootstrap enrollment sync session
+    # Indicates if this policy was tracked as part of the autopilot bootstrap enrollment sync session
     tracked_on_enrollment_status: Optional[bool] = None
     
     @staticmethod

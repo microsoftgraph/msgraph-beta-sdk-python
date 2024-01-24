@@ -15,7 +15,7 @@ from .entity import Entity
 
 @dataclass
 class AccessPackageResource(Entity):
-    # Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
+    # Contains the environment information for the resource. This environment can be set using either the @odata.bind annotation or the environment's originId. Supports $expand.
     access_package_resource_environment: Optional[AccessPackageResourceEnvironment] = None
     # Read-only. Nullable. Supports $expand.
     access_package_resource_roles: Optional[List[AccessPackageResourceRole]] = None
@@ -29,15 +29,15 @@ class AccessPackageResource(Entity):
     attributes: Optional[List[AccessPackageResourceAttribute]] = None
     # A description for the resource.
     description: Optional[str] = None
-    # The display name of the resource, such as the application name, group name or site name.
+    # The display name of the resource, such as the application name, group name, or site name.
     display_name: Optional[str] = None
     # True if the resource is not yet available for assignment. Read-only.
     is_pending_onboarding: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The unique identifier of the resource in the origin system. In the case of a Microsoft Entra group, this is the identifier of the group.
+    # The unique identifier of the resource in the origin system. In the case of a Microsoft Entra group, originId is the identifier of the group.
     origin_id: Optional[str] = None
-    # The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
+    # The type of the resource in the origin system, such as SharePointOnline, AadApplication, or AadGroup.
     origin_system: Optional[str] = None
     # The type of the resource, such as Application if it is a Microsoft Entra connected application, or SharePoint Online Site for a SharePoint Online site.
     resource_type: Optional[str] = None

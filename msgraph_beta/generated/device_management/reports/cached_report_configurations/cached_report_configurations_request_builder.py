@@ -45,7 +45,7 @@ class CachedReportConfigurationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CachedReportConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementCachedReportConfigurationCollectionResponse]:
         """
-        Entity representing the configuration of a cached report
+        Entity representing the configuration of a cached report.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceManagementCachedReportConfigurationCollectionResponse]
         """
@@ -90,7 +90,7 @@ class CachedReportConfigurationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CachedReportConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Entity representing the configuration of a cached report
+        Entity representing the configuration of a cached report.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class CachedReportConfigurationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CachedReportConfigurationsRequestBuilderGetQueryParameters():
         """
-        Entity representing the configuration of a cached report
+        Entity representing the configuration of a cached report.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

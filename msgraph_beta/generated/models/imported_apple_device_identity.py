@@ -28,7 +28,7 @@ class ImportedAppleDeviceIdentity(Entity):
     enrollment_state: Optional[EnrollmentState] = None
     # Indicates if the device is deleted from Apple Business Manager
     is_deleted: Optional[bool] = None
-    # Indicates if the Apple device is supervised. More information is at: https://support.apple.com/en-us/HT202837
+    # Indicates if the Apple device is supervised.
     is_supervised: Optional[bool] = None
     # Last Contacted Date Time of the device
     last_contacted_date_time: Optional[datetime.datetime] = None

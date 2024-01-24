@@ -11,17 +11,17 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The display name for the source image.
+    # The display name for the source image. Read-only.
     display_name: Optional[str] = None
-    # The ID of the source image.
+    # The id property
     id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resourceId property
+    # The fully qualified unique identifier (ID) of the source image resource in Azure. The ID format is: '/subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}'. Read-only.
     resource_id: Optional[str] = None
-    # The display name of subscription that hosts the source image.
+    # The display name of the subscription that hosts the source image. Read-only.
     subscription_display_name: Optional[str] = None
-    # The ID of subscription that hosts the source image.
+    # The unique identifier (ID) of the subscription that hosts the source image. Read-only.
     subscription_id: Optional[str] = None
     
     @staticmethod

@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from .connected_organizations.connected_organizations_request_builder import ConnectedOrganizationsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
     from .subjects.subjects_request_builder import SubjectsRequestBuilder
+    from .subjects_with_object_id.subjects_with_object_id_request_builder import SubjectsWithObjectIdRequestBuilder
 
 class EntitlementManagementRequestBuilder(BaseRequestBuilder):
     """
@@ -103,6 +104,18 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         from ...models.entitlement_management import EntitlementManagement
 
         return await self.request_adapter.send_async(request_info, EntitlementManagement, error_mapping)
+    
+    def subjects_with_object_id(self,object_id: Optional[str] = None) -> SubjectsWithObjectIdRequestBuilder:
+        """
+        Provides operations to manage the subjects property of the microsoft.graph.entitlementManagement entity.
+        param object_id: Alternate key of accessPackageSubject
+        Returns: SubjectsWithObjectIdRequestBuilder
+        """
+        if not object_id:
+            raise TypeError("object_id cannot be null.")
+        from .subjects_with_object_id.subjects_with_object_id_request_builder import SubjectsWithObjectIdRequestBuilder
+
+        return SubjectsWithObjectIdRequestBuilder(self.request_adapter, self.path_parameters, object_id)
     
     def to_delete_request_information(self,request_configuration: Optional[EntitlementManagementRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

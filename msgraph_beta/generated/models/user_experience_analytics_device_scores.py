@@ -26,6 +26,8 @@ class UserExperienceAnalyticsDeviceScores(Entity):
     health_status: Optional[UserExperienceAnalyticsHealthState] = None
     # The manufacturer name of the device. Examples: Microsoft Corporation, HP, Lenovo. Supports: $select, $OrderBy. Read-only.
     manufacturer: Optional[str] = None
+    # Indicates a calulated score indicating the health of the device's resources CPU and RAM. Valid values range from 0-100. Value -1 means associated score is unavailable. A higher score indicates a healthier device. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+    mean_resource_spike_time_score: Optional[float] = None
     # The model name of the device. Supports: $select, $OrderBy. Read-only.
     model: Optional[str] = None
     # The OdataType property
@@ -64,6 +66,7 @@ class UserExperienceAnalyticsDeviceScores(Entity):
             "endpointAnalyticsScore": lambda n : setattr(self, 'endpoint_analytics_score', n.get_float_value()),
             "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(UserExperienceAnalyticsHealthState)),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
+            "meanResourceSpikeTimeScore": lambda n : setattr(self, 'mean_resource_spike_time_score', n.get_float_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
             "startupPerformanceScore": lambda n : setattr(self, 'startup_performance_score', n.get_float_value()),
             "workFromAnywhereScore": lambda n : setattr(self, 'work_from_anywhere_score', n.get_float_value()),
@@ -87,6 +90,7 @@ class UserExperienceAnalyticsDeviceScores(Entity):
         writer.write_float_value("endpointAnalyticsScore", self.endpoint_analytics_score)
         writer.write_enum_value("healthStatus", self.health_status)
         writer.write_str_value("manufacturer", self.manufacturer)
+        writer.write_float_value("meanResourceSpikeTimeScore", self.mean_resource_spike_time_score)
         writer.write_str_value("model", self.model)
         writer.write_float_value("startupPerformanceScore", self.startup_performance_score)
         writer.write_float_value("workFromAnywhereScore", self.work_from_anywhere_score)

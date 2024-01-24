@@ -47,7 +47,7 @@ class DeviceManagementExportJobItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DeviceManagementExportJobItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementExportJob]:
         """
-        Entity representing a job to export a report
+        Entity representing a job to export a report.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceManagementExportJob]
         """
@@ -108,7 +108,7 @@ class DeviceManagementExportJobItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DeviceManagementExportJobItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Entity representing a job to export a report
+        Entity representing a job to export a report.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -166,7 +166,7 @@ class DeviceManagementExportJobItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceManagementExportJobItemRequestBuilderGetQueryParameters():
         """
-        Entity representing a job to export a report
+        Entity representing a job to export a report.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

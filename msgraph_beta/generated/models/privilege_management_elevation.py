@@ -57,6 +57,8 @@ class PrivilegeManagementElevation(Entity):
     result: Optional[int] = None
     # Unique identifier of the rule configured to run the application with elevated access
     rule_id: Optional[str] = None
+    # To identify if the elevation is initiated by system or user interaction
+    system_initiated_elevation: Optional[bool] = None
     # The User Principal Name of the user who performed the elevation. Example: `john@domain.com`
     upn: Optional[str] = None
     # The type of user account on Windows that was used to performed the elevation.
@@ -108,6 +110,7 @@ class PrivilegeManagementElevation(Entity):
             "productName": lambda n : setattr(self, 'product_name', n.get_str_value()),
             "result": lambda n : setattr(self, 'result', n.get_int_value()),
             "ruleId": lambda n : setattr(self, 'rule_id', n.get_str_value()),
+            "systemInitiatedElevation": lambda n : setattr(self, 'system_initiated_elevation', n.get_bool_value()),
             "upn": lambda n : setattr(self, 'upn', n.get_str_value()),
             "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(PrivilegeManagementEndUserType)),
         }
@@ -143,6 +146,7 @@ class PrivilegeManagementElevation(Entity):
         writer.write_str_value("productName", self.product_name)
         writer.write_int_value("result", self.result)
         writer.write_str_value("ruleId", self.rule_id)
+        writer.write_bool_value("systemInitiatedElevation", self.system_initiated_elevation)
         writer.write_str_value("upn", self.upn)
         writer.write_enum_value("userType", self.user_type)
     

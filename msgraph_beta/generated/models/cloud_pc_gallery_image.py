@@ -12,37 +12,37 @@ from .entity import Entity
 
 @dataclass
 class CloudPcGalleryImage(Entity):
-    # The official display name of the gallery image. Read-only.
+    # The display name of this gallery image. For example, Windows 11 Enterprise + Microsoft 365 Apps 22H2. Read-only.
     display_name: Optional[str] = None
-    # The date in which this image is no longer within long-term support. The Cloud PC continues to provide short-term support. Read-only.
+    # The date when the status of image becomes supportedWithWarning. Users can still provision new Cloud PCs if the current time is later than endDate and earlier than expirationDate. For example, assume the endDate of a gallery image is 2023-9-14 and expirationDate is 2024-3-14, users are able to provision new Cloud PCs if today is 2023-10-01. Read-only.
     end_date: Optional[datetime.date] = None
-    # The date when the image is no longer available. Read-only.
+    # The date when the image is no longer available. Users are unable to provision new Cloud PCs if the current time is later than expirationDate. The value is usually endDate plus six months. For example, if the startDate is 2025-10-14, the expirationDate is usually 2026-04-14. Read-only.
     expiration_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The offer name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
+    # The offer property
     offer: Optional[str] = None
-    # The official display offer name of the gallery image. For example, Windows 10 Enterprise + OS Optimizations. Read-only.
+    # The offerDisplayName property
     offer_display_name: Optional[str] = None
-    # The offerName property
+    # The offer name of this gallery image that is passed to ARM to retrieve the image resource. Read-only.
     offer_name: Optional[str] = None
-    # The publisher name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
+    # The publisher property
     publisher: Optional[str] = None
-    # The publisherName property
+    # The publisher name of this gallery image that is passed to ARM to retrieve the image resource. Read-only.
     publisher_name: Optional[str] = None
-    # Recommended Cloud PC SKU for this gallery image. Read-only.
+    # The recommendedSku property
     recommended_sku: Optional[str] = None
-    # The size of this image in gigabytes. Read-only.
+    # Indicates the size of this image in gigabytes. For example, 64. Read-only.
     size_in_g_b: Optional[int] = None
-    # The SKU name of the gallery image. This value is passed to Azure to get the image resource. Read-only.
+    # The sku property
     sku: Optional[str] = None
-    # The official display stock keeping unit (SKU) name of this gallery image. For example, 2004. Read-only.
+    # The skuDisplayName property
     sku_display_name: Optional[str] = None
-    # The skuName property
+    # The SKU name of this image that is passed to ARM to retrieve the image resource. Read-only.
     sku_name: Optional[str] = None
-    # The date when the image becomes available. Read-only.
+    # The date when the Cloud PC image is available for provisioning new Cloud PCs. For example, 2022-09-20. Read-only.
     start_date: Optional[datetime.date] = None
-    # The status of the gallery image on the Cloud PC. Possible values are: supported, supportedWithWarning, notSupported, unknownFutureValue. Read-only.
+    # The status of the gallery image on the Cloud PC. Possible values are: supported, supportedWithWarning, notSupported, unknownFutureValue. The default value is supported. Read-only.
     status: Optional[CloudPcGalleryImageStatus] = None
     
     @staticmethod

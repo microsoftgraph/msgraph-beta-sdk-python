@@ -13,6 +13,8 @@ if TYPE_CHECKING:
     from .....models.connector_group import ConnectorGroup
     from .....models.o_data_errors.o_data_error import ODataError
     from .applications.applications_request_builder import ApplicationsRequestBuilder
+    from .applications_with_app_id.applications_with_app_id_request_builder import ApplicationsWithAppIdRequestBuilder
+    from .applications_with_unique_name.applications_with_unique_name_request_builder import ApplicationsWithUniqueNameRequestBuilder
     from .members.members_request_builder import MembersRequestBuilder
 
 class ConnectorGroupItemRequestBuilder(BaseRequestBuilder):
@@ -27,6 +29,30 @@ class ConnectorGroupItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/onPremisesPublishingProfiles/{onPremisesPublishingProfile%2Did}/connectorGroups/{connectorGroup%2Did}{?%24select,%24expand}", path_parameters)
+    
+    def applications_with_app_id(self,app_id: Optional[str] = None) -> ApplicationsWithAppIdRequestBuilder:
+        """
+        Provides operations to manage the applications property of the microsoft.graph.connectorGroup entity.
+        param app_id: Alternate key of application
+        Returns: ApplicationsWithAppIdRequestBuilder
+        """
+        if not app_id:
+            raise TypeError("app_id cannot be null.")
+        from .applications_with_app_id.applications_with_app_id_request_builder import ApplicationsWithAppIdRequestBuilder
+
+        return ApplicationsWithAppIdRequestBuilder(self.request_adapter, self.path_parameters, app_id)
+    
+    def applications_with_unique_name(self,unique_name: Optional[str] = None) -> ApplicationsWithUniqueNameRequestBuilder:
+        """
+        Provides operations to manage the applications property of the microsoft.graph.connectorGroup entity.
+        param unique_name: Alternate key of application
+        Returns: ApplicationsWithUniqueNameRequestBuilder
+        """
+        if not unique_name:
+            raise TypeError("unique_name cannot be null.")
+        from .applications_with_unique_name.applications_with_unique_name_request_builder import ApplicationsWithUniqueNameRequestBuilder
+
+        return ApplicationsWithUniqueNameRequestBuilder(self.request_adapter, self.path_parameters, unique_name)
     
     async def delete(self,request_configuration: Optional[ConnectorGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

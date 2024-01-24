@@ -39,7 +39,7 @@ class WindowsWifiConfiguration(DeviceConfiguration):
     proxy_manual_address: Optional[str] = None
     # Specify the port for the proxy server.
     proxy_manual_port: Optional[int] = None
-    # Specify the proxy setting for Wi-Fi configuration. Possible values are: none, manual, automatic.
+    # Specify the proxy setting for Wi-Fi configuration. Possible values are: none, manual, automatic, unknownFutureValue.
     proxy_setting: Optional[WiFiProxySetting] = None
     # Specify the SSID of the wifi connection.
     ssid: Optional[str] = None

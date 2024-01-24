@@ -13,11 +13,11 @@ from .change_tracked_entity import ChangeTrackedEntity
 class TimeOff(ChangeTrackedEntity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.timeOff"
-    # Draft changes in the timeOff are only visible to managers until they're shared.
+    # The draft version of this timeOff item that is viewable by managers. It must be shared before it is visible to team members. Required.
     draft_time_off: Optional[TimeOffItem] = None
     # The timeOff is marked for deletion, a process that is finalized when the schedule is shared.
     is_staged_for_deletion: Optional[bool] = None
-    # The shared version of this timeOff that is viewable by both employees and managers.
+    # The shared version of this timeOff that is viewable by both employees and managers. Updates to the sharedTimeOff property send notifications to users in the Teams client. Required.
     shared_time_off: Optional[TimeOffItem] = None
     # ID of the user assigned to the timeOff. Required.
     user_id: Optional[str] = None

@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 @dataclass
 class ExtendedKeyUsage(AdditionalDataHolder, BackedModel, Parsable):
     """
-    Custom Extended Key Usage definition
+    The Custom Extended Key Usage definition
     """
     # Stores model information.
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)

@@ -27,6 +27,8 @@ if TYPE_CHECKING:
     from .recommendations.recommendations_request_builder import RecommendationsRequestBuilder
     from .shared_email_domains.shared_email_domains_request_builder import SharedEmailDomainsRequestBuilder
     from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
+    from .subscriptions_with_commerce_subscription_id.subscriptions_with_commerce_subscription_id_request_builder import SubscriptionsWithCommerceSubscriptionIdRequestBuilder
+    from .subscriptions_with_ocp_subscription_id.subscriptions_with_ocp_subscription_id_request_builder import SubscriptionsWithOcpSubscriptionIdRequestBuilder
 
 class DirectoryRequestBuilder(BaseRequestBuilder):
     """
@@ -85,6 +87,30 @@ class DirectoryRequestBuilder(BaseRequestBuilder):
         from ..models.directory import Directory
 
         return await self.request_adapter.send_async(request_info, Directory, error_mapping)
+    
+    def subscriptions_with_commerce_subscription_id(self,commerce_subscription_id: Optional[str] = None) -> SubscriptionsWithCommerceSubscriptionIdRequestBuilder:
+        """
+        Provides operations to manage the subscriptions property of the microsoft.graph.directory entity.
+        param commerce_subscription_id: Alternate key of companySubscription
+        Returns: SubscriptionsWithCommerceSubscriptionIdRequestBuilder
+        """
+        if not commerce_subscription_id:
+            raise TypeError("commerce_subscription_id cannot be null.")
+        from .subscriptions_with_commerce_subscription_id.subscriptions_with_commerce_subscription_id_request_builder import SubscriptionsWithCommerceSubscriptionIdRequestBuilder
+
+        return SubscriptionsWithCommerceSubscriptionIdRequestBuilder(self.request_adapter, self.path_parameters, commerce_subscription_id)
+    
+    def subscriptions_with_ocp_subscription_id(self,ocp_subscription_id: Optional[str] = None) -> SubscriptionsWithOcpSubscriptionIdRequestBuilder:
+        """
+        Provides operations to manage the subscriptions property of the microsoft.graph.directory entity.
+        param ocp_subscription_id: Alternate key of companySubscription
+        Returns: SubscriptionsWithOcpSubscriptionIdRequestBuilder
+        """
+        if not ocp_subscription_id:
+            raise TypeError("ocp_subscription_id cannot be null.")
+        from .subscriptions_with_ocp_subscription_id.subscriptions_with_ocp_subscription_id_request_builder import SubscriptionsWithOcpSubscriptionIdRequestBuilder
+
+        return SubscriptionsWithOcpSubscriptionIdRequestBuilder(self.request_adapter, self.path_parameters, ocp_subscription_id)
     
     def to_get_request_information(self,request_configuration: Optional[DirectoryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

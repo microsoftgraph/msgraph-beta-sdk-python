@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .booking_businesses.booking_businesses_request_builder import BookingBusinessesRequestBuilder
     from .booking_currencies.booking_currencies_request_builder import BookingCurrenciesRequestBuilder
     from .business_scenarios.business_scenarios_request_builder import BusinessScenariosRequestBuilder
+    from .business_scenarios_with_unique_name.business_scenarios_with_unique_name_request_builder import BusinessScenariosWithUniqueNameRequestBuilder
     from .virtual_events.virtual_events_request_builder import VirtualEventsRequestBuilder
 
 class SolutionsRequestBuilder(BaseRequestBuilder):
@@ -29,6 +30,18 @@ class SolutionsRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/solutions{?%24select,%24expand}", path_parameters)
+    
+    def business_scenarios_with_unique_name(self,unique_name: Optional[str] = None) -> BusinessScenariosWithUniqueNameRequestBuilder:
+        """
+        Provides operations to manage the businessScenarios property of the microsoft.graph.solutionsRoot entity.
+        param unique_name: Alternate key of businessScenario
+        Returns: BusinessScenariosWithUniqueNameRequestBuilder
+        """
+        if not unique_name:
+            raise TypeError("unique_name cannot be null.")
+        from .business_scenarios_with_unique_name.business_scenarios_with_unique_name_request_builder import BusinessScenariosWithUniqueNameRequestBuilder
+
+        return BusinessScenariosWithUniqueNameRequestBuilder(self.request_adapter, self.path_parameters, unique_name)
     
     async def get(self,request_configuration: Optional[SolutionsRequestBuilderGetRequestConfiguration] = None) -> Optional[SolutionsRoot]:
         """

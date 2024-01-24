@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .....models.virtual_event_townhall import VirtualEventTownhall
     from .presenters.presenters_request_builder import PresentersRequestBuilder
     from .sessions.sessions_request_builder import SessionsRequestBuilder
+    from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
 
 class VirtualEventTownhallItemRequestBuilder(BaseRequestBuilder):
     """
@@ -91,6 +92,18 @@ class VirtualEventTownhallItemRequestBuilder(BaseRequestBuilder):
         from .....models.virtual_event_townhall import VirtualEventTownhall
 
         return await self.request_adapter.send_async(request_info, VirtualEventTownhall, error_mapping)
+    
+    def sessions_with_join_web_url(self,join_web_url: Optional[str] = None) -> SessionsWithJoinWebUrlRequestBuilder:
+        """
+        Provides operations to manage the sessions property of the microsoft.graph.virtualEvent entity.
+        param join_web_url: Alternate key of virtualEventSession
+        Returns: SessionsWithJoinWebUrlRequestBuilder
+        """
+        if not join_web_url:
+            raise TypeError("join_web_url cannot be null.")
+        from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
+
+        return SessionsWithJoinWebUrlRequestBuilder(self.request_adapter, self.path_parameters, join_web_url)
     
     def to_delete_request_information(self,request_configuration: Optional[VirtualEventTownhallItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

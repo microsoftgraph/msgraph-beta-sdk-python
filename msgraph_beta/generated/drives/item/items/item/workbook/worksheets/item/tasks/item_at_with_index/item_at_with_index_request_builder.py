@@ -12,6 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..........models.o_data_errors.o_data_error import ODataError
     from ..........models.workbook_document_task import WorkbookDocumentTask
+    from .changes.changes_request_builder import ChangesRequestBuilder
+    from .comment.comment_request_builder import CommentRequestBuilder
 
 class ItemAtWithIndexRequestBuilder(BaseRequestBuilder):
     """
@@ -75,6 +77,24 @@ class ItemAtWithIndexRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ItemAtWithIndexRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def changes(self) -> ChangesRequestBuilder:
+        """
+        Provides operations to manage the changes property of the microsoft.graph.workbookDocumentTask entity.
+        """
+        from .changes.changes_request_builder import ChangesRequestBuilder
+
+        return ChangesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def comment(self) -> CommentRequestBuilder:
+        """
+        Provides operations to manage the comment property of the microsoft.graph.workbookDocumentTask entity.
+        """
+        from .comment.comment_request_builder import CommentRequestBuilder
+
+        return CommentRequestBuilder(self.request_adapter, self.path_parameters)
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 

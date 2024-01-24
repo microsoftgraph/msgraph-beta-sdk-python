@@ -99,6 +99,8 @@ if TYPE_CHECKING:
     from ..ndes_connector import NdesConnector
     from ..notification_message_template import NotificationMessageTemplate
     from ..on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
+    from ..operation_approval_policy import OperationApprovalPolicy
+    from ..operation_approval_request import OperationApprovalRequest
     from ..privilege_management_elevation import PrivilegeManagementElevation
     from ..privilege_management_elevation_request import PrivilegeManagementElevationRequest
     from ..remote_action_audit import RemoteActionAudit
@@ -369,6 +371,10 @@ class DeviceManagement(Entity):
     notification_message_templates: Optional[List[NotificationMessageTemplate]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The Operation Approval Policies
+    operation_approval_policies: Optional[List[OperationApprovalPolicy]] = None
+    # The Operation Approval Requests
+    operation_approval_requests: Optional[List[OperationApprovalRequest]] = None
     # The endpoint privilege management elevation event entity contains elevation details.
     privilege_management_elevations: Optional[List[PrivilegeManagementElevation]] = None
     # The list of device remote action audits with the tenant.
@@ -655,6 +661,8 @@ class DeviceManagement(Entity):
         from ..ndes_connector import NdesConnector
         from ..notification_message_template import NotificationMessageTemplate
         from ..on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
+        from ..operation_approval_policy import OperationApprovalPolicy
+        from ..operation_approval_request import OperationApprovalRequest
         from ..privilege_management_elevation import PrivilegeManagementElevation
         from ..privilege_management_elevation_request import PrivilegeManagementElevationRequest
         from ..remote_action_audit import RemoteActionAudit
@@ -823,6 +831,8 @@ class DeviceManagement(Entity):
         from ..ndes_connector import NdesConnector
         from ..notification_message_template import NotificationMessageTemplate
         from ..on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
+        from ..operation_approval_policy import OperationApprovalPolicy
+        from ..operation_approval_request import OperationApprovalRequest
         from ..privilege_management_elevation import PrivilegeManagementElevation
         from ..privilege_management_elevation_request import PrivilegeManagementElevationRequest
         from ..remote_action_audit import RemoteActionAudit
@@ -992,6 +1002,8 @@ class DeviceManagement(Entity):
             "monitoring": lambda n : setattr(self, 'monitoring', n.get_object_value(Monitoring)),
             "ndesConnectors": lambda n : setattr(self, 'ndes_connectors', n.get_collection_of_object_values(NdesConnector)),
             "notificationMessageTemplates": lambda n : setattr(self, 'notification_message_templates', n.get_collection_of_object_values(NotificationMessageTemplate)),
+            "operationApprovalPolicies": lambda n : setattr(self, 'operation_approval_policies', n.get_collection_of_object_values(OperationApprovalPolicy)),
+            "operationApprovalRequests": lambda n : setattr(self, 'operation_approval_requests', n.get_collection_of_object_values(OperationApprovalRequest)),
             "privilegeManagementElevations": lambda n : setattr(self, 'privilege_management_elevations', n.get_collection_of_object_values(PrivilegeManagementElevation)),
             "remoteActionAudits": lambda n : setattr(self, 'remote_action_audits', n.get_collection_of_object_values(RemoteActionAudit)),
             "remoteAssistancePartners": lambda n : setattr(self, 'remote_assistance_partners', n.get_collection_of_object_values(RemoteAssistancePartner)),
@@ -1184,6 +1196,8 @@ class DeviceManagement(Entity):
         writer.write_object_value("monitoring", self.monitoring)
         writer.write_collection_of_object_values("ndesConnectors", self.ndes_connectors)
         writer.write_collection_of_object_values("notificationMessageTemplates", self.notification_message_templates)
+        writer.write_collection_of_object_values("operationApprovalPolicies", self.operation_approval_policies)
+        writer.write_collection_of_object_values("operationApprovalRequests", self.operation_approval_requests)
         writer.write_collection_of_object_values("privilegeManagementElevations", self.privilege_management_elevations)
         writer.write_collection_of_object_values("remoteActionAudits", self.remote_action_audits)
         writer.write_collection_of_object_values("remoteAssistancePartners", self.remote_assistance_partners)

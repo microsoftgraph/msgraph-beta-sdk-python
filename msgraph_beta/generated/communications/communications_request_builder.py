@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .call_records.call_records_request_builder import CallRecordsRequestBuilder
     from .get_presences_by_user_id.get_presences_by_user_id_request_builder import GetPresencesByUserIdRequestBuilder
     from .online_meetings.online_meetings_request_builder import OnlineMeetingsRequestBuilder
+    from .online_meetings_with_join_web_url.online_meetings_with_join_web_url_request_builder import OnlineMeetingsWithJoinWebUrlRequestBuilder
     from .presences.presences_request_builder import PresencesRequestBuilder
 
 class CommunicationsRequestBuilder(BaseRequestBuilder):
@@ -51,6 +52,18 @@ class CommunicationsRequestBuilder(BaseRequestBuilder):
         from ..models.cloud_communications import CloudCommunications
 
         return await self.request_adapter.send_async(request_info, CloudCommunications, error_mapping)
+    
+    def online_meetings_with_join_web_url(self,join_web_url: Optional[str] = None) -> OnlineMeetingsWithJoinWebUrlRequestBuilder:
+        """
+        Provides operations to manage the onlineMeetings property of the microsoft.graph.cloudCommunications entity.
+        param join_web_url: Alternate key of onlineMeeting
+        Returns: OnlineMeetingsWithJoinWebUrlRequestBuilder
+        """
+        if not join_web_url:
+            raise TypeError("join_web_url cannot be null.")
+        from .online_meetings_with_join_web_url.online_meetings_with_join_web_url_request_builder import OnlineMeetingsWithJoinWebUrlRequestBuilder
+
+        return OnlineMeetingsWithJoinWebUrlRequestBuilder(self.request_adapter, self.path_parameters, join_web_url)
     
     async def patch(self,body: Optional[CloudCommunications] = None, request_configuration: Optional[CommunicationsRequestBuilderPatchRequestConfiguration] = None) -> Optional[CloudCommunications]:
         """

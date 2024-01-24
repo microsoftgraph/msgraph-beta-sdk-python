@@ -20,6 +20,8 @@ class PlannerUser(PlannerDelta):
     favorite_plan_references: Optional[PlannerFavoritePlanReferenceCollection] = None
     # Read-only. Nullable. Returns the plannerPlans that the user marked as favorites.
     favorite_plans: Optional[List[PlannerPlan]] = None
+    # The myDayTasks property
+    my_day_tasks: Optional[List[PlannerTask]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The plans property
@@ -65,6 +67,7 @@ class PlannerUser(PlannerDelta):
             "all": lambda n : setattr(self, 'all', n.get_collection_of_object_values(PlannerDelta)),
             "favoritePlanReferences": lambda n : setattr(self, 'favorite_plan_references', n.get_object_value(PlannerFavoritePlanReferenceCollection)),
             "favoritePlans": lambda n : setattr(self, 'favorite_plans', n.get_collection_of_object_values(PlannerPlan)),
+            "myDayTasks": lambda n : setattr(self, 'my_day_tasks', n.get_collection_of_object_values(PlannerTask)),
             "plans": lambda n : setattr(self, 'plans', n.get_collection_of_object_values(PlannerPlan)),
             "recentPlanReferences": lambda n : setattr(self, 'recent_plan_references', n.get_object_value(PlannerRecentPlanReferenceCollection)),
             "recentPlans": lambda n : setattr(self, 'recent_plans', n.get_collection_of_object_values(PlannerPlan)),
@@ -87,6 +90,7 @@ class PlannerUser(PlannerDelta):
         writer.write_collection_of_object_values("all", self.all)
         writer.write_object_value("favoritePlanReferences", self.favorite_plan_references)
         writer.write_collection_of_object_values("favoritePlans", self.favorite_plans)
+        writer.write_collection_of_object_values("myDayTasks", self.my_day_tasks)
         writer.write_collection_of_object_values("plans", self.plans)
         writer.write_object_value("recentPlanReferences", self.recent_plan_references)
         writer.write_collection_of_object_values("recentPlans", self.recent_plans)

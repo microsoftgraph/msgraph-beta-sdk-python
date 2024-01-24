@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
     from .......models.virtual_event_registration import VirtualEventRegistration
     from .sessions.sessions_request_builder import SessionsRequestBuilder
+    from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
 
 class VirtualEventRegistrationItemRequestBuilder(BaseRequestBuilder):
     """
@@ -91,6 +92,18 @@ class VirtualEventRegistrationItemRequestBuilder(BaseRequestBuilder):
         from .......models.virtual_event_registration import VirtualEventRegistration
 
         return await self.request_adapter.send_async(request_info, VirtualEventRegistration, error_mapping)
+    
+    def sessions_with_join_web_url(self,join_web_url: Optional[str] = None) -> SessionsWithJoinWebUrlRequestBuilder:
+        """
+        Provides operations to manage the sessions property of the microsoft.graph.virtualEventRegistration entity.
+        param join_web_url: Alternate key of virtualEventSession
+        Returns: SessionsWithJoinWebUrlRequestBuilder
+        """
+        if not join_web_url:
+            raise TypeError("join_web_url cannot be null.")
+        from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
+
+        return SessionsWithJoinWebUrlRequestBuilder(self.request_adapter, self.path_parameters, join_web_url)
     
     def to_delete_request_information(self,request_configuration: Optional[VirtualEventRegistrationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

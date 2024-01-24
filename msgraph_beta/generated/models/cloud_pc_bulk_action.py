@@ -32,6 +32,8 @@ class CloudPcBulkAction(Entity):
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The scheduledDuringMaintenanceWindow property
+    scheduled_during_maintenance_window: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcBulkAction:
@@ -124,6 +126,7 @@ class CloudPcBulkAction(Entity):
             "cloudPcIds": lambda n : setattr(self, 'cloud_pc_ids', n.get_collection_of_primitive_values(str)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "scheduledDuringMaintenanceWindow": lambda n : setattr(self, 'scheduled_during_maintenance_window', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -142,5 +145,6 @@ class CloudPcBulkAction(Entity):
         writer.write_collection_of_primitive_values("cloudPcIds", self.cloud_pc_ids)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_bool_value("scheduledDuringMaintenanceWindow", self.scheduled_during_maintenance_window)
     
 

@@ -57,9 +57,9 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
     require_no_pending_system_updates: Optional[bool] = None
     # If setting is set to true, checks that the Intune app installed on fully managed, dedicated, or corporate-owned work profile Android Enterprise enrolled devices, is the one provided by Microsoft from the Managed Google Playstore. If the check fails, the device will be reported as non-compliant.
     security_require_intune_app_integrity: Optional[bool] = None
-    # Require the device to pass the SafetyNet basic integrity check.
+    # Require the device to pass the Play Integrity basic integrity check.
     security_require_safety_net_attestation_basic_integrity: Optional[bool] = None
-    # Require the device to pass the SafetyNet certified device check.
+    # Require the device to pass the Play Integrity device integrity check.
     security_require_safety_net_attestation_certified_device: Optional[bool] = None
     # Require encryption on Android devices.
     storage_require_encryption: Optional[bool] = None

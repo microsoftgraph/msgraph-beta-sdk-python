@@ -151,6 +151,7 @@ if TYPE_CHECKING:
     from .monthly_print_usage_by_user.monthly_print_usage_by_user_request_builder import MonthlyPrintUsageByUserRequestBuilder
     from .monthly_print_usage_summaries_by_printer.monthly_print_usage_summaries_by_printer_request_builder import MonthlyPrintUsageSummariesByPrinterRequestBuilder
     from .monthly_print_usage_summaries_by_user.monthly_print_usage_summaries_by_user_request_builder import MonthlyPrintUsageSummariesByUserRequestBuilder
+    from .partners.partners_request_builder import PartnersRequestBuilder
     from .security.security_request_builder import SecurityRequestBuilder
     from .service_activity.service_activity_request_builder import ServiceActivityRequestBuilder
     from .service_principal_sign_in_activities.service_principal_sign_in_activities_request_builder import ServicePrincipalSignInActivitiesRequestBuilder
@@ -1888,6 +1889,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .monthly_print_usage_summaries_by_user.monthly_print_usage_summaries_by_user_request_builder import MonthlyPrintUsageSummariesByUserRequestBuilder
 
         return MonthlyPrintUsageSummariesByUserRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def partners(self) -> PartnersRequestBuilder:
+        """
+        Provides operations to manage the partners property of the microsoft.graph.reportRoot entity.
+        """
+        from .partners.partners_request_builder import PartnersRequestBuilder
+
+        return PartnersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def security(self) -> SecurityRequestBuilder:

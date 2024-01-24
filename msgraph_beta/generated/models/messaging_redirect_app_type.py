@@ -7,4 +7,6 @@ class MessagingRedirectAppType(str, Enum):
     AnyManagedApp = "anyManagedApp",
     # App protection policy will allow messaging redirection only to specified applications in related App protection policy settings. See related settings `messagingRedirectAppDisplayName`, `messagingRedirectAppPackageId` and `messagingRedirectAppUrlScheme`.
     SpecificApps = "specificApps",
+    # App protection policy will block messaging redirection to any app.
+    Blocked = "blocked",
 

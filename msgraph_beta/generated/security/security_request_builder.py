@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .audit_log.audit_log_request_builder import AuditLogRequestBuilder
     from .cases.cases_request_builder import CasesRequestBuilder
     from .cloud_app_security_profiles.cloud_app_security_profiles_request_builder import CloudAppSecurityProfilesRequestBuilder
+    from .collaboration.collaboration_request_builder import CollaborationRequestBuilder
     from .domain_security_profiles.domain_security_profiles_request_builder import DomainSecurityProfilesRequestBuilder
     from .file_security_profiles.file_security_profiles_request_builder import FileSecurityProfilesRequestBuilder
     from .host_security_profiles.host_security_profiles_request_builder import HostSecurityProfilesRequestBuilder
@@ -196,6 +197,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .cloud_app_security_profiles.cloud_app_security_profiles_request_builder import CloudAppSecurityProfilesRequestBuilder
 
         return CloudAppSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def collaboration(self) -> CollaborationRequestBuilder:
+        """
+        Provides operations to manage the collaboration property of the microsoft.graph.security entity.
+        """
+        from .collaboration.collaboration_request_builder import CollaborationRequestBuilder
+
+        return CollaborationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def domain_security_profiles(self) -> DomainSecurityProfilesRequestBuilder:

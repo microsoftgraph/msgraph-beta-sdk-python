@@ -28,4 +28,8 @@ class ManagementAgentType(str, Enum):
     MsSense = "msSense",
     # This device is managed by Intune's MDM for AOSP (Android Open Source Project) devices
     IntuneAosp = "intuneAosp",
+    # Indicates the management agent to manage the device is Google.
+    Google = "google",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

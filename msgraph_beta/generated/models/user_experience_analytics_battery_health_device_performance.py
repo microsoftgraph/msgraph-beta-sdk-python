@@ -19,10 +19,12 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity):
     battery_age_in_days: Optional[int] = None
     # Properties (maxCapacity and cycleCount) related to all batteries of the device.
     device_batteries_details: Optional[List[UserExperienceAnalyticsDeviceBatteryDetail]] = None
-    # Number of batteries in a user device. Valid values 1 to 2147483647
+    # Number of batteries in a user device. Valid values 0 to 2147483647
     device_battery_count: Optional[int] = None
     # A weighted average of a device’s maximum capacity score and runtime estimate score. Values range from 0-100. Valid values 0 to 2147483647
     device_battery_health_score: Optional[int] = None
+    # Tags for computed information on how battery on the device is behaving. E.g. newbattery, batterycapacityred, designcapacityzero, etc.
+    device_battery_tags: Optional[List[str]] = None
     # The unique identifier of the device, Intune DeviceID.
     device_id: Optional[str] = None
     # Device friendly name.
@@ -71,6 +73,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity):
             "deviceBatteriesDetails": lambda n : setattr(self, 'device_batteries_details', n.get_collection_of_object_values(UserExperienceAnalyticsDeviceBatteryDetail)),
             "deviceBatteryCount": lambda n : setattr(self, 'device_battery_count', n.get_int_value()),
             "deviceBatteryHealthScore": lambda n : setattr(self, 'device_battery_health_score', n.get_int_value()),
+            "deviceBatteryTags": lambda n : setattr(self, 'device_battery_tags', n.get_collection_of_primitive_values(str)),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "estimatedRuntimeInMinutes": lambda n : setattr(self, 'estimated_runtime_in_minutes', n.get_int_value()),
@@ -97,6 +100,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity):
         writer.write_collection_of_object_values("deviceBatteriesDetails", self.device_batteries_details)
         writer.write_int_value("deviceBatteryCount", self.device_battery_count)
         writer.write_int_value("deviceBatteryHealthScore", self.device_battery_health_score)
+        writer.write_collection_of_primitive_values("deviceBatteryTags", self.device_battery_tags)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_int_value("estimatedRuntimeInMinutes", self.estimated_runtime_in_minutes)
