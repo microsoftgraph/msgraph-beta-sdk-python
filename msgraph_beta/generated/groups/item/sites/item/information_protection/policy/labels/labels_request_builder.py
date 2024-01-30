@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ........models.information_protection_label import InformationProtectionLabel
@@ -39,6 +40,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
         param information_protection_label_id: The unique identifier of informationProtectionLabel
         Returns: InformationProtectionLabelItemRequestBuilder
         """
+        warn("This API will no longer be accessible, please see microsoft.graph.security.informationProtection APIs. as of 2021-02/Beta_SensitivityLabels", DeprecationWarning)
         if not information_protection_label_id:
             raise TypeError("information_protection_label_id cannot be null.")
         from .item.information_protection_label_item_request_builder import InformationProtectionLabelItemRequestBuilder
@@ -54,6 +56,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[InformationProtectionLabelCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/informationprotectionpolicy-list-labels?view=graph-rest-1.0
         """
+        warn("This API will no longer be accessible, please see microsoft.graph.security.informationProtection APIs. as of 2021-02/Beta_SensitivityLabels", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -76,6 +79,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InformationProtectionLabel]
         """
+        warn("This API will no longer be accessible, please see microsoft.graph.security.informationProtection APIs. as of 2021-02/Beta_SensitivityLabels", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -99,6 +103,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("This API will no longer be accessible, please see microsoft.graph.security.informationProtection APIs. as of 2021-02/Beta_SensitivityLabels", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -117,6 +122,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("This API will no longer be accessible, please see microsoft.graph.security.informationProtection APIs. as of 2021-02/Beta_SensitivityLabels", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -136,6 +142,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: LabelsRequestBuilder
         """
+        warn("This API will no longer be accessible, please see microsoft.graph.security.informationProtection APIs. as of 2021-02/Beta_SensitivityLabels", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return LabelsRequestBuilder(self.request_adapter, raw_url)

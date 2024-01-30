@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.authentication_strength_policy import AuthenticationStrengthPolicy
@@ -50,6 +51,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
         param authentication_method_modes: Usage: authenticationMethodModes={authenticationMethodModes}
         Returns: FindByMethodModeWithAuthenticationMethodModesRequestBuilder
         """
+        warn("The findByMethodMode function is deprecated. Please use OData filter query instead. as of 2023-02/FindByMethodModeRemove", DeprecationWarning)
         if not authentication_method_modes:
             raise TypeError("authentication_method_modes cannot be null.")
         from .find_by_method_mode_with_authentication_method_modes.find_by_method_mode_with_authentication_method_modes_request_builder import FindByMethodModeWithAuthenticationMethodModesRequestBuilder

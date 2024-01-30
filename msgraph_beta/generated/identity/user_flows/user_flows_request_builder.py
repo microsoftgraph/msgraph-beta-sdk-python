@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.identity_user_flow import IdentityUserFlow
@@ -35,6 +36,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         param identity_user_flow_id: The unique identifier of identityUserFlow
         Returns: IdentityUserFlowItemRequestBuilder
         """
+        warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         if not identity_user_flow_id:
             raise TypeError("identity_user_flow_id cannot be null.")
         from .item.identity_user_flow_item_request_builder import IdentityUserFlowItemRequestBuilder
@@ -50,6 +52,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[IdentityUserFlowCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-list?view=graph-rest-1.0
         """
+        warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -73,6 +76,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[IdentityUserFlow]
         Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-post-userflows?view=graph-rest-1.0
         """
+        warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -96,6 +100,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -114,6 +119,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -133,6 +139,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: UserFlowsRequestBuilder
         """
+        warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return UserFlowsRequestBuilder(self.request_adapter, raw_url)

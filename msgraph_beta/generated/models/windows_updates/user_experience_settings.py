@@ -15,7 +15,7 @@ class UserExperienceSettings(AdditionalDataHolder, BackedModel, Parsable):
     days_until_forced_reboot: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The offerAsOptional property
+    # Specifies whether the update is offered as Optional rather than Required.
     offer_as_optional: Optional[bool] = None
     
     @staticmethod

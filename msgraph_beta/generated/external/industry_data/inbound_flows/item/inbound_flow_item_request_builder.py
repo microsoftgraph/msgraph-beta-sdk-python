@@ -50,10 +50,10 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[InboundFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[InboundFlow]:
         """
-        Read the properties and relationships of an inboundFlow object.
+        Read the properties and relationships of an inboundFileFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -113,7 +113,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[InboundFlowItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an inboundFlow object.
+        Read the properties and relationships of an inboundFileFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -189,7 +189,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InboundFlowItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an inboundFlow object.
+        Read the properties and relationships of an inboundFileFlow object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

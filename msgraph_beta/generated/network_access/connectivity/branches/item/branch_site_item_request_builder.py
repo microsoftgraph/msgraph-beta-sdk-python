@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.networkaccess.branch_site import BranchSite
@@ -36,6 +37,7 @@ class BranchSiteItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchsite-delete?view=graph-rest-1.0
         """
+        warn("The Branches API is deprecated and will stop returning data on January 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -56,6 +58,7 @@ class BranchSiteItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[BranchSite]
         Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchsite-get?view=graph-rest-1.0
         """
+        warn("The Branches API is deprecated and will stop returning data on January 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -79,6 +82,7 @@ class BranchSiteItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[BranchSite]
         Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchsite-update?view=graph-rest-1.0
         """
+        warn("The Branches API is deprecated and will stop returning data on January 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -102,6 +106,7 @@ class BranchSiteItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Branches API is deprecated and will stop returning data on January 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -118,6 +123,7 @@ class BranchSiteItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Branches API is deprecated and will stop returning data on January 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -136,6 +142,7 @@ class BranchSiteItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Branches API is deprecated and will stop returning data on January 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -155,6 +162,7 @@ class BranchSiteItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: BranchSiteItemRequestBuilder
         """
+        warn("The Branches API is deprecated and will stop returning data on January 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return BranchSiteItemRequestBuilder(self.request_adapter, raw_url)

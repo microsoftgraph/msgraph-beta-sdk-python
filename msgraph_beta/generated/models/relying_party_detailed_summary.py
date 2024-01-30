@@ -20,9 +20,9 @@ class RelyingPartyDetailedSummary(Entity):
     migration_validation_details: Optional[List[KeyValuePair]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # This identifier is used to identify the relying party to this Federation Service. It is used when issuing claims to the relying party.
+    # This identifier is used to identify the relying party to this Federation Service. It's used when issuing claims to the relying party.
     relying_party_id: Optional[str] = None
-    # Name of application or other entity on the internet that uses an identity provider to authenticate a user who wants to log in.
+    # Name of application or other entity on the internet that uses an identity provider to authenticate a user who wants to sign in.
     relying_party_name: Optional[str] = None
     # Specifies where the relying party expects to receive the token.
     reply_urls: Optional[List[str]] = None
@@ -32,7 +32,7 @@ class RelyingPartyDetailedSummary(Entity):
     sign_in_success_rate: Optional[float] = None
     # Number of successful sign ins on Active Directory Federation Service.
     successful_sign_in_count: Optional[int] = None
-    # Number of successful + failed sign ins failed sign ins on Active Directory Federation Service in the period specified.
+    # Number of successful + failed sign ins on Active Directory Federation Service in the period specified.
     total_sign_in_count: Optional[int] = None
     # Number of unique users that have signed into the application.
     unique_user_count: Optional[int] = None

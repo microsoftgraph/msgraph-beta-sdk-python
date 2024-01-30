@@ -23,6 +23,7 @@ if TYPE_CHECKING:
     from .access_package_resource_environments.access_package_resource_environments_request_builder import AccessPackageResourceEnvironmentsRequestBuilder
     from .access_package_resource_requests.access_package_resource_requests_request_builder import AccessPackageResourceRequestsRequestBuilder
     from .access_package_resource_role_scopes.access_package_resource_role_scopes_request_builder import AccessPackageResourceRoleScopesRequestBuilder
+    from .assignment_requests.assignment_requests_request_builder import AssignmentRequestsRequestBuilder
     from .connected_organizations.connected_organizations_request_builder import ConnectedOrganizationsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
     from .subjects.subjects_request_builder import SubjectsRequestBuilder
@@ -278,6 +279,15 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         from .access_packages.access_packages_request_builder import AccessPackagesRequestBuilder
 
         return AccessPackagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def assignment_requests(self) -> AssignmentRequestsRequestBuilder:
+        """
+        Provides operations to manage the assignmentRequests property of the microsoft.graph.entitlementManagement entity.
+        """
+        from .assignment_requests.assignment_requests_request_builder import AssignmentRequestsRequestBuilder
+
+        return AssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def connected_organizations(self) -> ConnectedOrganizationsRequestBuilder:

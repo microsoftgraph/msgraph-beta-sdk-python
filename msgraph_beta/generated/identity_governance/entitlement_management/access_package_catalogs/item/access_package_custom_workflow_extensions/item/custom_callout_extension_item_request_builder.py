@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .......models.custom_callout_extension import CustomCalloutExtension
@@ -32,6 +33,7 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -47,11 +49,12 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CustomCalloutExtension]:
         """
-        Read the properties and relationships of an accessPackageAssignmentWorkflowExtension object.
+        Read the properties and relationships of an accessPackageAssignmentRequestWorkflowExtension object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomCalloutExtension]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentworkflowextension-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentrequestworkflowextension-get?view=graph-rest-1.0
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -75,6 +78,7 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[CustomCalloutExtension]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentrequestworkflowextension-update?view=graph-rest-1.0
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -98,6 +102,7 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -110,10 +115,11 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an accessPackageAssignmentWorkflowExtension object.
+        Read the properties and relationships of an accessPackageAssignmentRequestWorkflowExtension object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -132,6 +138,7 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -151,6 +158,7 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CustomCalloutExtensionItemRequestBuilder
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return CustomCalloutExtensionItemRequestBuilder(self.request_adapter, raw_url)
@@ -168,7 +176,7 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustomCalloutExtensionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an accessPackageAssignmentWorkflowExtension object.
+        Read the properties and relationships of an accessPackageAssignmentRequestWorkflowExtension object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

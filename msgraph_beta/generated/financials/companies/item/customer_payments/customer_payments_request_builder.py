@@ -9,6 +9,7 @@ from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from uuid import UUID
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.customer_payment import CustomerPayment

@@ -45,10 +45,10 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[IndustryDataConnectorCollectionResponse]:
         """
-        Get a list of the azureDataLakeConnector objects and their properties.
+        Get the industryDataConnector resources from the dataConnector navigation property.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IndustryDataConnectorCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-azuredatalakeconnector-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-industrydataconnector-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +67,11 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[IndustryDataConnector]:
         """
-        Create a new industryDataConnector object.
+        Create a new azureDataLakeConnector object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IndustryDataConnector]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-industrydataconnector-post?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-azuredatalakeconnector-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -92,7 +92,7 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[DataConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the azureDataLakeConnector objects and their properties.
+        Get the industryDataConnector resources from the dataConnector navigation property.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +109,7 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[IndustryDataConnector] = None, request_configuration: Optional[DataConnectorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new industryDataConnector object.
+        Create a new azureDataLakeConnector object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -149,7 +149,7 @@ class DataConnectorsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DataConnectorsRequestBuilderGetQueryParameters():
         """
-        Get a list of the azureDataLakeConnector objects and their properties.
+        Get the industryDataConnector resources from the dataConnector navigation property.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

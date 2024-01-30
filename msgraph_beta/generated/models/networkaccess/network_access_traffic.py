@@ -6,10 +6,12 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .application_snapshot import ApplicationSnapshot
     from .device_category import DeviceCategory
     from .filtering_policy_action import FilteringPolicyAction
     from .headers import Headers
     from .networking_protocol import NetworkingProtocol
+    from .private_access_details import PrivateAccessDetails
     from .traffic_type import TrafficType
     from .web_category import WebCategory
 
@@ -24,6 +26,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     action: Optional[FilteringPolicyAction] = None
     # Represents the version of the Global Secure Access client agent software. Supports $filter (eq) and $orderby.
     agent_version: Optional[str] = None
+    # The applicationSnapshot property
+    application_snapshot: Optional[ApplicationSnapshot] = None
     # Represents a unique identifier assigned to a connection. Supports $filter (eq) and $orderby.
     connection_id: Optional[str] = None
     # Represents the date and time when a network access traffic log entry was created. Supports $filter (eq) and $orderby.
@@ -64,6 +68,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     policy_rule_id: Optional[str] = None
     # The policyRuleName property
     policy_rule_name: Optional[str] = None
+    # The privateAccessDetails property
+    private_access_details: Optional[PrivateAccessDetails] = None
     # Represents the total number of bytes received in a network communication or data transfer. Supports $filter (eq) and $orderby.
     received_bytes: Optional[int] = None
     # The resourceTenantId property
@@ -105,23 +111,28 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .application_snapshot import ApplicationSnapshot
         from .device_category import DeviceCategory
         from .filtering_policy_action import FilteringPolicyAction
         from .headers import Headers
         from .networking_protocol import NetworkingProtocol
+        from .private_access_details import PrivateAccessDetails
         from .traffic_type import TrafficType
         from .web_category import WebCategory
 
+        from .application_snapshot import ApplicationSnapshot
         from .device_category import DeviceCategory
         from .filtering_policy_action import FilteringPolicyAction
         from .headers import Headers
         from .networking_protocol import NetworkingProtocol
+        from .private_access_details import PrivateAccessDetails
         from .traffic_type import TrafficType
         from .web_category import WebCategory
 
         fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(FilteringPolicyAction)),
             "agentVersion": lambda n : setattr(self, 'agent_version', n.get_str_value()),
+            "applicationSnapshot": lambda n : setattr(self, 'application_snapshot', n.get_object_value(ApplicationSnapshot)),
             "connectionId": lambda n : setattr(self, 'connection_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "destinationFQDN": lambda n : setattr(self, 'destination_f_q_d_n', n.get_str_value()),
@@ -142,6 +153,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
             "policyRuleId": lambda n : setattr(self, 'policy_rule_id', n.get_str_value()),
             "policyRuleName": lambda n : setattr(self, 'policy_rule_name', n.get_str_value()),
+            "privateAccessDetails": lambda n : setattr(self, 'private_access_details', n.get_object_value(PrivateAccessDetails)),
             "receivedBytes": lambda n : setattr(self, 'received_bytes', n.get_int_value()),
             "resourceTenantId": lambda n : setattr(self, 'resource_tenant_id', n.get_str_value()),
             "sentBytes": lambda n : setattr(self, 'sent_bytes', n.get_int_value()),
@@ -167,6 +179,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("action", self.action)
         writer.write_str_value("agentVersion", self.agent_version)
+        writer.write_object_value("applicationSnapshot", self.application_snapshot)
         writer.write_str_value("connectionId", self.connection_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("destinationFQDN", self.destination_f_q_d_n)
@@ -187,6 +200,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("policyName", self.policy_name)
         writer.write_str_value("policyRuleId", self.policy_rule_id)
         writer.write_str_value("policyRuleName", self.policy_rule_name)
+        writer.write_object_value("privateAccessDetails", self.private_access_details)
         writer.write_int_value("receivedBytes", self.received_bytes)
         writer.write_str_value("resourceTenantId", self.resource_tenant_id)
         writer.write_int_value("sentBytes", self.sent_bytes)

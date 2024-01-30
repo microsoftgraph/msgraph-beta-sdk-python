@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .identity_set import IdentitySet
     from .teams_app_authorization import TeamsAppAuthorization
+    from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
     from .teams_app_icon import TeamsAppIcon
     from .teams_app_installation_scopes import TeamsAppInstallationScopes
     from .teams_app_publishing_state import TeamsAppPublishingState
@@ -29,6 +30,8 @@ class TeamsAppDefinition(Entity):
     color_icon: Optional[TeamsAppIcon] = None
     # The createdBy property
     created_by: Optional[IdentitySet] = None
+    # The dashboardCards property
+    dashboard_cards: Optional[List[TeamsAppDashboardCardDefinition]] = None
     # The description property
     description: Optional[str] = None
     # The name of the app provided by the app developer.
@@ -67,6 +70,7 @@ class TeamsAppDefinition(Entity):
         from .entity import Entity
         from .identity_set import IdentitySet
         from .teams_app_authorization import TeamsAppAuthorization
+        from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
         from .teams_app_icon import TeamsAppIcon
         from .teams_app_installation_scopes import TeamsAppInstallationScopes
         from .teams_app_publishing_state import TeamsAppPublishingState
@@ -75,6 +79,7 @@ class TeamsAppDefinition(Entity):
         from .entity import Entity
         from .identity_set import IdentitySet
         from .teams_app_authorization import TeamsAppAuthorization
+        from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
         from .teams_app_icon import TeamsAppIcon
         from .teams_app_installation_scopes import TeamsAppInstallationScopes
         from .teams_app_publishing_state import TeamsAppPublishingState
@@ -87,6 +92,7 @@ class TeamsAppDefinition(Entity):
             "bot": lambda n : setattr(self, 'bot', n.get_object_value(TeamworkBot)),
             "colorIcon": lambda n : setattr(self, 'color_icon', n.get_object_value(TeamsAppIcon)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
+            "dashboardCards": lambda n : setattr(self, 'dashboard_cards', n.get_collection_of_object_values(TeamsAppDashboardCardDefinition)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -115,6 +121,7 @@ class TeamsAppDefinition(Entity):
         writer.write_object_value("bot", self.bot)
         writer.write_object_value("colorIcon", self.color_icon)
         writer.write_object_value("createdBy", self.created_by)
+        writer.write_collection_of_object_values("dashboardCards", self.dashboard_cards)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)

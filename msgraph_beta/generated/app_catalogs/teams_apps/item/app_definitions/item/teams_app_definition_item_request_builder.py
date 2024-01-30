@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ......models.teams_app_definition import TeamsAppDefinition
     from .bot.bot_request_builder import BotRequestBuilder
     from .color_icon.color_icon_request_builder import ColorIconRequestBuilder
+    from .dashboard_cards.dashboard_cards_request_builder import DashboardCardsRequestBuilder
     from .outline_icon.outline_icon_request_builder import OutlineIconRequestBuilder
 
 class TeamsAppDefinitionItemRequestBuilder(BaseRequestBuilder):
@@ -174,6 +175,15 @@ class TeamsAppDefinitionItemRequestBuilder(BaseRequestBuilder):
         from .color_icon.color_icon_request_builder import ColorIconRequestBuilder
 
         return ColorIconRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def dashboard_cards(self) -> DashboardCardsRequestBuilder:
+        """
+        Provides operations to manage the dashboardCards property of the microsoft.graph.teamsAppDefinition entity.
+        """
+        from .dashboard_cards.dashboard_cards_request_builder import DashboardCardsRequestBuilder
+
+        return DashboardCardsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def outline_icon(self) -> OutlineIconRequestBuilder:

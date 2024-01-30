@@ -45,7 +45,7 @@ class RecordsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[AuditLogRecordCollectionResponse]:
         """
-        Get records from security
+        An individual audit log record.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuditLogRecordCollectionResponse]
         """
@@ -90,7 +90,7 @@ class RecordsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get records from security
+        An individual audit log record.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class RecordsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RecordsRequestBuilderGetQueryParameters():
         """
-        Get records from security
+        An individual audit log record.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

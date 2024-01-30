@@ -47,7 +47,7 @@ class AuditLogRecordItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[AuditLogRecordItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AuditLogRecord]:
         """
-        Get records from security
+        An individual audit log record.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuditLogRecord]
         """
@@ -108,7 +108,7 @@ class AuditLogRecordItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[AuditLogRecordItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get records from security
+        An individual audit log record.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -166,7 +166,7 @@ class AuditLogRecordItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuditLogRecordItemRequestBuilderGetQueryParameters():
         """
-        Get records from security
+        An individual audit log record.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

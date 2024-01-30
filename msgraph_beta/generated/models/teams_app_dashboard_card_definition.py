@@ -1,0 +1,85 @@
+from __future__ import annotations
+from dataclasses import dataclass, field
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from .entity import Entity
+    from .teams_app_dashboard_card_content_source import TeamsAppDashboardCardContentSource
+    from .teams_app_dashboard_card_icon import TeamsAppDashboardCardIcon
+    from .teams_app_dashboard_card_size import TeamsAppDashboardCardSize
+
+from .entity import Entity
+
+@dataclass
+class TeamsAppDashboardCardDefinition(Entity):
+    # The contentSource property
+    content_source: Optional[TeamsAppDashboardCardContentSource] = None
+    # The defaultSize property
+    default_size: Optional[TeamsAppDashboardCardSize] = None
+    # The description property
+    description: Optional[str] = None
+    # The displayName property
+    display_name: Optional[str] = None
+    # The icon property
+    icon: Optional[TeamsAppDashboardCardIcon] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The pickerGroupId property
+    picker_group_id: Optional[str] = None
+    
+    @staticmethod
+    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamsAppDashboardCardDefinition:
+        """
+        Creates a new instance of the appropriate class based on discriminator value
+        param parse_node: The parse node to use to read the discriminator value and create the object
+        Returns: TeamsAppDashboardCardDefinition
+        """
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        return TeamsAppDashboardCardDefinition()
+    
+    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+        """
+        The deserialization information for the current model
+        Returns: Dict[str, Callable[[ParseNode], None]]
+        """
+        from .entity import Entity
+        from .teams_app_dashboard_card_content_source import TeamsAppDashboardCardContentSource
+        from .teams_app_dashboard_card_icon import TeamsAppDashboardCardIcon
+        from .teams_app_dashboard_card_size import TeamsAppDashboardCardSize
+
+        from .entity import Entity
+        from .teams_app_dashboard_card_content_source import TeamsAppDashboardCardContentSource
+        from .teams_app_dashboard_card_icon import TeamsAppDashboardCardIcon
+        from .teams_app_dashboard_card_size import TeamsAppDashboardCardSize
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "contentSource": lambda n : setattr(self, 'content_source', n.get_object_value(TeamsAppDashboardCardContentSource)),
+            "defaultSize": lambda n : setattr(self, 'default_size', n.get_enum_value(TeamsAppDashboardCardSize)),
+            "description": lambda n : setattr(self, 'description', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "icon": lambda n : setattr(self, 'icon', n.get_object_value(TeamsAppDashboardCardIcon)),
+            "pickerGroupId": lambda n : setattr(self, 'picker_group_id', n.get_str_value()),
+        }
+        super_fields = super().get_field_deserializers()
+        fields.update(super_fields)
+        return fields
+    
+    def serialize(self,writer: SerializationWriter) -> None:
+        """
+        Serializes information the current object
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
+        """
+        if not writer:
+            raise TypeError("writer cannot be null.")
+        super().serialize(writer)
+        writer.write_object_value("contentSource", self.content_source)
+        writer.write_enum_value("defaultSize", self.default_size)
+        writer.write_str_value("description", self.description)
+        writer.write_str_value("displayName", self.display_name)
+        writer.write_object_value("icon", self.icon)
+        writer.write_str_value("pickerGroupId", self.picker_group_id)
+    
+

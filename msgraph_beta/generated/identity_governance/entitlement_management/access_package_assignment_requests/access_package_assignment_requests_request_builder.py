@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.access_package_assignment_request import AccessPackageAssignmentRequest
@@ -36,6 +37,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         param access_package_assignment_request_id: The unique identifier of accessPackageAssignmentRequest
         Returns: AccessPackageAssignmentRequestItemRequestBuilder
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not access_package_assignment_request_id:
             raise TypeError("access_package_assignment_request_id cannot be null.")
         from .item.access_package_assignment_request_item_request_builder import AccessPackageAssignmentRequestItemRequestBuilder
@@ -50,6 +52,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         param on: Usage: on='{on}'
         Returns: FilterByCurrentUserWithOnRequestBuilder
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not on:
             raise TypeError("on cannot be null.")
         from .filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder import FilterByCurrentUserWithOnRequestBuilder
@@ -63,6 +66,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[AccessPackageAssignmentRequestCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackageassignmentrequests?view=graph-rest-1.0
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -86,6 +90,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[AccessPackageAssignmentRequest]
         Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-post-accesspackageassignmentrequests?view=graph-rest-1.0
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -109,6 +114,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -127,6 +133,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -146,6 +153,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AccessPackageAssignmentRequestsRequestBuilder
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return AccessPackageAssignmentRequestsRequestBuilder(self.request_adapter, raw_url)
