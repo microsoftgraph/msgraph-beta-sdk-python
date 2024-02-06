@@ -21,14 +21,14 @@ class DeviceManagementTemplateItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the migratableTo property of the microsoft.graph.deviceManagementTemplate entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new DeviceManagementTemplateItemRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/migratableTo/{deviceManagementTemplate%2Did1}{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/migratableTo/{deviceManagementTemplate%2Did1}{?%24expand,%24select}", path_parameters)
     
     def compare_with_template_id(self,template_id: Optional[str] = None) -> CompareWithTemplateIdRequestBuilder:
         """

@@ -17,10 +17,10 @@ class RangeRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the range method.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new RangeRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
@@ -28,10 +28,10 @@ class RangeRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RangeRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookRange]:
         """
-        Returns the range object that is associated with the name. Throws an exception if the named item's type is not a range.
+        Retrieve the properties and relationships of range object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookRange]
-        Find more info here: https://learn.microsoft.com/graph/api/nameditem-range?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/range-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -50,7 +50,7 @@ class RangeRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RangeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Returns the range object that is associated with the name. Throws an exception if the named item's type is not a range.
+        Retrieve the properties and relationships of range object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

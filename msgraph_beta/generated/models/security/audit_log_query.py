@@ -14,33 +14,33 @@ from ..entity import Entity
 
 @dataclass
 class AuditLogQuery(Entity):
-    # The administrativeUnitIdFilters property
+    # The administrative units tagged to an audit log record.
     administrative_unit_id_filters: Optional[List[str]] = None
-    # The displayName property
+    # The display name of the saved audit log query.
     display_name: Optional[str] = None
-    # The filterEndDateTime property
+    # The end date of the date range in the query.
     filter_end_date_time: Optional[datetime.datetime] = None
-    # The filterStartDateTime property
+    # The start date of the date range in the query.
     filter_start_date_time: Optional[datetime.datetime] = None
-    # The ipAddressFilters property
+    # The IP address of the device that was used when the activity was logged.
     ip_address_filters: Optional[List[str]] = None
-    # The keywordFilter property
+    # Free text field to search non-indexed properties of the audit log.
     keyword_filter: Optional[str] = None
-    # The objectIdFilters property
+    # For SharePoint and OneDrive for Business activity, the full path name of the file or folder accessed by the user. For Exchange admin audit logging, the name of the object that was modified by the cmdlet.
     object_id_filters: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The operationFilters property
+    # The name of the user or admin activity. For a description of the most common operations/activities, see Search the audit log in the Office 365 Protection Center.
     operation_filters: Optional[List[str]] = None
     # The recordTypeFilters property
     record_type_filters: Optional[List[AuditLogRecordType]] = None
-    # The records property
+    # An individual audit log record.
     records: Optional[List[AuditLogRecord]] = None
     # The serviceFilters property
     service_filters: Optional[List[str]] = None
-    # The status property
+    # Describes the current status of the query. The possible values are: notStarted, running, succeeded, failed, cancelled, unknownFutureValue.
     status: Optional[AuditLogQueryStatus] = None
-    # The userPrincipalNameFilters property
+    # The UPN (user principal name) of the user who performed the action (specified in the operation property) that resulted in the record being logged; for example, myname@mydomain_name.
     user_principal_name_filters: Optional[List[str]] = None
     
     @staticmethod

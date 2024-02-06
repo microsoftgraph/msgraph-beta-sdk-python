@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.notification import Notification
@@ -20,14 +21,14 @@ class NotificationsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the notifications property of the microsoft.graph.user entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new NotificationsRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/notifications{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/notifications{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_notification_id(self,notification_id: str) -> NotificationItemRequestBuilder:
         """
@@ -35,6 +36,7 @@ class NotificationsRequestBuilder(BaseRequestBuilder):
         param notification_id: The unique identifier of notification
         Returns: NotificationItemRequestBuilder
         """
+        warn("The Graph Notification API is deprecated and will stop returning data on March 20, 2023. as of 2023-03/Notification_Deprecation", DeprecationWarning)
         if not notification_id:
             raise TypeError("notification_id cannot be null.")
         from .item.notification_item_request_builder import NotificationItemRequestBuilder
@@ -49,6 +51,7 @@ class NotificationsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[NotificationCollectionResponse]
         """
+        warn("The Graph Notification API is deprecated and will stop returning data on March 20, 2023. as of 2023-03/Notification_Deprecation", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -71,6 +74,7 @@ class NotificationsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Notification]
         """
+        warn("The Graph Notification API is deprecated and will stop returning data on March 20, 2023. as of 2023-03/Notification_Deprecation", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -94,6 +98,7 @@ class NotificationsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Graph Notification API is deprecated and will stop returning data on March 20, 2023. as of 2023-03/Notification_Deprecation", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -112,6 +117,7 @@ class NotificationsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Graph Notification API is deprecated and will stop returning data on March 20, 2023. as of 2023-03/Notification_Deprecation", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -131,6 +137,7 @@ class NotificationsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: NotificationsRequestBuilder
         """
+        warn("The Graph Notification API is deprecated and will stop returning data on March 20, 2023. as of 2023-03/Notification_Deprecation", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return NotificationsRequestBuilder(self.request_adapter, raw_url)

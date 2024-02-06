@@ -18,12 +18,12 @@ class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEnd
     """
     Provides operations to call the getDestinationSummaries method.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, aggregated_by: Optional[str] = None, end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]], aggregated_by: Optional[str] = None, end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> None:
         """
         Instantiates a new MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder and sets the default values.
         param aggregated_by: Usage: aggregatedBy='{aggregatedBy}'
         param end_date_time: Usage: endDateTime={endDateTime}
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         param start_date_time: Usage: startDateTime={startDateTime}
         Returns: None
@@ -32,7 +32,7 @@ class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEnd
             path_parameters['aggregatedBy'] = str(aggregated_by)
             path_parameters['endDateTime'] = str(end_date_time)
             path_parameters['startDateTime'] = str(start_date_time)
-        super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.getDestinationSummaries(startDateTime={startDateTime},endDateTime={endDateTime},aggregatedBy='{aggregatedBy}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.getDestinationSummaries(startDateTime={startDateTime},endDateTime={endDateTime},aggregatedBy='{aggregatedBy}'){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilderGetRequestConfiguration] = None) -> Optional[GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByGetResponse]:
         """

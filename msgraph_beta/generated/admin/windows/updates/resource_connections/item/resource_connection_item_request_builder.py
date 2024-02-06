@@ -17,14 +17,14 @@ class ResourceConnectionItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the resourceConnections property of the microsoft.graph.adminWindowsUpdates entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new ResourceConnectionItemRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/resourceConnections/{resourceConnection%2Did}{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/resourceConnections/{resourceConnection%2Did}{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ResourceConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -48,10 +48,10 @@ class ResourceConnectionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[ResourceConnectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ResourceConnection]:
         """
-        Read the properties and relationships of an operationalInsightsConnection object.
+        Read the properties and relationships of a resourceConnection object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ResourceConnection]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-operationalinsightsconnection-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-resourceconnection-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -110,7 +110,7 @@ class ResourceConnectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[ResourceConnectionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an operationalInsightsConnection object.
+        Read the properties and relationships of a resourceConnection object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -168,7 +168,7 @@ class ResourceConnectionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ResourceConnectionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an operationalInsightsConnection object.
+        Read the properties and relationships of a resourceConnection object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

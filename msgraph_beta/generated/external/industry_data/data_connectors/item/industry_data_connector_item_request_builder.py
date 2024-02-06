@@ -19,21 +19,21 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the dataConnectors property of the microsoft.graph.industryData.industryDataRoot entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new IndustryDataConnectorItemRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/external/industryData/dataConnectors/{industryDataConnector%2Did}{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/external/industryData/dataConnectors/{industryDataConnector%2Did}{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an industryDataConnector object.
+        Delete an azureDataLakeConnector object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-industrydataconnector-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-azuredatalakeconnector-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -97,7 +97,7 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[IndustryDataConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an industryDataConnector object.
+        Delete an azureDataLakeConnector object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

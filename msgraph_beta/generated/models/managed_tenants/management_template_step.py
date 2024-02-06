@@ -27,6 +27,8 @@ class ManagementTemplateStep(Entity):
     description: Optional[str] = None
     # The displayName property
     display_name: Optional[str] = None
+    # The informationLinks property
+    information_links: Optional[List[ActionUrl]] = None
     # The lastActionByUserId property
     last_action_by_user_id: Optional[str] = None
     # The lastActionDateTime property
@@ -39,6 +41,8 @@ class ManagementTemplateStep(Entity):
     portal_link: Optional[ActionUrl] = None
     # The priority property
     priority: Optional[int] = None
+    # The userImpact property
+    user_impact: Optional[str] = None
     # The versions property
     versions: Optional[List[ManagementTemplateStepVersion]] = None
     
@@ -77,11 +81,13 @@ class ManagementTemplateStep(Entity):
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "informationLinks": lambda n : setattr(self, 'information_links', n.get_collection_of_object_values(ActionUrl)),
             "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
             "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "managementTemplate": lambda n : setattr(self, 'management_template', n.get_object_value(ManagementTemplate)),
             "portalLink": lambda n : setattr(self, 'portal_link', n.get_object_value(ActionUrl)),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
+            "userImpact": lambda n : setattr(self, 'user_impact', n.get_str_value()),
             "versions": lambda n : setattr(self, 'versions', n.get_collection_of_object_values(ManagementTemplateStepVersion)),
         }
         super_fields = super().get_field_deserializers()
@@ -103,11 +109,13 @@ class ManagementTemplateStep(Entity):
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_collection_of_object_values("informationLinks", self.information_links)
         writer.write_str_value("lastActionByUserId", self.last_action_by_user_id)
         writer.write_datetime_value("lastActionDateTime", self.last_action_date_time)
         writer.write_object_value("managementTemplate", self.management_template)
         writer.write_object_value("portalLink", self.portal_link)
         writer.write_int_value("priority", self.priority)
+        writer.write_str_value("userImpact", self.user_impact)
         writer.write_collection_of_object_values("versions", self.versions)
     
 

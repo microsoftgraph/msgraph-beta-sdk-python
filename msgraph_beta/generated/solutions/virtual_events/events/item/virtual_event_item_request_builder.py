@@ -12,7 +12,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .....models.virtual_event import VirtualEvent
+    from .cancel.cancel_request_builder import CancelRequestBuilder
     from .presenters.presenters_request_builder import PresentersRequestBuilder
+    from .publish.publish_request_builder import PublishRequestBuilder
     from .sessions.sessions_request_builder import SessionsRequestBuilder
     from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
 
@@ -20,14 +22,14 @@ class VirtualEventItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the events property of the microsoft.graph.virtualEventsRoot entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new VirtualEventItemRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[VirtualEventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -169,6 +171,15 @@ class VirtualEventItemRequestBuilder(BaseRequestBuilder):
         return VirtualEventItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def cancel(self) -> CancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        from .cancel.cancel_request_builder import CancelRequestBuilder
+
+        return CancelRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def presenters(self) -> PresentersRequestBuilder:
         """
         Provides operations to manage the presenters property of the microsoft.graph.virtualEvent entity.
@@ -176,6 +187,15 @@ class VirtualEventItemRequestBuilder(BaseRequestBuilder):
         from .presenters.presenters_request_builder import PresentersRequestBuilder
 
         return PresentersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def publish(self) -> PublishRequestBuilder:
+        """
+        Provides operations to call the publish method.
+        """
+        from .publish.publish_request_builder import PublishRequestBuilder
+
+        return PublishRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sessions(self) -> SessionsRequestBuilder:

@@ -28,7 +28,7 @@ class EntitlementManagement(Entity):
     access_package_assignment_approvals: Optional[List[Approval]] = None
     # Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
     access_package_assignment_policies: Optional[List[AccessPackageAssignmentPolicy]] = None
-    # Represents access package assignment requests created by or on behalf of a user.
+    # Represents access package assignment requests created by or on behalf of a user. DO NOT USE. TO BE RETIRED SOON. Use the assignmentRequests relationship instead.
     access_package_assignment_requests: Optional[List[AccessPackageAssignmentRequest]] = None
     # Represents the resource-specific role which a subject has been assigned through an access package assignment.
     access_package_assignment_resource_roles: Optional[List[AccessPackageAssignmentResourceRole]] = None
@@ -46,6 +46,8 @@ class EntitlementManagement(Entity):
     access_package_resources: Optional[List[AccessPackageResource]] = None
     # Represents access package objects.
     access_packages: Optional[List[AccessPackage]] = None
+    # Represents access package assignment requests created by or on behalf of a user.
+    assignment_requests: Optional[List[AccessPackageAssignmentRequest]] = None
     # Represents references to a directory or domain of another organization whose users can request access.
     connected_organizations: Optional[List[ConnectedOrganization]] = None
     # The OdataType property
@@ -115,6 +117,7 @@ class EntitlementManagement(Entity):
             "accessPackageResourceRoleScopes": lambda n : setattr(self, 'access_package_resource_role_scopes', n.get_collection_of_object_values(AccessPackageResourceRoleScope)),
             "accessPackageResources": lambda n : setattr(self, 'access_package_resources', n.get_collection_of_object_values(AccessPackageResource)),
             "accessPackages": lambda n : setattr(self, 'access_packages', n.get_collection_of_object_values(AccessPackage)),
+            "assignmentRequests": lambda n : setattr(self, 'assignment_requests', n.get_collection_of_object_values(AccessPackageAssignmentRequest)),
             "connectedOrganizations": lambda n : setattr(self, 'connected_organizations', n.get_collection_of_object_values(ConnectedOrganization)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(EntitlementManagementSettings)),
             "subjects": lambda n : setattr(self, 'subjects', n.get_collection_of_object_values(AccessPackageSubject)),
@@ -143,6 +146,7 @@ class EntitlementManagement(Entity):
         writer.write_collection_of_object_values("accessPackageResourceRoleScopes", self.access_package_resource_role_scopes)
         writer.write_collection_of_object_values("accessPackageResources", self.access_package_resources)
         writer.write_collection_of_object_values("accessPackages", self.access_packages)
+        writer.write_collection_of_object_values("assignmentRequests", self.assignment_requests)
         writer.write_collection_of_object_values("connectedOrganizations", self.connected_organizations)
         writer.write_object_value("settings", self.settings)
         writer.write_collection_of_object_values("subjects", self.subjects)

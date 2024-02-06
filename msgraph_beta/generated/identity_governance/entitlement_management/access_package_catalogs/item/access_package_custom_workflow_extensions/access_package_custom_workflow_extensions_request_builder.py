@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ......models.custom_callout_extension import CustomCalloutExtension
@@ -20,14 +21,14 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the accessPackageCustomWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new AccessPackageCustomWorkflowExtensionsRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageCatalogs/{accessPackageCatalog%2Did}/accessPackageCustomWorkflowExtensions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageCatalogs/{accessPackageCatalog%2Did}/accessPackageCustomWorkflowExtensions{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_custom_callout_extension_id(self,custom_callout_extension_id: str) -> CustomCalloutExtensionItemRequestBuilder:
         """
@@ -35,6 +36,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         param custom_callout_extension_id: The unique identifier of customCalloutExtension
         Returns: CustomCalloutExtensionItemRequestBuilder
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not custom_callout_extension_id:
             raise TypeError("custom_callout_extension_id cannot be null.")
         from .item.custom_callout_extension_item_request_builder import CustomCalloutExtensionItemRequestBuilder
@@ -50,6 +52,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[CustomCalloutExtensionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackagecatalog-list-accesspackagecustomworkflowextensions?view=graph-rest-1.0
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -72,6 +75,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomCalloutExtension]
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -95,6 +99,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -113,6 +118,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -132,6 +138,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AccessPackageCustomWorkflowExtensionsRequestBuilder
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return AccessPackageCustomWorkflowExtensionsRequestBuilder(self.request_adapter, raw_url)

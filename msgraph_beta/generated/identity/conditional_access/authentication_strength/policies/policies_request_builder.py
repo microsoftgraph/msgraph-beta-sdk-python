@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.authentication_strength_policy import AuthenticationStrengthPolicy
@@ -21,14 +22,14 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the policies property of the microsoft.graph.authenticationStrengthRoot entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new PoliciesRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/identity/conditionalAccess/authenticationStrength/policies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identity/conditionalAccess/authenticationStrength/policies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_authentication_strength_policy_id(self,authentication_strength_policy_id: str) -> AuthenticationStrengthPolicyItemRequestBuilder:
         """
@@ -50,6 +51,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         param authentication_method_modes: Usage: authenticationMethodModes={authenticationMethodModes}
         Returns: FindByMethodModeWithAuthenticationMethodModesRequestBuilder
         """
+        warn("The findByMethodMode function is deprecated. Please use OData filter query instead. as of 2023-02/FindByMethodModeRemove", DeprecationWarning)
         if not authentication_method_modes:
             raise TypeError("authentication_method_modes cannot be null.")
         from .find_by_method_mode_with_authentication_method_modes.find_by_method_mode_with_authentication_method_modes_request_builder import FindByMethodModeWithAuthenticationMethodModesRequestBuilder

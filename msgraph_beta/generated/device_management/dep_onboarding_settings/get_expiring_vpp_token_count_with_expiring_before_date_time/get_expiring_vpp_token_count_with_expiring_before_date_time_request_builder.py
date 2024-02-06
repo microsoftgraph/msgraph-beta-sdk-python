@@ -17,11 +17,11 @@ class GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(BaseReque
     """
     Provides operations to call the getExpiringVppTokenCount method.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, expiring_before_date_time: Optional[str] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]], expiring_before_date_time: Optional[str] = None) -> None:
         """
         Instantiates a new GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder and sets the default values.
         param expiring_before_date_time: Usage: expiringBeforeDateTime='{expiringBeforeDateTime}'
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """

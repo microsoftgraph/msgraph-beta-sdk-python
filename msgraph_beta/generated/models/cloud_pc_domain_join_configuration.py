@@ -15,7 +15,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The domainJoinType property
+    # Specifies the method by which the provisioned Cloud PC joins Microsoft Entra ID. If you choose the hybridAzureADJoin type, only provide a value for the onPremisesConnectionId property and leave the regionName property empty. If you choose the azureADJoin type, provide a value for either the onPremisesConnectionId or the regionName property. Possible values are: azureADJoin, hybridAzureADJoin, unknownFutureValue.
     domain_join_type: Optional[CloudPcDomainJoinType] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -25,7 +25,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
     region_group: Optional[CloudPcRegionGroup] = None
     # The supported Azure region where the IT admin wants the provisioning policy to create Cloud PCs. The underlying virtual network will be created and managed by the Windows 365 service. This can only be entered if the IT admin chooses Microsoft Entra joined as the domain join type. If you enter a regionName, leave onPremisesConnectionId as empty.
     region_name: Optional[str] = None
-    # Specifies how the provisioned Cloud PC will be joined to Microsoft Entra ID. If you choose the hybridAzureADJoin type, only provide a value for the onPremisesConnectionId property and leave regionName as empty. If you choose the azureADJoin type, provide a value for either onPremisesConnectionId or regionName. The possible values are: azureADJoin, hybridAzureADJoin, unknownFutureValue.
+    # The type property
     type: Optional[CloudPcDomainJoinType] = None
     
     @staticmethod

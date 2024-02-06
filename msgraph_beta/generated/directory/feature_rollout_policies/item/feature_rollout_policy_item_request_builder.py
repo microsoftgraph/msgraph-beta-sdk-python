@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.feature_rollout_policy import FeatureRolloutPolicy
@@ -18,14 +19,14 @@ class FeatureRolloutPolicyItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.directory entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new FeatureRolloutPolicyItemRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/directory/featureRolloutPolicies/{featureRolloutPolicy%2Did}{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/directory/featureRolloutPolicies/{featureRolloutPolicy%2Did}{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[FeatureRolloutPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -33,6 +34,7 @@ class FeatureRolloutPolicyItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
+        warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -52,6 +54,7 @@ class FeatureRolloutPolicyItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FeatureRolloutPolicy]
         """
+        warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -74,6 +77,7 @@ class FeatureRolloutPolicyItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FeatureRolloutPolicy]
         """
+        warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -97,6 +101,7 @@ class FeatureRolloutPolicyItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -113,6 +118,7 @@ class FeatureRolloutPolicyItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -131,6 +137,7 @@ class FeatureRolloutPolicyItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -150,6 +157,7 @@ class FeatureRolloutPolicyItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: FeatureRolloutPolicyItemRequestBuilder
         """
+        warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return FeatureRolloutPolicyItemRequestBuilder(self.request_adapter, raw_url)

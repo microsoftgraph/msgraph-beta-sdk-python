@@ -14,12 +14,12 @@ from .virtual_event import VirtualEvent
 
 @dataclass
 class VirtualEventWebinar(VirtualEvent):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.virtualEventWebinar"
     # To whom the webinar is visible.
     audience: Optional[MeetingAudience] = None
     # Identity information of coorganizers of the webinar.
     co_organizers: Optional[List[CommunicationsUserIdentity]] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     # The registrationConfiguration property
     registration_configuration: Optional[VirtualEventWebinarRegistrationConfiguration] = None
     # Registration records of the webinar.

@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.authentication_method_mode_detail import AuthenticationMethodModeDetail
@@ -20,14 +21,14 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new AuthenticationMethodModesRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/identity/conditionalAccess/authenticationStrengths/authenticationMethodModes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identity/conditionalAccess/authenticationStrengths/authenticationMethodModes{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_authentication_method_mode_detail_id(self,authentication_method_mode_detail_id: str) -> AuthenticationMethodModeDetailItemRequestBuilder:
         """
@@ -35,6 +36,7 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
         param authentication_method_mode_detail_id: The unique identifier of authenticationMethodModeDetail
         Returns: AuthenticationMethodModeDetailItemRequestBuilder
         """
+        warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         if not authentication_method_mode_detail_id:
             raise TypeError("authentication_method_mode_detail_id cannot be null.")
         from .item.authentication_method_mode_detail_item_request_builder import AuthenticationMethodModeDetailItemRequestBuilder
@@ -50,6 +52,7 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[AuthenticationMethodModeDetailCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthroot-list-authenticationmethodmodes?view=graph-rest-1.0
         """
+        warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -72,6 +75,7 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationMethodModeDetail]
         """
+        warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -95,6 +99,7 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -113,6 +118,7 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -132,6 +138,7 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AuthenticationMethodModesRequestBuilder
         """
+        warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return AuthenticationMethodModesRequestBuilder(self.request_adapter, raw_url)

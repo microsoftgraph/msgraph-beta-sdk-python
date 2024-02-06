@@ -16,15 +16,15 @@ from .protection_rule import ProtectionRule
 class DetectionRule(ProtectionRule):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.detectionRule"
-    # The detectionAction property
+    # Complex type representing the actions taken when a detection is made by this rule.
     detection_action: Optional[DetectionAction] = None
-    # The detectorId property
+    # The ID of the detector that triggered the alert. Also see the 'detectorId' field in microsoft.graph.security.alert.
     detector_id: Optional[str] = None
-    # The lastRunDetails property
+    # Complex type holding details about the last run of this rule.
     last_run_details: Optional[RunDetails] = None
-    # The queryCondition property
+    # Complex type holding data about the advanced hunting query of this rule.
     query_condition: Optional[QueryCondition] = None
-    # The schedule property
+    # Complex type holding data about the triggering schedule of this rule.
     schedule: Optional[RuleSchedule] = None
     
     @staticmethod

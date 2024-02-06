@@ -5,6 +5,9 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .change_tracked_entity import ChangeTrackedEntity
+    from .scheduling_group_info import SchedulingGroupInfo
+    from .shifts_team_info import ShiftsTeamInfo
+    from .shifts_user_info import ShiftsUserInfo
     from .shift_item import ShiftItem
 
 from .change_tracked_entity import ChangeTrackedEntity
@@ -19,10 +22,16 @@ class Shift(ChangeTrackedEntity):
     is_staged_for_deletion: Optional[bool] = None
     # ID of the scheduling group the shift is part of. Required.
     scheduling_group_id: Optional[str] = None
+    # The schedulingGroupInfo property
+    scheduling_group_info: Optional[SchedulingGroupInfo] = None
     # The shared version of this shift that is viewable by both employees and managers. Updates to the sharedShift property send notifications to users in the Teams client.
     shared_shift: Optional[ShiftItem] = None
+    # The teamInfo property
+    team_info: Optional[ShiftsTeamInfo] = None
     # ID of the user assigned to the shift. Required.
     user_id: Optional[str] = None
+    # The userInfo property
+    user_info: Optional[ShiftsUserInfo] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Shift:
@@ -41,17 +50,26 @@ class Shift(ChangeTrackedEntity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .change_tracked_entity import ChangeTrackedEntity
+        from .scheduling_group_info import SchedulingGroupInfo
+        from .shifts_team_info import ShiftsTeamInfo
+        from .shifts_user_info import ShiftsUserInfo
         from .shift_item import ShiftItem
 
         from .change_tracked_entity import ChangeTrackedEntity
+        from .scheduling_group_info import SchedulingGroupInfo
+        from .shifts_team_info import ShiftsTeamInfo
+        from .shifts_user_info import ShiftsUserInfo
         from .shift_item import ShiftItem
 
         fields: Dict[str, Callable[[Any], None]] = {
             "draftShift": lambda n : setattr(self, 'draft_shift', n.get_object_value(ShiftItem)),
             "isStagedForDeletion": lambda n : setattr(self, 'is_staged_for_deletion', n.get_bool_value()),
             "schedulingGroupId": lambda n : setattr(self, 'scheduling_group_id', n.get_str_value()),
+            "schedulingGroupInfo": lambda n : setattr(self, 'scheduling_group_info', n.get_object_value(SchedulingGroupInfo)),
             "sharedShift": lambda n : setattr(self, 'shared_shift', n.get_object_value(ShiftItem)),
+            "teamInfo": lambda n : setattr(self, 'team_info', n.get_object_value(ShiftsTeamInfo)),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userInfo": lambda n : setattr(self, 'user_info', n.get_object_value(ShiftsUserInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

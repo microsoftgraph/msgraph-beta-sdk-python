@@ -17,10 +17,10 @@ class GetCloudPcRecommendationReportsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the getCloudPcRecommendationReports method.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new GetCloudPcRecommendationReportsRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
@@ -28,10 +28,11 @@ class GetCloudPcRecommendationReportsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GetCloudPcRecommendationReportsPostRequestBody] = None, request_configuration: Optional[GetCloudPcRecommendationReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
-        Invoke action getCloudPcRecommendationReports
+        Get the device recommendation reports for Cloud PCs, such as the usage category report. The usage category report categorizes a Cloud PC as Undersized, Oversized, Rightsized, or Underutilized, and also provides the recommended SKU when the Cloud PC isn't Rightsized.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcreports-getcloudpcrecommendationreports?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -50,7 +51,7 @@ class GetCloudPcRecommendationReportsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GetCloudPcRecommendationReportsPostRequestBody] = None, request_configuration: Optional[GetCloudPcRecommendationReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action getCloudPcRecommendationReports
+        Get the device recommendation reports for Cloud PCs, such as the usage category report. The usage category report categorizes a Cloud PC as Undersized, Oversized, Rightsized, or Underutilized, and also provides the recommended SKU when the Cloud PC isn't Rightsized.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -12,6 +12,8 @@ from .virtual_event import VirtualEvent
 
 @dataclass
 class VirtualEventTownhall(VirtualEvent):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.virtualEventTownhall"
     # The audience property
     audience: Optional[MeetingAudience] = None
     # The coOrganizers property
@@ -20,8 +22,6 @@ class VirtualEventTownhall(VirtualEvent):
     invited_attendees: Optional[List[CommunicationsUserIdentity]] = None
     # The isInviteOnly property
     is_invite_only: Optional[bool] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VirtualEventTownhall:

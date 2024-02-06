@@ -17,20 +17,22 @@ if TYPE_CHECKING:
     from .count.count_request_builder import CountRequestBuilder
     from .get_all_messages.get_all_messages_request_builder import GetAllMessagesRequestBuilder
     from .get_open_shifts.get_open_shifts_request_builder import GetOpenShiftsRequestBuilder
+    from .get_shifts.get_shifts_request_builder import GetShiftsRequestBuilder
+    from .get_times_off.get_times_off_request_builder import GetTimesOffRequestBuilder
     from .item.team_item_request_builder import TeamItemRequestBuilder
 
 class TeamsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of team entities.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new TeamsRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/teams{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/teams{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_team_id(self,team_id: str) -> TeamItemRequestBuilder:
         """
@@ -175,6 +177,24 @@ class TeamsRequestBuilder(BaseRequestBuilder):
         from .get_open_shifts.get_open_shifts_request_builder import GetOpenShiftsRequestBuilder
 
         return GetOpenShiftsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_shifts(self) -> GetShiftsRequestBuilder:
+        """
+        Provides operations to call the getShifts method.
+        """
+        from .get_shifts.get_shifts_request_builder import GetShiftsRequestBuilder
+
+        return GetShiftsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_times_off(self) -> GetTimesOffRequestBuilder:
+        """
+        Provides operations to call the getTimesOff method.
+        """
+        from .get_times_off.get_times_off_request_builder import GetTimesOffRequestBuilder
+
+        return GetTimesOffRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TeamsRequestBuilderGetQueryParameters():

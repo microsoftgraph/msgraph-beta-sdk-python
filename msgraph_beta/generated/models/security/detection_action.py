@@ -20,9 +20,9 @@ class DetectionAction(AdditionalDataHolder, BackedModel, Parsable):
     alert_template: Optional[AlertTemplate] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The organizationalScope property
+    # Groups to which the custom detection rule applies.
     organizational_scope: Optional[OrganizationalScope] = None
-    # The responseActions property
+    # Actions taken on impacted assets as set in the custom detection rule.
     response_actions: Optional[List[ResponseAction]] = None
     
     @staticmethod

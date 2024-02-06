@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ......models.access_package_resource import AccessPackageResource
@@ -20,14 +21,14 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the accessPackageResources property of the microsoft.graph.accessPackageCatalog entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new AccessPackageResourcesRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageCatalogs/{accessPackageCatalog%2Did}/accessPackageResources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageCatalogs/{accessPackageCatalog%2Did}/accessPackageResources{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_access_package_resource_id(self,access_package_resource_id: str) -> AccessPackageResourceItemRequestBuilder:
         """
@@ -35,6 +36,7 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
         param access_package_resource_id: The unique identifier of accessPackageResource
         Returns: AccessPackageResourceItemRequestBuilder
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not access_package_resource_id:
             raise TypeError("access_package_resource_id cannot be null.")
         from .item.access_package_resource_item_request_builder import AccessPackageResourceItemRequestBuilder
@@ -50,6 +52,7 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[AccessPackageResourceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackagecatalog-list-accesspackageresources?view=graph-rest-1.0
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -72,6 +75,7 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageResource]
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -95,6 +99,7 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -113,6 +118,7 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -132,6 +138,7 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AccessPackageResourcesRequestBuilder
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return AccessPackageResourcesRequestBuilder(self.request_adapter, raw_url)

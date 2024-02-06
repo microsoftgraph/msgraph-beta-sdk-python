@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .......models.custom_callout_extension import CustomCalloutExtension
@@ -17,14 +18,14 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the accessPackageCustomWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new CustomCalloutExtensionItemRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageCatalogs/{accessPackageCatalog%2Did}/accessPackageCustomWorkflowExtensions/{customCalloutExtension%2Did}{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageCatalogs/{accessPackageCatalog%2Did}/accessPackageCustomWorkflowExtensions/{customCalloutExtension%2Did}{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -32,6 +33,7 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -52,6 +54,7 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[CustomCalloutExtension]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentworkflowextension-get?view=graph-rest-1.0
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -69,12 +72,13 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[CustomCalloutExtension] = None, request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CustomCalloutExtension]:
         """
-        Update the properties of an accessPackageAssignmentRequestWorkflowExtension object.
+        Update the properties of an accessPackageAssignmentWorkflowExtension object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomCalloutExtension]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentrequestworkflowextension-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentworkflowextension-update?view=graph-rest-1.0
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -98,6 +102,7 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -114,6 +119,7 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -127,11 +133,12 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[CustomCalloutExtension] = None, request_configuration: Optional[CustomCalloutExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an accessPackageAssignmentRequestWorkflowExtension object.
+        Update the properties of an accessPackageAssignmentWorkflowExtension object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -151,6 +158,7 @@ class CustomCalloutExtensionItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CustomCalloutExtensionItemRequestBuilder
         """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return CustomCalloutExtensionItemRequestBuilder(self.request_adapter, raw_url)

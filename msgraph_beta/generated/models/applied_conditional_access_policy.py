@@ -37,7 +37,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, BackedModel, Parsable
     include_rules_satisfied: Optional[List[ConditionalAccessRuleSatisfied]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates the result of the CA policy that was triggered. Possible values are: success, failure, notApplied (Policy isn't applied because policy conditions weren't met),notEnabled (This is due to the policy in disabled state), unknown, unknownFutureValue, reportOnlySuccess, reportOnlyFailure, reportOnlyNotApplied, reportOnlyInterrupted. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: reportOnlySuccess, reportOnlyFailure, reportOnlyNotApplied, reportOnlyInterrupted.
+    # Indicates the result of the CA policy that was triggered. Possible values are: success, failure, notApplied (policy isn't applied because policy conditions weren't met), notEnabled (this is due to the policy in a disabled state), unknown, unknownFutureValue, reportOnlySuccess, reportOnlyFailure, reportOnlyNotApplied, reportOnlyInterrupted. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: reportOnlySuccess, reportOnlyFailure, reportOnlyNotApplied, reportOnlyInterrupted.
     result: Optional[AppliedConditionalAccessPolicyResult] = None
     # Refers to the session controls that a sign-in activity didn't satisfy. (Example: Application enforced Restrictions).
     session_controls_not_satisfied: Optional[List[str]] = None

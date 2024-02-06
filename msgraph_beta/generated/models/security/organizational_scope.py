@@ -16,7 +16,7 @@ class OrganizationalScope(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The scopeNames property
+    # List of groups to which the custom detection rule applies.
     scope_names: Optional[List[str]] = None
     # The scopeType property
     scope_type: Optional[ScopeType] = None
