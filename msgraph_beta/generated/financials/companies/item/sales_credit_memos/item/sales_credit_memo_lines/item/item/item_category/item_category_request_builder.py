@@ -17,14 +17,14 @@ class ItemCategoryRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the itemCategory property of the microsoft.graph.item entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new ItemCategoryRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/financials/companies/{company%2Did}/salesCreditMemos/{salesCreditMemo%2Did}/salesCreditMemoLines/{salesCreditMemoLine%2Did}/item/itemCategory{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/financials/companies/{company%2Did}/salesCreditMemos/{salesCreditMemo%2Did}/salesCreditMemoLines/{salesCreditMemoLine%2Did}/item/itemCategory{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ItemCategoryRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

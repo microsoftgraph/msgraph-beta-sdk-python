@@ -13,7 +13,7 @@ from .response_action import ResponseAction
 class AllowFileResponseAction(ResponseAction):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.allowFileResponseAction"
-    # The deviceGroupNames property
+    # Device groups to which the actions set in the custom detection rule are applied. More information
     device_group_names: Optional[List[str]] = None
     # The identifier property
     identifier: Optional[FileEntityIdentifier] = None

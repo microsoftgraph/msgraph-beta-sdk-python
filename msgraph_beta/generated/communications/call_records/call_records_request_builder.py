@@ -26,14 +26,14 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the callRecords property of the microsoft.graph.cloudCommunications entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new CallRecordsRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/communications/callRecords{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/communications/callRecords{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_call_record_id(self,call_record_id: str) -> CallRecordItemRequestBuilder:
         """
@@ -54,7 +54,7 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
         Get the list of callRecord objects and their properties. The results can be optionally filtered using the $filter query parameter on the startDateTime and participant id properties. Note that the listed call records don't include expandable relationships such as sessions and participants_v2. You can expand these relationships using Get callRecord for a specific record.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CallRecordCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/callrecords-callrecord-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/callrecords-cloudcommunications-list-callrecords?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration

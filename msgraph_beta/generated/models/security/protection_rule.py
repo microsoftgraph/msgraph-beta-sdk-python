@@ -12,17 +12,17 @@ from ..entity import Entity
 
 @dataclass
 class ProtectionRule(Entity):
-    # The createdBy property
+    # Name of the user or application that created the rule.
     created_by: Optional[str] = None
-    # The createdDateTime property
+    # Timestamp of rule creation.
     created_date_time: Optional[datetime.datetime] = None
-    # The displayName property
+    # Name of the rule.
     display_name: Optional[str] = None
-    # The isEnabled property
+    # Whether rule is turned on for the tenant.
     is_enabled: Optional[bool] = None
-    # The lastModifiedBy property
+    # Name of the user or application who last updated the rule.
     last_modified_by: Optional[str] = None
-    # The lastModifiedDateTime property
+    # Timestamp of when the rule was last updated.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

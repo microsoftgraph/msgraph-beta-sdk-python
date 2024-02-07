@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
@@ -21,14 +22,14 @@ class ProvisioningPoliciesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the provisioningPolicies property of the microsoft.graph.virtualEndpoint entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new ProvisioningPoliciesRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/provisioningPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/provisioningPolicies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_cloud_pc_provisioning_policy_id(self,cloud_pc_provisioning_policy_id: str) -> CloudPcProvisioningPolicyItemRequestBuilder:
         """
@@ -36,6 +37,7 @@ class ProvisioningPoliciesRequestBuilder(BaseRequestBuilder):
         param cloud_pc_provisioning_policy_id: The unique identifier of cloudPcProvisioningPolicy
         Returns: CloudPcProvisioningPolicyItemRequestBuilder
         """
+        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         if not cloud_pc_provisioning_policy_id:
             raise TypeError("cloud_pc_provisioning_policy_id cannot be null.")
         from .item.cloud_pc_provisioning_policy_item_request_builder import CloudPcProvisioningPolicyItemRequestBuilder
@@ -51,6 +53,7 @@ class ProvisioningPoliciesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[CloudPcProvisioningPolicyCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-provisioningpolicies?view=graph-rest-1.0
         """
+        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -74,6 +77,7 @@ class ProvisioningPoliciesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[CloudPcProvisioningPolicy]
         Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-post-provisioningpolicies?view=graph-rest-1.0
         """
+        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -97,6 +101,7 @@ class ProvisioningPoliciesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -115,6 +120,7 @@ class ProvisioningPoliciesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -134,6 +140,7 @@ class ProvisioningPoliciesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ProvisioningPoliciesRequestBuilder
         """
+        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ProvisioningPoliciesRequestBuilder(self.request_adapter, raw_url)

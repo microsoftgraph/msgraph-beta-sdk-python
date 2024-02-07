@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.outlook_task import OutlookTask
@@ -20,14 +21,14 @@ class TasksRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the tasks property of the microsoft.graph.outlookUser entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new TasksRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/outlook/tasks{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/outlook/tasks{?%24count,%24filter,%24orderby,%24select,%24skip,%24top}", path_parameters)
     
     def by_outlook_task_id(self,outlook_task_id: str) -> OutlookTaskItemRequestBuilder:
         """
@@ -35,6 +36,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
         param outlook_task_id: The unique identifier of outlookTask
         Returns: OutlookTaskItemRequestBuilder
         """
+        warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         if not outlook_task_id:
             raise TypeError("outlook_task_id cannot be null.")
         from .item.outlook_task_item_request_builder import OutlookTaskItemRequestBuilder
@@ -50,6 +52,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
         Returns: Optional[OutlookTaskCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/outlookuser-list-tasks?view=graph-rest-1.0
         """
+        warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -73,6 +76,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
         Returns: Optional[OutlookTask]
         Find more info here: https://learn.microsoft.com/graph/api/outlookuser-post-tasks?view=graph-rest-1.0
         """
+        warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -96,6 +100,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -114,6 +119,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -133,6 +139,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: TasksRequestBuilder
         """
+        warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return TasksRequestBuilder(self.request_adapter, raw_url)

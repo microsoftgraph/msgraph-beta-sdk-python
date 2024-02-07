@@ -16,15 +16,15 @@ class RunDetails(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The errorCode property
+    # Error code of the most recent run that encountered an error. The possible values are: queryExecutionFailed, queryExecutionThrottling, queryExceededResultSize, queryLimitsExceeded, queryTimeout, alertCreationFailed, alertReportNotFound, partialRowsFailed, unknownFutureValue.
     error_code: Optional[HuntingRuleErrorCode] = None
-    # The failureReason property
+    # Reason for failure when the custom detection last ran and failed. See the table below.
     failure_reason: Optional[str] = None
-    # The lastRunDateTime property
+    # Timestamp when the custom detection was last run.
     last_run_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The status property
+    # Status of custom detection when it was last run. The possible values are: running, completed, failed, partiallyFailed, unknownFutureValue.
     status: Optional[HuntingRuleRunStatus] = None
     
     @staticmethod

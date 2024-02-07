@@ -19,21 +19,21 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the inboundFlows property of the microsoft.graph.industryData.industryDataRoot entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new InboundFlowItemRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/external/industryData/inboundFlows/{inboundFlow%2Did}{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/external/industryData/inboundFlows/{inboundFlow%2Did}{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[InboundFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an inboundFileFlow object.
+        Delete an inboundFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,10 +50,10 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[InboundFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[InboundFlow]:
         """
-        Read the properties and relationships of an inboundFlow object.
+        Read the properties and relationships of an inboundFileFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -97,7 +97,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[InboundFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an inboundFileFlow object.
+        Delete an inboundFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,7 +113,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[InboundFlowItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an inboundFlow object.
+        Read the properties and relationships of an inboundFileFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -189,7 +189,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InboundFlowItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an inboundFlow object.
+        Read the properties and relationships of an inboundFileFlow object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

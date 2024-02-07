@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
@@ -17,14 +18,14 @@ class MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the asHierarchy method.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/tags/microsoft.graph.ediscovery.asHierarchy(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/tags/microsoft.graph.ediscovery.asHierarchy(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[MicrosoftGraphEdiscoveryAsHierarchyRequestBuilderGetRequestConfiguration] = None) -> Optional[AsHierarchyGetResponse]:
         """
@@ -32,6 +33,7 @@ class MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AsHierarchyGetResponse]
         """
+        warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -53,6 +55,7 @@ class MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -70,6 +73,7 @@ class MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder
         """
+        warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder(self.request_adapter, raw_url)
@@ -89,6 +93,8 @@ class MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder(BaseRequestBuilder):
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
+            if original_name == "expand":
+                return "%24expand"
             if original_name == "filter":
                 return "%24filter"
             if original_name == "orderby":
@@ -105,6 +111,9 @@ class MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder(BaseRequestBuilder):
         
         # Include count of items
         count: Optional[bool] = None
+
+        # Expand related entities
+        expand: Optional[List[str]] = None
 
         # Filter items by property values
         filter: Optional[str] = None

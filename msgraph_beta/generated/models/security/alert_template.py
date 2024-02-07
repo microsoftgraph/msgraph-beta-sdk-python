@@ -15,21 +15,21 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The category property
+    # Category assigned to the alert triggered by the custom detection rule.
     category: Optional[str] = None
-    # The description property
+    # Description of the alert triggered by the custom detection rule.
     description: Optional[str] = None
-    # The impactedAssets property
+    # Which asset or assets were impacted based on the alert triggered by the custom detection rule.
     impacted_assets: Optional[List[ImpactedAsset]] = None
-    # The mitreTechniques property
+    # MITRE technique assigned to the alert triggered by the custom detection rule.
     mitre_techniques: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The recommendedActions property
+    # Recommended actions to mitigate the threat related to the alert triggered by the custom detection rule.
     recommended_actions: Optional[str] = None
     # The severity property
     severity: Optional[AlertSeverity] = None
-    # The title property
+    # Name of the alert triggered by the custom detection rule.
     title: Optional[str] = None
     
     @staticmethod

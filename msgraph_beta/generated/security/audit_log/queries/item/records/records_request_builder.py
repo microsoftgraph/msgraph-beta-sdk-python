@@ -20,14 +20,14 @@ class RecordsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the records property of the microsoft.graph.security.auditLogQuery entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new RecordsRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/security/auditLog/queries/{auditLogQuery%2Did}/records{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/security/auditLog/queries/{auditLogQuery%2Did}/records{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_audit_log_record_id(self,audit_log_record_id: str) -> AuditLogRecordItemRequestBuilder:
         """
@@ -45,7 +45,7 @@ class RecordsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[AuditLogRecordCollectionResponse]:
         """
-        Get records from security
+        An individual audit log record.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuditLogRecordCollectionResponse]
         """
@@ -90,7 +90,7 @@ class RecordsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get records from security
+        An individual audit log record.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class RecordsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RecordsRequestBuilderGetQueryParameters():
         """
-        Get records from security
+        An individual audit log record.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

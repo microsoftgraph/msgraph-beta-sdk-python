@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.people_admin_settings import PeopleAdminSettings
+    from .item_insights.item_insights_request_builder import ItemInsightsRequestBuilder
     from .profile_card_properties.profile_card_properties_request_builder import ProfileCardPropertiesRequestBuilder
     from .pronouns.pronouns_request_builder import PronounsRequestBuilder
 
@@ -19,14 +20,14 @@ class PeopleRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the people property of the microsoft.graph.admin entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new PeopleRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/admin/people{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/admin/people{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[PeopleRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -155,6 +156,15 @@ class PeopleRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return PeopleRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def item_insights(self) -> ItemInsightsRequestBuilder:
+        """
+        Provides operations to manage the itemInsights property of the microsoft.graph.peopleAdminSettings entity.
+        """
+        from .item_insights.item_insights_request_builder import ItemInsightsRequestBuilder
+
+        return ItemInsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def profile_card_properties(self) -> ProfileCardPropertiesRequestBuilder:

@@ -22,14 +22,14 @@ class NamesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the names property of the microsoft.graph.workbook entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new NamesRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/names{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/names{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_workbook_named_item_id(self,workbook_named_item_id: str) -> WorkbookNamedItemItemRequestBuilder:
         """
@@ -50,7 +50,7 @@ class NamesRequestBuilder(BaseRequestBuilder):
         Retrieve a list of nameditem objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookNamedItemCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/workbook-list-names?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/nameditem-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration

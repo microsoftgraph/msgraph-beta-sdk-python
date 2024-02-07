@@ -17,17 +17,17 @@ class SessionsWithJoinWebUrlRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the sessions property of the microsoft.graph.virtualEvent entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, join_web_url: Optional[str] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]], join_web_url: Optional[str] = None) -> None:
         """
         Instantiates a new SessionsWithJoinWebUrlRequestBuilder and sets the default values.
         param join_web_url: Alternate key of virtualEventSession
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
         if isinstance(path_parameters, dict):
             path_parameters['joinWebUrl'] = str(join_web_url)
-        super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/townhalls/{virtualEventTownhall%2Did}/sessions(joinWebUrl='{joinWebUrl}'){?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/townhalls/{virtualEventTownhall%2Did}/sessions(joinWebUrl='{joinWebUrl}'){?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[SessionsWithJoinWebUrlRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

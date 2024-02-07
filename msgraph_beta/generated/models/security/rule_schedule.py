@@ -12,11 +12,11 @@ class RuleSchedule(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The nextRunDateTime property
+    # Timestamp of the custom detection rule's next scheduled run.
     next_run_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The period property
+    # How often the detection rule is set to run. The allowed values are: 0, 1H, 3H, 12H, or 24H. '0' signifies the rule is run continuously.
     period: Optional[str] = None
     
     @staticmethod

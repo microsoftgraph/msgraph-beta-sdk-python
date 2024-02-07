@@ -22,14 +22,14 @@ class PresenceRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the presence property of the microsoft.graph.user entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new PresenceRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/presence{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/presence{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[PresenceRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -52,10 +52,10 @@ class PresenceRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[PresenceRequestBuilderGetRequestConfiguration] = None) -> Optional[Presence]:
         """
-        Set a presence status message for a user. An optional expiration date and time can be supplied.
+        Get a user's presence information.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Presence]
-        Find more info here: https://learn.microsoft.com/graph/api/presence-setstatusmessage?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/presence-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -114,7 +114,7 @@ class PresenceRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[PresenceRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Set a presence status message for a user. An optional expiration date and time can be supplied.
+        Get a user's presence information.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -217,7 +217,7 @@ class PresenceRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PresenceRequestBuilderGetQueryParameters():
         """
-        Set a presence status message for a user. An optional expiration date and time can be supplied.
+        Get a user's presence information.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

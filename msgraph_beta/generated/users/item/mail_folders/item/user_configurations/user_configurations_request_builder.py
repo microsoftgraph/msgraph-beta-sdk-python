@@ -19,14 +19,14 @@ class UserConfigurationsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the userConfigurations property of the microsoft.graph.mailFolder entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new UserConfigurationsRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/userConfigurations{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/userConfigurations{?%24count,%24filter,%24orderby,%24select,%24skip,%24top}", path_parameters)
     
     def by_user_configuration_id(self,user_configuration_id: str) -> UserConfigurationItemRequestBuilder:
         """

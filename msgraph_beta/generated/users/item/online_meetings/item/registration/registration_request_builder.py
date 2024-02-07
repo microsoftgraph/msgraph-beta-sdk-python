@@ -19,14 +19,14 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the registration property of the microsoft.graph.onlineMeeting entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new RegistrationRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/registration{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/registration{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -50,10 +50,10 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> Optional[MeetingRegistration]:
         """
-        Get the externalMeetingRegistration details associated with an onlineMeeting.
+        Get the meetingRegistration details associated with an onlineMeeting on behalf of the organizer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MeetingRegistration]
-        Find more info here: https://learn.microsoft.com/graph/api/externalmeetingregistration-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/meetingregistration-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -113,7 +113,7 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the externalMeetingRegistration details associated with an onlineMeeting.
+        Get the meetingRegistration details associated with an onlineMeeting on behalf of the organizer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -189,7 +189,7 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RegistrationRequestBuilderGetQueryParameters():
         """
-        Get the externalMeetingRegistration details associated with an onlineMeeting.
+        Get the meetingRegistration details associated with an onlineMeeting on behalf of the organizer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

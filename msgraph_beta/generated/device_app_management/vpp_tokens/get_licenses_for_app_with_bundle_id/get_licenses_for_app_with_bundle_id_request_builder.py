@@ -17,17 +17,17 @@ class GetLicensesForAppWithBundleIdRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the getLicensesForApp method.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, bundle_id: Optional[str] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]], bundle_id: Optional[str] = None) -> None:
         """
         Instantiates a new GetLicensesForAppWithBundleIdRequestBuilder and sets the default values.
         param bundle_id: Usage: bundleId='{bundleId}'
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
         if isinstance(path_parameters, dict):
             path_parameters['bundleId'] = str(bundle_id)
-        super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/vppTokens/getLicensesForApp(bundleId='{bundleId}'){?%24top,%24skip,%24search,%24filter,%24count}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/vppTokens/getLicensesForApp(bundleId='{bundleId}'){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[GetLicensesForAppWithBundleIdRequestBuilderGetRequestConfiguration] = None) -> Optional[GetLicensesForAppWithBundleIdGetResponse]:
         """

@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.insights_settings import InsightsSettings
@@ -17,14 +18,14 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the itemInsights property of the microsoft.graph.organizationSettings entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new ItemInsightsRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/organization/{organization%2Did}/settings/itemInsights{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/organization/{organization%2Did}/settings/itemInsights{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[ItemInsightsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -32,6 +33,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
+        warn("The Organization ItemInsights endpoint will stop returning data on January 1st, 2024. Please use the new Admin People ItemInsights endpoint. as of 2023-10/Beta:ItemInsightsOranizationSettings", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -52,6 +54,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[InsightsSettings]
         Find more info here: https://learn.microsoft.com/graph/api/organizationsettings-list-iteminsights?view=graph-rest-1.0
         """
+        warn("The Organization ItemInsights endpoint will stop returning data on January 1st, 2024. Please use the new Admin People ItemInsights endpoint. as of 2023-10/Beta:ItemInsightsOranizationSettings", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -75,6 +78,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[InsightsSettings]
         Find more info here: https://learn.microsoft.com/graph/api/insightssettings-update?view=graph-rest-1.0
         """
+        warn("The Organization ItemInsights endpoint will stop returning data on January 1st, 2024. Please use the new Admin People ItemInsights endpoint. as of 2023-10/Beta:ItemInsightsOranizationSettings", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -98,6 +102,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Organization ItemInsights endpoint will stop returning data on January 1st, 2024. Please use the new Admin People ItemInsights endpoint. as of 2023-10/Beta:ItemInsightsOranizationSettings", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -114,6 +119,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Organization ItemInsights endpoint will stop returning data on January 1st, 2024. Please use the new Admin People ItemInsights endpoint. as of 2023-10/Beta:ItemInsightsOranizationSettings", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -132,6 +138,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Organization ItemInsights endpoint will stop returning data on January 1st, 2024. Please use the new Admin People ItemInsights endpoint. as of 2023-10/Beta:ItemInsightsOranizationSettings", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation()
@@ -151,6 +158,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ItemInsightsRequestBuilder
         """
+        warn("The Organization ItemInsights endpoint will stop returning data on January 1st, 2024. Please use the new Admin People ItemInsights endpoint. as of 2023-10/Beta:ItemInsightsOranizationSettings", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ItemInsightsRequestBuilder(self.request_adapter, raw_url)

@@ -5,6 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .filtering_policy_action import FilteringPolicyAction
     from .web_category import WebCategory
 
 @dataclass
@@ -14,6 +15,8 @@ class WebCategoriesSummary(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The action property
+    action: Optional[FilteringPolicyAction] = None
     # The number of unique devices that were seen.
     device_count: Optional[int] = None
     # The OdataType property
@@ -41,11 +44,14 @@ class WebCategoriesSummary(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .filtering_policy_action import FilteringPolicyAction
         from .web_category import WebCategory
 
+        from .filtering_policy_action import FilteringPolicyAction
         from .web_category import WebCategory
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "action": lambda n : setattr(self, 'action', n.get_enum_value(FilteringPolicyAction)),
             "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "transactionCount": lambda n : setattr(self, 'transaction_count', n.get_int_value()),
@@ -62,6 +68,7 @@ class WebCategoriesSummary(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("action", self.action)
         writer.write_int_value("deviceCount", self.device_count)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("transactionCount", self.transaction_count)

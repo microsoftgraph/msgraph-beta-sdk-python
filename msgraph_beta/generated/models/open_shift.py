@@ -6,6 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .change_tracked_entity import ChangeTrackedEntity
     from .open_shift_item import OpenShiftItem
+    from .scheduling_group_info import SchedulingGroupInfo
+    from .shifts_team_info import ShiftsTeamInfo
 
 from .change_tracked_entity import ChangeTrackedEntity
 
@@ -19,14 +21,12 @@ class OpenShift(ChangeTrackedEntity):
     is_staged_for_deletion: Optional[bool] = None
     # The ID of the schedulingGroup that contains the openShift.
     scheduling_group_id: Optional[str] = None
-    # The name of the schedulingGroup that contains the openShift.
-    scheduling_group_name: Optional[str] = None
+    # The schedulingGroupInfo property
+    scheduling_group_info: Optional[SchedulingGroupInfo] = None
     # The shared version of this openShift that is viewable by both employees and managers.
     shared_open_shift: Optional[OpenShiftItem] = None
-    # The ID of the team in which the openShift is located.
-    team_id: Optional[str] = None
-    # The name of the team in which the openShift is located.
-    team_name: Optional[str] = None
+    # The teamInfo property
+    team_info: Optional[ShiftsTeamInfo] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OpenShift:
@@ -46,18 +46,21 @@ class OpenShift(ChangeTrackedEntity):
         """
         from .change_tracked_entity import ChangeTrackedEntity
         from .open_shift_item import OpenShiftItem
+        from .scheduling_group_info import SchedulingGroupInfo
+        from .shifts_team_info import ShiftsTeamInfo
 
         from .change_tracked_entity import ChangeTrackedEntity
         from .open_shift_item import OpenShiftItem
+        from .scheduling_group_info import SchedulingGroupInfo
+        from .shifts_team_info import ShiftsTeamInfo
 
         fields: Dict[str, Callable[[Any], None]] = {
             "draftOpenShift": lambda n : setattr(self, 'draft_open_shift', n.get_object_value(OpenShiftItem)),
             "isStagedForDeletion": lambda n : setattr(self, 'is_staged_for_deletion', n.get_bool_value()),
             "schedulingGroupId": lambda n : setattr(self, 'scheduling_group_id', n.get_str_value()),
-            "schedulingGroupName": lambda n : setattr(self, 'scheduling_group_name', n.get_str_value()),
+            "schedulingGroupInfo": lambda n : setattr(self, 'scheduling_group_info', n.get_object_value(SchedulingGroupInfo)),
             "sharedOpenShift": lambda n : setattr(self, 'shared_open_shift', n.get_object_value(OpenShiftItem)),
-            "teamId": lambda n : setattr(self, 'team_id', n.get_str_value()),
-            "teamName": lambda n : setattr(self, 'team_name', n.get_str_value()),
+            "teamInfo": lambda n : setattr(self, 'team_info', n.get_object_value(ShiftsTeamInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

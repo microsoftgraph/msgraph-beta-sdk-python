@@ -13,23 +13,21 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.virtual_event import VirtualEvent
     from ....models.virtual_event_collection_response import VirtualEventCollectionResponse
-    from .cancel.cancel_request_builder import CancelRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .item.virtual_event_item_request_builder import VirtualEventItemRequestBuilder
-    from .publish.publish_request_builder import PublishRequestBuilder
 
 class EventsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the events property of the microsoft.graph.virtualEventsRoot entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new EventsRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/events{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/events{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_virtual_event_id(self,virtual_event_id: str) -> VirtualEventItemRequestBuilder:
         """
@@ -138,15 +136,6 @@ class EventsRequestBuilder(BaseRequestBuilder):
         return EventsRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def cancel(self) -> CancelRequestBuilder:
-        """
-        Provides operations to call the cancel method.
-        """
-        from .cancel.cancel_request_builder import CancelRequestBuilder
-
-        return CancelRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -154,15 +143,6 @@ class EventsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def publish(self) -> PublishRequestBuilder:
-        """
-        Provides operations to call the publish method.
-        """
-        from .publish.publish_request_builder import PublishRequestBuilder
-
-        return PublishRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class EventsRequestBuilderGetQueryParameters():

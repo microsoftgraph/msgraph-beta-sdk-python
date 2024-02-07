@@ -5,6 +5,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .change_tracked_entity import ChangeTrackedEntity
+    from .shifts_team_info import ShiftsTeamInfo
+    from .shifts_user_info import ShiftsUserInfo
     from .time_off_item import TimeOffItem
 
 from .change_tracked_entity import ChangeTrackedEntity
@@ -19,8 +21,12 @@ class TimeOff(ChangeTrackedEntity):
     is_staged_for_deletion: Optional[bool] = None
     # The shared version of this timeOff that is viewable by both employees and managers. Updates to the sharedTimeOff property send notifications to users in the Teams client. Required.
     shared_time_off: Optional[TimeOffItem] = None
+    # The teamInfo property
+    team_info: Optional[ShiftsTeamInfo] = None
     # ID of the user assigned to the timeOff. Required.
     user_id: Optional[str] = None
+    # The userInfo property
+    user_info: Optional[ShiftsUserInfo] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TimeOff:
@@ -39,16 +45,22 @@ class TimeOff(ChangeTrackedEntity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .change_tracked_entity import ChangeTrackedEntity
+        from .shifts_team_info import ShiftsTeamInfo
+        from .shifts_user_info import ShiftsUserInfo
         from .time_off_item import TimeOffItem
 
         from .change_tracked_entity import ChangeTrackedEntity
+        from .shifts_team_info import ShiftsTeamInfo
+        from .shifts_user_info import ShiftsUserInfo
         from .time_off_item import TimeOffItem
 
         fields: Dict[str, Callable[[Any], None]] = {
             "draftTimeOff": lambda n : setattr(self, 'draft_time_off', n.get_object_value(TimeOffItem)),
             "isStagedForDeletion": lambda n : setattr(self, 'is_staged_for_deletion', n.get_bool_value()),
             "sharedTimeOff": lambda n : setattr(self, 'shared_time_off', n.get_object_value(TimeOffItem)),
+            "teamInfo": lambda n : setattr(self, 'team_info', n.get_object_value(ShiftsTeamInfo)),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userInfo": lambda n : setattr(self, 'user_info', n.get_object_value(ShiftsUserInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

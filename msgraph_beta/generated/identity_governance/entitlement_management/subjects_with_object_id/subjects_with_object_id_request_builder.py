@@ -17,17 +17,17 @@ class SubjectsWithObjectIdRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the subjects property of the microsoft.graph.entitlementManagement entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, object_id: Optional[str] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]], object_id: Optional[str] = None) -> None:
         """
         Instantiates a new SubjectsWithObjectIdRequestBuilder and sets the default values.
         param object_id: Alternate key of accessPackageSubject
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
         if isinstance(path_parameters, dict):
             path_parameters['objectId'] = str(object_id)
-        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/subjects(objectId='{objectId}'){?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/subjects(objectId='{objectId}'){?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[SubjectsWithObjectIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

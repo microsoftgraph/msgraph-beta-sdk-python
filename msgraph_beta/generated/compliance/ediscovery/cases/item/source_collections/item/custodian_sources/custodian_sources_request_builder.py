@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ........models.ediscovery.data_source_collection_response import DataSourceCollectionResponse
@@ -19,14 +20,14 @@ class CustodianSourcesRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the custodianSources property of the microsoft.graph.ediscovery.sourceCollection entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new CustodianSourcesRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/sourceCollections/{sourceCollection%2Did}/custodianSources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/sourceCollections/{sourceCollection%2Did}/custodianSources{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     def by_data_source_id(self,data_source_id: str) -> DataSourceItemRequestBuilder:
         """
@@ -34,6 +35,7 @@ class CustodianSourcesRequestBuilder(BaseRequestBuilder):
         param data_source_id: The unique identifier of dataSource
         Returns: DataSourceItemRequestBuilder
         """
+        warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not data_source_id:
             raise TypeError("data_source_id cannot be null.")
         from .item.data_source_item_request_builder import DataSourceItemRequestBuilder
@@ -49,6 +51,7 @@ class CustodianSourcesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[DataSourceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-list-custodiansources?view=graph-rest-1.0
         """
+        warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -70,6 +73,7 @@ class CustodianSourcesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
@@ -87,6 +91,7 @@ class CustodianSourcesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CustodianSourcesRequestBuilder
         """
+        warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return CustodianSourcesRequestBuilder(self.request_adapter, raw_url)

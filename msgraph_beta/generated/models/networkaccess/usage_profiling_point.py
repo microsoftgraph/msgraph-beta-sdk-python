@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 @dataclass
-class TrafficDistributionPoint(AdditionalDataHolder, BackedModel, Parsable):
+class UsageProfilingPoint(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
@@ -26,15 +26,15 @@ class TrafficDistributionPoint(AdditionalDataHolder, BackedModel, Parsable):
     total_traffic_count: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TrafficDistributionPoint:
+    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UsageProfilingPoint:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
-        Returns: TrafficDistributionPoint
+        Returns: UsageProfilingPoint
         """
         if not parse_node:
             raise TypeError("parse_node cannot be null.")
-        return TrafficDistributionPoint()
+        return UsageProfilingPoint()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

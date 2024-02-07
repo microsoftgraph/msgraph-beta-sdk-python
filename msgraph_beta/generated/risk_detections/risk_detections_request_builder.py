@@ -19,14 +19,14 @@ class RiskDetectionsRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of riskDetection entities.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new RiskDetectionsRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/riskDetections{?%24top,%24search,%24filter,%24orderby,%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/riskDetections{?%24expand,%24filter,%24orderby,%24search,%24select,%24top}", path_parameters)
     
     def by_risk_detection_id(self,risk_detection_id: str) -> RiskDetectionItemRequestBuilder:
         """
@@ -44,10 +44,10 @@ class RiskDetectionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RiskDetectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[RiskDetectionCollectionResponse]:
         """
-        Retrieve the properties of a riskDetection object.
+        Retrieve the properties of a collection of riskDetection objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RiskDetectionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/riskdetection-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/riskdetection-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +90,7 @@ class RiskDetectionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RiskDetectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of a riskDetection object.
+        Retrieve the properties of a collection of riskDetection objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class RiskDetectionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RiskDetectionsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a riskDetection object.
+        Retrieve the properties of a collection of riskDetection objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

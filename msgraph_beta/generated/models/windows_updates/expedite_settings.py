@@ -13,7 +13,7 @@ class ExpediteSettings(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # True indicates that the deployment of the content is expedited.
     is_expedited: Optional[bool] = None
-    # The isReadinessTest property
+    # True indicates that the deployment is an expedite readiness test.
     is_readiness_test: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

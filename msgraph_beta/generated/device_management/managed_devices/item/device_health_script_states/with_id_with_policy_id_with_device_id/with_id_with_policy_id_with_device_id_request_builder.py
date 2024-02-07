@@ -17,12 +17,12 @@ class WithIdWithPolicyIdWithDeviceIdRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the deviceHealthScriptStates property of the microsoft.graph.managedDevice entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, device_id: Optional[str] = None, id: Optional[str] = None, policy_id: Optional[str] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]], device_id: Optional[str] = None, id: Optional[str] = None, policy_id: Optional[str] = None) -> None:
         """
         Instantiates a new WithIdWithPolicyIdWithDeviceIdRequestBuilder and sets the default values.
         param device_id: Property in multi-part unique identifier of deviceHealthScriptPolicyState
         param id: Property in multi-part unique identifier of deviceHealthScriptPolicyState
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param policy_id: Property in multi-part unique identifier of deviceHealthScriptPolicyState
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
@@ -31,7 +31,7 @@ class WithIdWithPolicyIdWithDeviceIdRequestBuilder(BaseRequestBuilder):
             path_parameters['deviceId'] = str(device_id)
             path_parameters['id'] = str(id)
             path_parameters['policyId'] = str(policy_id)
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/deviceHealthScriptStates/id='{id}',policyId='{policyId}',deviceId='{deviceId}'{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/deviceHealthScriptStates/id='{id}',policyId='{policyId}',deviceId='{deviceId}'{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[WithIdWithPolicyIdWithDeviceIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

@@ -17,10 +17,10 @@ class GetPolicySummaryWithPolicyIdRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the getPolicySummary method.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, policy_id: Optional[str] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]], policy_id: Optional[str] = None) -> None:
         """
         Instantiates a new GetPolicySummaryWithPolicyIdRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param policy_id: Usage: policyId='{policyId}'
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None

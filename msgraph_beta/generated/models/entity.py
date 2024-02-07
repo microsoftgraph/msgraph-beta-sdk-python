@@ -1021,6 +1021,7 @@ if TYPE_CHECKING:
     from .mute_participant_operation import MuteParticipantOperation
     from .named_location import NamedLocation
     from .ndes_connector import NdesConnector
+    from .networkaccess.alert import Alert
     from .networkaccess.branch_site import BranchSite
     from .networkaccess.conditional_access_policy import ConditionalAccessPolicy
     from .networkaccess.conditional_access_settings import ConditionalAccessSettings
@@ -1502,6 +1503,7 @@ if TYPE_CHECKING:
     from .tax_group import TaxGroup
     from .team import Team
     from .teams_app import TeamsApp
+    from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
     from .teams_app_definition import TeamsAppDefinition
     from .teams_app_icon import TeamsAppIcon
     from .teams_app_installation import TeamsAppInstallation
@@ -2105,6 +2107,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return AgreementFileVersion()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.alert".casefold():
             from .alert import Alert
+            from .networkaccess.alert import Alert
             from .security.alert import Alert
 
             return Alert()
@@ -5987,6 +5990,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .ndes_connector import NdesConnector
 
             return NdesConnector()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.alert".casefold():
+            from .alert import Alert
+            from .networkaccess.alert import Alert
+            from .security.alert import Alert
+
+            return Alert()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.branchSite".casefold():
             from .networkaccess.branch_site import BranchSite
 
@@ -7173,6 +7182,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return Security()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.alert".casefold():
             from .alert import Alert
+            from .networkaccess.alert import Alert
             from .security.alert import Alert
 
             return Alert()
@@ -7940,6 +7950,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .teams_app import TeamsApp
 
             return TeamsApp()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAppDashboardCardDefinition".casefold():
+            from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
+
+            return TeamsAppDashboardCardDefinition()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAppDefinition".casefold():
             from .teams_app_definition import TeamsAppDefinition
 
@@ -10430,6 +10444,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mute_participant_operation import MuteParticipantOperation
         from .named_location import NamedLocation
         from .ndes_connector import NdesConnector
+        from .networkaccess.alert import Alert
         from .networkaccess.branch_site import BranchSite
         from .networkaccess.conditional_access_policy import ConditionalAccessPolicy
         from .networkaccess.conditional_access_settings import ConditionalAccessSettings
@@ -10911,6 +10926,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .tax_group import TaxGroup
         from .team import Team
         from .teams_app import TeamsApp
+        from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
         from .teams_app_definition import TeamsAppDefinition
         from .teams_app_icon import TeamsAppIcon
         from .teams_app_installation import TeamsAppInstallation
@@ -12295,6 +12311,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mute_participant_operation import MuteParticipantOperation
         from .named_location import NamedLocation
         from .ndes_connector import NdesConnector
+        from .networkaccess.alert import Alert
         from .networkaccess.branch_site import BranchSite
         from .networkaccess.conditional_access_policy import ConditionalAccessPolicy
         from .networkaccess.conditional_access_settings import ConditionalAccessSettings
@@ -12776,6 +12793,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .tax_group import TaxGroup
         from .team import Team
         from .teams_app import TeamsApp
+        from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
         from .teams_app_definition import TeamsAppDefinition
         from .teams_app_icon import TeamsAppIcon
         from .teams_app_installation import TeamsAppInstallation

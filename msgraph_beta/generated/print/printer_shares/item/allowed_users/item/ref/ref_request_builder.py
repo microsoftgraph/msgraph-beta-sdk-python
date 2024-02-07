@@ -8,6 +8,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
@@ -16,14 +17,14 @@ class RefRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the collection of print entities.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new RefRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/print/printerShares/{printerShare%2Did}/allowedUsers/{user%2Did}/$ref{?%40id*}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/print/printerShares/{printerShare%2Did}/allowedUsers/{user%2Did}/$ref", path_parameters)
     
     async def delete(self,request_configuration: Optional[RefRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -32,6 +33,7 @@ class RefRequestBuilder(BaseRequestBuilder):
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0
         """
+        warn("The printerShares navigation property is deprecated and will stop returning data on July 31, 2023. Please use the shares navigation property instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -51,10 +53,10 @@ class RefRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The printerShares navigation property is deprecated and will stop returning data on July 31, 2023. Please use the shares navigation property instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
         request_info = RequestInformation()
         if request_configuration:
             request_info.headers.add_all(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
             request_info.add_request_options(request_configuration.options)
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
@@ -68,30 +70,10 @@ class RefRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: RefRequestBuilder
         """
+        warn("The printerShares navigation property is deprecated and will stop returning data on July 31, 2023. Please use the shares navigation property instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return RefRequestBuilder(self.request_adapter, raw_url)
-    
-    @dataclass
-    class RefRequestBuilderDeleteQueryParameters():
-        """
-        Revoke the specified user's access to submit print jobs to the associated printerShare.
-        """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
-            """
-            Maps the query parameters names to their encoded names for the URI template parsing.
-            param original_name: The original query parameter name in the class.
-            Returns: str
-            """
-            if not original_name:
-                raise TypeError("original_name cannot be null.")
-            if original_name == "id":
-                return "%40id"
-            return original_name
-        
-        # Delete Uri
-        id: Optional[str] = None
-
     
     from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
 
@@ -102,8 +84,5 @@ class RefRequestBuilder(BaseRequestBuilder):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
-        # Request query parameters
-        query_parameters: Optional[RefRequestBuilder.RefRequestBuilderDeleteQueryParameters] = None
-
     
 

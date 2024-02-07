@@ -18,14 +18,14 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the customAuthenticationExtensions property of the microsoft.graph.identityContainer entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
         Instantiates a new CustomAuthenticationExtensionItemRequestBuilder and sets the default values.
-        param path_parameters: The raw url or the Url template parameters for the request.
+        param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/identity/customAuthenticationExtensions/{customAuthenticationExtension%2Did}{?%24select,%24expand}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identity/customAuthenticationExtensions/{customAuthenticationExtension%2Did}{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -49,10 +49,10 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CustomAuthenticationExtension]:
         """
-        Read the properties and relationships of a customAuthenticationExtension object.
+        Read the properties and relationships of an authenticationEventListener object. The @odata.type property in the response object indicates the type of the authenticationEventListener object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAuthenticationExtension]
-        Find more info here: https://learn.microsoft.com/graph/api/customauthenticationextension-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationeventlistener-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -111,7 +111,7 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a customAuthenticationExtension object.
+        Read the properties and relationships of an authenticationEventListener object. The @odata.type property in the response object indicates the type of the authenticationEventListener object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -178,7 +178,7 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustomAuthenticationExtensionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a customAuthenticationExtension object.
+        Read the properties and relationships of an authenticationEventListener object. The @odata.type property in the response object indicates the type of the authenticationEventListener object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
