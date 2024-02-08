@@ -25,4 +25,6 @@ class DeviceManagementConfigurationTechnologies(str, Enum):
     EndpointPrivilegeManagement = "endpointPrivilegeManagement",
     # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
+    # Setting can be deployed using the Operating System Recovery channel
+    WindowsOsRecovery = "windowsOsRecovery",
 

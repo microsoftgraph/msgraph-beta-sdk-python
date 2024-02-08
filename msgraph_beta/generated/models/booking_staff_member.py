@@ -21,11 +21,11 @@ class BookingStaffMember(BookingPerson):
     availability_is_affected_by_personal_calendar: Optional[bool] = None
     # Identifies a color to represent the staff member. The color corresponds to the color palette in the Staff details page in the Bookings app.
     color_index: Optional[int] = None
-    # The createdDateTime property
+    # The date, time and timezone when the staff member was created.
     created_date_time: Optional[datetime.datetime] = None
-    # True indicates that a staff member will be notified via email when a booking assigned to them is created or changed.
+    # Indicates that a staff members are  notified via email when a booking assigned to them is created or changed. The default value is true
     is_email_notification_enabled: Optional[bool] = None
-    # The lastUpdatedDateTime property
+    # The date, time and timezone when the staff member was last updated.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The membershipStatus property
     membership_status: Optional[BookingStaffMembershipStatus] = None
@@ -37,7 +37,7 @@ class BookingStaffMember(BookingPerson):
     time_zone: Optional[str] = None
     # True means the staff member's availability is as specified in the businessHours property of the business. False means the availability is determined by the staff member's workingHours property setting.
     use_business_hours: Optional[bool] = None
-    # The range of hours each day of the week that the staff member is available for booking. By default, they are initialized to be the same as the businessHours property of the business.
+    # The range of hours each day of the week that the staff member is available for booking. By default, they're initialized to be the same as the businessHours property of the business.
     working_hours: Optional[List[BookingWorkHours]] = None
     
     @staticmethod

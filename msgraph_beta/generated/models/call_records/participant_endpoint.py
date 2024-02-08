@@ -4,10 +4,10 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from ..identity import Identity
     from ..identity_set import IdentitySet
     from .endpoint import Endpoint
     from .user_feedback import UserFeedback
-    from .user_identity import UserIdentity
 
 from .endpoint import Endpoint
 
@@ -16,7 +16,7 @@ class ParticipantEndpoint(Endpoint):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.callRecords.participantEndpoint"
     # Identity associated with the endpoint.
-    associated_identity: Optional[UserIdentity] = None
+    associated_identity: Optional[Identity] = None
     # CPU number of cores used by the media endpoint.
     cpu_cores_count: Optional[int] = None
     # CPU name used by the media endpoint.
@@ -46,18 +46,18 @@ class ParticipantEndpoint(Endpoint):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from ..identity import Identity
         from ..identity_set import IdentitySet
         from .endpoint import Endpoint
         from .user_feedback import UserFeedback
-        from .user_identity import UserIdentity
 
+        from ..identity import Identity
         from ..identity_set import IdentitySet
         from .endpoint import Endpoint
         from .user_feedback import UserFeedback
-        from .user_identity import UserIdentity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "associatedIdentity": lambda n : setattr(self, 'associated_identity', n.get_object_value(UserIdentity)),
+            "associatedIdentity": lambda n : setattr(self, 'associated_identity', n.get_object_value(Identity)),
             "cpuCoresCount": lambda n : setattr(self, 'cpu_cores_count', n.get_int_value()),
             "cpuName": lambda n : setattr(self, 'cpu_name', n.get_str_value()),
             "cpuProcessorSpeedInMhz": lambda n : setattr(self, 'cpu_processor_speed_in_mhz', n.get_int_value()),

@@ -24,9 +24,9 @@ class BookingAppointment(Entity):
     additional_information: Optional[str] = None
     # The URL of the meeting to join anonymously.
     anonymous_join_web_url: Optional[str] = None
-    # Custom label that can be stamped on this appointment by users.
+    # Custom label that can be stamped on this appointment by the user.
     appointment_label: Optional[str] = None
-    # The createdDateTime property
+    # The date, time and timezone when the appointment was created.
     created_date_time: Optional[datetime.datetime] = None
     # The SMTP address of the bookingCustomer who is booking the appointment.
     customer_email_address: Optional[str] = None
@@ -64,7 +64,7 @@ class BookingAppointment(Entity):
     is_location_online: Optional[bool] = None
     # The URL of the online meeting for the appointment.
     join_web_url: Optional[str] = None
-    # The lastUpdatedDateTime property
+    # The date, time and timezone when the booking business was last updated.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The maximum number of customers allowed in an appointment. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment. To create a customer, use the Create bookingCustomer operation.
     maximum_attendees_count: Optional[int] = None

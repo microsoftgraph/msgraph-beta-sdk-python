@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +26,7 @@ class ScheduledPermissionsRequestsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/permissionsManagement/scheduledPermissionsRequests", path_parameters)
     
-    async def post(self,body: Optional[ScheduledPermissionsRequest] = None, request_configuration: Optional[ScheduledPermissionsRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[ScheduledPermissionsRequest]:
+    async def post(self,body: Optional[ScheduledPermissionsRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ScheduledPermissionsRequest]:
         """
         Create a new scheduledPermissionsRequest object.
         param body: The request body
@@ -51,7 +51,7 @@ class ScheduledPermissionsRequestsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ScheduledPermissionsRequest, error_mapping)
     
-    def to_post_request_information(self,body: Optional[ScheduledPermissionsRequest] = None, request_configuration: Optional[ScheduledPermissionsRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ScheduledPermissionsRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create a new scheduledPermissionsRequest object.
         param body: The request body
@@ -60,13 +60,8 @@ class ScheduledPermissionsRequestsRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation()
-        if request_configuration:
-            request_info.headers.add_all(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.POST
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
+        request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
@@ -80,15 +75,5 @@ class ScheduledPermissionsRequestsRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ScheduledPermissionsRequestsRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ScheduledPermissionsRequestsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

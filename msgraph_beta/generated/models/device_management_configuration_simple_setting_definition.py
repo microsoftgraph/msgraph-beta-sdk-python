@@ -15,15 +15,15 @@ from .device_management_configuration_setting_definition import DeviceManagement
 
 @dataclass
 class DeviceManagementConfigurationSimpleSettingDefinition(DeviceManagementConfigurationSettingDefinition):
-    # Default setting value for this setting
+    # Default setting value for this setting.
     default_value: Optional[DeviceManagementConfigurationSettingValue] = None
-    # list of child settings that depend on this setting
+    # list of child settings that depend on this setting.
     depended_on_by: Optional[List[DeviceManagementConfigurationSettingDependedOnBy]] = None
-    # list of parent settings this setting is dependent on
+    # list of parent settings this setting is dependent on.
     dependent_on: Optional[List[DeviceManagementConfigurationDependentOn]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Definition of the value for this setting
+    # Definition of the value for this setting.
     value_definition: Optional[DeviceManagementConfigurationSettingValueDefinition] = None
     
     @staticmethod

@@ -87,6 +87,7 @@ if TYPE_CHECKING:
     from ..mac_o_s_software_update_account_summary import MacOSSoftwareUpdateAccountSummary
     from ..managed_all_device_certificate_state import ManagedAllDeviceCertificateState
     from ..managed_device import ManagedDevice
+    from ..managed_device_cleanup_rule import ManagedDeviceCleanupRule
     from ..managed_device_cleanup_settings import ManagedDeviceCleanupSettings
     from ..managed_device_encryption_state import ManagedDeviceEncryptionState
     from ..managed_device_overview import ManagedDeviceOverview
@@ -341,6 +342,8 @@ class DeviceManagement(Entity):
     legacy_pc_manangement_enabled: Optional[bool] = None
     # The MacOS software update account summaries for this account.
     mac_o_s_software_update_account_summaries: Optional[List[MacOSSoftwareUpdateAccountSummary]] = None
+    # Device cleanup rule V2
+    managed_device_cleanup_rules: Optional[List[ManagedDeviceCleanupRule]] = None
     # Device cleanup rule
     managed_device_cleanup_settings: Optional[ManagedDeviceCleanupSettings] = None
     # Encryption report for devices in this account
@@ -649,6 +652,7 @@ class DeviceManagement(Entity):
         from ..mac_o_s_software_update_account_summary import MacOSSoftwareUpdateAccountSummary
         from ..managed_all_device_certificate_state import ManagedAllDeviceCertificateState
         from ..managed_device import ManagedDevice
+        from ..managed_device_cleanup_rule import ManagedDeviceCleanupRule
         from ..managed_device_cleanup_settings import ManagedDeviceCleanupSettings
         from ..managed_device_encryption_state import ManagedDeviceEncryptionState
         from ..managed_device_overview import ManagedDeviceOverview
@@ -819,6 +823,7 @@ class DeviceManagement(Entity):
         from ..mac_o_s_software_update_account_summary import MacOSSoftwareUpdateAccountSummary
         from ..managed_all_device_certificate_state import ManagedAllDeviceCertificateState
         from ..managed_device import ManagedDevice
+        from ..managed_device_cleanup_rule import ManagedDeviceCleanupRule
         from ..managed_device_cleanup_settings import ManagedDeviceCleanupSettings
         from ..managed_device_encryption_state import ManagedDeviceEncryptionState
         from ..managed_device_overview import ManagedDeviceOverview
@@ -988,6 +993,7 @@ class DeviceManagement(Entity):
             "lastReportAggregationDateTime": lambda n : setattr(self, 'last_report_aggregation_date_time', n.get_datetime_value()),
             "legacyPcManangementEnabled": lambda n : setattr(self, 'legacy_pc_manangement_enabled', n.get_bool_value()),
             "macOSSoftwareUpdateAccountSummaries": lambda n : setattr(self, 'mac_o_s_software_update_account_summaries', n.get_collection_of_object_values(MacOSSoftwareUpdateAccountSummary)),
+            "managedDeviceCleanupRules": lambda n : setattr(self, 'managed_device_cleanup_rules', n.get_collection_of_object_values(ManagedDeviceCleanupRule)),
             "managedDeviceCleanupSettings": lambda n : setattr(self, 'managed_device_cleanup_settings', n.get_object_value(ManagedDeviceCleanupSettings)),
             "managedDeviceEncryptionStates": lambda n : setattr(self, 'managed_device_encryption_states', n.get_collection_of_object_values(ManagedDeviceEncryptionState)),
             "managedDeviceOverview": lambda n : setattr(self, 'managed_device_overview', n.get_object_value(ManagedDeviceOverview)),
@@ -1182,6 +1188,7 @@ class DeviceManagement(Entity):
         writer.write_collection_of_object_values("intuneBrandingProfiles", self.intune_branding_profiles)
         writer.write_collection_of_object_values("iosUpdateStatuses", self.ios_update_statuses)
         writer.write_collection_of_object_values("macOSSoftwareUpdateAccountSummaries", self.mac_o_s_software_update_account_summaries)
+        writer.write_collection_of_object_values("managedDeviceCleanupRules", self.managed_device_cleanup_rules)
         writer.write_object_value("managedDeviceCleanupSettings", self.managed_device_cleanup_settings)
         writer.write_collection_of_object_values("managedDeviceEncryptionStates", self.managed_device_encryption_states)
         writer.write_object_value("managedDeviceOverview", self.managed_device_overview)

@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+    from .android_safety_net_evaluation_type import AndroidSafetyNetEvaluationType
     from .device_compliance_policy import DeviceCompliancePolicy
     from .device_threat_protection_level import DeviceThreatProtectionLevel
 
@@ -61,6 +62,8 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
     security_require_safety_net_attestation_basic_integrity: Optional[bool] = None
     # Require the device to pass the Play Integrity device integrity check.
     security_require_safety_net_attestation_certified_device: Optional[bool] = None
+    # Require a specific Play Integrity evaluation type for compliance.
+    security_required_android_safety_net_evaluation_type: Optional[AndroidSafetyNetEvaluationType] = None
     # Require encryption on Android devices.
     storage_require_encryption: Optional[bool] = None
     
@@ -81,10 +84,12 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+        from .android_safety_net_evaluation_type import AndroidSafetyNetEvaluationType
         from .device_compliance_policy import DeviceCompliancePolicy
         from .device_threat_protection_level import DeviceThreatProtectionLevel
 
         from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+        from .android_safety_net_evaluation_type import AndroidSafetyNetEvaluationType
         from .device_compliance_policy import DeviceCompliancePolicy
         from .device_threat_protection_level import DeviceThreatProtectionLevel
 
@@ -111,6 +116,7 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
             "securityRequireIntuneAppIntegrity": lambda n : setattr(self, 'security_require_intune_app_integrity', n.get_bool_value()),
             "securityRequireSafetyNetAttestationBasicIntegrity": lambda n : setattr(self, 'security_require_safety_net_attestation_basic_integrity', n.get_bool_value()),
             "securityRequireSafetyNetAttestationCertifiedDevice": lambda n : setattr(self, 'security_require_safety_net_attestation_certified_device', n.get_bool_value()),
+            "securityRequiredAndroidSafetyNetEvaluationType": lambda n : setattr(self, 'security_required_android_safety_net_evaluation_type', n.get_enum_value(AndroidSafetyNetEvaluationType)),
             "storageRequireEncryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -148,6 +154,7 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
         writer.write_bool_value("securityRequireIntuneAppIntegrity", self.security_require_intune_app_integrity)
         writer.write_bool_value("securityRequireSafetyNetAttestationBasicIntegrity", self.security_require_safety_net_attestation_basic_integrity)
         writer.write_bool_value("securityRequireSafetyNetAttestationCertifiedDevice", self.security_require_safety_net_attestation_certified_device)
+        writer.write_enum_value("securityRequiredAndroidSafetyNetEvaluationType", self.security_required_android_safety_net_evaluation_type)
         writer.write_bool_value("storageRequireEncryption", self.storage_require_encryption)
     
 

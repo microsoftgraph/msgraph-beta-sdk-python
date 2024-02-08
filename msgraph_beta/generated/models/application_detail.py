@@ -30,6 +30,8 @@ class ApplicationDetail(AdditionalDataHolder, BackedModel, Parsable):
     product_name: Optional[str] = None
     # The product version of the application for which elevation request has been made. For example, '2.40.1.0'
     product_version: Optional[str] = None
+    # The list of base64 encoded certificate for each signer, for example, string[encoded_leaf_cert1, encoded_leaf_cert2....]
+    publisher_cert: Optional[str] = None
     # The certificate issuer name of the certificate used to sign the application, for example, 'Sectigo Public Code Signing CA R36'
     publisher_name: Optional[str] = None
     
@@ -58,6 +60,7 @@ class ApplicationDetail(AdditionalDataHolder, BackedModel, Parsable):
             "productInternalName": lambda n : setattr(self, 'product_internal_name', n.get_str_value()),
             "productName": lambda n : setattr(self, 'product_name', n.get_str_value()),
             "productVersion": lambda n : setattr(self, 'product_version', n.get_str_value()),
+            "publisherCert": lambda n : setattr(self, 'publisher_cert', n.get_str_value()),
             "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
         }
         return fields
@@ -78,6 +81,7 @@ class ApplicationDetail(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("productInternalName", self.product_internal_name)
         writer.write_str_value("productName", self.product_name)
         writer.write_str_value("productVersion", self.product_version)
+        writer.write_str_value("publisherCert", self.publisher_cert)
         writer.write_str_value("publisherName", self.publisher_name)
         writer.write_additional_data_value(self.additional_data)
     
