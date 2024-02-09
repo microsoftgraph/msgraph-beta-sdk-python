@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +32,7 @@ class PrivilegedAccessItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/privilegedAccess/{privilegedAccess%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[PrivilegedAccessItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete entity from privilegedAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -43,14 +44,13 @@ class PrivilegedAccessItemRequestBuilder(BaseRequestBuilder):
         from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
+            "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedAccessItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PrivilegedAccess]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrivilegedAccess]:
         """
         Get entity from privilegedAccess by key
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -62,8 +62,7 @@ class PrivilegedAccessItemRequestBuilder(BaseRequestBuilder):
         from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
+            "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
@@ -71,7 +70,7 @@ class PrivilegedAccessItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrivilegedAccess, error_mapping)
     
-    async def patch(self,body: Optional[PrivilegedAccess] = None, request_configuration: Optional[PrivilegedAccessItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PrivilegedAccess]:
+    async def patch(self,body: Optional[PrivilegedAccess] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrivilegedAccess]:
         """
         Update entity in privilegedAccess
         param body: The request body
@@ -86,8 +85,7 @@ class PrivilegedAccessItemRequestBuilder(BaseRequestBuilder):
         from ...models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
+            "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
@@ -95,40 +93,29 @@ class PrivilegedAccessItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrivilegedAccess, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[PrivilegedAccessItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete entity from privilegedAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation()
-        if request_configuration:
-            request_info.headers.add_all(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.DELETE
+        request_info = RequestInformation(Method.DELETE, '{+baseurl}/privilegedAccess/{privilegedAccess%2Did}', self.path_parameters)
+        request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[PrivilegedAccessItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get entity from privilegedAccess by key
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation()
-        if request_configuration:
-            request_info.headers.add_all(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.GET
+        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PrivilegedAccess] = None, request_configuration: Optional[PrivilegedAccessItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PrivilegedAccess] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update entity in privilegedAccess
         param body: The request body
@@ -137,13 +124,8 @@ class PrivilegedAccessItemRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation()
-        if request_configuration:
-            request_info.headers.add_all(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.PATCH
+        request_info = RequestInformation(Method.PATCH, '{+baseurl}/privilegedAccess/{privilegedAccess%2Did}', self.path_parameters)
+        request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
@@ -203,16 +185,6 @@ class PrivilegedAccessItemRequestBuilder(BaseRequestBuilder):
 
         return RoleSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PrivilegedAccessItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class PrivilegedAccessItemRequestBuilderGetQueryParameters():
         """
@@ -238,28 +210,5 @@ class PrivilegedAccessItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PrivilegedAccessItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[PrivilegedAccessItemRequestBuilder.PrivilegedAccessItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PrivilegedAccessItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

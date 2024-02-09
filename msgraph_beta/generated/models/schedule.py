@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .operation_status import OperationStatus
     from .scheduling_group import SchedulingGroup
     from .shift import Shift
+    from .shifts_role_definition import ShiftsRoleDefinition
     from .swap_shifts_change_request import SwapShiftsChangeRequest
     from .time_card import TimeCard
     from .time_clock_settings import TimeClockSettings
@@ -50,6 +51,8 @@ class Schedule(Entity):
     scheduling_groups: Optional[List[SchedulingGroup]] = None
     # The shifts in the schedule.
     shifts: Optional[List[Shift]] = None
+    # The shiftsRoleDefinitions property
+    shifts_role_definitions: Optional[List[ShiftsRoleDefinition]] = None
     # Indicates the start day of the week.
     start_day_of_week: Optional[DayOfWeek] = None
     # The swap requests for shifts in the schedule.
@@ -100,6 +103,7 @@ class Schedule(Entity):
         from .operation_status import OperationStatus
         from .scheduling_group import SchedulingGroup
         from .shift import Shift
+        from .shifts_role_definition import ShiftsRoleDefinition
         from .swap_shifts_change_request import SwapShiftsChangeRequest
         from .time_card import TimeCard
         from .time_clock_settings import TimeClockSettings
@@ -116,6 +120,7 @@ class Schedule(Entity):
         from .operation_status import OperationStatus
         from .scheduling_group import SchedulingGroup
         from .shift import Shift
+        from .shifts_role_definition import ShiftsRoleDefinition
         from .swap_shifts_change_request import SwapShiftsChangeRequest
         from .time_card import TimeCard
         from .time_clock_settings import TimeClockSettings
@@ -136,6 +141,7 @@ class Schedule(Entity):
             "provisionStatusCode": lambda n : setattr(self, 'provision_status_code', n.get_str_value()),
             "schedulingGroups": lambda n : setattr(self, 'scheduling_groups', n.get_collection_of_object_values(SchedulingGroup)),
             "shifts": lambda n : setattr(self, 'shifts', n.get_collection_of_object_values(Shift)),
+            "shiftsRoleDefinitions": lambda n : setattr(self, 'shifts_role_definitions', n.get_collection_of_object_values(ShiftsRoleDefinition)),
             "startDayOfWeek": lambda n : setattr(self, 'start_day_of_week', n.get_enum_value(DayOfWeek)),
             "swapShiftsChangeRequests": lambda n : setattr(self, 'swap_shifts_change_requests', n.get_collection_of_object_values(SwapShiftsChangeRequest)),
             "swapShiftsRequestsEnabled": lambda n : setattr(self, 'swap_shifts_requests_enabled', n.get_bool_value()),
@@ -172,6 +178,7 @@ class Schedule(Entity):
         writer.write_bool_value("openShiftsEnabled", self.open_shifts_enabled)
         writer.write_collection_of_object_values("schedulingGroups", self.scheduling_groups)
         writer.write_collection_of_object_values("shifts", self.shifts)
+        writer.write_collection_of_object_values("shiftsRoleDefinitions", self.shifts_role_definitions)
         writer.write_enum_value("startDayOfWeek", self.start_day_of_week)
         writer.write_collection_of_object_values("swapShiftsChangeRequests", self.swap_shifts_change_requests)
         writer.write_bool_value("swapShiftsRequestsEnabled", self.swap_shifts_requests_enabled)

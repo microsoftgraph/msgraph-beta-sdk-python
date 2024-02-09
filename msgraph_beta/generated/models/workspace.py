@@ -28,7 +28,7 @@ class Workspace(Place):
     label: Optional[str] = None
     # Specifies a nickname for the workspace, for example, 'quiet workspace'.
     nickname: Optional[str] = None
-    # Specifies additional features of the workspace, for example, details like the type of view or furniture type.
+    # Specifies other features of the workspace; for example, the type of view or furniture type.
     tags: Optional[List[str]] = None
     
     @staticmethod

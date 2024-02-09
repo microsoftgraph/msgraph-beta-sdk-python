@@ -17,7 +17,7 @@ class BookingSchedulingPolicy(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # True if to allow customers to choose a specific person for the booking.
     allow_staff_selection: Optional[bool] = None
-    # Enable sending meeting invite to customers.
+    # Indicates if the meeting invite is sent to the customers. The default value is false
     is_meeting_invite_to_customers_enabled: Optional[bool] = None
     # Maximum number of days in advance that a booking can be made. It follows the ISO 8601 format.
     maximum_advance: Optional[datetime.timedelta] = None

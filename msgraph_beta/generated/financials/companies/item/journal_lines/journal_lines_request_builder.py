@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +45,7 @@ class JournalLinesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["journalLine%2Did"] = journal_line_id
         return JournalLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[JournalLinesRequestBuilderGetRequestConfiguration] = None) -> Optional[JournalLineCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[JournalLineCollectionResponse]:
         """
         Get journalLines from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -56,8 +57,7 @@ class JournalLinesRequestBuilder(BaseRequestBuilder):
         from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
+            "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
@@ -65,7 +65,7 @@ class JournalLinesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, JournalLineCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[JournalLine] = None, request_configuration: Optional[JournalLinesRequestBuilderPostRequestConfiguration] = None) -> Optional[JournalLine]:
+    async def post(self,body: Optional[JournalLine] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[JournalLine]:
         """
         Create new navigation property to journalLines for financials
         param body: The request body
@@ -80,8 +80,7 @@ class JournalLinesRequestBuilder(BaseRequestBuilder):
         from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
+            "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
@@ -89,24 +88,18 @@ class JournalLinesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, JournalLine, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[JournalLinesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get journalLines from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation()
-        if request_configuration:
-            request_info.headers.add_all(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.GET
+        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[JournalLine] = None, request_configuration: Optional[JournalLinesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[JournalLine] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to journalLines for financials
         param body: The request body
@@ -115,13 +108,8 @@ class JournalLinesRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation()
-        if request_configuration:
-            request_info.headers.add_all(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.POST
+        request_info = RequestInformation(Method.POST, '{+baseurl}/financials/companies/{company%2Did}/journalLines', self.path_parameters)
+        request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
@@ -200,28 +188,5 @@ class JournalLinesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class JournalLinesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[JournalLinesRequestBuilder.JournalLinesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class JournalLinesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

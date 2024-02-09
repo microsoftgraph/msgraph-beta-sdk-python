@@ -45,7 +45,7 @@ class Team(Entity):
     discovery_settings: Optional[TeamDiscoverySettings] = None
     # The name of the team.
     display_name: Optional[str] = None
-    # Settings to configure use of Giphy, memes, and stickers in the team.
+    # Settings to configure the use of Giphy, memes, and stickers in the team.
     fun_settings: Optional[TeamFunSettings] = None
     # The group property
     group: Optional[Group] = None
@@ -55,11 +55,11 @@ class Team(Entity):
     incoming_channels: Optional[List[Channel]] = None
     # The apps installed in this team.
     installed_apps: Optional[List[TeamsAppInstallation]] = None
-    # A unique ID for the team that has been used in a few places such as the audit log/Office 365 Management Activity API.
+    # A unique ID for the team used in a few places such as the audit log/Office 365 Management Activity API.
     internal_id: Optional[str] = None
     # Whether this team is in read-only mode.
     is_archived: Optional[bool] = None
-    # If set to true, the team is currently in the owner-only team membership state and not accessible by other team members, such as students.
+    # If set to true, the team is currently in the owner-only team membership state and inaccessible by other team members, such as students.
     is_membership_limited_to_owners: Optional[bool] = None
     # Settings to configure whether members can perform certain actions, for example, create channels and add bots, in the team.
     member_settings: Optional[TeamMemberSettings] = None
@@ -71,7 +71,7 @@ class Team(Entity):
     odata_type: Optional[str] = None
     # The async operations that ran or are running on this team.
     operations: Optional[List[TeamsAsyncOperation]] = None
-    # The list of this team's owners. Currently, when creating a team using application permissions, exactly one owner must be specified. When using user delegated permissions, no owner can be specified (the current user is the owner). Owner must be specified as an object ID (GUID), not a UPN.
+    # The list of this team's owners. Currently, when creating a team using application permissions, exactly one owner must be specified. When using user-delegated permissions, no owner can be specified (the current user is the owner). The owner must be specified as an object ID (GUID), not a UPN.
     owners: Optional[List[User]] = None
     # A collection of permissions granted to apps to access the team.
     permission_grants: Optional[List[ResourceSpecificPermissionGrant]] = None
@@ -83,7 +83,7 @@ class Team(Entity):
     schedule: Optional[Schedule] = None
     # Optional. Indicates whether the team is intended for a particular use case.  Each team specialization has access to unique behaviors and experiences targeted to its use case.
     specialization: Optional[TeamSpecialization] = None
-    # Contains summary information about the team, including number of owners, members, and guests.
+    # Contains summary information about the team, including the number of owners, members, and guests.
     summary: Optional[TeamSummary] = None
     # The tags associated with the team.
     tags: Optional[List[TeamworkTag]] = None
@@ -95,7 +95,7 @@ class Team(Entity):
     tenant_id: Optional[str] = None
     # The visibility of the group and team. Defaults to Public.
     visibility: Optional[TeamVisibilityType] = None
-    # A hyperlink that will go to the team in the Microsoft Teams client. This is the URL that you get when you right-click a team in the Microsoft Teams client and select Get link to team. This URL should be treated as an opaque blob, and not parsed.
+    # A hyperlink that goes to the team in the Microsoft Teams client. It is the URL you get when you right-click a team in the Microsoft Teams client and select Get link to team. This URL should be treated as an opaque blob, and not parsed.
     web_url: Optional[str] = None
     
     @staticmethod
