@@ -21,11 +21,11 @@ class TimeOff(ChangeTrackedEntity):
     is_staged_for_deletion: Optional[bool] = None
     # The shared version of this timeOff that is viewable by both employees and managers. Updates to the sharedTimeOff property send notifications to users in the Teams client. Required.
     shared_time_off: Optional[TimeOffItem] = None
-    # The teamInfo property
+    # Information of the team that the timeOff is in.
     team_info: Optional[ShiftsTeamInfo] = None
     # ID of the user assigned to the timeOff. Required.
     user_id: Optional[str] = None
-    # The userInfo property
+    # Information of the user assigned to the timeOff.
     user_info: Optional[ShiftsUserInfo] = None
     
     @staticmethod

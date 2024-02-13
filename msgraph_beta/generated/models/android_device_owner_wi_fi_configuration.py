@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from .android_device_owner_enterprise_wi_fi_configuration import AndroidDeviceOwnerEnterpriseWiFiConfiguration
     from .android_device_owner_wi_fi_security_type import AndroidDeviceOwnerWiFiSecurityType
     from .device_configuration import DeviceConfiguration
+    from .mac_address_randomization_mode import MacAddressRandomizationMode
     from .wi_fi_proxy_setting import WiFiProxySetting
 
 from .device_configuration import DeviceConfiguration
@@ -22,6 +23,8 @@ class AndroidDeviceOwnerWiFiConfiguration(DeviceConfiguration):
     connect_automatically: Optional[bool] = None
     # When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.
     connect_when_network_name_is_hidden: Optional[bool] = None
+    # The MAC address randomization mode for Android device Wi-Fi configuration. Possible values include automatic and hardware. Default value is automatic.
+    mac_address_randomization_mode: Optional[MacAddressRandomizationMode] = None
     # Network Name
     network_name: Optional[str] = None
     # This is the pre-shared key for WPA Personal Wi-Fi network.
@@ -70,16 +73,19 @@ class AndroidDeviceOwnerWiFiConfiguration(DeviceConfiguration):
         from .android_device_owner_enterprise_wi_fi_configuration import AndroidDeviceOwnerEnterpriseWiFiConfiguration
         from .android_device_owner_wi_fi_security_type import AndroidDeviceOwnerWiFiSecurityType
         from .device_configuration import DeviceConfiguration
+        from .mac_address_randomization_mode import MacAddressRandomizationMode
         from .wi_fi_proxy_setting import WiFiProxySetting
 
         from .android_device_owner_enterprise_wi_fi_configuration import AndroidDeviceOwnerEnterpriseWiFiConfiguration
         from .android_device_owner_wi_fi_security_type import AndroidDeviceOwnerWiFiSecurityType
         from .device_configuration import DeviceConfiguration
+        from .mac_address_randomization_mode import MacAddressRandomizationMode
         from .wi_fi_proxy_setting import WiFiProxySetting
 
         fields: Dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
             "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
+            "macAddressRandomizationMode": lambda n : setattr(self, 'mac_address_randomization_mode', n.get_enum_value(MacAddressRandomizationMode)),
             "networkName": lambda n : setattr(self, 'network_name', n.get_str_value()),
             "preSharedKey": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
             "preSharedKeyIsSet": lambda n : setattr(self, 'pre_shared_key_is_set', n.get_bool_value()),
@@ -106,6 +112,7 @@ class AndroidDeviceOwnerWiFiConfiguration(DeviceConfiguration):
         super().serialize(writer)
         writer.write_bool_value("connectAutomatically", self.connect_automatically)
         writer.write_bool_value("connectWhenNetworkNameIsHidden", self.connect_when_network_name_is_hidden)
+        writer.write_enum_value("macAddressRandomizationMode", self.mac_address_randomization_mode)
         writer.write_str_value("networkName", self.network_name)
         writer.write_str_value("preSharedKey", self.pre_shared_key)
         writer.write_bool_value("preSharedKeyIsSet", self.pre_shared_key_is_set)

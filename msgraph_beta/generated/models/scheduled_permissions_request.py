@@ -10,11 +10,14 @@ if TYPE_CHECKING:
     from .request_schedule import RequestSchedule
     from .status_detail import StatusDetail
     from .ticket_info import TicketInfo
+    from .unified_role_schedule_request_actions import UnifiedRoleScheduleRequestActions
 
 from .entity import Entity
 
 @dataclass
 class ScheduledPermissionsRequest(Entity):
+    # The action property
+    action: Optional[UnifiedRoleScheduleRequestActions] = None
     # Defines when the identity created the request.
     created_date_time: Optional[datetime.datetime] = None
     # The identity's justification for the request.
@@ -53,14 +56,17 @@ class ScheduledPermissionsRequest(Entity):
         from .request_schedule import RequestSchedule
         from .status_detail import StatusDetail
         from .ticket_info import TicketInfo
+        from .unified_role_schedule_request_actions import UnifiedRoleScheduleRequestActions
 
         from .entity import Entity
         from .permissions_definition import PermissionsDefinition
         from .request_schedule import RequestSchedule
         from .status_detail import StatusDetail
         from .ticket_info import TicketInfo
+        from .unified_role_schedule_request_actions import UnifiedRoleScheduleRequestActions
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "action": lambda n : setattr(self, 'action', n.get_enum_value(UnifiedRoleScheduleRequestActions)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
@@ -82,6 +88,7 @@ class ScheduledPermissionsRequest(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_enum_value("action", self.action)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("justification", self.justification)
         writer.write_str_value("notes", self.notes)

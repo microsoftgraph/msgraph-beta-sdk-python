@@ -33,7 +33,7 @@ class Directory(Entity):
     certificate_authorities: Optional[CertificateAuthorityPath] = None
     # Schema of a custom security attributes (key-value pairs).
     custom_security_attribute_definitions: Optional[List[CustomSecurityAttributeDefinition]] = None
-    # The deletedItems property
+    # Recently deleted items. Read-only. Nullable.
     deleted_items: Optional[List[DirectoryObject]] = None
     # The credentials of the device's local administrator account backed up to Microsoft Entra ID.
     device_local_credentials: Optional[List[DeviceLocalCredentialInfo]] = None
@@ -43,7 +43,7 @@ class Directory(Entity):
     federation_configurations: Optional[List[IdentityProviderBase]] = None
     # The impactedResources property
     impacted_resources: Optional[List[ImpactedResource]] = None
-    # A collection of external Azure AD users whose profile data has been shared with the Azure AD tenant. Nullable.
+    # A collection of external users whose profile data is shared with the Microsoft Entra tenant. Nullable.
     inbound_shared_user_profiles: Optional[List[InboundSharedUserProfile]] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -55,7 +55,7 @@ class Directory(Entity):
     recommendations: Optional[List[Recommendation]] = None
     # The sharedEmailDomains property
     shared_email_domains: Optional[List[SharedEmailDomain]] = None
-    # List of commercial subscriptions that an organization has acquired.
+    # List of commercial subscriptions that an organization has.
     subscriptions: Optional[List[CompanySubscription]] = None
     
     @staticmethod

@@ -4,17 +4,17 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from ..communications_identity_set import CommunicationsIdentitySet
     from ..entity import Entity
     from .organizer import Organizer
     from .participant import Participant
-    from .user_identity import UserIdentity
 
 from ..entity import Entity
 
 @dataclass
 class ParticipantBase(Entity):
     # The identity of the call participant.
-    identity: Optional[UserIdentity] = None
+    identity: Optional[CommunicationsIdentitySet] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -46,18 +46,18 @@ class ParticipantBase(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from ..communications_identity_set import CommunicationsIdentitySet
         from ..entity import Entity
         from .organizer import Organizer
         from .participant import Participant
-        from .user_identity import UserIdentity
 
+        from ..communications_identity_set import CommunicationsIdentitySet
         from ..entity import Entity
         from .organizer import Organizer
         from .participant import Participant
-        from .user_identity import UserIdentity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "identity": lambda n : setattr(self, 'identity', n.get_object_value(UserIdentity)),
+            "identity": lambda n : setattr(self, 'identity', n.get_object_value(CommunicationsIdentitySet)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

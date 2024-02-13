@@ -46,7 +46,7 @@ class Device(DirectoryObject):
     enrollment_profile_name: Optional[str] = None
     # Enrollment type of the device. This property is set by Intune. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement.
     enrollment_type: Optional[str] = None
-    # Contains extension attributes 1-15 for the device. The individual extension attributes are not selectable. These properties are mastered in cloud and can be set during creation or update of a device object in Microsoft Entra ID. Supports $filter (eq, not, startsWith, and eq on null values).
+    # Contains extension attributes 1-15 for the device. The individual extension attributes aren't selectable. These properties are mastered in cloud and can be set during creation or update of a device object in Microsoft Entra ID. Supports $filter (eq, not, startsWith, and eq on null values).
     extension_attributes: Optional[OnPremisesExtensionAttributes] = None
     # The collection of open extensions defined for the device. Read-only. Nullable.
     extensions: Optional[List[Extension]] = None
@@ -64,13 +64,13 @@ class Device(DirectoryObject):
     kind: Optional[str] = None
     # Management channel of the device.  This property is set by Intune. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController.
     management_type: Optional[str] = None
-    # Manufacturer of the device. Only returned if the user signs in with a Microsoft account as part of Project Rome.
+    # Manufacturer of the device. Read-only.
     manufacturer: Optional[str] = None
     # Application identifier used to register device into MDM. Read-only. Supports $filter (eq, ne, not, startsWith).
     mdm_app_id: Optional[str] = None
     # Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.
     member_of: Optional[List[DirectoryObject]] = None
-    # Model of the device. Only returned if the user signs in with a Microsoft account as part of Project Rome.
+    # Model of the device. Read-only.
     model: Optional[str] = None
     # Friendly name of the device. Only returned if user signs in with a Microsoft account as part of Project Rome.
     name: Optional[str] = None
@@ -102,7 +102,7 @@ class Device(DirectoryObject):
     system_labels: Optional[List[str]] = None
     # Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.
     transitive_member_of: Optional[List[DirectoryObject]] = None
-    # Type of trust for the joined device. Read-only. Possible values: Workplace (indicates bring your own personal devices), AzureAd (Cloud only joined devices), ServerAd (on-premises domain joined devices joined to Microsoft Entra ID). For more details, see Introduction to device management in Microsoft Entra ID.
+    # Type of trust for the joined device. Read-only. Possible values: Workplace (indicates bring your own personal devices), AzureAd (Cloud only joined devices), ServerAd (on-premises domain joined devices joined to Microsoft Entra ID). For more information, see Introduction to device management in Microsoft Entra ID.
     trust_type: Optional[str] = None
     # Represents the usage rights a device has been granted.
     usage_rights: Optional[List[UsageRight]] = None

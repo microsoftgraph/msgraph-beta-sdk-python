@@ -16,27 +16,27 @@ class BookingPageSettings(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The accessControl property
     access_control: Optional[BookingPageAccessControl] = None
-    # Custom color for bookings page. Value should be in Hex format. Example: `#123456`.
+    # Custom color for the bookings page. The value should be in Hex format. Example: #123456.
     booking_page_color_code: Optional[str] = None
-    # The time zone of the customer. For a list of possible values, see [dateTimeTimeZone](https://learn.microsoft.com/en-us/graph/api/resources/datetimetimezone?view=graph-rest-beta).
+    # The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
     business_time_zone: Optional[str] = None
-    # Customer consent message that is displayed in the Booking page.
+    # The personal data collection and usage consent message in the bookings page.
     customer_consent_message: Optional[str] = None
-    # Enforcing One Time Password (OTP) during appointment creation.
+    # Determines if the one-time password is required to create an appointment. The default value is false.
     enforce_one_time_password: Optional[bool] = None
-    # Enable display of business logo display on the Bookings page.
+    # Indicates if the business logo is displayed on the bookings page. The default value is false.
     is_business_logo_display_enabled: Optional[bool] = None
-    # Enforces customer consent on the customer consent message before appointment is booked.
+    # Enables personal data collection and the usage consent toggle on the bookings page. The default value is false.
     is_customer_consent_enabled: Optional[bool] = None
-    # Disable booking page to be indexed by search engines. False by default.
+    # Ensures that the web crawlers don't index this page. The defaults value is false.
     is_search_engine_indexability_disabled: Optional[bool] = None
-    # If business time zone the default value for the time slots that we show in the bookings page. False by default.
+    # Displays the booking time slots in the business time zone. The default value is false.
     is_time_slot_time_zone_set_to_business_time_zone: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The URL of the business' Privacy Policy.
+    # RL of a webpage that provides the terms and conditions of the business. If a privacy policy isn't included, the following text appears on the bookings page as default: 'The policies and practices of <booking business's name> apply to the use of your data.
     privacy_policy_web_url: Optional[str] = None
-    # The URL of the business' Terms and Conditions.
+    # URL of a webpage that provides the terms and conditions of the business.
     terms_and_conditions_web_url: Optional[str] = None
     
     @staticmethod

@@ -19,11 +19,11 @@ class BookingCustomQuestion(Entity):
     answer_input_type: Optional[AnswerInputType] = None
     # List of possible answer values.
     answer_options: Optional[List[str]] = None
-    # The createdDateTime property
+    # The date, time and timezone when the custom question was created.
     created_date_time: Optional[datetime.datetime] = None
     # Display name of this entity.
     display_name: Optional[str] = None
-    # The lastUpdatedDateTime property
+    # The date, time and timezone when the custom question was last updated.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

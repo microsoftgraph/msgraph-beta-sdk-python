@@ -1,6 +1,8 @@
 from enum import Enum
 
 class OperationApprovalPolicyType(str, Enum):
+    # Default. Indicates that the configured policy type is unknown. This property is not allowed on an OperationApprovalRequest unless the PolicySet contains a different OperationApprovalPolicyType.
+    Unknown = "unknown",
     # Indicates that the configured policy type is for a Device Action.
     DeviceAction = "deviceAction",
     # Indicates that the configured policy type is for a Device Wipe Action.
@@ -34,7 +36,7 @@ class OperationApprovalPolicyType(str, Enum):
     # Indicates that the configured policy type is an application type, such as mobile apps or built-in apps.
     App = "app",
     # Indicates that the configured policy type is a script type, such as Powershell scripts or remediation scripts.
-    Scripts = "scripts",
+    Script = "script",
     # Indicates that the configured policy type is for a Role.
     Role = "role",
     # Indicates that the configured policy type is for a Device Reset Passcode Action.

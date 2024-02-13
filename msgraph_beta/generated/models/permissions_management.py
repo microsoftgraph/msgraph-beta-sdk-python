@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .approval import Approval
     from .entity import Entity
     from .permissions_request_change import PermissionsRequestChange
     from .scheduled_permissions_request import ScheduledPermissionsRequest
@@ -16,6 +17,8 @@ class PermissionsManagement(Entity):
     odata_type: Optional[str] = None
     # Represents a change event of the scheduledPermissionsRequest entity.
     permissions_request_changes: Optional[List[PermissionsRequestChange]] = None
+    # The scheduledPermissionsApprovals property
+    scheduled_permissions_approvals: Optional[List[Approval]] = None
     # Represents a permissions request that Permissions Management uses to manage permissions for an identity on resources in the authorization system. This request can be granted, rejected or canceled by identities in Permissions Management.
     scheduled_permissions_requests: Optional[List[ScheduledPermissionsRequest]] = None
     
@@ -35,16 +38,19 @@ class PermissionsManagement(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .approval import Approval
         from .entity import Entity
         from .permissions_request_change import PermissionsRequestChange
         from .scheduled_permissions_request import ScheduledPermissionsRequest
 
+        from .approval import Approval
         from .entity import Entity
         from .permissions_request_change import PermissionsRequestChange
         from .scheduled_permissions_request import ScheduledPermissionsRequest
 
         fields: Dict[str, Callable[[Any], None]] = {
             "permissionsRequestChanges": lambda n : setattr(self, 'permissions_request_changes', n.get_collection_of_object_values(PermissionsRequestChange)),
+            "scheduledPermissionsApprovals": lambda n : setattr(self, 'scheduled_permissions_approvals', n.get_collection_of_object_values(Approval)),
             "scheduledPermissionsRequests": lambda n : setattr(self, 'scheduled_permissions_requests', n.get_collection_of_object_values(ScheduledPermissionsRequest)),
         }
         super_fields = super().get_field_deserializers()
@@ -61,6 +67,7 @@ class PermissionsManagement(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("permissionsRequestChanges", self.permissions_request_changes)
+        writer.write_collection_of_object_values("scheduledPermissionsApprovals", self.scheduled_permissions_approvals)
         writer.write_collection_of_object_values("scheduledPermissionsRequests", self.scheduled_permissions_requests)
     
 

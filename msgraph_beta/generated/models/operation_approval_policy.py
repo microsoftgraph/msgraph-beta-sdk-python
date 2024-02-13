@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .operation_approval_policy_platform import OperationApprovalPolicyPlatform
+    from .operation_approval_policy_set import OperationApprovalPolicySet
     from .operation_approval_policy_type import OperationApprovalPolicyType
 
 from .entity import Entity
@@ -28,6 +29,8 @@ class OperationApprovalPolicy(Entity):
     odata_type: Optional[str] = None
     # The set of available platforms for the OperationApprovalPolicy. Allows configuration of a policy to specific platform(s) for approval. If no specific platform is required or applicable, the platform is `notApplicable`.
     policy_platform: Optional[OperationApprovalPolicyPlatform] = None
+    # Indicates areas of the Intune UX that could support MAA UX for the current logged in user. This property is required, and is defined by the user in order to correctly show the expected experience.
+    policy_set: Optional[OperationApprovalPolicySet] = None
     # The set of available policy types that can be configured for approval. There is no default value for this enum, indicating that the policy type must always be chosen.
     policy_type: Optional[OperationApprovalPolicyType] = None
     
@@ -49,10 +52,12 @@ class OperationApprovalPolicy(Entity):
         """
         from .entity import Entity
         from .operation_approval_policy_platform import OperationApprovalPolicyPlatform
+        from .operation_approval_policy_set import OperationApprovalPolicySet
         from .operation_approval_policy_type import OperationApprovalPolicyType
 
         from .entity import Entity
         from .operation_approval_policy_platform import OperationApprovalPolicyPlatform
+        from .operation_approval_policy_set import OperationApprovalPolicySet
         from .operation_approval_policy_type import OperationApprovalPolicyType
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -61,6 +66,7 @@ class OperationApprovalPolicy(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "policyPlatform": lambda n : setattr(self, 'policy_platform', n.get_collection_of_enum_values(OperationApprovalPolicyPlatform)),
+            "policySet": lambda n : setattr(self, 'policy_set', n.get_object_value(OperationApprovalPolicySet)),
             "policyType": lambda n : setattr(self, 'policy_type', n.get_enum_value(OperationApprovalPolicyType)),
         }
         super_fields = super().get_field_deserializers()
@@ -80,6 +86,7 @@ class OperationApprovalPolicy(Entity):
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("policyPlatform", self.policy_platform)
+        writer.write_object_value("policySet", self.policy_set)
         writer.write_enum_value("policyType", self.policy_type)
     
 
