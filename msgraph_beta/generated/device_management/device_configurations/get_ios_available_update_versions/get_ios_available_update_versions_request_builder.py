@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class GetIosAvailableUpdateVersionsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceConfigurations/getIosAvailableUpdateVersions(){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetIosAvailableUpdateVersionsRequestBuilderGetRequestConfiguration] = None) -> Optional[GetIosAvailableUpdateVersionsGetResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetIosAvailableUpdateVersionsGetResponse]:
         """
         Invoke function getIosAvailableUpdateVersions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -38,8 +39,7 @@ class GetIosAvailableUpdateVersionsRequestBuilder(BaseRequestBuilder):
         from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
+            "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
@@ -47,20 +47,14 @@ class GetIosAvailableUpdateVersionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GetIosAvailableUpdateVersionsGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[GetIosAvailableUpdateVersionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Invoke function getIosAvailableUpdateVersions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation()
-        if request_configuration:
-            request_info.headers.add_all(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.GET
+        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
@@ -113,19 +107,6 @@ class GetIosAvailableUpdateVersionsRequestBuilder(BaseRequestBuilder):
 
         # Show only the first n items
         top: Optional[int] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GetIosAvailableUpdateVersionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[GetIosAvailableUpdateVersionsRequestBuilder.GetIosAvailableUpdateVersionsRequestBuilderGetQueryParameters] = None
 
     
 

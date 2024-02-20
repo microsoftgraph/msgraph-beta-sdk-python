@@ -75,7 +75,7 @@ class Alert(Entity):
     severity: Optional[AlertSeverity] = None
     # The status property
     status: Optional[AlertStatus] = None
-    # The systemTags property
+    # The system tags associated with the alert
     system_tags: Optional[List[str]] = None
     # The Microsoft Entra tenant the alert was created in.
     tenant_id: Optional[str] = None

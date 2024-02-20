@@ -23,7 +23,7 @@ class BookingService(BookingNamedEntity):
     odata_type: Optional[str] = "#microsoft.graph.bookingService"
     # Additional information that is sent to the customer when an appointment is confirmed.
     additional_information: Optional[str] = None
-    # The createdDateTime property
+    # The date, time and timezone when the Service was created.
     created_date_time: Optional[datetime.datetime] = None
     # Contains the set of custom questions associated with a particular service.
     custom_questions: Optional[List[BookingQuestionAssignment]] = None
@@ -39,15 +39,15 @@ class BookingService(BookingNamedEntity):
     default_reminders: Optional[List[BookingReminder]] = None
     # A text description for the service.
     description: Optional[str] = None
-    # True if an anonymousJoinWebUrl(webrtcUrl) will be generated for the appointment booked for this service.
+    # Indicates if an anonymousJoinWebUrl(webrtcUrl) is generated for the appointment booked for this service. The default value is false.
     is_anonymous_join_enabled: Optional[bool] = None
     # True means this service isn't available to customers for booking.
     is_hidden_from_customers: Optional[bool] = None
-    # True indicates that the appointments for the service will be held online. Default value is false.
+    # Indicates that the appointments for the service are held online. The default value is false.
     is_location_online: Optional[bool] = None
     # The language of the self service booking page.
     language_tag: Optional[str] = None
-    # The lastUpdatedDateTime property
+    # The date, time and timezone when the Service  was last updated.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The maximum number of customers allowed in a service. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment.  To create a customer, use the Create bookingCustomer operation.
     maximum_attendees_count: Optional[int] = None

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -19,6 +20,7 @@ if TYPE_CHECKING:
     from .scheduling_groups.scheduling_groups_request_builder import SchedulingGroupsRequestBuilder
     from .share.share_request_builder import ShareRequestBuilder
     from .shifts.shifts_request_builder import ShiftsRequestBuilder
+    from .shifts_role_definitions.shifts_role_definitions_request_builder import ShiftsRoleDefinitionsRequestBuilder
     from .swap_shifts_change_requests.swap_shifts_change_requests_request_builder import SwapShiftsChangeRequestsRequestBuilder
     from .times_off.times_off_request_builder import TimesOffRequestBuilder
     from .time_cards.time_cards_request_builder import TimeCardsRequestBuilder
@@ -38,7 +40,7 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/teams/{team%2Did}/schedule{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[ScheduleRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property schedule for teams
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -50,14 +52,13 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
         from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
+            "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ScheduleRequestBuilderGetRequestConfiguration] = None) -> Optional[Schedule]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Schedule]:
         """
         Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the provisionStatus property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the provisionStatusCode property. Clients can also inspect the configuration of the schedule.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -70,8 +71,7 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
         from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
+            "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
@@ -79,7 +79,7 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Schedule, error_mapping)
     
-    async def put(self,body: Optional[Schedule] = None, request_configuration: Optional[ScheduleRequestBuilderPutRequestConfiguration] = None) -> Optional[Schedule]:
+    async def put(self,body: Optional[Schedule] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Schedule]:
         """
         Update the navigation property schedule in teams
         param body: The request body
@@ -94,8 +94,7 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
         from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": ODataError,
-            "5XX": ODataError,
+            "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
@@ -103,40 +102,29 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Schedule, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[ScheduleRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property schedule for teams
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation()
-        if request_configuration:
-            request_info.headers.add_all(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.DELETE
+        request_info = RequestInformation(Method.DELETE, '{+baseurl}/teams/{team%2Did}/schedule', self.path_parameters)
+        request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[ScheduleRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the provisionStatus property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the provisionStatusCode property. Clients can also inspect the configuration of the schedule.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation()
-        if request_configuration:
-            request_info.headers.add_all(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.GET
+        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_put_request_information(self,body: Optional[Schedule] = None, request_configuration: Optional[ScheduleRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
+    def to_put_request_information(self,body: Optional[Schedule] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property schedule in teams
         param body: The request body
@@ -145,13 +133,8 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation()
-        if request_configuration:
-            request_info.headers.add_all(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.PUT
+        request_info = RequestInformation(Method.PUT, '{+baseurl}/teams/{team%2Did}/schedule', self.path_parameters)
+        request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
@@ -230,6 +213,15 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
         return ShiftsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def shifts_role_definitions(self) -> ShiftsRoleDefinitionsRequestBuilder:
+        """
+        Provides operations to manage the shiftsRoleDefinitions property of the microsoft.graph.schedule entity.
+        """
+        from .shifts_role_definitions.shifts_role_definitions_request_builder import ShiftsRoleDefinitionsRequestBuilder
+
+        return ShiftsRoleDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def swap_shifts_change_requests(self) -> SwapShiftsChangeRequestsRequestBuilder:
         """
         Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.
@@ -274,16 +266,6 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
 
         return TimesOffRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ScheduleRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class ScheduleRequestBuilderGetQueryParameters():
         """
@@ -309,28 +291,5 @@ class ScheduleRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ScheduleRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ScheduleRequestBuilder.ScheduleRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ScheduleRequestBuilderPutRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

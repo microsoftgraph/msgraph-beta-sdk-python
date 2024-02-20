@@ -15,17 +15,17 @@ from .change_tracked_entity import ChangeTrackedEntity
 class OpenShift(ChangeTrackedEntity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.openShift"
-    # Draft changes in the openShift are only visible to managers until they are shared.
+    # Draft changes in the openShift are only visible to managers until they're shared.
     draft_open_shift: Optional[OpenShiftItem] = None
     # The openShift is marked for deletion, a process that is finalized when the schedule is shared.
     is_staged_for_deletion: Optional[bool] = None
     # The ID of the schedulingGroup that contains the openShift.
     scheduling_group_id: Optional[str] = None
-    # The schedulingGroupInfo property
+    # Information about the scheduling group to which the shift belongs.
     scheduling_group_info: Optional[SchedulingGroupInfo] = None
     # The shared version of this openShift that is viewable by both employees and managers.
     shared_open_shift: Optional[OpenShiftItem] = None
-    # The teamInfo property
+    # Information of the team that the openShift is in.
     team_info: Optional[ShiftsTeamInfo] = None
     
     @staticmethod

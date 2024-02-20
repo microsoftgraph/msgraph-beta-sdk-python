@@ -13,4 +13,6 @@ class ElevationRequestState(str, Enum):
     Expired = "expired",
     # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
+    # Set to expire when Approved for is elapsed or ExpireDate is elapsed, whichever is sooner.
+    Revoked = "revoked",
 

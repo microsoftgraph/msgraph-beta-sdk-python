@@ -75,4 +75,6 @@ class RemoteAction(str, Enum):
     PauseConfigurationRefresh = "pauseConfigurationRefresh",
     # Indicates remote device action to intiate Mobile Device Management (MDM) attestation if device is capable for it.
     InitiateDeviceAttestation = "initiateDeviceAttestation",
+    # Indicates remote device action to override assignments for a Device.
+    ChangeAssignments = "changeAssignments",
 

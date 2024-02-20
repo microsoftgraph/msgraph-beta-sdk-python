@@ -43,7 +43,7 @@ class Event(OutlookItem):
     body_preview: Optional[str] = None
     # The calendar that contains the event. Navigation property. Read-only.
     calendar: Optional[Calendar] = None
-    # Contains occurrenceId property values of cancelled instances in a recurring series, if the event is the series master. Instances in a recurring series that are cancelled are called cancelledOccurences.Returned only on $select in a Get operation which specifies the id of a series master event (that is, the seriesMasterId property value).
+    # Contains occurrenceId property values of canceled instances in a recurring series, if the event is the series master. Instances in a recurring series that are canceled are called cancelledOccurences.Returned only on $select in a Get operation which specifies the id of a series master event (that is, the seriesMasterId property value).
     cancelled_occurrences: Optional[List[str]] = None
     # The date, time, and time zone that the event ends. By default, the end time is in UTC.
     end: Optional[DateTimeTimeZone] = None
@@ -57,7 +57,7 @@ class Event(OutlookItem):
     hide_attendees: Optional[bool] = None
     # The importance property
     importance: Optional[Importance] = None
-    # The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
+    # The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but doesn't include occurrences that have been canceled from the series. Navigation property. Read-only. Nullable.
     instances: Optional[List[Event]] = None
     # The isAllDay property
     is_all_day: Optional[bool] = None

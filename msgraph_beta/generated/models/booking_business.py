@@ -29,7 +29,7 @@ class BookingBusiness(BookingNamedEntity):
     address: Optional[PhysicalAddress] = None
     # All the appointments of this business. Read-only. Nullable.
     appointments: Optional[List[BookingAppointment]] = None
-    # The bookingPageSettings property
+    # Settings for the published booking page.
     booking_page_settings: Optional[BookingPageSettings] = None
     # The hours of operation for the business.
     business_hours: Optional[List[BookingWorkHours]] = None
@@ -37,9 +37,9 @@ class BookingBusiness(BookingNamedEntity):
     business_type: Optional[str] = None
     # The set of appointments of this business in a specified date range. Read-only. Nullable.
     calendar_view: Optional[List[BookingAppointment]] = None
-    # The createdDateTime property
+    # The date, time and timezone when the booking business was created.
     created_date_time: Optional[datetime.datetime] = None
-    # All the custom questions of this business. Read-only. Nullable.
+    # All custom questions of this business.
     custom_questions: Optional[List[BookingCustomQuestion]] = None
     # All the customers of this business. Read-only. Nullable.
     customers: Optional[List[BookingCustomer]] = None
@@ -51,7 +51,7 @@ class BookingBusiness(BookingNamedEntity):
     is_published: Optional[bool] = None
     # The language of the self service booking page
     language_tag: Optional[str] = None
-    # The lastUpdatedDateTime property
+    # The date, time and timezone when the booking business was last updated.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The telephone number for the business. The phone property, together with address and webSiteUrl, appear in the footer of a business scheduling page.
     phone: Optional[str] = None
