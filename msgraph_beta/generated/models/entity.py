@@ -906,6 +906,7 @@ if TYPE_CHECKING:
     from .managed_app_status_raw import ManagedAppStatusRaw
     from .managed_device import ManagedDevice
     from .managed_device_certificate_state import ManagedDeviceCertificateState
+    from .managed_device_cleanup_rule import ManagedDeviceCleanupRule
     from .managed_device_encryption_state import ManagedDeviceEncryptionState
     from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
     from .managed_device_mobile_app_configuration_assignment import ManagedDeviceMobileAppConfigurationAssignment
@@ -1453,6 +1454,7 @@ if TYPE_CHECKING:
     from .sharepoint import Sharepoint
     from .sharepoint_settings import SharepointSettings
     from .shift import Shift
+    from .shifts_role_definition import ShiftsRoleDefinition
     from .shift_preferences import ShiftPreferences
     from .sign_in import SignIn
     from .simulation import Simulation
@@ -5526,6 +5528,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .managed_device_certificate_state import ManagedDeviceCertificateState
 
             return ManagedDeviceCertificateState()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedDeviceCleanupRule".casefold():
+            from .managed_device_cleanup_rule import ManagedDeviceCleanupRule
+
+            return ManagedDeviceCleanupRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedDeviceEncryptionState".casefold():
             from .managed_device_encryption_state import ManagedDeviceEncryptionState
 
@@ -7750,6 +7756,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .shift_preferences import ShiftPreferences
 
             return ShiftPreferences()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.shiftsRoleDefinition".casefold():
+            from .shifts_role_definition import ShiftsRoleDefinition
+
+            return ShiftsRoleDefinition()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.signIn".casefold():
             from .sign_in import SignIn
 
@@ -10329,6 +10339,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .managed_app_status_raw import ManagedAppStatusRaw
         from .managed_device import ManagedDevice
         from .managed_device_certificate_state import ManagedDeviceCertificateState
+        from .managed_device_cleanup_rule import ManagedDeviceCleanupRule
         from .managed_device_encryption_state import ManagedDeviceEncryptionState
         from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
         from .managed_device_mobile_app_configuration_assignment import ManagedDeviceMobileAppConfigurationAssignment
@@ -10876,6 +10887,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .sharepoint import Sharepoint
         from .sharepoint_settings import SharepointSettings
         from .shift import Shift
+        from .shifts_role_definition import ShiftsRoleDefinition
         from .shift_preferences import ShiftPreferences
         from .sign_in import SignIn
         from .simulation import Simulation
@@ -12196,6 +12208,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .managed_app_status_raw import ManagedAppStatusRaw
         from .managed_device import ManagedDevice
         from .managed_device_certificate_state import ManagedDeviceCertificateState
+        from .managed_device_cleanup_rule import ManagedDeviceCleanupRule
         from .managed_device_encryption_state import ManagedDeviceEncryptionState
         from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
         from .managed_device_mobile_app_configuration_assignment import ManagedDeviceMobileAppConfigurationAssignment
@@ -12743,6 +12756,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .sharepoint import Sharepoint
         from .sharepoint_settings import SharepointSettings
         from .shift import Shift
+        from .shifts_role_definition import ShiftsRoleDefinition
         from .shift_preferences import ShiftPreferences
         from .sign_in import SignIn
         from .simulation import Simulation

@@ -6,7 +6,6 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .attachment_content_properties import AttachmentContentProperties
     from .content_metadata import ContentMetadata
 
 @dataclass
@@ -36,14 +35,6 @@ class ContentProperties(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not parse_node:
             raise TypeError("parse_node cannot be null.")
-        try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
-        except AttributeError:
-            mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.attachmentContentProperties".casefold():
-            from .attachment_content_properties import AttachmentContentProperties
-
-            return AttachmentContentProperties()
         return ContentProperties()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -51,10 +42,8 @@ class ContentProperties(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .attachment_content_properties import AttachmentContentProperties
         from .content_metadata import ContentMetadata
 
-        from .attachment_content_properties import AttachmentContentProperties
         from .content_metadata import ContentMetadata
 
         fields: Dict[str, Callable[[Any], None]] = {

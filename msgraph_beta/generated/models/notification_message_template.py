@@ -21,6 +21,8 @@ class NotificationMessageTemplate(Entity):
     # The default locale to fallback onto when the requested locale is not available.
     default_locale: Optional[str] = None
     # Display name for the Notification Message Template.
+    description: Optional[str] = None
+    # Display name for the Notification Message Template.
     display_name: Optional[str] = None
     # DateTime the object was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
@@ -58,6 +60,7 @@ class NotificationMessageTemplate(Entity):
         fields: Dict[str, Callable[[Any], None]] = {
             "brandingOptions": lambda n : setattr(self, 'branding_options', n.get_collection_of_enum_values(NotificationTemplateBrandingOptions)),
             "defaultLocale": lambda n : setattr(self, 'default_locale', n.get_str_value()),
+            "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "localizedNotificationMessages": lambda n : setattr(self, 'localized_notification_messages', n.get_collection_of_object_values(LocalizedNotificationMessage)),
@@ -78,6 +81,7 @@ class NotificationMessageTemplate(Entity):
         super().serialize(writer)
         writer.write_enum_value("brandingOptions", self.branding_options)
         writer.write_str_value("defaultLocale", self.default_locale)
+        writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_collection_of_object_values("localizedNotificationMessages", self.localized_notification_messages)

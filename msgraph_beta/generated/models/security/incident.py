@@ -28,9 +28,9 @@ class Incident(Entity):
     comments: Optional[List[AlertComment]] = None
     # Time when the incident was first created.
     created_date_time: Optional[datetime.datetime] = None
-    # Array of custom tags associated with an incident.
+    # The collection of custom tags that are associated with an incident.
     custom_tags: Optional[List[str]] = None
-    # The description property
+    # A rich text string describing the incident
     description: Optional[str] = None
     # Specifies the determination of the incident. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.
     determination: Optional[AlertDetermination] = None
@@ -44,9 +44,9 @@ class Incident(Entity):
     last_update_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The recommendedActions property
+    # A rich text string that represents the actions that are reccomnded to take in order to resolve the incident
     recommended_actions: Optional[str] = None
-    # The recommendedHuntingQueries property
+    # List of hunting Kusto Query Language (KQL) queries related to the incident
     recommended_hunting_queries: Optional[List[RecommendedHuntingQuery]] = None
     # Only populated in case an incident is grouped together with another incident, as part of the logic that processes incidents. In such a case, the status property is redirected.
     redirect_incident_id: Optional[str] = None
@@ -54,7 +54,7 @@ class Incident(Entity):
     severity: Optional[AlertSeverity] = None
     # The status property
     status: Optional[IncidentStatus] = None
-    # The systemTags property
+    # The collection of system tags that are associated with the incident.
     system_tags: Optional[List[str]] = None
     # The Microsoft Entra tenant in which the alert was created.
     tenant_id: Optional[str] = None

@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from .android_required_password_complexity import AndroidRequiredPasswordComplexity
     from .android_required_password_type import AndroidRequiredPasswordType
     from .android_safety_net_evaluation_type import AndroidSafetyNetEvaluationType
+    from .android_work_profile_required_password_type import AndroidWorkProfileRequiredPasswordType
     from .device_compliance_policy import DeviceCompliancePolicy
     from .device_threat_protection_level import DeviceThreatProtectionLevel
 
@@ -69,6 +70,20 @@ class AndroidWorkProfileCompliancePolicy(DeviceCompliancePolicy):
     security_required_android_safety_net_evaluation_type: Optional[AndroidSafetyNetEvaluationType] = None
     # Require encryption on Android devices.
     storage_require_encryption: Optional[bool] = None
+    # Minutes of inactivity before the screen times out.
+    work_profile_inactive_before_screen_lock_in_minutes: Optional[int] = None
+    # Number of days before the work profile password expires. Valid values 1 to 365
+    work_profile_password_expiration_in_days: Optional[int] = None
+    # Minimum length of work profile password. Valid values 4 to 16
+    work_profile_password_minimum_length: Optional[int] = None
+    # Android Work Profile required password type.
+    work_profile_password_required_type: Optional[AndroidWorkProfileRequiredPasswordType] = None
+    # Number of previous work profile passwords to block. Valid values 0 to 24
+    work_profile_previous_password_block_count: Optional[int] = None
+    # Password is required or not for work profile
+    work_profile_require_password: Optional[bool] = None
+    # The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
+    work_profile_required_password_complexity: Optional[AndroidRequiredPasswordComplexity] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidWorkProfileCompliancePolicy:
@@ -89,12 +104,14 @@ class AndroidWorkProfileCompliancePolicy(DeviceCompliancePolicy):
         from .android_required_password_complexity import AndroidRequiredPasswordComplexity
         from .android_required_password_type import AndroidRequiredPasswordType
         from .android_safety_net_evaluation_type import AndroidSafetyNetEvaluationType
+        from .android_work_profile_required_password_type import AndroidWorkProfileRequiredPasswordType
         from .device_compliance_policy import DeviceCompliancePolicy
         from .device_threat_protection_level import DeviceThreatProtectionLevel
 
         from .android_required_password_complexity import AndroidRequiredPasswordComplexity
         from .android_required_password_type import AndroidRequiredPasswordType
         from .android_safety_net_evaluation_type import AndroidSafetyNetEvaluationType
+        from .android_work_profile_required_password_type import AndroidWorkProfileRequiredPasswordType
         from .device_compliance_policy import DeviceCompliancePolicy
         from .device_threat_protection_level import DeviceThreatProtectionLevel
 
@@ -124,6 +141,13 @@ class AndroidWorkProfileCompliancePolicy(DeviceCompliancePolicy):
             "securityRequireVerifyApps": lambda n : setattr(self, 'security_require_verify_apps', n.get_bool_value()),
             "securityRequiredAndroidSafetyNetEvaluationType": lambda n : setattr(self, 'security_required_android_safety_net_evaluation_type', n.get_enum_value(AndroidSafetyNetEvaluationType)),
             "storageRequireEncryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
+            "workProfileInactiveBeforeScreenLockInMinutes": lambda n : setattr(self, 'work_profile_inactive_before_screen_lock_in_minutes', n.get_int_value()),
+            "workProfilePasswordExpirationInDays": lambda n : setattr(self, 'work_profile_password_expiration_in_days', n.get_int_value()),
+            "workProfilePasswordMinimumLength": lambda n : setattr(self, 'work_profile_password_minimum_length', n.get_int_value()),
+            "workProfilePasswordRequiredType": lambda n : setattr(self, 'work_profile_password_required_type', n.get_enum_value(AndroidWorkProfileRequiredPasswordType)),
+            "workProfilePreviousPasswordBlockCount": lambda n : setattr(self, 'work_profile_previous_password_block_count', n.get_int_value()),
+            "workProfileRequirePassword": lambda n : setattr(self, 'work_profile_require_password', n.get_bool_value()),
+            "workProfileRequiredPasswordComplexity": lambda n : setattr(self, 'work_profile_required_password_complexity', n.get_enum_value(AndroidRequiredPasswordComplexity)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -163,5 +187,12 @@ class AndroidWorkProfileCompliancePolicy(DeviceCompliancePolicy):
         writer.write_bool_value("securityRequireVerifyApps", self.security_require_verify_apps)
         writer.write_enum_value("securityRequiredAndroidSafetyNetEvaluationType", self.security_required_android_safety_net_evaluation_type)
         writer.write_bool_value("storageRequireEncryption", self.storage_require_encryption)
+        writer.write_int_value("workProfileInactiveBeforeScreenLockInMinutes", self.work_profile_inactive_before_screen_lock_in_minutes)
+        writer.write_int_value("workProfilePasswordExpirationInDays", self.work_profile_password_expiration_in_days)
+        writer.write_int_value("workProfilePasswordMinimumLength", self.work_profile_password_minimum_length)
+        writer.write_enum_value("workProfilePasswordRequiredType", self.work_profile_password_required_type)
+        writer.write_int_value("workProfilePreviousPasswordBlockCount", self.work_profile_previous_password_block_count)
+        writer.write_bool_value("workProfileRequirePassword", self.work_profile_require_password)
+        writer.write_enum_value("workProfileRequiredPasswordComplexity", self.work_profile_required_password_complexity)
     
 
