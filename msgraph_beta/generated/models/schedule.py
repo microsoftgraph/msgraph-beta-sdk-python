@@ -31,6 +31,10 @@ class Schedule(Entity):
     day_notes: Optional[List[DayNote]] = None
     # Indicates whether the schedule is enabled for the team. Required.
     enabled: Optional[bool] = None
+    # Indicates whether approval is required by a manager of this schedule for cross location shift requests.
+    is_cross_location_shift_request_approval_required: Optional[bool] = None
+    # Indicates whether the cross-location marketplace feature is enabled for this schedule.
+    is_cross_location_shifts_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The offer requests for shifts in the schedule.
@@ -53,7 +57,7 @@ class Schedule(Entity):
     shifts: Optional[List[Shift]] = None
     # The shiftsRoleDefinitions property
     shifts_role_definitions: Optional[List[ShiftsRoleDefinition]] = None
-    # Indicates the start day of the week.
+    # Indicates the start day of the week. The possible values are: sunday, monday, tuesday, wednesday, thursday, friday, saturday.
     start_day_of_week: Optional[DayOfWeek] = None
     # The swap requests for shifts in the schedule.
     swap_shifts_change_requests: Optional[List[SwapShiftsChangeRequest]] = None
@@ -75,7 +79,7 @@ class Schedule(Entity):
     time_zone: Optional[str] = None
     # The instances of times off in the schedule.
     times_off: Optional[List[TimeOff]] = None
-    # The Ids for the workforce integrations associated with this schedule.
+    # The IDs for the workforce integrations associated with this schedule.
     workforce_integration_ids: Optional[List[str]] = None
     
     @staticmethod
@@ -132,6 +136,8 @@ class Schedule(Entity):
             "activitiesIncludedWhenCopyingShiftsEnabled": lambda n : setattr(self, 'activities_included_when_copying_shifts_enabled', n.get_bool_value()),
             "dayNotes": lambda n : setattr(self, 'day_notes', n.get_collection_of_object_values(DayNote)),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
+            "isCrossLocationShiftRequestApprovalRequired": lambda n : setattr(self, 'is_cross_location_shift_request_approval_required', n.get_bool_value()),
+            "isCrossLocationShiftsEnabled": lambda n : setattr(self, 'is_cross_location_shifts_enabled', n.get_bool_value()),
             "offerShiftRequests": lambda n : setattr(self, 'offer_shift_requests', n.get_collection_of_object_values(OfferShiftRequest)),
             "offerShiftRequestsEnabled": lambda n : setattr(self, 'offer_shift_requests_enabled', n.get_bool_value()),
             "openShiftChangeRequests": lambda n : setattr(self, 'open_shift_change_requests', n.get_collection_of_object_values(OpenShiftChangeRequest)),
@@ -171,6 +177,8 @@ class Schedule(Entity):
         writer.write_bool_value("activitiesIncludedWhenCopyingShiftsEnabled", self.activities_included_when_copying_shifts_enabled)
         writer.write_collection_of_object_values("dayNotes", self.day_notes)
         writer.write_bool_value("enabled", self.enabled)
+        writer.write_bool_value("isCrossLocationShiftRequestApprovalRequired", self.is_cross_location_shift_request_approval_required)
+        writer.write_bool_value("isCrossLocationShiftsEnabled", self.is_cross_location_shifts_enabled)
         writer.write_collection_of_object_values("offerShiftRequests", self.offer_shift_requests)
         writer.write_bool_value("offerShiftRequestsEnabled", self.offer_shift_requests_enabled)
         writer.write_collection_of_object_values("openShiftChangeRequests", self.open_shift_change_requests)

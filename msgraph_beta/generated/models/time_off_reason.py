@@ -13,7 +13,7 @@ from .change_tracked_entity import ChangeTrackedEntity
 class TimeOffReason(ChangeTrackedEntity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.timeOffReason"
-    # The code of the timeOffReason to represent an external identifier.
+    # The code of the timeOffReason to represent an external identifier. This field must be unique within the team in Microsoft Teams and uses an alphanumeric format, with a maximum of 100 characters.
     code: Optional[str] = None
     # The name of the timeOffReason. Required.
     display_name: Optional[str] = None

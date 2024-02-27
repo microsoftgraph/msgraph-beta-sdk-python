@@ -12,12 +12,14 @@ if TYPE_CHECKING:
     from .device_local_credential_info import DeviceLocalCredentialInfo
     from .directory_object import DirectoryObject
     from .entity import Entity
+    from .external_user_profile import ExternalUserProfile
     from .feature_rollout_policy import FeatureRolloutPolicy
     from .identity_provider_base import IdentityProviderBase
     from .impacted_resource import ImpactedResource
     from .inbound_shared_user_profile import InboundSharedUserProfile
     from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
     from .outbound_shared_user_profile import OutboundSharedUserProfile
+    from .pending_external_user_profile import PendingExternalUserProfile
     from .recommendation import Recommendation
     from .shared_email_domain import SharedEmailDomain
 
@@ -37,6 +39,8 @@ class Directory(Entity):
     deleted_items: Optional[List[DirectoryObject]] = None
     # The credentials of the device's local administrator account backed up to Microsoft Entra ID.
     device_local_credentials: Optional[List[DeviceLocalCredentialInfo]] = None
+    # Collection of external user profiles that represent collaborators in the directory.
+    external_user_profiles: Optional[List[ExternalUserProfile]] = None
     # The featureRolloutPolicies property
     feature_rollout_policies: Optional[List[FeatureRolloutPolicy]] = None
     # Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
@@ -51,6 +55,8 @@ class Directory(Entity):
     on_premises_synchronization: Optional[List[OnPremisesDirectorySynchronization]] = None
     # The outboundSharedUserProfiles property
     outbound_shared_user_profiles: Optional[List[OutboundSharedUserProfile]] = None
+    # Collection of pending external user profiles representing collaborators in the directory that are unredeemed.
+    pending_external_user_profiles: Optional[List[PendingExternalUserProfile]] = None
     # List of recommended improvements to improve tenant posture.
     recommendations: Optional[List[Recommendation]] = None
     # The sharedEmailDomains property
@@ -82,12 +88,14 @@ class Directory(Entity):
         from .device_local_credential_info import DeviceLocalCredentialInfo
         from .directory_object import DirectoryObject
         from .entity import Entity
+        from .external_user_profile import ExternalUserProfile
         from .feature_rollout_policy import FeatureRolloutPolicy
         from .identity_provider_base import IdentityProviderBase
         from .impacted_resource import ImpactedResource
         from .inbound_shared_user_profile import InboundSharedUserProfile
         from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
         from .outbound_shared_user_profile import OutboundSharedUserProfile
+        from .pending_external_user_profile import PendingExternalUserProfile
         from .recommendation import Recommendation
         from .shared_email_domain import SharedEmailDomain
 
@@ -99,12 +107,14 @@ class Directory(Entity):
         from .device_local_credential_info import DeviceLocalCredentialInfo
         from .directory_object import DirectoryObject
         from .entity import Entity
+        from .external_user_profile import ExternalUserProfile
         from .feature_rollout_policy import FeatureRolloutPolicy
         from .identity_provider_base import IdentityProviderBase
         from .impacted_resource import ImpactedResource
         from .inbound_shared_user_profile import InboundSharedUserProfile
         from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
         from .outbound_shared_user_profile import OutboundSharedUserProfile
+        from .pending_external_user_profile import PendingExternalUserProfile
         from .recommendation import Recommendation
         from .shared_email_domain import SharedEmailDomain
 
@@ -115,12 +125,14 @@ class Directory(Entity):
             "customSecurityAttributeDefinitions": lambda n : setattr(self, 'custom_security_attribute_definitions', n.get_collection_of_object_values(CustomSecurityAttributeDefinition)),
             "deletedItems": lambda n : setattr(self, 'deleted_items', n.get_collection_of_object_values(DirectoryObject)),
             "deviceLocalCredentials": lambda n : setattr(self, 'device_local_credentials', n.get_collection_of_object_values(DeviceLocalCredentialInfo)),
+            "externalUserProfiles": lambda n : setattr(self, 'external_user_profiles', n.get_collection_of_object_values(ExternalUserProfile)),
             "featureRolloutPolicies": lambda n : setattr(self, 'feature_rollout_policies', n.get_collection_of_object_values(FeatureRolloutPolicy)),
             "federationConfigurations": lambda n : setattr(self, 'federation_configurations', n.get_collection_of_object_values(IdentityProviderBase)),
             "impactedResources": lambda n : setattr(self, 'impacted_resources', n.get_collection_of_object_values(ImpactedResource)),
             "inboundSharedUserProfiles": lambda n : setattr(self, 'inbound_shared_user_profiles', n.get_collection_of_object_values(InboundSharedUserProfile)),
             "onPremisesSynchronization": lambda n : setattr(self, 'on_premises_synchronization', n.get_collection_of_object_values(OnPremisesDirectorySynchronization)),
             "outboundSharedUserProfiles": lambda n : setattr(self, 'outbound_shared_user_profiles', n.get_collection_of_object_values(OutboundSharedUserProfile)),
+            "pendingExternalUserProfiles": lambda n : setattr(self, 'pending_external_user_profiles', n.get_collection_of_object_values(PendingExternalUserProfile)),
             "recommendations": lambda n : setattr(self, 'recommendations', n.get_collection_of_object_values(Recommendation)),
             "sharedEmailDomains": lambda n : setattr(self, 'shared_email_domains', n.get_collection_of_object_values(SharedEmailDomain)),
             "subscriptions": lambda n : setattr(self, 'subscriptions', n.get_collection_of_object_values(CompanySubscription)),
@@ -144,12 +156,14 @@ class Directory(Entity):
         writer.write_collection_of_object_values("customSecurityAttributeDefinitions", self.custom_security_attribute_definitions)
         writer.write_collection_of_object_values("deletedItems", self.deleted_items)
         writer.write_collection_of_object_values("deviceLocalCredentials", self.device_local_credentials)
+        writer.write_collection_of_object_values("externalUserProfiles", self.external_user_profiles)
         writer.write_collection_of_object_values("featureRolloutPolicies", self.feature_rollout_policies)
         writer.write_collection_of_object_values("federationConfigurations", self.federation_configurations)
         writer.write_collection_of_object_values("impactedResources", self.impacted_resources)
         writer.write_collection_of_object_values("inboundSharedUserProfiles", self.inbound_shared_user_profiles)
         writer.write_collection_of_object_values("onPremisesSynchronization", self.on_premises_synchronization)
         writer.write_collection_of_object_values("outboundSharedUserProfiles", self.outbound_shared_user_profiles)
+        writer.write_collection_of_object_values("pendingExternalUserProfiles", self.pending_external_user_profiles)
         writer.write_collection_of_object_values("recommendations", self.recommendations)
         writer.write_collection_of_object_values("sharedEmailDomains", self.shared_email_domains)
         writer.write_collection_of_object_values("subscriptions", self.subscriptions)

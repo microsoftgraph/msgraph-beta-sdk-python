@@ -14,7 +14,9 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.room_list import RoomList
     from .rooms.rooms_request_builder import RoomsRequestBuilder
+    from .rooms_with_place_id.rooms_with_place_id_request_builder import RoomsWithPlaceIdRequestBuilder
     from .workspaces.workspaces_request_builder import WorkspacesRequestBuilder
+    from .workspaces_with_place_id.workspaces_with_place_id_request_builder import WorkspacesWithPlaceIdRequestBuilder
 
 class GraphRoomListRequestBuilder(BaseRequestBuilder):
     """
@@ -49,6 +51,18 @@ class GraphRoomListRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RoomList, error_mapping)
     
+    def rooms_with_place_id(self,place_id: Optional[str] = None) -> RoomsWithPlaceIdRequestBuilder:
+        """
+        Provides operations to manage the rooms property of the microsoft.graph.roomList entity.
+        param place_id: Alternate key of room
+        Returns: RoomsWithPlaceIdRequestBuilder
+        """
+        if not place_id:
+            raise TypeError("place_id cannot be null.")
+        from .rooms_with_place_id.rooms_with_place_id_request_builder import RoomsWithPlaceIdRequestBuilder
+
+        return RoomsWithPlaceIdRequestBuilder(self.request_adapter, self.path_parameters, place_id)
+    
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get the item of type microsoft.graph.place as microsoft.graph.roomList
@@ -69,6 +83,18 @@ class GraphRoomListRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return GraphRoomListRequestBuilder(self.request_adapter, raw_url)
+    
+    def workspaces_with_place_id(self,place_id: Optional[str] = None) -> WorkspacesWithPlaceIdRequestBuilder:
+        """
+        Provides operations to manage the workspaces property of the microsoft.graph.roomList entity.
+        param place_id: Alternate key of workspace
+        Returns: WorkspacesWithPlaceIdRequestBuilder
+        """
+        if not place_id:
+            raise TypeError("place_id cannot be null.")
+        from .workspaces_with_place_id.workspaces_with_place_id_request_builder import WorkspacesWithPlaceIdRequestBuilder
+
+        return WorkspacesWithPlaceIdRequestBuilder(self.request_adapter, self.path_parameters, place_id)
     
     @property
     def rooms(self) -> RoomsRequestBuilder:

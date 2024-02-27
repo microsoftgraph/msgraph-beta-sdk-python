@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .permission_grant_condition_set import PermissionGrantConditionSet
     from .policy_base import PolicyBase
+    from .resource_scope_type import ResourceScopeType
 
 from .policy_base import PolicyBase
 
@@ -17,6 +18,8 @@ class PermissionGrantPolicy(PolicyBase):
     excludes: Optional[List[PermissionGrantConditionSet]] = None
     # Condition sets that are included in this permission grant policy. Automatically expanded on GET.
     includes: Optional[List[PermissionGrantConditionSet]] = None
+    # The resource type the pre-approval policy applies to. Possible values: group for groups and teams, chat for chats, tenant for all supported resources in the tenant. Required.
+    resource_scope_type: Optional[ResourceScopeType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PermissionGrantPolicy:
@@ -36,13 +39,16 @@ class PermissionGrantPolicy(PolicyBase):
         """
         from .permission_grant_condition_set import PermissionGrantConditionSet
         from .policy_base import PolicyBase
+        from .resource_scope_type import ResourceScopeType
 
         from .permission_grant_condition_set import PermissionGrantConditionSet
         from .policy_base import PolicyBase
+        from .resource_scope_type import ResourceScopeType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "excludes": lambda n : setattr(self, 'excludes', n.get_collection_of_object_values(PermissionGrantConditionSet)),
             "includes": lambda n : setattr(self, 'includes', n.get_collection_of_object_values(PermissionGrantConditionSet)),
+            "resourceScopeType": lambda n : setattr(self, 'resource_scope_type', n.get_enum_value(ResourceScopeType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -59,5 +65,6 @@ class PermissionGrantPolicy(PolicyBase):
         super().serialize(writer)
         writer.write_collection_of_object_values("excludes", self.excludes)
         writer.write_collection_of_object_values("includes", self.includes)
+        writer.write_enum_value("resourceScopeType", self.resource_scope_type)
     
 

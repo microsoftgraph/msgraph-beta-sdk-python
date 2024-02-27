@@ -5,6 +5,8 @@ from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.serialization import ParseNodeFactoryRegistry, SerializationWriterFactoryRegistry
 from kiota_abstractions.store import BackingStoreFactory, BackingStoreFactorySingleton
+from kiota_serialization_form.form_parse_node_factory import FormParseNodeFactory
+from kiota_serialization_form.form_serialization_writer_factory import FormSerializationWriterFactory
 from kiota_serialization_json.json_parse_node_factory import JsonParseNodeFactory
 from kiota_serialization_json.json_serialization_writer_factory import JsonSerializationWriterFactory
 from kiota_serialization_text.text_parse_node_factory import TextParseNodeFactory
@@ -91,6 +93,7 @@ if TYPE_CHECKING:
     from .payload_response.payload_response_request_builder import PayloadResponseRequestBuilder
     from .permission_grants.permission_grants_request_builder import PermissionGrantsRequestBuilder
     from .places.places_request_builder import PlacesRequestBuilder
+    from .places_with_place_id.places_with_place_id_request_builder import PlacesWithPlaceIdRequestBuilder
     from .planner.planner_request_builder import PlannerRequestBuilder
     from .policies.policies_request_builder import PoliciesRequestBuilder
     from .print.print_request_builder import PrintRequestBuilder
@@ -147,8 +150,10 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         super().__init__(request_adapter, "{+baseurl}", None)
         register_default_serializer(JsonSerializationWriterFactory)
         register_default_serializer(TextSerializationWriterFactory)
+        register_default_serializer(FormSerializationWriterFactory)
         register_default_deserializer(JsonParseNodeFactory)
         register_default_deserializer(TextParseNodeFactory)
+        register_default_deserializer(FormParseNodeFactory)
         if not self.request_adapter.base_url:
             self.request_adapter.base_url = "https://graph.microsoft.com/beta"
         self.path_parameters["base_url"] = self.request_adapter.base_url
@@ -213,6 +218,18 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .groups_with_unique_name.groups_with_unique_name_request_builder import GroupsWithUniqueNameRequestBuilder
 
         return GroupsWithUniqueNameRequestBuilder(self.request_adapter, self.path_parameters, unique_name)
+    
+    def places_with_place_id(self,place_id: Optional[str] = None) -> PlacesWithPlaceIdRequestBuilder:
+        """
+        Provides operations to manage the collection of place entities.
+        param place_id: Alternate key of place
+        Returns: PlacesWithPlaceIdRequestBuilder
+        """
+        if not place_id:
+            raise TypeError("place_id cannot be null.")
+        from .places_with_place_id.places_with_place_id_request_builder import PlacesWithPlaceIdRequestBuilder
+
+        return PlacesWithPlaceIdRequestBuilder(self.request_adapter, self.path_parameters, place_id)
     
     def service_principals_with_app_id(self,app_id: Optional[str] = None) -> ServicePrincipalsWithAppIdRequestBuilder:
         """

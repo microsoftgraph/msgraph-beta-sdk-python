@@ -19,12 +19,14 @@ if TYPE_CHECKING:
     from .custom_security_attribute_definitions.custom_security_attribute_definitions_request_builder import CustomSecurityAttributeDefinitionsRequestBuilder
     from .deleted_items.deleted_items_request_builder import DeletedItemsRequestBuilder
     from .device_local_credentials.device_local_credentials_request_builder import DeviceLocalCredentialsRequestBuilder
+    from .external_user_profiles.external_user_profiles_request_builder import ExternalUserProfilesRequestBuilder
     from .feature_rollout_policies.feature_rollout_policies_request_builder import FeatureRolloutPoliciesRequestBuilder
     from .federation_configurations.federation_configurations_request_builder import FederationConfigurationsRequestBuilder
     from .impacted_resources.impacted_resources_request_builder import ImpactedResourcesRequestBuilder
     from .inbound_shared_user_profiles.inbound_shared_user_profiles_request_builder import InboundSharedUserProfilesRequestBuilder
     from .on_premises_synchronization.on_premises_synchronization_request_builder import OnPremisesSynchronizationRequestBuilder
     from .outbound_shared_user_profiles.outbound_shared_user_profiles_request_builder import OutboundSharedUserProfilesRequestBuilder
+    from .pending_external_user_profiles.pending_external_user_profiles_request_builder import PendingExternalUserProfilesRequestBuilder
     from .recommendations.recommendations_request_builder import RecommendationsRequestBuilder
     from .shared_email_domains.shared_email_domains_request_builder import SharedEmailDomainsRequestBuilder
     from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
@@ -202,6 +204,15 @@ class DirectoryRequestBuilder(BaseRequestBuilder):
         return DeviceLocalCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def external_user_profiles(self) -> ExternalUserProfilesRequestBuilder:
+        """
+        Provides operations to manage the externalUserProfiles property of the microsoft.graph.directory entity.
+        """
+        from .external_user_profiles.external_user_profiles_request_builder import ExternalUserProfilesRequestBuilder
+
+        return ExternalUserProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def feature_rollout_policies(self) -> FeatureRolloutPoliciesRequestBuilder:
         """
         Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.directory entity.
@@ -254,6 +265,15 @@ class DirectoryRequestBuilder(BaseRequestBuilder):
         from .outbound_shared_user_profiles.outbound_shared_user_profiles_request_builder import OutboundSharedUserProfilesRequestBuilder
 
         return OutboundSharedUserProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def pending_external_user_profiles(self) -> PendingExternalUserProfilesRequestBuilder:
+        """
+        Provides operations to manage the pendingExternalUserProfiles property of the microsoft.graph.directory entity.
+        """
+        from .pending_external_user_profiles.pending_external_user_profiles_request_builder import PendingExternalUserProfilesRequestBuilder
+
+        return PendingExternalUserProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def recommendations(self) -> RecommendationsRequestBuilder:

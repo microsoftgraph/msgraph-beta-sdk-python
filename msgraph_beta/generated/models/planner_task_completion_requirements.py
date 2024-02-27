@@ -6,4 +6,5 @@ class PlannerTaskCompletionRequirements(str, Enum):
     UnknownFutureValue = "unknownFutureValue",
     FormCompletion = "formCompletion",
     ApprovalCompletion = "approvalCompletion",
+    CompletionInHostedApp = "completionInHostedApp",
 

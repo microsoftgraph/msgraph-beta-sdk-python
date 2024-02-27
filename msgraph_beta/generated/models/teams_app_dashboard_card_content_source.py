@@ -15,11 +15,11 @@ class TeamsAppDashboardCardContentSource(AdditionalDataHolder, BackedModel, Pars
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The botConfiguration property
+    # The configuration for the bot source. Required if sourceType is set to bot.
     bot_configuration: Optional[TeamsAppDashboardCardBotConfiguration] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sourceType property
+    # Represents the type of source that powers the content of the dashboard card. The possible values are: bot, unknownFutureValue.
     source_type: Optional[TeamsAppDashboardCardSourceType] = None
     
     @staticmethod

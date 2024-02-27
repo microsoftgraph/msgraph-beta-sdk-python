@@ -24,6 +24,12 @@ class AdministrativeUnit(DirectoryObject):
     is_member_management_restricted: Optional[bool] = None
     # Users and groups that are members of this administrative unit. Supports $expand.
     members: Optional[List[DirectoryObject]] = None
+    # Dynamic membership rule for the administrative unit. For more about the rules that you can use for dynamic administrative units and dynamic groups, see Using attributes to create advanced rules.
+    membership_rule: Optional[str] = None
+    # Used to control whether the dynamic membership rule is actively processed. Set to On when you want the dynamic membership rule to be active and Paused if you want to stop updating membership dynamically. If not set, the default behavior is Paused.
+    membership_rule_processing_state: Optional[str] = None
+    # Membership type for the administrative unit. Can be dynamic or assigned. If not set, the default behavior is assigned.
+    membership_type: Optional[str] = None
     # Scoped-role members of this administrative unit.
     scoped_role_members: Optional[List[ScopedRoleMembership]] = None
     # Controls whether the administrative unit and its members are hidden or public. Can be set to HiddenMembership or Public. If not set, the default behavior is Public. When set to HiddenMembership, only members of the administrative unit can list other members of the administrative unit.
@@ -59,6 +65,9 @@ class AdministrativeUnit(DirectoryObject):
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(Extension)),
             "isMemberManagementRestricted": lambda n : setattr(self, 'is_member_management_restricted', n.get_bool_value()),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(DirectoryObject)),
+            "membershipRule": lambda n : setattr(self, 'membership_rule', n.get_str_value()),
+            "membershipRuleProcessingState": lambda n : setattr(self, 'membership_rule_processing_state', n.get_str_value()),
+            "membershipType": lambda n : setattr(self, 'membership_type', n.get_str_value()),
             "scopedRoleMembers": lambda n : setattr(self, 'scoped_role_members', n.get_collection_of_object_values(ScopedRoleMembership)),
             "visibility": lambda n : setattr(self, 'visibility', n.get_str_value()),
         }
@@ -80,6 +89,9 @@ class AdministrativeUnit(DirectoryObject):
         writer.write_collection_of_object_values("extensions", self.extensions)
         writer.write_bool_value("isMemberManagementRestricted", self.is_member_management_restricted)
         writer.write_collection_of_object_values("members", self.members)
+        writer.write_str_value("membershipRule", self.membership_rule)
+        writer.write_str_value("membershipRuleProcessingState", self.membership_rule_processing_state)
+        writer.write_str_value("membershipType", self.membership_type)
         writer.write_collection_of_object_values("scopedRoleMembers", self.scoped_role_members)
         writer.write_str_value("visibility", self.visibility)
     

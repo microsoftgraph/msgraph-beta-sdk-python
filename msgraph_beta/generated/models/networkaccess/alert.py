@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from ..entity import Entity
     from .alert_action import AlertAction
     from .alert_type import AlertType
+    from .related_resource import RelatedResource
 
 from ..entity import Entity
 
@@ -25,6 +26,8 @@ class Alert(Entity):
     first_impacted_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The relatedResources property
+    related_resources: Optional[List[RelatedResource]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Alert:
@@ -45,10 +48,12 @@ class Alert(Entity):
         from ..entity import Entity
         from .alert_action import AlertAction
         from .alert_type import AlertType
+        from .related_resource import RelatedResource
 
         from ..entity import Entity
         from .alert_action import AlertAction
         from .alert_type import AlertType
+        from .related_resource import RelatedResource
 
         fields: Dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(AlertAction)),
@@ -56,6 +61,7 @@ class Alert(Entity):
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "firstImpactedDateTime": lambda n : setattr(self, 'first_impacted_date_time', n.get_datetime_value()),
+            "relatedResources": lambda n : setattr(self, 'related_resources', n.get_collection_of_object_values(RelatedResource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -75,5 +81,6 @@ class Alert(Entity):
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_str_value("description", self.description)
         writer.write_datetime_value("firstImpactedDateTime", self.first_impacted_date_time)
+        writer.write_collection_of_object_values("relatedResources", self.related_resources)
     
 

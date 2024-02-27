@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from .delete_password_single_sign_on_credentials.delete_password_single_sign_on_credentials_request_builder import DeletePasswordSingleSignOnCredentialsRequestBuilder
     from .endpoints.endpoints_request_builder import EndpointsRequestBuilder
     from .federated_identity_credentials.federated_identity_credentials_request_builder import FederatedIdentityCredentialsRequestBuilder
+    from .federated_identity_credentials_with_name.federated_identity_credentials_with_name_request_builder import FederatedIdentityCredentialsWithNameRequestBuilder
     from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
     from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
     from .get_password_single_sign_on_credentials.get_password_single_sign_on_credentials_request_builder import GetPasswordSingleSignOnCredentialsRequestBuilder
@@ -74,6 +75,18 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+    
+    def federated_identity_credentials_with_name(self,name: Optional[str] = None) -> FederatedIdentityCredentialsWithNameRequestBuilder:
+        """
+        Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.
+        param name: Alternate key of federatedIdentityCredential
+        Returns: FederatedIdentityCredentialsWithNameRequestBuilder
+        """
+        if not name:
+            raise TypeError("name cannot be null.")
+        from .federated_identity_credentials_with_name.federated_identity_credentials_with_name_request_builder import FederatedIdentityCredentialsWithNameRequestBuilder
+
+        return FederatedIdentityCredentialsWithNameRequestBuilder(self.request_adapter, self.path_parameters, name)
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ServicePrincipal]:
         """

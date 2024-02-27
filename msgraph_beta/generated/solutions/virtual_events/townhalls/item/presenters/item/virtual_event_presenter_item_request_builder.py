@@ -13,7 +13,6 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
     from .......models.virtual_event_presenter import VirtualEventPresenter
-    from .profile_photo.profile_photo_request_builder import ProfilePhotoRequestBuilder
     from .sessions.sessions_request_builder import SessionsRequestBuilder
     from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
 
@@ -149,15 +148,6 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return VirtualEventPresenterItemRequestBuilder(self.request_adapter, raw_url)
-    
-    @property
-    def profile_photo(self) -> ProfilePhotoRequestBuilder:
-        """
-        Provides operations to manage the media for the solutionsRoot entity.
-        """
-        from .profile_photo.profile_photo_request_builder import ProfilePhotoRequestBuilder
-
-        return ProfilePhotoRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sessions(self) -> SessionsRequestBuilder:

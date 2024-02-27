@@ -8,5 +8,8 @@ class DriveItemSourceApplication(str, Enum):
     Stream = "stream",
     PowerPoint = "powerPoint",
     Office = "office",
+    Loki = "loki",
+    Loop = "loop",
+    Other = "other",
     UnknownFutureValue = "unknownFutureValue",
 

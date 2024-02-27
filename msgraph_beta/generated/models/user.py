@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .calendar import Calendar
     from .calendar_group import CalendarGroup
     from .chat import Chat
+    from .cloud_clipboard_root import CloudClipboardRoot
     from .cloud_p_c import CloudPC
     from .cloud_realtime_communication_info import CloudRealtimeCommunicationInfo
     from .contact import Contact
@@ -129,6 +130,8 @@ class User(DirectoryObject):
     chats: Optional[List[Chat]] = None
     # The city where the user is located. Maximum length is 128 characters. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     city: Optional[str] = None
+    # The cloudClipboard property
+    cloud_clipboard: Optional[CloudClipboardRoot] = None
     # The cloudPCs property
     cloud_p_cs: Optional[List[CloudPC]] = None
     # Microsoft realtime communication information related to the user.  Supports $filter (eq, ne,not).
@@ -418,6 +421,7 @@ class User(DirectoryObject):
         from .calendar import Calendar
         from .calendar_group import CalendarGroup
         from .chat import Chat
+        from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_p_c import CloudPC
         from .cloud_realtime_communication_info import CloudRealtimeCommunicationInfo
         from .contact import Contact
@@ -492,6 +496,7 @@ class User(DirectoryObject):
         from .calendar import Calendar
         from .calendar_group import CalendarGroup
         from .chat import Chat
+        from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_p_c import CloudPC
         from .cloud_realtime_communication_info import CloudRealtimeCommunicationInfo
         from .contact import Contact
@@ -577,6 +582,7 @@ class User(DirectoryObject):
             "calendars": lambda n : setattr(self, 'calendars', n.get_collection_of_object_values(Calendar)),
             "chats": lambda n : setattr(self, 'chats', n.get_collection_of_object_values(Chat)),
             "city": lambda n : setattr(self, 'city', n.get_str_value()),
+            "cloudClipboard": lambda n : setattr(self, 'cloud_clipboard', n.get_object_value(CloudClipboardRoot)),
             "cloudPCs": lambda n : setattr(self, 'cloud_p_cs', n.get_collection_of_object_values(CloudPC)),
             "cloudRealtimeCommunicationInfo": lambda n : setattr(self, 'cloud_realtime_communication_info', n.get_object_value(CloudRealtimeCommunicationInfo)),
             "companyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
@@ -743,6 +749,7 @@ class User(DirectoryObject):
         writer.write_collection_of_object_values("calendars", self.calendars)
         writer.write_collection_of_object_values("chats", self.chats)
         writer.write_str_value("city", self.city)
+        writer.write_object_value("cloudClipboard", self.cloud_clipboard)
         writer.write_collection_of_object_values("cloudPCs", self.cloud_p_cs)
         writer.write_object_value("cloudRealtimeCommunicationInfo", self.cloud_realtime_communication_info)
         writer.write_str_value("companyName", self.company_name)

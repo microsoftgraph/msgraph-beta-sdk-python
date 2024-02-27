@@ -42,6 +42,8 @@ class OnlineMeeting(OnlineMeetingBase):
     join_url: Optional[str] = None
     # The meetingAttendanceReport property
     meeting_attendance_report: Optional[MeetingAttendanceReport] = None
+    # The ID of the meeting template.
+    meeting_template_id: Optional[str] = None
     # The participants associated with the online meeting, including the organizer and the attendees.
     participants: Optional[MeetingParticipants] = None
     # The recording property
@@ -101,6 +103,7 @@ class OnlineMeeting(OnlineMeetingBase):
             "isBroadcast": lambda n : setattr(self, 'is_broadcast', n.get_bool_value()),
             "joinUrl": lambda n : setattr(self, 'join_url', n.get_str_value()),
             "meetingAttendanceReport": lambda n : setattr(self, 'meeting_attendance_report', n.get_object_value(MeetingAttendanceReport)),
+            "meetingTemplateId": lambda n : setattr(self, 'meeting_template_id', n.get_str_value()),
             "participants": lambda n : setattr(self, 'participants', n.get_object_value(MeetingParticipants)),
             "recording": lambda n : setattr(self, 'recording', n.get_bytes_value()),
             "recordings": lambda n : setattr(self, 'recordings', n.get_collection_of_object_values(CallRecording)),
@@ -132,6 +135,7 @@ class OnlineMeeting(OnlineMeetingBase):
         writer.write_bool_value("isBroadcast", self.is_broadcast)
         writer.write_str_value("joinUrl", self.join_url)
         writer.write_object_value("meetingAttendanceReport", self.meeting_attendance_report)
+        writer.write_str_value("meetingTemplateId", self.meeting_template_id)
         writer.write_object_value("participants", self.participants)
         writer.write_bytes_value("recording", self.recording)
         writer.write_collection_of_object_values("recordings", self.recordings)

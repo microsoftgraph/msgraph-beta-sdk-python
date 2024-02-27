@@ -5,14 +5,19 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .education_grading_category import EducationGradingCategory
+    from .education_grading_scheme import EducationGradingScheme
     from .entity import Entity
 
 from .entity import Entity
 
 @dataclass
 class EducationAssignmentSettings(Entity):
+    # The defaultGradingScheme property
+    default_grading_scheme: Optional[EducationGradingScheme] = None
     # When set, enables users to weight assignments differently when computing a class average grade.
     grading_categories: Optional[List[EducationGradingCategory]] = None
+    # The gradingSchemes property
+    grading_schemes: Optional[List[EducationGradingScheme]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Indicates whether turn-in celebration animation will be shown. If true, the animation won't be shown. The default value is false.
@@ -35,13 +40,17 @@ class EducationAssignmentSettings(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .education_grading_category import EducationGradingCategory
+        from .education_grading_scheme import EducationGradingScheme
         from .entity import Entity
 
         from .education_grading_category import EducationGradingCategory
+        from .education_grading_scheme import EducationGradingScheme
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "defaultGradingScheme": lambda n : setattr(self, 'default_grading_scheme', n.get_object_value(EducationGradingScheme)),
             "gradingCategories": lambda n : setattr(self, 'grading_categories', n.get_collection_of_object_values(EducationGradingCategory)),
+            "gradingSchemes": lambda n : setattr(self, 'grading_schemes', n.get_collection_of_object_values(EducationGradingScheme)),
             "submissionAnimationDisabled": lambda n : setattr(self, 'submission_animation_disabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -57,7 +66,9 @@ class EducationAssignmentSettings(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("defaultGradingScheme", self.default_grading_scheme)
         writer.write_collection_of_object_values("gradingCategories", self.grading_categories)
+        writer.write_collection_of_object_values("gradingSchemes", self.grading_schemes)
         writer.write_bool_value("submissionAnimationDisabled", self.submission_animation_disabled)
     
 
