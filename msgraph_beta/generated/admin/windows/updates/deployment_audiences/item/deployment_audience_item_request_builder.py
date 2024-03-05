@@ -13,6 +13,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from ......models.windows_updates.deployment_audience import DeploymentAudience
+    from .applicable_content.applicable_content_request_builder import ApplicableContentRequestBuilder
     from .exclusions.exclusions_request_builder import ExclusionsRequestBuilder
     from .members.members_request_builder import MembersRequestBuilder
     from .microsoft_graph_windows_updates_update_audience.microsoft_graph_windows_updates_update_audience_request_builder import MicrosoftGraphWindowsUpdatesUpdateAudienceRequestBuilder
@@ -140,6 +141,15 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return DeploymentAudienceItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def applicable_content(self) -> ApplicableContentRequestBuilder:
+        """
+        Provides operations to manage the applicableContent property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
+        """
+        from .applicable_content.applicable_content_request_builder import ApplicableContentRequestBuilder
+
+        return ApplicableContentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def exclusions(self) -> ExclusionsRequestBuilder:

@@ -15,9 +15,11 @@ class ApplicableContent(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The catalogEntry property
+    # Catalog entry for the update or content.
     catalog_entry: Optional[CatalogEntry] = None
-    # The matchedDevices property
+    # ID of the catalog entry for the applicable content.
+    catalog_entry_id: Optional[str] = None
+    # Collection of devices and recommendations for applicable catalog content.
     matched_devices: Optional[List[ApplicableContentDeviceMatch]] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -46,6 +48,7 @@ class ApplicableContent(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "catalogEntry": lambda n : setattr(self, 'catalog_entry', n.get_object_value(CatalogEntry)),
+            "catalogEntryId": lambda n : setattr(self, 'catalog_entry_id', n.get_str_value()),
             "matchedDevices": lambda n : setattr(self, 'matched_devices', n.get_collection_of_object_values(ApplicableContentDeviceMatch)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -60,6 +63,7 @@ class ApplicableContent(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("catalogEntry", self.catalog_entry)
+        writer.write_str_value("catalogEntryId", self.catalog_entry_id)
         writer.write_collection_of_object_values("matchedDevices", self.matched_devices)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

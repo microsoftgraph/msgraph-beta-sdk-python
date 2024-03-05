@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..communications_identity_set import CommunicationsIdentitySet
     from ..entity import Entity
+    from .administrative_unit_info import AdministrativeUnitInfo
     from .organizer import Organizer
     from .participant import Participant
 
@@ -13,6 +14,8 @@ from ..entity import Entity
 
 @dataclass
 class ParticipantBase(Entity):
+    # List of administrativeUnitInfo of the call participant.
+    administrative_unit_infos: Optional[List[AdministrativeUnitInfo]] = None
     # The identity of the call participant.
     identity: Optional[CommunicationsIdentitySet] = None
     # The OdataType property
@@ -48,15 +51,18 @@ class ParticipantBase(Entity):
         """
         from ..communications_identity_set import CommunicationsIdentitySet
         from ..entity import Entity
+        from .administrative_unit_info import AdministrativeUnitInfo
         from .organizer import Organizer
         from .participant import Participant
 
         from ..communications_identity_set import CommunicationsIdentitySet
         from ..entity import Entity
+        from .administrative_unit_info import AdministrativeUnitInfo
         from .organizer import Organizer
         from .participant import Participant
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "administrativeUnitInfos": lambda n : setattr(self, 'administrative_unit_infos', n.get_collection_of_object_values(AdministrativeUnitInfo)),
             "identity": lambda n : setattr(self, 'identity', n.get_object_value(CommunicationsIdentitySet)),
         }
         super_fields = super().get_field_deserializers()
@@ -72,6 +78,7 @@ class ParticipantBase(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("administrativeUnitInfos", self.administrative_unit_infos)
         writer.write_object_value("identity", self.identity)
     
 

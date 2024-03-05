@@ -161,9 +161,9 @@ class Group(DirectoryObject):
     rejected_senders: Optional[List[DirectoryObject]] = None
     # Timestamp of when the group was last renewed. This cannot be modified directly and is only updated via the renew service action. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
     renewed_date_time: Optional[datetime.datetime] = None
-    # Specifies the group behaviors that can be set for a Microsoft 365 group during creation. This can be set only as part of creation (POST). Possible values are AllowOnlyMembersToPost, HideGroupInOutlook, SubscribeNewGroupMembers, WelcomeEmailDisabled. For more information, see Set Microsoft 365 group behaviors and provisioning options.
+    # Specifies the group behaviors that can be set for a Microsoft 365 group during creation. This can be set only as part of creation (POST). For the list of possible values, see Set Microsoft 365 group behaviors and provisioning options.
     resource_behavior_options: Optional[List[str]] = None
-    # Specifies the group resources that are provisioned as part of Microsoft 365 group creation that isn't normally part of default group creation. The possible value is Team. For more information, see Set Microsoft 365 group behaviors and provisioning options. Returned by default. Supports $filter (eq, not, startsWith.
+    # Specifies the group resources that are associated with the Microsoft 365 group. The possible value is Team. For more information, see Set Microsoft 365 group behaviors and provisioning options. Returned by default. Supports $filter (eq, not, startsWith.
     resource_provisioning_options: Optional[List[str]] = None
     # Specifies whether the group is a security group. Required.Returned by default. Supports $filter (eq, ne, not, in).
     security_enabled: Optional[bool] = None

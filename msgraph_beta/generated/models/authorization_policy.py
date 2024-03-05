@@ -18,15 +18,15 @@ class AuthorizationPolicy(PolicyBase):
     odata_type: Optional[str] = "#microsoft.graph.authorizationPolicy"
     # Indicates whether a user can join the tenant by email validation.
     allow_email_verified_users_to_join_organization: Optional[bool] = None
-    # Indicates who can invite guests to the organization. Possible values are: none, adminsAndGuestInviters, adminsGuestInvitersAndAllMembers, everyone. everyone is the default setting for all cloud environments except US Government. See more in the table below.
+    # Indicates who can invite guests to the organization. Possible values are: none, adminsAndGuestInviters, adminsGuestInvitersAndAllMembers, everyone. everyone is the default setting for all cloud environments except US Government. For more information, see allowInvitesFrom values.
     allow_invites_from: Optional[AllowInvitesFrom] = None
     # Indicates whether user consent for risky apps is allowed. Default value is false. We recommend that you keep the value set to false.
     allow_user_consent_for_risky_apps: Optional[bool] = None
     # Indicates whether users can sign up for email based subscriptions.
     allowed_to_sign_up_email_based_subscriptions: Optional[bool] = None
-    # Indicates whether users can use the Self-Service Password Reset feature on the tenant.
+    # Indicates whether administrators of the tenant can use the Self-Service Password Reset (SSPR). For more information, see Self-service password reset for administrators.
     allowed_to_use_s_s_p_r: Optional[bool] = None
-    # To disable the use of the MSOnline PowerShell module set this property to true. This will also disable user-based access to the legacy service endpoint used by the MSOnline PowerShell module. This doesn't affect Microsoft Entra Connect or Microsoft Graph.
+    # To disable the use of the MSOnline PowerShell module set this property to true. This also disables user-based access to the legacy service endpoint used by the MSOnline PowerShell module. This doesn't affect Microsoft Entra Connect or Microsoft Graph.
     block_msol_power_shell: Optional[bool] = None
     # The defaultUserRoleOverrides property
     default_user_role_overrides: Optional[List[DefaultUserRoleOverride]] = None

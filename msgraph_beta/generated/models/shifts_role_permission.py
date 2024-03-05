@@ -11,7 +11,7 @@ class ShiftsRolePermission(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The allowedResourceActions property
+    # The permissions that are allowed for a role. Permissions that aren't in this collection are disabled.
     allowed_resource_actions: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

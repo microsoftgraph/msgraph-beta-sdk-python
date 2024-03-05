@@ -12,7 +12,7 @@ from ..entity import Entity
 
 @dataclass
 class DeploymentAudience(Entity):
-    # The applicableContent property
+    # Content eligible to deploy to devices in the audience. Not nullable. Read-only.
     applicable_content: Optional[List[ApplicableContent]] = None
     # Specifies the assets to exclude from the audience.
     exclusions: Optional[List[UpdatableAsset]] = None

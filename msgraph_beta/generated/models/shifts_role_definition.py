@@ -11,13 +11,13 @@ from .entity import Entity
 
 @dataclass
 class ShiftsRoleDefinition(Entity):
-    # The description property
+    # The description of the role.
     description: Optional[str] = None
-    # The displayName property
+    # The display name of the role.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The shiftsRolePermissions property
+    # The collection of role permissions within the role.
     shifts_role_permissions: Optional[List[ShiftsRolePermission]] = None
     
     @staticmethod

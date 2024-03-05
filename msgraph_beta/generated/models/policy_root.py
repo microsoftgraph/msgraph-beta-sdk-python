@@ -71,7 +71,7 @@ class PolicyRoot(Entity):
     external_identities_policy: Optional[ExternalIdentitiesPolicy] = None
     # The feature rollout policy associated with a directory object.
     feature_rollout_policies: Optional[List[FeatureRolloutPolicy]] = None
-    # The federatedTokenValidationPolicy property
+    # Represents a policy to control enabling or disabling validation of federation authentication tokens.
     federated_token_validation_policy: Optional[FederatedTokenValidationPolicy] = None
     # The policy to control Microsoft Entra authentication behavior for federated users.
     home_realm_discovery_policies: Optional[List[HomeRealmDiscoveryPolicy]] = None

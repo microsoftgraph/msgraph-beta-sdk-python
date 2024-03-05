@@ -46,7 +46,7 @@ class ShiftsRoleDefinitionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ShiftsRoleDefinitionCollectionResponse]:
         """
-        Get shiftsRoleDefinitions from groups
+        The definitions of the roles in the schedule.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ShiftsRoleDefinitionCollectionResponse]
         """
@@ -89,7 +89,7 @@ class ShiftsRoleDefinitionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get shiftsRoleDefinitions from groups
+        The definitions of the roles in the schedule.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class ShiftsRoleDefinitionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ShiftsRoleDefinitionsRequestBuilderGetQueryParameters():
         """
-        Get shiftsRoleDefinitions from groups
+        The definitions of the roles in the schedule.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

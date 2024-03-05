@@ -38,4 +38,7 @@ class RecommendationType(str, Enum):
     AdalToMsalMigration = "adalToMsalMigration",
     OwnerlessApps = "ownerlessApps",
     InactiveGuests = "inactiveGuests",
+    AadGraphDeprecationApplication = "aadGraphDeprecationApplication",
+    AadGraphDeprecationServicePrincipal = "aadGraphDeprecationServicePrincipal",
+    MfaServerDeprecation = "mfaServerDeprecation",
 

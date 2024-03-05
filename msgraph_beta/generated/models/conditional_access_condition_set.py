@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .conditional_access_applications import ConditionalAccessApplications
+    from .conditional_access_authentication_flows import ConditionalAccessAuthenticationFlows
     from .conditional_access_client_app import ConditionalAccessClientApp
     from .conditional_access_client_applications import ConditionalAccessClientApplications
     from .conditional_access_devices import ConditionalAccessDevices
@@ -24,6 +25,8 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Applications and user actions included in and excluded from the policy. Required.
     applications: Optional[ConditionalAccessApplications] = None
+    # Authentication flows included in the policy scope. For more information, see Conditional Access: Authentication flows.
+    authentication_flows: Optional[ConditionalAccessAuthenticationFlows] = None
     # Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.  The easUnsupported enumeration member will be deprecated in favor of exchangeActiveSync, which includes EAS supported and unsupported platforms.
     client_app_types: Optional[List[ConditionalAccessClientApp]] = None
     # Client applications (service principals and workload identities) included in and excluded from the policy. Either users or clientApplications is required.
@@ -64,6 +67,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .conditional_access_applications import ConditionalAccessApplications
+        from .conditional_access_authentication_flows import ConditionalAccessAuthenticationFlows
         from .conditional_access_client_app import ConditionalAccessClientApp
         from .conditional_access_client_applications import ConditionalAccessClientApplications
         from .conditional_access_devices import ConditionalAccessDevices
@@ -74,6 +78,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
         from .risk_level import RiskLevel
 
         from .conditional_access_applications import ConditionalAccessApplications
+        from .conditional_access_authentication_flows import ConditionalAccessAuthenticationFlows
         from .conditional_access_client_app import ConditionalAccessClientApp
         from .conditional_access_client_applications import ConditionalAccessClientApplications
         from .conditional_access_devices import ConditionalAccessDevices
@@ -85,6 +90,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
 
         fields: Dict[str, Callable[[Any], None]] = {
             "applications": lambda n : setattr(self, 'applications', n.get_object_value(ConditionalAccessApplications)),
+            "authenticationFlows": lambda n : setattr(self, 'authentication_flows', n.get_object_value(ConditionalAccessAuthenticationFlows)),
             "clientAppTypes": lambda n : setattr(self, 'client_app_types', n.get_collection_of_enum_values(ConditionalAccessClientApp)),
             "clientApplications": lambda n : setattr(self, 'client_applications', n.get_object_value(ConditionalAccessClientApplications)),
             "deviceStates": lambda n : setattr(self, 'device_states', n.get_object_value(ConditionalAccessDeviceStates)),
@@ -108,6 +114,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("applications", self.applications)
+        writer.write_object_value("authenticationFlows", self.authentication_flows)
         writer.write_collection_of_enum_values("clientAppTypes", self.client_app_types)
         writer.write_object_value("clientApplications", self.client_applications)
         writer.write_object_value("deviceStates", self.device_states)

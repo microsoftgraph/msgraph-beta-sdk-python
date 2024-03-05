@@ -33,4 +33,5 @@ class Region(str, Enum):
     JapanEast = "japanEast",
     JapanWest = "japanWest",
     UnknownFutureValue = "unknownFutureValue",
+    KoreaSouth = "koreaSouth",
 

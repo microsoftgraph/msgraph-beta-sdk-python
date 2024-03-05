@@ -1571,6 +1571,7 @@ if TYPE_CHECKING:
     from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
     from .too_many_global_admins_assigned_to_tenant_alert_incident import TooManyGlobalAdminsAssignedToTenantAlertIncident
     from .training import Training
+    from .training_campaign import TrainingCampaign
     from .training_language_detail import TrainingLanguageDetail
     from .trending import Trending
     from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
@@ -8232,6 +8233,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .training import Training
 
             return Training()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.trainingCampaign".casefold():
+            from .training_campaign import TrainingCampaign
+
+            return TrainingCampaign()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.trainingLanguageDetail".casefold():
             from .training_language_detail import TrainingLanguageDetail
 
@@ -11059,6 +11064,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
         from .too_many_global_admins_assigned_to_tenant_alert_incident import TooManyGlobalAdminsAssignedToTenantAlertIncident
         from .training import Training
+        from .training_campaign import TrainingCampaign
         from .training_language_detail import TrainingLanguageDetail
         from .trending import Trending
         from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
@@ -12939,6 +12945,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
         from .too_many_global_admins_assigned_to_tenant_alert_incident import TooManyGlobalAdminsAssignedToTenantAlertIncident
         from .training import Training
+        from .training_campaign import TrainingCampaign
         from .training_language_detail import TrainingLanguageDetail
         from .trending import Trending
         from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
