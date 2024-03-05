@@ -13,19 +13,19 @@ from .entity import Entity
 
 @dataclass
 class TeamsAppDashboardCardDefinition(Entity):
-    # The contentSource property
+    # The configuration for the source of the card content. Required.
     content_source: Optional[TeamsAppDashboardCardContentSource] = None
-    # The defaultSize property
+    # The size of the card. The possible values are: medium, large, unknownFutureValue. Required.
     default_size: Optional[TeamsAppDashboardCardSize] = None
-    # The description property
+    # The description for the card. Required.
     description: Optional[str] = None
-    # The displayName property
+    # The name of the card. Required.
     display_name: Optional[str] = None
-    # The icon property
+    # Configuration for the display of the icon in the card picker. If neither this nor any of its properties (iconUrl and officeUIFabricIconName) are specified, the color icon of the app is used. Optional.
     icon: Optional[TeamsAppDashboardCardIcon] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The pickerGroupId property
+    # ID for the group in the card picker. Required.
     picker_group_id: Optional[str] = None
     
     @staticmethod

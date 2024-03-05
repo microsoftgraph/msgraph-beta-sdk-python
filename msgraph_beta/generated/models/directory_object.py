@@ -23,6 +23,8 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .extension_property import ExtensionProperty
     from .external_identities_policy import ExternalIdentitiesPolicy
+    from .external_profile import ExternalProfile
+    from .external_user_profile import ExternalUserProfile
     from .federated_token_validation_policy import FederatedTokenValidationPolicy
     from .group import Group
     from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
@@ -30,6 +32,7 @@ if TYPE_CHECKING:
     from .multi_tenant_organization_member import MultiTenantOrganizationMember
     from .organization import Organization
     from .org_contact import OrgContact
+    from .pending_external_user_profile import PendingExternalUserProfile
     from .permission_grant_policy import PermissionGrantPolicy
     from .policy_base import PolicyBase
     from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
@@ -133,6 +136,14 @@ class DirectoryObject(Entity):
             from .external_identities_policy import ExternalIdentitiesPolicy
 
             return ExternalIdentitiesPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalProfile".casefold():
+            from .external_profile import ExternalProfile
+
+            return ExternalProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalUserProfile".casefold():
+            from .external_user_profile import ExternalUserProfile
+
+            return ExternalUserProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.federatedTokenValidationPolicy".casefold():
             from .federated_token_validation_policy import FederatedTokenValidationPolicy
 
@@ -161,6 +172,10 @@ class DirectoryObject(Entity):
             from .org_contact import OrgContact
 
             return OrgContact()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.pendingExternalUserProfile".casefold():
+            from .pending_external_user_profile import PendingExternalUserProfile
+
+            return PendingExternalUserProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionGrantPolicy".casefold():
             from .permission_grant_policy import PermissionGrantPolicy
 
@@ -234,6 +249,8 @@ class DirectoryObject(Entity):
         from .entity import Entity
         from .extension_property import ExtensionProperty
         from .external_identities_policy import ExternalIdentitiesPolicy
+        from .external_profile import ExternalProfile
+        from .external_user_profile import ExternalUserProfile
         from .federated_token_validation_policy import FederatedTokenValidationPolicy
         from .group import Group
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
@@ -241,6 +258,7 @@ class DirectoryObject(Entity):
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
         from .organization import Organization
         from .org_contact import OrgContact
+        from .pending_external_user_profile import PendingExternalUserProfile
         from .permission_grant_policy import PermissionGrantPolicy
         from .policy_base import PolicyBase
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
@@ -272,6 +290,8 @@ class DirectoryObject(Entity):
         from .entity import Entity
         from .extension_property import ExtensionProperty
         from .external_identities_policy import ExternalIdentitiesPolicy
+        from .external_profile import ExternalProfile
+        from .external_user_profile import ExternalUserProfile
         from .federated_token_validation_policy import FederatedTokenValidationPolicy
         from .group import Group
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
@@ -279,6 +299,7 @@ class DirectoryObject(Entity):
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
         from .organization import Organization
         from .org_contact import OrgContact
+        from .pending_external_user_profile import PendingExternalUserProfile
         from .permission_grant_policy import PermissionGrantPolicy
         from .policy_base import PolicyBase
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant

@@ -25,6 +25,8 @@ class Place(Entity):
     odata_type: Optional[str] = None
     # The phone number of the place.
     phone: Optional[str] = None
+    # An alternate immutable unique identifier of the place.
+    place_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Place:
@@ -77,6 +79,7 @@ class Place(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "geoCoordinates": lambda n : setattr(self, 'geo_coordinates', n.get_object_value(OutlookGeoCoordinates)),
             "phone": lambda n : setattr(self, 'phone', n.get_str_value()),
+            "placeId": lambda n : setattr(self, 'place_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -95,5 +98,6 @@ class Place(Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("geoCoordinates", self.geo_coordinates)
         writer.write_str_value("phone", self.phone)
+        writer.write_str_value("placeId", self.place_id)
     
 

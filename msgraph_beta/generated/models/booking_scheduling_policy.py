@@ -5,6 +5,10 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .bookings_availability import BookingsAvailability
+    from .bookings_availability_window import BookingsAvailabilityWindow
+
 @dataclass
 class BookingSchedulingPolicy(AdditionalDataHolder, BackedModel, Parsable):
     """
@@ -17,6 +21,10 @@ class BookingSchedulingPolicy(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # True if to allow customers to choose a specific person for the booking.
     allow_staff_selection: Optional[bool] = None
+    # collection of custom availabilities for a given time range.
+    custom_availabilities: Optional[List[BookingsAvailabilityWindow]] = None
+    # General availability 
+    general_availability: Optional[BookingsAvailability] = None
     # Indicates if the meeting invite is sent to the customers. The default value is false
     is_meeting_invite_to_customers_enabled: Optional[bool] = None
     # Maximum number of days in advance that a booking can be made. It follows the ISO 8601 format.
@@ -46,8 +54,16 @@ class BookingSchedulingPolicy(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .bookings_availability import BookingsAvailability
+        from .bookings_availability_window import BookingsAvailabilityWindow
+
+        from .bookings_availability import BookingsAvailability
+        from .bookings_availability_window import BookingsAvailabilityWindow
+
         fields: Dict[str, Callable[[Any], None]] = {
             "allowStaffSelection": lambda n : setattr(self, 'allow_staff_selection', n.get_bool_value()),
+            "customAvailabilities": lambda n : setattr(self, 'custom_availabilities', n.get_collection_of_object_values(BookingsAvailabilityWindow)),
+            "generalAvailability": lambda n : setattr(self, 'general_availability', n.get_object_value(BookingsAvailability)),
             "isMeetingInviteToCustomersEnabled": lambda n : setattr(self, 'is_meeting_invite_to_customers_enabled', n.get_bool_value()),
             "maximumAdvance": lambda n : setattr(self, 'maximum_advance', n.get_timedelta_value()),
             "minimumLeadTime": lambda n : setattr(self, 'minimum_lead_time', n.get_timedelta_value()),
@@ -66,6 +82,8 @@ class BookingSchedulingPolicy(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("allowStaffSelection", self.allow_staff_selection)
+        writer.write_collection_of_object_values("customAvailabilities", self.custom_availabilities)
+        writer.write_object_value("generalAvailability", self.general_availability)
         writer.write_bool_value("isMeetingInviteToCustomersEnabled", self.is_meeting_invite_to_customers_enabled)
         writer.write_timedelta_value("maximumAdvance", self.maximum_advance)
         writer.write_timedelta_value("minimumLeadTime", self.minimum_lead_time)

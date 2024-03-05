@@ -26,6 +26,8 @@ class VirtualEventPresenterDetails(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The presenter's personal website URL.
     personal_site_web_url: Optional[str] = None
+    # The content stream of the presenter's photo.
+    photo: Optional[bytes] = None
     # The presenter's Twitter profile URL.
     twitter_profile_web_url: Optional[str] = None
     
@@ -56,6 +58,7 @@ class VirtualEventPresenterDetails(AdditionalDataHolder, BackedModel, Parsable):
             "linkedInProfileWebUrl": lambda n : setattr(self, 'linked_in_profile_web_url', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "personalSiteWebUrl": lambda n : setattr(self, 'personal_site_web_url', n.get_str_value()),
+            "photo": lambda n : setattr(self, 'photo', n.get_bytes_value()),
             "twitterProfileWebUrl": lambda n : setattr(self, 'twitter_profile_web_url', n.get_str_value()),
         }
         return fields
@@ -74,6 +77,7 @@ class VirtualEventPresenterDetails(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("linkedInProfileWebUrl", self.linked_in_profile_web_url)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("personalSiteWebUrl", self.personal_site_web_url)
+        writer.write_bytes_value("photo", self.photo)
         writer.write_str_value("twitterProfileWebUrl", self.twitter_profile_web_url)
         writer.write_additional_data_value(self.additional_data)
     

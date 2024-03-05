@@ -12,7 +12,7 @@ from .change_tracked_entity import ChangeTrackedEntity
 class SchedulingGroup(ChangeTrackedEntity):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.schedulingGroup"
-    # The code for the schedulingGroup to represent an external identifier.
+    # The code for the schedulingGroup to represent an external identifier. This field must be unique within the team in Microsoft Teams and uses an alphanumeric format, with a maximum of 100 characters.
     code: Optional[str] = None
     # The display name for the schedulingGroup. Required.
     display_name: Optional[str] = None

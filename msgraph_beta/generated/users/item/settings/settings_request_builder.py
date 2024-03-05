@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .item_insights.item_insights_request_builder import ItemInsightsRequestBuilder
     from .regional_and_language_settings.regional_and_language_settings_request_builder import RegionalAndLanguageSettingsRequestBuilder
     from .shift_preferences.shift_preferences_request_builder import ShiftPreferencesRequestBuilder
+    from .windows.windows_request_builder import WindowsRequestBuilder
 
 class SettingsRequestBuilder(BaseRequestBuilder):
     """
@@ -174,6 +175,15 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         from .shift_preferences.shift_preferences_request_builder import ShiftPreferencesRequestBuilder
 
         return ShiftPreferencesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def windows(self) -> WindowsRequestBuilder:
+        """
+        Provides operations to manage the windows property of the microsoft.graph.userSettings entity.
+        """
+        from .windows.windows_request_builder import WindowsRequestBuilder
+
+        return WindowsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SettingsRequestBuilderGetQueryParameters():

@@ -11,11 +11,11 @@ class TeamsAppDashboardCardIcon(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The iconUrl property
+    # The icon for the card, displayed in the toolbox and card bar, is represented as a URL. The preferred size for raster images is 28x28 pixels. If this property has a value, the officeFabricIconFontName property is ignored.
     icon_url: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The officeUIFabricIconName property
+    # The friendly name of the Office UI Fabric/Fluent UI icon for the card that is used when the iconUrl property isn't specified. For example, 'officeUIFabricIconName': 'Search'.
     office_u_i_fabric_icon_name: Optional[str] = None
     
     @staticmethod

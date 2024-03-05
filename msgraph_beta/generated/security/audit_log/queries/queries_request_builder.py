@@ -46,9 +46,10 @@ class QueriesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuditLogQueryCollectionResponse]:
         """
-        Get queries from security
+        Get a list of auditLogQuery objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuditLogQueryCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/security-auditcoreroot-list-auditlogqueries?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -66,10 +67,11 @@ class QueriesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AuditLogQuery] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuditLogQuery]:
         """
-        Create new navigation property to queries for security
+        Create a new auditLogQuery object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuditLogQuery]
+        Find more info here: https://learn.microsoft.com/graph/api/security-auditcoreroot-post-auditlogqueries?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,7 +91,7 @@ class QueriesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get queries from security
+        Get a list of auditLogQuery objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,7 +102,7 @@ class QueriesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AuditLogQuery] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to queries for security
+        Create a new auditLogQuery object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +137,7 @@ class QueriesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class QueriesRequestBuilderGetQueryParameters():
         """
-        Get queries from security
+        Get a list of auditLogQuery objects and their properties.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

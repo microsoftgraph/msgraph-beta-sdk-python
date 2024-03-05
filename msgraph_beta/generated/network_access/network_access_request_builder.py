@@ -13,6 +13,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..models.networkaccess.network_access_root import NetworkAccessRoot
     from ..models.o_data_errors.o_data_error import ODataError
+    from .alerts.alerts_request_builder import AlertsRequestBuilder
     from .connectivity.connectivity_request_builder import ConnectivityRequestBuilder
     from .filtering_policies.filtering_policies_request_builder import FilteringPoliciesRequestBuilder
     from .filtering_profiles.filtering_profiles_request_builder import FilteringProfilesRequestBuilder
@@ -115,6 +116,15 @@ class NetworkAccessRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return NetworkAccessRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def alerts(self) -> AlertsRequestBuilder:
+        """
+        Provides operations to manage the alerts property of the microsoft.graph.networkaccess.networkAccessRoot entity.
+        """
+        from .alerts.alerts_request_builder import AlertsRequestBuilder
+
+        return AlertsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def connectivity(self) -> ConnectivityRequestBuilder:

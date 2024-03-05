@@ -48,9 +48,10 @@ class AuditLogQueryItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuditLogQuery]:
         """
-        Get queries from security
+        Read the properties and relationships of an auditLogQuery object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuditLogQuery]
+        Find more info here: https://learn.microsoft.com/graph/api/security-auditlogquery-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +103,7 @@ class AuditLogQueryItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get queries from security
+        Read the properties and relationships of an auditLogQuery object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +149,7 @@ class AuditLogQueryItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuditLogQueryItemRequestBuilderGetQueryParameters():
         """
-        Get queries from security
+        Read the properties and relationships of an auditLogQuery object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

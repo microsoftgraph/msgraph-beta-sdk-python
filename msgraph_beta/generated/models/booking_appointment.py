@@ -60,6 +60,8 @@ class BookingAppointment(Entity):
     invoice_status: Optional[BookingInvoiceStatus] = None
     # The URL of the invoice in Microsoft Bookings.
     invoice_url: Optional[str] = None
+    # The isCustomerAllowedToManageBooking property
+    is_customer_allowed_to_manage_booking: Optional[bool] = None
     # True indicates that the appointment will be held online. Default value is false.
     is_location_online: Optional[bool] = None
     # The URL of the online meeting for the appointment.
@@ -154,6 +156,7 @@ class BookingAppointment(Entity):
             "invoiceId": lambda n : setattr(self, 'invoice_id', n.get_str_value()),
             "invoiceStatus": lambda n : setattr(self, 'invoice_status', n.get_enum_value(BookingInvoiceStatus)),
             "invoiceUrl": lambda n : setattr(self, 'invoice_url', n.get_str_value()),
+            "isCustomerAllowedToManageBooking": lambda n : setattr(self, 'is_customer_allowed_to_manage_booking', n.get_bool_value()),
             "isLocationOnline": lambda n : setattr(self, 'is_location_online', n.get_bool_value()),
             "joinWebUrl": lambda n : setattr(self, 'join_web_url', n.get_str_value()),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
@@ -205,6 +208,7 @@ class BookingAppointment(Entity):
         writer.write_str_value("invoiceId", self.invoice_id)
         writer.write_enum_value("invoiceStatus", self.invoice_status)
         writer.write_str_value("invoiceUrl", self.invoice_url)
+        writer.write_bool_value("isCustomerAllowedToManageBooking", self.is_customer_allowed_to_manage_booking)
         writer.write_bool_value("isLocationOnline", self.is_location_online)
         writer.write_str_value("joinWebUrl", self.join_web_url)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .education_assignment_status import EducationAssignmentStatus
     from .education_category import EducationCategory
     from .education_grading_category import EducationGradingCategory
+    from .education_grading_scheme import EducationGradingScheme
     from .education_item_body import EducationItemBody
     from .education_rubric import EducationRubric
     from .education_submission import EducationSubmission
@@ -57,6 +58,8 @@ class EducationAssignment(Entity):
     grading: Optional[EducationAssignmentGradeType] = None
     # When set, enables users to weight assignments differently when computing a class average grade.
     grading_category: Optional[EducationGradingCategory] = None
+    # The gradingScheme property
+    grading_scheme: Optional[EducationGradingScheme] = None
     # Instructions for the assignment. This property and the display name tell the student what to do.
     instructions: Optional[EducationItemBody] = None
     # Who last modified the assignment.
@@ -75,7 +78,7 @@ class EducationAssignment(Entity):
     resources_folder_url: Optional[str] = None
     # When set, the grading rubric attached to this assignment.
     rubric: Optional[EducationRubric] = None
-    # Status of the Assignment.  You can’t PATCH this value.  Possible values are: draft, scheduled, published, assigned, unknownFutureValue and inactive. You must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: inactive.
+    # Status of the assignment. You can't PATCH this value. Possible values are: draft, scheduled, published, assigned, unknownFutureValue, inactive. You must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: inactive.
     status: Optional[EducationAssignmentStatus] = None
     # Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
     submissions: Optional[List[EducationSubmission]] = None
@@ -106,6 +109,7 @@ class EducationAssignment(Entity):
         from .education_assignment_status import EducationAssignmentStatus
         from .education_category import EducationCategory
         from .education_grading_category import EducationGradingCategory
+        from .education_grading_scheme import EducationGradingScheme
         from .education_item_body import EducationItemBody
         from .education_rubric import EducationRubric
         from .education_submission import EducationSubmission
@@ -120,6 +124,7 @@ class EducationAssignment(Entity):
         from .education_assignment_status import EducationAssignmentStatus
         from .education_category import EducationCategory
         from .education_grading_category import EducationGradingCategory
+        from .education_grading_scheme import EducationGradingScheme
         from .education_item_body import EducationItemBody
         from .education_rubric import EducationRubric
         from .education_submission import EducationSubmission
@@ -144,6 +149,7 @@ class EducationAssignment(Entity):
             "feedbackResourcesFolderUrl": lambda n : setattr(self, 'feedback_resources_folder_url', n.get_str_value()),
             "grading": lambda n : setattr(self, 'grading', n.get_object_value(EducationAssignmentGradeType)),
             "gradingCategory": lambda n : setattr(self, 'grading_category', n.get_object_value(EducationGradingCategory)),
+            "gradingScheme": lambda n : setattr(self, 'grading_scheme', n.get_object_value(EducationGradingScheme)),
             "instructions": lambda n : setattr(self, 'instructions', n.get_object_value(EducationItemBody)),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -181,6 +187,7 @@ class EducationAssignment(Entity):
         writer.write_datetime_value("dueDateTime", self.due_date_time)
         writer.write_object_value("grading", self.grading)
         writer.write_object_value("gradingCategory", self.grading_category)
+        writer.write_object_value("gradingScheme", self.grading_scheme)
         writer.write_object_value("instructions", self.instructions)
         writer.write_str_value("moduleUrl", self.module_url)
         writer.write_str_value("notificationChannelUrl", self.notification_channel_url)

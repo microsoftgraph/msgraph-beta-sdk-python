@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .created_on_behalf_of.created_on_behalf_of_request_builder import CreatedOnBehalfOfRequestBuilder
     from .extension_properties.extension_properties_request_builder import ExtensionPropertiesRequestBuilder
     from .federated_identity_credentials.federated_identity_credentials_request_builder import FederatedIdentityCredentialsRequestBuilder
+    from .federated_identity_credentials_with_name.federated_identity_credentials_with_name_request_builder import FederatedIdentityCredentialsWithNameRequestBuilder
     from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
     from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
     from .home_realm_discovery_policies.home_realm_discovery_policies_request_builder import HomeRealmDiscoveryPoliciesRequestBuilder
@@ -67,6 +68,18 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+    
+    def federated_identity_credentials_with_name(self,name: Optional[str] = None) -> FederatedIdentityCredentialsWithNameRequestBuilder:
+        """
+        Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.
+        param name: Alternate key of federatedIdentityCredential
+        Returns: FederatedIdentityCredentialsWithNameRequestBuilder
+        """
+        if not name:
+            raise TypeError("name cannot be null.")
+        from .federated_identity_credentials_with_name.federated_identity_credentials_with_name_request_builder import FederatedIdentityCredentialsWithNameRequestBuilder
+
+        return FederatedIdentityCredentialsWithNameRequestBuilder(self.request_adapter, self.path_parameters, name)
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Application]:
         """

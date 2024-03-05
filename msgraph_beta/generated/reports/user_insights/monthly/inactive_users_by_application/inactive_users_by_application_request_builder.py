@@ -9,6 +9,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.monthly_inactive_users_by_application_metric_collection_response import MonthlyInactiveUsersByApplicationMetricCollectionResponse
@@ -35,6 +36,7 @@ class InactiveUsersByApplicationRequestBuilder(BaseRequestBuilder):
         param monthly_inactive_users_by_application_metric_id: The unique identifier of monthlyInactiveUsersByApplicationMetric
         Returns: MonthlyInactiveUsersByApplicationMetricItemRequestBuilder
         """
+        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
         if not monthly_inactive_users_by_application_metric_id:
             raise TypeError("monthly_inactive_users_by_application_metric_id cannot be null.")
         from .item.monthly_inactive_users_by_application_metric_item_request_builder import MonthlyInactiveUsersByApplicationMetricItemRequestBuilder
@@ -49,6 +51,7 @@ class InactiveUsersByApplicationRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MonthlyInactiveUsersByApplicationMetricCollectionResponse]
         """
+        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -69,6 +72,7 @@ class InactiveUsersByApplicationRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -80,6 +84,7 @@ class InactiveUsersByApplicationRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: InactiveUsersByApplicationRequestBuilder
         """
+        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return InactiveUsersByApplicationRequestBuilder(self.request_adapter, raw_url)

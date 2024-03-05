@@ -29,10 +29,11 @@ class ResetPasswordRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ResetPasswordPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PasswordResetResponse]:
         """
-        Invoke action resetPassword
+        Initiate a reset for the password associated with a password authentication method object. This can only be done by an administrator with appropriate permissions and can't be performed on a user's own account. This flow writes the new password to Microsoft Entra ID and pushes it to on-premises Active Directory if configured using password writeback. The admin can either provide a new password or have the system generate one. The user is prompted to change their password on their next sign in. This reset is a long-running operation and will return a Location header with a link where the caller can periodically check for the status of the reset operation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PasswordResetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationmethod-resetpassword?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -52,7 +53,7 @@ class ResetPasswordRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ResetPasswordPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action resetPassword
+        Initiate a reset for the password associated with a password authentication method object. This can only be done by an administrator with appropriate permissions and can't be performed on a user's own account. This flow writes the new password to Microsoft Entra ID and pushes it to on-premises Active Directory if configured using password writeback. The admin can either provide a new password or have the system generate one. The user is prompted to change their password on their next sign in. This reset is a long-running operation and will return a Location header with a link where the caller can periodically check for the status of the reset operation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -16,11 +16,11 @@ class UserTeamwork(Entity):
     associated_teams: Optional[List[AssociatedTeamInfo]] = None
     # The apps installed in the personal scope of this user.
     installed_apps: Optional[List[UserScopeTeamsAppInstallation]] = None
-    # Represents the chosen locale of a user in Microsoft Teams.
+    # The chosen locale of a user in Microsoft Teams.
     locale: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Represents the region of the user in Microsoft Teams.
+    # The region of the user in Microsoft Teams.
     region: Optional[str] = None
     
     @staticmethod

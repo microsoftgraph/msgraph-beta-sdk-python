@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .communications_user_identity import CommunicationsUserIdentity
+    from .identity import Identity
     from .meeting_audience import MeetingAudience
     from .virtual_event import VirtualEvent
 
@@ -19,7 +20,7 @@ class VirtualEventTownhall(VirtualEvent):
     # The coOrganizers property
     co_organizers: Optional[List[CommunicationsUserIdentity]] = None
     # The invitedAttendees property
-    invited_attendees: Optional[List[CommunicationsUserIdentity]] = None
+    invited_attendees: Optional[List[Identity]] = None
     # The isInviteOnly property
     is_invite_only: Optional[bool] = None
     
@@ -40,17 +41,19 @@ class VirtualEventTownhall(VirtualEvent):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .communications_user_identity import CommunicationsUserIdentity
+        from .identity import Identity
         from .meeting_audience import MeetingAudience
         from .virtual_event import VirtualEvent
 
         from .communications_user_identity import CommunicationsUserIdentity
+        from .identity import Identity
         from .meeting_audience import MeetingAudience
         from .virtual_event import VirtualEvent
 
         fields: Dict[str, Callable[[Any], None]] = {
             "audience": lambda n : setattr(self, 'audience', n.get_enum_value(MeetingAudience)),
             "coOrganizers": lambda n : setattr(self, 'co_organizers', n.get_collection_of_object_values(CommunicationsUserIdentity)),
-            "invitedAttendees": lambda n : setattr(self, 'invited_attendees', n.get_collection_of_object_values(CommunicationsUserIdentity)),
+            "invitedAttendees": lambda n : setattr(self, 'invited_attendees', n.get_collection_of_object_values(Identity)),
             "isInviteOnly": lambda n : setattr(self, 'is_invite_only', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()

@@ -5,5 +5,10 @@ class MediaSourceContentCategory(str, Enum):
     LiveStream = "liveStream",
     Presentation = "presentation",
     ScreenRecording = "screenRecording",
+    Story = "story",
+    Profile = "profile",
+    Chat = "chat",
+    Note = "note",
+    Comment = "comment",
     UnknownFutureValue = "unknownFutureValue",
 

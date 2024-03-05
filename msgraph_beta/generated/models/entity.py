@@ -294,6 +294,8 @@ if TYPE_CHECKING:
     from .claims_mapping_policy import ClaimsMappingPolicy
     from .classification_job_response import ClassificationJobResponse
     from .cloud_app_security_profile import CloudAppSecurityProfile
+    from .cloud_clipboard_item import CloudClipboardItem
+    from .cloud_clipboard_root import CloudClipboardRoot
     from .cloud_pc_audit_event import CloudPcAuditEvent
     from .cloud_pc_bulk_action import CloudPcBulkAction
     from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
@@ -577,6 +579,7 @@ if TYPE_CHECKING:
     from .education_feedback_outcome import EducationFeedbackOutcome
     from .education_feedback_resource_outcome import EducationFeedbackResourceOutcome
     from .education_grading_category import EducationGradingCategory
+    from .education_grading_scheme import EducationGradingScheme
     from .education_module import EducationModule
     from .education_module_resource import EducationModuleResource
     from .education_organization import EducationOrganization
@@ -647,7 +650,9 @@ if TYPE_CHECKING:
     from .external_item import ExternalItem
     from .external_meeting_registrant import ExternalMeetingRegistrant
     from .external_meeting_registration import ExternalMeetingRegistration
+    from .external_profile import ExternalProfile
     from .external_users_self_service_sign_up_events_flow import ExternalUsersSelfServiceSignUpEventsFlow
+    from .external_user_profile import ExternalUserProfile
     from .e_book_install_summary import EBookInstallSummary
     from .feature_rollout_policy import FeatureRolloutPolicy
     from .federated_identity_credential import FederatedIdentityCredential
@@ -1131,8 +1136,10 @@ if TYPE_CHECKING:
     from .participant_joining_notification import ParticipantJoiningNotification
     from .participant_left_notification import ParticipantLeftNotification
     from .partners.billing.azure_usage import AzureUsage
+    from .partners.billing.billed_reconciliation import BilledReconciliation
     from .partners.billing.billed_usage import BilledUsage
     from .partners.billing.billing import Billing
+    from .partners.billing.billing_reconciliation import BillingReconciliation
     from .partners.billing.export_success_operation import ExportSuccessOperation
     from .partners.billing.failed_operation import FailedOperation
     from .partners.billing.manifest import Manifest
@@ -1145,6 +1152,7 @@ if TYPE_CHECKING:
     from .payload import Payload
     from .payload_compatible_assignment_filter import PayloadCompatibleAssignmentFilter
     from .payload_response import PayloadResponse
+    from .pending_external_user_profile import PendingExternalUserProfile
     from .people_admin_settings import PeopleAdminSettings
     from .permission import Permission
     from .permissions_analytics import PermissionsAnalytics
@@ -1389,6 +1397,7 @@ if TYPE_CHECKING:
     from .security.retention_event import RetentionEvent
     from .security.retention_event_type import RetentionEventType
     from .security.retention_label import RetentionLabel
+    from .security.rules_root import RulesRoot
     from .security.search import Search
     from .security.security import Security
     from .security.sensitivity_label import SensitivityLabel
@@ -1787,6 +1796,8 @@ if TYPE_CHECKING:
     from .windows_quality_update_catalog_item import WindowsQualityUpdateCatalogItem
     from .windows_quality_update_profile import WindowsQualityUpdateProfile
     from .windows_quality_update_profile_assignment import WindowsQualityUpdateProfileAssignment
+    from .windows_setting import WindowsSetting
+    from .windows_setting_instance import WindowsSettingInstance
     from .windows_store_app import WindowsStoreApp
     from .windows_universal_app_x import WindowsUniversalAppX
     from .windows_universal_app_x_contained_app import WindowsUniversalAppXContainedApp
@@ -3059,6 +3070,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_app_security_profile import CloudAppSecurityProfile
 
             return CloudAppSecurityProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudClipboardItem".casefold():
+            from .cloud_clipboard_item import CloudClipboardItem
+
+            return CloudClipboardItem()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudClipboardRoot".casefold():
+            from .cloud_clipboard_root import CloudClipboardRoot
+
+            return CloudClipboardRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPC".casefold():
             from .cloud_p_c import CloudPC
 
@@ -4206,6 +4225,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .education_grading_category import EducationGradingCategory
 
             return EducationGradingCategory()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.educationGradingScheme".casefold():
+            from .education_grading_scheme import EducationGradingScheme
+
+            return EducationGradingScheme()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.educationModule".casefold():
             from .education_module import EducationModule
 
@@ -4494,6 +4517,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .external_meeting_registration import ExternalMeetingRegistration
 
             return ExternalMeetingRegistration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalProfile".casefold():
+            from .external_profile import ExternalProfile
+
+            return ExternalProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalUserProfile".casefold():
+            from .external_user_profile import ExternalUserProfile
+
+            return ExternalUserProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalUsersSelfServiceSignUpEventsFlow".casefold():
             from .external_users_self_service_sign_up_events_flow import ExternalUsersSelfServiceSignUpEventsFlow
 
@@ -6442,6 +6473,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .partners.billing.azure_usage import AzureUsage
 
             return AzureUsage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.billedReconciliation".casefold():
+            from .partners.billing.billed_reconciliation import BilledReconciliation
+
+            return BilledReconciliation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.billedUsage".casefold():
             from .partners.billing.billed_usage import BilledUsage
 
@@ -6450,6 +6485,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .partners.billing.billing import Billing
 
             return Billing()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.billingReconciliation".casefold():
+            from .partners.billing.billing_reconciliation import BillingReconciliation
+
+            return BillingReconciliation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners.billing.exportSuccessOperation".casefold():
             from .partners.billing.export_success_operation import ExportSuccessOperation
 
@@ -6495,6 +6534,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .payload_response import PayloadResponse
 
             return PayloadResponse()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.pendingExternalUserProfile".casefold():
+            from .pending_external_user_profile import PendingExternalUserProfile
+
+            return PendingExternalUserProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.peopleAdminSettings".casefold():
             from .people_admin_settings import PeopleAdminSettings
 
@@ -7486,6 +7529,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.retention_label import RetentionLabel
 
             return RetentionLabel()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.rulesRoot".casefold():
+            from .security.rules_root import RulesRoot
+
+            return RulesRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.search".casefold():
             from .security.search import Search
 
@@ -9087,6 +9134,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_quality_update_profile_assignment import WindowsQualityUpdateProfileAssignment
 
             return WindowsQualityUpdateProfileAssignment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsSetting".casefold():
+            from .windows_setting import WindowsSetting
+
+            return WindowsSetting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsSettingInstance".casefold():
+            from .windows_setting_instance import WindowsSettingInstance
+
+            return WindowsSettingInstance()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsStoreApp".casefold():
             from .windows_store_app import WindowsStoreApp
 
@@ -9727,6 +9782,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .classification_job_response import ClassificationJobResponse
         from .cloud_app_security_profile import CloudAppSecurityProfile
+        from .cloud_clipboard_item import CloudClipboardItem
+        from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
@@ -10010,6 +10067,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .education_feedback_outcome import EducationFeedbackOutcome
         from .education_feedback_resource_outcome import EducationFeedbackResourceOutcome
         from .education_grading_category import EducationGradingCategory
+        from .education_grading_scheme import EducationGradingScheme
         from .education_module import EducationModule
         from .education_module_resource import EducationModuleResource
         from .education_organization import EducationOrganization
@@ -10080,7 +10138,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .external_item import ExternalItem
         from .external_meeting_registrant import ExternalMeetingRegistrant
         from .external_meeting_registration import ExternalMeetingRegistration
+        from .external_profile import ExternalProfile
         from .external_users_self_service_sign_up_events_flow import ExternalUsersSelfServiceSignUpEventsFlow
+        from .external_user_profile import ExternalUserProfile
         from .e_book_install_summary import EBookInstallSummary
         from .feature_rollout_policy import FeatureRolloutPolicy
         from .federated_identity_credential import FederatedIdentityCredential
@@ -10564,8 +10624,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification
         from .partners.billing.azure_usage import AzureUsage
+        from .partners.billing.billed_reconciliation import BilledReconciliation
         from .partners.billing.billed_usage import BilledUsage
         from .partners.billing.billing import Billing
+        from .partners.billing.billing_reconciliation import BillingReconciliation
         from .partners.billing.export_success_operation import ExportSuccessOperation
         from .partners.billing.failed_operation import FailedOperation
         from .partners.billing.manifest import Manifest
@@ -10578,6 +10640,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .payload import Payload
         from .payload_compatible_assignment_filter import PayloadCompatibleAssignmentFilter
         from .payload_response import PayloadResponse
+        from .pending_external_user_profile import PendingExternalUserProfile
         from .people_admin_settings import PeopleAdminSettings
         from .permission import Permission
         from .permissions_analytics import PermissionsAnalytics
@@ -10822,6 +10885,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.retention_event import RetentionEvent
         from .security.retention_event_type import RetentionEventType
         from .security.retention_label import RetentionLabel
+        from .security.rules_root import RulesRoot
         from .security.search import Search
         from .security.security import Security
         from .security.sensitivity_label import SensitivityLabel
@@ -11220,6 +11284,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_quality_update_catalog_item import WindowsQualityUpdateCatalogItem
         from .windows_quality_update_profile import WindowsQualityUpdateProfile
         from .windows_quality_update_profile_assignment import WindowsQualityUpdateProfileAssignment
+        from .windows_setting import WindowsSetting
+        from .windows_setting_instance import WindowsSettingInstance
         from .windows_store_app import WindowsStoreApp
         from .windows_universal_app_x import WindowsUniversalAppX
         from .windows_universal_app_x_contained_app import WindowsUniversalAppXContainedApp
@@ -11596,6 +11662,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .classification_job_response import ClassificationJobResponse
         from .cloud_app_security_profile import CloudAppSecurityProfile
+        from .cloud_clipboard_item import CloudClipboardItem
+        from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
@@ -11879,6 +11947,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .education_feedback_outcome import EducationFeedbackOutcome
         from .education_feedback_resource_outcome import EducationFeedbackResourceOutcome
         from .education_grading_category import EducationGradingCategory
+        from .education_grading_scheme import EducationGradingScheme
         from .education_module import EducationModule
         from .education_module_resource import EducationModuleResource
         from .education_organization import EducationOrganization
@@ -11949,7 +12018,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .external_item import ExternalItem
         from .external_meeting_registrant import ExternalMeetingRegistrant
         from .external_meeting_registration import ExternalMeetingRegistration
+        from .external_profile import ExternalProfile
         from .external_users_self_service_sign_up_events_flow import ExternalUsersSelfServiceSignUpEventsFlow
+        from .external_user_profile import ExternalUserProfile
         from .e_book_install_summary import EBookInstallSummary
         from .feature_rollout_policy import FeatureRolloutPolicy
         from .federated_identity_credential import FederatedIdentityCredential
@@ -12433,8 +12504,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification
         from .partners.billing.azure_usage import AzureUsage
+        from .partners.billing.billed_reconciliation import BilledReconciliation
         from .partners.billing.billed_usage import BilledUsage
         from .partners.billing.billing import Billing
+        from .partners.billing.billing_reconciliation import BillingReconciliation
         from .partners.billing.export_success_operation import ExportSuccessOperation
         from .partners.billing.failed_operation import FailedOperation
         from .partners.billing.manifest import Manifest
@@ -12447,6 +12520,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .payload import Payload
         from .payload_compatible_assignment_filter import PayloadCompatibleAssignmentFilter
         from .payload_response import PayloadResponse
+        from .pending_external_user_profile import PendingExternalUserProfile
         from .people_admin_settings import PeopleAdminSettings
         from .permission import Permission
         from .permissions_analytics import PermissionsAnalytics
@@ -12691,6 +12765,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.retention_event import RetentionEvent
         from .security.retention_event_type import RetentionEventType
         from .security.retention_label import RetentionLabel
+        from .security.rules_root import RulesRoot
         from .security.search import Search
         from .security.security import Security
         from .security.sensitivity_label import SensitivityLabel
@@ -13089,6 +13164,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_quality_update_catalog_item import WindowsQualityUpdateCatalogItem
         from .windows_quality_update_profile import WindowsQualityUpdateProfile
         from .windows_quality_update_profile_assignment import WindowsQualityUpdateProfileAssignment
+        from .windows_setting import WindowsSetting
+        from .windows_setting_instance import WindowsSettingInstance
         from .windows_store_app import WindowsStoreApp
         from .windows_universal_app_x import WindowsUniversalAppX
         from .windows_universal_app_x_contained_app import WindowsUniversalAppXContainedApp

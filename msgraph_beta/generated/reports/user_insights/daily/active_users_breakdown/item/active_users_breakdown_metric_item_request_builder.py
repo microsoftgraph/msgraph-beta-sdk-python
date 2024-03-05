@@ -9,6 +9,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ......models.active_users_breakdown_metric import ActiveUsersBreakdownMetric
@@ -29,10 +30,11 @@ class ActiveUsersBreakdownMetricItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ActiveUsersBreakdownMetric]:
         """
-        Insights for the breakdown of users who were active on apps registered in the tenant for a specified period.
+        Get activeUsersBreakdown from reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ActiveUsersBreakdownMetric]
         """
+        warn("The Active Users Breakdown Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Active Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -49,10 +51,11 @@ class ActiveUsersBreakdownMetricItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Insights for the breakdown of users who were active on apps registered in the tenant for a specified period.
+        Get activeUsersBreakdown from reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Active Users Breakdown Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Active Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -64,6 +67,7 @@ class ActiveUsersBreakdownMetricItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ActiveUsersBreakdownMetricItemRequestBuilder
         """
+        warn("The Active Users Breakdown Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Active Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ActiveUsersBreakdownMetricItemRequestBuilder(self.request_adapter, raw_url)
@@ -71,7 +75,7 @@ class ActiveUsersBreakdownMetricItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ActiveUsersBreakdownMetricItemRequestBuilderGetQueryParameters():
         """
-        Insights for the breakdown of users who were active on apps registered in the tenant for a specified period.
+        Get activeUsersBreakdown from reports
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

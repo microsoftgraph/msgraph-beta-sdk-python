@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .alert import Alert
     from .connectivity import Connectivity
     from .filtering_policy import FilteringPolicy
     from .filtering_profile import FilteringProfile
@@ -19,6 +20,8 @@ from ..entity import Entity
 
 @dataclass
 class NetworkAccessRoot(Entity):
+    # The alerts property
+    alerts: Optional[List[Alert]] = None
     # Connectivity represents all the connectivity components in Global Secure Access.
     connectivity: Optional[Connectivity] = None
     # A filtering policy defines the specific traffic that is allowed or blocked through the Global Secure Access services for a filtering profile.
@@ -57,6 +60,7 @@ class NetworkAccessRoot(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .alert import Alert
         from .connectivity import Connectivity
         from .filtering_policy import FilteringPolicy
         from .filtering_profile import FilteringProfile
@@ -68,6 +72,7 @@ class NetworkAccessRoot(Entity):
         from .tenant_status import TenantStatus
 
         from ..entity import Entity
+        from .alert import Alert
         from .connectivity import Connectivity
         from .filtering_policy import FilteringPolicy
         from .filtering_profile import FilteringProfile
@@ -79,6 +84,7 @@ class NetworkAccessRoot(Entity):
         from .tenant_status import TenantStatus
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(Alert)),
             "connectivity": lambda n : setattr(self, 'connectivity', n.get_object_value(Connectivity)),
             "filteringPolicies": lambda n : setattr(self, 'filtering_policies', n.get_collection_of_object_values(FilteringPolicy)),
             "filteringProfiles": lambda n : setattr(self, 'filtering_profiles', n.get_collection_of_object_values(FilteringProfile)),
@@ -102,6 +108,7 @@ class NetworkAccessRoot(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("alerts", self.alerts)
         writer.write_object_value("connectivity", self.connectivity)
         writer.write_collection_of_object_values("filteringPolicies", self.filtering_policies)
         writer.write_collection_of_object_values("filteringProfiles", self.filtering_profiles)

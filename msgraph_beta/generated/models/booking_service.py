@@ -41,6 +41,8 @@ class BookingService(BookingNamedEntity):
     description: Optional[str] = None
     # Indicates if an anonymousJoinWebUrl(webrtcUrl) is generated for the appointment booked for this service. The default value is false.
     is_anonymous_join_enabled: Optional[bool] = None
+    # The isCustomerAllowedToManageBooking property
+    is_customer_allowed_to_manage_booking: Optional[bool] = None
     # True means this service isn't available to customers for booking.
     is_hidden_from_customers: Optional[bool] = None
     # Indicates that the appointments for the service are held online. The default value is false.
@@ -107,6 +109,7 @@ class BookingService(BookingNamedEntity):
             "defaultReminders": lambda n : setattr(self, 'default_reminders', n.get_collection_of_object_values(BookingReminder)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "isAnonymousJoinEnabled": lambda n : setattr(self, 'is_anonymous_join_enabled', n.get_bool_value()),
+            "isCustomerAllowedToManageBooking": lambda n : setattr(self, 'is_customer_allowed_to_manage_booking', n.get_bool_value()),
             "isHiddenFromCustomers": lambda n : setattr(self, 'is_hidden_from_customers', n.get_bool_value()),
             "isLocationOnline": lambda n : setattr(self, 'is_location_online', n.get_bool_value()),
             "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
@@ -143,6 +146,7 @@ class BookingService(BookingNamedEntity):
         writer.write_collection_of_object_values("defaultReminders", self.default_reminders)
         writer.write_str_value("description", self.description)
         writer.write_bool_value("isAnonymousJoinEnabled", self.is_anonymous_join_enabled)
+        writer.write_bool_value("isCustomerAllowedToManageBooking", self.is_customer_allowed_to_manage_booking)
         writer.write_bool_value("isHiddenFromCustomers", self.is_hidden_from_customers)
         writer.write_bool_value("isLocationOnline", self.is_location_online)
         writer.write_str_value("languageTag", self.language_tag)

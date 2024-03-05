@@ -21,7 +21,7 @@ from .entity import Entity
 class MonthlyUserInsightMetricsRoot(Entity):
     # Insights for active users on apps registered in the tenant for a specified period.
     active_users: Optional[List[ActiveUsersMetric]] = None
-    # Insights for the breakdown of users who were active on apps registered in the tenant for a specified period.
+    # The activeUsersBreakdown property
     active_users_breakdown: Optional[List[ActiveUsersBreakdownMetric]] = None
     # Insights for authentications on apps registered in the tenant for a specified period.
     authentications: Optional[List[AuthenticationsMetric]] = None

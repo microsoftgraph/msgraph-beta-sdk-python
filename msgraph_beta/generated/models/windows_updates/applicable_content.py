@@ -17,7 +17,7 @@ class ApplicableContent(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The catalogEntry property
     catalog_entry: Optional[CatalogEntry] = None
-    # Collection of devices and recommendations for applicable catalog content.
+    # The matchedDevices property
     matched_devices: Optional[List[ApplicableContentDeviceMatch]] = None
     # The OdataType property
     odata_type: Optional[str] = None
