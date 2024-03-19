@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +27,7 @@ class OnAuthenticationMethodLoadStartRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identity/authenticationEventsFlows/{authenticationEventsFlow%2Did}/graph.externalUsersSelfServiceSignUpEventsFlow/onAuthenticationMethodLoadStart{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnAuthenticationMethodLoadStartHandler]:
+    async def get(self,request_configuration: Optional[OnAuthenticationMethodLoadStartRequestBuilderGetRequestConfiguration] = None) -> Optional[OnAuthenticationMethodLoadStartHandler]:
         """
         Required. The configuration for what to invoke when authentication methods are ready to be presented to the user. Must have at least one identity provider linked.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,7 +47,7 @@ class OnAuthenticationMethodLoadStartRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OnAuthenticationMethodLoadStartHandler, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[OnAuthenticationMethodLoadStartRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Required. The configuration for what to invoke when authentication methods are ready to be presented to the user. Must have at least one identity provider linked.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,6 +101,19 @@ class OnAuthenticationMethodLoadStartRequestBuilder(BaseRequestBuilder):
 
         # Select properties to be returned
         select: Optional[List[str]] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class OnAuthenticationMethodLoadStartRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[OnAuthenticationMethodLoadStartRequestBuilder.OnAuthenticationMethodLoadStartRequestBuilderGetQueryParameters] = None
 
     
 

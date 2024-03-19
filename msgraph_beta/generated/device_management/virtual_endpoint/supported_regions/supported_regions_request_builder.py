@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class SupportedRegionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["cloudPcSupportedRegion%2Did"] = cloud_pc_supported_region_id
         return CloudPcSupportedRegionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcSupportedRegionCollectionResponse]:
+    async def get(self,request_configuration: Optional[SupportedRegionsRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcSupportedRegionCollectionResponse]:
         """
         List the supported regions that are available for creating Cloud PC connections.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class SupportedRegionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcSupportedRegionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CloudPcSupportedRegion] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcSupportedRegion]:
+    async def post(self,body: Optional[CloudPcSupportedRegion] = None, request_configuration: Optional[SupportedRegionsRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcSupportedRegion]:
         """
         Create new navigation property to supportedRegions for deviceManagement
         param body: The request body
@@ -88,7 +87,7 @@ class SupportedRegionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcSupportedRegion, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[SupportedRegionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         List the supported regions that are available for creating Cloud PC connections.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +98,7 @@ class SupportedRegionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CloudPcSupportedRegion] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CloudPcSupportedRegion] = None, request_configuration: Optional[SupportedRegionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to supportedRegions for deviceManagement
         param body: The request body
@@ -188,5 +187,28 @@ class SupportedRegionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SupportedRegionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[SupportedRegionsRequestBuilder.SupportedRegionsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SupportedRegionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

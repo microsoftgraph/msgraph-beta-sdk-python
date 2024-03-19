@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -47,7 +46,7 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["onlineMeeting%2Did"] = online_meeting_id
         return OnlineMeetingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnlineMeetingCollectionResponse]:
+    async def get(self,request_configuration: Optional[OnlineMeetingsRequestBuilderGetRequestConfiguration] = None) -> Optional[OnlineMeetingCollectionResponse]:
         """
         Get onlineMeetings from app
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OnlineMeetingCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[OnlineMeeting] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnlineMeeting]:
+    async def post(self,body: Optional[OnlineMeeting] = None, request_configuration: Optional[OnlineMeetingsRequestBuilderPostRequestConfiguration] = None) -> Optional[OnlineMeeting]:
         """
         Create new navigation property to onlineMeetings for app
         param body: The request body
@@ -90,7 +89,7 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OnlineMeeting, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[OnlineMeetingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get onlineMeetings from app
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +100,7 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[OnlineMeeting] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[OnlineMeeting] = None, request_configuration: Optional[OnlineMeetingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to onlineMeetings for app
         param body: The request body
@@ -217,5 +216,28 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class OnlineMeetingsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[OnlineMeetingsRequestBuilder.OnlineMeetingsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class OnlineMeetingsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

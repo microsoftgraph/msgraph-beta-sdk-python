@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -38,7 +37,7 @@ class DataClassificationRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/dataClassification{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DataClassificationService]:
+    async def get(self,request_configuration: Optional[DataClassificationRequestBuilderGetRequestConfiguration] = None) -> Optional[DataClassificationService]:
         """
         Get dataClassification
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -58,7 +57,7 @@ class DataClassificationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DataClassificationService, error_mapping)
     
-    async def patch(self,body: Optional[DataClassificationService] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DataClassificationService]:
+    async def patch(self,body: Optional[DataClassificationService] = None, request_configuration: Optional[DataClassificationRequestBuilderPatchRequestConfiguration] = None) -> Optional[DataClassificationService]:
         """
         Update dataClassification
         param body: The request body
@@ -81,7 +80,7 @@ class DataClassificationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DataClassificationService, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DataClassificationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get dataClassification
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -92,7 +91,7 @@ class DataClassificationRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DataClassificationService] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DataClassificationService] = None, request_configuration: Optional[DataClassificationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update dataClassification
         param body: The request body
@@ -241,5 +240,28 @@ class DataClassificationRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DataClassificationRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DataClassificationRequestBuilder.DataClassificationRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DataClassificationRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

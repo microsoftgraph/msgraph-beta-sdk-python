@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class EngagementAsyncOperationsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["engagementAsyncOperation%2Did"] = engagement_async_operation_id
         return EngagementAsyncOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EngagementAsyncOperationCollectionResponse]:
+    async def get(self,request_configuration: Optional[EngagementAsyncOperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[EngagementAsyncOperationCollectionResponse]:
         """
         Get an engagementAsyncOperation to track a long-running operation request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class EngagementAsyncOperationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EngagementAsyncOperationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[EngagementAsyncOperation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EngagementAsyncOperation]:
+    async def post(self,body: Optional[EngagementAsyncOperation] = None, request_configuration: Optional[EngagementAsyncOperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[EngagementAsyncOperation]:
         """
         Create new navigation property to engagementAsyncOperations for employeeExperience
         param body: The request body
@@ -87,7 +86,7 @@ class EngagementAsyncOperationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EngagementAsyncOperation, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[EngagementAsyncOperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get an engagementAsyncOperation to track a long-running operation request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class EngagementAsyncOperationsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[EngagementAsyncOperation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EngagementAsyncOperation] = None, request_configuration: Optional[EngagementAsyncOperationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to engagementAsyncOperations for employeeExperience
         param body: The request body
@@ -187,5 +186,28 @@ class EngagementAsyncOperationsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class EngagementAsyncOperationsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[EngagementAsyncOperationsRequestBuilder.EngagementAsyncOperationsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class EngagementAsyncOperationsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

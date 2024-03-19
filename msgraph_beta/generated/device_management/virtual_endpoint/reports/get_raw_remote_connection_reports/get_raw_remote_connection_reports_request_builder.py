@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +26,7 @@ class GetRawRemoteConnectionReportsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/reports/getRawRemoteConnectionReports", path_parameters)
     
-    async def post(self,body: Optional[GetRawRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> bytes:
+    async def post(self,body: Optional[GetRawRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[GetRawRemoteConnectionReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
         Get the raw real-time remote connection report for a Cloud PC without any calculation, such as roundTripTime or available bandwidth, which are aggregated hourly from the raw event data.
         param body: The request body
@@ -48,7 +48,7 @@ class GetRawRemoteConnectionReportsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
-    def to_post_request_information(self,body: Optional[GetRawRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GetRawRemoteConnectionReportsPostRequestBody] = None, request_configuration: Optional[GetRawRemoteConnectionReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Get the raw real-time remote connection report for a Cloud PC without any calculation, such as roundTripTime or available bandwidth, which are aggregated hourly from the raw event data.
         param body: The request body
@@ -72,5 +72,15 @@ class GetRawRemoteConnectionReportsRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return GetRawRemoteConnectionReportsRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GetRawRemoteConnectionReportsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

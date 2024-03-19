@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +28,7 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/registration{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Disable and delete the externalMeetingRegistration of an onlineMeeting.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,7 +47,7 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MeetingRegistration]:
+    async def get(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> Optional[MeetingRegistration]:
         """
         Get the externalMeetingRegistration details associated with an onlineMeeting.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +68,7 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MeetingRegistration, error_mapping)
     
-    async def patch(self,body: Optional[MeetingRegistration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MeetingRegistration]:
+    async def patch(self,body: Optional[MeetingRegistration] = None, request_configuration: Optional[RegistrationRequestBuilderPatchRequestConfiguration] = None) -> Optional[MeetingRegistration]:
         """
         Update the details of a meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
         param body: The request body
@@ -93,7 +92,7 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MeetingRegistration, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Disable and delete the externalMeetingRegistration of an onlineMeeting.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +103,7 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get the externalMeetingRegistration details associated with an onlineMeeting.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -115,7 +114,7 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[MeetingRegistration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MeetingRegistration] = None, request_configuration: Optional[RegistrationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the details of a meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
         param body: The request body
@@ -158,6 +157,16 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
 
         return RegistrantsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RegistrationRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class RegistrationRequestBuilderGetQueryParameters():
         """
@@ -183,5 +192,28 @@ class RegistrationRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RegistrationRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[RegistrationRequestBuilder.RegistrationRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RegistrationRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -47,7 +46,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["cloudPC%2Did"] = cloud_p_c_id
         return CloudPCItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPCCollectionResponse]:
+    async def get(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPCCollectionResponse]:
         """
         List the cloudPC devices that are attributed to the signed-in user. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -83,7 +82,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
 
         return GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder(self.request_adapter, self.path_parameters, group_id, service_plan_id)
     
-    async def post(self,body: Optional[CloudPC] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPC]:
+    async def post(self,body: Optional[CloudPC] = None, request_configuration: Optional[CloudPCsRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPC]:
         """
         Create new navigation property to cloudPCs for users
         param body: The request body
@@ -106,7 +105,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPC, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         List the cloudPC devices that are attributed to the signed-in user. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -117,7 +116,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CloudPC] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CloudPC] = None, request_configuration: Optional[CloudPCsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to cloudPCs for users
         param body: The request body
@@ -224,5 +223,28 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CloudPCsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CloudPCsRequestBuilder.CloudPCsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CloudPCsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

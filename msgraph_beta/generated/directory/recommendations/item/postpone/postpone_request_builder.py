@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +27,7 @@ class PostponeRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/directory/recommendations/{recommendation%2Did}/postpone", path_parameters)
     
-    async def post(self,body: Optional[PostponePostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Recommendation]:
+    async def post(self,body: Optional[PostponePostRequestBody] = None, request_configuration: Optional[PostponeRequestBuilderPostRequestConfiguration] = None) -> Optional[Recommendation]:
         """
         Postpone action on a recommendation object to a specified future date and time by marking its status as postponed. On the date and time provided, Microsoft Entra ID will automatically update the status of the recommendation object to active again.
         param body: The request body
@@ -51,7 +51,7 @@ class PostponeRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Recommendation, error_mapping)
     
-    def to_post_request_information(self,body: Optional[PostponePostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PostponePostRequestBody] = None, request_configuration: Optional[PostponeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Postpone action on a recommendation object to a specified future date and time by marking its status as postponed. On the date and time provided, Microsoft Entra ID will automatically update the status of the recommendation object to active again.
         param body: The request body
@@ -75,5 +75,15 @@ class PostponeRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return PostponeRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PostponeRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

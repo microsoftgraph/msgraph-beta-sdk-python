@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +28,7 @@ class ExtractLabelRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/informationProtection/policy/labels/extractLabel", path_parameters)
     
-    async def post(self,body: Optional[ExtractLabelPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[InformationProtectionContentLabel]:
+    async def post(self,body: Optional[ExtractLabelPostRequestBody] = None, request_configuration: Optional[ExtractLabelRequestBuilderPostRequestConfiguration] = None) -> Optional[InformationProtectionContentLabel]:
         """
         Using the metadata that exists on an already-labeled piece of information, resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
         param body: The request body
@@ -53,7 +53,7 @@ class ExtractLabelRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, InformationProtectionContentLabel, error_mapping)
     
-    def to_post_request_information(self,body: Optional[ExtractLabelPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ExtractLabelPostRequestBody] = None, request_configuration: Optional[ExtractLabelRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Using the metadata that exists on an already-labeled piece of information, resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
         param body: The request body
@@ -79,5 +79,15 @@ class ExtractLabelRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ExtractLabelRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ExtractLabelRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

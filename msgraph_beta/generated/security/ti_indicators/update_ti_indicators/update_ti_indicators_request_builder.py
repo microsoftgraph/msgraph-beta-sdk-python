@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +27,7 @@ class UpdateTiIndicatorsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/tiIndicators/updateTiIndicators", path_parameters)
     
-    async def post(self,body: Optional[UpdateTiIndicatorsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UpdateTiIndicatorsPostResponse]:
+    async def post(self,body: Optional[UpdateTiIndicatorsPostRequestBody] = None, request_configuration: Optional[UpdateTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[UpdateTiIndicatorsPostResponse]:
         """
         Update multiple threat intelligence (TI) indicators in one request instead of multiple requests.
         param body: The request body
@@ -51,7 +51,7 @@ class UpdateTiIndicatorsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UpdateTiIndicatorsPostResponse, error_mapping)
     
-    def to_post_request_information(self,body: Optional[UpdateTiIndicatorsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UpdateTiIndicatorsPostRequestBody] = None, request_configuration: Optional[UpdateTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Update multiple threat intelligence (TI) indicators in one request instead of multiple requests.
         param body: The request body
@@ -75,5 +75,15 @@ class UpdateTiIndicatorsRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return UpdateTiIndicatorsRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UpdateTiIndicatorsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

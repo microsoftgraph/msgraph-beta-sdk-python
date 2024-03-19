@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +27,7 @@ class FinancialsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/financials{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Financials]:
+    async def get(self,request_configuration: Optional[FinancialsRequestBuilderGetRequestConfiguration] = None) -> Optional[Financials]:
         """
         Get financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,7 +47,7 @@ class FinancialsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Financials, error_mapping)
     
-    async def patch(self,body: Optional[Financials] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Financials]:
+    async def patch(self,body: Optional[Financials] = None, request_configuration: Optional[FinancialsRequestBuilderPatchRequestConfiguration] = None) -> Optional[Financials]:
         """
         Update financials
         param body: The request body
@@ -71,7 +70,7 @@ class FinancialsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Financials, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[FinancialsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -82,7 +81,7 @@ class FinancialsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[Financials] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Financials] = None, request_configuration: Optional[FinancialsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update financials
         param body: The request body
@@ -141,5 +140,28 @@ class FinancialsRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class FinancialsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[FinancialsRequestBuilder.FinancialsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class FinancialsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

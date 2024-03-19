@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class WindowsInformationProtectionDeviceRegistrationsRequestBuilder(BaseRequestB
         url_tpl_params["windowsInformationProtectionDeviceRegistration%2Did"] = windows_information_protection_device_registration_id
         return WindowsInformationProtectionDeviceRegistrationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsInformationProtectionDeviceRegistrationCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsInformationProtectionDeviceRegistrationsRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsInformationProtectionDeviceRegistrationCollectionResponse]:
         """
         Windows information protection device registrations that are not MDM enrolled.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class WindowsInformationProtectionDeviceRegistrationsRequestBuilder(BaseRequestB
 
         return await self.request_adapter.send_async(request_info, WindowsInformationProtectionDeviceRegistrationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[WindowsInformationProtectionDeviceRegistration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsInformationProtectionDeviceRegistration]:
+    async def post(self,body: Optional[WindowsInformationProtectionDeviceRegistration] = None, request_configuration: Optional[WindowsInformationProtectionDeviceRegistrationsRequestBuilderPostRequestConfiguration] = None) -> Optional[WindowsInformationProtectionDeviceRegistration]:
         """
         Create new navigation property to windowsInformationProtectionDeviceRegistrations for deviceAppManagement
         param body: The request body
@@ -87,7 +86,7 @@ class WindowsInformationProtectionDeviceRegistrationsRequestBuilder(BaseRequestB
 
         return await self.request_adapter.send_async(request_info, WindowsInformationProtectionDeviceRegistration, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[WindowsInformationProtectionDeviceRegistrationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Windows information protection device registrations that are not MDM enrolled.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class WindowsInformationProtectionDeviceRegistrationsRequestBuilder(BaseRequestB
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[WindowsInformationProtectionDeviceRegistration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WindowsInformationProtectionDeviceRegistration] = None, request_configuration: Optional[WindowsInformationProtectionDeviceRegistrationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to windowsInformationProtectionDeviceRegistrations for deviceAppManagement
         param body: The request body
@@ -187,5 +186,28 @@ class WindowsInformationProtectionDeviceRegistrationsRequestBuilder(BaseRequestB
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WindowsInformationProtectionDeviceRegistrationsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[WindowsInformationProtectionDeviceRegistrationsRequestBuilder.WindowsInformationProtectionDeviceRegistrationsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WindowsInformationProtectionDeviceRegistrationsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

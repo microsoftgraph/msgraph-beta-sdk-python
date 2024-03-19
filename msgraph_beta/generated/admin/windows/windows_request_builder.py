@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +27,7 @@ class WindowsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/admin/windows{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property windows for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +45,7 @@ class WindowsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AdminWindows]:
+    async def get(self,request_configuration: Optional[WindowsRequestBuilderGetRequestConfiguration] = None) -> Optional[AdminWindows]:
         """
         A container for all Windows administrator functionalities. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +65,7 @@ class WindowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AdminWindows, error_mapping)
     
-    async def patch(self,body: Optional[AdminWindows] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AdminWindows]:
+    async def patch(self,body: Optional[AdminWindows] = None, request_configuration: Optional[WindowsRequestBuilderPatchRequestConfiguration] = None) -> Optional[AdminWindows]:
         """
         Update the navigation property windows in admin
         param body: The request body
@@ -89,7 +88,7 @@ class WindowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AdminWindows, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[WindowsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property windows for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +99,7 @@ class WindowsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[WindowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A container for all Windows administrator functionalities. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +110,7 @@ class WindowsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[AdminWindows] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AdminWindows] = None, request_configuration: Optional[WindowsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property windows in admin
         param body: The request body
@@ -145,6 +144,16 @@ class WindowsRequestBuilder(BaseRequestBuilder):
 
         return UpdatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WindowsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class WindowsRequestBuilderGetQueryParameters():
         """
@@ -170,5 +179,28 @@ class WindowsRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WindowsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[WindowsRequestBuilder.WindowsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WindowsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

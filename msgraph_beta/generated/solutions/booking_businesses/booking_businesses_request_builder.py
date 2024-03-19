@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["bookingBusiness%2Did"] = booking_business_id
         return BookingBusinessItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[BookingBusinessCollectionResponse]:
+    async def get(self,request_configuration: Optional[BookingBusinessesRequestBuilderGetRequestConfiguration] = None) -> Optional[BookingBusinessCollectionResponse]:
         """
         Get bookingBusinesses from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, BookingBusinessCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[BookingBusiness] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[BookingBusiness]:
+    async def post(self,body: Optional[BookingBusiness] = None, request_configuration: Optional[BookingBusinessesRequestBuilderPostRequestConfiguration] = None) -> Optional[BookingBusiness]:
         """
         Create new navigation property to bookingBusinesses for solutions
         param body: The request body
@@ -87,7 +86,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, BookingBusiness, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[BookingBusinessesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get bookingBusinesses from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[BookingBusiness] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[BookingBusiness] = None, request_configuration: Optional[BookingBusinessesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to bookingBusinesses for solutions
         param body: The request body
@@ -187,5 +186,28 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class BookingBusinessesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[BookingBusinessesRequestBuilder.BookingBusinessesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class BookingBusinessesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

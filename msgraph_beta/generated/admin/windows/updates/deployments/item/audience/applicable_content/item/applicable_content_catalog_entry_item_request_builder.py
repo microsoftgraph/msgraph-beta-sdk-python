@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +28,7 @@ class ApplicableContentCatalogEntryItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/deployments/{deployment%2Did}/audience/applicableContent/{applicableContent%2DcatalogEntryId}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ApplicableContentCatalogEntryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property applicableContent for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +46,7 @@ class ApplicableContentCatalogEntryItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ApplicableContent]:
+    async def get(self,request_configuration: Optional[ApplicableContentCatalogEntryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ApplicableContent]:
         """
         Content eligible to deploy to devices in the audience. Not nullable. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class ApplicableContentCatalogEntryItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ApplicableContent, error_mapping)
     
-    async def patch(self,body: Optional[ApplicableContent] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ApplicableContent]:
+    async def patch(self,body: Optional[ApplicableContent] = None, request_configuration: Optional[ApplicableContentCatalogEntryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ApplicableContent]:
         """
         Update the navigation property applicableContent in admin
         param body: The request body
@@ -90,7 +89,7 @@ class ApplicableContentCatalogEntryItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ApplicableContent, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[ApplicableContentCatalogEntryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property applicableContent for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +100,7 @@ class ApplicableContentCatalogEntryItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ApplicableContentCatalogEntryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Content eligible to deploy to devices in the audience. Not nullable. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,7 +111,7 @@ class ApplicableContentCatalogEntryItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ApplicableContent] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ApplicableContent] = None, request_configuration: Optional[ApplicableContentCatalogEntryItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property applicableContent in admin
         param body: The request body
@@ -155,6 +154,16 @@ class ApplicableContentCatalogEntryItemRequestBuilder(BaseRequestBuilder):
 
         return MatchedDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ApplicableContentCatalogEntryItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class ApplicableContentCatalogEntryItemRequestBuilderGetQueryParameters():
         """
@@ -180,5 +189,28 @@ class ApplicableContentCatalogEntryItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ApplicableContentCatalogEntryItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ApplicableContentCatalogEntryItemRequestBuilder.ApplicableContentCatalogEntryItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ApplicableContentCatalogEntryItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

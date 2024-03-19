@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
         url_tpl_params["managementTemplateCollectionTenantSummary%2Did"] = management_template_collection_tenant_summary_id
         return ManagementTemplateCollectionTenantSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementTemplateCollectionTenantSummaryCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagementTemplateCollectionTenantSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagementTemplateCollectionTenantSummaryCollectionResponse]:
         """
         Get managementTemplateCollectionTenantSummaries from tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, ManagementTemplateCollectionTenantSummaryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ManagementTemplateCollectionTenantSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementTemplateCollectionTenantSummary]:
+    async def post(self,body: Optional[ManagementTemplateCollectionTenantSummary] = None, request_configuration: Optional[ManagementTemplateCollectionTenantSummariesRequestBuilderPostRequestConfiguration] = None) -> Optional[ManagementTemplateCollectionTenantSummary]:
         """
         Create new navigation property to managementTemplateCollectionTenantSummaries for tenantRelationships
         param body: The request body
@@ -87,7 +86,7 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, ManagementTemplateCollectionTenantSummary, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ManagementTemplateCollectionTenantSummariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get managementTemplateCollectionTenantSummaries from tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ManagementTemplateCollectionTenantSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ManagementTemplateCollectionTenantSummary] = None, request_configuration: Optional[ManagementTemplateCollectionTenantSummariesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to managementTemplateCollectionTenantSummaries for tenantRelationships
         param body: The request body
@@ -187,5 +186,28 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagementTemplateCollectionTenantSummariesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ManagementTemplateCollectionTenantSummariesRequestBuilder.ManagementTemplateCollectionTenantSummariesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagementTemplateCollectionTenantSummariesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class ProjectsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["projectParticipation%2Did"] = project_participation_id
         return ProjectParticipationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProjectParticipationCollectionResponse]:
+    async def get(self,request_configuration: Optional[ProjectsRequestBuilderGetRequestConfiguration] = None) -> Optional[ProjectParticipationCollectionResponse]:
         """
         Retrieve a list of projectParticipation objects from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class ProjectsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProjectParticipationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ProjectParticipation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProjectParticipation]:
+    async def post(self,body: Optional[ProjectParticipation] = None, request_configuration: Optional[ProjectsRequestBuilderPostRequestConfiguration] = None) -> Optional[ProjectParticipation]:
         """
         Use this API to create a new projectParticipation object in a user's profile.
         param body: The request body
@@ -89,7 +88,7 @@ class ProjectsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProjectParticipation, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ProjectsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of projectParticipation objects from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +99,7 @@ class ProjectsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ProjectParticipation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ProjectParticipation] = None, request_configuration: Optional[ProjectsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Use this API to create a new projectParticipation object in a user's profile.
         param body: The request body
@@ -189,5 +188,28 @@ class ProjectsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProjectsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ProjectsRequestBuilder.ProjectsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProjectsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

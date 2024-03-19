@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -30,7 +29,7 @@ class RemoteNetworkItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/networkAccess/connectivity/remoteNetworks/{remoteNetwork%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RemoteNetworkItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property remoteNetworks for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,7 +47,7 @@ class RemoteNetworkItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[RemoteNetwork]:
+    async def get(self,request_configuration: Optional[RemoteNetworkItemRequestBuilderGetRequestConfiguration] = None) -> Optional[RemoteNetwork]:
         """
         Get remoteNetworks from networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -68,7 +67,7 @@ class RemoteNetworkItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RemoteNetwork, error_mapping)
     
-    async def patch(self,body: Optional[RemoteNetwork] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[RemoteNetwork]:
+    async def patch(self,body: Optional[RemoteNetwork] = None, request_configuration: Optional[RemoteNetworkItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[RemoteNetwork]:
         """
         Update the navigation property remoteNetworks in networkAccess
         param body: The request body
@@ -91,7 +90,7 @@ class RemoteNetworkItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RemoteNetwork, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RemoteNetworkItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property remoteNetworks for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +101,7 @@ class RemoteNetworkItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RemoteNetworkItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get remoteNetworks from networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -113,7 +112,7 @@ class RemoteNetworkItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[RemoteNetwork] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[RemoteNetwork] = None, request_configuration: Optional[RemoteNetworkItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property remoteNetworks in networkAccess
         param body: The request body
@@ -165,6 +164,16 @@ class RemoteNetworkItemRequestBuilder(BaseRequestBuilder):
 
         return ForwardingProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RemoteNetworkItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class RemoteNetworkItemRequestBuilderGetQueryParameters():
         """
@@ -190,5 +199,28 @@ class RemoteNetworkItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RemoteNetworkItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[RemoteNetworkItemRequestBuilder.RemoteNetworkItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RemoteNetworkItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

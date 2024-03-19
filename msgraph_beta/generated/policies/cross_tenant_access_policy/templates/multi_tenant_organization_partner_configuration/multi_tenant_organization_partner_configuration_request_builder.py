@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +27,7 @@ class MultiTenantOrganizationPartnerConfigurationRequestBuilder(BaseRequestBuild
         """
         super().__init__(request_adapter, "{+baseurl}/policies/crossTenantAccessPolicy/templates/multiTenantOrganizationPartnerConfiguration{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[MultiTenantOrganizationPartnerConfigurationRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property multiTenantOrganizationPartnerConfiguration for policies
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +45,7 @@ class MultiTenantOrganizationPartnerConfigurationRequestBuilder(BaseRequestBuild
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationPartnerConfigurationTemplate]:
+    async def get(self,request_configuration: Optional[MultiTenantOrganizationPartnerConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[MultiTenantOrganizationPartnerConfigurationTemplate]:
         """
         Get the cross-tenant access policy template with inbound and outbound partner configuration settings for a multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class MultiTenantOrganizationPartnerConfigurationRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganizationPartnerConfigurationTemplate, error_mapping)
     
-    async def patch(self,body: Optional[MultiTenantOrganizationPartnerConfigurationTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationPartnerConfigurationTemplate]:
+    async def patch(self,body: Optional[MultiTenantOrganizationPartnerConfigurationTemplate] = None, request_configuration: Optional[MultiTenantOrganizationPartnerConfigurationRequestBuilderPatchRequestConfiguration] = None) -> Optional[MultiTenantOrganizationPartnerConfigurationTemplate]:
         """
         Update the cross-tenant access policy template with inbound and outbound partner configuration settings for a multitenant organization.
         param body: The request body
@@ -91,7 +90,7 @@ class MultiTenantOrganizationPartnerConfigurationRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganizationPartnerConfigurationTemplate, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[MultiTenantOrganizationPartnerConfigurationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property multiTenantOrganizationPartnerConfiguration for policies
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +101,7 @@ class MultiTenantOrganizationPartnerConfigurationRequestBuilder(BaseRequestBuild
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[MultiTenantOrganizationPartnerConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get the cross-tenant access policy template with inbound and outbound partner configuration settings for a multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -113,7 +112,7 @@ class MultiTenantOrganizationPartnerConfigurationRequestBuilder(BaseRequestBuild
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[MultiTenantOrganizationPartnerConfigurationTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MultiTenantOrganizationPartnerConfigurationTemplate] = None, request_configuration: Optional[MultiTenantOrganizationPartnerConfigurationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the cross-tenant access policy template with inbound and outbound partner configuration settings for a multitenant organization.
         param body: The request body
@@ -147,6 +146,16 @@ class MultiTenantOrganizationPartnerConfigurationRequestBuilder(BaseRequestBuild
 
         return ResetToDefaultSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MultiTenantOrganizationPartnerConfigurationRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class MultiTenantOrganizationPartnerConfigurationRequestBuilderGetQueryParameters():
         """
@@ -172,5 +181,28 @@ class MultiTenantOrganizationPartnerConfigurationRequestBuilder(BaseRequestBuild
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MultiTenantOrganizationPartnerConfigurationRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[MultiTenantOrganizationPartnerConfigurationRequestBuilder.MultiTenantOrganizationPartnerConfigurationRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MultiTenantOrganizationPartnerConfigurationRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

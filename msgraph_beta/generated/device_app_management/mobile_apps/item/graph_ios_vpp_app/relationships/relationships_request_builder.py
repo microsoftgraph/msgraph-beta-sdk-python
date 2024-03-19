@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,9 +43,9 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["mobileAppRelationship%2Did"] = mobile_app_relationship_id
         return MobileAppRelationshipItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MobileAppRelationshipCollectionResponse]:
+    async def get(self,request_configuration: Optional[RelationshipsRequestBuilderGetRequestConfiguration] = None) -> Optional[MobileAppRelationshipCollectionResponse]:
         """
-        The set of direct relationships for this app.
+        List of relationships for this mobile app.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MobileAppRelationshipCollectionResponse]
         """
@@ -64,7 +63,7 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MobileAppRelationshipCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[MobileAppRelationship] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MobileAppRelationship]:
+    async def post(self,body: Optional[MobileAppRelationship] = None, request_configuration: Optional[RelationshipsRequestBuilderPostRequestConfiguration] = None) -> Optional[MobileAppRelationship]:
         """
         Create new navigation property to relationships for deviceAppManagement
         param body: The request body
@@ -87,9 +86,9 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MobileAppRelationship, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RelationshipsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        The set of direct relationships for this app.
+        List of relationships for this mobile app.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,7 +97,7 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[MobileAppRelationship] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[MobileAppRelationship] = None, request_configuration: Optional[RelationshipsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to relationships for deviceAppManagement
         param body: The request body
@@ -135,7 +134,7 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RelationshipsRequestBuilderGetQueryParameters():
         """
-        The set of direct relationships for this app.
+        List of relationships for this mobile app.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -187,5 +186,28 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RelationshipsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[RelationshipsRequestBuilder.RelationshipsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RelationshipsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

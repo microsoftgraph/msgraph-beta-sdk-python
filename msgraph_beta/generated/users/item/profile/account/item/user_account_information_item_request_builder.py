@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class UserAccountInformationItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/profile/account/{userAccountInformation%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserAccountInformationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete an userAccountInformation object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +45,7 @@ class UserAccountInformationItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserAccountInformation]:
+    async def get(self,request_configuration: Optional[UserAccountInformationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UserAccountInformation]:
         """
         Retrieve the properties and relationships of an userAccountInformation object in a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class UserAccountInformationItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserAccountInformation, error_mapping)
     
-    async def patch(self,body: Optional[UserAccountInformation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserAccountInformation]:
+    async def patch(self,body: Optional[UserAccountInformation] = None, request_configuration: Optional[UserAccountInformationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[UserAccountInformation]:
         """
         Update the properties of an userAccountInformation object in a user's profile.
         param body: The request body
@@ -91,7 +90,7 @@ class UserAccountInformationItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserAccountInformation, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[UserAccountInformationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete an userAccountInformation object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +101,7 @@ class UserAccountInformationItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[UserAccountInformationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the properties and relationships of an userAccountInformation object in a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -113,7 +112,7 @@ class UserAccountInformationItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[UserAccountInformation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UserAccountInformation] = None, request_configuration: Optional[UserAccountInformationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of an userAccountInformation object in a user's profile.
         param body: The request body
@@ -137,6 +136,16 @@ class UserAccountInformationItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return UserAccountInformationItemRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserAccountInformationItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class UserAccountInformationItemRequestBuilderGetQueryParameters():
@@ -163,5 +172,28 @@ class UserAccountInformationItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserAccountInformationItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[UserAccountInformationItemRequestBuilder.UserAccountInformationItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserAccountInformationItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

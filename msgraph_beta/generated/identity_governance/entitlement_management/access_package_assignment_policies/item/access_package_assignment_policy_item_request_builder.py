@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -32,7 +31,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignmentPolicies/{accessPackageAssignmentPolicy%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessPackageAssignmentPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         In Microsoft Entra entitlement management, delete an accessPackageAssignmentPolicy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -52,7 +51,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageAssignmentPolicy]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageAssignmentPolicy]:
         """
         In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -74,7 +73,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageAssignmentPolicy, error_mapping)
     
-    async def put(self,body: Optional[AccessPackageAssignmentPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageAssignmentPolicy]:
+    async def put(self,body: Optional[AccessPackageAssignmentPolicy] = None, request_configuration: Optional[AccessPackageAssignmentPolicyItemRequestBuilderPutRequestConfiguration] = None) -> Optional[AccessPackageAssignmentPolicy]:
         """
         Update the navigation property accessPackageAssignmentPolicies in identityGovernance
         param body: The request body
@@ -98,7 +97,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageAssignmentPolicy, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[AccessPackageAssignmentPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         In Microsoft Entra entitlement management, delete an accessPackageAssignmentPolicy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +109,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentPolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -122,7 +121,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_put_request_information(self,body: Optional[AccessPackageAssignmentPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_put_request_information(self,body: Optional[AccessPackageAssignmentPolicy] = None, request_configuration: Optional[AccessPackageAssignmentPolicyItemRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property accessPackageAssignmentPolicies in identityGovernance
         param body: The request body
@@ -185,6 +184,16 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
 
         return CustomExtensionStageSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageAssignmentPolicyItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class AccessPackageAssignmentPolicyItemRequestBuilderGetQueryParameters():
         """
@@ -210,5 +219,28 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageAssignmentPolicyItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AccessPackageAssignmentPolicyItemRequestBuilder.AccessPackageAssignmentPolicyItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageAssignmentPolicyItemRequestBuilderPutRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

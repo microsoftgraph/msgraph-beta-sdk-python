@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -60,7 +59,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
 
         return FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageAssignmentRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageAssignmentRequestCollectionResponse]:
         """
         In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -82,7 +81,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageAssignmentRequestCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AccessPackageAssignmentRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageAssignmentRequest]:
+    async def post(self,body: Optional[AccessPackageAssignmentRequest] = None, request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[AccessPackageAssignmentRequest]:
         """
         In Microsoft Entra Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment.
         param body: The request body
@@ -107,7 +106,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageAssignmentRequest, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +118,7 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AccessPackageAssignmentRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AccessPackageAssignmentRequest] = None, request_configuration: Optional[AccessPackageAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         In Microsoft Entra Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, or to remove an access package assignment.
         param body: The request body
@@ -210,5 +209,28 @@ class AccessPackageAssignmentRequestsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageAssignmentRequestsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AccessPackageAssignmentRequestsRequestBuilder.AccessPackageAssignmentRequestsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageAssignmentRequestsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 
