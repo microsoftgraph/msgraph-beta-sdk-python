@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .simulation import Simulation
     from .simulation_automation import SimulationAutomation
     from .training import Training
+    from .training_campaign import TrainingCampaign
 
 from .entity import Entity
 
@@ -34,6 +35,8 @@ class AttackSimulationRoot(Entity):
     simulation_automations: Optional[List[SimulationAutomation]] = None
     # Represents an attack simulation training campaign in a tenant.
     simulations: Optional[List[Simulation]] = None
+    # The trainingCampaigns property
+    training_campaigns: Optional[List[TrainingCampaign]] = None
     # Represents details about attack simulation trainings.
     trainings: Optional[List[Training]] = None
     
@@ -62,6 +65,7 @@ class AttackSimulationRoot(Entity):
         from .simulation import Simulation
         from .simulation_automation import SimulationAutomation
         from .training import Training
+        from .training_campaign import TrainingCampaign
 
         from .attack_simulation_operation import AttackSimulationOperation
         from .end_user_notification import EndUserNotification
@@ -72,6 +76,7 @@ class AttackSimulationRoot(Entity):
         from .simulation import Simulation
         from .simulation_automation import SimulationAutomation
         from .training import Training
+        from .training_campaign import TrainingCampaign
 
         fields: Dict[str, Callable[[Any], None]] = {
             "endUserNotifications": lambda n : setattr(self, 'end_user_notifications', n.get_collection_of_object_values(EndUserNotification)),
@@ -81,6 +86,7 @@ class AttackSimulationRoot(Entity):
             "payloads": lambda n : setattr(self, 'payloads', n.get_collection_of_object_values(Payload)),
             "simulationAutomations": lambda n : setattr(self, 'simulation_automations', n.get_collection_of_object_values(SimulationAutomation)),
             "simulations": lambda n : setattr(self, 'simulations', n.get_collection_of_object_values(Simulation)),
+            "trainingCampaigns": lambda n : setattr(self, 'training_campaigns', n.get_collection_of_object_values(TrainingCampaign)),
             "trainings": lambda n : setattr(self, 'trainings', n.get_collection_of_object_values(Training)),
         }
         super_fields = super().get_field_deserializers()
@@ -103,6 +109,7 @@ class AttackSimulationRoot(Entity):
         writer.write_collection_of_object_values("payloads", self.payloads)
         writer.write_collection_of_object_values("simulationAutomations", self.simulation_automations)
         writer.write_collection_of_object_values("simulations", self.simulations)
+        writer.write_collection_of_object_values("trainingCampaigns", self.training_campaigns)
         writer.write_collection_of_object_values("trainings", self.trainings)
     
 

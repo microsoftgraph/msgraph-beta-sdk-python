@@ -79,7 +79,7 @@ class ContentTypeItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ContentType] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ContentType]:
         """
-        Update a [content type][contentType].
+        Update contentType
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContentType]
@@ -125,7 +125,7 @@ class ContentTypeItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ContentType] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update a [content type][contentType].
+        Update contentType
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

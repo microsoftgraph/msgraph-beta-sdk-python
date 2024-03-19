@@ -16,7 +16,7 @@ class MobileAppCategory(Entity):
     """
     # The name of the app category.
     display_name: Optional[str] = None
-    # The date and time the mobileAppCategory was last modified.
+    # The date and time the mobileAppCategory was last modified. This property is read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -59,6 +59,5 @@ class MobileAppCategory(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
     
 

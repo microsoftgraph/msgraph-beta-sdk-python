@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class CloudClipboardRoot(Entity):
-    # The items property
+    # Represents a collection of Cloud Clipboard items.
     items: Optional[List[CloudClipboardItem]] = None
     # The OdataType property
     odata_type: Optional[str] = None

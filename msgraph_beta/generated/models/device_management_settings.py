@@ -38,6 +38,8 @@ class DeviceManagementSettings(AdditionalDataHolder, BackedModel, Parsable):
     ignore_devices_for_unsupported_settings_enabled: Optional[bool] = None
     # Is feature enabled or not for scheduled action for rule.
     is_scheduled_action_enabled: Optional[bool] = None
+    # The property to determine if M365 App log collection is enabled for account. When TRUE it indicates that M365 app log collection is enabled for account.  When FALSE it indicates that M365 app log collection is disabled for account. Default value is FALSE
+    m365_app_diagnostics_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Device should be noncompliant when there is no compliance policy targeted when this is true
@@ -76,6 +78,7 @@ class DeviceManagementSettings(AdditionalDataHolder, BackedModel, Parsable):
             "enhancedJailBreak": lambda n : setattr(self, 'enhanced_jail_break', n.get_bool_value()),
             "ignoreDevicesForUnsupportedSettingsEnabled": lambda n : setattr(self, 'ignore_devices_for_unsupported_settings_enabled', n.get_bool_value()),
             "isScheduledActionEnabled": lambda n : setattr(self, 'is_scheduled_action_enabled', n.get_bool_value()),
+            "m365AppDiagnosticsEnabled": lambda n : setattr(self, 'm365_app_diagnostics_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "secureByDefault": lambda n : setattr(self, 'secure_by_default', n.get_bool_value()),
         }
@@ -101,6 +104,7 @@ class DeviceManagementSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("enhancedJailBreak", self.enhanced_jail_break)
         writer.write_bool_value("ignoreDevicesForUnsupportedSettingsEnabled", self.ignore_devices_for_unsupported_settings_enabled)
         writer.write_bool_value("isScheduledActionEnabled", self.is_scheduled_action_enabled)
+        writer.write_bool_value("m365AppDiagnosticsEnabled", self.m365_app_diagnostics_enabled)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bool_value("secureByDefault", self.secure_by_default)
         writer.write_additional_data_value(self.additional_data)

@@ -31,10 +31,10 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete an inboundFlow object.
+        Delete an inboundFileFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -71,11 +71,11 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[InboundFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[InboundFlow]:
         """
-        Update the properties of an inboundFlow object.
+        Update the properties of an inboundFileFlow object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -95,7 +95,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an inboundFlow object.
+        Delete an inboundFileFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,7 +117,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[InboundFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an inboundFlow object.
+        Update the properties of an inboundFileFlow object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

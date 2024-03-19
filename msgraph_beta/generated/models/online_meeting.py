@@ -32,7 +32,7 @@ class OnlineMeeting(OnlineMeetingBase):
     capabilities: Optional[List[MeetingCapabilities]] = None
     # The meeting creation time in UTC. Read-only.
     creation_date_time: Optional[datetime.datetime] = None
-    # The meeting end time in UTC.
+    # The meeting end time in UTC. Required when you create an online meeting.
     end_date_time: Optional[datetime.datetime] = None
     # The external ID. A custom ID. Optional.
     external_id: Optional[str] = None
@@ -52,7 +52,7 @@ class OnlineMeeting(OnlineMeetingBase):
     recordings: Optional[List[CallRecording]] = None
     # The registration that is enabled for an online meeting. One online meeting can only have one registration enabled.
     registration: Optional[MeetingRegistration] = None
-    # The meeting start time in UTC.
+    # The meeting start time in UTC. Required when you create an online meeting.
     start_date_time: Optional[datetime.datetime] = None
     # The transcripts of an online meeting. Read-only.
     transcripts: Optional[List[CallTranscript]] = None

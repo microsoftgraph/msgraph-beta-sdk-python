@@ -15,6 +15,8 @@ if TYPE_CHECKING:
     from .....models.virtual_event_webinar import VirtualEventWebinar
     from .presenters.presenters_request_builder import PresentersRequestBuilder
     from .registrations.registrations_request_builder import RegistrationsRequestBuilder
+    from .registrations_with_email.registrations_with_email_request_builder import RegistrationsWithEmailRequestBuilder
+    from .registrations_with_user_id.registrations_with_user_id_request_builder import RegistrationsWithUserIdRequestBuilder
     from .registration_configuration.registration_configuration_request_builder import RegistrationConfigurationRequestBuilder
     from .sessions.sessions_request_builder import SessionsRequestBuilder
     from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
@@ -93,6 +95,30 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
         from .....models.virtual_event_webinar import VirtualEventWebinar
 
         return await self.request_adapter.send_async(request_info, VirtualEventWebinar, error_mapping)
+    
+    def registrations_with_email(self,email: Optional[str] = None) -> RegistrationsWithEmailRequestBuilder:
+        """
+        Provides operations to manage the registrations property of the microsoft.graph.virtualEventWebinar entity.
+        param email: Alternate key of virtualEventRegistration
+        Returns: RegistrationsWithEmailRequestBuilder
+        """
+        if not email:
+            raise TypeError("email cannot be null.")
+        from .registrations_with_email.registrations_with_email_request_builder import RegistrationsWithEmailRequestBuilder
+
+        return RegistrationsWithEmailRequestBuilder(self.request_adapter, self.path_parameters, email)
+    
+    def registrations_with_user_id(self,user_id: Optional[str] = None) -> RegistrationsWithUserIdRequestBuilder:
+        """
+        Provides operations to manage the registrations property of the microsoft.graph.virtualEventWebinar entity.
+        param user_id: Alternate key of virtualEventRegistration
+        Returns: RegistrationsWithUserIdRequestBuilder
+        """
+        if not user_id:
+            raise TypeError("user_id cannot be null.")
+        from .registrations_with_user_id.registrations_with_user_id_request_builder import RegistrationsWithUserIdRequestBuilder
+
+        return RegistrationsWithUserIdRequestBuilder(self.request_adapter, self.path_parameters, user_id)
     
     def sessions_with_join_web_url(self,join_web_url: Optional[str] = None) -> SessionsWithJoinWebUrlRequestBuilder:
         """

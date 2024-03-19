@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .........models.o_data_errors.o_data_error import ODataError
-    from .........models.user_configuration import UserConfiguration
+    from .........models.teams_user_configuration.user_configuration import UserConfiguration
 
 class UserConfigurationItemRequestBuilder(BaseRequestBuilder):
     """
@@ -43,7 +43,7 @@ class UserConfigurationItemRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .........models.user_configuration import UserConfiguration
+        from .........models.teams_user_configuration.user_configuration import UserConfiguration
 
         return await self.request_adapter.send_async(request_info, UserConfiguration, error_mapping)
     

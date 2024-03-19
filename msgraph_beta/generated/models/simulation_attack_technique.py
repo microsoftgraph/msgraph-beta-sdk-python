@@ -9,4 +9,5 @@ class SimulationAttackTechnique(str, Enum):
     LinkToMalwareFile = "linkToMalwareFile",
     UnknownFutureValue = "unknownFutureValue",
     OAuthConsentGrant = "oAuthConsentGrant",
+    PhishTraining = "phishTraining",
 

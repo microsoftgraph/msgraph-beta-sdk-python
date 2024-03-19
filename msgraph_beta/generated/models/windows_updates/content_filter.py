@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .driver_update_filter import DriverUpdateFilter
+    from .quality_update_filter import QualityUpdateFilter
     from .software_update_filter import SoftwareUpdateFilter
     from .windows_update_filter import WindowsUpdateFilter
 
@@ -36,6 +37,10 @@ class ContentFilter(AdditionalDataHolder, BackedModel, Parsable):
             from .driver_update_filter import DriverUpdateFilter
 
             return DriverUpdateFilter()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateFilter".casefold():
+            from .quality_update_filter import QualityUpdateFilter
+
+            return QualityUpdateFilter()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.softwareUpdateFilter".casefold():
             from .software_update_filter import SoftwareUpdateFilter
 
@@ -52,10 +57,12 @@ class ContentFilter(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .driver_update_filter import DriverUpdateFilter
+        from .quality_update_filter import QualityUpdateFilter
         from .software_update_filter import SoftwareUpdateFilter
         from .windows_update_filter import WindowsUpdateFilter
 
         from .driver_update_filter import DriverUpdateFilter
+        from .quality_update_filter import QualityUpdateFilter
         from .software_update_filter import SoftwareUpdateFilter
         from .windows_update_filter import WindowsUpdateFilter
 

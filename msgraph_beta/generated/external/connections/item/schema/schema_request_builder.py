@@ -50,11 +50,11 @@ class SchemaRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Schema] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Schema]:
         """
-        Update the properties of a schema for an externalConnection.
+        Create the schema for a Microsoft Search connection.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Schema]
-        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-schema-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-patch-schema?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -85,7 +85,7 @@ class SchemaRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Schema] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a schema for an externalConnection.
+        Create the schema for a Microsoft Search connection.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

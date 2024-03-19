@@ -16,13 +16,13 @@ class AndroidStoreApp(MobileApp):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidStoreApp"
-    # The Identity Name.
+    # The Identity Name. This property is read-only.
     app_identifier: Optional[str] = None
     # The Android app store URL.
     app_store_url: Optional[str] = None
     # The value for the minimum applicable operating system.
     minimum_supported_operating_system: Optional[AndroidMinimumOperatingSystem] = None
-    # The package identifier.
+    # The package identifier. This property is read-only.
     package_id: Optional[str] = None
     
     @staticmethod
@@ -66,9 +66,7 @@ class AndroidStoreApp(MobileApp):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_str_value("appIdentifier", self.app_identifier)
         writer.write_str_value("appStoreUrl", self.app_store_url)
         writer.write_object_value("minimumSupportedOperatingSystem", self.minimum_supported_operating_system)
-        writer.write_str_value("packageId", self.package_id)
     
 

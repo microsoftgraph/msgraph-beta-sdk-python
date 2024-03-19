@@ -24,9 +24,9 @@ class BookingAppointment(Entity):
     additional_information: Optional[str] = None
     # The URL of the meeting to join anonymously.
     anonymous_join_web_url: Optional[str] = None
-    # Custom label that can be stamped on this appointment by the user.
+    # The user can stamp a custom label on the appointment.
     appointment_label: Optional[str] = None
-    # The date, time and timezone when the appointment was created.
+    # The date, time, and timezone when the appointment was created.
     created_date_time: Optional[datetime.datetime] = None
     # The SMTP address of the bookingCustomer who is booking the appointment.
     customer_email_address: Optional[str] = None
@@ -60,9 +60,9 @@ class BookingAppointment(Entity):
     invoice_status: Optional[BookingInvoiceStatus] = None
     # The URL of the invoice in Microsoft Bookings.
     invoice_url: Optional[str] = None
-    # The isCustomerAllowedToManageBooking property
+    # Indicates that the customer can manage bookings created by the staff. The default value is false.
     is_customer_allowed_to_manage_booking: Optional[bool] = None
-    # True indicates that the appointment will be held online. Default value is false.
+    # Indicates that the appointment is held online. The default value is false.
     is_location_online: Optional[bool] = None
     # The URL of the online meeting for the appointment.
     join_web_url: Optional[str] = None
@@ -86,7 +86,7 @@ class BookingAppointment(Entity):
     price_type: Optional[BookingPriceType] = None
     # The collection of customer reminders sent for this appointment. The value of this property is available only when reading this bookingAppointment by its ID.
     reminders: Optional[List[BookingReminder]] = None
-    # An additional tracking ID for the appointment, if the appointment has been created directly by the customer on the scheduling page, as opposed to by a staff member on the behalf of the customer.
+    # Another tracking ID for the appointment, if the appointment was created directly by the customer on the scheduling page, as opposed to by a staff member on behalf of customer.
     self_service_appointment_id: Optional[str] = None
     # The ID of the bookingService associated with this appointment.
     service_id: Optional[str] = None

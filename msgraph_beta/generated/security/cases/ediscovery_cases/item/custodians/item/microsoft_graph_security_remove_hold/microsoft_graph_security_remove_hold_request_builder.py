@@ -27,7 +27,7 @@ class MicrosoftGraphSecurityRemoveHoldRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Start the process of removing hold from eDiscovery custodians. After the operation is created, you can get the status by retrieving the Location parameter from the response headers. The location provides a URL that will return an eDiscoveryHoldOperation object.
+        Invoke action removeHold
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/security-ediscoverycustodian-removehold?view=graph-rest-1.0
@@ -46,7 +46,7 @@ class MicrosoftGraphSecurityRemoveHoldRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Start the process of removing hold from eDiscovery custodians. After the operation is created, you can get the status by retrieving the Location parameter from the response headers. The location provides a URL that will return an eDiscoveryHoldOperation object.
+        Invoke action removeHold
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

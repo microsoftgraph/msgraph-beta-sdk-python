@@ -15,29 +15,29 @@ class Windows10EnrollmentCompletionPageConfiguration(DeviceEnrollmentConfigurati
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windows10EnrollmentCompletionPageConfiguration"
-    # Allow or block device reset on installation failure
+    # When TRUE, allows device reset on installation failure. When false, reset is blocked. The default is false.
     allow_device_reset_on_install_failure: Optional[bool] = None
-    # Allow the user to continue using the device on installation failure
+    # When TRUE, allows the user to continue using the device on installation failure. When false, blocks the user on installation failure. The default is false.
     allow_device_use_on_install_failure: Optional[bool] = None
-    # Allow or block log collection on installation failure
+    # When TRUE, allows log collection on installation failure. When false, log collection is not allowed. The default is false.
     allow_log_collection_on_install_failure: Optional[bool] = None
-    # Install all required apps as non blocking apps during white glove
+    # When TRUE, ESP (Enrollment Status Page) installs all required apps targeted during technician phase and ignores any failures for non-blocking apps. When FALSE, ESP fails on any error during app install. The default is false.
     allow_non_blocking_app_installation: Optional[bool] = None
-    # Allow the user to retry the setup on installation failure
+    # When TRUE, blocks user from retrying the setup on installation failure. When false, user is allowed to retry. The default is false.
     block_device_setup_retry_by_user: Optional[bool] = None
-    # Set custom error message to show upon installation failure
+    # The custom error message to show upon installation failure. Max length is 10000. example: 'Setup could not be completed. Please try again or contact your support person for help.'
     custom_error_message: Optional[str] = None
-    # Only show installation progress for first user post enrollment
+    # When TRUE, disables showing installation progress for first user post enrollment. When false, enables showing progress. The default is false.
     disable_user_status_tracking_after_first_user: Optional[bool] = None
-    # Set installation progress timeout in minutes
+    # The installation progress timeout in minutes. Default is 60 minutes.
     install_progress_timeout_in_minutes: Optional[int] = None
     # Allows quality updates installation during OOBE
     install_quality_updates: Optional[bool] = None
-    # Selected applications to track the installation status
+    # Selected applications to track the installation status. It is in the form of an array of GUIDs.
     selected_mobile_app_ids: Optional[List[str]] = None
-    # Show or hide installation progress to user
+    # When TRUE, shows installation progress to user. When false, hides installation progress. The default is false.
     show_installation_progress: Optional[bool] = None
-    # Only show installation progress for Autopilot enrollment scenarios
+    # When TRUE, installation progress is tracked for only Autopilot enrollment scenarios. When false, other scenarios are tracked as well. The default is false.
     track_install_progress_for_autopilot_only: Optional[bool] = None
     
     @staticmethod

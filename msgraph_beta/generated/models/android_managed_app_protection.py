@@ -26,7 +26,7 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
     allowed_android_device_manufacturers: Optional[str] = None
     # List of device models allowed, as a string, for the managed app to work.
     allowed_android_device_models: Optional[List[str]] = None
-    # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time).
+    # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). Possible values are: block, wipe, warn.
     app_action_if_account_is_clocked_out: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_android_device_manufacturer_not_allowed: Optional[ManagedAppRemediationAction] = None
@@ -38,13 +38,13 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
     app_action_if_android_safety_net_device_attestation_failed: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_device_lock_not_set: Optional[ManagedAppRemediationAction] = None
-    # If the device does not have a passcode of high complexity or higher, trigger the stored action.
+    # If the device does not have a passcode of high complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
     app_action_if_device_passcode_complexity_less_than_high: Optional[ManagedAppRemediationAction] = None
-    # If the device does not have a passcode of low complexity or higher, trigger the stored action.
+    # If the device does not have a passcode of low complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
     app_action_if_device_passcode_complexity_less_than_low: Optional[ManagedAppRemediationAction] = None
-    # If the device does not have a passcode of medium complexity or higher, trigger the stored action.
+    # If the device does not have a passcode of medium complexity or higher, trigger the stored action. Possible values are: block, wipe, warn.
     app_action_if_device_passcode_complexity_less_than_medium: Optional[ManagedAppRemediationAction] = None
-    # Defines the behavior of a managed app when Samsung Knox Attestation is required. Possible values are null, warn, block & wipe. If the admin does not set this action, the default is null, which indicates this setting is not configured.
+    # Defines the behavior of a managed app when Samsung Knox Attestation is required. Possible values are null, warn, block & wipe. If the admin does not set this action, the default is null, which indicates this setting is not configured. Possible values are: block, wipe, warn.
     app_action_if_samsung_knox_attestation_required: Optional[ManagedAppRemediationAction] = None
     # If Keyboard Restriction is enabled, only keyboards in this approved list will be allowed. A key should be Android package id for a keyboard and value should be a friendly name
     approved_keyboards: Optional[List[KeyValuePair]] = None
@@ -56,9 +56,9 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
     block_after_company_portal_update_deferral_in_days: Optional[int] = None
     # Whether the app should connect to the configured VPN on launch.
     connect_to_vpn_on_launch: Optional[bool] = None
-    # Friendly name of the preferred custom browser to open weblink on Android.
+    # Friendly name of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
     custom_browser_display_name: Optional[str] = None
-    # Unique identifier of a custom browser to open weblink on Android.
+    # Unique identifier of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
     custom_browser_package_id: Optional[str] = None
     # Friendly name of a custom dialer app to click-to-open a phone number on Android.
     custom_dialer_app_display_name: Optional[str] = None

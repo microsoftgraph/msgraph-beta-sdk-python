@@ -12,15 +12,15 @@ from .entity import Entity
 
 @dataclass
 class CloudClipboardItem(Entity):
-    # The createdDateTime property
+    # Set by the server. DateTime in UTC when the object was created on the server.
     created_date_time: Optional[datetime.datetime] = None
-    # The expirationDateTime property
+    # Set by the server. DateTime in UTC when the object expires and after that the object is no longer available. The default and also maximum TTL is 12 hours after the creation, but it might change for performance optimization.
     expiration_date_time: Optional[datetime.datetime] = None
-    # The lastModifiedDateTime property
+    # Set by the server if not provided in the client's request. DateTime in UTC when the object was modified by the client.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The payloads property
+    # A cloudClipboardItem can have multiple cloudClipboardItemPayload objects in the payloads. A window can place more than one clipboard object on the clipboard. Each one represents the same information in a different clipboard format.
     payloads: Optional[List[CloudClipboardItemPayload]] = None
     
     @staticmethod

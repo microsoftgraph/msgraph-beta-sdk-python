@@ -16,9 +16,9 @@ class AndroidManagedStoreAppTrack(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # Friendly name for track.
+    # Friendly name for track. This property is read-only.
     track_alias: Optional[str] = None
-    # Unique track identifier.
+    # Unique track identifier. This property is read-only.
     track_id: Optional[str] = None
     
     @staticmethod
@@ -53,8 +53,6 @@ class AndroidManagedStoreAppTrack(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_str_value("trackAlias", self.track_alias)
-        writer.write_str_value("trackId", self.track_id)
         writer.write_additional_data_value(self.additional_data)
     
 

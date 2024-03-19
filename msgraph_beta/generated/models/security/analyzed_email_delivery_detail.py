@@ -15,9 +15,9 @@ class AnalyzedEmailDeliveryDetail(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The action property
+    # The delivery action of the email. The possible values are: unknown, deliveredToJunk, delivered, blocked, replaced, unknownFutureValue.
     action: Optional[DeliveryAction] = None
-    # The location property
+    # The delivery location of the email. The possible values are: unknown, inboxfolder, junkFolder, deletedFolder, quarantine, onpremexternal, failed, dropped, others, unknownFutureValue.
     location: Optional[DeliveryLocation] = None
     # The OdataType property
     odata_type: Optional[str] = None

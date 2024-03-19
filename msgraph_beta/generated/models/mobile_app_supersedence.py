@@ -16,11 +16,11 @@ class MobileAppSupersedence(MobileAppRelationship):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.mobileAppSupersedence"
-    # The total number of apps directly or indirectly superseded by the child app.
+    # The total number of apps directly or indirectly superseded by the child app. This property is read-only.
     superseded_app_count: Optional[int] = None
     # Indicates the supersedence type associated with a relationship between two mobile apps.
     supersedence_type: Optional[MobileAppSupersedenceType] = None
-    # The total number of apps directly or indirectly superseding the parent app.
+    # The total number of apps directly or indirectly superseding the parent app. This property is read-only.
     superseding_app_count: Optional[int] = None
     
     @staticmethod
@@ -63,8 +63,6 @@ class MobileAppSupersedence(MobileAppRelationship):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_int_value("supersededAppCount", self.superseded_app_count)
         writer.write_enum_value("supersedenceType", self.supersedence_type)
-        writer.write_int_value("supersedingAppCount", self.superseding_app_count)
     
 

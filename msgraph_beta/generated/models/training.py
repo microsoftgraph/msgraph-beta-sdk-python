@@ -22,6 +22,8 @@ class Training(Entity):
     created_by: Optional[EmailIdentity] = None
     # Date and time when the training was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
+    # The customUrl property
+    custom_url: Optional[str] = None
     # The description for the training.
     description: Optional[str] = None
     # The display name for the training.
@@ -81,6 +83,7 @@ class Training(Entity):
             "availabilityStatus": lambda n : setattr(self, 'availability_status', n.get_enum_value(TrainingAvailabilityStatus)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(EmailIdentity)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "customUrl": lambda n : setattr(self, 'custom_url', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "durationInMinutes": lambda n : setattr(self, 'duration_in_minutes', n.get_int_value()),
@@ -109,6 +112,7 @@ class Training(Entity):
         writer.write_enum_value("availabilityStatus", self.availability_status)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_str_value("customUrl", self.custom_url)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_int_value("durationInMinutes", self.duration_in_minutes)

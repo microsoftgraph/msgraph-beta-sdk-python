@@ -11,11 +11,11 @@ from .entity import Entity
 
 @dataclass
 class EducationGradingScheme(Entity):
-    # The displayName property
+    # The name of the grading scheme.
     display_name: Optional[str] = None
-    # The grades property
+    # The grades that make up the scheme.
     grades: Optional[List[EducationGradingSchemeGrade]] = None
-    # The hidePointsDuringGrading property
+    # The display setting for the UI. Indicates whether teachers can grade with points in addition to letter grades.
     hide_points_during_grading: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -22,6 +22,8 @@ class CloudPcAuditResource(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The ID of the audit resource.
     resource_id: Optional[str] = None
+    # The resourceType property
+    resource_type: Optional[str] = None
     # The type of the audit resource.
     type: Optional[str] = None
     
@@ -50,6 +52,7 @@ class CloudPcAuditResource(AdditionalDataHolder, BackedModel, Parsable):
             "modifiedProperties": lambda n : setattr(self, 'modified_properties', n.get_collection_of_object_values(CloudPcAuditProperty)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
+            "resourceType": lambda n : setattr(self, 'resource_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         return fields
@@ -66,6 +69,7 @@ class CloudPcAuditResource(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("modifiedProperties", self.modified_properties)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("resourceId", self.resource_id)
+        writer.write_str_value("resourceType", self.resource_type)
         writer.write_str_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)
     

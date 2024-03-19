@@ -998,6 +998,7 @@ if TYPE_CHECKING:
     from .microsoft_tunnel_site import MicrosoftTunnelSite
     from .mobile_app import MobileApp
     from .mobile_app_assignment import MobileAppAssignment
+    from .mobile_app_catalog_package import MobileAppCatalogPackage
     from .mobile_app_category import MobileAppCategory
     from .mobile_app_content import MobileAppContent
     from .mobile_app_content_file import MobileAppContentFile
@@ -1522,6 +1523,8 @@ if TYPE_CHECKING:
     from .teams_async_operation import TeamsAsyncOperation
     from .teams_tab import TeamsTab
     from .teams_template import TeamsTemplate
+    from .teams_user_configuration.teams_admin_root import TeamsAdminRoot
+    from .teams_user_configuration.user_configuration import UserConfiguration
     from .teamwork import Teamwork
     from .teamwork_bot import TeamworkBot
     from .teamwork_device import TeamworkDevice
@@ -1571,6 +1574,7 @@ if TYPE_CHECKING:
     from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
     from .too_many_global_admins_assigned_to_tenant_alert_incident import TooManyGlobalAdminsAssignedToTenantAlertIncident
     from .training import Training
+    from .training_campaign import TrainingCampaign
     from .training_language_detail import TrainingLanguageDetail
     from .trending import Trending
     from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
@@ -1617,7 +1621,6 @@ if TYPE_CHECKING:
     from .user_activity import UserActivity
     from .user_analytics import UserAnalytics
     from .user_app_install_status import UserAppInstallStatus
-    from .user_configuration import UserConfiguration
     from .user_consent_request import UserConsentRequest
     from .user_count_metric import UserCountMetric
     from .user_credential_usage_details import UserCredentialUsageDetails
@@ -1706,6 +1709,7 @@ if TYPE_CHECKING:
     from .web_part import WebPart
     from .win32_catalog_app import Win32CatalogApp
     from .win32_lob_app import Win32LobApp
+    from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
     from .windows10_certificate_profile_base import Windows10CertificateProfileBase
     from .windows10_compliance_policy import Windows10CompliancePolicy
     from .windows10_custom_configuration import Windows10CustomConfiguration
@@ -5911,6 +5915,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mobile_app_assignment import MobileAppAssignment
 
             return MobileAppAssignment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppCatalogPackage".casefold():
+            from .mobile_app_catalog_package import MobileAppCatalogPackage
+
+            return MobileAppCatalogPackage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppCategory".casefold():
             from .mobile_app_category import MobileAppCategory
 
@@ -8039,6 +8047,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .teams_template import TeamsTemplate
 
             return TeamsTemplate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsUserConfiguration.teamsAdminRoot".casefold():
+            from .teams_user_configuration.teams_admin_root import TeamsAdminRoot
+
+            return TeamsAdminRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamTemplate".casefold():
             from .team_template import TeamTemplate
 
@@ -8232,6 +8244,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .training import Training
 
             return Training()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.trainingCampaign".casefold():
+            from .training_campaign import TrainingCampaign
+
+            return TrainingCampaign()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.trainingLanguageDetail".casefold():
             from .training_language_detail import TrainingLanguageDetail
 
@@ -8417,7 +8433,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return UserAppInstallStatus()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userConfiguration".casefold():
-            from .user_configuration import UserConfiguration
+            from .teams_user_configuration.user_configuration import UserConfiguration
 
             return UserConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userConsentRequest".casefold():
@@ -8772,6 +8788,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .win32_lob_app import Win32LobApp
 
             return Win32LobApp()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32MobileAppCatalogPackage".casefold():
+            from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
+
+            return Win32MobileAppCatalogPackage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10CertificateProfileBase".casefold():
             from .windows10_certificate_profile_base import Windows10CertificateProfileBase
 
@@ -10486,6 +10506,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .microsoft_tunnel_site import MicrosoftTunnelSite
         from .mobile_app import MobileApp
         from .mobile_app_assignment import MobileAppAssignment
+        from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .mobile_app_category import MobileAppCategory
         from .mobile_app_content import MobileAppContent
         from .mobile_app_content_file import MobileAppContentFile
@@ -11010,6 +11031,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_async_operation import TeamsAsyncOperation
         from .teams_tab import TeamsTab
         from .teams_template import TeamsTemplate
+        from .teams_user_configuration.teams_admin_root import TeamsAdminRoot
+        from .teams_user_configuration.user_configuration import UserConfiguration
         from .teamwork import Teamwork
         from .teamwork_bot import TeamworkBot
         from .teamwork_device import TeamworkDevice
@@ -11059,6 +11082,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
         from .too_many_global_admins_assigned_to_tenant_alert_incident import TooManyGlobalAdminsAssignedToTenantAlertIncident
         from .training import Training
+        from .training_campaign import TrainingCampaign
         from .training_language_detail import TrainingLanguageDetail
         from .trending import Trending
         from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
@@ -11105,7 +11129,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_activity import UserActivity
         from .user_analytics import UserAnalytics
         from .user_app_install_status import UserAppInstallStatus
-        from .user_configuration import UserConfiguration
         from .user_consent_request import UserConsentRequest
         from .user_count_metric import UserCountMetric
         from .user_credential_usage_details import UserCredentialUsageDetails
@@ -11194,6 +11217,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .web_part import WebPart
         from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
+        from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
         from .windows10_certificate_profile_base import Windows10CertificateProfileBase
         from .windows10_compliance_policy import Windows10CompliancePolicy
         from .windows10_custom_configuration import Windows10CustomConfiguration
@@ -12366,6 +12390,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .microsoft_tunnel_site import MicrosoftTunnelSite
         from .mobile_app import MobileApp
         from .mobile_app_assignment import MobileAppAssignment
+        from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .mobile_app_category import MobileAppCategory
         from .mobile_app_content import MobileAppContent
         from .mobile_app_content_file import MobileAppContentFile
@@ -12890,6 +12915,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_async_operation import TeamsAsyncOperation
         from .teams_tab import TeamsTab
         from .teams_template import TeamsTemplate
+        from .teams_user_configuration.teams_admin_root import TeamsAdminRoot
+        from .teams_user_configuration.user_configuration import UserConfiguration
         from .teamwork import Teamwork
         from .teamwork_bot import TeamworkBot
         from .teamwork_device import TeamworkDevice
@@ -12939,6 +12966,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
         from .too_many_global_admins_assigned_to_tenant_alert_incident import TooManyGlobalAdminsAssignedToTenantAlertIncident
         from .training import Training
+        from .training_campaign import TrainingCampaign
         from .training_language_detail import TrainingLanguageDetail
         from .trending import Trending
         from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
@@ -12985,7 +13013,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_activity import UserActivity
         from .user_analytics import UserAnalytics
         from .user_app_install_status import UserAppInstallStatus
-        from .user_configuration import UserConfiguration
         from .user_consent_request import UserConsentRequest
         from .user_count_metric import UserCountMetric
         from .user_credential_usage_details import UserCredentialUsageDetails
@@ -13074,6 +13101,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .web_part import WebPart
         from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
+        from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
         from .windows10_certificate_profile_base import Windows10CertificateProfileBase
         from .windows10_compliance_policy import Windows10CompliancePolicy
         from .windows10_custom_configuration import Windows10CustomConfiguration

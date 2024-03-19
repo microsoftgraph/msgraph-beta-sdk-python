@@ -29,7 +29,7 @@ class DriveRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Drive]:
         """
-        Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
+        Retrieve the properties and relationships of a drive resource. A drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Drive]
         Find more info here: https://learn.microsoft.com/graph/api/drive-get?view=graph-rest-1.0
@@ -50,7 +50,7 @@ class DriveRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
+        Retrieve the properties and relationships of a drive resource. A drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,7 +72,7 @@ class DriveRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DriveRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
+        Retrieve the properties and relationships of a drive resource. A drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -17,7 +17,7 @@ class AndroidManagedStoreAppConfiguration(ManagedDeviceMobileAppConfiguration):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidManagedStoreAppConfiguration"
-    # Whether or not this AppConfig is an OEMConfig policy.
+    # Whether or not this AppConfig is an OEMConfig policy. This property is read-only.
     app_supports_oem_config: Optional[bool] = None
     # Setting to specify whether to allow ConnectedApps experience for this app.
     connected_apps_enabled: Optional[bool] = None
@@ -75,7 +75,6 @@ class AndroidManagedStoreAppConfiguration(ManagedDeviceMobileAppConfiguration):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_bool_value("appSupportsOemConfig", self.app_supports_oem_config)
         writer.write_bool_value("connectedAppsEnabled", self.connected_apps_enabled)
         writer.write_str_value("packageId", self.package_id)
         writer.write_str_value("payloadJson", self.payload_json)

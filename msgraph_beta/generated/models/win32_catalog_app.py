@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .mobile_app_catalog_package import MobileAppCatalogPackage
     from .win32_lob_app import Win32LobApp
 
 from .win32_lob_app import Win32LobApp
@@ -15,8 +16,12 @@ class Win32CatalogApp(Win32LobApp):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.win32CatalogApp"
+    # The latest available catalog package the app is upgradeable to. This property is read-only.
+    latest_upgrade_catalog_package: Optional[MobileAppCatalogPackage] = None
     # The mobileAppCatalogPackageId property references the mobileAppCatalogPackage entity which contains information about an application catalog package that can be deployed to Intune-managed devices
     mobile_app_catalog_package_id: Optional[str] = None
+    # The current catalog package the app is synced from. This property is read-only.
+    referenced_catalog_package: Optional[MobileAppCatalogPackage] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Win32CatalogApp:
@@ -34,12 +39,16 @@ class Win32CatalogApp(Win32LobApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .win32_lob_app import Win32LobApp
 
+        from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .win32_lob_app import Win32LobApp
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "latestUpgradeCatalogPackage": lambda n : setattr(self, 'latest_upgrade_catalog_package', n.get_object_value(MobileAppCatalogPackage)),
             "mobileAppCatalogPackageId": lambda n : setattr(self, 'mobile_app_catalog_package_id', n.get_str_value()),
+            "referencedCatalogPackage": lambda n : setattr(self, 'referenced_catalog_package', n.get_object_value(MobileAppCatalogPackage)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,6 +63,8 @@ class Win32CatalogApp(Win32LobApp):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("latestUpgradeCatalogPackage", self.latest_upgrade_catalog_package)
         writer.write_str_value("mobileAppCatalogPackageId", self.mobile_app_catalog_package_id)
+        writer.write_object_value("referencedCatalogPackage", self.referenced_catalog_package)
     
 

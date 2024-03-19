@@ -13,9 +13,9 @@ from .bookings_availability import BookingsAvailability
 class BookingsAvailabilityWindow(BookingsAvailability):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.bookingsAvailabilityWindow"
-    # Allow customers to end date of availability window.
+    # End date of the availability window.
     end_date: Optional[datetime.date] = None
-    # Allow customers to start date of availability window.
+    # Start date of the availability window.
     start_date: Optional[datetime.date] = None
     
     @staticmethod

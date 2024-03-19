@@ -18,7 +18,7 @@ class BookingsAvailability(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The availabilityType property
     availability_type: Optional[BookingsServiceAvailabilityType] = None
-    # The hours of operation in a week. This is set to null if the availability type is not customWeeklyHours
+    # The hours of operation in a week. The business hours value is set to null if the availability type isn't customWeeklyHours.
     business_hours: Optional[List[BookingWorkHours]] = None
     # The OdataType property
     odata_type: Optional[str] = None

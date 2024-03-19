@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .item.alert_record_item_request_builder import AlertRecordItemRequestBuilder
+    from .microsoft_graph_device_management_change_alert_records_portal_notification_as_sent.microsoft_graph_device_management_change_alert_records_portal_notification_as_sent_request_builder import MicrosoftGraphDeviceManagementChangeAlertRecordsPortalNotificationAsSentRequestBuilder
     from .microsoft_graph_device_management_get_portal_notifications.microsoft_graph_device_management_get_portal_notifications_request_builder import MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder
 
 class AlertRecordsRequestBuilder(BaseRequestBuilder):
@@ -133,6 +134,15 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_device_management_change_alert_records_portal_notification_as_sent(self) -> MicrosoftGraphDeviceManagementChangeAlertRecordsPortalNotificationAsSentRequestBuilder:
+        """
+        Provides operations to call the changeAlertRecordsPortalNotificationAsSent method.
+        """
+        from .microsoft_graph_device_management_change_alert_records_portal_notification_as_sent.microsoft_graph_device_management_change_alert_records_portal_notification_as_sent_request_builder import MicrosoftGraphDeviceManagementChangeAlertRecordsPortalNotificationAsSentRequestBuilder
+
+        return MicrosoftGraphDeviceManagementChangeAlertRecordsPortalNotificationAsSentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def microsoft_graph_device_management_get_portal_notifications(self) -> MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder:

@@ -41,7 +41,7 @@ class BookingService(BookingNamedEntity):
     description: Optional[str] = None
     # Indicates if an anonymousJoinWebUrl(webrtcUrl) is generated for the appointment booked for this service. The default value is false.
     is_anonymous_join_enabled: Optional[bool] = None
-    # The isCustomerAllowedToManageBooking property
+    # Indicates that the customer can manage bookings created by the staff. The default value is false.
     is_customer_allowed_to_manage_booking: Optional[bool] = None
     # True means this service isn't available to customers for booking.
     is_hidden_from_customers: Optional[bool] = None

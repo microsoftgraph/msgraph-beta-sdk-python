@@ -13,6 +13,8 @@ class UserExperienceSettings(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Specifies the number of days after an update is installed, during which the user of the device can control when the device restarts.
     days_until_forced_reboot: Optional[int] = None
+    # The isHotpatchEnabled property
+    is_hotpatch_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Specifies whether the update is offered as Optional rather than Required.
@@ -36,6 +38,7 @@ class UserExperienceSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: Dict[str, Callable[[Any], None]] = {
             "daysUntilForcedReboot": lambda n : setattr(self, 'days_until_forced_reboot', n.get_int_value()),
+            "isHotpatchEnabled": lambda n : setattr(self, 'is_hotpatch_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "offerAsOptional": lambda n : setattr(self, 'offer_as_optional', n.get_bool_value()),
         }
@@ -50,6 +53,7 @@ class UserExperienceSettings(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_int_value("daysUntilForcedReboot", self.days_until_forced_reboot)
+        writer.write_bool_value("isHotpatchEnabled", self.is_hotpatch_enabled)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bool_value("offerAsOptional", self.offer_as_optional)
         writer.write_additional_data_value(self.additional_data)

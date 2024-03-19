@@ -27,7 +27,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Remove an access package from the list of access packages that have been marked as incompatible on an accessPackage.  
+        Remove an access package from the list of access packages marked as incompatible on an accessPackage.  
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0
@@ -46,7 +46,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Remove an access package from the list of access packages that have been marked as incompatible on an accessPackage.  
+        Remove an access package from the list of access packages marked as incompatible on an accessPackage.  
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

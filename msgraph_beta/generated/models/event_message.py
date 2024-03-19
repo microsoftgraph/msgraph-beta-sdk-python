@@ -24,21 +24,21 @@ class EventMessage(Message):
     end_date_time: Optional[DateTimeTimeZone] = None
     # The event associated with the event message. The assumption for attendees or room resources is that the Calendar Attendant is set to automatically update the calendar with an event when meeting request event messages arrive. Navigation property.  Read-only.
     event: Optional[Event] = None
-    # The isAllDay property
+    # Indicates whether the event lasts the entire day. Adjusting this property requires adjusting the startDateTime and endDateTime properties of the event as well.
     is_all_day: Optional[bool] = None
-    # The isDelegated property
+    # True if this meeting request is accessible to a delegate, false otherwise. Default is false.
     is_delegated: Optional[bool] = None
-    # The isOutOfDate property
+    # Indicates whether this meeting request has been made out-of-date by a more recent request.
     is_out_of_date: Optional[bool] = None
-    # The location property
+    # The location of the requested meeting.
     location: Optional[Location] = None
-    # The meetingMessageType property
+    # The type of event message: none, meetingRequest, meetingCancelled, meetingAccepted, meetingTentativelyAccepted, meetingDeclined.
     meeting_message_type: Optional[MeetingMessageType] = None
-    # The recurrence property
+    # The recurrence pattern of the requested meeting.
     recurrence: Optional[PatternedRecurrence] = None
-    # The startDateTime property
+    # The start time of the requested meeting.
     start_date_time: Optional[DateTimeTimeZone] = None
-    # The type property
+    # The type of requested meeting: singleInstance, occurence, exception, seriesMaster.
     type: Optional[EventType] = None
     
     @staticmethod

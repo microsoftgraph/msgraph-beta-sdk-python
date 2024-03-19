@@ -16,9 +16,9 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, BackedModel, 
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The additionalDetail property
+    # More details about the health check or the recommended action. Read-only.
     additional_detail: Optional[str] = None
-    # More details about the health check or the recommended action.
+    # The additionalDetails property
     additional_details: Optional[str] = None
     # The unique identifier of the health check item-related activities. This identifier can be useful in troubleshooting.
     correlation_id: Optional[str] = None

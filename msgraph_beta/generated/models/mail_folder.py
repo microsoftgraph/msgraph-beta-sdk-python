@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from .message_rule import MessageRule
     from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
     from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-    from .user_configuration import UserConfiguration
+    from .teams_user_configuration.user_configuration import UserConfiguration
 
 from .entity import Entity
 
@@ -75,7 +75,7 @@ class MailFolder(Entity):
         from .message_rule import MessageRule
         from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-        from .user_configuration import UserConfiguration
+        from .teams_user_configuration.user_configuration import UserConfiguration
 
         from .entity import Entity
         from .mail_search_folder import MailSearchFolder
@@ -83,7 +83,7 @@ class MailFolder(Entity):
         from .message_rule import MessageRule
         from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-        from .user_configuration import UserConfiguration
+        from .teams_user_configuration.user_configuration import UserConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "childFolderCount": lambda n : setattr(self, 'child_folder_count', n.get_int_value()),

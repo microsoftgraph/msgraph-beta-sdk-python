@@ -22,8 +22,6 @@ class Alert(Entity):
     creation_date_time: Optional[datetime.datetime] = None
     # The description property
     description: Optional[str] = None
-    # The firstImpactedDateTime property
-    first_impacted_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The relatedResources property
@@ -60,7 +58,6 @@ class Alert(Entity):
             "alertType": lambda n : setattr(self, 'alert_type', n.get_enum_value(AlertType)),
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "firstImpactedDateTime": lambda n : setattr(self, 'first_impacted_date_time', n.get_datetime_value()),
             "relatedResources": lambda n : setattr(self, 'related_resources', n.get_collection_of_object_values(RelatedResource)),
         }
         super_fields = super().get_field_deserializers()
@@ -80,7 +77,6 @@ class Alert(Entity):
         writer.write_enum_value("alertType", self.alert_type)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_str_value("description", self.description)
-        writer.write_datetime_value("firstImpactedDateTime", self.first_impacted_date_time)
         writer.write_collection_of_object_values("relatedResources", self.related_resources)
     
 

@@ -28,10 +28,11 @@ class MicrosoftGraphSecurityRemediateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RemediatePostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Invoke action remediate
+        Remove a potential threat from end users' mailboxes. Remediation means to take prescribed action against a threat. This API can trigger email purge actions like move to junk, move to deleted items, soft delete, hard delete, or move to Inbox. This API enables scenarios and use cases such as SOAR integration, playbooks, and automations. For more information read email remediation, trigger action and track actions. If there is false positives admins can take move to inbox action.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/security-analyzedemail-remediate?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -49,7 +50,7 @@ class MicrosoftGraphSecurityRemediateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RemediatePostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action remediate
+        Remove a potential threat from end users' mailboxes. Remediation means to take prescribed action against a threat. This API can trigger email purge actions like move to junk, move to deleted items, soft delete, hard delete, or move to Inbox. This API enables scenarios and use cases such as SOAR integration, playbooks, and automations. For more information read email remediation, trigger action and track actions. If there is false positives admins can take move to inbox action.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

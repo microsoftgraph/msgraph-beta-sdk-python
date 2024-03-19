@@ -17,7 +17,7 @@ class AnswerKeyword(AdditionalDataHolder, BackedModel, Parsable):
     match_similar_keywords: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Unique keywords that will guarantee the search answer is triggered.
+    # Unique keywords that guarantee the search answer is triggered.
     reserved_keywords: Optional[List[str]] = None
     
     @staticmethod

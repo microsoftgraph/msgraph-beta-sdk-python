@@ -29,7 +29,7 @@ class CreateLinkRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CreateLinkPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Permission]:
         """
-        Create a sharing link for a listItem. The createLink action creates a new sharing link if the specified link type doesn't already exist for the calling application.If a sharing link of the specified type already exists for the app, this action will return the existing sharing link. listItem resources inherit sharing permissions from the list the item resides in.
+        Create a sharing link for a listItem. The createLink action creates a new sharing link if the specified link type doesn't already exist for the calling application.If a sharing link of the specified type already exists for the app, this action returns the existing sharing link. listItem resources inherit sharing permissions from the list the item resides in.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Permission]
@@ -53,7 +53,7 @@ class CreateLinkRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[CreateLinkPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a sharing link for a listItem. The createLink action creates a new sharing link if the specified link type doesn't already exist for the calling application.If a sharing link of the specified type already exists for the app, this action will return the existing sharing link. listItem resources inherit sharing permissions from the list the item resides in.
+        Create a sharing link for a listItem. The createLink action creates a new sharing link if the specified link type doesn't already exist for the calling application.If a sharing link of the specified type already exists for the app, this action returns the existing sharing link. listItem resources inherit sharing permissions from the list the item resides in.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

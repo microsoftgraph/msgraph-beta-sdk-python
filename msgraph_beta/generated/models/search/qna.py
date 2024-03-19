@@ -15,25 +15,25 @@ from .search_answer import SearchAnswer
 
 @dataclass
 class Qna(SearchAnswer):
-    # Timestamp of when the qna stops to appear as a search result. Set as null for always available.
+    # Date and time when the QnA stops appearing as a search result. Set as null for always available. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     availability_end_date_time: Optional[datetime.datetime] = None
-    # Timestamp of when the qna starts to appear as a search result. Set as null for always available.
+    # Date and time when the QnA starts to appear as a search result. Set as null for always available. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     availability_start_date_time: Optional[datetime.datetime] = None
-    # List of security groups able to view this qna.
+    # The list of security groups that are able to view this QnA.
     group_ids: Optional[List[str]] = None
-    # True if a user or Microsoft suggested this qna to the admin. Read-only.
+    # True if a user or Microsoft suggested this QnA to the admin. Read-only.
     is_suggested: Optional[bool] = None
-    # Keywords that trigger this qna to appear in search results.
+    # Keywords that trigger this QnA to appear in search results.
     keywords: Optional[AnswerKeyword] = None
-    # A list of language names that are geographically specific and that this QnA can be viewed in. Each language tag value follows the pattern {language}-{region}. As an example, en-us is English as used in the United States. For the list of possible values, see supported language tags.
+    # A list of geographically specific language names in which this QnA can be viewed. Each language tag value follows the pattern {language}-{region}. For example, en-us is English as used in the United States. For the list of possible values, see Supported language tags.
     language_tags: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # List of devices and operating systems able to view this qna. Possible values are: unknown, android, androidForWork, ios, macOS, windowsPhone81, windowsPhone81AndLater, windows10AndLater, androidWorkProfile, androidASOP.
+    # List of devices and operating systems that are able to view this QnA. Possible values are: android, androidForWork, ios, macOS, windowsPhone81, windowsPhone81AndLater, windows10AndLater, androidWorkProfile, unknown, androidASOP, androidMobileApplicationManagement, iOSMobileApplicationManagement, unknownFutureValue.
     platforms: Optional[List[DevicePlatformType]] = None
     # The state property
     state: Optional[AnswerState] = None
-    # Variations of a qna for different countries or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings apply to all variations.
+    # Variations of a QnA for different countries or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings apply to all variations.
     targeted_variations: Optional[List[AnswerVariant]] = None
     
     @staticmethod

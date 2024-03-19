@@ -11,7 +11,7 @@ from ..entity import Entity
 
 @dataclass
 class CollaborationRoot(Entity):
-    # The analyzedEmails property
+    # Contains metadata for analyzed emails.
     analyzed_emails: Optional[List[AnalyzedEmail]] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -29,7 +29,7 @@ class UserSettings(Entity):
     regional_and_language_settings: Optional[RegionalAndLanguageSettings] = None
     # The shift preferences for the user.
     shift_preferences: Optional[ShiftPreferences] = None
-    # The windows property
+    # The Windows settings of the user stored in the cloud.
     windows: Optional[List[WindowsSetting]] = None
     
     @staticmethod

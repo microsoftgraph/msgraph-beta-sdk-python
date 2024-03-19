@@ -13,13 +13,13 @@ from .entity import Entity
 
 @dataclass
 class SearchEntity(Entity):
-    # Administrative answer in Microsoft Search results to define common acronyms in a organization.
+    # Administrative answer in Microsoft Search results to define common acronyms in an organization.
     acronyms: Optional[List[Acronym]] = None
     # Administrative answer in Microsoft Search results for common search queries in an organization.
     bookmarks: Optional[List[Bookmark]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Administrative answer in Microsoft Search results which provide answers for specific search keywords in an organization.
+    # Administrative answer in Microsoft Search results that provide answers for specific search keywords in an organization.
     qnas: Optional[List[Qna]] = None
     
     @staticmethod

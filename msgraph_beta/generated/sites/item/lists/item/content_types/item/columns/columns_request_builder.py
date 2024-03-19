@@ -46,7 +46,7 @@ class ColumnsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ColumnDefinitionCollectionResponse]:
         """
-        Get the collection of columns, represented as [columnDefinition][columnDefinition] resources, in a [content type][contentType].
+        The collection of column definitions for this contentType.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ColumnDefinitionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/contenttype-list-columns?view=graph-rest-1.0
@@ -67,7 +67,7 @@ class ColumnsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ColumnDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ColumnDefinition]:
         """
-        Add a column to a [content type][contentType] in a site or list by specifying a [columnDefinition][columnDefinition].
+        Create columnDefinition for a content type
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ColumnDefinition]
@@ -91,7 +91,7 @@ class ColumnsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the collection of columns, represented as [columnDefinition][columnDefinition] resources, in a [content type][contentType].
+        The collection of column definitions for this contentType.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +102,7 @@ class ColumnsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ColumnDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Add a column to a [content type][contentType] in a site or list by specifying a [columnDefinition][columnDefinition].
+        Create columnDefinition for a content type
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +137,7 @@ class ColumnsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ColumnsRequestBuilderGetQueryParameters():
         """
-        Get the collection of columns, represented as [columnDefinition][columnDefinition] resources, in a [content type][contentType].
+        The collection of column definitions for this contentType.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

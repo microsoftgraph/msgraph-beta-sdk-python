@@ -11,11 +11,11 @@ class AnalyzedEmailSenderDetail(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The fromAddress property
+    # The sender email address in the mail From header, also known as the envelope sender or the P1 sender.
     from_address: Optional[str] = None
-    # The ipv4 property
+    # The IPv4 address of the last detected mail server that relayed the message.
     ipv4: Optional[str] = None
-    # The mailFromAddress property
+    # The sender email address in the From header, which is visible to email recipients on their email clients. Also known as P2 sender.
     mail_from_address: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

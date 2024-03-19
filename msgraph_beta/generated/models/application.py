@@ -58,9 +58,9 @@ class Application(DirectoryObject):
     created_date_time: Optional[datetime.datetime] = None
     # Supports $filter (/$count eq 0, /$count ne 0). Read-only.
     created_on_behalf_of: Optional[DirectoryObject] = None
-    # The default redirect URI. If specified and there is no explicit redirect URI in the sign-in request for SAML and OIDC flows, Microsoft Entra ID sends the token to this redirect URI. Microsoft Entra ID also sends the token to this default URI in SAML IdP-initiated single sign-on. The value must match one of the configured redirect URIs for the application.
+    # The default redirect URI. If specified and there's no explicit redirect URI in the sign-in request for SAML and OIDC flows, Microsoft Entra ID sends the token to this redirect URI. Microsoft Entra ID also sends the token to this default URI in SAML IdP-initiated single sign-on. The value must match one of the configured redirect URIs for the application.
     default_redirect_uri: Optional[str] = None
-    # Free text field to provide a description of the application object to end users. The maximum allowed size is 1024 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, startsWith) and $search.
+    # Free text field to provide a description of the application object to end users. The maximum allowed size is 1,024 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, startsWith) and $search.
     description: Optional[str] = None
     # Specifies whether Microsoft has disabled the registered application. Possible values are: null (default value), NotDisabled, and DisabledDueToViolationOfServicesAgreement (reasons may include suspicious, abusive, or malicious activity, or a violation of the Microsoft Services Agreement).  Supports $filter (eq, ne, not).
     disabled_by_microsoft_status: Optional[str] = None
@@ -74,13 +74,13 @@ class Application(DirectoryObject):
     group_membership_claims: Optional[str] = None
     # The homeRealmDiscoveryPolicies property
     home_realm_discovery_policies: Optional[List[HomeRealmDiscoveryPolicy]] = None
-    # Also known as App ID URI, this value is set when an application is used as a resource app. The identifierUris acts as the prefix for the scopes you'll reference in your API's code, and it must be globally unique. You can use the default value provided, which is in the form api://<application-client-id>, or specify a more readable URI like https://contoso.com/api. For more information on valid identifierUris patterns and best practices, see Microsoft Entra application registration security best practices. Not nullable. Supports $filter (eq, ne, ge, le, startsWith).
+    # Also known as App ID URI, this value is set when an application is used as a resource app. The identifierUris acts as the prefix for the scopes you reference in your API's code, and it must be globally unique. You can use the default value provided, which is in the form api://<application-client-id>, or specify a more readable URI like https://contoso.com/api. For more information on valid identifierUris patterns and best practices, see Microsoft Entra application registration security best practices. Not nullable. Supports $filter (eq, ne, ge, le, startsWith).
     identifier_uris: Optional[List[str]] = None
     # Basic profile information of the application, such as it's marketing, support, terms of service, and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience. For more information, see How to: Add Terms of service and privacy statement for registered Microsoft Entra apps. Supports $filter (eq, ne, not, ge, le, and eq on null values).
     info: Optional[InformationalUrl] = None
     # Specifies whether this application supports device authentication without a user. The default is false.
     is_device_only_auth_supported: Optional[bool] = None
-    # Specifies the fallback application type as public client, such as an installed application running on a mobile device. The default value is false which means the fallback application type is confidential client such as a web app. There are certain scenarios where Microsoft Entra ID cannot determine the client application type. For example, the ROPC flow where the application is configured without specifying a redirect URI. In those cases Microsoft Entra ID interprets the application type based on the value of this property.
+    # Specifies the fallback application type as public client, such as an installed application running on a mobile device. The default value is false, which means the fallback application type is confidential client such as a web app. There are certain scenarios where Microsoft Entra ID can't determine the client application type. For example, the ROPC flow where the application is configured without specifying a redirect URI. In those cases Microsoft Entra ID interprets the application type based on the value of this property.
     is_fallback_public_client: Optional[bool] = None
     # The collection of key credentials associated with the application. Not nullable. Supports $filter (eq, not, ge, le).
     key_credentials: Optional[List[KeyCredential]] = None
@@ -110,7 +110,7 @@ class Application(DirectoryObject):
     saml_metadata_url: Optional[str] = None
     # References application or service contact information from a Service or Asset Management database. Nullable.
     service_management_reference: Optional[str] = None
-    # Specifies whether sensitive properties of a multi-tenant application should be locked for editing after the application is provisioned in a tenant. Nullable. null by default.
+    # Specifies whether sensitive properties of a multitenant application should be locked for editing after the application is provisioned in a tenant. Nullable. null by default.
     service_principal_lock_configuration: Optional[ServicePrincipalLockConfiguration] = None
     # Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. The value for this property has implications on other app object properties. As a result, if you change this property, you may need to change other properties first. For more information, see Validation differences for signInAudience.Supports $filter (eq, ne, not).
     sign_in_audience: Optional[str] = None
@@ -118,7 +118,7 @@ class Application(DirectoryObject):
     spa: Optional[SpaApplication] = None
     # Represents the capability for Microsoft Entra identity synchronization through the Microsoft Graph API.
     synchronization: Optional[Synchronization] = None
-    # Custom strings that can be used to categorize and identify the application. Not nullable. Strings added here will also appear in the tags property of any associated service principals.Supports $filter (eq, not, ge, le, startsWith) and $search.
+    # Custom strings that can be used to categorize and identify the application. Not nullable. Strings added here also appear in the tags property of any associated service principals.Supports $filter (eq, not, ge, le, startsWith) and $search.
     tags: Optional[List[str]] = None
     # Specifies the keyId of a public key from the keyCredentials collection. When configured, Microsoft Entra ID encrypts all the tokens it emits by using the key this property points to. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
     token_encryption_key_id: Optional[UUID] = None
@@ -126,7 +126,7 @@ class Application(DirectoryObject):
     token_issuance_policies: Optional[List[TokenIssuancePolicy]] = None
     # The tokenLifetimePolicies assigned to this application. Supports $expand.
     token_lifetime_policies: Optional[List[TokenLifetimePolicy]] = None
-    # The unique identifier that can be assigned to an application as an alternative identifier. Immutable. Read-only.
+    # The unique identifier that can be assigned to an application and used as an alternate key. Immutable. Read-only.
     unique_name: Optional[str] = None
     # Specifies the verified publisher of the application. For more information about how publisher verification helps support application security, trustworthiness, and compliance, see Publisher verification.
     verified_publisher: Optional[VerifiedPublisher] = None

@@ -12,15 +12,15 @@ from .entity import Entity
 
 @dataclass
 class WindowsSetting(Entity):
-    # The instances property
+    # A collection of setting values for a given windowsSetting.
     instances: Optional[List[WindowsSettingInstance]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The payloadType property
+    # The type of setting payloads contained in the instances navigation property.
     payload_type: Optional[str] = None
     # The settingType property
     setting_type: Optional[WindowsSettingType] = None
-    # The windowsDeviceId property
+    # A unique identifier for the device the setting might belong to if it is of the settingType backup.
     windows_device_id: Optional[str] = None
     
     @staticmethod

@@ -19,21 +19,21 @@ class AndroidManagedStoreApp(MobileApp):
     odata_type: Optional[str] = "#microsoft.graph.androidManagedStoreApp"
     # The Identity Name.
     app_identifier: Optional[str] = None
-    # The Play for Work Store app URL.
+    # The Play for Work Store app URL. This property is read-only.
     app_store_url: Optional[str] = None
-    # The tracks that are visible to this enterprise.
+    # The tracks that are visible to this enterprise. This property is read-only.
     app_tracks: Optional[List[AndroidManagedStoreAppTrack]] = None
-    # Indicates whether the app is only available to a given enterprise's users.
+    # Indicates whether the app is only available to a given enterprise's users. This property is read-only.
     is_private: Optional[bool] = None
     # Indicates whether the app is a preinstalled system app.
     is_system_app: Optional[bool] = None
-    # The package identifier.
+    # The package identifier. This property is read-only.
     package_id: Optional[str] = None
-    # Whether this app supports OEMConfig policy.
+    # Whether this app supports OEMConfig policy. This property is read-only.
     supports_oem_config: Optional[bool] = None
-    # The total number of VPP licenses.
+    # The total number of VPP licenses. This property is read-only.
     total_license_count: Optional[int] = None
-    # The number of VPP licenses in use.
+    # The number of VPP licenses in use. This property is read-only.
     used_license_count: Optional[int] = None
     
     @staticmethod
@@ -93,13 +93,6 @@ class AndroidManagedStoreApp(MobileApp):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("appIdentifier", self.app_identifier)
-        writer.write_str_value("appStoreUrl", self.app_store_url)
-        writer.write_collection_of_object_values("appTracks", self.app_tracks)
-        writer.write_bool_value("isPrivate", self.is_private)
         writer.write_bool_value("isSystemApp", self.is_system_app)
-        writer.write_str_value("packageId", self.package_id)
-        writer.write_bool_value("supportsOemConfig", self.supports_oem_config)
-        writer.write_int_value("totalLicenseCount", self.total_license_count)
-        writer.write_int_value("usedLicenseCount", self.used_license_count)
     
 

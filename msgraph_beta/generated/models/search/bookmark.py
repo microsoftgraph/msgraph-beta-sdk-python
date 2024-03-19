@@ -15,29 +15,29 @@ from .search_answer import SearchAnswer
 
 @dataclass
 class Bookmark(SearchAnswer):
-    # Timestamp of when the bookmark will stop to appear as a search result. Set as null for always available.
+    # Date and time when the bookmark stops appearing as a search result. Set as null for always available. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     availability_end_date_time: Optional[datetime.datetime] = None
-    # Timestamp of when the bookmark will start to appear as a search result. Set as null for always available.
+    # Date and time when the bookmark starts to appear as a search result. Set as null for always available. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     availability_start_date_time: Optional[datetime.datetime] = None
     # Categories commonly used to describe this bookmark. For example, IT and HR.
     categories: Optional[List[str]] = None
-    # List of security groups able to view this bookmark.
+    # The list of security groups that are able to view this bookmark.
     group_ids: Optional[List[str]] = None
-    # True if this bookmark was suggested to the admin by a user or was mined and suggested by Microsoft. Read-only.
+    # True if this bookmark was suggested to the admin, by a user, or was mined and suggested by Microsoft. Read-only.
     is_suggested: Optional[bool] = None
     # Keywords that trigger this bookmark to appear in search results.
     keywords: Optional[AnswerKeyword] = None
-    # A list of language names that are geographically specific and that this bookmark can be viewed in. Each language tag value follows the pattern {language}-{region}. As an example, en-us is English as used in the United States. See supported language tags for the list of possible values.
+    # A list of geographically specific language names in which this bookmark can be viewed. Each language tag value follows the pattern {language}-{region}. For example, en-us is English as used in the United States. For the list of possible values, see Supported language tags.
     language_tags: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # List of devices and operating systems able to view this bookmark. Possible values are: unknown, android, androidForWork, ios, macOS, windowsPhone81, windowsPhone81AndLater, windows10AndLater, androidWorkProfile, androidASOP.
+    # List of devices and operating systems that are able to view this bookmark. Possible values are: android, androidForWork, ios, macOS, windowsPhone81, windowsPhone81AndLater, windows10AndLater, androidWorkProfile, unknown, androidASOP, androidMobileApplicationManagement, iOSMobileApplicationManagement, unknownFutureValue.
     platforms: Optional[List[DevicePlatformType]] = None
-    # List of Power Apps associated with this bookmark. If users add existing Power Apps to a bookmark, they can complete tasks, such as to enter vacation time or to report expenses on the search results page.
+    # List of Power Apps associated with this bookmark. If users add existing Power Apps to a bookmark, they can complete tasks directly on the search results page, such as entering vacation time or reporting expenses.
     power_app_ids: Optional[List[str]] = None
     # The state property
     state: Optional[AnswerState] = None
-    # Variations of a bookmark for different countries or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings will apply to all variations.
+    # Variations of a bookmark for different countries or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings apply to all variations.
     targeted_variations: Optional[List[AnswerVariant]] = None
     
     @staticmethod

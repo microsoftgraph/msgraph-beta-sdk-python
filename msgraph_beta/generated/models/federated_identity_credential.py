@@ -16,7 +16,7 @@ class FederatedIdentityCredential(Entity):
     description: Optional[str] = None
     # The URL of the external identity provider and must match the issuer claim of the external token being exchanged. The combination of the values of issuer and subject must be unique on the app. It has a limit of 600 characters. Required.
     issuer: Optional[str] = None
-    # is the unique identifier for the federated identity credential, which has a limit of 120 characters and must be URL friendly. It is immutable once created. Required. Not nullable. Supports $filter (eq).
+    # The unique identifier for the federated identity credential, which has a limit of 120 characters and must be URL friendly. It is immutable once created. Alternate key. Required. Not nullable. Supports $filter (eq).
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -11,15 +11,15 @@ class AnalyzedEmailAuthenticationDetail(AdditionalDataHolder, BackedModel, Parsa
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The compositeAuthentication property
+    # A value used by Microsoft 365 to combine email authentication such as SPF, DKIM, and DMARC, to determine whether the message is authentic.
     composite_authentication: Optional[str] = None
-    # The dkim property
+    # DomainKeys identified mail (DKIM). Indicates whether it was pass/fail/soft fail.
     dkim: Optional[str] = None
-    # The dmarc property
+    # Domain-based Message Authentication. Indicates whether it was pass/fail/soft fail.
     dmarc: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The senderPolicyFramework property
+    # Sender Policy Framework (SPF). Indicates whether it was pass/fail/soft fail.
     sender_policy_framework: Optional[str] = None
     
     @staticmethod

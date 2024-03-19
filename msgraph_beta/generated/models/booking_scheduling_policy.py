@@ -21,9 +21,9 @@ class BookingSchedulingPolicy(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # True if to allow customers to choose a specific person for the booking.
     allow_staff_selection: Optional[bool] = None
-    # collection of custom availabilities for a given time range.
+    # Custom availability of the service in a given time frame of the service.
     custom_availabilities: Optional[List[BookingsAvailabilityWindow]] = None
-    # General availability 
+    # General availability of the service defined by the scheduling policy.
     general_availability: Optional[BookingsAvailability] = None
     # Indicates if the meeting invite is sent to the customers. The default value is false
     is_meeting_invite_to_customers_enabled: Optional[bool] = None
