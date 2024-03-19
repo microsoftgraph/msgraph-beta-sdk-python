@@ -30,7 +30,7 @@ class Organization(DirectoryObject):
     assigned_plans: Optional[List[AssignedPlan]] = None
     # Resource to manage the default branding for the organization. Nullable.
     branding: Optional[OrganizationalBranding] = None
-    # Telephone number for the organization. Although this is a string collection, only one number can be set for this property.
+    # Telephone number for the organization. Although this property is a string collection, only one number can be set.
     business_phones: Optional[List[str]] = None
     # Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
     certificate_based_auth_configuration: Optional[List[CertificateBasedAuthConfiguration]] = None
@@ -42,7 +42,7 @@ class Organization(DirectoryObject):
     country: Optional[str] = None
     # Country or region abbreviation for the organization in ISO 3166-2 format.
     country_letter_code: Optional[str] = None
-    # Timestamp of when the organization was created. The value cannot be modified and is automatically populated when the organization is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+    # Timestamp of when the organization was created. The value can't be modified and is automatically populated when the organization is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     created_date_time: Optional[datetime.datetime] = None
     # Two-letter ISO 3166 country code indicating the default service usage location of an organization.
     default_usage_location: Optional[str] = None
@@ -52,7 +52,7 @@ class Organization(DirectoryObject):
     display_name: Optional[str] = None
     # The collection of open extensions defined for the organization resource. Nullable.
     extensions: Optional[List[Extension]] = None
-    # true if organization is Multi-Geo enabled; false if organization is not Multi-Geo enabled; null (default). Read-only. For more information, see OneDrive Online Multi-Geo.
+    # true if organization is Multi-Geo enabled; false if organization isn't Multi-Geo enabled; null (default). Read-only. For more information, see OneDrive Online Multi-Geo.
     is_multiple_data_locations_for_services_enabled: Optional[bool] = None
     # Not nullable.
     marketing_notification_emails: Optional[List[str]] = None
@@ -62,7 +62,7 @@ class Organization(DirectoryObject):
     on_premises_last_password_sync_date_time: Optional[datetime.datetime] = None
     # The time and date at which the tenant was last synced with the on-premises directory. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     on_premises_last_sync_date_time: Optional[datetime.datetime] = None
-    # true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; Nullable. null if this object has never been synced from an on-premises directory (default).
+    # true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; Nullable. null, if this object isn't synced from on-premises active directory (default).
     on_premises_sync_enabled: Optional[bool] = None
     # The partnerInformation property
     partner_information: Optional[PartnerInformation] = None
@@ -70,7 +70,7 @@ class Organization(DirectoryObject):
     partner_tenant_type: Optional[PartnerTenantType] = None
     # Postal code of the address for the organization.
     postal_code: Optional[str] = None
-    # The preferred language for the organization. Should follow ISO 639-1 Code; for example en.
+    # The preferred language for the organization. Should follow ISO 639-1 code; for example, en.
     preferred_language: Optional[str] = None
     # The privacy profile of an organization.
     privacy_profile: Optional[PrivacyProfile] = None
@@ -88,6 +88,8 @@ class Organization(DirectoryObject):
     street: Optional[str] = None
     # Not nullable.
     technical_notification_mails: Optional[List[str]] = None
+    # Not nullable. Can be one of the following types:  AAD - An enterprise identity access management (IAM) service that serves business-to-employee and business-to-business (B2B) scenarios.  AAD B2C An identity access management (IAM) service that serves business-to-consumer (B2C) scenarios.   CIAM - A customer identity & access management (CIAM) solution that provides an integrated platform to serve consumers, partners, and citizen scenarios.
+    tenant_type: Optional[str] = None
     # The collection of domains associated with this tenant. Not nullable.
     verified_domains: Optional[List[VerifiedDomain]] = None
     
@@ -169,6 +171,7 @@ class Organization(DirectoryObject):
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
             "street": lambda n : setattr(self, 'street', n.get_str_value()),
             "technicalNotificationMails": lambda n : setattr(self, 'technical_notification_mails', n.get_collection_of_primitive_values(str)),
+            "tenantType": lambda n : setattr(self, 'tenant_type', n.get_str_value()),
             "verifiedDomains": lambda n : setattr(self, 'verified_domains', n.get_collection_of_object_values(VerifiedDomain)),
         }
         super_fields = super().get_field_deserializers()
@@ -215,6 +218,7 @@ class Organization(DirectoryObject):
         writer.write_str_value("state", self.state)
         writer.write_str_value("street", self.street)
         writer.write_collection_of_primitive_values("technicalNotificationMails", self.technical_notification_mails)
+        writer.write_str_value("tenantType", self.tenant_type)
         writer.write_collection_of_object_values("verifiedDomains", self.verified_domains)
     
 

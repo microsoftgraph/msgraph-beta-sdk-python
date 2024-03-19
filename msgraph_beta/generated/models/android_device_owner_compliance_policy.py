@@ -62,7 +62,7 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
     security_require_safety_net_attestation_basic_integrity: Optional[bool] = None
     # Require the device to pass the Play Integrity device integrity check.
     security_require_safety_net_attestation_certified_device: Optional[bool] = None
-    # Require a specific Play Integrity evaluation type for compliance.
+    # Require a specific Play Integrity evaluation type for compliance. Possible values are: basic, hardwareBacked.
     security_required_android_safety_net_evaluation_type: Optional[AndroidSafetyNetEvaluationType] = None
     # Require encryption on Android devices.
     storage_require_encryption: Optional[bool] = None

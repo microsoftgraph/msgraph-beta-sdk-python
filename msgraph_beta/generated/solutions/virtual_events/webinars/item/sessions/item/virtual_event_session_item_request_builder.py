@@ -16,6 +16,8 @@ if TYPE_CHECKING:
     from .attendance_reports.attendance_reports_request_builder import AttendanceReportsRequestBuilder
     from .presenters.presenters_request_builder import PresentersRequestBuilder
     from .registrations.registrations_request_builder import RegistrationsRequestBuilder
+    from .registrations_with_email.registrations_with_email_request_builder import RegistrationsWithEmailRequestBuilder
+    from .registrations_with_user_id.registrations_with_user_id_request_builder import RegistrationsWithUserIdRequestBuilder
 
 class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
     """
@@ -90,6 +92,30 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
         from .......models.virtual_event_session import VirtualEventSession
 
         return await self.request_adapter.send_async(request_info, VirtualEventSession, error_mapping)
+    
+    def registrations_with_email(self,email: Optional[str] = None) -> RegistrationsWithEmailRequestBuilder:
+        """
+        Provides operations to manage the registrations property of the microsoft.graph.virtualEventSession entity.
+        param email: Alternate key of virtualEventRegistration
+        Returns: RegistrationsWithEmailRequestBuilder
+        """
+        if not email:
+            raise TypeError("email cannot be null.")
+        from .registrations_with_email.registrations_with_email_request_builder import RegistrationsWithEmailRequestBuilder
+
+        return RegistrationsWithEmailRequestBuilder(self.request_adapter, self.path_parameters, email)
+    
+    def registrations_with_user_id(self,user_id: Optional[str] = None) -> RegistrationsWithUserIdRequestBuilder:
+        """
+        Provides operations to manage the registrations property of the microsoft.graph.virtualEventSession entity.
+        param user_id: Alternate key of virtualEventRegistration
+        Returns: RegistrationsWithUserIdRequestBuilder
+        """
+        if not user_id:
+            raise TypeError("user_id cannot be null.")
+        from .registrations_with_user_id.registrations_with_user_id_request_builder import RegistrationsWithUserIdRequestBuilder
+
+        return RegistrationsWithUserIdRequestBuilder(self.request_adapter, self.path_parameters, user_id)
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """

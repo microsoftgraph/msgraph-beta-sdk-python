@@ -30,7 +30,7 @@ class ColumnDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Remove a [column][columndefinition] from a [site][], [list][] or [content type][contentType].
+        Delete columnDefinition
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/columndefinition-delete?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class ColumnDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ColumnDefinition]:
         """
-        Retrieve the metadata for a [site][], [list][] or [contentType][] [column][columnDefinition].
+        Retrieve the metadata for a [site][], [list][], or [contentType][] [column][columnDefinition].
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ColumnDefinition]
         Find more info here: https://learn.microsoft.com/graph/api/columndefinition-get?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class ColumnDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ColumnDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ColumnDefinition]:
         """
-        Update a [site][], [list][] or [content type][contentType] [column][columnDefinition].
+        Update columnDefinition
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ColumnDefinition]
@@ -94,7 +94,7 @@ class ColumnDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Remove a [column][columndefinition] from a [site][], [list][] or [content type][contentType].
+        Delete columnDefinition
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class ColumnDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the metadata for a [site][], [list][] or [contentType][] [column][columnDefinition].
+        Retrieve the metadata for a [site][], [list][], or [contentType][] [column][columnDefinition].
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +116,7 @@ class ColumnDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ColumnDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update a [site][], [list][] or [content type][contentType] [column][columnDefinition].
+        Update columnDefinition
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -151,7 +151,7 @@ class ColumnDefinitionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ColumnDefinitionItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the metadata for a [site][], [list][] or [contentType][] [column][columnDefinition].
+        Retrieve the metadata for a [site][], [list][], or [contentType][] [column][columnDefinition].
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

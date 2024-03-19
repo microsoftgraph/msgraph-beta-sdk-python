@@ -72,11 +72,11 @@ class ApplicationsWithAppIdRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Application] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Application]:
         """
-        Update the properties of an application object.
+        Create a new application object if it doesn't exist, or update the properties of an existing application object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Application]
-        Find more info here: https://learn.microsoft.com/graph/api/application-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/application-upsert?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -118,7 +118,7 @@ class ApplicationsWithAppIdRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Application] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an application object.
+        Create a new application object if it doesn't exist, or update the properties of an existing application object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

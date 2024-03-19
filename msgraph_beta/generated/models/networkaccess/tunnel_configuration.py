@@ -19,6 +19,8 @@ class TunnelConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # A key to establish secure connection between the link and VPN tunnel on the edge.
     pre_shared_key: Optional[str] = None
+    # The zoneRedundancyPreSharedKey property
+    zone_redundancy_pre_shared_key: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TunnelConfiguration:
@@ -57,6 +59,7 @@ class TunnelConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "preSharedKey": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
+            "zoneRedundancyPreSharedKey": lambda n : setattr(self, 'zone_redundancy_pre_shared_key', n.get_str_value()),
         }
         return fields
     
@@ -70,6 +73,7 @@ class TunnelConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("preSharedKey", self.pre_shared_key)
+        writer.write_str_value("zoneRedundancyPreSharedKey", self.zone_redundancy_pre_shared_key)
         writer.write_additional_data_value(self.additional_data)
     
 

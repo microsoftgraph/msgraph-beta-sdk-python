@@ -15,17 +15,17 @@ from ..entity import Entity
 
 @dataclass
 class SearchAnswer(Entity):
-    # Search answer description shown on search results page.
+    # The search answer description that is shown on the search results page.
     description: Optional[str] = None
-    # Search answer name displayed in search results.
+    # The search answer name that is displayed in search results.
     display_name: Optional[str] = None
-    # Details of the user that created or last modified the search answer. Read-only.
+    # Details of the user who created or last modified the search answer. Read-only.
     last_modified_by: Optional[IdentitySet] = None
-    # Timestamp of when the search answer is created or edited. Read-only.
+    # Date and time when the search answer was created or last edited. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Search answer URL link. When users click this search answer in search results, they'll go to this URL.
+    # The URL link for the search answer. When users select this search answer from the search results, they're directed to the specified URL.
     web_url: Optional[str] = None
     
     @staticmethod

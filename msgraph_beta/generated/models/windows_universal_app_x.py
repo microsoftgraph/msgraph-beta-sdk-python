@@ -23,7 +23,7 @@ class WindowsUniversalAppX(MobileLobApp):
     applicable_architectures: Optional[WindowsArchitecture] = None
     # Contains properties for Windows device type. Multiple values can be selected. Default value is `none`.
     applicable_device_types: Optional[WindowsDeviceType] = None
-    # The collection of contained apps in the committed mobileAppContent of a windowsUniversalAppX app.
+    # The collection of contained apps in the committed mobileAppContent of a windowsUniversalAppX app. This property is read-only.
     committed_contained_apps: Optional[List[MobileContainedApp]] = None
     # The Identity Name of the app, parsed from the appx file when it is uploaded through the Intune MEM console. For example: 'Contoso.DemoApp'.
     identity_name: Optional[str] = None

@@ -19,9 +19,9 @@ class IosLobAppAssignmentSettings(MobileAppAssignmentSettings):
     is_removable: Optional[bool] = None
     # When TRUE, indicates that the app should not be backed up to iCloud. When FALSE, indicates that the app may be backed up to iCloud. By default, this property is set to null which internally is treated as FALSE.
     prevent_managed_app_backup: Optional[bool] = None
-    # Whether or not to uninstall the app when device is removed from Intune.
+    # When TRUE, indicates that the app should be uninstalled when the device is removed from Intune. When FALSE, indicates that the app will not be uninstalled when the device is removed from Intune. By default, property is set to null which internally is treated as TRUE.
     uninstall_on_device_removal: Optional[bool] = None
-    # The VPN Configuration Id to apply for this app.
+    # This is the unique identifier (Id) of the VPN Configuration to apply to the app.
     vpn_configuration_id: Optional[str] = None
     
     @staticmethod

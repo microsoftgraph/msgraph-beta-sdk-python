@@ -11,11 +11,11 @@ class EducationGradingSchemeGrade(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The defaultPercentage property
+    # The midpoint of the grade range.
     default_percentage: Optional[float] = None
-    # The displayName property
+    # The name of the grading scheme.
     display_name: Optional[str] = None
-    # The minPercentage property
+    # The minimum percentage of the total points needed to achieve this grade.
     min_percentage: Optional[float] = None
     # The OdataType property
     odata_type: Optional[str] = None

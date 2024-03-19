@@ -15,15 +15,15 @@ class AnalyzedEmailUrl(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The detectionMethod property
+    # The method used to detect threats in the URL.
     detection_method: Optional[str] = None
-    # The detonationDetails property
+    # Detonation data associated with the URL.
     detonation_details: Optional[DetonationDetails] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The threatType property
+    # The type of threat associated with the URL. The possible values are: unknown, spam, malware, phishing, none, unknownFutureValue.
     threat_type: Optional[ThreatType] = None
-    # The url property
+    # The URL that is found in the email. This is full URL string, including query parameters.
     url: Optional[str] = None
     
     @staticmethod

@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .content_filter import ContentFilter
     from .driver_update_filter import DriverUpdateFilter
+    from .quality_update_filter import QualityUpdateFilter
     from .windows_update_filter import WindowsUpdateFilter
 
 from .content_filter import ContentFilter
@@ -32,6 +33,10 @@ class SoftwareUpdateFilter(ContentFilter):
             from .driver_update_filter import DriverUpdateFilter
 
             return DriverUpdateFilter()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateFilter".casefold():
+            from .quality_update_filter import QualityUpdateFilter
+
+            return QualityUpdateFilter()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.windowsUpdateFilter".casefold():
             from .windows_update_filter import WindowsUpdateFilter
 
@@ -45,10 +50,12 @@ class SoftwareUpdateFilter(ContentFilter):
         """
         from .content_filter import ContentFilter
         from .driver_update_filter import DriverUpdateFilter
+        from .quality_update_filter import QualityUpdateFilter
         from .windows_update_filter import WindowsUpdateFilter
 
         from .content_filter import ContentFilter
         from .driver_update_filter import DriverUpdateFilter
+        from .quality_update_filter import QualityUpdateFilter
         from .windows_update_filter import WindowsUpdateFilter
 
         fields: Dict[str, Callable[[Any], None]] = {

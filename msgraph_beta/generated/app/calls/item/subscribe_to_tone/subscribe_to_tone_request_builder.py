@@ -29,7 +29,7 @@ class SubscribeToToneRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SubscribeToTonePostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SubscribeToToneOperation]:
         """
-        Subscribe to DTMF (dual-tone multi-frequency signaling) to allow you to be notified when the user presses keys on a 'Dialpad'.
+        Subscribe to DTMF (dual-tone multi-frequency signaling) to allow you to be notified when the user presses keys on a dialpad. This action is supported only for calls that are initiated with serviceHostedMediaConfig.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SubscribeToToneOperation]
@@ -53,7 +53,7 @@ class SubscribeToToneRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SubscribeToTonePostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Subscribe to DTMF (dual-tone multi-frequency signaling) to allow you to be notified when the user presses keys on a 'Dialpad'.
+        Subscribe to DTMF (dual-tone multi-frequency signaling) to allow you to be notified when the user presses keys on a dialpad. This action is supported only for calls that are initiated with serviceHostedMediaConfig.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

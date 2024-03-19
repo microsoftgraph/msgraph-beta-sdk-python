@@ -33,29 +33,29 @@ class OutlookTask(OutlookItem):
     due_date_time: Optional[DateTimeTimeZone] = None
     # Set to true if the task has attachments.
     has_attachments: Optional[bool] = None
-    # The importance property
+    # The importance of the event. Possible values are: low, normal, high.
     importance: Optional[Importance] = None
-    # The isReminderOn property
+    # Set to true if an alert is set to remind the user of the task.
     is_reminder_on: Optional[bool] = None
     # The collection of multi-value extended properties defined for the task. Read-only. Nullable.
     multi_value_extended_properties: Optional[List[MultiValueLegacyExtendedProperty]] = None
-    # The owner property
+    # The name of the person who created the task.
     owner: Optional[str] = None
-    # The parentFolderId property
+    # The unique identifier for the task's parent folder.
     parent_folder_id: Optional[str] = None
-    # The recurrence property
+    # The recurrence pattern for the task.
     recurrence: Optional[PatternedRecurrence] = None
-    # The reminderDateTime property
+    # The date and time for a reminder alert of the task to occur.
     reminder_date_time: Optional[DateTimeTimeZone] = None
-    # The sensitivity property
+    # Indicates the level of privacy for the task. Possible values are: normal, personal, private, confidential.
     sensitivity: Optional[Sensitivity] = None
     # The collection of single-value extended properties defined for the task. Read-only. Nullable.
     single_value_extended_properties: Optional[List[SingleValueLegacyExtendedProperty]] = None
-    # The startDateTime property
+    # The date in the specified time zone when the task is to begin.
     start_date_time: Optional[DateTimeTimeZone] = None
-    # The status property
+    # Indicates the state or progress of the task. Possible values are: notStarted, inProgress, completed, waitingOnOthers, deferred.
     status: Optional[TaskStatus] = None
-    # The subject property
+    # A brief description or title of the task.
     subject: Optional[str] = None
     
     @staticmethod

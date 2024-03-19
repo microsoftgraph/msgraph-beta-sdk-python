@@ -55,7 +55,7 @@ class Schedule(Entity):
     scheduling_groups: Optional[List[SchedulingGroup]] = None
     # The shifts in the schedule.
     shifts: Optional[List[Shift]] = None
-    # The shiftsRoleDefinitions property
+    # The definitions of the roles in the schedule.
     shifts_role_definitions: Optional[List[ShiftsRoleDefinition]] = None
     # Indicates the start day of the week. The possible values are: sunday, monday, tuesday, wednesday, thursday, friday, saturday.
     start_day_of_week: Optional[DayOfWeek] = None

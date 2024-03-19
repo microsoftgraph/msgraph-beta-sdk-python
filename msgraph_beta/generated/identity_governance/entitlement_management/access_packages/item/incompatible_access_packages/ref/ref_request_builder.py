@@ -30,7 +30,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Remove an access package from the list of access packages that have been marked as incompatible on an accessPackage.  
+        Remove an access package from the list of access packages marked as incompatible on an accessPackage.  
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0
@@ -49,7 +49,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[StringCollectionResponse]:
         """
-        Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  
+        Retrieve a list of the accessPackage objects marked as incompatible on an accessPackage.  
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[StringCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackage-list-incompatibleaccesspackages?view=graph-rest-1.0
@@ -70,7 +70,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ReferenceCreate] = None, request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Add an accessPackage to the list of access packages that have been marked as incompatible on an accessPackage.  
+        Add an accessPackage to the list of access packages marked as incompatible on an accessPackage.  
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -92,7 +92,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Remove an access package from the list of access packages that have been marked as incompatible on an accessPackage.  
+        Remove an access package from the list of access packages marked as incompatible on an accessPackage.  
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +103,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  
+        Retrieve a list of the accessPackage objects marked as incompatible on an accessPackage.  
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +114,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ReferenceCreate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Add an accessPackage to the list of access packages that have been marked as incompatible on an accessPackage.  
+        Add an accessPackage to the list of access packages marked as incompatible on an accessPackage.  
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +140,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RefRequestBuilderDeleteQueryParameters():
         """
-        Remove an access package from the list of access packages that have been marked as incompatible on an accessPackage.  
+        Remove an access package from the list of access packages marked as incompatible on an accessPackage.  
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -161,7 +161,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RefRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  
+        Retrieve a list of the accessPackage objects marked as incompatible on an accessPackage.  
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -29,9 +29,10 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete navigation property gradingSchemes for education
+        Delete an educationGradingScheme object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/educationgradingscheme-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -47,9 +48,10 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EducationGradingScheme]:
         """
-        Get gradingSchemes from education
+        Read the properties and relationships of an educationGradingScheme object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationGradingScheme]
+        Find more info here: https://learn.microsoft.com/graph/api/educationgradingscheme-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +92,7 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property gradingSchemes for education
+        Delete an educationGradingScheme object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -101,7 +103,7 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get gradingSchemes from education
+        Read the properties and relationships of an educationGradingScheme object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +140,7 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EducationGradingSchemeItemRequestBuilderGetQueryParameters():
         """
-        Get gradingSchemes from education
+        Read the properties and relationships of an educationGradingScheme object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

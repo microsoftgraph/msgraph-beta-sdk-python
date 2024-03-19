@@ -46,7 +46,7 @@ class TeamsAppsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TeamsAppCollectionResponse]:
         """
-        List apps from the Microsoft Teams app catalog.This includes apps from the Microsoft Teams store, as well as apps from your organization's app catalog (the tenant app catalog). To get apps from your organization's app catalog only, specify organization as the distributionMethod in the request.
+        List apps from the Microsoft Teams app catalog.It includes apps from the Microsoft Teams store, and apps from your organization's app catalog (the tenant app catalog). To get apps from your organization's app catalog only, specify organization as the distributionMethod in the request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamsAppCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/appcatalogs-list-teamsapps?view=graph-rest-1.0
@@ -91,7 +91,7 @@ class TeamsAppsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        List apps from the Microsoft Teams app catalog.This includes apps from the Microsoft Teams store, as well as apps from your organization's app catalog (the tenant app catalog). To get apps from your organization's app catalog only, specify organization as the distributionMethod in the request.
+        List apps from the Microsoft Teams app catalog.It includes apps from the Microsoft Teams store, and apps from your organization's app catalog (the tenant app catalog). To get apps from your organization's app catalog only, specify organization as the distributionMethod in the request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +137,7 @@ class TeamsAppsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamsAppsRequestBuilderGetQueryParameters():
         """
-        List apps from the Microsoft Teams app catalog.This includes apps from the Microsoft Teams store, as well as apps from your organization's app catalog (the tenant app catalog). To get apps from your organization's app catalog only, specify organization as the distributionMethod in the request.
+        List apps from the Microsoft Teams app catalog.It includes apps from the Microsoft Teams store, and apps from your organization's app catalog (the tenant app catalog). To get apps from your organization's app catalog only, specify organization as the distributionMethod in the request.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

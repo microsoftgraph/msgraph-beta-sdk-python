@@ -4,13 +4,13 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .configuration import Configuration
     from .connection_operation import ConnectionOperation
     from .connection_state import ConnectionState
     from .entity import Entity
     from .external_group import ExternalGroup
     from .external_item import ExternalItem
     from .schema import Schema
+    from .teams_user_configuration.configuration import Configuration
 
 from .entity import Entity
 
@@ -51,21 +51,21 @@ class ExternalConnection(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .configuration import Configuration
         from .connection_operation import ConnectionOperation
         from .connection_state import ConnectionState
         from .entity import Entity
         from .external_group import ExternalGroup
         from .external_item import ExternalItem
         from .schema import Schema
+        from .teams_user_configuration.configuration import Configuration
 
-        from .configuration import Configuration
         from .connection_operation import ConnectionOperation
         from .connection_state import ConnectionState
         from .entity import Entity
         from .external_group import ExternalGroup
         from .external_item import ExternalItem
         from .schema import Schema
+        from .teams_user_configuration.configuration import Configuration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(Configuration)),

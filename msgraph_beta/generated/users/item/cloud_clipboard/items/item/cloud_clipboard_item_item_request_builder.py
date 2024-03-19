@@ -47,7 +47,7 @@ class CloudClipboardItemItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudClipboardItem]:
         """
-        Get items from users
+        Represents a collection of Cloud Clipboard items.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudClipboardItem]
         """
@@ -101,7 +101,7 @@ class CloudClipboardItemItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get items from users
+        Represents a collection of Cloud Clipboard items.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class CloudClipboardItemItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudClipboardItemItemRequestBuilderGetQueryParameters():
         """
-        Get items from users
+        Represents a collection of Cloud Clipboard items.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

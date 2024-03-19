@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .simulations.simulations_request_builder import SimulationsRequestBuilder
     from .simulation_automations.simulation_automations_request_builder import SimulationAutomationsRequestBuilder
     from .trainings.trainings_request_builder import TrainingsRequestBuilder
+    from .training_campaigns.training_campaigns_request_builder import TrainingCampaignsRequestBuilder
 
 class AttackSimulationRequestBuilder(BaseRequestBuilder):
     """
@@ -205,6 +206,15 @@ class AttackSimulationRequestBuilder(BaseRequestBuilder):
         from .simulations.simulations_request_builder import SimulationsRequestBuilder
 
         return SimulationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def training_campaigns(self) -> TrainingCampaignsRequestBuilder:
+        """
+        Provides operations to manage the trainingCampaigns property of the microsoft.graph.attackSimulationRoot entity.
+        """
+        from .training_campaigns.training_campaigns_request_builder import TrainingCampaignsRequestBuilder
+
+        return TrainingCampaignsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def trainings(self) -> TrainingsRequestBuilder:

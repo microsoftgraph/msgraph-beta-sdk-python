@@ -11,15 +11,15 @@ from .entity import Entity
 
 @dataclass
 class WindowsSettingInstance(Entity):
-    # The createdDateTime property
+    # Set by the server. Represents the dateTime in UTC when the object was created on the server.
     created_date_time: Optional[datetime.datetime] = None
-    # The expirationDateTime property
+    # Set by the server. The object expires at the specified dateTime in UTC, making it unavailable after that time.
     expiration_date_time: Optional[datetime.datetime] = None
-    # The lastModifiedDateTime property
+    # Set by the server if not provided in the request from the Windows client device. Refers to the user's Windows device that modified the object at the specified dateTime in UTC.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The payload property
+    # Base64-encoded JSON setting value.
     payload: Optional[str] = None
     
     @staticmethod

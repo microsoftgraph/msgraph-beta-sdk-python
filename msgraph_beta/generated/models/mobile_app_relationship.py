@@ -18,13 +18,13 @@ class MobileAppRelationship(Entity):
     """
     # The OdataType property
     odata_type: Optional[str] = None
-    # The target mobile app's display name.
+    # The target mobile app's display name. This property is read-only.
     target_display_name: Optional[str] = None
-    # The target mobile app's display version.
+    # The target mobile app's display version. This property is read-only.
     target_display_version: Optional[str] = None
     # The target mobile app's app id.
     target_id: Optional[str] = None
-    # The target mobile app's publisher.
+    # The target mobile app's publisher. This property is read-only.
     target_publisher: Optional[str] = None
     # Indicates whether the target of a relationship is the parent or the child in the relationship.
     target_type: Optional[MobileAppRelationshipType] = None
@@ -87,10 +87,7 @@ class MobileAppRelationship(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_str_value("targetDisplayName", self.target_display_name)
-        writer.write_str_value("targetDisplayVersion", self.target_display_version)
         writer.write_str_value("targetId", self.target_id)
-        writer.write_str_value("targetPublisher", self.target_publisher)
         writer.write_enum_value("targetType", self.target_type)
     
 

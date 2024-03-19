@@ -25,7 +25,7 @@ class MobileAppAssignment(Entity):
     settings: Optional[MobileAppAssignmentSettings] = None
     # Represents source of assignment.
     source: Optional[DeviceAndAppManagementAssignmentSource] = None
-    # The identifier of the source of the assignment.
+    # The identifier of the source of the assignment. This property is read-only.
     source_id: Optional[str] = None
     # The target group assignment defined by the admin.
     target: Optional[DeviceAndAppManagementAssignmentTarget] = None
@@ -81,7 +81,6 @@ class MobileAppAssignment(Entity):
         writer.write_enum_value("intent", self.intent)
         writer.write_object_value("settings", self.settings)
         writer.write_enum_value("source", self.source)
-        writer.write_str_value("sourceId", self.source_id)
         writer.write_object_value("target", self.target)
     
 

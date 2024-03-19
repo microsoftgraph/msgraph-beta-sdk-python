@@ -6,10 +6,12 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .conditional_access_applications import ConditionalAccessApplications
+    from .conditional_access_authentication_flows import ConditionalAccessAuthenticationFlows
     from .conditional_access_client_app import ConditionalAccessClientApp
     from .conditional_access_client_applications import ConditionalAccessClientApplications
     from .conditional_access_devices import ConditionalAccessDevices
     from .conditional_access_device_states import ConditionalAccessDeviceStates
+    from .conditional_access_insider_risk_levels import ConditionalAccessInsiderRiskLevels
     from .conditional_access_locations import ConditionalAccessLocations
     from .conditional_access_platforms import ConditionalAccessPlatforms
     from .conditional_access_users import ConditionalAccessUsers
@@ -24,6 +26,8 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Applications and user actions included in and excluded from the policy. Required.
     applications: Optional[ConditionalAccessApplications] = None
+    # Authentication flows included in the policy scope. For more information, see Conditional Access: Authentication flows.
+    authentication_flows: Optional[ConditionalAccessAuthenticationFlows] = None
     # Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.  The easUnsupported enumeration member will be deprecated in favor of exchangeActiveSync, which includes EAS supported and unsupported platforms.
     client_app_types: Optional[List[ConditionalAccessClientApp]] = None
     # Client applications (service principals and workload identities) included in and excluded from the policy. Either users or clientApplications is required.
@@ -32,6 +36,8 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
     device_states: Optional[ConditionalAccessDeviceStates] = None
     # Devices in the policy.
     devices: Optional[ConditionalAccessDevices] = None
+    # The insiderRiskLevels property
+    insider_risk_levels: Optional[ConditionalAccessInsiderRiskLevels] = None
     # Locations included in and excluded from the policy.
     locations: Optional[ConditionalAccessLocations] = None
     # The OdataType property
@@ -64,20 +70,24 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .conditional_access_applications import ConditionalAccessApplications
+        from .conditional_access_authentication_flows import ConditionalAccessAuthenticationFlows
         from .conditional_access_client_app import ConditionalAccessClientApp
         from .conditional_access_client_applications import ConditionalAccessClientApplications
         from .conditional_access_devices import ConditionalAccessDevices
         from .conditional_access_device_states import ConditionalAccessDeviceStates
+        from .conditional_access_insider_risk_levels import ConditionalAccessInsiderRiskLevels
         from .conditional_access_locations import ConditionalAccessLocations
         from .conditional_access_platforms import ConditionalAccessPlatforms
         from .conditional_access_users import ConditionalAccessUsers
         from .risk_level import RiskLevel
 
         from .conditional_access_applications import ConditionalAccessApplications
+        from .conditional_access_authentication_flows import ConditionalAccessAuthenticationFlows
         from .conditional_access_client_app import ConditionalAccessClientApp
         from .conditional_access_client_applications import ConditionalAccessClientApplications
         from .conditional_access_devices import ConditionalAccessDevices
         from .conditional_access_device_states import ConditionalAccessDeviceStates
+        from .conditional_access_insider_risk_levels import ConditionalAccessInsiderRiskLevels
         from .conditional_access_locations import ConditionalAccessLocations
         from .conditional_access_platforms import ConditionalAccessPlatforms
         from .conditional_access_users import ConditionalAccessUsers
@@ -85,10 +95,12 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
 
         fields: Dict[str, Callable[[Any], None]] = {
             "applications": lambda n : setattr(self, 'applications', n.get_object_value(ConditionalAccessApplications)),
+            "authenticationFlows": lambda n : setattr(self, 'authentication_flows', n.get_object_value(ConditionalAccessAuthenticationFlows)),
             "clientAppTypes": lambda n : setattr(self, 'client_app_types', n.get_collection_of_enum_values(ConditionalAccessClientApp)),
             "clientApplications": lambda n : setattr(self, 'client_applications', n.get_object_value(ConditionalAccessClientApplications)),
             "deviceStates": lambda n : setattr(self, 'device_states', n.get_object_value(ConditionalAccessDeviceStates)),
             "devices": lambda n : setattr(self, 'devices', n.get_object_value(ConditionalAccessDevices)),
+            "insiderRiskLevels": lambda n : setattr(self, 'insider_risk_levels', n.get_collection_of_enum_values(ConditionalAccessInsiderRiskLevels)),
             "locations": lambda n : setattr(self, 'locations', n.get_object_value(ConditionalAccessLocations)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "platforms": lambda n : setattr(self, 'platforms', n.get_object_value(ConditionalAccessPlatforms)),
@@ -108,10 +120,12 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("applications", self.applications)
+        writer.write_object_value("authenticationFlows", self.authentication_flows)
         writer.write_collection_of_enum_values("clientAppTypes", self.client_app_types)
         writer.write_object_value("clientApplications", self.client_applications)
         writer.write_object_value("deviceStates", self.device_states)
         writer.write_object_value("devices", self.devices)
+        writer.write_enum_value("insiderRiskLevels", self.insider_risk_levels)
         writer.write_object_value("locations", self.locations)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("platforms", self.platforms)

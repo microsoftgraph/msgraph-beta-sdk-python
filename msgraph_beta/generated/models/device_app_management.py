@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .mdm_windows_information_protection_policy import MdmWindowsInformationProtectionPolicy
     from .microsoft_store_for_business_portal_selection_options import MicrosoftStoreForBusinessPortalSelectionOptions
     from .mobile_app import MobileApp
+    from .mobile_app_catalog_package import MobileAppCatalogPackage
     from .mobile_app_category import MobileAppCategory
     from .policy_set import PolicySet
     from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
@@ -74,6 +75,8 @@ class DeviceAppManagement(Entity):
     microsoft_store_for_business_last_successful_sync_date_time: Optional[datetime.datetime] = None
     # Portal to which admin syncs available Microsoft Store for Business apps. This is available in the Intune Admin Console.
     microsoft_store_for_business_portal_selection: Optional[MicrosoftStoreForBusinessPortalSelectionOptions] = None
+    # MobileAppCatalogPackage entities.
+    mobile_app_catalog_packages: Optional[List[MobileAppCatalogPackage]] = None
     # The mobile app categories.
     mobile_app_categories: Optional[List[MobileAppCategory]] = None
     # The Managed Device Mobile Application Configurations.
@@ -135,6 +138,7 @@ class DeviceAppManagement(Entity):
         from .mdm_windows_information_protection_policy import MdmWindowsInformationProtectionPolicy
         from .microsoft_store_for_business_portal_selection_options import MicrosoftStoreForBusinessPortalSelectionOptions
         from .mobile_app import MobileApp
+        from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .mobile_app_category import MobileAppCategory
         from .policy_set import PolicySet
         from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
@@ -163,6 +167,7 @@ class DeviceAppManagement(Entity):
         from .mdm_windows_information_protection_policy import MdmWindowsInformationProtectionPolicy
         from .microsoft_store_for_business_portal_selection_options import MicrosoftStoreForBusinessPortalSelectionOptions
         from .mobile_app import MobileApp
+        from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .mobile_app_category import MobileAppCategory
         from .policy_set import PolicySet
         from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
@@ -193,6 +198,7 @@ class DeviceAppManagement(Entity):
             "microsoftStoreForBusinessLastCompletedApplicationSyncTime": lambda n : setattr(self, 'microsoft_store_for_business_last_completed_application_sync_time', n.get_datetime_value()),
             "microsoftStoreForBusinessLastSuccessfulSyncDateTime": lambda n : setattr(self, 'microsoft_store_for_business_last_successful_sync_date_time', n.get_datetime_value()),
             "microsoftStoreForBusinessPortalSelection": lambda n : setattr(self, 'microsoft_store_for_business_portal_selection', n.get_collection_of_enum_values(MicrosoftStoreForBusinessPortalSelectionOptions)),
+            "mobileAppCatalogPackages": lambda n : setattr(self, 'mobile_app_catalog_packages', n.get_collection_of_object_values(MobileAppCatalogPackage)),
             "mobileAppCategories": lambda n : setattr(self, 'mobile_app_categories', n.get_collection_of_object_values(MobileAppCategory)),
             "mobileAppConfigurations": lambda n : setattr(self, 'mobile_app_configurations', n.get_collection_of_object_values(ManagedDeviceMobileAppConfiguration)),
             "mobileApps": lambda n : setattr(self, 'mobile_apps', n.get_collection_of_object_values(MobileApp)),
@@ -237,6 +243,7 @@ class DeviceAppManagement(Entity):
         writer.write_datetime_value("microsoftStoreForBusinessLastCompletedApplicationSyncTime", self.microsoft_store_for_business_last_completed_application_sync_time)
         writer.write_datetime_value("microsoftStoreForBusinessLastSuccessfulSyncDateTime", self.microsoft_store_for_business_last_successful_sync_date_time)
         writer.write_enum_value("microsoftStoreForBusinessPortalSelection", self.microsoft_store_for_business_portal_selection)
+        writer.write_collection_of_object_values("mobileAppCatalogPackages", self.mobile_app_catalog_packages)
         writer.write_collection_of_object_values("mobileAppCategories", self.mobile_app_categories)
         writer.write_collection_of_object_values("mobileAppConfigurations", self.mobile_app_configurations)
         writer.write_collection_of_object_values("mobileApps", self.mobile_apps)

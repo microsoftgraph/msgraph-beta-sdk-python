@@ -81,15 +81,5 @@ class MobileAppInstallSummary(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_int_value("failedDeviceCount", self.failed_device_count)
-        writer.write_int_value("failedUserCount", self.failed_user_count)
-        writer.write_int_value("installedDeviceCount", self.installed_device_count)
-        writer.write_int_value("installedUserCount", self.installed_user_count)
-        writer.write_int_value("notApplicableDeviceCount", self.not_applicable_device_count)
-        writer.write_int_value("notApplicableUserCount", self.not_applicable_user_count)
-        writer.write_int_value("notInstalledDeviceCount", self.not_installed_device_count)
-        writer.write_int_value("notInstalledUserCount", self.not_installed_user_count)
-        writer.write_int_value("pendingInstallDeviceCount", self.pending_install_device_count)
-        writer.write_int_value("pendingInstallUserCount", self.pending_install_user_count)
     
 

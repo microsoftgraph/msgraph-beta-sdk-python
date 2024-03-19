@@ -15,11 +15,11 @@ class AndroidForWorkApp(MobileApp):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidForWorkApp"
-    # The Identity Name.
+    # The Identity Name. This property is read-only.
     app_identifier: Optional[str] = None
     # The Play for Work Store app URL.
     app_store_url: Optional[str] = None
-    # The package identifier.
+    # The package identifier. This property is read-only.
     package_id: Optional[str] = None
     # The total number of VPP licenses.
     total_license_count: Optional[int] = None
@@ -66,9 +66,7 @@ class AndroidForWorkApp(MobileApp):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_str_value("appIdentifier", self.app_identifier)
         writer.write_str_value("appStoreUrl", self.app_store_url)
-        writer.write_str_value("packageId", self.package_id)
         writer.write_int_value("totalLicenseCount", self.total_license_count)
         writer.write_int_value("usedLicenseCount", self.used_license_count)
     

@@ -55,7 +55,7 @@ class DriveItem(BaseItem):
     c_tag: Optional[str] = None
     # Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.
     children: Optional[List[DriveItem]] = None
-    # The content stream, if the item represents a file.
+    # The content property
     content: Optional[bytes] = None
     # Information about the deleted state of the item. Read-only.
     deleted: Optional[Deleted] = None

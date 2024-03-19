@@ -18,9 +18,9 @@ class MobileAppDependency(MobileAppRelationship):
     odata_type: Optional[str] = "#microsoft.graph.mobileAppDependency"
     # Indicates the dependency type associated with a relationship between two mobile apps.
     dependency_type: Optional[MobileAppDependencyType] = None
-    # The total number of apps that directly or indirectly depend on the parent app.
+    # The total number of apps that directly or indirectly depend on the parent app. This property is read-only.
     dependent_app_count: Optional[int] = None
-    # The total number of apps the child app directly or indirectly depends on.
+    # The total number of apps the child app directly or indirectly depends on. This property is read-only.
     depends_on_app_count: Optional[int] = None
     
     @staticmethod
@@ -64,7 +64,5 @@ class MobileAppDependency(MobileAppRelationship):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("dependencyType", self.dependency_type)
-        writer.write_int_value("dependentAppCount", self.dependent_app_count)
-        writer.write_int_value("dependsOnAppCount", self.depends_on_app_count)
     
 

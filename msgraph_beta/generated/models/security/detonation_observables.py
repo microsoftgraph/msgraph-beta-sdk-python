@@ -11,11 +11,11 @@ class DetonationObservables(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The contactedIps property
+    # The list of all contacted IPs in the detonation.
     contacted_ips: Optional[List[str]] = None
-    # The contactedUrls property
+    # The list of all URLs found in the detonation.
     contacted_urls: Optional[List[str]] = None
-    # The droppedfiles property
+    # The list of all dropped files in the detonation.
     droppedfiles: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

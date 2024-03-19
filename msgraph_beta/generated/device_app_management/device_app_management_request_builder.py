@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from .managed_e_book_categories.managed_e_book_categories_request_builder import ManagedEBookCategoriesRequestBuilder
     from .mdm_windows_information_protection_policies.mdm_windows_information_protection_policies_request_builder import MdmWindowsInformationProtectionPoliciesRequestBuilder
     from .mobile_apps.mobile_apps_request_builder import MobileAppsRequestBuilder
+    from .mobile_app_catalog_packages.mobile_app_catalog_packages_request_builder import MobileAppCatalogPackagesRequestBuilder
     from .mobile_app_categories.mobile_app_categories_request_builder import MobileAppCategoriesRequestBuilder
     from .mobile_app_configurations.mobile_app_configurations_request_builder import MobileAppConfigurationsRequestBuilder
     from .policy_sets.policy_sets_request_builder import PolicySetsRequestBuilder
@@ -239,6 +240,15 @@ class DeviceAppManagementRequestBuilder(BaseRequestBuilder):
         from .mdm_windows_information_protection_policies.mdm_windows_information_protection_policies_request_builder import MdmWindowsInformationProtectionPoliciesRequestBuilder
 
         return MdmWindowsInformationProtectionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mobile_app_catalog_packages(self) -> MobileAppCatalogPackagesRequestBuilder:
+        """
+        Provides operations to manage the mobileAppCatalogPackages property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .mobile_app_catalog_packages.mobile_app_catalog_packages_request_builder import MobileAppCatalogPackagesRequestBuilder
+
+        return MobileAppCatalogPackagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def mobile_app_categories(self) -> MobileAppCategoriesRequestBuilder:

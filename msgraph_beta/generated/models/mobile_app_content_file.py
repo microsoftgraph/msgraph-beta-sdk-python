@@ -15,13 +15,13 @@ class MobileAppContentFile(Entity):
     """
     Contains properties for a single installer file that is associated with a given mobileAppContent version.
     """
-    # Indicates the Azure Storage URI that the file is uploaded to. Created by the service upon receiving a valid mobileAppContentFile. Read-only.
+    # Indicates the Azure Storage URI that the file is uploaded to. Created by the service upon receiving a valid mobileAppContentFile. Read-only. This property is read-only.
     azure_storage_uri: Optional[str] = None
-    # Indicates the date and time when the Azure storage URI expires, in ISO 8601 format. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Read-only.
+    # Indicates the date and time when the Azure storage URI expires, in ISO 8601 format. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Read-only. This property is read-only.
     azure_storage_uri_expiration_date_time: Optional[datetime.datetime] = None
-    # Indicates created date and time associated with app content file, in ISO 8601 format. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Read-only.
+    # Indicates created date and time associated with app content file, in ISO 8601 format. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Read-only. This property is read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # A value indicating whether the file is committed. A committed app content file has been fully uploaded and validated by the Intune service. TRUE means that app content file is committed, FALSE means that app content file is not committed. Defaults to FALSE. Read-only.
+    # A value indicating whether the file is committed. A committed app content file has been fully uploaded and validated by the Intune service. TRUE means that app content file is committed, FALSE means that app content file is not committed. Defaults to FALSE. Read-only. This property is read-only.
     is_committed: Optional[bool] = None
     # Indicates whether this content file is a dependency for the main content file. TRUE means that the content file is a dependency, FALSE means that the content file is not a dependency and is the main content file. Defaults to FALSE.
     is_dependency: Optional[bool] = None
@@ -37,9 +37,9 @@ class MobileAppContentFile(Entity):
     size: Optional[int] = None
     # The size of the file after encryption. To be deprecated, please use sizeEncryptedInBytes property instead.
     size_encrypted: Optional[int] = None
-    # Indicates the size of the file after encryption, in bytes.
+    # Indicates the size of the file after encryption, in bytes. Valid values 0 to 9.22337203685478E+18
     size_encrypted_in_bytes: Optional[int] = None
-    # Indicates the original size of the file, in bytes.
+    # Indicates the original size of the file, in bytes. Valid values 0 to 9.22337203685478E+18
     size_in_bytes: Optional[int] = None
     # Contains properties for upload request states.
     upload_state: Optional[MobileAppContentFileUploadState] = None
@@ -94,10 +94,6 @@ class MobileAppContentFile(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_str_value("azureStorageUri", self.azure_storage_uri)
-        writer.write_datetime_value("azureStorageUriExpirationDateTime", self.azure_storage_uri_expiration_date_time)
-        writer.write_datetime_value("createdDateTime", self.created_date_time)
-        writer.write_bool_value("isCommitted", self.is_committed)
         writer.write_bool_value("isDependency", self.is_dependency)
         writer.write_bool_value("isFrameworkFile", self.is_framework_file)
         writer.write_bytes_value("manifest", self.manifest)

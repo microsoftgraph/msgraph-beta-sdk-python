@@ -6,4 +6,5 @@ class TenantOnboardingStatus(str, Enum):
     Active = "active",
     Inactive = "inactive",
     UnknownFutureValue = "unknownFutureValue",
+    Disabled = "disabled",
 

@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .driver_update_filter import DriverUpdateFilter
+    from .quality_update_filter import QualityUpdateFilter
     from .software_update_filter import SoftwareUpdateFilter
 
 from .software_update_filter import SoftwareUpdateFilter
@@ -31,6 +32,10 @@ class WindowsUpdateFilter(SoftwareUpdateFilter):
             from .driver_update_filter import DriverUpdateFilter
 
             return DriverUpdateFilter()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateFilter".casefold():
+            from .quality_update_filter import QualityUpdateFilter
+
+            return QualityUpdateFilter()
         return WindowsUpdateFilter()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -39,9 +44,11 @@ class WindowsUpdateFilter(SoftwareUpdateFilter):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .driver_update_filter import DriverUpdateFilter
+        from .quality_update_filter import QualityUpdateFilter
         from .software_update_filter import SoftwareUpdateFilter
 
         from .driver_update_filter import DriverUpdateFilter
+        from .quality_update_filter import QualityUpdateFilter
         from .software_update_filter import SoftwareUpdateFilter
 
         fields: Dict[str, Callable[[Any], None]] = {

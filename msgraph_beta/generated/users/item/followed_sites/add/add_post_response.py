@@ -4,39 +4,40 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .entity import Entity
+    from .....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+    from .....models.site import Site
 
-from .entity import Entity
+from .....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class UserConfiguration(Entity):
-    # The binaryData property
-    binary_data: Optional[bytes] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
+class AddPostResponse(BaseCollectionPaginationCountResponse):
+    # The value property
+    value: Optional[List[Site]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserConfiguration:
+    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddPostResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
-        Returns: UserConfiguration
+        Returns: AddPostResponse
         """
         if not parse_node:
             raise TypeError("parse_node cannot be null.")
-        return UserConfiguration()
+        return AddPostResponse()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .entity import Entity
+        from .....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .....models.site import Site
 
-        from .entity import Entity
+        from .....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .....models.site import Site
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "binaryData": lambda n : setattr(self, 'binary_data', n.get_bytes_value()),
+            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(Site)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -51,6 +52,6 @@ class UserConfiguration(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_bytes_value("binaryData", self.binary_data)
+        writer.write_collection_of_object_values("value", self.value)
     
 

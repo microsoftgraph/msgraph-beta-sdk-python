@@ -63,9 +63,9 @@ class MobileApp(Entity):
     assignments: Optional[List[MobileAppAssignment]] = None
     # The list of categories for this app.
     categories: Optional[List[MobileAppCategory]] = None
-    # The date and time the app was created.
+    # The date and time the app was created. This property is read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # The total number of dependencies the child app has.
+    # The total number of dependencies the child app has. This property is read-only.
     dependent_app_count: Optional[int] = None
     # The description of the app.
     description: Optional[str] = None
@@ -75,13 +75,13 @@ class MobileApp(Entity):
     display_name: Optional[str] = None
     # The more information Url.
     information_url: Optional[str] = None
-    # The value indicating whether the app is assigned to at least one group.
+    # The value indicating whether the app is assigned to at least one group. This property is read-only.
     is_assigned: Optional[bool] = None
     # The value indicating whether the app is marked as featured by the admin.
     is_featured: Optional[bool] = None
     # The large icon, to be displayed in the app details and used for upload of the icon.
     large_icon: Optional[MimeContent] = None
-    # The date and time the app was last modified.
+    # The date and time the app was last modified. This property is read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # Notes for the app.
     notes: Optional[str] = None
@@ -95,15 +95,15 @@ class MobileApp(Entity):
     publisher: Optional[str] = None
     # Indicates the publishing state of an app.
     publishing_state: Optional[MobileAppPublishingState] = None
-    # List of relationships for this mobile app.
+    # The set of direct relationships for this app.
     relationships: Optional[List[MobileAppRelationship]] = None
     # List of scope tag ids for this mobile app.
     role_scope_tag_ids: Optional[List[str]] = None
-    # The total number of apps this app is directly or indirectly superseded by.
+    # The total number of apps this app is directly or indirectly superseded by. This property is read-only.
     superseded_app_count: Optional[int] = None
-    # The total number of apps this app directly or indirectly supersedes.
+    # The total number of apps this app directly or indirectly supersedes. This property is read-only.
     superseding_app_count: Optional[int] = None
-    # The upload state.
+    # The upload state. Possible values are: 0 - Not Ready, 1 - Ready, 2 - Processing. This property is read-only.
     upload_state: Optional[int] = None
     
     @staticmethod
@@ -419,16 +419,12 @@ class MobileApp(Entity):
         super().serialize(writer)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_collection_of_object_values("categories", self.categories)
-        writer.write_datetime_value("createdDateTime", self.created_date_time)
-        writer.write_int_value("dependentAppCount", self.dependent_app_count)
         writer.write_str_value("description", self.description)
         writer.write_str_value("developer", self.developer)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("informationUrl", self.information_url)
-        writer.write_bool_value("isAssigned", self.is_assigned)
         writer.write_bool_value("isFeatured", self.is_featured)
         writer.write_object_value("largeIcon", self.large_icon)
-        writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("notes", self.notes)
         writer.write_str_value("owner", self.owner)
         writer.write_str_value("privacyInformationUrl", self.privacy_information_url)
@@ -436,8 +432,5 @@ class MobileApp(Entity):
         writer.write_enum_value("publishingState", self.publishing_state)
         writer.write_collection_of_object_values("relationships", self.relationships)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
-        writer.write_int_value("supersededAppCount", self.superseded_app_count)
-        writer.write_int_value("supersedingAppCount", self.superseding_app_count)
-        writer.write_int_value("uploadState", self.upload_state)
     
 

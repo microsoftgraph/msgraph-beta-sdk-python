@@ -7,4 +7,6 @@ class ImportedDeviceIdentityType(str, Enum):
     Imei = "imei",
     # Device Identity is of type serial number.
     SerialNumber = "serialNumber",
+    # Device Identity is of type manufacturer + model + serial number semi-colon delimited tuple with enforced order.
+    ManufacturerModelSerial = "manufacturerModelSerial",
 

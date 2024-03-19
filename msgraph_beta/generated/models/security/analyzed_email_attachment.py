@@ -15,19 +15,19 @@ class AnalyzedEmailAttachment(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The detonationDetails property
+    # The detonation details of the attachment.
     detonation_details: Optional[DetonationDetails] = None
-    # The fileName property
+    # The name of the attachment in the email.
     file_name: Optional[str] = None
-    # The fileType property
+    # The type of the attachment in the email.
     file_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sha256 property
+    # The SHA256 file hash of the attachment.
     sha256: Optional[str] = None
-    # The threatName property
+    # The threat name associated with the threat type.
     threat_name: Optional[str] = None
-    # The threatType property
+    # The threat type associated with the attachment. The possible values are: unknown, spam, malware, phishing, none, unknownFutureValue.
     threat_type: Optional[ThreatType] = None
     
     @staticmethod

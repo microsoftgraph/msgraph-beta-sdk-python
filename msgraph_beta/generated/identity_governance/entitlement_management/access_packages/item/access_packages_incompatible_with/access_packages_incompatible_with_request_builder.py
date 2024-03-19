@@ -45,7 +45,7 @@ class AccessPackagesIncompatibleWithRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageCollectionResponse]:
         """
-        Retrieve a list of the accessPackage objects that have marked a specified accessPackage as incompatible.
+        Retrieve a list of the accessPackage objects marked a specified accessPackage as incompatible.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackage-list-accesspackagesincompatiblewith?view=graph-rest-1.0
@@ -66,7 +66,7 @@ class AccessPackagesIncompatibleWithRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of the accessPackage objects that have marked a specified accessPackage as incompatible.
+        Retrieve a list of the accessPackage objects marked a specified accessPackage as incompatible.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -97,7 +97,7 @@ class AccessPackagesIncompatibleWithRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackagesIncompatibleWithRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of the accessPackage objects that have marked a specified accessPackage as incompatible.
+        Retrieve a list of the accessPackage objects marked a specified accessPackage as incompatible.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
