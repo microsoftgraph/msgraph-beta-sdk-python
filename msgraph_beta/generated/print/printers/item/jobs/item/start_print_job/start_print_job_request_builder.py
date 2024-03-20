@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +27,7 @@ class StartPrintJobRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/print/printers/{printer%2Did}/jobs/{printJob%2Did}/startPrintJob", path_parameters)
     
-    async def post(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrintJobStatus]:
+    async def post(self,request_configuration: Optional[StartPrintJobRequestBuilderPostRequestConfiguration] = None) -> Optional[PrintJobStatus]:
         """
         Invoke action startPrintJob
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,7 +48,7 @@ class StartPrintJobRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrintJobStatus, error_mapping)
     
-    def to_post_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,request_configuration: Optional[StartPrintJobRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Invoke action startPrintJob
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -70,5 +70,15 @@ class StartPrintJobRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return StartPrintJobRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class StartPrintJobRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -63,9 +63,9 @@ class MobileApp(Entity):
     assignments: Optional[List[MobileAppAssignment]] = None
     # The list of categories for this app.
     categories: Optional[List[MobileAppCategory]] = None
-    # The date and time the app was created. This property is read-only.
+    # The date and time the app was created.
     created_date_time: Optional[datetime.datetime] = None
-    # The total number of dependencies the child app has. This property is read-only.
+    # The total number of dependencies the child app has.
     dependent_app_count: Optional[int] = None
     # The description of the app.
     description: Optional[str] = None
@@ -75,13 +75,13 @@ class MobileApp(Entity):
     display_name: Optional[str] = None
     # The more information Url.
     information_url: Optional[str] = None
-    # The value indicating whether the app is assigned to at least one group. This property is read-only.
+    # The value indicating whether the app is assigned to at least one group.
     is_assigned: Optional[bool] = None
     # The value indicating whether the app is marked as featured by the admin.
     is_featured: Optional[bool] = None
     # The large icon, to be displayed in the app details and used for upload of the icon.
     large_icon: Optional[MimeContent] = None
-    # The date and time the app was last modified. This property is read-only.
+    # The date and time the app was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # Notes for the app.
     notes: Optional[str] = None
@@ -95,7 +95,7 @@ class MobileApp(Entity):
     publisher: Optional[str] = None
     # Indicates the publishing state of an app.
     publishing_state: Optional[MobileAppPublishingState] = None
-    # The set of direct relationships for this app.
+    # List of relationships for this mobile app.
     relationships: Optional[List[MobileAppRelationship]] = None
     # List of scope tag ids for this mobile app.
     role_scope_tag_ids: Optional[List[str]] = None
@@ -103,7 +103,7 @@ class MobileApp(Entity):
     superseded_app_count: Optional[int] = None
     # The total number of apps this app directly or indirectly supersedes. This property is read-only.
     superseding_app_count: Optional[int] = None
-    # The upload state. Possible values are: 0 - Not Ready, 1 - Ready, 2 - Processing. This property is read-only.
+    # The upload state.
     upload_state: Optional[int] = None
     
     @staticmethod

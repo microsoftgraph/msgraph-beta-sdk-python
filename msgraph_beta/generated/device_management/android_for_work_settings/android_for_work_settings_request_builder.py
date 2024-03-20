@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +30,7 @@ class AndroidForWorkSettingsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/androidForWorkSettings{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AndroidForWorkSettingsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property androidForWorkSettings for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,7 +48,7 @@ class AndroidForWorkSettingsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AndroidForWorkSettings]:
+    async def get(self,request_configuration: Optional[AndroidForWorkSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[AndroidForWorkSettings]:
         """
         The singleton Android for Work settings entity.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +68,7 @@ class AndroidForWorkSettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AndroidForWorkSettings, error_mapping)
     
-    async def patch(self,body: Optional[AndroidForWorkSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AndroidForWorkSettings]:
+    async def patch(self,body: Optional[AndroidForWorkSettings] = None, request_configuration: Optional[AndroidForWorkSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[AndroidForWorkSettings]:
         """
         Update the navigation property androidForWorkSettings in deviceManagement
         param body: The request body
@@ -92,7 +91,7 @@ class AndroidForWorkSettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AndroidForWorkSettings, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[AndroidForWorkSettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property androidForWorkSettings for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +102,7 @@ class AndroidForWorkSettingsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AndroidForWorkSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The singleton Android for Work settings entity.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -114,7 +113,7 @@ class AndroidForWorkSettingsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[AndroidForWorkSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AndroidForWorkSettings] = None, request_configuration: Optional[AndroidForWorkSettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property androidForWorkSettings in deviceManagement
         param body: The request body
@@ -175,6 +174,16 @@ class AndroidForWorkSettingsRequestBuilder(BaseRequestBuilder):
 
         return UnbindRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AndroidForWorkSettingsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class AndroidForWorkSettingsRequestBuilderGetQueryParameters():
         """
@@ -200,5 +209,28 @@ class AndroidForWorkSettingsRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AndroidForWorkSettingsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AndroidForWorkSettingsRequestBuilder.AndroidForWorkSettingsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AndroidForWorkSettingsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

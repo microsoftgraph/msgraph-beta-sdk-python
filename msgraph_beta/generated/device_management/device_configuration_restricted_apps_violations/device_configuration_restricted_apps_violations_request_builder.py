@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class DeviceConfigurationRestrictedAppsViolationsRequestBuilder(BaseRequestBuild
         url_tpl_params["restrictedAppsViolation%2Did"] = restricted_apps_violation_id
         return RestrictedAppsViolationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[RestrictedAppsViolationCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceConfigurationRestrictedAppsViolationsRequestBuilderGetRequestConfiguration] = None) -> Optional[RestrictedAppsViolationCollectionResponse]:
         """
         Restricted apps violations for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class DeviceConfigurationRestrictedAppsViolationsRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, RestrictedAppsViolationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[RestrictedAppsViolation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[RestrictedAppsViolation]:
+    async def post(self,body: Optional[RestrictedAppsViolation] = None, request_configuration: Optional[DeviceConfigurationRestrictedAppsViolationsRequestBuilderPostRequestConfiguration] = None) -> Optional[RestrictedAppsViolation]:
         """
         Create new navigation property to deviceConfigurationRestrictedAppsViolations for deviceManagement
         param body: The request body
@@ -87,7 +86,7 @@ class DeviceConfigurationRestrictedAppsViolationsRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, RestrictedAppsViolation, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DeviceConfigurationRestrictedAppsViolationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Restricted apps violations for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class DeviceConfigurationRestrictedAppsViolationsRequestBuilder(BaseRequestBuild
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[RestrictedAppsViolation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[RestrictedAppsViolation] = None, request_configuration: Optional[DeviceConfigurationRestrictedAppsViolationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to deviceConfigurationRestrictedAppsViolations for deviceManagement
         param body: The request body
@@ -187,5 +186,28 @@ class DeviceConfigurationRestrictedAppsViolationsRequestBuilder(BaseRequestBuild
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceConfigurationRestrictedAppsViolationsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DeviceConfigurationRestrictedAppsViolationsRequestBuilder.DeviceConfigurationRestrictedAppsViolationsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceConfigurationRestrictedAppsViolationsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class ManagedEBookCategoriesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["managedEBookCategory%2Did"] = managed_e_book_category_id
         return ManagedEBookCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedEBookCategoryCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagedEBookCategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedEBookCategoryCollectionResponse]:
         """
         The mobile eBook categories.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class ManagedEBookCategoriesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagedEBookCategoryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ManagedEBookCategory] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedEBookCategory]:
+    async def post(self,body: Optional[ManagedEBookCategory] = None, request_configuration: Optional[ManagedEBookCategoriesRequestBuilderPostRequestConfiguration] = None) -> Optional[ManagedEBookCategory]:
         """
         Create new navigation property to managedEBookCategories for deviceAppManagement
         param body: The request body
@@ -87,7 +86,7 @@ class ManagedEBookCategoriesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagedEBookCategory, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ManagedEBookCategoriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The mobile eBook categories.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class ManagedEBookCategoriesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ManagedEBookCategory] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ManagedEBookCategory] = None, request_configuration: Optional[ManagedEBookCategoriesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to managedEBookCategories for deviceAppManagement
         param body: The request body
@@ -187,5 +186,28 @@ class ManagedEBookCategoriesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagedEBookCategoriesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ManagedEBookCategoriesRequestBuilder.ManagedEBookCategoriesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagedEBookCategoriesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

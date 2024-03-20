@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +26,7 @@ class ConfirmCompromisedRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/auditLogs/signIns/confirmCompromised", path_parameters)
     
-    async def post(self,body: Optional[ConfirmCompromisedPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def post(self,body: Optional[ConfirmCompromisedPostRequestBody] = None, request_configuration: Optional[ConfirmCompromisedRequestBuilderPostRequestConfiguration] = None) -> None:
         """
         Allow admins to mark an event in the Microsoft Entra sign-in logs as risky. Events marked as risky by an admin are immediately flagged as high risk in Microsoft Entra ID Protection, overriding previous risk states. Admins can confirm that events flagged as risky by Microsoft Entra ID Protection are in fact risky. For details about investigating Identity Protection risks, see How to investigate risk.
         param body: The request body
@@ -48,7 +48,7 @@ class ConfirmCompromisedRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def to_post_request_information(self,body: Optional[ConfirmCompromisedPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ConfirmCompromisedPostRequestBody] = None, request_configuration: Optional[ConfirmCompromisedRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Allow admins to mark an event in the Microsoft Entra sign-in logs as risky. Events marked as risky by an admin are immediately flagged as high risk in Microsoft Entra ID Protection, overriding previous risk states. Admins can confirm that events flagged as risky by Microsoft Entra ID Protection are in fact risky. For details about investigating Identity Protection risks, see How to investigate risk.
         param body: The request body
@@ -72,5 +72,15 @@ class ConfirmCompromisedRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ConfirmCompromisedRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ConfirmCompromisedRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +26,7 @@ class GetCloudPcRecommendationReportsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/reports/getCloudPcRecommendationReports", path_parameters)
     
-    async def post(self,body: Optional[GetCloudPcRecommendationReportsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> bytes:
+    async def post(self,body: Optional[GetCloudPcRecommendationReportsPostRequestBody] = None, request_configuration: Optional[GetCloudPcRecommendationReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
         Get the device recommendation reports for Cloud PCs, such as the usage category report. The usage category report categorizes a Cloud PC as Undersized, Oversized, Rightsized, or Underutilized, and also provides the recommended SKU when the Cloud PC isn't Rightsized.
         param body: The request body
@@ -48,7 +48,7 @@ class GetCloudPcRecommendationReportsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
-    def to_post_request_information(self,body: Optional[GetCloudPcRecommendationReportsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GetCloudPcRecommendationReportsPostRequestBody] = None, request_configuration: Optional[GetCloudPcRecommendationReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Get the device recommendation reports for Cloud PCs, such as the usage category report. The usage category report categorizes a Cloud PC as Undersized, Oversized, Rightsized, or Underutilized, and also provides the recommended SKU when the Cloud PC isn't Rightsized.
         param body: The request body
@@ -72,5 +72,15 @@ class GetCloudPcRecommendationReportsRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return GetCloudPcRecommendationReportsRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GetCloudPcRecommendationReportsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

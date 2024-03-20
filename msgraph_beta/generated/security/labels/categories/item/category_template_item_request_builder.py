@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +27,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/labels/categories/{categoryTemplate%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a categoryTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +46,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CategoryTemplate]:
+    async def get(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CategoryTemplate]:
         """
         Read the properties and relationships of a categoryTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -68,7 +67,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CategoryTemplate, error_mapping)
     
-    async def patch(self,body: Optional[CategoryTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CategoryTemplate]:
+    async def patch(self,body: Optional[CategoryTemplate] = None, request_configuration: Optional[CategoryTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CategoryTemplate]:
         """
         Update the navigation property categories in security
         param body: The request body
@@ -91,7 +90,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CategoryTemplate, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete a categoryTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +101,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CategoryTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of a categoryTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -113,7 +112,7 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[CategoryTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[CategoryTemplate] = None, request_configuration: Optional[CategoryTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property categories in security
         param body: The request body
@@ -147,6 +146,16 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
 
         return SubCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CategoryTemplateItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class CategoryTemplateItemRequestBuilderGetQueryParameters():
         """
@@ -172,5 +181,28 @@ class CategoryTemplateItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CategoryTemplateItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CategoryTemplateItemRequestBuilder.CategoryTemplateItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CategoryTemplateItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

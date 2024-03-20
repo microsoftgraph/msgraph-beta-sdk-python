@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/profile/educationalActivities/{educationalActivity%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[EducationalActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete an educationalActivity object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +45,7 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EducationalActivity]:
+    async def get(self,request_configuration: Optional[EducationalActivityItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationalActivity]:
         """
         Retrieve the properties and relationships of an educationalActivity object from a users profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EducationalActivity, error_mapping)
     
-    async def patch(self,body: Optional[EducationalActivity] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EducationalActivity]:
+    async def patch(self,body: Optional[EducationalActivity] = None, request_configuration: Optional[EducationalActivityItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EducationalActivity]:
         """
         Update the properties of an educationalActivity object within a user's profile.
         param body: The request body
@@ -91,7 +90,7 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EducationalActivity, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[EducationalActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete an educationalActivity object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +101,7 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[EducationalActivityItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the properties and relationships of an educationalActivity object from a users profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -113,7 +112,7 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[EducationalActivity] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EducationalActivity] = None, request_configuration: Optional[EducationalActivityItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of an educationalActivity object within a user's profile.
         param body: The request body
@@ -137,6 +136,16 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return EducationalActivityItemRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class EducationalActivityItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class EducationalActivityItemRequestBuilderGetQueryParameters():
@@ -163,5 +172,28 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class EducationalActivityItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[EducationalActivityItemRequestBuilder.EducationalActivityItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class EducationalActivityItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

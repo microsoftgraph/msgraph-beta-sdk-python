@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,7 +45,7 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["accessPackageResource%2Did"] = access_package_resource_id
         return AccessPackageResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageResourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackageResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageResourceCollectionResponse]:
         """
         Retrieve a list of accessPackageResource objects in an accessPackageCatalog.  To request to add or remove an accessPackageResource, use create accessPackageResourceRequest.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -68,7 +67,7 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageResourceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AccessPackageResource] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageResource]:
+    async def post(self,body: Optional[AccessPackageResource] = None, request_configuration: Optional[AccessPackageResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[AccessPackageResource]:
         """
         Create new navigation property to accessPackageResources for identityGovernance
         param body: The request body
@@ -92,7 +91,7 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageResource, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AccessPackageResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of accessPackageResource objects in an accessPackageCatalog.  To request to add or remove an accessPackageResource, use create accessPackageResourceRequest.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +103,7 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AccessPackageResource] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AccessPackageResource] = None, request_configuration: Optional[AccessPackageResourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to accessPackageResources for identityGovernance
         param body: The request body
@@ -195,5 +194,28 @@ class AccessPackageResourcesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageResourcesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AccessPackageResourcesRequestBuilder.AccessPackageResourcesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageResourcesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

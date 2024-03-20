@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["deploymentAudience%2Did"] = deployment_audience_id
         return DeploymentAudienceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeploymentAudienceCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeploymentAudiencesRequestBuilderGetRequestConfiguration] = None) -> Optional[DeploymentAudienceCollectionResponse]:
         """
         Get a list of deploymentAudience objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeploymentAudienceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeploymentAudience]:
+    async def post(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[DeploymentAudiencesRequestBuilderPostRequestConfiguration] = None) -> Optional[DeploymentAudience]:
         """
         Create a new deploymentAudience object.
         param body: The request body
@@ -89,7 +88,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeploymentAudience, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DeploymentAudiencesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of deploymentAudience objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +99,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[DeploymentAudiencesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new deploymentAudience object.
         param body: The request body
@@ -189,5 +188,28 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeploymentAudiencesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DeploymentAudiencesRequestBuilder.DeploymentAudiencesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeploymentAudiencesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class PersonCertificationItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/profile/certifications/{personCertification%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[PersonCertificationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Deletes a personCertification object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +45,7 @@ class PersonCertificationItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonCertification]:
+    async def get(self,request_configuration: Optional[PersonCertificationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonCertification]:
         """
         Read the properties and relationships of a personCertification object in a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class PersonCertificationItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PersonCertification, error_mapping)
     
-    async def patch(self,body: Optional[PersonCertification] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonCertification]:
+    async def patch(self,body: Optional[PersonCertification] = None, request_configuration: Optional[PersonCertificationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PersonCertification]:
         """
         Update the properties of a personCertification object from a user's profile.
         param body: The request body
@@ -91,7 +90,7 @@ class PersonCertificationItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PersonCertification, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[PersonCertificationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Deletes a personCertification object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +101,7 @@ class PersonCertificationItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PersonCertificationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of a personCertification object in a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -113,7 +112,7 @@ class PersonCertificationItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PersonCertification] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PersonCertification] = None, request_configuration: Optional[PersonCertificationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a personCertification object from a user's profile.
         param body: The request body
@@ -137,6 +136,16 @@ class PersonCertificationItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return PersonCertificationItemRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PersonCertificationItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class PersonCertificationItemRequestBuilderGetQueryParameters():
@@ -163,5 +172,28 @@ class PersonCertificationItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PersonCertificationItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PersonCertificationItemRequestBuilder.PersonCertificationItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PersonCertificationItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

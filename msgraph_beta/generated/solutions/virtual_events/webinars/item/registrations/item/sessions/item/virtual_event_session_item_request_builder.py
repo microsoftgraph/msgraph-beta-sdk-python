@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}/registrations/{virtualEventRegistration%2Did}/sessions/{virtualEventSession%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[VirtualEventSession]:
+    async def get(self,request_configuration: Optional[VirtualEventSessionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventSession]:
         """
         Get sessions from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +46,7 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, VirtualEventSession, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[VirtualEventSessionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get sessions from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -92,6 +91,19 @@ class VirtualEventSessionItemRequestBuilder(BaseRequestBuilder):
 
         # Select properties to be returned
         select: Optional[List[str]] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class VirtualEventSessionItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[VirtualEventSessionItemRequestBuilder.VirtualEventSessionItemRequestBuilderGetQueryParameters] = None
 
     
 

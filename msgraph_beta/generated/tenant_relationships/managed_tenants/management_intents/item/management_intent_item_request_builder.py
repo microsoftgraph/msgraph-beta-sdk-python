@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/managementIntents/{managementIntent%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managementIntents for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +44,7 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementIntent]:
+    async def get(self,request_configuration: Optional[ManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagementIntent]:
         """
         Read the properties and relationships of a managementIntent object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +65,7 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagementIntent, error_mapping)
     
-    async def patch(self,body: Optional[ManagementIntent] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementIntent]:
+    async def patch(self,body: Optional[ManagementIntent] = None, request_configuration: Optional[ManagementIntentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ManagementIntent]:
         """
         Update the navigation property managementIntents in tenantRelationships
         param body: The request body
@@ -89,7 +88,7 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagementIntent, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[ManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property managementIntents for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +99,7 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of a managementIntent object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +110,7 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ManagementIntent] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ManagementIntent] = None, request_configuration: Optional[ManagementIntentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property managementIntents in tenantRelationships
         param body: The request body
@@ -135,6 +134,16 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ManagementIntentItemRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagementIntentItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class ManagementIntentItemRequestBuilderGetQueryParameters():
@@ -161,5 +170,28 @@ class ManagementIntentItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagementIntentItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ManagementIntentItemRequestBuilder.ManagementIntentItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagementIntentItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

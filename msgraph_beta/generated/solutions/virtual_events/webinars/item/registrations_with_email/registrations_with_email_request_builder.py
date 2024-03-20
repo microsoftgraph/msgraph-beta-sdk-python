@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -30,7 +29,7 @@ class RegistrationsWithEmailRequestBuilder(BaseRequestBuilder):
             path_parameters['email'] = str(email)
         super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}/registrations(email='{email}'){?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RegistrationsWithEmailRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property registrations for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,7 +47,7 @@ class RegistrationsWithEmailRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[VirtualEventRegistration]:
+    async def get(self,request_configuration: Optional[RegistrationsWithEmailRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventRegistration]:
         """
         Get the properties and relationships of a virtualEventRegistration object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +68,7 @@ class RegistrationsWithEmailRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, VirtualEventRegistration, error_mapping)
     
-    async def patch(self,body: Optional[VirtualEventRegistration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[VirtualEventRegistration]:
+    async def patch(self,body: Optional[VirtualEventRegistration] = None, request_configuration: Optional[RegistrationsWithEmailRequestBuilderPatchRequestConfiguration] = None) -> Optional[VirtualEventRegistration]:
         """
         Update the navigation property registrations in solutions
         param body: The request body
@@ -92,7 +91,7 @@ class RegistrationsWithEmailRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, VirtualEventRegistration, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RegistrationsWithEmailRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property registrations for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +102,7 @@ class RegistrationsWithEmailRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RegistrationsWithEmailRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get the properties and relationships of a virtualEventRegistration object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -114,7 +113,7 @@ class RegistrationsWithEmailRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[VirtualEventRegistration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[VirtualEventRegistration] = None, request_configuration: Optional[RegistrationsWithEmailRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property registrations in solutions
         param body: The request body
@@ -138,6 +137,16 @@ class RegistrationsWithEmailRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return RegistrationsWithEmailRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RegistrationsWithEmailRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class RegistrationsWithEmailRequestBuilderGetQueryParameters():
@@ -164,5 +173,28 @@ class RegistrationsWithEmailRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RegistrationsWithEmailRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[RegistrationsWithEmailRequestBuilder.RegistrationsWithEmailRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RegistrationsWithEmailRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

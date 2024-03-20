@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class DefinitionFileRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/groupPolicyDefinitions/{groupPolicyDefinition%2Did}/previousVersionDefinition/definitionFile{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GroupPolicyDefinitionFile]:
+    async def get(self,request_configuration: Optional[DefinitionFileRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupPolicyDefinitionFile]:
         """
         The group policy file associated with the definition.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +46,7 @@ class DefinitionFileRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GroupPolicyDefinitionFile, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DefinitionFileRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The group policy file associated with the definition.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -92,6 +91,19 @@ class DefinitionFileRequestBuilder(BaseRequestBuilder):
 
         # Select properties to be returned
         select: Optional[List[str]] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DefinitionFileRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DefinitionFileRequestBuilder.DefinitionFileRequestBuilderGetQueryParameters] = None
 
     
 

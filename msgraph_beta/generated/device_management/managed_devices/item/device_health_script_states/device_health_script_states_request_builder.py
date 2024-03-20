@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -30,7 +29,7 @@ class DeviceHealthScriptStatesRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/deviceHealthScriptStates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceHealthScriptPolicyStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceHealthScriptPolicyStateCollectionResponse]:
         """
         Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -50,7 +49,7 @@ class DeviceHealthScriptStatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceHealthScriptPolicyStateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DeviceHealthScriptPolicyState] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceHealthScriptPolicyState]:
+    async def post(self,body: Optional[DeviceHealthScriptPolicyState] = None, request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceHealthScriptPolicyState]:
         """
         Create new navigation property to deviceHealthScriptStates for deviceManagement
         param body: Contains properties for policy run state of the device health script.
@@ -73,7 +72,7 @@ class DeviceHealthScriptStatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceHealthScriptPolicyState, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -84,7 +83,7 @@ class DeviceHealthScriptStatesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DeviceHealthScriptPolicyState] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceHealthScriptPolicyState] = None, request_configuration: Optional[DeviceHealthScriptStatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to deviceHealthScriptStates for deviceManagement
         param body: Contains properties for policy run state of the device health script.
@@ -191,5 +190,28 @@ class DeviceHealthScriptStatesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceHealthScriptStatesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DeviceHealthScriptStatesRequestBuilder.DeviceHealthScriptStatesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceHealthScriptStatesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

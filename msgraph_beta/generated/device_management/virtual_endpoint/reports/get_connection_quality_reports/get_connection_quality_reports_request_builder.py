@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +26,7 @@ class GetConnectionQualityReportsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/reports/getConnectionQualityReports", path_parameters)
     
-    async def post(self,body: Optional[GetConnectionQualityReportsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> bytes:
+    async def post(self,body: Optional[GetConnectionQualityReportsPostRequestBody] = None, request_configuration: Optional[GetConnectionQualityReportsRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
         Get the overall connection quality reports for all devices within a current tenant during a given time period, including metrics like the average round trip time (P50), average available bandwidth, and UDP connection percentage. Get also other real-time metrics such as last connection round trip time, last connection client IP, last connection gateway, and last connection protocol.
         param body: The request body
@@ -48,7 +48,7 @@ class GetConnectionQualityReportsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
-    def to_post_request_information(self,body: Optional[GetConnectionQualityReportsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GetConnectionQualityReportsPostRequestBody] = None, request_configuration: Optional[GetConnectionQualityReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Get the overall connection quality reports for all devices within a current tenant during a given time period, including metrics like the average round trip time (P50), average available bandwidth, and UDP connection percentage. Get also other real-time metrics such as last connection round trip time, last connection client IP, last connection gateway, and last connection protocol.
         param body: The request body
@@ -72,5 +72,15 @@ class GetConnectionQualityReportsRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return GetConnectionQualityReportsRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GetConnectionQualityReportsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

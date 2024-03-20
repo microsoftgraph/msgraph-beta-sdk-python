@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class AlertConfigurationRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/roleManagementAlerts/alerts/{unifiedRoleManagementAlert%2Did}/alertConfiguration{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertConfiguration]:
+    async def get(self,request_configuration: Optional[AlertConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertConfiguration]:
         """
         The configuration of the alert in PIM for Microsoft Entra roles. Alert configurations are pre-defined and cannot be created or deleted, but some configurations can be modified. Supports $filter for the isEnabled property and $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +46,7 @@ class AlertConfigurationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UnifiedRoleManagementAlertConfiguration, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AlertConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The configuration of the alert in PIM for Microsoft Entra roles. Alert configurations are pre-defined and cannot be created or deleted, but some configurations can be modified. Supports $filter for the isEnabled property and $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -92,6 +91,19 @@ class AlertConfigurationRequestBuilder(BaseRequestBuilder):
 
         # Select properties to be returned
         select: Optional[List[str]] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AlertConfigurationRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AlertConfigurationRequestBuilder.AlertConfigurationRequestBuilderGetQueryParameters] = None
 
     
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +27,7 @@ class MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder(BaseRequestBuild
         """
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/managedTenantAlerts/{managedTenantAlert%2Did}/microsoft.graph.managedTenants.addUserInputLog", path_parameters)
     
-    async def post(self,body: Optional[AddUserInputLogPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedTenantAlert]:
+    async def post(self,body: Optional[AddUserInputLogPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilderPostRequestConfiguration] = None) -> Optional[ManagedTenantAlert]:
         """
         Invoke action addUserInputLog
         param body: The request body
@@ -50,7 +50,7 @@ class MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, ManagedTenantAlert, error_mapping)
     
-    def to_post_request_information(self,body: Optional[AddUserInputLogPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AddUserInputLogPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Invoke action addUserInputLog
         param body: The request body
@@ -74,5 +74,15 @@ class MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder(BaseRequestBuild
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

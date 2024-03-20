@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +26,7 @@ class GetAllCertificatesReportRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/reports/getAllCertificatesReport", path_parameters)
     
-    async def post(self,body: Optional[GetAllCertificatesReportPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> bytes:
+    async def post(self,body: Optional[GetAllCertificatesReportPostRequestBody] = None, request_configuration: Optional[GetAllCertificatesReportRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
         Invoke action getAllCertificatesReport
         param body: The request body
@@ -47,7 +47,7 @@ class GetAllCertificatesReportRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
-    def to_post_request_information(self,body: Optional[GetAllCertificatesReportPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GetAllCertificatesReportPostRequestBody] = None, request_configuration: Optional[GetAllCertificatesReportRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Invoke action getAllCertificatesReport
         param body: The request body
@@ -71,5 +71,15 @@ class GetAllCertificatesReportRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return GetAllCertificatesReportRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GetAllCertificatesReportRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +28,7 @@ class WorkbookDocumentTaskItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tasks/{workbookDocumentTask%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[WorkbookDocumentTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property tasks for drives
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +46,7 @@ class WorkbookDocumentTaskItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WorkbookDocumentTask]:
+    async def get(self,request_configuration: Optional[WorkbookDocumentTaskItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkbookDocumentTask]:
         """
         Collection of document tasks on this worksheet. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class WorkbookDocumentTaskItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WorkbookDocumentTask, error_mapping)
     
-    async def patch(self,body: Optional[WorkbookDocumentTask] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WorkbookDocumentTask]:
+    async def patch(self,body: Optional[WorkbookDocumentTask] = None, request_configuration: Optional[WorkbookDocumentTaskItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[WorkbookDocumentTask]:
         """
         Update the navigation property tasks in drives
         param body: The request body
@@ -90,7 +89,7 @@ class WorkbookDocumentTaskItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WorkbookDocumentTask, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[WorkbookDocumentTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property tasks for drives
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +100,7 @@ class WorkbookDocumentTaskItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[WorkbookDocumentTaskItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Collection of document tasks on this worksheet. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,7 +111,7 @@ class WorkbookDocumentTaskItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[WorkbookDocumentTask] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[WorkbookDocumentTask] = None, request_configuration: Optional[WorkbookDocumentTaskItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property tasks in drives
         param body: The request body
@@ -155,6 +154,16 @@ class WorkbookDocumentTaskItemRequestBuilder(BaseRequestBuilder):
 
         return CommentRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WorkbookDocumentTaskItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class WorkbookDocumentTaskItemRequestBuilderGetQueryParameters():
         """
@@ -180,5 +189,28 @@ class WorkbookDocumentTaskItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WorkbookDocumentTaskItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[WorkbookDocumentTaskItemRequestBuilder.WorkbookDocumentTaskItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WorkbookDocumentTaskItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

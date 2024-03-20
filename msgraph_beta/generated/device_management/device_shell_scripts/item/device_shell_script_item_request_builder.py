@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -33,7 +32,7 @@ class DeviceShellScriptItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceShellScripts/{deviceShellScript%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceShellScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceShellScripts for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -51,7 +50,7 @@ class DeviceShellScriptItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceShellScript]:
+    async def get(self,request_configuration: Optional[DeviceShellScriptItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceShellScript]:
         """
         The list of device shell scripts associated with the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -71,7 +70,7 @@ class DeviceShellScriptItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceShellScript, error_mapping)
     
-    async def patch(self,body: Optional[DeviceShellScript] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceShellScript]:
+    async def patch(self,body: Optional[DeviceShellScript] = None, request_configuration: Optional[DeviceShellScriptItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceShellScript]:
         """
         Update the navigation property deviceShellScripts in deviceManagement
         param body: The request body
@@ -94,7 +93,7 @@ class DeviceShellScriptItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceShellScript, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[DeviceShellScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property deviceShellScripts for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +104,7 @@ class DeviceShellScriptItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DeviceShellScriptItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The list of device shell scripts associated with the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -116,7 +115,7 @@ class DeviceShellScriptItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DeviceShellScript] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceShellScript] = None, request_configuration: Optional[DeviceShellScriptItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property deviceShellScripts in deviceManagement
         param body: The request body
@@ -195,6 +194,16 @@ class DeviceShellScriptItemRequestBuilder(BaseRequestBuilder):
 
         return UserRunStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceShellScriptItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class DeviceShellScriptItemRequestBuilderGetQueryParameters():
         """
@@ -220,5 +229,28 @@ class DeviceShellScriptItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceShellScriptItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DeviceShellScriptItemRequestBuilder.DeviceShellScriptItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceShellScriptItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/labels/departments/{departmentTemplate%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DepartmentTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a departmentTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +45,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DepartmentTemplate]:
+    async def get(self,request_configuration: Optional[DepartmentTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DepartmentTemplate]:
         """
         Read the properties and relationships of a departmentTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DepartmentTemplate, error_mapping)
     
-    async def patch(self,body: Optional[DepartmentTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DepartmentTemplate]:
+    async def patch(self,body: Optional[DepartmentTemplate] = None, request_configuration: Optional[DepartmentTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DepartmentTemplate]:
         """
         Update the navigation property departments in security
         param body: The request body
@@ -90,7 +89,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DepartmentTemplate, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[DepartmentTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete a departmentTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +100,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DepartmentTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of a departmentTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,7 +111,7 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DepartmentTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DepartmentTemplate] = None, request_configuration: Optional[DepartmentTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property departments in security
         param body: The request body
@@ -136,6 +135,16 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return DepartmentTemplateItemRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DepartmentTemplateItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class DepartmentTemplateItemRequestBuilderGetQueryParameters():
@@ -162,5 +171,28 @@ class DepartmentTemplateItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DepartmentTemplateItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DepartmentTemplateItemRequestBuilder.DepartmentTemplateItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DepartmentTemplateItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

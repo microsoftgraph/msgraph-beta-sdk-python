@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class WebAccountsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["webAccount%2Did"] = web_account_id
         return WebAccountItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WebAccountCollectionResponse]:
+    async def get(self,request_configuration: Optional[WebAccountsRequestBuilderGetRequestConfiguration] = None) -> Optional[WebAccountCollectionResponse]:
         """
         Retrieve a list of webAccounts objects from the user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class WebAccountsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WebAccountCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[WebAccount] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WebAccount]:
+    async def post(self,body: Optional[WebAccount] = None, request_configuration: Optional[WebAccountsRequestBuilderPostRequestConfiguration] = None) -> Optional[WebAccount]:
         """
         Create a new webAccount object in a user's profile.
         param body: The request body
@@ -89,7 +88,7 @@ class WebAccountsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WebAccount, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[WebAccountsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of webAccounts objects from the user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +99,7 @@ class WebAccountsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[WebAccount] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WebAccount] = None, request_configuration: Optional[WebAccountsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a new webAccount object in a user's profile.
         param body: The request body
@@ -189,5 +188,28 @@ class WebAccountsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WebAccountsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[WebAccountsRequestBuilder.WebAccountsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WebAccountsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

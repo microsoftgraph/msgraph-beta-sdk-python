@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -48,7 +47,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
         url_tpl_params["updatableAsset%2Did"] = updatable_asset_id
         return UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UpdatableAssetCollectionResponse]:
+    async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> Optional[UpdatableAssetCollectionResponse]:
         """
         List the updatableAsset resources that are members of a deploymentAudience.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +68,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UpdatableAssetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UpdatableAsset] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UpdatableAsset]:
+    async def post(self,body: Optional[UpdatableAsset] = None, request_configuration: Optional[MembersRequestBuilderPostRequestConfiguration] = None) -> Optional[UpdatableAsset]:
         """
         Create new navigation property to members for admin
         param body: The request body
@@ -92,7 +91,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UpdatableAsset, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         List the updatableAsset resources that are members of a deploymentAudience.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +102,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UpdatableAsset] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UpdatableAsset] = None, request_configuration: Optional[MembersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to members for admin
         param body: The request body
@@ -228,5 +227,28 @@ class MembersRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MembersRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[MembersRequestBuilder.MembersRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MembersRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

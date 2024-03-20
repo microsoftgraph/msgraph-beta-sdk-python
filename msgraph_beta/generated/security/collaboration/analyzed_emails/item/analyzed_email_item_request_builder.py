@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class AnalyzedEmailItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/collaboration/analyzedEmails/{analyzedEmail%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AnalyzedEmailItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property analyzedEmails for security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +44,7 @@ class AnalyzedEmailItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AnalyzedEmail]:
+    async def get(self,request_configuration: Optional[AnalyzedEmailItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AnalyzedEmail]:
         """
         Read the properties and relationships of an analyzedEmail object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +65,7 @@ class AnalyzedEmailItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AnalyzedEmail, error_mapping)
     
-    async def patch(self,body: Optional[AnalyzedEmail] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AnalyzedEmail]:
+    async def patch(self,body: Optional[AnalyzedEmail] = None, request_configuration: Optional[AnalyzedEmailItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AnalyzedEmail]:
         """
         Update the navigation property analyzedEmails in security
         param body: The request body
@@ -89,7 +88,7 @@ class AnalyzedEmailItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AnalyzedEmail, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[AnalyzedEmailItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property analyzedEmails for security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +99,7 @@ class AnalyzedEmailItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AnalyzedEmailItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of an analyzedEmail object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +110,7 @@ class AnalyzedEmailItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[AnalyzedEmail] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AnalyzedEmail] = None, request_configuration: Optional[AnalyzedEmailItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property analyzedEmails in security
         param body: The request body
@@ -135,6 +134,16 @@ class AnalyzedEmailItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return AnalyzedEmailItemRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AnalyzedEmailItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class AnalyzedEmailItemRequestBuilderGetQueryParameters():
@@ -161,5 +170,28 @@ class AnalyzedEmailItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AnalyzedEmailItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AnalyzedEmailItemRequestBuilder.AnalyzedEmailItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AnalyzedEmailItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

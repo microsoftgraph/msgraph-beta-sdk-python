@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +30,7 @@ class GovernanceRoleAssignmentItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/governanceRoleAssignments/{governanceRoleAssignment%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[GovernanceRoleAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from governanceRoleAssignments
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,7 +48,7 @@ class GovernanceRoleAssignmentItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GovernanceRoleAssignment]:
+    async def get(self,request_configuration: Optional[GovernanceRoleAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[GovernanceRoleAssignment]:
         """
         Get entity from governanceRoleAssignments by key
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +68,7 @@ class GovernanceRoleAssignmentItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GovernanceRoleAssignment, error_mapping)
     
-    async def patch(self,body: Optional[GovernanceRoleAssignment] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[GovernanceRoleAssignment]:
+    async def patch(self,body: Optional[GovernanceRoleAssignment] = None, request_configuration: Optional[GovernanceRoleAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[GovernanceRoleAssignment]:
         """
         Update entity in governanceRoleAssignments
         param body: The request body
@@ -92,7 +91,7 @@ class GovernanceRoleAssignmentItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GovernanceRoleAssignment, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[GovernanceRoleAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete entity from governanceRoleAssignments
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +102,7 @@ class GovernanceRoleAssignmentItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[GovernanceRoleAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get entity from governanceRoleAssignments by key
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -114,7 +113,7 @@ class GovernanceRoleAssignmentItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[GovernanceRoleAssignment] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[GovernanceRoleAssignment] = None, request_configuration: Optional[GovernanceRoleAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update entity in governanceRoleAssignments
         param body: The request body
@@ -175,6 +174,16 @@ class GovernanceRoleAssignmentItemRequestBuilder(BaseRequestBuilder):
 
         return SubjectRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GovernanceRoleAssignmentItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class GovernanceRoleAssignmentItemRequestBuilderGetQueryParameters():
         """
@@ -200,5 +209,28 @@ class GovernanceRoleAssignmentItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GovernanceRoleAssignmentItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[GovernanceRoleAssignmentItemRequestBuilder.GovernanceRoleAssignmentItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GovernanceRoleAssignmentItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

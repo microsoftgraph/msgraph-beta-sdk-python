@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,7 +44,7 @@ class ItemCategoriesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["itemCategory%2Did"] = item_category_id
         return ItemCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemCategoryCollectionResponse]:
+    async def get(self,request_configuration: Optional[ItemCategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemCategoryCollectionResponse]:
         """
         Get itemCategories from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class ItemCategoriesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ItemCategoryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ItemCategory] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemCategory]:
+    async def post(self,body: Optional[ItemCategory] = None, request_configuration: Optional[ItemCategoriesRequestBuilderPostRequestConfiguration] = None) -> Optional[ItemCategory]:
         """
         Create new navigation property to itemCategories for financials
         param body: The request body
@@ -88,7 +87,7 @@ class ItemCategoriesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ItemCategory, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ItemCategoriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get itemCategories from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +98,7 @@ class ItemCategoriesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ItemCategory] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ItemCategory] = None, request_configuration: Optional[ItemCategoriesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to itemCategories for financials
         param body: The request body
@@ -188,5 +187,28 @@ class ItemCategoriesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ItemCategoriesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ItemCategoriesRequestBuilder.ItemCategoriesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ItemCategoriesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

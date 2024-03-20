@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -33,7 +32,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/planner/plans/{plannerPlan%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[PlannerPlanItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a plannerPlan object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -52,7 +51,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PlannerPlan]:
+    async def get(self,request_configuration: Optional[PlannerPlanItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerPlan]:
         """
         Retrieve the properties and relationships of a plannerplan object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -73,7 +72,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PlannerPlan, error_mapping)
     
-    async def patch(self,body: Optional[PlannerPlan] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PlannerPlan]:
+    async def patch(self,body: Optional[PlannerPlan] = None, request_configuration: Optional[PlannerPlanItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PlannerPlan]:
         """
         Update the properties of a plannerPlan object.
         param body: The request body
@@ -97,7 +96,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PlannerPlan, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[PlannerPlanItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete a plannerPlan object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -108,7 +107,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PlannerPlanItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the properties and relationships of a plannerplan object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -119,7 +118,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PlannerPlan] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PlannerPlan] = None, request_configuration: Optional[PlannerPlanItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a plannerPlan object.
         param body: The request body
@@ -198,6 +197,16 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
 
         return UnarchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PlannerPlanItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class PlannerPlanItemRequestBuilderGetQueryParameters():
         """
@@ -223,5 +232,28 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PlannerPlanItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PlannerPlanItemRequestBuilder.PlannerPlanItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PlannerPlanItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

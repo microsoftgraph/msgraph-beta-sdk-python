@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class TemplateSettingsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["deviceManagementConfigurationSettingTemplate%2Did"] = device_management_configuration_setting_template_id
         return DeviceManagementConfigurationSettingTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementConfigurationSettingTemplateCollectionResponse]:
+    async def get(self,request_configuration: Optional[TemplateSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementConfigurationSettingTemplateCollectionResponse]:
         """
         List of all TemplateSettings
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class TemplateSettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementConfigurationSettingTemplateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DeviceManagementConfigurationSettingTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementConfigurationSettingTemplate]:
+    async def post(self,body: Optional[DeviceManagementConfigurationSettingTemplate] = None, request_configuration: Optional[TemplateSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceManagementConfigurationSettingTemplate]:
         """
         Create new navigation property to templateSettings for deviceManagement
         param body: The request body
@@ -87,7 +86,7 @@ class TemplateSettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementConfigurationSettingTemplate, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[TemplateSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         List of all TemplateSettings
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class TemplateSettingsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DeviceManagementConfigurationSettingTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceManagementConfigurationSettingTemplate] = None, request_configuration: Optional[TemplateSettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to templateSettings for deviceManagement
         param body: The request body
@@ -187,5 +186,28 @@ class TemplateSettingsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TemplateSettingsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[TemplateSettingsRequestBuilder.TemplateSettingsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TemplateSettingsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

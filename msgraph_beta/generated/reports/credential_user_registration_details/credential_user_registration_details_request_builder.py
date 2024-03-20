@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,7 +45,7 @@ class CredentialUserRegistrationDetailsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["credentialUserRegistrationDetails%2Did"] = credential_user_registration_details_id
         return CredentialUserRegistrationDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CredentialUserRegistrationDetailsCollectionResponse]:
+    async def get(self,request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[CredentialUserRegistrationDetailsCollectionResponse]:
         """
         Get a list of credentialUserRegistrationDetails objects for a given tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -68,7 +67,7 @@ class CredentialUserRegistrationDetailsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CredentialUserRegistrationDetailsCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CredentialUserRegistrationDetails] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CredentialUserRegistrationDetails]:
+    async def post(self,body: Optional[CredentialUserRegistrationDetails] = None, request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderPostRequestConfiguration] = None) -> Optional[CredentialUserRegistrationDetails]:
         """
         Create new navigation property to credentialUserRegistrationDetails for reports
         param body: The request body
@@ -92,7 +91,7 @@ class CredentialUserRegistrationDetailsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CredentialUserRegistrationDetails, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of credentialUserRegistrationDetails objects for a given tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +103,7 @@ class CredentialUserRegistrationDetailsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CredentialUserRegistrationDetails] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CredentialUserRegistrationDetails] = None, request_configuration: Optional[CredentialUserRegistrationDetailsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to credentialUserRegistrationDetails for reports
         param body: The request body
@@ -195,5 +194,28 @@ class CredentialUserRegistrationDetailsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CredentialUserRegistrationDetailsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CredentialUserRegistrationDetailsRequestBuilder.CredentialUserRegistrationDetailsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CredentialUserRegistrationDetailsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

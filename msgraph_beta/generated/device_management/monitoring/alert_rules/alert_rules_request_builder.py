@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["alertRule%2Did"] = alert_rule_id
         return AlertRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AlertRuleCollectionResponse]:
+    async def get(self,request_configuration: Optional[AlertRulesRequestBuilderGetRequestConfiguration] = None) -> Optional[AlertRuleCollectionResponse]:
         """
         Get a list of the alertRule objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AlertRuleCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AlertRule] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AlertRule]:
+    async def post(self,body: Optional[AlertRule] = None, request_configuration: Optional[AlertRulesRequestBuilderPostRequestConfiguration] = None) -> Optional[AlertRule]:
         """
         Create an alertRule object.
         param body: The request body
@@ -89,7 +88,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AlertRule, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AlertRulesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the alertRule objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +99,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AlertRule] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AlertRule] = None, request_configuration: Optional[AlertRulesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create an alertRule object.
         param body: The request body
@@ -189,5 +188,28 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AlertRulesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AlertRulesRequestBuilder.AlertRulesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AlertRulesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class RecommendationsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["recommendation%2Did"] = recommendation_id
         return RecommendationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[RecommendationCollectionResponse]:
+    async def get(self,request_configuration: Optional[RecommendationsRequestBuilderGetRequestConfiguration] = None) -> Optional[RecommendationCollectionResponse]:
         """
         Get a list of the recommendation objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class RecommendationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RecommendationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[Recommendation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Recommendation]:
+    async def post(self,body: Optional[Recommendation] = None, request_configuration: Optional[RecommendationsRequestBuilderPostRequestConfiguration] = None) -> Optional[Recommendation]:
         """
         Create new navigation property to recommendations for directory
         param body: The request body
@@ -88,7 +87,7 @@ class RecommendationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Recommendation, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RecommendationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the recommendation objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +98,7 @@ class RecommendationsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Recommendation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Recommendation] = None, request_configuration: Optional[RecommendationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to recommendations for directory
         param body: The request body
@@ -188,5 +187,28 @@ class RecommendationsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RecommendationsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[RecommendationsRequestBuilder.RecommendationsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RecommendationsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 
