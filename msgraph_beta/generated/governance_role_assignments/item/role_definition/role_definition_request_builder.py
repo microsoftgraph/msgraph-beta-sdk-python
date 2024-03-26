@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +29,7 @@ class RoleDefinitionRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/governanceRoleAssignments/{governanceRoleAssignment%2Did}/roleDefinition{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RoleDefinitionRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property roleDefinition for governanceRoleAssignments
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +47,7 @@ class RoleDefinitionRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RoleDefinitionRequestBuilderGetRequestConfiguration] = None) -> Optional[GovernanceRoleDefinition]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GovernanceRoleDefinition]:
         """
         Read-only. The role definition associated with the role assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +67,7 @@ class RoleDefinitionRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GovernanceRoleDefinition, error_mapping)
     
-    async def patch(self,body: Optional[GovernanceRoleDefinition] = None, request_configuration: Optional[RoleDefinitionRequestBuilderPatchRequestConfiguration] = None) -> Optional[GovernanceRoleDefinition]:
+    async def patch(self,body: Optional[GovernanceRoleDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[GovernanceRoleDefinition]:
         """
         Update the navigation property roleDefinition in governanceRoleAssignments
         param body: The request body
@@ -89,7 +90,7 @@ class RoleDefinitionRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GovernanceRoleDefinition, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RoleDefinitionRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property roleDefinition for governanceRoleAssignments
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +101,7 @@ class RoleDefinitionRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RoleDefinitionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Read-only. The role definition associated with the role assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +112,7 @@ class RoleDefinitionRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[GovernanceRoleDefinition] = None, request_configuration: Optional[RoleDefinitionRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[GovernanceRoleDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property roleDefinition in governanceRoleAssignments
         param body: The request body
@@ -154,16 +155,6 @@ class RoleDefinitionRequestBuilder(BaseRequestBuilder):
 
         return RoleSettingRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class RoleDefinitionRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class RoleDefinitionRequestBuilderGetQueryParameters():
         """
@@ -189,28 +180,5 @@ class RoleDefinitionRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class RoleDefinitionRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[RoleDefinitionRequestBuilder.RoleDefinitionRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class RoleDefinitionRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

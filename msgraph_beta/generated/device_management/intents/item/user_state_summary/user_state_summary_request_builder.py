@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class UserStateSummaryRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/intents/{deviceManagementIntent%2Did}/userStateSummary{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[UserStateSummaryRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property userStateSummary for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class UserStateSummaryRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserStateSummaryRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementIntentUserStateSummary]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementIntentUserStateSummary]:
         """
         A summary of user states and counts of users that belong to corresponding state for all users that the intent is applied to
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class UserStateSummaryRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementIntentUserStateSummary, error_mapping)
     
-    async def patch(self,body: Optional[DeviceManagementIntentUserStateSummary] = None, request_configuration: Optional[UserStateSummaryRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceManagementIntentUserStateSummary]:
+    async def patch(self,body: Optional[DeviceManagementIntentUserStateSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementIntentUserStateSummary]:
         """
         Update the navigation property userStateSummary in deviceManagement
         param body: The request body
@@ -87,7 +88,7 @@ class UserStateSummaryRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementIntentUserStateSummary, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[UserStateSummaryRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property userStateSummary for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class UserStateSummaryRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[UserStateSummaryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         A summary of user states and counts of users that belong to corresponding state for all users that the intent is applied to
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class UserStateSummaryRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DeviceManagementIntentUserStateSummary] = None, request_configuration: Optional[UserStateSummaryRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceManagementIntentUserStateSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property userStateSummary in deviceManagement
         param body: The request body
@@ -133,16 +134,6 @@ class UserStateSummaryRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return UserStateSummaryRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserStateSummaryRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class UserStateSummaryRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class UserStateSummaryRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserStateSummaryRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[UserStateSummaryRequestBuilder.UserStateSummaryRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserStateSummaryRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

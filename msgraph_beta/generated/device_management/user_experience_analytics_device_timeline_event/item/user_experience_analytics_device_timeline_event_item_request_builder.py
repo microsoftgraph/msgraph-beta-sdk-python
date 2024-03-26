@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(BaseRequestBu
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent/{userExperienceAnalyticsDeviceTimelineEvent%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property userExperienceAnalyticsDeviceTimelineEvent for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(BaseRequestBu
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsDeviceTimelineEvent]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsDeviceTimelineEvent]:
         """
         The user experience analytics device events entity contains NRT device timeline event details.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(BaseRequestBu
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsDeviceTimelineEvent, error_mapping)
     
-    async def patch(self,body: Optional[UserExperienceAnalyticsDeviceTimelineEvent] = None, request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsDeviceTimelineEvent]:
+    async def patch(self,body: Optional[UserExperienceAnalyticsDeviceTimelineEvent] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsDeviceTimelineEvent]:
         """
         Update the navigation property userExperienceAnalyticsDeviceTimelineEvent in deviceManagement
         param body: The request body
@@ -87,7 +88,7 @@ class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(BaseRequestBu
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsDeviceTimelineEvent, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property userExperienceAnalyticsDeviceTimelineEvent for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(BaseRequestBu
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The user experience analytics device events entity contains NRT device timeline event details.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(BaseRequestBu
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[UserExperienceAnalyticsDeviceTimelineEvent] = None, request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UserExperienceAnalyticsDeviceTimelineEvent] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property userExperienceAnalyticsDeviceTimelineEvent in deviceManagement
         param body: The request body
@@ -133,16 +134,6 @@ class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(BaseRequestBu
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(BaseRequestBu
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder.UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

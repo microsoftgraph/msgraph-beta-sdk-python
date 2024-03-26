@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +29,7 @@ class EdiscoveryHoldPolicyItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/legalHolds/{ediscoveryHoldPolicy%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property legalHolds for security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +47,7 @@ class EdiscoveryHoldPolicyItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EdiscoveryHoldPolicy]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EdiscoveryHoldPolicy]:
         """
         Returns a list of case eDiscoveryHoldPolicy objects for this case.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +67,7 @@ class EdiscoveryHoldPolicyItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EdiscoveryHoldPolicy, error_mapping)
     
-    async def patch(self,body: Optional[EdiscoveryHoldPolicy] = None, request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EdiscoveryHoldPolicy]:
+    async def patch(self,body: Optional[EdiscoveryHoldPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EdiscoveryHoldPolicy]:
         """
         Update the navigation property legalHolds in security
         param body: The request body
@@ -89,7 +90,7 @@ class EdiscoveryHoldPolicyItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EdiscoveryHoldPolicy, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property legalHolds for security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +101,7 @@ class EdiscoveryHoldPolicyItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Returns a list of case eDiscoveryHoldPolicy objects for this case.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +112,7 @@ class EdiscoveryHoldPolicyItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[EdiscoveryHoldPolicy] = None, request_configuration: Optional[EdiscoveryHoldPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EdiscoveryHoldPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property legalHolds in security
         param body: The request body
@@ -154,16 +155,6 @@ class EdiscoveryHoldPolicyItemRequestBuilder(BaseRequestBuilder):
 
         return UserSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EdiscoveryHoldPolicyItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class EdiscoveryHoldPolicyItemRequestBuilderGetQueryParameters():
         """
@@ -189,28 +180,5 @@ class EdiscoveryHoldPolicyItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EdiscoveryHoldPolicyItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[EdiscoveryHoldPolicyItemRequestBuilder.EdiscoveryHoldPolicyItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EdiscoveryHoldPolicyItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

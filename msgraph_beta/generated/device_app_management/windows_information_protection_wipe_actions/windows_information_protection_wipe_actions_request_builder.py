@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class WindowsInformationProtectionWipeActionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["windowsInformationProtectionWipeAction%2Did"] = windows_information_protection_wipe_action_id
         return WindowsInformationProtectionWipeActionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WindowsInformationProtectionWipeActionsRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsInformationProtectionWipeActionCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsInformationProtectionWipeActionCollectionResponse]:
         """
         Windows information protection wipe actions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class WindowsInformationProtectionWipeActionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsInformationProtectionWipeActionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[WindowsInformationProtectionWipeAction] = None, request_configuration: Optional[WindowsInformationProtectionWipeActionsRequestBuilderPostRequestConfiguration] = None) -> Optional[WindowsInformationProtectionWipeAction]:
+    async def post(self,body: Optional[WindowsInformationProtectionWipeAction] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsInformationProtectionWipeAction]:
         """
         Create new navigation property to windowsInformationProtectionWipeActions for deviceAppManagement
         param body: The request body
@@ -86,7 +87,7 @@ class WindowsInformationProtectionWipeActionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsInformationProtectionWipeAction, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[WindowsInformationProtectionWipeActionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Windows information protection wipe actions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class WindowsInformationProtectionWipeActionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[WindowsInformationProtectionWipeAction] = None, request_configuration: Optional[WindowsInformationProtectionWipeActionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WindowsInformationProtectionWipeAction] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to windowsInformationProtectionWipeActions for deviceAppManagement
         param body: The request body
@@ -186,28 +187,5 @@ class WindowsInformationProtectionWipeActionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class WindowsInformationProtectionWipeActionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[WindowsInformationProtectionWipeActionsRequestBuilder.WindowsInformationProtectionWipeActionsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class WindowsInformationProtectionWipeActionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

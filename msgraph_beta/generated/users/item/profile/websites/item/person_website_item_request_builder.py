@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/profile/websites/{personWebsite%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Deletes a personWebsite object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +46,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonWebsite]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonWebsite]:
         """
         Retrieve the properties and relationships of a personWebsite object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +67,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PersonWebsite, error_mapping)
     
-    async def patch(self,body: Optional[PersonWebsite] = None, request_configuration: Optional[PersonWebsiteItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PersonWebsite]:
+    async def patch(self,body: Optional[PersonWebsite] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonWebsite]:
         """
         Update the properties of personWebsite object in a user's profile.
         param body: The request body
@@ -90,7 +91,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PersonWebsite, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Deletes a personWebsite object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +102,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[PersonWebsiteItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the properties and relationships of a personWebsite object from a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,7 +113,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PersonWebsite] = None, request_configuration: Optional[PersonWebsiteItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PersonWebsite] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of personWebsite object in a user's profile.
         param body: The request body
@@ -136,16 +137,6 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return PersonWebsiteItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PersonWebsiteItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class PersonWebsiteItemRequestBuilderGetQueryParameters():
@@ -172,28 +163,5 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PersonWebsiteItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[PersonWebsiteItemRequestBuilder.PersonWebsiteItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PersonWebsiteItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

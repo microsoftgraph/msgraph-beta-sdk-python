@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["multiTenantOrganizationMember%2Did"] = multi_tenant_organization_member_id
         return MultiTenantOrganizationMemberItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> Optional[MultiTenantOrganizationMemberCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationMemberCollectionResponse]:
         """
         List the tenants and their properties in the multi-tenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganizationMemberCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[MultiTenantOrganizationMember] = None, request_configuration: Optional[TenantsRequestBuilderPostRequestConfiguration] = None) -> Optional[MultiTenantOrganizationMember]:
+    async def post(self,body: Optional[MultiTenantOrganizationMember] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationMember]:
         """
         Add a tenant to a multitenant organization. The administrator of an owner tenant has the permissions to add tenants to the multitenant organization. The added tenant is in the pending state until the administrator of the added tenant joins the multitenant organization by submitting a join request. A tenant can be part of only one multitenant organization.
         param body: The request body
@@ -88,7 +89,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganizationMember, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         List the tenants and their properties in the multi-tenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +100,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[MultiTenantOrganizationMember] = None, request_configuration: Optional[TenantsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[MultiTenantOrganizationMember] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Add a tenant to a multitenant organization. The administrator of an owner tenant has the permissions to add tenants to the multitenant organization. The added tenant is in the pending state until the administrator of the added tenant joins the multitenant organization by submitting a join request. A tenant can be part of only one multitenant organization.
         param body: The request body
@@ -188,28 +189,5 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TenantsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[TenantsRequestBuilder.TenantsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TenantsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

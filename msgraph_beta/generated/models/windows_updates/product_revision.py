@@ -7,12 +7,15 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .build_version_details import BuildVersionDetails
+    from .catalog_entry import CatalogEntry
     from .knowledge_base_article import KnowledgeBaseArticle
 
 from ..entity import Entity
 
 @dataclass
 class ProductRevision(Entity):
+    # The catalogEntry property
+    catalog_entry: Optional[CatalogEntry] = None
     # The display name of the content. Read-only.
     display_name: Optional[str] = None
     # The knowledge base article associated with the product revision.
@@ -46,13 +49,16 @@ class ProductRevision(Entity):
         """
         from ..entity import Entity
         from .build_version_details import BuildVersionDetails
+        from .catalog_entry import CatalogEntry
         from .knowledge_base_article import KnowledgeBaseArticle
 
         from ..entity import Entity
         from .build_version_details import BuildVersionDetails
+        from .catalog_entry import CatalogEntry
         from .knowledge_base_article import KnowledgeBaseArticle
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "catalogEntry": lambda n : setattr(self, 'catalog_entry', n.get_object_value(CatalogEntry)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "knowledgeBaseArticle": lambda n : setattr(self, 'knowledge_base_article', n.get_object_value(KnowledgeBaseArticle)),
             "osBuild": lambda n : setattr(self, 'os_build', n.get_object_value(BuildVersionDetails)),
@@ -73,6 +79,7 @@ class ProductRevision(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("catalogEntry", self.catalog_entry)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("knowledgeBaseArticle", self.knowledge_base_article)
         writer.write_object_value("osBuild", self.os_build)

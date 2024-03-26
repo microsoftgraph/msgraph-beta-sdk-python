@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +30,7 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
             path_parameters['name'] = str(name)
         super().__init__(request_adapter, "{+baseurl}/applications/{application%2Did}/federatedIdentityCredentials(name='{name}'){?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[FederatedIdentityCredentialsWithNameRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Deletes a federatedIdentityCredential object from an application.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,7 +49,7 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[FederatedIdentityCredentialsWithNameRequestBuilderGetRequestConfiguration] = None) -> Optional[FederatedIdentityCredential]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[FederatedIdentityCredential]:
         """
         Read the properties and relationships of a federatedIdentityCredential object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +70,7 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, FederatedIdentityCredential, error_mapping)
     
-    async def patch(self,body: Optional[FederatedIdentityCredential] = None, request_configuration: Optional[FederatedIdentityCredentialsWithNameRequestBuilderPatchRequestConfiguration] = None) -> Optional[FederatedIdentityCredential]:
+    async def patch(self,body: Optional[FederatedIdentityCredential] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[FederatedIdentityCredential]:
         """
         Update the properties of a federatedIdentityCredential object.
         param body: The request body
@@ -93,7 +94,7 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, FederatedIdentityCredential, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[FederatedIdentityCredentialsWithNameRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Deletes a federatedIdentityCredential object from an application.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +105,7 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[FederatedIdentityCredentialsWithNameRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of a federatedIdentityCredential object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -115,7 +116,7 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[FederatedIdentityCredential] = None, request_configuration: Optional[FederatedIdentityCredentialsWithNameRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[FederatedIdentityCredential] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a federatedIdentityCredential object.
         param body: The request body
@@ -139,16 +140,6 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return FederatedIdentityCredentialsWithNameRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class FederatedIdentityCredentialsWithNameRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class FederatedIdentityCredentialsWithNameRequestBuilderGetQueryParameters():
@@ -175,28 +166,5 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class FederatedIdentityCredentialsWithNameRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[FederatedIdentityCredentialsWithNameRequestBuilder.FederatedIdentityCredentialsWithNameRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class FederatedIdentityCredentialsWithNameRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

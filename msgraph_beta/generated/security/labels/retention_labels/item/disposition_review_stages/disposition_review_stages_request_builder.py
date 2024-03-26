@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class DispositionReviewStagesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["dispositionReviewStage%2Did"] = disposition_review_stage_id
         return DispositionReviewStageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DispositionReviewStagesRequestBuilderGetRequestConfiguration] = None) -> Optional[DispositionReviewStageCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DispositionReviewStageCollectionResponse]:
         """
         When action at the end of retention is chosen as 'dispositionReview', dispositionReviewStages specifies a sequential set of stages with at least one reviewer in each stage.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class DispositionReviewStagesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DispositionReviewStageCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DispositionReviewStage] = None, request_configuration: Optional[DispositionReviewStagesRequestBuilderPostRequestConfiguration] = None) -> Optional[DispositionReviewStage]:
+    async def post(self,body: Optional[DispositionReviewStage] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DispositionReviewStage]:
         """
         Create new navigation property to dispositionReviewStages for security
         param body: The request body
@@ -86,7 +87,7 @@ class DispositionReviewStagesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DispositionReviewStage, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[DispositionReviewStagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         When action at the end of retention is chosen as 'dispositionReview', dispositionReviewStages specifies a sequential set of stages with at least one reviewer in each stage.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class DispositionReviewStagesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DispositionReviewStage] = None, request_configuration: Optional[DispositionReviewStagesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DispositionReviewStage] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to dispositionReviewStages for security
         param body: The request body
@@ -186,28 +187,5 @@ class DispositionReviewStagesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DispositionReviewStagesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DispositionReviewStagesRequestBuilder.DispositionReviewStagesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DispositionReviewStagesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

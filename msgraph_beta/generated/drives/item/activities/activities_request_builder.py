@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["itemActivityOLD%2Did"] = item_activity_o_l_d_id
         return ItemActivityOLDItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemActivityOLDCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemActivityOLDCollectionResponse]:
         """
         List the recent activities that took place on an item or under a hierarchy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ItemActivityOLDCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ItemActivityOLD] = None, request_configuration: Optional[ActivitiesRequestBuilderPostRequestConfiguration] = None) -> Optional[ItemActivityOLD]:
+    async def post(self,body: Optional[ItemActivityOLD] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemActivityOLD]:
         """
         Create new navigation property to activities for drives
         param body: The request body
@@ -87,7 +88,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ItemActivityOLD, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         List the recent activities that took place on an item or under a hierarchy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ItemActivityOLD] = None, request_configuration: Optional[ActivitiesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ItemActivityOLD] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to activities for drives
         param body: The request body
@@ -187,28 +188,5 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ActivitiesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ActivitiesRequestBuilder.ActivitiesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ActivitiesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

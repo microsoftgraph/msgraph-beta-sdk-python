@@ -338,6 +338,7 @@ if TYPE_CHECKING:
     from .conditional_access_policy import ConditionalAccessPolicy
     from .conditional_access_root import ConditionalAccessRoot
     from .conditional_access_template import ConditionalAccessTemplate
+    from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
     from .config_manager_collection import ConfigManagerCollection
     from .connected_organization import ConnectedOrganization
     from .connection_operation import ConnectionOperation
@@ -1813,9 +1814,12 @@ if TYPE_CHECKING:
     from .windows_updates.deployment import Deployment
     from .windows_updates.deployment_audience import DeploymentAudience
     from .windows_updates.driver_update_catalog_entry import DriverUpdateCatalogEntry
+    from .windows_updates.edition import Edition
     from .windows_updates.feature_update_catalog_entry import FeatureUpdateCatalogEntry
     from .windows_updates.knowledge_base_article import KnowledgeBaseArticle
+    from .windows_updates.known_issue import KnownIssue
     from .windows_updates.operational_insights_connection import OperationalInsightsConnection
+    from .windows_updates.product import Product
     from .windows_updates.product_revision import ProductRevision
     from .windows_updates.quality_update_catalog_entry import QualityUpdateCatalogEntry
     from .windows_updates.resource_connection import ResourceConnection
@@ -1881,6 +1885,7 @@ if TYPE_CHECKING:
     from .workbook_worksheet import WorkbookWorksheet
     from .workbook_worksheet_protection import WorkbookWorksheetProtection
     from .workforce_integration import WorkforceIntegration
+    from .workplace_sensor_device import WorkplaceSensorDevice
     from .workspace import Workspace
     from .work_position import WorkPosition
     from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
@@ -3251,6 +3256,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .conditional_access_template import ConditionalAccessTemplate
 
             return ConditionalAccessTemplate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.conditionalAccessWhatIfPolicy".casefold():
+            from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
+
+            return ConditionalAccessWhatIfPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.configManagerCollection".casefold():
             from .config_manager_collection import ConfigManagerCollection
 
@@ -9214,6 +9223,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_updates.driver_update_catalog_entry import DriverUpdateCatalogEntry
 
             return DriverUpdateCatalogEntry()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.edition".casefold():
+            from .windows_updates.edition import Edition
+
+            return Edition()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.featureUpdateCatalogEntry".casefold():
             from .windows_updates.feature_update_catalog_entry import FeatureUpdateCatalogEntry
 
@@ -9222,10 +9235,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_updates.knowledge_base_article import KnowledgeBaseArticle
 
             return KnowledgeBaseArticle()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.knownIssue".casefold():
+            from .windows_updates.known_issue import KnownIssue
+
+            return KnownIssue()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.operationalInsightsConnection".casefold():
             from .windows_updates.operational_insights_connection import OperationalInsightsConnection
 
             return OperationalInsightsConnection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.product".casefold():
+            from .windows_updates.product import Product
+
+            return Product()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.productRevision".casefold():
             from .windows_updates.product_revision import ProductRevision
 
@@ -9478,6 +9499,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .workforce_integration import WorkforceIntegration
 
             return WorkforceIntegration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.workplaceSensorDevice".casefold():
+            from .workplace_sensor_device import WorkplaceSensorDevice
+
+            return WorkplaceSensorDevice()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.workPosition".casefold():
             from .work_position import WorkPosition
 
@@ -9846,6 +9871,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
+        from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
         from .config_manager_collection import ConfigManagerCollection
         from .connected_organization import ConnectedOrganization
         from .connection_operation import ConnectionOperation
@@ -11321,9 +11347,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_updates.deployment import Deployment
         from .windows_updates.deployment_audience import DeploymentAudience
         from .windows_updates.driver_update_catalog_entry import DriverUpdateCatalogEntry
+        from .windows_updates.edition import Edition
         from .windows_updates.feature_update_catalog_entry import FeatureUpdateCatalogEntry
         from .windows_updates.knowledge_base_article import KnowledgeBaseArticle
+        from .windows_updates.known_issue import KnownIssue
         from .windows_updates.operational_insights_connection import OperationalInsightsConnection
+        from .windows_updates.product import Product
         from .windows_updates.product_revision import ProductRevision
         from .windows_updates.quality_update_catalog_entry import QualityUpdateCatalogEntry
         from .windows_updates.resource_connection import ResourceConnection
@@ -11389,6 +11418,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_worksheet import WorkbookWorksheet
         from .workbook_worksheet_protection import WorkbookWorksheetProtection
         from .workforce_integration import WorkforceIntegration
+        from .workplace_sensor_device import WorkplaceSensorDevice
         from .workspace import Workspace
         from .work_position import WorkPosition
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
@@ -11730,6 +11760,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
+        from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
         from .config_manager_collection import ConfigManagerCollection
         from .connected_organization import ConnectedOrganization
         from .connection_operation import ConnectionOperation
@@ -13205,9 +13236,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_updates.deployment import Deployment
         from .windows_updates.deployment_audience import DeploymentAudience
         from .windows_updates.driver_update_catalog_entry import DriverUpdateCatalogEntry
+        from .windows_updates.edition import Edition
         from .windows_updates.feature_update_catalog_entry import FeatureUpdateCatalogEntry
         from .windows_updates.knowledge_base_article import KnowledgeBaseArticle
+        from .windows_updates.known_issue import KnownIssue
         from .windows_updates.operational_insights_connection import OperationalInsightsConnection
+        from .windows_updates.product import Product
         from .windows_updates.product_revision import ProductRevision
         from .windows_updates.quality_update_catalog_entry import QualityUpdateCatalogEntry
         from .windows_updates.resource_connection import ResourceConnection
@@ -13273,6 +13307,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_worksheet import WorkbookWorksheet
         from .workbook_worksheet_protection import WorkbookWorksheetProtection
         from .workforce_integration import WorkforceIntegration
+        from .workplace_sensor_device import WorkplaceSensorDevice
         from .workspace import Workspace
         from .work_position import WorkPosition
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["resourceConnection%2Did"] = resource_connection_id
         return ResourceConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ResourceConnectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[ResourceConnectionCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ResourceConnectionCollectionResponse]:
         """
         Get a list of the resourceConnection objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ResourceConnectionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ResourceConnection] = None, request_configuration: Optional[ResourceConnectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[ResourceConnection]:
+    async def post(self,body: Optional[ResourceConnection] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ResourceConnection]:
         """
         Create a new operationalInsightsConnection object.
         param body: The request body
@@ -88,7 +89,7 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ResourceConnection, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[ResourceConnectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the resourceConnection objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +100,7 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ResourceConnection] = None, request_configuration: Optional[ResourceConnectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ResourceConnection] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create a new operationalInsightsConnection object.
         param body: The request body
@@ -188,28 +189,5 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ResourceConnectionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ResourceConnectionsRequestBuilder.ResourceConnectionsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ResourceConnectionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

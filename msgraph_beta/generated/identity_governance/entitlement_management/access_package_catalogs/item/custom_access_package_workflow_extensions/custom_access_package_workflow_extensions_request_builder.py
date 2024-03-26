@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,7 +46,7 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["customAccessPackageWorkflowExtension%2Did"] = custom_access_package_workflow_extension_id
         return CustomAccessPackageWorkflowExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[CustomAccessPackageWorkflowExtensionCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomAccessPackageWorkflowExtensionCollectionResponse]:
         """
         Get a list of the customAccessPackageWorkflowExtension objects and their properties. The resulting list includes all the customAccessPackageWorkflowExtension objects for the catalog that the caller has access to read.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +68,7 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomAccessPackageWorkflowExtensionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CustomAccessPackageWorkflowExtension] = None, request_configuration: Optional[CustomAccessPackageWorkflowExtensionsRequestBuilderPostRequestConfiguration] = None) -> Optional[CustomAccessPackageWorkflowExtension]:
+    async def post(self,body: Optional[CustomAccessPackageWorkflowExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomAccessPackageWorkflowExtension]:
         """
         Create a new customAccessPackageWorkflowExtension object and add it to an existing accessPackageCatalog object.  
         param body: The request body
@@ -92,7 +93,7 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomAccessPackageWorkflowExtension, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the customAccessPackageWorkflowExtension objects and their properties. The resulting list includes all the customAccessPackageWorkflowExtension objects for the catalog that the caller has access to read.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +105,7 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CustomAccessPackageWorkflowExtension] = None, request_configuration: Optional[CustomAccessPackageWorkflowExtensionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CustomAccessPackageWorkflowExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create a new customAccessPackageWorkflowExtension object and add it to an existing accessPackageCatalog object.  
         param body: The request body
@@ -195,28 +196,5 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class CustomAccessPackageWorkflowExtensionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[CustomAccessPackageWorkflowExtensionsRequestBuilder.CustomAccessPackageWorkflowExtensionsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class CustomAccessPackageWorkflowExtensionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

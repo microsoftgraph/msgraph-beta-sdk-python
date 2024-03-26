@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +30,7 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/embeddedSIMActivationCodePools/{embeddedSIMActivationCodePool%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property embeddedSIMActivationCodePools for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +48,7 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EmbeddedSIMActivationCodePool]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EmbeddedSIMActivationCodePool]:
         """
         The embedded SIM activation code pools created by this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +68,7 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EmbeddedSIMActivationCodePool, error_mapping)
     
-    async def patch(self,body: Optional[EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EmbeddedSIMActivationCodePool]:
+    async def patch(self,body: Optional[EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EmbeddedSIMActivationCodePool]:
         """
         Update the navigation property embeddedSIMActivationCodePools in deviceManagement
         param body: The request body
@@ -90,7 +91,7 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EmbeddedSIMActivationCodePool, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property embeddedSIMActivationCodePools for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +102,7 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The embedded SIM activation code pools created by this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,7 +113,7 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property embeddedSIMActivationCodePools in deviceManagement
         param body: The request body
@@ -164,16 +165,6 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder(BaseRequestBuilder):
 
         return DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EmbeddedSIMActivationCodePoolItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class EmbeddedSIMActivationCodePoolItemRequestBuilderGetQueryParameters():
         """
@@ -199,28 +190,5 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EmbeddedSIMActivationCodePoolItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilder.EmbeddedSIMActivationCodePoolItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EmbeddedSIMActivationCodePoolItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

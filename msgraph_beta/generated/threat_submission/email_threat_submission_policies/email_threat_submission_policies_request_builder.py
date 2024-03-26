@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class EmailThreatSubmissionPoliciesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["emailThreatSubmissionPolicy%2Did"] = email_threat_submission_policy_id
         return EmailThreatSubmissionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[EmailThreatSubmissionPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[EmailThreatSubmissionPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EmailThreatSubmissionPolicyCollectionResponse]:
         """
         Get a list of the emailThreatSubmissionPolicy objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class EmailThreatSubmissionPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EmailThreatSubmissionPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[EmailThreatSubmissionPolicy] = None, request_configuration: Optional[EmailThreatSubmissionPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[EmailThreatSubmissionPolicy]:
+    async def post(self,body: Optional[EmailThreatSubmissionPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EmailThreatSubmissionPolicy]:
         """
         Create new navigation property to emailThreatSubmissionPolicies for threatSubmission
         param body: The request body
@@ -87,7 +88,7 @@ class EmailThreatSubmissionPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EmailThreatSubmissionPolicy, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[EmailThreatSubmissionPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the emailThreatSubmissionPolicy objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class EmailThreatSubmissionPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[EmailThreatSubmissionPolicy] = None, request_configuration: Optional[EmailThreatSubmissionPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EmailThreatSubmissionPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to emailThreatSubmissionPolicies for threatSubmission
         param body: The request body
@@ -187,28 +188,5 @@ class EmailThreatSubmissionPoliciesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EmailThreatSubmissionPoliciesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[EmailThreatSubmissionPoliciesRequestBuilder.EmailThreatSubmissionPoliciesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EmailThreatSubmissionPoliciesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 
