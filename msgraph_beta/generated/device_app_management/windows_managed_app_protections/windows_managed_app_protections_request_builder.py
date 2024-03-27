@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class WindowsManagedAppProtectionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["windowsManagedAppProtection%2Did"] = windows_managed_app_protection_id
         return WindowsManagedAppProtectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WindowsManagedAppProtectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsManagedAppProtectionCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsManagedAppProtectionCollectionResponse]:
         """
         Windows managed app policies.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class WindowsManagedAppProtectionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsManagedAppProtectionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[WindowsManagedAppProtection] = None, request_configuration: Optional[WindowsManagedAppProtectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[WindowsManagedAppProtection]:
+    async def post(self,body: Optional[WindowsManagedAppProtection] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsManagedAppProtection]:
         """
         Create new navigation property to windowsManagedAppProtections for deviceAppManagement
         param body: The request body
@@ -86,7 +87,7 @@ class WindowsManagedAppProtectionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsManagedAppProtection, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[WindowsManagedAppProtectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Windows managed app policies.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class WindowsManagedAppProtectionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[WindowsManagedAppProtection] = None, request_configuration: Optional[WindowsManagedAppProtectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WindowsManagedAppProtection] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to windowsManagedAppProtections for deviceAppManagement
         param body: The request body
@@ -186,28 +187,5 @@ class WindowsManagedAppProtectionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class WindowsManagedAppProtectionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[WindowsManagedAppProtectionsRequestBuilder.WindowsManagedAppProtectionsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class WindowsManagedAppProtectionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

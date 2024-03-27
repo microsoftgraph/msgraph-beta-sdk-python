@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +30,7 @@ class WorkspacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
             path_parameters['placeId'] = str(place_id)
         super().__init__(request_adapter, "{+baseurl}/places/{place%2Did}/graph.roomList/workspaces(placeId='{placeId}'){?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[WorkspacesWithPlaceIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property workspaces for places
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +48,7 @@ class WorkspacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WorkspacesWithPlaceIdRequestBuilderGetRequestConfiguration] = None) -> Optional[Workspace]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Workspace]:
         """
         Get workspaces from places
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +68,7 @@ class WorkspacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Workspace, error_mapping)
     
-    async def patch(self,body: Optional[Workspace] = None, request_configuration: Optional[WorkspacesWithPlaceIdRequestBuilderPatchRequestConfiguration] = None) -> Optional[Workspace]:
+    async def patch(self,body: Optional[Workspace] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Workspace]:
         """
         Update the navigation property workspaces in places
         param body: The request body
@@ -90,7 +91,7 @@ class WorkspacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Workspace, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[WorkspacesWithPlaceIdRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property workspaces for places
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +102,7 @@ class WorkspacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[WorkspacesWithPlaceIdRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get workspaces from places
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,7 +113,7 @@ class WorkspacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[Workspace] = None, request_configuration: Optional[WorkspacesWithPlaceIdRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Workspace] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property workspaces in places
         param body: The request body
@@ -136,16 +137,6 @@ class WorkspacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return WorkspacesWithPlaceIdRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class WorkspacesWithPlaceIdRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class WorkspacesWithPlaceIdRequestBuilderGetQueryParameters():
@@ -172,28 +163,5 @@ class WorkspacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class WorkspacesWithPlaceIdRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[WorkspacesWithPlaceIdRequestBuilder.WorkspacesWithPlaceIdRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class WorkspacesWithPlaceIdRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

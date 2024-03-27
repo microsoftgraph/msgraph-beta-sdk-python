@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +27,7 @@ class GenerateServerLogCollectionRequestRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/microsoftTunnelSites/{microsoftTunnelSite%2Did}/microsoftTunnelServers/{microsoftTunnelServer%2Did}/generateServerLogCollectionRequest", path_parameters)
     
-    async def post(self,body: Optional[GenerateServerLogCollectionRequestPostRequestBody] = None, request_configuration: Optional[GenerateServerLogCollectionRequestRequestBuilderPostRequestConfiguration] = None) -> Optional[MicrosoftTunnelServerLogCollectionResponse]:
+    async def post(self,body: Optional[GenerateServerLogCollectionRequestPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MicrosoftTunnelServerLogCollectionResponse]:
         """
         Invoke action generateServerLogCollectionRequest
         param body: The request body
@@ -50,7 +50,7 @@ class GenerateServerLogCollectionRequestRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MicrosoftTunnelServerLogCollectionResponse, error_mapping)
     
-    def to_post_request_information(self,body: Optional[GenerateServerLogCollectionRequestPostRequestBody] = None, request_configuration: Optional[GenerateServerLogCollectionRequestRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GenerateServerLogCollectionRequestPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Invoke action generateServerLogCollectionRequest
         param body: The request body
@@ -74,15 +74,5 @@ class GenerateServerLogCollectionRequestRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return GenerateServerLogCollectionRequestRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GenerateServerLogCollectionRequestRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

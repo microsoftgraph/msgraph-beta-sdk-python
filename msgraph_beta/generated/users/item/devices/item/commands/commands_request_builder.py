@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class CommandsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["command%2Did"] = command_id
         return CommandItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[CommandsRequestBuilderGetRequestConfiguration] = None) -> Optional[CommandCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CommandCollectionResponse]:
         """
         Set of commands sent to this device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class CommandsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CommandCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[Command] = None, request_configuration: Optional[CommandsRequestBuilderPostRequestConfiguration] = None) -> Optional[Command]:
+    async def post(self,body: Optional[Command] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Command]:
         """
         Create new navigation property to commands for users
         param body: The request body
@@ -86,7 +87,7 @@ class CommandsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Command, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[CommandsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Set of commands sent to this device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class CommandsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Command] = None, request_configuration: Optional[CommandsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Command] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to commands for users
         param body: The request body
@@ -186,28 +187,5 @@ class CommandsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class CommandsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[CommandsRequestBuilder.CommandsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class CommandsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

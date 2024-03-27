@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -15,6 +16,7 @@ if TYPE_CHECKING:
     from .catalog.catalog_request_builder import CatalogRequestBuilder
     from .deployments.deployments_request_builder import DeploymentsRequestBuilder
     from .deployment_audiences.deployment_audiences_request_builder import DeploymentAudiencesRequestBuilder
+    from .products.products_request_builder import ProductsRequestBuilder
     from .resource_connections.resource_connections_request_builder import ResourceConnectionsRequestBuilder
     from .updatable_assets.updatable_assets_request_builder import UpdatableAssetsRequestBuilder
     from .update_policies.update_policies_request_builder import UpdatePoliciesRequestBuilder
@@ -32,7 +34,7 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/admin/windows/updates{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[UpdatesRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property updates for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -50,7 +52,7 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UpdatesRequestBuilderGetRequestConfiguration] = None) -> Optional[AdminWindowsUpdates]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AdminWindowsUpdates]:
         """
         Entity that acts as a container for all Windows Update for Business deployment service functionalities. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -70,7 +72,7 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AdminWindowsUpdates, error_mapping)
     
-    async def patch(self,body: Optional[AdminWindowsUpdates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None) -> Optional[AdminWindowsUpdates]:
+    async def patch(self,body: Optional[AdminWindowsUpdates] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AdminWindowsUpdates]:
         """
         Update the navigation property updates in admin
         param body: The request body
@@ -93,7 +95,7 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AdminWindowsUpdates, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[UpdatesRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property updates for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +106,7 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[UpdatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Entity that acts as a container for all Windows Update for Business deployment service functionalities. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -115,7 +117,7 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[AdminWindowsUpdates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AdminWindowsUpdates] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property updates in admin
         param body: The request body
@@ -168,6 +170,15 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         return DeploymentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def products(self) -> ProductsRequestBuilder:
+        """
+        Provides operations to manage the products property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        from .products.products_request_builder import ProductsRequestBuilder
+
+        return ProductsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def resource_connections(self) -> ResourceConnectionsRequestBuilder:
         """
         Provides operations to manage the resourceConnections property of the microsoft.graph.adminWindowsUpdates entity.
@@ -194,16 +205,6 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
 
         return UpdatePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UpdatesRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class UpdatesRequestBuilderGetQueryParameters():
         """
@@ -229,28 +230,5 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UpdatesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[UpdatesRequestBuilder.UpdatesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UpdatesRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

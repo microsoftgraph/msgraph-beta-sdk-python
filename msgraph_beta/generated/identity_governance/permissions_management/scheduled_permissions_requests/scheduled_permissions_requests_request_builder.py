@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -40,7 +41,7 @@ class ScheduledPermissionsRequestsRequestBuilder(BaseRequestBuilder):
 
         return FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
     
-    async def get(self,request_configuration: Optional[ScheduledPermissionsRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[ScheduledPermissionsRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ScheduledPermissionsRequestCollectionResponse]:
         """
         Represents a permissions request that Permissions Management uses to manage permissions for an identity on resources in the authorization system. This request can be granted, rejected or canceled by identities in Permissions Management.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -60,7 +61,7 @@ class ScheduledPermissionsRequestsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ScheduledPermissionsRequestCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ScheduledPermissionsRequest] = None, request_configuration: Optional[ScheduledPermissionsRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[ScheduledPermissionsRequest]:
+    async def post(self,body: Optional[ScheduledPermissionsRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ScheduledPermissionsRequest]:
         """
         Create a new scheduledPermissionsRequest object.
         param body: The request body
@@ -84,7 +85,7 @@ class ScheduledPermissionsRequestsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ScheduledPermissionsRequest, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[ScheduledPermissionsRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Represents a permissions request that Permissions Management uses to manage permissions for an identity on resources in the authorization system. This request can be granted, rejected or canceled by identities in Permissions Management.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -95,7 +96,7 @@ class ScheduledPermissionsRequestsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ScheduledPermissionsRequest] = None, request_configuration: Optional[ScheduledPermissionsRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ScheduledPermissionsRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create a new scheduledPermissionsRequest object.
         param body: The request body
@@ -175,28 +176,5 @@ class ScheduledPermissionsRequestsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ScheduledPermissionsRequestsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ScheduledPermissionsRequestsRequestBuilder.ScheduledPermissionsRequestsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ScheduledPermissionsRequestsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

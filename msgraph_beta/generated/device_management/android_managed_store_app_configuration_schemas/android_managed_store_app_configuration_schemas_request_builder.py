@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class AndroidManagedStoreAppConfigurationSchemasRequestBuilder(BaseRequestBuilde
         url_tpl_params["androidManagedStoreAppConfigurationSchema%2Did"] = android_managed_store_app_configuration_schema_id
         return AndroidManagedStoreAppConfigurationSchemaItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AndroidManagedStoreAppConfigurationSchemasRequestBuilderGetRequestConfiguration] = None) -> Optional[AndroidManagedStoreAppConfigurationSchemaCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AndroidManagedStoreAppConfigurationSchemaCollectionResponse]:
         """
         Android Enterprise app configuration schema entities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class AndroidManagedStoreAppConfigurationSchemasRequestBuilder(BaseRequestBuilde
 
         return await self.request_adapter.send_async(request_info, AndroidManagedStoreAppConfigurationSchemaCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AndroidManagedStoreAppConfigurationSchema] = None, request_configuration: Optional[AndroidManagedStoreAppConfigurationSchemasRequestBuilderPostRequestConfiguration] = None) -> Optional[AndroidManagedStoreAppConfigurationSchema]:
+    async def post(self,body: Optional[AndroidManagedStoreAppConfigurationSchema] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AndroidManagedStoreAppConfigurationSchema]:
         """
         Create new navigation property to androidManagedStoreAppConfigurationSchemas for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class AndroidManagedStoreAppConfigurationSchemasRequestBuilder(BaseRequestBuilde
 
         return await self.request_adapter.send_async(request_info, AndroidManagedStoreAppConfigurationSchema, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[AndroidManagedStoreAppConfigurationSchemasRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Android Enterprise app configuration schema entities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class AndroidManagedStoreAppConfigurationSchemasRequestBuilder(BaseRequestBuilde
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AndroidManagedStoreAppConfigurationSchema] = None, request_configuration: Optional[AndroidManagedStoreAppConfigurationSchemasRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AndroidManagedStoreAppConfigurationSchema] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to androidManagedStoreAppConfigurationSchemas for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class AndroidManagedStoreAppConfigurationSchemasRequestBuilder(BaseRequestBuilde
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AndroidManagedStoreAppConfigurationSchemasRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[AndroidManagedStoreAppConfigurationSchemasRequestBuilder.AndroidManagedStoreAppConfigurationSchemasRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AndroidManagedStoreAppConfigurationSchemasRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

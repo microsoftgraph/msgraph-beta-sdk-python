@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +27,7 @@ class UpdateRequestRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/privilegedAccess/{privilegedAccess%2Did}/resources/{governanceResource%2Did}/roleAssignmentRequests/{governanceRoleAssignmentRequest%2Did}/updateRequest", path_parameters)
     
-    async def post(self,body: Optional[UpdateRequestPostRequestBody] = None, request_configuration: Optional[UpdateRequestRequestBuilderPostRequestConfiguration] = None) -> Optional[GovernanceRoleAssignmentRequest]:
+    async def post(self,body: Optional[UpdateRequestPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[GovernanceRoleAssignmentRequest]:
         """
         Invoke action updateRequest
         param body: The request body
@@ -50,7 +50,7 @@ class UpdateRequestRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GovernanceRoleAssignmentRequest, error_mapping)
     
-    def to_post_request_information(self,body: Optional[UpdateRequestPostRequestBody] = None, request_configuration: Optional[UpdateRequestRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UpdateRequestPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Invoke action updateRequest
         param body: The request body
@@ -74,15 +74,5 @@ class UpdateRequestRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return UpdateRequestRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UpdateRequestRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

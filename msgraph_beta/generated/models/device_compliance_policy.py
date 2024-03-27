@@ -53,7 +53,7 @@ class DeviceCompliancePolicy(Entity):
     odata_type: Optional[str] = None
     # List of Scope Tags for this Entity instance.
     role_scope_tag_ids: Optional[List[str]] = None
-    # The list of scheduled action for this rule
+    # The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
     scheduled_actions_for_rule: Optional[List[DeviceComplianceScheduledActionForRule]] = None
     # Device compliance users status overview
     user_status_overview: Optional[DeviceComplianceUserOverview] = None

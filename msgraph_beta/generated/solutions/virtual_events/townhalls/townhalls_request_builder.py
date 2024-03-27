@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,7 +46,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["virtualEventTownhall%2Did"] = virtual_event_townhall_id
         return VirtualEventTownhallItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TownhallsRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventTownhallCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[VirtualEventTownhallCollectionResponse]:
         """
         Get townhalls from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -92,7 +93,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
 
         return GetByUserRoleWithRoleRequestBuilder(self.request_adapter, self.path_parameters, role)
     
-    async def post(self,body: Optional[VirtualEventTownhall] = None, request_configuration: Optional[TownhallsRequestBuilderPostRequestConfiguration] = None) -> Optional[VirtualEventTownhall]:
+    async def post(self,body: Optional[VirtualEventTownhall] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[VirtualEventTownhall]:
         """
         Create new navigation property to townhalls for solutions
         param body: The request body
@@ -115,7 +116,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, VirtualEventTownhall, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[TownhallsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get townhalls from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -126,7 +127,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[VirtualEventTownhall] = None, request_configuration: Optional[TownhallsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[VirtualEventTownhall] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to townhalls for solutions
         param body: The request body
@@ -215,28 +216,5 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TownhallsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[TownhallsRequestBuilder.TownhallsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TownhallsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

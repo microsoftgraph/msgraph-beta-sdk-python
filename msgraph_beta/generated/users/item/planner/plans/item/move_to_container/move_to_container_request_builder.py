@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +27,7 @@ class MoveToContainerRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/planner/plans/{plannerPlan%2Did}/moveToContainer", path_parameters)
     
-    async def post(self,body: Optional[MoveToContainerPostRequestBody] = None, request_configuration: Optional[MoveToContainerRequestBuilderPostRequestConfiguration] = None) -> Optional[PlannerPlan]:
+    async def post(self,body: Optional[MoveToContainerPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PlannerPlan]:
         """
         Move a planner plan object from one planner plan container to another. Planner plans can only be moved from a user container to a group container.
         param body: The request body
@@ -51,7 +51,7 @@ class MoveToContainerRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PlannerPlan, error_mapping)
     
-    def to_post_request_information(self,body: Optional[MoveToContainerPostRequestBody] = None, request_configuration: Optional[MoveToContainerRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[MoveToContainerPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Move a planner plan object from one planner plan container to another. Planner plans can only be moved from a user container to a group container.
         param body: The request body
@@ -75,15 +75,5 @@ class MoveToContainerRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return MoveToContainerRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MoveToContainerRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

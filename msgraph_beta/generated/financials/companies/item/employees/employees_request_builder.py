@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +45,7 @@ class EmployeesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["employee%2Did"] = employee_id
         return EmployeeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[EmployeesRequestBuilderGetRequestConfiguration] = None) -> Optional[EmployeeCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EmployeeCollectionResponse]:
         """
         Get employees from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class EmployeesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EmployeeCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[Employee] = None, request_configuration: Optional[EmployeesRequestBuilderPostRequestConfiguration] = None) -> Optional[Employee]:
+    async def post(self,body: Optional[Employee] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Employee]:
         """
         Create new navigation property to employees for financials
         param body: The request body
@@ -87,7 +88,7 @@ class EmployeesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Employee, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[EmployeesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get employees from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class EmployeesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Employee] = None, request_configuration: Optional[EmployeesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Employee] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to employees for financials
         param body: The request body
@@ -187,28 +188,5 @@ class EmployeesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EmployeesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[EmployeesRequestBuilder.EmployeesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EmployeesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

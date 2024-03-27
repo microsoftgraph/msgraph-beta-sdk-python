@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class AppCredentialSignInActivityItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/reports/appCredentialSignInActivities/{appCredentialSignInActivity%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[AppCredentialSignInActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property appCredentialSignInActivities for reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class AppCredentialSignInActivityItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AppCredentialSignInActivityItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AppCredentialSignInActivity]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AppCredentialSignInActivity]:
         """
         Get an appCredentialSignInActivity object that contains recent activity of an application credential.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +66,7 @@ class AppCredentialSignInActivityItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AppCredentialSignInActivity, error_mapping)
     
-    async def patch(self,body: Optional[AppCredentialSignInActivity] = None, request_configuration: Optional[AppCredentialSignInActivityItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AppCredentialSignInActivity]:
+    async def patch(self,body: Optional[AppCredentialSignInActivity] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AppCredentialSignInActivity]:
         """
         Update the navigation property appCredentialSignInActivities in reports
         param body: The request body
@@ -88,7 +89,7 @@ class AppCredentialSignInActivityItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AppCredentialSignInActivity, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[AppCredentialSignInActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property appCredentialSignInActivities for reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +100,7 @@ class AppCredentialSignInActivityItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[AppCredentialSignInActivityItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get an appCredentialSignInActivity object that contains recent activity of an application credential.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +111,7 @@ class AppCredentialSignInActivityItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[AppCredentialSignInActivity] = None, request_configuration: Optional[AppCredentialSignInActivityItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AppCredentialSignInActivity] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property appCredentialSignInActivities in reports
         param body: The request body
@@ -134,16 +135,6 @@ class AppCredentialSignInActivityItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return AppCredentialSignInActivityItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AppCredentialSignInActivityItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class AppCredentialSignInActivityItemRequestBuilderGetQueryParameters():
@@ -170,28 +161,5 @@ class AppCredentialSignInActivityItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AppCredentialSignInActivityItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[AppCredentialSignInActivityItemRequestBuilder.AppCredentialSignInActivityItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AppCredentialSignInActivityItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

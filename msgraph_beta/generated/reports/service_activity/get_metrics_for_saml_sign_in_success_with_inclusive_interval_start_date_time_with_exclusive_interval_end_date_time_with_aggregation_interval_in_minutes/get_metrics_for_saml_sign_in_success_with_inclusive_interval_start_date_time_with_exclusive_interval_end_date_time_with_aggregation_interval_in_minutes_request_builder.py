@@ -2,6 +2,7 @@ from __future__ import annotations
 import datetime
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -32,7 +33,7 @@ class GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclus
             path_parameters['inclusiveIntervalStartDateTime'] = str(inclusive_interval_start_date_time)
         super().__init__(request_adapter, "{+baseurl}/reports/serviceActivity/getMetricsForSamlSignInSuccess(inclusiveIntervalStartDateTime={inclusiveIntervalStartDateTime},exclusiveIntervalEndDateTime={exclusiveIntervalEndDateTime},aggregationIntervalInMinutes=@aggregationIntervalInMinutes){?%24count,%24filter,%24search,%24skip,%24top,aggregationIntervalInMinutes*}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetRequestConfiguration] = None) -> Optional[GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
         Invoke function getMetricsForSamlSignInSuccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -52,7 +53,7 @@ class GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclus
 
         return await self.request_adapter.send_async(request_info, GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Invoke function getMetricsForSamlSignInSuccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -117,19 +118,6 @@ class GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclus
 
         # Show only the first n items
         top: Optional[int] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilder.GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters] = None
 
     
 

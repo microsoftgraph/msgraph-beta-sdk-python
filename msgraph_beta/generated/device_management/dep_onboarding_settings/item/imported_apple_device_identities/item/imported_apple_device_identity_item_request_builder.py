@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class ImportedAppleDeviceIdentityItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/depOnboardingSettings/{depOnboardingSetting%2Did}/importedAppleDeviceIdentities/{importedAppleDeviceIdentity%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[ImportedAppleDeviceIdentityItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property importedAppleDeviceIdentities for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class ImportedAppleDeviceIdentityItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ImportedAppleDeviceIdentityItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ImportedAppleDeviceIdentity]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ImportedAppleDeviceIdentity]:
         """
         The imported Apple device identities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class ImportedAppleDeviceIdentityItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ImportedAppleDeviceIdentity, error_mapping)
     
-    async def patch(self,body: Optional[ImportedAppleDeviceIdentity] = None, request_configuration: Optional[ImportedAppleDeviceIdentityItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ImportedAppleDeviceIdentity]:
+    async def patch(self,body: Optional[ImportedAppleDeviceIdentity] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ImportedAppleDeviceIdentity]:
         """
         Update the navigation property importedAppleDeviceIdentities in deviceManagement
         param body: The request body
@@ -87,7 +88,7 @@ class ImportedAppleDeviceIdentityItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ImportedAppleDeviceIdentity, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[ImportedAppleDeviceIdentityItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property importedAppleDeviceIdentities for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class ImportedAppleDeviceIdentityItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[ImportedAppleDeviceIdentityItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The imported Apple device identities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class ImportedAppleDeviceIdentityItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ImportedAppleDeviceIdentity] = None, request_configuration: Optional[ImportedAppleDeviceIdentityItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ImportedAppleDeviceIdentity] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property importedAppleDeviceIdentities in deviceManagement
         param body: The request body
@@ -133,16 +134,6 @@ class ImportedAppleDeviceIdentityItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ImportedAppleDeviceIdentityItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ImportedAppleDeviceIdentityItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class ImportedAppleDeviceIdentityItemRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class ImportedAppleDeviceIdentityItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ImportedAppleDeviceIdentityItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ImportedAppleDeviceIdentityItemRequestBuilder.ImportedAppleDeviceIdentityItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ImportedAppleDeviceIdentityItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

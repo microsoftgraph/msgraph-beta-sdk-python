@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class GroupPolicyDefinitionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["groupPolicyDefinition%2Did"] = group_policy_definition_id
         return GroupPolicyDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[GroupPolicyDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupPolicyDefinitionCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GroupPolicyDefinitionCollectionResponse]:
         """
         The available group policy definitions for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class GroupPolicyDefinitionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GroupPolicyDefinitionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[GroupPolicyDefinition] = None, request_configuration: Optional[GroupPolicyDefinitionsRequestBuilderPostRequestConfiguration] = None) -> Optional[GroupPolicyDefinition]:
+    async def post(self,body: Optional[GroupPolicyDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[GroupPolicyDefinition]:
         """
         Create new navigation property to groupPolicyDefinitions for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class GroupPolicyDefinitionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GroupPolicyDefinition, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[GroupPolicyDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The available group policy definitions for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class GroupPolicyDefinitionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[GroupPolicyDefinition] = None, request_configuration: Optional[GroupPolicyDefinitionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GroupPolicyDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to groupPolicyDefinitions for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class GroupPolicyDefinitionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GroupPolicyDefinitionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[GroupPolicyDefinitionsRequestBuilder.GroupPolicyDefinitionsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GroupPolicyDefinitionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

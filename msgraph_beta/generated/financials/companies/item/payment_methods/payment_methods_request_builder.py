@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +45,7 @@ class PaymentMethodsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["paymentMethod%2Did"] = payment_method_id
         return PaymentMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[PaymentMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[PaymentMethodCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PaymentMethodCollectionResponse]:
         """
         Get paymentMethods from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class PaymentMethodsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PaymentMethodCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[PaymentMethod] = None, request_configuration: Optional[PaymentMethodsRequestBuilderPostRequestConfiguration] = None) -> Optional[PaymentMethod]:
+    async def post(self,body: Optional[PaymentMethod] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PaymentMethod]:
         """
         Create new navigation property to paymentMethods for financials
         param body: The request body
@@ -87,7 +88,7 @@ class PaymentMethodsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PaymentMethod, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[PaymentMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get paymentMethods from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class PaymentMethodsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[PaymentMethod] = None, request_configuration: Optional[PaymentMethodsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PaymentMethod] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to paymentMethods for financials
         param body: The request body
@@ -187,28 +188,5 @@ class PaymentMethodsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PaymentMethodsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[PaymentMethodsRequestBuilder.PaymentMethodsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PaymentMethodsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

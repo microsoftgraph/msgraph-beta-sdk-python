@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -47,7 +48,7 @@ class PrivilegedSignupStatusRequestBuilder(BaseRequestBuilder):
         url_tpl_params["privilegedSignupStatus%2Did"] = privileged_signup_status_id
         return PrivilegedSignupStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None) -> Optional[PrivilegedSignupStatusCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrivilegedSignupStatusCollectionResponse]:
         """
         Get entities from privilegedSignupStatus
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +68,7 @@ class PrivilegedSignupStatusRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrivilegedSignupStatusCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[PrivilegedSignupStatus]:
+    async def post(self,body: Optional[PrivilegedSignupStatus] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrivilegedSignupStatus]:
         """
         Add new entity to privilegedSignupStatus
         param body: The request body
@@ -90,7 +91,7 @@ class PrivilegedSignupStatusRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrivilegedSignupStatus, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get entities from privilegedSignupStatus
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +102,7 @@ class PrivilegedSignupStatusRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PrivilegedSignupStatus] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Add new entity to privilegedSignupStatus
         param body: The request body
@@ -226,28 +227,5 @@ class PrivilegedSignupStatusRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PrivilegedSignupStatusRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[PrivilegedSignupStatusRequestBuilder.PrivilegedSignupStatusRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PrivilegedSignupStatusRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

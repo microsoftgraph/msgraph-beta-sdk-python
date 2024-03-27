@@ -12,6 +12,10 @@ from .cloud_pc_management_assignment_target import CloudPcManagementAssignmentTa
 class CloudPcManagementGroupAssignmentTarget(CloudPcManagementAssignmentTarget):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcManagementGroupAssignmentTarget"
+    # The allotmentDisplayName property
+    allotment_display_name: Optional[str] = None
+    # The allotmentLicensesCount property
+    allotment_licenses_count: Optional[int] = None
     # The ID of the target group for the assignment.
     group_id: Optional[str] = None
     # The unique identifier for the service plan that indicates which size of the Cloud PC to provision for the user. Use a null value, when the provisioningType is dedicated.
@@ -38,6 +42,8 @@ class CloudPcManagementGroupAssignmentTarget(CloudPcManagementAssignmentTarget):
         from .cloud_pc_management_assignment_target import CloudPcManagementAssignmentTarget
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "allotmentDisplayName": lambda n : setattr(self, 'allotment_display_name', n.get_str_value()),
+            "allotmentLicensesCount": lambda n : setattr(self, 'allotment_licenses_count', n.get_int_value()),
             "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
             "servicePlanId": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
         }
@@ -54,6 +60,8 @@ class CloudPcManagementGroupAssignmentTarget(CloudPcManagementAssignmentTarget):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("allotmentDisplayName", self.allotment_display_name)
+        writer.write_int_value("allotmentLicensesCount", self.allotment_licenses_count)
         writer.write_str_value("groupId", self.group_id)
         writer.write_str_value("servicePlanId", self.service_plan_id)
     

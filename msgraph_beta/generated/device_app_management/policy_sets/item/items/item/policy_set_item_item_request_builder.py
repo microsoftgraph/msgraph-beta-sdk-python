@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class PolicySetItemItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/policySets/{policySet%2Did}/items/{policySetItem%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[PolicySetItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property items for deviceAppManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class PolicySetItemItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PolicySetItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PolicySetItem]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PolicySetItem]:
         """
         Items of the PolicySet with maximum count 100.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class PolicySetItemItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PolicySetItem, error_mapping)
     
-    async def patch(self,body: Optional[PolicySetItem] = None, request_configuration: Optional[PolicySetItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PolicySetItem]:
+    async def patch(self,body: Optional[PolicySetItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PolicySetItem]:
         """
         Update the navigation property items in deviceAppManagement
         param body: The request body
@@ -87,7 +88,7 @@ class PolicySetItemItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PolicySetItem, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[PolicySetItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property items for deviceAppManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class PolicySetItemItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[PolicySetItemItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Items of the PolicySet with maximum count 100.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class PolicySetItemItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PolicySetItem] = None, request_configuration: Optional[PolicySetItemItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PolicySetItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property items in deviceAppManagement
         param body: The request body
@@ -133,16 +134,6 @@ class PolicySetItemItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return PolicySetItemItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PolicySetItemItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class PolicySetItemItemRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class PolicySetItemItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PolicySetItemItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[PolicySetItemItemRequestBuilder.PolicySetItemItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PolicySetItemItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

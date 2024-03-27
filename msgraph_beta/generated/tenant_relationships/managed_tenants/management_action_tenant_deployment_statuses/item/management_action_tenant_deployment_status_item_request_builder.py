@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class ManagementActionTenantDeploymentStatusItemRequestBuilder(BaseRequestBuilde
         """
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/managementActionTenantDeploymentStatuses/{managementActionTenantDeploymentStatus%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[ManagementActionTenantDeploymentStatusItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property managementActionTenantDeploymentStatuses for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class ManagementActionTenantDeploymentStatusItemRequestBuilder(BaseRequestBuilde
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagementActionTenantDeploymentStatusItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagementActionTenantDeploymentStatus]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementActionTenantDeploymentStatus]:
         """
         Read the properties and relationships of a managementActionTenantDeploymentStatus object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +66,7 @@ class ManagementActionTenantDeploymentStatusItemRequestBuilder(BaseRequestBuilde
 
         return await self.request_adapter.send_async(request_info, ManagementActionTenantDeploymentStatus, error_mapping)
     
-    async def patch(self,body: Optional[ManagementActionTenantDeploymentStatus] = None, request_configuration: Optional[ManagementActionTenantDeploymentStatusItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ManagementActionTenantDeploymentStatus]:
+    async def patch(self,body: Optional[ManagementActionTenantDeploymentStatus] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementActionTenantDeploymentStatus]:
         """
         Update the navigation property managementActionTenantDeploymentStatuses in tenantRelationships
         param body: The request body
@@ -88,7 +89,7 @@ class ManagementActionTenantDeploymentStatusItemRequestBuilder(BaseRequestBuilde
 
         return await self.request_adapter.send_async(request_info, ManagementActionTenantDeploymentStatus, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[ManagementActionTenantDeploymentStatusItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property managementActionTenantDeploymentStatuses for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +100,7 @@ class ManagementActionTenantDeploymentStatusItemRequestBuilder(BaseRequestBuilde
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[ManagementActionTenantDeploymentStatusItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of a managementActionTenantDeploymentStatus object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +111,7 @@ class ManagementActionTenantDeploymentStatusItemRequestBuilder(BaseRequestBuilde
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ManagementActionTenantDeploymentStatus] = None, request_configuration: Optional[ManagementActionTenantDeploymentStatusItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ManagementActionTenantDeploymentStatus] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property managementActionTenantDeploymentStatuses in tenantRelationships
         param body: The request body
@@ -134,16 +135,6 @@ class ManagementActionTenantDeploymentStatusItemRequestBuilder(BaseRequestBuilde
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ManagementActionTenantDeploymentStatusItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ManagementActionTenantDeploymentStatusItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class ManagementActionTenantDeploymentStatusItemRequestBuilderGetQueryParameters():
@@ -170,28 +161,5 @@ class ManagementActionTenantDeploymentStatusItemRequestBuilder(BaseRequestBuilde
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ManagementActionTenantDeploymentStatusItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ManagementActionTenantDeploymentStatusItemRequestBuilder.ManagementActionTenantDeploymentStatusItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ManagementActionTenantDeploymentStatusItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

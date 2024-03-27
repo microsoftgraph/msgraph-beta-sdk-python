@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +28,7 @@ class BulkResizeRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/cloudPCs/bulkResize", path_parameters)
     
-    async def post(self,body: Optional[BulkResizePostRequestBody] = None, request_configuration: Optional[BulkResizeRequestBuilderPostRequestConfiguration] = None) -> Optional[BulkResizePostResponse]:
+    async def post(self,body: Optional[BulkResizePostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[BulkResizePostResponse]:
         """
         Perform a bulk resize action to resize a group of cloudPCs that have successfully passed validation. If any devices can't be resized, those devices indicate 'resize failed'. The remaining devices are provisioned for the resize process.
         param body: The request body
@@ -53,7 +53,7 @@ class BulkResizeRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, BulkResizePostResponse, error_mapping)
     
-    def to_post_request_information(self,body: Optional[BulkResizePostRequestBody] = None, request_configuration: Optional[BulkResizeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[BulkResizePostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Perform a bulk resize action to resize a group of cloudPCs that have successfully passed validation. If any devices can't be resized, those devices indicate 'resize failed'. The remaining devices are provisioned for the resize process.
         param body: The request body
@@ -79,15 +79,5 @@ class BulkResizeRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return BulkResizeRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class BulkResizeRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class ShiftsRoleDefinitionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["shiftsRoleDefinition%2Did"] = shifts_role_definition_id
         return ShiftsRoleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ShiftsRoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[ShiftsRoleDefinitionCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ShiftsRoleDefinitionCollectionResponse]:
         """
         The definitions of the roles in the schedule.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class ShiftsRoleDefinitionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ShiftsRoleDefinitionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ShiftsRoleDefinition] = None, request_configuration: Optional[ShiftsRoleDefinitionsRequestBuilderPostRequestConfiguration] = None) -> Optional[ShiftsRoleDefinition]:
+    async def post(self,body: Optional[ShiftsRoleDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ShiftsRoleDefinition]:
         """
         Create new navigation property to shiftsRoleDefinitions for teamwork
         param body: The request body
@@ -86,7 +87,7 @@ class ShiftsRoleDefinitionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ShiftsRoleDefinition, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[ShiftsRoleDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The definitions of the roles in the schedule.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class ShiftsRoleDefinitionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ShiftsRoleDefinition] = None, request_configuration: Optional[ShiftsRoleDefinitionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ShiftsRoleDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to shiftsRoleDefinitions for teamwork
         param body: The request body
@@ -186,28 +187,5 @@ class ShiftsRoleDefinitionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ShiftsRoleDefinitionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ShiftsRoleDefinitionsRequestBuilder.ShiftsRoleDefinitionsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ShiftsRoleDefinitionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

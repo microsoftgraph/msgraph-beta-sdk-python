@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +26,7 @@ class ReactivateRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/directory/recommendations/{recommendation%2Did}/impactedResources/{impactedResource%2Did}/reactivate", path_parameters)
     
-    async def post(self,request_configuration: Optional[ReactivateRequestBuilderPostRequestConfiguration] = None) -> Optional[ImpactedResource]:
+    async def post(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ImpactedResource]:
         """
         Reactivate an accidentally dismissed, completed, or postponed impactedResource object. This action updates the status of the resource to active. This method is relevant only if the status of the impactedResource object is dismissed, postponed, or completedByUser. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +47,7 @@ class ReactivateRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ImpactedResource, error_mapping)
     
-    def to_post_request_information(self,request_configuration: Optional[ReactivateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Reactivate an accidentally dismissed, completed, or postponed impactedResource object. This action updates the status of the resource to active. This method is relevant only if the status of the impactedResource object is dismissed, postponed, or completedByUser. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,15 +67,5 @@ class ReactivateRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ReactivateRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ReactivateRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

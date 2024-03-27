@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +27,7 @@ class GetUserOwnedObjectsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/devices/getUserOwnedObjects", path_parameters)
     
-    async def post(self,body: Optional[GetUserOwnedObjectsPostRequestBody] = None, request_configuration: Optional[GetUserOwnedObjectsRequestBuilderPostRequestConfiguration] = None) -> Optional[DirectoryObject]:
+    async def post(self,body: Optional[GetUserOwnedObjectsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DirectoryObject]:
         """
         Retrieve a list of recently deleted application and group objects owned by the specified user. This API returns up to 1,000 deleted objects owned by the user, sorted by ID, and doesn't support pagination.
         param body: The request body
@@ -51,7 +51,7 @@ class GetUserOwnedObjectsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DirectoryObject, error_mapping)
     
-    def to_post_request_information(self,body: Optional[GetUserOwnedObjectsPostRequestBody] = None, request_configuration: Optional[GetUserOwnedObjectsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GetUserOwnedObjectsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of recently deleted application and group objects owned by the specified user. This API returns up to 1,000 deleted objects owned by the user, sorted by ID, and doesn't support pagination.
         param body: The request body
@@ -75,15 +75,5 @@ class GetUserOwnedObjectsRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return GetUserOwnedObjectsRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GetUserOwnedObjectsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

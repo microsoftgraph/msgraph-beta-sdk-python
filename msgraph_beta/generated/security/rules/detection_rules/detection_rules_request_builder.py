@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class DetectionRulesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["detectionRule%2Did"] = detection_rule_id
         return DetectionRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DetectionRulesRequestBuilderGetRequestConfiguration] = None) -> Optional[DetectionRuleCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DetectionRuleCollectionResponse]:
         """
         Get a list of custom detection rules.With custom detections, you can proactively monitor for and respond to various events and system states, including suspected breach activity and misconfigured assets in their organization network.Custom detection rules, which are written in Kusto query language (KQL), automatically trigger alerts and response actions once there are events matching their KQL queries.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class DetectionRulesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DetectionRuleCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DetectionRule] = None, request_configuration: Optional[DetectionRulesRequestBuilderPostRequestConfiguration] = None) -> Optional[DetectionRule]:
+    async def post(self,body: Optional[DetectionRule] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DetectionRule]:
         """
         Create new navigation property to detectionRules for security
         param body: The request body
@@ -87,7 +88,7 @@ class DetectionRulesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DetectionRule, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[DetectionRulesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of custom detection rules.With custom detections, you can proactively monitor for and respond to various events and system states, including suspected breach activity and misconfigured assets in their organization network.Custom detection rules, which are written in Kusto query language (KQL), automatically trigger alerts and response actions once there are events matching their KQL queries.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class DetectionRulesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DetectionRule] = None, request_configuration: Optional[DetectionRulesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DetectionRule] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to detectionRules for security
         param body: The request body
@@ -187,28 +188,5 @@ class DetectionRulesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DetectionRulesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DetectionRulesRequestBuilder.DetectionRulesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DetectionRulesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

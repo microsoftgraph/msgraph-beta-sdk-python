@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["tenant%2Did"] = tenant_id
         return TenantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> Optional[TenantCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TenantCollectionResponse]:
         """
         Get a list of the tenant objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TenantCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[Tenant] = None, request_configuration: Optional[TenantsRequestBuilderPostRequestConfiguration] = None) -> Optional[Tenant]:
+    async def post(self,body: Optional[Tenant] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Tenant]:
         """
         Create new navigation property to tenants for tenantRelationships
         param body: The request body
@@ -87,7 +88,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Tenant, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the tenant objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Tenant] = None, request_configuration: Optional[TenantsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Tenant] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to tenants for tenantRelationships
         param body: The request body
@@ -187,28 +188,5 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TenantsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[TenantsRequestBuilder.TenantsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TenantsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

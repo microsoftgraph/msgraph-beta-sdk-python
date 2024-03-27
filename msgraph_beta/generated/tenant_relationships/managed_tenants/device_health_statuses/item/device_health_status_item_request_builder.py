@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class DeviceHealthStatusItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/deviceHealthStatuses/{deviceHealthStatus%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[DeviceHealthStatusItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceHealthStatuses for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class DeviceHealthStatusItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceHealthStatusItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceHealthStatus]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceHealthStatus]:
         """
         Get deviceHealthStatuses from tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class DeviceHealthStatusItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceHealthStatus, error_mapping)
     
-    async def patch(self,body: Optional[DeviceHealthStatus] = None, request_configuration: Optional[DeviceHealthStatusItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceHealthStatus]:
+    async def patch(self,body: Optional[DeviceHealthStatus] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceHealthStatus]:
         """
         Update the navigation property deviceHealthStatuses in tenantRelationships
         param body: The request body
@@ -87,7 +88,7 @@ class DeviceHealthStatusItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceHealthStatus, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[DeviceHealthStatusItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property deviceHealthStatuses for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class DeviceHealthStatusItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[DeviceHealthStatusItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get deviceHealthStatuses from tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class DeviceHealthStatusItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DeviceHealthStatus] = None, request_configuration: Optional[DeviceHealthStatusItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceHealthStatus] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property deviceHealthStatuses in tenantRelationships
         param body: The request body
@@ -133,16 +134,6 @@ class DeviceHealthStatusItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return DeviceHealthStatusItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceHealthStatusItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class DeviceHealthStatusItemRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class DeviceHealthStatusItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceHealthStatusItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DeviceHealthStatusItemRequestBuilder.DeviceHealthStatusItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceHealthStatusItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

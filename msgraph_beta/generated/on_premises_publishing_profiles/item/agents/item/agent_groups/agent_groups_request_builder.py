@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["onPremisesAgentGroup%2Did"] = on_premises_agent_group_id
         return OnPremisesAgentGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AgentGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[OnPremisesAgentGroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnPremisesAgentGroupCollectionResponse]:
         """
         List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OnPremisesAgentGroupCollectionResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[AgentGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -156,19 +157,6 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
 
         # Show only the first n items
         top: Optional[int] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AgentGroupsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[AgentGroupsRequestBuilder.AgentGroupsRequestBuilderGetQueryParameters] = None
 
     
 

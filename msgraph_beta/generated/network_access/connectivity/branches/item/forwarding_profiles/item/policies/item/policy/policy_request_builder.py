@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +28,7 @@ class PolicyRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/networkAccess/connectivity/branches/{branchSite%2Did}/forwardingProfiles/{forwardingProfile%2Did}/policies/{policyLink%2Did}/policy{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[PolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[Policy]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Policy]:
         """
         Policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,7 +49,7 @@ class PolicyRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Policy, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[PolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -95,19 +96,6 @@ class PolicyRequestBuilder(BaseRequestBuilder):
 
         # Select properties to be returned
         select: Optional[List[str]] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PolicyRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[PolicyRequestBuilder.PolicyRequestBuilderGetQueryParameters] = None
 
     
 

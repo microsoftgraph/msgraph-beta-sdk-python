@@ -2,6 +2,7 @@ from __future__ import annotations
 import datetime
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -12,15 +13,15 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .get_discovered_application_segment_report_with_start_date_time_with_end_date_time_get_response import GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeGetResponse
+    from .get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id_get_response import GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdGetResponse
 
-class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeRequestBuilder(BaseRequestBuilder):
+class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to call the getDiscoveredApplicationSegmentReport method.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]], end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> None:
         """
-        Instantiates a new MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeRequestBuilder and sets the default values.
+        Instantiates a new MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder and sets the default values.
         param end_date_time: Usage: endDateTime={endDateTime}
         param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
@@ -30,13 +31,13 @@ class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartD
         if isinstance(path_parameters, dict):
             path_parameters['endDateTime'] = str(end_date_time)
             path_parameters['startDateTime'] = str(start_date_time)
-        super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.getDiscoveredApplicationSegmentReport(startDateTime={startDateTime},endDateTime={endDateTime}){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.getDiscoveredApplicationSegmentReport(startDateTime={startDateTime},endDateTime={endDateTime},userId='@userId'){?%24count,%24filter,%24search,%24skip,%24top,userId*}", path_parameters)
     
-    async def get(self,request_configuration: Optional[MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeGetResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdGetResponse]:
         """
         Invoke function getDiscoveredApplicationSegmentReport
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeGetResponse]
+        Returns: Optional[GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -48,11 +49,11 @@ class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartD
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .get_discovered_application_segment_report_with_start_date_time_with_end_date_time_get_response import GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeGetResponse
+        from .get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id_get_response import GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdGetResponse
 
-        return await self.request_adapter.send_async(request_info, GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeGetResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Invoke function getDiscoveredApplicationSegmentReport
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,18 +64,18 @@ class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartD
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def with_url(self,raw_url: Optional[str] = None) -> MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, raw_url)
+        return MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters():
+    class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilderGetQueryParameters():
         """
         Invoke function getDiscoveredApplicationSegmentReport
         """
@@ -96,6 +97,8 @@ class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartD
                 return "%24skip"
             if original_name == "top":
                 return "%24top"
+            if original_name == "user_id":
+                return "userId"
             return original_name
         
         # Include count of items
@@ -113,18 +116,8 @@ class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartD
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeRequestBuilder.MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters] = None
+        # Usage: userId='@userId'
+        user_id: Optional[str] = None
 
     
 

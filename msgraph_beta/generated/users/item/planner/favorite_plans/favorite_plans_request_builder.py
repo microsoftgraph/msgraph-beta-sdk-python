@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -42,7 +43,7 @@ class FavoritePlansRequestBuilder(BaseRequestBuilder):
         url_tpl_params["plannerPlan%2Did"] = planner_plan_id
         return PlannerPlanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[FavoritePlansRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerPlanCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PlannerPlanCollectionResponse]:
         """
         Retrieve a list of plannerPlans that are marked as favorite by a user. You can mark a plan as favorite by updating the plannerUser resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class FavoritePlansRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PlannerPlanCollectionResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[FavoritePlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of plannerPlans that are marked as favorite by a user. You can mark a plan as favorite by updating the plannerUser resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -147,19 +148,6 @@ class FavoritePlansRequestBuilder(BaseRequestBuilder):
 
         # Show only the first n items
         top: Optional[int] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class FavoritePlansRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[FavoritePlansRequestBuilder.FavoritePlansRequestBuilderGetQueryParameters] = None
 
     
 

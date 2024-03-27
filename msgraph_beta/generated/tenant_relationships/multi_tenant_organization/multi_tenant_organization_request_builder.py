@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +29,7 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/multiTenantOrganization{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[MultiTenantOrganizationRequestBuilderGetRequestConfiguration] = None) -> Optional[MultiTenantOrganization]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganization]:
         """
         Get properties of the multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,13 +50,13 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganization, error_mapping)
     
-    async def patch(self,body: Optional[MultiTenantOrganization] = None, request_configuration: Optional[MultiTenantOrganizationRequestBuilderPatchRequestConfiguration] = None) -> Optional[MultiTenantOrganization]:
+    async def patch(self,body: Optional[MultiTenantOrganization] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganization]:
         """
-        Update the properties of a multi-tenant organization.
+        Create a new multi-tenant organization. By default, the creator tenant becomes an owner tenant upon successful creation. Only owner tenants can manage a multi-tenant organization. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganization]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganization-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/tenantrelationship-put-multitenantorganization?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -73,7 +74,7 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganization, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[MultiTenantOrganizationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get properties of the multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -84,9 +85,9 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[MultiTenantOrganization] = None, request_configuration: Optional[MultiTenantOrganizationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MultiTenantOrganization] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a multi-tenant organization.
+        Create a new multi-tenant organization. By default, the creator tenant becomes an owner tenant upon successful creation. Only owner tenants can manage a multi-tenant organization. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,28 +153,5 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MultiTenantOrganizationRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[MultiTenantOrganizationRequestBuilder.MultiTenantOrganizationRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MultiTenantOrganizationRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +32,7 @@ class ManagedTenantAlertItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/managedTenantAlerts/{managedTenantAlert%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property managedTenantAlerts for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,7 +50,7 @@ class ManagedTenantAlertItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedTenantAlert]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedTenantAlert]:
         """
         Get managedTenantAlerts from tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +70,7 @@ class ManagedTenantAlertItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagedTenantAlert, error_mapping)
     
-    async def patch(self,body: Optional[ManagedTenantAlert] = None, request_configuration: Optional[ManagedTenantAlertItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ManagedTenantAlert]:
+    async def patch(self,body: Optional[ManagedTenantAlert] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedTenantAlert]:
         """
         Update the navigation property managedTenantAlerts in tenantRelationships
         param body: The request body
@@ -92,7 +93,7 @@ class ManagedTenantAlertItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagedTenantAlert, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property managedTenantAlerts for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +104,7 @@ class ManagedTenantAlertItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get managedTenantAlerts from tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -114,7 +115,7 @@ class ManagedTenantAlertItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ManagedTenantAlert] = None, request_configuration: Optional[ManagedTenantAlertItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ManagedTenantAlert] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property managedTenantAlerts in tenantRelationships
         param body: The request body
@@ -184,16 +185,6 @@ class ManagedTenantAlertItemRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphManagedTenantsAddUserInputLogRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class ManagedTenantAlertItemRequestBuilderGetQueryParameters():
         """
@@ -219,28 +210,5 @@ class ManagedTenantAlertItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ManagedTenantAlertItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ManagedTenantAlertItemRequestBuilder.ManagedTenantAlertItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ManagedTenantAlertItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

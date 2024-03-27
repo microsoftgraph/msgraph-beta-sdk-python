@@ -5,25 +5,25 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
-    from ....models.networkaccess.discovered_application_segment_report import DiscoveredApplicationSegmentReport
+    from ....models.conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
 
 from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeGetResponse(BaseCollectionPaginationCountResponse):
+class EvaluatePostResponse(BaseCollectionPaginationCountResponse):
     # The value property
-    value: Optional[List[DiscoveredApplicationSegmentReport]] = None
+    value: Optional[List[ConditionalAccessWhatIfPolicy]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeGetResponse:
+    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EvaluatePostResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
-        Returns: GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeGetResponse
+        Returns: EvaluatePostResponse
         """
         if not parse_node:
             raise TypeError("parse_node cannot be null.")
-        return GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeGetResponse()
+        return EvaluatePostResponse()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -31,13 +31,13 @@ class GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeGetRe
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
-        from ....models.networkaccess.discovered_application_segment_report import DiscoveredApplicationSegmentReport
+        from ....models.conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
 
         from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
-        from ....models.networkaccess.discovered_application_segment_report import DiscoveredApplicationSegmentReport
+        from ....models.conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(DiscoveredApplicationSegmentReport)),
+            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(ConditionalAccessWhatIfPolicy)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class LocalizedNotificationMessageItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}/localizedNotificationMessages/{localizedNotificationMessage%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[LocalizedNotificationMessageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property localizedNotificationMessages for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class LocalizedNotificationMessageItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[LocalizedNotificationMessageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[LocalizedNotificationMessage]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[LocalizedNotificationMessage]:
         """
         The list of localized messages for this Notification Message Template.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class LocalizedNotificationMessageItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, LocalizedNotificationMessage, error_mapping)
     
-    async def patch(self,body: Optional[LocalizedNotificationMessage] = None, request_configuration: Optional[LocalizedNotificationMessageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[LocalizedNotificationMessage]:
+    async def patch(self,body: Optional[LocalizedNotificationMessage] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[LocalizedNotificationMessage]:
         """
         Update the navigation property localizedNotificationMessages in deviceManagement
         param body: The request body
@@ -87,7 +88,7 @@ class LocalizedNotificationMessageItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, LocalizedNotificationMessage, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[LocalizedNotificationMessageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property localizedNotificationMessages for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class LocalizedNotificationMessageItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[LocalizedNotificationMessageItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The list of localized messages for this Notification Message Template.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class LocalizedNotificationMessageItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[LocalizedNotificationMessage] = None, request_configuration: Optional[LocalizedNotificationMessageItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[LocalizedNotificationMessage] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property localizedNotificationMessages in deviceManagement
         param body: The request body
@@ -133,16 +134,6 @@ class LocalizedNotificationMessageItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return LocalizedNotificationMessageItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class LocalizedNotificationMessageItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class LocalizedNotificationMessageItemRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class LocalizedNotificationMessageItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class LocalizedNotificationMessageItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[LocalizedNotificationMessageItemRequestBuilder.LocalizedNotificationMessageItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class LocalizedNotificationMessageItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

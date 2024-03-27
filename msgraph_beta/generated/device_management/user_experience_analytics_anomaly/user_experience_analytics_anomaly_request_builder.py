@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class UserExperienceAnalyticsAnomalyRequestBuilder(BaseRequestBuilder):
         url_tpl_params["userExperienceAnalyticsAnomaly%2Did"] = user_experience_analytics_anomaly_id
         return UserExperienceAnalyticsAnomalyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderGetRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsAnomalyCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsAnomalyCollectionResponse]:
         """
         The user experience analytics anomaly entity contains anomaly details.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class UserExperienceAnalyticsAnomalyRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsAnomalyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UserExperienceAnalyticsAnomaly] = None, request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderPostRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsAnomaly]:
+    async def post(self,body: Optional[UserExperienceAnalyticsAnomaly] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsAnomaly]:
         """
         Create new navigation property to userExperienceAnalyticsAnomaly for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class UserExperienceAnalyticsAnomalyRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsAnomaly, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The user experience analytics anomaly entity contains anomaly details.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class UserExperienceAnalyticsAnomalyRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UserExperienceAnalyticsAnomaly] = None, request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UserExperienceAnalyticsAnomaly] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to userExperienceAnalyticsAnomaly for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class UserExperienceAnalyticsAnomalyRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserExperienceAnalyticsAnomalyRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[UserExperienceAnalyticsAnomalyRequestBuilder.UserExperienceAnalyticsAnomalyRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserExperienceAnalyticsAnomalyRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

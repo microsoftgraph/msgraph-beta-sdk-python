@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class ConfigurationCategoriesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["deviceManagementConfigurationCategory%2Did"] = device_management_configuration_category_id
         return DeviceManagementConfigurationCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ConfigurationCategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementConfigurationCategoryCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementConfigurationCategoryCollectionResponse]:
         """
         List of all Configuration Categories
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class ConfigurationCategoriesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementConfigurationCategoryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DeviceManagementConfigurationCategory] = None, request_configuration: Optional[ConfigurationCategoriesRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceManagementConfigurationCategory]:
+    async def post(self,body: Optional[DeviceManagementConfigurationCategory] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementConfigurationCategory]:
         """
         Create new navigation property to configurationCategories for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class ConfigurationCategoriesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementConfigurationCategory, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[ConfigurationCategoriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         List of all Configuration Categories
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class ConfigurationCategoriesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DeviceManagementConfigurationCategory] = None, request_configuration: Optional[ConfigurationCategoriesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceManagementConfigurationCategory] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to configurationCategories for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class ConfigurationCategoriesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ConfigurationCategoriesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ConfigurationCategoriesRequestBuilder.ConfigurationCategoriesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ConfigurationCategoriesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

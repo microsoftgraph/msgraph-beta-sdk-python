@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class FindingsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["finding%2Did"] = finding_id
         return FindingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[FindingsRequestBuilderGetRequestConfiguration] = None) -> Optional[FindingCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[FindingCollectionResponse]:
         """
         The output of the permissions usage data analysis performed by Permissions Management to assess risk with identities and resources.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class FindingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, FindingCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[Finding] = None, request_configuration: Optional[FindingsRequestBuilderPostRequestConfiguration] = None) -> Optional[Finding]:
+    async def post(self,body: Optional[Finding] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Finding]:
         """
         Create new navigation property to findings for identityGovernance
         param body: The request body
@@ -86,7 +87,7 @@ class FindingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Finding, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[FindingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The output of the permissions usage data analysis performed by Permissions Management to assess risk with identities and resources.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class FindingsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Finding] = None, request_configuration: Optional[FindingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Finding] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to findings for identityGovernance
         param body: The request body
@@ -186,28 +187,5 @@ class FindingsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class FindingsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[FindingsRequestBuilder.FindingsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class FindingsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

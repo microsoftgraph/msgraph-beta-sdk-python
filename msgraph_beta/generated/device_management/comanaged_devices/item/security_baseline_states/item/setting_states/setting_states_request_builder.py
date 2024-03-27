@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class SettingStatesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["securityBaselineSettingState%2Did"] = security_baseline_setting_state_id
         return SecurityBaselineSettingStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SettingStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[SecurityBaselineSettingStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SecurityBaselineSettingStateCollectionResponse]:
         """
         The security baseline state for different settings for a device
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class SettingStatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SecurityBaselineSettingStateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[SecurityBaselineSettingState] = None, request_configuration: Optional[SettingStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[SecurityBaselineSettingState]:
+    async def post(self,body: Optional[SecurityBaselineSettingState] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SecurityBaselineSettingState]:
         """
         Create new navigation property to settingStates for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class SettingStatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SecurityBaselineSettingState, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[SettingStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The security baseline state for different settings for a device
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class SettingStatesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[SecurityBaselineSettingState] = None, request_configuration: Optional[SettingStatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[SecurityBaselineSettingState] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to settingStates for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class SettingStatesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SettingStatesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[SettingStatesRequestBuilder.SettingStatesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SettingStatesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

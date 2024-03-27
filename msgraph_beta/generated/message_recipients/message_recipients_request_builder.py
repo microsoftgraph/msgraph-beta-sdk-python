@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class MessageRecipientsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["messageRecipient%2Did"] = message_recipient_id
         return MessageRecipientItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[MessageRecipientsRequestBuilderGetRequestConfiguration] = None) -> Optional[MessageRecipientCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MessageRecipientCollectionResponse]:
         """
         Get entities from messageRecipients
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class MessageRecipientsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MessageRecipientCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[MessageRecipient] = None, request_configuration: Optional[MessageRecipientsRequestBuilderPostRequestConfiguration] = None) -> Optional[MessageRecipient]:
+    async def post(self,body: Optional[MessageRecipient] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MessageRecipient]:
         """
         Add new entity to messageRecipients
         param body: The request body
@@ -86,7 +87,7 @@ class MessageRecipientsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MessageRecipient, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[MessageRecipientsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get entities from messageRecipients
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class MessageRecipientsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[MessageRecipient] = None, request_configuration: Optional[MessageRecipientsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[MessageRecipient] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Add new entity to messageRecipients
         param body: The request body
@@ -186,28 +187,5 @@ class MessageRecipientsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MessageRecipientsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[MessageRecipientsRequestBuilder.MessageRecipientsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MessageRecipientsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

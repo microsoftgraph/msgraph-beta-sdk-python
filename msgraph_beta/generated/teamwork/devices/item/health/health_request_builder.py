@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class HealthRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/teamwork/devices/{teamworkDevice%2Did}/health{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[HealthRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property health for teamwork
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class HealthRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[HealthRequestBuilderGetRequestConfiguration] = None) -> Optional[TeamworkDeviceHealth]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TeamworkDeviceHealth]:
         """
         Get the health details of a Microsoft Teams-enabled device. Device health is calculated based on the device configuration and other device parameters.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +66,7 @@ class HealthRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TeamworkDeviceHealth, error_mapping)
     
-    async def patch(self,body: Optional[TeamworkDeviceHealth] = None, request_configuration: Optional[HealthRequestBuilderPatchRequestConfiguration] = None) -> Optional[TeamworkDeviceHealth]:
+    async def patch(self,body: Optional[TeamworkDeviceHealth] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TeamworkDeviceHealth]:
         """
         Update the navigation property health in teamwork
         param body: The request body
@@ -88,7 +89,7 @@ class HealthRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TeamworkDeviceHealth, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[HealthRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property health for teamwork
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +100,7 @@ class HealthRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[HealthRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get the health details of a Microsoft Teams-enabled device. Device health is calculated based on the device configuration and other device parameters.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +111,7 @@ class HealthRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[TeamworkDeviceHealth] = None, request_configuration: Optional[HealthRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[TeamworkDeviceHealth] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property health in teamwork
         param body: The request body
@@ -134,16 +135,6 @@ class HealthRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return HealthRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class HealthRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class HealthRequestBuilderGetQueryParameters():
@@ -170,28 +161,5 @@ class HealthRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class HealthRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[HealthRequestBuilder.HealthRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class HealthRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

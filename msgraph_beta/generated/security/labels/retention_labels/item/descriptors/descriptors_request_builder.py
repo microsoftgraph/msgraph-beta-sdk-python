@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +32,7 @@ class DescriptorsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/labels/retentionLabels/{retentionLabel%2Did}/descriptors{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[DescriptorsRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property descriptors for security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,7 +50,7 @@ class DescriptorsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DescriptorsRequestBuilderGetRequestConfiguration] = None) -> Optional[FilePlanDescriptor]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[FilePlanDescriptor]:
         """
         Represents out-of-the-box values that provide more options to improve the manageability and organization of the content you need to label.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +70,7 @@ class DescriptorsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, FilePlanDescriptor, error_mapping)
     
-    async def patch(self,body: Optional[FilePlanDescriptor] = None, request_configuration: Optional[DescriptorsRequestBuilderPatchRequestConfiguration] = None) -> Optional[FilePlanDescriptor]:
+    async def patch(self,body: Optional[FilePlanDescriptor] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[FilePlanDescriptor]:
         """
         Update the navigation property descriptors in security
         param body: The request body
@@ -92,7 +93,7 @@ class DescriptorsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, FilePlanDescriptor, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[DescriptorsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property descriptors for security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +104,7 @@ class DescriptorsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[DescriptorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Represents out-of-the-box values that provide more options to improve the manageability and organization of the content you need to label.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -114,7 +115,7 @@ class DescriptorsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[FilePlanDescriptor] = None, request_configuration: Optional[DescriptorsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[FilePlanDescriptor] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property descriptors in security
         param body: The request body
@@ -184,16 +185,6 @@ class DescriptorsRequestBuilder(BaseRequestBuilder):
 
         return FilePlanReferenceTemplateRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DescriptorsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class DescriptorsRequestBuilderGetQueryParameters():
         """
@@ -219,28 +210,5 @@ class DescriptorsRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DescriptorsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DescriptorsRequestBuilder.DescriptorsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DescriptorsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

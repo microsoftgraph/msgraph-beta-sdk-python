@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +30,7 @@ class GetOffice365GroupsActivityCountsWithPeriodRequestBuilder(BaseRequestBuilde
             path_parameters['period'] = str(period)
         super().__init__(request_adapter, "{+baseurl}/reports/getOffice365GroupsActivityCounts(period='{period}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
-    async def get(self,request_configuration: Optional[GetOffice365GroupsActivityCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> Optional[GetOffice365GroupsActivityCountsWithPeriodGetResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetOffice365GroupsActivityCountsWithPeriodGetResponse]:
         """
         Invoke function getOffice365GroupsActivityCounts
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,7 +50,7 @@ class GetOffice365GroupsActivityCountsWithPeriodRequestBuilder(BaseRequestBuilde
 
         return await self.request_adapter.send_async(request_info, GetOffice365GroupsActivityCountsWithPeriodGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[GetOffice365GroupsActivityCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Invoke function getOffice365GroupsActivityCounts
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -124,19 +125,6 @@ class GetOffice365GroupsActivityCountsWithPeriodRequestBuilder(BaseRequestBuilde
 
         # Show only the first n items
         top: Optional[int] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GetOffice365GroupsActivityCountsWithPeriodRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[GetOffice365GroupsActivityCountsWithPeriodRequestBuilder.GetOffice365GroupsActivityCountsWithPeriodRequestBuilderGetQueryParameters] = None
 
     
 

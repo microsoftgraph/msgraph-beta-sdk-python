@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .conditional_access_grant_controls import ConditionalAccessGrantControls
     from .conditional_access_policy_state import ConditionalAccessPolicyState
     from .conditional_access_session_controls import ConditionalAccessSessionControls
+    from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
     from .entity import Entity
 
 from .entity import Entity
@@ -43,6 +44,14 @@ class ConditionalAccessPolicy(Entity):
         """
         if not parse_node:
             raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.conditionalAccessWhatIfPolicy".casefold():
+            from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
+
+            return ConditionalAccessWhatIfPolicy()
         return ConditionalAccessPolicy()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -54,12 +63,14 @@ class ConditionalAccessPolicy(Entity):
         from .conditional_access_grant_controls import ConditionalAccessGrantControls
         from .conditional_access_policy_state import ConditionalAccessPolicyState
         from .conditional_access_session_controls import ConditionalAccessSessionControls
+        from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
         from .entity import Entity
 
         from .conditional_access_condition_set import ConditionalAccessConditionSet
         from .conditional_access_grant_controls import ConditionalAccessGrantControls
         from .conditional_access_policy_state import ConditionalAccessPolicyState
         from .conditional_access_session_controls import ConditionalAccessSessionControls
+        from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {

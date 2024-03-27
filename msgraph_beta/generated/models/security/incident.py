@@ -50,6 +50,8 @@ class Incident(Entity):
     recommended_hunting_queries: Optional[List[RecommendedHuntingQuery]] = None
     # Only populated in case an incident is grouped together with another incident, as part of the logic that processes incidents. In such a case, the status property is redirected.
     redirect_incident_id: Optional[str] = None
+    # The resolvingComment property
+    resolving_comment: Optional[str] = None
     # The severity property
     severity: Optional[AlertSeverity] = None
     # The status property
@@ -109,6 +111,7 @@ class Incident(Entity):
             "recommendedActions": lambda n : setattr(self, 'recommended_actions', n.get_str_value()),
             "recommendedHuntingQueries": lambda n : setattr(self, 'recommended_hunting_queries', n.get_collection_of_object_values(RecommendedHuntingQuery)),
             "redirectIncidentId": lambda n : setattr(self, 'redirect_incident_id', n.get_str_value()),
+            "resolvingComment": lambda n : setattr(self, 'resolving_comment', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(AlertSeverity)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(IncidentStatus)),
             "systemTags": lambda n : setattr(self, 'system_tags', n.get_collection_of_primitive_values(str)),
@@ -142,6 +145,7 @@ class Incident(Entity):
         writer.write_str_value("recommendedActions", self.recommended_actions)
         writer.write_collection_of_object_values("recommendedHuntingQueries", self.recommended_hunting_queries)
         writer.write_str_value("redirectIncidentId", self.redirect_incident_id)
+        writer.write_str_value("resolvingComment", self.resolving_comment)
         writer.write_enum_value("severity", self.severity)
         writer.write_enum_value("status", self.status)
         writer.write_collection_of_primitive_values("systemTags", self.system_tags)

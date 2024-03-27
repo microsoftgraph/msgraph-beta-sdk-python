@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["b2cIdentityUserFlow%2Did"] = b2c_identity_user_flow_id
         return B2cIdentityUserFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[B2cUserFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[B2cIdentityUserFlowCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[B2cIdentityUserFlowCollectionResponse]:
         """
         Retrieve a list of b2cIdentityUserFlow objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, B2cIdentityUserFlowCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[B2cUserFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
+    async def post(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
         """
         Create a new b2cIdentityUserFlow object.
         param body: The request body
@@ -88,7 +89,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, B2cIdentityUserFlow, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[B2cUserFlowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of b2cIdentityUserFlow objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +100,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[B2cUserFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create a new b2cIdentityUserFlow object.
         param body: The request body
@@ -188,28 +189,5 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class B2cUserFlowsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[B2cUserFlowsRequestBuilder.B2cUserFlowsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class B2cUserFlowsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

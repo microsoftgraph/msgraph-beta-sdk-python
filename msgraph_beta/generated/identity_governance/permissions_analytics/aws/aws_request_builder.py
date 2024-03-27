@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +29,7 @@ class AwsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/permissionsAnalytics/aws{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[AwsRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property aws for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +47,7 @@ class AwsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AwsRequestBuilderGetRequestConfiguration] = None) -> Optional[PermissionsAnalytics]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PermissionsAnalytics]:
         """
         AWS permissions analytics findings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +67,7 @@ class AwsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PermissionsAnalytics, error_mapping)
     
-    async def patch(self,body: Optional[PermissionsAnalytics] = None, request_configuration: Optional[AwsRequestBuilderPatchRequestConfiguration] = None) -> Optional[PermissionsAnalytics]:
+    async def patch(self,body: Optional[PermissionsAnalytics] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PermissionsAnalytics]:
         """
         Update the navigation property aws in identityGovernance
         param body: The request body
@@ -89,7 +90,7 @@ class AwsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PermissionsAnalytics, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[AwsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property aws for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +101,7 @@ class AwsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[AwsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         AWS permissions analytics findings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +112,7 @@ class AwsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PermissionsAnalytics] = None, request_configuration: Optional[AwsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PermissionsAnalytics] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property aws in identityGovernance
         param body: The request body
@@ -154,16 +155,6 @@ class AwsRequestBuilder(BaseRequestBuilder):
 
         return PermissionsCreepIndexDistributionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AwsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class AwsRequestBuilderGetQueryParameters():
         """
@@ -189,28 +180,5 @@ class AwsRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AwsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[AwsRequestBuilder.AwsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AwsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

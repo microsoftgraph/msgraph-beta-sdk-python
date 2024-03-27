@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -32,7 +33,7 @@ class DeviceManagementScriptItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceManagementScripts/{deviceManagementScript%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[DeviceManagementScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceManagementScripts for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -50,7 +51,7 @@ class DeviceManagementScriptItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementScriptItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementScript]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementScript]:
         """
         The list of device management scripts associated with the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -70,7 +71,7 @@ class DeviceManagementScriptItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementScript, error_mapping)
     
-    async def patch(self,body: Optional[DeviceManagementScript] = None, request_configuration: Optional[DeviceManagementScriptItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceManagementScript]:
+    async def patch(self,body: Optional[DeviceManagementScript] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementScript]:
         """
         Update the navigation property deviceManagementScripts in deviceManagement
         param body: The request body
@@ -93,7 +94,7 @@ class DeviceManagementScriptItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementScript, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[DeviceManagementScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property deviceManagementScripts for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +105,7 @@ class DeviceManagementScriptItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[DeviceManagementScriptItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The list of device management scripts associated with the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -115,7 +116,7 @@ class DeviceManagementScriptItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DeviceManagementScript] = None, request_configuration: Optional[DeviceManagementScriptItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceManagementScript] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property deviceManagementScripts in deviceManagement
         param body: The request body
@@ -194,16 +195,6 @@ class DeviceManagementScriptItemRequestBuilder(BaseRequestBuilder):
 
         return UserRunStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceManagementScriptItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class DeviceManagementScriptItemRequestBuilderGetQueryParameters():
         """
@@ -229,28 +220,5 @@ class DeviceManagementScriptItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceManagementScriptItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DeviceManagementScriptItemRequestBuilder.DeviceManagementScriptItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceManagementScriptItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identity/authenticationEventListeners/{authenticationEventListener%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[AuthenticationEventListenerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Deletes an authenticationEventListener object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +46,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AuthenticationEventListenerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AuthenticationEventListener]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationEventListener]:
         """
         Get authenticationEventListeners from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +66,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthenticationEventListener, error_mapping)
     
-    async def patch(self,body: Optional[AuthenticationEventListener] = None, request_configuration: Optional[AuthenticationEventListenerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AuthenticationEventListener]:
+    async def patch(self,body: Optional[AuthenticationEventListener] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationEventListener]:
         """
         Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update.
         param body: The request body
@@ -89,7 +90,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthenticationEventListener, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[AuthenticationEventListenerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Deletes an authenticationEventListener object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +101,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[AuthenticationEventListenerItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get authenticationEventListeners from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +112,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[AuthenticationEventListener] = None, request_configuration: Optional[AuthenticationEventListenerItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AuthenticationEventListener] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update.
         param body: The request body
@@ -135,16 +136,6 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return AuthenticationEventListenerItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AuthenticationEventListenerItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class AuthenticationEventListenerItemRequestBuilderGetQueryParameters():
@@ -171,28 +162,5 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AuthenticationEventListenerItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[AuthenticationEventListenerItemRequestBuilder.AuthenticationEventListenerItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AuthenticationEventListenerItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

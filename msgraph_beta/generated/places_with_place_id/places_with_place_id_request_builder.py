@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +29,7 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
             path_parameters['placeId'] = str(place_id)
         super().__init__(request_adapter, "{+baseurl}/places(placeId='{placeId}')", path_parameters)
     
-    async def delete(self,request_configuration: Optional[PlacesWithPlaceIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete entity from places by placeId
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +47,7 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def patch(self,body: Optional[Place] = None, request_configuration: Optional[PlacesWithPlaceIdRequestBuilderPatchRequestConfiguration] = None) -> Optional[Place]:
+    async def patch(self,body: Optional[Place] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Place]:
         """
         Update the properties of place object, which can be a room, workspace, or roomList. You can identify the room, workspace, or roomList by specifying the id or emailAddress property.
         param body: The request body
@@ -71,7 +71,7 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Place, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[PlacesWithPlaceIdRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete entity from places by placeId
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -82,7 +82,7 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[Place] = None, request_configuration: Optional[PlacesWithPlaceIdRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Place] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of place object, which can be a room, workspace, or roomList. You can identify the room, workspace, or roomList by specifying the id or emailAddress property.
         param body: The request body
@@ -106,25 +106,5 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return PlacesWithPlaceIdRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PlacesWithPlaceIdRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PlacesWithPlaceIdRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

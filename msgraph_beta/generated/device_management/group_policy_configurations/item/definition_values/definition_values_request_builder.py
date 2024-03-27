@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class DefinitionValuesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["groupPolicyDefinitionValue%2Did"] = group_policy_definition_value_id
         return GroupPolicyDefinitionValueItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DefinitionValuesRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupPolicyDefinitionValueCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GroupPolicyDefinitionValueCollectionResponse]:
         """
         The list of enabled or disabled group policy definition values for the configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class DefinitionValuesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GroupPolicyDefinitionValueCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[GroupPolicyDefinitionValue] = None, request_configuration: Optional[DefinitionValuesRequestBuilderPostRequestConfiguration] = None) -> Optional[GroupPolicyDefinitionValue]:
+    async def post(self,body: Optional[GroupPolicyDefinitionValue] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[GroupPolicyDefinitionValue]:
         """
         Create new navigation property to definitionValues for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class DefinitionValuesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GroupPolicyDefinitionValue, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[DefinitionValuesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The list of enabled or disabled group policy definition values for the configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class DefinitionValuesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[GroupPolicyDefinitionValue] = None, request_configuration: Optional[DefinitionValuesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GroupPolicyDefinitionValue] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to definitionValues for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class DefinitionValuesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DefinitionValuesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DefinitionValuesRequestBuilder.DefinitionValuesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DefinitionValuesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class SubCategoriesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["subCategoryTemplate%2Did"] = sub_category_template_id
         return SubCategoryTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SubCategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[SubCategoryTemplateCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SubCategoryTemplateCollectionResponse]:
         """
         Get a list of subcategories subCategoryTemplate associated with a category template.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class SubCategoriesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SubCategoryTemplateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[SubCategoryTemplate] = None, request_configuration: Optional[SubCategoriesRequestBuilderPostRequestConfiguration] = None) -> Optional[SubCategoryTemplate]:
+    async def post(self,body: Optional[SubCategoryTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SubCategoryTemplate]:
         """
         Create a new subCategoryTemplate object.
         param body: The request body
@@ -88,7 +89,7 @@ class SubCategoriesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SubCategoryTemplate, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[SubCategoriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of subcategories subCategoryTemplate associated with a category template.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +100,7 @@ class SubCategoriesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[SubCategoryTemplate] = None, request_configuration: Optional[SubCategoriesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[SubCategoryTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create a new subCategoryTemplate object.
         param body: The request body
@@ -188,28 +189,5 @@ class SubCategoriesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SubCategoriesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[SubCategoriesRequestBuilder.SubCategoriesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SubCategoriesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +28,7 @@ class SecurityBaselineStateItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/securityBaselineStates/{securityBaselineState%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[SecurityBaselineStateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property securityBaselineStates for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +46,7 @@ class SecurityBaselineStateItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SecurityBaselineStateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SecurityBaselineState]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SecurityBaselineState]:
         """
         Security baseline states for this device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +66,7 @@ class SecurityBaselineStateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SecurityBaselineState, error_mapping)
     
-    async def patch(self,body: Optional[SecurityBaselineState] = None, request_configuration: Optional[SecurityBaselineStateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SecurityBaselineState]:
+    async def patch(self,body: Optional[SecurityBaselineState] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SecurityBaselineState]:
         """
         Update the navigation property securityBaselineStates in deviceManagement
         param body: The request body
@@ -88,7 +89,7 @@ class SecurityBaselineStateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SecurityBaselineState, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[SecurityBaselineStateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property securityBaselineStates for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +100,7 @@ class SecurityBaselineStateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[SecurityBaselineStateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Security baseline states for this device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +111,7 @@ class SecurityBaselineStateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[SecurityBaselineState] = None, request_configuration: Optional[SecurityBaselineStateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[SecurityBaselineState] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property securityBaselineStates in deviceManagement
         param body: The request body
@@ -144,16 +145,6 @@ class SecurityBaselineStateItemRequestBuilder(BaseRequestBuilder):
 
         return SettingStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SecurityBaselineStateItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class SecurityBaselineStateItemRequestBuilderGetQueryParameters():
         """
@@ -179,28 +170,5 @@ class SecurityBaselineStateItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SecurityBaselineStateItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[SecurityBaselineStateItemRequestBuilder.SecurityBaselineStateItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SecurityBaselineStateItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

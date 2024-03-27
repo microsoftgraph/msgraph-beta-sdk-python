@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +26,7 @@ class MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder(Base
         """
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/tenants/{tenant%2Did}/microsoft.graph.managedTenants.resetTenantOnboardingStatus", path_parameters)
     
-    async def post(self,request_configuration: Optional[MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[Tenant]:
+    async def post(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Tenant]:
         """
         Carries out the appropriate procedures to reset the onboarding status for the managed tenant that was removed from the multitenant management platform using the offboardTenant action. By invoking this action the platform attempts to onboard the managed tenant for management.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +47,7 @@ class MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder(Base
 
         return await self.request_adapter.send_async(request_info, Tenant, error_mapping)
     
-    def to_post_request_information(self,request_configuration: Optional[MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Carries out the appropriate procedures to reset the onboarding status for the managed tenant that was removed from the multitenant management platform using the offboardTenant action. By invoking this action the platform attempts to onboard the managed tenant for management.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,15 +67,5 @@ class MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder(Base
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

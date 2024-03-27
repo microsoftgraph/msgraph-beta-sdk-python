@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class NdesConnectorsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["ndesConnector%2Did"] = ndes_connector_id
         return NdesConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[NdesConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[NdesConnectorCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[NdesConnectorCollectionResponse]:
         """
         The collection of Ndes connectors for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class NdesConnectorsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, NdesConnectorCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[NdesConnector] = None, request_configuration: Optional[NdesConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[NdesConnector]:
+    async def post(self,body: Optional[NdesConnector] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[NdesConnector]:
         """
         Create new navigation property to ndesConnectors for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class NdesConnectorsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, NdesConnector, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[NdesConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The collection of Ndes connectors for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class NdesConnectorsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[NdesConnector] = None, request_configuration: Optional[NdesConnectorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[NdesConnector] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to ndesConnectors for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class NdesConnectorsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class NdesConnectorsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[NdesConnectorsRequestBuilder.NdesConnectorsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class NdesConnectorsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

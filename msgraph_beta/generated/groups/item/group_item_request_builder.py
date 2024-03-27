@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -23,6 +24,7 @@ if TYPE_CHECKING:
     from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
     from .conversations.conversations_request_builder import ConversationsRequestBuilder
     from .created_on_behalf_of.created_on_behalf_of_request_builder import CreatedOnBehalfOfRequestBuilder
+    from .delete_password_single_sign_on_credentials.delete_password_single_sign_on_credentials_request_builder import DeletePasswordSingleSignOnCredentialsRequestBuilder
     from .drive.drive_request_builder import DriveRequestBuilder
     from .drives.drives_request_builder import DrivesRequestBuilder
     from .endpoints.endpoints_request_builder import EndpointsRequestBuilder
@@ -31,6 +33,7 @@ if TYPE_CHECKING:
     from .extensions.extensions_request_builder import ExtensionsRequestBuilder
     from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
     from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
+    from .get_password_single_sign_on_credentials.get_password_single_sign_on_credentials_request_builder import GetPasswordSingleSignOnCredentialsRequestBuilder
     from .group_lifecycle_policies.group_lifecycle_policies_request_builder import GroupLifecyclePoliciesRequestBuilder
     from .members.members_request_builder import MembersRequestBuilder
     from .members_with_license_errors.members_with_license_errors_request_builder import MembersWithLicenseErrorsRequestBuilder
@@ -71,7 +74,7 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/groups/{group%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[GroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Deletes a group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted. This isn't applicable to Security groups and Distribution groups that are permanently deleted immediately. To learn more, see deletedItems.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -90,7 +93,7 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Group]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Group]:
         """
         Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren't_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren't returned in the $select query. Because the group resource supports extensions, you can also use the GET operation to get custom properties and extension data in a group instance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +114,7 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Group, error_mapping)
     
-    async def patch(self,body: Optional[Group] = None, request_configuration: Optional[GroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Group]:
+    async def patch(self,body: Optional[Group] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Group]:
         """
         Create a new group object if it doesn't exist, or update the properties of an existing group object.You can create or update the following types of group: By default, this operation returns only a subset of the properties for each group. For a list of properties that are returned by default, see thethe Properties section of the group resource. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option. Note: To create a team, first create a group then add a team to it, see create team.
         param body: The request body
@@ -135,7 +138,7 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Group, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[GroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Deletes a group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted. This isn't applicable to Security groups and Distribution groups that are permanently deleted immediately. To learn more, see deletedItems.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -146,7 +149,7 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[GroupItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren't_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren't returned in the $select query. Because the group resource supports extensions, you can also use the GET operation to get custom properties and extension data in a group instance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -157,7 +160,7 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[Group] = None, request_configuration: Optional[GroupItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Group] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create a new group object if it doesn't exist, or update the properties of an existing group object.You can create or update the following types of group: By default, this operation returns only a subset of the properties for each group. For a list of properties that are returned by default, see thethe Properties section of the group resource. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option. Note: To create a team, first create a group then add a team to it, see create team.
         param body: The request body
@@ -282,6 +285,15 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
         return CreatedOnBehalfOfRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def delete_password_single_sign_on_credentials(self) -> DeletePasswordSingleSignOnCredentialsRequestBuilder:
+        """
+        Provides operations to call the deletePasswordSingleSignOnCredentials method.
+        """
+        from .delete_password_single_sign_on_credentials.delete_password_single_sign_on_credentials_request_builder import DeletePasswordSingleSignOnCredentialsRequestBuilder
+
+        return DeletePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def drive(self) -> DriveRequestBuilder:
         """
         Provides operations to manage the drive property of the microsoft.graph.group entity.
@@ -352,6 +364,15 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
         from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
 
         return GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_password_single_sign_on_credentials(self) -> GetPasswordSingleSignOnCredentialsRequestBuilder:
+        """
+        Provides operations to call the getPasswordSingleSignOnCredentials method.
+        """
+        from .get_password_single_sign_on_credentials.get_password_single_sign_on_credentials_request_builder import GetPasswordSingleSignOnCredentialsRequestBuilder
+
+        return GetPasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def group_lifecycle_policies(self) -> GroupLifecyclePoliciesRequestBuilder:
@@ -587,16 +608,6 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
 
         return ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GroupItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class GroupItemRequestBuilderGetQueryParameters():
         """
@@ -622,28 +633,5 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GroupItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[GroupItemRequestBuilder.GroupItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GroupItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

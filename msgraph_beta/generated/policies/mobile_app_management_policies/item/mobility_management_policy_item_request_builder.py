@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +28,7 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/policies/mobileAppManagementPolicies/{mobilityManagementPolicy%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete a mobilityManagementPolicy object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +47,7 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[MobilityManagementPolicy]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MobilityManagementPolicy]:
         """
         Read the properties and relationships of a mobilityManagementPolicy object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +68,7 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MobilityManagementPolicy, error_mapping)
     
-    async def patch(self,body: Optional[MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[MobilityManagementPolicy]:
+    async def patch(self,body: Optional[MobilityManagementPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MobilityManagementPolicy]:
         """
         Update the properties of a mobilityManagementPolicy object.
         param body: The request body
@@ -91,7 +92,7 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MobilityManagementPolicy, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete a mobilityManagementPolicy object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +103,7 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of a mobilityManagementPolicy object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -113,7 +114,7 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MobilityManagementPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a mobilityManagementPolicy object.
         param body: The request body
@@ -147,16 +148,6 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
 
         return IncludedGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class MobilityManagementPolicyItemRequestBuilderGetQueryParameters():
         """
@@ -182,28 +173,5 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[MobilityManagementPolicyItemRequestBuilder.MobilityManagementPolicyItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

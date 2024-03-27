@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -25,7 +25,7 @@ class RecordingRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/recording", path_parameters)
     
-    async def get(self,request_configuration: Optional[RecordingRequestBuilderGetRequestConfiguration] = None) -> bytes:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> bytes:
         """
         Get recording for the navigation property onlineMeetings from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +44,7 @@ class RecordingRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
-    async def put(self,body: bytes, request_configuration: Optional[RecordingRequestBuilderPutRequestConfiguration] = None) -> bytes:
+    async def put(self,body: bytes, request_configuration: Optional[RequestConfiguration] = None) -> bytes:
         """
         Update recording for the navigation property onlineMeetings in users
         param body: Binary request body
@@ -65,7 +65,7 @@ class RecordingRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RecordingRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get recording for the navigation property onlineMeetings from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -76,7 +76,7 @@ class RecordingRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/octet-stream, application/json")
         return request_info
     
-    def to_put_request_information(self,body: bytes, request_configuration: Optional[RecordingRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
+    def to_put_request_information(self,body: bytes, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update recording for the navigation property onlineMeetings in users
         param body: Binary request body
@@ -100,25 +100,5 @@ class RecordingRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return RecordingRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class RecordingRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class RecordingRequestBuilderPutRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

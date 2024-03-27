@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +28,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/virtualEvents{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[VirtualEventsRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property virtualEvents for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +46,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[VirtualEventsRequestBuilderGetRequestConfiguration] = None) -> Optional[UserVirtualEventsRoot]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserVirtualEventsRoot]:
         """
         Get virtualEvents from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +66,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserVirtualEventsRoot, error_mapping)
     
-    async def patch(self,body: Optional[UserVirtualEventsRoot] = None, request_configuration: Optional[VirtualEventsRequestBuilderPatchRequestConfiguration] = None) -> Optional[UserVirtualEventsRoot]:
+    async def patch(self,body: Optional[UserVirtualEventsRoot] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserVirtualEventsRoot]:
         """
         Update the navigation property virtualEvents in users
         param body: The request body
@@ -88,7 +89,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserVirtualEventsRoot, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[VirtualEventsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property virtualEvents for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +100,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[VirtualEventsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get virtualEvents from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +111,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[UserVirtualEventsRoot] = None, request_configuration: Optional[VirtualEventsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UserVirtualEventsRoot] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property virtualEvents in users
         param body: The request body
@@ -144,16 +145,6 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
 
         return WebinarsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class VirtualEventsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class VirtualEventsRequestBuilderGetQueryParameters():
         """
@@ -179,28 +170,5 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class VirtualEventsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[VirtualEventsRequestBuilder.VirtualEventsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class VirtualEventsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 
