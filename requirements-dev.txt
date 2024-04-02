@@ -68,7 +68,7 @@ opentelemetry-semantic-conventions==0.45b0
 
 portalocker==2.8.2
 
-pycparser==2.21
+pycparser==2.22
 
 PyJWT==2.8.0
 
