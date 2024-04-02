@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,7 +46,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["customCalloutExtension%2Did"] = custom_callout_extension_id
         return CustomCalloutExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AccessPackageCustomWorkflowExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[CustomCalloutExtensionCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomCalloutExtensionCollectionResponse]:
         """
         Get a list of the accessPackageAssignmentRequestWorkflowExtension and accessPackageAssignmentWorkflowExtension objects and their properties. The resulting list includes all the customAccessPackageWorkflowExtension objects for the catalog that the caller has access to read. Each object includes an @odata.type property that indicates whether the object is an  accessPackageAssignmentRequestWorkflowExtension or an accessPackageAssignmentWorkflowExtension.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +68,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomCalloutExtensionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CustomCalloutExtension] = None, request_configuration: Optional[AccessPackageCustomWorkflowExtensionsRequestBuilderPostRequestConfiguration] = None) -> Optional[CustomCalloutExtension]:
+    async def post(self,body: Optional[CustomCalloutExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomCalloutExtension]:
         """
         Create new navigation property to accessPackageCustomWorkflowExtensions for identityGovernance
         param body: The request body
@@ -91,7 +92,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomCalloutExtension, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[AccessPackageCustomWorkflowExtensionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the accessPackageAssignmentRequestWorkflowExtension and accessPackageAssignmentWorkflowExtension objects and their properties. The resulting list includes all the customAccessPackageWorkflowExtension objects for the catalog that the caller has access to read. Each object includes an @odata.type property that indicates whether the object is an  accessPackageAssignmentRequestWorkflowExtension or an accessPackageAssignmentWorkflowExtension.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +104,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CustomCalloutExtension] = None, request_configuration: Optional[AccessPackageCustomWorkflowExtensionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CustomCalloutExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to accessPackageCustomWorkflowExtensions for identityGovernance
         param body: The request body
@@ -194,28 +195,5 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AccessPackageCustomWorkflowExtensionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[AccessPackageCustomWorkflowExtensionsRequestBuilder.AccessPackageCustomWorkflowExtensionsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AccessPackageCustomWorkflowExtensionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class OnPremisesConnectionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["cloudPcOnPremisesConnection%2Did"] = cloud_pc_on_premises_connection_id
         return CloudPcOnPremisesConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[OnPremisesConnectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcOnPremisesConnectionCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcOnPremisesConnectionCollectionResponse]:
         """
         Get a list of the cloudPcOnPremisesConnection objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class OnPremisesConnectionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcOnPremisesConnectionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CloudPcOnPremisesConnection] = None, request_configuration: Optional[OnPremisesConnectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcOnPremisesConnection]:
+    async def post(self,body: Optional[CloudPcOnPremisesConnection] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcOnPremisesConnection]:
         """
         Create a new cloudPcOnPremisesConnection object for provisioning Cloud PCs.
         param body: The request body
@@ -88,7 +89,7 @@ class OnPremisesConnectionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcOnPremisesConnection, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[OnPremisesConnectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the cloudPcOnPremisesConnection objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +100,7 @@ class OnPremisesConnectionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CloudPcOnPremisesConnection] = None, request_configuration: Optional[OnPremisesConnectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CloudPcOnPremisesConnection] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create a new cloudPcOnPremisesConnection object for provisioning Cloud PCs.
         param body: The request body
@@ -188,28 +189,5 @@ class OnPremisesConnectionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class OnPremisesConnectionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[OnPremisesConnectionsRequestBuilder.OnPremisesConnectionsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class OnPremisesConnectionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

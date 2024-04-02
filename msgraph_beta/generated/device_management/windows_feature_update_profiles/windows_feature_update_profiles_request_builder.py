@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class WindowsFeatureUpdateProfilesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["windowsFeatureUpdateProfile%2Did"] = windows_feature_update_profile_id
         return WindowsFeatureUpdateProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WindowsFeatureUpdateProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsFeatureUpdateProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsFeatureUpdateProfileCollectionResponse]:
         """
         A collection of windows feature update profiles
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class WindowsFeatureUpdateProfilesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsFeatureUpdateProfileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[WindowsFeatureUpdateProfile] = None, request_configuration: Optional[WindowsFeatureUpdateProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[WindowsFeatureUpdateProfile]:
+    async def post(self,body: Optional[WindowsFeatureUpdateProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsFeatureUpdateProfile]:
         """
         Create new navigation property to windowsFeatureUpdateProfiles for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class WindowsFeatureUpdateProfilesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsFeatureUpdateProfile, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[WindowsFeatureUpdateProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         A collection of windows feature update profiles
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class WindowsFeatureUpdateProfilesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[WindowsFeatureUpdateProfile] = None, request_configuration: Optional[WindowsFeatureUpdateProfilesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WindowsFeatureUpdateProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to windowsFeatureUpdateProfiles for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class WindowsFeatureUpdateProfilesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class WindowsFeatureUpdateProfilesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[WindowsFeatureUpdateProfilesRequestBuilder.WindowsFeatureUpdateProfilesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class WindowsFeatureUpdateProfilesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

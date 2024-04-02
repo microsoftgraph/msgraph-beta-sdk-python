@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -47,7 +48,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         url_tpl_params["deviceAndAppManagementAssignmentFilter%2Did"] = device_and_app_management_assignment_filter_id
         return DeviceAndAppManagementAssignmentFilterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AssignmentFiltersRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceAndAppManagementAssignmentFilterCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceAndAppManagementAssignmentFilterCollectionResponse]:
         """
         The list of assignment filters
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -79,7 +80,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
 
         return GetPlatformSupportedPropertiesWithPlatformRequestBuilder(self.request_adapter, self.path_parameters, platform)
     
-    async def post(self,body: Optional[DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[AssignmentFiltersRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceAndAppManagementAssignmentFilter]:
+    async def post(self,body: Optional[DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceAndAppManagementAssignmentFilter]:
         """
         Create new navigation property to assignmentFilters for deviceManagement
         param body: The request body
@@ -102,7 +103,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceAndAppManagementAssignmentFilter, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[AssignmentFiltersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The list of assignment filters
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -113,7 +114,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[AssignmentFiltersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to assignmentFilters for deviceManagement
         param body: The request body
@@ -229,28 +230,5 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AssignmentFiltersRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[AssignmentFiltersRequestBuilder.AssignmentFiltersRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AssignmentFiltersRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

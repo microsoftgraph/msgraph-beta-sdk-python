@@ -19,13 +19,13 @@ class Place(Entity):
     address: Optional[PhysicalAddress] = None
     # The name associated with the place.
     display_name: Optional[str] = None
-    # Specifies the place location in latitude, longitude and (optionally) altitude coordinates.
+    # Specifies the place location in latitude, longitude, and (optionally) altitude coordinates.
     geo_coordinates: Optional[OutlookGeoCoordinates] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The phone number of the place.
     phone: Optional[str] = None
-    # An alternate immutable unique identifier of the place.
+    # A unique, immutable identifier for the place. Read-only. The value of this identifier is equal to the ExternalDirectoryObjectId returned from the Get-Mailbox cmdlet.
     place_id: Optional[str] = None
     
     @staticmethod

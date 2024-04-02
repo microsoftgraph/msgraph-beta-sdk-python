@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +28,7 @@ class PermissionsCreepIndexDistributionItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/permissionsAnalytics/gcp/permissionsCreepIndexDistributions/{permissionsCreepIndexDistribution%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[PermissionsCreepIndexDistributionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property permissionsCreepIndexDistributions for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +46,7 @@ class PermissionsCreepIndexDistributionItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PermissionsCreepIndexDistributionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PermissionsCreepIndexDistribution]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PermissionsCreepIndexDistribution]:
         """
         Represents the Permissions Creep Index (PCI) for the authorization system. PCI distribution chart shows the classification of human and nonhuman identities based on the PCI score in three buckets (low, medium, high).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +66,7 @@ class PermissionsCreepIndexDistributionItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PermissionsCreepIndexDistribution, error_mapping)
     
-    async def patch(self,body: Optional[PermissionsCreepIndexDistribution] = None, request_configuration: Optional[PermissionsCreepIndexDistributionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PermissionsCreepIndexDistribution]:
+    async def patch(self,body: Optional[PermissionsCreepIndexDistribution] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PermissionsCreepIndexDistribution]:
         """
         Update the navigation property permissionsCreepIndexDistributions in identityGovernance
         param body: The request body
@@ -88,7 +89,7 @@ class PermissionsCreepIndexDistributionItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PermissionsCreepIndexDistribution, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[PermissionsCreepIndexDistributionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property permissionsCreepIndexDistributions for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +100,7 @@ class PermissionsCreepIndexDistributionItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[PermissionsCreepIndexDistributionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Represents the Permissions Creep Index (PCI) for the authorization system. PCI distribution chart shows the classification of human and nonhuman identities based on the PCI score in three buckets (low, medium, high).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +111,7 @@ class PermissionsCreepIndexDistributionItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PermissionsCreepIndexDistribution] = None, request_configuration: Optional[PermissionsCreepIndexDistributionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PermissionsCreepIndexDistribution] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property permissionsCreepIndexDistributions in identityGovernance
         param body: The request body
@@ -144,16 +145,6 @@ class PermissionsCreepIndexDistributionItemRequestBuilder(BaseRequestBuilder):
 
         return AuthorizationSystemRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PermissionsCreepIndexDistributionItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class PermissionsCreepIndexDistributionItemRequestBuilderGetQueryParameters():
         """
@@ -179,28 +170,5 @@ class PermissionsCreepIndexDistributionItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PermissionsCreepIndexDistributionItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[PermissionsCreepIndexDistributionItemRequestBuilder.PermissionsCreepIndexDistributionItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PermissionsCreepIndexDistributionItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

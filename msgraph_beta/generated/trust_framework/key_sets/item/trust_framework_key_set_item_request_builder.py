@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +32,7 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/trustFramework/keySets/{trustFrameworkKeySet%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete a trustFrameworkKeySet.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -50,7 +51,7 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
         """
         Retrieve the properties and associations for a Trustframeworkkeyset.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -71,7 +72,7 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TrustFrameworkKeySet, error_mapping)
     
-    async def patch(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
+    async def patch(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
         """
         Update the properties of a trustFrameworkKeyset. This operation will replace the content of an existing keyset. Specifying the ID in the request payload is optional.
         param body: The request body
@@ -95,7 +96,7 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TrustFrameworkKeySet, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete a trustFrameworkKeySet.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -106,7 +107,7 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the properties and associations for a Trustframeworkkeyset.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -117,7 +118,7 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a trustFrameworkKeyset. This operation will replace the content of an existing keyset. Specifying the ID in the request payload is optional.
         param body: The request body
@@ -187,16 +188,6 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
 
         return UploadSecretRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class TrustFrameworkKeySetItemRequestBuilderGetQueryParameters():
         """
@@ -222,28 +213,5 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[TrustFrameworkKeySetItemRequestBuilder.TrustFrameworkKeySetItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

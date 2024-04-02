@@ -134,6 +134,7 @@ if TYPE_CHECKING:
     from .threat_submission.threat_submission_request_builder import ThreatSubmissionRequestBuilder
     from .trust_framework.trust_framework_request_builder import TrustFrameworkRequestBuilder
     from .users.users_request_builder import UsersRequestBuilder
+    from .workplace.workplace_request_builder import WorkplaceRequestBuilder
 
 class BaseGraphServiceClient(BaseRequestBuilder):
     """
@@ -1252,5 +1253,14 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .users.users_request_builder import UsersRequestBuilder
 
         return UsersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def workplace(self) -> WorkplaceRequestBuilder:
+        """
+        Provides operations to manage the workplace singleton.
+        """
+        from .workplace.workplace_request_builder import WorkplaceRequestBuilder
+
+        return WorkplaceRequestBuilder(self.request_adapter, self.path_parameters)
     
 

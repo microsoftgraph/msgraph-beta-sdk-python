@@ -11,10 +11,18 @@ from .entity import Entity
 
 @dataclass
 class UserSignUpMetric(Entity):
+    # The appId property
+    app_id: Optional[str] = None
     # The total number of users who signed up in the specified period. Supports $filter (eq).
     count: Optional[int] = None
+    # The country property
+    country: Optional[str] = None
     # The date of the user insight.
     fact_date: Optional[datetime.date] = None
+    # The identityProvider property
+    identity_provider: Optional[str] = None
+    # The language property
+    language: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The device plaform that the customers used. Supports $filter (eq).
@@ -41,8 +49,12 @@ class UserSignUpMetric(Entity):
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "count": lambda n : setattr(self, 'count', n.get_int_value()),
+            "country": lambda n : setattr(self, 'country', n.get_str_value()),
             "factDate": lambda n : setattr(self, 'fact_date', n.get_date_value()),
+            "identityProvider": lambda n : setattr(self, 'identity_provider', n.get_str_value()),
+            "language": lambda n : setattr(self, 'language', n.get_str_value()),
             "os": lambda n : setattr(self, 'os', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -58,8 +70,12 @@ class UserSignUpMetric(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("appId", self.app_id)
         writer.write_int_value("count", self.count)
+        writer.write_str_value("country", self.country)
         writer.write_date_value("factDate", self.fact_date)
+        writer.write_str_value("identityProvider", self.identity_provider)
+        writer.write_str_value("language", self.language)
         writer.write_str_value("os", self.os)
     
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class DeviceStatesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["embeddedSIMDeviceState%2Did"] = embedded_s_i_m_device_state_id
         return EmbeddedSIMDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[EmbeddedSIMDeviceStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EmbeddedSIMDeviceStateCollectionResponse]:
         """
         Navigational property to a list of device states for this pool.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class DeviceStatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EmbeddedSIMDeviceStateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[EmbeddedSIMDeviceState] = None, request_configuration: Optional[DeviceStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[EmbeddedSIMDeviceState]:
+    async def post(self,body: Optional[EmbeddedSIMDeviceState] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EmbeddedSIMDeviceState]:
         """
         Create new navigation property to deviceStates for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class DeviceStatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EmbeddedSIMDeviceState, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[DeviceStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Navigational property to a list of device states for this pool.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class DeviceStatesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[EmbeddedSIMDeviceState] = None, request_configuration: Optional[DeviceStatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EmbeddedSIMDeviceState] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to deviceStates for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class DeviceStatesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceStatesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DeviceStatesRequestBuilder.DeviceStatesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceStatesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

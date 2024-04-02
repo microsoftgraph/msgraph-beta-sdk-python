@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -19,6 +20,7 @@ if TYPE_CHECKING:
     from .checkout.checkout_request_builder import CheckoutRequestBuilder
     from .children.children_request_builder import ChildrenRequestBuilder
     from .content.content_request_builder import ContentRequestBuilder
+    from .content_stream.content_stream_request_builder import ContentStreamRequestBuilder
     from .copy.copy_request_builder import CopyRequestBuilder
     from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
     from .create_link.create_link_request_builder import CreateLinkRequestBuilder
@@ -57,7 +59,7 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[DriveItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete a DriveItem by using its ID or path.Deleting items using this method moves the items to the recycle bin instead of permanently deleting the item.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -88,7 +90,7 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
 
         return DeltaWithTokenRequestBuilder(self.request_adapter, self.path_parameters, token)
     
-    async def get(self,request_configuration: Optional[DriveItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DriveItem]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DriveItem]:
         """
         All items contained in the drive. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -126,13 +128,13 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
 
         return GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, interval, start_date_time)
     
-    async def patch(self,body: Optional[DriveItem] = None, request_configuration: Optional[DriveItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DriveItem]:
+    async def patch(self,body: Optional[DriveItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DriveItem]:
         """
-        To move a DriveItem to a new parent item, your app requests to update the parentReference of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.
+        Update the metadata for a DriveItem by ID or path. You can also use update to move an item to another parent by updating the item's parentReference property.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveItem]
-        Find more info here: https://learn.microsoft.com/graph/api/driveitem-move?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/driveitem-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -162,7 +164,7 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
 
         return SearchWithQRequestBuilder(self.request_adapter, self.path_parameters, q)
     
-    def to_delete_request_information(self,request_configuration: Optional[DriveItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete a DriveItem by using its ID or path.Deleting items using this method moves the items to the recycle bin instead of permanently deleting the item.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -173,7 +175,7 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[DriveItemItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         All items contained in the drive. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -184,9 +186,9 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DriveItem] = None, request_configuration: Optional[DriveItemItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DriveItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        To move a DriveItem to a new parent item, your app requests to update the parentReference of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.
+        Update the metadata for a DriveItem by ID or path. You can also use update to move an item to another parent by updating the item's parentReference property.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -271,6 +273,15 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
         from .content.content_request_builder import ContentRequestBuilder
 
         return ContentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def content_stream(self) -> ContentStreamRequestBuilder:
+        """
+        Provides operations to manage the media for the drive entity.
+        """
+        from .content_stream.content_stream_request_builder import ContentStreamRequestBuilder
+
+        return ContentStreamRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def copy(self) -> CopyRequestBuilder:
@@ -461,16 +472,6 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
 
         return WorkbookRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DriveItemItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class DriveItemItemRequestBuilderGetQueryParameters():
         """
@@ -496,28 +497,5 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DriveItemItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DriveItemItemRequestBuilder.DriveItemItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DriveItemItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

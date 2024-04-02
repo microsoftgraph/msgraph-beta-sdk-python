@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .language_metric import LanguageMetric
 
 from .entity import Entity
 
@@ -15,6 +16,8 @@ class UserCountMetric(Entity):
     count: Optional[int] = None
     # The date of the insight.
     fact_date: Optional[datetime.date] = None
+    # The languages property
+    languages: Optional[List[LanguageMetric]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -35,12 +38,15 @@ class UserCountMetric(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .language_metric import LanguageMetric
 
         from .entity import Entity
+        from .language_metric import LanguageMetric
 
         fields: Dict[str, Callable[[Any], None]] = {
             "count": lambda n : setattr(self, 'count', n.get_int_value()),
             "factDate": lambda n : setattr(self, 'fact_date', n.get_date_value()),
+            "languages": lambda n : setattr(self, 'languages', n.get_collection_of_object_values(LanguageMetric)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -57,5 +63,6 @@ class UserCountMetric(Entity):
         super().serialize(writer)
         writer.write_int_value("count", self.count)
         writer.write_date_value("factDate", self.fact_date)
+        writer.write_collection_of_object_values("languages", self.languages)
     
 

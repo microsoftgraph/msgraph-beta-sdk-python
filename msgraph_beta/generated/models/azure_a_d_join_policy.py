@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_registration_membership import DeviceRegistrationMembership
+    from .local_admin_settings import LocalAdminSettings
 
 @dataclass
 class AzureADJoinPolicy(AdditionalDataHolder, BackedModel, Parsable):
@@ -18,6 +19,8 @@ class AzureADJoinPolicy(AdditionalDataHolder, BackedModel, Parsable):
     allowed_to_join: Optional[DeviceRegistrationMembership] = None
     # Determines if administrators can modify this policy.
     is_admin_configurable: Optional[bool] = None
+    # The localAdmins property
+    local_admins: Optional[LocalAdminSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -38,12 +41,15 @@ class AzureADJoinPolicy(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .device_registration_membership import DeviceRegistrationMembership
+        from .local_admin_settings import LocalAdminSettings
 
         from .device_registration_membership import DeviceRegistrationMembership
+        from .local_admin_settings import LocalAdminSettings
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowedToJoin": lambda n : setattr(self, 'allowed_to_join', n.get_object_value(DeviceRegistrationMembership)),
             "isAdminConfigurable": lambda n : setattr(self, 'is_admin_configurable', n.get_bool_value()),
+            "localAdmins": lambda n : setattr(self, 'local_admins', n.get_object_value(LocalAdminSettings)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -58,6 +64,7 @@ class AzureADJoinPolicy(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_object_value("allowedToJoin", self.allowed_to_join)
         writer.write_bool_value("isAdminConfigurable", self.is_admin_configurable)
+        writer.write_object_value("localAdmins", self.local_admins)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

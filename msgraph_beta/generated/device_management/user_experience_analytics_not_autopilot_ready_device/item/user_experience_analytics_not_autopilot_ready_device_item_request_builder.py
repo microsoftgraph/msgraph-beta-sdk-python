@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilder(BaseReque
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice/{userExperienceAnalyticsNotAutopilotReadyDevice%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property userExperienceAnalyticsNotAutopilotReadyDevice for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilder(BaseReque
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsNotAutopilotReadyDevice]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsNotAutopilotReadyDevice]:
         """
         User experience analytics devices not Windows Autopilot ready.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilder(BaseReque
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsNotAutopilotReadyDevice, error_mapping)
     
-    async def patch(self,body: Optional[UserExperienceAnalyticsNotAutopilotReadyDevice] = None, request_configuration: Optional[UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsNotAutopilotReadyDevice]:
+    async def patch(self,body: Optional[UserExperienceAnalyticsNotAutopilotReadyDevice] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsNotAutopilotReadyDevice]:
         """
         Update the navigation property userExperienceAnalyticsNotAutopilotReadyDevice in deviceManagement
         param body: The request body
@@ -87,7 +88,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilder(BaseReque
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsNotAutopilotReadyDevice, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property userExperienceAnalyticsNotAutopilotReadyDevice for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilder(BaseReque
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         User experience analytics devices not Windows Autopilot ready.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilder(BaseReque
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[UserExperienceAnalyticsNotAutopilotReadyDevice] = None, request_configuration: Optional[UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UserExperienceAnalyticsNotAutopilotReadyDevice] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property userExperienceAnalyticsNotAutopilotReadyDevice in deviceManagement
         param body: The request body
@@ -133,16 +134,6 @@ class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilder(BaseReque
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilder(BaseReque
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilder.UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserExperienceAnalyticsNotAutopilotReadyDeviceItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

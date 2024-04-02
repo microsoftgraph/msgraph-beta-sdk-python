@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class DirectoryRoleAccessReviewPolicyRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/policies/directoryRoleAccessReviewPolicy{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[DirectoryRoleAccessReviewPolicyRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property directoryRoleAccessReviewPolicy for policies
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class DirectoryRoleAccessReviewPolicyRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DirectoryRoleAccessReviewPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectoryRoleAccessReviewPolicy]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DirectoryRoleAccessReviewPolicy]:
         """
         Get directoryRoleAccessReviewPolicy from policies
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class DirectoryRoleAccessReviewPolicyRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DirectoryRoleAccessReviewPolicy, error_mapping)
     
-    async def patch(self,body: Optional[DirectoryRoleAccessReviewPolicy] = None, request_configuration: Optional[DirectoryRoleAccessReviewPolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[DirectoryRoleAccessReviewPolicy]:
+    async def patch(self,body: Optional[DirectoryRoleAccessReviewPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DirectoryRoleAccessReviewPolicy]:
         """
         Update the navigation property directoryRoleAccessReviewPolicy in policies
         param body: The request body
@@ -87,7 +88,7 @@ class DirectoryRoleAccessReviewPolicyRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DirectoryRoleAccessReviewPolicy, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[DirectoryRoleAccessReviewPolicyRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property directoryRoleAccessReviewPolicy for policies
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class DirectoryRoleAccessReviewPolicyRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[DirectoryRoleAccessReviewPolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get directoryRoleAccessReviewPolicy from policies
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class DirectoryRoleAccessReviewPolicyRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DirectoryRoleAccessReviewPolicy] = None, request_configuration: Optional[DirectoryRoleAccessReviewPolicyRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DirectoryRoleAccessReviewPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property directoryRoleAccessReviewPolicy in policies
         param body: The request body
@@ -133,16 +134,6 @@ class DirectoryRoleAccessReviewPolicyRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return DirectoryRoleAccessReviewPolicyRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DirectoryRoleAccessReviewPolicyRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class DirectoryRoleAccessReviewPolicyRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class DirectoryRoleAccessReviewPolicyRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DirectoryRoleAccessReviewPolicyRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DirectoryRoleAccessReviewPolicyRequestBuilder.DirectoryRoleAccessReviewPolicyRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DirectoryRoleAccessReviewPolicyRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

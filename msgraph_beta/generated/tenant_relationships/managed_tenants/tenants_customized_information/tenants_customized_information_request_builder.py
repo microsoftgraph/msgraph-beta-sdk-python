@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class TenantsCustomizedInformationRequestBuilder(BaseRequestBuilder):
         url_tpl_params["tenantCustomizedInformation%2Did"] = tenant_customized_information_id
         return TenantCustomizedInformationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TenantsCustomizedInformationRequestBuilderGetRequestConfiguration] = None) -> Optional[TenantCustomizedInformationCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TenantCustomizedInformationCollectionResponse]:
         """
         Get a list of the tenantCustomizedInformation objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class TenantsCustomizedInformationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TenantCustomizedInformationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[TenantCustomizedInformation] = None, request_configuration: Optional[TenantsCustomizedInformationRequestBuilderPostRequestConfiguration] = None) -> Optional[TenantCustomizedInformation]:
+    async def post(self,body: Optional[TenantCustomizedInformation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TenantCustomizedInformation]:
         """
         Create new navigation property to tenantsCustomizedInformation for tenantRelationships
         param body: The request body
@@ -87,7 +88,7 @@ class TenantsCustomizedInformationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TenantCustomizedInformation, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[TenantsCustomizedInformationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the tenantCustomizedInformation objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class TenantsCustomizedInformationRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[TenantCustomizedInformation] = None, request_configuration: Optional[TenantsCustomizedInformationRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[TenantCustomizedInformation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to tenantsCustomizedInformation for tenantRelationships
         param body: The request body
@@ -187,28 +188,5 @@ class TenantsCustomizedInformationRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TenantsCustomizedInformationRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[TenantsCustomizedInformationRequestBuilder.TenantsCustomizedInformationRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TenantsCustomizedInformationRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

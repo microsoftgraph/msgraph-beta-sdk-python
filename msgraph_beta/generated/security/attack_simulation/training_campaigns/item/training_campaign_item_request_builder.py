@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,11 +27,12 @@ class TrainingCampaignItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/attackSimulation/trainingCampaigns/{trainingCampaign%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[TrainingCampaignItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete navigation property trainingCampaigns for security
+        Delete a trainingCampaign object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/attacksimulationroot-delete-trainingcampaigns?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -44,11 +46,12 @@ class TrainingCampaignItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TrainingCampaignItemRequestBuilderGetRequestConfiguration] = None) -> Optional[TrainingCampaign]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TrainingCampaign]:
         """
-        Get trainingCampaigns from security
+        Read the properties and relationships of a trainingCampaign object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrainingCampaign]
+        Find more info here: https://learn.microsoft.com/graph/api/trainingcampaign-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -64,12 +67,13 @@ class TrainingCampaignItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TrainingCampaign, error_mapping)
     
-    async def patch(self,body: Optional[TrainingCampaign] = None, request_configuration: Optional[TrainingCampaignItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[TrainingCampaign]:
+    async def patch(self,body: Optional[TrainingCampaign] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TrainingCampaign]:
         """
-        Update the navigation property trainingCampaigns in security
+        Update the properties of a trainingCampaign object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrainingCampaign]
+        Find more info here: https://learn.microsoft.com/graph/api/trainingcampaign-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -87,9 +91,9 @@ class TrainingCampaignItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TrainingCampaign, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[TrainingCampaignItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete navigation property trainingCampaigns for security
+        Delete a trainingCampaign object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,9 +102,9 @@ class TrainingCampaignItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[TrainingCampaignItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get trainingCampaigns from security
+        Read the properties and relationships of a trainingCampaign object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,9 +113,9 @@ class TrainingCampaignItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[TrainingCampaign] = None, request_configuration: Optional[TrainingCampaignItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[TrainingCampaign] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property trainingCampaigns in security
+        Update the properties of a trainingCampaign object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -134,20 +138,10 @@ class TrainingCampaignItemRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return TrainingCampaignItemRequestBuilder(self.request_adapter, raw_url)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TrainingCampaignItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class TrainingCampaignItemRequestBuilderGetQueryParameters():
         """
-        Get trainingCampaigns from security
+        Read the properties and relationships of a trainingCampaign object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -169,28 +163,5 @@ class TrainingCampaignItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TrainingCampaignItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[TrainingCampaignItemRequestBuilder.TrainingCampaignItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TrainingCampaignItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

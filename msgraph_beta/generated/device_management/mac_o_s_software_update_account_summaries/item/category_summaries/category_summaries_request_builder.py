@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class CategorySummariesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["macOSSoftwareUpdateCategorySummary%2Did"] = mac_o_s_software_update_category_summary_id
         return MacOSSoftwareUpdateCategorySummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[CategorySummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[MacOSSoftwareUpdateCategorySummaryCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MacOSSoftwareUpdateCategorySummaryCollectionResponse]:
         """
         Summary of the updates by category.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class CategorySummariesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MacOSSoftwareUpdateCategorySummaryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[MacOSSoftwareUpdateCategorySummary] = None, request_configuration: Optional[CategorySummariesRequestBuilderPostRequestConfiguration] = None) -> Optional[MacOSSoftwareUpdateCategorySummary]:
+    async def post(self,body: Optional[MacOSSoftwareUpdateCategorySummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MacOSSoftwareUpdateCategorySummary]:
         """
         Create new navigation property to categorySummaries for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class CategorySummariesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MacOSSoftwareUpdateCategorySummary, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[CategorySummariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Summary of the updates by category.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class CategorySummariesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[MacOSSoftwareUpdateCategorySummary] = None, request_configuration: Optional[CategorySummariesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[MacOSSoftwareUpdateCategorySummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to categorySummaries for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class CategorySummariesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class CategorySummariesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[CategorySummariesRequestBuilder.CategorySummariesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class CategorySummariesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

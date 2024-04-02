@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class DeviceCustomAttributeShellScriptsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["deviceCustomAttributeShellScript%2Did"] = device_custom_attribute_shell_script_id
         return DeviceCustomAttributeShellScriptItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceCustomAttributeShellScriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceCustomAttributeShellScriptCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceCustomAttributeShellScriptCollectionResponse]:
         """
         The list of device custom attribute shell scripts associated with the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class DeviceCustomAttributeShellScriptsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceCustomAttributeShellScriptCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DeviceCustomAttributeShellScript] = None, request_configuration: Optional[DeviceCustomAttributeShellScriptsRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceCustomAttributeShellScript]:
+    async def post(self,body: Optional[DeviceCustomAttributeShellScript] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceCustomAttributeShellScript]:
         """
         Create new navigation property to deviceCustomAttributeShellScripts for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class DeviceCustomAttributeShellScriptsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceCustomAttributeShellScript, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[DeviceCustomAttributeShellScriptsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The list of device custom attribute shell scripts associated with the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class DeviceCustomAttributeShellScriptsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DeviceCustomAttributeShellScript] = None, request_configuration: Optional[DeviceCustomAttributeShellScriptsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceCustomAttributeShellScript] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to deviceCustomAttributeShellScripts for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class DeviceCustomAttributeShellScriptsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceCustomAttributeShellScriptsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DeviceCustomAttributeShellScriptsRequestBuilder.DeviceCustomAttributeShellScriptsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceCustomAttributeShellScriptsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

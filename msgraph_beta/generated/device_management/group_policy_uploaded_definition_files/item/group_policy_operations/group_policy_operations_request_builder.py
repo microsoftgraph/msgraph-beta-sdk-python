@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class GroupPolicyOperationsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["groupPolicyOperation%2Did"] = group_policy_operation_id
         return GroupPolicyOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[GroupPolicyOperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[GroupPolicyOperationCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GroupPolicyOperationCollectionResponse]:
         """
         The list of operations on the uploaded ADMX file.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class GroupPolicyOperationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GroupPolicyOperationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[GroupPolicyOperation] = None, request_configuration: Optional[GroupPolicyOperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[GroupPolicyOperation]:
+    async def post(self,body: Optional[GroupPolicyOperation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[GroupPolicyOperation]:
         """
         Create new navigation property to groupPolicyOperations for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class GroupPolicyOperationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GroupPolicyOperation, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[GroupPolicyOperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The list of operations on the uploaded ADMX file.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class GroupPolicyOperationsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[GroupPolicyOperation] = None, request_configuration: Optional[GroupPolicyOperationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GroupPolicyOperation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to groupPolicyOperations for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class GroupPolicyOperationsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GroupPolicyOperationsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[GroupPolicyOperationsRequestBuilder.GroupPolicyOperationsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class GroupPolicyOperationsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

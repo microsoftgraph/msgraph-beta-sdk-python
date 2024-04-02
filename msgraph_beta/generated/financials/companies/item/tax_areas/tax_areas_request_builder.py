@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +45,7 @@ class TaxAreasRequestBuilder(BaseRequestBuilder):
         url_tpl_params["taxArea%2Did"] = tax_area_id
         return TaxAreaItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TaxAreasRequestBuilderGetRequestConfiguration] = None) -> Optional[TaxAreaCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TaxAreaCollectionResponse]:
         """
         Get taxAreas from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class TaxAreasRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TaxAreaCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[TaxArea] = None, request_configuration: Optional[TaxAreasRequestBuilderPostRequestConfiguration] = None) -> Optional[TaxArea]:
+    async def post(self,body: Optional[TaxArea] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TaxArea]:
         """
         Create new navigation property to taxAreas for financials
         param body: The request body
@@ -87,7 +88,7 @@ class TaxAreasRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TaxArea, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[TaxAreasRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get taxAreas from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class TaxAreasRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[TaxArea] = None, request_configuration: Optional[TaxAreasRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[TaxArea] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to taxAreas for financials
         param body: The request body
@@ -187,28 +188,5 @@ class TaxAreasRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TaxAreasRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[TaxAreasRequestBuilder.TaxAreasRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TaxAreasRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

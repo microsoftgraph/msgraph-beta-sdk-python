@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +27,7 @@ class ConvertExternalToInternalMemberUserRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/convertExternalToInternalMemberUser", path_parameters)
     
-    async def post(self,body: Optional[ConvertExternalToInternalMemberUserPostRequestBody] = None, request_configuration: Optional[ConvertExternalToInternalMemberUserRequestBuilderPostRequestConfiguration] = None) -> Optional[ConversionUserDetails]:
+    async def post(self,body: Optional[ConvertExternalToInternalMemberUserPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ConversionUserDetails]:
         """
         Convert an externally authenticated user into an internal user. The user is able to sign into the host tenant as an internal user and access resources as a member. For more information about this conversion, see Convert external users to internal users.
         param body: The request body
@@ -51,7 +51,7 @@ class ConvertExternalToInternalMemberUserRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ConversionUserDetails, error_mapping)
     
-    def to_post_request_information(self,body: Optional[ConvertExternalToInternalMemberUserPostRequestBody] = None, request_configuration: Optional[ConvertExternalToInternalMemberUserRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ConvertExternalToInternalMemberUserPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Convert an externally authenticated user into an internal user. The user is able to sign into the host tenant as an internal user and access resources as a member. For more information about this conversion, see Convert external users to internal users.
         param body: The request body
@@ -75,15 +75,5 @@ class ConvertExternalToInternalMemberUserRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ConvertExternalToInternalMemberUserRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ConvertExternalToInternalMemberUserRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

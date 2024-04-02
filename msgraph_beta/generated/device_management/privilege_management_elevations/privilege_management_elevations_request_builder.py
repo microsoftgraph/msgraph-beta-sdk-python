@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class PrivilegeManagementElevationsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["privilegeManagementElevation%2Did"] = privilege_management_elevation_id
         return PrivilegeManagementElevationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[PrivilegeManagementElevationsRequestBuilderGetRequestConfiguration] = None) -> Optional[PrivilegeManagementElevationCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrivilegeManagementElevationCollectionResponse]:
         """
         The endpoint privilege management elevation event entity contains elevation details.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class PrivilegeManagementElevationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrivilegeManagementElevationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[PrivilegeManagementElevation] = None, request_configuration: Optional[PrivilegeManagementElevationsRequestBuilderPostRequestConfiguration] = None) -> Optional[PrivilegeManagementElevation]:
+    async def post(self,body: Optional[PrivilegeManagementElevation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrivilegeManagementElevation]:
         """
         Create new navigation property to privilegeManagementElevations for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class PrivilegeManagementElevationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrivilegeManagementElevation, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[PrivilegeManagementElevationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The endpoint privilege management elevation event entity contains elevation details.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class PrivilegeManagementElevationsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[PrivilegeManagementElevation] = None, request_configuration: Optional[PrivilegeManagementElevationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PrivilegeManagementElevation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to privilegeManagementElevations for deviceManagement
         param body: The request body
@@ -186,28 +187,5 @@ class PrivilegeManagementElevationsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PrivilegeManagementElevationsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[PrivilegeManagementElevationsRequestBuilder.PrivilegeManagementElevationsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PrivilegeManagementElevationsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

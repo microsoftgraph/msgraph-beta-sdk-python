@@ -10,6 +10,8 @@ from .entity import Entity
 
 @dataclass
 class CloudPcFrontLineServicePlan(Entity):
+    # The allotmentLicensesCount property
+    allotment_licenses_count: Optional[int] = None
     # The display name of the front-line service plan. For example, 2vCPU/8GB/128GB Front-line or 4vCPU/16GB/256GB Front-line.
     display_name: Optional[str] = None
     # The OdataType property
@@ -40,6 +42,7 @@ class CloudPcFrontLineServicePlan(Entity):
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "allotmentLicensesCount": lambda n : setattr(self, 'allotment_licenses_count', n.get_int_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "totalCount": lambda n : setattr(self, 'total_count', n.get_int_value()),
             "usedCount": lambda n : setattr(self, 'used_count', n.get_int_value()),
@@ -57,6 +60,7 @@ class CloudPcFrontLineServicePlan(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_int_value("allotmentLicensesCount", self.allotment_licenses_count)
         writer.write_str_value("displayName", self.display_name)
         writer.write_int_value("totalCount", self.total_count)
         writer.write_int_value("usedCount", self.used_count)

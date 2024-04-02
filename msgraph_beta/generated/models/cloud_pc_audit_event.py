@@ -24,7 +24,7 @@ class CloudPcAuditEvent(Entity):
     activity_operation_type: Optional[CloudPcAuditActivityOperationType] = None
     # The activityResult property
     activity_result: Optional[CloudPcAuditActivityResult] = None
-    # The type of activity that was performed. Read-only.
+    # The type of the activity that was performed. Read-only.
     activity_type: Optional[str] = None
     # The actor property
     actor: Optional[CloudPcAuditActor] = None
@@ -32,7 +32,7 @@ class CloudPcAuditEvent(Entity):
     category: Optional[CloudPcAuditCategory] = None
     # Component name. Read-only.
     component_name: Optional[str] = None
-    # The client request identifier, used to correlate activity within the system. Read-only.
+    # The client request ID that is used to correlate activity within the system. Read-only.
     correlation_id: Optional[str] = None
     # Event display name. Read-only.
     display_name: Optional[str] = None

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class MicrosoftTunnelHealthThresholdItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/microsoftTunnelHealthThresholds/{microsoftTunnelHealthThreshold%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[MicrosoftTunnelHealthThresholdItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property microsoftTunnelHealthThresholds for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class MicrosoftTunnelHealthThresholdItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MicrosoftTunnelHealthThresholdItemRequestBuilderGetRequestConfiguration] = None) -> Optional[MicrosoftTunnelHealthThreshold]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MicrosoftTunnelHealthThreshold]:
         """
         Collection of MicrosoftTunnelHealthThreshold settings associated with account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class MicrosoftTunnelHealthThresholdItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MicrosoftTunnelHealthThreshold, error_mapping)
     
-    async def patch(self,body: Optional[MicrosoftTunnelHealthThreshold] = None, request_configuration: Optional[MicrosoftTunnelHealthThresholdItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[MicrosoftTunnelHealthThreshold]:
+    async def patch(self,body: Optional[MicrosoftTunnelHealthThreshold] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MicrosoftTunnelHealthThreshold]:
         """
         Update the navigation property microsoftTunnelHealthThresholds in deviceManagement
         param body: The request body
@@ -87,7 +88,7 @@ class MicrosoftTunnelHealthThresholdItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MicrosoftTunnelHealthThreshold, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[MicrosoftTunnelHealthThresholdItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property microsoftTunnelHealthThresholds for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class MicrosoftTunnelHealthThresholdItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[MicrosoftTunnelHealthThresholdItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Collection of MicrosoftTunnelHealthThreshold settings associated with account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class MicrosoftTunnelHealthThresholdItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[MicrosoftTunnelHealthThreshold] = None, request_configuration: Optional[MicrosoftTunnelHealthThresholdItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MicrosoftTunnelHealthThreshold] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property microsoftTunnelHealthThresholds in deviceManagement
         param body: The request body
@@ -133,16 +134,6 @@ class MicrosoftTunnelHealthThresholdItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return MicrosoftTunnelHealthThresholdItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MicrosoftTunnelHealthThresholdItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class MicrosoftTunnelHealthThresholdItemRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class MicrosoftTunnelHealthThresholdItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MicrosoftTunnelHealthThresholdItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[MicrosoftTunnelHealthThresholdItemRequestBuilder.MicrosoftTunnelHealthThresholdItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MicrosoftTunnelHealthThresholdItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 
