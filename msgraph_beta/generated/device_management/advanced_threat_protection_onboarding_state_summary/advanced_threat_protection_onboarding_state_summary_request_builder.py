@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +28,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(BaseRequestBu
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/advancedThreatProtectionOnboardingStateSummary{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property advancedThreatProtectionOnboardingStateSummary for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +46,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(BaseRequestBu
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderGetRequestConfiguration] = None) -> Optional[AdvancedThreatProtectionOnboardingStateSummary]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AdvancedThreatProtectionOnboardingStateSummary]:
         """
         The summary state of ATP onboarding state for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +66,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(BaseRequestBu
 
         return await self.request_adapter.send_async(request_info, AdvancedThreatProtectionOnboardingStateSummary, error_mapping)
     
-    async def patch(self,body: Optional[AdvancedThreatProtectionOnboardingStateSummary] = None, request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderPatchRequestConfiguration] = None) -> Optional[AdvancedThreatProtectionOnboardingStateSummary]:
+    async def patch(self,body: Optional[AdvancedThreatProtectionOnboardingStateSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AdvancedThreatProtectionOnboardingStateSummary]:
         """
         Update the navigation property advancedThreatProtectionOnboardingStateSummary in deviceManagement
         param body: The request body
@@ -88,18 +89,18 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(BaseRequestBu
 
         return await self.request_adapter.send_async(request_info, AdvancedThreatProtectionOnboardingStateSummary, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property advancedThreatProtectionOnboardingStateSummary for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.DELETE, '{+baseurl}/deviceManagement/advancedThreatProtectionOnboardingStateSummary', self.path_parameters)
+        request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The summary state of ATP onboarding state for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +111,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(BaseRequestBu
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[AdvancedThreatProtectionOnboardingStateSummary] = None, request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AdvancedThreatProtectionOnboardingStateSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property advancedThreatProtectionOnboardingStateSummary in deviceManagement
         param body: The request body
@@ -119,7 +120,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(BaseRequestBu
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, '{+baseurl}/deviceManagement/advancedThreatProtectionOnboardingStateSummary', self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -143,16 +144,6 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(BaseRequestBu
         from .advanced_threat_protection_onboarding_device_setting_states.advanced_threat_protection_onboarding_device_setting_states_request_builder import AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder
 
         return AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderGetQueryParameters():
@@ -179,28 +170,5 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(BaseRequestBu
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder.AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

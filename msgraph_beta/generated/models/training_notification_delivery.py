@@ -11,13 +11,13 @@ class TrainingNotificationDelivery(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The failedMessageDeliveryCount property
+    # The number of users to whom mails couldn't be delivered.
     failed_message_delivery_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resolvedTargetsCount property
+    # The number of users whose email address was successfully resolved from target users.
     resolved_targets_count: Optional[int] = None
-    # The successfulMessageDeliveryCount property
+    # The number of users who received a mail while the training campaign was in the 'in progress' state.
     successful_message_delivery_count: Optional[int] = None
     
     @staticmethod

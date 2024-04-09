@@ -15,6 +15,8 @@ class UserCountMetric(Entity):
     count: Optional[int] = None
     # The date of the insight.
     fact_date: Optional[datetime.date] = None
+    # The language property
+    language: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -41,6 +43,7 @@ class UserCountMetric(Entity):
         fields: Dict[str, Callable[[Any], None]] = {
             "count": lambda n : setattr(self, 'count', n.get_int_value()),
             "factDate": lambda n : setattr(self, 'fact_date', n.get_date_value()),
+            "language": lambda n : setattr(self, 'language', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -57,5 +60,6 @@ class UserCountMetric(Entity):
         super().serialize(writer)
         writer.write_int_value("count", self.count)
         writer.write_date_value("factDate", self.fact_date)
+        writer.write_str_value("language", self.language)
     
 

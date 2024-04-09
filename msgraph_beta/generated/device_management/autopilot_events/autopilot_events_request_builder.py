@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class AutopilotEventsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["deviceManagementAutopilotEvent%2Did"] = device_management_autopilot_event_id
         return DeviceManagementAutopilotEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AutopilotEventsRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementAutopilotEventCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementAutopilotEventCollectionResponse]:
         """
         The list of autopilot events for the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class AutopilotEventsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementAutopilotEventCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DeviceManagementAutopilotEvent] = None, request_configuration: Optional[AutopilotEventsRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceManagementAutopilotEvent]:
+    async def post(self,body: Optional[DeviceManagementAutopilotEvent] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementAutopilotEvent]:
         """
         Create new navigation property to autopilotEvents for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class AutopilotEventsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementAutopilotEvent, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[AutopilotEventsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The list of autopilot events for the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class AutopilotEventsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DeviceManagementAutopilotEvent] = None, request_configuration: Optional[AutopilotEventsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceManagementAutopilotEvent] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to autopilotEvents for deviceManagement
         param body: The request body
@@ -106,7 +107,7 @@ class AutopilotEventsRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, '{+baseurl}/deviceManagement/autopilotEvents', self.path_parameters)
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -186,28 +187,5 @@ class AutopilotEventsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AutopilotEventsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[AutopilotEventsRequestBuilder.AutopilotEventsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class AutopilotEventsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

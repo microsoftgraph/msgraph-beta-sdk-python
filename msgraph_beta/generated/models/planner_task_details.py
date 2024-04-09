@@ -25,7 +25,7 @@ class PlannerTaskDetails(PlannerDelta):
     completion_requirements: Optional[PlannerTaskCompletionRequirementDetails] = None
     # Description of the task.
     description: Optional[str] = None
-    # The forms property
+    # Read-only. Represents a dictionary of data about the forms associated with a task. Each entry in the dictionary is a key-value pair, and the value is a plannerFormReference object.
     forms: Optional[PlannerFormsDictionary] = None
     # Rich text description of the task. To be used by HTML-aware clients. For backwards compatibility, a plain-text version of the HTML description will be synced to the 'description' field. If this field hasn't previously been set but 'description' has been, the existing description is synchronized to 'notes' with minimal whitespace-preserving HTML markup. Setting both 'description' and 'notes' is an error and will result in an exception.
     notes: Optional[ItemBody] = None

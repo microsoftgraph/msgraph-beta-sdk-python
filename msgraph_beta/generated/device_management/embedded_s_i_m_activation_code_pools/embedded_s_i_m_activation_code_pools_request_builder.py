@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class EmbeddedSIMActivationCodePoolsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["embeddedSIMActivationCodePool%2Did"] = embedded_s_i_m_activation_code_pool_id
         return EmbeddedSIMActivationCodePoolItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolsRequestBuilderGetRequestConfiguration] = None) -> Optional[EmbeddedSIMActivationCodePoolCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EmbeddedSIMActivationCodePoolCollectionResponse]:
         """
         The embedded SIM activation code pools created by this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class EmbeddedSIMActivationCodePoolsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EmbeddedSIMActivationCodePoolCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[EmbeddedSIMActivationCodePoolsRequestBuilderPostRequestConfiguration] = None) -> Optional[EmbeddedSIMActivationCodePool]:
+    async def post(self,body: Optional[EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EmbeddedSIMActivationCodePool]:
         """
         Create new navigation property to embeddedSIMActivationCodePools for deviceManagement
         param body: The request body
@@ -86,7 +87,7 @@ class EmbeddedSIMActivationCodePoolsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EmbeddedSIMActivationCodePool, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The embedded SIM activation code pools created by this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class EmbeddedSIMActivationCodePoolsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[EmbeddedSIMActivationCodePoolsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to embeddedSIMActivationCodePools for deviceManagement
         param body: The request body
@@ -106,7 +107,7 @@ class EmbeddedSIMActivationCodePoolsRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, '{+baseurl}/deviceManagement/embeddedSIMActivationCodePools', self.path_parameters)
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -186,28 +187,5 @@ class EmbeddedSIMActivationCodePoolsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EmbeddedSIMActivationCodePoolsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[EmbeddedSIMActivationCodePoolsRequestBuilder.EmbeddedSIMActivationCodePoolsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class EmbeddedSIMActivationCodePoolsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

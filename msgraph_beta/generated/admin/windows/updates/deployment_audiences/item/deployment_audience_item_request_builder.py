@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +32,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/deploymentAudiences/{deploymentAudience%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[DeploymentAudienceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete a deploymentAudience object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -50,7 +51,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeploymentAudienceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeploymentAudience]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeploymentAudience]:
         """
         Read the properties and relationships of a deploymentAudience object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -71,7 +72,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeploymentAudience, error_mapping)
     
-    async def patch(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[DeploymentAudienceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeploymentAudience]:
+    async def patch(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeploymentAudience]:
         """
         Update the navigation property deploymentAudiences in admin
         param body: The request body
@@ -94,18 +95,18 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeploymentAudience, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[DeploymentAudienceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete a deploymentAudience object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.DELETE, '{+baseurl}/admin/windows/updates/deploymentAudiences/{deploymentAudience%2Did}', self.path_parameters)
+        request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[DeploymentAudienceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Read the properties and relationships of a deploymentAudience object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -116,7 +117,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[DeploymentAudienceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property deploymentAudiences in admin
         param body: The request body
@@ -125,7 +126,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, '{+baseurl}/admin/windows/updates/deploymentAudiences/{deploymentAudience%2Did}', self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -186,16 +187,6 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphWindowsUpdatesUpdateAudienceByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeploymentAudienceItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-    
     @dataclass
     class DeploymentAudienceItemRequestBuilderGetQueryParameters():
         """
@@ -221,28 +212,5 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeploymentAudienceItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DeploymentAudienceItemRequestBuilder.DeploymentAudienceItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeploymentAudienceItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

@@ -27,7 +27,7 @@ class PlannerTaskPropertyRule(PlannerPropertyRule):
     delete: Optional[List[str]] = None
     # Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
     due_date: Optional[List[str]] = None
-    # The forms property
+    # Rules and restrictions for forms. Allowed overrides are userCreated and applicationCreated. The following are the accepted values for the default rule and individual overrides: allow, add, addResponse, remove, update, block.
     forms: Optional[PlannerFieldRules] = None
     # Rules and restrictions for moving the task between buckets or plans. Accepted values are allow, moveBetweenPlans, moveBetweenBuckets, and block.
     move: Optional[List[str]] = None

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -47,7 +48,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["directorySettingTemplate%2Did"] = directory_setting_template_id
         return DirectorySettingTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DirectorySettingTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectorySettingTemplateCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DirectorySettingTemplateCollectionResponse]:
         """
         Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -68,7 +69,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DirectorySettingTemplateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DirectorySettingTemplate] = None, request_configuration: Optional[DirectorySettingTemplatesRequestBuilderPostRequestConfiguration] = None) -> Optional[DirectorySettingTemplate]:
+    async def post(self,body: Optional[DirectorySettingTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DirectorySettingTemplate]:
         """
         Add new entity to directorySettingTemplates
         param body: The request body
@@ -91,7 +92,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DirectorySettingTemplate, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[DirectorySettingTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available directorySettingTemplates objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +103,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DirectorySettingTemplate] = None, request_configuration: Optional[DirectorySettingTemplatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DirectorySettingTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Add new entity to directorySettingTemplates
         param body: The request body
@@ -111,7 +112,7 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, '{+baseurl}/directorySettingTemplates', self.path_parameters)
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -227,28 +228,5 @@ class DirectorySettingTemplatesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DirectorySettingTemplatesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DirectorySettingTemplatesRequestBuilder.DirectorySettingTemplatesRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DirectorySettingTemplatesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class DailyPrintUsageRequestBuilder(BaseRequestBuilder):
         url_tpl_params["printUsage%2Did"] = print_usage_id
         return PrintUsageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DailyPrintUsageRequestBuilderGetRequestConfiguration] = None) -> Optional[PrintUsageCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrintUsageCollectionResponse]:
         """
         Get dailyPrintUsage from reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class DailyPrintUsageRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrintUsageCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[PrintUsage] = None, request_configuration: Optional[DailyPrintUsageRequestBuilderPostRequestConfiguration] = None) -> Optional[PrintUsage]:
+    async def post(self,body: Optional[PrintUsage] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrintUsage]:
         """
         Create new navigation property to dailyPrintUsage for reports
         param body: The request body
@@ -86,7 +87,7 @@ class DailyPrintUsageRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrintUsage, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[DailyPrintUsageRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get dailyPrintUsage from reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class DailyPrintUsageRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[PrintUsage] = None, request_configuration: Optional[DailyPrintUsageRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PrintUsage] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to dailyPrintUsage for reports
         param body: The request body
@@ -106,7 +107,7 @@ class DailyPrintUsageRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, '{+baseurl}/reports/dailyPrintUsage', self.path_parameters)
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -186,28 +187,5 @@ class DailyPrintUsageRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DailyPrintUsageRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DailyPrintUsageRequestBuilder.DailyPrintUsageRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DailyPrintUsageRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

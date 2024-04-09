@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +44,7 @@ class ManagedTenantAlertLogsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["managedTenantAlertLog%2Did"] = managed_tenant_alert_log_id
         return ManagedTenantAlertLogItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ManagedTenantAlertLogsRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedTenantAlertLogCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedTenantAlertLogCollectionResponse]:
         """
         Get managedTenantAlertLogs from tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +64,7 @@ class ManagedTenantAlertLogsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagedTenantAlertLogCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ManagedTenantAlertLog] = None, request_configuration: Optional[ManagedTenantAlertLogsRequestBuilderPostRequestConfiguration] = None) -> Optional[ManagedTenantAlertLog]:
+    async def post(self,body: Optional[ManagedTenantAlertLog] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedTenantAlertLog]:
         """
         Create new navigation property to managedTenantAlertLogs for tenantRelationships
         param body: The request body
@@ -86,7 +87,7 @@ class ManagedTenantAlertLogsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagedTenantAlertLog, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[ManagedTenantAlertLogsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get managedTenantAlertLogs from tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -97,7 +98,7 @@ class ManagedTenantAlertLogsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ManagedTenantAlertLog] = None, request_configuration: Optional[ManagedTenantAlertLogsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ManagedTenantAlertLog] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to managedTenantAlertLogs for tenantRelationships
         param body: The request body
@@ -106,7 +107,7 @@ class ManagedTenantAlertLogsRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, '{+baseurl}/tenantRelationships/managedTenants/managedTenantAlertLogs', self.path_parameters)
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -186,28 +187,5 @@ class ManagedTenantAlertLogsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ManagedTenantAlertLogsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ManagedTenantAlertLogsRequestBuilder.ManagedTenantAlertLogsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ManagedTenantAlertLogsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

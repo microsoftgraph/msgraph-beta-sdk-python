@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(BaseRequestBuil
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/comanagedDevices/{managedDevice%2Did}/managedDeviceMobileAppConfigurationStates/{managedDeviceMobileAppConfigurationState%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property managedDeviceMobileAppConfigurationStates for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(BaseRequestBuil
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedDeviceMobileAppConfigurationState]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedDeviceMobileAppConfigurationState]:
         """
         Managed device mobile app configuration states for this device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(BaseRequestBuil
 
         return await self.request_adapter.send_async(request_info, ManagedDeviceMobileAppConfigurationState, error_mapping)
     
-    async def patch(self,body: Optional[ManagedDeviceMobileAppConfigurationState] = None, request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ManagedDeviceMobileAppConfigurationState]:
+    async def patch(self,body: Optional[ManagedDeviceMobileAppConfigurationState] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedDeviceMobileAppConfigurationState]:
         """
         Update the navigation property managedDeviceMobileAppConfigurationStates in deviceManagement
         param body: The request body
@@ -87,18 +88,18 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(BaseRequestBuil
 
         return await self.request_adapter.send_async(request_info, ManagedDeviceMobileAppConfigurationState, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property managedDeviceMobileAppConfigurationStates for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.DELETE, '{+baseurl}/deviceManagement/comanagedDevices/{managedDevice%2Did}/managedDeviceMobileAppConfigurationStates/{managedDeviceMobileAppConfigurationState%2Did}', self.path_parameters)
+        request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Managed device mobile app configuration states for this device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(BaseRequestBuil
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ManagedDeviceMobileAppConfigurationState] = None, request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ManagedDeviceMobileAppConfigurationState] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property managedDeviceMobileAppConfigurationStates in deviceManagement
         param body: The request body
@@ -118,7 +119,7 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(BaseRequestBuil
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, '{+baseurl}/deviceManagement/comanagedDevices/{managedDevice%2Did}/managedDeviceMobileAppConfigurationStates/{managedDeviceMobileAppConfigurationState%2Did}', self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -133,16 +134,6 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(BaseRequestBuil
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ManagedDeviceMobileAppConfigurationStateItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class ManagedDeviceMobileAppConfigurationStateItemRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(BaseRequestBuil
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ManagedDeviceMobileAppConfigurationStateItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilder.ManagedDeviceMobileAppConfigurationStateItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ManagedDeviceMobileAppConfigurationStateItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

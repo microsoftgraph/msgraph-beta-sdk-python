@@ -338,6 +338,7 @@ if TYPE_CHECKING:
     from .conditional_access_policy import ConditionalAccessPolicy
     from .conditional_access_root import ConditionalAccessRoot
     from .conditional_access_template import ConditionalAccessTemplate
+    from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
     from .config_manager_collection import ConfigManagerCollection
     from .connected_organization import ConnectedOrganization
     from .connection_operation import ConnectionOperation
@@ -984,6 +985,7 @@ if TYPE_CHECKING:
     from .message_rule import MessageRule
     from .message_trace import MessageTrace
     from .mfa_completion_metric import MfaCompletionMetric
+    from .mfa_failure import MfaFailure
     from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
     from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
     from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
@@ -1375,6 +1377,7 @@ if TYPE_CHECKING:
     from .security.file_plan_reference_template import FilePlanReferenceTemplate
     from .security.file_threat_submission import FileThreatSubmission
     from .security.file_url_threat_submission import FileUrlThreatSubmission
+    from .security.health_issue import HealthIssue
     from .security.host import Host
     from .security.hostname import Hostname
     from .security.host_component import HostComponent
@@ -1384,6 +1387,7 @@ if TYPE_CHECKING:
     from .security.host_reputation import HostReputation
     from .security.host_ssl_certificate import HostSslCertificate
     from .security.host_tracker import HostTracker
+    from .security.identity_container import IdentityContainer
     from .security.incident import Incident
     from .security.indicator import Indicator
     from .security.information_protection import InformationProtection
@@ -1404,8 +1408,8 @@ if TYPE_CHECKING:
     from .security.sensitivity_label import SensitivityLabel
     from .security.site_source import SiteSource
     from .security.ssl_certificate import SslCertificate
+    from .security.subcategory_template import SubcategoryTemplate
     from .security.subdomain import Subdomain
-    from .security.sub_category_template import SubCategoryTemplate
     from .security.tag import Tag
     from .security.threat_intelligence import ThreatIntelligence
     from .security.threat_submission import ThreatSubmission
@@ -1453,6 +1457,7 @@ if TYPE_CHECKING:
     from .service_principal_creation_policy import ServicePrincipalCreationPolicy
     from .service_principal_risk_detection import ServicePrincipalRiskDetection
     from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
+    from .service_storage_quota_breakdown import ServiceStorageQuotaBreakdown
     from .service_update_message import ServiceUpdateMessage
     from .setting_state_device_summary import SettingStateDeviceSummary
     from .shared_drive_item import SharedDriveItem
@@ -1487,6 +1492,8 @@ if TYPE_CHECKING:
     from .standard_web_part import StandardWebPart
     from .start_hold_music_operation import StartHoldMusicOperation
     from .stop_hold_music_operation import StopHoldMusicOperation
+    from .storage_quota_breakdown import StorageQuotaBreakdown
+    from .storage_settings import StorageSettings
     from .strong_authentication_detail import StrongAuthenticationDetail
     from .strong_authentication_phone_app_detail import StrongAuthenticationPhoneAppDetail
     from .sts_policy import StsPolicy
@@ -1608,6 +1615,7 @@ if TYPE_CHECKING:
     from .unified_role_management_policy_rule import UnifiedRoleManagementPolicyRule
     from .unified_role_schedule_base import UnifiedRoleScheduleBase
     from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
+    from .unified_storage_quota import UnifiedStorageQuota
     from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
     from .unmute_participant_operation import UnmuteParticipantOperation
     from .unsupported_device_configuration import UnsupportedDeviceConfiguration
@@ -1680,6 +1688,7 @@ if TYPE_CHECKING:
     from .user_settings import UserSettings
     from .user_sign_in_insight import UserSignInInsight
     from .user_sign_up_metric import UserSignUpMetric
+    from .user_storage import UserStorage
     from .user_teamwork import UserTeamwork
     from .user_virtual_events_root import UserVirtualEventsRoot
     from .vertical_section import VerticalSection
@@ -1813,9 +1822,12 @@ if TYPE_CHECKING:
     from .windows_updates.deployment import Deployment
     from .windows_updates.deployment_audience import DeploymentAudience
     from .windows_updates.driver_update_catalog_entry import DriverUpdateCatalogEntry
+    from .windows_updates.edition import Edition
     from .windows_updates.feature_update_catalog_entry import FeatureUpdateCatalogEntry
     from .windows_updates.knowledge_base_article import KnowledgeBaseArticle
+    from .windows_updates.known_issue import KnownIssue
     from .windows_updates.operational_insights_connection import OperationalInsightsConnection
+    from .windows_updates.product import Product
     from .windows_updates.product_revision import ProductRevision
     from .windows_updates.quality_update_catalog_entry import QualityUpdateCatalogEntry
     from .windows_updates.resource_connection import ResourceConnection
@@ -1881,6 +1893,7 @@ if TYPE_CHECKING:
     from .workbook_worksheet import WorkbookWorksheet
     from .workbook_worksheet_protection import WorkbookWorksheetProtection
     from .workforce_integration import WorkforceIntegration
+    from .workplace_sensor_device import WorkplaceSensorDevice
     from .workspace import Workspace
     from .work_position import WorkPosition
     from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
@@ -3251,6 +3264,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .conditional_access_template import ConditionalAccessTemplate
 
             return ConditionalAccessTemplate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.conditionalAccessWhatIfPolicy".casefold():
+            from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
+
+            return ConditionalAccessWhatIfPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.configManagerCollection".casefold():
             from .config_manager_collection import ConfigManagerCollection
 
@@ -5859,6 +5876,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mfa_completion_metric import MfaCompletionMetric
 
             return MfaCompletionMetric()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mfaFailure".casefold():
+            from .mfa_failure import MfaFailure
+
+            return MfaFailure()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.microsoftAccountUserConversationMember".casefold():
             from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
 
@@ -7443,6 +7464,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.file_url_threat_submission import FileUrlThreatSubmission
 
             return FileUrlThreatSubmission()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.healthIssue".casefold():
+            from .security.health_issue import HealthIssue
+
+            return HealthIssue()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.host".casefold():
             from .security.host import Host
 
@@ -7479,6 +7504,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.host_tracker import HostTracker
 
             return HostTracker()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.identityContainer".casefold():
+            from .security.identity_container import IdentityContainer
+
+            return IdentityContainer()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.incident".casefold():
             from .security.incident import Incident
 
@@ -7563,10 +7592,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.ssl_certificate import SslCertificate
 
             return SslCertificate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.subCategoryTemplate".casefold():
-            from .security.sub_category_template import SubCategoryTemplate
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.subcategoryTemplate".casefold():
+            from .security.subcategory_template import SubcategoryTemplate
 
-            return SubCategoryTemplate()
+            return SubcategoryTemplate()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.subdomain".casefold():
             from .security.subdomain import Subdomain
 
@@ -7763,6 +7792,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
 
             return ServicePrincipalSignInActivity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceStorageQuotaBreakdown".casefold():
+            from .service_storage_quota_breakdown import ServiceStorageQuotaBreakdown
+
+            return ServiceStorageQuotaBreakdown()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceUpdateMessage".casefold():
             from .service_update_message import ServiceUpdateMessage
 
@@ -7899,6 +7932,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .stop_hold_music_operation import StopHoldMusicOperation
 
             return StopHoldMusicOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.storageQuotaBreakdown".casefold():
+            from .storage_quota_breakdown import StorageQuotaBreakdown
+
+            return StorageQuotaBreakdown()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.storageSettings".casefold():
+            from .storage_settings import StorageSettings
+
+            return StorageSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.strongAuthenticationDetail".casefold():
             from .strong_authentication_detail import StrongAuthenticationDetail
 
@@ -8380,6 +8421,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
 
             return UnifiedRoleScheduleInstanceBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unifiedStorageQuota".casefold():
+            from .unified_storage_quota import UnifiedStorageQuota
+
+            return UnifiedStorageQuota()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.unmanagedDeviceDiscoveryTask".casefold():
             from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
 
@@ -8672,6 +8717,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_sign_up_metric import UserSignUpMetric
 
             return UserSignUpMetric()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userStorage".casefold():
+            from .user_storage import UserStorage
+
+            return UserStorage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userTeamwork".casefold():
             from .user_teamwork import UserTeamwork
 
@@ -9214,6 +9263,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_updates.driver_update_catalog_entry import DriverUpdateCatalogEntry
 
             return DriverUpdateCatalogEntry()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.edition".casefold():
+            from .windows_updates.edition import Edition
+
+            return Edition()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.featureUpdateCatalogEntry".casefold():
             from .windows_updates.feature_update_catalog_entry import FeatureUpdateCatalogEntry
 
@@ -9222,10 +9275,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_updates.knowledge_base_article import KnowledgeBaseArticle
 
             return KnowledgeBaseArticle()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.knownIssue".casefold():
+            from .windows_updates.known_issue import KnownIssue
+
+            return KnownIssue()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.operationalInsightsConnection".casefold():
             from .windows_updates.operational_insights_connection import OperationalInsightsConnection
 
             return OperationalInsightsConnection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.product".casefold():
+            from .windows_updates.product import Product
+
+            return Product()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.productRevision".casefold():
             from .windows_updates.product_revision import ProductRevision
 
@@ -9478,6 +9539,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .workforce_integration import WorkforceIntegration
 
             return WorkforceIntegration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.workplaceSensorDevice".casefold():
+            from .workplace_sensor_device import WorkplaceSensorDevice
+
+            return WorkplaceSensorDevice()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.workPosition".casefold():
             from .work_position import WorkPosition
 
@@ -9846,6 +9911,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
+        from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
         from .config_manager_collection import ConfigManagerCollection
         from .connected_organization import ConnectedOrganization
         from .connection_operation import ConnectionOperation
@@ -10492,6 +10558,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .message_rule import MessageRule
         from .message_trace import MessageTrace
         from .mfa_completion_metric import MfaCompletionMetric
+        from .mfa_failure import MfaFailure
         from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
@@ -10883,6 +10950,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.file_plan_reference_template import FilePlanReferenceTemplate
         from .security.file_threat_submission import FileThreatSubmission
         from .security.file_url_threat_submission import FileUrlThreatSubmission
+        from .security.health_issue import HealthIssue
         from .security.host import Host
         from .security.hostname import Hostname
         from .security.host_component import HostComponent
@@ -10892,6 +10960,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.host_reputation import HostReputation
         from .security.host_ssl_certificate import HostSslCertificate
         from .security.host_tracker import HostTracker
+        from .security.identity_container import IdentityContainer
         from .security.incident import Incident
         from .security.indicator import Indicator
         from .security.information_protection import InformationProtection
@@ -10912,8 +10981,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.sensitivity_label import SensitivityLabel
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
+        from .security.subcategory_template import SubcategoryTemplate
         from .security.subdomain import Subdomain
-        from .security.sub_category_template import SubCategoryTemplate
         from .security.tag import Tag
         from .security.threat_intelligence import ThreatIntelligence
         from .security.threat_submission import ThreatSubmission
@@ -10961,6 +11030,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .service_principal_creation_policy import ServicePrincipalCreationPolicy
         from .service_principal_risk_detection import ServicePrincipalRiskDetection
         from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
+        from .service_storage_quota_breakdown import ServiceStorageQuotaBreakdown
         from .service_update_message import ServiceUpdateMessage
         from .setting_state_device_summary import SettingStateDeviceSummary
         from .shared_drive_item import SharedDriveItem
@@ -10995,6 +11065,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .standard_web_part import StandardWebPart
         from .start_hold_music_operation import StartHoldMusicOperation
         from .stop_hold_music_operation import StopHoldMusicOperation
+        from .storage_quota_breakdown import StorageQuotaBreakdown
+        from .storage_settings import StorageSettings
         from .strong_authentication_detail import StrongAuthenticationDetail
         from .strong_authentication_phone_app_detail import StrongAuthenticationPhoneAppDetail
         from .sts_policy import StsPolicy
@@ -11116,6 +11188,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .unified_role_management_policy_rule import UnifiedRoleManagementPolicyRule
         from .unified_role_schedule_base import UnifiedRoleScheduleBase
         from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
+        from .unified_storage_quota import UnifiedStorageQuota
         from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
         from .unmute_participant_operation import UnmuteParticipantOperation
         from .unsupported_device_configuration import UnsupportedDeviceConfiguration
@@ -11188,6 +11261,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_settings import UserSettings
         from .user_sign_in_insight import UserSignInInsight
         from .user_sign_up_metric import UserSignUpMetric
+        from .user_storage import UserStorage
         from .user_teamwork import UserTeamwork
         from .user_virtual_events_root import UserVirtualEventsRoot
         from .vertical_section import VerticalSection
@@ -11321,9 +11395,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_updates.deployment import Deployment
         from .windows_updates.deployment_audience import DeploymentAudience
         from .windows_updates.driver_update_catalog_entry import DriverUpdateCatalogEntry
+        from .windows_updates.edition import Edition
         from .windows_updates.feature_update_catalog_entry import FeatureUpdateCatalogEntry
         from .windows_updates.knowledge_base_article import KnowledgeBaseArticle
+        from .windows_updates.known_issue import KnownIssue
         from .windows_updates.operational_insights_connection import OperationalInsightsConnection
+        from .windows_updates.product import Product
         from .windows_updates.product_revision import ProductRevision
         from .windows_updates.quality_update_catalog_entry import QualityUpdateCatalogEntry
         from .windows_updates.resource_connection import ResourceConnection
@@ -11389,6 +11466,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_worksheet import WorkbookWorksheet
         from .workbook_worksheet_protection import WorkbookWorksheetProtection
         from .workforce_integration import WorkforceIntegration
+        from .workplace_sensor_device import WorkplaceSensorDevice
         from .workspace import Workspace
         from .work_position import WorkPosition
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
@@ -11730,6 +11808,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
+        from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
         from .config_manager_collection import ConfigManagerCollection
         from .connected_organization import ConnectedOrganization
         from .connection_operation import ConnectionOperation
@@ -12376,6 +12455,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .message_rule import MessageRule
         from .message_trace import MessageTrace
         from .mfa_completion_metric import MfaCompletionMetric
+        from .mfa_failure import MfaFailure
         from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
@@ -12767,6 +12847,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.file_plan_reference_template import FilePlanReferenceTemplate
         from .security.file_threat_submission import FileThreatSubmission
         from .security.file_url_threat_submission import FileUrlThreatSubmission
+        from .security.health_issue import HealthIssue
         from .security.host import Host
         from .security.hostname import Hostname
         from .security.host_component import HostComponent
@@ -12776,6 +12857,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.host_reputation import HostReputation
         from .security.host_ssl_certificate import HostSslCertificate
         from .security.host_tracker import HostTracker
+        from .security.identity_container import IdentityContainer
         from .security.incident import Incident
         from .security.indicator import Indicator
         from .security.information_protection import InformationProtection
@@ -12796,8 +12878,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.sensitivity_label import SensitivityLabel
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
+        from .security.subcategory_template import SubcategoryTemplate
         from .security.subdomain import Subdomain
-        from .security.sub_category_template import SubCategoryTemplate
         from .security.tag import Tag
         from .security.threat_intelligence import ThreatIntelligence
         from .security.threat_submission import ThreatSubmission
@@ -12845,6 +12927,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .service_principal_creation_policy import ServicePrincipalCreationPolicy
         from .service_principal_risk_detection import ServicePrincipalRiskDetection
         from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
+        from .service_storage_quota_breakdown import ServiceStorageQuotaBreakdown
         from .service_update_message import ServiceUpdateMessage
         from .setting_state_device_summary import SettingStateDeviceSummary
         from .shared_drive_item import SharedDriveItem
@@ -12879,6 +12962,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .standard_web_part import StandardWebPart
         from .start_hold_music_operation import StartHoldMusicOperation
         from .stop_hold_music_operation import StopHoldMusicOperation
+        from .storage_quota_breakdown import StorageQuotaBreakdown
+        from .storage_settings import StorageSettings
         from .strong_authentication_detail import StrongAuthenticationDetail
         from .strong_authentication_phone_app_detail import StrongAuthenticationPhoneAppDetail
         from .sts_policy import StsPolicy
@@ -13000,6 +13085,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .unified_role_management_policy_rule import UnifiedRoleManagementPolicyRule
         from .unified_role_schedule_base import UnifiedRoleScheduleBase
         from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
+        from .unified_storage_quota import UnifiedStorageQuota
         from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
         from .unmute_participant_operation import UnmuteParticipantOperation
         from .unsupported_device_configuration import UnsupportedDeviceConfiguration
@@ -13072,6 +13158,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_settings import UserSettings
         from .user_sign_in_insight import UserSignInInsight
         from .user_sign_up_metric import UserSignUpMetric
+        from .user_storage import UserStorage
         from .user_teamwork import UserTeamwork
         from .user_virtual_events_root import UserVirtualEventsRoot
         from .vertical_section import VerticalSection
@@ -13205,9 +13292,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_updates.deployment import Deployment
         from .windows_updates.deployment_audience import DeploymentAudience
         from .windows_updates.driver_update_catalog_entry import DriverUpdateCatalogEntry
+        from .windows_updates.edition import Edition
         from .windows_updates.feature_update_catalog_entry import FeatureUpdateCatalogEntry
         from .windows_updates.knowledge_base_article import KnowledgeBaseArticle
+        from .windows_updates.known_issue import KnownIssue
         from .windows_updates.operational_insights_connection import OperationalInsightsConnection
+        from .windows_updates.product import Product
         from .windows_updates.product_revision import ProductRevision
         from .windows_updates.quality_update_catalog_entry import QualityUpdateCatalogEntry
         from .windows_updates.resource_connection import ResourceConnection
@@ -13273,6 +13363,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_worksheet import WorkbookWorksheet
         from .workbook_worksheet_protection import WorkbookWorksheetProtection
         from .workforce_integration import WorkforceIntegration
+        from .workplace_sensor_device import WorkplaceSensorDevice
         from .workspace import Workspace
         from .work_position import WorkPosition
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration

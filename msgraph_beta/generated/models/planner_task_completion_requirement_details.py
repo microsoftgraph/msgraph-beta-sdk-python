@@ -20,7 +20,7 @@ class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel,
     approval_requirement: Optional[PlannerApprovalRequirement] = None
     # Information about the requirements for completing the checklist.
     checklist_requirement: Optional[PlannerChecklistRequirement] = None
-    # The formsRequirement property
+    # Information about the requirements for completing the forms.
     forms_requirement: Optional[PlannerFormsRequirement] = None
     # The OdataType property
     odata_type: Optional[str] = None

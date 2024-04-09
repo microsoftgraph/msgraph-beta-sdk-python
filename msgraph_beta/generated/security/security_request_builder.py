@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -22,6 +23,7 @@ if TYPE_CHECKING:
     from .domain_security_profiles.domain_security_profiles_request_builder import DomainSecurityProfilesRequestBuilder
     from .file_security_profiles.file_security_profiles_request_builder import FileSecurityProfilesRequestBuilder
     from .host_security_profiles.host_security_profiles_request_builder import HostSecurityProfilesRequestBuilder
+    from .identities.identities_request_builder import IdentitiesRequestBuilder
     from .incidents.incidents_request_builder import IncidentsRequestBuilder
     from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
     from .ip_security_profiles.ip_security_profiles_request_builder import IpSecurityProfilesRequestBuilder
@@ -53,7 +55,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[SecurityRequestBuilderGetRequestConfiguration] = None) -> Optional[Security]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Security]:
         """
         Get security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -73,7 +75,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Security, error_mapping)
     
-    async def patch(self,body: Optional[Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None) -> Optional[Security]:
+    async def patch(self,body: Optional[Security] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Security]:
         """
         Update security
         param body: The request body
@@ -96,7 +98,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Security, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[SecurityRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -107,7 +109,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Security] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update security
         param body: The request body
@@ -116,7 +118,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, '{+baseurl}/security', self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -221,6 +223,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .host_security_profiles.host_security_profiles_request_builder import HostSecurityProfilesRequestBuilder
 
         return HostSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def identities(self) -> IdentitiesRequestBuilder:
+        """
+        Provides operations to manage the identities property of the microsoft.graph.security entity.
+        """
+        from .identities.identities_request_builder import IdentitiesRequestBuilder
+
+        return IdentitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def incidents(self) -> IncidentsRequestBuilder:
@@ -400,28 +411,5 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SecurityRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[SecurityRequestBuilder.SecurityRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SecurityRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

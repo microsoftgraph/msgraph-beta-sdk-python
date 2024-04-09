@@ -35,7 +35,7 @@ class AttackSimulationRoot(Entity):
     simulation_automations: Optional[List[SimulationAutomation]] = None
     # Represents an attack simulation training campaign in a tenant.
     simulations: Optional[List[Simulation]] = None
-    # The trainingCampaigns property
+    # Represents a training campaign in a tenant.
     training_campaigns: Optional[List[TrainingCampaign]] = None
     # Represents details about attack simulation trainings.
     trainings: Optional[List[Training]] = None

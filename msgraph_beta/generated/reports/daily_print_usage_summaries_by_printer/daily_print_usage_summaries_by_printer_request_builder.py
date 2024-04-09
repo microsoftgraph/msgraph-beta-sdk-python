@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,7 +46,7 @@ class DailyPrintUsageSummariesByPrinterRequestBuilder(BaseRequestBuilder):
         url_tpl_params["printUsageByPrinter%2Did"] = print_usage_by_printer_id
         return PrintUsageByPrinterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DailyPrintUsageSummariesByPrinterRequestBuilderGetRequestConfiguration] = None) -> Optional[PrintUsageByPrinterCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrintUsageByPrinterCollectionResponse]:
         """
         Get dailyPrintUsageSummariesByPrinter from reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +67,7 @@ class DailyPrintUsageSummariesByPrinterRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrintUsageByPrinterCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[PrintUsageByPrinter] = None, request_configuration: Optional[DailyPrintUsageSummariesByPrinterRequestBuilderPostRequestConfiguration] = None) -> Optional[PrintUsageByPrinter]:
+    async def post(self,body: Optional[PrintUsageByPrinter] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrintUsageByPrinter]:
         """
         Create new navigation property to dailyPrintUsageSummariesByPrinter for reports
         param body: The request body
@@ -90,7 +91,7 @@ class DailyPrintUsageSummariesByPrinterRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrintUsageByPrinter, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[DailyPrintUsageSummariesByPrinterRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get dailyPrintUsageSummariesByPrinter from reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +103,7 @@ class DailyPrintUsageSummariesByPrinterRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[PrintUsageByPrinter] = None, request_configuration: Optional[DailyPrintUsageSummariesByPrinterRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PrintUsageByPrinter] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to dailyPrintUsageSummariesByPrinter for reports
         param body: The request body
@@ -112,7 +113,7 @@ class DailyPrintUsageSummariesByPrinterRequestBuilder(BaseRequestBuilder):
         warn("The dailyPrintUsageSummariesByPrinter navigation property is deprecated and will stop returning data on July 31, 2023. Please use the dailyPrintUsageByPrinter navigation property instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, '{+baseurl}/reports/dailyPrintUsageSummariesByPrinter', self.path_parameters)
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -193,28 +194,5 @@ class DailyPrintUsageSummariesByPrinterRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DailyPrintUsageSummariesByPrinterRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DailyPrintUsageSummariesByPrinterRequestBuilder.DailyPrintUsageSummariesByPrinterRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DailyPrintUsageSummariesByPrinterRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 
