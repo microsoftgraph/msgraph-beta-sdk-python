@@ -19,7 +19,7 @@ class TunnelConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # A key to establish secure connection between the link and VPN tunnel on the edge.
     pre_shared_key: Optional[str] = None
-    # The zoneRedundancyPreSharedKey property
+    # Another key for zone redundant tunnel. Required only when you select zoneRedundancy redindancyTier when creating a deviceLink.
     zone_redundancy_pre_shared_key: Optional[str] = None
     
     @staticmethod

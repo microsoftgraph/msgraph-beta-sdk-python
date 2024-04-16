@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -16,6 +17,7 @@ if TYPE_CHECKING:
     from .item_insights.item_insights_request_builder import ItemInsightsRequestBuilder
     from .regional_and_language_settings.regional_and_language_settings_request_builder import RegionalAndLanguageSettingsRequestBuilder
     from .shift_preferences.shift_preferences_request_builder import ShiftPreferencesRequestBuilder
+    from .storage.storage_request_builder import StorageRequestBuilder
     from .windows.windows_request_builder import WindowsRequestBuilder
 
 class SettingsRequestBuilder(BaseRequestBuilder):
@@ -31,7 +33,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/settings{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property settings for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,7 +51,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[UserSettings]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserSettings]:
         """
         Get settings from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +71,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserSettings, error_mapping)
     
-    async def patch(self,body: Optional[UserSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[UserSettings]:
+    async def patch(self,body: Optional[UserSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserSettings]:
         """
         Update the navigation property settings in users
         param body: The request body
@@ -92,18 +94,18 @@ class SettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserSettings, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property settings for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.DELETE, '{+baseurl}/users/{user%2Did}/settings', self.path_parameters)
+        request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get settings from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -114,7 +116,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[UserSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UserSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property settings in users
         param body: The request body
@@ -123,7 +125,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, '{+baseurl}/users/{user%2Did}/settings', self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -176,6 +178,15 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         return ShiftPreferencesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def storage(self) -> StorageRequestBuilder:
+        """
+        Provides operations to manage the storage property of the microsoft.graph.userSettings entity.
+        """
+        from .storage.storage_request_builder import StorageRequestBuilder
+
+        return StorageRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def windows(self) -> WindowsRequestBuilder:
         """
         Provides operations to manage the windows property of the microsoft.graph.userSettings entity.
@@ -183,16 +194,6 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         from .windows.windows_request_builder import WindowsRequestBuilder
 
         return WindowsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SettingsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class SettingsRequestBuilderGetQueryParameters():
@@ -219,28 +220,5 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SettingsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[SettingsRequestBuilder.SettingsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SettingsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

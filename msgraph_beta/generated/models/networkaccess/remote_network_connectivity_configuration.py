@@ -14,13 +14,13 @@ class RemoteNetworkConnectivityConfiguration(AdditionalDataHolder, BackedModel, 
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The links property
+    # List of connectivity configurations for deviceLink objects.
     links: Optional[List[ConnectivityConfigurationLink]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The remoteNetworkId property
+    # Unique identifier or a specific reference assigned to a branchSite. Key.
     remote_network_id: Optional[str] = None
-    # The remoteNetworkName property
+    # Display name assigned to a branchSite.
     remote_network_name: Optional[str] = None
     
     @staticmethod

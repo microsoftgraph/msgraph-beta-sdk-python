@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .identifier_type_reference_value import IdentifierTypeReferenceValue
     from .reference_definition import ReferenceDefinition
     from .role_reference_value import RoleReferenceValue
+    from .section_role_reference_value import SectionRoleReferenceValue
     from .user_match_target_reference_value import UserMatchTargetReferenceValue
     from .year_reference_value import YearReferenceValue
 
@@ -46,6 +47,10 @@ class ReferenceValue(AdditionalDataHolder, BackedModel, Parsable):
             from .role_reference_value import RoleReferenceValue
 
             return RoleReferenceValue()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.sectionRoleReferenceValue".casefold():
+            from .section_role_reference_value import SectionRoleReferenceValue
+
+            return SectionRoleReferenceValue()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.userMatchTargetReferenceValue".casefold():
             from .user_match_target_reference_value import UserMatchTargetReferenceValue
 
@@ -64,12 +69,14 @@ class ReferenceValue(AdditionalDataHolder, BackedModel, Parsable):
         from .identifier_type_reference_value import IdentifierTypeReferenceValue
         from .reference_definition import ReferenceDefinition
         from .role_reference_value import RoleReferenceValue
+        from .section_role_reference_value import SectionRoleReferenceValue
         from .user_match_target_reference_value import UserMatchTargetReferenceValue
         from .year_reference_value import YearReferenceValue
 
         from .identifier_type_reference_value import IdentifierTypeReferenceValue
         from .reference_definition import ReferenceDefinition
         from .role_reference_value import RoleReferenceValue
+        from .section_role_reference_value import SectionRoleReferenceValue
         from .user_match_target_reference_value import UserMatchTargetReferenceValue
         from .year_reference_value import YearReferenceValue
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class DeviceManagementScriptGroupAssignmentItemRequestBuilder(BaseRequestBuilder
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceCustomAttributeShellScripts/{deviceCustomAttributeShellScript%2Did}/groupAssignments/{deviceManagementScriptGroupAssignment%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[DeviceManagementScriptGroupAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property groupAssignments for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class DeviceManagementScriptGroupAssignmentItemRequestBuilder(BaseRequestBuilder
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementScriptGroupAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementScriptGroupAssignment]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementScriptGroupAssignment]:
         """
         The list of group assignments for the device management script.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class DeviceManagementScriptGroupAssignmentItemRequestBuilder(BaseRequestBuilder
 
         return await self.request_adapter.send_async(request_info, DeviceManagementScriptGroupAssignment, error_mapping)
     
-    async def patch(self,body: Optional[DeviceManagementScriptGroupAssignment] = None, request_configuration: Optional[DeviceManagementScriptGroupAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceManagementScriptGroupAssignment]:
+    async def patch(self,body: Optional[DeviceManagementScriptGroupAssignment] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementScriptGroupAssignment]:
         """
         Update the navigation property groupAssignments in deviceManagement
         param body: The request body
@@ -87,18 +88,18 @@ class DeviceManagementScriptGroupAssignmentItemRequestBuilder(BaseRequestBuilder
 
         return await self.request_adapter.send_async(request_info, DeviceManagementScriptGroupAssignment, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[DeviceManagementScriptGroupAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property groupAssignments for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.DELETE, '{+baseurl}/deviceManagement/deviceCustomAttributeShellScripts/{deviceCustomAttributeShellScript%2Did}/groupAssignments/{deviceManagementScriptGroupAssignment%2Did}', self.path_parameters)
+        request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[DeviceManagementScriptGroupAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The list of group assignments for the device management script.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class DeviceManagementScriptGroupAssignmentItemRequestBuilder(BaseRequestBuilder
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DeviceManagementScriptGroupAssignment] = None, request_configuration: Optional[DeviceManagementScriptGroupAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceManagementScriptGroupAssignment] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property groupAssignments in deviceManagement
         param body: The request body
@@ -118,7 +119,7 @@ class DeviceManagementScriptGroupAssignmentItemRequestBuilder(BaseRequestBuilder
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, '{+baseurl}/deviceManagement/deviceCustomAttributeShellScripts/{deviceCustomAttributeShellScript%2Did}/groupAssignments/{deviceManagementScriptGroupAssignment%2Did}', self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -133,16 +134,6 @@ class DeviceManagementScriptGroupAssignmentItemRequestBuilder(BaseRequestBuilder
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return DeviceManagementScriptGroupAssignmentItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceManagementScriptGroupAssignmentItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class DeviceManagementScriptGroupAssignmentItemRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class DeviceManagementScriptGroupAssignmentItemRequestBuilder(BaseRequestBuilder
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceManagementScriptGroupAssignmentItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DeviceManagementScriptGroupAssignmentItemRequestBuilder.DeviceManagementScriptGroupAssignmentItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceManagementScriptGroupAssignmentItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

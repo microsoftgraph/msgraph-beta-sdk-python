@@ -16,13 +16,13 @@ from ..entity import Entity
 
 @dataclass
 class DeviceLink(Entity):
-    # Determines the maximum allowed Mbps (megabits per second) bandwidth from a branch site. The possible values are:250,500,750,1000.
+    # Determines the maximum allowed Mbps (megabits per second) bandwidth from a device link. The possible values are:250,500,750,1000.
     bandwidth_capacity_in_mbps: Optional[BandwidthCapacityInMbps] = None
     # The bgpConfiguration property
     bgp_configuration: Optional[BgpConfiguration] = None
     # The deviceVendor property
     device_vendor: Optional[DeviceVendor] = None
-    # Specifies the client IPv4 of the link
+    # The public IP address of your CPE (customer premise equipment) device.
     ip_address: Optional[str] = None
     # last modified time.
     last_modified_date_time: Optional[datetime.datetime] = None

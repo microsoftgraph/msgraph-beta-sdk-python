@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .file_plan_descriptor_template import FilePlanDescriptorTemplate
-    from .sub_category_template import SubCategoryTemplate
+    from .subcategory_template import SubcategoryTemplate
 
 from .file_plan_descriptor_template import FilePlanDescriptorTemplate
 
@@ -13,8 +13,8 @@ from .file_plan_descriptor_template import FilePlanDescriptorTemplate
 class CategoryTemplate(FilePlanDescriptorTemplate):
     # The OdataType property
     odata_type: Optional[str] = None
-    # Represents all subcategories under a particular category.
-    sub_categories: Optional[List[SubCategoryTemplate]] = None
+    # The subcategories property
+    subcategories: Optional[List[SubcategoryTemplate]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CategoryTemplate:
@@ -33,13 +33,13 @@ class CategoryTemplate(FilePlanDescriptorTemplate):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .file_plan_descriptor_template import FilePlanDescriptorTemplate
-        from .sub_category_template import SubCategoryTemplate
+        from .subcategory_template import SubcategoryTemplate
 
         from .file_plan_descriptor_template import FilePlanDescriptorTemplate
-        from .sub_category_template import SubCategoryTemplate
+        from .subcategory_template import SubcategoryTemplate
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "subCategories": lambda n : setattr(self, 'sub_categories', n.get_collection_of_object_values(SubCategoryTemplate)),
+            "subcategories": lambda n : setattr(self, 'subcategories', n.get_collection_of_object_values(SubcategoryTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,6 +54,6 @@ class CategoryTemplate(FilePlanDescriptorTemplate):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("subCategories", self.sub_categories)
+        writer.write_collection_of_object_values("subcategories", self.subcategories)
     
 

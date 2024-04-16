@@ -5,14 +5,14 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
-    from .applied_category import AppliedCategory
-    from .authority import Authority
     from .authority_template import AuthorityTemplate
     from .category_template import CategoryTemplate
-    from .citation import Citation
     from .citation_template import CitationTemplate
-    from .department import Department
     from .department_template import DepartmentTemplate
+    from .file_plan_applied_category import FilePlanAppliedCategory
+    from .file_plan_authority import FilePlanAuthority
+    from .file_plan_citation import FilePlanCitation
+    from .file_plan_department import FilePlanDepartment
     from .file_plan_reference import FilePlanReference
     from .file_plan_reference_template import FilePlanReferenceTemplate
 
@@ -21,19 +21,19 @@ from ..entity import Entity
 @dataclass
 class FilePlanDescriptor(Entity):
     # Represents the file plan descriptor of type authority applied to a particular retention label.
-    authority: Optional[Authority] = None
+    authority: Optional[FilePlanAuthority] = None
     # Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
     authority_template: Optional[AuthorityTemplate] = None
     # The category property
-    category: Optional[AppliedCategory] = None
+    category: Optional[FilePlanAppliedCategory] = None
     # Specifies a group of similar types of content in a particular department.
     category_template: Optional[CategoryTemplate] = None
     # Represents the file plan descriptor of type citation applied to a particular retention label.
-    citation: Optional[Citation] = None
+    citation: Optional[FilePlanCitation] = None
     # The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
     citation_template: Optional[CitationTemplate] = None
     # Represents the file plan descriptor of type department applied to a particular retention label.
-    department: Optional[Department] = None
+    department: Optional[FilePlanDepartment] = None
     # Specifies the  department or business unit of an organization to which a label belongs.
     department_template: Optional[DepartmentTemplate] = None
     # Represents the file plan descriptor of type filePlanReference applied to a particular retention label.
@@ -60,37 +60,37 @@ class FilePlanDescriptor(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
-        from .applied_category import AppliedCategory
-        from .authority import Authority
         from .authority_template import AuthorityTemplate
         from .category_template import CategoryTemplate
-        from .citation import Citation
         from .citation_template import CitationTemplate
-        from .department import Department
         from .department_template import DepartmentTemplate
+        from .file_plan_applied_category import FilePlanAppliedCategory
+        from .file_plan_authority import FilePlanAuthority
+        from .file_plan_citation import FilePlanCitation
+        from .file_plan_department import FilePlanDepartment
         from .file_plan_reference import FilePlanReference
         from .file_plan_reference_template import FilePlanReferenceTemplate
 
         from ..entity import Entity
-        from .applied_category import AppliedCategory
-        from .authority import Authority
         from .authority_template import AuthorityTemplate
         from .category_template import CategoryTemplate
-        from .citation import Citation
         from .citation_template import CitationTemplate
-        from .department import Department
         from .department_template import DepartmentTemplate
+        from .file_plan_applied_category import FilePlanAppliedCategory
+        from .file_plan_authority import FilePlanAuthority
+        from .file_plan_citation import FilePlanCitation
+        from .file_plan_department import FilePlanDepartment
         from .file_plan_reference import FilePlanReference
         from .file_plan_reference_template import FilePlanReferenceTemplate
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "authority": lambda n : setattr(self, 'authority', n.get_object_value(Authority)),
+            "authority": lambda n : setattr(self, 'authority', n.get_object_value(FilePlanAuthority)),
             "authorityTemplate": lambda n : setattr(self, 'authority_template', n.get_object_value(AuthorityTemplate)),
-            "category": lambda n : setattr(self, 'category', n.get_object_value(AppliedCategory)),
+            "category": lambda n : setattr(self, 'category', n.get_object_value(FilePlanAppliedCategory)),
             "categoryTemplate": lambda n : setattr(self, 'category_template', n.get_object_value(CategoryTemplate)),
-            "citation": lambda n : setattr(self, 'citation', n.get_object_value(Citation)),
+            "citation": lambda n : setattr(self, 'citation', n.get_object_value(FilePlanCitation)),
             "citationTemplate": lambda n : setattr(self, 'citation_template', n.get_object_value(CitationTemplate)),
-            "department": lambda n : setattr(self, 'department', n.get_object_value(Department)),
+            "department": lambda n : setattr(self, 'department', n.get_object_value(FilePlanDepartment)),
             "departmentTemplate": lambda n : setattr(self, 'department_template', n.get_object_value(DepartmentTemplate)),
             "filePlanReference": lambda n : setattr(self, 'file_plan_reference', n.get_object_value(FilePlanReference)),
             "filePlanReferenceTemplate": lambda n : setattr(self, 'file_plan_reference_template', n.get_object_value(FilePlanReferenceTemplate)),

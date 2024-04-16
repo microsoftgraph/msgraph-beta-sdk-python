@@ -12,9 +12,9 @@ from .entity import Entity
 
 @dataclass
 class Connector(Entity):
-    # The external IP address as detected by the the connector server. Read-only.
+    # The external IP address as detected by the connector server. Read-only.
     external_ip: Optional[str] = None
-    # The machine name the connector is installed and running on.
+    # The name of the computer on which the connector is installed and runs on.
     machine_name: Optional[str] = None
     # The connectorGroup that the connector is a member of. Read-only.
     member_of: Optional[List[ConnectorGroup]] = None
@@ -22,7 +22,7 @@ class Connector(Entity):
     odata_type: Optional[str] = None
     # The status property
     status: Optional[ConnectorStatus] = None
-    # The version property
+    # The version of the connector.
     version: Optional[str] = None
     
     @staticmethod

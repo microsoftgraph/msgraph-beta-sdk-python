@@ -16,7 +16,7 @@ from .entity import Entity
 
 @dataclass
 class AccessReview(Entity):
-    # The business flow template identifier. Required on create.  This value is case sensitive.
+    # The business flow template identifier. Required on create. This value is case sensitive.
     business_flow_template_id: Optional[str] = None
     # The user who created this review.
     created_by: Optional[UserIdentity] = None
@@ -26,23 +26,23 @@ class AccessReview(Entity):
     description: Optional[str] = None
     # The access review name. Required on create.
     display_name: Optional[str] = None
-    # The DateTime when the review is scheduled to end. This must be at least one day later than the start date.  Required on create.
+    # The DateTime when the review is scheduled to end. This must be at least one day later than the start date. Required on create.
     end_date_time: Optional[datetime.datetime] = None
-    # The collection of access reviews instances past, present and future, if this object is a recurring access review.
+    # The collection of access reviews instances past, present, and future, if this object is a recurring access review.
     instances: Optional[List[AccessReview]] = None
     # The collection of decisions for the caller, if the caller is a reviewer.
     my_decisions: Optional[List[AccessReviewDecision]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The object for which the access reviews is reviewing the access rights assignments. This can be the group for the review of memberships of users in a group, or the app for a review of assignments of users to an application. Required on create.
+    # The object for which the access review is reviewing the access rights assignments. This identity can be the group for the review of memberships of users in a group, or the app for a review of assignments of users to an application. Required on create.
     reviewed_entity: Optional[Identity] = None
-    # The relationship type of reviewer to the target object, one of self, delegated or entityOwners. Required on create.
+    # The relationship type of reviewer to the target object, one of: self, delegated, entityOwners. Required on create.
     reviewer_type: Optional[str] = None
     # The collection of reviewers for an access review, if access review reviewerType is of type delegated.
     reviewers: Optional[List[AccessReviewReviewer]] = None
     # The settings of an accessReview, see type definition below.
     settings: Optional[AccessReviewSettings] = None
-    # The DateTime when the review is scheduled to be start.  This could be a date in the future.  Required on create.
+    # The date and time when the review is scheduled to be start. This date can be in the future.  Required on create.
     start_date_time: Optional[datetime.datetime] = None
     # This read-only field specifies the status of an accessReview. The typical states include Initializing, NotStarted, Starting,InProgress, Completing, Completed, AutoReviewing, and AutoReviewed.
     status: Optional[str] = None

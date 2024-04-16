@@ -32,6 +32,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     connection_id: Optional[str] = None
     # Represents the date and time when a network access traffic log entry was created. Supports $filter (eq) and $orderby.
     created_date_time: Optional[datetime.datetime] = None
+    # The description property
+    description: Optional[str] = None
     # Represents the Fully Qualified Domain Name (FQDN) of the destination host or server in a network communication. Supports $filter (eq) and $orderby.
     destination_f_q_d_n: Optional[str] = None
     # Represents the IP address of the destination host or server in a network communication. Supports $filter (eq) and $orderby.
@@ -139,6 +141,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "applicationSnapshot": lambda n : setattr(self, 'application_snapshot', n.get_object_value(ApplicationSnapshot)),
             "connectionId": lambda n : setattr(self, 'connection_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "destinationFQDN": lambda n : setattr(self, 'destination_f_q_d_n', n.get_str_value()),
             "destinationIp": lambda n : setattr(self, 'destination_ip', n.get_str_value()),
             "destinationPort": lambda n : setattr(self, 'destination_port', n.get_int_value()),
@@ -188,6 +191,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("applicationSnapshot", self.application_snapshot)
         writer.write_str_value("connectionId", self.connection_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_str_value("description", self.description)
         writer.write_str_value("destinationFQDN", self.destination_f_q_d_n)
         writer.write_str_value("destinationIp", self.destination_ip)
         writer.write_int_value("destinationPort", self.destination_port)

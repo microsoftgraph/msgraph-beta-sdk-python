@@ -77,4 +77,6 @@ class RemoteAction(str, Enum):
     InitiateDeviceAttestation = "initiateDeviceAttestation",
     # Indicates remote device action to override assignments for a Device.
     ChangeAssignments = "changeAssignments",
+    # Indicates remote device action to delete a device from Intune portal.
+    Delete = "delete",
 

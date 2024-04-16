@@ -29,7 +29,7 @@ from .base_item import BaseItem
 class Site(BaseItem):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.site"
-    # Analytics about the view activities that took place in this site.
+    # Analytics about the view activities that took place on this site.
     analytics: Optional[ItemAnalytics] = None
     # The collection of column definitions reusable across lists under this site.
     columns: Optional[List[ColumnDefinition]] = None
@@ -43,13 +43,13 @@ class Site(BaseItem):
     drive: Optional[Drive] = None
     # The collection of drives (document libraries) under this site.
     drives: Optional[List[Drive]] = None
-    # The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.
+    # The collection of column definitions available in the site that is referenced from the sites in the parent hierarchy of the current site.
     external_columns: Optional[List[ColumnDefinition]] = None
     # The informationProtection property
     information_protection: Optional[InformationProtection] = None
     # The isPersonalSite property
     is_personal_site: Optional[bool] = None
-    # Used to address any item contained in this site. This collection cannot be enumerated.
+    # Used to address any item contained in this site. This collection can't be enumerated.
     items: Optional[List[BaseItem]] = None
     # The collection of lists under this site.
     lists: Optional[List[List_]] = None
@@ -57,13 +57,13 @@ class Site(BaseItem):
     onenote: Optional[Onenote] = None
     # The collection of long running operations for the site.
     operations: Optional[List[RichLongRunningOperation]] = None
-    # The collection of pages in the baseSitePages list in this site.
+    # The collection of pages in the baseSitePages list on this site.
     pages: Optional[List[BaseSitePage]] = None
     # The permissions associated with the site. Nullable.
     permissions: Optional[List[Permission]] = None
     # A container for a collection of recycleBinItem resources in this site.
     recycle_bin: Optional[RecycleBin] = None
-    # If present, indicates that this is the root site in the site collection. Read-only.
+    # If present, provides the root site in the site collection. Read-only.
     root: Optional[Root] = None
     # The settings on this site. Read-only.
     settings: Optional[SiteSettings] = None

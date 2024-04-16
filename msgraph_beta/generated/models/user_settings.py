@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .regional_and_language_settings import RegionalAndLanguageSettings
     from .shift_preferences import ShiftPreferences
     from .user_insights_settings import UserInsightsSettings
+    from .user_storage import UserStorage
     from .windows_setting import WindowsSetting
 
 from .entity import Entity
@@ -29,6 +30,8 @@ class UserSettings(Entity):
     regional_and_language_settings: Optional[RegionalAndLanguageSettings] = None
     # The shift preferences for the user.
     shift_preferences: Optional[ShiftPreferences] = None
+    # The storage property
+    storage: Optional[UserStorage] = None
     # The Windows settings of the user stored in the cloud.
     windows: Optional[List[WindowsSetting]] = None
     
@@ -53,6 +56,7 @@ class UserSettings(Entity):
         from .regional_and_language_settings import RegionalAndLanguageSettings
         from .shift_preferences import ShiftPreferences
         from .user_insights_settings import UserInsightsSettings
+        from .user_storage import UserStorage
         from .windows_setting import WindowsSetting
 
         from .contact_merge_suggestions import ContactMergeSuggestions
@@ -60,6 +64,7 @@ class UserSettings(Entity):
         from .regional_and_language_settings import RegionalAndLanguageSettings
         from .shift_preferences import ShiftPreferences
         from .user_insights_settings import UserInsightsSettings
+        from .user_storage import UserStorage
         from .windows_setting import WindowsSetting
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -69,6 +74,7 @@ class UserSettings(Entity):
             "itemInsights": lambda n : setattr(self, 'item_insights', n.get_object_value(UserInsightsSettings)),
             "regionalAndLanguageSettings": lambda n : setattr(self, 'regional_and_language_settings', n.get_object_value(RegionalAndLanguageSettings)),
             "shiftPreferences": lambda n : setattr(self, 'shift_preferences', n.get_object_value(ShiftPreferences)),
+            "storage": lambda n : setattr(self, 'storage', n.get_object_value(UserStorage)),
             "windows": lambda n : setattr(self, 'windows', n.get_collection_of_object_values(WindowsSetting)),
         }
         super_fields = super().get_field_deserializers()
@@ -90,6 +96,7 @@ class UserSettings(Entity):
         writer.write_object_value("itemInsights", self.item_insights)
         writer.write_object_value("regionalAndLanguageSettings", self.regional_and_language_settings)
         writer.write_object_value("shiftPreferences", self.shift_preferences)
+        writer.write_object_value("storage", self.storage)
         writer.write_collection_of_object_values("windows", self.windows)
     
 

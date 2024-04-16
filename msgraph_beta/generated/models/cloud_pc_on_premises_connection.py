@@ -31,7 +31,7 @@ class CloudPcOnPremisesConnection(Entity):
     health_check_status: Optional[CloudPcOnPremisesConnectionStatus] = None
     # Indicates the results of health checks performed on the on-premises connection. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
     health_check_status_detail: Optional[CloudPcOnPremisesConnectionStatusDetail] = None
-    # The healthCheckStatusDetails property
+    # The details of the connection's health checks and the corresponding results. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
     health_check_status_details: Optional[CloudPcOnPremisesConnectionStatusDetails] = None
     # When true, the Azure network connection is in use. When false, the connection isn't in use. You can't delete a connection that’s in use. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
     in_use: Optional[bool] = None
@@ -47,7 +47,7 @@ class CloudPcOnPremisesConnection(Entity):
     scope_ids: Optional[List[str]] = None
     # The ID of the target subnet. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkId}/subnets/{subnetName}.
     subnet_id: Optional[str] = None
-    # The ID of the target Azure subscription that’s associated with your tenant.
+    # The ID of the target Azure subscription associated with your tenant.
     subscription_id: Optional[str] = None
     # The name of the target Azure subscription. Read-only.
     subscription_name: Optional[str] = None
@@ -55,7 +55,7 @@ class CloudPcOnPremisesConnection(Entity):
     type: Optional[CloudPcOnPremisesConnectionType] = None
     # The ID of the target virtual network. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}.
     virtual_network_id: Optional[str] = None
-    # Indicates resource location of the virtual target network. Read-only, computed value.
+    # Indicates the resource location of the virtual target network. Read-only, computed value.
     virtual_network_location: Optional[str] = None
     
     @staticmethod

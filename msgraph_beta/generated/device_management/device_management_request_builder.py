@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -54,6 +55,7 @@ if TYPE_CHECKING:
     from .device_configurations_all_managed_device_certificate_states.device_configurations_all_managed_device_certificate_states_request_builder import DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder
     from .device_configuration_conflict_summary.device_configuration_conflict_summary_request_builder import DeviceConfigurationConflictSummaryRequestBuilder
     from .device_configuration_device_state_summaries.device_configuration_device_state_summaries_request_builder import DeviceConfigurationDeviceStateSummariesRequestBuilder
+    from .device_configuration_profiles.device_configuration_profiles_request_builder import DeviceConfigurationProfilesRequestBuilder
     from .device_configuration_restricted_apps_violations.device_configuration_restricted_apps_violations_request_builder import DeviceConfigurationRestrictedAppsViolationsRequestBuilder
     from .device_configuration_user_state_summaries.device_configuration_user_state_summaries_request_builder import DeviceConfigurationUserStateSummariesRequestBuilder
     from .device_custom_attribute_shell_scripts.device_custom_attribute_shell_scripts_request_builder import DeviceCustomAttributeShellScriptsRequestBuilder
@@ -88,6 +90,8 @@ if TYPE_CHECKING:
     from .group_policy_migration_reports.group_policy_migration_reports_request_builder import GroupPolicyMigrationReportsRequestBuilder
     from .group_policy_object_files.group_policy_object_files_request_builder import GroupPolicyObjectFilesRequestBuilder
     from .group_policy_uploaded_definition_files.group_policy_uploaded_definition_files_request_builder import GroupPolicyUploadedDefinitionFilesRequestBuilder
+    from .hardware_configurations.hardware_configurations_request_builder import HardwareConfigurationsRequestBuilder
+    from .hardware_password_info.hardware_password_info_request_builder import HardwarePasswordInfoRequestBuilder
     from .imported_device_identities.imported_device_identities_request_builder import ImportedDeviceIdentitiesRequestBuilder
     from .imported_windows_autopilot_device_identities.imported_windows_autopilot_device_identities_request_builder import ImportedWindowsAutopilotDeviceIdentitiesRequestBuilder
     from .intents.intents_request_builder import IntentsRequestBuilder
@@ -209,7 +213,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[DeviceManagementRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagement]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagement]:
         """
         Get deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -277,7 +281,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
 
         return GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder(self.request_adapter, self.path_parameters, enrollment_type)
     
-    async def patch(self,body: Optional[DeviceManagement] = None, request_configuration: Optional[DeviceManagementRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceManagement]:
+    async def patch(self,body: Optional[DeviceManagement] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagement]:
         """
         Update deviceManagement
         param body: The request body
@@ -312,7 +316,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
 
         return ScopedForResourceWithResourceRequestBuilder(self.request_adapter, self.path_parameters, resource)
     
-    def to_get_request_information(self,request_configuration: Optional[DeviceManagementRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -323,7 +327,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DeviceManagement] = None, request_configuration: Optional[DeviceManagementRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceManagement] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update deviceManagement
         param body: The request body
@@ -332,7 +336,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, '{+baseurl}/deviceManagement', self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -721,6 +725,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return DeviceConfigurationDeviceStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def device_configuration_profiles(self) -> DeviceConfigurationProfilesRequestBuilder:
+        """
+        Provides operations to manage the deviceConfigurationProfiles property of the microsoft.graph.deviceManagement entity.
+        """
+        from .device_configuration_profiles.device_configuration_profiles_request_builder import DeviceConfigurationProfilesRequestBuilder
+
+        return DeviceConfigurationProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def device_configuration_restricted_apps_violations(self) -> DeviceConfigurationRestrictedAppsViolationsRequestBuilder:
         """
         Provides operations to manage the deviceConfigurationRestrictedAppsViolations property of the microsoft.graph.deviceManagement entity.
@@ -1007,6 +1020,24 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .group_policy_uploaded_definition_files.group_policy_uploaded_definition_files_request_builder import GroupPolicyUploadedDefinitionFilesRequestBuilder
 
         return GroupPolicyUploadedDefinitionFilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def hardware_configurations(self) -> HardwareConfigurationsRequestBuilder:
+        """
+        Provides operations to manage the hardwareConfigurations property of the microsoft.graph.deviceManagement entity.
+        """
+        from .hardware_configurations.hardware_configurations_request_builder import HardwareConfigurationsRequestBuilder
+
+        return HardwareConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def hardware_password_info(self) -> HardwarePasswordInfoRequestBuilder:
+        """
+        Provides operations to manage the hardwarePasswordInfo property of the microsoft.graph.deviceManagement entity.
+        """
+        from .hardware_password_info.hardware_password_info_request_builder import HardwarePasswordInfoRequestBuilder
+
+        return HardwarePasswordInfoRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def imported_device_identities(self) -> ImportedDeviceIdentitiesRequestBuilder:
@@ -1978,28 +2009,5 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceManagementRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DeviceManagementRequestBuilder.DeviceManagementRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceManagementRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

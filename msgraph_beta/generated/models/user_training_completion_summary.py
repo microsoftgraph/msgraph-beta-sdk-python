@@ -11,17 +11,17 @@ class UserTrainingCompletionSummary(AdditionalDataHolder, BackedModel, Parsable)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The completedUsersCount property
+    # The number of users who completed all the trainings before the due date.
     completed_users_count: Optional[int] = None
-    # The inProgressUsersCount property
+    # The number of users who started at least one training.
     in_progress_users_count: Optional[int] = None
-    # The notCompletedUsersCount property
+    # The number of users who didn't complete all the trainings before the due date.
     not_completed_users_count: Optional[int] = None
-    # The notStartedUsersCount property
+    # The number of users who didn't start any training.
     not_started_users_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The previouslyAssignedUsersCount property
+    # The number of users who are already assigned the same training.
     previously_assigned_users_count: Optional[int] = None
     
     @staticmethod

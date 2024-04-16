@@ -12,7 +12,7 @@ from .cloud_pc_bulk_action import CloudPcBulkAction
 class CloudPcBulkResize(CloudPcBulkAction):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkResize"
-    # The targetServicePlanId property
+    # The target service plan ID of the resize configuration with new vCPU and storage size.
     target_service_plan_id: Optional[str] = None
     
     @staticmethod

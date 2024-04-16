@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilder(B
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/{userExperienceAnalyticsAnomalyCorrelationGroupOverview%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property userExperienceAnalyticsAnomalyCorrelationGroupOverview for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilder(B
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverview]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverview]:
         """
         The user experience analytics anomaly correlation group overview entity contains the information for each correlation group of an anomaly.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilder(B
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsAnomalyCorrelationGroupOverview, error_mapping)
     
-    async def patch(self,body: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverview] = None, request_configuration: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverview]:
+    async def patch(self,body: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverview] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverview]:
         """
         Update the navigation property userExperienceAnalyticsAnomalyCorrelationGroupOverview in deviceManagement
         param body: The request body
@@ -87,18 +88,18 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilder(B
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsAnomalyCorrelationGroupOverview, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property userExperienceAnalyticsAnomalyCorrelationGroupOverview for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.DELETE, '{+baseurl}/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/{userExperienceAnalyticsAnomalyCorrelationGroupOverview%2Did}', self.path_parameters)
+        request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The user experience analytics anomaly correlation group overview entity contains the information for each correlation group of an anomaly.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilder(B
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverview] = None, request_configuration: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverview] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property userExperienceAnalyticsAnomalyCorrelationGroupOverview in deviceManagement
         param body: The request body
@@ -118,7 +119,7 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilder(B
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, '{+baseurl}/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/{userExperienceAnalyticsAnomalyCorrelationGroupOverview%2Did}', self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -133,16 +134,6 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilder(B
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilder(B
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilder.UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

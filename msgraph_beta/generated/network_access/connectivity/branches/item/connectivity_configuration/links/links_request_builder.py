@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,7 +46,7 @@ class LinksRequestBuilder(BaseRequestBuilder):
         url_tpl_params["connectivityConfigurationLink%2Did"] = connectivity_configuration_link_id
         return ConnectivityConfigurationLinkItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[LinksRequestBuilderGetRequestConfiguration] = None) -> Optional[ConnectivityConfigurationLinkCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ConnectivityConfigurationLinkCollectionResponse]:
         """
         List of connectivity configurations for deviceLink objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +67,7 @@ class LinksRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ConnectivityConfigurationLinkCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ConnectivityConfigurationLink] = None, request_configuration: Optional[LinksRequestBuilderPostRequestConfiguration] = None) -> Optional[ConnectivityConfigurationLink]:
+    async def post(self,body: Optional[ConnectivityConfigurationLink] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ConnectivityConfigurationLink]:
         """
         Create new navigation property to links for networkAccess
         param body: The request body
@@ -90,7 +91,7 @@ class LinksRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ConnectivityConfigurationLink, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[LinksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         List of connectivity configurations for deviceLink objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +103,7 @@ class LinksRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ConnectivityConfigurationLink] = None, request_configuration: Optional[LinksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ConnectivityConfigurationLink] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to links for networkAccess
         param body: The request body
@@ -112,7 +113,7 @@ class LinksRequestBuilder(BaseRequestBuilder):
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, '{+baseurl}/networkAccess/connectivity/branches/{branchSite%2Did}/connectivityConfiguration/links', self.path_parameters)
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -193,28 +194,5 @@ class LinksRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class LinksRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[LinksRequestBuilder.LinksRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class LinksRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -42,7 +43,7 @@ class ConditionalAccessPoliciesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["conditionalAccessPolicy%2Did"] = conditional_access_policy_id
         return ConditionalAccessPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ConditionalAccessPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[ConditionalAccessPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ConditionalAccessPolicyCollectionResponse]:
         """
         A set of associated policies defined to regulate access to resources or systems based on specific conditions. Automatically expanded.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -62,7 +63,7 @@ class ConditionalAccessPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ConditionalAccessPolicyCollectionResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[ConditionalAccessPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         A set of associated policies defined to regulate access to resources or systems based on specific conditions. Automatically expanded.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -146,19 +147,6 @@ class ConditionalAccessPoliciesRequestBuilder(BaseRequestBuilder):
 
         # Show only the first n items
         top: Optional[int] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ConditionalAccessPoliciesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ConditionalAccessPoliciesRequestBuilder.ConditionalAccessPoliciesRequestBuilderGetQueryParameters] = None
 
     
 

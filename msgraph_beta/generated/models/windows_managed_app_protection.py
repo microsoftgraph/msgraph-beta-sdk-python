@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .managed_app_device_threat_level import ManagedAppDeviceThreatLevel
     from .managed_app_policy import ManagedAppPolicy
+    from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
     from .managed_app_remediation_action import ManagedAppRemediationAction
     from .managed_mobile_app import ManagedMobileApp
     from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
@@ -36,6 +37,8 @@ class WindowsManagedAppProtection(ManagedAppPolicy):
     assignments: Optional[List[TargetedManagedAppPolicyAssignment]] = None
     # Indicates the total number of applications for which the current policy is deployed.
     deployed_app_count: Optional[int] = None
+    # Navigation property to deployment summary of the configuration.
+    deployment_summary: Optional[ManagedAppPolicyDeploymentSummary] = None
     # When TRUE, indicates that the policy is deployed to some inclusion groups. When FALSE, indicates that the policy is not deployed to any inclusion groups. Default value is FALSE.
     is_assigned: Optional[bool] = None
     # The maxium threat level allowed for an app to be compliant.
@@ -89,6 +92,7 @@ class WindowsManagedAppProtection(ManagedAppPolicy):
         """
         from .managed_app_device_threat_level import ManagedAppDeviceThreatLevel
         from .managed_app_policy import ManagedAppPolicy
+        from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
         from .managed_app_remediation_action import ManagedAppRemediationAction
         from .managed_mobile_app import ManagedMobileApp
         from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
@@ -97,6 +101,7 @@ class WindowsManagedAppProtection(ManagedAppPolicy):
 
         from .managed_app_device_threat_level import ManagedAppDeviceThreatLevel
         from .managed_app_policy import ManagedAppPolicy
+        from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
         from .managed_app_remediation_action import ManagedAppRemediationAction
         from .managed_mobile_app import ManagedMobileApp
         from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
@@ -111,6 +116,7 @@ class WindowsManagedAppProtection(ManagedAppPolicy):
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(ManagedMobileApp)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(TargetedManagedAppPolicyAssignment)),
             "deployedAppCount": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),
+            "deploymentSummary": lambda n : setattr(self, 'deployment_summary', n.get_object_value(ManagedAppPolicyDeploymentSummary)),
             "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
             "maximumAllowedDeviceThreatLevel": lambda n : setattr(self, 'maximum_allowed_device_threat_level', n.get_enum_value(ManagedAppDeviceThreatLevel)),
             "maximumRequiredOsVersion": lambda n : setattr(self, 'maximum_required_os_version', n.get_str_value()),
@@ -149,6 +155,7 @@ class WindowsManagedAppProtection(ManagedAppPolicy):
         writer.write_collection_of_object_values("apps", self.apps)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_int_value("deployedAppCount", self.deployed_app_count)
+        writer.write_object_value("deploymentSummary", self.deployment_summary)
         writer.write_bool_value("isAssigned", self.is_assigned)
         writer.write_enum_value("maximumAllowedDeviceThreatLevel", self.maximum_allowed_device_threat_level)
         writer.write_str_value("maximumRequiredOsVersion", self.maximum_required_os_version)
