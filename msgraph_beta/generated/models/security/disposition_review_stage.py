@@ -17,7 +17,7 @@ class DispositionReviewStage(Entity):
     # A collection of reviewers at each stage.
     reviewers_email_addresses: Optional[List[str]] = None
     # The sequence number for each stage of the disposition review.
-    stage_number: Optional[int] = None
+    stage_number: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DispositionReviewStage:
@@ -42,7 +42,7 @@ class DispositionReviewStage(Entity):
         fields: Dict[str, Callable[[Any], None]] = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "reviewersEmailAddresses": lambda n : setattr(self, 'reviewers_email_addresses', n.get_collection_of_primitive_values(str)),
-            "stageNumber": lambda n : setattr(self, 'stage_number', n.get_int_value()),
+            "stageNumber": lambda n : setattr(self, 'stage_number', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -59,6 +59,6 @@ class DispositionReviewStage(Entity):
         super().serialize(writer)
         writer.write_str_value("name", self.name)
         writer.write_collection_of_primitive_values("reviewersEmailAddresses", self.reviewers_email_addresses)
-        writer.write_int_value("stageNumber", self.stage_number)
+        writer.write_str_value("stageNumber", self.stage_number)
     
 

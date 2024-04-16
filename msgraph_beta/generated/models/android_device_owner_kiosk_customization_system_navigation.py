@@ -5,6 +5,6 @@ class AndroidDeviceOwnerKioskCustomizationSystemNavigation(str, Enum):
     NotConfigured = "notConfigured",
     # Home and overview buttons are enabled.
     NavigationEnabled = "navigationEnabled",
-    #  Only the home button is enabled.
+    # Only the home button is enabled.
     HomeButtonOnly = "homeButtonOnly",
 

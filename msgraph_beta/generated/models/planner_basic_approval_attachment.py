@@ -12,7 +12,7 @@ from .planner_base_approval_attachment import PlannerBaseApprovalAttachment
 class PlannerBasicApprovalAttachment(PlannerBaseApprovalAttachment):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.plannerBasicApprovalAttachment"
-    # The approvalId property
+    # Read-only. The identifier of the approval in the approval service.
     approval_id: Optional[str] = None
     
     @staticmethod

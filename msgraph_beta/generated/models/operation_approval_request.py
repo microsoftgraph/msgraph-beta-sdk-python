@@ -27,8 +27,6 @@ class OperationApprovalRequest(Entity):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The operational approval policies used in the request. Indicates the policy and platform combinations that are required for this request to be approved or rejected. Read-only. This property is read-only.
-    operation_approval_policies: Optional[str] = None
     # Indicates the DateTime that the request was made. The value cannot be modified and is automatically populated when the request is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Returned by default. Read-only. This property is read-only.
     request_date_time: Optional[datetime.datetime] = None
     # Indicates the justification for creating the request. Maximum length of justification is 1024 characters. For example: 'Needed for Feb 2023 application baseline updates.' Read-only. This property is read-only.
@@ -71,7 +69,6 @@ class OperationApprovalRequest(Entity):
             "approver": lambda n : setattr(self, 'approver', n.get_object_value(IdentitySet)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "operationApprovalPolicies": lambda n : setattr(self, 'operation_approval_policies', n.get_str_value()),
             "requestDateTime": lambda n : setattr(self, 'request_date_time', n.get_datetime_value()),
             "requestJustification": lambda n : setattr(self, 'request_justification', n.get_str_value()),
             "requestor": lambda n : setattr(self, 'requestor', n.get_object_value(IdentitySet)),

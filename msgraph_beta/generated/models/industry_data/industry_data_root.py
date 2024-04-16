@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .inbound_flow import InboundFlow
     from .industry_data_connector import IndustryDataConnector
     from .industry_data_run import IndustryDataRun
+    from .outbound_provisioning_flow_set import OutboundProvisioningFlowSet
     from .reference_definition import ReferenceDefinition
     from .role_group import RoleGroup
     from .source_system_definition import SourceSystemDefinition
@@ -26,6 +27,8 @@ class IndustryDataRoot(Entity):
     odata_type: Optional[str] = None
     # Set of ephemeral operations that the system runs currently. Read-only.
     operations: Optional[List[LongRunningOperation]] = None
+    # The outboundProvisioningFlowSets property
+    outbound_provisioning_flow_sets: Optional[List[OutboundProvisioningFlowSet]] = None
     # Set of user modifiable system picker types.
     reference_definitions: Optional[List[ReferenceDefinition]] = None
     # Set of groups of individual roles that makes role-based admin simpler.
@@ -58,6 +61,7 @@ class IndustryDataRoot(Entity):
         from .inbound_flow import InboundFlow
         from .industry_data_connector import IndustryDataConnector
         from .industry_data_run import IndustryDataRun
+        from .outbound_provisioning_flow_set import OutboundProvisioningFlowSet
         from .reference_definition import ReferenceDefinition
         from .role_group import RoleGroup
         from .source_system_definition import SourceSystemDefinition
@@ -68,6 +72,7 @@ class IndustryDataRoot(Entity):
         from .inbound_flow import InboundFlow
         from .industry_data_connector import IndustryDataConnector
         from .industry_data_run import IndustryDataRun
+        from .outbound_provisioning_flow_set import OutboundProvisioningFlowSet
         from .reference_definition import ReferenceDefinition
         from .role_group import RoleGroup
         from .source_system_definition import SourceSystemDefinition
@@ -77,6 +82,7 @@ class IndustryDataRoot(Entity):
             "dataConnectors": lambda n : setattr(self, 'data_connectors', n.get_collection_of_object_values(IndustryDataConnector)),
             "inboundFlows": lambda n : setattr(self, 'inbound_flows', n.get_collection_of_object_values(InboundFlow)),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(LongRunningOperation)),
+            "outboundProvisioningFlowSets": lambda n : setattr(self, 'outbound_provisioning_flow_sets', n.get_collection_of_object_values(OutboundProvisioningFlowSet)),
             "referenceDefinitions": lambda n : setattr(self, 'reference_definitions', n.get_collection_of_object_values(ReferenceDefinition)),
             "roleGroups": lambda n : setattr(self, 'role_groups', n.get_collection_of_object_values(RoleGroup)),
             "runs": lambda n : setattr(self, 'runs', n.get_collection_of_object_values(IndustryDataRun)),
@@ -99,6 +105,7 @@ class IndustryDataRoot(Entity):
         writer.write_collection_of_object_values("dataConnectors", self.data_connectors)
         writer.write_collection_of_object_values("inboundFlows", self.inbound_flows)
         writer.write_collection_of_object_values("operations", self.operations)
+        writer.write_collection_of_object_values("outboundProvisioningFlowSets", self.outbound_provisioning_flow_sets)
         writer.write_collection_of_object_values("referenceDefinitions", self.reference_definitions)
         writer.write_collection_of_object_values("roleGroups", self.role_groups)
         writer.write_collection_of_object_values("runs", self.runs)

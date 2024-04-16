@@ -6,7 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
-    from .connectivity_state import ConnectivityState
     from .device_link import DeviceLink
     from .forwarding_profile import ForwardingProfile
     from .region import Region
@@ -16,27 +15,21 @@ from ..entity import Entity
 
 @dataclass
 class RemoteNetwork(Entity):
-    # The bandwidthCapacity property
-    bandwidth_capacity: Optional[int] = None
-    # The connectivityConfiguration property
+    # Specifies the connectivity details of all device links associated with a remote network.
     connectivity_configuration: Optional[RemoteNetworkConnectivityConfiguration] = None
-    # The connectivityState property
-    connectivity_state: Optional[ConnectivityState] = None
-    # The country property
-    country: Optional[str] = None
-    # The deviceLinks property
+    # Each unique CPE device associated with a remote network is specified. Supports $expand.
     device_links: Optional[List[DeviceLink]] = None
-    # The forwardingProfiles property
+    # Each forwarding profile associated with a remote network is specified. Supports $expand and $select.
     forwarding_profiles: Optional[List[ForwardingProfile]] = None
-    # The lastModifiedDateTime property
+    # last modified time.
     last_modified_date_time: Optional[datetime.datetime] = None
-    # The name property
+    # Name.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The region property
     region: Optional[Region] = None
-    # The version property
+    # Remote network version.
     version: Optional[str] = None
     
     @staticmethod
@@ -56,24 +49,19 @@ class RemoteNetwork(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
-        from .connectivity_state import ConnectivityState
         from .device_link import DeviceLink
         from .forwarding_profile import ForwardingProfile
         from .region import Region
         from .remote_network_connectivity_configuration import RemoteNetworkConnectivityConfiguration
 
         from ..entity import Entity
-        from .connectivity_state import ConnectivityState
         from .device_link import DeviceLink
         from .forwarding_profile import ForwardingProfile
         from .region import Region
         from .remote_network_connectivity_configuration import RemoteNetworkConnectivityConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "bandwidthCapacity": lambda n : setattr(self, 'bandwidth_capacity', n.get_int_value()),
             "connectivityConfiguration": lambda n : setattr(self, 'connectivity_configuration', n.get_object_value(RemoteNetworkConnectivityConfiguration)),
-            "connectivityState": lambda n : setattr(self, 'connectivity_state', n.get_enum_value(ConnectivityState)),
-            "country": lambda n : setattr(self, 'country', n.get_str_value()),
             "deviceLinks": lambda n : setattr(self, 'device_links', n.get_collection_of_object_values(DeviceLink)),
             "forwardingProfiles": lambda n : setattr(self, 'forwarding_profiles', n.get_collection_of_object_values(ForwardingProfile)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -94,10 +82,7 @@ class RemoteNetwork(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_int_value("bandwidthCapacity", self.bandwidth_capacity)
         writer.write_object_value("connectivityConfiguration", self.connectivity_configuration)
-        writer.write_enum_value("connectivityState", self.connectivity_state)
-        writer.write_str_value("country", self.country)
         writer.write_collection_of_object_values("deviceLinks", self.device_links)
         writer.write_collection_of_object_values("forwardingProfiles", self.forwarding_profiles)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)

@@ -15,7 +15,7 @@ from .profile import Profile
 class ForwardingProfile(Profile):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingProfile"
-    # Specifies the users, groups, devices, and branch locations whose traffic is associated with the given traffic forwarding profile.
+    # Specifies the users, groups, devices, and remote networks whose traffic is associated with the given traffic forwarding profile.
     associations: Optional[List[Association]] = None
     # Profile priority.
     priority: Optional[int] = None

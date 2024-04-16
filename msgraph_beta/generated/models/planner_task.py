@@ -24,59 +24,59 @@ from .planner_delta import PlannerDelta
 
 @dataclass
 class PlannerTask(PlannerDelta):
-    # Number of checklist items with value set to false, representing incomplete items.
+    # The number of checklist items with value set to false, representing incomplete items.
     active_checklist_item_count: Optional[int] = None
-    # The categories to which the task has been applied. See applied Categories for possible values.
+    # The categories to which the task is applied. See plannerAppliedCategories resource type for possible values.
     applied_categories: Optional[PlannerAppliedCategories] = None
     # The archivalInfo property
     archival_info: Optional[PlannerArchivalInfo] = None
     # Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.
     assigned_to_task_board_format: Optional[PlannerAssignedToTaskBoardTaskFormat] = None
-    # Hint used to order items of this type in a list view. The format is defined as outlined here.
+    # A hint that is used to order items of this type in a list view. For more information, see Using order hints in Planner.
     assignee_priority: Optional[str] = None
     # The set of assignees the task is assigned to.
     assignments: Optional[PlannerAssignments] = None
-    # Bucket ID to which the task belongs. The bucket needs to be in the plan that the task is in. It is 28 characters long and case-sensitive. Format validation is done on the service.
+    # Bucket ID to which the task belongs. The bucket needs to be in the same plan as the task. The value of the bucketId property is 28 characters long and case-sensitive. Format validation is done on the service.
     bucket_id: Optional[str] = None
     # Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.
     bucket_task_board_format: Optional[PlannerBucketTaskBoardTaskFormat] = None
-    # Number of checklist items that are present on the task.
+    # The number of checklist items that are present on the task.
     checklist_item_count: Optional[int] = None
-    # Identity of the user that completed the task.
+    # The identity of the user that completed the task.
     completed_by: Optional[IdentitySet] = None
-    # Read-only. Date and time at which the 'percentComplete' of the task is set to '100'. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    # Read-only. The date and time at which the 'percentComplete' of the task is set to '100'. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     completed_date_time: Optional[datetime.datetime] = None
-    # Thread ID of the conversation on the task. This is the ID of the conversation thread object created in the group.
+    # The thread ID of the conversation on the task. This is the ID of the conversation thread object created in the group.
     conversation_thread_id: Optional[str] = None
-    # Identity of the user that created the task.
+    # The identity of the user who created the task.
     created_by: Optional[IdentitySet] = None
-    # Read-only. Date and time at which the task is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    # Read-only. The date and time at which the task is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     created_date_time: Optional[datetime.datetime] = None
-    # Contains information about the origin of the task.
+    # Information about the origin of the task.
     creation_source: Optional[PlannerTaskCreation] = None
-    # Read-only. Nullable. Additional details about the task.
+    # Read-only. Nullable. More details about the task.
     details: Optional[PlannerTaskDetails] = None
-    # Date and time at which the task is due. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    # The date and time at which the task is due. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     due_date_time: Optional[datetime.datetime] = None
-    # Read-only. Value is true if the details object of the task has a nonempty description and false otherwise.
+    # Read-only. This value is true if the details object of the task has a nonempty description. Otherwise,false.
     has_description: Optional[bool] = None
     # The isArchived property
     is_archived: Optional[bool] = None
-    # The isOnMyDay property
+    # A Boolean value that indicates whether to show this task in the MyDay view. true to show the task. Otherwise, false.
     is_on_my_day: Optional[bool] = None
-    # The isOnMyDayLastModifiedDate property
+    # Read-only. The date on which task is added to or removed from MyDay.
     is_on_my_day_last_modified_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Hint used to order items of this type in a list view. The format is defined as outlined here.
+    # The hint used to order items of this type in a list view. For more information, see Using order hints in Plannern.
     order_hint: Optional[str] = None
-    # Percentage of task completion. When set to 100, the task is considered completed.
+    # The percentage of task completion. When set to 100, the task is completed.
     percent_complete: Optional[int] = None
     # Plan ID to which the task belongs.
     plan_id: Optional[str] = None
-    # This sets the type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference.
+    # The type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference.
     preview_type: Optional[PlannerPreviewType] = None
-    # Priority of the task. Valid range of values is between 0 and 10 (inclusive), with increasing value being lower priority (0 has the highest priority and 10 has the lowest priority).  Currently, Planner interprets values 0 and 1 as 'urgent', 2 and 3 and 4 as 'important', 5, 6, and 7 as 'medium', and 8, 9, and 10 as 'low'.  Currently, Planner sets the value 1 for 'urgent', 3 for 'important', 5 for 'medium', and 9 for 'low'.
+    # The priority of the task. Valid values are between 0 and 10, inclusive. Larger values indicate lower priority. For example, 0 has the highest priority and 10 has the lowest priority. Currently, Planner interprets values 0 and 1 as 'urgent', 2 and 3 and 4 as 'important', 5, 6, and 7 as 'medium', and 8, 9, and 10 as 'low'. Currently, Planner sets the value 1 for 'urgent', 3 for 'important', 5 for 'medium', and 9 for 'low'.
     priority: Optional[int] = None
     # Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
     progress_task_board_format: Optional[PlannerProgressTaskBoardTaskFormat] = None
@@ -84,7 +84,7 @@ class PlannerTask(PlannerDelta):
     recurrence: Optional[PlannerTaskRecurrence] = None
     # Number of external references that exist on the task.
     reference_count: Optional[int] = None
-    # Indicates all the requirements specified on the plannerTask. Possible values are: none, checklistCompletion, unknownFutureValue. Read-only. The plannerTaskCompletionRequirementDetails in plannerTaskDetails has details of the requirements specified, if any.
+    # Indicates all the requirements specified on the plannerTask. Possible values are: none, checklistCompletion, unknownFutureValue, formCompletion, approvalCompletion. Read-only. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: formCompletion, approvalCompletion. The plannerTaskCompletionRequirementDetails in plannerTaskDetails has details of the requirements specified, if any.
     specified_completion_requirements: Optional[PlannerTaskCompletionRequirements] = None
     # Date and time at which the task starts. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     start_date_time: Optional[datetime.datetime] = None

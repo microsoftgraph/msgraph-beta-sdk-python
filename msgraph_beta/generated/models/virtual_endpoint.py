@@ -29,7 +29,7 @@ from .entity import Entity
 class VirtualEndpoint(Entity):
     # Cloud PC audit event.
     audit_events: Optional[List[CloudPcAuditEvent]] = None
-    # The bulkActions property
+    # Bulk actions applied to a Cloud PC.
     bulk_actions: Optional[List[CloudPcBulkAction]] = None
     # Cloud managed virtual desktops.
     cloud_p_cs: Optional[List[CloudPC]] = None

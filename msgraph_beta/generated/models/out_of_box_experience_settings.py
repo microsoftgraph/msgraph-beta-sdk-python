@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 @dataclass
 class OutOfBoxExperienceSettings(AdditionalDataHolder, BackedModel, Parsable):
     """
-    Out of box experience setting
+    The Windows Autopilot Deployment Profile settings used by the Autopilot device for out-of-box experience. Supports: $select, $top, $skip. $Search, $orderBy and $filter are not supported. Read-Only. Starting from May 2024 this property will no longer be supported and will be marked as deprecated. Use outOfBoxExperienceSetting instead.
     """
     # Stores model information.
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)

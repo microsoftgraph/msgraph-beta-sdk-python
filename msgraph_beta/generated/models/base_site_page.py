@@ -5,9 +5,11 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .base_item import BaseItem
+    from .news_link_page import NewsLinkPage
     from .page_layout_type import PageLayoutType
     from .publication_facet import PublicationFacet
     from .site_page import SitePage
+    from .video_news_link_page import VideoNewsLinkPage
 
 from .base_item import BaseItem
 
@@ -35,10 +37,18 @@ class BaseSitePage(BaseItem):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.newsLinkPage".casefold():
+            from .news_link_page import NewsLinkPage
+
+            return NewsLinkPage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sitePage".casefold():
             from .site_page import SitePage
 
             return SitePage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.videoNewsLinkPage".casefold():
+            from .video_news_link_page import VideoNewsLinkPage
+
+            return VideoNewsLinkPage()
         return BaseSitePage()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -47,14 +57,18 @@ class BaseSitePage(BaseItem):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .base_item import BaseItem
+        from .news_link_page import NewsLinkPage
         from .page_layout_type import PageLayoutType
         from .publication_facet import PublicationFacet
         from .site_page import SitePage
+        from .video_news_link_page import VideoNewsLinkPage
 
         from .base_item import BaseItem
+        from .news_link_page import NewsLinkPage
         from .page_layout_type import PageLayoutType
         from .publication_facet import PublicationFacet
         from .site_page import SitePage
+        from .video_news_link_page import VideoNewsLinkPage
 
         fields: Dict[str, Callable[[Any], None]] = {
             "pageLayout": lambda n : setattr(self, 'page_layout', n.get_enum_value(PageLayoutType)),

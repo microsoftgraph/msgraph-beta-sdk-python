@@ -1,19 +1,19 @@
 from enum import Enum
 
 class DeviceManagementConfigurationPlatforms(str, Enum):
-    # Default. No platform type specified.
+    # Indicates the settings contained in this configuration don't have a platform set.
     None_ = "none",
-    # Settings for Android platform.
+    # Indicates that the settings contained in associated configuration applies to the Android operating system. 
     Android = "android",
-    # Settings for iOS platform.
+    # Indicates that the settings contained in associated configuration applies to the iOS operating system.
     IOS = "iOS",
-    # Settings for MacOS platform.
+    # Indicates that the settings contained in associated configuration applies to the MacOS operating system.
     MacOS = "macOS",
-    # Windows 10 X.
+    # Indicates that the settings contained in associated configuration applies to the Windows 10X operating system.
     Windows10X = "windows10X",
-    # Settings for Windows 10 platform.
+    # Indicates that the settings contained in associated configuration applies to the Windows 10 operating system.
     Windows10 = "windows10",
-    # Settings for Linux platform.
+    # Indicates that the settings contained in associated configuration applies to the Linux operating system.
     Linux = "linux",
     # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",

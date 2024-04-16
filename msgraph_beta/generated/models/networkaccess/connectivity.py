@@ -13,11 +13,11 @@ from ..entity import Entity
 
 @dataclass
 class Connectivity(Entity):
-    # Branches represent locations for connectivity.
+    # Branches represent locations for connectivity. DEPRECATED AND TO BE RETIRED SOON. Use the remoteNetwork relationship and its associated APIs instead.
     branches: Optional[List[BranchSite]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The remoteNetworks property
+    # Represent locations, such as branches, that are connected to Global Secure Access services through an IPsec tunnel.
     remote_networks: Optional[List[RemoteNetwork]] = None
     # The webCategories property
     web_categories: Optional[List[WebCategory]] = None

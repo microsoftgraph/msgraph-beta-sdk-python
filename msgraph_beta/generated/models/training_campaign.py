@@ -17,31 +17,31 @@ from .entity import Entity
 
 @dataclass
 class TrainingCampaign(Entity):
-    # The campaignSchedule property
+    # Details about the schedule and current status for a training campaign
     campaign_schedule: Optional[CampaignSchedule] = None
-    # The createdBy property
+    # Identity of the user who created the training campaign
     created_by: Optional[EmailIdentity] = None
-    # The createdDateTime property
+    # Date and time of creation of the training campaign.
     created_date_time: Optional[datetime.datetime] = None
-    # The description property
+    # Description of the training campaign.
     description: Optional[str] = None
-    # The displayName property
+    # Display name of the training campaign. Supports $filter and $orderby.
     display_name: Optional[str] = None
-    # The endUserNotificationSetting property
+    # Details about the end user notification setting.
     end_user_notification_setting: Optional[EndUserNotificationSetting] = None
-    # The excludedAccountTarget property
+    # Users excluded from the training campaign.
     excluded_account_target: Optional[AccountTargetContent] = None
-    # The includedAccountTarget property
+    # Users targeted in the training campaign.
     included_account_target: Optional[AccountTargetContent] = None
-    # The lastModifiedBy property
+    # Identity of the user who most recently modified the training campaign.
     last_modified_by: Optional[EmailIdentity] = None
-    # The lastModifiedDateTime property
+    # Date and time of the most recent modification of the training campaign.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The report property
+    # Report of the training campaign.
     report: Optional[TrainingCampaignReport] = None
-    # The trainingSetting property
+    # Details about the training settings for a training campaign.
     training_setting: Optional[TrainingSetting] = None
     
     @staticmethod

@@ -12,7 +12,7 @@ from .entity import Entity
 
 @dataclass
 class AccessReviewDecision(Entity):
-    # The feature- generated recommendation shown to the reviewer, one of Approve, Deny or NotAvailable.
+    # The feature- generated recommendation shown to the reviewer, one of: Approve, Deny, NotAvailable.
     access_recommendation: Optional[str] = None
     # The feature-generated ID of the access review.
     access_review_id: Optional[str] = None
@@ -20,7 +20,7 @@ class AccessReviewDecision(Entity):
     applied_by: Optional[UserIdentity] = None
     # The date and time when the review decision was applied.
     applied_date_time: Optional[datetime.datetime] = None
-    # The outcome of applying the decision, one of NotApplied, Success, Failed, NotFound or NotSupported.
+    # The outcome of applying the decision, one of: NotApplied, Success, Failed, NotFound, NotSupported.
     apply_result: Optional[str] = None
     # The reviewer's business justification, if supplied.
     justification: Optional[str] = None

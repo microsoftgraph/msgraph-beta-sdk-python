@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .mfa_failure import MfaFailure
 
 from .entity import Entity
 
@@ -15,8 +16,16 @@ class MfaCompletionMetric(Entity):
     app_id: Optional[str] = None
     # Number of users who attempted to sign up. Supports $filter (eq).
     attempts_count: Optional[int] = None
+    # The country property
+    country: Optional[str] = None
     # The date of the user insight.
     fact_date: Optional[datetime.date] = None
+    # The identityProvider property
+    identity_provider: Optional[str] = None
+    # The language property
+    language: Optional[str] = None
+    # The mfaFailures property
+    mfa_failures: Optional[List[MfaFailure]] = None
     # The MFA authentication method used by the customers. Supports $filter (eq).
     mfa_method: Optional[str] = None
     # The OdataType property
@@ -43,13 +52,19 @@ class MfaCompletionMetric(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .mfa_failure import MfaFailure
 
         from .entity import Entity
+        from .mfa_failure import MfaFailure
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "attemptsCount": lambda n : setattr(self, 'attempts_count', n.get_int_value()),
+            "country": lambda n : setattr(self, 'country', n.get_str_value()),
             "factDate": lambda n : setattr(self, 'fact_date', n.get_date_value()),
+            "identityProvider": lambda n : setattr(self, 'identity_provider', n.get_str_value()),
+            "language": lambda n : setattr(self, 'language', n.get_str_value()),
+            "mfaFailures": lambda n : setattr(self, 'mfa_failures', n.get_collection_of_object_values(MfaFailure)),
             "mfaMethod": lambda n : setattr(self, 'mfa_method', n.get_str_value()),
             "os": lambda n : setattr(self, 'os', n.get_str_value()),
             "successCount": lambda n : setattr(self, 'success_count', n.get_int_value()),
@@ -69,7 +84,11 @@ class MfaCompletionMetric(Entity):
         super().serialize(writer)
         writer.write_str_value("appId", self.app_id)
         writer.write_int_value("attemptsCount", self.attempts_count)
+        writer.write_str_value("country", self.country)
         writer.write_date_value("factDate", self.fact_date)
+        writer.write_str_value("identityProvider", self.identity_provider)
+        writer.write_str_value("language", self.language)
+        writer.write_collection_of_object_values("mfaFailures", self.mfa_failures)
         writer.write_str_value("mfaMethod", self.mfa_method)
         writer.write_str_value("os", self.os)
         writer.write_int_value("successCount", self.success_count)

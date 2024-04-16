@@ -14,25 +14,25 @@ from .directory_object import DirectoryObject
 class AdministrativeUnit(DirectoryObject):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.administrativeUnit"
-    # An optional description for the administrative unit. Supports $filter (eq, ne, in, startsWith), $search.
+    # The description property
     description: Optional[str] = None
-    # Display name for the administrative unit. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
+    # The displayName property
     display_name: Optional[str] = None
     # The collection of open extensions defined for this administrative unit. Nullable.
     extensions: Optional[List[Extension]] = None
-    # true if members of this administrative unit should be treated as sensitive, which requires specific permissions to manage. Default value is false. Use this property to define administrative units whose roles don't inherit from tenant-level administrators, and management of individual member objects is limited to administrators scoped to a restricted management administrative unit. Immutable, so can't be changed later.  For more information about working with restricted management administrative units, see Restricted management administrative units in Microsoft Entra ID.
+    # The isMemberManagementRestricted property
     is_member_management_restricted: Optional[bool] = None
     # Users and groups that are members of this administrative unit. Supports $expand.
     members: Optional[List[DirectoryObject]] = None
-    # Dynamic membership rule for the administrative unit. For more about the rules that you can use for dynamic administrative units and dynamic groups, see Using attributes to create advanced rules.
+    # The membershipRule property
     membership_rule: Optional[str] = None
-    # Used to control whether the dynamic membership rule is actively processed. Set to On when you want the dynamic membership rule to be active and Paused if you want to stop updating membership dynamically. If not set, the default behavior is Paused.
+    # The membershipRuleProcessingState property
     membership_rule_processing_state: Optional[str] = None
-    # Membership type for the administrative unit. Can be dynamic or assigned. If not set, the default behavior is assigned.
+    # The membershipType property
     membership_type: Optional[str] = None
     # Scoped-role members of this administrative unit.
     scoped_role_members: Optional[List[ScopedRoleMembership]] = None
-    # Controls whether the administrative unit and its members are hidden or public. Can be set to HiddenMembership or Public. If not set, the default behavior is Public. When set to HiddenMembership, only members of the administrative unit can list other members of the administrative unit.
+    # The visibility property
     visibility: Optional[str] = None
     
     @staticmethod

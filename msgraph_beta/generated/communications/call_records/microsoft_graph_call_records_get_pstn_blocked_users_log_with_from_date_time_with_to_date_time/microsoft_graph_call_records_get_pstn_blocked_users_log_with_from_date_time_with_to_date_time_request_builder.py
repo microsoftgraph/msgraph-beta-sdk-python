@@ -2,6 +2,7 @@ from __future__ import annotations
 import datetime
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -32,7 +33,7 @@ class MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateT
             path_parameters['toDateTime'] = str(to_date_time)
         super().__init__(request_adapter, "{+baseurl}/communications/callRecords/microsoft.graph.callRecords.getPstnBlockedUsersLog(fromDateTime={fromDateTime},toDateTime={toDateTime}){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
-    async def get(self,request_configuration: Optional[MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration] = None) -> Optional[GetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeGetResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeGetResponse]:
         """
         Invoke function getPstnBlockedUsersLog
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -52,7 +53,7 @@ class MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateT
 
         return await self.request_adapter.send_async(request_info, GetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Invoke function getPstnBlockedUsersLog
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,19 +113,6 @@ class MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateT
 
         # Show only the first n items
         top: Optional[int] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder.MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilderGetQueryParameters] = None
 
     
 

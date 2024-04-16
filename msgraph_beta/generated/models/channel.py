@@ -23,19 +23,19 @@ class Channel(Entity):
     created_date_time: Optional[datetime.datetime] = None
     # Optional textual description for the channel.
     description: Optional[str] = None
-    # Channel name as it will appear to the user in Microsoft Teams. The maximum length is 50 characters.
+    # Channel name as it appears to the user in Microsoft Teams. The maximum length is 50 characters.
     display_name: Optional[str] = None
     # The email address for sending messages to the channel. Read-only.
     email: Optional[str] = None
     # Metadata for the location where the channel's files are stored.
     files_folder: Optional[DriveItem] = None
-    # The isArchived property
+    # Indicates whether the channel is archived. Read-only.
     is_archived: Optional[bool] = None
     # Indicates whether the channel should automatically be marked 'favorite' for all members of the team. Can only be set programmatically with Create team. Default: false.
     is_favorite_by_default: Optional[bool] = None
     # A collection of membership records associated with the channel.
     members: Optional[List[ConversationMember]] = None
-    # The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.
+    # The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. You must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.
     membership_type: Optional[ChannelMembershipType] = None
     # A collection of all the messages in the channel. A navigation property. Nullable.
     messages: Optional[List[ChatMessage]] = None
@@ -45,13 +45,13 @@ class Channel(Entity):
     odata_type: Optional[str] = None
     # A collection of teams with which a channel is shared.
     shared_with_teams: Optional[List[SharedWithChannelTeamInfo]] = None
-    # Contains summary information about the channel, including number of guests, members, owners, and an indicator for members from other tenants. The summary property will only be returned if it is specified in the $select clause of the Get channel method.
+    # Contains summary information about the channel, including number of guests, members, owners, and an indicator for members from other tenants. The summary property is only returned if it appears in the $select clause of the Get channel method.
     summary: Optional[ChannelSummary] = None
     # A collection of all the tabs in the channel. A navigation property.
     tabs: Optional[List[TeamsTab]] = None
     # The ID of the Microsoft Entra tenant.
     tenant_id: Optional[str] = None
-    # A hyperlink that will go to the channel in Microsoft Teams. This is the URL that you get when you right-click a channel in Microsoft Teams and select Get link to channel. This URL should be treated as an opaque blob, and not parsed. Read-only.
+    # A hyperlink to the channel in Microsoft Teams. This URL is supplied when you right-click a channel in Microsoft Teams and select Get link to channel. This URL should be treated as an opaque blob, and not parsed. Read-only.
     web_url: Optional[str] = None
     
     @staticmethod

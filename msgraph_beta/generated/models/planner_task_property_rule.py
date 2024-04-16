@@ -13,9 +13,9 @@ from .planner_property_rule import PlannerPropertyRule
 class PlannerTaskPropertyRule(PlannerPropertyRule):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.plannerTaskPropertyRule"
-    # Rules and restrictions for applied categories. This value does not currently support overrides. Accepted values for the default rule and individual overrides are allow, block.
+    # Rules and restrictions for applied categories. This value doesn't currently support overrides. Accepted values for the default rule and individual overrides are allow, block.
     applied_categories: Optional[PlannerFieldRules] = None
-    # The approvalAttachment property
+    # Rules and restrictions for approval. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are: allow, add, remove, block.
     approval_attachment: Optional[PlannerFieldRules] = None
     # Rules and restrictions for assignments. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, addSelf, addOther, remove, removeSelf, removeOther, block.
     assignments: Optional[PlannerFieldRules] = None
@@ -27,7 +27,7 @@ class PlannerTaskPropertyRule(PlannerPropertyRule):
     delete: Optional[List[str]] = None
     # Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
     due_date: Optional[List[str]] = None
-    # The forms property
+    # Rules and restrictions for forms. Allowed overrides are userCreated and applicationCreated. The following are the accepted values for the default rule and individual overrides: allow, add, addResponse, remove, update, block.
     forms: Optional[PlannerFieldRules] = None
     # Rules and restrictions for moving the task between buckets or plans. Accepted values are allow, moveBetweenPlans, moveBetweenBuckets, and block.
     move: Optional[List[str]] = None

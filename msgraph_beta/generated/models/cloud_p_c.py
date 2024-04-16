@@ -45,7 +45,7 @@ class CloudPC(Entity):
     last_login_result: Optional[CloudPcLoginResult] = None
     # The last modified date and time of the Cloud PC. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
-    # The last remote action result of the enterprise Cloud PCs. The supported remote actions are: Reboot, Rename, Reprovision, Restore, and Troubleshoot.
+    # The last remote action result of the enterprise Cloud PCs. The supported remote actions are: Reboot, Rename, Reprovision, Restore, Troubleshoot.
     last_remote_action_result: Optional[CloudPcRemoteActionResult] = None
     # The Intune device ID of the Cloud PC.
     managed_device_id: Optional[str] = None
@@ -55,11 +55,11 @@ class CloudPC(Entity):
     odata_type: Optional[str] = None
     # The Azure network connection that is applied during the provisioning of Cloud PCs.
     on_premises_connection_name: Optional[str] = None
-    # The version of the operating system (OS) to provision on Cloud PCs. Possible values are: windows10, windows11, and unknownFutureValue.
+    # The version of the operating system (OS) to provision on Cloud PCs. Possible values are: windows10, windows11, unknownFutureValue.
     os_version: Optional[CloudPcOperatingSystem] = None
     # The results of every partner agent's installation status on Cloud PC.
     partner_agent_install_results: Optional[List[CloudPcPartnerAgentInstallResult]] = None
-    # The power state of a Cloud PC. The possible values are: running, poweredOff and unknown. This property only supports shift work Cloud PCs.
+    # The power state of a Cloud PC. The possible values are: running, poweredOff, unknown. This property only supports shift work Cloud PCs.
     power_state: Optional[CloudPcPowerState] = None
     # The provisioning policy ID of the Cloud PC.
     provisioning_policy_id: Optional[str] = None
@@ -79,7 +79,7 @@ class CloudPC(Entity):
     status: Optional[CloudPcStatus] = None
     # The details of the Cloud PC status.
     status_details: Optional[CloudPcStatusDetails] = None
-    # The account type of the user on provisioned Cloud PCs. Possible values are: standardUser, administrator, and unknownFutureValue.
+    # The account type of the user on provisioned Cloud PCs. Possible values are: standardUser, administrator, unknownFutureValue.
     user_account_type: Optional[CloudPcUserAccountType] = None
     # The user principal name (UPN) of the user assigned to the Cloud PC.
     user_principal_name: Optional[str] = None

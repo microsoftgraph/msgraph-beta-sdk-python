@@ -58,7 +58,7 @@ class Device(DirectoryObject):
     is_managed: Optional[bool] = None
     # Indicates whether the device is a member of a restricted management administrative unit, in which case it requires a role scoped to the restricted administrative unit to manage. The default value is false. Read-only.  To manage a device that's a member of a restricted administrative unit, the calling app must be assigned the Directory.Write.Restricted permission. For delegated scenarios, the administrators must also be explicitly assigned supported roles at the restricted administrative unit scope.
     is_management_restricted: Optional[bool] = None
-    # true if device is rooted; false if device is jail-broken. This can only be updated by Intune.
+    # true if the device is rooted; false if the device is jail-broken. This property can only be updated by Intune.
     is_rooted: Optional[bool] = None
     # Form factor of the device. Only returned if the user signs in with a Microsoft account as part of Project Rome.
     kind: Optional[str] = None

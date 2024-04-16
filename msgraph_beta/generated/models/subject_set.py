@@ -5,6 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .identity_governance.group_based_subject_set import GroupBasedSubjectSet
     from .identity_governance.rule_based_subject_set import RuleBasedSubjectSet
 
 @dataclass
@@ -30,6 +31,10 @@ class SubjectSet(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.groupBasedSubjectSet".casefold():
+            from .identity_governance.group_based_subject_set import GroupBasedSubjectSet
+
+            return GroupBasedSubjectSet()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.ruleBasedSubjectSet".casefold():
             from .identity_governance.rule_based_subject_set import RuleBasedSubjectSet
 
@@ -41,8 +46,10 @@ class SubjectSet(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .identity_governance.group_based_subject_set import GroupBasedSubjectSet
         from .identity_governance.rule_based_subject_set import RuleBasedSubjectSet
 
+        from .identity_governance.group_based_subject_set import GroupBasedSubjectSet
         from .identity_governance.rule_based_subject_set import RuleBasedSubjectSet
 
         fields: Dict[str, Callable[[Any], None]] = {

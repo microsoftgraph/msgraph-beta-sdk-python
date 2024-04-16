@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
     from .azure_a_d_windows_autopilot_deployment_profile import AzureADWindowsAutopilotDeploymentProfile
     from .entity import Entity
+    from .out_of_box_experience_setting import OutOfBoxExperienceSetting
     from .out_of_box_experience_settings import OutOfBoxExperienceSettings
     from .windows_autopilot_deployment_profile_assignment import WindowsAutopilotDeploymentProfileAssignment
     from .windows_autopilot_device_identity import WindowsAutopilotDeviceIdentity
@@ -41,16 +42,24 @@ class WindowsAutopilotDeploymentProfile(Entity):
     enrollment_status_screen_settings: Optional[WindowsEnrollmentStatusScreenSettings] = None
     # HardwareHash Extraction for the profile
     extract_hardware_hash: Optional[bool] = None
+    # Indicates whether the profile supports the extraction of hardware hash values and registration of the device into Windows Autopilot. When TRUE, indicates if hardware extraction and Windows Autopilot registration will happen on the next successful check-in. When FALSE, hardware hash extraction and Windows Autopilot registration will not happen. Default value is FALSE. Supports: $select, $top, $skip. $Search, $orderBy and $filter are not supported.
+    hardware_hash_extraction_enabled: Optional[bool] = None
     # Language configured on the device
     language: Optional[str] = None
     # Profile last modified time
     last_modified_date_time: Optional[datetime.datetime] = None
+    # The locale (language) to be used when configuring the device. E.g. en-US. The default value is os-default. Supports: $select, $top, $skip. $Search, $orderBy and $filter are not supported.
+    locale: Optional[str] = None
     # AzureAD management app ID used during client device-based enrollment discovery
     management_service_app_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The Windows Autopilot Deployment Profile settings used by the device for the out-of-box experience. Supports: $select, $top, $skip. $Search, $orderBy and $filter are not supported.
+    out_of_box_experience_setting: Optional[OutOfBoxExperienceSetting] = None
     # Out of box experience setting
     out_of_box_experience_settings: Optional[OutOfBoxExperienceSettings] = None
+    # Indicates whether the user is allowed to use Windows Autopilot for pre-provisioned deployment mode during Out of Box experience (OOBE). When TRUE, indicates that Windows Autopilot for pre-provisioned deployment mode for OOBE is allowed to be used. When false, Windows Autopilot for pre-provisioned deployment mode for OOBE is not allowed. The default is FALSE.
+    preprovisioning_allowed: Optional[bool] = None
     # Scope tags for the profile.
     role_scope_tag_ids: Optional[List[str]] = None
     
@@ -85,6 +94,7 @@ class WindowsAutopilotDeploymentProfile(Entity):
         from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
         from .azure_a_d_windows_autopilot_deployment_profile import AzureADWindowsAutopilotDeploymentProfile
         from .entity import Entity
+        from .out_of_box_experience_setting import OutOfBoxExperienceSetting
         from .out_of_box_experience_settings import OutOfBoxExperienceSettings
         from .windows_autopilot_deployment_profile_assignment import WindowsAutopilotDeploymentProfileAssignment
         from .windows_autopilot_device_identity import WindowsAutopilotDeviceIdentity
@@ -94,6 +104,7 @@ class WindowsAutopilotDeploymentProfile(Entity):
         from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
         from .azure_a_d_windows_autopilot_deployment_profile import AzureADWindowsAutopilotDeploymentProfile
         from .entity import Entity
+        from .out_of_box_experience_setting import OutOfBoxExperienceSetting
         from .out_of_box_experience_settings import OutOfBoxExperienceSettings
         from .windows_autopilot_deployment_profile_assignment import WindowsAutopilotDeploymentProfileAssignment
         from .windows_autopilot_device_identity import WindowsAutopilotDeviceIdentity
@@ -111,10 +122,14 @@ class WindowsAutopilotDeploymentProfile(Entity):
             "enableWhiteGlove": lambda n : setattr(self, 'enable_white_glove', n.get_bool_value()),
             "enrollmentStatusScreenSettings": lambda n : setattr(self, 'enrollment_status_screen_settings', n.get_object_value(WindowsEnrollmentStatusScreenSettings)),
             "extractHardwareHash": lambda n : setattr(self, 'extract_hardware_hash', n.get_bool_value()),
+            "hardwareHashExtractionEnabled": lambda n : setattr(self, 'hardware_hash_extraction_enabled', n.get_bool_value()),
             "language": lambda n : setattr(self, 'language', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "locale": lambda n : setattr(self, 'locale', n.get_str_value()),
             "managementServiceAppId": lambda n : setattr(self, 'management_service_app_id', n.get_str_value()),
+            "outOfBoxExperienceSetting": lambda n : setattr(self, 'out_of_box_experience_setting', n.get_object_value(OutOfBoxExperienceSetting)),
             "outOfBoxExperienceSettings": lambda n : setattr(self, 'out_of_box_experience_settings', n.get_object_value(OutOfBoxExperienceSettings)),
+            "preprovisioningAllowed": lambda n : setattr(self, 'preprovisioning_allowed', n.get_bool_value()),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
@@ -140,10 +155,14 @@ class WindowsAutopilotDeploymentProfile(Entity):
         writer.write_bool_value("enableWhiteGlove", self.enable_white_glove)
         writer.write_object_value("enrollmentStatusScreenSettings", self.enrollment_status_screen_settings)
         writer.write_bool_value("extractHardwareHash", self.extract_hardware_hash)
+        writer.write_bool_value("hardwareHashExtractionEnabled", self.hardware_hash_extraction_enabled)
         writer.write_str_value("language", self.language)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_str_value("locale", self.locale)
         writer.write_str_value("managementServiceAppId", self.management_service_app_id)
+        writer.write_object_value("outOfBoxExperienceSetting", self.out_of_box_experience_setting)
         writer.write_object_value("outOfBoxExperienceSettings", self.out_of_box_experience_settings)
+        writer.write_bool_value("preprovisioningAllowed", self.preprovisioning_allowed)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
     
 

@@ -39,6 +39,7 @@ if TYPE_CHECKING:
     from ..device_configuration import DeviceConfiguration
     from ..device_configuration_conflict_summary import DeviceConfigurationConflictSummary
     from ..device_configuration_device_state_summary import DeviceConfigurationDeviceStateSummary
+    from ..device_configuration_profile import DeviceConfigurationProfile
     from ..device_configuration_user_state_summary import DeviceConfigurationUserStateSummary
     from ..device_custom_attribute_shell_script import DeviceCustomAttributeShellScript
     from ..device_enrollment_configuration import DeviceEnrollmentConfiguration
@@ -79,6 +80,8 @@ if TYPE_CHECKING:
     from ..group_policy_migration_report import GroupPolicyMigrationReport
     from ..group_policy_object_file import GroupPolicyObjectFile
     from ..group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
+    from ..hardware_configuration import HardwareConfiguration
+    from ..hardware_password_info import HardwarePasswordInfo
     from ..imported_device_identity import ImportedDeviceIdentity
     from ..imported_windows_autopilot_device_identity import ImportedWindowsAutopilotDeviceIdentity
     from ..intune_brand import IntuneBrand
@@ -274,6 +277,8 @@ class DeviceManagement(Entity):
     device_configuration_conflict_summary: Optional[List[DeviceConfigurationConflictSummary]] = None
     # The device configuration device state summary for this account.
     device_configuration_device_state_summaries: Optional[DeviceConfigurationDeviceStateSummary] = None
+    # Profile Id of the object.
+    device_configuration_profiles: Optional[List[DeviceConfigurationProfile]] = None
     # Restricted apps violations for this account.
     device_configuration_restricted_apps_violations: Optional[List[RestrictedAppsViolation]] = None
     # The device configuration user state summary for this account.
@@ -322,6 +327,10 @@ class DeviceManagement(Entity):
     group_policy_object_files: Optional[List[GroupPolicyObjectFile]] = None
     # The available group policy uploaded definition files for this account.
     group_policy_uploaded_definition_files: Optional[List[GroupPolicyUploadedDefinitionFile]] = None
+    # The hardware configurations for this account.
+    hardware_configurations: Optional[List[HardwareConfiguration]] = None
+    # The hardware password info for this account.
+    hardware_password_info: Optional[List[HardwarePasswordInfo]] = None
     # The imported device identities.
     imported_device_identities: Optional[List[ImportedDeviceIdentity]] = None
     # Collection of imported Windows autopilot devices.
@@ -604,6 +613,7 @@ class DeviceManagement(Entity):
         from ..device_configuration import DeviceConfiguration
         from ..device_configuration_conflict_summary import DeviceConfigurationConflictSummary
         from ..device_configuration_device_state_summary import DeviceConfigurationDeviceStateSummary
+        from ..device_configuration_profile import DeviceConfigurationProfile
         from ..device_configuration_user_state_summary import DeviceConfigurationUserStateSummary
         from ..device_custom_attribute_shell_script import DeviceCustomAttributeShellScript
         from ..device_enrollment_configuration import DeviceEnrollmentConfiguration
@@ -644,6 +654,8 @@ class DeviceManagement(Entity):
         from ..group_policy_migration_report import GroupPolicyMigrationReport
         from ..group_policy_object_file import GroupPolicyObjectFile
         from ..group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
+        from ..hardware_configuration import HardwareConfiguration
+        from ..hardware_password_info import HardwarePasswordInfo
         from ..imported_device_identity import ImportedDeviceIdentity
         from ..imported_windows_autopilot_device_identity import ImportedWindowsAutopilotDeviceIdentity
         from ..intune_brand import IntuneBrand
@@ -775,6 +787,7 @@ class DeviceManagement(Entity):
         from ..device_configuration import DeviceConfiguration
         from ..device_configuration_conflict_summary import DeviceConfigurationConflictSummary
         from ..device_configuration_device_state_summary import DeviceConfigurationDeviceStateSummary
+        from ..device_configuration_profile import DeviceConfigurationProfile
         from ..device_configuration_user_state_summary import DeviceConfigurationUserStateSummary
         from ..device_custom_attribute_shell_script import DeviceCustomAttributeShellScript
         from ..device_enrollment_configuration import DeviceEnrollmentConfiguration
@@ -815,6 +828,8 @@ class DeviceManagement(Entity):
         from ..group_policy_migration_report import GroupPolicyMigrationReport
         from ..group_policy_object_file import GroupPolicyObjectFile
         from ..group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
+        from ..hardware_configuration import HardwareConfiguration
+        from ..hardware_password_info import HardwarePasswordInfo
         from ..imported_device_identity import ImportedDeviceIdentity
         from ..imported_windows_autopilot_device_identity import ImportedWindowsAutopilotDeviceIdentity
         from ..intune_brand import IntuneBrand
@@ -959,6 +974,7 @@ class DeviceManagement(Entity):
             "deviceComplianceScripts": lambda n : setattr(self, 'device_compliance_scripts', n.get_collection_of_object_values(DeviceComplianceScript)),
             "deviceConfigurationConflictSummary": lambda n : setattr(self, 'device_configuration_conflict_summary', n.get_collection_of_object_values(DeviceConfigurationConflictSummary)),
             "deviceConfigurationDeviceStateSummaries": lambda n : setattr(self, 'device_configuration_device_state_summaries', n.get_object_value(DeviceConfigurationDeviceStateSummary)),
+            "deviceConfigurationProfiles": lambda n : setattr(self, 'device_configuration_profiles', n.get_collection_of_object_values(DeviceConfigurationProfile)),
             "deviceConfigurationRestrictedAppsViolations": lambda n : setattr(self, 'device_configuration_restricted_apps_violations', n.get_collection_of_object_values(RestrictedAppsViolation)),
             "deviceConfigurationUserStateSummaries": lambda n : setattr(self, 'device_configuration_user_state_summaries', n.get_object_value(DeviceConfigurationUserStateSummary)),
             "deviceConfigurations": lambda n : setattr(self, 'device_configurations', n.get_collection_of_object_values(DeviceConfiguration)),
@@ -983,6 +999,8 @@ class DeviceManagement(Entity):
             "groupPolicyMigrationReports": lambda n : setattr(self, 'group_policy_migration_reports', n.get_collection_of_object_values(GroupPolicyMigrationReport)),
             "groupPolicyObjectFiles": lambda n : setattr(self, 'group_policy_object_files', n.get_collection_of_object_values(GroupPolicyObjectFile)),
             "groupPolicyUploadedDefinitionFiles": lambda n : setattr(self, 'group_policy_uploaded_definition_files', n.get_collection_of_object_values(GroupPolicyUploadedDefinitionFile)),
+            "hardwareConfigurations": lambda n : setattr(self, 'hardware_configurations', n.get_collection_of_object_values(HardwareConfiguration)),
+            "hardwarePasswordInfo": lambda n : setattr(self, 'hardware_password_info', n.get_collection_of_object_values(HardwarePasswordInfo)),
             "importedDeviceIdentities": lambda n : setattr(self, 'imported_device_identities', n.get_collection_of_object_values(ImportedDeviceIdentity)),
             "importedWindowsAutopilotDeviceIdentities": lambda n : setattr(self, 'imported_windows_autopilot_device_identities', n.get_collection_of_object_values(ImportedWindowsAutopilotDeviceIdentity)),
             "intents": lambda n : setattr(self, 'intents', n.get_collection_of_object_values(DeviceManagementIntent)),
@@ -1156,6 +1174,7 @@ class DeviceManagement(Entity):
         writer.write_collection_of_object_values("deviceComplianceScripts", self.device_compliance_scripts)
         writer.write_collection_of_object_values("deviceConfigurationConflictSummary", self.device_configuration_conflict_summary)
         writer.write_object_value("deviceConfigurationDeviceStateSummaries", self.device_configuration_device_state_summaries)
+        writer.write_collection_of_object_values("deviceConfigurationProfiles", self.device_configuration_profiles)
         writer.write_collection_of_object_values("deviceConfigurationRestrictedAppsViolations", self.device_configuration_restricted_apps_violations)
         writer.write_object_value("deviceConfigurationUserStateSummaries", self.device_configuration_user_state_summaries)
         writer.write_collection_of_object_values("deviceConfigurations", self.device_configurations)
@@ -1180,6 +1199,8 @@ class DeviceManagement(Entity):
         writer.write_collection_of_object_values("groupPolicyMigrationReports", self.group_policy_migration_reports)
         writer.write_collection_of_object_values("groupPolicyObjectFiles", self.group_policy_object_files)
         writer.write_collection_of_object_values("groupPolicyUploadedDefinitionFiles", self.group_policy_uploaded_definition_files)
+        writer.write_collection_of_object_values("hardwareConfigurations", self.hardware_configurations)
+        writer.write_collection_of_object_values("hardwarePasswordInfo", self.hardware_password_info)
         writer.write_collection_of_object_values("importedDeviceIdentities", self.imported_device_identities)
         writer.write_collection_of_object_values("importedWindowsAutopilotDeviceIdentities", self.imported_windows_autopilot_device_identities)
         writer.write_collection_of_object_values("intents", self.intents)

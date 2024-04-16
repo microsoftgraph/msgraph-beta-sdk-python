@@ -12,15 +12,15 @@ if TYPE_CHECKING:
     from .citation_template import CitationTemplate
     from .department_template import DepartmentTemplate
     from .file_plan_reference_template import FilePlanReferenceTemplate
-    from .sub_category_template import SubCategoryTemplate
+    from .subcategory_template import SubcategoryTemplate
 
 from ..entity import Entity
 
 @dataclass
 class FilePlanDescriptorTemplate(Entity):
-    # Represents the user who created the filePlanDescriptorTemplate column.
+    # Represents the user who created the filePlanDescriptorTemplate column. Read-only.
     created_by: Optional[IdentitySet] = None
-    # Represents the date and time in which the filePlanDescriptorTemplate is created.
+    # Represents the date and time in which the filePlanDescriptorTemplate is created. Read-only.
     created_date_time: Optional[datetime.datetime] = None
     # Unique string that defines a filePlanDescriptorTemplate name.
     display_name: Optional[str] = None
@@ -60,10 +60,10 @@ class FilePlanDescriptorTemplate(Entity):
             from .file_plan_reference_template import FilePlanReferenceTemplate
 
             return FilePlanReferenceTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.subCategoryTemplate".casefold():
-            from .sub_category_template import SubCategoryTemplate
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.subcategoryTemplate".casefold():
+            from .subcategory_template import SubcategoryTemplate
 
-            return SubCategoryTemplate()
+            return SubcategoryTemplate()
         return FilePlanDescriptorTemplate()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -78,7 +78,7 @@ class FilePlanDescriptorTemplate(Entity):
         from .citation_template import CitationTemplate
         from .department_template import DepartmentTemplate
         from .file_plan_reference_template import FilePlanReferenceTemplate
-        from .sub_category_template import SubCategoryTemplate
+        from .subcategory_template import SubcategoryTemplate
 
         from ..entity import Entity
         from ..identity_set import IdentitySet
@@ -87,7 +87,7 @@ class FilePlanDescriptorTemplate(Entity):
         from .citation_template import CitationTemplate
         from .department_template import DepartmentTemplate
         from .file_plan_reference_template import FilePlanReferenceTemplate
-        from .sub_category_template import SubCategoryTemplate
+        from .subcategory_template import SubcategoryTemplate
 
         fields: Dict[str, Callable[[Any], None]] = {
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),

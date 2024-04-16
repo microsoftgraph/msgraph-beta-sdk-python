@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +45,7 @@ class PolicySetsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["policySet%2Did"] = policy_set_id
         return PolicySetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[PolicySetsRequestBuilderGetRequestConfiguration] = None) -> Optional[PolicySetCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PolicySetCollectionResponse]:
         """
         The PolicySet of Policies and Applications
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class PolicySetsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PolicySetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[PolicySet] = None, request_configuration: Optional[PolicySetsRequestBuilderPostRequestConfiguration] = None) -> Optional[PolicySet]:
+    async def post(self,body: Optional[PolicySet] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PolicySet]:
         """
         Create new navigation property to policySets for deviceAppManagement
         param body: The request body
@@ -87,7 +88,7 @@ class PolicySetsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PolicySet, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[PolicySetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The PolicySet of Policies and Applications
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +99,7 @@ class PolicySetsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[PolicySet] = None, request_configuration: Optional[PolicySetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PolicySet] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to policySets for deviceAppManagement
         param body: The request body
@@ -107,7 +108,7 @@ class PolicySetsRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, '{+baseurl}/deviceAppManagement/policySets', self.path_parameters)
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -196,28 +197,5 @@ class PolicySetsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PolicySetsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[PolicySetsRequestBuilder.PolicySetsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class PolicySetsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

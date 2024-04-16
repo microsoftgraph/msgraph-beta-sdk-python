@@ -26,7 +26,7 @@ class RetentionEvent(Entity):
     display_name: Optional[str] = None
     # The eventPropagationResults property
     event_propagation_results: Optional[List[EventPropagationResult]] = None
-    # Represents the workload (SharePoint Online, OneDrive for Business, Exchange Online) and identification information associated with a retention event.
+    # The eventQueries property
     event_queries: Optional[List[EventQuery]] = None
     # The eventStatus property
     event_status: Optional[RetentionEventStatus] = None

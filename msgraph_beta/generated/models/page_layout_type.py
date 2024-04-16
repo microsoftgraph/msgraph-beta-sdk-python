@@ -5,4 +5,6 @@ class PageLayoutType(str, Enum):
     Article = "article",
     Home = "home",
     UnknownFutureValue = "unknownFutureValue",
+    NewsLink = "newsLink",
+    VideoNewsLink = "videoNewsLink",
 
