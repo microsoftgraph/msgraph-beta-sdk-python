@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class DeviceManagementComplianceActionItemItemRequestBuilder(BaseRequestBuilder)
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/compliancePolicies/{deviceManagementCompliancePolicy%2Did}/scheduledActionsForRule/{deviceManagementComplianceScheduledActionForRule%2Did}/scheduledActionConfigurations/{deviceManagementComplianceActionItem%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[DeviceManagementComplianceActionItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property scheduledActionConfigurations for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class DeviceManagementComplianceActionItemItemRequestBuilder(BaseRequestBuilder)
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementComplianceActionItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementComplianceActionItem]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementComplianceActionItem]:
         """
         The list of scheduled action configurations for this compliance policy. This collection can contain a maximum of 100 elements.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +65,7 @@ class DeviceManagementComplianceActionItemItemRequestBuilder(BaseRequestBuilder)
 
         return await self.request_adapter.send_async(request_info, DeviceManagementComplianceActionItem, error_mapping)
     
-    async def patch(self,body: Optional[DeviceManagementComplianceActionItem] = None, request_configuration: Optional[DeviceManagementComplianceActionItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceManagementComplianceActionItem]:
+    async def patch(self,body: Optional[DeviceManagementComplianceActionItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementComplianceActionItem]:
         """
         Update the navigation property scheduledActionConfigurations in deviceManagement
         param body: The request body
@@ -87,18 +88,18 @@ class DeviceManagementComplianceActionItemItemRequestBuilder(BaseRequestBuilder)
 
         return await self.request_adapter.send_async(request_info, DeviceManagementComplianceActionItem, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[DeviceManagementComplianceActionItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property scheduledActionConfigurations for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.DELETE, '{+baseurl}/deviceManagement/compliancePolicies/{deviceManagementCompliancePolicy%2Did}/scheduledActionsForRule/{deviceManagementComplianceScheduledActionForRule%2Did}/scheduledActionConfigurations/{deviceManagementComplianceActionItem%2Did}', self.path_parameters)
+        request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[DeviceManagementComplianceActionItemItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         The list of scheduled action configurations for this compliance policy. This collection can contain a maximum of 100 elements.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +110,7 @@ class DeviceManagementComplianceActionItemItemRequestBuilder(BaseRequestBuilder)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DeviceManagementComplianceActionItem] = None, request_configuration: Optional[DeviceManagementComplianceActionItemItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceManagementComplianceActionItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property scheduledActionConfigurations in deviceManagement
         param body: The request body
@@ -118,7 +119,7 @@ class DeviceManagementComplianceActionItemItemRequestBuilder(BaseRequestBuilder)
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, '{+baseurl}/deviceManagement/compliancePolicies/{deviceManagementCompliancePolicy%2Did}/scheduledActionsForRule/{deviceManagementComplianceScheduledActionForRule%2Did}/scheduledActionConfigurations/{deviceManagementComplianceActionItem%2Did}', self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -133,16 +134,6 @@ class DeviceManagementComplianceActionItemItemRequestBuilder(BaseRequestBuilder)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return DeviceManagementComplianceActionItemItemRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceManagementComplianceActionItemItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class DeviceManagementComplianceActionItemItemRequestBuilderGetQueryParameters():
@@ -169,28 +160,5 @@ class DeviceManagementComplianceActionItemItemRequestBuilder(BaseRequestBuilder)
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceManagementComplianceActionItemItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[DeviceManagementComplianceActionItemItemRequestBuilder.DeviceManagementComplianceActionItemItemRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class DeviceManagementComplianceActionItemItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

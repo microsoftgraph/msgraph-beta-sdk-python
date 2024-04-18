@@ -11,17 +11,17 @@ class CloudPcBulkActionSummary(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The failedCount property
+    # The number of Cloud PCs where the action failed.
     failed_count: Optional[int] = None
-    # The inProgressCount property
+    # The number of Cloud PCs where the action is in progress.
     in_progress_count: Optional[int] = None
-    # The notSupportedCount property
+    # The number of Cloud PCs where the action isn't supported.
     not_supported_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The pendingCount property
+    # The number of Cloud PCs where the action is pending.
     pending_count: Optional[int] = None
-    # The successfulCount property
+    # The number of Cloud PCs where the action is successful.
     successful_count: Optional[int] = None
     
     @staticmethod

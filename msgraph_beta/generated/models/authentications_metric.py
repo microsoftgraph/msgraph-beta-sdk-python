@@ -19,6 +19,10 @@ class AuthenticationsMetric(Entity):
     country: Optional[str] = None
     # The date of the user insight.
     fact_date: Optional[datetime.date] = None
+    # The identityProvider property
+    identity_provider: Optional[str] = None
+    # The language property
+    language: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The platform for the device that the customers used. Supports $filter (eq).
@@ -51,6 +55,8 @@ class AuthenticationsMetric(Entity):
             "attemptsCount": lambda n : setattr(self, 'attempts_count', n.get_int_value()),
             "country": lambda n : setattr(self, 'country', n.get_str_value()),
             "factDate": lambda n : setattr(self, 'fact_date', n.get_date_value()),
+            "identityProvider": lambda n : setattr(self, 'identity_provider', n.get_str_value()),
+            "language": lambda n : setattr(self, 'language', n.get_str_value()),
             "os": lambda n : setattr(self, 'os', n.get_str_value()),
             "successCount": lambda n : setattr(self, 'success_count', n.get_int_value()),
         }
@@ -71,6 +77,8 @@ class AuthenticationsMetric(Entity):
         writer.write_int_value("attemptsCount", self.attempts_count)
         writer.write_str_value("country", self.country)
         writer.write_date_value("factDate", self.fact_date)
+        writer.write_str_value("identityProvider", self.identity_provider)
+        writer.write_str_value("language", self.language)
         writer.write_str_value("os", self.os)
         writer.write_int_value("successCount", self.success_count)
     

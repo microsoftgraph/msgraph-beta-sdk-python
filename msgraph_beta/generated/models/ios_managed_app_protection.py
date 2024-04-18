@@ -22,13 +22,15 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
     odata_type: Optional[str] = "#microsoft.graph.iosManagedAppProtection"
     # Semicolon seperated list of device models allowed, as a string, for the managed app to work.
     allowed_ios_device_models: Optional[str] = None
+    # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time).
+    app_action_if_account_is_clocked_out: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_ios_device_model_not_allowed: Optional[ManagedAppRemediationAction] = None
     # Represents the level to which app data is encrypted for managed apps
     app_data_encryption_type: Optional[ManagedAppDataEncryptionType] = None
     # List of apps to which the policy is deployed.
     apps: Optional[List[ManagedMobileApp]] = None
-    # A custom browser protocol to open weblink on iOS. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
+    # A custom browser protocol to open weblink on iOS.
     custom_browser_protocol: Optional[str] = None
     # Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
     custom_dialer_app_protocol: Optional[str] = None
@@ -93,6 +95,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowedIosDeviceModels": lambda n : setattr(self, 'allowed_ios_device_models', n.get_str_value()),
+            "appActionIfAccountIsClockedOut": lambda n : setattr(self, 'app_action_if_account_is_clocked_out', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfIosDeviceModelNotAllowed": lambda n : setattr(self, 'app_action_if_ios_device_model_not_allowed', n.get_enum_value(ManagedAppRemediationAction)),
             "appDataEncryptionType": lambda n : setattr(self, 'app_data_encryption_type', n.get_enum_value(ManagedAppDataEncryptionType)),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(ManagedMobileApp)),
@@ -127,6 +130,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("allowedIosDeviceModels", self.allowed_ios_device_models)
+        writer.write_enum_value("appActionIfAccountIsClockedOut", self.app_action_if_account_is_clocked_out)
         writer.write_enum_value("appActionIfIosDeviceModelNotAllowed", self.app_action_if_ios_device_model_not_allowed)
         writer.write_enum_value("appDataEncryptionType", self.app_data_encryption_type)
         writer.write_collection_of_object_values("apps", self.apps)

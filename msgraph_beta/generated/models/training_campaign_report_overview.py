@@ -18,11 +18,11 @@ class TrainingCampaignReportOverview(AdditionalDataHolder, BackedModel, Parsable
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The trainingModuleCompletion property
+    # Aggregate data of training completion.
     training_module_completion: Optional[TrainingEventsContent] = None
-    # The trainingNotificationDeliveryStatus property
+    # Aggregate data of training mail delivery over the course of the training campaign.
     training_notification_delivery_status: Optional[TrainingNotificationDelivery] = None
-    # The userCompletionStatus property
+    # Aggregate data of users training progress.
     user_completion_status: Optional[UserTrainingCompletionSummary] = None
     
     @staticmethod

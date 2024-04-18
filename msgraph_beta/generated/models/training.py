@@ -16,33 +16,33 @@ from .entity import Entity
 
 @dataclass
 class Training(Entity):
-    # Training availability status. Possible values are: unknown, notAvailable, available, archive, delete, unknownFutureValue.
+    # The training availability status. Possible values are: unknown, notAvailable, available, archive, delete, unknownFutureValue.
     availability_status: Optional[TrainingAvailabilityStatus] = None
-    # Identity of the user who created the training.
+    # The identity of the user who created the training.
     created_by: Optional[EmailIdentity] = None
-    # Date and time when the training was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The date and time when the training was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The customUrl property
+    # The training URL
     custom_url: Optional[str] = None
     # The description for the training.
     description: Optional[str] = None
     # The display name for the training.
     display_name: Optional[str] = None
-    # Training duration.
+    # The duration of the training in minutes.
     duration_in_minutes: Optional[int] = None
-    # Indicates whether the training has any evaluation.
+    # Whether the training has any evaluation.
     has_evaluation: Optional[bool] = None
-    # Language specific details on a training.
+    # Details about the language used in the training.
     language_details: Optional[List[TrainingLanguageDetail]] = None
-    # Identity of the user who last modified the training.
+    # The identity of the user who last modified the training.
     last_modified_by: Optional[EmailIdentity] = None
-    # Date and time when the training was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The date and time when the training was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Training content source. Possible values are: unknown, global, tenant, unknownFutureValue.
+    # The source of the training content. Possible values are: unknown, global, tenant, unknownFutureValue.
     source: Optional[SimulationContentSource] = None
-    # Supported locales for content for the associated training.
+    # The supported locales for content for the associated training.
     supported_locales: Optional[List[str]] = None
     # Training tags.
     tags: Optional[List[str]] = None

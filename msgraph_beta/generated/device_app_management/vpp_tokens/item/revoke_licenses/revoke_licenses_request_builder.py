@@ -1,6 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +26,7 @@ class RevokeLicensesRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}/revokeLicenses", path_parameters)
     
-    async def post(self,body: Optional[RevokeLicensesPostRequestBody] = None, request_configuration: Optional[RevokeLicensesRequestBuilderPostRequestConfiguration] = None) -> None:
+    async def post(self,body: Optional[RevokeLicensesPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Revoke licenses associated with a specific appleVolumePurchaseProgramToken
         param body: The request body
@@ -47,7 +47,7 @@ class RevokeLicensesRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def to_post_request_information(self,body: Optional[RevokeLicensesPostRequestBody] = None, request_configuration: Optional[RevokeLicensesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[RevokeLicensesPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Revoke licenses associated with a specific appleVolumePurchaseProgramToken
         param body: The request body
@@ -71,15 +71,5 @@ class RevokeLicensesRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return RevokeLicensesRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class RevokeLicensesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

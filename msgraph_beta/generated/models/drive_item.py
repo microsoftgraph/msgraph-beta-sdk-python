@@ -57,6 +57,8 @@ class DriveItem(BaseItem):
     children: Optional[List[DriveItem]] = None
     # The content property
     content: Optional[bytes] = None
+    # The content stream, if the item represents a file.
+    content_stream: Optional[bytes] = None
     # Information about the deleted state of the item. Read-only.
     deleted: Optional[Deleted] = None
     # File metadata, if the item is a file. Read-only.
@@ -206,6 +208,7 @@ class DriveItem(BaseItem):
             "cTag": lambda n : setattr(self, 'c_tag', n.get_str_value()),
             "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(DriveItem)),
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
+            "contentStream": lambda n : setattr(self, 'content_stream', n.get_bytes_value()),
             "deleted": lambda n : setattr(self, 'deleted', n.get_object_value(Deleted)),
             "file": lambda n : setattr(self, 'file', n.get_object_value(File)),
             "fileSystemInfo": lambda n : setattr(self, 'file_system_info', n.get_object_value(FileSystemInfo)),
@@ -256,6 +259,7 @@ class DriveItem(BaseItem):
         writer.write_str_value("cTag", self.c_tag)
         writer.write_collection_of_object_values("children", self.children)
         writer.write_bytes_value("content", self.content)
+        writer.write_bytes_value("contentStream", self.content_stream)
         writer.write_object_value("deleted", self.deleted)
         writer.write_object_value("file", self.file)
         writer.write_object_value("fileSystemInfo", self.file_system_info)

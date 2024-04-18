@@ -22,17 +22,17 @@ from .entity import Entity
 
 @dataclass
 class CloudPcBulkAction(Entity):
-    # The actionSummary property
+    # Run summary of this bulk action.
     action_summary: Optional[CloudPcBulkActionSummary] = None
     # The cloudPcIds property
     cloud_pc_ids: Optional[List[str]] = None
-    # The createdDateTime property
+    # The date and time when the bulk action was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The displayName property
+    # Name of the bulk action.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The scheduledDuringMaintenanceWindow property
+    # Indicates whether the bulk actions can be initiated during maintenance window. When true, bulk action will use maintenance window to schedule action, When false means bulk action will not use the maintenance window. Default value is false.
     scheduled_during_maintenance_window: Optional[bool] = None
     
     @staticmethod

@@ -13,11 +13,11 @@ from .entity import Entity
 
 @dataclass
 class PeopleAdminSettings(Entity):
-    # The itemInsights property
+    # Represents administrator settings that manage the support for item insights in an organization.
     item_insights: Optional[InsightsSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card.
+    # Contains a collection of the properties an administrator defined as visible on the Microsoft 365 profile card.
     profile_card_properties: Optional[List[ProfileCardProperty]] = None
     # Represents administrator settings that manage the support of pronouns in an organization.
     pronouns: Optional[PronounsSettings] = None

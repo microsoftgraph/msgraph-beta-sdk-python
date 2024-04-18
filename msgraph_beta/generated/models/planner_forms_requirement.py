@@ -13,7 +13,7 @@ class PlannerFormsRequirement(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The requiredForms property
+    # Read-only. A collection of keys from the plannerFormsDictionary that identify the plannerFormReference objects that specify the requirements to complete the plannerTask.
     required_forms: Optional[List[str]] = None
     
     @staticmethod

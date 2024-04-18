@@ -11,13 +11,13 @@ class AppIdentity(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Refers to the unique identifier representing Application Id in the Microsoft Entra ID.
+    # Refers to the unique identifier representing application ID in the Microsoft Entra ID.
     app_id: Optional[str] = None
     # Refers to the application name displayed in the Microsoft Entra admin center.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Refers to the unique identifier indicating Service Principal Id in Microsoft Entra ID for the corresponding App.
+    # Refers to the unique identifier indicating service principal ID in Microsoft Entra ID for the corresponding App.
     service_principal_id: Optional[str] = None
     # Refers to the Service Principal Name is the Application name in the tenant.
     service_principal_name: Optional[str] = None

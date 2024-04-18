@@ -41,6 +41,7 @@ if TYPE_CHECKING:
     from .license_details import LicenseDetails
     from .mailbox_settings import MailboxSettings
     from .mail_folder import MailFolder
+    from .managed_app_log_collection_request import ManagedAppLogCollectionRequest
     from .managed_app_registration import ManagedAppRegistration
     from .managed_device import ManagedDevice
     from .message import Message
@@ -216,6 +217,8 @@ class User(DirectoryObject):
     insights: Optional[ItemInsights] = None
     # A list for users to describe their interests. Returned only on $select.
     interests: Optional[List[str]] = None
+    # The invitedBy property
+    invited_by: Optional[DirectoryObject] = None
     # Indicates whether the user is pending an exchange mailbox license assignment.  Read-only.  Supports $filter (eq where true only).
     is_license_reconciliation_needed: Optional[bool] = None
     # true if the user is a member of a restricted management administrative unit, which requires a role scoped to the restricted administrative unit to manage. Default value is false. Read-only.  To manage a user who is a member of a restricted administrative unit, the calling app must be assigned the Directory.Write.Restricted permission. For delegated scenarios, the administrators must also be explicitly assigned supported roles at the restricted administrative unit scope.
@@ -244,6 +247,8 @@ class User(DirectoryObject):
     mail_nickname: Optional[str] = None
     # Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. For more information, see User preferences for languages and regional formats. Returned only on $select.
     mailbox_settings: Optional[MailboxSettings] = None
+    # Zero or more log collection requests triggered for the user.
+    managed_app_log_collection_requests: Optional[List[ManagedAppLogCollectionRequest]] = None
     # Zero or more managed app registrations that belong to the user.
     managed_app_registrations: Optional[List[ManagedAppRegistration]] = None
     # The managed devices associated with the user.
@@ -386,7 +391,7 @@ class User(DirectoryObject):
     usage_rights: Optional[List[UsageRight]] = None
     # The user principal name (UPN) of the user. The UPN is an Internet-style sign-in name for the user based on the Internet standard RFC 822. By convention, this should map to the user's email name. The general format is alias@domain, where the domain must be present in the tenant's verified domain collection. This property is required when a user is created. The verified domains for the tenant can be accessed from the verifiedDomains property of organization.NOTE: This property can't contain accent characters. Only the following characters are allowed A - Z, a - z, 0 - 9, ' . - _ ! # ^ ~. For the complete list of allowed characters, see username policies. Supports $filter (eq, ne, not, ge, le, in, startsWith, endsWith) and $orderby.
     user_principal_name: Optional[str] = None
-    # A String value that can be used to classify user types in your directory, such as Member and Guest. Supports $filter (eq, ne, not, in, and eq on null values). NOTE: For more information about the permissions for member and guest users, see What are the default user permissions in Microsoft Entra ID?
+    # A String value that can be used to classify user types in your directory. The possible values are Member and Guest. Supports $filter (eq, ne, not, in, and eq on null values). NOTE: For more information about the permissions for member and guest users, see What are the default user permissions in Microsoft Entra ID?
     user_type: Optional[str] = None
     # The virtualEvents property
     virtual_events: Optional[UserVirtualEventsRoot] = None
@@ -445,6 +450,7 @@ class User(DirectoryObject):
         from .license_details import LicenseDetails
         from .mailbox_settings import MailboxSettings
         from .mail_folder import MailFolder
+        from .managed_app_log_collection_request import ManagedAppLogCollectionRequest
         from .managed_app_registration import ManagedAppRegistration
         from .managed_device import ManagedDevice
         from .message import Message
@@ -520,6 +526,7 @@ class User(DirectoryObject):
         from .license_details import LicenseDetails
         from .mailbox_settings import MailboxSettings
         from .mail_folder import MailFolder
+        from .managed_app_log_collection_request import ManagedAppLogCollectionRequest
         from .managed_app_registration import ManagedAppRegistration
         from .managed_device import ManagedDevice
         from .message import Message
@@ -625,6 +632,7 @@ class User(DirectoryObject):
             "informationProtection": lambda n : setattr(self, 'information_protection', n.get_object_value(InformationProtection)),
             "insights": lambda n : setattr(self, 'insights', n.get_object_value(ItemInsights)),
             "interests": lambda n : setattr(self, 'interests', n.get_collection_of_primitive_values(str)),
+            "invitedBy": lambda n : setattr(self, 'invited_by', n.get_object_value(DirectoryObject)),
             "isLicenseReconciliationNeeded": lambda n : setattr(self, 'is_license_reconciliation_needed', n.get_bool_value()),
             "isManagementRestricted": lambda n : setattr(self, 'is_management_restricted', n.get_bool_value()),
             "isResourceAccount": lambda n : setattr(self, 'is_resource_account', n.get_bool_value()),
@@ -639,6 +647,7 @@ class User(DirectoryObject):
             "mailFolders": lambda n : setattr(self, 'mail_folders', n.get_collection_of_object_values(MailFolder)),
             "mailNickname": lambda n : setattr(self, 'mail_nickname', n.get_str_value()),
             "mailboxSettings": lambda n : setattr(self, 'mailbox_settings', n.get_object_value(MailboxSettings)),
+            "managedAppLogCollectionRequests": lambda n : setattr(self, 'managed_app_log_collection_requests', n.get_collection_of_object_values(ManagedAppLogCollectionRequest)),
             "managedAppRegistrations": lambda n : setattr(self, 'managed_app_registrations', n.get_collection_of_object_values(ManagedAppRegistration)),
             "managedDevices": lambda n : setattr(self, 'managed_devices', n.get_collection_of_object_values(ManagedDevice)),
             "manager": lambda n : setattr(self, 'manager', n.get_object_value(DirectoryObject)),
@@ -792,6 +801,7 @@ class User(DirectoryObject):
         writer.write_object_value("informationProtection", self.information_protection)
         writer.write_object_value("insights", self.insights)
         writer.write_collection_of_primitive_values("interests", self.interests)
+        writer.write_object_value("invitedBy", self.invited_by)
         writer.write_bool_value("isLicenseReconciliationNeeded", self.is_license_reconciliation_needed)
         writer.write_bool_value("isManagementRestricted", self.is_management_restricted)
         writer.write_bool_value("isResourceAccount", self.is_resource_account)
@@ -806,6 +816,7 @@ class User(DirectoryObject):
         writer.write_collection_of_object_values("mailFolders", self.mail_folders)
         writer.write_str_value("mailNickname", self.mail_nickname)
         writer.write_object_value("mailboxSettings", self.mailbox_settings)
+        writer.write_collection_of_object_values("managedAppLogCollectionRequests", self.managed_app_log_collection_requests)
         writer.write_collection_of_object_values("managedAppRegistrations", self.managed_app_registrations)
         writer.write_collection_of_object_values("managedDevices", self.managed_devices)
         writer.write_object_value("manager", self.manager)

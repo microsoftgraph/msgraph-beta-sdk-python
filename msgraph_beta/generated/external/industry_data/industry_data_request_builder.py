@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -15,6 +16,7 @@ if TYPE_CHECKING:
     from .data_connectors.data_connectors_request_builder import DataConnectorsRequestBuilder
     from .inbound_flows.inbound_flows_request_builder import InboundFlowsRequestBuilder
     from .operations.operations_request_builder import OperationsRequestBuilder
+    from .outbound_provisioning_flow_sets.outbound_provisioning_flow_sets_request_builder import OutboundProvisioningFlowSetsRequestBuilder
     from .reference_definitions.reference_definitions_request_builder import ReferenceDefinitionsRequestBuilder
     from .role_groups.role_groups_request_builder import RoleGroupsRequestBuilder
     from .runs.runs_request_builder import RunsRequestBuilder
@@ -34,7 +36,7 @@ class IndustryDataRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/external/industryData{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[IndustryDataRequestBuilderGetRequestConfiguration] = None) -> Optional[IndustryDataRoot]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[IndustryDataRoot]:
         """
         Get industryData from external
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -54,7 +56,7 @@ class IndustryDataRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, IndustryDataRoot, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[IndustryDataRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get industryData from external
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,6 +103,15 @@ class IndustryDataRequestBuilder(BaseRequestBuilder):
         from .operations.operations_request_builder import OperationsRequestBuilder
 
         return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def outbound_provisioning_flow_sets(self) -> OutboundProvisioningFlowSetsRequestBuilder:
+        """
+        Provides operations to manage the outboundProvisioningFlowSets property of the microsoft.graph.industryData.industryDataRoot entity.
+        """
+        from .outbound_provisioning_flow_sets.outbound_provisioning_flow_sets_request_builder import OutboundProvisioningFlowSetsRequestBuilder
+
+        return OutboundProvisioningFlowSetsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def reference_definitions(self) -> ReferenceDefinitionsRequestBuilder:
@@ -171,19 +182,6 @@ class IndustryDataRequestBuilder(BaseRequestBuilder):
 
         # Select properties to be returned
         select: Optional[List[str]] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class IndustryDataRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[IndustryDataRequestBuilder.IndustryDataRequestBuilderGetQueryParameters] = None
 
     
 

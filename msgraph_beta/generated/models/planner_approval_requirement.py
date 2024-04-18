@@ -11,7 +11,7 @@ class PlannerApprovalRequirement(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The isApprovalRequired property
+    # Specifies whether approval is required to complete the plannerTask. When this property is set to true, the task can only be marked complete if an approval is created for the task and approved.
     is_approval_required: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

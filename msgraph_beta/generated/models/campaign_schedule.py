@@ -15,13 +15,13 @@ class CampaignSchedule(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The completionDateTime property
+    # The date and time at which the campaign completed.
     completion_date_time: Optional[datetime.datetime] = None
-    # The launchDateTime property
+    # The date and time at which the campaign was launched.
     launch_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The status property
+    # The current state of the campaign. The possible values are: unknown, draft, inProgress, scheduled, completed, failed, cancelled, excluded, deleted, unknownFutureValue.
     status: Optional[CampaignStatus] = None
     
     @staticmethod

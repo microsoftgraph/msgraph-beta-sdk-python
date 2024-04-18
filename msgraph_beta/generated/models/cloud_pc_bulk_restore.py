@@ -14,7 +14,7 @@ from .cloud_pc_bulk_action import CloudPcBulkAction
 class CloudPcBulkRestore(CloudPcBulkAction):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkRestore"
-    # The restorePointDateTime property
+    # The date and time point for the selected Cloud PCs to restore. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     restore_point_date_time: Optional[datetime.datetime] = None
     # The timeRange property
     time_range: Optional[RestoreTimeRange] = None

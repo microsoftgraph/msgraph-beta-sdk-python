@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +27,7 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/networkAccess/settings/conditionalAccess{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[ConditionalAccessRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
         Delete navigation property conditionalAccess for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -44,7 +45,7 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ConditionalAccessRequestBuilderGetRequestConfiguration] = None) -> Optional[ConditionalAccessSettings]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ConditionalAccessSettings]:
         """
         Retrieve the conditional access settings, which include the preservation of the original source IP address in network traffic for accurate identification and tracking, and the establishment of scalable network connectivity through the Global Secure Access services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +66,7 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ConditionalAccessSettings, error_mapping)
     
-    async def patch(self,body: Optional[ConditionalAccessSettings] = None, request_configuration: Optional[ConditionalAccessRequestBuilderPatchRequestConfiguration] = None) -> Optional[ConditionalAccessSettings]:
+    async def patch(self,body: Optional[ConditionalAccessSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ConditionalAccessSettings]:
         """
         Update the conditional access settings to include the preservation of the original source IP address in network traffic for accurate identification and tracking, as well as the establishment of scalable network connectivity through the Global Secure Access services.
         param body: The request body
@@ -89,18 +90,18 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ConditionalAccessSettings, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[ConditionalAccessRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property conditionalAccess for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.DELETE, '{+baseurl}/networkAccess/settings/conditionalAccess', self.path_parameters)
+        request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[ConditionalAccessRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve the conditional access settings, which include the preservation of the original source IP address in network traffic for accurate identification and tracking, and the establishment of scalable network connectivity through the Global Secure Access services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +112,7 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ConditionalAccessSettings] = None, request_configuration: Optional[ConditionalAccessRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ConditionalAccessSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Update the conditional access settings to include the preservation of the original source IP address in network traffic for accurate identification and tracking, as well as the establishment of scalable network connectivity through the Global Secure Access services.
         param body: The request body
@@ -120,7 +121,7 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, '{+baseurl}/networkAccess/settings/conditionalAccess', self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -135,16 +136,6 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ConditionalAccessRequestBuilder(self.request_adapter, raw_url)
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ConditionalAccessRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
     @dataclass
     class ConditionalAccessRequestBuilderGetQueryParameters():
@@ -171,28 +162,5 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ConditionalAccessRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[ConditionalAccessRequestBuilder.ConditionalAccessRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class ConditionalAccessRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

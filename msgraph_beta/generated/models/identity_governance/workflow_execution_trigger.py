@@ -5,6 +5,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .attribute_change_trigger import AttributeChangeTrigger
+    from .membership_change_trigger import MembershipChangeTrigger
     from .time_based_attribute_trigger import TimeBasedAttributeTrigger
 
 @dataclass
@@ -30,6 +32,14 @@ class WorkflowExecutionTrigger(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.attributeChangeTrigger".casefold():
+            from .attribute_change_trigger import AttributeChangeTrigger
+
+            return AttributeChangeTrigger()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.membershipChangeTrigger".casefold():
+            from .membership_change_trigger import MembershipChangeTrigger
+
+            return MembershipChangeTrigger()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger".casefold():
             from .time_based_attribute_trigger import TimeBasedAttributeTrigger
 
@@ -41,8 +51,12 @@ class WorkflowExecutionTrigger(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .attribute_change_trigger import AttributeChangeTrigger
+        from .membership_change_trigger import MembershipChangeTrigger
         from .time_based_attribute_trigger import TimeBasedAttributeTrigger
 
+        from .attribute_change_trigger import AttributeChangeTrigger
+        from .membership_change_trigger import MembershipChangeTrigger
         from .time_based_attribute_trigger import TimeBasedAttributeTrigger
 
         fields: Dict[str, Callable[[Any], None]] = {

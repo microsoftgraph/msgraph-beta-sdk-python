@@ -13,6 +13,8 @@ from .entity import Entity
 
 @dataclass
 class InactiveUsersMetricBase(Entity):
+    # The appId property
+    app_id: Optional[str] = None
     # The factDate property
     fact_date: Optional[datetime.date] = None
     # The inactive30DayCount property
@@ -61,6 +63,7 @@ class InactiveUsersMetricBase(Entity):
         from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "factDate": lambda n : setattr(self, 'fact_date', n.get_date_value()),
             "inactive30DayCount": lambda n : setattr(self, 'inactive30_day_count', n.get_int_value()),
             "inactive60DayCount": lambda n : setattr(self, 'inactive60_day_count', n.get_int_value()),
@@ -79,6 +82,7 @@ class InactiveUsersMetricBase(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("appId", self.app_id)
         writer.write_date_value("factDate", self.fact_date)
         writer.write_int_value("inactive30DayCount", self.inactive30_day_count)
         writer.write_int_value("inactive60DayCount", self.inactive60_day_count)

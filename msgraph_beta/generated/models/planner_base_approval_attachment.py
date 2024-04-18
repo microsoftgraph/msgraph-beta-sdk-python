@@ -17,7 +17,7 @@ class PlannerBaseApprovalAttachment(AdditionalDataHolder, BackedModel, Parsable)
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The status property
+    # Status of the approval. The possible values are: requested, approved, rejected, cancelled, unknownFutureValue. Read-only.
     status: Optional[PlannerApprovalStatus] = None
     
     @staticmethod

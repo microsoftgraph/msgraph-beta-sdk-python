@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .ios_managed_app_registration import IosManagedAppRegistration
     from .managed_app_flagged_reason import ManagedAppFlaggedReason
+    from .managed_app_log_collection_request import ManagedAppLogCollectionRequest
     from .managed_app_operation import ManagedAppOperation
     from .managed_app_policy import ManagedAppPolicy
     from .mobile_app_identifier import MobileAppIdentifier
@@ -47,6 +48,8 @@ class ManagedAppRegistration(Entity):
     intended_policies: Optional[List[ManagedAppPolicy]] = None
     # Date and time of last the app synced with management service.
     last_sync_date_time: Optional[datetime.datetime] = None
+    # Zero or more log collection requests triggered for the app.
+    managed_app_log_collection_requests: Optional[List[ManagedAppLogCollectionRequest]] = None
     # The Managed Device identifier of the host device. Value could be empty even when the host device is managed.
     managed_device_id: Optional[str] = None
     # App management SDK version
@@ -98,6 +101,7 @@ class ManagedAppRegistration(Entity):
         from .entity import Entity
         from .ios_managed_app_registration import IosManagedAppRegistration
         from .managed_app_flagged_reason import ManagedAppFlaggedReason
+        from .managed_app_log_collection_request import ManagedAppLogCollectionRequest
         from .managed_app_operation import ManagedAppOperation
         from .managed_app_policy import ManagedAppPolicy
         from .mobile_app_identifier import MobileAppIdentifier
@@ -107,6 +111,7 @@ class ManagedAppRegistration(Entity):
         from .entity import Entity
         from .ios_managed_app_registration import IosManagedAppRegistration
         from .managed_app_flagged_reason import ManagedAppFlaggedReason
+        from .managed_app_log_collection_request import ManagedAppLogCollectionRequest
         from .managed_app_operation import ManagedAppOperation
         from .managed_app_policy import ManagedAppPolicy
         from .mobile_app_identifier import MobileAppIdentifier
@@ -126,6 +131,7 @@ class ManagedAppRegistration(Entity):
             "flaggedReasons": lambda n : setattr(self, 'flagged_reasons', n.get_collection_of_enum_values(ManagedAppFlaggedReason)),
             "intendedPolicies": lambda n : setattr(self, 'intended_policies', n.get_collection_of_object_values(ManagedAppPolicy)),
             "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "managedAppLogCollectionRequests": lambda n : setattr(self, 'managed_app_log_collection_requests', n.get_collection_of_object_values(ManagedAppLogCollectionRequest)),
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
             "managementSdkVersion": lambda n : setattr(self, 'management_sdk_version', n.get_str_value()),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(ManagedAppOperation)),
@@ -159,6 +165,7 @@ class ManagedAppRegistration(Entity):
         writer.write_collection_of_enum_values("flaggedReasons", self.flagged_reasons)
         writer.write_collection_of_object_values("intendedPolicies", self.intended_policies)
         writer.write_datetime_value("lastSyncDateTime", self.last_sync_date_time)
+        writer.write_collection_of_object_values("managedAppLogCollectionRequests", self.managed_app_log_collection_requests)
         writer.write_str_value("managedDeviceId", self.managed_device_id)
         writer.write_str_value("managementSdkVersion", self.management_sdk_version)
         writer.write_collection_of_object_values("operations", self.operations)

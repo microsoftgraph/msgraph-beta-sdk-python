@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,7 +47,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["tag%2Did"] = tag_id
         return TagItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> Optional[TagCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TagCollectionResponse]:
         """
         Retrieve a list of tag objects from an eDiscovery case.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -68,7 +69,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TagCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> Optional[Tag]:
+    async def post(self,body: Optional[Tag] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Tag]:
         """
         Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
         param body: The request body
@@ -93,7 +94,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Tag, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Retrieve a list of tag objects from an eDiscovery case.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +106,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Tag] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
         param body: The request body
@@ -115,7 +116,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, '{+baseurl}/compliance/ediscovery/cases/{case%2Did}/tags', self.path_parameters)
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -205,28 +206,5 @@ class TagsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TagsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[TagsRequestBuilder.TagsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class TagsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 

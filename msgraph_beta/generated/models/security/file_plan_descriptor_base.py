@@ -5,12 +5,12 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .applied_category import AppliedCategory
-    from .authority import Authority
-    from .citation import Citation
-    from .department import Department
+    from .file_plan_applied_category import FilePlanAppliedCategory
+    from .file_plan_authority import FilePlanAuthority
+    from .file_plan_citation import FilePlanCitation
+    from .file_plan_department import FilePlanDepartment
     from .file_plan_reference import FilePlanReference
-    from .sub_category import SubCategory
+    from .file_plan_subcategory import FilePlanSubcategory
 
 @dataclass
 class FilePlanDescriptorBase(AdditionalDataHolder, BackedModel, Parsable):
@@ -19,7 +19,7 @@ class FilePlanDescriptorBase(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Unique string that defines the name for each file plan descriptor associated with a particular retention label.
+    # Unique string that defines the name for the file plan descriptor associated with a particular retention label.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -37,30 +37,30 @@ class FilePlanDescriptorBase(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.appliedCategory".casefold():
-            from .applied_category import AppliedCategory
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.filePlanAppliedCategory".casefold():
+            from .file_plan_applied_category import FilePlanAppliedCategory
 
-            return AppliedCategory()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.authority".casefold():
-            from .authority import Authority
+            return FilePlanAppliedCategory()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.filePlanAuthority".casefold():
+            from .file_plan_authority import FilePlanAuthority
 
-            return Authority()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.citation".casefold():
-            from .citation import Citation
+            return FilePlanAuthority()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.filePlanCitation".casefold():
+            from .file_plan_citation import FilePlanCitation
 
-            return Citation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.department".casefold():
-            from .department import Department
+            return FilePlanCitation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.filePlanDepartment".casefold():
+            from .file_plan_department import FilePlanDepartment
 
-            return Department()
+            return FilePlanDepartment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.filePlanReference".casefold():
             from .file_plan_reference import FilePlanReference
 
             return FilePlanReference()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.subCategory".casefold():
-            from .sub_category import SubCategory
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.filePlanSubcategory".casefold():
+            from .file_plan_subcategory import FilePlanSubcategory
 
-            return SubCategory()
+            return FilePlanSubcategory()
         return FilePlanDescriptorBase()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -68,19 +68,19 @@ class FilePlanDescriptorBase(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .applied_category import AppliedCategory
-        from .authority import Authority
-        from .citation import Citation
-        from .department import Department
+        from .file_plan_applied_category import FilePlanAppliedCategory
+        from .file_plan_authority import FilePlanAuthority
+        from .file_plan_citation import FilePlanCitation
+        from .file_plan_department import FilePlanDepartment
         from .file_plan_reference import FilePlanReference
-        from .sub_category import SubCategory
+        from .file_plan_subcategory import FilePlanSubcategory
 
-        from .applied_category import AppliedCategory
-        from .authority import Authority
-        from .citation import Citation
-        from .department import Department
+        from .file_plan_applied_category import FilePlanAppliedCategory
+        from .file_plan_authority import FilePlanAuthority
+        from .file_plan_citation import FilePlanCitation
+        from .file_plan_department import FilePlanDepartment
         from .file_plan_reference import FilePlanReference
-        from .sub_category import SubCategory
+        from .file_plan_subcategory import FilePlanSubcategory
 
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

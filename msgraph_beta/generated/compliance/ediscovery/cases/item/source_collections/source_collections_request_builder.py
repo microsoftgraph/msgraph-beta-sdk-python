@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,7 +46,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["sourceCollection%2Did"] = source_collection_id
         return SourceCollectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SourceCollectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[SourceCollectionCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SourceCollectionCollectionResponse]:
         """
         Get the list of sourceCollections from a case object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +68,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SourceCollectionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[SourceCollection] = None, request_configuration: Optional[SourceCollectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[SourceCollection]:
+    async def post(self,body: Optional[SourceCollection] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SourceCollection]:
         """
         Create a new sourceCollection object.
         param body: The request body
@@ -92,7 +93,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SourceCollection, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[SourceCollectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Get the list of sourceCollections from a case object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +105,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[SourceCollection] = None, request_configuration: Optional[SourceCollectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[SourceCollection] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
         Create a new sourceCollection object.
         param body: The request body
@@ -114,7 +115,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, '{+baseurl}/compliance/ediscovery/cases/{case%2Did}/sourceCollections', self.path_parameters)
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -195,28 +196,5 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SourceCollectionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request query parameters
-        query_parameters: Optional[SourceCollectionsRequestBuilder.SourceCollectionsRequestBuilderGetQueryParameters] = None
-
-    
-    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-    @dataclass
-    class SourceCollectionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
-        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
-
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
     
 
