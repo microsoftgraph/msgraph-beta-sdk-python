@@ -67,10 +67,9 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Team]:
         """
-        Get the properties of the team associated with a teamTemplateDefinition object.
+        Collection of channel objects. A channel represents a topic, and therefore a logical isolation of discussion, within a team.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Team]
-        Find more info here: https://learn.microsoft.com/graph/api/teamtemplatedefinition-get-teamdefinition?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -122,7 +121,7 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of the team associated with a teamTemplateDefinition object.
+        Collection of channel objects. A channel represents a topic, and therefore a logical isolation of discussion, within a team.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -339,7 +338,7 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamDefinitionRequestBuilderGetQueryParameters():
         """
-        Get the properties of the team associated with a teamTemplateDefinition object.
+        Collection of channel objects. A channel represents a topic, and therefore a logical isolation of discussion, within a team.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

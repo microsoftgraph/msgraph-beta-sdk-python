@@ -29,10 +29,9 @@ class ResourceConnectionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a resourceConnection object.
+        Delete navigation property resourceConnections for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-resourceconnection-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class ResourceConnectionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ResourceConnection]:
         """
-        Read the properties and relationships of an operationalInsightsConnection object.
+        Service connections to external resources such as analytics workspaces.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ResourceConnection]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-operationalinsightsconnection-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +90,7 @@ class ResourceConnectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a resourceConnection object.
+        Delete navigation property resourceConnections for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +101,7 @@ class ResourceConnectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an operationalInsightsConnection object.
+        Service connections to external resources such as analytics workspaces.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -140,7 +138,7 @@ class ResourceConnectionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ResourceConnectionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an operationalInsightsConnection object.
+        Service connections to external resources such as analytics workspaces.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

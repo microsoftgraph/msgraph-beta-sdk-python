@@ -53,7 +53,7 @@ class ServicePrincipalsRequestBuilder(BaseRequestBuilder):
         Retrieve a list of servicePrincipal objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServicePrincipalCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -75,7 +75,7 @@ class ServicePrincipalsRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServicePrincipal]
-        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-post-serviceprincipals?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-post-serviceprincipals?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

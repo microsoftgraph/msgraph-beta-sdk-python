@@ -29,10 +29,9 @@ class PersonAnnotationItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Deletes a personAnnotation object from a user's profile.
+        Delete navigation property notes for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/personannotation-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class PersonAnnotationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonAnnotation]:
         """
-        Read the properties and relationships of a personAnnotation object from a user's profile.
+        Represents notes that a user has added to their profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAnnotation]
-        Find more info here: https://learn.microsoft.com/graph/api/personannotation-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +67,10 @@ class PersonAnnotationItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[PersonAnnotation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonAnnotation]:
         """
-        Update the properties of a personAnnotation object in a user's profile.
+        Update the navigation property notes in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAnnotation]
-        Find more info here: https://learn.microsoft.com/graph/api/personannotation-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +90,7 @@ class PersonAnnotationItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes a personAnnotation object from a user's profile.
+        Delete navigation property notes for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +101,7 @@ class PersonAnnotationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a personAnnotation object from a user's profile.
+        Represents notes that a user has added to their profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +112,7 @@ class PersonAnnotationItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[PersonAnnotation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a personAnnotation object in a user's profile.
+        Update the navigation property notes in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +138,7 @@ class PersonAnnotationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PersonAnnotationItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a personAnnotation object from a user's profile.
+        Represents notes that a user has added to their profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

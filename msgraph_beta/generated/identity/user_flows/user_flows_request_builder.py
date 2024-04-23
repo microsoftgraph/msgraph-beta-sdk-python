@@ -48,10 +48,9 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[IdentityUserFlowCollectionResponse]:
         """
-        Retrieve a list of userflows.
+        Get userFlows from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityUserFlowCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-list?view=graph-rest-1.0
         """
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -70,11 +69,10 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[IdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[IdentityUserFlow]:
         """
-        Create a new userFlow object.
+        Create new navigation property to userFlows for identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityUserFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-post-userflows?view=graph-rest-1.0
         """
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         if not body:
@@ -95,7 +93,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of userflows.
+        Get userFlows from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +105,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[IdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new userFlow object.
+        Create new navigation property to userFlows for identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +142,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserFlowsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of userflows.
+        Get userFlows from identity
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

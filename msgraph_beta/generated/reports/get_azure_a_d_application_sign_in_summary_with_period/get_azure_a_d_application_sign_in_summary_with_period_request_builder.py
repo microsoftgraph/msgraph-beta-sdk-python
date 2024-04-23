@@ -32,9 +32,10 @@ class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder(BaseRequestBuil
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetAzureADApplicationSignInSummaryWithPeriodGetResponse]:
         """
-        Invoke function getAzureADApplicationSignInSummary
+        Retrieve applicationSigninSummary objects within either the last seven or 30 days.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAzureADApplicationSignInSummaryWithPeriodGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getazureadapplicationsigninsummary?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -52,7 +53,7 @@ class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder(BaseRequestBuil
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getAzureADApplicationSignInSummary
+        Retrieve applicationSigninSummary objects within either the last seven or 30 days.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +75,7 @@ class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder(BaseRequestBuil
     @dataclass
     class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilderGetQueryParameters():
         """
-        Invoke function getAzureADApplicationSignInSummary
+        Retrieve applicationSigninSummary objects within either the last seven or 30 days.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

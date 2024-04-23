@@ -46,10 +46,9 @@ class AuthenticationEventListenersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationEventListenerCollectionResponse]:
         """
-        Get a list of the authenticationEventListener objects and their properties. The following derived types are supported:
+        Get authenticationEventListeners from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventListenerCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-list-authenticationeventlisteners?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class AuthenticationEventListenersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AuthenticationEventListener] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationEventListener]:
         """
-        Create a new authenticationEventListener object. You can create one of the following subtypes that are derived from authenticationEventListener.
+        Create new navigation property to authenticationEventListeners for identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventListener]
-        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-post-authenticationeventlisteners?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class AuthenticationEventListenersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the authenticationEventListener objects and their properties. The following derived types are supported:
+        Get authenticationEventListeners from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class AuthenticationEventListenersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AuthenticationEventListener] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new authenticationEventListener object. You can create one of the following subtypes that are derived from authenticationEventListener.
+        Create new navigation property to authenticationEventListeners for identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class AuthenticationEventListenersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuthenticationEventListenersRequestBuilderGetQueryParameters():
         """
-        Get a list of the authenticationEventListener objects and their properties. The following derived types are supported:
+        Get authenticationEventListeners from identity
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

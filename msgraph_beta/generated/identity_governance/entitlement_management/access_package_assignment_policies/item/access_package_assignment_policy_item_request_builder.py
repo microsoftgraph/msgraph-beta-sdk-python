@@ -34,10 +34,9 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        In Microsoft Entra entitlement management, delete an accessPackageAssignmentPolicy.
+        Delete navigation property accessPackageAssignmentPolicies for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -54,10 +53,9 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageAssignmentPolicy]:
         """
-        In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.
+        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignmentPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentpolicy-get?view=graph-rest-1.0
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -100,7 +98,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        In Microsoft Entra entitlement management, delete an accessPackageAssignmentPolicy.
+        Delete navigation property accessPackageAssignmentPolicies for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +110,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.
+        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -188,7 +186,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageAssignmentPolicyItemRequestBuilderGetQueryParameters():
         """
-        In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.
+        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -46,10 +46,9 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeploymentAudienceCollectionResponse]:
         """
-        Get a list of deploymentAudience objects and their properties.
+        The set of updatableAsset resources to which a deployment can apply.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeploymentAudienceCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-list-deploymentaudiences?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeploymentAudience]:
         """
-        Create a new deploymentAudience object.
+        Create new navigation property to deploymentAudiences for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeploymentAudience]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-post-deploymentaudiences?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of deploymentAudience objects and their properties.
+        The set of updatableAsset resources to which a deployment can apply.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[DeploymentAudience] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new deploymentAudience object.
+        Create new navigation property to deploymentAudiences for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class DeploymentAudiencesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeploymentAudiencesRequestBuilderGetQueryParameters():
         """
-        Get a list of deploymentAudience objects and their properties.
+        The set of updatableAsset resources to which a deployment can apply.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

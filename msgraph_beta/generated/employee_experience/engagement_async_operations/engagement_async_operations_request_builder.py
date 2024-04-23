@@ -46,7 +46,7 @@ class EngagementAsyncOperationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EngagementAsyncOperationCollectionResponse]:
         """
-        Get an engagementAsyncOperation to track a long-running operation request.
+        A collection of long-running, asynchronous operations related to Viva Engage.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EngagementAsyncOperationCollectionResponse]
         """
@@ -89,7 +89,7 @@ class EngagementAsyncOperationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get an engagementAsyncOperation to track a long-running operation request.
+        A collection of long-running, asynchronous operations related to Viva Engage.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class EngagementAsyncOperationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EngagementAsyncOperationsRequestBuilderGetQueryParameters():
         """
-        Get an engagementAsyncOperation to track a long-running operation request.
+        A collection of long-running, asynchronous operations related to Viva Engage.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

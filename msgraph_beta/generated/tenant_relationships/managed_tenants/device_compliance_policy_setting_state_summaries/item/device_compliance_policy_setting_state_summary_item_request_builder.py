@@ -47,10 +47,9 @@ class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder(BaseRequestBui
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceCompliancePolicySettingStateSummary]:
         """
-        Read the properties and relationships of a deviceCompliancePolicySettingStateSummary object.
+        Summary information for device compliance policy setting states across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceCompliancePolicySettingStateSummary]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-devicecompliancepolicysettingstatesummary-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder(BaseRequestBui
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a deviceCompliancePolicySettingStateSummary object.
+        Summary information for device compliance policy setting states across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder(BaseRequestBui
     @dataclass
     class DeviceCompliancePolicySettingStateSummaryItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a deviceCompliancePolicySettingStateSummary object.
+        Summary information for device compliance policy setting states across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -46,10 +46,9 @@ class AnniversariesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonAnnualEventCollectionResponse]:
         """
-        Retrieve a list of personAnniversary objects for the given user from their profile.
+        Represents the details of meaningful dates associated with a person.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAnnualEventCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-anniversaries?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class AnniversariesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PersonAnnualEvent] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonAnnualEvent]:
         """
-        Use this API to create a new personAnniversary object in a user's profile.
+        Create new navigation property to anniversaries for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAnnualEvent]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-anniversaries?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class AnniversariesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personAnniversary objects for the given user from their profile.
+        Represents the details of meaningful dates associated with a person.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class AnniversariesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PersonAnnualEvent] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new personAnniversary object in a user's profile.
+        Create new navigation property to anniversaries for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class AnniversariesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AnniversariesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personAnniversary objects for the given user from their profile.
+        Represents the details of meaningful dates associated with a person.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

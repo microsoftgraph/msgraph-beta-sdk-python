@@ -49,7 +49,7 @@ class SchemaExtensionsRequestBuilder(BaseRequestBuilder):
         Get a list of schemaExtension objects in your tenant. The schema extensions can be InDevelopment, Available, or Deprecated and includes schema extensions:+ Created by any apps you own in the current tenant.+ Owned by other apps that are marked as Available.+ Created by other developers from other tenants and marked as Available. This is different from other APIs that only return tenant-specific data. Extension data created based on schema extension definitions is tenant-specific and can only be accessed by apps explicitly granted permission. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SchemaExtensionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/schemaextension-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/schemaextension-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,7 +71,7 @@ class SchemaExtensionsRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SchemaExtension]
-        Find more info here: https://learn.microsoft.com/graph/api/schemaextension-post-schemaextensions?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/schemaextension-post-schemaextensions?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

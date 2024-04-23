@@ -31,10 +31,9 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete an updatePolicy object.
+        Delete navigation property updatePolicies for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-updatepolicy-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,10 +49,9 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UpdatePolicy]:
         """
-        Read the properties and relationships of an updatePolicy object.
+        A collection of policies for approving the deployment of different content to an audience over time.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatePolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-updatepolicy-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,11 +69,10 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[UpdatePolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UpdatePolicy]:
         """
-        Update the properties of an updatePolicy object.
+        Update the navigation property updatePolicies in admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatePolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-updatepolicy-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -95,7 +92,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an updatePolicy object.
+        Delete navigation property updatePolicies for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,7 +103,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an updatePolicy object.
+        A collection of policies for approving the deployment of different content to an audience over time.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,7 +114,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[UpdatePolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an updatePolicy object.
+        Update the navigation property updatePolicies in admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -161,7 +158,7 @@ class UpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UpdatePolicyItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an updatePolicy object.
+        A collection of policies for approving the deployment of different content to an audience over time.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

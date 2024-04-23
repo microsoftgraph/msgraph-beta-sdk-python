@@ -35,7 +35,7 @@ class ServicePrincipalsWithAppIdRequestBuilder(BaseRequestBuilder):
         Delete a servicePrincipal object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -54,7 +54,7 @@ class ServicePrincipalsWithAppIdRequestBuilder(BaseRequestBuilder):
         Retrieve the properties and relationships of a servicePrincipal object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServicePrincipal]
-        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -76,7 +76,7 @@ class ServicePrincipalsWithAppIdRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServicePrincipal]
-        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-upsert?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-upsert?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

@@ -46,10 +46,9 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GoalsExportJobCollectionResponse]:
         """
-        Get a list of goalsExportJob objects and their properties in a Viva Goals organization.
+        Represents a collection of goals export jobs for Viva Goals.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GoalsExportJobCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/goals-list-exportjobs?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GoalsExportJob] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[GoalsExportJob]:
         """
-        Create a new goalsExportJob object in a Viva Goals organization.
+        Create new navigation property to exportJobs for employeeExperience
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GoalsExportJob]
-        Find more info here: https://learn.microsoft.com/graph/api/goals-post-exportjobs?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of goalsExportJob objects and their properties in a Viva Goals organization.
+        Represents a collection of goals export jobs for Viva Goals.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GoalsExportJob] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new goalsExportJob object in a Viva Goals organization.
+        Create new navigation property to exportJobs for employeeExperience
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExportJobsRequestBuilderGetQueryParameters():
         """
-        Get a list of goalsExportJob objects and their properties in a Viva Goals organization.
+        Represents a collection of goals export jobs for Viva Goals.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -46,10 +46,9 @@ class ReviewersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessReviewReviewerCollectionResponse]:
         """
-        In the Microsoft Entra access reviews feature, retrieve the reviewers of an accessReview object.
+        The collection of reviewers for an access review, if access review reviewerType is of type delegated.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewReviewerCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/accessreview-listreviewers?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class ReviewersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AccessReviewReviewer] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessReviewReviewer]:
         """
-        In the Microsoft Entra access reviews feature, update an existing accessReview object to add another user as a reviewer.  This operation is only permitted for an access review that isn't yet completed, and only for an access review where the reviewers are explicitly specified. This operation isn't permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
+        Create new navigation property to reviewers for accessReviews
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewReviewer]
-        Find more info here: https://learn.microsoft.com/graph/api/accessreview-addreviewer?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class ReviewersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        In the Microsoft Entra access reviews feature, retrieve the reviewers of an accessReview object.
+        The collection of reviewers for an access review, if access review reviewerType is of type delegated.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class ReviewersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AccessReviewReviewer] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        In the Microsoft Entra access reviews feature, update an existing accessReview object to add another user as a reviewer.  This operation is only permitted for an access review that isn't yet completed, and only for an access review where the reviewers are explicitly specified. This operation isn't permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
+        Create new navigation property to reviewers for accessReviews
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class ReviewersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ReviewersRequestBuilderGetQueryParameters():
         """
-        In the Microsoft Entra access reviews feature, retrieve the reviewers of an accessReview object.
+        The collection of reviewers for an access review, if access review reviewerType is of type delegated.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

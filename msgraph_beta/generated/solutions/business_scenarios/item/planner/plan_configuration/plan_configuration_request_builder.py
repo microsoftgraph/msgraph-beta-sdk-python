@@ -48,10 +48,9 @@ class PlanConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PlannerPlanConfiguration]:
         """
-        Read the properties and relationships of a plannerPlanConfiguration object.
+        The configuration of Planner plans that will be created for the scenario.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlanConfiguration]
-        Find more info here: https://learn.microsoft.com/graph/api/plannerplanconfiguration-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +68,10 @@ class PlanConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[PlannerPlanConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PlannerPlanConfiguration]:
         """
-        Update the properties of a plannerPlanConfiguration object for a businessScenario.
+        Update the navigation property planConfiguration in solutions
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlanConfiguration]
-        Find more info here: https://learn.microsoft.com/graph/api/plannerplanconfiguration-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -104,7 +102,7 @@ class PlanConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a plannerPlanConfiguration object.
+        The configuration of Planner plans that will be created for the scenario.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +113,7 @@ class PlanConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[PlannerPlanConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a plannerPlanConfiguration object for a businessScenario.
+        Update the navigation property planConfiguration in solutions
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +148,7 @@ class PlanConfigurationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlanConfigurationRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a plannerPlanConfiguration object.
+        The configuration of Planner plans that will be created for the scenario.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

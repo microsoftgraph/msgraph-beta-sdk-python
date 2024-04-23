@@ -32,7 +32,7 @@ class SchemaExtensionItemRequestBuilder(BaseRequestBuilder):
         Delete the definition of a schema extension. In app-only scenarios, only the app that created the schema extension (owner app) can delete the schema extension definition, and only when the extension is in the InDevelopment state. In delegated scenarios, the owner of the owner app can delete the schema extension definition, and only when the extension is in the InDevelopment state.  Deleting a schema extension definition before deleting the data associated with the extension in the target resources makes the data inaccessible. To recover the data, you can recreate the schema extension definition with the same configuration, but only if you used the verified domain for the schema extension id.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/schemaextension-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/schemaextension-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,7 +51,7 @@ class SchemaExtensionItemRequestBuilder(BaseRequestBuilder):
         Get the properties of the specified schemaExtension definition.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SchemaExtension]
-        Find more info here: https://learn.microsoft.com/graph/api/schemaextension-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/schemaextension-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -73,7 +73,7 @@ class SchemaExtensionItemRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SchemaExtension]
-        Find more info here: https://learn.microsoft.com/graph/api/schemaextension-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/schemaextension-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

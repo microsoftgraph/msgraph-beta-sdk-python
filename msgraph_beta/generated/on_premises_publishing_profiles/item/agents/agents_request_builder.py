@@ -46,10 +46,9 @@ class AgentsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnPremisesAgentCollectionResponse]:
         """
-        Retrieve a list of onPremisesAgent objects.
+        List of existing onPremisesAgent objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesAgentCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/onpremisesagent-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class AgentsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of onPremisesAgent objects.
+        List of existing onPremisesAgent objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class AgentsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AgentsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of onPremisesAgent objects.
+        List of existing onPremisesAgent objects. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

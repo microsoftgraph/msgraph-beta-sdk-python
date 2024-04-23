@@ -46,10 +46,9 @@ class DeploymentsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeploymentCollectionResponse]:
         """
-        Get a list of deployment objects and their properties.
+        Deployments created using the deployment service.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeploymentCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-list-deployments?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class DeploymentsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[Deployment] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Deployment]:
         """
-        Create a new deployment object.
+        Create new navigation property to deployments for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Deployment]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-post-deployments?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class DeploymentsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of deployment objects and their properties.
+        Deployments created using the deployment service.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class DeploymentsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[Deployment] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new deployment object.
+        Create new navigation property to deployments for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class DeploymentsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeploymentsRequestBuilderGetQueryParameters():
         """
-        Get a list of deployment objects and their properties.
+        Deployments created using the deployment service.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

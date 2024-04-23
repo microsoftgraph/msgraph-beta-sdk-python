@@ -29,10 +29,9 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete the specified bookingCustomer object.
+        Delete navigation property customers for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/bookingcustomer-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[BookingCustomer]:
         """
-        Get the properties and relationships of a bookingCustomer object.
+        All the customers of this business. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingCustomer]
-        Find more info here: https://learn.microsoft.com/graph/api/bookingcustomer-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +67,10 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[BookingCustomer] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[BookingCustomer]:
         """
-        Update the properties of a bookingCustomer object.
+        Update the navigation property customers in solutions
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingCustomer]
-        Find more info here: https://learn.microsoft.com/graph/api/bookingcustomer-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +90,7 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete the specified bookingCustomer object.
+        Delete navigation property customers for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +101,7 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of a bookingCustomer object.
+        All the customers of this business. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +112,7 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[BookingCustomer] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a bookingCustomer object.
+        Update the navigation property customers in solutions
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +138,7 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BookingCustomerItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of a bookingCustomer object.
+        All the customers of this business. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

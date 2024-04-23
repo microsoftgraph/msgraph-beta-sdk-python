@@ -54,7 +54,7 @@ class GroupsRequestBuilder(BaseRequestBuilder):
         List all the groups available in an organization, excluding dynamic distribution groups. To retrieve dynamic distribution groups, use the Exchange admin center. This operation returns by default only a subset of the more commonly used properties for each group. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the group and specify the properties in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and are not returned in the $select query.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GroupCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/group-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/group-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -76,7 +76,7 @@ class GroupsRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Group]
-        Find more info here: https://learn.microsoft.com/graph/api/group-post-groups?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/group-post-groups?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

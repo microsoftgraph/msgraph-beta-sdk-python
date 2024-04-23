@@ -33,9 +33,10 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[FindByMethodModeWithAuthenticationMethodModesGetResponse]:
         """
-        Invoke function findByMethodMode
+        Get a list of the authenticationStrengthPolicy objects and their properties filtered to only include policies that include the authentication method mode specified in the request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FindByMethodModeWithAuthenticationMethodModesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-findbymethodmode?view=graph-rest-beta
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -54,7 +55,7 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function findByMethodMode
+        Get a list of the authenticationStrengthPolicy objects and their properties filtered to only include policies that include the authentication method mode specified in the request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -78,7 +79,7 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
     @dataclass
     class FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetQueryParameters():
         """
-        Invoke function findByMethodMode
+        Get a list of the authenticationStrengthPolicy objects and their properties filtered to only include policies that include the authentication method mode specified in the request.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

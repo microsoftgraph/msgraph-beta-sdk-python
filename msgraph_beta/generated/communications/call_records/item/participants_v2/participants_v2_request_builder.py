@@ -46,10 +46,9 @@ class Participants_v2RequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ParticipantCollectionResponse]:
         """
-        Get the list of participant objects associated with a callRecord.
+        List of distinct participants in the call.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ParticipantCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/callrecords-callrecord-list-participants_v2?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class Participants_v2RequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of participant objects associated with a callRecord.
+        List of distinct participants in the call.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class Participants_v2RequestBuilder(BaseRequestBuilder):
     @dataclass
     class Participants_v2RequestBuilderGetQueryParameters():
         """
-        Get the list of participant objects associated with a callRecord.
+        List of distinct participants in the call.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

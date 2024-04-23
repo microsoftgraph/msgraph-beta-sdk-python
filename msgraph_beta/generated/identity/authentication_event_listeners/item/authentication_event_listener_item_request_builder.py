@@ -29,10 +29,9 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Deletes an authenticationEventListener object.
+        Delete navigation property authenticationEventListeners for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationeventlistener-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[AuthenticationEventListener] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationEventListener]:
         """
-        Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update.
+        Update the navigation property authenticationEventListeners in identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventListener]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationeventlistener-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -92,7 +90,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes an authenticationEventListener object.
+        Delete navigation property authenticationEventListeners for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +112,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[AuthenticationEventListener] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update.
+        Update the navigation property authenticationEventListeners in identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

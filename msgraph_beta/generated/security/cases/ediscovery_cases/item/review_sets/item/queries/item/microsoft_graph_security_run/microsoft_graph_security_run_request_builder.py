@@ -29,9 +29,10 @@ class MicrosoftGraphSecurityRunRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[RunGetResponse]:
         """
-        Invoke function run
+        Run reviewset query to get the list of files.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RunGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryreviewsetquery-run?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class MicrosoftGraphSecurityRunRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function run
+        Run reviewset query to get the list of files.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -71,7 +72,7 @@ class MicrosoftGraphSecurityRunRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MicrosoftGraphSecurityRunRequestBuilderGetQueryParameters():
         """
-        Invoke function run
+        Run reviewset query to get the list of files.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -39,7 +39,7 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
         Get the properties and relationships of a teamwork object, such as the region of the organization and whether Microsoft Teams is enabled.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Teamwork]
-        Find more info here: https://learn.microsoft.com/graph/api/teamwork-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/teamwork-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

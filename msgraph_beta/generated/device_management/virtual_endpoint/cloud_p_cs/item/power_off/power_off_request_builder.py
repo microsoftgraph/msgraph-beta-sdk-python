@@ -30,7 +30,7 @@ class PowerOffRequestBuilder(BaseRequestBuilder):
         Power off a Windows 365 Frontline Cloud PC. This action supports Microsoft Endpoint Manager (MEM) admin scenarios.  After a Windows 365 Frontline Cloud PC is powered off, it's deallocated, and licenses are revoked immediately. Only IT admin users can perform this action. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-poweroff?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-poweroff?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

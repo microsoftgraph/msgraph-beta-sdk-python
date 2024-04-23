@@ -47,10 +47,9 @@ class EndpointItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Endpoint]:
         """
-        Retrieve the properties and relationships of a specific endpoint object.
+        Endpoints for the group. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Endpoint]
-        Find more info here: https://learn.microsoft.com/graph/api/endpoint-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class EndpointItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a specific endpoint object.
+        Endpoints for the group. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class EndpointItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EndpointItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a specific endpoint object.
+        Endpoints for the group. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

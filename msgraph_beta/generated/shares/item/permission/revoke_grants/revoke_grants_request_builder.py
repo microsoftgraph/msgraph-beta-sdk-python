@@ -29,11 +29,11 @@ class RevokeGrantsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RevokeGrantsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Permission]:
         """
-        Revoke access to a [listItem][] or [driveItem][] granted via a sharing link by removing the specified [recipient][] from the link.
+        Revoke access to a listItem or driveItem granted via a sharing link by removing the specified recipient from the link.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Permission]
-        Find more info here: https://learn.microsoft.com/graph/api/permission-revokegrants?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/permission-revokegrants?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -53,7 +53,7 @@ class RevokeGrantsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RevokeGrantsPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Revoke access to a [listItem][] or [driveItem][] granted via a sharing link by removing the specified [recipient][] from the link.
+        Revoke access to a listItem or driveItem granted via a sharing link by removing the specified recipient from the link.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

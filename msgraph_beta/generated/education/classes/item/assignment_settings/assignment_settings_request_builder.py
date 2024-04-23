@@ -50,10 +50,9 @@ class AssignmentSettingsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EducationAssignmentSettings]:
         """
-        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
+        Specifies class-level assignments settings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationAssignmentSettings]
-        Find more info here: https://learn.microsoft.com/graph/api/educationassignmentsettings-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,11 +70,10 @@ class AssignmentSettingsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[EducationAssignmentSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EducationAssignmentSettings]:
         """
-        Update the properties of an educationAssignmentSettings object. Only teachers can update these settings.
+        Update the navigation property assignmentSettings in education
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationAssignmentSettings]
-        Find more info here: https://learn.microsoft.com/graph/api/educationassignmentsettings-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -106,7 +104,7 @@ class AssignmentSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
+        Specifies class-level assignments settings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,7 +115,7 @@ class AssignmentSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[EducationAssignmentSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an educationAssignmentSettings object. Only teachers can update these settings.
+        Update the navigation property assignmentSettings in education
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -170,7 +168,7 @@ class AssignmentSettingsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AssignmentSettingsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
+        Specifies class-level assignments settings.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

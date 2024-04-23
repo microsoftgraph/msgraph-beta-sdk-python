@@ -29,9 +29,10 @@ class GetTimesOffRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetTimesOffGetResponse]:
         """
-        Invoke function getTimesOff
+        Get all time off objects across all teams to which a user is a direct member.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetTimesOffGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/team-gettimesoff?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class GetTimesOffRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getTimesOff
+        Get all time off objects across all teams to which a user is a direct member.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -71,7 +72,7 @@ class GetTimesOffRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GetTimesOffRequestBuilderGetQueryParameters():
         """
-        Invoke function getTimesOff
+        Get all time off objects across all teams to which a user is a direct member.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

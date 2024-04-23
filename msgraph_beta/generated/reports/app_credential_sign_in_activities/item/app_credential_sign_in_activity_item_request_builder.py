@@ -47,10 +47,9 @@ class AppCredentialSignInActivityItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AppCredentialSignInActivity]:
         """
-        Get an appCredentialSignInActivity object that contains recent activity of an application credential.
+        Represents a collection of sign-in activities of application credentials.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AppCredentialSignInActivity]
-        Find more info here: https://learn.microsoft.com/graph/api/appcredentialsigninactivity-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class AppCredentialSignInActivityItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get an appCredentialSignInActivity object that contains recent activity of an application credential.
+        Represents a collection of sign-in activities of application credentials.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class AppCredentialSignInActivityItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AppCredentialSignInActivityItemRequestBuilderGetQueryParameters():
         """
-        Get an appCredentialSignInActivity object that contains recent activity of an application credential.
+        Represents a collection of sign-in activities of application credentials.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

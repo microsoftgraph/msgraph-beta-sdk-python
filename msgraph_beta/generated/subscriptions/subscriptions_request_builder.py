@@ -48,7 +48,7 @@ class SubscriptionsRequestBuilder(BaseRequestBuilder):
         Retrieve a list of webhook subscriptions. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SubscriptionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/subscription-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/subscription-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,7 +70,7 @@ class SubscriptionsRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Subscription]
-        Find more info here: https://learn.microsoft.com/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/subscription-post-subscriptions?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

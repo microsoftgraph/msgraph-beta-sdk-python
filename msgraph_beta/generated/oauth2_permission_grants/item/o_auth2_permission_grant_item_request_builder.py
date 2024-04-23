@@ -32,7 +32,7 @@ class OAuth2PermissionGrantItemRequestBuilder(BaseRequestBuilder):
         Delete an oAuth2PermissionGrant, representing a delegated permission grant. When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted oAuth2PermissionGrant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/oauth2permissiongrant-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/oauth2permissiongrant-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,7 +51,7 @@ class OAuth2PermissionGrantItemRequestBuilder(BaseRequestBuilder):
         Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An oAuth2PermissionGrant represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OAuth2PermissionGrant]
-        Find more info here: https://learn.microsoft.com/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/oauth2permissiongrant-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -73,7 +73,7 @@ class OAuth2PermissionGrantItemRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OAuth2PermissionGrant]
-        Find more info here: https://learn.microsoft.com/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/oauth2permissiongrant-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

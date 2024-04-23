@@ -33,10 +33,9 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a b2cIdentityUserFlow object.
+        Delete navigation property b2cUserFlows for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/b2cidentityuserflow-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -52,10 +51,9 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
         """
-        Retrieve the properties and relationships of a b2cUserFlow object.
+        Represents entry point for B2C identity userflows.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cIdentityUserFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/b2cidentityuserflow-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -73,11 +71,10 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
         """
-        Update the properties of a b2cIdentityUserFlow object.
+        Update the navigation property b2cUserFlows in identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cIdentityUserFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/b2cidentityuserflow-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -97,7 +94,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a b2cIdentityUserFlow object.
+        Delete navigation property b2cUserFlows for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +105,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a b2cUserFlow object.
+        Represents entry point for B2C identity userflows.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,7 +116,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a b2cIdentityUserFlow object.
+        Update the navigation property b2cUserFlows in identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +178,7 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class B2cIdentityUserFlowItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a b2cUserFlow object.
+        Represents entry point for B2C identity userflows.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -69,11 +69,10 @@ class AppliesToRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[DirectoryObject] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DirectoryObject]:
         """
-        Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.
+        Create new navigation property to appliesTo for directory
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObject]
-        Find more info here: https://learn.microsoft.com/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
         """
         warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
         if not body:
@@ -106,7 +105,7 @@ class AppliesToRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[DirectoryObject] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.
+        Create new navigation property to appliesTo for directory
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

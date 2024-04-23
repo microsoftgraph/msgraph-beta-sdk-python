@@ -30,7 +30,7 @@ class StartRequestBuilder(BaseRequestBuilder):
         Start a specific Cloud PC for a user. Currently, only Windows 365 Frontline Cloud PCs are supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-start?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-start?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

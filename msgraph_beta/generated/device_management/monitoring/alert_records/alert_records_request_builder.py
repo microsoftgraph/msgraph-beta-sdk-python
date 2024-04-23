@@ -48,10 +48,9 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AlertRecordCollectionResponse]:
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertRecordCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/devicemanagement-alertrecord-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +91,7 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -156,7 +155,7 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AlertRecordsRequestBuilderGetQueryParameters():
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -46,10 +46,9 @@ class BulkActionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcBulkActionCollectionResponse]:
         """
-        Get a list of the cloudPcBulkAction objects and their properties.
+        Bulk actions applied to a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcBulkActionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-bulkactions?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class BulkActionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CloudPcBulkAction] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcBulkAction]:
         """
-        Create a new cloudPcBulkAction object.
+        Create new navigation property to bulkActions for deviceManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcBulkAction]
-        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-post-bulkactions?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class BulkActionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the cloudPcBulkAction objects and their properties.
+        Bulk actions applied to a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class BulkActionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[CloudPcBulkAction] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new cloudPcBulkAction object.
+        Create new navigation property to bulkActions for deviceManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class BulkActionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BulkActionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the cloudPcBulkAction objects and their properties.
+        Bulk actions applied to a Cloud PC.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

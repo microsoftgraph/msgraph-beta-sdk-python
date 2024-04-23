@@ -32,10 +32,9 @@ class BusinessScenariosWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a businessScenario object. The deletion of a scenario causes all data associated with the scenario to be deleted.
+        Delete navigation property businessScenarios for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/businessscenario-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,10 +50,9 @@ class BusinessScenariosWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[BusinessScenario]:
         """
-        Read the properties and relationships of a businessScenario object.
+        Get businessScenarios from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenario]
-        Find more info here: https://learn.microsoft.com/graph/api/businessscenario-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -72,11 +70,10 @@ class BusinessScenariosWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[BusinessScenario] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[BusinessScenario]:
         """
-        Update the properties of a businessScenario object.
+        Update the navigation property businessScenarios in solutions
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenario]
-        Find more info here: https://learn.microsoft.com/graph/api/businessscenario-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -96,7 +93,7 @@ class BusinessScenariosWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a businessScenario object. The deletion of a scenario causes all data associated with the scenario to be deleted.
+        Delete navigation property businessScenarios for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +104,7 @@ class BusinessScenariosWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a businessScenario object.
+        Get businessScenarios from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +115,7 @@ class BusinessScenariosWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[BusinessScenario] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a businessScenario object.
+        Update the navigation property businessScenarios in solutions
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +141,7 @@ class BusinessScenariosWithUniqueNameRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BusinessScenariosWithUniqueNameRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a businessScenario object.
+        Get businessScenarios from solutions
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

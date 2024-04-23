@@ -29,10 +29,9 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Removes the link between the branch or remote network and the CPE device, effectively removing the connection and associated configuration between them.
+        Delete navigation property deviceLinks for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-devicelink-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceLink]:
         """
-        Retrieves a specific device link associated with a remote network.
+        Each unique CPE device associated with a remote network is specified. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceLink]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-devicelink-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +90,7 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Removes the link between the branch or remote network and the CPE device, effectively removing the connection and associated configuration between them.
+        Delete navigation property deviceLinks for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +101,7 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieves a specific device link associated with a remote network.
+        Each unique CPE device associated with a remote network is specified. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -140,7 +138,7 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceLinkItemRequestBuilderGetQueryParameters():
         """
-        Retrieves a specific device link associated with a remote network.
+        Each unique CPE device associated with a remote network is specified. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

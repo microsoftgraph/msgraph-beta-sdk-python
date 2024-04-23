@@ -49,10 +49,9 @@ class CallItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete or hang up an active call. For group calls, this will only delete your call leg and the underlying group call will still continue.
+        Delete navigation property calls for communications
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/call-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,10 +67,9 @@ class CallItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Call]:
         """
-        Retrieve the properties and relationships of a call object.
+        Get calls from communications
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Call]
-        Find more info here: https://learn.microsoft.com/graph/api/call-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -112,7 +110,7 @@ class CallItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete or hang up an active call. For group calls, this will only delete your call leg and the underlying group call will still continue.
+        Delete navigation property calls for communications
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -123,7 +121,7 @@ class CallItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a call object.
+        Get calls from communications
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -340,7 +338,7 @@ class CallItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CallItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a call object.
+        Get calls from communications
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

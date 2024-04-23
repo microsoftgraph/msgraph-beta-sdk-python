@@ -46,7 +46,7 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TeamTemplateDefinitionCollectionResponse]:
         """
-        Read the properties and relationships of a teamTemplateDefinition object.
+        A generic representation of a team template definition for a team with a specific structure and configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamTemplateDefinitionCollectionResponse]
         """
@@ -89,7 +89,7 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a teamTemplateDefinition object.
+        A generic representation of a team template definition for a team with a specific structure and configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DefinitionsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a teamTemplateDefinition object.
+        A generic representation of a team template definition for a team with a specific structure and configuration.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

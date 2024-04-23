@@ -66,11 +66,10 @@ class SettingsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[DirectorySetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DirectorySetting]:
         """
-        Create a new setting based on the templates available in directorySettingTemplates. These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups. The template named Group.Unified can be used to configure tenant-wide Microsoft 365 group settings, while the template named Group.Unified.Guest can be used to configure group-specific settings.
+        Create new navigation property to settings for groups
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectorySetting]
-        Find more info here: https://learn.microsoft.com/graph/api/group-post-settings?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -101,7 +100,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[DirectorySetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new setting based on the templates available in directorySettingTemplates. These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups. The template named Group.Unified can be used to configure tenant-wide Microsoft 365 group settings, while the template named Group.Unified.Guest can be used to configure group-specific settings.
+        Create new navigation property to settings for groups
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

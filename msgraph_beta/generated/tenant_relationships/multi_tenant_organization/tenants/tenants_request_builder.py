@@ -46,10 +46,9 @@ class TenantsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationMemberCollectionResponse]:
         """
-        List the tenants and their properties in the multi-tenant organization.
+        Defines tenants added to a multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationMemberCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganization-list-tenants?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class TenantsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[MultiTenantOrganizationMember] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationMember]:
         """
-        Add a tenant to a multitenant organization. The administrator of an owner tenant has the permissions to add tenants to the multitenant organization. The added tenant is in the pending state until the administrator of the added tenant joins the multitenant organization by submitting a join request. A tenant can be part of only one multitenant organization.
+        Create new navigation property to tenants for tenantRelationships
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationMember]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganization-post-tenants?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        List the tenants and their properties in the multi-tenant organization.
+        Defines tenants added to a multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[MultiTenantOrganizationMember] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Add a tenant to a multitenant organization. The administrator of an owner tenant has the permissions to add tenants to the multitenant organization. The added tenant is in the pending state until the administrator of the added tenant joins the multitenant organization by submitting a join request. A tenant can be part of only one multitenant organization.
+        Create new navigation property to tenants for tenantRelationships
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantsRequestBuilderGetQueryParameters():
         """
-        List the tenants and their properties in the multi-tenant organization.
+        Defines tenants added to a multitenant organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

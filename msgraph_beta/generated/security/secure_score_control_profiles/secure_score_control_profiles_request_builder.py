@@ -46,10 +46,9 @@ class SecureScoreControlProfilesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SecureScoreControlProfileCollectionResponse]:
         """
-        Retrieves a list of secureScoreControlProfile objects for a tenant.
+        Get secureScoreControlProfiles from security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecureScoreControlProfileCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/securescorecontrolprofiles-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class SecureScoreControlProfilesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieves a list of secureScoreControlProfile objects for a tenant.
+        Get secureScoreControlProfiles from security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class SecureScoreControlProfilesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SecureScoreControlProfilesRequestBuilderGetQueryParameters():
         """
-        Retrieves a list of secureScoreControlProfile objects for a tenant.
+        Get secureScoreControlProfiles from security
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

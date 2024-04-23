@@ -35,7 +35,7 @@ class GroupsWithUniqueNameRequestBuilder(BaseRequestBuilder):
         Deletes a group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted. This isn't applicable to Security groups and Distribution groups that are permanently deleted immediately. To learn more, see deletedItems.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/group-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/group-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -54,7 +54,7 @@ class GroupsWithUniqueNameRequestBuilder(BaseRequestBuilder):
         Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren't_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren't returned in the $select query. Because the group resource supports extensions, you can also use the GET operation to get custom properties and extension data in a group instance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Group]
-        Find more info here: https://learn.microsoft.com/graph/api/group-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/group-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -76,7 +76,7 @@ class GroupsWithUniqueNameRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Group]
-        Find more info here: https://learn.microsoft.com/graph/api/group-upsert?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/group-upsert?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

@@ -34,10 +34,9 @@ class ExternalConnectionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete an externalConnection.
+        Delete navigation property connections for external
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -53,10 +52,9 @@ class ExternalConnectionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ExternalConnection]:
         """
-        Retrieve the properties and relationships of an externalConnection.
+        Get connections from external
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalConnection]
-        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -74,11 +72,10 @@ class ExternalConnectionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ExternalConnection] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ExternalConnection]:
         """
-        Update the properties of an externalConnection.
+        Update the navigation property connections in external
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalConnection]
-        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -98,7 +95,7 @@ class ExternalConnectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an externalConnection.
+        Delete navigation property connections for external
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +106,7 @@ class ExternalConnectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an externalConnection.
+        Get connections from external
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +117,7 @@ class ExternalConnectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ExternalConnection] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an externalConnection.
+        Update the navigation property connections in external
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -191,7 +188,7 @@ class ExternalConnectionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExternalConnectionItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an externalConnection.
+        Get connections from external
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

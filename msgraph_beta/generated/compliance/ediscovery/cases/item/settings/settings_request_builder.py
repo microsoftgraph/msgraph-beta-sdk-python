@@ -50,10 +50,9 @@ class SettingsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CaseSettings]:
         """
-        Read the properties and relationships of an eDiscovery caseSettings object.
+        Get settings from compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CaseSettings]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-casesettings-get?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -72,11 +71,10 @@ class SettingsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[CaseSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CaseSettings]:
         """
-        Update the properties of a an eDiscovery caseSettings object.
+        Update the navigation property settings in compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CaseSettings]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-casesettings-update?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -109,7 +107,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an eDiscovery caseSettings object.
+        Get settings from compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -121,7 +119,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[CaseSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a an eDiscovery caseSettings object.
+        Update the navigation property settings in compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -158,7 +156,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SettingsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an eDiscovery caseSettings object.
+        Get settings from compliance
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -59,10 +59,9 @@ class PendingAccessReviewInstancesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessReviewInstanceCollectionResponse]:
         """
-        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
+        Navigation property to get a list of access reviews pending approval by the reviewer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewInstanceCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/accessreviewinstance-pendingaccessreviewinstances?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -103,7 +102,7 @@ class PendingAccessReviewInstancesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
+        Navigation property to get a list of access reviews pending approval by the reviewer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -149,7 +148,7 @@ class PendingAccessReviewInstancesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PendingAccessReviewInstancesRequestBuilderGetQueryParameters():
         """
-        Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
+        Navigation property to get a list of access reviews pending approval by the reviewer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

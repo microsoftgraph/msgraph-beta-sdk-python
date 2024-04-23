@@ -30,10 +30,9 @@ class PlatformCredentialAuthenticationMethodItemRequestBuilder(BaseRequestBuilde
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a platformCredentialAuthenticationMethod object.
+        Delete navigation property platformCredentialMethods for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/platformcredentialauthenticationmethod-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -49,10 +48,9 @@ class PlatformCredentialAuthenticationMethodItemRequestBuilder(BaseRequestBuilde
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PlatformCredentialAuthenticationMethod]:
         """
-        Read the properties and relationships of a platformCredentialAuthenticationMethod object.
+        Get platformCredentialMethods from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlatformCredentialAuthenticationMethod]
-        Find more info here: https://learn.microsoft.com/graph/api/platformcredentialauthenticationmethod-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,7 +68,7 @@ class PlatformCredentialAuthenticationMethodItemRequestBuilder(BaseRequestBuilde
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a platformCredentialAuthenticationMethod object.
+        Delete navigation property platformCredentialMethods for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -81,7 +79,7 @@ class PlatformCredentialAuthenticationMethodItemRequestBuilder(BaseRequestBuilde
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a platformCredentialAuthenticationMethod object.
+        Get platformCredentialMethods from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +110,7 @@ class PlatformCredentialAuthenticationMethodItemRequestBuilder(BaseRequestBuilde
     @dataclass
     class PlatformCredentialAuthenticationMethodItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a platformCredentialAuthenticationMethod object.
+        Get platformCredentialMethods from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

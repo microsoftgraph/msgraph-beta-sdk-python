@@ -50,7 +50,6 @@ class ChildFoldersRequestBuilder(BaseRequestBuilder):
         The collection of child folders in the mailFolder.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailFolderCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class ChildFoldersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[MailFolder] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MailFolder]:
         """
-        Create a new mailSearchFolder in the specified user's mailbox.
+        Create new navigation property to childFolders for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailFolder]
-        Find more info here: https://learn.microsoft.com/graph/api/mailsearchfolder-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -103,7 +101,7 @@ class ChildFoldersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[MailFolder] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new mailSearchFolder in the specified user's mailbox.
+        Create new navigation property to childFolders for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -49,10 +49,9 @@ class ForwardingPolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ForwardingPolicy]:
         """
-        Retrieve information about a specific forwarding policy.
+        A forwarding policy defines the specific traffic that is routed through the Global Secure Access Service. It's then added to a forwarding profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-forwardingpolicy-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -104,7 +103,7 @@ class ForwardingPolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve information about a specific forwarding policy.
+        A forwarding policy defines the specific traffic that is routed through the Global Secure Access Service. It's then added to a forwarding profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +158,7 @@ class ForwardingPolicyItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ForwardingPolicyItemRequestBuilderGetQueryParameters():
         """
-        Retrieve information about a specific forwarding policy.
+        A forwarding policy defines the specific traffic that is routed through the Global Secure Access Service. It's then added to a forwarding profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

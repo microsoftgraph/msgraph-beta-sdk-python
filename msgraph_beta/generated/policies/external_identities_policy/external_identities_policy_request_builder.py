@@ -47,10 +47,9 @@ class ExternalIdentitiesPolicyRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ExternalIdentitiesPolicy]:
         """
-        Read the properties and relationships of the tenant-wide externalIdentitiesPolicy object that controls whether external users can leave a Microsoft Entra tenant via self-service controls.
+        Represents the tenant-wide policy that controls whether guests can leave a Microsoft Entra tenant via self-service controls.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalIdentitiesPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/externalidentitiespolicy-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class ExternalIdentitiesPolicyRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ExternalIdentitiesPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ExternalIdentitiesPolicy]:
         """
-        Update the settings of the tenant-wide externalIdentitiesPolicy object that controls whether external users can leave a Microsoft Entra tenant via self-service controls.
+        Update the navigation property externalIdentitiesPolicy in policies
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalIdentitiesPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/externalidentitiespolicy-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -103,7 +101,7 @@ class ExternalIdentitiesPolicyRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of the tenant-wide externalIdentitiesPolicy object that controls whether external users can leave a Microsoft Entra tenant via self-service controls.
+        Represents the tenant-wide policy that controls whether guests can leave a Microsoft Entra tenant via self-service controls.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +112,7 @@ class ExternalIdentitiesPolicyRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ExternalIdentitiesPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the settings of the tenant-wide externalIdentitiesPolicy object that controls whether external users can leave a Microsoft Entra tenant via self-service controls.
+        Update the navigation property externalIdentitiesPolicy in policies
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +138,7 @@ class ExternalIdentitiesPolicyRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExternalIdentitiesPolicyRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of the tenant-wide externalIdentitiesPolicy object that controls whether external users can leave a Microsoft Entra tenant via self-service controls.
+        Represents the tenant-wide policy that controls whether guests can leave a Microsoft Entra tenant via self-service controls.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

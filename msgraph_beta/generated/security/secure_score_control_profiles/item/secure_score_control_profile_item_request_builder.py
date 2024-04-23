@@ -67,11 +67,10 @@ class SecureScoreControlProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[SecureScoreControlProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SecureScoreControlProfile]:
         """
-        Update an editable secureScoreControlProfiles property within any integrated solution to change various properties, such as assignedTo or tenantNote.
+        Update the navigation property secureScoreControlProfiles in security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecureScoreControlProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/securescorecontrolprofiles-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -113,7 +112,7 @@ class SecureScoreControlProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[SecureScoreControlProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update an editable secureScoreControlProfiles property within any integrated solution to change various properties, such as assignedTo or tenantNote.
+        Update the navigation property secureScoreControlProfiles in security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

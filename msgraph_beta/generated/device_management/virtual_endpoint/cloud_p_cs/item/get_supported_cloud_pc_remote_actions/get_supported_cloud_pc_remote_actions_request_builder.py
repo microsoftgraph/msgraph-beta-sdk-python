@@ -29,9 +29,10 @@ class GetSupportedCloudPcRemoteActionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetSupportedCloudPcRemoteActionsGetResponse]:
         """
-        Invoke function getSupportedCloudPcRemoteActions
+        Get a list of supported Cloud PC remote actions for a specific Cloud PC device, including the action names and capabilities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetSupportedCloudPcRemoteActionsGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-getsupportedcloudpcremoteactions?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class GetSupportedCloudPcRemoteActionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getSupportedCloudPcRemoteActions
+        Get a list of supported Cloud PC remote actions for a specific Cloud PC device, including the action names and capabilities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -71,7 +72,7 @@ class GetSupportedCloudPcRemoteActionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GetSupportedCloudPcRemoteActionsRequestBuilderGetQueryParameters():
         """
-        Invoke function getSupportedCloudPcRemoteActions
+        Get a list of supported Cloud PC remote actions for a specific Cloud PC device, including the action names and capabilities.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

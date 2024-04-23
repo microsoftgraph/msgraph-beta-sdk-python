@@ -66,11 +66,10 @@ class RoleAssignmentRequestsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[GovernanceRoleAssignmentRequest]:
         """
-        Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations.
+        Create new navigation property to roleAssignmentRequests for privilegedAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GovernanceRoleAssignmentRequest]
-        Find more info here: https://learn.microsoft.com/graph/api/governanceroleassignmentrequest-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -101,7 +100,7 @@ class RoleAssignmentRequestsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations.
+        Create new navigation property to roleAssignmentRequests for privilegedAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -55,7 +55,7 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
         Deletes an application. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/application-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/application-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -86,7 +86,7 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
         Get the properties and relationships of an application object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Application]
-        Find more info here: https://learn.microsoft.com/graph/api/application-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/application-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -108,7 +108,7 @@ class ApplicationItemRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Application]
-        Find more info here: https://learn.microsoft.com/graph/api/application-upsert?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/application-upsert?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

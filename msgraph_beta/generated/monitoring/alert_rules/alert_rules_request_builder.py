@@ -46,10 +46,9 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AlertRuleCollectionResponse]:
         """
-        Get a list of the alertRule objects and their properties.
+        The collection of alert rules.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertRuleCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/devicemanagement-alertrule-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AlertRule] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AlertRule]:
         """
-        Create an alertRule object.
+        Create new navigation property to alertRules for monitoring
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertRule]
-        Find more info here: https://learn.microsoft.com/graph/api/devicemanagement-alertrule-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the alertRule objects and their properties.
+        The collection of alert rules.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AlertRule] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create an alertRule object.
+        Create new navigation property to alertRules for monitoring
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AlertRulesRequestBuilderGetQueryParameters():
         """
-        Get a list of the alertRule objects and their properties.
+        The collection of alert rules.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

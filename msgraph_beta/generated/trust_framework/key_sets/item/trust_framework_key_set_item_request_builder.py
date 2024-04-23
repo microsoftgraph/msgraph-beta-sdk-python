@@ -34,10 +34,9 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a trustFrameworkKeySet.
+        Delete navigation property keySets for trustFramework
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/trustframeworkkeyset-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -53,10 +52,9 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
         """
-        Retrieve the properties and associations for a Trustframeworkkeyset.
+        Get keySets from trustFramework
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKeySet]
-        Find more info here: https://learn.microsoft.com/graph/api/trustframeworkkeyset-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -74,11 +72,10 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
         """
-        Update the properties of a trustFrameworkKeyset. This operation will replace the content of an existing keyset. Specifying the ID in the request payload is optional.
+        Update the navigation property keySets in trustFramework
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKeySet]
-        Find more info here: https://learn.microsoft.com/graph/api/trustframeworkkeyset-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -98,7 +95,7 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a trustFrameworkKeySet.
+        Delete navigation property keySets for trustFramework
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +106,7 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and associations for a Trustframeworkkeyset.
+        Get keySets from trustFramework
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +117,7 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a trustFrameworkKeyset. This operation will replace the content of an existing keyset. Specifying the ID in the request payload is optional.
+        Update the navigation property keySets in trustFramework
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -191,7 +188,7 @@ class TrustFrameworkKeySetItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TrustFrameworkKeySetItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and associations for a Trustframeworkkeyset.
+        Get keySets from trustFramework
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

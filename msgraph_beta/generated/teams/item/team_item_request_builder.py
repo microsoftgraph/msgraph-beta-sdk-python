@@ -70,7 +70,7 @@ class TeamItemRequestBuilder(BaseRequestBuilder):
         Retrieve the properties and relationships of the specified team.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Team]
-        Find more info here: https://learn.microsoft.com/graph/api/team-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/team-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +92,7 @@ class TeamItemRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Team]
-        Find more info here: https://learn.microsoft.com/graph/api/team-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/team-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

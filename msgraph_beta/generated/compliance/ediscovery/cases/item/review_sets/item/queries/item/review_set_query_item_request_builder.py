@@ -31,10 +31,9 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a reviewSetQuery object.
+        Delete navigation property queries for compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-reviewsetquery-delete?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -51,10 +50,9 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ReviewSetQuery]:
         """
-        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object.
+        Get queries from compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReviewSetQuery]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-reviewsetquery-get?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -73,11 +71,10 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ReviewSetQuery] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ReviewSetQuery]:
         """
-        Update the properties of an eDiscovery reviewSetQuery.
+        Update the navigation property queries in compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReviewSetQuery]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-reviewsetquery-update?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -98,7 +95,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a reviewSetQuery object.
+        Delete navigation property queries for compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +107,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object.
+        Get queries from compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -122,7 +119,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ReviewSetQuery] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an eDiscovery reviewSetQuery.
+        Update the navigation property queries in compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -159,7 +156,7 @@ class ReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ReviewSetQueryItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an eDiscovery reviewSetQuery object.
+        Get queries from compliance
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -48,10 +48,9 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceLinkCollectionResponse]:
         """
-        Retrieve a list of device links associated with a specific branch.
+        Each unique CPE device associated with a branch is specified. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceLinkCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchsite-list-devicelinks?view=graph-rest-1.0
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -70,11 +69,10 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[DeviceLink] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceLink]:
         """
-        Create a branch site with associated device links.
+        Create new navigation property to deviceLinks for networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceLink]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchsite-post-devicelinks?view=graph-rest-1.0
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         if not body:
@@ -95,7 +93,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of device links associated with a specific branch.
+        Each unique CPE device associated with a branch is specified. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +105,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[DeviceLink] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a branch site with associated device links.
+        Create new navigation property to deviceLinks for networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +142,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceLinksRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of device links associated with a specific branch.
+        Each unique CPE device associated with a branch is specified. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

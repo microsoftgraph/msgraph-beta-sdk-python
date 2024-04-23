@@ -46,10 +46,9 @@ class SkillsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SkillProficiencyCollectionResponse]:
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SkillProficiencyCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-skills?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class SkillsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SkillProficiency] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SkillProficiency]:
         """
-        Use this API to create a new skillProficiency object in a user's profile.
+        Create new navigation property to skills for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SkillProficiency]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-skills?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class SkillsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class SkillsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SkillProficiency] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new skillProficiency object in a user's profile.
+        Create new navigation property to skills for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class SkillsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SkillsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

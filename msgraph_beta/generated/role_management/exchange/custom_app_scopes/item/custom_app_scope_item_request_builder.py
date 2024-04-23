@@ -29,10 +29,9 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
+        Delete navigation property customAppScopes for roleManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/customappscope-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomAppScope]:
         """
-        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
+        Workload-specific scope object that represents the resources for which the principal has been granted access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAppScope]
-        Find more info here: https://learn.microsoft.com/graph/api/customappscope-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +67,10 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[CustomAppScope] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomAppScope]:
         """
-        Update an existing customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
+        Update the navigation property customAppScopes in roleManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAppScope]
-        Find more info here: https://learn.microsoft.com/graph/api/customappscope-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +90,7 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
+        Delete navigation property customAppScopes for roleManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +101,7 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
+        Workload-specific scope object that represents the resources for which the principal has been granted access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +112,7 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[CustomAppScope] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update an existing customAppScope object of an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
+        Update the navigation property customAppScopes in roleManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +138,7 @@ class CustomAppScopeItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustomAppScopeItemRequestBuilderGetQueryParameters():
         """
-        Get the properties of a customAppScope object for an RBAC provider. Currently only the Exchange Online RBAC provider is supported.
+        Workload-specific scope object that represents the resources for which the principal has been granted access.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

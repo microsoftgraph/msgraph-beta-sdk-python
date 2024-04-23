@@ -32,7 +32,7 @@ class DirectorySettingItemRequestBuilder(BaseRequestBuilder):
         Delete a directory setting.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/directorysetting-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/directorysetting-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,7 +51,7 @@ class DirectorySettingItemRequestBuilder(BaseRequestBuilder):
         Retrieve the properties of a specific directory setting object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectorySetting]
-        Find more info here: https://learn.microsoft.com/graph/api/directorysetting-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/directorysetting-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -73,7 +73,7 @@ class DirectorySettingItemRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectorySetting]
-        Find more info here: https://learn.microsoft.com/graph/api/directorysetting-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/directorysetting-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

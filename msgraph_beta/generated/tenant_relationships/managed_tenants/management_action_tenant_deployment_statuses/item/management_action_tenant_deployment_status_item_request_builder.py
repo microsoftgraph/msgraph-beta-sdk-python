@@ -47,10 +47,9 @@ class ManagementActionTenantDeploymentStatusItemRequestBuilder(BaseRequestBuilde
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementActionTenantDeploymentStatus]:
         """
-        Read the properties and relationships of a managementActionTenantDeploymentStatus object.
+        The tenant level status of management actions across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagementActionTenantDeploymentStatus]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managementactiontenantdeploymentstatus-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class ManagementActionTenantDeploymentStatusItemRequestBuilder(BaseRequestBuilde
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a managementActionTenantDeploymentStatus object.
+        The tenant level status of management actions across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class ManagementActionTenantDeploymentStatusItemRequestBuilder(BaseRequestBuilde
     @dataclass
     class ManagementActionTenantDeploymentStatusItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a managementActionTenantDeploymentStatus object.
+        The tenant level status of management actions across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

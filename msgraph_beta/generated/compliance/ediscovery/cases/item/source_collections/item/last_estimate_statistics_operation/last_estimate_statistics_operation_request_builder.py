@@ -30,10 +30,9 @@ class LastEstimateStatisticsOperationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EstimateStatisticsOperation]:
         """
-        Get the last estimateStatisticsOperation object associated with a source collection. 
+        The last estimate operation associated with the sourceCollection.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EstimateStatisticsOperation]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-list-lastestimatestatisticsoperation?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -52,7 +51,7 @@ class LastEstimateStatisticsOperationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the last estimateStatisticsOperation object associated with a source collection. 
+        The last estimate operation associated with the sourceCollection.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -76,7 +75,7 @@ class LastEstimateStatisticsOperationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LastEstimateStatisticsOperationRequestBuilderGetQueryParameters():
         """
-        Get the last estimateStatisticsOperation object associated with a source collection. 
+        The last estimate operation associated with the sourceCollection.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -46,10 +46,9 @@ class ProvisioningFlowsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProvisioningFlowCollectionResponse]:
         """
-        Get a list of the provisioningFlow objects and their properties.
+        A flow that provisions relevant records of a given entity type in the Microsoft 365 tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProvisioningFlowCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-outboundprovisioningflowset-list-provisioningflows?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class ProvisioningFlowsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ProvisioningFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProvisioningFlow]:
         """
-        Create a new provisioningFlow object.
+        Create new navigation property to provisioningFlows for external
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProvisioningFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-outboundprovisioningflowset-post-provisioningflows?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class ProvisioningFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the provisioningFlow objects and their properties.
+        A flow that provisions relevant records of a given entity type in the Microsoft 365 tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class ProvisioningFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ProvisioningFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new provisioningFlow object.
+        Create new navigation property to provisioningFlows for external
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class ProvisioningFlowsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProvisioningFlowsRequestBuilderGetQueryParameters():
         """
-        Get a list of the provisioningFlow objects and their properties.
+        A flow that provisions relevant records of a given entity type in the Microsoft 365 tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

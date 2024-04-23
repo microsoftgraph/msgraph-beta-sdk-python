@@ -49,10 +49,9 @@ class OwnedObjectsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-list-ownedobjects?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,7 +69,7 @@ class OwnedObjectsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +136,7 @@ class OwnedObjectsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OwnedObjectsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of objects owned by the servicePrincipal.  This could include applications or groups.
+        Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

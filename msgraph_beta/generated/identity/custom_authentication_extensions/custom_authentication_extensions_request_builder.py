@@ -47,10 +47,9 @@ class CustomAuthenticationExtensionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomAuthenticationExtensionCollectionResponse]:
         """
-        Get a list of the customAuthenticationExtension objects and their properties. The following derived types are supported.
+        Get customAuthenticationExtensions from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAuthenticationExtensionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-list-customauthenticationextensions?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class CustomAuthenticationExtensionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CustomAuthenticationExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomAuthenticationExtension]:
         """
-        Create a new customAuthenticationExtension object. The following derived types are currently supported.
+        Create new navigation property to customAuthenticationExtensions for identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAuthenticationExtension]
-        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-post-customauthenticationextensions?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -92,7 +90,7 @@ class CustomAuthenticationExtensionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the customAuthenticationExtension objects and their properties. The following derived types are supported.
+        Get customAuthenticationExtensions from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +101,7 @@ class CustomAuthenticationExtensionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[CustomAuthenticationExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new customAuthenticationExtension object. The following derived types are currently supported.
+        Create new navigation property to customAuthenticationExtensions for identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -147,7 +145,7 @@ class CustomAuthenticationExtensionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustomAuthenticationExtensionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the customAuthenticationExtension objects and their properties. The following derived types are supported.
+        Get customAuthenticationExtensions from identity
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

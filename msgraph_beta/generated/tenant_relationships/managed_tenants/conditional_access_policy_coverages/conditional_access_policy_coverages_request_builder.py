@@ -46,10 +46,9 @@ class ConditionalAccessPolicyCoveragesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ConditionalAccessPolicyCoverageCollectionResponse]:
         """
-        Get a list of the conditionalAccessPolicyCoverage objects and their properties. Use this operation to list Microsoft Entra Conditional Access policy coverage for all tenants that are being managed by the multi-tenant management platform.
+        Aggregate view of conditional access policy coverage across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConditionalAccessPolicyCoverageCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managedtenant-list-conditionalaccesspolicycoverages?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class ConditionalAccessPolicyCoveragesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the conditionalAccessPolicyCoverage objects and their properties. Use this operation to list Microsoft Entra Conditional Access policy coverage for all tenants that are being managed by the multi-tenant management platform.
+        Aggregate view of conditional access policy coverage across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class ConditionalAccessPolicyCoveragesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConditionalAccessPolicyCoveragesRequestBuilderGetQueryParameters():
         """
-        Get a list of the conditionalAccessPolicyCoverage objects and their properties. Use this operation to list Microsoft Entra Conditional Access policy coverage for all tenants that are being managed by the multi-tenant management platform.
+        Aggregate view of conditional access policy coverage across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

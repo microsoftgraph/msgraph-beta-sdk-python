@@ -18,7 +18,7 @@ class PermissionGrantPolicy(PolicyBase):
     excludes: Optional[List[PermissionGrantConditionSet]] = None
     # Condition sets that are included in this permission grant policy. Automatically expanded on GET.
     includes: Optional[List[PermissionGrantConditionSet]] = None
-    # The resource type the pre-approval policy applies to. Possible values: group for groups and teams, chat for chats, tenant for all supported resources in the tenant. Required.
+    # The resource type the pre-approval policy applies to. Possible values: team for groups and teams, chat for chats, tenant for all supported resources in the tenant. Required.
     resource_scope_type: Optional[ResourceScopeType] = None
     
     @staticmethod

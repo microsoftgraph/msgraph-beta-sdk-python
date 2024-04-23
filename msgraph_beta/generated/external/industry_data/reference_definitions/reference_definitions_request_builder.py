@@ -46,10 +46,9 @@ class ReferenceDefinitionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ReferenceDefinitionCollectionResponse]:
         """
-        Get a list of the referenceDefinition objects and their properties.
+        Set of user modifiable system picker types.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReferenceDefinitionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-referencedefinition-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class ReferenceDefinitionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the referenceDefinition objects and their properties.
+        Set of user modifiable system picker types.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class ReferenceDefinitionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ReferenceDefinitionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the referenceDefinition objects and their properties.
+        Set of user modifiable system picker types.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

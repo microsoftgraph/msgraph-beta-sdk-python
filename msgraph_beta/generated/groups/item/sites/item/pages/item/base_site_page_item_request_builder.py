@@ -50,10 +50,9 @@ class BaseSitePageItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[BaseSitePage]:
         """
-        Get the metadata for a [baseSitePage][] in the site pages [list][] in a [site][].
+        The collection of pages in the baseSitePages list on this site.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BaseSitePage]
-        Find more info here: https://learn.microsoft.com/graph/api/basesitepage-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -105,7 +104,7 @@ class BaseSitePageItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the metadata for a [baseSitePage][] in the site pages [list][] in a [site][].
+        The collection of pages in the baseSitePages list on this site.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -169,7 +168,7 @@ class BaseSitePageItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BaseSitePageItemRequestBuilderGetQueryParameters():
         """
-        Get the metadata for a [baseSitePage][] in the site pages [list][] in a [site][].
+        The collection of pages in the baseSitePages list on this site.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

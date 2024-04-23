@@ -30,10 +30,9 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete an authenticationCombinationConfiguration  for a custom authenticationStrengthPolicy object.
+        Delete navigation property combinationConfigurations for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-delete-combinationconfigurations?view=graph-rest-1.0
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -50,10 +49,9 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationCombinationConfiguration]:
         """
-        Read the properties and relationships of an authenticationCombinationConfiguration object.
+        Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationCombinationConfiguration]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationcombinationconfiguration-get?view=graph-rest-1.0
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -72,11 +70,10 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
     
     async def patch(self,body: Optional[AuthenticationCombinationConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationCombinationConfiguration]:
         """
-        Update the properties of an authenticationCombinationConfiguration object. The properties can be for one of the following derived types:* fido2combinationConfigurations* x509certificatecombinationconfiguration
+        Update the navigation property combinationConfigurations in identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationCombinationConfiguration]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationcombinationconfiguration-update?view=graph-rest-1.0
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         if not body:
@@ -97,7 +94,7 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an authenticationCombinationConfiguration  for a custom authenticationStrengthPolicy object.
+        Delete navigation property combinationConfigurations for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +106,7 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an authenticationCombinationConfiguration object.
+        Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -121,7 +118,7 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
     
     def to_patch_request_information(self,body: Optional[AuthenticationCombinationConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an authenticationCombinationConfiguration object. The properties can be for one of the following derived types:* fido2combinationConfigurations* x509certificatecombinationconfiguration
+        Update the navigation property combinationConfigurations in identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -149,7 +146,7 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
     @dataclass
     class AuthenticationCombinationConfigurationItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an authenticationCombinationConfiguration object.
+        Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

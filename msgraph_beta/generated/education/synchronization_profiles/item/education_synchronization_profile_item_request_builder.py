@@ -36,10 +36,9 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a school data synchronization profile in the tenant based on the identifier.
+        Delete navigation property synchronizationProfiles for education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -55,10 +54,9 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EducationSynchronizationProfile]:
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier.
+        Get synchronizationProfiles from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSynchronizationProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -99,7 +97,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a school data synchronization profile in the tenant based on the identifier.
+        Delete navigation property synchronizationProfiles for education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +108,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier.
+        Get synchronizationProfiles from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -210,7 +208,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EducationSynchronizationProfileItemRequestBuilderGetQueryParameters():
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier.
+        Get synchronizationProfiles from education
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

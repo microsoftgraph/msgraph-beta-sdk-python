@@ -46,10 +46,9 @@ class YearsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[YearTimePeriodDefinitionCollectionResponse]:
         """
-        Get a list of the yearTimePeriodDefinition objects and their properties.
+        Set of years represented in the system.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[YearTimePeriodDefinitionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-yeartimeperioddefinition-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class YearsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[YearTimePeriodDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[YearTimePeriodDefinition]:
         """
-        Create a new yearTimePeriodDefinition object.
+        Create new navigation property to years for external
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[YearTimePeriodDefinition]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-yeartimeperioddefinition-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class YearsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the yearTimePeriodDefinition objects and their properties.
+        Set of years represented in the system.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class YearsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[YearTimePeriodDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new yearTimePeriodDefinition object.
+        Create new navigation property to years for external
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class YearsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class YearsRequestBuilderGetQueryParameters():
         """
-        Get a list of the yearTimePeriodDefinition objects and their properties.
+        Set of years represented in the system.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

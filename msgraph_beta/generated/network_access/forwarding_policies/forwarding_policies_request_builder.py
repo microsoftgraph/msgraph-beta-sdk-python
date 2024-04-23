@@ -46,7 +46,7 @@ class ForwardingPoliciesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ForwardingPolicyCollectionResponse]:
         """
-        Retrieve information about a specific forwarding policy.
+        A forwarding policy defines the specific traffic that is routed through the Global Secure Access Service. It's then added to a forwarding profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingPolicyCollectionResponse]
         """
@@ -89,7 +89,7 @@ class ForwardingPoliciesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve information about a specific forwarding policy.
+        A forwarding policy defines the specific traffic that is routed through the Global Secure Access Service. It's then added to a forwarding profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class ForwardingPoliciesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ForwardingPoliciesRequestBuilderGetQueryParameters():
         """
-        Retrieve information about a specific forwarding policy.
+        A forwarding policy defines the specific traffic that is routed through the Global Secure Access Service. It's then added to a forwarding profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -50,7 +50,7 @@ class WindowsAutopilotDeploymentProfile(Entity):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The locale (language) to be used when configuring the device. E.g. en-US. The default value is os-default. Supports: $select, $top, $skip. $Search, $orderBy and $filter are not supported.
     locale: Optional[str] = None
-    # AzureAD management app ID used during client device-based enrollment discovery
+    # The Entra management service App ID which gets used during client device-based enrollment discovery. Supports: $select, $top, $skip. $Search, $orderBy and $filter are not supported.
     management_service_app_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

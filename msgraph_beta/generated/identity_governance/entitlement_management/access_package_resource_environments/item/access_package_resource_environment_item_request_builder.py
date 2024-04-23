@@ -48,10 +48,9 @@ class AccessPackageResourceEnvironmentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageResourceEnvironment]:
         """
-        Read the properties and relationships of an accessPackageResourceEnvironment object.
+        A reference to the geolocation environment in which a resource is located.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageResourceEnvironment]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackageresourceenvironment-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -103,7 +102,7 @@ class AccessPackageResourceEnvironmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an accessPackageResourceEnvironment object.
+        A reference to the geolocation environment in which a resource is located.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -149,7 +148,7 @@ class AccessPackageResourceEnvironmentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageResourceEnvironmentItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an accessPackageResourceEnvironment object.
+        A reference to the geolocation environment in which a resource is located.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

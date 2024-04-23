@@ -30,7 +30,7 @@ class SendReminderRequestBuilder(BaseRequestBuilder):
         In the Microsoft Entra access reviews feature, send a reminder to the reviewers of a currently active accessReview.  The target object can be either a one-time access review, or an instance of a recurring access review. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/accessreview-sendreminder?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/accessreview-sendreminder?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

@@ -49,10 +49,9 @@ class CommunityItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Community]:
         """
-        Read the properties and relationships of a community object.
+        A collection of communities in Viva Engage.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Community]
-        Find more info here: https://learn.microsoft.com/graph/api/community-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -104,7 +103,7 @@ class CommunityItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a community object.
+        A collection of communities in Viva Engage.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +158,7 @@ class CommunityItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CommunityItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a community object.
+        A collection of communities in Viva Engage.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

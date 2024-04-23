@@ -51,10 +51,9 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageAssignmentResourceRole]:
         """
-        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object.
+        Represents the resource-specific role which a subject has been assigned through an access package assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignmentResourceRole]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentresourcerole-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -106,7 +105,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object.
+        Represents the resource-specific role which a subject has been assigned through an access package assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -179,7 +178,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageAssignmentResourceRoleItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object.
+        Represents the resource-specific role which a subject has been assigned through an access package assignment.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -46,7 +46,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceLinkCollectionResponse]:
         """
-        Retrieves a specific device link associated with a remote network.
+        Each unique CPE device associated with a remote network is specified. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceLinkCollectionResponse]
         """
@@ -89,7 +89,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieves a specific device link associated with a remote network.
+        Each unique CPE device associated with a remote network is specified. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class DeviceLinksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceLinksRequestBuilderGetQueryParameters():
         """
-        Retrieves a specific device link associated with a remote network.
+        Each unique CPE device associated with a remote network is specified. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

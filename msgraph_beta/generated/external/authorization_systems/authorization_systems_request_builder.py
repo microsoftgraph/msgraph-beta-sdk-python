@@ -46,10 +46,9 @@ class AuthorizationSystemsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthorizationSystemCollectionResponse]:
         """
-        List the authorizationSystem objects onboarded to Permissions Management and their properties.
+        Represents an onboarded AWS account, Azure subscription, or GCP project that Microsoft Entra Permissions Management will collect and analyze permissions and actions on.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthorizationSystemCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-external-list-authorizationsystems?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class AuthorizationSystemsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        List the authorizationSystem objects onboarded to Permissions Management and their properties.
+        Represents an onboarded AWS account, Azure subscription, or GCP project that Microsoft Entra Permissions Management will collect and analyze permissions and actions on.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class AuthorizationSystemsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuthorizationSystemsRequestBuilderGetQueryParameters():
         """
-        List the authorizationSystem objects onboarded to Permissions Management and their properties.
+        Represents an onboarded AWS account, Azure subscription, or GCP project that Microsoft Entra Permissions Management will collect and analyze permissions and actions on.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

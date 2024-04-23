@@ -46,10 +46,9 @@ class InterestsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonInterestCollectionResponse]:
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Provides detailed information about interests the user has associated with themselves in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonInterestCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-interests?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class InterestsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PersonInterest] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonInterest]:
         """
-        Create a new personInterest.
+        Create new navigation property to interests for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonInterest]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-interests?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class InterestsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Provides detailed information about interests the user has associated with themselves in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class InterestsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PersonInterest] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personInterest.
+        Create new navigation property to interests for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class InterestsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InterestsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Provides detailed information about interests the user has associated with themselves in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

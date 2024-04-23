@@ -33,10 +33,9 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a timeCard instance in a schedule.
+        Delete navigation property timeCards for teamTemplateDefinition
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/timecard-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -52,10 +51,9 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TimeCard]:
         """
-        Get the properties and relationships of a timeCard object by ID.
+        The time cards in the schedule.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TimeCard]
-        Find more info here: https://learn.microsoft.com/graph/api/timecard-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -73,11 +71,10 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[TimeCard] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TimeCard]:
         """
-        Replace an existing timeCard with updated values.
+        Update the navigation property timeCards in teamTemplateDefinition
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TimeCard]
-        Find more info here: https://learn.microsoft.com/graph/api/timecard-replace?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -97,7 +94,7 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a timeCard instance in a schedule.
+        Delete navigation property timeCards for teamTemplateDefinition
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +105,7 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of a timeCard object by ID.
+        The time cards in the schedule.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,7 +116,7 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[TimeCard] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Replace an existing timeCard with updated values.
+        Update the navigation property timeCards in teamTemplateDefinition
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -181,7 +178,7 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TimeCardItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of a timeCard object by ID.
+        The time cards in the schedule.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -53,7 +53,7 @@ class ApplicationsRequestBuilder(BaseRequestBuilder):
         Get the list of applications in this organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApplicationCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/application-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/application-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -75,7 +75,7 @@ class ApplicationsRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Application]
-        Find more info here: https://learn.microsoft.com/graph/api/application-post-applications?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/application-post-applications?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

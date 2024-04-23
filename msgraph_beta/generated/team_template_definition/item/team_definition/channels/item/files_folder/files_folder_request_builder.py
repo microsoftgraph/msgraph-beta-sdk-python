@@ -31,10 +31,9 @@ class FilesFolderRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DriveItem]:
         """
-        Get the metadata for the location where the files of a channel are stored.
+        Metadata for the location where the channel's files are stored.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveItem]
-        Find more info here: https://learn.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -52,7 +51,7 @@ class FilesFolderRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the metadata for the location where the files of a channel are stored.
+        Metadata for the location where the channel's files are stored.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -92,7 +91,7 @@ class FilesFolderRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FilesFolderRequestBuilderGetQueryParameters():
         """
-        Get the metadata for the location where the files of a channel are stored.
+        Metadata for the location where the channel's files are stored.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

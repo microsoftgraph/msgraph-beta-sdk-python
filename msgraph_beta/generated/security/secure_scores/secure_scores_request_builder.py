@@ -46,10 +46,9 @@ class SecureScoresRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SecureScoreCollectionResponse]:
         """
-        Retrieve the properties and relationships of a secureScores object.
+        Measurements of tenants’ security posture to help protect them from threats.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecureScoreCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/securescores-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class SecureScoresRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a secureScores object.
+        Measurements of tenants’ security posture to help protect them from threats.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class SecureScoresRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SecureScoresRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a secureScores object.
+        Measurements of tenants’ security posture to help protect them from threats.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

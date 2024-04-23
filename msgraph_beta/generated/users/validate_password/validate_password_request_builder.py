@@ -33,7 +33,7 @@ class ValidatePasswordRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PasswordValidationInformation]
-        Find more info here: https://learn.microsoft.com/graph/api/user-validatepassword?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/user-validatepassword?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

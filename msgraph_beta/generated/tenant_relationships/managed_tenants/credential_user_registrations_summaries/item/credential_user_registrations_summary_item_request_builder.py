@@ -47,10 +47,9 @@ class CredentialUserRegistrationsSummaryItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CredentialUserRegistrationsSummary]:
         """
-        Read the properties and relationships of a credentialUserRegistrationsSummary object.
+        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CredentialUserRegistrationsSummary]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-credentialuserregistrationssummary-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class CredentialUserRegistrationsSummaryItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a credentialUserRegistrationsSummary object.
+        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class CredentialUserRegistrationsSummaryItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CredentialUserRegistrationsSummaryItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a credentialUserRegistrationsSummary object.
+        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

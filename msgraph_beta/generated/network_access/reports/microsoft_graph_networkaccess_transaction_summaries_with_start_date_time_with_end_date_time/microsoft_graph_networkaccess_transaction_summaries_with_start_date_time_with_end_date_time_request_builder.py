@@ -35,9 +35,10 @@ class MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDat
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TransactionSummariesWithStartDateTimeWithEndDateTimeGetResponse]:
         """
-        Invoke function transactionSummaries
+        Get the total number of transactions and the number of blocked transactions, grouped by traffic type.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TransactionSummariesWithStartDateTimeWithEndDateTimeGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-reports-transactionsummaries?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -55,7 +56,7 @@ class MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDat
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function transactionSummaries
+        Get the total number of transactions and the number of blocked transactions, grouped by traffic type.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +78,7 @@ class MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDat
     @dataclass
     class MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters():
         """
-        Invoke function transactionSummaries
+        Get the total number of transactions and the number of blocked transactions, grouped by traffic type.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

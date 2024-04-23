@@ -45,10 +45,9 @@ class SignUpsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserSignUpMetricCollectionResponse]:
         """
-        Get a list of daily user sign-ups on apps registered in your tenant configured for Microsoft Entra External ID for customers.
+        Total sign-ups on apps registered in the tenant for a specified period.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserSignUpMetricCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/dailyuserinsightmetricsroot-list-signups?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -66,7 +65,7 @@ class SignUpsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of daily user sign-ups on apps registered in your tenant configured for Microsoft Entra External ID for customers.
+        Total sign-ups on apps registered in the tenant for a specified period.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -97,7 +96,7 @@ class SignUpsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SignUpsRequestBuilderGetQueryParameters():
         """
-        Get a list of daily user sign-ups on apps registered in your tenant configured for Microsoft Entra External ID for customers.
+        Total sign-ups on apps registered in the tenant for a specified period.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

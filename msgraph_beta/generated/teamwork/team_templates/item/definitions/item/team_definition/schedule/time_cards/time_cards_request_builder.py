@@ -47,10 +47,9 @@ class TimeCardsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TimeCardCollectionResponse]:
         """
-        Retrieve a list of timeCard entries in a schedule.
+        The time cards in the schedule.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TimeCardCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/timecard-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class TimeCardsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[TimeCard] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TimeCard]:
         """
-        Create a timeCard instance in a schedule.
+        Create new navigation property to timeCards for teamwork
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TimeCard]
-        Find more info here: https://learn.microsoft.com/graph/api/timecard-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -92,7 +90,7 @@ class TimeCardsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of timeCard entries in a schedule.
+        The time cards in the schedule.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +101,7 @@ class TimeCardsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[TimeCard] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a timeCard instance in a schedule.
+        Create new navigation property to timeCards for teamwork
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -147,7 +145,7 @@ class TimeCardsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TimeCardsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of timeCard entries in a schedule.
+        The time cards in the schedule.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

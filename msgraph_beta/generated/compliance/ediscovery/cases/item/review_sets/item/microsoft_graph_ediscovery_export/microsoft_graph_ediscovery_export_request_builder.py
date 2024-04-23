@@ -33,7 +33,7 @@ class MicrosoftGraphEdiscoveryExportRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-reviewset-export?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-reviewset-export?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:

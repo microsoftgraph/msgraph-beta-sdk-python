@@ -47,10 +47,9 @@ class CloudPcFrontLineServicePlanItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcFrontLineServicePlan]:
         """
-        Get the properties and relationships of a cloudPcFrontLineServicePlan object.
+        Front-line service plans for a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcFrontLineServicePlan]
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpcfrontlineserviceplan-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class CloudPcFrontLineServicePlanItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of a cloudPcFrontLineServicePlan object.
+        Front-line service plans for a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class CloudPcFrontLineServicePlanItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcFrontLineServicePlanItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of a cloudPcFrontLineServicePlan object.
+        Front-line service plans for a Cloud PC.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

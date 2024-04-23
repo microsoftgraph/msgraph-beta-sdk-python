@@ -31,10 +31,9 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete the specified Outlook task folder.
+        Delete navigation property taskFolders for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/outlooktaskfolder-delete?view=graph-rest-1.0
         """
         warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -51,10 +50,9 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OutlookTaskFolder]:
         """
-        Get the properties and relationships of the specified Outlook task folder.
+        Get taskFolders from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskFolder]
-        Find more info here: https://learn.microsoft.com/graph/api/outlooktaskfolder-get?view=graph-rest-1.0
         """
         warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -73,11 +71,10 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[OutlookTaskFolder] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[OutlookTaskFolder]:
         """
-        Update the writable properties of an Outlook task folder. You cannot change the name property value of the default task folder, 'Tasks'.
+        Update the navigation property taskFolders in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskFolder]
-        Find more info here: https://learn.microsoft.com/graph/api/outlooktaskfolder-update?view=graph-rest-1.0
         """
         warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         if not body:
@@ -98,7 +95,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete the specified Outlook task folder.
+        Delete navigation property taskFolders for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +107,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of the specified Outlook task folder.
+        Get taskFolders from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -122,7 +119,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[OutlookTaskFolder] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the writable properties of an Outlook task folder. You cannot change the name property value of the default task folder, 'Tasks'.
+        Update the navigation property taskFolders in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -159,7 +156,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OutlookTaskFolderItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of the specified Outlook task folder.
+        Get taskFolders from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -48,10 +48,9 @@ class MultiTenantOrganizationIdentitySynchronizationRequestBuilder(BaseRequestBu
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationIdentitySyncPolicyTemplate]:
         """
-        Get the cross-tenant access policy template with user synchronization settings for a multitenant organization.
+        Defines an optional cross-tenant access policy template with user synchronization settings for a multi-tenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationIdentitySyncPolicyTemplate]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganizationidentitysyncpolicytemplate-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +68,10 @@ class MultiTenantOrganizationIdentitySynchronizationRequestBuilder(BaseRequestBu
     
     async def patch(self,body: Optional[MultiTenantOrganizationIdentitySyncPolicyTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationIdentitySyncPolicyTemplate]:
         """
-        Update the cross-tenant access policy template with user synchronization settings for a multi-tenant organization.
+        Update the navigation property multiTenantOrganizationIdentitySynchronization in policies
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationIdentitySyncPolicyTemplate]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganizationidentitysyncpolicytemplate-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -104,7 +102,7 @@ class MultiTenantOrganizationIdentitySynchronizationRequestBuilder(BaseRequestBu
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the cross-tenant access policy template with user synchronization settings for a multitenant organization.
+        Defines an optional cross-tenant access policy template with user synchronization settings for a multi-tenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +113,7 @@ class MultiTenantOrganizationIdentitySynchronizationRequestBuilder(BaseRequestBu
     
     def to_patch_request_information(self,body: Optional[MultiTenantOrganizationIdentitySyncPolicyTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the cross-tenant access policy template with user synchronization settings for a multi-tenant organization.
+        Update the navigation property multiTenantOrganizationIdentitySynchronization in policies
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +148,7 @@ class MultiTenantOrganizationIdentitySynchronizationRequestBuilder(BaseRequestBu
     @dataclass
     class MultiTenantOrganizationIdentitySynchronizationRequestBuilderGetQueryParameters():
         """
-        Get the cross-tenant access policy template with user synchronization settings for a multitenant organization.
+        Defines an optional cross-tenant access policy template with user synchronization settings for a multi-tenant organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

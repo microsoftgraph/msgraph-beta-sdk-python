@@ -46,7 +46,7 @@ class UserRunStatesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwareConfigurationUserStateCollectionResponse]:
         """
-        List of run states for the hardware configuration across all users
+        List of run states for the hardware configuration across all users. Read-Only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareConfigurationUserStateCollectionResponse]
         """
@@ -89,7 +89,7 @@ class UserRunStatesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        List of run states for the hardware configuration across all users
+        List of run states for the hardware configuration across all users. Read-Only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class UserRunStatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserRunStatesRequestBuilderGetQueryParameters():
         """
-        List of run states for the hardware configuration across all users
+        List of run states for the hardware configuration across all users. Read-Only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

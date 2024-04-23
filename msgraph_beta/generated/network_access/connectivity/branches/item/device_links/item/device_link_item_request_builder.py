@@ -30,10 +30,9 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Removes the link between the branch or remote network and the CPE device, effectively removing the connection and associated configuration between them.
+        Delete navigation property deviceLinks for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchsite-delete-devicelinks?view=graph-rest-1.0
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -71,11 +70,10 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[DeviceLink] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceLink]:
         """
-        Update the device link associated with a specific branch or remote network.
+        Update the navigation property deviceLinks in networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceLink]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-devicelink-update?view=graph-rest-1.0
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         if not body:
@@ -96,7 +94,7 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Removes the link between the branch or remote network and the CPE device, effectively removing the connection and associated configuration between them.
+        Delete navigation property deviceLinks for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +118,7 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[DeviceLink] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the device link associated with a specific branch or remote network.
+        Update the navigation property deviceLinks in networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

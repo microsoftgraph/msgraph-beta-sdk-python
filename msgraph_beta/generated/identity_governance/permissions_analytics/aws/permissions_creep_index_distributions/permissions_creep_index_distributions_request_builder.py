@@ -46,10 +46,9 @@ class PermissionsCreepIndexDistributionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PermissionsCreepIndexDistributionCollectionResponse]:
         """
-        Get a list of the permissionsCreepIndexDistribution objects and their properties.
+        Represents the Permissions Creep Index (PCI) for the authorization system. PCI distribution chart shows the classification of human and nonhuman identities based on the PCI score in three buckets (low, medium, high).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PermissionsCreepIndexDistributionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/permissionsanalytics-list-permissionscreepindexdistributions?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class PermissionsCreepIndexDistributionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the permissionsCreepIndexDistribution objects and their properties.
+        Represents the Permissions Creep Index (PCI) for the authorization system. PCI distribution chart shows the classification of human and nonhuman identities based on the PCI score in three buckets (low, medium, high).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class PermissionsCreepIndexDistributionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PermissionsCreepIndexDistributionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the permissionsCreepIndexDistribution objects and their properties.
+        Represents the Permissions Creep Index (PCI) for the authorization system. PCI distribution chart shows the classification of human and nonhuman identities based on the PCI score in three buckets (low, medium, high).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

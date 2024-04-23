@@ -40,7 +40,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
         Delete an administrativeUnit.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/administrativeunit-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/administrativeunit-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,7 +59,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
         Retrieve the properties and relationships of an administrativeUnit object. Since the administrativeUnit resource supports extensions, you can also use the GET operation to get custom properties and extension data in an administrativeUnit instance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdministrativeUnit]
-        Find more info here: https://learn.microsoft.com/graph/api/administrativeunit-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/administrativeunit-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -81,7 +81,7 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdministrativeUnit]
-        Find more info here: https://learn.microsoft.com/graph/api/administrativeunit-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/administrativeunit-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

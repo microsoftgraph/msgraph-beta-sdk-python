@@ -47,10 +47,9 @@ class B2cAuthenticationMethodsPolicyRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[B2cAuthenticationMethodsPolicy]:
         """
-        Read the properties of a b2cAuthenticationMethodsPolicy object.
+        The Azure AD B2C policies that define how end users register via local accounts.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cAuthenticationMethodsPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/b2cauthenticationmethodspolicy-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class B2cAuthenticationMethodsPolicyRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[B2cAuthenticationMethodsPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[B2cAuthenticationMethodsPolicy]:
         """
-        Update the properties of a b2cAuthenticationMethodsPolicy object.
+        Update the navigation property b2cAuthenticationMethodsPolicy in policies
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cAuthenticationMethodsPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/b2cauthenticationmethodspolicy-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -103,7 +101,7 @@ class B2cAuthenticationMethodsPolicyRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties of a b2cAuthenticationMethodsPolicy object.
+        The Azure AD B2C policies that define how end users register via local accounts.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +112,7 @@ class B2cAuthenticationMethodsPolicyRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[B2cAuthenticationMethodsPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a b2cAuthenticationMethodsPolicy object.
+        Update the navigation property b2cAuthenticationMethodsPolicy in policies
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +138,7 @@ class B2cAuthenticationMethodsPolicyRequestBuilder(BaseRequestBuilder):
     @dataclass
     class B2cAuthenticationMethodsPolicyRequestBuilderGetQueryParameters():
         """
-        Read the properties of a b2cAuthenticationMethodsPolicy object.
+        The Azure AD B2C policies that define how end users register via local accounts.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

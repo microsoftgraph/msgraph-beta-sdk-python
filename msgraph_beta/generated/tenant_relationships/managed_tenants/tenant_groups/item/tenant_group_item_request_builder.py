@@ -47,10 +47,9 @@ class TenantGroupItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TenantGroup]:
         """
-        Read the properties and relationships of a tenantGroup object.
+        The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantGroup]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenantgroup-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class TenantGroupItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a tenantGroup object.
+        The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class TenantGroupItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantGroupItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a tenantGroup object.
+        The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

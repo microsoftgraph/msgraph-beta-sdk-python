@@ -50,7 +50,7 @@ class Oauth2PermissionGrantsRequestBuilder(BaseRequestBuilder):
         Retrieve a list of oAuth2PermissionGrant objects, representing delegated permissions which have been granted for client applications to access APIs on behalf of signed-in users.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OAuth2PermissionGrantCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/oauth2permissiongrant-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/oauth2permissiongrant-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -72,7 +72,7 @@ class Oauth2PermissionGrantsRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OAuth2PermissionGrant]
-        Find more info here: https://learn.microsoft.com/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/oauth2permissiongrant-post?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

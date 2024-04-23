@@ -47,10 +47,9 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ConditionalAccessSettings]:
         """
-        Retrieve the conditional access settings, which include the preservation of the original source IP address in network traffic for accurate identification and tracking, and the establishment of scalable network connectivity through the Global Secure Access services.
+        Defines whether conditional access settings are enabled for traffic profiles. Each tenant has only one conditional access settings object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConditionalAccessSettings]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-conditionalaccesssettings-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ConditionalAccessSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ConditionalAccessSettings]:
         """
-        Update the conditional access settings to include the preservation of the original source IP address in network traffic for accurate identification and tracking, as well as the establishment of scalable network connectivity through the Global Secure Access services.
+        Update the navigation property conditionalAccess in networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConditionalAccessSettings]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-conditionalaccesssettings-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -103,7 +101,7 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the conditional access settings, which include the preservation of the original source IP address in network traffic for accurate identification and tracking, and the establishment of scalable network connectivity through the Global Secure Access services.
+        Defines whether conditional access settings are enabled for traffic profiles. Each tenant has only one conditional access settings object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +112,7 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ConditionalAccessSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the conditional access settings to include the preservation of the original source IP address in network traffic for accurate identification and tracking, as well as the establishment of scalable network connectivity through the Global Secure Access services.
+        Update the navigation property conditionalAccess in networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +138,7 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConditionalAccessRequestBuilderGetQueryParameters():
         """
-        Retrieve the conditional access settings, which include the preservation of the original source IP address in network traffic for accurate identification and tracking, and the establishment of scalable network connectivity through the Global Secure Access services.
+        Defines whether conditional access settings are enabled for traffic profiles. Each tenant has only one conditional access settings object.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
