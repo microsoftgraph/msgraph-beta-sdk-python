@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class WindowsProtectionStatesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["windowsProtectionState%2Did"] = windows_protection_state_id
         return WindowsProtectionStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsProtectionStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsProtectionStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsProtectionStateCollectionResponse]:
         """
-        Get a list of the windowsProtectionState objects and their properties.
+        The protection state for Windows devices, registered with Microsoft Endpoint Manager, across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WindowsProtectionStateCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managedtenant-list-windowsprotectionstates?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class WindowsProtectionStatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsProtectionStateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[WindowsProtectionState] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsProtectionState]:
+    async def post(self,body: Optional[WindowsProtectionState] = None, request_configuration: Optional[WindowsProtectionStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[WindowsProtectionState]:
         """
         Create new navigation property to windowsProtectionStates for tenantRelationships
         param body: The request body
@@ -88,9 +86,9 @@ class WindowsProtectionStatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsProtectionState, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[WindowsProtectionStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the windowsProtectionState objects and their properties.
+        The protection state for Windows devices, registered with Microsoft Endpoint Manager, across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class WindowsProtectionStatesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[WindowsProtectionState] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WindowsProtectionState] = None, request_configuration: Optional[WindowsProtectionStatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to windowsProtectionStates for tenantRelationships
         param body: The request body
@@ -136,7 +134,7 @@ class WindowsProtectionStatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WindowsProtectionStatesRequestBuilderGetQueryParameters():
         """
-        Get a list of the windowsProtectionState objects and their properties.
+        The protection state for Windows devices, registered with Microsoft Endpoint Manager, across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class WindowsProtectionStatesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WindowsProtectionStatesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[WindowsProtectionStatesRequestBuilder.WindowsProtectionStatesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WindowsProtectionStatesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

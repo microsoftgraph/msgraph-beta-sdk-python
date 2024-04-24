@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -25,12 +25,12 @@ class RemovePersonalDataRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/directory/outboundSharedUserProfiles/{outboundSharedUserProfile%2DuserId}/tenants/{tenantReference%2DtenantId}/removePersonalData", path_parameters)
     
-    async def post(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def post(self,request_configuration: Optional[RemovePersonalDataRequestBuilderPostRequestConfiguration] = None) -> None:
         """
         Create a request to remove the personal data for an outboundSharedUserProfile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/tenantreference-removepersonaldata?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/tenantreference-removepersonaldata?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -44,7 +44,7 @@ class RemovePersonalDataRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def to_post_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,request_configuration: Optional[RemovePersonalDataRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create a request to remove the personal data for an outboundSharedUserProfile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,5 +64,15 @@ class RemovePersonalDataRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return RemovePersonalDataRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RemovePersonalDataRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

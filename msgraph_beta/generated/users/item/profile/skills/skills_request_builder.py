@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class SkillsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["skillProficiency%2Did"] = skill_proficiency_id
         return SkillProficiencyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SkillProficiencyCollectionResponse]:
+    async def get(self,request_configuration: Optional[SkillsRequestBuilderGetRequestConfiguration] = None) -> Optional[SkillProficiencyCollectionResponse]:
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SkillProficiencyCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-skills?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class SkillsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SkillProficiencyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[SkillProficiency] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SkillProficiency]:
+    async def post(self,body: Optional[SkillProficiency] = None, request_configuration: Optional[SkillsRequestBuilderPostRequestConfiguration] = None) -> Optional[SkillProficiency]:
         """
-        Use this API to create a new skillProficiency object in a user's profile.
+        Create new navigation property to skills for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SkillProficiency]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-skills?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class SkillsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SkillProficiency, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[SkillsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class SkillsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[SkillProficiency] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[SkillProficiency] = None, request_configuration: Optional[SkillsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new skillProficiency object in a user's profile.
+        Create new navigation property to skills for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class SkillsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SkillsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class SkillsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SkillsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[SkillsRequestBuilder.SkillsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SkillsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,7 +44,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["depOnboardingSetting%2Did"] = dep_onboarding_setting_id
         return DepOnboardingSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DepOnboardingSettingCollectionResponse]:
+    async def get(self,request_configuration: Optional[DepOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[DepOnboardingSettingCollectionResponse]:
         """
         This collections of multiple DEP tokens per-tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -77,7 +76,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
 
         return GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(self.request_adapter, self.path_parameters, expiring_before_date_time)
     
-    async def post(self,body: Optional[DepOnboardingSetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DepOnboardingSetting]:
+    async def post(self,body: Optional[DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[DepOnboardingSetting]:
         """
         Create new navigation property to depOnboardingSettings for deviceManagement
         param body: The request body
@@ -100,7 +99,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DepOnboardingSetting, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DepOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         This collections of multiple DEP tokens per-tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +110,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DepOnboardingSetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to depOnboardingSettings for deviceManagement
         param body: The request body
@@ -200,5 +199,28 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DepOnboardingSettingsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DepOnboardingSettingsRequestBuilder.DepOnboardingSettingsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DepOnboardingSettingsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

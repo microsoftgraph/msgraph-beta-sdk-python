@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class ResourceScopeRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/roleManagement/exchange/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}/resourceActions/{unifiedRbacResourceAction%2Did}/resourceScope{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ResourceScopeRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property resourceScope for roleManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +44,7 @@ class ResourceScopeRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedRbacResourceScope]:
+    async def get(self,request_configuration: Optional[ResourceScopeRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRbacResourceScope]:
         """
         Get resourceScope from roleManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class ResourceScopeRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UnifiedRbacResourceScope, error_mapping)
     
-    async def patch(self,body: Optional[UnifiedRbacResourceScope] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedRbacResourceScope]:
+    async def patch(self,body: Optional[UnifiedRbacResourceScope] = None, request_configuration: Optional[ResourceScopeRequestBuilderPatchRequestConfiguration] = None) -> Optional[UnifiedRbacResourceScope]:
         """
         Update the navigation property resourceScope in roleManagement
         param body: The request body
@@ -88,7 +87,7 @@ class ResourceScopeRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UnifiedRbacResourceScope, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[ResourceScopeRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property resourceScope for roleManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +98,7 @@ class ResourceScopeRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ResourceScopeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get resourceScope from roleManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +109,7 @@ class ResourceScopeRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[UnifiedRbacResourceScope] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UnifiedRbacResourceScope] = None, request_configuration: Optional[ResourceScopeRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property resourceScope in roleManagement
         param body: The request body
@@ -134,6 +133,16 @@ class ResourceScopeRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ResourceScopeRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ResourceScopeRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class ResourceScopeRequestBuilderGetQueryParameters():
@@ -160,5 +169,28 @@ class ResourceScopeRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ResourceScopeRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ResourceScopeRequestBuilder.ResourceScopeRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ResourceScopeRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

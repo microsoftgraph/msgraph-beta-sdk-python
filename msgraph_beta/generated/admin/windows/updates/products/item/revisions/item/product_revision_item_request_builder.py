@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +28,7 @@ class ProductRevisionItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/products/{product%2Did}/revisions/{productRevision%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ProductRevisionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property revisions for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +46,7 @@ class ProductRevisionItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProductRevision]:
+    async def get(self,request_configuration: Optional[ProductRevisionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ProductRevision]:
         """
         Represents a product revision.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class ProductRevisionItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProductRevision, error_mapping)
     
-    async def patch(self,body: Optional[ProductRevision] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProductRevision]:
+    async def patch(self,body: Optional[ProductRevision] = None, request_configuration: Optional[ProductRevisionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ProductRevision]:
         """
         Update the navigation property revisions in admin
         param body: The request body
@@ -90,7 +89,7 @@ class ProductRevisionItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProductRevision, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[ProductRevisionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property revisions for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +100,7 @@ class ProductRevisionItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ProductRevisionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Represents a product revision.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,7 +111,7 @@ class ProductRevisionItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ProductRevision] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ProductRevision] = None, request_configuration: Optional[ProductRevisionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property revisions in admin
         param body: The request body
@@ -155,6 +154,16 @@ class ProductRevisionItemRequestBuilder(BaseRequestBuilder):
 
         return KnowledgeBaseArticleRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProductRevisionItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class ProductRevisionItemRequestBuilderGetQueryParameters():
         """
@@ -180,5 +189,28 @@ class ProductRevisionItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProductRevisionItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ProductRevisionItemRequestBuilder.ProductRevisionItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProductRevisionItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

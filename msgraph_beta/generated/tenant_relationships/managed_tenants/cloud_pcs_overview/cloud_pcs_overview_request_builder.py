@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class CloudPcsOverviewRequestBuilder(BaseRequestBuilder):
         url_tpl_params["cloudPcOverview%2DtenantId"] = cloud_pc_overview_tenant_id
         return CloudPcOverviewTenantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcOverviewCollectionResponse]:
+    async def get(self,request_configuration: Optional[CloudPcsOverviewRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcOverviewCollectionResponse]:
         """
-        Get a list of the cloudPcOverview objects and their properties.
+        Overview of cloud PC information across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcOverviewCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managedtenant-list-cloudpcsoverview?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class CloudPcsOverviewRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcOverviewCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CloudPcOverview] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcOverview]:
+    async def post(self,body: Optional[CloudPcOverview] = None, request_configuration: Optional[CloudPcsOverviewRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcOverview]:
         """
         Create new navigation property to cloudPcsOverview for tenantRelationships
         param body: The request body
@@ -88,9 +86,9 @@ class CloudPcsOverviewRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcOverview, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CloudPcsOverviewRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the cloudPcOverview objects and their properties.
+        Overview of cloud PC information across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class CloudPcsOverviewRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CloudPcOverview] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CloudPcOverview] = None, request_configuration: Optional[CloudPcsOverviewRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to cloudPcsOverview for tenantRelationships
         param body: The request body
@@ -136,7 +134,7 @@ class CloudPcsOverviewRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcsOverviewRequestBuilderGetQueryParameters():
         """
-        Get a list of the cloudPcOverview objects and their properties.
+        Overview of cloud PC information across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class CloudPcsOverviewRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CloudPcsOverviewRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CloudPcsOverviewRequestBuilder.CloudPcsOverviewRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CloudPcsOverviewRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

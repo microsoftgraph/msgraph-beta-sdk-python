@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,12 +27,11 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
         """
         super().__init__(request_adapter, "{+baseurl}/identity/conditionalAccess/authenticationStrengths/policies/{authenticationStrengthPolicy%2Did}/combinationConfigurations/{authenticationCombinationConfiguration%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AuthenticationCombinationConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an authenticationCombinationConfiguration  for a custom authenticationStrengthPolicy object.
+        Delete navigation property combinationConfigurations for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-delete-combinationconfigurations?view=graph-rest-1.0
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -48,12 +46,11 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationCombinationConfiguration]:
+    async def get(self,request_configuration: Optional[AuthenticationCombinationConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AuthenticationCombinationConfiguration]:
         """
-        Read the properties and relationships of an authenticationCombinationConfiguration object.
+        Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationCombinationConfiguration]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationcombinationconfiguration-get?view=graph-rest-1.0
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -70,13 +67,12 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
 
         return await self.request_adapter.send_async(request_info, AuthenticationCombinationConfiguration, error_mapping)
     
-    async def patch(self,body: Optional[AuthenticationCombinationConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationCombinationConfiguration]:
+    async def patch(self,body: Optional[AuthenticationCombinationConfiguration] = None, request_configuration: Optional[AuthenticationCombinationConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AuthenticationCombinationConfiguration]:
         """
-        Update the properties of an authenticationCombinationConfiguration object. The properties can be for one of the following derived types:* fido2combinationConfigurations* x509certificatecombinationconfiguration
+        Update the navigation property combinationConfigurations in identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationCombinationConfiguration]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationcombinationconfiguration-update?view=graph-rest-1.0
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         if not body:
@@ -95,9 +91,9 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
 
         return await self.request_adapter.send_async(request_info, AuthenticationCombinationConfiguration, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[AuthenticationCombinationConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an authenticationCombinationConfiguration  for a custom authenticationStrengthPolicy object.
+        Delete navigation property combinationConfigurations for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,9 +103,9 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AuthenticationCombinationConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an authenticationCombinationConfiguration object.
+        Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,9 +115,9 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[AuthenticationCombinationConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AuthenticationCombinationConfiguration] = None, request_configuration: Optional[AuthenticationCombinationConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an authenticationCombinationConfiguration object. The properties can be for one of the following derived types:* fido2combinationConfigurations* x509certificatecombinationconfiguration
+        Update the navigation property combinationConfigurations in identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -146,10 +142,20 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
             raise TypeError("raw_url cannot be null.")
         return AuthenticationCombinationConfigurationItemRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AuthenticationCombinationConfigurationItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class AuthenticationCombinationConfigurationItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an authenticationCombinationConfiguration object.
+        Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -171,5 +177,28 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AuthenticationCombinationConfigurationItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AuthenticationCombinationConfigurationItemRequestBuilder.AuthenticationCombinationConfigurationItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AuthenticationCombinationConfigurationItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,12 +26,11 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/multiTenantOrganization/joinRequest{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationJoinRequestRecord]:
+    async def get(self,request_configuration: Optional[JoinRequestRequestBuilderGetRequestConfiguration] = None) -> Optional[MultiTenantOrganizationJoinRequestRecord]:
         """
-        Get the status of a tenant joining a multi-tenant organization.
+        Defines the status of a tenant joining a multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationJoinRequestRecord]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganizationjoinrequestrecord-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -48,13 +46,12 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganizationJoinRequestRecord, error_mapping)
     
-    async def patch(self,body: Optional[MultiTenantOrganizationJoinRequestRecord] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationJoinRequestRecord]:
+    async def patch(self,body: Optional[MultiTenantOrganizationJoinRequestRecord] = None, request_configuration: Optional[JoinRequestRequestBuilderPatchRequestConfiguration] = None) -> Optional[MultiTenantOrganizationJoinRequestRecord]:
         """
-        Join a multi-tenant organization, after the owner of the multi-tenant organization has added your tenant to the multi-tenant organization as pending. Before a tenant added to a multi-tenant organization can participate in the multi-tenant organization, the administrator of the joining tenant must submit a join request. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization. Furthermore, to allow for asynchronous processing, you must wait up to 4 hours before joining a multi-tenant organization is completed.
+        Update the navigation property joinRequest in tenantRelationships
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationJoinRequestRecord]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganizationjoinrequestrecord-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -72,9 +69,9 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganizationJoinRequestRecord, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[JoinRequestRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the status of a tenant joining a multi-tenant organization.
+        Defines the status of a tenant joining a multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -83,9 +80,9 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[MultiTenantOrganizationJoinRequestRecord] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MultiTenantOrganizationJoinRequestRecord] = None, request_configuration: Optional[JoinRequestRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Join a multi-tenant organization, after the owner of the multi-tenant organization has added your tenant to the multi-tenant organization as pending. Before a tenant added to a multi-tenant organization can participate in the multi-tenant organization, the administrator of the joining tenant must submit a join request. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization. Furthermore, to allow for asynchronous processing, you must wait up to 4 hours before joining a multi-tenant organization is completed.
+        Update the navigation property joinRequest in tenantRelationships
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -111,7 +108,7 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
     @dataclass
     class JoinRequestRequestBuilderGetQueryParameters():
         """
-        Get the status of a tenant joining a multi-tenant organization.
+        Defines the status of a tenant joining a multitenant organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -133,5 +130,28 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class JoinRequestRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[JoinRequestRequestBuilder.JoinRequestRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class JoinRequestRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

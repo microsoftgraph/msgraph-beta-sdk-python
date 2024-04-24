@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,12 +26,11 @@ class PersonAnnualEventItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/profile/anniversaries/{personAnnualEvent%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a personAnniversary object from the user's profile.
+        Delete navigation property anniversaries for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/personanniversary-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -46,12 +44,11 @@ class PersonAnnualEventItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonAnnualEvent]:
+    async def get(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonAnnualEvent]:
         """
-        Retrieve the properties and relationships of a personAnniversary object in a user's profile.
+        Represents the details of meaningful dates associated with a person.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAnnualEvent]
-        Find more info here: https://learn.microsoft.com/graph/api/personanniversary-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,13 +64,12 @@ class PersonAnnualEventItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PersonAnnualEvent, error_mapping)
     
-    async def patch(self,body: Optional[PersonAnnualEvent] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonAnnualEvent]:
+    async def patch(self,body: Optional[PersonAnnualEvent] = None, request_configuration: Optional[PersonAnnualEventItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PersonAnnualEvent]:
         """
-        Update the properties of a personAnniversary object in a user's profile.
+        Update the navigation property anniversaries in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonAnnualEvent]
-        Find more info here: https://learn.microsoft.com/graph/api/personanniversary-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,9 +87,9 @@ class PersonAnnualEventItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PersonAnnualEvent, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a personAnniversary object from the user's profile.
+        Delete navigation property anniversaries for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,9 +98,9 @@ class PersonAnnualEventItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a personAnniversary object in a user's profile.
+        Represents the details of meaningful dates associated with a person.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,9 +109,9 @@ class PersonAnnualEventItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PersonAnnualEvent] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PersonAnnualEvent] = None, request_configuration: Optional[PersonAnnualEventItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a personAnniversary object in a user's profile.
+        Update the navigation property anniversaries in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,10 +134,20 @@ class PersonAnnualEventItemRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return PersonAnnualEventItemRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PersonAnnualEventItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class PersonAnnualEventItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a personAnniversary object in a user's profile.
+        Represents the details of meaningful dates associated with a person.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -163,5 +169,28 @@ class PersonAnnualEventItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PersonAnnualEventItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PersonAnnualEventItemRequestBuilder.PersonAnnualEventItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PersonAnnualEventItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,12 +42,11 @@ class AppRoleAssignedResourcesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["servicePrincipal%2Did"] = service_principal_id
         return ServicePrincipalItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ServicePrincipalCollectionResponse]:
+    async def get(self,request_configuration: Optional[AppRoleAssignedResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[ServicePrincipalCollectionResponse]:
         """
-        Get the service principals to which the user has an app role assignment either directly or through group membership.
+        Get appRoleAssignedResources from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServicePrincipalCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/user-list-approleassignedresources?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -64,9 +62,9 @@ class AppRoleAssignedResourcesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ServicePrincipalCollectionResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AppRoleAssignedResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the service principals to which the user has an app role assignment either directly or through group membership.
+        Get appRoleAssignedResources from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -97,7 +95,7 @@ class AppRoleAssignedResourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AppRoleAssignedResourcesRequestBuilderGetQueryParameters():
         """
-        Get the service principals to which the user has an app role assignment either directly or through group membership.
+        Get appRoleAssignedResources from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -148,6 +146,19 @@ class AppRoleAssignedResourcesRequestBuilder(BaseRequestBuilder):
 
         # Show only the first n items
         top: Optional[int] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AppRoleAssignedResourcesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AppRoleAssignedResourcesRequestBuilder.AppRoleAssignedResourcesRequestBuilderGetQueryParameters] = None
 
     
 

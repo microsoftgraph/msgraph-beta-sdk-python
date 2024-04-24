@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/identities/healthIssues/{healthIssue%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[HealthIssueItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property healthIssues for security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,12 +44,11 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[HealthIssue]:
+    async def get(self,request_configuration: Optional[HealthIssueItemRequestBuilderGetRequestConfiguration] = None) -> Optional[HealthIssue]:
         """
-        Read the properties and relationships of a healthIssue object.
+        Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HealthIssue]
-        Find more info here: https://learn.microsoft.com/graph/api/security-healthissue-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -66,13 +64,12 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HealthIssue, error_mapping)
     
-    async def patch(self,body: Optional[HealthIssue] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[HealthIssue]:
+    async def patch(self,body: Optional[HealthIssue] = None, request_configuration: Optional[HealthIssueItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[HealthIssue]:
         """
-        Update the properties of a healthIssue object.
+        Update the navigation property healthIssues in security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HealthIssue]
-        Find more info here: https://learn.microsoft.com/graph/api/security-healthissue-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -90,7 +87,7 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HealthIssue, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[HealthIssueItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property healthIssues for security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,9 +98,9 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[HealthIssueItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a healthIssue object.
+        Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,9 +109,9 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[HealthIssue] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[HealthIssue] = None, request_configuration: Optional[HealthIssueItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a healthIssue object.
+        Update the navigation property healthIssues in security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,10 +134,20 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return HealthIssueItemRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HealthIssueItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class HealthIssueItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a healthIssue object.
+        Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -162,5 +169,28 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HealthIssueItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[HealthIssueItemRequestBuilder.HealthIssueItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HealthIssueItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

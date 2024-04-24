@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class CloudPcDevicesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["cloudPcDevice%2Did"] = cloud_pc_device_id
         return CloudPcDeviceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcDeviceCollectionResponse]:
+    async def get(self,request_configuration: Optional[CloudPcDevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcDeviceCollectionResponse]:
         """
-        Get a list of the cloudPcDevice objects and their properties.
+        The collection of cloud PC devices across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcDeviceCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managedtenant-list-cloudpcdevices?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class CloudPcDevicesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcDeviceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CloudPcDevice] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcDevice]:
+    async def post(self,body: Optional[CloudPcDevice] = None, request_configuration: Optional[CloudPcDevicesRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcDevice]:
         """
         Create new navigation property to cloudPcDevices for tenantRelationships
         param body: The request body
@@ -88,9 +86,9 @@ class CloudPcDevicesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcDevice, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CloudPcDevicesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the cloudPcDevice objects and their properties.
+        The collection of cloud PC devices across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class CloudPcDevicesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CloudPcDevice] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CloudPcDevice] = None, request_configuration: Optional[CloudPcDevicesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to cloudPcDevices for tenantRelationships
         param body: The request body
@@ -136,7 +134,7 @@ class CloudPcDevicesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcDevicesRequestBuilderGetQueryParameters():
         """
-        Get a list of the cloudPcDevice objects and their properties.
+        The collection of cloud PC devices across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class CloudPcDevicesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CloudPcDevicesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CloudPcDevicesRequestBuilder.CloudPcDevicesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CloudPcDevicesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

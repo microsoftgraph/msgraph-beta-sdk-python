@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class AuthorizationSystemsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["authorizationSystem%2Did"] = authorization_system_id
         return AuthorizationSystemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthorizationSystemCollectionResponse]:
+    async def get(self,request_configuration: Optional[AuthorizationSystemsRequestBuilderGetRequestConfiguration] = None) -> Optional[AuthorizationSystemCollectionResponse]:
         """
-        List the authorizationSystem objects onboarded to Permissions Management and their properties.
+        Represents an onboarded AWS account, Azure subscription, or GCP project that Microsoft Entra Permissions Management will collect and analyze permissions and actions on.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthorizationSystemCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-external-list-authorizationsystems?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class AuthorizationSystemsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthorizationSystemCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AuthorizationSystem] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthorizationSystem]:
+    async def post(self,body: Optional[AuthorizationSystem] = None, request_configuration: Optional[AuthorizationSystemsRequestBuilderPostRequestConfiguration] = None) -> Optional[AuthorizationSystem]:
         """
         Create new navigation property to authorizationSystems for external
         param body: The request body
@@ -88,9 +86,9 @@ class AuthorizationSystemsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthorizationSystem, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AuthorizationSystemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the authorizationSystem objects onboarded to Permissions Management and their properties.
+        Represents an onboarded AWS account, Azure subscription, or GCP project that Microsoft Entra Permissions Management will collect and analyze permissions and actions on.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class AuthorizationSystemsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AuthorizationSystem] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AuthorizationSystem] = None, request_configuration: Optional[AuthorizationSystemsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to authorizationSystems for external
         param body: The request body
@@ -136,7 +134,7 @@ class AuthorizationSystemsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuthorizationSystemsRequestBuilderGetQueryParameters():
         """
-        List the authorizationSystem objects onboarded to Permissions Management and their properties.
+        Represents an onboarded AWS account, Azure subscription, or GCP project that Microsoft Entra Permissions Management will collect and analyze permissions and actions on.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class AuthorizationSystemsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AuthorizationSystemsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AuthorizationSystemsRequestBuilder.AuthorizationSystemsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AuthorizationSystemsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

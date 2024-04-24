@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class LabelPolicySettingsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/informationProtection/labelPolicySettings{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[LabelPolicySettingsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property labelPolicySettings for security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,12 +44,11 @@ class LabelPolicySettingsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[InformationProtectionPolicySetting]:
+    async def get(self,request_configuration: Optional[LabelPolicySettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[InformationProtectionPolicySetting]:
         """
-        Read the properties and relationships of an informationProtectionPolicySetting object. The settings exposed by this API should be used in applications to populate the moreInfoUrl property for Microsoft Purview Information Protection help, and indicate whether labeling is mandatory for the user and whether justification must be provided on downgrade.
+        Read the Microsoft Purview Information Protection policy settings for the user or organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InformationProtectionPolicySetting]
-        Find more info here: https://learn.microsoft.com/graph/api/security-informationprotectionpolicysetting-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -66,7 +64,7 @@ class LabelPolicySettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, InformationProtectionPolicySetting, error_mapping)
     
-    async def patch(self,body: Optional[InformationProtectionPolicySetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[InformationProtectionPolicySetting]:
+    async def patch(self,body: Optional[InformationProtectionPolicySetting] = None, request_configuration: Optional[LabelPolicySettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[InformationProtectionPolicySetting]:
         """
         Update the navigation property labelPolicySettings in security
         param body: The request body
@@ -89,7 +87,7 @@ class LabelPolicySettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, InformationProtectionPolicySetting, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[LabelPolicySettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property labelPolicySettings for security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,9 +98,9 @@ class LabelPolicySettingsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[LabelPolicySettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an informationProtectionPolicySetting object. The settings exposed by this API should be used in applications to populate the moreInfoUrl property for Microsoft Purview Information Protection help, and indicate whether labeling is mandatory for the user and whether justification must be provided on downgrade.
+        Read the Microsoft Purview Information Protection policy settings for the user or organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +109,7 @@ class LabelPolicySettingsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[InformationProtectionPolicySetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[InformationProtectionPolicySetting] = None, request_configuration: Optional[LabelPolicySettingsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property labelPolicySettings in security
         param body: The request body
@@ -136,10 +134,20 @@ class LabelPolicySettingsRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return LabelPolicySettingsRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class LabelPolicySettingsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class LabelPolicySettingsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an informationProtectionPolicySetting object. The settings exposed by this API should be used in applications to populate the moreInfoUrl property for Microsoft Purview Information Protection help, and indicate whether labeling is mandatory for the user and whether justification must be provided on downgrade.
+        Read the Microsoft Purview Information Protection policy settings for the user or organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -161,5 +169,28 @@ class LabelPolicySettingsRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class LabelPolicySettingsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[LabelPolicySettingsRequestBuilder.LabelPolicySettingsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class LabelPolicySettingsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

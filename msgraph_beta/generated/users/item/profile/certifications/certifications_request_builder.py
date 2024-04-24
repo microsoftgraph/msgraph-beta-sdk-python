@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class CertificationsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["personCertification%2Did"] = person_certification_id
         return PersonCertificationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonCertificationCollectionResponse]:
+    async def get(self,request_configuration: Optional[CertificationsRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonCertificationCollectionResponse]:
         """
-        Retrieve a list of personCertification objects from a user's profile.
+        Represents the details of certifications associated with a person.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonCertificationCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-certifications?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class CertificationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PersonCertificationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[PersonCertification] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonCertification]:
+    async def post(self,body: Optional[PersonCertification] = None, request_configuration: Optional[CertificationsRequestBuilderPostRequestConfiguration] = None) -> Optional[PersonCertification]:
         """
-        Create a new personCertification object in a user's profile.
+        Create new navigation property to certifications for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonCertification]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-certifications?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class CertificationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PersonCertification, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CertificationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personCertification objects from a user's profile.
+        Represents the details of certifications associated with a person.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class CertificationsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[PersonCertification] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PersonCertification] = None, request_configuration: Optional[CertificationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personCertification object in a user's profile.
+        Create new navigation property to certifications for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class CertificationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CertificationsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personCertification objects from a user's profile.
+        Represents the details of certifications associated with a person.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class CertificationsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CertificationsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CertificationsRequestBuilder.CertificationsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CertificationsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

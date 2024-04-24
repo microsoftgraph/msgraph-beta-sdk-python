@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["inboundFlow%2Did"] = inbound_flow_id
         return InboundFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[InboundFlowCollectionResponse]:
+    async def get(self,request_configuration: Optional[InboundFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[InboundFlowCollectionResponse]:
         """
-        Get a list of the inboundFlow objects and their properties.
+        Set of data import flow activities to bring data into the canonical store via a connector.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlowCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, InboundFlowCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[InboundFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[InboundFlow]:
+    async def post(self,body: Optional[InboundFlow] = None, request_configuration: Optional[InboundFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[InboundFlow]:
         """
-        Create a new inboundFlow object. The following prerequisite resources are required when you create an inboundFlow:
+        Create new navigation property to inboundFlows for external
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, InboundFlow, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[InboundFlowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the inboundFlow objects and their properties.
+        Set of data import flow activities to bring data into the canonical store via a connector.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[InboundFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[InboundFlow] = None, request_configuration: Optional[InboundFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new inboundFlow object. The following prerequisite resources are required when you create an inboundFlow:
+        Create new navigation property to inboundFlows for external
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InboundFlowsRequestBuilderGetQueryParameters():
         """
-        Get a list of the inboundFlow objects and their properties.
+        Set of data import flow activities to bring data into the canonical store via a connector.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class InboundFlowsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[InboundFlowsRequestBuilder.InboundFlowsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class InboundFlowsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

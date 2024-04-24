@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class RoleGroupItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/external/industryData/roleGroups/{roleGroup%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RoleGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleGroups for external
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,12 +44,11 @@ class RoleGroupItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[RoleGroup]:
+    async def get(self,request_configuration: Optional[RoleGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[RoleGroup]:
         """
-        Read the properties and relationships of a roleGroup object.
+        Set of groups of individual roles that makes role-based admin simpler.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RoleGroup]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-rolegroup-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -66,7 +64,7 @@ class RoleGroupItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RoleGroup, error_mapping)
     
-    async def patch(self,body: Optional[RoleGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[RoleGroup]:
+    async def patch(self,body: Optional[RoleGroup] = None, request_configuration: Optional[RoleGroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[RoleGroup]:
         """
         Update the navigation property roleGroups in external
         param body: The request body
@@ -89,7 +87,7 @@ class RoleGroupItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RoleGroup, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RoleGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property roleGroups for external
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,9 +98,9 @@ class RoleGroupItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RoleGroupItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a roleGroup object.
+        Set of groups of individual roles that makes role-based admin simpler.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +109,7 @@ class RoleGroupItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[RoleGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[RoleGroup] = None, request_configuration: Optional[RoleGroupItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property roleGroups in external
         param body: The request body
@@ -136,10 +134,20 @@ class RoleGroupItemRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return RoleGroupItemRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RoleGroupItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class RoleGroupItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a roleGroup object.
+        Set of groups of individual roles that makes role-based admin simpler.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -161,5 +169,28 @@ class RoleGroupItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RoleGroupItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[RoleGroupItemRequestBuilder.RoleGroupItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RoleGroupItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

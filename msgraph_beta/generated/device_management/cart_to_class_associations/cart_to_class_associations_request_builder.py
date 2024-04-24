@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class CartToClassAssociationsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["cartToClassAssociation%2Did"] = cart_to_class_association_id
         return CartToClassAssociationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CartToClassAssociationCollectionResponse]:
+    async def get(self,request_configuration: Optional[CartToClassAssociationsRequestBuilderGetRequestConfiguration] = None) -> Optional[CartToClassAssociationCollectionResponse]:
         """
         The Cart To Class Associations.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class CartToClassAssociationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CartToClassAssociationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CartToClassAssociation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CartToClassAssociation]:
+    async def post(self,body: Optional[CartToClassAssociation] = None, request_configuration: Optional[CartToClassAssociationsRequestBuilderPostRequestConfiguration] = None) -> Optional[CartToClassAssociation]:
         """
         Create new navigation property to cartToClassAssociations for deviceManagement
         param body: The request body
@@ -87,7 +86,7 @@ class CartToClassAssociationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CartToClassAssociation, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CartToClassAssociationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The Cart To Class Associations.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class CartToClassAssociationsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CartToClassAssociation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CartToClassAssociation] = None, request_configuration: Optional[CartToClassAssociationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to cartToClassAssociations for deviceManagement
         param body: The request body
@@ -187,5 +186,28 @@ class CartToClassAssociationsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CartToClassAssociationsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CartToClassAssociationsRequestBuilder.CartToClassAssociationsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CartToClassAssociationsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

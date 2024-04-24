@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -47,12 +46,11 @@ class TagsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["tag%2Did"] = tag_id
         return TagItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TagCollectionResponse]:
+    async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> Optional[TagCollectionResponse]:
         """
-        Retrieve a list of tag objects from an eDiscovery case.
+        Returns a list of tag objects associated to this case.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TagCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-list-tags?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -69,13 +67,12 @@ class TagsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TagCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[Tag] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Tag]:
+    async def post(self,body: Optional[Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> Optional[Tag]:
         """
-        Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
+        Create new navigation property to tags for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Tag]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-post-tags?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -94,9 +91,9 @@ class TagsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Tag, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of tag objects from an eDiscovery case.
+        Returns a list of tag objects associated to this case.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,9 +103,9 @@ class TagsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Tag] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
+        Create new navigation property to tags for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +151,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TagsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of tag objects from an eDiscovery case.
+        Returns a list of tag objects associated to this case.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -206,5 +203,28 @@ class TagsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TagsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[TagsRequestBuilder.TagsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TagsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

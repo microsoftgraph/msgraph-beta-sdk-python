@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,9 +26,9 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/planner/recentPlans/{plannerPlan%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PlannerPlan]:
+    async def get(self,request_configuration: Optional[PlannerPlanItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PlannerPlan]:
         """
-        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
+        Read-only. Nullable. Returns the plannerPlans that the user recently viewed in apps that support recent plans.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlan]
         """
@@ -47,9 +46,9 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PlannerPlan, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PlannerPlanItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
+        Read-only. Nullable. Returns the plannerPlans that the user recently viewed in apps that support recent plans.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -71,7 +70,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlannerPlanItemRequestBuilderGetQueryParameters():
         """
-        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
+        Read-only. Nullable. Returns the plannerPlans that the user recently viewed in apps that support recent plans.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -92,6 +91,19 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
 
         # Select properties to be returned
         select: Optional[List[str]] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PlannerPlanItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PlannerPlanItemRequestBuilder.PlannerPlanItemRequestBuilderGetQueryParameters] = None
 
     
 

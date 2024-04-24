@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,7 +45,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["product%2Did"] = product_id
         return ProductItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProductCollectionResponse]:
+    async def get(self,request_configuration: Optional[ProductsRequestBuilderGetRequestConfiguration] = None) -> Optional[ProductCollectionResponse]:
         """
         A collection of Windows products.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -90,7 +89,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder(self.request_adapter, self.path_parameters, kb_number)
     
-    async def post(self,body: Optional[Product] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Product]:
+    async def post(self,body: Optional[Product] = None, request_configuration: Optional[ProductsRequestBuilderPostRequestConfiguration] = None) -> Optional[Product]:
         """
         Create new navigation property to products for admin
         param body: The request body
@@ -113,7 +112,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Product, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ProductsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A collection of Windows products.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -124,7 +123,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Product] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Product] = None, request_configuration: Optional[ProductsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to products for admin
         param body: The request body
@@ -213,5 +212,28 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProductsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ProductsRequestBuilder.ProductsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProductsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

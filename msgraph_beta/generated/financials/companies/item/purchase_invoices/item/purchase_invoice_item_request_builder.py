@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +30,7 @@ class PurchaseInvoiceItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/financials/companies/{company%2Did}/purchaseInvoices/{purchaseInvoice%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PurchaseInvoice]:
+    async def get(self,request_configuration: Optional[PurchaseInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PurchaseInvoice]:
         """
         Get purchaseInvoices from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -51,7 +50,7 @@ class PurchaseInvoiceItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PurchaseInvoice, error_mapping)
     
-    async def patch(self,body: Optional[PurchaseInvoice] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PurchaseInvoice]:
+    async def patch(self,body: Optional[PurchaseInvoice] = None, request_configuration: Optional[PurchaseInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PurchaseInvoice]:
         """
         Update the navigation property purchaseInvoices in financials
         param body: The request body
@@ -74,7 +73,7 @@ class PurchaseInvoiceItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PurchaseInvoice, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PurchaseInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get purchaseInvoices from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -85,7 +84,7 @@ class PurchaseInvoiceItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PurchaseInvoice] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PurchaseInvoice] = None, request_configuration: Optional[PurchaseInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property purchaseInvoices in financials
         param body: The request body
@@ -171,5 +170,28 @@ class PurchaseInvoiceItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PurchaseInvoiceItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PurchaseInvoiceItemRequestBuilder.PurchaseInvoiceItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PurchaseInvoiceItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

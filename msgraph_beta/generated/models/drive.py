@@ -21,7 +21,7 @@ class Drive(BaseItem):
     odata_type: Optional[str] = "#microsoft.graph.drive"
     # The list of recent activities that took place under this drive.
     activities: Optional[List[ItemActivityOLD]] = None
-    # Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
+    # Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
     bundles: Optional[List[DriveItem]] = None
     # Describes the type of drive represented by this resource. OneDrive personal drives return personal. OneDrive for Business returns business. SharePoint document libraries return documentLibrary. Read-only.
     drive_type: Optional[str] = None

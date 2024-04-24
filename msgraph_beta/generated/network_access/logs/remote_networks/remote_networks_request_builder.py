@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
         url_tpl_params["remoteNetworkHealthEvent%2Did"] = remote_network_health_event_id
         return RemoteNetworkHealthEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[RemoteNetworkHealthEventCollectionResponse]:
+    async def get(self,request_configuration: Optional[RemoteNetworksRequestBuilderGetRequestConfiguration] = None) -> Optional[RemoteNetworkHealthEventCollectionResponse]:
         """
-        Retrieve a list of remote network health status microsoft.graph.networkaccess.remoteNetworkHealthStatusEvent events, providing insights into the health and status of remote networks.
+        A collection of remote network health events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RemoteNetworkHealthEventCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-remotenetworkhealthstatusevent-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RemoteNetworkHealthEventCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[RemoteNetworkHealthEvent] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[RemoteNetworkHealthEvent]:
+    async def post(self,body: Optional[RemoteNetworkHealthEvent] = None, request_configuration: Optional[RemoteNetworksRequestBuilderPostRequestConfiguration] = None) -> Optional[RemoteNetworkHealthEvent]:
         """
         Create new navigation property to remoteNetworks for networkAccess
         param body: The request body
@@ -88,9 +86,9 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RemoteNetworkHealthEvent, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RemoteNetworksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of remote network health status microsoft.graph.networkaccess.remoteNetworkHealthStatusEvent events, providing insights into the health and status of remote networks.
+        A collection of remote network health events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[RemoteNetworkHealthEvent] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[RemoteNetworkHealthEvent] = None, request_configuration: Optional[RemoteNetworksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to remoteNetworks for networkAccess
         param body: The request body
@@ -136,7 +134,7 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RemoteNetworksRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of remote network health status microsoft.graph.networkaccess.remoteNetworkHealthStatusEvent events, providing insights into the health and status of remote networks.
+        A collection of remote network health events.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RemoteNetworksRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[RemoteNetworksRequestBuilder.RemoteNetworksRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RemoteNetworksRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,12 +44,11 @@ class NoncustodialSourcesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["noncustodialDataSource%2Did"] = noncustodial_data_source_id
         return NoncustodialDataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[NoncustodialDataSourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[NoncustodialDataSourceCollectionResponse]:
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        noncustodialDataSource sources that are included in the sourceCollection
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[NoncustodialDataSourceCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-list-noncustodialsources?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -67,9 +65,9 @@ class NoncustodialSourcesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, NoncustodialDataSourceCollectionResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        noncustodialDataSource sources that are included in the sourceCollection
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class NoncustodialSourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class NoncustodialSourcesRequestBuilderGetQueryParameters():
         """
-        Get a list of noncustodialDataSource associated with a sourceCollection.
+        noncustodialDataSource sources that are included in the sourceCollection
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -153,6 +151,19 @@ class NoncustodialSourcesRequestBuilder(BaseRequestBuilder):
 
         # Show only the first n items
         top: Optional[int] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class NoncustodialSourcesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[NoncustodialSourcesRequestBuilder.NoncustodialSourcesRequestBuilderGetQueryParameters] = None
 
     
 

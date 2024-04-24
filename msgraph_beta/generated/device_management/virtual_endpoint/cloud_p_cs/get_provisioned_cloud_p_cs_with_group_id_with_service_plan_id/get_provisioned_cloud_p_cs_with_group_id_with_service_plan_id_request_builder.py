@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -32,11 +31,12 @@ class GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder(BaseReque
             path_parameters['servicePlanId'] = str(service_plan_id)
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/cloudPCs/getProvisionedCloudPCs(groupId='{groupId}',servicePlanId='{servicePlanId}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetProvisionedCloudPCsWithGroupIdWithServicePlanIdGetResponse]:
+    async def get(self,request_configuration: Optional[GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilderGetRequestConfiguration] = None) -> Optional[GetProvisionedCloudPCsWithGroupIdWithServicePlanIdGetResponse]:
         """
-        Invoke function getProvisionedCloudPCs
+        Get all provisioned Cloud PCs of a specific service plan for users under a Microsoft Entra user group.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetProvisionedCloudPCsWithGroupIdWithServicePlanIdGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-getprovisionedcloudpcs?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -52,9 +52,9 @@ class GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder(BaseReque
 
         return await self.request_adapter.send_async(request_info, GetProvisionedCloudPCsWithGroupIdWithServicePlanIdGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getProvisionedCloudPCs
+        Get all provisioned Cloud PCs of a specific service plan for users under a Microsoft Entra user group.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -76,7 +76,7 @@ class GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder(BaseReque
     @dataclass
     class GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilderGetQueryParameters():
         """
-        Invoke function getProvisionedCloudPCs
+        Get all provisioned Cloud PCs of a specific service plan for users under a Microsoft Entra user group.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -127,6 +127,19 @@ class GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder(BaseReque
 
         # Show only the first n items
         top: Optional[int] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder.GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilderGetQueryParameters] = None
 
     
 

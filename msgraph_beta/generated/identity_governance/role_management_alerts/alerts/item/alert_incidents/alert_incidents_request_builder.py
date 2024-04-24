@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class AlertIncidentsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["unifiedRoleManagementAlertIncident%2Did"] = unified_role_management_alert_incident_id
         return UnifiedRoleManagementAlertIncidentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertIncidentCollectionResponse]:
+    async def get(self,request_configuration: Optional[AlertIncidentsRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertIncidentCollectionResponse]:
         """
-        Get a list of the alert incidents. The alert incidents are a collection of any following type that is derived from the unifiedRoleManagementAlertIncident object:
+        Represents the incidents of this type of alert that have been triggered in Privileged Identity Management (PIM) for Microsoft Entra roles in the tenant. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedRoleManagementAlertIncidentCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/unifiedrolemanagementalert-list-alertincidents?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class AlertIncidentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UnifiedRoleManagementAlertIncidentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UnifiedRoleManagementAlertIncident] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertIncident]:
+    async def post(self,body: Optional[UnifiedRoleManagementAlertIncident] = None, request_configuration: Optional[AlertIncidentsRequestBuilderPostRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertIncident]:
         """
         Create new navigation property to alertIncidents for identityGovernance
         param body: The request body
@@ -88,9 +86,9 @@ class AlertIncidentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UnifiedRoleManagementAlertIncident, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AlertIncidentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the alert incidents. The alert incidents are a collection of any following type that is derived from the unifiedRoleManagementAlertIncident object:
+        Represents the incidents of this type of alert that have been triggered in Privileged Identity Management (PIM) for Microsoft Entra roles in the tenant. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class AlertIncidentsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UnifiedRoleManagementAlertIncident] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UnifiedRoleManagementAlertIncident] = None, request_configuration: Optional[AlertIncidentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to alertIncidents for identityGovernance
         param body: The request body
@@ -136,7 +134,7 @@ class AlertIncidentsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AlertIncidentsRequestBuilderGetQueryParameters():
         """
-        Get a list of the alert incidents. The alert incidents are a collection of any following type that is derived from the unifiedRoleManagementAlertIncident object:
+        Represents the incidents of this type of alert that have been triggered in Privileged Identity Management (PIM) for Microsoft Entra roles in the tenant. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class AlertIncidentsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AlertIncidentsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AlertIncidentsRequestBuilder.AlertIncidentsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AlertIncidentsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

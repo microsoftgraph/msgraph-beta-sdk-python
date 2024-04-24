@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -48,7 +47,7 @@ class OperationApprovalRequestsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["operationApprovalRequest%2Did"] = operation_approval_request_id
         return OperationApprovalRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OperationApprovalRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[OperationApprovalRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[OperationApprovalRequestCollectionResponse]:
         """
         The Operation Approval Requests
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -68,7 +67,7 @@ class OperationApprovalRequestsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OperationApprovalRequestCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[OperationApprovalRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[OperationApprovalRequest]:
+    async def post(self,body: Optional[OperationApprovalRequest] = None, request_configuration: Optional[OperationApprovalRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[OperationApprovalRequest]:
         """
         Create new navigation property to operationApprovalRequests for deviceManagement
         param body: The request body
@@ -103,7 +102,7 @@ class OperationApprovalRequestsRequestBuilder(BaseRequestBuilder):
 
         return RetrieveMyRequestByIdWithIdRequestBuilder(self.request_adapter, self.path_parameters, id)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[OperationApprovalRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The Operation Approval Requests
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -114,7 +113,7 @@ class OperationApprovalRequestsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[OperationApprovalRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[OperationApprovalRequest] = None, request_configuration: Optional[OperationApprovalRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to operationApprovalRequests for deviceManagement
         param body: The request body
@@ -230,5 +229,28 @@ class OperationApprovalRequestsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class OperationApprovalRequestsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[OperationApprovalRequestsRequestBuilder.OperationApprovalRequestsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class OperationApprovalRequestsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

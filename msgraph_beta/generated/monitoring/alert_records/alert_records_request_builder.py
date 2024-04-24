@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,12 +45,11 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["alertRecord%2Did"] = alert_record_id
         return AlertRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AlertRecordCollectionResponse]:
+    async def get(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[AlertRecordCollectionResponse]:
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertRecordCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/devicemanagement-alertrecord-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,7 +65,7 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AlertRecordCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AlertRecord] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AlertRecord]:
+    async def post(self,body: Optional[AlertRecord] = None, request_configuration: Optional[AlertRecordsRequestBuilderPostRequestConfiguration] = None) -> Optional[AlertRecord]:
         """
         Create new navigation property to alertRecords for monitoring
         param body: The request body
@@ -90,9 +88,9 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AlertRecord, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -101,7 +99,7 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AlertRecord] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AlertRecord] = None, request_configuration: Optional[AlertRecordsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to alertRecords for monitoring
         param body: The request body
@@ -156,7 +154,7 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AlertRecordsRequestBuilderGetQueryParameters():
         """
-        Get a list of the alertRecord objects and their properties.
+        The collection of records of alert events.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -208,5 +206,28 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AlertRecordsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AlertRecordsRequestBuilder.AlertRecordsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AlertRecordsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

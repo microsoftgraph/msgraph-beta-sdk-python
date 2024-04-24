@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,12 +27,11 @@ class CertificateBasedApplicationConfigurationItemRequestBuilder(BaseRequestBuil
         """
         super().__init__(request_adapter, "{+baseurl}/directory/certificateAuthorities/certificateBasedApplicationConfigurations/{certificateBasedApplicationConfiguration%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CertificateBasedApplicationConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete the properties and relationships of a certificateBasedApplicationConfiguration object.
+        Delete navigation property certificateBasedApplicationConfigurations for directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/certificatebasedapplicationconfiguration-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -47,12 +45,11 @@ class CertificateBasedApplicationConfigurationItemRequestBuilder(BaseRequestBuil
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CertificateBasedApplicationConfiguration]:
+    async def get(self,request_configuration: Optional[CertificateBasedApplicationConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CertificateBasedApplicationConfiguration]:
         """
-        Read the properties and relationships of a certificateBasedApplicationConfiguration object.
+        Defines the trusted certificate authorities for certificates that can be added to apps and service principals in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CertificateBasedApplicationConfiguration]
-        Find more info here: https://learn.microsoft.com/graph/api/certificatebasedapplicationconfiguration-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,13 +65,12 @@ class CertificateBasedApplicationConfigurationItemRequestBuilder(BaseRequestBuil
 
         return await self.request_adapter.send_async(request_info, CertificateBasedApplicationConfiguration, error_mapping)
     
-    async def patch(self,body: Optional[CertificateBasedApplicationConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CertificateBasedApplicationConfiguration]:
+    async def patch(self,body: Optional[CertificateBasedApplicationConfiguration] = None, request_configuration: Optional[CertificateBasedApplicationConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CertificateBasedApplicationConfiguration]:
         """
-        Update the properties of a certificateBasedApplicationConfiguration object. To update the trustedCertificateAuthorities within a certificateBasedApplicationConfiguration object, use the Update certificateAuthorityAsEntity operation.
+        Update the navigation property certificateBasedApplicationConfigurations in directory
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CertificateBasedApplicationConfiguration]
-        Find more info here: https://learn.microsoft.com/graph/api/certificatebasedapplicationconfiguration-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -92,9 +88,9 @@ class CertificateBasedApplicationConfigurationItemRequestBuilder(BaseRequestBuil
 
         return await self.request_adapter.send_async(request_info, CertificateBasedApplicationConfiguration, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[CertificateBasedApplicationConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete the properties and relationships of a certificateBasedApplicationConfiguration object.
+        Delete navigation property certificateBasedApplicationConfigurations for directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,9 +99,9 @@ class CertificateBasedApplicationConfigurationItemRequestBuilder(BaseRequestBuil
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CertificateBasedApplicationConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a certificateBasedApplicationConfiguration object.
+        Defines the trusted certificate authorities for certificates that can be added to apps and service principals in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,9 +110,9 @@ class CertificateBasedApplicationConfigurationItemRequestBuilder(BaseRequestBuil
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[CertificateBasedApplicationConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[CertificateBasedApplicationConfiguration] = None, request_configuration: Optional[CertificateBasedApplicationConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a certificateBasedApplicationConfiguration object. To update the trustedCertificateAuthorities within a certificateBasedApplicationConfiguration object, use the Update certificateAuthorityAsEntity operation.
+        Update the navigation property certificateBasedApplicationConfigurations in directory
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,10 +144,20 @@ class CertificateBasedApplicationConfigurationItemRequestBuilder(BaseRequestBuil
 
         return TrustedCertificateAuthoritiesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CertificateBasedApplicationConfigurationItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class CertificateBasedApplicationConfigurationItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a certificateBasedApplicationConfiguration object.
+        Defines the trusted certificate authorities for certificates that can be added to apps and service principals in the tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -173,5 +179,28 @@ class CertificateBasedApplicationConfigurationItemRequestBuilder(BaseRequestBuil
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CertificateBasedApplicationConfigurationItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CertificateBasedApplicationConfigurationItemRequestBuilder.CertificateBasedApplicationConfigurationItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CertificateBasedApplicationConfigurationItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

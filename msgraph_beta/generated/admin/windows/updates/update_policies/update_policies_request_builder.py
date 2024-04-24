@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class UpdatePoliciesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["updatePolicy%2Did"] = update_policy_id
         return UpdatePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UpdatePolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[UpdatePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[UpdatePolicyCollectionResponse]:
         """
-        Get a list of updatePolicy objects and their properties.
+        A collection of policies for approving the deployment of different content to an audience over time.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatePolicyCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-list-updatepolicies?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class UpdatePoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UpdatePolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UpdatePolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UpdatePolicy]:
+    async def post(self,body: Optional[UpdatePolicy] = None, request_configuration: Optional[UpdatePoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[UpdatePolicy]:
         """
-        Create a new updatePolicy object.
+        Create new navigation property to updatePolicies for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatePolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-post-updatepolicies?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class UpdatePoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UpdatePolicy, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[UpdatePoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of updatePolicy objects and their properties.
+        A collection of policies for approving the deployment of different content to an audience over time.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class UpdatePoliciesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UpdatePolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UpdatePolicy] = None, request_configuration: Optional[UpdatePoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new updatePolicy object.
+        Create new navigation property to updatePolicies for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class UpdatePoliciesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UpdatePoliciesRequestBuilderGetQueryParameters():
         """
-        Get a list of updatePolicy objects and their properties.
+        A collection of policies for approving the deployment of different content to an audience over time.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class UpdatePoliciesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UpdatePoliciesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[UpdatePoliciesRequestBuilder.UpdatePoliciesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UpdatePoliciesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

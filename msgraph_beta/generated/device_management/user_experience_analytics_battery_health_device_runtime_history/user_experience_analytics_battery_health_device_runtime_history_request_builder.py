@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder(Bas
         url_tpl_params["userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory%2Did"] = user_experience_analytics_battery_health_device_runtime_history_id
         return UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderGetRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryCollectionResponse]:
         """
         User Experience Analytics Battery Health Device Runtime History
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder(Bas
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory]:
+    async def post(self,body: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderPostRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory]:
         """
         Create new navigation property to userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory for deviceManagement
         param body: The request body
@@ -87,7 +86,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder(Bas
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         User Experience Analytics Battery Health Device Runtime History
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder(Bas
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory for deviceManagement
         param body: The request body
@@ -187,5 +186,28 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder(Bas
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class DetectedAppsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["detectedApp%2Did"] = detected_app_id
         return DetectedAppItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DetectedAppCollectionResponse]:
+    async def get(self,request_configuration: Optional[DetectedAppsRequestBuilderGetRequestConfiguration] = None) -> Optional[DetectedAppCollectionResponse]:
         """
         The list of detected apps associated with a device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class DetectedAppsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DetectedAppCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DetectedApp] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DetectedApp]:
+    async def post(self,body: Optional[DetectedApp] = None, request_configuration: Optional[DetectedAppsRequestBuilderPostRequestConfiguration] = None) -> Optional[DetectedApp]:
         """
         Create new navigation property to detectedApps for deviceManagement
         param body: The request body
@@ -87,7 +86,7 @@ class DetectedAppsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DetectedApp, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DetectedAppsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The list of detected apps associated with a device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class DetectedAppsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DetectedApp] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DetectedApp] = None, request_configuration: Optional[DetectedAppsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to detectedApps for deviceManagement
         param body: The request body
@@ -187,5 +186,28 @@ class DetectedAppsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DetectedAppsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DetectedAppsRequestBuilder.DetectedAppsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DetectedAppsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

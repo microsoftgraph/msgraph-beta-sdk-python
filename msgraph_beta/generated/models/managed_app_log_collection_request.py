@@ -18,11 +18,11 @@ class ManagedAppLogCollectionRequest(Entity):
     """
     # DateTime of when the log upload request was completed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Returned by default. Read-only.
     completed_date_time: Optional[datetime.datetime] = None
-    # The unique identifier of the app instance for which diagnostic was collected.
+    # The unique identifier of the app instance for which diagnostic logs were collected. Read-only.
     managed_app_registration_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The user principal name associated with the request for the managed application log collection.
+    # The user principal name associated with the request for the managed application log collection. Read-only.
     requested_by: Optional[str] = None
     # The user principal name associated with the request for the managed application log collection. Read-only.
     requested_by_user_principal_name: Optional[str] = None
@@ -30,7 +30,7 @@ class ManagedAppLogCollectionRequest(Entity):
     requested_date_time: Optional[datetime.datetime] = None
     # Indicates the status for the app log collection request - pending, completed or failed. Default is pending.
     status: Optional[str] = None
-    # The collection of log upload results as reported by each component on the device. Such components can be the application itself, the Mobile Application Management (MAM) SDK, and other on-device components that are requested to upload diagnostic logs.
+    # The collection of log upload results as reported by each component on the device. Such components can be the application itself, the Mobile Application Management (MAM) SDK, and other on-device components that are requested to upload diagnostic logs. Read-only.
     uploaded_logs: Optional[List[ManagedAppLogUpload]] = None
     # Represents the current consent status of the associated `managedAppLogCollectionRequest`.
     user_log_upload_consent: Optional[ManagedAppLogUploadConsent] = None

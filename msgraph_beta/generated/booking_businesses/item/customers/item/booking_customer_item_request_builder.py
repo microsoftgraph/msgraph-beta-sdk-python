@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,12 +26,11 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/bookingBusinesses/{bookingBusiness%2Did}/customers/{bookingCustomer%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[BookingCustomerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete the specified bookingCustomer object.
+        Delete navigation property customers for bookingBusinesses
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/bookingcustomer-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -46,12 +44,11 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[BookingCustomer]:
+    async def get(self,request_configuration: Optional[BookingCustomerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[BookingCustomer]:
         """
-        Get the properties and relationships of a bookingCustomer object.
+        All the customers of this business. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingCustomer]
-        Find more info here: https://learn.microsoft.com/graph/api/bookingcustomer-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,13 +64,12 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, BookingCustomer, error_mapping)
     
-    async def patch(self,body: Optional[BookingCustomer] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[BookingCustomer]:
+    async def patch(self,body: Optional[BookingCustomer] = None, request_configuration: Optional[BookingCustomerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[BookingCustomer]:
         """
-        Update the properties of a bookingCustomer object.
+        Update the navigation property customers in bookingBusinesses
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingCustomer]
-        Find more info here: https://learn.microsoft.com/graph/api/bookingcustomer-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,9 +87,9 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, BookingCustomer, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[BookingCustomerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete the specified bookingCustomer object.
+        Delete navigation property customers for bookingBusinesses
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,9 +98,9 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[BookingCustomerItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of a bookingCustomer object.
+        All the customers of this business. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,9 +109,9 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[BookingCustomer] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[BookingCustomer] = None, request_configuration: Optional[BookingCustomerItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a bookingCustomer object.
+        Update the navigation property customers in bookingBusinesses
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,10 +134,20 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return BookingCustomerItemRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class BookingCustomerItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class BookingCustomerItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of a bookingCustomer object.
+        All the customers of this business. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -163,5 +169,28 @@ class BookingCustomerItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class BookingCustomerItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[BookingCustomerItemRequestBuilder.BookingCustomerItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class BookingCustomerItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

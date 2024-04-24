@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class HardwareConfigurationUserStateItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/hardwareConfigurations/{hardwareConfiguration%2Did}/userRunStates/{hardwareConfigurationUserState%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[HardwareConfigurationUserStateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userRunStates for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,9 +44,9 @@ class HardwareConfigurationUserStateItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwareConfigurationUserState]:
+    async def get(self,request_configuration: Optional[HardwareConfigurationUserStateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[HardwareConfigurationUserState]:
         """
-        List of run states for the hardware configuration across all users
+        List of run states for the hardware configuration across all users. Read-Only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareConfigurationUserState]
         """
@@ -65,7 +64,7 @@ class HardwareConfigurationUserStateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HardwareConfigurationUserState, error_mapping)
     
-    async def patch(self,body: Optional[HardwareConfigurationUserState] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwareConfigurationUserState]:
+    async def patch(self,body: Optional[HardwareConfigurationUserState] = None, request_configuration: Optional[HardwareConfigurationUserStateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[HardwareConfigurationUserState]:
         """
         Update the navigation property userRunStates in deviceManagement
         param body: The request body
@@ -88,7 +87,7 @@ class HardwareConfigurationUserStateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HardwareConfigurationUserState, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[HardwareConfigurationUserStateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property userRunStates for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,9 +98,9 @@ class HardwareConfigurationUserStateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[HardwareConfigurationUserStateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List of run states for the hardware configuration across all users
+        List of run states for the hardware configuration across all users. Read-Only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +109,7 @@ class HardwareConfigurationUserStateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[HardwareConfigurationUserState] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[HardwareConfigurationUserState] = None, request_configuration: Optional[HardwareConfigurationUserStateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property userRunStates in deviceManagement
         param body: The request body
@@ -135,10 +134,20 @@ class HardwareConfigurationUserStateItemRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return HardwareConfigurationUserStateItemRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HardwareConfigurationUserStateItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class HardwareConfigurationUserStateItemRequestBuilderGetQueryParameters():
         """
-        List of run states for the hardware configuration across all users
+        List of run states for the hardware configuration across all users. Read-Only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -160,5 +169,28 @@ class HardwareConfigurationUserStateItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HardwareConfigurationUserStateItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[HardwareConfigurationUserStateItemRequestBuilder.HardwareConfigurationUserStateItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HardwareConfigurationUserStateItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

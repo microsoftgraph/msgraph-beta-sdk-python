@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,12 +26,11 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/profile/webAccounts/{webAccount%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[WebAccountItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a webAccount object from a user's profile.
+        Delete navigation property webAccounts for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/webaccount-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -46,12 +44,11 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WebAccount]:
+    async def get(self,request_configuration: Optional[WebAccountItemRequestBuilderGetRequestConfiguration] = None) -> Optional[WebAccount]:
         """
-        Retrieve the properties and relationships of a webAccount object from a user's profile.
+        Represents web accounts the user has indicated they use or has added to their user profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebAccount]
-        Find more info here: https://learn.microsoft.com/graph/api/webaccount-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,13 +64,12 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WebAccount, error_mapping)
     
-    async def patch(self,body: Optional[WebAccount] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WebAccount]:
+    async def patch(self,body: Optional[WebAccount] = None, request_configuration: Optional[WebAccountItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[WebAccount]:
         """
-        Update the properties of a webAccount object in a user's profile.
+        Update the navigation property webAccounts in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebAccount]
-        Find more info here: https://learn.microsoft.com/graph/api/webaccount-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,9 +87,9 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WebAccount, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[WebAccountItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a webAccount object from a user's profile.
+        Delete navigation property webAccounts for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,9 +98,9 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[WebAccountItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a webAccount object from a user's profile.
+        Represents web accounts the user has indicated they use or has added to their user profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,9 +109,9 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[WebAccount] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[WebAccount] = None, request_configuration: Optional[WebAccountItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a webAccount object in a user's profile.
+        Update the navigation property webAccounts in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,10 +134,20 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return WebAccountItemRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WebAccountItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class WebAccountItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a webAccount object from a user's profile.
+        Represents web accounts the user has indicated they use or has added to their user profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -163,5 +169,28 @@ class WebAccountItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WebAccountItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[WebAccountItemRequestBuilder.WebAccountItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WebAccountItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

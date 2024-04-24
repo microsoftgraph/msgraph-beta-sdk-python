@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["onPremisesAgentGroup%2Did"] = on_premises_agent_group_id
         return OnPremisesAgentGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnPremisesAgentGroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[AgentGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[OnPremisesAgentGroupCollectionResponse]:
         """
-        Retrieve a list of onPremisesAgentGroup objects.
+        List of existing onPremisesAgentGroup objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesAgentGroupCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/onpremisesagentgroup-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OnPremisesAgentGroupCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[OnPremisesAgentGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnPremisesAgentGroup]:
+    async def post(self,body: Optional[OnPremisesAgentGroup] = None, request_configuration: Optional[AgentGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[OnPremisesAgentGroup]:
         """
-        Create a new onPremisesAgentGroup object.
+        Create new navigation property to agentGroups for onPremisesPublishingProfiles
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesAgentGroup]
-        Find more info here: https://learn.microsoft.com/graph/api/onpremisesagentgroup-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OnPremisesAgentGroup, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AgentGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of onPremisesAgentGroup objects.
+        List of existing onPremisesAgentGroup objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[OnPremisesAgentGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[OnPremisesAgentGroup] = None, request_configuration: Optional[AgentGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new onPremisesAgentGroup object.
+        Create new navigation property to agentGroups for onPremisesPublishingProfiles
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AgentGroupsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of onPremisesAgentGroup objects.
+        List of existing onPremisesAgentGroup objects. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AgentGroupsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AgentGroupsRequestBuilder.AgentGroupsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AgentGroupsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

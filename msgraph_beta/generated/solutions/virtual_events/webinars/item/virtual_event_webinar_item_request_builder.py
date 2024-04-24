@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -34,7 +33,7 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[VirtualEventWebinarItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property webinars for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -52,12 +51,11 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[VirtualEventWebinar]:
+    async def get(self,request_configuration: Optional[VirtualEventWebinarItemRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventWebinar]:
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Get webinars from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventWebinar]
-        Find more info here: https://learn.microsoft.com/graph/api/virtualeventwebinar-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -73,7 +71,7 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, VirtualEventWebinar, error_mapping)
     
-    async def patch(self,body: Optional[VirtualEventWebinar] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[VirtualEventWebinar]:
+    async def patch(self,body: Optional[VirtualEventWebinar] = None, request_configuration: Optional[VirtualEventWebinarItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[VirtualEventWebinar]:
         """
         Update the navigation property webinars in solutions
         param body: The request body
@@ -132,7 +130,7 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
 
         return SessionsWithJoinWebUrlRequestBuilder(self.request_adapter, self.path_parameters, join_web_url)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[VirtualEventWebinarItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property webinars for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -143,9 +141,9 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[VirtualEventWebinarItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Get webinars from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -154,7 +152,7 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[VirtualEventWebinar] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[VirtualEventWebinar] = None, request_configuration: Optional[VirtualEventWebinarItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property webinars in solutions
         param body: The request body
@@ -215,10 +213,20 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
 
         return SessionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class VirtualEventWebinarItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class VirtualEventWebinarItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a virtualEventWebinar object.
+        Get webinars from solutions
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -240,5 +248,28 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class VirtualEventWebinarItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[VirtualEventWebinarItemRequestBuilder.VirtualEventWebinarItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class VirtualEventWebinarItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

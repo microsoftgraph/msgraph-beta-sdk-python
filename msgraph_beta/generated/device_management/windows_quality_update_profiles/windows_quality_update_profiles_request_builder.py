@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class WindowsQualityUpdateProfilesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["windowsQualityUpdateProfile%2Did"] = windows_quality_update_profile_id
         return WindowsQualityUpdateProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsQualityUpdateProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsQualityUpdateProfileCollectionResponse]:
         """
         A collection of windows quality update profiles
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class WindowsQualityUpdateProfilesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsQualityUpdateProfileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[WindowsQualityUpdateProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsQualityUpdateProfile]:
+    async def post(self,body: Optional[WindowsQualityUpdateProfile] = None, request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[WindowsQualityUpdateProfile]:
         """
         Create new navigation property to windowsQualityUpdateProfiles for deviceManagement
         param body: The request body
@@ -87,7 +86,7 @@ class WindowsQualityUpdateProfilesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsQualityUpdateProfile, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A collection of windows quality update profiles
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class WindowsQualityUpdateProfilesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[WindowsQualityUpdateProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WindowsQualityUpdateProfile] = None, request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to windowsQualityUpdateProfiles for deviceManagement
         param body: The request body
@@ -187,5 +186,28 @@ class WindowsQualityUpdateProfilesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[WindowsQualityUpdateProfilesRequestBuilder.WindowsQualityUpdateProfilesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WindowsQualityUpdateProfilesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +30,7 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/directory/recommendations/{recommendation%2Did}/impactedResources/{impactedResource%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ImpactedResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property impactedResources for directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,7 +48,7 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ImpactedResource]:
+    async def get(self,request_configuration: Optional[ImpactedResourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ImpactedResource]:
         """
         The list of directory objects associated with the recommendation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +68,7 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ImpactedResource, error_mapping)
     
-    async def patch(self,body: Optional[ImpactedResource] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ImpactedResource]:
+    async def patch(self,body: Optional[ImpactedResource] = None, request_configuration: Optional[ImpactedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ImpactedResource]:
         """
         Update the navigation property impactedResources in directory
         param body: The request body
@@ -92,7 +91,7 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ImpactedResource, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[ImpactedResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property impactedResources for directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +102,7 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ImpactedResourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The list of directory objects associated with the recommendation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -114,7 +113,7 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ImpactedResource] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ImpactedResource] = None, request_configuration: Optional[ImpactedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property impactedResources in directory
         param body: The request body
@@ -175,6 +174,16 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
 
         return ReactivateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ImpactedResourceItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class ImpactedResourceItemRequestBuilderGetQueryParameters():
         """
@@ -200,5 +209,28 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ImpactedResourceItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ImpactedResourceItemRequestBuilder.ImpactedResourceItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ImpactedResourceItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

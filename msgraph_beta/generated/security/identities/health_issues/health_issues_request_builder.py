@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class HealthIssuesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["healthIssue%2Did"] = health_issue_id
         return HealthIssueItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[HealthIssueCollectionResponse]:
+    async def get(self,request_configuration: Optional[HealthIssuesRequestBuilderGetRequestConfiguration] = None) -> Optional[HealthIssueCollectionResponse]:
         """
-        Get a list of health issue objects and their properties.
+        Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HealthIssueCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/security-identitycontainer-list-healthissues?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class HealthIssuesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HealthIssueCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[HealthIssue] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[HealthIssue]:
+    async def post(self,body: Optional[HealthIssue] = None, request_configuration: Optional[HealthIssuesRequestBuilderPostRequestConfiguration] = None) -> Optional[HealthIssue]:
         """
         Create new navigation property to healthIssues for security
         param body: The request body
@@ -88,9 +86,9 @@ class HealthIssuesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HealthIssue, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[HealthIssuesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of health issue objects and their properties.
+        Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class HealthIssuesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[HealthIssue] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[HealthIssue] = None, request_configuration: Optional[HealthIssuesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to healthIssues for security
         param body: The request body
@@ -136,7 +134,7 @@ class HealthIssuesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HealthIssuesRequestBuilderGetQueryParameters():
         """
-        Get a list of health issue objects and their properties.
+        Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class HealthIssuesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HealthIssuesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[HealthIssuesRequestBuilder.HealthIssuesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HealthIssuesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,12 +26,12 @@ class ConfirmRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/teams/{team%2Did}/schedule/timeCards/{timeCard%2Did}/confirm", path_parameters)
     
-    async def post(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TimeCard]:
+    async def post(self,request_configuration: Optional[ConfirmRequestBuilderPostRequestConfiguration] = None) -> Optional[TimeCard]:
         """
         Confirm a specific timeCard.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TimeCard]
-        Find more info here: https://learn.microsoft.com/graph/api/timecard-confirm?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/timecard-confirm?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -47,7 +47,7 @@ class ConfirmRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TimeCard, error_mapping)
     
-    def to_post_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,request_configuration: Optional[ConfirmRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Confirm a specific timeCard.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,5 +67,15 @@ class ConfirmRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ConfirmRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ConfirmRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

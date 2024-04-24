@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,7 +44,7 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["customerPayment%2Did"] = customer_payment_id
         return CustomerPaymentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomerPaymentCollectionResponse]:
+    async def get(self,request_configuration: Optional[CustomerPaymentsRequestBuilderGetRequestConfiguration] = None) -> Optional[CustomerPaymentCollectionResponse]:
         """
         Get customerPayments from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomerPaymentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CustomerPayment] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomerPayment]:
+    async def post(self,body: Optional[CustomerPayment] = None, request_configuration: Optional[CustomerPaymentsRequestBuilderPostRequestConfiguration] = None) -> Optional[CustomerPayment]:
         """
         Create new navigation property to customerPayments for financials
         param body: The request body
@@ -88,7 +87,7 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomerPayment, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CustomerPaymentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get customerPayments from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +98,7 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CustomerPayment] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CustomerPayment] = None, request_configuration: Optional[CustomerPaymentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to customerPayments for financials
         param body: The request body
@@ -188,5 +187,28 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CustomerPaymentsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CustomerPaymentsRequestBuilder.CustomerPaymentsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CustomerPaymentsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

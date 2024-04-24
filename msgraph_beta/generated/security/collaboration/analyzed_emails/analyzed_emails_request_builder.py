@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,9 +44,9 @@ class AnalyzedEmailsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["analyzedEmail%2Did"] = analyzed_email_id
         return AnalyzedEmailItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AnalyzedEmailCollectionResponse]:
+    async def get(self,request_configuration: Optional[AnalyzedEmailsRequestBuilderGetRequestConfiguration] = None) -> Optional[AnalyzedEmailCollectionResponse]:
         """
-        Read the properties and relationships of an analyzedEmail object.
+        Contains metadata for analyzed emails.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AnalyzedEmailCollectionResponse]
         """
@@ -65,7 +64,7 @@ class AnalyzedEmailsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AnalyzedEmailCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AnalyzedEmail] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AnalyzedEmail]:
+    async def post(self,body: Optional[AnalyzedEmail] = None, request_configuration: Optional[AnalyzedEmailsRequestBuilderPostRequestConfiguration] = None) -> Optional[AnalyzedEmail]:
         """
         Create new navigation property to analyzedEmails for security
         param body: The request body
@@ -88,9 +87,9 @@ class AnalyzedEmailsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AnalyzedEmail, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AnalyzedEmailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an analyzedEmail object.
+        Contains metadata for analyzed emails.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +98,7 @@ class AnalyzedEmailsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AnalyzedEmail] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AnalyzedEmail] = None, request_configuration: Optional[AnalyzedEmailsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to analyzedEmails for security
         param body: The request body
@@ -145,7 +144,7 @@ class AnalyzedEmailsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AnalyzedEmailsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an analyzedEmail object.
+        Contains metadata for analyzed emails.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -197,5 +196,28 @@ class AnalyzedEmailsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AnalyzedEmailsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AnalyzedEmailsRequestBuilder.AnalyzedEmailsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AnalyzedEmailsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

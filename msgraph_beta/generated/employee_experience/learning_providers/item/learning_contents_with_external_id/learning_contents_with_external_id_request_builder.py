@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -30,12 +29,11 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
             path_parameters['externalId'] = str(external_id)
         super().__init__(request_adapter, "{+baseurl}/employeeExperience/learningProviders/{learningProvider%2Did}/learningContents(externalId='{externalId}'){?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[LearningContentsWithExternalIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete the specified learningContent resource that represents the metadata of the specified provider's ingested content.
+        Delete navigation property learningContents for employeeExperience
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/learningprovider-delete-learningcontents?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -49,12 +47,11 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[LearningContent]:
+    async def get(self,request_configuration: Optional[LearningContentsWithExternalIdRequestBuilderGetRequestConfiguration] = None) -> Optional[LearningContent]:
         """
-        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content.
+        Learning catalog items for the provider.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LearningContent]
-        Find more info here: https://learn.microsoft.com/graph/api/learningcontent-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,13 +67,12 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, LearningContent, error_mapping)
     
-    async def patch(self,body: Optional[LearningContent] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[LearningContent]:
+    async def patch(self,body: Optional[LearningContent] = None, request_configuration: Optional[LearningContentsWithExternalIdRequestBuilderPatchRequestConfiguration] = None) -> Optional[LearningContent]:
         """
-        Update the specified learningContent resource. Used by a learning provider to ingest or update the metadata for their content in Viva Learning. If the specified learning content doesn't yet exist for the specified provider, this operation creates the metadata for the new content. Otherwise, this operation replaces the metadata of the existing content.
+        Update the navigation property learningContents in employeeExperience
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LearningContent]
-        Find more info here: https://learn.microsoft.com/graph/api/learningcontent-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -94,9 +90,9 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, LearningContent, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[LearningContentsWithExternalIdRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete the specified learningContent resource that represents the metadata of the specified provider's ingested content.
+        Delete navigation property learningContents for employeeExperience
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,9 +101,9 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[LearningContentsWithExternalIdRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content.
+        Learning catalog items for the provider.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,9 +112,9 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[LearningContent] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[LearningContent] = None, request_configuration: Optional[LearningContentsWithExternalIdRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the specified learningContent resource. Used by a learning provider to ingest or update the metadata for their content in Viva Learning. If the specified learning content doesn't yet exist for the specified provider, this operation creates the metadata for the new content. Otherwise, this operation replaces the metadata of the existing content.
+        Update the navigation property learningContents in employeeExperience
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,10 +137,20 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return LearningContentsWithExternalIdRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class LearningContentsWithExternalIdRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class LearningContentsWithExternalIdRequestBuilderGetQueryParameters():
         """
-        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content.
+        Learning catalog items for the provider.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -166,5 +172,28 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class LearningContentsWithExternalIdRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[LearningContentsWithExternalIdRequestBuilder.LearningContentsWithExternalIdRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class LearningContentsWithExternalIdRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

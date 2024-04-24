@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,9 +43,9 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["teamTemplateDefinition%2Did"] = team_template_definition_id
         return TeamTemplateDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TeamTemplateDefinitionCollectionResponse]:
+    async def get(self,request_configuration: Optional[DefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[TeamTemplateDefinitionCollectionResponse]:
         """
-        Read the properties and relationships of a teamTemplateDefinition object.
+        A generic representation of a team template definition for a team with a specific structure and configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamTemplateDefinitionCollectionResponse]
         """
@@ -64,7 +63,7 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TeamTemplateDefinitionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[TeamTemplateDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TeamTemplateDefinition]:
+    async def post(self,body: Optional[TeamTemplateDefinition] = None, request_configuration: Optional[DefinitionsRequestBuilderPostRequestConfiguration] = None) -> Optional[TeamTemplateDefinition]:
         """
         Create new navigation property to definitions for teamwork
         param body: The request body
@@ -87,9 +86,9 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TeamTemplateDefinition, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a teamTemplateDefinition object.
+        A generic representation of a team template definition for a team with a specific structure and configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,7 +97,7 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[TeamTemplateDefinition] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[TeamTemplateDefinition] = None, request_configuration: Optional[DefinitionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to definitions for teamwork
         param body: The request body
@@ -135,7 +134,7 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DefinitionsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a teamTemplateDefinition object.
+        A generic representation of a team template definition for a team with a specific structure and configuration.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -187,5 +186,28 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DefinitionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DefinitionsRequestBuilder.DefinitionsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DefinitionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

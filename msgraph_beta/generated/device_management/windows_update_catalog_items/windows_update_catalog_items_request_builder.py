@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class WindowsUpdateCatalogItemsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["windowsUpdateCatalogItem%2Did"] = windows_update_catalog_item_id
         return WindowsUpdateCatalogItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsUpdateCatalogItemCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsUpdateCatalogItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[WindowsUpdateCatalogItemCollectionResponse]:
         """
         A collection of windows update catalog items (fetaure updates item , quality updates item)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class WindowsUpdateCatalogItemsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsUpdateCatalogItemCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[WindowsUpdateCatalogItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WindowsUpdateCatalogItem]:
+    async def post(self,body: Optional[WindowsUpdateCatalogItem] = None, request_configuration: Optional[WindowsUpdateCatalogItemsRequestBuilderPostRequestConfiguration] = None) -> Optional[WindowsUpdateCatalogItem]:
         """
         Create new navigation property to windowsUpdateCatalogItems for deviceManagement
         param body: The request body
@@ -87,7 +86,7 @@ class WindowsUpdateCatalogItemsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsUpdateCatalogItem, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[WindowsUpdateCatalogItemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A collection of windows update catalog items (fetaure updates item , quality updates item)
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class WindowsUpdateCatalogItemsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[WindowsUpdateCatalogItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WindowsUpdateCatalogItem] = None, request_configuration: Optional[WindowsUpdateCatalogItemsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to windowsUpdateCatalogItems for deviceManagement
         param body: The request body
@@ -187,5 +186,28 @@ class WindowsUpdateCatalogItemsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WindowsUpdateCatalogItemsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[WindowsUpdateCatalogItemsRequestBuilder.WindowsUpdateCatalogItemsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class WindowsUpdateCatalogItemsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

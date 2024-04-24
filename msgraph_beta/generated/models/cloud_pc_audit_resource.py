@@ -22,9 +22,9 @@ class CloudPcAuditResource(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The ID of the audit resource.
     resource_id: Optional[str] = None
-    # The resourceType property
-    resource_type: Optional[str] = None
     # The type of the audit resource.
+    resource_type: Optional[str] = None
+    # The type property
     type: Optional[str] = None
     
     @staticmethod

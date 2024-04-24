@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class HardwarePasswordInfoItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/hardwarePasswordInfo/{hardwarePasswordInfo%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[HardwarePasswordInfoItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property hardwarePasswordInfo for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +44,7 @@ class HardwarePasswordInfoItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwarePasswordInfo]:
+    async def get(self,request_configuration: Optional[HardwarePasswordInfoItemRequestBuilderGetRequestConfiguration] = None) -> Optional[HardwarePasswordInfo]:
         """
         The hardware password info for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class HardwarePasswordInfoItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HardwarePasswordInfo, error_mapping)
     
-    async def patch(self,body: Optional[HardwarePasswordInfo] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwarePasswordInfo]:
+    async def patch(self,body: Optional[HardwarePasswordInfo] = None, request_configuration: Optional[HardwarePasswordInfoItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[HardwarePasswordInfo]:
         """
         Update the navigation property hardwarePasswordInfo in deviceManagement
         param body: The request body
@@ -88,7 +87,7 @@ class HardwarePasswordInfoItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HardwarePasswordInfo, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[HardwarePasswordInfoItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property hardwarePasswordInfo for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +98,7 @@ class HardwarePasswordInfoItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[HardwarePasswordInfoItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The hardware password info for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +109,7 @@ class HardwarePasswordInfoItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[HardwarePasswordInfo] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[HardwarePasswordInfo] = None, request_configuration: Optional[HardwarePasswordInfoItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property hardwarePasswordInfo in deviceManagement
         param body: The request body
@@ -134,6 +133,16 @@ class HardwarePasswordInfoItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return HardwarePasswordInfoItemRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HardwarePasswordInfoItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class HardwarePasswordInfoItemRequestBuilderGetQueryParameters():
@@ -160,5 +169,28 @@ class HardwarePasswordInfoItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HardwarePasswordInfoItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[HardwarePasswordInfoItemRequestBuilder.HardwarePasswordInfoItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HardwarePasswordInfoItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

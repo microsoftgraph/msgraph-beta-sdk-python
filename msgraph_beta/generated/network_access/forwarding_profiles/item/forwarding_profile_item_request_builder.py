@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +28,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/networkAccess/forwardingProfiles/{forwardingProfile%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ForwardingProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property forwardingProfiles for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,12 +46,11 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ForwardingProfile]:
+    async def get(self,request_configuration: Optional[ForwardingProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ForwardingProfile]:
         """
-        Retrieve information about a specific forwarding profile.
+        A forwarding profile determines which types of traffic are routed through the Global Secure Access services and which ones are skipped. The handling of specific traffic is determined by the forwarding policies that are added to the forwarding profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-forwardingprofile-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,13 +66,12 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ForwardingProfile, error_mapping)
     
-    async def patch(self,body: Optional[ForwardingProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ForwardingProfile]:
+    async def patch(self,body: Optional[ForwardingProfile] = None, request_configuration: Optional[ForwardingProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ForwardingProfile]:
         """
-        Update an existing forwarding profile.
+        Update the navigation property forwardingProfiles in networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-forwardingprofile-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -92,7 +89,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ForwardingProfile, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[ForwardingProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property forwardingProfiles for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,9 +100,9 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ForwardingProfileItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve information about a specific forwarding profile.
+        A forwarding profile determines which types of traffic are routed through the Global Secure Access services and which ones are skipped. The handling of specific traffic is determined by the forwarding policies that are added to the forwarding profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,9 +111,9 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ForwardingProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ForwardingProfile] = None, request_configuration: Optional[ForwardingProfileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update an existing forwarding profile.
+        Update the navigation property forwardingProfiles in networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -157,10 +154,20 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
 
         return ServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ForwardingProfileItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class ForwardingProfileItemRequestBuilderGetQueryParameters():
         """
-        Retrieve information about a specific forwarding profile.
+        A forwarding profile determines which types of traffic are routed through the Global Secure Access services and which ones are skipped. The handling of specific traffic is determined by the forwarding policies that are added to the forwarding profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -182,5 +189,28 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ForwardingProfileItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ForwardingProfileItemRequestBuilder.ForwardingProfileItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ForwardingProfileItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,7 +45,7 @@ class PrinterSharesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["printerShare%2Did"] = printer_share_id
         return PrinterShareItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrinterShareCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrinterSharesRequestBuilderGetRequestConfiguration] = None) -> Optional[PrinterShareCollectionResponse]:
         """
         Get printerShares from print
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class PrinterSharesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrinterShareCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[PrinterShare] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrinterShare]:
+    async def post(self,body: Optional[PrinterShare] = None, request_configuration: Optional[PrinterSharesRequestBuilderPostRequestConfiguration] = None) -> Optional[PrinterShare]:
         """
         Create new navigation property to printerShares for print
         param body: The request body
@@ -91,7 +90,7 @@ class PrinterSharesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrinterShare, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PrinterSharesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get printerShares from print
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +102,7 @@ class PrinterSharesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[PrinterShare] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PrinterShare] = None, request_configuration: Optional[PrinterSharesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to printerShares for print
         param body: The request body
@@ -194,5 +193,28 @@ class PrinterSharesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PrinterSharesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PrinterSharesRequestBuilder.PrinterSharesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PrinterSharesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

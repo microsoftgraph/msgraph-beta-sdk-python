@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class ProvisioningFlowsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["provisioningFlow%2Did"] = provisioning_flow_id
         return ProvisioningFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProvisioningFlowCollectionResponse]:
+    async def get(self,request_configuration: Optional[ProvisioningFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[ProvisioningFlowCollectionResponse]:
         """
-        Get a list of the provisioningFlow objects and their properties.
+        A flow that provisions relevant records of a given entity type in the Microsoft 365 tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProvisioningFlowCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-outboundprovisioningflowset-list-provisioningflows?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class ProvisioningFlowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProvisioningFlowCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ProvisioningFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProvisioningFlow]:
+    async def post(self,body: Optional[ProvisioningFlow] = None, request_configuration: Optional[ProvisioningFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[ProvisioningFlow]:
         """
-        Create a new provisioningFlow object.
+        Create new navigation property to provisioningFlows for external
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProvisioningFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-outboundprovisioningflowset-post-provisioningflows?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class ProvisioningFlowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProvisioningFlow, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ProvisioningFlowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the provisioningFlow objects and their properties.
+        A flow that provisions relevant records of a given entity type in the Microsoft 365 tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class ProvisioningFlowsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ProvisioningFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ProvisioningFlow] = None, request_configuration: Optional[ProvisioningFlowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new provisioningFlow object.
+        Create new navigation property to provisioningFlows for external
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class ProvisioningFlowsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProvisioningFlowsRequestBuilderGetQueryParameters():
         """
-        Get a list of the provisioningFlow objects and their properties.
+        A flow that provisions relevant records of a given entity type in the Microsoft 365 tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class ProvisioningFlowsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProvisioningFlowsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ProvisioningFlowsRequestBuilder.ProvisioningFlowsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProvisioningFlowsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

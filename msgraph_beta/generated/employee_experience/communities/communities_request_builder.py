@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,9 +43,9 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["community%2Did"] = community_id
         return CommunityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CommunityCollectionResponse]:
+    async def get(self,request_configuration: Optional[CommunitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[CommunityCollectionResponse]:
         """
-        Read the properties and relationships of a community object.
+        A collection of communities in Viva Engage.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CommunityCollectionResponse]
         """
@@ -64,13 +63,12 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CommunityCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[Community] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Community]:
+    async def post(self,body: Optional[Community] = None, request_configuration: Optional[CommunitiesRequestBuilderPostRequestConfiguration] = None) -> Optional[Community]:
         """
-        Create a new community in Viva Engage.
+        Create new navigation property to communities for employeeExperience
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Community]
-        Find more info here: https://learn.microsoft.com/graph/api/employeeexperience-post-communities?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -88,9 +86,9 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Community, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CommunitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a community object.
+        A collection of communities in Viva Engage.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,9 +97,9 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Community] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Community] = None, request_configuration: Optional[CommunitiesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new community in Viva Engage.
+        Create new navigation property to communities for employeeExperience
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -136,7 +134,7 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CommunitiesRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a community object.
+        A collection of communities in Viva Engage.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CommunitiesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CommunitiesRequestBuilder.CommunitiesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CommunitiesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

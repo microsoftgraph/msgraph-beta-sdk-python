@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,13 +27,13 @@ class MicrosoftGraphPartnersBillingExportRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/reports/partners/billing/usage/billed/microsoft.graph.partners.billing.export", path_parameters)
     
-    async def post(self,body: Optional[ExportPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Operation]:
+    async def post(self,body: Optional[ExportPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphPartnersBillingExportRequestBuilderPostRequestConfiguration] = None) -> Optional[Operation]:
         """
         Export the billed Azure usage data.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Operation]
-        Find more info here: https://learn.microsoft.com/graph/api/partners-billing-billedusage-export?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/partners-billing-billedusage-export?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -51,7 +51,7 @@ class MicrosoftGraphPartnersBillingExportRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Operation, error_mapping)
     
-    def to_post_request_information(self,body: Optional[ExportPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ExportPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphPartnersBillingExportRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Export the billed Azure usage data.
         param body: The request body
@@ -75,5 +75,15 @@ class MicrosoftGraphPartnersBillingExportRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return MicrosoftGraphPartnersBillingExportRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MicrosoftGraphPartnersBillingExportRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -30,7 +29,7 @@ class RegistrationsWithUserIdRequestBuilder(BaseRequestBuilder):
             path_parameters['userId'] = str(user_id)
         super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}/registrations(userId='{userId}'){?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RegistrationsWithUserIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property registrations for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,12 +47,11 @@ class RegistrationsWithUserIdRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[VirtualEventRegistration]:
+    async def get(self,request_configuration: Optional[RegistrationsWithUserIdRequestBuilderGetRequestConfiguration] = None) -> Optional[VirtualEventRegistration]:
         """
-        Get the properties and relationships of a virtualEventRegistration object.
+        Registration records of the webinar.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventRegistration]
-        Find more info here: https://learn.microsoft.com/graph/api/virtualeventregistration-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,7 +67,7 @@ class RegistrationsWithUserIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, VirtualEventRegistration, error_mapping)
     
-    async def patch(self,body: Optional[VirtualEventRegistration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[VirtualEventRegistration]:
+    async def patch(self,body: Optional[VirtualEventRegistration] = None, request_configuration: Optional[RegistrationsWithUserIdRequestBuilderPatchRequestConfiguration] = None) -> Optional[VirtualEventRegistration]:
         """
         Update the navigation property registrations in solutions
         param body: The request body
@@ -92,7 +90,7 @@ class RegistrationsWithUserIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, VirtualEventRegistration, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RegistrationsWithUserIdRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property registrations for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,9 +101,9 @@ class RegistrationsWithUserIdRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RegistrationsWithUserIdRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of a virtualEventRegistration object.
+        Registration records of the webinar.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +112,7 @@ class RegistrationsWithUserIdRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[VirtualEventRegistration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[VirtualEventRegistration] = None, request_configuration: Optional[RegistrationsWithUserIdRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property registrations in solutions
         param body: The request body
@@ -139,10 +137,20 @@ class RegistrationsWithUserIdRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return RegistrationsWithUserIdRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RegistrationsWithUserIdRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class RegistrationsWithUserIdRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of a virtualEventRegistration object.
+        Registration records of the webinar.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -164,5 +172,28 @@ class RegistrationsWithUserIdRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RegistrationsWithUserIdRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[RegistrationsWithUserIdRequestBuilder.RegistrationsWithUserIdRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RegistrationsWithUserIdRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class ManagedAppLogCollectionRequestsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["managedAppLogCollectionRequest%2Did"] = managed_app_log_collection_request_id
         return ManagedAppLogCollectionRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedAppLogCollectionRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagedAppLogCollectionRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagedAppLogCollectionRequestCollectionResponse]:
         """
         Zero or more log collection requests triggered for the user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class ManagedAppLogCollectionRequestsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagedAppLogCollectionRequestCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ManagedAppLogCollectionRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedAppLogCollectionRequest]:
+    async def post(self,body: Optional[ManagedAppLogCollectionRequest] = None, request_configuration: Optional[ManagedAppLogCollectionRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[ManagedAppLogCollectionRequest]:
         """
         Create new navigation property to managedAppLogCollectionRequests for users
         param body: The request body
@@ -87,7 +86,7 @@ class ManagedAppLogCollectionRequestsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagedAppLogCollectionRequest, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ManagedAppLogCollectionRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Zero or more log collection requests triggered for the user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class ManagedAppLogCollectionRequestsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ManagedAppLogCollectionRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ManagedAppLogCollectionRequest] = None, request_configuration: Optional[ManagedAppLogCollectionRequestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to managedAppLogCollectionRequests for users
         param body: The request body
@@ -187,5 +186,28 @@ class ManagedAppLogCollectionRequestsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagedAppLogCollectionRequestsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ManagedAppLogCollectionRequestsRequestBuilder.ManagedAppLogCollectionRequestsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagedAppLogCollectionRequestsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

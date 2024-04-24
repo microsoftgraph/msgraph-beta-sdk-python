@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class ItemsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["recycleBinItem%2Did"] = recycle_bin_item_id
         return RecycleBinItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[RecycleBinItemCollectionResponse]:
+    async def get(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[RecycleBinItemCollectionResponse]:
         """
-        Get a collection of recycleBinItem resources in the recycleBin of the specified SharePoint site.
+        List of the recycleBinItems deleted by a user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RecycleBinItemCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/recyclebin-list-items?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class ItemsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RecycleBinItemCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[RecycleBinItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[RecycleBinItem]:
+    async def post(self,body: Optional[RecycleBinItem] = None, request_configuration: Optional[ItemsRequestBuilderPostRequestConfiguration] = None) -> Optional[RecycleBinItem]:
         """
         Create new navigation property to items for sites
         param body: The request body
@@ -88,9 +86,9 @@ class ItemsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RecycleBinItem, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a collection of recycleBinItem resources in the recycleBin of the specified SharePoint site.
+        List of the recycleBinItems deleted by a user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class ItemsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[RecycleBinItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[RecycleBinItem] = None, request_configuration: Optional[ItemsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to items for sites
         param body: The request body
@@ -136,7 +134,7 @@ class ItemsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ItemsRequestBuilderGetQueryParameters():
         """
-        Get a collection of recycleBinItem resources in the recycleBin of the specified SharePoint site.
+        List of the recycleBinItems deleted by a user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class ItemsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ItemsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ItemsRequestBuilder.ItemsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ItemsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

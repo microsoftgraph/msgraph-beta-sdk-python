@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,12 +26,11 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/education/classes/{educationClass%2Did}/assignmentSettings/gradingSchemes/{educationGradingScheme%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[EducationGradingSchemeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete an educationGradingScheme object.
+        Delete navigation property gradingSchemes for education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/educationgradingscheme-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -46,12 +44,11 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EducationGradingScheme]:
+    async def get(self,request_configuration: Optional[EducationGradingSchemeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[EducationGradingScheme]:
         """
-        Read the properties and relationships of an educationGradingScheme object.
+        Get gradingSchemes from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationGradingScheme]
-        Find more info here: https://learn.microsoft.com/graph/api/educationgradingscheme-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,7 +64,7 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EducationGradingScheme, error_mapping)
     
-    async def patch(self,body: Optional[EducationGradingScheme] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EducationGradingScheme]:
+    async def patch(self,body: Optional[EducationGradingScheme] = None, request_configuration: Optional[EducationGradingSchemeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[EducationGradingScheme]:
         """
         Update the navigation property gradingSchemes in education
         param body: The request body
@@ -90,9 +87,9 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EducationGradingScheme, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[EducationGradingSchemeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an educationGradingScheme object.
+        Delete navigation property gradingSchemes for education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -101,9 +98,9 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[EducationGradingSchemeItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an educationGradingScheme object.
+        Get gradingSchemes from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +109,7 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[EducationGradingScheme] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[EducationGradingScheme] = None, request_configuration: Optional[EducationGradingSchemeItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property gradingSchemes in education
         param body: The request body
@@ -137,10 +134,20 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return EducationGradingSchemeItemRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class EducationGradingSchemeItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class EducationGradingSchemeItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an educationGradingScheme object.
+        Get gradingSchemes from education
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -162,5 +169,28 @@ class EducationGradingSchemeItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class EducationGradingSchemeItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[EducationGradingSchemeItemRequestBuilder.EducationGradingSchemeItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class EducationGradingSchemeItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

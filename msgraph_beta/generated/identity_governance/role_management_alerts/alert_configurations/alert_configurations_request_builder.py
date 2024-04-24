@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class AlertConfigurationsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["unifiedRoleManagementAlertConfiguration%2Did"] = unified_role_management_alert_configuration_id
         return UnifiedRoleManagementAlertConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[AlertConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertConfigurationCollectionResponse]:
         """
-        Get a list of the alert configurations. The alert configurations are a collection of following types that are derived from the unifiedRoleManagementAlertConfiguration object:
+        The various configurations of an alert for Microsoft Entra roles. The configurations are predefined and can't be created or deleted, but some of the configurations can be modified.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedRoleManagementAlertConfigurationCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/rolemanagementalert-list-alertconfigurations?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class AlertConfigurationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UnifiedRoleManagementAlertConfigurationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UnifiedRoleManagementAlertConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertConfiguration]:
+    async def post(self,body: Optional[UnifiedRoleManagementAlertConfiguration] = None, request_configuration: Optional[AlertConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertConfiguration]:
         """
         Create new navigation property to alertConfigurations for identityGovernance
         param body: The request body
@@ -88,9 +86,9 @@ class AlertConfigurationsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UnifiedRoleManagementAlertConfiguration, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AlertConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the alert configurations. The alert configurations are a collection of following types that are derived from the unifiedRoleManagementAlertConfiguration object:
+        The various configurations of an alert for Microsoft Entra roles. The configurations are predefined and can't be created or deleted, but some of the configurations can be modified.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class AlertConfigurationsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UnifiedRoleManagementAlertConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UnifiedRoleManagementAlertConfiguration] = None, request_configuration: Optional[AlertConfigurationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to alertConfigurations for identityGovernance
         param body: The request body
@@ -136,7 +134,7 @@ class AlertConfigurationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AlertConfigurationsRequestBuilderGetQueryParameters():
         """
-        Get a list of the alert configurations. The alert configurations are a collection of following types that are derived from the unifiedRoleManagementAlertConfiguration object:
+        The various configurations of an alert for Microsoft Entra roles. The configurations are predefined and can't be created or deleted, but some of the configurations can be modified.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class AlertConfigurationsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AlertConfigurationsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AlertConfigurationsRequestBuilder.AlertConfigurationsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AlertConfigurationsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

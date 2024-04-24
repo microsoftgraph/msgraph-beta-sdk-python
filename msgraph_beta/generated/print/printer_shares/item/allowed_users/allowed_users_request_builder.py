@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,12 +44,11 @@ class AllowedUsersRequestBuilder(BaseRequestBuilder):
         url_tpl_params["user%2Did"] = user_id
         return UserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserCollectionResponse]:
+    async def get(self,request_configuration: Optional[AllowedUsersRequestBuilderGetRequestConfiguration] = None) -> Optional[UserCollectionResponse]:
         """
-        Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
+        The users who have access to print using the printer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         """
         warn("The printerShares navigation property is deprecated and will stop returning data on July 31, 2023. Please use the shares navigation property instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -67,9 +65,9 @@ class AllowedUsersRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserCollectionResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AllowedUsersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
+        The users who have access to print using the printer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +109,7 @@ class AllowedUsersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AllowedUsersRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
+        The users who have access to print using the printer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -162,6 +160,19 @@ class AllowedUsersRequestBuilder(BaseRequestBuilder):
 
         # Show only the first n items
         top: Optional[int] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AllowedUsersRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AllowedUsersRequestBuilder.AllowedUsersRequestBuilderGetQueryParameters] = None
 
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class CertificateBasedApplicationConfigurationsRequestBuilder(BaseRequestBuilder
         url_tpl_params["certificateBasedApplicationConfiguration%2Did"] = certificate_based_application_configuration_id
         return CertificateBasedApplicationConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CertificateBasedApplicationConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[CertificateBasedApplicationConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[CertificateBasedApplicationConfigurationCollectionResponse]:
         """
-        Get a list of certificateBasedApplicationConfiguration objects.
+        Defines the trusted certificate authorities for certificates that can be added to apps and service principals in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CertificateBasedApplicationConfigurationCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/certificateauthoritypath-list-certificatebasedapplicationconfigurations?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class CertificateBasedApplicationConfigurationsRequestBuilder(BaseRequestBuilder
 
         return await self.request_adapter.send_async(request_info, CertificateBasedApplicationConfigurationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CertificateBasedApplicationConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CertificateBasedApplicationConfiguration]:
+    async def post(self,body: Optional[CertificateBasedApplicationConfiguration] = None, request_configuration: Optional[CertificateBasedApplicationConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[CertificateBasedApplicationConfiguration]:
         """
         Create new navigation property to certificateBasedApplicationConfigurations for directory
         param body: The request body
@@ -88,9 +86,9 @@ class CertificateBasedApplicationConfigurationsRequestBuilder(BaseRequestBuilder
 
         return await self.request_adapter.send_async(request_info, CertificateBasedApplicationConfiguration, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CertificateBasedApplicationConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of certificateBasedApplicationConfiguration objects.
+        Defines the trusted certificate authorities for certificates that can be added to apps and service principals in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class CertificateBasedApplicationConfigurationsRequestBuilder(BaseRequestBuilder
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CertificateBasedApplicationConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CertificateBasedApplicationConfiguration] = None, request_configuration: Optional[CertificateBasedApplicationConfigurationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to certificateBasedApplicationConfigurations for directory
         param body: The request body
@@ -136,7 +134,7 @@ class CertificateBasedApplicationConfigurationsRequestBuilder(BaseRequestBuilder
     @dataclass
     class CertificateBasedApplicationConfigurationsRequestBuilderGetQueryParameters():
         """
-        Get a list of certificateBasedApplicationConfiguration objects.
+        Defines the trusted certificate authorities for certificates that can be added to apps and service principals in the tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class CertificateBasedApplicationConfigurationsRequestBuilder(BaseRequestBuilder
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CertificateBasedApplicationConfigurationsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CertificateBasedApplicationConfigurationsRequestBuilder.CertificateBasedApplicationConfigurationsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CertificateBasedApplicationConfigurationsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

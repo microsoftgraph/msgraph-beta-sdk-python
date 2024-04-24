@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,9 +43,9 @@ class DeviceRunStatesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["hardwareConfigurationDeviceState%2Did"] = hardware_configuration_device_state_id
         return HardwareConfigurationDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwareConfigurationDeviceStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceRunStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[HardwareConfigurationDeviceStateCollectionResponse]:
         """
-        List of run states for the hardware configuration across all devices
+        List of run states for the hardware configuration across all devices. Read-Only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareConfigurationDeviceStateCollectionResponse]
         """
@@ -64,7 +63,7 @@ class DeviceRunStatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HardwareConfigurationDeviceStateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[HardwareConfigurationDeviceState] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwareConfigurationDeviceState]:
+    async def post(self,body: Optional[HardwareConfigurationDeviceState] = None, request_configuration: Optional[DeviceRunStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[HardwareConfigurationDeviceState]:
         """
         Create new navigation property to deviceRunStates for deviceManagement
         param body: The request body
@@ -87,9 +86,9 @@ class DeviceRunStatesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HardwareConfigurationDeviceState, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DeviceRunStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List of run states for the hardware configuration across all devices
+        List of run states for the hardware configuration across all devices. Read-Only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,7 +97,7 @@ class DeviceRunStatesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[HardwareConfigurationDeviceState] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[HardwareConfigurationDeviceState] = None, request_configuration: Optional[DeviceRunStatesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to deviceRunStates for deviceManagement
         param body: The request body
@@ -135,7 +134,7 @@ class DeviceRunStatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceRunStatesRequestBuilderGetQueryParameters():
         """
-        List of run states for the hardware configuration across all devices
+        List of run states for the hardware configuration across all devices. Read-Only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -187,5 +186,28 @@ class DeviceRunStatesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceRunStatesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DeviceRunStatesRequestBuilder.DeviceRunStatesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceRunStatesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

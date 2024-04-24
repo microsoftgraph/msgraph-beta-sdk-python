@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,12 +28,11 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/multiTenantOrganization{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganization]:
+    async def get(self,request_configuration: Optional[MultiTenantOrganizationRequestBuilderGetRequestConfiguration] = None) -> Optional[MultiTenantOrganization]:
         """
-        Get properties of the multitenant organization.
+        Defines an organization with more than one instance of Microsoft Entra ID.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganization]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganization-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -50,17 +48,16 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganization, error_mapping)
     
-    async def patch(self,body: Optional[MultiTenantOrganization] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganization]:
+    async def put(self,body: Optional[MultiTenantOrganization] = None, request_configuration: Optional[MultiTenantOrganizationRequestBuilderPutRequestConfiguration] = None) -> Optional[MultiTenantOrganization]:
         """
-        Create a new multi-tenant organization. By default, the creator tenant becomes an owner tenant upon successful creation. Only owner tenants can manage a multi-tenant organization. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization.
+        Update the navigation property multiTenantOrganization in tenantRelationships
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganization]
-        Find more info here: https://learn.microsoft.com/graph/api/tenantrelationship-put-multitenantorganization?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = self.to_patch_request_information(
+        request_info = self.to_put_request_information(
             body, request_configuration
         )
         from ...models.o_data_errors.o_data_error import ODataError
@@ -74,9 +71,9 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganization, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[MultiTenantOrganizationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get properties of the multitenant organization.
+        Defines an organization with more than one instance of Microsoft Entra ID.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -85,16 +82,16 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[MultiTenantOrganization] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_put_request_information(self,body: Optional[MultiTenantOrganization] = None, request_configuration: Optional[MultiTenantOrganizationRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new multi-tenant organization. By default, the creator tenant becomes an owner tenant upon successful creation. Only owner tenants can manage a multi-tenant organization. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization.
+        Update the navigation property multiTenantOrganization in tenantRelationships
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
         if not body:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.PUT, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -131,7 +128,7 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MultiTenantOrganizationRequestBuilderGetQueryParameters():
         """
-        Get properties of the multitenant organization.
+        Defines an organization with more than one instance of Microsoft Entra ID.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -153,5 +150,28 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MultiTenantOrganizationRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[MultiTenantOrganizationRequestBuilder.MultiTenantOrganizationRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MultiTenantOrganizationRequestBuilderPutRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,9 +45,9 @@ class LegalHoldsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["legalHold%2Did"] = legal_hold_id
         return LegalHoldItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[LegalHoldCollectionResponse]:
+    async def get(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> Optional[LegalHoldCollectionResponse]:
         """
-        Read the properties and relationships of a legalHold object.
+        Returns a list of case legalHold objects for this case.  Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LegalHoldCollectionResponse]
         """
@@ -67,7 +66,7 @@ class LegalHoldsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, LegalHoldCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[LegalHold] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[LegalHold]:
+    async def post(self,body: Optional[LegalHold] = None, request_configuration: Optional[LegalHoldsRequestBuilderPostRequestConfiguration] = None) -> Optional[LegalHold]:
         """
         Create new navigation property to legalHolds for compliance
         param body: The request body
@@ -91,9 +90,9 @@ class LegalHoldsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, LegalHold, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a legalHold object.
+        Returns a list of case legalHold objects for this case.  Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +102,7 @@ class LegalHoldsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[LegalHold] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[LegalHold] = None, request_configuration: Optional[LegalHoldsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to legalHolds for compliance
         param body: The request body
@@ -142,7 +141,7 @@ class LegalHoldsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LegalHoldsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a legalHold object.
+        Returns a list of case legalHold objects for this case.  Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -194,5 +193,28 @@ class LegalHoldsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class LegalHoldsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[LegalHoldsRequestBuilder.LegalHoldsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class LegalHoldsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

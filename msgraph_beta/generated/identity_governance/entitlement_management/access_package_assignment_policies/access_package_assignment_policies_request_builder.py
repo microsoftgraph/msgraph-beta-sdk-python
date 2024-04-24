@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,12 +45,11 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["accessPackageAssignmentPolicy%2Did"] = access_package_assignment_policy_id
         return AccessPackageAssignmentPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageAssignmentPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageAssignmentPolicyCollectionResponse]:
         """
-        In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=accessPackageAssignmentPolicies in the query.
+        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignmentPolicyCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackageassignmentpolicies?view=graph-rest-1.0
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -68,13 +66,12 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageAssignmentPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AccessPackageAssignmentPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageAssignmentPolicy]:
+    async def post(self,body: Optional[AccessPackageAssignmentPolicy] = None, request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[AccessPackageAssignmentPolicy]:
         """
-        In Microsoft Entra entitlement management, create a new accessPackageAssignmentPolicy object.
+        Create new navigation property to accessPackageAssignmentPolicies for identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignmentPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-post-accesspackageassignmentpolicies?view=graph-rest-1.0
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
@@ -93,9 +90,9 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageAssignmentPolicy, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=accessPackageAssignmentPolicies in the query.
+        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,9 +102,9 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AccessPackageAssignmentPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AccessPackageAssignmentPolicy] = None, request_configuration: Optional[AccessPackageAssignmentPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        In Microsoft Entra entitlement management, create a new accessPackageAssignmentPolicy object.
+        Create new navigation property to accessPackageAssignmentPolicies for identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +141,7 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageAssignmentPoliciesRequestBuilderGetQueryParameters():
         """
-        In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages.  If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=accessPackageAssignmentPolicies in the query.
+        Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -196,5 +193,28 @@ class AccessPackageAssignmentPoliciesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageAssignmentPoliciesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AccessPackageAssignmentPoliciesRequestBuilder.AccessPackageAssignmentPoliciesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageAssignmentPoliciesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -48,12 +47,11 @@ class ExclusionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["updatableAsset%2Did"] = updatable_asset_id
         return UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UpdatableAssetCollectionResponse]:
+    async def get(self,request_configuration: Optional[ExclusionsRequestBuilderGetRequestConfiguration] = None) -> Optional[UpdatableAssetCollectionResponse]:
         """
-        List the updatableAsset resources that are excluded from a deploymentAudience.
+        Specifies the assets to exclude from the audience.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatableAssetCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-deploymentaudience-list-exclusions?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,7 +67,7 @@ class ExclusionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UpdatableAssetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UpdatableAsset] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UpdatableAsset]:
+    async def post(self,body: Optional[UpdatableAsset] = None, request_configuration: Optional[ExclusionsRequestBuilderPostRequestConfiguration] = None) -> Optional[UpdatableAsset]:
         """
         Create new navigation property to exclusions for admin
         param body: The request body
@@ -92,9 +90,9 @@ class ExclusionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UpdatableAsset, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ExclusionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the updatableAsset resources that are excluded from a deploymentAudience.
+        Specifies the assets to exclude from the audience.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +101,7 @@ class ExclusionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UpdatableAsset] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UpdatableAsset] = None, request_configuration: Optional[ExclusionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to exclusions for admin
         param body: The request body
@@ -176,7 +174,7 @@ class ExclusionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExclusionsRequestBuilderGetQueryParameters():
         """
-        List the updatableAsset resources that are excluded from a deploymentAudience.
+        Specifies the assets to exclude from the audience.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -228,5 +226,28 @@ class ExclusionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ExclusionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ExclusionsRequestBuilder.ExclusionsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ExclusionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

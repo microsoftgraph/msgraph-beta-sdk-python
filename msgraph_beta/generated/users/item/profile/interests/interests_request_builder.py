@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class InterestsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["personInterest%2Did"] = person_interest_id
         return PersonInterestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonInterestCollectionResponse]:
+    async def get(self,request_configuration: Optional[InterestsRequestBuilderGetRequestConfiguration] = None) -> Optional[PersonInterestCollectionResponse]:
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Provides detailed information about interests the user has associated with themselves in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonInterestCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-interests?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class InterestsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PersonInterestCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[PersonInterest] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonInterest]:
+    async def post(self,body: Optional[PersonInterest] = None, request_configuration: Optional[InterestsRequestBuilderPostRequestConfiguration] = None) -> Optional[PersonInterest]:
         """
-        Create a new personInterest.
+        Create new navigation property to interests for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonInterest]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-interests?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class InterestsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PersonInterest, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[InterestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Provides detailed information about interests the user has associated with themselves in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class InterestsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[PersonInterest] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PersonInterest] = None, request_configuration: Optional[InterestsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new personInterest.
+        Create new navigation property to interests for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class InterestsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InterestsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of personInterest objects from a user's profile.
+        Provides detailed information about interests the user has associated with themselves in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class InterestsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class InterestsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[InterestsRequestBuilder.InterestsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class InterestsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

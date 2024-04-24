@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class ExchangeOnPremisesPoliciesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["deviceManagementExchangeOnPremisesPolicy%2Did"] = device_management_exchange_on_premises_policy_id
         return DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementExchangeOnPremisesPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[ExchangeOnPremisesPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementExchangeOnPremisesPolicyCollectionResponse]:
         """
         The list of Exchange On Premisis policies configured by the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class ExchangeOnPremisesPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementExchangeOnPremisesPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[DeviceManagementExchangeOnPremisesPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementExchangeOnPremisesPolicy]:
+    async def post(self,body: Optional[DeviceManagementExchangeOnPremisesPolicy] = None, request_configuration: Optional[ExchangeOnPremisesPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[DeviceManagementExchangeOnPremisesPolicy]:
         """
         Create new navigation property to exchangeOnPremisesPolicies for deviceManagement
         param body: The request body
@@ -87,7 +86,7 @@ class ExchangeOnPremisesPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceManagementExchangeOnPremisesPolicy, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ExchangeOnPremisesPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The list of Exchange On Premisis policies configured by the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class ExchangeOnPremisesPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DeviceManagementExchangeOnPremisesPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeviceManagementExchangeOnPremisesPolicy] = None, request_configuration: Optional[ExchangeOnPremisesPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to exchangeOnPremisesPolicies for deviceManagement
         param body: The request body
@@ -187,5 +186,28 @@ class ExchangeOnPremisesPoliciesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ExchangeOnPremisesPoliciesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ExchangeOnPremisesPoliciesRequestBuilder.ExchangeOnPremisesPoliciesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ExchangeOnPremisesPoliciesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

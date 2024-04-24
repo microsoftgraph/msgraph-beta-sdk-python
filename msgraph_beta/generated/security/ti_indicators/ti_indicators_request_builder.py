@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -48,12 +47,11 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["tiIndicator%2Did"] = ti_indicator_id
         return TiIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TiIndicatorCollectionResponse]:
+    async def get(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[TiIndicatorCollectionResponse]:
         """
-        Retrieve a list of tiIndicator objects.
+        Get tiIndicators from security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TiIndicatorCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/tiindicators-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,13 +67,12 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TiIndicatorCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[TiIndicator] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TiIndicator]:
+    async def post(self,body: Optional[TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[TiIndicator]:
         """
-        Create a new tiIndicator object.
+        Create new navigation property to tiIndicators for security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TiIndicator]
-        Find more info here: https://learn.microsoft.com/graph/api/tiindicators-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,9 +90,9 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TiIndicator, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of tiIndicator objects.
+        Get tiIndicators from security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,9 +101,9 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[TiIndicator] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new tiIndicator object.
+        Create new navigation property to tiIndicators for security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -177,7 +174,7 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TiIndicatorsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of tiIndicator objects.
+        Get tiIndicators from security
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -229,5 +226,28 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TiIndicatorsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[TiIndicatorsRequestBuilder.TiIndicatorsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TiIndicatorsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

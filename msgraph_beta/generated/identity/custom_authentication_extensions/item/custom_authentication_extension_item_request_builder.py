@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,12 +27,11 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identity/customAuthenticationExtensions/{customAuthenticationExtension%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a customAuthenticationExtension object.
+        Delete navigation property customAuthenticationExtensions for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/customauthenticationextension-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -47,12 +45,11 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomAuthenticationExtension]:
+    async def get(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[CustomAuthenticationExtension]:
         """
-        Read the properties and relationships of an authenticationEventListener object. The @odata.type property in the response object indicates the type of the authenticationEventListener object.
+        Get customAuthenticationExtensions from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAuthenticationExtension]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationeventlistener-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,7 +65,7 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomAuthenticationExtension, error_mapping)
     
-    async def patch(self,body: Optional[CustomAuthenticationExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomAuthenticationExtension]:
+    async def patch(self,body: Optional[CustomAuthenticationExtension] = None, request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[CustomAuthenticationExtension]:
         """
         Update the navigation property customAuthenticationExtensions in identity
         param body: The request body
@@ -91,9 +88,9 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomAuthenticationExtension, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a customAuthenticationExtension object.
+        Delete navigation property customAuthenticationExtensions for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,9 +99,9 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an authenticationEventListener object. The @odata.type property in the response object indicates the type of the authenticationEventListener object.
+        Get customAuthenticationExtensions from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,7 +110,7 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[CustomAuthenticationExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[CustomAuthenticationExtension] = None, request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property customAuthenticationExtensions in identity
         param body: The request body
@@ -147,10 +144,20 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
 
         return ValidateAuthenticationConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CustomAuthenticationExtensionItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class CustomAuthenticationExtensionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an authenticationEventListener object. The @odata.type property in the response object indicates the type of the authenticationEventListener object.
+        Get customAuthenticationExtensions from identity
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -172,5 +179,28 @@ class CustomAuthenticationExtensionItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CustomAuthenticationExtensionItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CustomAuthenticationExtensionItemRequestBuilder.CustomAuthenticationExtensionItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CustomAuthenticationExtensionItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

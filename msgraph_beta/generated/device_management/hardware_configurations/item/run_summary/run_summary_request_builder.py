@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class RunSummaryRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/hardwareConfigurations/{hardwareConfiguration%2Did}/runSummary{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RunSummaryRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property runSummary for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,9 +44,9 @@ class RunSummaryRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwareConfigurationRunSummary]:
+    async def get(self,request_configuration: Optional[RunSummaryRequestBuilderGetRequestConfiguration] = None) -> Optional[HardwareConfigurationRunSummary]:
         """
-        A summary of the results from an attempt to configure hardware settings
+        A summary of the results from an attempt to configure hardware settings. Read-Only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareConfigurationRunSummary]
         """
@@ -65,7 +64,7 @@ class RunSummaryRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HardwareConfigurationRunSummary, error_mapping)
     
-    async def patch(self,body: Optional[HardwareConfigurationRunSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwareConfigurationRunSummary]:
+    async def patch(self,body: Optional[HardwareConfigurationRunSummary] = None, request_configuration: Optional[RunSummaryRequestBuilderPatchRequestConfiguration] = None) -> Optional[HardwareConfigurationRunSummary]:
         """
         Update the navigation property runSummary in deviceManagement
         param body: The request body
@@ -88,7 +87,7 @@ class RunSummaryRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HardwareConfigurationRunSummary, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RunSummaryRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property runSummary for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,9 +98,9 @@ class RunSummaryRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RunSummaryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A summary of the results from an attempt to configure hardware settings
+        A summary of the results from an attempt to configure hardware settings. Read-Only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +109,7 @@ class RunSummaryRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[HardwareConfigurationRunSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[HardwareConfigurationRunSummary] = None, request_configuration: Optional[RunSummaryRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property runSummary in deviceManagement
         param body: The request body
@@ -135,10 +134,20 @@ class RunSummaryRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return RunSummaryRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RunSummaryRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class RunSummaryRequestBuilderGetQueryParameters():
         """
-        A summary of the results from an attempt to configure hardware settings
+        A summary of the results from an attempt to configure hardware settings. Read-Only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -160,5 +169,28 @@ class RunSummaryRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RunSummaryRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[RunSummaryRequestBuilder.RunSummaryRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RunSummaryRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,13 +27,13 @@ class EvaluateDynamicMembershipRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/groups/{group%2Did}/evaluateDynamicMembership", path_parameters)
     
-    async def post(self,body: Optional[EvaluateDynamicMembershipPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EvaluateDynamicMembershipResult]:
+    async def post(self,body: Optional[EvaluateDynamicMembershipPostRequestBody] = None, request_configuration: Optional[EvaluateDynamicMembershipRequestBuilderPostRequestConfiguration] = None) -> Optional[EvaluateDynamicMembershipResult]:
         """
         Evaluate whether a user or device is or would be a member of a dynamic group. The membership rule is returned along with other details that were used in the evaluation. You can complete this operation in the following ways:
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EvaluateDynamicMembershipResult]
-        Find more info here: https://learn.microsoft.com/graph/api/group-evaluatedynamicmembership?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/group-evaluatedynamicmembership?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -51,7 +51,7 @@ class EvaluateDynamicMembershipRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EvaluateDynamicMembershipResult, error_mapping)
     
-    def to_post_request_information(self,body: Optional[EvaluateDynamicMembershipPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EvaluateDynamicMembershipPostRequestBody] = None, request_configuration: Optional[EvaluateDynamicMembershipRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Evaluate whether a user or device is or would be a member of a dynamic group. The membership rule is returned along with other details that were used in the evaluation. You can complete this operation in the following ways:
         param body: The request body
@@ -75,5 +75,15 @@ class EvaluateDynamicMembershipRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return EvaluateDynamicMembershipRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class EvaluateDynamicMembershipRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +28,7 @@ class PurchaseInvoiceLineItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/financials/companies/{company%2Did}/purchaseInvoices/{purchaseInvoice%2Did}/purchaseInvoiceLines/{purchaseInvoiceLine%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PurchaseInvoiceLine]:
+    async def get(self,request_configuration: Optional[PurchaseInvoiceLineItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PurchaseInvoiceLine]:
         """
         Get purchaseInvoiceLines from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,7 +48,7 @@ class PurchaseInvoiceLineItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PurchaseInvoiceLine, error_mapping)
     
-    async def patch(self,body: Optional[PurchaseInvoiceLine] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PurchaseInvoiceLine]:
+    async def patch(self,body: Optional[PurchaseInvoiceLine] = None, request_configuration: Optional[PurchaseInvoiceLineItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PurchaseInvoiceLine]:
         """
         Update the navigation property purchaseInvoiceLines in financials
         param body: The request body
@@ -72,7 +71,7 @@ class PurchaseInvoiceLineItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PurchaseInvoiceLine, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PurchaseInvoiceLineItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get purchaseInvoiceLines from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -83,7 +82,7 @@ class PurchaseInvoiceLineItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PurchaseInvoiceLine] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PurchaseInvoiceLine] = None, request_configuration: Optional[PurchaseInvoiceLineItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property purchaseInvoiceLines in financials
         param body: The request body
@@ -151,5 +150,28 @@ class PurchaseInvoiceLineItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PurchaseInvoiceLineItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PurchaseInvoiceLineItemRequestBuilder.PurchaseInvoiceLineItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PurchaseInvoiceLineItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

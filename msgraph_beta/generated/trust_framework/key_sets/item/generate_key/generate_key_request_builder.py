@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,13 +27,13 @@ class GenerateKeyRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/trustFramework/keySets/{trustFrameworkKeySet%2Did}/generateKey", path_parameters)
     
-    async def post(self,body: Optional[GenerateKeyPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TrustFrameworkKey]:
+    async def post(self,body: Optional[GenerateKeyPostRequestBody] = None, request_configuration: Optional[GenerateKeyRequestBuilderPostRequestConfiguration] = None) -> Optional[TrustFrameworkKey]:
         """
         Generate a trustFrameworkKey and a secret automatically in the trustFrameworkKeyset. The caller doesn't have to provide a secret.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKey]
-        Find more info here: https://learn.microsoft.com/graph/api/trustframeworkkeyset-generatekey?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/trustframeworkkeyset-generatekey?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -51,7 +51,7 @@ class GenerateKeyRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TrustFrameworkKey, error_mapping)
     
-    def to_post_request_information(self,body: Optional[GenerateKeyPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[GenerateKeyPostRequestBody] = None, request_configuration: Optional[GenerateKeyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Generate a trustFrameworkKey and a secret automatically in the trustFrameworkKeyset. The caller doesn't have to provide a secret.
         param body: The request body
@@ -75,5 +75,15 @@ class GenerateKeyRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return GenerateKeyRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GenerateKeyRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

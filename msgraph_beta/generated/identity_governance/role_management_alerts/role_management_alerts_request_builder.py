@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +30,7 @@ class RoleManagementAlertsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/roleManagementAlerts{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RoleManagementAlertsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleManagementAlerts for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,7 +48,7 @@ class RoleManagementAlertsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[RoleManagementAlert]:
+    async def get(self,request_configuration: Optional[RoleManagementAlertsRequestBuilderGetRequestConfiguration] = None) -> Optional[RoleManagementAlert]:
         """
         Get roleManagementAlerts from identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +68,7 @@ class RoleManagementAlertsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RoleManagementAlert, error_mapping)
     
-    async def patch(self,body: Optional[RoleManagementAlert] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[RoleManagementAlert]:
+    async def patch(self,body: Optional[RoleManagementAlert] = None, request_configuration: Optional[RoleManagementAlertsRequestBuilderPatchRequestConfiguration] = None) -> Optional[RoleManagementAlert]:
         """
         Update the navigation property roleManagementAlerts in identityGovernance
         param body: The request body
@@ -92,7 +91,7 @@ class RoleManagementAlertsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RoleManagementAlert, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RoleManagementAlertsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property roleManagementAlerts for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +102,7 @@ class RoleManagementAlertsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RoleManagementAlertsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get roleManagementAlerts from identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -114,7 +113,7 @@ class RoleManagementAlertsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[RoleManagementAlert] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[RoleManagementAlert] = None, request_configuration: Optional[RoleManagementAlertsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property roleManagementAlerts in identityGovernance
         param body: The request body
@@ -175,6 +174,16 @@ class RoleManagementAlertsRequestBuilder(BaseRequestBuilder):
 
         return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RoleManagementAlertsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class RoleManagementAlertsRequestBuilderGetQueryParameters():
         """
@@ -200,5 +209,28 @@ class RoleManagementAlertsRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RoleManagementAlertsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[RoleManagementAlertsRequestBuilder.RoleManagementAlertsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RoleManagementAlertsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

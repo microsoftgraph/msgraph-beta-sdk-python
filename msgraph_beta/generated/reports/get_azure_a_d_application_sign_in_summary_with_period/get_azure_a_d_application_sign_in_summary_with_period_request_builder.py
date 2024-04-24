@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -30,11 +29,12 @@ class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder(BaseRequestBuil
             path_parameters['period'] = str(period)
         super().__init__(request_adapter, "{+baseurl}/reports/getAzureADApplicationSignInSummary(period='{period}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetAzureADApplicationSignInSummaryWithPeriodGetResponse]:
+    async def get(self,request_configuration: Optional[GetAzureADApplicationSignInSummaryWithPeriodRequestBuilderGetRequestConfiguration] = None) -> Optional[GetAzureADApplicationSignInSummaryWithPeriodGetResponse]:
         """
-        Invoke function getAzureADApplicationSignInSummary
+        Retrieve applicationSigninSummary objects within either the last seven or 30 days.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAzureADApplicationSignInSummaryWithPeriodGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getazureadapplicationsigninsummary?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -50,9 +50,9 @@ class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder(BaseRequestBuil
 
         return await self.request_adapter.send_async(request_info, GetAzureADApplicationSignInSummaryWithPeriodGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[GetAzureADApplicationSignInSummaryWithPeriodRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getAzureADApplicationSignInSummary
+        Retrieve applicationSigninSummary objects within either the last seven or 30 days.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder(BaseRequestBuil
     @dataclass
     class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilderGetQueryParameters():
         """
-        Invoke function getAzureADApplicationSignInSummary
+        Retrieve applicationSigninSummary objects within either the last seven or 30 days.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -125,6 +125,19 @@ class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder(BaseRequestBuil
 
         # Show only the first n items
         top: Optional[int] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder.GetAzureADApplicationSignInSummaryWithPeriodRequestBuilderGetQueryParameters] = None
 
     
 

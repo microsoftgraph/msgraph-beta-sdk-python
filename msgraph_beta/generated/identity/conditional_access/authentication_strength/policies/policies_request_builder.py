@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -59,7 +58,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
 
         return FindByMethodModeWithAuthenticationMethodModesRequestBuilder(self.request_adapter, self.path_parameters, authentication_method_modes)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationStrengthPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[PoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[AuthenticationStrengthPolicyCollectionResponse]:
         """
         A collection of authentication strength policies that exist for this tenant, including both built-in and custom policies.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -79,7 +78,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthenticationStrengthPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AuthenticationStrengthPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationStrengthPolicy]:
+    async def post(self,body: Optional[AuthenticationStrengthPolicy] = None, request_configuration: Optional[PoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[AuthenticationStrengthPolicy]:
         """
         Create new navigation property to policies for identity
         param body: The request body
@@ -102,7 +101,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthenticationStrengthPolicy, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A collection of authentication strength policies that exist for this tenant, including both built-in and custom policies.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -113,7 +112,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AuthenticationStrengthPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[AuthenticationStrengthPolicy] = None, request_configuration: Optional[PoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to policies for identity
         param body: The request body
@@ -202,5 +201,28 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PoliciesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PoliciesRequestBuilder.PoliciesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PoliciesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

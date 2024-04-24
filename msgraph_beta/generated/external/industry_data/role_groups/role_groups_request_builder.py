@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class RoleGroupsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["roleGroup%2Did"] = role_group_id
         return RoleGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[RoleGroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[RoleGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[RoleGroupCollectionResponse]:
         """
-        Get a list of the roleGroup objects and their properties.
+        Set of groups of individual roles that makes role-based admin simpler.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RoleGroupCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-rolegroup-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class RoleGroupsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RoleGroupCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[RoleGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[RoleGroup]:
+    async def post(self,body: Optional[RoleGroup] = None, request_configuration: Optional[RoleGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[RoleGroup]:
         """
         Create new navigation property to roleGroups for external
         param body: The request body
@@ -88,9 +86,9 @@ class RoleGroupsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RoleGroup, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RoleGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the roleGroup objects and their properties.
+        Set of groups of individual roles that makes role-based admin simpler.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class RoleGroupsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[RoleGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[RoleGroup] = None, request_configuration: Optional[RoleGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to roleGroups for external
         param body: The request body
@@ -136,7 +134,7 @@ class RoleGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RoleGroupsRequestBuilderGetQueryParameters():
         """
-        Get a list of the roleGroup objects and their properties.
+        Set of groups of individual roles that makes role-based admin simpler.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class RoleGroupsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RoleGroupsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[RoleGroupsRequestBuilder.RoleGroupsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RoleGroupsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

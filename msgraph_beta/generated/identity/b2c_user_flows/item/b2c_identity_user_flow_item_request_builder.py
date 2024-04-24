@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,12 +30,11 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identity/b2cUserFlows/{b2cIdentityUserFlow%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a b2cIdentityUserFlow object.
+        Delete navigation property b2cUserFlows for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/b2cidentityuserflow-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,12 +48,11 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
+    async def get(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
         """
-        Retrieve the properties and relationships of a b2cUserFlow object.
+        Represents entry point for B2C identity userflows.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cIdentityUserFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/b2cidentityuserflow-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,13 +68,12 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, B2cIdentityUserFlow, error_mapping)
     
-    async def patch(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
+    async def patch(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
         """
-        Update the properties of a b2cIdentityUserFlow object.
+        Update the navigation property b2cUserFlows in identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cIdentityUserFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/b2cidentityuserflow-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -95,9 +91,9 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, B2cIdentityUserFlow, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a b2cIdentityUserFlow object.
+        Delete navigation property b2cUserFlows for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,9 +102,9 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a b2cUserFlow object.
+        Represents entry point for B2C identity userflows.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,9 +113,9 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[B2cIdentityUserFlowItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a b2cIdentityUserFlow object.
+        Update the navigation property b2cUserFlows in identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -178,10 +174,20 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
 
         return UserFlowIdentityProvidersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class B2cIdentityUserFlowItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class B2cIdentityUserFlowItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a b2cUserFlow object.
+        Represents entry point for B2C identity userflows.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -203,5 +209,28 @@ class B2cIdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class B2cIdentityUserFlowItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[B2cIdentityUserFlowItemRequestBuilder.B2cIdentityUserFlowItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class B2cIdentityUserFlowItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

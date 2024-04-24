@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -57,7 +56,7 @@ class ScheduledPermissionsApprovalsRequestBuilder(BaseRequestBuilder):
 
         return FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ApprovalCollectionResponse]:
+    async def get(self,request_configuration: Optional[ScheduledPermissionsApprovalsRequestBuilderGetRequestConfiguration] = None) -> Optional[ApprovalCollectionResponse]:
         """
         Get scheduledPermissionsApprovals from identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -77,7 +76,7 @@ class ScheduledPermissionsApprovalsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ApprovalCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[Approval] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Approval]:
+    async def post(self,body: Optional[Approval] = None, request_configuration: Optional[ScheduledPermissionsApprovalsRequestBuilderPostRequestConfiguration] = None) -> Optional[Approval]:
         """
         Create new navigation property to scheduledPermissionsApprovals for identityGovernance
         param body: The request body
@@ -100,7 +99,7 @@ class ScheduledPermissionsApprovalsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Approval, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ScheduledPermissionsApprovalsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get scheduledPermissionsApprovals from identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +110,7 @@ class ScheduledPermissionsApprovalsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Approval] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Approval] = None, request_configuration: Optional[ScheduledPermissionsApprovalsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to scheduledPermissionsApprovals for identityGovernance
         param body: The request body
@@ -200,5 +199,28 @@ class ScheduledPermissionsApprovalsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ScheduledPermissionsApprovalsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ScheduledPermissionsApprovalsRequestBuilder.ScheduledPermissionsApprovalsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ScheduledPermissionsApprovalsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

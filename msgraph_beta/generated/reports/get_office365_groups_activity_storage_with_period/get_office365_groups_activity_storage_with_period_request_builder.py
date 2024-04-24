@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -30,7 +29,7 @@ class GetOffice365GroupsActivityStorageWithPeriodRequestBuilder(BaseRequestBuild
             path_parameters['period'] = str(period)
         super().__init__(request_adapter, "{+baseurl}/reports/getOffice365GroupsActivityStorage(period='{period}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetOffice365GroupsActivityStorageWithPeriodGetResponse]:
+    async def get(self,request_configuration: Optional[GetOffice365GroupsActivityStorageWithPeriodRequestBuilderGetRequestConfiguration] = None) -> Optional[GetOffice365GroupsActivityStorageWithPeriodGetResponse]:
         """
         Invoke function getOffice365GroupsActivityStorage
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -50,7 +49,7 @@ class GetOffice365GroupsActivityStorageWithPeriodRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, GetOffice365GroupsActivityStorageWithPeriodGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[GetOffice365GroupsActivityStorageWithPeriodRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Invoke function getOffice365GroupsActivityStorage
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -125,6 +124,19 @@ class GetOffice365GroupsActivityStorageWithPeriodRequestBuilder(BaseRequestBuild
 
         # Show only the first n items
         top: Optional[int] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GetOffice365GroupsActivityStorageWithPeriodRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[GetOffice365GroupsActivityStorageWithPeriodRequestBuilder.GetOffice365GroupsActivityStorageWithPeriodRequestBuilderGetQueryParameters] = None
 
     
 

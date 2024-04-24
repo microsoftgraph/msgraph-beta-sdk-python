@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,9 +45,9 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["reviewSet%2Did"] = review_set_id
         return ReviewSetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ReviewSetCollectionResponse]:
+    async def get(self,request_configuration: Optional[ReviewSetsRequestBuilderGetRequestConfiguration] = None) -> Optional[ReviewSetCollectionResponse]:
         """
-        Retrieve the properties and relationships of a reviewSet object.
+        Returns a list of reviewSet objects in the case. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReviewSetCollectionResponse]
         """
@@ -67,13 +66,12 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ReviewSetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ReviewSet] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ReviewSet]:
+    async def post(self,body: Optional[ReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> Optional[ReviewSet]:
         """
-        Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property.
+        Create new navigation property to reviewSets for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReviewSet]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-post-reviewsets?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -92,9 +90,9 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ReviewSet, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ReviewSetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a reviewSet object.
+        Returns a list of reviewSet objects in the case. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,9 +102,9 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ReviewSet] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ReviewSet] = None, request_configuration: Optional[ReviewSetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property.
+        Create new navigation property to reviewSets for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -143,7 +141,7 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ReviewSetsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a reviewSet object.
+        Returns a list of reviewSet objects in the case. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -195,5 +193,28 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ReviewSetsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ReviewSetsRequestBuilder.ReviewSetsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ReviewSetsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

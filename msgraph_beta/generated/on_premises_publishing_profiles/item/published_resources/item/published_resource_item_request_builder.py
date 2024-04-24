@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +27,7 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/onPremisesPublishingProfiles/{onPremisesPublishingProfile%2Did}/publishedResources/{publishedResource%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[PublishedResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property publishedResources for onPremisesPublishingProfiles
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,12 +45,11 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PublishedResource]:
+    async def get(self,request_configuration: Optional[PublishedResourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[PublishedResource]:
         """
-        Retrieve the properties and relationships of publishedResource object.
+        List of existing publishedResource objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PublishedResource]
-        Find more info here: https://learn.microsoft.com/graph/api/publishedresource-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,13 +65,12 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PublishedResource, error_mapping)
     
-    async def patch(self,body: Optional[PublishedResource] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PublishedResource]:
+    async def patch(self,body: Optional[PublishedResource] = None, request_configuration: Optional[PublishedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[PublishedResource]:
         """
-        Update the properties of published resource  publishedResource object.
+        Update the navigation property publishedResources in onPremisesPublishingProfiles
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PublishedResource]
-        Find more info here: https://learn.microsoft.com/graph/api/publishedresource-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +88,7 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PublishedResource, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[PublishedResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property publishedResources for onPremisesPublishingProfiles
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,9 +99,9 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PublishedResourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of publishedResource object.
+        List of existing publishedResource objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,9 +110,9 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[PublishedResource] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[PublishedResource] = None, request_configuration: Optional[PublishedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of published resource  publishedResource object.
+        Update the navigation property publishedResources in onPremisesPublishingProfiles
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -147,10 +144,20 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
 
         return AgentGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PublishedResourceItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class PublishedResourceItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of publishedResource object.
+        List of existing publishedResource objects. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -172,5 +179,28 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PublishedResourceItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PublishedResourceItemRequestBuilder.PublishedResourceItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PublishedResourceItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

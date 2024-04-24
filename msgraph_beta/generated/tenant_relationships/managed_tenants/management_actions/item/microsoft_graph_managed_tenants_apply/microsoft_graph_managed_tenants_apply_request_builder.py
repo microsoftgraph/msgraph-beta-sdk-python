@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,13 +27,13 @@ class MicrosoftGraphManagedTenantsApplyRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/managementActions/{managementAction%2Did}/microsoft.graph.managedTenants.apply", path_parameters)
     
-    async def post(self,body: Optional[ApplyPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementActionDeploymentStatus]:
+    async def post(self,body: Optional[ApplyPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphManagedTenantsApplyRequestBuilderPostRequestConfiguration] = None) -> Optional[ManagementActionDeploymentStatus]:
         """
         Applies a management action against a specific managed tenant. By performing this operation the appropriate configurations will be made and policies created. As example when applying the require multifactor authentication for admins management action creates a Microsoft Entra Conditional Access policy that requires multifactor authentication for all users that have been assigned an administrative directory role.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagementActionDeploymentStatus]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managementaction-apply?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managementaction-apply?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -51,7 +51,7 @@ class MicrosoftGraphManagedTenantsApplyRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagementActionDeploymentStatus, error_mapping)
     
-    def to_post_request_information(self,body: Optional[ApplyPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ApplyPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphManagedTenantsApplyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Applies a management action against a specific managed tenant. By performing this operation the appropriate configurations will be made and policies created. As example when applying the require multifactor authentication for admins management action creates a Microsoft Entra Conditional Access policy that requires multifactor authentication for all users that have been assigned an administrative directory role.
         param body: The request body
@@ -75,5 +75,15 @@ class MicrosoftGraphManagedTenantsApplyRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return MicrosoftGraphManagedTenantsApplyRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MicrosoftGraphManagedTenantsApplyRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -43,7 +42,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["industryDataRunActivity%2Did"] = industry_data_run_activity_id
         return IndustryDataRunActivityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[IndustryDataRunActivityCollectionResponse]:
+    async def get(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[IndustryDataRunActivityCollectionResponse]:
         """
         The set of activities performed during the run.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -63,7 +62,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, IndustryDataRunActivityCollectionResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The set of activities performed during the run.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -147,6 +146,19 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
 
         # Show only the first n items
         top: Optional[int] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ActivitiesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ActivitiesRequestBuilder.ActivitiesRequestBuilderGetQueryParameters] = None
 
     
 

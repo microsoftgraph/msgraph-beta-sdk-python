@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,12 +26,11 @@ class AccessReviewReviewerItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/accessReviews/{accessReview%2Did}/instances/{accessReview%2Did1}/reviewers/{accessReviewReviewer%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessReviewReviewerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        In the Microsoft Entra access reviews feature, update an existing accessReview object to remove a user as a reviewer.  This operation is only permitted for an access review that isn't yet completed, and only for an access review where the reviewers are explicitly specified. This operation isn't permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
+        Delete navigation property reviewers for accessReviews
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/accessreview-removereviewer?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -46,7 +44,7 @@ class AccessReviewReviewerItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessReviewReviewer]:
+    async def get(self,request_configuration: Optional[AccessReviewReviewerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessReviewReviewer]:
         """
         The collection of reviewers for an access review, if access review reviewerType is of type delegated.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +64,7 @@ class AccessReviewReviewerItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessReviewReviewer, error_mapping)
     
-    async def patch(self,body: Optional[AccessReviewReviewer] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessReviewReviewer]:
+    async def patch(self,body: Optional[AccessReviewReviewer] = None, request_configuration: Optional[AccessReviewReviewerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AccessReviewReviewer]:
         """
         Update the navigation property reviewers in accessReviews
         param body: The request body
@@ -89,9 +87,9 @@ class AccessReviewReviewerItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessReviewReviewer, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[AccessReviewReviewerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        In the Microsoft Entra access reviews feature, update an existing accessReview object to remove a user as a reviewer.  This operation is only permitted for an access review that isn't yet completed, and only for an access review where the reviewers are explicitly specified. This operation isn't permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
+        Delete navigation property reviewers for accessReviews
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,7 +98,7 @@ class AccessReviewReviewerItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AccessReviewReviewerItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The collection of reviewers for an access review, if access review reviewerType is of type delegated.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +109,7 @@ class AccessReviewReviewerItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[AccessReviewReviewer] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AccessReviewReviewer] = None, request_configuration: Optional[AccessReviewReviewerItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property reviewers in accessReviews
         param body: The request body
@@ -135,6 +133,16 @@ class AccessReviewReviewerItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return AccessReviewReviewerItemRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessReviewReviewerItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class AccessReviewReviewerItemRequestBuilderGetQueryParameters():
@@ -161,5 +169,28 @@ class AccessReviewReviewerItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessReviewReviewerItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AccessReviewReviewerItemRequestBuilder.AccessReviewReviewerItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessReviewReviewerItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

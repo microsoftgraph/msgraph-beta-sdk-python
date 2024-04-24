@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -30,12 +29,11 @@ class SensorDevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
             path_parameters['deviceId'] = str(device_id)
         super().__init__(request_adapter, "{+baseurl}/workplace/sensorDevices(deviceId='{deviceId}'){?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[SensorDevicesWithDeviceIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete a workplace sensor device.
+        Delete navigation property sensorDevices for workplace
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/workplacesensordevice-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -49,12 +47,11 @@ class SensorDevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WorkplaceSensorDevice]:
+    async def get(self,request_configuration: Optional[SensorDevicesWithDeviceIdRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkplaceSensorDevice]:
         """
-        Get the properties of a workplace sensor device, including tags, MAC address, sensors, and more.
+        A collection of sensor devices.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkplaceSensorDevice]
-        Find more info here: https://learn.microsoft.com/graph/api/workplacesensordevice-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,13 +67,12 @@ class SensorDevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WorkplaceSensorDevice, error_mapping)
     
-    async def patch(self,body: Optional[WorkplaceSensorDevice] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WorkplaceSensorDevice]:
+    async def patch(self,body: Optional[WorkplaceSensorDevice] = None, request_configuration: Optional[SensorDevicesWithDeviceIdRequestBuilderPatchRequestConfiguration] = None) -> Optional[WorkplaceSensorDevice]:
         """
-        Update the properties of a workplace sensor device.
+        Update the navigation property sensorDevices in workplace
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkplaceSensorDevice]
-        Find more info here: https://learn.microsoft.com/graph/api/workplacesensordevice-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -94,9 +90,9 @@ class SensorDevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WorkplaceSensorDevice, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[SensorDevicesWithDeviceIdRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a workplace sensor device.
+        Delete navigation property sensorDevices for workplace
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,9 +101,9 @@ class SensorDevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[SensorDevicesWithDeviceIdRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of a workplace sensor device, including tags, MAC address, sensors, and more.
+        A collection of sensor devices.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,9 +112,9 @@ class SensorDevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[WorkplaceSensorDevice] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[WorkplaceSensorDevice] = None, request_configuration: Optional[SensorDevicesWithDeviceIdRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a workplace sensor device.
+        Update the navigation property sensorDevices in workplace
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,10 +137,20 @@ class SensorDevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return SensorDevicesWithDeviceIdRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SensorDevicesWithDeviceIdRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class SensorDevicesWithDeviceIdRequestBuilderGetQueryParameters():
         """
-        Get the properties of a workplace sensor device, including tags, MAC address, sensors, and more.
+        A collection of sensor devices.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -166,5 +172,28 @@ class SensorDevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SensorDevicesWithDeviceIdRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[SensorDevicesWithDeviceIdRequestBuilder.SensorDevicesWithDeviceIdRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SensorDevicesWithDeviceIdRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

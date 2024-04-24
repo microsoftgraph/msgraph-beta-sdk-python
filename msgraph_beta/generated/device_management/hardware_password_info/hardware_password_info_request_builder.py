@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class HardwarePasswordInfoRequestBuilder(BaseRequestBuilder):
         url_tpl_params["hardwarePasswordInfo%2Did"] = hardware_password_info_id
         return HardwarePasswordInfoItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwarePasswordInfoCollectionResponse]:
+    async def get(self,request_configuration: Optional[HardwarePasswordInfoRequestBuilderGetRequestConfiguration] = None) -> Optional[HardwarePasswordInfoCollectionResponse]:
         """
         The hardware password info for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class HardwarePasswordInfoRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HardwarePasswordInfoCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[HardwarePasswordInfo] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwarePasswordInfo]:
+    async def post(self,body: Optional[HardwarePasswordInfo] = None, request_configuration: Optional[HardwarePasswordInfoRequestBuilderPostRequestConfiguration] = None) -> Optional[HardwarePasswordInfo]:
         """
         Create new navigation property to hardwarePasswordInfo for deviceManagement
         param body: The request body
@@ -87,7 +86,7 @@ class HardwarePasswordInfoRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HardwarePasswordInfo, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[HardwarePasswordInfoRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The hardware password info for this account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class HardwarePasswordInfoRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[HardwarePasswordInfo] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[HardwarePasswordInfo] = None, request_configuration: Optional[HardwarePasswordInfoRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to hardwarePasswordInfo for deviceManagement
         param body: The request body
@@ -187,5 +186,28 @@ class HardwarePasswordInfoRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HardwarePasswordInfoRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[HardwarePasswordInfoRequestBuilder.HardwarePasswordInfoRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class HardwarePasswordInfoRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

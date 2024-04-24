@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class ExactMatchDataStoresRequestBuilder(BaseRequestBuilder):
         url_tpl_params["exactMatchDataStore%2Did"] = exact_match_data_store_id
         return ExactMatchDataStoreItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ExactMatchDataStoreCollectionResponse]:
+    async def get(self,request_configuration: Optional[ExactMatchDataStoresRequestBuilderGetRequestConfiguration] = None) -> Optional[ExactMatchDataStoreCollectionResponse]:
         """
         Get exactMatchDataStores from dataClassification
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class ExactMatchDataStoresRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ExactMatchDataStoreCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ExactMatchDataStore] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ExactMatchDataStore]:
+    async def post(self,body: Optional[ExactMatchDataStore] = None, request_configuration: Optional[ExactMatchDataStoresRequestBuilderPostRequestConfiguration] = None) -> Optional[ExactMatchDataStore]:
         """
         Create new navigation property to exactMatchDataStores for dataClassification
         param body: The request body
@@ -87,7 +86,7 @@ class ExactMatchDataStoresRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ExactMatchDataStore, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ExactMatchDataStoresRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get exactMatchDataStores from dataClassification
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class ExactMatchDataStoresRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ExactMatchDataStore] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ExactMatchDataStore] = None, request_configuration: Optional[ExactMatchDataStoresRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to exactMatchDataStores for dataClassification
         param body: The request body
@@ -187,5 +186,28 @@ class ExactMatchDataStoresRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ExactMatchDataStoresRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ExactMatchDataStoresRequestBuilder.ExactMatchDataStoresRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ExactMatchDataStoresRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

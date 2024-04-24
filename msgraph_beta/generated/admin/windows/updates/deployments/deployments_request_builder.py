@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class DeploymentsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["deployment%2Did"] = deployment_id
         return DeploymentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeploymentCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeploymentsRequestBuilderGetRequestConfiguration] = None) -> Optional[DeploymentCollectionResponse]:
         """
-        Get a list of deployment objects and their properties.
+        Deployments created using the deployment service.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeploymentCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-list-deployments?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class DeploymentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeploymentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[Deployment] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Deployment]:
+    async def post(self,body: Optional[Deployment] = None, request_configuration: Optional[DeploymentsRequestBuilderPostRequestConfiguration] = None) -> Optional[Deployment]:
         """
-        Create a new deployment object.
+        Create new navigation property to deployments for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Deployment]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-post-deployments?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class DeploymentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Deployment, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DeploymentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of deployment objects and their properties.
+        Deployments created using the deployment service.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class DeploymentsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Deployment] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[Deployment] = None, request_configuration: Optional[DeploymentsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new deployment object.
+        Create new navigation property to deployments for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class DeploymentsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeploymentsRequestBuilderGetQueryParameters():
         """
-        Get a list of deployment objects and their properties.
+        Deployments created using the deployment service.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class DeploymentsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeploymentsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DeploymentsRequestBuilder.DeploymentsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeploymentsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

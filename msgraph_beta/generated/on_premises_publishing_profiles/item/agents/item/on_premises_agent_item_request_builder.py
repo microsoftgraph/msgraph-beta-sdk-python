@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +27,7 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/onPremisesPublishingProfiles/{onPremisesPublishingProfile%2Did}/agents/{onPremisesAgent%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[OnPremisesAgentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property agents for onPremisesPublishingProfiles
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,12 +45,11 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnPremisesAgent]:
+    async def get(self,request_configuration: Optional[OnPremisesAgentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[OnPremisesAgent]:
         """
-        Retrieve the properties and relationships of an onPremisesAgent object.
+        List of existing onPremisesAgent objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesAgent]
-        Find more info here: https://learn.microsoft.com/graph/api/onpremisesagent-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,7 +65,7 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OnPremisesAgent, error_mapping)
     
-    async def patch(self,body: Optional[OnPremisesAgent] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnPremisesAgent]:
+    async def patch(self,body: Optional[OnPremisesAgent] = None, request_configuration: Optional[OnPremisesAgentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[OnPremisesAgent]:
         """
         Update the navigation property agents in onPremisesPublishingProfiles
         param body: The request body
@@ -90,7 +88,7 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OnPremisesAgent, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[OnPremisesAgentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property agents for onPremisesPublishingProfiles
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,9 +99,9 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[OnPremisesAgentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an onPremisesAgent object.
+        List of existing onPremisesAgent objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +110,7 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[OnPremisesAgent] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[OnPremisesAgent] = None, request_configuration: Optional[OnPremisesAgentItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property agents in onPremisesPublishingProfiles
         param body: The request body
@@ -146,10 +144,20 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
 
         return AgentGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class OnPremisesAgentItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class OnPremisesAgentItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an onPremisesAgent object.
+        List of existing onPremisesAgent objects. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -171,5 +179,28 @@ class OnPremisesAgentItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class OnPremisesAgentItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[OnPremisesAgentItemRequestBuilder.OnPremisesAgentItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class OnPremisesAgentItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +28,7 @@ class KnownIssueItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/products/{product%2Did}/knownIssues/{knownIssue%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[KnownIssueItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property knownIssues for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,7 +46,7 @@ class KnownIssueItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[KnownIssue]:
+    async def get(self,request_configuration: Optional[KnownIssueItemRequestBuilderGetRequestConfiguration] = None) -> Optional[KnownIssue]:
         """
         Represents a known issue related to a Windows product.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class KnownIssueItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, KnownIssue, error_mapping)
     
-    async def patch(self,body: Optional[KnownIssue] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[KnownIssue]:
+    async def patch(self,body: Optional[KnownIssue] = None, request_configuration: Optional[KnownIssueItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[KnownIssue]:
         """
         Update the navigation property knownIssues in admin
         param body: The request body
@@ -90,7 +89,7 @@ class KnownIssueItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, KnownIssue, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[KnownIssueItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property knownIssues for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +100,7 @@ class KnownIssueItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[KnownIssueItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Represents a known issue related to a Windows product.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,7 +111,7 @@ class KnownIssueItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[KnownIssue] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[KnownIssue] = None, request_configuration: Optional[KnownIssueItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property knownIssues in admin
         param body: The request body
@@ -155,6 +154,16 @@ class KnownIssueItemRequestBuilder(BaseRequestBuilder):
 
         return ResolvingKnowledgeBaseArticleRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class KnownIssueItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class KnownIssueItemRequestBuilderGetQueryParameters():
         """
@@ -180,5 +189,28 @@ class KnownIssueItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class KnownIssueItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[KnownIssueItemRequestBuilder.KnownIssueItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class KnownIssueItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

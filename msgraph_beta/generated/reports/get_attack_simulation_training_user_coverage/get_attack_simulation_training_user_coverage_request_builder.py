@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,11 +27,12 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/reports/getAttackSimulationTrainingUserCoverage(){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetAttackSimulationTrainingUserCoverageGetResponse]:
+    async def get(self,request_configuration: Optional[GetAttackSimulationTrainingUserCoverageRequestBuilderGetRequestConfiguration] = None) -> Optional[GetAttackSimulationTrainingUserCoverageGetResponse]:
         """
-        Invoke function getAttackSimulationTrainingUserCoverage
+        List training coverage for each user of a tenant in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAttackSimulationTrainingUserCoverageGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getattacksimulationtrainingusercoverage?view=graph-rest-beta
         """
         warn("This report function api is deprecated and will stop returning data on August 20, 2022. Api is now moved to /reports/security. Please use the new API. as of 2022-05/Tasks_And_Plans", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -49,9 +49,9 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GetAttackSimulationTrainingUserCoverageGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[GetAttackSimulationTrainingUserCoverageRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getAttackSimulationTrainingUserCoverage
+        List training coverage for each user of a tenant in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -75,7 +75,7 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GetAttackSimulationTrainingUserCoverageRequestBuilderGetQueryParameters():
         """
-        Invoke function getAttackSimulationTrainingUserCoverage
+        List training coverage for each user of a tenant in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -111,6 +111,19 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
 
         # Show only the first n items
         top: Optional[int] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class GetAttackSimulationTrainingUserCoverageRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[GetAttackSimulationTrainingUserCoverageRequestBuilder.GetAttackSimulationTrainingUserCoverageRequestBuilderGetQueryParameters] = None
 
     
 

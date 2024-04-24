@@ -337,7 +337,7 @@ class DeviceManagement(Entity):
     imported_windows_autopilot_device_identities: Optional[List[ImportedWindowsAutopilotDeviceIdentity]] = None
     # The device management intents
     intents: Optional[List[DeviceManagementIntent]] = None
-    # Intune Account ID for given tenant
+    # Intune Account Id for given tenant
     intune_account_id: Optional[UUID] = None
     # intuneBrand contains data which is used in customizing the appearance of the Company Portal applications as well as the end user web portal.
     intune_brand: Optional[IntuneBrand] = None
@@ -361,7 +361,7 @@ class DeviceManagement(Entity):
     managed_device_overview: Optional[ManagedDeviceOverview] = None
     # The list of managed devices.
     managed_devices: Optional[List[ManagedDevice]] = None
-    # Maximum number of DEP tokens allowed per-tenant.
+    # Maximum number of dep tokens allowed per-tenant.
     maximum_dep_tokens: Optional[int] = None
     # Collection of MicrosoftTunnelConfiguration settings associated with account.
     microsoft_tunnel_configurations: Optional[List[MicrosoftTunnelConfiguration]] = None

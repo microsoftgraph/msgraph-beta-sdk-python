@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +28,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/legalHolds/{legalHold%2Did}/siteSources/{siteSource%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[SiteSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property siteSources for compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,7 +47,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SiteSource]:
+    async def get(self,request_configuration: Optional[SiteSourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[SiteSource]:
         """
         Data source entity for SharePoint sites associated with the legal hold.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +68,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SiteSource, error_mapping)
     
-    async def patch(self,body: Optional[SiteSource] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SiteSource]:
+    async def patch(self,body: Optional[SiteSource] = None, request_configuration: Optional[SiteSourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[SiteSource]:
         """
         Update the navigation property siteSources in compliance
         param body: The request body
@@ -93,7 +92,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SiteSource, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[SiteSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property siteSources for compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +104,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[SiteSourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Data source entity for SharePoint sites associated with the legal hold.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -117,7 +116,7 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[SiteSource] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[SiteSource] = None, request_configuration: Optional[SiteSourceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property siteSources in compliance
         param body: The request body
@@ -153,6 +152,16 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
 
         return SiteRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SiteSourceItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class SiteSourceItemRequestBuilderGetQueryParameters():
         """
@@ -178,5 +187,28 @@ class SiteSourceItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SiteSourceItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[SiteSourceItemRequestBuilder.SiteSourceItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SiteSourceItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

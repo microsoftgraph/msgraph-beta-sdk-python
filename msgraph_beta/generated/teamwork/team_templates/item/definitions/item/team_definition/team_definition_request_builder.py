@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -47,7 +46,7 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/teamwork/teamTemplates/{teamTemplate%2Did}/definitions/{teamTemplateDefinition%2Did}/teamDefinition{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[TeamDefinitionRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property teamDefinition for teamwork
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,12 +64,11 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Team]:
+    async def get(self,request_configuration: Optional[TeamDefinitionRequestBuilderGetRequestConfiguration] = None) -> Optional[Team]:
         """
-        Get the properties of the team associated with a teamTemplateDefinition object.
+        Collection of channel objects. A channel represents a topic, and therefore a logical isolation of discussion, within a team.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Team]
-        Find more info here: https://learn.microsoft.com/graph/api/teamtemplatedefinition-get-teamdefinition?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -86,7 +84,7 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Team, error_mapping)
     
-    async def patch(self,body: Optional[Team] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Team]:
+    async def patch(self,body: Optional[Team] = None, request_configuration: Optional[TeamDefinitionRequestBuilderPatchRequestConfiguration] = None) -> Optional[Team]:
         """
         Update the navigation property teamDefinition in teamwork
         param body: The request body
@@ -109,7 +107,7 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Team, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[TeamDefinitionRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property teamDefinition for teamwork
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -120,9 +118,9 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[TeamDefinitionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of the team associated with a teamTemplateDefinition object.
+        Collection of channel objects. A channel represents a topic, and therefore a logical isolation of discussion, within a team.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -131,7 +129,7 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[Team] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Team] = None, request_configuration: Optional[TeamDefinitionRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property teamDefinition in teamwork
         param body: The request body
@@ -336,10 +334,20 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
 
         return UnarchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TeamDefinitionRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class TeamDefinitionRequestBuilderGetQueryParameters():
         """
-        Get the properties of the team associated with a teamTemplateDefinition object.
+        Collection of channel objects. A channel represents a topic, and therefore a logical isolation of discussion, within a team.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -361,5 +369,28 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TeamDefinitionRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[TeamDefinitionRequestBuilder.TeamDefinitionRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TeamDefinitionRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

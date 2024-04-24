@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class FilesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["ediscoveryFile%2Did"] = ediscovery_file_id
         return EdiscoveryFileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EdiscoveryFileCollectionResponse]:
+    async def get(self,request_configuration: Optional[FilesRequestBuilderGetRequestConfiguration] = None) -> Optional[EdiscoveryFileCollectionResponse]:
         """
-        Get a list of the ediscoveryFile objects and their properties.
+        Represents files within the review set.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EdiscoveryFileCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-list-files?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class FilesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EdiscoveryFileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[EdiscoveryFile] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EdiscoveryFile]:
+    async def post(self,body: Optional[EdiscoveryFile] = None, request_configuration: Optional[FilesRequestBuilderPostRequestConfiguration] = None) -> Optional[EdiscoveryFile]:
         """
         Create new navigation property to files for security
         param body: The request body
@@ -88,9 +86,9 @@ class FilesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, EdiscoveryFile, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[FilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the ediscoveryFile objects and their properties.
+        Represents files within the review set.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class FilesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[EdiscoveryFile] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[EdiscoveryFile] = None, request_configuration: Optional[FilesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to files for security
         param body: The request body
@@ -136,7 +134,7 @@ class FilesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FilesRequestBuilderGetQueryParameters():
         """
-        Get a list of the ediscoveryFile objects and their properties.
+        Represents files within the review set.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class FilesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class FilesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[FilesRequestBuilder.FilesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class FilesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class PositionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["workPosition%2Did"] = work_position_id
         return WorkPositionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[WorkPositionCollectionResponse]:
+    async def get(self,request_configuration: Optional[PositionsRequestBuilderGetRequestConfiguration] = None) -> Optional[WorkPositionCollectionResponse]:
         """
-        Retrieve a list of workPosition objects from a user's profile.
+        Represents detailed information about work positions associated with a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkPositionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-positions?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class PositionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WorkPositionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[WorkPosition] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[WorkPosition]:
+    async def post(self,body: Optional[WorkPosition] = None, request_configuration: Optional[PositionsRequestBuilderPostRequestConfiguration] = None) -> Optional[WorkPosition]:
         """
-        Use this API to create a new workPosition in a user's profile.
+        Create new navigation property to positions for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkPosition]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-positions?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class PositionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WorkPosition, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PositionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of workPosition objects from a user's profile.
+        Represents detailed information about work positions associated with a user's profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class PositionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[WorkPosition] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[WorkPosition] = None, request_configuration: Optional[PositionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new workPosition in a user's profile.
+        Create new navigation property to positions for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class PositionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PositionsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of workPosition objects from a user's profile.
+        Represents detailed information about work positions associated with a user's profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class PositionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PositionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PositionsRequestBuilder.PositionsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PositionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

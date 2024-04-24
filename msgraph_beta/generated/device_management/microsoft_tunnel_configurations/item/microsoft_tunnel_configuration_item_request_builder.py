@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class MicrosoftTunnelConfigurationItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/microsoftTunnelConfigurations/{microsoftTunnelConfiguration%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[MicrosoftTunnelConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property microsoftTunnelConfigurations for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +44,7 @@ class MicrosoftTunnelConfigurationItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MicrosoftTunnelConfiguration]:
+    async def get(self,request_configuration: Optional[MicrosoftTunnelConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[MicrosoftTunnelConfiguration]:
         """
         Collection of MicrosoftTunnelConfiguration settings associated with account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class MicrosoftTunnelConfigurationItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MicrosoftTunnelConfiguration, error_mapping)
     
-    async def patch(self,body: Optional[MicrosoftTunnelConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MicrosoftTunnelConfiguration]:
+    async def patch(self,body: Optional[MicrosoftTunnelConfiguration] = None, request_configuration: Optional[MicrosoftTunnelConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[MicrosoftTunnelConfiguration]:
         """
         Update the navigation property microsoftTunnelConfigurations in deviceManagement
         param body: The request body
@@ -88,7 +87,7 @@ class MicrosoftTunnelConfigurationItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MicrosoftTunnelConfiguration, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[MicrosoftTunnelConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property microsoftTunnelConfigurations for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +98,7 @@ class MicrosoftTunnelConfigurationItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[MicrosoftTunnelConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Collection of MicrosoftTunnelConfiguration settings associated with account.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +109,7 @@ class MicrosoftTunnelConfigurationItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[MicrosoftTunnelConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[MicrosoftTunnelConfiguration] = None, request_configuration: Optional[MicrosoftTunnelConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property microsoftTunnelConfigurations in deviceManagement
         param body: The request body
@@ -134,6 +133,16 @@ class MicrosoftTunnelConfigurationItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return MicrosoftTunnelConfigurationItemRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MicrosoftTunnelConfigurationItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class MicrosoftTunnelConfigurationItemRequestBuilderGetQueryParameters():
@@ -160,5 +169,28 @@ class MicrosoftTunnelConfigurationItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MicrosoftTunnelConfigurationItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[MicrosoftTunnelConfigurationItemRequestBuilder.MicrosoftTunnelConfigurationItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MicrosoftTunnelConfigurationItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

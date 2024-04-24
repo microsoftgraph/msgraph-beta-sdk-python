@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -45,12 +44,11 @@ class TenantGroupsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["tenantGroup%2Did"] = tenant_group_id
         return TenantGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TenantGroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[TenantGroupCollectionResponse]:
         """
-        Get a list of the tenantGroup objects and their properties.
+        The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantGroupCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managedtenant-list-tenantgroups?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -66,7 +64,7 @@ class TenantGroupsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TenantGroupCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[TenantGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TenantGroup]:
+    async def post(self,body: Optional[TenantGroup] = None, request_configuration: Optional[TenantGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[TenantGroup]:
         """
         Create new navigation property to tenantGroups for tenantRelationships
         param body: The request body
@@ -89,9 +87,9 @@ class TenantGroupsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TenantGroup, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the tenantGroup objects and their properties.
+        The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,7 +98,7 @@ class TenantGroupsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[TenantGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[TenantGroup] = None, request_configuration: Optional[TenantGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to tenantGroups for tenantRelationships
         param body: The request body
@@ -146,7 +144,7 @@ class TenantGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantGroupsRequestBuilderGetQueryParameters():
         """
-        Get a list of the tenantGroup objects and their properties.
+        The collection of a logical grouping of managed tenants used by the multi-tenant management platform.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -198,5 +196,28 @@ class TenantGroupsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TenantGroupsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[TenantGroupsRequestBuilder.TenantGroupsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TenantGroupsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

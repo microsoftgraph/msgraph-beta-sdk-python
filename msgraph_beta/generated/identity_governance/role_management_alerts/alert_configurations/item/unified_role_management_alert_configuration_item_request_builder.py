@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +27,7 @@ class UnifiedRoleManagementAlertConfigurationItemRequestBuilder(BaseRequestBuild
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/roleManagementAlerts/alertConfigurations/{unifiedRoleManagementAlertConfiguration%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[UnifiedRoleManagementAlertConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property alertConfigurations for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +45,7 @@ class UnifiedRoleManagementAlertConfigurationItemRequestBuilder(BaseRequestBuild
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertConfiguration]:
+    async def get(self,request_configuration: Optional[UnifiedRoleManagementAlertConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertConfiguration]:
         """
         The various configurations of an alert for Microsoft Entra roles. The configurations are predefined and can't be created or deleted, but some of the configurations can be modified.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +65,7 @@ class UnifiedRoleManagementAlertConfigurationItemRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, UnifiedRoleManagementAlertConfiguration, error_mapping)
     
-    async def patch(self,body: Optional[UnifiedRoleManagementAlertConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertConfiguration]:
+    async def patch(self,body: Optional[UnifiedRoleManagementAlertConfiguration] = None, request_configuration: Optional[UnifiedRoleManagementAlertConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[UnifiedRoleManagementAlertConfiguration]:
         """
         Update the navigation property alertConfigurations in identityGovernance
         param body: The request body
@@ -89,7 +88,7 @@ class UnifiedRoleManagementAlertConfigurationItemRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, UnifiedRoleManagementAlertConfiguration, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[UnifiedRoleManagementAlertConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property alertConfigurations for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +99,7 @@ class UnifiedRoleManagementAlertConfigurationItemRequestBuilder(BaseRequestBuild
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[UnifiedRoleManagementAlertConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         The various configurations of an alert for Microsoft Entra roles. The configurations are predefined and can't be created or deleted, but some of the configurations can be modified.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +110,7 @@ class UnifiedRoleManagementAlertConfigurationItemRequestBuilder(BaseRequestBuild
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[UnifiedRoleManagementAlertConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UnifiedRoleManagementAlertConfiguration] = None, request_configuration: Optional[UnifiedRoleManagementAlertConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property alertConfigurations in identityGovernance
         param body: The request body
@@ -145,6 +144,16 @@ class UnifiedRoleManagementAlertConfigurationItemRequestBuilder(BaseRequestBuild
 
         return AlertDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UnifiedRoleManagementAlertConfigurationItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class UnifiedRoleManagementAlertConfigurationItemRequestBuilderGetQueryParameters():
         """
@@ -170,5 +179,28 @@ class UnifiedRoleManagementAlertConfigurationItemRequestBuilder(BaseRequestBuild
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UnifiedRoleManagementAlertConfigurationItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[UnifiedRoleManagementAlertConfigurationItemRequestBuilder.UnifiedRoleManagementAlertConfigurationItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UnifiedRoleManagementAlertConfigurationItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

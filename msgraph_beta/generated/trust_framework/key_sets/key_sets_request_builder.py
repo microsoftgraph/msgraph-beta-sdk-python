@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["trustFrameworkKeySet%2Did"] = trust_framework_key_set_id
         return TrustFrameworkKeySetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TrustFrameworkKeySetCollectionResponse]:
+    async def get(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> Optional[TrustFrameworkKeySetCollectionResponse]:
         """
-        Retrieve a list of trustFrameworkKeySets.
+        Get keySets from trustFramework
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKeySetCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/trustframework-list-keysets?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TrustFrameworkKeySetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
+    async def post(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None) -> Optional[TrustFrameworkKeySet]:
         """
-        Create a new trustFrameworkKeySet. The ID of the trustFrameworkKeySet is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header.
+        Create new navigation property to keySets for trustFramework
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKeySet]
-        Find more info here: https://learn.microsoft.com/graph/api/trustframework-post-keysets?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TrustFrameworkKeySet, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of trustFrameworkKeySets.
+        Get keySets from trustFramework
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new trustFrameworkKeySet. The ID of the trustFrameworkKeySet is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header.
+        Create new navigation property to keySets for trustFramework
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class KeySetsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of trustFrameworkKeySets.
+        Get keySets from trustFramework
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class KeySetsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class KeySetsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[KeySetsRequestBuilder.KeySetsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class KeySetsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

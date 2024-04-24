@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/settings/contactMergeSuggestions{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ContactMergeSuggestionsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property contactMergeSuggestions for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,12 +44,11 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ContactMergeSuggestions]:
+    async def get(self,request_configuration: Optional[ContactMergeSuggestionsRequestBuilderGetRequestConfiguration] = None) -> Optional[ContactMergeSuggestions]:
         """
-        Read the properties and relationships of a contactMergeSuggestions object.
+        The user's settings for the visibility of merge suggestion for the duplicate contacts in the user's contact list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContactMergeSuggestions]
-        Find more info here: https://learn.microsoft.com/graph/api/contactmergesuggestions-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -66,13 +64,12 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ContactMergeSuggestions, error_mapping)
     
-    async def patch(self,body: Optional[ContactMergeSuggestions] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ContactMergeSuggestions]:
+    async def patch(self,body: Optional[ContactMergeSuggestions] = None, request_configuration: Optional[ContactMergeSuggestionsRequestBuilderPatchRequestConfiguration] = None) -> Optional[ContactMergeSuggestions]:
         """
-        Update the properties of a contactMergeSuggestions object.
+        Update the navigation property contactMergeSuggestions in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContactMergeSuggestions]
-        Find more info here: https://learn.microsoft.com/graph/api/contactmergesuggestions-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -90,7 +87,7 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ContactMergeSuggestions, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[ContactMergeSuggestionsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property contactMergeSuggestions for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,9 +98,9 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ContactMergeSuggestionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a contactMergeSuggestions object.
+        The user's settings for the visibility of merge suggestion for the duplicate contacts in the user's contact list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,9 +109,9 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ContactMergeSuggestions] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ContactMergeSuggestions] = None, request_configuration: Optional[ContactMergeSuggestionsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a contactMergeSuggestions object.
+        Update the navigation property contactMergeSuggestions in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,10 +134,20 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return ContactMergeSuggestionsRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ContactMergeSuggestionsRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class ContactMergeSuggestionsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a contactMergeSuggestions object.
+        The user's settings for the visibility of merge suggestion for the duplicate contacts in the user's contact list.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -162,5 +169,28 @@ class ContactMergeSuggestionsRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ContactMergeSuggestionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ContactMergeSuggestionsRequestBuilder.ContactMergeSuggestionsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ContactMergeSuggestionsRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

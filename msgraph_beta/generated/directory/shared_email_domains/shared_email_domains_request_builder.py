@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class SharedEmailDomainsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["sharedEmailDomain%2Did"] = shared_email_domain_id
         return SharedEmailDomainItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SharedEmailDomainCollectionResponse]:
+    async def get(self,request_configuration: Optional[SharedEmailDomainsRequestBuilderGetRequestConfiguration] = None) -> Optional[SharedEmailDomainCollectionResponse]:
         """
         Get sharedEmailDomains from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class SharedEmailDomainsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SharedEmailDomainCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[SharedEmailDomain] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SharedEmailDomain]:
+    async def post(self,body: Optional[SharedEmailDomain] = None, request_configuration: Optional[SharedEmailDomainsRequestBuilderPostRequestConfiguration] = None) -> Optional[SharedEmailDomain]:
         """
         Create new navigation property to sharedEmailDomains for directory
         param body: The request body
@@ -87,7 +86,7 @@ class SharedEmailDomainsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SharedEmailDomain, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[SharedEmailDomainsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get sharedEmailDomains from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class SharedEmailDomainsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[SharedEmailDomain] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[SharedEmailDomain] = None, request_configuration: Optional[SharedEmailDomainsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to sharedEmailDomains for directory
         param body: The request body
@@ -187,5 +186,28 @@ class SharedEmailDomainsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SharedEmailDomainsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[SharedEmailDomainsRequestBuilder.SharedEmailDomainsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SharedEmailDomainsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

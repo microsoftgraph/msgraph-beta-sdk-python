@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/crossCloudGovernmentOrganizationMapping{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property crossCloudGovernmentOrganizationMapping for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,12 +44,11 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcCrossCloudGovernmentOrganizationMapping]:
+    async def get(self,request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcCrossCloudGovernmentOrganizationMapping]:
         """
-        Read the properties and relationships of a cloudPcCrossCloudGovernmentOrganizationMapping object.
+        Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcCrossCloudGovernmentOrganizationMapping]
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpccrosscloudgovernmentorganizationmapping-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -66,7 +64,7 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcCrossCloudGovernmentOrganizationMapping, error_mapping)
     
-    async def patch(self,body: Optional[CloudPcCrossCloudGovernmentOrganizationMapping] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcCrossCloudGovernmentOrganizationMapping]:
+    async def patch(self,body: Optional[CloudPcCrossCloudGovernmentOrganizationMapping] = None, request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderPatchRequestConfiguration] = None) -> Optional[CloudPcCrossCloudGovernmentOrganizationMapping]:
         """
         Update the navigation property crossCloudGovernmentOrganizationMapping in deviceManagement
         param body: The request body
@@ -89,7 +87,7 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcCrossCloudGovernmentOrganizationMapping, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property crossCloudGovernmentOrganizationMapping for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,9 +98,9 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a cloudPcCrossCloudGovernmentOrganizationMapping object.
+        Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +109,7 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[CloudPcCrossCloudGovernmentOrganizationMapping] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[CloudPcCrossCloudGovernmentOrganizationMapping] = None, request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property crossCloudGovernmentOrganizationMapping in deviceManagement
         param body: The request body
@@ -136,10 +134,20 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return CrossCloudGovernmentOrganizationMappingRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CrossCloudGovernmentOrganizationMappingRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class CrossCloudGovernmentOrganizationMappingRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a cloudPcCrossCloudGovernmentOrganizationMapping object.
+        Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -161,5 +169,28 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CrossCloudGovernmentOrganizationMappingRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilder.CrossCloudGovernmentOrganizationMappingRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CrossCloudGovernmentOrganizationMappingRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

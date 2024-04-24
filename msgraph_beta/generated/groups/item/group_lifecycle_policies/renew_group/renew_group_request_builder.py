@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,13 +27,13 @@ class RenewGroupRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/groups/{group%2Did}/groupLifecyclePolicies/renewGroup", path_parameters)
     
-    async def post(self,body: Optional[RenewGroupPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[RenewGroupPostResponse]:
+    async def post(self,body: Optional[RenewGroupPostRequestBody] = None, request_configuration: Optional[RenewGroupRequestBuilderPostRequestConfiguration] = None) -> Optional[RenewGroupPostResponse]:
         """
         Renew a group's expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RenewGroupPostResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/grouplifecyclepolicy-renewgroup?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/grouplifecyclepolicy-renewgroup?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -51,7 +51,7 @@ class RenewGroupRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RenewGroupPostResponse, error_mapping)
     
-    def to_post_request_information(self,body: Optional[RenewGroupPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[RenewGroupPostRequestBody] = None, request_configuration: Optional[RenewGroupRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Renew a group's expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
         param body: The request body
@@ -75,5 +75,15 @@ class RenewGroupRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return RenewGroupRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class RenewGroupRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

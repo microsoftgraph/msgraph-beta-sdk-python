@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class UsageRightsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["usageRight%2Did"] = usage_right_id
         return UsageRightItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UsageRightCollectionResponse]:
+    async def get(self,request_configuration: Optional[UsageRightsRequestBuilderGetRequestConfiguration] = None) -> Optional[UsageRightCollectionResponse]:
         """
-        Retrieve a list of usageRight objects for a given device.
+        Represents the usage rights a device has been granted.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UsageRightCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/device-list-usagerights?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class UsageRightsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UsageRightCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UsageRight] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UsageRight]:
+    async def post(self,body: Optional[UsageRight] = None, request_configuration: Optional[UsageRightsRequestBuilderPostRequestConfiguration] = None) -> Optional[UsageRight]:
         """
         Create new navigation property to usageRights for users
         param body: The request body
@@ -88,9 +86,9 @@ class UsageRightsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UsageRight, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[UsageRightsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of usageRight objects for a given device.
+        Represents the usage rights a device has been granted.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class UsageRightsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UsageRight] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UsageRight] = None, request_configuration: Optional[UsageRightsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to usageRights for users
         param body: The request body
@@ -136,7 +134,7 @@ class UsageRightsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UsageRightsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of usageRight objects for a given device.
+        Represents the usage rights a device has been granted.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class UsageRightsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UsageRightsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[UsageRightsRequestBuilder.UsageRightsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UsageRightsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

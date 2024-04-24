@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class UserCredentialUsageDetailsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["userCredentialUsageDetails%2Did"] = user_credential_usage_details_id
         return UserCredentialUsageDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserCredentialUsageDetailsCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[UserCredentialUsageDetailsCollectionResponse]:
         """
-        Get a list of userCredentialUsageDetails objects for a given tenant. Details include user information, status of the reset, and the reason for failure.
+        Represents the self-service password reset (SSPR) usage for a given tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserCredentialUsageDetailsCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/reportroot-list-usercredentialusagedetails?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class UserCredentialUsageDetailsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserCredentialUsageDetailsCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UserCredentialUsageDetails] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserCredentialUsageDetails]:
+    async def post(self,body: Optional[UserCredentialUsageDetails] = None, request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderPostRequestConfiguration] = None) -> Optional[UserCredentialUsageDetails]:
         """
         Create new navigation property to userCredentialUsageDetails for reports
         param body: The request body
@@ -88,9 +86,9 @@ class UserCredentialUsageDetailsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserCredentialUsageDetails, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of userCredentialUsageDetails objects for a given tenant. Details include user information, status of the reset, and the reason for failure.
+        Represents the self-service password reset (SSPR) usage for a given tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class UserCredentialUsageDetailsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UserCredentialUsageDetails] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UserCredentialUsageDetails] = None, request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to userCredentialUsageDetails for reports
         param body: The request body
@@ -136,7 +134,7 @@ class UserCredentialUsageDetailsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserCredentialUsageDetailsRequestBuilderGetQueryParameters():
         """
-        Get a list of userCredentialUsageDetails objects for a given tenant. Details include user information, status of the reset, and the reason for failure.
+        Represents the self-service password reset (SSPR) usage for a given tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class UserCredentialUsageDetailsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserCredentialUsageDetailsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[UserCredentialUsageDetailsRequestBuilder.UserCredentialUsageDetailsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserCredentialUsageDetailsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

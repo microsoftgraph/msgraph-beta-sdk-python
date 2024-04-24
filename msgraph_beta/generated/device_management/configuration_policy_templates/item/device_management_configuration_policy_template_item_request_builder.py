@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +27,7 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder(BaseRequestB
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/configurationPolicyTemplates/{deviceManagementConfigurationPolicyTemplate%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property configurationPolicyTemplates for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,7 +45,7 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder(BaseRequestB
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementConfigurationPolicyTemplate]:
+    async def get(self,request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DeviceManagementConfigurationPolicyTemplate]:
         """
         List of all templates
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +65,7 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder(BaseRequestB
 
         return await self.request_adapter.send_async(request_info, DeviceManagementConfigurationPolicyTemplate, error_mapping)
     
-    async def patch(self,body: Optional[DeviceManagementConfigurationPolicyTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceManagementConfigurationPolicyTemplate]:
+    async def patch(self,body: Optional[DeviceManagementConfigurationPolicyTemplate] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DeviceManagementConfigurationPolicyTemplate]:
         """
         Update the navigation property configurationPolicyTemplates in deviceManagement
         param body: The request body
@@ -89,7 +88,7 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder(BaseRequestB
 
         return await self.request_adapter.send_async(request_info, DeviceManagementConfigurationPolicyTemplate, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property configurationPolicyTemplates for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +99,7 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder(BaseRequestB
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         List of all templates
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +110,7 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder(BaseRequestB
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DeviceManagementConfigurationPolicyTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DeviceManagementConfigurationPolicyTemplate] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property configurationPolicyTemplates in deviceManagement
         param body: The request body
@@ -145,6 +144,16 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder(BaseRequestB
 
         return SettingTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceManagementConfigurationPolicyTemplateItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class DeviceManagementConfigurationPolicyTemplateItemRequestBuilderGetQueryParameters():
         """
@@ -170,5 +179,28 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder(BaseRequestB
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceManagementConfigurationPolicyTemplateItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DeviceManagementConfigurationPolicyTemplateItemRequestBuilder.DeviceManagementConfigurationPolicyTemplateItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeviceManagementConfigurationPolicyTemplateItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

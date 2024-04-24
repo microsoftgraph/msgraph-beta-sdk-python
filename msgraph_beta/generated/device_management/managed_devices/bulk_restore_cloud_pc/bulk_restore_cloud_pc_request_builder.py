@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,13 +28,13 @@ class BulkRestoreCloudPcRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/managedDevices/bulkRestoreCloudPc", path_parameters)
     
-    async def post(self,body: Optional[BulkRestoreCloudPcPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcBulkRemoteActionResult]:
+    async def post(self,body: Optional[BulkRestoreCloudPcPostRequestBody] = None, request_configuration: Optional[BulkRestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcBulkRemoteActionResult]:
         """
         Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcBulkRemoteActionResult]
-        Find more info here: https://learn.microsoft.com/graph/api/manageddevice-bulkrestorecloudpc?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/manageddevice-bulkrestorecloudpc?view=graph-rest-beta
         """
         warn("The bulkRestoreCloudPc action is deprecated and will stop supporting on September 24, 2023. Please use bulk action entity api. as of 2023-05/bulkRestoreCloudPc", DeprecationWarning)
         if not body:
@@ -53,7 +53,7 @@ class BulkRestoreCloudPcRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcBulkRemoteActionResult, error_mapping)
     
-    def to_post_request_information(self,body: Optional[BulkRestoreCloudPcPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[BulkRestoreCloudPcPostRequestBody] = None, request_configuration: Optional[BulkRestoreCloudPcRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time.
         param body: The request body
@@ -79,5 +79,15 @@ class BulkRestoreCloudPcRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return BulkRestoreCloudPcRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class BulkRestoreCloudPcRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

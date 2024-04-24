@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class PermissionsCreepIndexDistributionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["permissionsCreepIndexDistribution%2Did"] = permissions_creep_index_distribution_id
         return PermissionsCreepIndexDistributionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PermissionsCreepIndexDistributionCollectionResponse]:
+    async def get(self,request_configuration: Optional[PermissionsCreepIndexDistributionsRequestBuilderGetRequestConfiguration] = None) -> Optional[PermissionsCreepIndexDistributionCollectionResponse]:
         """
-        Get a list of the permissionsCreepIndexDistribution objects and their properties.
+        Represents the Permissions Creep Index (PCI) for the authorization system. PCI distribution chart shows the classification of human and nonhuman identities based on the PCI score in three buckets (low, medium, high).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PermissionsCreepIndexDistributionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/permissionsanalytics-list-permissionscreepindexdistributions?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class PermissionsCreepIndexDistributionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PermissionsCreepIndexDistributionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[PermissionsCreepIndexDistribution] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PermissionsCreepIndexDistribution]:
+    async def post(self,body: Optional[PermissionsCreepIndexDistribution] = None, request_configuration: Optional[PermissionsCreepIndexDistributionsRequestBuilderPostRequestConfiguration] = None) -> Optional[PermissionsCreepIndexDistribution]:
         """
         Create new navigation property to permissionsCreepIndexDistributions for identityGovernance
         param body: The request body
@@ -88,9 +86,9 @@ class PermissionsCreepIndexDistributionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PermissionsCreepIndexDistribution, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PermissionsCreepIndexDistributionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the permissionsCreepIndexDistribution objects and their properties.
+        Represents the Permissions Creep Index (PCI) for the authorization system. PCI distribution chart shows the classification of human and nonhuman identities based on the PCI score in three buckets (low, medium, high).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class PermissionsCreepIndexDistributionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[PermissionsCreepIndexDistribution] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PermissionsCreepIndexDistribution] = None, request_configuration: Optional[PermissionsCreepIndexDistributionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to permissionsCreepIndexDistributions for identityGovernance
         param body: The request body
@@ -136,7 +134,7 @@ class PermissionsCreepIndexDistributionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PermissionsCreepIndexDistributionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the permissionsCreepIndexDistribution objects and their properties.
+        Represents the Permissions Creep Index (PCI) for the authorization system. PCI distribution chart shows the classification of human and nonhuman identities based on the PCI score in three buckets (low, medium, high).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class PermissionsCreepIndexDistributionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PermissionsCreepIndexDistributionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PermissionsCreepIndexDistributionsRequestBuilder.PermissionsCreepIndexDistributionsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PermissionsCreepIndexDistributionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

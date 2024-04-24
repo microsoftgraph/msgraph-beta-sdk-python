@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class CredentialUserRegistrationsSummariesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["credentialUserRegistrationsSummary%2Did"] = credential_user_registrations_summary_id
         return CredentialUserRegistrationsSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CredentialUserRegistrationsSummaryCollectionResponse]:
+    async def get(self,request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[CredentialUserRegistrationsSummaryCollectionResponse]:
         """
-        Get a list of the credentialUserRegistrationsSummary objects and their properties.
+        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CredentialUserRegistrationsSummaryCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managedtenant-list-credentialuserregistrationssummaries?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class CredentialUserRegistrationsSummariesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CredentialUserRegistrationsSummaryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CredentialUserRegistrationsSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CredentialUserRegistrationsSummary]:
+    async def post(self,body: Optional[CredentialUserRegistrationsSummary] = None, request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderPostRequestConfiguration] = None) -> Optional[CredentialUserRegistrationsSummary]:
         """
         Create new navigation property to credentialUserRegistrationsSummaries for tenantRelationships
         param body: The request body
@@ -88,9 +86,9 @@ class CredentialUserRegistrationsSummariesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CredentialUserRegistrationsSummary, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the credentialUserRegistrationsSummary objects and their properties.
+        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class CredentialUserRegistrationsSummariesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CredentialUserRegistrationsSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CredentialUserRegistrationsSummary] = None, request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to credentialUserRegistrationsSummaries for tenantRelationships
         param body: The request body
@@ -136,7 +134,7 @@ class CredentialUserRegistrationsSummariesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CredentialUserRegistrationsSummariesRequestBuilderGetQueryParameters():
         """
-        Get a list of the credentialUserRegistrationsSummary objects and their properties.
+        Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class CredentialUserRegistrationsSummariesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CredentialUserRegistrationsSummariesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[CredentialUserRegistrationsSummariesRequestBuilder.CredentialUserRegistrationsSummariesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class CredentialUserRegistrationsSummariesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class UserExperienceAnalyticsImpactingProcessItemRequestBuilder(BaseRequestBuild
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/userExperienceAnalyticsImpactingProcess/{userExperienceAnalyticsImpactingProcess%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsImpactingProcessItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userExperienceAnalyticsImpactingProcess for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,7 +44,7 @@ class UserExperienceAnalyticsImpactingProcessItemRequestBuilder(BaseRequestBuild
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsImpactingProcess]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsImpactingProcessItemRequestBuilderGetRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsImpactingProcess]:
         """
         User experience analytics impacting process
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +64,7 @@ class UserExperienceAnalyticsImpactingProcessItemRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsImpactingProcess, error_mapping)
     
-    async def patch(self,body: Optional[UserExperienceAnalyticsImpactingProcess] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsImpactingProcess]:
+    async def patch(self,body: Optional[UserExperienceAnalyticsImpactingProcess] = None, request_configuration: Optional[UserExperienceAnalyticsImpactingProcessItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsImpactingProcess]:
         """
         Update the navigation property userExperienceAnalyticsImpactingProcess in deviceManagement
         param body: The request body
@@ -88,7 +87,7 @@ class UserExperienceAnalyticsImpactingProcessItemRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsImpactingProcess, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsImpactingProcessItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property userExperienceAnalyticsImpactingProcess for deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +98,7 @@ class UserExperienceAnalyticsImpactingProcessItemRequestBuilder(BaseRequestBuild
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsImpactingProcessItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         User experience analytics impacting process
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +109,7 @@ class UserExperienceAnalyticsImpactingProcessItemRequestBuilder(BaseRequestBuild
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[UserExperienceAnalyticsImpactingProcess] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[UserExperienceAnalyticsImpactingProcess] = None, request_configuration: Optional[UserExperienceAnalyticsImpactingProcessItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property userExperienceAnalyticsImpactingProcess in deviceManagement
         param body: The request body
@@ -134,6 +133,16 @@ class UserExperienceAnalyticsImpactingProcessItemRequestBuilder(BaseRequestBuild
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return UserExperienceAnalyticsImpactingProcessItemRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserExperienceAnalyticsImpactingProcessItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class UserExperienceAnalyticsImpactingProcessItemRequestBuilderGetQueryParameters():
@@ -160,5 +169,28 @@ class UserExperienceAnalyticsImpactingProcessItemRequestBuilder(BaseRequestBuild
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserExperienceAnalyticsImpactingProcessItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[UserExperienceAnalyticsImpactingProcessItemRequestBuilder.UserExperienceAnalyticsImpactingProcessItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserExperienceAnalyticsImpactingProcessItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

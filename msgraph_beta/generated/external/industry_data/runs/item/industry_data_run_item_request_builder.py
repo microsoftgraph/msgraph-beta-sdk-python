@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,12 +28,11 @@ class IndustryDataRunItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/external/industryData/runs/{industryDataRun%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[IndustryDataRun]:
+    async def get(self,request_configuration: Optional[IndustryDataRunItemRequestBuilderGetRequestConfiguration] = None) -> Optional[IndustryDataRun]:
         """
-        Read the properties and relationships of an industryDataRun object.
+        Set of ephemeral runs which present the point-in-time that diagnostic state of activities performed by the system. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IndustryDataRun]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-industrydatarun-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -50,9 +48,9 @@ class IndustryDataRunItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, IndustryDataRun, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[IndustryDataRunItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an industryDataRun object.
+        Set of ephemeral runs which present the point-in-time that diagnostic state of activities performed by the system. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -92,7 +90,7 @@ class IndustryDataRunItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IndustryDataRunItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an industryDataRun object.
+        Set of ephemeral runs which present the point-in-time that diagnostic state of activities performed by the system. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -113,6 +111,19 @@ class IndustryDataRunItemRequestBuilder(BaseRequestBuilder):
 
         # Select properties to be returned
         select: Optional[List[str]] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class IndustryDataRunItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[IndustryDataRunItemRequestBuilder.IndustryDataRunItemRequestBuilderGetQueryParameters] = None
 
     
 

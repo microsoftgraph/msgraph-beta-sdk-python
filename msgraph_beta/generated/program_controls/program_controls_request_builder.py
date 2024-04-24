@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,12 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["programControl%2Did"] = program_control_id
         return ProgramControlItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProgramControlCollectionResponse]:
+    async def get(self,request_configuration: Optional[ProgramControlsRequestBuilderGetRequestConfiguration] = None) -> Optional[ProgramControlCollectionResponse]:
         """
         In the Microsoft Entra access reviews feature, list all the programControl objects, across all programs in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProgramControlCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/programcontrol-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/programcontrol-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +64,13 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProgramControlCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ProgramControl] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProgramControl]:
+    async def post(self,body: Optional[ProgramControl] = None, request_configuration: Optional[ProgramControlsRequestBuilderPostRequestConfiguration] = None) -> Optional[ProgramControl]:
         """
         In the Microsoft Entra access reviews feature, create a new programControl object.  This links an access review to a program. Prior to making this request, the caller must have previously
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProgramControl]
-        Find more info here: https://learn.microsoft.com/graph/api/programcontrol-create?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/programcontrol-create?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,7 +88,7 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProgramControl, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ProgramControlsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         In the Microsoft Entra access reviews feature, list all the programControl objects, across all programs in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +99,7 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ProgramControl] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ProgramControl] = None, request_configuration: Optional[ProgramControlsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         In the Microsoft Entra access reviews feature, create a new programControl object.  This links an access review to a program. Prior to making this request, the caller must have previously
         param body: The request body
@@ -189,5 +188,28 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProgramControlsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ProgramControlsRequestBuilder.ProgramControlsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProgramControlsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

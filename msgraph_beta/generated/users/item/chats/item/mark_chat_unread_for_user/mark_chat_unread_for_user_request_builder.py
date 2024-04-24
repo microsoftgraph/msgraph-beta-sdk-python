@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,13 +26,13 @@ class MarkChatUnreadForUserRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/markChatUnreadForUser", path_parameters)
     
-    async def post(self,body: Optional[MarkChatUnreadForUserPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def post(self,body: Optional[MarkChatUnreadForUserPostRequestBody] = None, request_configuration: Optional[MarkChatUnreadForUserRequestBuilderPostRequestConfiguration] = None) -> None:
         """
         Mark a chat as unread for a user.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/chat-markchatunreadforuser?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/chat-markchatunreadforuser?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -48,7 +48,7 @@ class MarkChatUnreadForUserRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def to_post_request_information(self,body: Optional[MarkChatUnreadForUserPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[MarkChatUnreadForUserPostRequestBody] = None, request_configuration: Optional[MarkChatUnreadForUserRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Mark a chat as unread for a user.
         param body: The request body
@@ -72,5 +72,15 @@ class MarkChatUnreadForUserRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return MarkChatUnreadForUserRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MarkChatUnreadForUserRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

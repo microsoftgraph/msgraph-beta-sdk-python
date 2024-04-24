@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +30,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/{accessPackageAssignmentResourceRole%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessPackageAssignmentResourceRoleItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property accessPackageAssignmentResourceRoles for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,12 +48,11 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageAssignmentResourceRole]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentResourceRoleItemRequestBuilderGetRequestConfiguration] = None) -> Optional[AccessPackageAssignmentResourceRole]:
         """
-        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object.
+        Represents the resource-specific role which a subject has been assigned through an access package assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignmentResourceRole]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentresourcerole-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,7 +68,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageAssignmentResourceRole, error_mapping)
     
-    async def patch(self,body: Optional[AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageAssignmentResourceRole]:
+    async def patch(self,body: Optional[AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[AccessPackageAssignmentResourceRoleItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[AccessPackageAssignmentResourceRole]:
         """
         Update the navigation property accessPackageAssignmentResourceRoles in identityGovernance
         param body: The request body
@@ -93,7 +91,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageAssignmentResourceRole, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[AccessPackageAssignmentResourceRoleItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property accessPackageAssignmentResourceRoles for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,9 +102,9 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentResourceRoleItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object.
+        Represents the resource-specific role which a subject has been assigned through an access package assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +113,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[AccessPackageAssignmentResourceRoleItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property accessPackageAssignmentResourceRoles in identityGovernance
         param body: The request body
@@ -176,10 +174,20 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
 
         return AccessPackageSubjectRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageAssignmentResourceRoleItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class AccessPackageAssignmentResourceRoleItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an accessPackageAssignmentResourceRole object.
+        Represents the resource-specific role which a subject has been assigned through an access package assignment.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -201,5 +209,28 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageAssignmentResourceRoleItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[AccessPackageAssignmentResourceRoleItemRequestBuilder.AccessPackageAssignmentResourceRoleItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class AccessPackageAssignmentResourceRoleItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

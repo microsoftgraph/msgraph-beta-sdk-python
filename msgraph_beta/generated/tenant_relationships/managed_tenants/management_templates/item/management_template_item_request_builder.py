@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +28,7 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/managementTemplates/{managementTemplate%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managementTemplates for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,12 +46,11 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementTemplate]:
+    async def get(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ManagementTemplate]:
         """
-        Read the properties and relationships of a managementTemplate object.
+        The collection of baseline management templates across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagementTemplate]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managementtemplate-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,7 +66,7 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagementTemplate, error_mapping)
     
-    async def patch(self,body: Optional[ManagementTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementTemplate]:
+    async def patch(self,body: Optional[ManagementTemplate] = None, request_configuration: Optional[ManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ManagementTemplate]:
         """
         Update the navigation property managementTemplates in tenantRelationships
         param body: The request body
@@ -91,7 +89,7 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagementTemplate, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property managementTemplates for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,9 +100,9 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a managementTemplate object.
+        The collection of baseline management templates across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,7 +111,7 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ManagementTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ManagementTemplate] = None, request_configuration: Optional[ManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property managementTemplates in tenantRelationships
         param body: The request body
@@ -156,10 +154,20 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
 
         return ManagementTemplateStepsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagementTemplateItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class ManagementTemplateItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a managementTemplate object.
+        The collection of baseline management templates across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -181,5 +189,28 @@ class ManagementTemplateItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagementTemplateItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ManagementTemplateItemRequestBuilder.ManagementTemplateItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ManagementTemplateItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

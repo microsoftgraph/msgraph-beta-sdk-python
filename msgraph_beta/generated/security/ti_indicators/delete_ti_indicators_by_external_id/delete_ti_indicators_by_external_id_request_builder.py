@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,13 +27,13 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security/tiIndicators/deleteTiIndicatorsByExternalId", path_parameters)
     
-    async def post(self,body: Optional[DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeleteTiIndicatorsByExternalIdPostResponse]:
+    async def post(self,body: Optional[DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None) -> Optional[DeleteTiIndicatorsByExternalIdPostResponse]:
         """
         Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeleteTiIndicatorsByExternalIdPostResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/tiindicator-deletetiindicatorsbyexternalid?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/tiindicator-deletetiindicatorsbyexternalid?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -51,7 +51,7 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeleteTiIndicatorsByExternalIdPostResponse, error_mapping)
     
-    def to_post_request_information(self,body: Optional[DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs.
         param body: The request body
@@ -75,5 +75,15 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return DeleteTiIndicatorsByExternalIdRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

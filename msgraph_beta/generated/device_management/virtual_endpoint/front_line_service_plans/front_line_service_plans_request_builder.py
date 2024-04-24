@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class FrontLineServicePlansRequestBuilder(BaseRequestBuilder):
         url_tpl_params["cloudPcFrontLineServicePlan%2Did"] = cloud_pc_front_line_service_plan_id
         return CloudPcFrontLineServicePlanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcFrontLineServicePlanCollectionResponse]:
+    async def get(self,request_configuration: Optional[FrontLineServicePlansRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcFrontLineServicePlanCollectionResponse]:
         """
-        Get a list of the cloudPcFrontLineServicePlan objects and their properties.
+        Front-line service plans for a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcFrontLineServicePlanCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-frontlineserviceplans?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class FrontLineServicePlansRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcFrontLineServicePlanCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CloudPcFrontLineServicePlan] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcFrontLineServicePlan]:
+    async def post(self,body: Optional[CloudPcFrontLineServicePlan] = None, request_configuration: Optional[FrontLineServicePlansRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcFrontLineServicePlan]:
         """
         Create new navigation property to frontLineServicePlans for deviceManagement
         param body: The request body
@@ -88,9 +86,9 @@ class FrontLineServicePlansRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcFrontLineServicePlan, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[FrontLineServicePlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the cloudPcFrontLineServicePlan objects and their properties.
+        Front-line service plans for a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class FrontLineServicePlansRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CloudPcFrontLineServicePlan] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CloudPcFrontLineServicePlan] = None, request_configuration: Optional[FrontLineServicePlansRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to frontLineServicePlans for deviceManagement
         param body: The request body
@@ -136,7 +134,7 @@ class FrontLineServicePlansRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FrontLineServicePlansRequestBuilderGetQueryParameters():
         """
-        Get a list of the cloudPcFrontLineServicePlan objects and their properties.
+        Front-line service plans for a Cloud PC.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class FrontLineServicePlansRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class FrontLineServicePlansRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[FrontLineServicePlansRequestBuilder.FrontLineServicePlansRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class FrontLineServicePlansRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

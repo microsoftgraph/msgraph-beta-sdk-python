@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class ServicePlansRequestBuilder(BaseRequestBuilder):
         url_tpl_params["cloudPcServicePlan%2Did"] = cloud_pc_service_plan_id
         return CloudPcServicePlanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcServicePlanCollectionResponse]:
+    async def get(self,request_configuration: Optional[ServicePlansRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcServicePlanCollectionResponse]:
         """
-        List the currently available service plans that an organization can purchase for their Cloud PCs. For examples of currently available service plans, see Windows 365 compare plans and pricing. Currently, Microsoft Graph API is available for Windows 365 Enterprise.
+        Cloud PC service plans.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcServicePlanCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-serviceplans?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +63,7 @@ class ServicePlansRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcServicePlanCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CloudPcServicePlan] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcServicePlan]:
+    async def post(self,body: Optional[CloudPcServicePlan] = None, request_configuration: Optional[ServicePlansRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcServicePlan]:
         """
         Create new navigation property to servicePlans for deviceManagement
         param body: The request body
@@ -88,9 +86,9 @@ class ServicePlansRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcServicePlan, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ServicePlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List the currently available service plans that an organization can purchase for their Cloud PCs. For examples of currently available service plans, see Windows 365 compare plans and pricing. Currently, Microsoft Graph API is available for Windows 365 Enterprise.
+        Cloud PC service plans.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +97,7 @@ class ServicePlansRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CloudPcServicePlan] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CloudPcServicePlan] = None, request_configuration: Optional[ServicePlansRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to servicePlans for deviceManagement
         param body: The request body
@@ -136,7 +134,7 @@ class ServicePlansRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ServicePlansRequestBuilderGetQueryParameters():
         """
-        List the currently available service plans that an organization can purchase for their Cloud PCs. For examples of currently available service plans, see Windows 365 compare plans and pricing. Currently, Microsoft Graph API is available for Windows 365 Enterprise.
+        Cloud PC service plans.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -188,5 +186,28 @@ class ServicePlansRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ServicePlansRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ServicePlansRequestBuilder.ServicePlansRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ServicePlansRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

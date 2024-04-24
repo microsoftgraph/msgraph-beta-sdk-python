@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,7 +45,7 @@ class MonthlyPrintUsageSummariesByPrinterRequestBuilder(BaseRequestBuilder):
         url_tpl_params["printUsageByPrinter%2Did"] = print_usage_by_printer_id
         return PrintUsageByPrinterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrintUsageByPrinterCollectionResponse]:
+    async def get(self,request_configuration: Optional[MonthlyPrintUsageSummariesByPrinterRequestBuilderGetRequestConfiguration] = None) -> Optional[PrintUsageByPrinterCollectionResponse]:
         """
         Get monthlyPrintUsageSummariesByPrinter from reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,7 +66,7 @@ class MonthlyPrintUsageSummariesByPrinterRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrintUsageByPrinterCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[PrintUsageByPrinter] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrintUsageByPrinter]:
+    async def post(self,body: Optional[PrintUsageByPrinter] = None, request_configuration: Optional[MonthlyPrintUsageSummariesByPrinterRequestBuilderPostRequestConfiguration] = None) -> Optional[PrintUsageByPrinter]:
         """
         Create new navigation property to monthlyPrintUsageSummariesByPrinter for reports
         param body: The request body
@@ -91,7 +90,7 @@ class MonthlyPrintUsageSummariesByPrinterRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, PrintUsageByPrinter, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[MonthlyPrintUsageSummariesByPrinterRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get monthlyPrintUsageSummariesByPrinter from reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -103,7 +102,7 @@ class MonthlyPrintUsageSummariesByPrinterRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[PrintUsageByPrinter] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[PrintUsageByPrinter] = None, request_configuration: Optional[MonthlyPrintUsageSummariesByPrinterRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to monthlyPrintUsageSummariesByPrinter for reports
         param body: The request body
@@ -194,5 +193,28 @@ class MonthlyPrintUsageSummariesByPrinterRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MonthlyPrintUsageSummariesByPrinterRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[MonthlyPrintUsageSummariesByPrinterRequestBuilder.MonthlyPrintUsageSummariesByPrinterRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class MonthlyPrintUsageSummariesByPrinterRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

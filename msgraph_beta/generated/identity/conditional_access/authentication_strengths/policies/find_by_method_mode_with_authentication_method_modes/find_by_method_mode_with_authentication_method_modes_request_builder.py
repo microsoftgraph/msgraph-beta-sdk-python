@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,11 +30,12 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
             path_parameters['authenticationMethodModes'] = str(authentication_method_modes)
         super().__init__(request_adapter, "{+baseurl}/identity/conditionalAccess/authenticationStrengths/policies/findByMethodMode(authenticationMethodModes={authenticationMethodModes}){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[FindByMethodModeWithAuthenticationMethodModesGetResponse]:
+    async def get(self,request_configuration: Optional[FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetRequestConfiguration] = None) -> Optional[FindByMethodModeWithAuthenticationMethodModesGetResponse]:
         """
-        Invoke function findByMethodMode
+        Get a list of the authenticationStrengthPolicy objects and their properties filtered to only include policies that include the authentication method mode specified in the request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FindByMethodModeWithAuthenticationMethodModesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-findbymethodmode?view=graph-rest-beta
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -52,9 +52,9 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
 
         return await self.request_adapter.send_async(request_info, FindByMethodModeWithAuthenticationMethodModesGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function findByMethodMode
+        Get a list of the authenticationStrengthPolicy objects and their properties filtered to only include policies that include the authentication method mode specified in the request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -78,7 +78,7 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
     @dataclass
     class FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetQueryParameters():
         """
-        Invoke function findByMethodMode
+        Get a list of the authenticationStrengthPolicy objects and their properties filtered to only include policies that include the authentication method mode specified in the request.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -129,6 +129,19 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
 
         # Show only the first n items
         top: Optional[int] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[FindByMethodModeWithAuthenticationMethodModesRequestBuilder.FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetQueryParameters] = None
 
     
 

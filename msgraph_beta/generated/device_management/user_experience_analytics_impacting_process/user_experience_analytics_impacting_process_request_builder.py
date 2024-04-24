@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,7 +43,7 @@ class UserExperienceAnalyticsImpactingProcessRequestBuilder(BaseRequestBuilder):
         url_tpl_params["userExperienceAnalyticsImpactingProcess%2Did"] = user_experience_analytics_impacting_process_id
         return UserExperienceAnalyticsImpactingProcessItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsImpactingProcessCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsImpactingProcessRequestBuilderGetRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsImpactingProcessCollectionResponse]:
         """
         User experience analytics impacting process
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +63,7 @@ class UserExperienceAnalyticsImpactingProcessRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsImpactingProcessCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UserExperienceAnalyticsImpactingProcess] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserExperienceAnalyticsImpactingProcess]:
+    async def post(self,body: Optional[UserExperienceAnalyticsImpactingProcess] = None, request_configuration: Optional[UserExperienceAnalyticsImpactingProcessRequestBuilderPostRequestConfiguration] = None) -> Optional[UserExperienceAnalyticsImpactingProcess]:
         """
         Create new navigation property to userExperienceAnalyticsImpactingProcess for deviceManagement
         param body: The request body
@@ -87,7 +86,7 @@ class UserExperienceAnalyticsImpactingProcessRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsImpactingProcess, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsImpactingProcessRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         User experience analytics impacting process
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +97,7 @@ class UserExperienceAnalyticsImpactingProcessRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UserExperienceAnalyticsImpactingProcess] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UserExperienceAnalyticsImpactingProcess] = None, request_configuration: Optional[UserExperienceAnalyticsImpactingProcessRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to userExperienceAnalyticsImpactingProcess for deviceManagement
         param body: The request body
@@ -187,5 +186,28 @@ class UserExperienceAnalyticsImpactingProcessRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserExperienceAnalyticsImpactingProcessRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[UserExperienceAnalyticsImpactingProcessRequestBuilder.UserExperienceAnalyticsImpactingProcessRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UserExperienceAnalyticsImpactingProcessRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

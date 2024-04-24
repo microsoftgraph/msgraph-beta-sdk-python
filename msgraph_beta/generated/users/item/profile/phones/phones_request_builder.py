@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class PhonesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["itemPhone%2Did"] = item_phone_id
         return ItemPhoneItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemPhoneCollectionResponse]:
+    async def get(self,request_configuration: Optional[PhonesRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemPhoneCollectionResponse]:
         """
-        Retrieve a list of itemPhone objects from a user's profile.
+        Represents detailed information about phone numbers associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPhoneCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-phones?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class PhonesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ItemPhoneCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ItemPhone] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemPhone]:
+    async def post(self,body: Optional[ItemPhone] = None, request_configuration: Optional[PhonesRequestBuilderPostRequestConfiguration] = None) -> Optional[ItemPhone]:
         """
-        Use this API to create a new itemPhone object in a user's profile.
+        Create new navigation property to phones for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPhone]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-phones?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class PhonesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ItemPhone, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[PhonesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of itemPhone objects from a user's profile.
+        Represents detailed information about phone numbers associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class PhonesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ItemPhone] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ItemPhone] = None, request_configuration: Optional[PhonesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new itemPhone object in a user's profile.
+        Create new navigation property to phones for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class PhonesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PhonesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of itemPhone objects from a user's profile.
+        Represents detailed information about phone numbers associated with a user in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class PhonesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PhonesRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[PhonesRequestBuilder.PhonesRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class PhonesRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

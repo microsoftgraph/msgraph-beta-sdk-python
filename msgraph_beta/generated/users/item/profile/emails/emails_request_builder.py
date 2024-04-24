@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class EmailsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["itemEmail%2Did"] = item_email_id
         return ItemEmailItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemEmailCollectionResponse]:
+    async def get(self,request_configuration: Optional[EmailsRequestBuilderGetRequestConfiguration] = None) -> Optional[ItemEmailCollectionResponse]:
         """
-        Retrieve the properties and relationships of an itemEmail object in a user's profile.
+        Represents detailed information about email addresses associated with the user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemEmailCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-emails?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class EmailsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ItemEmailCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ItemEmail] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemEmail]:
+    async def post(self,body: Optional[ItemEmail] = None, request_configuration: Optional[EmailsRequestBuilderPostRequestConfiguration] = None) -> Optional[ItemEmail]:
         """
-        Create a new itemEmail object in a user's profile.
+        Create new navigation property to emails for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemEmail]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-emails?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class EmailsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ItemEmail, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[EmailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an itemEmail object in a user's profile.
+        Represents detailed information about email addresses associated with the user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class EmailsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ItemEmail] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ItemEmail] = None, request_configuration: Optional[EmailsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new itemEmail object in a user's profile.
+        Create new navigation property to emails for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class EmailsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EmailsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an itemEmail object in a user's profile.
+        Represents detailed information about email addresses associated with the user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class EmailsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class EmailsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[EmailsRequestBuilder.EmailsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class EmailsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

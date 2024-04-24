@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,7 +30,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/products/{product%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ProductItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property products for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,7 +48,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Product]:
+    async def get(self,request_configuration: Optional[ProductItemRequestBuilderGetRequestConfiguration] = None) -> Optional[Product]:
         """
         A collection of Windows products.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -81,7 +80,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilder(self.request_adapter, self.path_parameters, days_in_past)
     
-    async def patch(self,body: Optional[Product] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Product]:
+    async def patch(self,body: Optional[Product] = None, request_configuration: Optional[ProductItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[Product]:
         """
         Update the navigation property products in admin
         param body: The request body
@@ -104,7 +103,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Product, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[ProductItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property products for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -115,7 +114,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ProductItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A collection of Windows products.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -126,7 +125,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[Product] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Product] = None, request_configuration: Optional[ProductItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property products in admin
         param body: The request body
@@ -178,6 +177,16 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
 
         return RevisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProductItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class ProductItemRequestBuilderGetQueryParameters():
         """
@@ -203,5 +212,28 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProductItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ProductItemRequestBuilder.ProductItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ProductItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

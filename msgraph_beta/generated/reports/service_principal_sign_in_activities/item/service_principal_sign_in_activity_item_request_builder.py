@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -27,7 +26,7 @@ class ServicePrincipalSignInActivityItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/reports/servicePrincipalSignInActivities/{servicePrincipalSignInActivity%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ServicePrincipalSignInActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property servicePrincipalSignInActivities for reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -45,12 +44,11 @@ class ServicePrincipalSignInActivityItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ServicePrincipalSignInActivity]:
+    async def get(self,request_configuration: Optional[ServicePrincipalSignInActivityItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ServicePrincipalSignInActivity]:
         """
-        Get a servicePrincipalSignInActivity object that contains sign-in activity information for a service principal in a Microsoft Entra tenant. You can use a service principal as a client or resource. A service principal supports delegated or app-only authentication context.
+        Represents a collection of sign-in activities of service principals.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServicePrincipalSignInActivity]
-        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipalsigninactivity-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -66,7 +64,7 @@ class ServicePrincipalSignInActivityItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ServicePrincipalSignInActivity, error_mapping)
     
-    async def patch(self,body: Optional[ServicePrincipalSignInActivity] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ServicePrincipalSignInActivity]:
+    async def patch(self,body: Optional[ServicePrincipalSignInActivity] = None, request_configuration: Optional[ServicePrincipalSignInActivityItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ServicePrincipalSignInActivity]:
         """
         Update the navigation property servicePrincipalSignInActivities in reports
         param body: The request body
@@ -89,7 +87,7 @@ class ServicePrincipalSignInActivityItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ServicePrincipalSignInActivity, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[ServicePrincipalSignInActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property servicePrincipalSignInActivities for reports
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,9 +98,9 @@ class ServicePrincipalSignInActivityItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ServicePrincipalSignInActivityItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a servicePrincipalSignInActivity object that contains sign-in activity information for a service principal in a Microsoft Entra tenant. You can use a service principal as a client or resource. A service principal supports delegated or app-only authentication context.
+        Represents a collection of sign-in activities of service principals.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +109,7 @@ class ServicePrincipalSignInActivityItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ServicePrincipalSignInActivity] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[ServicePrincipalSignInActivity] = None, request_configuration: Optional[ServicePrincipalSignInActivityItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property servicePrincipalSignInActivities in reports
         param body: The request body
@@ -136,10 +134,20 @@ class ServicePrincipalSignInActivityItemRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return ServicePrincipalSignInActivityItemRequestBuilder(self.request_adapter, raw_url)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ServicePrincipalSignInActivityItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class ServicePrincipalSignInActivityItemRequestBuilderGetQueryParameters():
         """
-        Get a servicePrincipalSignInActivity object that contains sign-in activity information for a service principal in a Microsoft Entra tenant. You can use a service principal as a client or resource. A service principal supports delegated or app-only authentication context.
+        Represents a collection of sign-in activities of service principals.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -161,5 +169,28 @@ class ServicePrincipalSignInActivityItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ServicePrincipalSignInActivityItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ServicePrincipalSignInActivityItemRequestBuilder.ServicePrincipalSignInActivityItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ServicePrincipalSignInActivityItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,12 +45,11 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
         url_tpl_params["outlookTaskFolder%2Did"] = outlook_task_folder_id
         return OutlookTaskFolderItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OutlookTaskFolderCollectionResponse]:
+    async def get(self,request_configuration: Optional[TaskFoldersRequestBuilderGetRequestConfiguration] = None) -> Optional[OutlookTaskFolderCollectionResponse]:
         """
-        Get Outlook task folders in a specific outlookTaskGroup.
+        The collection of task folders in the task group. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskFolderCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/outlooktaskgroup-list-taskfolders?view=graph-rest-1.0
         """
         warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -68,13 +66,12 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OutlookTaskFolderCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[OutlookTaskFolder] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[OutlookTaskFolder]:
+    async def post(self,body: Optional[OutlookTaskFolder] = None, request_configuration: Optional[TaskFoldersRequestBuilderPostRequestConfiguration] = None) -> Optional[OutlookTaskFolder]:
         """
-        Create an Outlook task folder under a specified outlookTaskGroup.
+        Create new navigation property to taskFolders for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskFolder]
-        Find more info here: https://learn.microsoft.com/graph/api/outlooktaskgroup-post-taskfolders?view=graph-rest-1.0
         """
         warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         if not body:
@@ -93,9 +90,9 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OutlookTaskFolder, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[TaskFoldersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get Outlook task folders in a specific outlookTaskGroup.
+        The collection of task folders in the task group. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,9 +102,9 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[OutlookTaskFolder] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[OutlookTaskFolder] = None, request_configuration: Optional[TaskFoldersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an Outlook task folder under a specified outlookTaskGroup.
+        Create new navigation property to taskFolders for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +141,7 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TaskFoldersRequestBuilderGetQueryParameters():
         """
-        Get Outlook task folders in a specific outlookTaskGroup.
+        The collection of task folders in the task group. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -186,5 +183,28 @@ class TaskFoldersRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TaskFoldersRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[TaskFoldersRequestBuilder.TaskFoldersRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TaskFoldersRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,12 +45,11 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["outlookTaskGroup%2Did"] = outlook_task_group_id
         return OutlookTaskGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OutlookTaskGroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[TaskGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[OutlookTaskGroupCollectionResponse]:
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox.
+        Get taskGroups from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskGroupCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/outlookuser-list-taskgroups?view=graph-rest-1.0
         """
         warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -68,13 +66,12 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OutlookTaskGroupCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[OutlookTaskGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[OutlookTaskGroup]:
+    async def post(self,body: Optional[OutlookTaskGroup] = None, request_configuration: Optional[TaskGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[OutlookTaskGroup]:
         """
-        Create an Outlook task group in the user's mailbox.
+        Create new navigation property to taskGroups for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskGroup]
-        Find more info here: https://learn.microsoft.com/graph/api/outlookuser-post-taskgroups?view=graph-rest-1.0
         """
         warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         if not body:
@@ -93,9 +90,9 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OutlookTaskGroup, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[TaskGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox.
+        Get taskGroups from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,9 +102,9 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[OutlookTaskGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[OutlookTaskGroup] = None, request_configuration: Optional[TaskGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an Outlook task group in the user's mailbox.
+        Create new navigation property to taskGroups for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +141,7 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TaskGroupsRequestBuilderGetQueryParameters():
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox.
+        Get taskGroups from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -186,5 +183,28 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TaskGroupsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[TaskGroupsRequestBuilder.TaskGroupsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class TaskGroupsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

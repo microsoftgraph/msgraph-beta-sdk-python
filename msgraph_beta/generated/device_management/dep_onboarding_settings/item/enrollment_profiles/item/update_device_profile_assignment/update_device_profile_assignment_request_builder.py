@@ -1,6 +1,6 @@
 from __future__ import annotations
+from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -26,7 +26,7 @@ class UpdateDeviceProfileAssignmentRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/depOnboardingSettings/{depOnboardingSetting%2Did}/enrollmentProfiles/{enrollmentProfile%2Did}/updateDeviceProfileAssignment", path_parameters)
     
-    async def post(self,body: Optional[UpdateDeviceProfileAssignmentPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def post(self,body: Optional[UpdateDeviceProfileAssignmentPostRequestBody] = None, request_configuration: Optional[UpdateDeviceProfileAssignmentRequestBuilderPostRequestConfiguration] = None) -> None:
         """
         Invoke action updateDeviceProfileAssignment
         param body: The request body
@@ -47,7 +47,7 @@ class UpdateDeviceProfileAssignmentRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def to_post_request_information(self,body: Optional[UpdateDeviceProfileAssignmentPostRequestBody] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[UpdateDeviceProfileAssignmentPostRequestBody] = None, request_configuration: Optional[UpdateDeviceProfileAssignmentRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Invoke action updateDeviceProfileAssignment
         param body: The request body
@@ -71,5 +71,15 @@ class UpdateDeviceProfileAssignmentRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return UpdateDeviceProfileAssignmentRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class UpdateDeviceProfileAssignmentRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

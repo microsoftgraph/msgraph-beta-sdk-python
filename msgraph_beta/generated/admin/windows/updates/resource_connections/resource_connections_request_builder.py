@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -44,12 +43,11 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["resourceConnection%2Did"] = resource_connection_id
         return ResourceConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ResourceConnectionCollectionResponse]:
+    async def get(self,request_configuration: Optional[ResourceConnectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[ResourceConnectionCollectionResponse]:
         """
-        Get a list of the resourceConnection objects and their properties.
+        Service connections to external resources such as analytics workspaces.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ResourceConnectionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-list-resourceconnections?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +63,12 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ResourceConnectionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ResourceConnection] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ResourceConnection]:
+    async def post(self,body: Optional[ResourceConnection] = None, request_configuration: Optional[ResourceConnectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[ResourceConnection]:
         """
-        Create a new operationalInsightsConnection object.
+        Create new navigation property to resourceConnections for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ResourceConnection]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-post-resourceconnections-operationalinsightsconnection?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +86,9 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ResourceConnection, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ResourceConnectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the resourceConnection objects and their properties.
+        Service connections to external resources such as analytics workspaces.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +97,9 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ResourceConnection] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[ResourceConnection] = None, request_configuration: Optional[ResourceConnectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new operationalInsightsConnection object.
+        Create new navigation property to resourceConnections for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +134,7 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ResourceConnectionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the resourceConnection objects and their properties.
+        Service connections to external resources such as analytics workspaces.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -189,5 +186,28 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ResourceConnectionsRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ResourceConnectionsRequestBuilder.ResourceConnectionsRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ResourceConnectionsRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

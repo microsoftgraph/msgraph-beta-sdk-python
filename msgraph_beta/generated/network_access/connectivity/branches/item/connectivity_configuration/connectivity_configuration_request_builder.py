@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -29,7 +28,7 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/networkAccess/connectivity/branches/{branchSite%2Did}/connectivityConfiguration{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ConnectivityConfigurationRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property connectivityConfiguration for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -48,12 +47,11 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[BranchConnectivityConfiguration]:
+    async def get(self,request_configuration: Optional[ConnectivityConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[BranchConnectivityConfiguration]:
         """
-        Retrieve the IPSec tunnel configuration required to establish a bidirectional communication link between your organization's router and the Microsoft gateway. This information is vital for configuring your router (customer premise equipment) after creating a deviceLink.
+        Specifies the connectivity details of all device links associated with a branch.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BranchConnectivityConfiguration]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchconnectivityconfiguration-get?view=graph-rest-1.0
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -70,7 +68,7 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, BranchConnectivityConfiguration, error_mapping)
     
-    async def patch(self,body: Optional[BranchConnectivityConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[BranchConnectivityConfiguration]:
+    async def patch(self,body: Optional[BranchConnectivityConfiguration] = None, request_configuration: Optional[ConnectivityConfigurationRequestBuilderPatchRequestConfiguration] = None) -> Optional[BranchConnectivityConfiguration]:
         """
         Update the navigation property connectivityConfiguration in networkAccess
         param body: The request body
@@ -94,7 +92,7 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, BranchConnectivityConfiguration, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[ConnectivityConfigurationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete navigation property connectivityConfiguration for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -106,9 +104,9 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[ConnectivityConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the IPSec tunnel configuration required to establish a bidirectional communication link between your organization's router and the Microsoft gateway. This information is vital for configuring your router (customer premise equipment) after creating a deviceLink.
+        Specifies the connectivity details of all device links associated with a branch.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +116,7 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[BranchConnectivityConfiguration] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[BranchConnectivityConfiguration] = None, request_configuration: Optional[ConnectivityConfigurationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property connectivityConfiguration in networkAccess
         param body: The request body
@@ -154,10 +152,20 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
 
         return LinksRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ConnectivityConfigurationRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class ConnectivityConfigurationRequestBuilderGetQueryParameters():
         """
-        Retrieve the IPSec tunnel configuration required to establish a bidirectional communication link between your organization's router and the Microsoft gateway. This information is vital for configuring your router (customer premise equipment) after creating a deviceLink.
+        Specifies the connectivity details of all device links associated with a branch.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -179,5 +187,28 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ConnectivityConfigurationRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[ConnectivityConfigurationRequestBuilder.ConnectivityConfigurationRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class ConnectivityConfigurationRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

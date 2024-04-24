@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -32,7 +31,7 @@ class DirectorySettingTemplateItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/directorySettingTemplates/{directorySettingTemplate%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from directorySettingTemplates
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -50,12 +49,12 @@ class DirectorySettingTemplateItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DirectorySettingTemplate]:
+    async def get(self,request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[DirectorySettingTemplate]:
         """
         A directory setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the directorySettingTemplate object, including the available settings and their defaults.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectorySettingTemplate]
-        Find more info here: https://learn.microsoft.com/graph/api/directorysettingtemplate-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/directorysettingtemplate-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,7 +70,7 @@ class DirectorySettingTemplateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DirectorySettingTemplate, error_mapping)
     
-    async def patch(self,body: Optional[DirectorySettingTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DirectorySettingTemplate]:
+    async def patch(self,body: Optional[DirectorySettingTemplate] = None, request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[DirectorySettingTemplate]:
         """
         Update entity in directorySettingTemplates
         param body: The request body
@@ -94,7 +93,7 @@ class DirectorySettingTemplateItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DirectorySettingTemplate, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete entity from directorySettingTemplates
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +104,7 @@ class DirectorySettingTemplateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         A directory setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the directorySettingTemplate object, including the available settings and their defaults.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -116,7 +115,7 @@ class DirectorySettingTemplateItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DirectorySettingTemplate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[DirectorySettingTemplate] = None, request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update entity in directorySettingTemplates
         param body: The request body
@@ -186,6 +185,16 @@ class DirectorySettingTemplateItemRequestBuilder(BaseRequestBuilder):
 
         return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DirectorySettingTemplateItemRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+    
     @dataclass
     class DirectorySettingTemplateItemRequestBuilderGetQueryParameters():
         """
@@ -211,5 +220,28 @@ class DirectorySettingTemplateItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DirectorySettingTemplateItemRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DirectorySettingTemplateItemRequestBuilder.DirectorySettingTemplateItemRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DirectorySettingTemplateItemRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

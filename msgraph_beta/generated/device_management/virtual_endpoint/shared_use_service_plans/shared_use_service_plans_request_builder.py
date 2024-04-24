@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,12 +45,11 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
         url_tpl_params["cloudPcSharedUseServicePlan%2Did"] = cloud_pc_shared_use_service_plan_id
         return CloudPcSharedUseServicePlanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcSharedUseServicePlanCollectionResponse]:
+    async def get(self,request_configuration: Optional[SharedUseServicePlansRequestBuilderGetRequestConfiguration] = None) -> Optional[CloudPcSharedUseServicePlanCollectionResponse]:
         """
-        Get a list of the cloudPcSharedUseServicePlan objects and their properties.
+        Get sharedUseServicePlans from deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcSharedUseServicePlanCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-shareduseserviceplans?view=graph-rest-1.0
         """
         warn("The sharedUseServicePlans property is deprecated and will not be supported starting Oct 8, 2023. This property will not be included as part of the API response. as of 2023-03/sharedUseServicePlans", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -68,7 +66,7 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcSharedUseServicePlanCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CloudPcSharedUseServicePlan] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcSharedUseServicePlan]:
+    async def post(self,body: Optional[CloudPcSharedUseServicePlan] = None, request_configuration: Optional[SharedUseServicePlansRequestBuilderPostRequestConfiguration] = None) -> Optional[CloudPcSharedUseServicePlan]:
         """
         Create new navigation property to sharedUseServicePlans for deviceManagement
         param body: The request body
@@ -92,9 +90,9 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcSharedUseServicePlan, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[SharedUseServicePlansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the cloudPcSharedUseServicePlan objects and their properties.
+        Get sharedUseServicePlans from deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +102,7 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CloudPcSharedUseServicePlan] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[CloudPcSharedUseServicePlan] = None, request_configuration: Optional[SharedUseServicePlansRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to sharedUseServicePlans for deviceManagement
         param body: The request body
@@ -143,7 +141,7 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SharedUseServicePlansRequestBuilderGetQueryParameters():
         """
-        Get a list of the cloudPcSharedUseServicePlan objects and their properties.
+        Get sharedUseServicePlans from deviceManagement
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -195,5 +193,28 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SharedUseServicePlansRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[SharedUseServicePlansRequestBuilder.SharedUseServicePlansRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class SharedUseServicePlansRequestBuilderPostRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 

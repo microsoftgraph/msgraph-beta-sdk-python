@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
-from kiota_abstractions.base_request_configuration import RequestConfiguration
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -30,12 +29,12 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
             path_parameters['deviceId'] = str(device_id)
         super().__init__(request_adapter, "{+baseurl}/devices(deviceId='{deviceId}'){?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DevicesWithDeviceIdRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a registered device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/device-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/device-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -49,12 +48,12 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Device]:
+    async def get(self,request_configuration: Optional[DevicesWithDeviceIdRequestBuilderGetRequestConfiguration] = None) -> Optional[Device]:
         """
         Get the properties and relationships of a device object. Since the device resource supports extensions, you can also use the GET operation to get custom properties and extension data in a device instance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Device]
-        Find more info here: https://learn.microsoft.com/graph/api/device-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/device-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,13 +69,13 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Device, error_mapping)
     
-    async def patch(self,body: Optional[Device] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Device]:
+    async def patch(self,body: Optional[Device] = None, request_configuration: Optional[DevicesWithDeviceIdRequestBuilderPatchRequestConfiguration] = None) -> Optional[Device]:
         """
         Update the properties of a device. Only certain properties of a device can be updated through approved Mobile Device Management (MDM) apps.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Device]
-        Find more info here: https://learn.microsoft.com/graph/api/device-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/device-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -94,7 +93,7 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Device, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[DevicesWithDeviceIdRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
         Delete a registered device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +104,7 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[DevicesWithDeviceIdRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get the properties and relationships of a device object. Since the device resource supports extensions, you can also use the GET operation to get custom properties and extension data in a device instance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -116,7 +115,7 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[Device] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[Device] = None, request_configuration: Optional[DevicesWithDeviceIdRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the properties of a device. Only certain properties of a device can be updated through approved Mobile Device Management (MDM) apps.
         param body: The request body
@@ -140,6 +139,16 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return DevicesWithDeviceIdRequestBuilder(self.request_adapter, raw_url)
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DevicesWithDeviceIdRequestBuilderDeleteRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
     @dataclass
     class DevicesWithDeviceIdRequestBuilderGetQueryParameters():
@@ -166,5 +175,28 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DevicesWithDeviceIdRequestBuilderGetRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request query parameters
+        query_parameters: Optional[DevicesWithDeviceIdRequestBuilder.DevicesWithDeviceIdRequestBuilderGetQueryParameters] = None
+
+    
+    from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+    @dataclass
+    class DevicesWithDeviceIdRequestBuilderPatchRequestConfiguration(BaseRequestConfiguration):
+        from kiota_abstractions.base_request_configuration import BaseRequestConfiguration
+
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
     
 
