@@ -15,13 +15,13 @@ from .virtual_event import VirtualEvent
 class VirtualEventTownhall(VirtualEvent):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.virtualEventTownhall"
-    # The audience property
+    # The audience to whom the town hall is visible. Possible values are: everyone, organization, unknownFutureValue.
     audience: Optional[MeetingAudience] = None
-    # The coOrganizers property
+    # Identity information of the coorganizers of the town hall.
     co_organizers: Optional[List[CommunicationsUserIdentity]] = None
-    # The invitedAttendees property
+    # The attendees invited to the town hall. The supported identites are: communicationsUserIdentity and communicationsGuestIdentity.
     invited_attendees: Optional[List[Identity]] = None
-    # The isInviteOnly property
+    # Indicates whether the town hall is only open to invited people and groups within your organization. The isInviteOnly property can only be true if the value of the audience property is set to organization.
     is_invite_only: Optional[bool] = None
     
     @staticmethod

@@ -48,10 +48,9 @@ class ForwardingProfilesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ForwardingProfileCollectionResponse]:
         """
-        Retrieve a list of traffic forwarding profiles associated with a branch.
+        Each forwarding profile associated with a branch site is specified. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingProfileCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchsite-list-forwardingprofiles?view=graph-rest-1.0
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -94,7 +93,7 @@ class ForwardingProfilesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of traffic forwarding profiles associated with a branch.
+        Each forwarding profile associated with a branch site is specified. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -143,7 +142,7 @@ class ForwardingProfilesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ForwardingProfilesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of traffic forwarding profiles associated with a branch.
+        Each forwarding profile associated with a branch site is specified. Supports $expand.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -48,7 +48,7 @@ class SubscribedSkusRequestBuilder(BaseRequestBuilder):
         Get the list of commercial subscriptions that an organization has acquired. For the mapping of license names as displayed on the Microsoft Entra admin center or the Microsoft 365 admin center against their Microsoft Graph skuId and skuPartNumber properties, see Product names and service plan identifiers for licensing.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SubscribedSkuCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

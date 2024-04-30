@@ -46,7 +46,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
         Soft-delete a chat. When invoked with delegated permissions, this operation only works for tenant admins and Teams service admins.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/chat-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/chat-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -65,7 +65,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
         Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Chat]
-        Find more info here: https://learn.microsoft.com/graph/api/chat-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/chat-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -87,7 +87,7 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Chat]
-        Find more info here: https://learn.microsoft.com/graph/api/chat-patch?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/chat-patch?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

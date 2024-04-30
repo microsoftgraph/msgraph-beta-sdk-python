@@ -29,10 +29,9 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete an externalUserProfile object. Note: To permanently delete the externalUserProfile, follow permanently delete an item. To restore an externalUserProfile, follow restore a deleted item.
+        Delete navigation property externalUserProfiles for directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/directory-delete-externaluserprofiles?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ExternalUserProfile]:
         """
-        Retrieve the properties of a specific externalUserProfile.
+        Collection of external user profiles that represent collaborators in the directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalUserProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/externaluserprofile-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +67,10 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ExternalUserProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ExternalUserProfile]:
         """
-        Update the properties of a externalUserProfile object.
+        Update the navigation property externalUserProfiles in directory
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalUserProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/externaluserprofile-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +90,7 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an externalUserProfile object. Note: To permanently delete the externalUserProfile, follow permanently delete an item. To restore an externalUserProfile, follow restore a deleted item.
+        Delete navigation property externalUserProfiles for directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +101,7 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of a specific externalUserProfile.
+        Collection of external user profiles that represent collaborators in the directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +112,7 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ExternalUserProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a externalUserProfile object.
+        Update the navigation property externalUserProfiles in directory
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +138,7 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExternalUserProfileItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a specific externalUserProfile.
+        Collection of external user profiles that represent collaborators in the directory.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -49,10 +49,9 @@ class UnifiedRbacResourceActionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedRbacResourceAction]:
         """
-        Read the properties and relationships of an unifiedRbacResourceAction object.
+        Operations that an authorized principal is allowed to perform.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedRbacResourceAction]
-        Find more info here: https://learn.microsoft.com/graph/api/unifiedrbacresourceaction-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -104,7 +103,7 @@ class UnifiedRbacResourceActionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an unifiedRbacResourceAction object.
+        Operations that an authorized principal is allowed to perform.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +158,7 @@ class UnifiedRbacResourceActionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UnifiedRbacResourceActionItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an unifiedRbacResourceAction object.
+        Operations that an authorized principal is allowed to perform.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

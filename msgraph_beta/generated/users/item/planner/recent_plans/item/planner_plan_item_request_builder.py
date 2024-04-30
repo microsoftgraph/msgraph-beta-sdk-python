@@ -29,7 +29,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PlannerPlan]:
         """
-        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
+        Read-only. Nullable. Returns the plannerPlans that the user recently viewed in apps that support recent plans.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlan]
         """
@@ -49,7 +49,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
+        Read-only. Nullable. Returns the plannerPlans that the user recently viewed in apps that support recent plans.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -71,7 +71,7 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlannerPlanItemRequestBuilderGetQueryParameters():
         """
-        Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
+        Read-only. Nullable. Returns the plannerPlans that the user recently viewed in apps that support recent plans.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

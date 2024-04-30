@@ -48,10 +48,9 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomAccessPackageWorkflowExtensionCollectionResponse]:
         """
-        Get a list of the customAccessPackageWorkflowExtension objects and their properties. The resulting list includes all the customAccessPackageWorkflowExtension objects for the catalog that the caller has access to read.
+        Get customAccessPackageWorkflowExtensions from identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAccessPackageWorkflowExtensionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackagecatalog-list-customaccesspackageworkflowextensions?view=graph-rest-1.0
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -70,11 +69,10 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CustomAccessPackageWorkflowExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomAccessPackageWorkflowExtension]:
         """
-        Create a new customAccessPackageWorkflowExtension object and add it to an existing accessPackageCatalog object.  
+        Create new navigation property to customAccessPackageWorkflowExtensions for identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomAccessPackageWorkflowExtension]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackagecatalog-post-customaccesspackageworkflowextensions?view=graph-rest-1.0
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
@@ -95,7 +93,7 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the customAccessPackageWorkflowExtension objects and their properties. The resulting list includes all the customAccessPackageWorkflowExtension objects for the catalog that the caller has access to read.
+        Get customAccessPackageWorkflowExtensions from identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +105,7 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[CustomAccessPackageWorkflowExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new customAccessPackageWorkflowExtension object and add it to an existing accessPackageCatalog object.  
+        Create new navigation property to customAccessPackageWorkflowExtensions for identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +142,7 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustomAccessPackageWorkflowExtensionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the customAccessPackageWorkflowExtension objects and their properties. The resulting list includes all the customAccessPackageWorkflowExtension objects for the catalog that the caller has access to read.
+        Get customAccessPackageWorkflowExtensions from identityGovernance
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

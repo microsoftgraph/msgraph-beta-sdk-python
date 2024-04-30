@@ -55,7 +55,7 @@ class UsersRequestBuilder(BaseRequestBuilder):
         Retrieve a list of user objects. This operation returns by default only a subset of the more commonly used properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the user and specify the properties in a $select OData query option.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/user-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -77,7 +77,7 @@ class UsersRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[User]
-        Find more info here: https://learn.microsoft.com/graph/api/user-post-users?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/user-post-users?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

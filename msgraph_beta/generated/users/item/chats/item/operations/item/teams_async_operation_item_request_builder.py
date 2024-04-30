@@ -47,10 +47,9 @@ class TeamsAsyncOperationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TeamsAsyncOperation]:
         """
-        Get the specified Teams async operation that ran or is running on a specific resource.
+        A collection of all the Teams async operations that ran or are running on the chat. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamsAsyncOperation]
-        Find more info here: https://learn.microsoft.com/graph/api/teamsasyncoperation-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class TeamsAsyncOperationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the specified Teams async operation that ran or is running on a specific resource.
+        A collection of all the Teams async operations that ran or are running on the chat. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class TeamsAsyncOperationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamsAsyncOperationItemRequestBuilderGetQueryParameters():
         """
-        Get the specified Teams async operation that ran or is running on a specific resource.
+        A collection of all the Teams async operations that ran or are running on the chat. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

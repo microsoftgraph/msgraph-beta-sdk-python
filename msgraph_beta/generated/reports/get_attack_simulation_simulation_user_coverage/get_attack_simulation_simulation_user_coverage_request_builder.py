@@ -30,9 +30,10 @@ class GetAttackSimulationSimulationUserCoverageRequestBuilder(BaseRequestBuilder
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetAttackSimulationSimulationUserCoverageGetResponse]:
         """
-        Invoke function getAttackSimulationSimulationUserCoverage
+        Get simulation coverage for users of a tenant in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAttackSimulationSimulationUserCoverageGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getattacksimulationsimulationusercoverage?view=graph-rest-beta
         """
         warn("This report function api is deprecated and will stop returning data on August 20, 2022. Api is now moved to /reports/security. Please use the new API. as of 2022-05/Tasks_And_Plans", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -51,7 +52,7 @@ class GetAttackSimulationSimulationUserCoverageRequestBuilder(BaseRequestBuilder
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getAttackSimulationSimulationUserCoverage
+        Get simulation coverage for users of a tenant in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -75,7 +76,7 @@ class GetAttackSimulationSimulationUserCoverageRequestBuilder(BaseRequestBuilder
     @dataclass
     class GetAttackSimulationSimulationUserCoverageRequestBuilderGetQueryParameters():
         """
-        Invoke function getAttackSimulationSimulationUserCoverage
+        Get simulation coverage for users of a tenant in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

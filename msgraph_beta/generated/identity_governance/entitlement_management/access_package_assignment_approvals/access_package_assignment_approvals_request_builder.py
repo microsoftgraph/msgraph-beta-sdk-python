@@ -59,7 +59,7 @@ class AccessPackageAssignmentApprovalsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ApprovalCollectionResponse]:
         """
-        Retrieve the properties of an approval object. This API request is made by an approver in the following scenarios:
+        Get accessPackageAssignmentApprovals from identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApprovalCollectionResponse]
         """
@@ -102,7 +102,7 @@ class AccessPackageAssignmentApprovalsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of an approval object. This API request is made by an approver in the following scenarios:
+        Get accessPackageAssignmentApprovals from identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class AccessPackageAssignmentApprovalsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageAssignmentApprovalsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of an approval object. This API request is made by an approver in the following scenarios:
+        Get accessPackageAssignmentApprovals from identityGovernance
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

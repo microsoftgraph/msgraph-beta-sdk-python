@@ -30,7 +30,7 @@ class RunDiagnosticsRequestBuilder(BaseRequestBuilder):
         Run and generate diagnostic logs for the specified Microsoft Teams-enabled device. This API triggers a long-running operation used to generate logs for a device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/teamworkdevice-rundiagnostics?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/teamworkdevice-rundiagnostics?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

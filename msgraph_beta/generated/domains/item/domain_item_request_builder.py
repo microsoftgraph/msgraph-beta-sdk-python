@@ -38,10 +38,10 @@ class DomainItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Deletes a domain from a tenant.
+        Delete a domain from a tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/domain-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,7 +60,7 @@ class DomainItemRequestBuilder(BaseRequestBuilder):
         Retrieve the properties and relationships of domain object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Domain]
-        Find more info here: https://learn.microsoft.com/graph/api/domain-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/domain-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -78,11 +78,11 @@ class DomainItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Domain] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Domain]:
         """
-        Update the properties of domain object.
+        Update the properties of domain object. Only verified domains can be updated.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Domain]
-        Find more info here: https://learn.microsoft.com/graph/api/domain-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/domain-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -102,7 +102,7 @@ class DomainItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes a domain from a tenant.
+        Delete a domain from a tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -124,7 +124,7 @@ class DomainItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Domain] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of domain object.
+        Update the properties of domain object. Only verified domains can be updated.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

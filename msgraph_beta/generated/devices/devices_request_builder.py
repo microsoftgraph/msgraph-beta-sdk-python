@@ -53,7 +53,7 @@ class DevicesRequestBuilder(BaseRequestBuilder):
         Retrieve a list of devices registered in the directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/device-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/device-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -75,7 +75,7 @@ class DevicesRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Device]
-        Find more info here: https://learn.microsoft.com/graph/api/device-post-devices?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/device-post-devices?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

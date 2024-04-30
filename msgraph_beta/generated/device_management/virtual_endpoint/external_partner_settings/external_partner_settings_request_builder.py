@@ -46,10 +46,9 @@ class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcExternalPartnerSettingCollectionResponse]:
         """
-        Get a list of the cloudPcExternalPartnerSetting objects and their properties.
+        The external partner settings on a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcExternalPartnerSettingCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-externalpartnersettings?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[CloudPcExternalPartnerSetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcExternalPartnerSetting]:
         """
-        Create a new cloudPcExternalPartnerSetting object.
+        Create new navigation property to externalPartnerSettings for deviceManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcExternalPartnerSetting]
-        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-post-externalpartnersettings?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the cloudPcExternalPartnerSetting objects and their properties.
+        The external partner settings on a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[CloudPcExternalPartnerSetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new cloudPcExternalPartnerSetting object.
+        Create new navigation property to externalPartnerSettings for deviceManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class ExternalPartnerSettingsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExternalPartnerSettingsRequestBuilderGetQueryParameters():
         """
-        Get a list of the cloudPcExternalPartnerSetting objects and their properties.
+        The external partner settings on a Cloud PC.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

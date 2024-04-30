@@ -54,10 +54,9 @@ class TeamworkDeviceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TeamworkDevice]:
         """
-        Get the properties of a Microsoft Teams-enabled device. For example, you can use this method to get the device type, hardware detail, activity state, and health status information for a device that's enabled for Teams.
+        The Teams devices provisioned for the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkDevice]
-        Find more info here: https://learn.microsoft.com/graph/api/teamworkdevice-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -109,7 +108,7 @@ class TeamworkDeviceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties of a Microsoft Teams-enabled device. For example, you can use this method to get the device type, hardware detail, activity state, and health status information for a device that's enabled for Teams.
+        The Teams devices provisioned for the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -209,7 +208,7 @@ class TeamworkDeviceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamworkDeviceItemRequestBuilderGetQueryParameters():
         """
-        Get the properties of a Microsoft Teams-enabled device. For example, you can use this method to get the device type, hardware detail, activity state, and health status information for a device that's enabled for Teams.
+        The Teams devices provisioned for the tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

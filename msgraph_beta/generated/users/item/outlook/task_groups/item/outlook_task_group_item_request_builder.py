@@ -50,10 +50,9 @@ class OutlookTaskGroupItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OutlookTaskGroup]:
         """
-        Get the properties and relationships of the specified Outlook task group.
+        Get taskGroups from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskGroup]
-        Find more info here: https://learn.microsoft.com/graph/api/outlooktaskgroup-get?view=graph-rest-1.0
         """
         warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -108,7 +107,7 @@ class OutlookTaskGroupItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the properties and relationships of the specified Outlook task group.
+        Get taskGroups from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +156,7 @@ class OutlookTaskGroupItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OutlookTaskGroupItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of the specified Outlook task group.
+        Get taskGroups from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

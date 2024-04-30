@@ -47,10 +47,9 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationEventsFlowCollectionResponse]:
         """
-        Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned.
+        Represents the entry point for self-service sign up and sign in user flows in both Microsoft Entra workforce and customer tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventsFlowCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-list-authenticationeventsflows?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AuthenticationEventsFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationEventsFlow]:
         """
-        Create a new authenticationEventsFlow object that is of the type specified in the request body. You can create only an externalUsersSelfServiceSignupEventsFlow object type.
+        Create new navigation property to authenticationEventsFlows for identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventsFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-post-authenticationeventsflows?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -92,7 +90,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned.
+        Represents the entry point for self-service sign up and sign in user flows in both Microsoft Entra workforce and customer tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +101,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AuthenticationEventsFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new authenticationEventsFlow object that is of the type specified in the request body. You can create only an externalUsersSelfServiceSignupEventsFlow object type.
+        Create new navigation property to authenticationEventsFlows for identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -147,7 +145,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuthenticationEventsFlowsRequestBuilderGetQueryParameters():
         """
-        Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned.
+        Represents the entry point for self-service sign up and sign in user flows in both Microsoft Entra workforce and customer tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

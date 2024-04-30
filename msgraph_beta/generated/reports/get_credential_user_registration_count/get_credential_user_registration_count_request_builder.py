@@ -32,7 +32,7 @@ class GetCredentialUserRegistrationCountRequestBuilder(BaseRequestBuilder):
         Report the current state of how many users in your organization are registered for self-service password reset and multifactor authentication (MFA) capabilities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetCredentialUserRegistrationCountGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getcredentialuserregistrationcount?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getcredentialuserregistrationcount?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

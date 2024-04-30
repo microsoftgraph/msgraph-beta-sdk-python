@@ -49,7 +49,7 @@ class DomainsRequestBuilder(BaseRequestBuilder):
         Retrieve a list of domain objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DomainCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/domain-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/domain-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,7 +71,7 @@ class DomainsRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Domain]
-        Find more info here: https://learn.microsoft.com/graph/api/domain-post-domains?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/domain-post-domains?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

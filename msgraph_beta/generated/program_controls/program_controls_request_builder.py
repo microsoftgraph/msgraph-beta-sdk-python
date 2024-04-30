@@ -49,7 +49,7 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
         In the Microsoft Entra access reviews feature, list all the programControl objects, across all programs in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProgramControlCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/programcontrol-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/programcontrol-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,7 +71,7 @@ class ProgramControlsRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProgramControl]
-        Find more info here: https://learn.microsoft.com/graph/api/programcontrol-create?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/programcontrol-create?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

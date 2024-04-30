@@ -48,10 +48,9 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PublishedResource]:
         """
-        Retrieve the properties and relationships of publishedResource object.
+        List of existing publishedResource objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PublishedResource]
-        Find more info here: https://learn.microsoft.com/graph/api/publishedresource-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +68,10 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[PublishedResource] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PublishedResource]:
         """
-        Update the properties of published resource  publishedResource object.
+        Update the navigation property publishedResources in onPremisesPublishingProfiles
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PublishedResource]
-        Find more info here: https://learn.microsoft.com/graph/api/publishedresource-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -104,7 +102,7 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of publishedResource object.
+        List of existing publishedResource objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +113,7 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[PublishedResource] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of published resource  publishedResource object.
+        Update the navigation property publishedResources in onPremisesPublishingProfiles
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -150,7 +148,7 @@ class PublishedResourceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PublishedResourceItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of publishedResource object.
+        List of existing publishedResource objects. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

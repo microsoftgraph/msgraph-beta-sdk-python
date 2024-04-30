@@ -35,7 +35,7 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
         Delete a registered device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/device-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/device-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -54,7 +54,7 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
         Get the properties and relationships of a device object. Since the device resource supports extensions, you can also use the GET operation to get custom properties and extension data in a device instance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Device]
-        Find more info here: https://learn.microsoft.com/graph/api/device-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/device-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -76,7 +76,7 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Device]
-        Find more info here: https://learn.microsoft.com/graph/api/device-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/device-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

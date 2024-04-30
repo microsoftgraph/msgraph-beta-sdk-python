@@ -28,9 +28,10 @@ class UploadUrlRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UploadUrlGetResponse]:
         """
-        Invoke function uploadUrl
+        Retrieve a shared access signature (SAS) for uploading source files to Azure blob storage for a specific school data synchronization profile in the tenant. The SAS token has a validity of one hour. The upload URL is provided only for the CSV data provider.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UploadUrlGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-uploadurl?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -48,7 +49,7 @@ class UploadUrlRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function uploadUrl
+        Retrieve a shared access signature (SAS) for uploading source files to Azure blob storage for a specific school data synchronization profile in the tenant. The SAS token has a validity of one hour. The upload URL is provided only for the CSV data provider.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

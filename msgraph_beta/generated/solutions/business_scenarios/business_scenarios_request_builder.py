@@ -46,10 +46,9 @@ class BusinessScenariosRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[BusinessScenarioCollectionResponse]:
         """
-        Get a list of all businessScenario objects in an organization.
+        Get businessScenarios from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenarioCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/solutionsroot-list-businessscenarios?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class BusinessScenariosRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[BusinessScenario] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[BusinessScenario]:
         """
-        Create a new businessScenario object.
+        Create new navigation property to businessScenarios for solutions
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenario]
-        Find more info here: https://learn.microsoft.com/graph/api/solutionsroot-post-businessscenarios?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class BusinessScenariosRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of all businessScenario objects in an organization.
+        Get businessScenarios from solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class BusinessScenariosRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[BusinessScenario] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new businessScenario object.
+        Create new navigation property to businessScenarios for solutions
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class BusinessScenariosRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BusinessScenariosRequestBuilderGetQueryParameters():
         """
-        Get a list of all businessScenario objects in an organization.
+        Get businessScenarios from solutions
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

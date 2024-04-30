@@ -29,10 +29,9 @@ class MeetingRegistrationQuestionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a custom registration question from a meetingRegistration object on behalf of the organizer.
+        Delete navigation property customQuestions for app
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/meetingregistrationquestion-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class MeetingRegistrationQuestionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MeetingRegistrationQuestion]:
         """
-        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Custom registration questions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MeetingRegistrationQuestion]
-        Find more info here: https://learn.microsoft.com/graph/api/meetingregistrationquestion-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +67,10 @@ class MeetingRegistrationQuestionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[MeetingRegistrationQuestion] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MeetingRegistrationQuestion]:
         """
-        Update a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Update the navigation property customQuestions in app
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MeetingRegistrationQuestion]
-        Find more info here: https://learn.microsoft.com/graph/api/meetingregistrationquestion-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +90,7 @@ class MeetingRegistrationQuestionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a custom registration question from a meetingRegistration object on behalf of the organizer.
+        Delete navigation property customQuestions for app
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +101,7 @@ class MeetingRegistrationQuestionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Custom registration questions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +112,7 @@ class MeetingRegistrationQuestionItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[MeetingRegistrationQuestion] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Update the navigation property customQuestions in app
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +138,7 @@ class MeetingRegistrationQuestionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MeetingRegistrationQuestionItemRequestBuilderGetQueryParameters():
         """
-        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Custom registration questions.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

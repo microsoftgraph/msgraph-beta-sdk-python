@@ -46,10 +46,9 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder(BaseRequestBuild
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceCompliancePolicySettingStateSummaryCollectionResponse]:
         """
-        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
+        Summary information for device compliance policy setting states across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceCompliancePolicySettingStateSummaryCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managedtenant-list-devicecompliancepolicysettingstatesummary?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder(BaseRequestBuild
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
+        Summary information for device compliance policy setting states across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class DeviceCompliancePolicySettingStateSummariesRequestBuilder(BaseRequestBuild
     @dataclass
     class DeviceCompliancePolicySettingStateSummariesRequestBuilderGetQueryParameters():
         """
-        Get a list of the deviceCompliancePolicySettingStateSummary objects and their properties.
+        Summary information for device compliance policy setting states across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

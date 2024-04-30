@@ -47,10 +47,9 @@ class TermStoreRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Store]:
         """
-        Read the properties and relationships of a store object.
+        The termStore under this site.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Store]
-        Find more info here: https://learn.microsoft.com/graph/api/termstore-store-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class TermStoreRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a store object.
+        The termStore under this site.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class TermStoreRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TermStoreRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a store object.
+        The termStore under this site.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

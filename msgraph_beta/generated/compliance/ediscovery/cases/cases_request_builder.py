@@ -48,10 +48,9 @@ class CasesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CaseCollectionResponse]:
         """
-        Retrieve a list of case objects.
+        Get cases from compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CaseCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-list?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -70,11 +69,10 @@ class CasesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[Case] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Case]:
         """
-        Create a new case object.
+        Create new navigation property to cases for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Case]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-post?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -95,7 +93,7 @@ class CasesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of case objects.
+        Get cases from compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +105,7 @@ class CasesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[Case] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new case object.
+        Create new navigation property to cases for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +142,7 @@ class CasesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CasesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of case objects.
+        Get cases from compliance
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

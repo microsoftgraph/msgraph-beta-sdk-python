@@ -46,10 +46,9 @@ class PendingExternalUserProfilesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PendingExternalUserProfileCollectionResponse]:
         """
-        Retrieve the properties of all pendingExternalUserProfiles.
+        Collection of pending external user profiles representing collaborators in the directory that are unredeemed.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PendingExternalUserProfileCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/directory-list-pendingexternaluserprofile?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class PendingExternalUserProfilesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[PendingExternalUserProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PendingExternalUserProfile]:
         """
-        Create a new pendingExternalUserProfile object.
+        Create new navigation property to pendingExternalUserProfiles for directory
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PendingExternalUserProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/directory-post-pendingexternaluserprofile?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class PendingExternalUserProfilesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of all pendingExternalUserProfiles.
+        Collection of pending external user profiles representing collaborators in the directory that are unredeemed.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class PendingExternalUserProfilesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[PendingExternalUserProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new pendingExternalUserProfile object.
+        Create new navigation property to pendingExternalUserProfiles for directory
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class PendingExternalUserProfilesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PendingExternalUserProfilesRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of all pendingExternalUserProfiles.
+        Collection of pending external user profiles representing collaborators in the directory that are unredeemed.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

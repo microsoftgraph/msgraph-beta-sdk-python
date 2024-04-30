@@ -31,10 +31,9 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a tenantTag object.
+        Delete navigation property tenantTags for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenanttag-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,10 +49,9 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TenantTag]:
         """
-        Read the properties and relationships of a tenantTag object.
+        The collection of tenant tags across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantTag]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenanttag-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,11 +69,10 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[TenantTag] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TenantTag]:
         """
-        Update the properties of a tenantTag object.
+        Update the navigation property tenantTags in tenantRelationships
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantTag]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenanttag-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -95,7 +92,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a tenantTag object.
+        Delete navigation property tenantTags for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,7 +103,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a tenantTag object.
+        The collection of tenant tags across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,7 +114,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[TenantTag] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a tenantTag object.
+        Update the navigation property tenantTags in tenantRelationships
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -161,7 +158,7 @@ class TenantTagItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantTagItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a tenantTag object.
+        The collection of tenant tags across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

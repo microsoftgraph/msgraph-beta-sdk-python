@@ -29,9 +29,10 @@ class GetEffectivePermissionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetEffectivePermissionsGetResponse]:
         """
-        Invoke function getEffectivePermissions
+        Get the effective permissions of the currently authenticated user, helping UX hide or disable content that the current user doesn't have access to.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetEffectivePermissionsGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-geteffectivepermissions?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class GetEffectivePermissionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getEffectivePermissions
+        Get the effective permissions of the currently authenticated user, helping UX hide or disable content that the current user doesn't have access to.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -71,7 +72,7 @@ class GetEffectivePermissionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GetEffectivePermissionsRequestBuilderGetQueryParameters():
         """
-        Invoke function getEffectivePermissions
+        Get the effective permissions of the currently authenticated user, helping UX hide or disable content that the current user doesn't have access to.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

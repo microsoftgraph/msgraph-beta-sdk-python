@@ -33,10 +33,9 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a legalHold object.
+        Delete navigation property legalHolds for compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-delete?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -53,10 +52,9 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[LegalHold]:
         """
-        Read the properties and relationships of a legalHold object.
+        Returns a list of case legalHold objects for this case.  Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LegalHold]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-get?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -75,11 +73,10 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[LegalHold] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[LegalHold]:
         """
-        Update the properties of a legalHold object.
+        Update the navigation property legalHolds in compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LegalHold]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-update?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -100,7 +97,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a legalHold object.
+        Delete navigation property legalHolds for compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +109,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a legalHold object.
+        Returns a list of case legalHold objects for this case.  Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -124,7 +121,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[LegalHold] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a legalHold object.
+        Update the navigation property legalHolds in compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -179,7 +176,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LegalHoldItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a legalHold object.
+        Returns a list of case legalHold objects for this case.  Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

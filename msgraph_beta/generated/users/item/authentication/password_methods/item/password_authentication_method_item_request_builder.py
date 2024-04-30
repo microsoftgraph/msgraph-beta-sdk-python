@@ -29,10 +29,9 @@ class PasswordAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PasswordAuthenticationMethod]:
         """
-        Retrieve the properties and relationships of a password authentication method object. 
+        Represents the details of the password authentication method registered to a user for authentication.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PasswordAuthenticationMethod]
-        Find more info here: https://learn.microsoft.com/graph/api/passwordauthenticationmethod-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -50,7 +49,7 @@ class PasswordAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a password authentication method object. 
+        Represents the details of the password authentication method registered to a user for authentication.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -72,7 +71,7 @@ class PasswordAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PasswordAuthenticationMethodItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a password authentication method object. 
+        Represents the details of the password authentication method registered to a user for authentication.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

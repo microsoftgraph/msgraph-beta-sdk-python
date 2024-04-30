@@ -29,10 +29,9 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete an educationalActivity object from a user's profile.
+        Delete navigation property educationalActivities for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/educationalactivity-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EducationalActivity]:
         """
-        Retrieve the properties and relationships of an educationalActivity object from a users profile.
+        Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationalActivity]
-        Find more info here: https://learn.microsoft.com/graph/api/educationalactivity-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +67,10 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[EducationalActivity] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[EducationalActivity]:
         """
-        Update the properties of an educationalActivity object within a user's profile.
+        Update the navigation property educationalActivities in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationalActivity]
-        Find more info here: https://learn.microsoft.com/graph/api/educationalactivity-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +90,7 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an educationalActivity object from a user's profile.
+        Delete navigation property educationalActivities for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +101,7 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an educationalActivity object from a users profile.
+        Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +112,7 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[EducationalActivity] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an educationalActivity object within a user's profile.
+        Update the navigation property educationalActivities in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +138,7 @@ class EducationalActivityItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EducationalActivityItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an educationalActivity object from a users profile.
+        Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

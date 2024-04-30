@@ -49,10 +49,9 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageCatalogCollectionResponse]:
         """
-        Retrieve a list of accessPackageCatalog objects.
+        A container of access packages.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageCatalogCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackagecatalogs?view=graph-rest-1.0
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -71,11 +70,10 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[AccessPackageCatalog] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageCatalog]:
         """
-        Create a new accessPackageCatalog object.
+        Create new navigation property to accessPackageCatalogs for identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageCatalog]
-        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-post-accesspackagecatalogs?view=graph-rest-1.0
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
@@ -96,7 +94,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of accessPackageCatalog objects.
+        A container of access packages.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +106,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[AccessPackageCatalog] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new accessPackageCatalog object.
+        Create new navigation property to accessPackageCatalogs for identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +152,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageCatalogsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of accessPackageCatalog objects.
+        A container of access packages.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

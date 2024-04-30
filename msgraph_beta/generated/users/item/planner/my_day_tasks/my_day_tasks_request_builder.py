@@ -45,7 +45,7 @@ class MyDayTasksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PlannerTaskCollectionResponse]:
         """
-        Get myDayTasks from users
+        Read-only. Nullable. Returns the plannerTasks to be shown in the My Day view of the user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerTaskCollectionResponse]
         """
@@ -65,7 +65,7 @@ class MyDayTasksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get myDayTasks from users
+        Read-only. Nullable. Returns the plannerTasks to be shown in the My Day view of the user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -96,7 +96,7 @@ class MyDayTasksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MyDayTasksRequestBuilderGetQueryParameters():
         """
-        Get myDayTasks from users
+        Read-only. Nullable. Returns the plannerTasks to be shown in the My Day view of the user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -46,10 +46,9 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnPremisesAgentGroupCollectionResponse]:
         """
-        Retrieve a list of onPremisesAgentGroup objects.
+        List of existing onPremisesAgentGroup objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesAgentGroupCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/onpremisesagentgroup-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[OnPremisesAgentGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnPremisesAgentGroup]:
         """
-        Create a new onPremisesAgentGroup object.
+        Create new navigation property to agentGroups for onPremisesPublishingProfiles
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnPremisesAgentGroup]
-        Find more info here: https://learn.microsoft.com/graph/api/onpremisesagentgroup-post?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of onPremisesAgentGroup objects.
+        List of existing onPremisesAgentGroup objects. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[OnPremisesAgentGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new onPremisesAgentGroup object.
+        Create new navigation property to agentGroups for onPremisesPublishingProfiles
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class AgentGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AgentGroupsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of onPremisesAgentGroup objects.
+        List of existing onPremisesAgentGroup objects. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

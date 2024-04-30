@@ -31,7 +31,7 @@ class MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder(Base
         Carries out the appropriate procedures to reset the onboarding status for the managed tenant that was removed from the multitenant management platform using the offboardTenant action. By invoking this action the platform attempts to onboard the managed tenant for management.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Tenant]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenant-resettenantonboardingstatus?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenant-resettenantonboardingstatus?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

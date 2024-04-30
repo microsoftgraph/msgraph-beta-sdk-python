@@ -46,10 +46,9 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[B2cIdentityUserFlowCollectionResponse]:
         """
-        Retrieve a list of b2cIdentityUserFlow objects.
+        Represents entry point for B2C identity userflows.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cIdentityUserFlowCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-list-b2cuserflows?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[B2cIdentityUserFlow]:
         """
-        Create a new b2cIdentityUserFlow object.
+        Create new navigation property to b2cUserFlows for identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2cIdentityUserFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-post-b2cuserflows?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of b2cIdentityUserFlow objects.
+        Represents entry point for B2C identity userflows.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[B2cIdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new b2cIdentityUserFlow object.
+        Create new navigation property to b2cUserFlows for identity
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class B2cUserFlowsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class B2cUserFlowsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of b2cIdentityUserFlow objects.
+        Represents entry point for B2C identity userflows.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

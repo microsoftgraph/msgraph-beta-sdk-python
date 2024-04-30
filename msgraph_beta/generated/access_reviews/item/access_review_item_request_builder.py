@@ -40,7 +40,7 @@ class AccessReviewItemRequestBuilder(BaseRequestBuilder):
         In the Microsoft Entra access reviews feature, delete an accessReview object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/accessreview-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/accessreview-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,7 +59,7 @@ class AccessReviewItemRequestBuilder(BaseRequestBuilder):
         In the Microsoft Entra access reviews feature, retrieve an accessReview object.   To retrieve the reviewers of the access review, use the list accessReview reviewers API. To retrieve the decisions of the access review, use the list accessReview decisions API, or the list my accessReview decisions API. If this is a recurring access review, no decisions will be associated with the recurring access review series. Instead, use the instances relationship of that series to retrieve an accessReview collection of the past, current, and future instances of the access review. Each past and current instance will have decisions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReview]
-        Find more info here: https://learn.microsoft.com/graph/api/accessreview-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/accessreview-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -81,7 +81,7 @@ class AccessReviewItemRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReview]
-        Find more info here: https://learn.microsoft.com/graph/api/accessreview-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/accessreview-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

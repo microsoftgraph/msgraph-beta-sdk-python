@@ -41,10 +41,9 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete an event object.
+        Delete navigation property events for groups
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/group-delete-event?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,10 +59,9 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Event]:
         """
-        Get an event object.
+        The group's events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Event]
-        Find more info here: https://learn.microsoft.com/graph/api/group-get-event?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -81,11 +79,10 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Event] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Event]:
         """
-        Update an event object.
+        Update the navigation property events in groups
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Event]
-        Find more info here: https://learn.microsoft.com/graph/api/group-update-event?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -105,7 +102,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an event object.
+        Delete navigation property events for groups
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +113,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get an event object.
+        The group's events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +124,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Event] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update an event object.
+        Update the navigation property events in groups
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -261,7 +258,7 @@ class EventItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EventItemRequestBuilderGetQueryParameters():
         """
-        Get an event object.
+        The group's events.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

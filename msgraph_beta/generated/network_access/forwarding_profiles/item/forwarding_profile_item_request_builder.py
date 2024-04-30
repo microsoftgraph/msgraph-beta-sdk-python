@@ -49,10 +49,9 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ForwardingProfile]:
         """
-        Retrieve information about a specific forwarding profile.
+        A forwarding profile determines which types of traffic are routed through the Global Secure Access services and which ones are skipped. The handling of specific traffic is determined by the forwarding policies that are added to the forwarding profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-forwardingprofile-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,11 +69,10 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ForwardingProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ForwardingProfile]:
         """
-        Update an existing forwarding profile.
+        Update the navigation property forwardingProfiles in networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-forwardingprofile-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -105,7 +103,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve information about a specific forwarding profile.
+        A forwarding profile determines which types of traffic are routed through the Global Secure Access services and which ones are skipped. The handling of specific traffic is determined by the forwarding policies that are added to the forwarding profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +114,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ForwardingProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update an existing forwarding profile.
+        Update the navigation property forwardingProfiles in networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -160,7 +158,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ForwardingProfileItemRequestBuilderGetQueryParameters():
         """
-        Retrieve information about a specific forwarding profile.
+        A forwarding profile determines which types of traffic are routed through the Global Secure Access services and which ones are skipped. The handling of specific traffic is determined by the forwarding policies that are added to the forwarding profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

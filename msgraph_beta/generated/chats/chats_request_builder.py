@@ -52,7 +52,7 @@ class ChatsRequestBuilder(BaseRequestBuilder):
         Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChatCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/chat-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/chat-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -74,7 +74,7 @@ class ChatsRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Chat]
-        Find more info here: https://learn.microsoft.com/graph/api/chat-post?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/chat-post?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

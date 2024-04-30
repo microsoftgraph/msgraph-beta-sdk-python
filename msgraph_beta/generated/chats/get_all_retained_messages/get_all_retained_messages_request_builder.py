@@ -29,9 +29,10 @@ class GetAllRetainedMessagesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetAllRetainedMessagesGetResponse]:
         """
-        Invoke function getAllRetainedMessages
+        Get all retained messages from all chats that a user is a participant in, including one-on-one chats, group chats, and meeting chats.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAllRetainedMessagesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/chat-getallretainedmessages?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class GetAllRetainedMessagesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getAllRetainedMessages
+        Get all retained messages from all chats that a user is a participant in, including one-on-one chats, group chats, and meeting chats.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -71,7 +72,7 @@ class GetAllRetainedMessagesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GetAllRetainedMessagesRequestBuilderGetQueryParameters():
         """
-        Invoke function getAllRetainedMessages
+        Get all retained messages from all chats that a user is a participant in, including one-on-one chats, group chats, and meeting chats.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

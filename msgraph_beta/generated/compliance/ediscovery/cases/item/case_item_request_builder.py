@@ -40,10 +40,9 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a case object.
+        Delete navigation property cases for compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-delete?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -60,10 +59,9 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Case]:
         """
-        Retrieve the properties and relationships of a case object.
+        Get cases from compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Case]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-get?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -82,11 +80,10 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Case] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Case]:
         """
-        Update the properties of a case object.
+        Update the navigation property cases in compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Case]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-update?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -107,7 +104,7 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a case object.
+        Delete navigation property cases for compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,7 +116,7 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a case object.
+        Get cases from compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -131,7 +128,7 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Case] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a case object.
+        Update the navigation property cases in compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -249,7 +246,7 @@ class CaseItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CaseItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a case object.
+        Get cases from compliance
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

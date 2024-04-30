@@ -47,10 +47,9 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserInsightsSettings]:
         """
-        Get the user-customizable privacy settings for itemInsights and meeting hours insights.
+        The user's settings for the visibility of meeting hour insights, and insights derived between a user and other items in Microsoft 365, such as documents or sites. Get userInsightsSettings through this navigation property.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserInsightsSettings]
-        Find more info here: https://learn.microsoft.com/graph/api/userinsightssettings-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[UserInsightsSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserInsightsSettings]:
         """
-        Update the privacy settings for itemInsights and meeting hours insights of a user.
+        Update the navigation property itemInsights in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserInsightsSettings]
-        Find more info here: https://learn.microsoft.com/graph/api/userinsightssettings-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -103,7 +101,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the user-customizable privacy settings for itemInsights and meeting hours insights.
+        The user's settings for the visibility of meeting hour insights, and insights derived between a user and other items in Microsoft 365, such as documents or sites. Get userInsightsSettings through this navigation property.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +112,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[UserInsightsSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the privacy settings for itemInsights and meeting hours insights of a user.
+        Update the navigation property itemInsights in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +138,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ItemInsightsRequestBuilderGetQueryParameters():
         """
-        Get the user-customizable privacy settings for itemInsights and meeting hours insights.
+        The user's settings for the visibility of meeting hour insights, and insights derived between a user and other items in Microsoft 365, such as documents or sites. Get userInsightsSettings through this navigation property.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

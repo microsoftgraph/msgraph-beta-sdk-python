@@ -47,10 +47,9 @@ class ProfileStatusRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[EducationSynchronizationProfileStatus]:
         """
-        Get the status of a specific school data synchronization profile in the tenant. The response will indicate the status of the sync.
+        The synchronization status.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSynchronizationProfileStatus]
-        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofilestatus-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class ProfileStatusRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the status of a specific school data synchronization profile in the tenant. The response will indicate the status of the sync.
+        The synchronization status.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class ProfileStatusRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProfileStatusRequestBuilderGetQueryParameters():
         """
-        Get the status of a specific school data synchronization profile in the tenant. The response will indicate the status of the sync.
+        The synchronization status.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -29,10 +29,9 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Deletes a personWebsite object from a user's profile.
+        Delete navigation property websites for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/personwebsite-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonWebsite]:
         """
-        Retrieve the properties and relationships of a personWebsite object from a user's profile.
+        Represents detailed information about websites associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonWebsite]
-        Find more info here: https://learn.microsoft.com/graph/api/personwebsite-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +67,10 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[PersonWebsite] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PersonWebsite]:
         """
-        Update the properties of personWebsite object in a user's profile.
+        Update the navigation property websites in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PersonWebsite]
-        Find more info here: https://learn.microsoft.com/graph/api/personwebsite-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +90,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Deletes a personWebsite object from a user's profile.
+        Delete navigation property websites for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +101,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a personWebsite object from a user's profile.
+        Represents detailed information about websites associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +112,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[PersonWebsite] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of personWebsite object in a user's profile.
+        Update the navigation property websites in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +138,7 @@ class PersonWebsiteItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PersonWebsiteItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a personWebsite object from a user's profile.
+        Represents detailed information about websites associated with a user in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

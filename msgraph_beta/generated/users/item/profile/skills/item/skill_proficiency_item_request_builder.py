@@ -29,10 +29,9 @@ class SkillProficiencyItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a skillProficiency object from a user's profile.
+        Delete navigation property skills for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/skillproficiency-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class SkillProficiencyItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SkillProficiency]:
         """
-        Retrieve the properties and relationships of a skillproficiency object in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SkillProficiency]
-        Find more info here: https://learn.microsoft.com/graph/api/skillproficiency-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +67,10 @@ class SkillProficiencyItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[SkillProficiency] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SkillProficiency]:
         """
-        Update the properties of a skillProficiency object in a user's profile.
+        Update the navigation property skills in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SkillProficiency]
-        Find more info here: https://learn.microsoft.com/graph/api/skillproficiency-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +90,7 @@ class SkillProficiencyItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a skillProficiency object from a user's profile.
+        Delete navigation property skills for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +101,7 @@ class SkillProficiencyItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a skillproficiency object in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +112,7 @@ class SkillProficiencyItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[SkillProficiency] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a skillProficiency object in a user's profile.
+        Update the navigation property skills in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +138,7 @@ class SkillProficiencyItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SkillProficiencyItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a skillproficiency object in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

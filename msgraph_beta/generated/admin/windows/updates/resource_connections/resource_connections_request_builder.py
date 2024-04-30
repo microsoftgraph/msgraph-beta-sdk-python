@@ -46,10 +46,9 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ResourceConnectionCollectionResponse]:
         """
-        Get a list of the resourceConnection objects and their properties.
+        Service connections to external resources such as analytics workspaces.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ResourceConnectionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-list-resourceconnections?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ResourceConnection] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ResourceConnection]:
         """
-        Create a new operationalInsightsConnection object.
+        Create new navigation property to resourceConnections for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ResourceConnection]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-post-resourceconnections-operationalinsightsconnection?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the resourceConnection objects and their properties.
+        Service connections to external resources such as analytics workspaces.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ResourceConnection] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new operationalInsightsConnection object.
+        Create new navigation property to resourceConnections for admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class ResourceConnectionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ResourceConnectionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the resourceConnection objects and their properties.
+        Service connections to external resources such as analytics workspaces.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

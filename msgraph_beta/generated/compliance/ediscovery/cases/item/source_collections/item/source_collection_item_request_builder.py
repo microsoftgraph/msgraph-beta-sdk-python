@@ -37,10 +37,9 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a sourceCollection object.
+        Delete navigation property sourceCollections for compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-delete?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -78,11 +77,10 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[SourceCollection] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SourceCollection]:
         """
-        Update the properties of a sourceCollection object.
+        Update the navigation property sourceCollections in compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SourceCollection]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-update?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -103,7 +101,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a sourceCollection object.
+        Delete navigation property sourceCollections for compliance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +125,7 @@ class SourceCollectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[SourceCollection] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a sourceCollection object.
+        Update the navigation property sourceCollections in compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

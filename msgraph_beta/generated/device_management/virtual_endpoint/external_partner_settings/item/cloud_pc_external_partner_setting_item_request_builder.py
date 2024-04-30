@@ -47,10 +47,9 @@ class CloudPcExternalPartnerSettingItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcExternalPartnerSetting]:
         """
-        Read the properties and relationships of a cloudPcExternalPartnerSetting object.
+        The external partner settings on a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcExternalPartnerSetting]
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpcexternalpartnersetting-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class CloudPcExternalPartnerSettingItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[CloudPcExternalPartnerSetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcExternalPartnerSetting]:
         """
-        Update the properties of a cloudPcExternalPartnerSetting object.
+        Update the navigation property externalPartnerSettings in deviceManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcExternalPartnerSetting]
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpcexternalpartnersetting-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -103,7 +101,7 @@ class CloudPcExternalPartnerSettingItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a cloudPcExternalPartnerSetting object.
+        The external partner settings on a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +112,7 @@ class CloudPcExternalPartnerSettingItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[CloudPcExternalPartnerSetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a cloudPcExternalPartnerSetting object.
+        Update the navigation property externalPartnerSettings in deviceManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +138,7 @@ class CloudPcExternalPartnerSettingItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcExternalPartnerSettingItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a cloudPcExternalPartnerSetting object.
+        The external partner settings on a Cloud PC.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

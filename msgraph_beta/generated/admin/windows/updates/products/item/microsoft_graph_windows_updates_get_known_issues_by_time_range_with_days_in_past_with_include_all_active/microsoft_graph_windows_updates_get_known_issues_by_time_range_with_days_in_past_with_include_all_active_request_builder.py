@@ -32,9 +32,10 @@ class MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithInc
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveGetResponse]:
         """
-        Invoke function getKnownIssuesByTimeRange
+        Get known issues related to a particular product based on a specified timeframe in the past.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-product-getknownissuesbytimerange?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -52,7 +53,7 @@ class MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithInc
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getKnownIssuesByTimeRange
+        Get known issues related to a particular product based on a specified timeframe in the past.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +75,7 @@ class MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithInc
     @dataclass
     class MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilderGetQueryParameters():
         """
-        Invoke function getKnownIssuesByTimeRange
+        Get known issues related to a particular product based on a specified timeframe in the past.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

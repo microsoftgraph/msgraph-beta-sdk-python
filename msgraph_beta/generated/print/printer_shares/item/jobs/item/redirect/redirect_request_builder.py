@@ -34,7 +34,7 @@ class RedirectRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrintJob]
-        Find more info here: https://learn.microsoft.com/graph/api/printjob-redirect?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/printjob-redirect?view=graph-rest-beta
         """
         warn("The printerShares navigation property is deprecated and will stop returning data on July 31, 2023. Please use the shares navigation property instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
         if not body:

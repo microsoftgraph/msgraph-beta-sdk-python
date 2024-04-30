@@ -46,10 +46,9 @@ class ManagedDeviceComplianceTrendsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagedDeviceComplianceTrendCollectionResponse]:
         """
-        Get a list of the managedDeviceComplianceTrend objects and their properties.
+        Trend insights for device compliance across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagedDeviceComplianceTrendCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-managedtenant-list-manageddevicecompliancetrends?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class ManagedDeviceComplianceTrendsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the managedDeviceComplianceTrend objects and their properties.
+        Trend insights for device compliance across managed tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class ManagedDeviceComplianceTrendsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ManagedDeviceComplianceTrendsRequestBuilderGetQueryParameters():
         """
-        Get a list of the managedDeviceComplianceTrend objects and their properties.
+        Trend insights for device compliance across managed tenants.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

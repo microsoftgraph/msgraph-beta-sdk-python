@@ -31,7 +31,6 @@ class ContentRequestBuilder(BaseRequestBuilder):
         Get content for the navigation property files from security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
-        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-list-files?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration

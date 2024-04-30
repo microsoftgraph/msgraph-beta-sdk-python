@@ -15,13 +15,13 @@ from .entity import Entity
 
 @dataclass
 class DomainDnsRecord(Entity):
-    # If false, this record must be configured by the customer at the DNS host for Microsoft Online Services to operate correctly with the domain.
+    # If false, the customer must configure this record at the DNS host for Microsoft Online Services to operate correctly with the domain.
     is_optional: Optional[bool] = None
     # Value used when configuring the name of the DNS record at the DNS host.
     label: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates what type of DNS record this entity represents. The value can be one of the following: CName, Mx, Srv, Txt.
+    # Indicates what type of DNS record this entity represents. The value can be one of the following values: CName, Mx, Srv, Txt.
     record_type: Optional[str] = None
     # Microsoft Online Service or feature that has a dependency on this DNS record. Can be one of the following values: null, Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune.
     supported_service: Optional[str] = None

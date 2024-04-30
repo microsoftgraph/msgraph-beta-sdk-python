@@ -31,7 +31,7 @@ class MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder(BaseRequestBuilde
         Carries out the appropriate procedures to remove a managed tenant from the multitenant management platform. No relationships, such as commerce and delegate administrative privileges, will be impacted. The only change made by invoking this action is the tenant will be deprovisioned from the multitenant management platform.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Tenant]
-        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenant-offboardtenant?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/managedtenants-tenant-offboardtenant?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

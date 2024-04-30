@@ -66,11 +66,10 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SiteSource] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SiteSource]:
         """
-        Create a new siteSource object.
+        Create new navigation property to siteSources for security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteSource]
-        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryholdpolicy-post-sitesources?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -101,7 +100,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SiteSource] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new siteSource object.
+        Create new navigation property to siteSources for security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

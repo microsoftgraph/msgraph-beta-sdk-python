@@ -47,10 +47,9 @@ class AlertRuleItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AlertRule]:
         """
-        Read the properties and relationships of an alertRule object.
+        The collection of alert rules.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertRule]
-        Find more info here: https://learn.microsoft.com/graph/api/devicemanagement-alertrule-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class AlertRuleItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[AlertRule] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AlertRule]:
         """
-        Update the properties of an alertRule object.
+        Update the navigation property alertRules in deviceManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertRule]
-        Find more info here: https://learn.microsoft.com/graph/api/devicemanagement-alertrule-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -103,7 +101,7 @@ class AlertRuleItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an alertRule object.
+        The collection of alert rules.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +112,7 @@ class AlertRuleItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[AlertRule] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an alertRule object.
+        Update the navigation property alertRules in deviceManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +138,7 @@ class AlertRuleItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AlertRuleItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an alertRule object.
+        The collection of alert rules.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

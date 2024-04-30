@@ -52,10 +52,9 @@ class LabelsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[InformationProtectionLabelCollectionResponse]:
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get labels from sites
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InformationProtectionLabelCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/informationprotectionpolicy-list-labels?view=graph-rest-1.0
         """
         warn("This API will no longer be accessible, please see microsoft.graph.security.informationProtection APIs. as of 2021-02/Beta_SensitivityLabels", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -98,7 +97,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get labels from sites
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -183,7 +182,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LabelsRequestBuilderGetQueryParameters():
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get labels from sites
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

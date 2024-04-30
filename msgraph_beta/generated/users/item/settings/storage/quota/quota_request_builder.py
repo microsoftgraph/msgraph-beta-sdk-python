@@ -48,10 +48,9 @@ class QuotaRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedStorageQuota]:
         """
-        Read the properties and relationships of a unifiedStorageQuota object.
+        Get quota from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedStorageQuota]
-        Find more info here: https://learn.microsoft.com/graph/api/unifiedstoragequota-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -103,7 +102,7 @@ class QuotaRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a unifiedStorageQuota object.
+        Get quota from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -149,7 +148,7 @@ class QuotaRequestBuilder(BaseRequestBuilder):
     @dataclass
     class QuotaRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a unifiedStorageQuota object.
+        Get quota from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -66,11 +66,10 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[Identity] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Identity]:
         """
-        Create a new externalGroupMember object.
+        Create new navigation property to members for connections
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Identity]
-        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalgroup-post-members?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -101,7 +100,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[Identity] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new externalGroupMember object.
+        Create new navigation property to members for connections
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

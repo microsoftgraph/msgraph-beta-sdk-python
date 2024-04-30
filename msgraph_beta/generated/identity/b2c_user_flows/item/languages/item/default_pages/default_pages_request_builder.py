@@ -46,10 +46,9 @@ class DefaultPagesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserFlowLanguagePageCollectionResponse]:
         """
-        Get the userFlowLanguagePage resources from the defaultPages navigation property. These contain the values shown to the user in a default user journey of a user flow.
+        Collection of pages with the default content to display in a user flow for a specified language. This collection doesn't allow any kind of modification.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserFlowLanguagePageCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class DefaultPagesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the userFlowLanguagePage resources from the defaultPages navigation property. These contain the values shown to the user in a default user journey of a user flow.
+        Collection of pages with the default content to display in a user flow for a specified language. This collection doesn't allow any kind of modification.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class DefaultPagesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DefaultPagesRequestBuilderGetQueryParameters():
         """
-        Get the userFlowLanguagePage resources from the defaultPages navigation property. These contain the values shown to the user in a default user journey of a user flow.
+        Collection of pages with the default content to display in a user flow for a specified language. This collection doesn't allow any kind of modification.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

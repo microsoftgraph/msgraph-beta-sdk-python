@@ -31,10 +31,9 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Revoke the specified user's access to submit print jobs to the associated printerShare.
+        Delete ref of navigation property allowedUsers for print
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0
         """
         warn("The printerShares navigation property is deprecated and will stop returning data on July 31, 2023. Please use the shares navigation property instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -51,10 +50,9 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[StringCollectionResponse]:
         """
-        Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
+        The users who have access to print using the printer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[StringCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         """
         warn("The printerShares navigation property is deprecated and will stop returning data on July 31, 2023. Please use the shares navigation property instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -73,11 +71,10 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ReferenceCreate] = None, request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Grant the specified user access to submit print jobs to the associated printerShare.
+        Create new navigation property ref to allowedUsers for print
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/printershare-post-allowedusers?view=graph-rest-1.0
         """
         warn("The printerShares navigation property is deprecated and will stop returning data on July 31, 2023. Please use the shares navigation property instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
         if not body:
@@ -96,7 +93,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Revoke the specified user's access to submit print jobs to the associated printerShare.
+        Delete ref of navigation property allowedUsers for print
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +105,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
+        The users who have access to print using the printer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +117,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ReferenceCreate] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Grant the specified user access to submit print jobs to the associated printerShare.
+        Create new navigation property ref to allowedUsers for print
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,7 +145,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RefRequestBuilderDeleteQueryParameters():
         """
-        Revoke the specified user's access to submit print jobs to the associated printerShare.
+        Delete ref of navigation property allowedUsers for print
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
@@ -169,7 +166,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RefRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
+        The users who have access to print using the printer.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

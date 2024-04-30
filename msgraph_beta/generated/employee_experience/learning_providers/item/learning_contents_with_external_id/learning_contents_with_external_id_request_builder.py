@@ -32,10 +32,9 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete the specified learningContent resource that represents the metadata of the specified provider's ingested content.
+        Delete navigation property learningContents for employeeExperience
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/learningprovider-delete-learningcontents?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,10 +50,9 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[LearningContent]:
         """
-        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content.
+        Learning catalog items for the provider.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LearningContent]
-        Find more info here: https://learn.microsoft.com/graph/api/learningcontent-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -72,11 +70,10 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[LearningContent] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[LearningContent]:
         """
-        Update the specified learningContent resource. Used by a learning provider to ingest or update the metadata for their content in Viva Learning. If the specified learning content doesn't yet exist for the specified provider, this operation creates the metadata for the new content. Otherwise, this operation replaces the metadata of the existing content.
+        Update the navigation property learningContents in employeeExperience
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LearningContent]
-        Find more info here: https://learn.microsoft.com/graph/api/learningcontent-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -96,7 +93,7 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete the specified learningContent resource that represents the metadata of the specified provider's ingested content.
+        Delete navigation property learningContents for employeeExperience
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +104,7 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content.
+        Learning catalog items for the provider.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +115,7 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[LearningContent] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the specified learningContent resource. Used by a learning provider to ingest or update the metadata for their content in Viva Learning. If the specified learning content doesn't yet exist for the specified provider, this operation creates the metadata for the new content. Otherwise, this operation replaces the metadata of the existing content.
+        Update the navigation property learningContents in employeeExperience
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +141,7 @@ class LearningContentsWithExternalIdRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LearningContentsWithExternalIdRequestBuilderGetQueryParameters():
         """
-        Get the specified learningContent resource which represents the metadata of the specified provider's ingested content.
+        Learning catalog items for the provider.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

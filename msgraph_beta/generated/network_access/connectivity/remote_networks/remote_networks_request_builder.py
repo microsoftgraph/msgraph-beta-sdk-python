@@ -66,11 +66,10 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[RemoteNetwork] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[RemoteNetwork]:
         """
-        Create a new remote network.
+        Create new navigation property to remoteNetworks for networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RemoteNetwork]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-connectivity-post-remotenetworks?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -101,7 +100,7 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[RemoteNetwork] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new remote network.
+        Create new navigation property to remoteNetworks for networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

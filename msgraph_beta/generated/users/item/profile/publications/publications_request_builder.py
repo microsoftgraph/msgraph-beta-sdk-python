@@ -46,10 +46,9 @@ class PublicationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemPublicationCollectionResponse]:
         """
-        Retrieve a list of itemPublication objects from a user's profile.
+        Represents details of any publications a user has added to their profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPublicationCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-publications?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class PublicationsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ItemPublication] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemPublication]:
         """
-        Create a new itemPublication object in a user's profile.
+        Create new navigation property to publications for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPublication]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-publications?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class PublicationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of itemPublication objects from a user's profile.
+        Represents details of any publications a user has added to their profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class PublicationsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ItemPublication] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new itemPublication object in a user's profile.
+        Create new navigation property to publications for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class PublicationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PublicationsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of itemPublication objects from a user's profile.
+        Represents details of any publications a user has added to their profile.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

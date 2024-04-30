@@ -47,10 +47,9 @@ class ChildTagsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TagCollectionResponse]:
         """
-        Get a list of child tag objects associated with a tag.
+        Returns the tags that are a child of a tag.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TagCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-tag-childtags?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -69,7 +68,7 @@ class ChildTagsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of child tag objects associated with a tag.
+        Returns the tags that are a child of a tag.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +101,7 @@ class ChildTagsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ChildTagsRequestBuilderGetQueryParameters():
         """
-        Get a list of child tag objects associated with a tag.
+        Returns the tags that are a child of a tag.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

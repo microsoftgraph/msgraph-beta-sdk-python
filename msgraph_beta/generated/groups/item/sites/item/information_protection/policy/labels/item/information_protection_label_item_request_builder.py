@@ -49,10 +49,9 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[InformationProtectionLabel]:
         """
-        Retrieve the properties and relationships of an informationProtectionLabel object.
+        Get labels from groups
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InformationProtectionLabel]
-        Find more info here: https://learn.microsoft.com/graph/api/informationprotectionlabel-get?view=graph-rest-1.0
         """
         warn("This API will no longer be accessible, please see microsoft.graph.security.informationProtection APIs. as of 2021-02/Beta_SensitivityLabels", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -107,7 +106,7 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an informationProtectionLabel object.
+        Get labels from groups
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +146,7 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InformationProtectionLabelItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an informationProtectionLabel object.
+        Get labels from groups
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

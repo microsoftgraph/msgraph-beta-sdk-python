@@ -46,10 +46,9 @@ class MobileAppManagementPoliciesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MobilityManagementPolicyCollectionResponse]:
         """
-        Get a list of the mobilityManagementPolicy objects and their properties.
+        The policy that defines autoenrollment configuration for a mobility management (MDM or MAM) application.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MobilityManagementPolicyCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/mobileappmanagementpolicies-list?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class MobileAppManagementPoliciesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the mobilityManagementPolicy objects and their properties.
+        The policy that defines autoenrollment configuration for a mobility management (MDM or MAM) application.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class MobileAppManagementPoliciesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MobileAppManagementPoliciesRequestBuilderGetQueryParameters():
         """
-        Get a list of the mobilityManagementPolicy objects and their properties.
+        The policy that defines autoenrollment configuration for a mobility management (MDM or MAM) application.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

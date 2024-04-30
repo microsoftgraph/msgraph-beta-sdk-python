@@ -31,7 +31,7 @@ class ValidateAuthenticationConfigurationRequestBuilder(BaseRequestBuilder):
         An API to check validity of the endpoint and and authentication configuration for a customAuthenticationExtension.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationConfigurationValidation]
-        Find more info here: https://learn.microsoft.com/graph/api/customauthenticationextension-validateauthenticationconfiguration?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/customauthenticationextension-validateauthenticationconfiguration?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

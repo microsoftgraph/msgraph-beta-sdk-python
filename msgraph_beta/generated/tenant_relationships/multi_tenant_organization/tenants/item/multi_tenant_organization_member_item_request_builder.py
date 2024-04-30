@@ -29,10 +29,9 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Remove a tenant from a multitenant organization. A tenant can be removed in the following scenarios: To allow for asynchronous processing, you must wait for up to 2 hours before removal of a tenant is completed.
+        Delete navigation property tenants for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganization-delete-tenants?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationMember]:
         """
-        Get a tenant and its properties in the multi-tenant organization.
+        Defines tenants added to a multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationMember]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganizationmember-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +90,7 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Remove a tenant from a multitenant organization. A tenant can be removed in the following scenarios: To allow for asynchronous processing, you must wait for up to 2 hours before removal of a tenant is completed.
+        Delete navigation property tenants for tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +101,7 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a tenant and its properties in the multi-tenant organization.
+        Defines tenants added to a multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -140,7 +138,7 @@ class MultiTenantOrganizationMemberItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MultiTenantOrganizationMemberItemRequestBuilderGetQueryParameters():
         """
-        Get a tenant and its properties in the multi-tenant organization.
+        Defines tenants added to a multitenant organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

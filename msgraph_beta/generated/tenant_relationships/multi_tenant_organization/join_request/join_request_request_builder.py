@@ -29,10 +29,9 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationJoinRequestRecord]:
         """
-        Get the status of a tenant joining a multi-tenant organization.
+        Defines the status of a tenant joining a multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationJoinRequestRecord]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganizationjoinrequestrecord-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -50,11 +49,10 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[MultiTenantOrganizationJoinRequestRecord] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationJoinRequestRecord]:
         """
-        Join a multi-tenant organization, after the owner of the multi-tenant organization has added your tenant to the multi-tenant organization as pending. Before a tenant added to a multi-tenant organization can participate in the multi-tenant organization, the administrator of the joining tenant must submit a join request. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization. Furthermore, to allow for asynchronous processing, you must wait up to 4 hours before joining a multi-tenant organization is completed.
+        Update the navigation property joinRequest in tenantRelationships
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationJoinRequestRecord]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganizationjoinrequestrecord-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -74,7 +72,7 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the status of a tenant joining a multi-tenant organization.
+        Defines the status of a tenant joining a multitenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -85,7 +83,7 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[MultiTenantOrganizationJoinRequestRecord] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Join a multi-tenant organization, after the owner of the multi-tenant organization has added your tenant to the multi-tenant organization as pending. Before a tenant added to a multi-tenant organization can participate in the multi-tenant organization, the administrator of the joining tenant must submit a join request. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization. Furthermore, to allow for asynchronous processing, you must wait up to 4 hours before joining a multi-tenant organization is completed.
+        Update the navigation property joinRequest in tenantRelationships
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -111,7 +109,7 @@ class JoinRequestRequestBuilder(BaseRequestBuilder):
     @dataclass
     class JoinRequestRequestBuilderGetQueryParameters():
         """
-        Get the status of a tenant joining a multi-tenant organization.
+        Defines the status of a tenant joining a multitenant organization.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

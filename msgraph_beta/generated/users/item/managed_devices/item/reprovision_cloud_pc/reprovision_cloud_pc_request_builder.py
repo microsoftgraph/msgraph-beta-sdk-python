@@ -31,7 +31,7 @@ class ReprovisionCloudPcRequestBuilder(BaseRequestBuilder):
         Reprovision a Cloud PC with an Intune managed device ID.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/manageddevice-reprovisioncloudpc?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/manageddevice-reprovisioncloudpc?view=graph-rest-beta
         """
         warn("The reprovisionCloudPc API is deprecated and will stop returning on Sep 30, 2023. Please use reprovision instead as of 2023-07/reprovisionCloudPc", DeprecationWarning)
         request_info = self.to_post_request_information(

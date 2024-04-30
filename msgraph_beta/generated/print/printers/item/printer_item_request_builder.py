@@ -37,10 +37,9 @@ class PrinterItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete (unregister) a printer.
+        Delete navigation property printers for print
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/printer-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -56,10 +55,9 @@ class PrinterItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Printer]:
         """
-        Retrieve the properties and relationships of a printer object.
+        The list of printers registered in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Printer]
-        Find more info here: https://learn.microsoft.com/graph/api/printer-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -77,11 +75,10 @@ class PrinterItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Printer] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Printer]:
         """
-        Update the properties of a printer object.
+        Update the navigation property printers in print
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Printer]
-        Find more info here: https://learn.microsoft.com/graph/api/printer-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -101,7 +98,7 @@ class PrinterItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete (unregister) a printer.
+        Delete navigation property printers for print
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +109,7 @@ class PrinterItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a printer object.
+        The list of printers registered in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -123,7 +120,7 @@ class PrinterItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Printer] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a printer object.
+        Update the navigation property printers in print
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -221,7 +218,7 @@ class PrinterItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PrinterItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a printer object.
+        The list of printers registered in the tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

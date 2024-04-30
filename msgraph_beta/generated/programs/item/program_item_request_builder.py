@@ -33,7 +33,7 @@ class ProgramItemRequestBuilder(BaseRequestBuilder):
         In the Microsoft Entra access reviews feature, delete a program object. Do not delete a program which still has programControl linked to it, those access reviews should first be deleted or unlinked from the program and linked to a different program.  Also, please note that the built-in default program cannot be deleted.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/program-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/program-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -73,7 +73,7 @@ class ProgramItemRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Program]
-        Find more info here: https://learn.microsoft.com/graph/api/program-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/program-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

@@ -35,9 +35,10 @@ class GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIn
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getMetricsForConditionalAccessCompliantDevicesSignInSuccess
+        Get the number of user authentication requests, during a specified time period, that satisfy a Conditional Access policy that requires device compliance. Microsoft Intune manages compliant devices, including mobile iOS/Android devices, tablets, or cloud Microsoft Entra-joined computers (not hybrid).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getmetricsforconditionalaccesscompliantdevicessigninsuccess?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -55,7 +56,7 @@ class GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIn
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getMetricsForConditionalAccessCompliantDevicesSignInSuccess
+        Get the number of user authentication requests, during a specified time period, that satisfy a Conditional Access policy that requires device compliance. Microsoft Intune manages compliant devices, including mobile iOS/Android devices, tablets, or cloud Microsoft Entra-joined computers (not hybrid).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +78,7 @@ class GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIn
     @dataclass
     class GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getMetricsForConditionalAccessCompliantDevicesSignInSuccess
+        Get the number of user authentication requests, during a specified time period, that satisfy a Conditional Access policy that requires device compliance. Microsoft Intune manages compliant devices, including mobile iOS/Android devices, tablets, or cloud Microsoft Entra-joined computers (not hybrid).
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

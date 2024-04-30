@@ -37,10 +37,9 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete an accessPackage object. You can't delete an access package if it has any accessPackageAssignment. To delete the access package, first query if there are any assignments with a filter to indicate the specific access package, such as: $filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'. For more information on how to remove assignments that are still in the delivered state, see Remove an assignment.
+        Delete navigation property accessPackages for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackage-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -56,10 +55,9 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackage]:
         """
-        Retrieve the properties and relationships of an accessPackage object.
+        Represents access package objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackage]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackage-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -77,11 +75,10 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[AccessPackage] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackage]:
         """
-        Update an existing accessPackage object to change one or more of its properties, such as the display name or description.
+        Update the navigation property accessPackages in identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackage]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackage-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -101,7 +98,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an accessPackage object. You can't delete an access package if it has any accessPackageAssignment. To delete the access package, first query if there are any assignments with a filter to indicate the specific access package, such as: $filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'. For more information on how to remove assignments that are still in the delivered state, see Remove an assignment.
+        Delete navigation property accessPackages for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +109,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an accessPackage object.
+        Represents access package objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -123,7 +120,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[AccessPackage] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update an existing accessPackage object to change one or more of its properties, such as the display name or description.
+        Update the navigation property accessPackages in identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -221,7 +218,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an accessPackage object.
+        Represents access package objects.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -46,10 +46,9 @@ class ChecklistItemsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ChecklistItemCollectionResponse]:
         """
-        Get the checklistItem resources associated to the checklistItems navigation property of a todoTask.
+        A collection of smaller subtasks linked to the more complex parent task.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChecklistItemCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class ChecklistItemsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ChecklistItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ChecklistItem]:
         """
-        Create a new checklistItem object as a subtask in a bigger todoTask.
+        Create new navigation property to checklistItems for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChecklistItem]
-        Find more info here: https://learn.microsoft.com/graph/api/todotask-post-checklistitems?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class ChecklistItemsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the checklistItem resources associated to the checklistItems navigation property of a todoTask.
+        A collection of smaller subtasks linked to the more complex parent task.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class ChecklistItemsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ChecklistItem] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new checklistItem object as a subtask in a bigger todoTask.
+        Create new navigation property to checklistItems for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class ChecklistItemsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ChecklistItemsRequestBuilderGetQueryParameters():
         """
-        Get the checklistItem resources associated to the checklistItems navigation property of a todoTask.
+        A collection of smaller subtasks linked to the more complex parent task.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -49,10 +49,9 @@ class CloudPcSharedUseServicePlanItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcSharedUseServicePlan]:
         """
-        Read the properties and relationships of a cloudPcSharedUseServicePlan object.
+        Get sharedUseServicePlans from deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcSharedUseServicePlan]
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpcshareduseserviceplan-get?view=graph-rest-1.0
         """
         warn("The sharedUseServicePlans property is deprecated and will not be supported starting Oct 8, 2023. This property will not be included as part of the API response. as of 2023-03/sharedUseServicePlans", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -107,7 +106,7 @@ class CloudPcSharedUseServicePlanItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a cloudPcSharedUseServicePlan object.
+        Get sharedUseServicePlans from deviceManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +146,7 @@ class CloudPcSharedUseServicePlanItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcSharedUseServicePlanItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a cloudPcSharedUseServicePlan object.
+        Get sharedUseServicePlans from deviceManagement
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

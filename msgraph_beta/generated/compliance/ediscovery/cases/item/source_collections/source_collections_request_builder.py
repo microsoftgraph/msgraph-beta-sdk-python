@@ -48,10 +48,9 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SourceCollectionCollectionResponse]:
         """
-        Get the list of sourceCollections from a case object.
+        Returns a list of sourceCollection objects associated with this case.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SourceCollectionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-list-sourcecollections?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -70,11 +69,10 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SourceCollection] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SourceCollection]:
         """
-        Create a new sourceCollection object.
+        Create new navigation property to sourceCollections for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SourceCollection]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-post-sourcecollections?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -95,7 +93,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of sourceCollections from a case object.
+        Returns a list of sourceCollection objects associated with this case.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +105,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SourceCollection] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new sourceCollection object.
+        Create new navigation property to sourceCollections for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +142,7 @@ class SourceCollectionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SourceCollectionsRequestBuilderGetQueryParameters():
         """
-        Get the list of sourceCollections from a case object.
+        Returns a list of sourceCollection objects associated with this case.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

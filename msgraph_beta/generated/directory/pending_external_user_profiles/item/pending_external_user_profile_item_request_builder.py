@@ -29,10 +29,9 @@ class PendingExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a pendingExternalUserProfile object. Note: To permanently delete the pendingExternalUserProfile, follow permanently delete an item. To restore a pendingExternalUserProfile, follow restore a deleted item.
+        Delete navigation property pendingExternalUserProfiles for directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/directory-delete-pendingexternaluserprofiles?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class PendingExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PendingExternalUserProfile]:
         """
-        Retrieve the properties of a specific pendingExternalUserProfile.
+        Collection of pending external user profiles representing collaborators in the directory that are unredeemed.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PendingExternalUserProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/pendingexternaluserprofile-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +67,10 @@ class PendingExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[PendingExternalUserProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[PendingExternalUserProfile]:
         """
-        Update the properties of a pendingExternalUserProfile object.
+        Update the navigation property pendingExternalUserProfiles in directory
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PendingExternalUserProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/pendingexternaluserprofile-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +90,7 @@ class PendingExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a pendingExternalUserProfile object. Note: To permanently delete the pendingExternalUserProfile, follow permanently delete an item. To restore a pendingExternalUserProfile, follow restore a deleted item.
+        Delete navigation property pendingExternalUserProfiles for directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +101,7 @@ class PendingExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of a specific pendingExternalUserProfile.
+        Collection of pending external user profiles representing collaborators in the directory that are unredeemed.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +112,7 @@ class PendingExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[PendingExternalUserProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a pendingExternalUserProfile object.
+        Update the navigation property pendingExternalUserProfiles in directory
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +138,7 @@ class PendingExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PendingExternalUserProfileItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a specific pendingExternalUserProfile.
+        Collection of pending external user profiles representing collaborators in the directory that are unredeemed.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -50,10 +50,9 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[BranchConnectivityConfiguration]:
         """
-        Retrieve the IPSec tunnel configuration required to establish a bidirectional communication link between your organization's router and the Microsoft gateway. This information is vital for configuring your router (customer premise equipment) after creating a deviceLink.
+        Specifies the connectivity details of all device links associated with a branch.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BranchConnectivityConfiguration]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchconnectivityconfiguration-get?view=graph-rest-1.0
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -108,7 +107,7 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the IPSec tunnel configuration required to establish a bidirectional communication link between your organization's router and the Microsoft gateway. This information is vital for configuring your router (customer premise equipment) after creating a deviceLink.
+        Specifies the connectivity details of all device links associated with a branch.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +156,7 @@ class ConnectivityConfigurationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConnectivityConfigurationRequestBuilderGetQueryParameters():
         """
-        Retrieve the IPSec tunnel configuration required to establish a bidirectional communication link between your organization's router and the Microsoft gateway. This information is vital for configuring your router (customer premise equipment) after creating a deviceLink.
+        Specifies the connectivity details of all device links associated with a branch.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

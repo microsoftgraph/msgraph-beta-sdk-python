@@ -47,10 +47,9 @@ class RegionalAndLanguageSettingsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[RegionalAndLanguageSettings]:
         """
-        Retrieve the properties of a user's regionalAndLanguageSettings.
+        The user's preferences for languages, regional locale and date/time formatting.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RegionalAndLanguageSettings]
-        Find more info here: https://learn.microsoft.com/graph/api/regionalandlanguagesettings-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class RegionalAndLanguageSettingsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[RegionalAndLanguageSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[RegionalAndLanguageSettings]:
         """
-        Update some or all of the properties of a regionalAndLanguageSettings object.
+        Update the navigation property regionalAndLanguageSettings in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RegionalAndLanguageSettings]
-        Find more info here: https://learn.microsoft.com/graph/api/regionalandlanguagesettings-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -103,7 +101,7 @@ class RegionalAndLanguageSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of a user's regionalAndLanguageSettings.
+        The user's preferences for languages, regional locale and date/time formatting.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +112,7 @@ class RegionalAndLanguageSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[RegionalAndLanguageSettings] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update some or all of the properties of a regionalAndLanguageSettings object.
+        Update the navigation property regionalAndLanguageSettings in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +138,7 @@ class RegionalAndLanguageSettingsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RegionalAndLanguageSettingsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a user's regionalAndLanguageSettings.
+        The user's preferences for languages, regional locale and date/time formatting.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

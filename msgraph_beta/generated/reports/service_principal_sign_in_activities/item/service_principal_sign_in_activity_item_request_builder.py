@@ -47,10 +47,9 @@ class ServicePrincipalSignInActivityItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ServicePrincipalSignInActivity]:
         """
-        Get a servicePrincipalSignInActivity object that contains sign-in activity information for a service principal in a Microsoft Entra tenant. You can use a service principal as a client or resource. A service principal supports delegated or app-only authentication context.
+        Represents a collection of sign-in activities of service principals.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServicePrincipalSignInActivity]
-        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipalsigninactivity-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class ServicePrincipalSignInActivityItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a servicePrincipalSignInActivity object that contains sign-in activity information for a service principal in a Microsoft Entra tenant. You can use a service principal as a client or resource. A service principal supports delegated or app-only authentication context.
+        Represents a collection of sign-in activities of service principals.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class ServicePrincipalSignInActivityItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ServicePrincipalSignInActivityItemRequestBuilderGetQueryParameters():
         """
-        Get a servicePrincipalSignInActivity object that contains sign-in activity information for a service principal in a Microsoft Entra tenant. You can use a service principal as a client or resource. A service principal supports delegated or app-only authentication context.
+        Represents a collection of sign-in activities of service principals.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

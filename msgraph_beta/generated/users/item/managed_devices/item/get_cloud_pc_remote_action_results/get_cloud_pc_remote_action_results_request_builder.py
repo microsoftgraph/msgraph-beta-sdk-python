@@ -29,9 +29,10 @@ class GetCloudPcRemoteActionResultsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetCloudPcRemoteActionResultsGetResponse]:
         """
-        Invoke function getCloudPcRemoteActionResults
+        Check the Cloud PC-specified remote action results for a Cloud PC device. Cloud PC supports reprovision and resize remote actions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetCloudPcRemoteActionResultsGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/manageddevice-getcloudpcremoteactionresults?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class GetCloudPcRemoteActionResultsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getCloudPcRemoteActionResults
+        Check the Cloud PC-specified remote action results for a Cloud PC device. Cloud PC supports reprovision and resize remote actions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -71,7 +72,7 @@ class GetCloudPcRemoteActionResultsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GetCloudPcRemoteActionResultsRequestBuilderGetQueryParameters():
         """
-        Invoke function getCloudPcRemoteActionResults
+        Check the Cloud PC-specified remote action results for a Cloud PC device. Cloud PC supports reprovision and resize remote actions.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

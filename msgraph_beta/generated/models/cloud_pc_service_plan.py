@@ -17,7 +17,7 @@ class CloudPcServicePlan(Entity):
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Specifies the type of license used when provisioning Cloud PCs. By default, the license type is dedicated. Possible values are: dedicated, shared, unknownFutureValue.
+    # Specifies the type of license used when provisioning Cloud PCs. By default, the license type is dedicated. Possible values are: dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member.
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The size of the RAM in GB. Read-only.
     ram_in_g_b: Optional[int] = None

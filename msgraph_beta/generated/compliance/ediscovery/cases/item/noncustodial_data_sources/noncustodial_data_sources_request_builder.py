@@ -50,10 +50,9 @@ class NoncustodialDataSourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[NoncustodialDataSourceCollectionResponse]:
         """
-        Get a list of the noncustodialDataSource objects and their properties.
+        Returns a list of case noncustodialDataSource objects for this case.  Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[NoncustodialDataSourceCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-noncustodialdatasource-list?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -72,11 +71,10 @@ class NoncustodialDataSourcesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[NoncustodialDataSource] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[NoncustodialDataSource]:
         """
-        Create a new noncustodialDataSource object.
+        Create new navigation property to noncustodialDataSources for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[NoncustodialDataSource]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-noncustodialdatasource-post?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -97,7 +95,7 @@ class NoncustodialDataSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the noncustodialDataSource objects and their properties.
+        Returns a list of case noncustodialDataSource objects for this case.  Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -109,7 +107,7 @@ class NoncustodialDataSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[NoncustodialDataSource] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new noncustodialDataSource object.
+        Create new navigation property to noncustodialDataSources for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -164,7 +162,7 @@ class NoncustodialDataSourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class NoncustodialDataSourcesRequestBuilderGetQueryParameters():
         """
-        Get a list of the noncustodialDataSource objects and their properties.
+        Returns a list of case noncustodialDataSource objects for this case.  Nullable.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

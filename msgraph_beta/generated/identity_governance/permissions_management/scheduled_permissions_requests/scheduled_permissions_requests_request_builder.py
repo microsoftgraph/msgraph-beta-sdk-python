@@ -63,11 +63,10 @@ class ScheduledPermissionsRequestsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ScheduledPermissionsRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ScheduledPermissionsRequest]:
         """
-        Create a new scheduledPermissionsRequest object.
+        Create new navigation property to scheduledPermissionsRequests for identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ScheduledPermissionsRequest]
-        Find more info here: https://learn.microsoft.com/graph/api/permissionsmanagement-post-scheduledpermissionsrequests?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -98,7 +97,7 @@ class ScheduledPermissionsRequestsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ScheduledPermissionsRequest] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new scheduledPermissionsRequest object.
+        Create new navigation property to scheduledPermissionsRequests for identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

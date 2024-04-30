@@ -48,10 +48,9 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OutlookTaskGroupCollectionResponse]:
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox.
+        Get taskGroups from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskGroupCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/outlookuser-list-taskgroups?view=graph-rest-1.0
         """
         warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -70,11 +69,10 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[OutlookTaskGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[OutlookTaskGroup]:
         """
-        Create an Outlook task group in the user's mailbox.
+        Create new navigation property to taskGroups for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskGroup]
-        Find more info here: https://learn.microsoft.com/graph/api/outlookuser-post-taskgroups?view=graph-rest-1.0
         """
         warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
         if not body:
@@ -95,7 +93,7 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox.
+        Get taskGroups from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +105,7 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[OutlookTaskGroup] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create an Outlook task group in the user's mailbox.
+        Create new navigation property to taskGroups for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +142,7 @@ class TaskGroupsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TaskGroupsRequestBuilderGetQueryParameters():
         """
-        Get all the Outlook task groups in the user's mailbox. The response always includes the default task group My Tasks, and any other task groups that have been created in the mailbox.
+        Get taskGroups from users
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

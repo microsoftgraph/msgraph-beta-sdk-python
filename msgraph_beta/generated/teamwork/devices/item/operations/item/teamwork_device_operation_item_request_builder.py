@@ -47,10 +47,9 @@ class TeamworkDeviceOperationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TeamworkDeviceOperation]:
         """
-        Get the details of an async, long-running operation on a Microsoft Teams-enabled device.
+        The async operations on the device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkDeviceOperation]
-        Find more info here: https://learn.microsoft.com/graph/api/teamworkdeviceoperation-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class TeamworkDeviceOperationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the details of an async, long-running operation on a Microsoft Teams-enabled device.
+        The async operations on the device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class TeamworkDeviceOperationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamworkDeviceOperationItemRequestBuilderGetQueryParameters():
         """
-        Get the details of an async, long-running operation on a Microsoft Teams-enabled device.
+        The async operations on the device.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

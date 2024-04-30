@@ -46,10 +46,9 @@ class TenantsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TenantReferenceCollectionResponse]:
         """
-        List the tenant references of an outboundSharedUserProfile.
+        The collection of external Microsoft Entra tenants that the user has shared profile data with. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantReferenceCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/outboundshareduserprofile-list-tenants?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        List the tenant references of an outboundSharedUserProfile.
+        The collection of external Microsoft Entra tenants that the user has shared profile data with. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantsRequestBuilderGetQueryParameters():
         """
-        List the tenant references of an outboundSharedUserProfile.
+        The collection of external Microsoft Entra tenants that the user has shared profile data with. Read-only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

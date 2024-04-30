@@ -48,10 +48,9 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SiteSourceCollectionResponse]:
         """
-        Get the list of siteSource objecs associated with a legal hold.
+        Data source entity for SharePoint sites associated with the legal hold.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteSourceCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-list-sitesources?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -70,11 +69,10 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[SiteSource] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SiteSource]:
         """
-        Adds a siteSource to a legalHold object.
+        Create new navigation property to siteSources for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteSource]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-post-sitesources?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -95,7 +93,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of siteSource objecs associated with a legal hold.
+        Data source entity for SharePoint sites associated with the legal hold.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +105,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[SiteSource] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Adds a siteSource to a legalHold object.
+        Create new navigation property to siteSources for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +142,7 @@ class SiteSourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SiteSourcesRequestBuilderGetQueryParameters():
         """
-        Get the list of siteSource objecs associated with a legal hold.
+        Data source entity for SharePoint sites associated with the legal hold.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

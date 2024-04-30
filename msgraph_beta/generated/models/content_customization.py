@@ -20,6 +20,10 @@ class ContentCustomization(AdditionalDataHolder, BackedModel, Parsable):
     attribute_collection_relative_url: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The registrationCampaign property
+    registration_campaign: Optional[List[KeyValue]] = None
+    # The registrationCampaignRelativeUrl property
+    registration_campaign_relative_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ContentCustomization:
@@ -45,6 +49,8 @@ class ContentCustomization(AdditionalDataHolder, BackedModel, Parsable):
             "attributeCollection": lambda n : setattr(self, 'attribute_collection', n.get_collection_of_object_values(KeyValue)),
             "attributeCollectionRelativeUrl": lambda n : setattr(self, 'attribute_collection_relative_url', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "registrationCampaign": lambda n : setattr(self, 'registration_campaign', n.get_collection_of_object_values(KeyValue)),
+            "registrationCampaignRelativeUrl": lambda n : setattr(self, 'registration_campaign_relative_url', n.get_str_value()),
         }
         return fields
     
@@ -59,6 +65,8 @@ class ContentCustomization(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("attributeCollection", self.attribute_collection)
         writer.write_str_value("attributeCollectionRelativeUrl", self.attribute_collection_relative_url)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_collection_of_object_values("registrationCampaign", self.registration_campaign)
+        writer.write_str_value("registrationCampaignRelativeUrl", self.registration_campaign_relative_url)
         writer.write_additional_data_value(self.additional_data)
     
 

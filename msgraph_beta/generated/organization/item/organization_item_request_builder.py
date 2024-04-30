@@ -61,7 +61,7 @@ class OrganizationItemRequestBuilder(BaseRequestBuilder):
         Get the properties and relationships of the currently authenticated organization. Since the organization resource supports extensions, you can also use the GET operation to get custom properties and extension data in an organization instance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Organization]
-        Find more info here: https://learn.microsoft.com/graph/api/organization-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/organization-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -83,7 +83,7 @@ class OrganizationItemRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Organization]
-        Find more info here: https://learn.microsoft.com/graph/api/organization-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/organization-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

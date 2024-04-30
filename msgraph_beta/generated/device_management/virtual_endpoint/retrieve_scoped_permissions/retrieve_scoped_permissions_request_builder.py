@@ -29,9 +29,10 @@ class RetrieveScopedPermissionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[RetrieveScopedPermissionsGetResponse]:
         """
-        Invoke function retrieveScopedPermissions
+        Get the permissions and corresponding scope IDs for which the authenticated user has access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RetrieveScopedPermissionsGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-retrievescopedpermissions?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class RetrieveScopedPermissionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function retrieveScopedPermissions
+        Get the permissions and corresponding scope IDs for which the authenticated user has access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -71,7 +72,7 @@ class RetrieveScopedPermissionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RetrieveScopedPermissionsRequestBuilderGetQueryParameters():
         """
-        Invoke function retrieveScopedPermissions
+        Get the permissions and corresponding scope IDs for which the authenticated user has access.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

@@ -47,10 +47,9 @@ class TenantStatusRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TenantStatus]:
         """
-        Retrieve the onboarding status of a specific tenant.
+        Represents the status of the Global Secure Access services for the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantStatus]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-tenantstatus-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -102,7 +101,7 @@ class TenantStatusRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the onboarding status of a specific tenant.
+        Represents the status of the Global Secure Access services for the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +138,7 @@ class TenantStatusRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantStatusRequestBuilderGetQueryParameters():
         """
-        Retrieve the onboarding status of a specific tenant.
+        Represents the status of the Global Secure Access services for the tenant.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

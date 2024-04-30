@@ -34,7 +34,7 @@ class GroupLifecyclePolicyItemRequestBuilder(BaseRequestBuilder):
         Delete a groupLifecyclePolicy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/grouplifecyclepolicy-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -53,7 +53,7 @@ class GroupLifecyclePolicyItemRequestBuilder(BaseRequestBuilder):
         Retrieve the properties and relationships of a groupLifecyclePolicies object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GroupLifecyclePolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/grouplifecyclepolicy-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/grouplifecyclepolicy-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -75,7 +75,7 @@ class GroupLifecyclePolicyItemRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GroupLifecyclePolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/grouplifecyclepolicy-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/grouplifecyclepolicy-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")

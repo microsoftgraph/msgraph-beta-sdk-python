@@ -29,9 +29,10 @@ class GetCapabilitiesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[PrinterCapabilities]:
         """
-        Invoke function getCapabilities
+        Get a list of capabilities for the printer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrinterCapabilities]
+        Find more info here: https://learn.microsoft.com/graph/api/printer-getcapabilities?view=graph-rest-beta
         """
         warn("The getCapabilities API is deprecated and will stop returning data on July 31, 2023. Please use the capabilities property instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -50,7 +51,7 @@ class GetCapabilitiesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getCapabilities
+        Get a list of capabilities for the printer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

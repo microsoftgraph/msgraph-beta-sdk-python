@@ -29,10 +29,9 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete an itemPhone object from the user's profile.
+        Delete navigation property phones for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/itemphone-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,10 +47,9 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemPhone]:
         """
-        Retrieve the properties and relationships of an itemPhone object in a user's profile.
+        Represents detailed information about phone numbers associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPhone]
-        Find more info here: https://learn.microsoft.com/graph/api/itemphone-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +67,10 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ItemPhone] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemPhone]:
         """
-        Update the properties of an itemPhone object in a user's profile.
+        Update the navigation property phones in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemPhone]
-        Find more info here: https://learn.microsoft.com/graph/api/itemphone-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +90,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an itemPhone object from the user's profile.
+        Delete navigation property phones for users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +101,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an itemPhone object in a user's profile.
+        Represents detailed information about phone numbers associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +112,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ItemPhone] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of an itemPhone object in a user's profile.
+        Update the navigation property phones in users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -141,7 +138,7 @@ class ItemPhoneItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ItemPhoneItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an itemPhone object in a user's profile.
+        Represents detailed information about phone numbers associated with a user in various services.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

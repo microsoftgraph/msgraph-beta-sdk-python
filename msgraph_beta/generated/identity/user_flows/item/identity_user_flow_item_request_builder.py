@@ -30,10 +30,9 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete an existing userFlow object.
+        Delete navigation property userFlows for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-delete?view=graph-rest-1.0
         """
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -50,10 +49,9 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[IdentityUserFlow]:
         """
-        Retrieve the properties and associations for an userFlow object.
+        Get userFlows from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityUserFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-get?view=graph-rest-1.0
         """
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -96,7 +94,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete an existing userFlow object.
+        Delete navigation property userFlows for identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +106,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and associations for an userFlow object.
+        Get userFlows from identity
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +146,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IdentityUserFlowItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and associations for an userFlow object.
+        Get userFlows from identity
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

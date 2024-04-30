@@ -47,10 +47,9 @@ class AccessPackageAssignmentResourceRolesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageAssignmentResourceRoleCollectionResponse]:
         """
-        Retrieve a list of accessPackageAssignmentResourceRole objects.  The resulting list includes all the resource roles of all assignments that the caller has access to read, across all catalogs and access packages.
+        Represents the resource-specific role which a subject has been assigned through an access package assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignmentResourceRoleCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackageassignmentresourceroles?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -91,7 +90,7 @@ class AccessPackageAssignmentResourceRolesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of accessPackageAssignmentResourceRole objects.  The resulting list includes all the resource roles of all assignments that the caller has access to read, across all catalogs and access packages.
+        Represents the resource-specific role which a subject has been assigned through an access package assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -146,7 +145,7 @@ class AccessPackageAssignmentResourceRolesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageAssignmentResourceRolesRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of accessPackageAssignmentResourceRole objects.  The resulting list includes all the resource roles of all assignments that the caller has access to read, across all catalogs and access packages.
+        Represents the resource-specific role which a subject has been assigned through an access package assignment.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

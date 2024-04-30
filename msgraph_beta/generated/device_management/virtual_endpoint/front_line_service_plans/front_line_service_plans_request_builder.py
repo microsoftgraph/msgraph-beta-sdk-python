@@ -46,10 +46,9 @@ class FrontLineServicePlansRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcFrontLineServicePlanCollectionResponse]:
         """
-        Get a list of the cloudPcFrontLineServicePlan objects and their properties.
+        Front-line service plans for a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcFrontLineServicePlanCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-frontlineserviceplans?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class FrontLineServicePlansRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of the cloudPcFrontLineServicePlan objects and their properties.
+        Front-line service plans for a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class FrontLineServicePlansRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FrontLineServicePlansRequestBuilderGetQueryParameters():
         """
-        Get a list of the cloudPcFrontLineServicePlan objects and their properties.
+        Front-line service plans for a Cloud PC.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

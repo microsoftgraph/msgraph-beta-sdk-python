@@ -46,7 +46,7 @@ class DeviceRunStatesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[HardwareConfigurationDeviceStateCollectionResponse]:
         """
-        List of run states for the hardware configuration across all devices
+        List of run states for the hardware configuration across all devices. Read-Only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareConfigurationDeviceStateCollectionResponse]
         """
@@ -89,7 +89,7 @@ class DeviceRunStatesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        List of run states for the hardware configuration across all devices
+        List of run states for the hardware configuration across all devices. Read-Only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +135,7 @@ class DeviceRunStatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceRunStatesRequestBuilderGetQueryParameters():
         """
-        List of run states for the hardware configuration across all devices
+        List of run states for the hardware configuration across all devices. Read-Only.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

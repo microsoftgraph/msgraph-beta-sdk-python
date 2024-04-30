@@ -35,9 +35,10 @@ class GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclus
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getMetricsForSamlSignInSuccess
+        Get the number of SAML 2.0 authentications successfully processed by the Microsoft Entra cloud service for the tenant during a specified time period. This health signal currently doesn't include WS-FED/SAML 1.1 apps that are integrated with Microsoft Entra.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getmetricsforsamlsigninsuccess?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -55,7 +56,7 @@ class GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclus
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getMetricsForSamlSignInSuccess
+        Get the number of SAML 2.0 authentications successfully processed by the Microsoft Entra cloud service for the tenant during a specified time period. This health signal currently doesn't include WS-FED/SAML 1.1 apps that are integrated with Microsoft Entra.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +78,7 @@ class GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclus
     @dataclass
     class GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getMetricsForSamlSignInSuccess
+        Get the number of SAML 2.0 authentications successfully processed by the Microsoft Entra cloud service for the tenant during a specified time period. This health signal currently doesn't include WS-FED/SAML 1.1 apps that are integrated with Microsoft Entra.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

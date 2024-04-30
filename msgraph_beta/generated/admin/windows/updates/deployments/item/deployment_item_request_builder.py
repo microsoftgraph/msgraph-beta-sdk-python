@@ -30,10 +30,9 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a deployment object.
+        Delete navigation property deployments for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-deployment-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -49,10 +48,9 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Deployment]:
         """
-        Read the properties and relationships of a deployment object.
+        Deployments created using the deployment service.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Deployment]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-deployment-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,11 +68,10 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[Deployment] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Deployment]:
         """
-        Update the properties of a deployment object.
+        Update the navigation property deployments in admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Deployment]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-deployment-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -94,7 +91,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a deployment object.
+        Delete navigation property deployments for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +102,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a deployment object.
+        Deployments created using the deployment service.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +113,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[Deployment] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of a deployment object.
+        Update the navigation property deployments in admin
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -151,7 +148,7 @@ class DeploymentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeploymentItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a deployment object.
+        Deployments created using the deployment service.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

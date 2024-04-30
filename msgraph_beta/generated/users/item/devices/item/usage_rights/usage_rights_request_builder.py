@@ -46,10 +46,9 @@ class UsageRightsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UsageRightCollectionResponse]:
         """
-        Retrieve a list of usageRight objects for a given device.
+        Represents the usage rights a device has been granted.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UsageRightCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/device-list-usagerights?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -90,7 +89,7 @@ class UsageRightsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of usageRight objects for a given device.
+        Represents the usage rights a device has been granted.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -136,7 +135,7 @@ class UsageRightsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UsageRightsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of usageRight objects for a given device.
+        Represents the usage rights a device has been granted.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

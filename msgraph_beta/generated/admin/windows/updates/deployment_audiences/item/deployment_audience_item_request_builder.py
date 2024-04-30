@@ -34,10 +34,9 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
         """
-        Delete a deploymentAudience object.
+        Delete navigation property deploymentAudiences for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-deploymentaudience-delete?view=graph-rest-1.0
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -53,10 +52,9 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeploymentAudience]:
         """
-        Read the properties and relationships of a deploymentAudience object.
+        The set of updatableAsset resources to which a deployment can apply.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeploymentAudience]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-deploymentaudience-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -97,7 +95,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Delete a deploymentAudience object.
+        Delete navigation property deploymentAudiences for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +106,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a deploymentAudience object.
+        The set of updatableAsset resources to which a deployment can apply.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -190,7 +188,7 @@ class DeploymentAudienceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeploymentAudienceItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a deploymentAudience object.
+        The set of updatableAsset resources to which a deployment can apply.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

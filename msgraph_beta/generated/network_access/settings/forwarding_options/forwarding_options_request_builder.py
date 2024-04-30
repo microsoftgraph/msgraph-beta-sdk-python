@@ -47,10 +47,9 @@ class ForwardingOptionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ForwardingOptions]:
         """
-        Retrieve the forwarding options for the tenant, with a specific focus on the 'skipDnsLookupState' flag. This flag determines whether DNS lookup will be skipped, allowing Microsoft 365 traffic to be forwarded directly to the Front Door using the client-resolved destination.
+        Get forwardingOptions from networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingOptions]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-forwardingoptions-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,11 +67,10 @@ class ForwardingOptionsRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Optional[ForwardingOptions] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ForwardingOptions]:
         """
-        the forwarding options for the tenant, with a specific focus on the skipDnsLookupState flag. This flag determines whether DNS lookup will be skipped, allowing Microsoft 365 traffic to be forwarded directly to the Front Door using the client-resolved destination.
+        Update the navigation property forwardingOptions in networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingOptions]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-forwardingoptions-update?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -103,7 +101,7 @@ class ForwardingOptionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the forwarding options for the tenant, with a specific focus on the 'skipDnsLookupState' flag. This flag determines whether DNS lookup will be skipped, allowing Microsoft 365 traffic to be forwarded directly to the Front Door using the client-resolved destination.
+        Get forwardingOptions from networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +112,7 @@ class ForwardingOptionsRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Optional[ForwardingOptions] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        the forwarding options for the tenant, with a specific focus on the skipDnsLookupState flag. This flag determines whether DNS lookup will be skipped, allowing Microsoft 365 traffic to be forwarded directly to the Front Door using the client-resolved destination.
+        Update the navigation property forwardingOptions in networkAccess
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +138,7 @@ class ForwardingOptionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ForwardingOptionsRequestBuilderGetQueryParameters():
         """
-        Retrieve the forwarding options for the tenant, with a specific focus on the 'skipDnsLookupState' flag. This flag determines whether DNS lookup will be skipped, allowing Microsoft 365 traffic to be forwarded directly to the Front Door using the client-resolved destination.
+        Get forwardingOptions from networkAccess
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

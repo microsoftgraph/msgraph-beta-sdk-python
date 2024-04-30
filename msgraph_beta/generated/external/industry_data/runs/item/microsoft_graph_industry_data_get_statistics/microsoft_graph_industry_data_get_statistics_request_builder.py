@@ -28,9 +28,10 @@ class MicrosoftGraphIndustryDataGetStatisticsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[IndustryDataRunStatistics]:
         """
-        Invoke function getStatistics
+        Get statistics for an industryDataRun.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IndustryDataRunStatistics]
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-industrydatarun-getstatistics?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -48,7 +49,7 @@ class MicrosoftGraphIndustryDataGetStatisticsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke function getStatistics
+        Get statistics for an industryDataRun.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

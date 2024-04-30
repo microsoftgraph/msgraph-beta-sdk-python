@@ -46,10 +46,9 @@ class ProjectsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProjectParticipationCollectionResponse]:
         """
-        Retrieve a list of projectParticipation objects from a user's profile.
+        Represents detailed information about projects associated with a user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProjectParticipationCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-projects?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class ProjectsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ProjectParticipation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProjectParticipation]:
         """
-        Use this API to create a new projectParticipation object in a user's profile.
+        Create new navigation property to projects for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProjectParticipation]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-projects?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class ProjectsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of projectParticipation objects from a user's profile.
+        Represents detailed information about projects associated with a user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class ProjectsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ProjectParticipation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Use this API to create a new projectParticipation object in a user's profile.
+        Create new navigation property to projects for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class ProjectsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProjectsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of projectParticipation objects from a user's profile.
+        Represents detailed information about projects associated with a user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

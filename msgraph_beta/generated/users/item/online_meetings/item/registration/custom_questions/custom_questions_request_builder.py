@@ -46,10 +46,9 @@ class CustomQuestionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MeetingRegistrationQuestionCollectionResponse]:
         """
-        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Custom registration questions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MeetingRegistrationQuestionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/meetingregistration-list-customquestions?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class CustomQuestionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[MeetingRegistrationQuestion] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MeetingRegistrationQuestion]:
         """
-        Create a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Create new navigation property to customQuestions for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MeetingRegistrationQuestion]
-        Find more info here: https://learn.microsoft.com/graph/api/meetingregistration-post-customquestions?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class CustomQuestionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Custom registration questions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class CustomQuestionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[MeetingRegistrationQuestion] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Create new navigation property to customQuestions for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class CustomQuestionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustomQuestionsRequestBuilderGetQueryParameters():
         """
-        Get a custom registration question associated with a meetingRegistration object on behalf of the organizer.
+        Custom registration questions.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

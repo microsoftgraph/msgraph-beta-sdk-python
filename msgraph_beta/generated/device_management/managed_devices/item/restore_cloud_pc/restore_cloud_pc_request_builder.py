@@ -33,7 +33,7 @@ class RestoreCloudPcRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/manageddevice-restorecloudpc?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/manageddevice-restorecloudpc?view=graph-rest-beta
         """
         warn("The restoreCloudPc API is deprecated and will stop returning on Sep 30, 2023. Please use restore instead as of 2023-07/restoreCloudPc", DeprecationWarning)
         if not body:

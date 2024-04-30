@@ -46,10 +46,9 @@ class AddressesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemAddressCollectionResponse]:
         """
-        Get the itemAddress resources from the addresses navigation property.
+        Represents details of addresses associated with the user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemAddressCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-addresses?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,11 +66,10 @@ class AddressesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Optional[ItemAddress] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ItemAddress]:
         """
-        Create a new itemAddress object in a user's profile.
+        Create new navigation property to addresses for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ItemAddress]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-addresses?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +89,7 @@ class AddressesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Get the itemAddress resources from the addresses navigation property.
+        Represents details of addresses associated with the user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +100,7 @@ class AddressesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Optional[ItemAddress] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new itemAddress object in a user's profile.
+        Create new navigation property to addresses for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +135,7 @@ class AddressesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AddressesRequestBuilderGetQueryParameters():
         """
-        Get the itemAddress resources from the addresses navigation property.
+        Represents details of addresses associated with the user.
         """
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """

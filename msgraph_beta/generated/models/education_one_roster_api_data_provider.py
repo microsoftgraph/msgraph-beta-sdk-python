@@ -20,11 +20,11 @@ class EducationOneRosterApiDataProvider(EducationSynchronizationDataProvider):
     connection_url: Optional[str] = None
     # Optional customization to be applied to the synchronization profile.
     customizations: Optional[EducationSynchronizationCustomizations] = None
-    # The OneRoster Service Provider name as defined by the [OneRoster specification][oneroster].
+    # The OneRoster Service Provider name as defined by the OneRoster specification.
     provider_name: Optional[str] = None
-    # The list of [School/Org][orgs] sourcedId to sync.
+    # The list of School/Org sourcedId to sync.
     schools_ids: Optional[List[str]] = None
-    # The list of [academic sessions][terms] to sync.
+    # The list of academic sessions to sync.
     term_ids: Optional[List[str]] = None
     
     @staticmethod
