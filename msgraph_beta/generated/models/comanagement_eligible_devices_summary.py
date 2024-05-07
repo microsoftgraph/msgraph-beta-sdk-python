@@ -27,7 +27,7 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, BackedModel, Pars
     scheduled_for_enrollment_count: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ComanagementEligibleDevicesSummary:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ComanagementEligibleDevicesSummary:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

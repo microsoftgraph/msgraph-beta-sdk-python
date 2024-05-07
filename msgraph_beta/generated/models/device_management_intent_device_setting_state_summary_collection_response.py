@@ -15,7 +15,7 @@ class DeviceManagementIntentDeviceSettingStateSummaryCollectionResponse(BaseColl
     value: Optional[List[DeviceManagementIntentDeviceSettingStateSummary]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementIntentDeviceSettingStateSummaryCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementIntentDeviceSettingStateSummaryCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

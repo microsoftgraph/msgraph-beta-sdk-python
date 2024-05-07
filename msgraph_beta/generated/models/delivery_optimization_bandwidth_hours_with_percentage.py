@@ -22,7 +22,7 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(DeliveryOptimizationBandw
     bandwidth_foreground_percentage_hours: Optional[DeliveryOptimizationBandwidthBusinessHoursLimit] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeliveryOptimizationBandwidthHoursWithPercentage:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeliveryOptimizationBandwidthHoursWithPercentage:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

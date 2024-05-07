@@ -10,15 +10,15 @@ from .device_management_configuration_simple_setting_definition import DeviceMan
 
 @dataclass
 class DeviceManagementConfigurationSimpleSettingCollectionDefinition(DeviceManagementConfigurationSimpleSettingDefinition):
-    # Maximum number of simple settings in the collection. Valid values 1 to 100
+    # Maximum number of simple settings in the collection
     maximum_count: Optional[int] = None
-    # Minimum number of simple settings in the collection. Valid values 1 to 100
+    # Minimum number of simple settings in the collection
     minimum_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSimpleSettingCollectionDefinition:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationSimpleSettingCollectionDefinition:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

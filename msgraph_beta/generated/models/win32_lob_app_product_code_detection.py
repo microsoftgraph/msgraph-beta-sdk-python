@@ -24,7 +24,7 @@ class Win32LobAppProductCodeDetection(Win32LobAppDetection):
     product_version_operator: Optional[Win32LobAppDetectionOperator] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Win32LobAppProductCodeDetection:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Win32LobAppProductCodeDetection:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

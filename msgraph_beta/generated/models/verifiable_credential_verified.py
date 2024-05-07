@@ -14,7 +14,7 @@ class VerifiableCredentialVerified(VerifiableCredentialRequirementStatus):
     odata_type: Optional[str] = "#microsoft.graph.verifiableCredentialVerified"
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VerifiableCredentialVerified:
+    def create_from_discriminator_value(parse_node: ParseNode) -> VerifiableCredentialVerified:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

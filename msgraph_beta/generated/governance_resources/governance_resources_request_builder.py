@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ..models.governance_resource import GovernanceResource
@@ -45,7 +47,7 @@ class GovernanceResourcesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["governanceResource%2Did"] = governance_resource_id
         return GovernanceResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GovernanceResourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[GovernanceResourcesRequestBuilderGetQueryParameters]] = None) -> Optional[GovernanceResourceCollectionResponse]:
         """
         Get entities from governanceResources
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +67,7 @@ class GovernanceResourcesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GovernanceResourceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[GovernanceResource] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[GovernanceResource]:
+    async def post(self,body: GovernanceResource, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[GovernanceResource]:
         """
         Add new entity to governanceResources
         param body: The request body
@@ -88,7 +90,7 @@ class GovernanceResourcesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GovernanceResource, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GovernanceResourcesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get entities from governanceResources
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +101,7 @@ class GovernanceResourcesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[GovernanceResource] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: GovernanceResource, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Add new entity to governanceResources
         param body: The request body
@@ -114,7 +116,7 @@ class GovernanceResourcesRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> GovernanceResourcesRequestBuilder:
+    def with_url(self,raw_url: str) -> GovernanceResourcesRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -147,7 +149,7 @@ class GovernanceResourcesRequestBuilder(BaseRequestBuilder):
         """
         Get entities from governanceResources
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -197,5 +199,19 @@ class GovernanceResourcesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class GovernanceResourcesRequestBuilderGetRequestConfiguration(RequestConfiguration[GovernanceResourcesRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class GovernanceResourcesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

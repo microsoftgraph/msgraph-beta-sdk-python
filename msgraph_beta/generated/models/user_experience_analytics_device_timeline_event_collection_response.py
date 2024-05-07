@@ -15,7 +15,7 @@ class UserExperienceAnalyticsDeviceTimelineEventCollectionResponse(BaseCollectio
     value: Optional[List[UserExperienceAnalyticsDeviceTimelineEvent]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsDeviceTimelineEventCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> UserExperienceAnalyticsDeviceTimelineEventCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

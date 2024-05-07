@@ -21,7 +21,7 @@ class Headers(AdditionalDataHolder, BackedModel, Parsable):
     x_forwarded_for: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Headers:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Headers:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

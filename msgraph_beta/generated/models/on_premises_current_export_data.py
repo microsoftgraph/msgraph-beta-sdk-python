@@ -31,7 +31,7 @@ class OnPremisesCurrentExportData(AdditionalDataHolder, BackedModel, Parsable):
     total_connector_space_objects: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnPremisesCurrentExportData:
+    def create_from_discriminator_value(parse_node: ParseNode) -> OnPremisesCurrentExportData:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

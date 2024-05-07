@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
+    from .partner.security.additional_data_dictionary import AdditionalDataDictionary
     from .planner_forms_dictionary import PlannerFormsDictionary
     from .result_template_dictionary import ResultTemplateDictionary
 
@@ -20,7 +21,7 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Dictionary:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Dictionary:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -36,6 +37,10 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
             from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
 
             return CustomAppScopeAttributesDictionary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.additionalDataDictionary".casefold():
+            from .partner.security.additional_data_dictionary import AdditionalDataDictionary
+
+            return AdditionalDataDictionary()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerFormsDictionary".casefold():
             from .planner_forms_dictionary import PlannerFormsDictionary
 
@@ -52,10 +57,12 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
+        from .partner.security.additional_data_dictionary import AdditionalDataDictionary
         from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
 
         from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
+        from .partner.security.additional_data_dictionary import AdditionalDataDictionary
         from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
 

@@ -15,7 +15,7 @@ class IosLobAppProvisioningConfigurationCollectionResponse(BaseCollectionPaginat
     value: Optional[List[IosLobAppProvisioningConfiguration]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosLobAppProvisioningConfigurationCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> IosLobAppProvisioningConfigurationCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -33,7 +33,7 @@ class WindowsKioskAppBase(AdditionalDataHolder, BackedModel, Parsable):
     start_layout_tile_size: Optional[WindowsAppStartLayoutTileSize] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskAppBase:
+    def create_from_discriminator_value(parse_node: ParseNode) -> WindowsKioskAppBase:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

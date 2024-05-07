@@ -33,7 +33,6 @@ if TYPE_CHECKING:
     from .access_review_set import AccessReviewSet
     from .access_review_stage import AccessReviewStage
     from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
-    from .active_users_breakdown_metric import ActiveUsersBreakdownMetric
     from .active_users_metric import ActiveUsersMetric
     from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
     from .activity_history_item import ActivityHistoryItem
@@ -365,6 +364,7 @@ if TYPE_CHECKING:
     from .custom_app_scope import CustomAppScope
     from .custom_authentication_extension import CustomAuthenticationExtension
     from .custom_callout_extension import CustomCalloutExtension
+    from .custom_claims_policy import CustomClaimsPolicy
     from .custom_extension_handler import CustomExtensionHandler
     from .custom_extension_stage_setting import CustomExtensionStageSetting
     from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -636,6 +636,7 @@ if TYPE_CHECKING:
     from .externally_accessible_aws_storage_bucket_finding import ExternallyAccessibleAwsStorageBucketFinding
     from .externally_accessible_azure_blob_container_finding import ExternallyAccessibleAzureBlobContainerFinding
     from .externally_accessible_gcp_storage_bucket_finding import ExternallyAccessibleGcpStorageBucketFinding
+    from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
     from .external_connection import ExternalConnection
     from .external_connectors.connection_operation import ConnectionOperation
     from .external_connectors.connection_quota import ConnectionQuota
@@ -1153,6 +1154,8 @@ if TYPE_CHECKING:
     from .participant import Participant
     from .participant_joining_notification import ParticipantJoiningNotification
     from .participant_left_notification import ParticipantLeftNotification
+    from .partner.security.partner_security import PartnerSecurity
+    from .partner.security.partner_security_alert import PartnerSecurityAlert
     from .partners.billing.azure_usage import AzureUsage
     from .partners.billing.billed_reconciliation import BilledReconciliation
     from .partners.billing.billed_usage import BilledUsage
@@ -1411,6 +1414,7 @@ if TYPE_CHECKING:
     from .security.intelligence_profile_indicator import IntelligenceProfileIndicator
     from .security.ip_address import IpAddress
     from .security.labels_root import LabelsRoot
+    from .security.network_adapter import NetworkAdapter
     from .security.passive_dns_record import PassiveDnsRecord
     from .security.policy_base import PolicyBase
     from .security.protection_rule import ProtectionRule
@@ -1421,6 +1425,7 @@ if TYPE_CHECKING:
     from .security.search import Search
     from .security.security import Security
     from .security.sensitivity_label import SensitivityLabel
+    from .security.sensor import Sensor
     from .security.site_source import SiteSource
     from .security.ssl_certificate import SslCertificate
     from .security.subcategory_template import SubcategoryTemplate
@@ -1931,7 +1936,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Entity:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Entity:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -2055,10 +2060,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
 
             return ActiveDirectoryWindowsAutopilotDeploymentProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.activeUsersBreakdownMetric".casefold():
-            from .active_users_breakdown_metric import ActiveUsersBreakdownMetric
-
-            return ActiveUsersBreakdownMetric()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.activeUsersMetric".casefold():
             from .active_users_metric import ActiveUsersMetric
 
@@ -3389,6 +3390,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .custom_callout_extension import CustomCalloutExtension
 
             return CustomCalloutExtension()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.customClaimsPolicy".casefold():
+            from .custom_claims_policy import CustomClaimsPolicy
+
+            return CustomClaimsPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.customExtensionHandler".casefold():
             from .custom_extension_handler import CustomExtensionHandler
 
@@ -4474,6 +4479,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .external import External
 
             return External()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalAuthenticationMethodConfiguration".casefold():
+            from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
+
+            return ExternalAuthenticationMethodConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalConnection".casefold():
             from .external_connection import ExternalConnection
             from .external_connectors.external_connection import ExternalConnection
@@ -6570,6 +6579,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .participant_left_notification import ParticipantLeftNotification
 
             return ParticipantLeftNotification()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.partnerSecurity".casefold():
+            from .partner.security.partner_security import PartnerSecurity
+
+            return PartnerSecurity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.partnerSecurityAlert".casefold():
+            from .partner.security.partner_security_alert import PartnerSecurityAlert
+
+            return PartnerSecurityAlert()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners".casefold():
             from .partners.partners import Partners
 
@@ -7617,6 +7634,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.labels_root import LabelsRoot
 
             return LabelsRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.networkAdapter".casefold():
+            from .security.network_adapter import NetworkAdapter
+
+            return NetworkAdapter()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.passiveDnsRecord".casefold():
             from .security.passive_dns_record import PassiveDnsRecord
 
@@ -7659,6 +7680,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .sensitivity_label import SensitivityLabel
 
             return SensitivityLabel()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.sensor".casefold():
+            from .security.sensor import Sensor
+
+            return Sensor()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.siteSource".casefold():
             from .ediscovery.site_source import SiteSource
             from .security.site_source import SiteSource
@@ -9686,7 +9711,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .access_review_set import AccessReviewSet
         from .access_review_stage import AccessReviewStage
         from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
-        from .active_users_breakdown_metric import ActiveUsersBreakdownMetric
         from .active_users_metric import ActiveUsersMetric
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
         from .activity_history_item import ActivityHistoryItem
@@ -10018,6 +10042,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_app_scope import CustomAppScope
         from .custom_authentication_extension import CustomAuthenticationExtension
         from .custom_callout_extension import CustomCalloutExtension
+        from .custom_claims_policy import CustomClaimsPolicy
         from .custom_extension_handler import CustomExtensionHandler
         from .custom_extension_stage_setting import CustomExtensionStageSetting
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -10289,6 +10314,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .externally_accessible_aws_storage_bucket_finding import ExternallyAccessibleAwsStorageBucketFinding
         from .externally_accessible_azure_blob_container_finding import ExternallyAccessibleAzureBlobContainerFinding
         from .externally_accessible_gcp_storage_bucket_finding import ExternallyAccessibleGcpStorageBucketFinding
+        from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
         from .external_connection import ExternalConnection
         from .external_connectors.connection_operation import ConnectionOperation
         from .external_connectors.connection_quota import ConnectionQuota
@@ -10806,6 +10832,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .participant import Participant
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification
+        from .partner.security.partner_security import PartnerSecurity
+        from .partner.security.partner_security_alert import PartnerSecurityAlert
         from .partners.billing.azure_usage import AzureUsage
         from .partners.billing.billed_reconciliation import BilledReconciliation
         from .partners.billing.billed_usage import BilledUsage
@@ -11064,6 +11092,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.intelligence_profile_indicator import IntelligenceProfileIndicator
         from .security.ip_address import IpAddress
         from .security.labels_root import LabelsRoot
+        from .security.network_adapter import NetworkAdapter
         from .security.passive_dns_record import PassiveDnsRecord
         from .security.policy_base import PolicyBase
         from .security.protection_rule import ProtectionRule
@@ -11074,6 +11103,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.search import Search
         from .security.security import Security
         from .security.sensitivity_label import SensitivityLabel
+        from .security.sensor import Sensor
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
         from .security.subcategory_template import SubcategoryTemplate
@@ -11599,7 +11629,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .access_review_set import AccessReviewSet
         from .access_review_stage import AccessReviewStage
         from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
-        from .active_users_breakdown_metric import ActiveUsersBreakdownMetric
         from .active_users_metric import ActiveUsersMetric
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
         from .activity_history_item import ActivityHistoryItem
@@ -11931,6 +11960,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_app_scope import CustomAppScope
         from .custom_authentication_extension import CustomAuthenticationExtension
         from .custom_callout_extension import CustomCalloutExtension
+        from .custom_claims_policy import CustomClaimsPolicy
         from .custom_extension_handler import CustomExtensionHandler
         from .custom_extension_stage_setting import CustomExtensionStageSetting
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -12202,6 +12232,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .externally_accessible_aws_storage_bucket_finding import ExternallyAccessibleAwsStorageBucketFinding
         from .externally_accessible_azure_blob_container_finding import ExternallyAccessibleAzureBlobContainerFinding
         from .externally_accessible_gcp_storage_bucket_finding import ExternallyAccessibleGcpStorageBucketFinding
+        from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
         from .external_connection import ExternalConnection
         from .external_connectors.connection_operation import ConnectionOperation
         from .external_connectors.connection_quota import ConnectionQuota
@@ -12719,6 +12750,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .participant import Participant
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification
+        from .partner.security.partner_security import PartnerSecurity
+        from .partner.security.partner_security_alert import PartnerSecurityAlert
         from .partners.billing.azure_usage import AzureUsage
         from .partners.billing.billed_reconciliation import BilledReconciliation
         from .partners.billing.billed_usage import BilledUsage
@@ -12977,6 +13010,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.intelligence_profile_indicator import IntelligenceProfileIndicator
         from .security.ip_address import IpAddress
         from .security.labels_root import LabelsRoot
+        from .security.network_adapter import NetworkAdapter
         from .security.passive_dns_record import PassiveDnsRecord
         from .security.policy_base import PolicyBase
         from .security.protection_rule import ProtectionRule
@@ -12987,6 +13021,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.search import Search
         from .security.security import Security
         from .security.sensitivity_label import SensitivityLabel
+        from .security.sensor import Sensor
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
         from .security.subcategory_template import SubcategoryTemplate

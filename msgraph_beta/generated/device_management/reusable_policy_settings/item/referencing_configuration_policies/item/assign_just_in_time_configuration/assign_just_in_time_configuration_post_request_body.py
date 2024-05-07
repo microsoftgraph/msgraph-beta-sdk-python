@@ -18,7 +18,7 @@ class AssignJustInTimeConfigurationPostRequestBody(AdditionalDataHolder, BackedM
     just_in_time_assignments: Optional[DeviceManagementConfigurationJustInTimeAssignmentPolicy] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignJustInTimeConfigurationPostRequestBody:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AssignJustInTimeConfigurationPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.dep_onboarding_setting import DepOnboardingSetting
@@ -45,7 +47,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["depOnboardingSetting%2Did"] = dep_onboarding_setting_id
         return DepOnboardingSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DepOnboardingSettingCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[DepOnboardingSettingsRequestBuilderGetQueryParameters]] = None) -> Optional[DepOnboardingSettingCollectionResponse]:
         """
         This collections of multiple DEP tokens per-tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +67,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DepOnboardingSettingCollectionResponse, error_mapping)
     
-    def get_expiring_vpp_token_count_with_expiring_before_date_time(self,expiring_before_date_time: Optional[str] = None) -> GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder:
+    def get_expiring_vpp_token_count_with_expiring_before_date_time(self,expiring_before_date_time: str) -> GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder:
         """
         Provides operations to call the getExpiringVppTokenCount method.
         param expiring_before_date_time: Usage: expiringBeforeDateTime='{expiringBeforeDateTime}'
@@ -77,7 +79,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
 
         return GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(self.request_adapter, self.path_parameters, expiring_before_date_time)
     
-    async def post(self,body: Optional[DepOnboardingSetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DepOnboardingSetting]:
+    async def post(self,body: DepOnboardingSetting, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DepOnboardingSetting]:
         """
         Create new navigation property to depOnboardingSettings for deviceManagement
         param body: The request body
@@ -100,7 +102,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DepOnboardingSetting, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DepOnboardingSettingsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         This collections of multiple DEP tokens per-tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -111,7 +113,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DepOnboardingSetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: DepOnboardingSetting, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to depOnboardingSettings for deviceManagement
         param body: The request body
@@ -126,7 +128,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> DepOnboardingSettingsRequestBuilder:
+    def with_url(self,raw_url: str) -> DepOnboardingSettingsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -150,7 +152,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         """
         This collections of multiple DEP tokens per-tenant.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -200,5 +202,19 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class DepOnboardingSettingsRequestBuilderGetRequestConfiguration(RequestConfiguration[DepOnboardingSettingsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class DepOnboardingSettingsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

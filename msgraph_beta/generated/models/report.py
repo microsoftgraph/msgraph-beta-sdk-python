@@ -14,13 +14,13 @@ class Report(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Report content; details vary by report type.
+    # The http content that has the data
     content: Optional[bytes] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Report:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Report:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

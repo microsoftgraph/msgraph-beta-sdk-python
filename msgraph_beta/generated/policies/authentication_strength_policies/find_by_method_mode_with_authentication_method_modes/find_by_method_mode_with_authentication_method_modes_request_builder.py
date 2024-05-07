@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,11 +32,12 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
             path_parameters['authenticationMethodModes'] = str(authentication_method_modes)
         super().__init__(request_adapter, "{+baseurl}/policies/authenticationStrengthPolicies/findByMethodMode(authenticationMethodModes={authenticationMethodModes}){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[FindByMethodModeWithAuthenticationMethodModesGetResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetQueryParameters]] = None) -> Optional[FindByMethodModeWithAuthenticationMethodModesGetResponse]:
         """
-        Invoke function findByMethodMode
+        Get a list of the authenticationStrengthPolicy objects and their properties filtered to only include policies that include the authentication method mode specified in the request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FindByMethodModeWithAuthenticationMethodModesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-findbymethodmode?view=graph-rest-beta
         """
         warn("The findByMethodMode function is deprecated. Please use OData filter query instead. as of 2023-02/FindByMethodModeRemove", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -52,9 +54,9 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
 
         return await self.request_adapter.send_async(request_info, FindByMethodModeWithAuthenticationMethodModesGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function findByMethodMode
+        Get a list of the authenticationStrengthPolicy objects and their properties filtered to only include policies that include the authentication method mode specified in the request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -64,7 +66,7 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> FindByMethodModeWithAuthenticationMethodModesRequestBuilder:
+    def with_url(self,raw_url: str) -> FindByMethodModeWithAuthenticationMethodModesRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -78,9 +80,9 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
     @dataclass
     class FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetQueryParameters():
         """
-        Invoke function findByMethodMode
+        Get a list of the authenticationStrengthPolicy objects and their properties filtered to only include policies that include the authentication method mode specified in the request.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -130,5 +132,12 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetRequestConfiguration(RequestConfiguration[FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

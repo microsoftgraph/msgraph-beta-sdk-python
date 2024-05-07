@@ -50,7 +50,7 @@ class WindowsAutopilotDeploymentProfile(Entity):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The locale (language) to be used when configuring the device. E.g. en-US. The default value is os-default. Supports: $select, $top, $skip. $Search, $orderBy and $filter are not supported.
     locale: Optional[str] = None
-    # AzureAD management app ID used during client device-based enrollment discovery
+    # The Entra management service App ID which gets used during client device-based enrollment discovery. Supports: $select, $top, $skip. $Search, $orderBy and $filter are not supported.
     management_service_app_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -64,7 +64,7 @@ class WindowsAutopilotDeploymentProfile(Entity):
     role_scope_tag_ids: Optional[List[str]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsAutopilotDeploymentProfile:
+    def create_from_discriminator_value(parse_node: ParseNode) -> WindowsAutopilotDeploymentProfile:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

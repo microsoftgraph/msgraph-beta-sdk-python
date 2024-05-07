@@ -15,7 +15,7 @@ class OutlookTaskFolderCollectionResponse(BaseCollectionPaginationCountResponse)
     value: Optional[List[OutlookTaskFolder]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OutlookTaskFolderCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> OutlookTaskFolderCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

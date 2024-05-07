@@ -18,7 +18,7 @@ class Windows10CertificateProfileBase(WindowsCertificateProfileBase):
     odata_type: Optional[str] = "#microsoft.graph.windows10CertificateProfileBase"
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10CertificateProfileBase:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Windows10CertificateProfileBase:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

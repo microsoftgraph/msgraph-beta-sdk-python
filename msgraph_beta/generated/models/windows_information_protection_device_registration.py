@@ -30,7 +30,7 @@ class WindowsInformationProtectionDeviceRegistration(Entity):
     user_id: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsInformationProtectionDeviceRegistration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> WindowsInformationProtectionDeviceRegistration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

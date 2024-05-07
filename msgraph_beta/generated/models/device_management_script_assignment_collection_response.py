@@ -15,7 +15,7 @@ class DeviceManagementScriptAssignmentCollectionResponse(BaseCollectionPaginatio
     value: Optional[List[DeviceManagementScriptAssignment]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementScriptAssignmentCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementScriptAssignmentCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

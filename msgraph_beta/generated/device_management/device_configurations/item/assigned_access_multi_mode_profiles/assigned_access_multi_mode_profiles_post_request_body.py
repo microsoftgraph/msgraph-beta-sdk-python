@@ -18,7 +18,7 @@ class AssignedAccessMultiModeProfilesPostRequestBody(AdditionalDataHolder, Backe
     assigned_access_multi_mode_profiles: Optional[List[WindowsAssignedAccessProfile]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignedAccessMultiModeProfilesPostRequestBody:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AssignedAccessMultiModeProfilesPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

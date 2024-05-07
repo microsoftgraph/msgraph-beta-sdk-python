@@ -20,7 +20,7 @@ class UserAnalytics(Entity):
     settings: Optional[Settings] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserAnalytics:
+    def create_from_discriminator_value(parse_node: ParseNode) -> UserAnalytics:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

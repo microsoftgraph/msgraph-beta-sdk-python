@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -50,12 +51,11 @@ class LabelsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["informationProtectionLabel%2Did"] = information_protection_label_id
         return InformationProtectionLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[InformationProtectionLabelCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[LabelsRequestBuilderGetQueryParameters]] = None) -> Optional[InformationProtectionLabelCollectionResponse]:
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get labels from sites
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InformationProtectionLabelCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/informationprotectionpolicy-list-labels?view=graph-rest-1.0
         """
         warn("This API will no longer be accessible, please see microsoft.graph.security.informationProtection APIs. as of 2021-02/Beta_SensitivityLabels", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -72,7 +72,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, InformationProtectionLabelCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[InformationProtectionLabel] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[InformationProtectionLabel]:
+    async def post(self,body: InformationProtectionLabel, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[InformationProtectionLabel]:
         """
         Create new navigation property to labels for sites
         param body: The request body
@@ -96,9 +96,9 @@ class LabelsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, InformationProtectionLabel, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[LabelsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get labels from sites
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +108,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[InformationProtectionLabel] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: InformationProtectionLabel, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to labels for sites
         param body: The request body
@@ -124,7 +124,7 @@ class LabelsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> LabelsRequestBuilder:
+    def with_url(self,raw_url: str) -> LabelsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -183,9 +183,9 @@ class LabelsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LabelsRequestBuilderGetQueryParameters():
         """
-        Get a collection of information protection labels available to the user or to the organization.
+        Get labels from sites
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -235,5 +235,19 @@ class LabelsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class LabelsRequestBuilderGetRequestConfiguration(RequestConfiguration[LabelsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class LabelsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

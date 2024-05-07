@@ -28,7 +28,7 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
     require_encryption_for_write_access: Optional[bool] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BitLockerFixedDrivePolicy:
+    def create_from_discriminator_value(parse_node: ParseNode) -> BitLockerFixedDrivePolicy:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

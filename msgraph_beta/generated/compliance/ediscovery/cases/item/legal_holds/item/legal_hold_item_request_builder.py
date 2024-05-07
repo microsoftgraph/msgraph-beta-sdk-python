@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -31,12 +32,12 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/legalHolds/{legalHold%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
         Delete a legalHold object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-delete?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -51,12 +52,12 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[LegalHold]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[LegalHoldItemRequestBuilderGetQueryParameters]] = None) -> Optional[LegalHold]:
         """
         Read the properties and relationships of a legalHold object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LegalHold]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-get?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -73,13 +74,13 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, LegalHold, error_mapping)
     
-    async def patch(self,body: Optional[LegalHold] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[LegalHold]:
+    async def patch(self,body: LegalHold, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[LegalHold]:
         """
         Update the properties of a legalHold object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LegalHold]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-legalhold-update?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -98,7 +99,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, LegalHold, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Delete a legalHold object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +111,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[LegalHoldItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Read the properties and relationships of a legalHold object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -122,7 +123,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[LegalHold] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: LegalHold, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update the properties of a legalHold object.
         param body: The request body
@@ -138,7 +139,7 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> LegalHoldItemRequestBuilder:
+    def with_url(self,raw_url: str) -> LegalHoldItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -177,11 +178,18 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
         return UserSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
+    class LegalHoldItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
     class LegalHoldItemRequestBuilderGetQueryParameters():
         """
         Read the properties and relationships of a legalHold object.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -201,5 +209,19 @@ class LegalHoldItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    @dataclass
+    class LegalHoldItemRequestBuilderGetRequestConfiguration(RequestConfiguration[LegalHoldItemRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class LegalHoldItemRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

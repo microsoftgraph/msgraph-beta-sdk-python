@@ -9,4 +9,5 @@ class ProtocolType(str, Enum):
     DeviceCode = "deviceCode",
     UnknownFutureValue = "unknownFutureValue",
     AuthenticationTransfer = "authenticationTransfer",
+    NativeAuth = "nativeAuth",
 

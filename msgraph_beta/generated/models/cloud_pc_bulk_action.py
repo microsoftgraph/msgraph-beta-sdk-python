@@ -36,7 +36,7 @@ class CloudPcBulkAction(Entity):
     scheduled_during_maintenance_window: Optional[bool] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcBulkAction:
+    def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcBulkAction:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

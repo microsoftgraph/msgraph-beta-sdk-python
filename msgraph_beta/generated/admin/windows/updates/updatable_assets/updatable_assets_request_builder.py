@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
@@ -48,12 +50,12 @@ class UpdatableAssetsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["updatableAsset%2Did"] = updatable_asset_id
         return UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UpdatableAssetCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[UpdatableAssetsRequestBuilderGetQueryParameters]] = None) -> Optional[UpdatableAssetCollectionResponse]:
         """
         Get a list of updatableAsset objects and their properties. Listing updatable assets returns updatableAsset resources of the following derived types: azureADDevice and updatableAssetGroup. Use list azureADDevice resources or list updatableAssetGroup resources to filter and get resources of only one of the derived types.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatableAssetCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-list-updatableassets?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-list-updatableassets?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,13 +71,13 @@ class UpdatableAssetsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UpdatableAssetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UpdatableAsset] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UpdatableAsset]:
+    async def post(self,body: UpdatableAsset, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[UpdatableAsset]:
         """
         Create a new updatableAssetGroup object. The updatableAssetGroup resource inherits from updatableAsset.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatableAsset]
-        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-post-updatableassets-updatableassetgroup?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/adminwindowsupdates-post-updatableassets-updatableassetgroup?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +95,7 @@ class UpdatableAssetsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UpdatableAsset, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UpdatableAssetsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get a list of updatableAsset objects and their properties. Listing updatable assets returns updatableAsset resources of the following derived types: azureADDevice and updatableAssetGroup. Use list azureADDevice resources or list updatableAssetGroup resources to filter and get resources of only one of the derived types.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +106,7 @@ class UpdatableAssetsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UpdatableAsset] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: UpdatableAsset, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create a new updatableAssetGroup object. The updatableAssetGroup resource inherits from updatableAsset.
         param body: The request body
@@ -119,7 +121,7 @@ class UpdatableAssetsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> UpdatableAssetsRequestBuilder:
+    def with_url(self,raw_url: str) -> UpdatableAssetsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -179,7 +181,7 @@ class UpdatableAssetsRequestBuilder(BaseRequestBuilder):
         """
         Get a list of updatableAsset objects and their properties. Listing updatable assets returns updatableAsset resources of the following derived types: azureADDevice and updatableAssetGroup. Use list azureADDevice resources or list updatableAssetGroup resources to filter and get resources of only one of the derived types.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -229,5 +231,19 @@ class UpdatableAssetsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class UpdatableAssetsRequestBuilderGetRequestConfiguration(RequestConfiguration[UpdatableAssetsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class UpdatableAssetsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,12 +29,12 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/networkAccess/connectivity/branches/{branchSite%2Did}/deviceLinks/{deviceLink%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
         Removes the link between the branch or remote network and the CPE device, effectively removing the connection and associated configuration between them.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchsite-delete-devicelinks?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-branchsite-delete-devicelinks?view=graph-rest-beta
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -48,7 +49,7 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceLink]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[DeviceLinkItemRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceLink]:
         """
         Each unique CPE device associated with a branch is specified. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,13 +70,13 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceLink, error_mapping)
     
-    async def patch(self,body: Optional[DeviceLink] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceLink]:
+    async def patch(self,body: DeviceLink, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DeviceLink]:
         """
         Update the device link associated with a specific branch or remote network.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceLink]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-devicelink-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-devicelink-update?view=graph-rest-beta
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
         if not body:
@@ -94,7 +95,7 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceLink, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Removes the link between the branch or remote network and the CPE device, effectively removing the connection and associated configuration between them.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -106,7 +107,7 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeviceLinkItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Each unique CPE device associated with a branch is specified. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -118,7 +119,7 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[DeviceLink] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: DeviceLink, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update the device link associated with a specific branch or remote network.
         param body: The request body
@@ -134,7 +135,7 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> DeviceLinkItemRequestBuilder:
+    def with_url(self,raw_url: str) -> DeviceLinkItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -146,11 +147,18 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
         return DeviceLinkItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
+    class DeviceLinkItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
     class DeviceLinkItemRequestBuilderGetQueryParameters():
         """
         Each unique CPE device associated with a branch is specified. Supports $expand.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -170,5 +178,19 @@ class DeviceLinkItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    @dataclass
+    class DeviceLinkItemRequestBuilderGetRequestConfiguration(RequestConfiguration[DeviceLinkItemRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class DeviceLinkItemRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

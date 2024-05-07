@@ -34,7 +34,7 @@ class AccessReviewDecision(Entity):
     reviewed_date_time: Optional[datetime.datetime] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewDecision:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AccessReviewDecision:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

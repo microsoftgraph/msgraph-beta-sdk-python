@@ -11,6 +11,8 @@ from ..entity import Entity
 
 @dataclass
 class CloudPcOverview(Entity):
+    # The total number of cloud PC devices that have the Frontline SKU. Optional. Read-only.
+    frontline_licenses_count: Optional[int] = None
     # Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.
     last_refreshed_date_time: Optional[datetime.datetime] = None
     # The number of cloud PC connections that have a status of failed. Optional. Read-only.
@@ -55,7 +57,7 @@ class CloudPcOverview(Entity):
     total_enterprise_licenses: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcOverview:
+    def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcOverview:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -75,6 +77,7 @@ class CloudPcOverview(Entity):
         from ..entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "frontlineLicensesCount": lambda n : setattr(self, 'frontline_licenses_count', n.get_int_value()),
             "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
             "numberOfCloudPcConnectionStatusFailed": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_failed', n.get_int_value()),
             "numberOfCloudPcConnectionStatusPassed": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_passed', n.get_int_value()),
@@ -109,6 +112,7 @@ class CloudPcOverview(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_int_value("frontlineLicensesCount", self.frontline_licenses_count)
         writer.write_datetime_value("lastRefreshedDateTime", self.last_refreshed_date_time)
         writer.write_int_value("numberOfCloudPcConnectionStatusFailed", self.number_of_cloud_pc_connection_status_failed)
         writer.write_int_value("numberOfCloudPcConnectionStatusPassed", self.number_of_cloud_pc_connection_status_passed)

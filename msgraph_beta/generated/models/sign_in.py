@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .authentication_detail import AuthenticationDetail
     from .authentication_requirement_policy import AuthenticationRequirementPolicy
     from .client_credential_type import ClientCredentialType
+    from .conditional_access_audience import ConditionalAccessAudience
     from .conditional_access_status import ConditionalAccessStatus
     from .device_detail import DeviceDetail
     from .entity import Entity
@@ -62,7 +63,7 @@ class SignIn(Entity):
     authentication_methods_used: Optional[List[str]] = None
     # More authentication processing details, such as the agent name for  PTA and PHS, or a server or farm name for federated authentication.
     authentication_processing_details: Optional[List[KeyValue]] = None
-    # Lists the protocol type or grant type used in the authentication. The possible values are: oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue, authenticationTransfer, and none. Use none for all authentications that don't have a specific value in that list.
+    # Lists the protocol type or grant type used in the authentication. The possible values are: none, oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue, authenticationTransfer, nativeAuth. Use none for all authentications that don't have a specific value in that list. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: authenticationTransfer, nativeAuth.
     authentication_protocol: Optional[ProtocolType] = None
     # This holds the highest level of authentication needed through all the sign-in steps, for sign-in to succeed.  Supports $filter (eq, startsWith).
     authentication_requirement: Optional[str] = None
@@ -76,13 +77,15 @@ class SignIn(Entity):
     client_app_used: Optional[str] = None
     # Describes the credential type that a user client or service principal provided to Microsoft Entra ID to authenticate itself. You can review this property to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
     client_credential_type: Optional[ClientCredentialType] = None
+    # A list that indicates the audience that was evaluated by Conditional Access during a sign-in event.  Supports $filter (eq).
+    conditional_access_audiences: Optional[List[ConditionalAccessAudience]] = None
     # The status of the conditional access policy triggered. Possible values: success, failure, notApplied, or unknownFutureValue.  Supports $filter (eq).
     conditional_access_status: Optional[ConditionalAccessStatus] = None
     # The identifier the client sends when sign-in is initiated. This is used for troubleshooting the corresponding sign-in activity when calling for support.  Supports $filter (eq).
     correlation_id: Optional[str] = None
     # The date and time the sign-in was initiated. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $orderby, $filter (eq, le, and ge).
     created_date_time: Optional[datetime.datetime] = None
-    # Describes the type of cross-tenant access used by the actor to access the resource. Possible values are: none, b2bCollaboration, b2bDirectConnect, microsoftSupport, serviceProvider, unknownFutureValue, passthrough. Also, note that you must use the Prefer: include-unknown-enum-members request header to get the following value or values in this evolvable enum: passthrough. If the sign in didn't cross tenant boundaries, the value is none.
+    # Describes the type of cross-tenant access used by the actor to access the resource. Possible values are: none, b2bCollaboration, b2bDirectConnect, microsoftSupport, serviceProvider, unknownFutureValue, passthrough. Also, you must use the Prefer: include-unknown-enum-members request header to get the following value or values in this evolvable enum: passthrough. If the sign in didn't cross tenant boundaries, the value is none.
     cross_tenant_access_type: Optional[SignInAccessType] = None
     # The device information from where the sign-in occurred. Includes information such as deviceId, OS, and browser.  Supports $filter (eq, startsWith) on browser and operatingSystem properties.
     device_detail: Optional[DeviceDetail] = None
@@ -90,11 +93,13 @@ class SignIn(Entity):
     federated_credential_id: Optional[str] = None
     # During a failed sign-in, a user can select a button in the Azure portal to mark the failed event for tenant admins. If a user selects the button to flag the failed sign-in, this value is true.
     flagged_for_review: Optional[bool] = None
+    # The Global Secure Access IP address that the sign-in was initiated from.
+    global_secure_access_ip_address: Optional[str] = None
     # The tenant identifier of the user initiating the sign-in. Not applicable in Managed Identity or service principal sign ins.
     home_tenant_id: Optional[str] = None
     # For user sign ins, the identifier of the tenant that the user is a member of. Only populated in cases where the home tenant has provided affirmative consent to Microsoft Entra ID to show the tenant content.
     home_tenant_name: Optional[str] = None
-    # Indicates the token types that were presented to Microsoft Entra ID to authenticate the actor in the sign in. The possible values are: none, primaryRefreshToken, saml11, saml20, unknownFutureValue, remoteDesktopToken.  NOTE Microsoft Entra ID might have also used token types not listed in this enum type to authenticate the actor. Don't infer the lack of a token if it isn't one of the types listed. Also, note that you must use the Prefer: include-unknown-enum-members request header to get the following value or values in this evolvable enum: remoteDesktopToken.
+    # Indicates the token types that were presented to Microsoft Entra ID to authenticate the actor in the sign in. The possible values are: none, primaryRefreshToken, saml11, saml20, unknownFutureValue, remoteDesktopToken.  NOTE Microsoft Entra ID might have also used token types not listed in this enum type to authenticate the actor. Don't infer the lack of a token if it isn't one of the types listed. Also, you must use the Prefer: include-unknown-enum-members request header to get the following value or values in this evolvable enum: remoteDesktopToken.
     incoming_token_type: Optional[IncomingTokenType] = None
     # The IP address of the client from where the sign-in occurred.  Supports $filter (eq, startsWith).
     ip_address: Optional[str] = None
@@ -104,6 +109,8 @@ class SignIn(Entity):
     is_interactive: Optional[bool] = None
     # Shows whether the sign in event was subject to a Microsoft Entra tenant restriction policy.
     is_tenant_restricted: Optional[bool] = None
+    # Indicates whether a user came through Global Secure Access service.
+    is_through_global_secure_access: Optional[bool] = None
     # The city, state, and two letter country code from where the sign-in occurred.  Supports $filter (eq, startsWith) on city, state, and countryOrRegion properties.
     location: Optional[SignInLocation] = None
     # Contains information about the managed identity used for the sign in, including its type, associated Azure Resource Manager (ARM) resource ID, and federated token information.
@@ -130,7 +137,7 @@ class SignIn(Entity):
     resource_service_principal_id: Optional[str] = None
     # The tenant identifier of the resource referenced in the sign in.
     resource_tenant_id: Optional[str] = None
-    # The reason behind a specific state of a risky user, sign-in, or a risk event. The possible values are none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal, m365DAdminDismissedDetection, userChangedPasswordOnPremises, adminDismissedRiskForSignIn, adminConfirmedAccountSafe.  You must use the Prefer: include-unknown-enum-members request header to get the following value or values in this evolvable enum: adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal, m365DAdminDismissedDetection, userChangedPasswordOnPremises, adminDismissedRiskForSignIn, adminConfirmedAccountSafe.The value none means that Microsoft Entra risk detection has not flagged the user or the sign-in as a risky event so far.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
+    # The reason behind a specific state of a risky user, sign-in, or a risk event. The possible values are none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal, m365DAdminDismissedDetection, userChangedPasswordOnPremises, adminDismissedRiskForSignIn, adminConfirmedAccountSafe.  You must use the Prefer: include-unknown-enum-members request header to get the following value or values in this evolvable enum: adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal, m365DAdminDismissedDetection, userChangedPasswordOnPremises, adminDismissedRiskForSignIn, adminConfirmedAccountSafe.The value none means that Microsoft Entra risk detection hasn't flagged the user or the sign-in as a risky event so far.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
     risk_detail: Optional[RiskDetail] = None
     # The list of risk event types associated with the sign-in. Possible values: unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence,  generic, or unknownFutureValue.  Supports $filter (eq, startsWith).
     risk_event_types_v2: Optional[List[str]] = None
@@ -156,7 +163,7 @@ class SignIn(Entity):
     sign_in_identifier: Optional[str] = None
     # The type of sign in identifier. Possible values are: userPrincipalName, phoneNumber, proxyAddress, qrCode, onPremisesUserPrincipalName, unknownFutureValue.
     sign_in_identifier_type: Optional[SignInIdentifierType] = None
-    # Token protection creates a cryptographically secure tie between the token and the device it is issued to. This field indicates whether the signin token was bound to the device or not. The possible values are: none, bound, unbound, unknownFutureValue.
+    # Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the signin token was bound to the device or not. The possible values are: none, bound, unbound, unknownFutureValue.
     sign_in_token_protection_status: Optional[TokenProtectionStatus] = None
     # The sign-in status. Includes the error code and description of the error (for a sign-in failure).  Supports $filter (eq) on errorCode property.
     status: Optional[SignInStatus] = None
@@ -178,7 +185,7 @@ class SignIn(Entity):
     user_type: Optional[SignInUserType] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SignIn:
+    def create_from_discriminator_value(parse_node: ParseNode) -> SignIn:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -201,6 +208,7 @@ class SignIn(Entity):
         from .authentication_detail import AuthenticationDetail
         from .authentication_requirement_policy import AuthenticationRequirementPolicy
         from .client_credential_type import ClientCredentialType
+        from .conditional_access_audience import ConditionalAccessAudience
         from .conditional_access_status import ConditionalAccessStatus
         from .device_detail import DeviceDetail
         from .entity import Entity
@@ -232,6 +240,7 @@ class SignIn(Entity):
         from .authentication_detail import AuthenticationDetail
         from .authentication_requirement_policy import AuthenticationRequirementPolicy
         from .client_credential_type import ClientCredentialType
+        from .conditional_access_audience import ConditionalAccessAudience
         from .conditional_access_status import ConditionalAccessStatus
         from .device_detail import DeviceDetail
         from .entity import Entity
@@ -274,6 +283,7 @@ class SignIn(Entity):
             "azureResourceId": lambda n : setattr(self, 'azure_resource_id', n.get_str_value()),
             "clientAppUsed": lambda n : setattr(self, 'client_app_used', n.get_str_value()),
             "clientCredentialType": lambda n : setattr(self, 'client_credential_type', n.get_enum_value(ClientCredentialType)),
+            "conditionalAccessAudiences": lambda n : setattr(self, 'conditional_access_audiences', n.get_collection_of_object_values(ConditionalAccessAudience)),
             "conditionalAccessStatus": lambda n : setattr(self, 'conditional_access_status', n.get_enum_value(ConditionalAccessStatus)),
             "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -281,6 +291,7 @@ class SignIn(Entity):
             "deviceDetail": lambda n : setattr(self, 'device_detail', n.get_object_value(DeviceDetail)),
             "federatedCredentialId": lambda n : setattr(self, 'federated_credential_id', n.get_str_value()),
             "flaggedForReview": lambda n : setattr(self, 'flagged_for_review', n.get_bool_value()),
+            "globalSecureAccessIpAddress": lambda n : setattr(self, 'global_secure_access_ip_address', n.get_str_value()),
             "homeTenantId": lambda n : setattr(self, 'home_tenant_id', n.get_str_value()),
             "homeTenantName": lambda n : setattr(self, 'home_tenant_name', n.get_str_value()),
             "incomingTokenType": lambda n : setattr(self, 'incoming_token_type', n.get_collection_of_enum_values(IncomingTokenType)),
@@ -288,6 +299,7 @@ class SignIn(Entity):
             "ipAddressFromResourceProvider": lambda n : setattr(self, 'ip_address_from_resource_provider', n.get_str_value()),
             "isInteractive": lambda n : setattr(self, 'is_interactive', n.get_bool_value()),
             "isTenantRestricted": lambda n : setattr(self, 'is_tenant_restricted', n.get_bool_value()),
+            "isThroughGlobalSecureAccess": lambda n : setattr(self, 'is_through_global_secure_access', n.get_bool_value()),
             "location": lambda n : setattr(self, 'location', n.get_object_value(SignInLocation)),
             "managedServiceIdentity": lambda n : setattr(self, 'managed_service_identity', n.get_object_value(ManagedIdentity)),
             "mfaDetail": lambda n : setattr(self, 'mfa_detail', n.get_object_value(MfaDetail)),
@@ -355,6 +367,7 @@ class SignIn(Entity):
         writer.write_str_value("azureResourceId", self.azure_resource_id)
         writer.write_str_value("clientAppUsed", self.client_app_used)
         writer.write_enum_value("clientCredentialType", self.client_credential_type)
+        writer.write_collection_of_object_values("conditionalAccessAudiences", self.conditional_access_audiences)
         writer.write_enum_value("conditionalAccessStatus", self.conditional_access_status)
         writer.write_str_value("correlationId", self.correlation_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
@@ -362,6 +375,7 @@ class SignIn(Entity):
         writer.write_object_value("deviceDetail", self.device_detail)
         writer.write_str_value("federatedCredentialId", self.federated_credential_id)
         writer.write_bool_value("flaggedForReview", self.flagged_for_review)
+        writer.write_str_value("globalSecureAccessIpAddress", self.global_secure_access_ip_address)
         writer.write_str_value("homeTenantId", self.home_tenant_id)
         writer.write_str_value("homeTenantName", self.home_tenant_name)
         writer.write_enum_value("incomingTokenType", self.incoming_token_type)
@@ -369,6 +383,7 @@ class SignIn(Entity):
         writer.write_str_value("ipAddressFromResourceProvider", self.ip_address_from_resource_provider)
         writer.write_bool_value("isInteractive", self.is_interactive)
         writer.write_bool_value("isTenantRestricted", self.is_tenant_restricted)
+        writer.write_bool_value("isThroughGlobalSecureAccess", self.is_through_global_secure_access)
         writer.write_object_value("location", self.location)
         writer.write_object_value("managedServiceIdentity", self.managed_service_identity)
         writer.write_object_value("mfaDetail", self.mfa_detail)

@@ -19,7 +19,7 @@ class DeliveryOptimizationMaxCacheSizeAbsolute(DeliveryOptimizationMaxCacheSize)
     maximum_cache_size_in_gigabytes: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeliveryOptimizationMaxCacheSizeAbsolute:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeliveryOptimizationMaxCacheSizeAbsolute:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

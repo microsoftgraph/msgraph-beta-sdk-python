@@ -15,7 +15,7 @@ class SubmitTiIndicatorsPostResponse(BaseCollectionPaginationCountResponse):
     value: Optional[List[TiIndicator]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SubmitTiIndicatorsPostResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> SubmitTiIndicatorsPostResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .......models.certificate_authority_as_entity import CertificateAuthorityAsEntity
@@ -27,11 +29,12 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/directory/certificateAuthorities/certificateBasedApplicationConfigurations/{certificateBasedApplicationConfiguration%2Did}/trustedCertificateAuthorities/{certificateAuthorityAsEntity%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property trustedCertificateAuthorities for directory
+        Delete a certificateAuthorityAsEntity object. You can't delete all items in the collection because this collection requires at least one object that is a root authority to always persist.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/certificateauthorityasentity-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -45,11 +48,12 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CertificateAuthorityAsEntity]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[CertificateAuthorityAsEntityItemRequestBuilderGetQueryParameters]] = None) -> Optional[CertificateAuthorityAsEntity]:
         """
-        Collection of trusted certificate authorities.
+        Read the properties and relationships of a certificateAuthorityAsEntity object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CertificateAuthorityAsEntity]
+        Find more info here: https://learn.microsoft.com/graph/api/certificateauthorityasentity-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,12 +69,13 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CertificateAuthorityAsEntity, error_mapping)
     
-    async def patch(self,body: Optional[CertificateAuthorityAsEntity] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CertificateAuthorityAsEntity]:
+    async def patch(self,body: CertificateAuthorityAsEntity, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CertificateAuthorityAsEntity]:
         """
-        Update the navigation property trustedCertificateAuthorities in directory
+        Update the properties of a certificateAuthorityAsEntity object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CertificateAuthorityAsEntity]
+        Find more info here: https://learn.microsoft.com/graph/api/certificateauthorityasentity-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -88,9 +93,9 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CertificateAuthorityAsEntity, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property trustedCertificateAuthorities for directory
+        Delete a certificateAuthorityAsEntity object. You can't delete all items in the collection because this collection requires at least one object that is a root authority to always persist.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,9 +104,9 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CertificateAuthorityAsEntityItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Collection of trusted certificate authorities.
+        Read the properties and relationships of a certificateAuthorityAsEntity object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,9 +115,9 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[CertificateAuthorityAsEntity] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: CertificateAuthorityAsEntity, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property trustedCertificateAuthorities in directory
+        Update the properties of a certificateAuthorityAsEntity object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -125,7 +130,7 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> CertificateAuthorityAsEntityItemRequestBuilder:
+    def with_url(self,raw_url: str) -> CertificateAuthorityAsEntityItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -136,11 +141,18 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
         return CertificateAuthorityAsEntityItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
+    class CertificateAuthorityAsEntityItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
     class CertificateAuthorityAsEntityItemRequestBuilderGetQueryParameters():
         """
-        Collection of trusted certificate authorities.
+        Read the properties and relationships of a certificateAuthorityAsEntity object.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -160,5 +172,19 @@ class CertificateAuthorityAsEntityItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    @dataclass
+    class CertificateAuthorityAsEntityItemRequestBuilderGetRequestConfiguration(RequestConfiguration[CertificateAuthorityAsEntityItemRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class CertificateAuthorityAsEntityItemRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,7 +29,7 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/informationProtection/policy/labels/{informationProtectionLabel%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
         Delete navigation property labels for groups
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -47,12 +48,11 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[InformationProtectionLabel]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[InformationProtectionLabelItemRequestBuilderGetQueryParameters]] = None) -> Optional[InformationProtectionLabel]:
         """
-        Retrieve the properties and relationships of an informationProtectionLabel object.
+        Get labels from groups
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InformationProtectionLabel]
-        Find more info here: https://learn.microsoft.com/graph/api/informationprotectionlabel-get?view=graph-rest-1.0
         """
         warn("This API will no longer be accessible, please see microsoft.graph.security.informationProtection APIs. as of 2021-02/Beta_SensitivityLabels", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -69,7 +69,7 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, InformationProtectionLabel, error_mapping)
     
-    async def patch(self,body: Optional[InformationProtectionLabel] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[InformationProtectionLabel]:
+    async def patch(self,body: InformationProtectionLabel, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[InformationProtectionLabel]:
         """
         Update the navigation property labels in groups
         param body: The request body
@@ -93,7 +93,7 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, InformationProtectionLabel, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Delete navigation property labels for groups
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,9 +105,9 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[InformationProtectionLabelItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of an informationProtectionLabel object.
+        Get labels from groups
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,7 +117,7 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[InformationProtectionLabel] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: InformationProtectionLabel, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update the navigation property labels in groups
         param body: The request body
@@ -133,7 +133,7 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> InformationProtectionLabelItemRequestBuilder:
+    def with_url(self,raw_url: str) -> InformationProtectionLabelItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -145,11 +145,18 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
         return InformationProtectionLabelItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
+    class InformationProtectionLabelItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
     class InformationProtectionLabelItemRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of an informationProtectionLabel object.
+        Get labels from groups
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -169,5 +176,19 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    @dataclass
+    class InformationProtectionLabelItemRequestBuilderGetRequestConfiguration(RequestConfiguration[InformationProtectionLabelItemRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class InformationProtectionLabelItemRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

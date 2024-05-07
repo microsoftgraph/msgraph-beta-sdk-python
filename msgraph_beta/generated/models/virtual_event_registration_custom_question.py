@@ -19,7 +19,7 @@ class VirtualEventRegistrationCustomQuestion(VirtualEventRegistrationQuestionBas
     answer_input_type: Optional[VirtualEventRegistrationQuestionAnswerInputType] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VirtualEventRegistrationCustomQuestion:
+    def create_from_discriminator_value(parse_node: ParseNode) -> VirtualEventRegistrationCustomQuestion:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

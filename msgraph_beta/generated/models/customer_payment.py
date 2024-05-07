@@ -52,7 +52,7 @@ class CustomerPayment(AdditionalDataHolder, BackedModel, Parsable):
     posting_date: Optional[datetime.date] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomerPayment:
+    def create_from_discriminator_value(parse_node: ParseNode) -> CustomerPayment:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

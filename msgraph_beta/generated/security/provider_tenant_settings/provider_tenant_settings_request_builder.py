@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
@@ -36,6 +38,7 @@ class ProviderTenantSettingsRequestBuilder(BaseRequestBuilder):
         param provider_tenant_setting_id: The unique identifier of providerTenantSetting
         Returns: ProviderTenantSettingItemRequestBuilder
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not provider_tenant_setting_id:
             raise TypeError("provider_tenant_setting_id cannot be null.")
         from .item.provider_tenant_setting_item_request_builder import ProviderTenantSettingItemRequestBuilder
@@ -44,12 +47,13 @@ class ProviderTenantSettingsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["providerTenantSetting%2Did"] = provider_tenant_setting_id
         return ProviderTenantSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProviderTenantSettingCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ProviderTenantSettingsRequestBuilderGetQueryParameters]] = None) -> Optional[ProviderTenantSettingCollectionResponse]:
         """
         Get providerTenantSettings from security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProviderTenantSettingCollectionResponse]
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -64,13 +68,14 @@ class ProviderTenantSettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProviderTenantSettingCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ProviderTenantSetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProviderTenantSetting]:
+    async def post(self,body: ProviderTenantSetting, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ProviderTenantSetting]:
         """
         Create new navigation property to providerTenantSettings for security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProviderTenantSetting]
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -87,24 +92,26 @@ class ProviderTenantSettingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProviderTenantSetting, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ProviderTenantSettingsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get providerTenantSettings from security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ProviderTenantSetting] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: ProviderTenantSetting, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to providerTenantSettings for security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -113,12 +120,13 @@ class ProviderTenantSettingsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> ProviderTenantSettingsRequestBuilder:
+    def with_url(self,raw_url: str) -> ProviderTenantSettingsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
         Returns: ProviderTenantSettingsRequestBuilder
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ProviderTenantSettingsRequestBuilder(self.request_adapter, raw_url)
@@ -137,7 +145,7 @@ class ProviderTenantSettingsRequestBuilder(BaseRequestBuilder):
         """
         Get providerTenantSettings from security
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -187,5 +195,19 @@ class ProviderTenantSettingsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class ProviderTenantSettingsRequestBuilderGetRequestConfiguration(RequestConfiguration[ProviderTenantSettingsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class ProviderTenantSettingsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

@@ -31,7 +31,7 @@ class Account(AdditionalDataHolder, BackedModel, Parsable):
     sub_category: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Account:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Account:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -28,7 +28,7 @@ class SensitiveContentLocation(AdditionalDataHolder, BackedModel, Parsable):
     offset: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SensitiveContentLocation:
+    def create_from_discriminator_value(parse_node: ParseNode) -> SensitiveContentLocation:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

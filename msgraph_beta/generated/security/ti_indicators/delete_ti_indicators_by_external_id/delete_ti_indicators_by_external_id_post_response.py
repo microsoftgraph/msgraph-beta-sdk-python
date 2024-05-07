@@ -15,7 +15,7 @@ class DeleteTiIndicatorsByExternalIdPostResponse(BaseCollectionPaginationCountRe
     value: Optional[List[ResultInfo]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeleteTiIndicatorsByExternalIdPostResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeleteTiIndicatorsByExternalIdPostResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

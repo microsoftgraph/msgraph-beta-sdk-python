@@ -25,7 +25,7 @@ class WindowsHealthMonitoringConfiguration(DeviceConfiguration):
     config_device_health_monitoring_scope: Optional[WindowsHealthMonitoringScope] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsHealthMonitoringConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> WindowsHealthMonitoringConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

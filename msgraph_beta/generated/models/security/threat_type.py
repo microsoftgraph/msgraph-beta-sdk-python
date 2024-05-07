@@ -4,7 +4,7 @@ class ThreatType(str, Enum):
     Unknown = "unknown",
     Spam = "spam",
     Malware = "malware",
-    Phishing = "phishing",
+    Phish = "phish",
     None_ = "none",
     UnknownFutureValue = "unknownFutureValue",
 

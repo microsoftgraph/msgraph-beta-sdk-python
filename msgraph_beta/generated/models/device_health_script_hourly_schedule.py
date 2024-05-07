@@ -17,7 +17,7 @@ class DeviceHealthScriptHourlySchedule(DeviceHealthScriptRunSchedule):
     odata_type: Optional[str] = "#microsoft.graph.deviceHealthScriptHourlySchedule"
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptHourlySchedule:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceHealthScriptHourlySchedule:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

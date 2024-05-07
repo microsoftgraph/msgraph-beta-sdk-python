@@ -36,7 +36,7 @@ class AdvancedThreatProtectionOnboardingStateSummary(Entity):
     unknown_device_count: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AdvancedThreatProtectionOnboardingStateSummary:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AdvancedThreatProtectionOnboardingStateSummary:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

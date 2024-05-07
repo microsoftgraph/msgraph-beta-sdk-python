@@ -199,7 +199,7 @@ class Group(DirectoryObject):
     writeback_configuration: Optional[GroupWritebackConfiguration] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Group:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Group:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

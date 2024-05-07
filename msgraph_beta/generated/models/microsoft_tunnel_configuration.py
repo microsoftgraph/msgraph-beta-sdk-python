@@ -49,7 +49,7 @@ class MicrosoftTunnelConfiguration(Entity):
     split_d_n_s: Optional[List[str]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MicrosoftTunnelConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> MicrosoftTunnelConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

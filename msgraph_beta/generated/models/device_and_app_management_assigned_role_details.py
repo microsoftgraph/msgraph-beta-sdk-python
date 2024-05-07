@@ -22,7 +22,7 @@ class DeviceAndAppManagementAssignedRoleDetails(AdditionalDataHolder, BackedMode
     role_definition_ids: Optional[List[str]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceAndAppManagementAssignedRoleDetails:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceAndAppManagementAssignedRoleDetails:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

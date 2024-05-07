@@ -18,11 +18,11 @@ class PermissionGrantPolicy(PolicyBase):
     excludes: Optional[List[PermissionGrantConditionSet]] = None
     # Condition sets that are included in this permission grant policy. Automatically expanded on GET.
     includes: Optional[List[PermissionGrantConditionSet]] = None
-    # The resource type the pre-approval policy applies to. Possible values: group for groups and teams, chat for chats, tenant for all supported resources in the tenant. Required.
+    # The resource type the pre-approval policy applies to. Possible values: team for groups and teams, chat for chats, tenant for all supported resources in the tenant. Required.
     resource_scope_type: Optional[ResourceScopeType] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PermissionGrantPolicy:
+    def create_from_discriminator_value(parse_node: ParseNode) -> PermissionGrantPolicy:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

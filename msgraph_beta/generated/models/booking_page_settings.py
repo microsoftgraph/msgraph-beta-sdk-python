@@ -40,7 +40,7 @@ class BookingPageSettings(AdditionalDataHolder, BackedModel, Parsable):
     terms_and_conditions_web_url: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BookingPageSettings:
+    def create_from_discriminator_value(parse_node: ParseNode) -> BookingPageSettings:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

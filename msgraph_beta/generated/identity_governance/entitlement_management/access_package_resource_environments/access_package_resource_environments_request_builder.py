@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.access_package_resource_environment import AccessPackageResourceEnvironment
@@ -44,12 +46,12 @@ class AccessPackageResourceEnvironmentsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["accessPackageResourceEnvironment%2Did"] = access_package_resource_environment_id
         return AccessPackageResourceEnvironmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageResourceEnvironmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AccessPackageResourceEnvironmentsRequestBuilderGetQueryParameters]] = None) -> Optional[AccessPackageResourceEnvironmentCollectionResponse]:
         """
         Retrieve a list of accessPackageResourceEnvironment objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageResourceEnvironmentCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackageresourceenvironment?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackageresourceenvironment?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,7 +67,7 @@ class AccessPackageResourceEnvironmentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageResourceEnvironmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AccessPackageResourceEnvironment] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageResourceEnvironment]:
+    async def post(self,body: AccessPackageResourceEnvironment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AccessPackageResourceEnvironment]:
         """
         Create new navigation property to accessPackageResourceEnvironments for identityGovernance
         param body: The request body
@@ -88,7 +90,7 @@ class AccessPackageResourceEnvironmentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageResourceEnvironment, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AccessPackageResourceEnvironmentsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Retrieve a list of accessPackageResourceEnvironment objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +101,7 @@ class AccessPackageResourceEnvironmentsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AccessPackageResourceEnvironment] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: AccessPackageResourceEnvironment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to accessPackageResourceEnvironments for identityGovernance
         param body: The request body
@@ -114,7 +116,7 @@ class AccessPackageResourceEnvironmentsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> AccessPackageResourceEnvironmentsRequestBuilder:
+    def with_url(self,raw_url: str) -> AccessPackageResourceEnvironmentsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -138,7 +140,7 @@ class AccessPackageResourceEnvironmentsRequestBuilder(BaseRequestBuilder):
         """
         Retrieve a list of accessPackageResourceEnvironment objects and their properties.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -188,5 +190,19 @@ class AccessPackageResourceEnvironmentsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class AccessPackageResourceEnvironmentsRequestBuilderGetRequestConfiguration(RequestConfiguration[AccessPackageResourceEnvironmentsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class AccessPackageResourceEnvironmentsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

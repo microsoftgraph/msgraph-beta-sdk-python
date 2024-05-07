@@ -28,7 +28,7 @@ class Win32LobAppRequirement(AdditionalDataHolder, BackedModel, Parsable):
     operator: Optional[Win32LobAppDetectionOperator] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Win32LobAppRequirement:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Win32LobAppRequirement:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

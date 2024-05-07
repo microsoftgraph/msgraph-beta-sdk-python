@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .email_authentication_method_configuration import EmailAuthenticationMethodConfiguration
     from .entity import Entity
     from .exclude_target import ExcludeTarget
+    from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
     from .fido2_authentication_method_configuration import Fido2AuthenticationMethodConfiguration
     from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
     from .microsoft_authenticator_authentication_method_configuration import MicrosoftAuthenticatorAuthenticationMethodConfiguration
@@ -29,7 +30,7 @@ class AuthenticationMethodConfiguration(Entity):
     state: Optional[AuthenticationMethodState] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationMethodConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AuthenticationMethodConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -45,6 +46,10 @@ class AuthenticationMethodConfiguration(Entity):
             from .email_authentication_method_configuration import EmailAuthenticationMethodConfiguration
 
             return EmailAuthenticationMethodConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalAuthenticationMethodConfiguration".casefold():
+            from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
+
+            return ExternalAuthenticationMethodConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.fido2AuthenticationMethodConfiguration".casefold():
             from .fido2_authentication_method_configuration import Fido2AuthenticationMethodConfiguration
 
@@ -88,6 +93,7 @@ class AuthenticationMethodConfiguration(Entity):
         from .email_authentication_method_configuration import EmailAuthenticationMethodConfiguration
         from .entity import Entity
         from .exclude_target import ExcludeTarget
+        from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
         from .fido2_authentication_method_configuration import Fido2AuthenticationMethodConfiguration
         from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
         from .microsoft_authenticator_authentication_method_configuration import MicrosoftAuthenticatorAuthenticationMethodConfiguration
@@ -101,6 +107,7 @@ class AuthenticationMethodConfiguration(Entity):
         from .email_authentication_method_configuration import EmailAuthenticationMethodConfiguration
         from .entity import Entity
         from .exclude_target import ExcludeTarget
+        from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
         from .fido2_authentication_method_configuration import Fido2AuthenticationMethodConfiguration
         from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
         from .microsoft_authenticator_authentication_method_configuration import MicrosoftAuthenticatorAuthenticationMethodConfiguration

@@ -17,7 +17,7 @@ class OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp(OnAuthentica
     identity_providers: Optional[List[IdentityProviderBase]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp:
+    def create_from_discriminator_value(parse_node: ParseNode) -> OnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUp:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.authentication_events_flow import AuthenticationEventsFlow
@@ -45,12 +47,12 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["authenticationEventsFlow%2Did"] = authentication_events_flow_id
         return AuthenticationEventsFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationEventsFlowCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AuthenticationEventsFlowsRequestBuilderGetQueryParameters]] = None) -> Optional[AuthenticationEventsFlowCollectionResponse]:
         """
         Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventsFlowCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-list-authenticationeventsflows?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-list-authenticationeventsflows?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -66,13 +68,13 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthenticationEventsFlowCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AuthenticationEventsFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationEventsFlow]:
+    async def post(self,body: AuthenticationEventsFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AuthenticationEventsFlow]:
         """
         Create a new authenticationEventsFlow object that is of the type specified in the request body. You can create only an externalUsersSelfServiceSignupEventsFlow object type.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventsFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-post-authenticationeventsflows?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-post-authenticationeventsflows?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -90,7 +92,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthenticationEventsFlow, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AuthenticationEventsFlowsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +103,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AuthenticationEventsFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: AuthenticationEventsFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create a new authenticationEventsFlow object that is of the type specified in the request body. You can create only an externalUsersSelfServiceSignupEventsFlow object type.
         param body: The request body
@@ -116,7 +118,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> AuthenticationEventsFlowsRequestBuilder:
+    def with_url(self,raw_url: str) -> AuthenticationEventsFlowsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -149,7 +151,7 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
         """
         Get a collection of authentication events policies that are derived from authenticationEventsFlow. Only the externalUsersSelfServiceSignupEventsFlow object type is returned.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -199,5 +201,19 @@ class AuthenticationEventsFlowsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class AuthenticationEventsFlowsRequestBuilderGetRequestConfiguration(RequestConfiguration[AuthenticationEventsFlowsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class AuthenticationEventsFlowsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

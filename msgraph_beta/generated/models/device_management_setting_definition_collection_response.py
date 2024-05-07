@@ -15,7 +15,7 @@ class DeviceManagementSettingDefinitionCollectionResponse(BaseCollectionPaginati
     value: Optional[List[DeviceManagementSettingDefinition]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingDefinitionCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementSettingDefinitionCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

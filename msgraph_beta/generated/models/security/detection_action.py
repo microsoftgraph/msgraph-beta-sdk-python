@@ -26,7 +26,7 @@ class DetectionAction(AdditionalDataHolder, BackedModel, Parsable):
     response_actions: Optional[List[ResponseAction]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DetectionAction:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DetectionAction:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

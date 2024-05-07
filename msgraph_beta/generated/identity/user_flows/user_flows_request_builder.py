@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,12 +47,12 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["identityUserFlow%2Did"] = identity_user_flow_id
         return IdentityUserFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[IdentityUserFlowCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[UserFlowsRequestBuilderGetQueryParameters]] = None) -> Optional[IdentityUserFlowCollectionResponse]:
         """
         Retrieve a list of userflows.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityUserFlowCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-list?view=graph-rest-beta
         """
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -68,13 +69,13 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, IdentityUserFlowCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[IdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[IdentityUserFlow]:
+    async def post(self,body: IdentityUserFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[IdentityUserFlow]:
         """
         Create a new userFlow object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityUserFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-post-userflows?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-post-userflows?view=graph-rest-beta
         """
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
         if not body:
@@ -93,7 +94,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, IdentityUserFlow, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UserFlowsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Retrieve a list of userflows.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -105,7 +106,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[IdentityUserFlow] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: IdentityUserFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create a new userFlow object.
         param body: The request body
@@ -121,7 +122,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> UserFlowsRequestBuilder:
+    def with_url(self,raw_url: str) -> UserFlowsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -146,7 +147,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         """
         Retrieve a list of userflows.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -196,5 +197,19 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class UserFlowsRequestBuilderGetRequestConfiguration(RequestConfiguration[UserFlowsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class UserFlowsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

@@ -24,7 +24,7 @@ class ThirdPartyTokenDetails(AdditionalDataHolder, BackedModel, Parsable):
     valid_from_date_time: Optional[datetime.datetime] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ThirdPartyTokenDetails:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ThirdPartyTokenDetails:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

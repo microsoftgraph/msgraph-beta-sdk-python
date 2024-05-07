@@ -17,7 +17,7 @@ class CloudPcServicePlan(Entity):
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Specifies the type of license used when provisioning Cloud PCs. By default, the license type is dedicated. Possible values are: dedicated, shared, unknownFutureValue.
+    # Specifies the type of license used when provisioning Cloud PCs. By default, the license type is dedicated. Possible values are: dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member.
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The size of the RAM in GB. Read-only.
     ram_in_g_b: Optional[int] = None
@@ -33,7 +33,7 @@ class CloudPcServicePlan(Entity):
     v_cpu_count: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcServicePlan:
+    def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcServicePlan:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

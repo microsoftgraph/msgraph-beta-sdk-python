@@ -15,7 +15,7 @@ class MobileAppRelationshipCollectionResponse(BaseCollectionPaginationCountRespo
     value: Optional[List[MobileAppRelationship]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppRelationshipCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> MobileAppRelationshipCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

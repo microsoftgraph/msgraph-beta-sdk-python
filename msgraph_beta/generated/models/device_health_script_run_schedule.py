@@ -26,7 +26,7 @@ class DeviceHealthScriptRunSchedule(AdditionalDataHolder, BackedModel, Parsable)
     odata_type: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptRunSchedule:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceHealthScriptRunSchedule:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

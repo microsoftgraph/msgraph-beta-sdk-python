@@ -26,7 +26,7 @@ class WinGetAppAssignmentSettings(MobileAppAssignmentSettings):
     restart_settings: Optional[WinGetAppRestartSettings] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WinGetAppAssignmentSettings:
+    def create_from_discriminator_value(parse_node: ParseNode) -> WinGetAppAssignmentSettings:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

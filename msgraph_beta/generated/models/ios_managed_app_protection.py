@@ -22,7 +22,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
     odata_type: Optional[str] = "#microsoft.graph.iosManagedAppProtection"
     # Semicolon seperated list of device models allowed, as a string, for the managed app to work.
     allowed_ios_device_models: Optional[str] = None
-    # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time).
+    # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). Possible values are: block, wipe, warn.
     app_action_if_account_is_clocked_out: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_ios_device_model_not_allowed: Optional[ManagedAppRemediationAction] = None
@@ -64,7 +64,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
     third_party_keyboards_blocked: Optional[bool] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosManagedAppProtection:
+    def create_from_discriminator_value(parse_node: ParseNode) -> IosManagedAppProtection:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

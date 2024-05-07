@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.online_meeting import OnlineMeeting
@@ -16,8 +18,8 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .create_or_get.create_or_get_request_builder import CreateOrGetRequestBuilder
-    from .get_all_recordings.get_all_recordings_request_builder import GetAllRecordingsRequestBuilder
-    from .get_all_transcripts.get_all_transcripts_request_builder import GetAllTranscriptsRequestBuilder
+    from .get_all_recordingsmeeting_organizer_user_id_meeting_organizer_user_id_with_start_date_time_with_end_date_time.get_all_recordingsmeeting_organizer_user_id_meeting_organizer_user_id_with_start_date_time_with_end_date_time_request_builder import GetAllRecordingsmeetingOrganizerUserIdMeetingOrganizerUserIdWithStartDateTimeWithEndDateTimeRequestBuilder
+    from .get_all_transcriptsmeeting_organizer_user_id_meeting_organizer_user_id_with_start_date_time_with_end_date_time.get_all_transcriptsmeeting_organizer_user_id_meeting_organizer_user_id_with_start_date_time_with_end_date_time_request_builder import GetAllTranscriptsmeetingOrganizerUserIdMeetingOrganizerUserIdWithStartDateTimeWithEndDateTimeRequestBuilder
     from .item.online_meeting_item_request_builder import OnlineMeetingItemRequestBuilder
 
 class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
@@ -47,12 +49,12 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["onlineMeeting%2Did"] = online_meeting_id
         return OnlineMeetingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnlineMeetingCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[OnlineMeetingsRequestBuilderGetQueryParameters]] = None) -> Optional[OnlineMeetingCollectionResponse]:
         """
         Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) and Teams live event recordings (deprecated) are online meeting artifacts. For details, see Online meeting artifacts and permissions. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnlineMeetingCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,7 +70,7 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OnlineMeetingCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[OnlineMeeting] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[OnlineMeeting]:
+    async def post(self,body: OnlineMeeting, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[OnlineMeeting]:
         """
         Create new navigation property to onlineMeetings for communications
         param body: The request body
@@ -91,7 +93,7 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OnlineMeeting, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[OnlineMeetingsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) and Teams live event recordings (deprecated) are online meeting artifacts. For details, see Online meeting artifacts and permissions. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +104,7 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[OnlineMeeting] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: OnlineMeeting, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to onlineMeetings for communications
         param body: The request body
@@ -117,7 +119,7 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> OnlineMeetingsRequestBuilder:
+    def with_url(self,raw_url: str) -> OnlineMeetingsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -146,29 +148,29 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
         return CreateOrGetRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_all_recordings(self) -> GetAllRecordingsRequestBuilder:
+    def get_all_recordingsmeeting_organizer_user_id_meeting_organizer_user_id_with_start_date_time_with_end_date_time(self) -> GetAllRecordingsmeetingOrganizerUserIdMeetingOrganizerUserIdWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the getAllRecordings method.
         """
-        from .get_all_recordings.get_all_recordings_request_builder import GetAllRecordingsRequestBuilder
+        from .get_all_recordingsmeeting_organizer_user_id_meeting_organizer_user_id_with_start_date_time_with_end_date_time.get_all_recordingsmeeting_organizer_user_id_meeting_organizer_user_id_with_start_date_time_with_end_date_time_request_builder import GetAllRecordingsmeetingOrganizerUserIdMeetingOrganizerUserIdWithStartDateTimeWithEndDateTimeRequestBuilder
 
-        return GetAllRecordingsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetAllRecordingsmeetingOrganizerUserIdMeetingOrganizerUserIdWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_all_transcripts(self) -> GetAllTranscriptsRequestBuilder:
+    def get_all_transcriptsmeeting_organizer_user_id_meeting_organizer_user_id_with_start_date_time_with_end_date_time(self) -> GetAllTranscriptsmeetingOrganizerUserIdMeetingOrganizerUserIdWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the getAllTranscripts method.
         """
-        from .get_all_transcripts.get_all_transcripts_request_builder import GetAllTranscriptsRequestBuilder
+        from .get_all_transcriptsmeeting_organizer_user_id_meeting_organizer_user_id_with_start_date_time_with_end_date_time.get_all_transcriptsmeeting_organizer_user_id_meeting_organizer_user_id_with_start_date_time_with_end_date_time_request_builder import GetAllTranscriptsmeetingOrganizerUserIdMeetingOrganizerUserIdWithStartDateTimeWithEndDateTimeRequestBuilder
 
-        return GetAllTranscriptsRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetAllTranscriptsmeetingOrganizerUserIdMeetingOrganizerUserIdWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class OnlineMeetingsRequestBuilderGetQueryParameters():
         """
         Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) and Teams live event recordings (deprecated) are online meeting artifacts. For details, see Online meeting artifacts and permissions. 
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -218,5 +220,19 @@ class OnlineMeetingsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class OnlineMeetingsRequestBuilderGetRequestConfiguration(RequestConfiguration[OnlineMeetingsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class OnlineMeetingsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

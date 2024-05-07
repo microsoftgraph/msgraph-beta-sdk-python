@@ -125,7 +125,7 @@ class ManagedTenant(Entity):
     windows_protection_states: Optional[List[WindowsProtectionState]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedTenant:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ManagedTenant:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

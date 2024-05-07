@@ -36,7 +36,7 @@ class PortalNotification(AdditionalDataHolder, BackedModel, Parsable):
     severity: Optional[RuleSeverityType] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PortalNotification:
+    def create_from_discriminator_value(parse_node: ParseNode) -> PortalNotification:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -28,7 +28,7 @@ class DeviceManagementConfigurationWindowsSettingApplicability(DeviceManagementC
     windows_skus: Optional[List[DeviceManagementConfigurationWindowsSkus]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationWindowsSettingApplicability:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationWindowsSettingApplicability:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

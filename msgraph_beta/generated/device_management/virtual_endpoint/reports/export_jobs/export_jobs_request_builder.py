@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.cloud_pc_export_job import CloudPcExportJob
@@ -44,7 +46,7 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["cloudPcExportJob%2Did"] = cloud_pc_export_job_id
         return CloudPcExportJobItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcExportJobCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ExportJobsRequestBuilderGetQueryParameters]] = None) -> Optional[CloudPcExportJobCollectionResponse]:
         """
         Read the properties and relationships of a cloudPcExportJob object. You can download a report by first creating a new cloudPcExportJob resource to initiate downloading. Use this GET operation to verify the exportJobStatus property of the cloudPcExportJob resource. The property becomes completed when the report finishes downloading in the location specified by the exportUrl property.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,13 +66,13 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcExportJobCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CloudPcExportJob] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcExportJob]:
+    async def post(self,body: CloudPcExportJob, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcExportJob]:
         """
         Create a new cloudPcExportJob resource to initiate downloading the entire or specified portion of a report. Use the GET cloudPcExportJob operation to verify the exportJobStatus property of the cloudPcExportJob resource. When the property result is completed, the report has finished downloading to the location specified by the exportUrl property.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcExportJob]
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpcreports-post-exportjobs?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcreports-post-exportjobs?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -88,7 +90,7 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcExportJob, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ExportJobsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Read the properties and relationships of a cloudPcExportJob object. You can download a report by first creating a new cloudPcExportJob resource to initiate downloading. Use this GET operation to verify the exportJobStatus property of the cloudPcExportJob resource. The property becomes completed when the report finishes downloading in the location specified by the exportUrl property.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +101,7 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CloudPcExportJob] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: CloudPcExportJob, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create a new cloudPcExportJob resource to initiate downloading the entire or specified portion of a report. Use the GET cloudPcExportJob operation to verify the exportJobStatus property of the cloudPcExportJob resource. When the property result is completed, the report has finished downloading to the location specified by the exportUrl property.
         param body: The request body
@@ -114,7 +116,7 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> ExportJobsRequestBuilder:
+    def with_url(self,raw_url: str) -> ExportJobsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -138,7 +140,7 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
         """
         Read the properties and relationships of a cloudPcExportJob object. You can download a report by first creating a new cloudPcExportJob resource to initiate downloading. Use this GET operation to verify the exportJobStatus property of the cloudPcExportJob resource. The property becomes completed when the report finishes downloading in the location specified by the exportUrl property.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -188,5 +190,19 @@ class ExportJobsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class ExportJobsRequestBuilderGetRequestConfiguration(RequestConfiguration[ExportJobsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class ExportJobsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

@@ -22,7 +22,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate(Devic
     simple_setting_collection_value_template: Optional[List[DeviceManagementConfigurationSimpleSettingValueTemplate]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

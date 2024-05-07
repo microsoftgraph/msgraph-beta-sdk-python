@@ -37,7 +37,7 @@ class DataClassificationService(Entity):
     sensitivity_labels: Optional[List[SensitivityLabel]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DataClassificationService:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DataClassificationService:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -60,7 +60,7 @@ class UserExperienceAnalyticsResourcePerformance(Entity):
     total_ram_in_m_b: Optional[float] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsResourcePerformance:
+    def create_from_discriminator_value(parse_node: ParseNode) -> UserExperienceAnalyticsResourcePerformance:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

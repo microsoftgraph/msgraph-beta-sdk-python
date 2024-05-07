@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.operation_approval_policy import OperationApprovalPolicy
@@ -48,7 +50,7 @@ class OperationApprovalPoliciesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["operationApprovalPolicy%2Did"] = operation_approval_policy_id
         return OperationApprovalPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[OperationApprovalPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[OperationApprovalPoliciesRequestBuilderGetQueryParameters]] = None) -> Optional[OperationApprovalPolicyCollectionResponse]:
         """
         The Operation Approval Policies
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -68,7 +70,7 @@ class OperationApprovalPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OperationApprovalPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[OperationApprovalPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[OperationApprovalPolicy]:
+    async def post(self,body: OperationApprovalPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[OperationApprovalPolicy]:
         """
         Create new navigation property to operationApprovalPolicies for deviceManagement
         param body: The request body
@@ -91,7 +93,7 @@ class OperationApprovalPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, OperationApprovalPolicy, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[OperationApprovalPoliciesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         The Operation Approval Policies
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +104,7 @@ class OperationApprovalPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[OperationApprovalPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: OperationApprovalPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to operationApprovalPolicies for deviceManagement
         param body: The request body
@@ -117,7 +119,7 @@ class OperationApprovalPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> OperationApprovalPoliciesRequestBuilder:
+    def with_url(self,raw_url: str) -> OperationApprovalPoliciesRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -177,7 +179,7 @@ class OperationApprovalPoliciesRequestBuilder(BaseRequestBuilder):
         """
         The Operation Approval Policies
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -227,5 +229,19 @@ class OperationApprovalPoliciesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class OperationApprovalPoliciesRequestBuilderGetRequestConfiguration(RequestConfiguration[OperationApprovalPoliciesRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class OperationApprovalPoliciesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

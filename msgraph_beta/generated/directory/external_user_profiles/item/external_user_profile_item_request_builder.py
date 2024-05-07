@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.external_user_profile import ExternalUserProfile
@@ -27,12 +29,12 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/directory/externalUserProfiles/{externalUserProfile%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
         Delete an externalUserProfile object. Note: To permanently delete the externalUserProfile, follow permanently delete an item. To restore an externalUserProfile, follow restore a deleted item.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/directory-delete-externaluserprofiles?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/directory-delete-externaluserprofiles?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -46,12 +48,12 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ExternalUserProfile]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ExternalUserProfileItemRequestBuilderGetQueryParameters]] = None) -> Optional[ExternalUserProfile]:
         """
         Retrieve the properties of a specific externalUserProfile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalUserProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/externaluserprofile-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/externaluserprofile-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,13 +69,13 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ExternalUserProfile, error_mapping)
     
-    async def patch(self,body: Optional[ExternalUserProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ExternalUserProfile]:
+    async def patch(self,body: ExternalUserProfile, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ExternalUserProfile]:
         """
         Update the properties of a externalUserProfile object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalUserProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/externaluserprofile-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/externaluserprofile-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +93,7 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ExternalUserProfile, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Delete an externalUserProfile object. Note: To permanently delete the externalUserProfile, follow permanently delete an item. To restore an externalUserProfile, follow restore a deleted item.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -102,7 +104,7 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ExternalUserProfileItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Retrieve the properties of a specific externalUserProfile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -113,7 +115,7 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[ExternalUserProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: ExternalUserProfile, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update the properties of a externalUserProfile object.
         param body: The request body
@@ -128,7 +130,7 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> ExternalUserProfileItemRequestBuilder:
+    def with_url(self,raw_url: str) -> ExternalUserProfileItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -139,11 +141,18 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
         return ExternalUserProfileItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
+    class ExternalUserProfileItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
     class ExternalUserProfileItemRequestBuilderGetQueryParameters():
         """
         Retrieve the properties of a specific externalUserProfile.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -163,5 +172,19 @@ class ExternalUserProfileItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    @dataclass
+    class ExternalUserProfileItemRequestBuilderGetRequestConfiguration(RequestConfiguration[ExternalUserProfileItemRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class ExternalUserProfileItemRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

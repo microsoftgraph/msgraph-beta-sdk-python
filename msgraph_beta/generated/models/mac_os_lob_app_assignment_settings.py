@@ -15,11 +15,11 @@ class MacOsLobAppAssignmentSettings(MobileAppAssignmentSettings):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOsLobAppAssignmentSettings"
-    # When TRUE, indicates that the app should be uninstalled when the device is removed from Intune. When FALSE, indicates that the app will not be uninstalled when the device is removed from Intune.
+    # Whether or not to uninstall the app when device is removed from Intune.
     uninstall_on_device_removal: Optional[bool] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOsLobAppAssignmentSettings:
+    def create_from_discriminator_value(parse_node: ParseNode) -> MacOsLobAppAssignmentSettings:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

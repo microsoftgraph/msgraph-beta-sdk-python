@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,12 +47,12 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["customCalloutExtension%2Did"] = custom_callout_extension_id
         return CustomCalloutExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomCalloutExtensionCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AccessPackageCustomWorkflowExtensionsRequestBuilderGetQueryParameters]] = None) -> Optional[CustomCalloutExtensionCollectionResponse]:
         """
         Get a list of the accessPackageAssignmentRequestWorkflowExtension and accessPackageAssignmentWorkflowExtension objects and their properties. The resulting list includes all the customAccessPackageWorkflowExtension objects for the catalog that the caller has access to read. Each object includes an @odata.type property that indicates whether the object is an  accessPackageAssignmentRequestWorkflowExtension or an accessPackageAssignmentWorkflowExtension.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomCalloutExtensionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackagecatalog-list-accesspackagecustomworkflowextensions?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/accesspackagecatalog-list-accesspackagecustomworkflowextensions?view=graph-rest-beta
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -68,7 +69,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomCalloutExtensionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CustomCalloutExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomCalloutExtension]:
+    async def post(self,body: CustomCalloutExtension, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CustomCalloutExtension]:
         """
         Create new navigation property to accessPackageCustomWorkflowExtensions for identityGovernance
         param body: The request body
@@ -92,7 +93,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomCalloutExtension, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AccessPackageCustomWorkflowExtensionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get a list of the accessPackageAssignmentRequestWorkflowExtension and accessPackageAssignmentWorkflowExtension objects and their properties. The resulting list includes all the customAccessPackageWorkflowExtension objects for the catalog that the caller has access to read. Each object includes an @odata.type property that indicates whether the object is an  accessPackageAssignmentRequestWorkflowExtension or an accessPackageAssignmentWorkflowExtension.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +105,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CustomCalloutExtension] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: CustomCalloutExtension, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to accessPackageCustomWorkflowExtensions for identityGovernance
         param body: The request body
@@ -120,7 +121,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> AccessPackageCustomWorkflowExtensionsRequestBuilder:
+    def with_url(self,raw_url: str) -> AccessPackageCustomWorkflowExtensionsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -145,7 +146,7 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         """
         Get a list of the accessPackageAssignmentRequestWorkflowExtension and accessPackageAssignmentWorkflowExtension objects and their properties. The resulting list includes all the customAccessPackageWorkflowExtension objects for the catalog that the caller has access to read. Each object includes an @odata.type property that indicates whether the object is an  accessPackageAssignmentRequestWorkflowExtension or an accessPackageAssignmentWorkflowExtension.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -195,5 +196,19 @@ class AccessPackageCustomWorkflowExtensionsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class AccessPackageCustomWorkflowExtensionsRequestBuilderGetRequestConfiguration(RequestConfiguration[AccessPackageCustomWorkflowExtensionsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class AccessPackageCustomWorkflowExtensionsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

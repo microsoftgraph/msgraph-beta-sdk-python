@@ -20,7 +20,7 @@ class UpdateWindow(AdditionalDataHolder, BackedModel, Parsable):
     update_window_start_time: Optional[datetime.time] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdateWindow:
+    def create_from_discriminator_value(parse_node: ParseNode) -> UpdateWindow:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

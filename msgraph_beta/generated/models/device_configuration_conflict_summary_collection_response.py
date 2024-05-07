@@ -15,7 +15,7 @@ class DeviceConfigurationConflictSummaryCollectionResponse(BaseCollectionPaginat
     value: Optional[List[DeviceConfigurationConflictSummary]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceConfigurationConflictSummaryCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceConfigurationConflictSummaryCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

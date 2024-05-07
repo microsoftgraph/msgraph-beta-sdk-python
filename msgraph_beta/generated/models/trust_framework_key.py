@@ -4,6 +4,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .trust_framework_key_status import TrustFrameworkKeyStatus
+
 @dataclass
 class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -11,43 +14,45 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # RSA Key - private exponent. Field can't be read back.
+    # RSA Key - private exponent. The field isn't readable.
     d: Optional[str] = None
-    # RSA Key - first exponent. Field can't be read back.
+    # RSA Key - first exponent. The field isn't readable.
     dp: Optional[str] = None
-    # RSA Key - second exponent. Field can't be read back.
+    # RSA Key - second exponent. The field isn't readable.
     dq: Optional[str] = None
-    # RSA Key - public exponent
+    # RSA Key - public exponent.
     e: Optional[str] = None
-    # This value is a NumericDate as defined in RFC 7519 (A JSON numeric value representing the number of seconds from 1970-01-01T00:00:00Z UTC until the specified UTC date/time, ignoring leap seconds.)
+    # This value is a NumericDate as defined in RFC 7519. That is, a JSON numeric value representing the number of seconds from 1970-01-01T00:00:00Z UTC until the specified UTC date/time, ignoring leap seconds.
     exp: Optional[int] = None
-    # Symmetric Key for oct key type. Field can't be read back.
+    # Symmetric Key for oct key type. The field isn't readable.
     k: Optional[str] = None
     # The unique identifier for the key.
     kid: Optional[str] = None
-    # The kty (key type) parameter identifies the cryptographic algorithm family used with the key, The valid values are rsa, oct.
+    # The kty (key type) parameter identifies the cryptographic algorithm family used with the key. The valid values are rsa, oct.
     kty: Optional[str] = None
-    # RSA Key - modulus
+    # RSA Key - modulus.
     n: Optional[str] = None
-    # This value is a NumericDate as defined in RFC 7519 (A JSON numeric value representing the number of seconds from 1970-01-01T00:00:00Z UTC until the specified UTC date/time, ignoring leap seconds.)
+    # This value is a NumericDate as defined in RFC 7519. That is, a JSON numeric value representing the number of seconds from 1970-01-01T00:00:00Z UTC until the specified UTC date/time, ignoring leap seconds.
     nbf: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # RSA Key - first prime. Field can't be read back.
+    # RSA Key - first prime. The field isn't readable.
     p: Optional[str] = None
-    # RSA Key - second prime. Field can't be read back.
+    # RSA Key - second prime. The field isn't readable.
     q: Optional[str] = None
-    # RSA Key - Coefficient. Field can't be read back.
+    # RSA Key - Coefficient. The field isn't readable.
     qi: Optional[str] = None
-    # The use (public key use) parameter identifies the intended use of the public key.  The use parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Possible values are: sig (signature), enc (encryption)
+    # Status of the key. The possible values are: enabled, disabled, unknownFutureValue.
+    status: Optional[TrustFrameworkKeyStatus] = None
+    # The use (public key use) parameter identifies the intended use of the public key. The use parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Possible values are: sig (signature), enc (encryption).
     use: Optional[str] = None
-    # The x5c (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates RFC 5280.
+    # The x5c (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates. For more information, see RFC 5280.
     x5c: Optional[List[str]] = None
-    # The x5t (X.509 certificate SHA-1 thumbprint) parameter is a base64url-encoded SHA-1 thumbprint (also known as digest) of the DER encoding of an X.509 certificate RFC 5280.
+    # The x5t (X.509 certificate SHA-1 thumbprint) parameter is a base64url-encoded SHA-1 thumbprint (also known as digest) of the DER encoding of an X.509 certificate. For more information, see RFC 5280.
     x5t: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TrustFrameworkKey:
+    def create_from_discriminator_value(parse_node: ParseNode) -> TrustFrameworkKey:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -62,6 +67,10 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .trust_framework_key_status import TrustFrameworkKeyStatus
+
+        from .trust_framework_key_status import TrustFrameworkKeyStatus
+
         fields: Dict[str, Callable[[Any], None]] = {
             "d": lambda n : setattr(self, 'd', n.get_str_value()),
             "dp": lambda n : setattr(self, 'dp', n.get_str_value()),
@@ -77,6 +86,7 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
             "p": lambda n : setattr(self, 'p', n.get_str_value()),
             "q": lambda n : setattr(self, 'q', n.get_str_value()),
             "qi": lambda n : setattr(self, 'qi', n.get_str_value()),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(TrustFrameworkKeyStatus)),
             "use": lambda n : setattr(self, 'use', n.get_str_value()),
             "x5c": lambda n : setattr(self, 'x5c', n.get_collection_of_primitive_values(str)),
             "x5t": lambda n : setattr(self, 'x5t', n.get_str_value()),
@@ -105,6 +115,7 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("p", self.p)
         writer.write_str_value("q", self.q)
         writer.write_str_value("qi", self.qi)
+        writer.write_enum_value("status", self.status)
         writer.write_str_value("use", self.use)
         writer.write_collection_of_primitive_values("x5c", self.x5c)
         writer.write_str_value("x5t", self.x5t)

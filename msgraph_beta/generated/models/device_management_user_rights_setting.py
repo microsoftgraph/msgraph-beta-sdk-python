@@ -26,7 +26,7 @@ class DeviceManagementUserRightsSetting(AdditionalDataHolder, BackedModel, Parsa
     state: Optional[StateManagementSetting] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementUserRightsSetting:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementUserRightsSetting:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

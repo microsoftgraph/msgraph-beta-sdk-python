@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,12 +47,11 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["authenticationMethodModeDetail%2Did"] = authentication_method_mode_detail_id
         return AuthenticationMethodModeDetailItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationMethodModeDetailCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AuthenticationMethodModesRequestBuilderGetQueryParameters]] = None) -> Optional[AuthenticationMethodModeDetailCollectionResponse]:
         """
-        Get a list of all supported authentication methods, or all supported authentication method combinations as a list of authenticationMethodModes objects and their properties.
+        Names and descriptions of all valid authentication method modes in the system.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationMethodModeDetailCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthroot-list-authenticationmethodmodes?view=graph-rest-1.0
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -68,7 +68,7 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthenticationMethodModeDetailCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AuthenticationMethodModeDetail] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationMethodModeDetail]:
+    async def post(self,body: AuthenticationMethodModeDetail, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AuthenticationMethodModeDetail]:
         """
         Create new navigation property to authenticationMethodModes for identity
         param body: The request body
@@ -92,9 +92,9 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthenticationMethodModeDetail, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AuthenticationMethodModesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of all supported authentication methods, or all supported authentication method combinations as a list of authenticationMethodModes objects and their properties.
+        Names and descriptions of all valid authentication method modes in the system.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +104,7 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AuthenticationMethodModeDetail] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: AuthenticationMethodModeDetail, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to authenticationMethodModes for identity
         param body: The request body
@@ -120,7 +120,7 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> AuthenticationMethodModesRequestBuilder:
+    def with_url(self,raw_url: str) -> AuthenticationMethodModesRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -143,9 +143,9 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuthenticationMethodModesRequestBuilderGetQueryParameters():
         """
-        Get a list of all supported authentication methods, or all supported authentication method combinations as a list of authenticationMethodModes objects and their properties.
+        Names and descriptions of all valid authentication method modes in the system.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -195,5 +195,19 @@ class AuthenticationMethodModesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class AuthenticationMethodModesRequestBuilderGetRequestConfiguration(RequestConfiguration[AuthenticationMethodModesRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class AuthenticationMethodModesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

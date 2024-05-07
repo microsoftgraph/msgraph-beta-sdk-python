@@ -28,7 +28,7 @@ class IndustryDataRunStatistics(AdditionalDataHolder, BackedModel, Parsable):
     status: Optional[IndustryDataRunStatus] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IndustryDataRunStatistics:
+    def create_from_discriminator_value(parse_node: ParseNode) -> IndustryDataRunStatistics:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

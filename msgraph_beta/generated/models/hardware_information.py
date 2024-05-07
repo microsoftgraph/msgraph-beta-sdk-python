@@ -105,7 +105,7 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
     wired_i_pv4_addresses: Optional[List[str]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> HardwareInformation:
+    def create_from_discriminator_value(parse_node: ParseNode) -> HardwareInformation:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

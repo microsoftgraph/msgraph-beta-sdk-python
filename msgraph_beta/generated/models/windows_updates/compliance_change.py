@@ -25,7 +25,7 @@ class ComplianceChange(Entity):
     update_policy: Optional[UpdatePolicy] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ComplianceChange:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ComplianceChange:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

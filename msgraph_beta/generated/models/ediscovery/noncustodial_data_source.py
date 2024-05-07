@@ -19,7 +19,7 @@ class NoncustodialDataSource(DataSourceContainer):
     data_source: Optional[DataSource] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> NoncustodialDataSource:
+    def create_from_discriminator_value(parse_node: ParseNode) -> NoncustodialDataSource:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

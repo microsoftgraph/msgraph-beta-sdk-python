@@ -25,7 +25,7 @@ class MicrosoftTunnelHealthThreshold(Entity):
     unhealthy_threshold: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MicrosoftTunnelHealthThreshold:
+    def create_from_discriminator_value(parse_node: ParseNode) -> MicrosoftTunnelHealthThreshold:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

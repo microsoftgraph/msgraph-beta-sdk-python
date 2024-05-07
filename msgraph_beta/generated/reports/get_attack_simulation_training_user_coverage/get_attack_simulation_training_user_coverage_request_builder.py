@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -28,11 +29,12 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/reports/getAttackSimulationTrainingUserCoverage(){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GetAttackSimulationTrainingUserCoverageGetResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[GetAttackSimulationTrainingUserCoverageRequestBuilderGetQueryParameters]] = None) -> Optional[GetAttackSimulationTrainingUserCoverageGetResponse]:
         """
-        Invoke function getAttackSimulationTrainingUserCoverage
+        List training coverage for each user of a tenant in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAttackSimulationTrainingUserCoverageGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getattacksimulationtrainingusercoverage?view=graph-rest-beta
         """
         warn("This report function api is deprecated and will stop returning data on August 20, 2022. Api is now moved to /reports/security. Please use the new API. as of 2022-05/Tasks_And_Plans", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -49,9 +51,9 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GetAttackSimulationTrainingUserCoverageGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetAttackSimulationTrainingUserCoverageRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getAttackSimulationTrainingUserCoverage
+        List training coverage for each user of a tenant in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +63,7 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> GetAttackSimulationTrainingUserCoverageRequestBuilder:
+    def with_url(self,raw_url: str) -> GetAttackSimulationTrainingUserCoverageRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -75,9 +77,9 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GetAttackSimulationTrainingUserCoverageRequestBuilderGetQueryParameters():
         """
-        Invoke function getAttackSimulationTrainingUserCoverage
+        List training coverage for each user of a tenant in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -112,5 +114,12 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class GetAttackSimulationTrainingUserCoverageRequestBuilderGetRequestConfiguration(RequestConfiguration[GetAttackSimulationTrainingUserCoverageRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

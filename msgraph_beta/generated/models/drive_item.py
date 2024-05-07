@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .deleted import Deleted
     from .drive_item_source import DriveItemSource
     from .drive_item_version import DriveItemVersion
+    from .drive_item_viewpoint import DriveItemViewpoint
     from .file import File
     from .file_system_info import FileSystemInfo
     from .folder import Folder
@@ -107,19 +108,21 @@ class DriveItem(BaseItem):
     special_folder: Optional[SpecialFolder] = None
     # The set of subscriptions on the item. Only supported on the root of a drive.
     subscriptions: Optional[List[Subscription]] = None
-    # Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
+    # Collection of thumbnailSet objects associated with the item. For more information, see getting thumbnails. Read-only. Nullable.
     thumbnails: Optional[List[ThumbnailSet]] = None
-    # The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
+    # The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.
     versions: Optional[List[DriveItemVersion]] = None
     # Video metadata, if the item is a video. Read-only.
     video: Optional[Video] = None
+    # Returns information specific to the calling user for this drive item. Read-only.
+    viewpoint: Optional[DriveItemViewpoint] = None
     # WebDAV compatible URL for the item.
     web_dav_url: Optional[str] = None
     # For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.
     workbook: Optional[Workbook] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DriveItem:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DriveItem:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -140,6 +143,7 @@ class DriveItem(BaseItem):
         from .deleted import Deleted
         from .drive_item_source import DriveItemSource
         from .drive_item_version import DriveItemVersion
+        from .drive_item_viewpoint import DriveItemViewpoint
         from .file import File
         from .file_system_info import FileSystemInfo
         from .folder import Folder
@@ -173,6 +177,7 @@ class DriveItem(BaseItem):
         from .deleted import Deleted
         from .drive_item_source import DriveItemSource
         from .drive_item_version import DriveItemVersion
+        from .drive_item_viewpoint import DriveItemViewpoint
         from .file import File
         from .file_system_info import FileSystemInfo
         from .folder import Folder
@@ -236,6 +241,7 @@ class DriveItem(BaseItem):
             "thumbnails": lambda n : setattr(self, 'thumbnails', n.get_collection_of_object_values(ThumbnailSet)),
             "versions": lambda n : setattr(self, 'versions', n.get_collection_of_object_values(DriveItemVersion)),
             "video": lambda n : setattr(self, 'video', n.get_object_value(Video)),
+            "viewpoint": lambda n : setattr(self, 'viewpoint', n.get_object_value(DriveItemViewpoint)),
             "webDavUrl": lambda n : setattr(self, 'web_dav_url', n.get_str_value()),
             "workbook": lambda n : setattr(self, 'workbook', n.get_object_value(Workbook)),
         }
@@ -287,6 +293,7 @@ class DriveItem(BaseItem):
         writer.write_collection_of_object_values("thumbnails", self.thumbnails)
         writer.write_collection_of_object_values("versions", self.versions)
         writer.write_object_value("video", self.video)
+        writer.write_object_value("viewpoint", self.viewpoint)
         writer.write_str_value("webDavUrl", self.web_dav_url)
         writer.write_object_value("workbook", self.workbook)
     

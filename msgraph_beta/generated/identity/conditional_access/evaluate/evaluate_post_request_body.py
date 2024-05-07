@@ -26,7 +26,7 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     conditional_access_what_if_subject: Optional[ConditionalAccessWhatIfSubject] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EvaluatePostRequestBody:
+    def create_from_discriminator_value(parse_node: ParseNode) -> EvaluatePostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

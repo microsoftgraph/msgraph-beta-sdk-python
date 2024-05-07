@@ -22,7 +22,7 @@ class UnenrollAssetsByIdPostRequestBody(AdditionalDataHolder, BackedModel, Parsa
     update_category: Optional[UpdateCategory] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnenrollAssetsByIdPostRequestBody:
+    def create_from_discriminator_value(parse_node: ParseNode) -> UnenrollAssetsByIdPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

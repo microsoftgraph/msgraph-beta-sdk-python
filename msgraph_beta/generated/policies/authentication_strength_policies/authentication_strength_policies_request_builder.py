@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,7 +47,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["authenticationStrengthPolicy%2Did"] = authentication_strength_policy_id
         return AuthenticationStrengthPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def find_by_method_mode_with_authentication_method_modes(self,authentication_method_modes: Optional[str] = None) -> FindByMethodModeWithAuthenticationMethodModesRequestBuilder:
+    def find_by_method_mode_with_authentication_method_modes(self,authentication_method_modes: str) -> FindByMethodModeWithAuthenticationMethodModesRequestBuilder:
         """
         Provides operations to call the findByMethodMode method.
         param authentication_method_modes: Usage: authenticationMethodModes={authenticationMethodModes}
@@ -59,12 +60,12 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
 
         return FindByMethodModeWithAuthenticationMethodModesRequestBuilder(self.request_adapter, self.path_parameters, authentication_method_modes)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationStrengthPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AuthenticationStrengthPoliciesRequestBuilderGetQueryParameters]] = None) -> Optional[AuthenticationStrengthPolicyCollectionResponse]:
         """
         Get a list of the authenticationStrengthPolicy objects and their properties. This API returns both built-in and custom policies.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationStrengthPolicyCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -80,13 +81,13 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthenticationStrengthPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AuthenticationStrengthPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AuthenticationStrengthPolicy]:
+    async def post(self,body: AuthenticationStrengthPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AuthenticationStrengthPolicy]:
         """
         Create a new custom authenticationStrengthPolicy object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationStrengthPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthroot-post-policies?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthroot-post-policies?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -104,7 +105,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AuthenticationStrengthPolicy, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AuthenticationStrengthPoliciesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get a list of the authenticationStrengthPolicy objects and their properties. This API returns both built-in and custom policies.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -115,7 +116,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AuthenticationStrengthPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: AuthenticationStrengthPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create a new custom authenticationStrengthPolicy object.
         param body: The request body
@@ -130,7 +131,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> AuthenticationStrengthPoliciesRequestBuilder:
+    def with_url(self,raw_url: str) -> AuthenticationStrengthPoliciesRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -154,7 +155,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
         """
         Get a list of the authenticationStrengthPolicy objects and their properties. This API returns both built-in and custom policies.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -204,5 +205,19 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class AuthenticationStrengthPoliciesRequestBuilderGetRequestConfiguration(RequestConfiguration[AuthenticationStrengthPoliciesRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class AuthenticationStrengthPoliciesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 
