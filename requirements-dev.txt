@@ -20,7 +20,7 @@ cffi==1.16.0
 
 charset-normalizer==3.3.2
 
-cryptography==42.0.6
+cryptography==42.0.7
 
 Deprecated==1.2.14
 
