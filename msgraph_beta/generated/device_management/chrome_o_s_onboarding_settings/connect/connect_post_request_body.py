@@ -17,7 +17,7 @@ class ConnectPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     owner_user_principal_name: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConnectPostRequestBody:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ConnectPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -57,7 +57,7 @@ class Office365GroupsActivityDetail(Entity):
     yammer_read_message_count: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Office365GroupsActivityDetail:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Office365GroupsActivityDetail:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

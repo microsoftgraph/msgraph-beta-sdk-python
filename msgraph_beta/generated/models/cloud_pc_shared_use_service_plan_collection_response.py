@@ -15,7 +15,7 @@ class CloudPcSharedUseServicePlanCollectionResponse(BaseCollectionPaginationCoun
     value: Optional[List[CloudPcSharedUseServicePlan]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcSharedUseServicePlanCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcSharedUseServicePlanCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

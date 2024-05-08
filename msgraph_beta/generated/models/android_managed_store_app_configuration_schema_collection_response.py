@@ -15,7 +15,7 @@ class AndroidManagedStoreAppConfigurationSchemaCollectionResponse(BaseCollection
     value: Optional[List[AndroidManagedStoreAppConfigurationSchema]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidManagedStoreAppConfigurationSchemaCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AndroidManagedStoreAppConfigurationSchemaCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

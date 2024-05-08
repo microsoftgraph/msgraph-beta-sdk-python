@@ -35,7 +35,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, BackedModel, Parsable)
     supported_device_types: Optional[List[MobileAppSupportedDeviceType]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppIntentAndStateDetail:
+    def create_from_discriminator_value(parse_node: ParseNode) -> MobileAppIntentAndStateDetail:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

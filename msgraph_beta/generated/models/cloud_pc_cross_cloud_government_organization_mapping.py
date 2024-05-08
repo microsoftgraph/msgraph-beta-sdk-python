@@ -16,7 +16,7 @@ class CloudPcCrossCloudGovernmentOrganizationMapping(Entity):
     organization_ids_in_u_s_gov_cloud: Optional[List[str]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcCrossCloudGovernmentOrganizationMapping:
+    def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcCrossCloudGovernmentOrganizationMapping:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

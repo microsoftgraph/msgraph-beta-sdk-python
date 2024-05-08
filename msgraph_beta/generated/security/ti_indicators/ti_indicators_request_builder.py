@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
@@ -40,6 +42,7 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
         param ti_indicator_id: The unique identifier of tiIndicator
         Returns: TiIndicatorItemRequestBuilder
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not ti_indicator_id:
             raise TypeError("ti_indicator_id cannot be null.")
         from .item.ti_indicator_item_request_builder import TiIndicatorItemRequestBuilder
@@ -48,13 +51,14 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["tiIndicator%2Did"] = ti_indicator_id
         return TiIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TiIndicatorCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[TiIndicatorsRequestBuilderGetQueryParameters]] = None) -> Optional[TiIndicatorCollectionResponse]:
         """
         Retrieve a list of tiIndicator objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TiIndicatorCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/tiindicators-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/tiindicators-list?view=graph-rest-beta
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -69,14 +73,15 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TiIndicatorCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[TiIndicator] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TiIndicator]:
+    async def post(self,body: TiIndicator, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TiIndicator]:
         """
         Create a new tiIndicator object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TiIndicator]
-        Find more info here: https://learn.microsoft.com/graph/api/tiindicators-post?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/tiindicators-post?view=graph-rest-beta
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -93,24 +98,26 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TiIndicator, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TiIndicatorsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Retrieve a list of tiIndicator objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[TiIndicator] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: TiIndicator, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create a new tiIndicator object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -119,12 +126,13 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> TiIndicatorsRequestBuilder:
+    def with_url(self,raw_url: str) -> TiIndicatorsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
         Returns: TiIndicatorsRequestBuilder
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return TiIndicatorsRequestBuilder(self.request_adapter, raw_url)
@@ -179,7 +187,7 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
         """
         Retrieve a list of tiIndicator objects.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -229,5 +237,19 @@ class TiIndicatorsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class TiIndicatorsRequestBuilderGetRequestConfiguration(RequestConfiguration[TiIndicatorsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class TiIndicatorsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

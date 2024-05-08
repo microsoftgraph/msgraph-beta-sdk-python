@@ -22,7 +22,7 @@ class EnrollAssetsByIdPostRequestBody(AdditionalDataHolder, BackedModel, Parsabl
     update_category: Optional[UpdateCategory] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EnrollAssetsByIdPostRequestBody:
+    def create_from_discriminator_value(parse_node: ParseNode) -> EnrollAssetsByIdPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

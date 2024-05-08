@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.managed_tenants.management_template_collection_tenant_summary import ManagementTemplateCollectionTenantSummary
@@ -44,7 +46,7 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
         url_tpl_params["managementTemplateCollectionTenantSummary%2Did"] = management_template_collection_tenant_summary_id
         return ManagementTemplateCollectionTenantSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementTemplateCollectionTenantSummaryCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ManagementTemplateCollectionTenantSummariesRequestBuilderGetQueryParameters]] = None) -> Optional[ManagementTemplateCollectionTenantSummaryCollectionResponse]:
         """
         Get managementTemplateCollectionTenantSummaries from tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -64,7 +66,7 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, ManagementTemplateCollectionTenantSummaryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ManagementTemplateCollectionTenantSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ManagementTemplateCollectionTenantSummary]:
+    async def post(self,body: ManagementTemplateCollectionTenantSummary, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ManagementTemplateCollectionTenantSummary]:
         """
         Create new navigation property to managementTemplateCollectionTenantSummaries for tenantRelationships
         param body: The request body
@@ -87,7 +89,7 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
 
         return await self.request_adapter.send_async(request_info, ManagementTemplateCollectionTenantSummary, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ManagementTemplateCollectionTenantSummariesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get managementTemplateCollectionTenantSummaries from tenantRelationships
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -98,7 +100,7 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ManagementTemplateCollectionTenantSummary] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: ManagementTemplateCollectionTenantSummary, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to managementTemplateCollectionTenantSummaries for tenantRelationships
         param body: The request body
@@ -113,7 +115,7 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> ManagementTemplateCollectionTenantSummariesRequestBuilder:
+    def with_url(self,raw_url: str) -> ManagementTemplateCollectionTenantSummariesRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -137,7 +139,7 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
         """
         Get managementTemplateCollectionTenantSummaries from tenantRelationships
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -187,5 +189,19 @@ class ManagementTemplateCollectionTenantSummariesRequestBuilder(BaseRequestBuild
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class ManagementTemplateCollectionTenantSummariesRequestBuilderGetRequestConfiguration(RequestConfiguration[ManagementTemplateCollectionTenantSummariesRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class ManagementTemplateCollectionTenantSummariesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

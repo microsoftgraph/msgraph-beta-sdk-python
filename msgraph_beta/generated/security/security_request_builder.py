@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
@@ -29,6 +31,7 @@ if TYPE_CHECKING:
     from .ip_security_profiles.ip_security_profiles_request_builder import IpSecurityProfilesRequestBuilder
     from .labels.labels_request_builder import LabelsRequestBuilder
     from .microsoft_graph_security_run_hunting_query.microsoft_graph_security_run_hunting_query_request_builder import MicrosoftGraphSecurityRunHuntingQueryRequestBuilder
+    from .partner.partner_request_builder import PartnerRequestBuilder
     from .provider_tenant_settings.provider_tenant_settings_request_builder import ProviderTenantSettingsRequestBuilder
     from .rules.rules_request_builder import RulesRequestBuilder
     from .secure_scores.secure_scores_request_builder import SecureScoresRequestBuilder
@@ -55,7 +58,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/security{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Security]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[SecurityRequestBuilderGetQueryParameters]] = None) -> Optional[Security]:
         """
         Get security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -75,7 +78,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Security, error_mapping)
     
-    async def patch(self,body: Optional[Security] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Security]:
+    async def patch(self,body: Security, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Security]:
         """
         Update security
         param body: The request body
@@ -98,7 +101,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Security, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SecurityRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -109,7 +112,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[Security] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Security, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update security
         param body: The request body
@@ -124,7 +127,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> SecurityRequestBuilder:
+    def with_url(self,raw_url: str) -> SecurityRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -279,6 +282,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         return MicrosoftGraphSecurityRunHuntingQueryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def partner(self) -> PartnerRequestBuilder:
+        """
+        Provides operations to manage the partner property of the microsoft.graph.security entity.
+        """
+        from .partner.partner_request_builder import PartnerRequestBuilder
+
+        return PartnerRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def provider_tenant_settings(self) -> ProviderTenantSettingsRequestBuilder:
         """
         Provides operations to manage the providerTenantSettings property of the microsoft.graph.security entity.
@@ -391,7 +403,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         """
         Get security
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -411,5 +423,19 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    @dataclass
+    class SecurityRequestBuilderGetRequestConfiguration(RequestConfiguration[SecurityRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class SecurityRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

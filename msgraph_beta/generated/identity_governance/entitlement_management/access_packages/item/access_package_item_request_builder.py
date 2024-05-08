@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.access_package import AccessPackage
@@ -35,12 +37,12 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
         Delete an accessPackage object. You can't delete an access package if it has any accessPackageAssignment. To delete the access package, first query if there are any assignments with a filter to indicate the specific access package, such as: $filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'. For more information on how to remove assignments that are still in the delivered state, see Remove an assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackage-delete?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/accesspackage-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -54,12 +56,12 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackage]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AccessPackageItemRequestBuilderGetQueryParameters]] = None) -> Optional[AccessPackage]:
         """
         Retrieve the properties and relationships of an accessPackage object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackage]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackage-get?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/accesspackage-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -75,13 +77,13 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackage, error_mapping)
     
-    async def patch(self,body: Optional[AccessPackage] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackage]:
+    async def patch(self,body: AccessPackage, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AccessPackage]:
         """
         Update an existing accessPackage object to change one or more of its properties, such as the display name or description.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackage]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackage-update?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/accesspackage-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -99,7 +101,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackage, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Delete an accessPackage object. You can't delete an access package if it has any accessPackageAssignment. To delete the access package, first query if there are any assignments with a filter to indicate the specific access package, such as: $filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'. For more information on how to remove assignments that are still in the delivered state, see Remove an assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -110,7 +112,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AccessPackageItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Retrieve the properties and relationships of an accessPackage object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -121,7 +123,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[AccessPackage] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: AccessPackage, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update an existing accessPackage object to change one or more of its properties, such as the display name or description.
         param body: The request body
@@ -136,7 +138,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> AccessPackageItemRequestBuilder:
+    def with_url(self,raw_url: str) -> AccessPackageItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -219,11 +221,18 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         return MoveToCatalogRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
+    class AccessPackageItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
     class AccessPackageItemRequestBuilderGetQueryParameters():
         """
         Retrieve the properties and relationships of an accessPackage object.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -243,5 +252,19 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    @dataclass
+    class AccessPackageItemRequestBuilderGetRequestConfiguration(RequestConfiguration[AccessPackageItemRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class AccessPackageItemRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

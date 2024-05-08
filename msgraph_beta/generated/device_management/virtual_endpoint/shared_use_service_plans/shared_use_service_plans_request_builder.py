@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,12 +47,12 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
         url_tpl_params["cloudPcSharedUseServicePlan%2Did"] = cloud_pc_shared_use_service_plan_id
         return CloudPcSharedUseServicePlanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcSharedUseServicePlanCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[SharedUseServicePlansRequestBuilderGetQueryParameters]] = None) -> Optional[CloudPcSharedUseServicePlanCollectionResponse]:
         """
         Get a list of the cloudPcSharedUseServicePlan objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcSharedUseServicePlanCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-shareduseserviceplans?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-shareduseserviceplans?view=graph-rest-beta
         """
         warn("The sharedUseServicePlans property is deprecated and will not be supported starting Oct 8, 2023. This property will not be included as part of the API response. as of 2023-03/sharedUseServicePlans", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -68,7 +69,7 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcSharedUseServicePlanCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CloudPcSharedUseServicePlan] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CloudPcSharedUseServicePlan]:
+    async def post(self,body: CloudPcSharedUseServicePlan, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcSharedUseServicePlan]:
         """
         Create new navigation property to sharedUseServicePlans for deviceManagement
         param body: The request body
@@ -92,7 +93,7 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcSharedUseServicePlan, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SharedUseServicePlansRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get a list of the cloudPcSharedUseServicePlan objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +105,7 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CloudPcSharedUseServicePlan] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: CloudPcSharedUseServicePlan, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to sharedUseServicePlans for deviceManagement
         param body: The request body
@@ -120,7 +121,7 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> SharedUseServicePlansRequestBuilder:
+    def with_url(self,raw_url: str) -> SharedUseServicePlansRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -145,7 +146,7 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
         """
         Get a list of the cloudPcSharedUseServicePlan objects and their properties.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -195,5 +196,19 @@ class SharedUseServicePlansRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class SharedUseServicePlansRequestBuilderGetRequestConfiguration(RequestConfiguration[SharedUseServicePlansRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class SharedUseServicePlansRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

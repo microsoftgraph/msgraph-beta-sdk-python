@@ -27,6 +27,8 @@ from .entity import Entity
 class CloudPC(Entity):
     # The Microsoft Entra device ID of the Cloud PC.
     aad_device_id: Optional[str] = None
+    # The allotment name divides tenant licenses into smaller batches or groups that helps restrict the number of licenses available for use in a specific assignment. When the provisioningType is dedicated, the allotment name is null. Read-only.
+    allotment_display_name: Optional[str] = None
     # The connectionSettings property
     connection_settings: Optional[CloudPcConnectionSettings] = None
     # The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC can be connected.
@@ -85,7 +87,7 @@ class CloudPC(Entity):
     user_principal_name: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPC:
+    def create_from_discriminator_value(parse_node: ParseNode) -> CloudPC:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -134,6 +136,7 @@ class CloudPC(Entity):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "aadDeviceId": lambda n : setattr(self, 'aad_device_id', n.get_str_value()),
+            "allotmentDisplayName": lambda n : setattr(self, 'allotment_display_name', n.get_str_value()),
             "connectionSettings": lambda n : setattr(self, 'connection_settings', n.get_object_value(CloudPcConnectionSettings)),
             "connectivityResult": lambda n : setattr(self, 'connectivity_result', n.get_object_value(CloudPcConnectivityResult)),
             "disasterRecoveryCapability": lambda n : setattr(self, 'disaster_recovery_capability', n.get_object_value(CloudPcDisasterRecoveryCapability)),
@@ -176,6 +179,7 @@ class CloudPC(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("aadDeviceId", self.aad_device_id)
+        writer.write_str_value("allotmentDisplayName", self.allotment_display_name)
         writer.write_object_value("connectionSettings", self.connection_settings)
         writer.write_object_value("connectivityResult", self.connectivity_result)
         writer.write_object_value("disasterRecoveryCapability", self.disaster_recovery_capability)

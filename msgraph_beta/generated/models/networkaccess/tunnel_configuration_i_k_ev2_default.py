@@ -14,7 +14,7 @@ class TunnelConfigurationIKEv2Default(TunnelConfiguration):
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Default"
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TunnelConfigurationIKEv2Default:
+    def create_from_discriminator_value(parse_node: ParseNode) -> TunnelConfigurationIKEv2Default:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

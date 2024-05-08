@@ -25,7 +25,7 @@ class RecommendLabelAction(InformationProtectionAction):
     responsible_sensitive_type_ids: Optional[List[UUID]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RecommendLabelAction:
+    def create_from_discriminator_value(parse_node: ParseNode) -> RecommendLabelAction:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

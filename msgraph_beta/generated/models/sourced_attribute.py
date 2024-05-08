@@ -1,0 +1,64 @@
+from __future__ import annotations
+from dataclasses import dataclass, field
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from .custom_claim_attribute_base import CustomClaimAttributeBase
+
+from .custom_claim_attribute_base import CustomClaimAttributeBase
+
+@dataclass
+class SourcedAttribute(CustomClaimAttributeBase):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.sourcedAttribute"
+    # The id property
+    id: Optional[str] = None
+    # The isExtensionAttribute property
+    is_extension_attribute: Optional[bool] = None
+    # The source property
+    source: Optional[str] = None
+    
+    @staticmethod
+    def create_from_discriminator_value(parse_node: ParseNode) -> SourcedAttribute:
+        """
+        Creates a new instance of the appropriate class based on discriminator value
+        param parse_node: The parse node to use to read the discriminator value and create the object
+        Returns: SourcedAttribute
+        """
+        if not parse_node:
+            raise TypeError("parse_node cannot be null.")
+        return SourcedAttribute()
+    
+    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+        """
+        The deserialization information for the current model
+        Returns: Dict[str, Callable[[ParseNode], None]]
+        """
+        from .custom_claim_attribute_base import CustomClaimAttributeBase
+
+        from .custom_claim_attribute_base import CustomClaimAttributeBase
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "id": lambda n : setattr(self, 'id', n.get_str_value()),
+            "isExtensionAttribute": lambda n : setattr(self, 'is_extension_attribute', n.get_bool_value()),
+            "source": lambda n : setattr(self, 'source', n.get_str_value()),
+        }
+        super_fields = super().get_field_deserializers()
+        fields.update(super_fields)
+        return fields
+    
+    def serialize(self,writer: SerializationWriter) -> None:
+        """
+        Serializes information the current object
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
+        """
+        if not writer:
+            raise TypeError("writer cannot be null.")
+        super().serialize(writer)
+        writer.write_str_value("id", self.id)
+        writer.write_bool_value("isExtensionAttribute", self.is_extension_attribute)
+        writer.write_str_value("source", self.source)
+    
+

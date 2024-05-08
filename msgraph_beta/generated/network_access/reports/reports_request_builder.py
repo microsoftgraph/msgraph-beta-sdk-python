@@ -3,6 +3,7 @@ import datetime
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,6 +11,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.networkaccess.reports import Reports
@@ -24,7 +26,7 @@ if TYPE_CHECKING:
     from .microsoft_graph_networkaccess_get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id.microsoft_graph_networkaccess_get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id_request_builder import MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder
     from .microsoft_graph_networkaccess_transaction_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_transaction_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
     from .microsoft_graph_networkaccess_usage_profiling_with_start_date_time_with_end_date_time_with_aggregated_by.microsoft_graph_networkaccess_usage_profiling_with_start_date_time_with_end_date_time_with_aggregated_by_request_builder import MicrosoftGraphNetworkaccessUsageProfilingWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder
-    from .microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimeRequestBuilder
+    from .microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id.microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_request_builder import MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdRequestBuilder
     from .microsoft_graph_networkaccess_web_category_report_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_web_category_report_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessWebCategoryReportWithStartDateTimeWithEndDateTimeRequestBuilder
 
 class ReportsRequestBuilder(BaseRequestBuilder):
@@ -40,7 +42,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/networkAccess/reports{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
         Delete navigation property reports for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -58,7 +60,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Reports]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ReportsRequestBuilderGetQueryParameters]] = None) -> Optional[Reports]:
         """
         Represents the status of the Global Secure Access services for the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -78,7 +80,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Reports, error_mapping)
     
-    def microsoft_graph_networkaccess_cross_tenant_access_report_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessCrossTenantAccessReportWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_cross_tenant_access_report_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessCrossTenantAccessReportWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the crossTenantAccessReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
@@ -93,7 +95,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphNetworkaccessCrossTenantAccessReportWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_destination_report_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_destination_report_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the destinationReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
@@ -108,7 +110,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_device_report_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessDeviceReportWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_device_report_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessDeviceReportWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the deviceReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
@@ -123,7 +125,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphNetworkaccessDeviceReportWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_entities_summaries_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_entities_summaries_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the entitiesSummaries method.
         param end_date_time: Usage: endDateTime={endDateTime}
@@ -138,7 +140,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_cross_tenant_summary_with_start_date_time_with_end_date_time_with_discovery_pivot_date_time(self,discovery_pivot_date_time: Optional[datetime.datetime] = None, end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithStartDateTimeWithEndDateTimeWithDiscoveryPivotDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_get_cross_tenant_summary_with_start_date_time_with_end_date_time_with_discovery_pivot_date_time(self,discovery_pivot_date_time: datetime.datetime, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithStartDateTimeWithEndDateTimeWithDiscoveryPivotDateTimeRequestBuilder:
         """
         Provides operations to call the getCrossTenantSummary method.
         param discovery_pivot_date_time: Usage: discoveryPivotDateTime={discoveryPivotDateTime}
@@ -156,7 +158,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithStartDateTimeWithEndDateTimeWithDiscoveryPivotDateTimeRequestBuilder(self.request_adapter, self.path_parameters, discovery_pivot_date_time, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by(self,aggregated_by: Optional[str] = None, end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder:
+    def microsoft_graph_networkaccess_get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by(self,aggregated_by: str, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder:
         """
         Provides operations to call the getDestinationSummaries method.
         param aggregated_by: Usage: aggregatedBy='{aggregatedBy}'
@@ -174,7 +176,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder(self.request_adapter, self.path_parameters, aggregated_by, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_device_usage_summary_with_start_date_time_with_end_date_time_with_activity_pivot_date_time(self,activity_pivot_date_time: Optional[datetime.datetime] = None, end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithStartDateTimeWithEndDateTimeWithActivityPivotDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_get_device_usage_summary_with_start_date_time_with_end_date_time_with_activity_pivot_date_time(self,activity_pivot_date_time: datetime.datetime, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithStartDateTimeWithEndDateTimeWithActivityPivotDateTimeRequestBuilder:
         """
         Provides operations to call the getDeviceUsageSummary method.
         param activity_pivot_date_time: Usage: activityPivotDateTime={activityPivotDateTime}
@@ -192,7 +194,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithStartDateTimeWithEndDateTimeWithActivityPivotDateTimeRequestBuilder(self.request_adapter, self.path_parameters, activity_pivot_date_time, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id(self,end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder:
+    def microsoft_graph_networkaccess_get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder:
         """
         Provides operations to call the getDiscoveredApplicationSegmentReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
@@ -207,7 +209,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_transaction_summaries_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_transaction_summaries_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the transactionSummaries method.
         param end_date_time: Usage: endDateTime={endDateTime}
@@ -222,7 +224,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_usage_profiling_with_start_date_time_with_end_date_time_with_aggregated_by(self,aggregated_by: Optional[str] = None, end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessUsageProfilingWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder:
+    def microsoft_graph_networkaccess_usage_profiling_with_start_date_time_with_end_date_time_with_aggregated_by(self,aggregated_by: str, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessUsageProfilingWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder:
         """
         Provides operations to call the usageProfiling method.
         param aggregated_by: Usage: aggregatedBy='{aggregatedBy}'
@@ -240,22 +242,22 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphNetworkaccessUsageProfilingWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder(self.request_adapter, self.path_parameters, aggregated_by, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdRequestBuilder:
         """
         Provides operations to call the userReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimeRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdRequestBuilder
         """
         if not end_date_time:
             raise TypeError("end_date_time cannot be null.")
         if not start_date_time:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimeRequestBuilder
+        from .microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id.microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_request_builder import MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdRequestBuilder
 
-        return MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_web_category_report_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphNetworkaccessWebCategoryReportWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_web_category_report_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessWebCategoryReportWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the webCategoryReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
@@ -270,7 +272,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphNetworkaccessWebCategoryReportWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    async def patch(self,body: Optional[Reports] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Reports]:
+    async def patch(self,body: Reports, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Reports]:
         """
         Update the navigation property reports in networkAccess
         param body: The request body
@@ -293,7 +295,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Reports, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Delete navigation property reports for networkAccess
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -304,7 +306,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ReportsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Represents the status of the Global Secure Access services for the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -315,7 +317,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[Reports] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Reports, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update the navigation property reports in networkAccess
         param body: The request body
@@ -330,7 +332,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> ReportsRequestBuilder:
+    def with_url(self,raw_url: str) -> ReportsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -341,11 +343,18 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return ReportsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
+    class ReportsRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
     class ReportsRequestBuilderGetQueryParameters():
         """
         Represents the status of the Global Secure Access services for the tenant.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -365,5 +374,19 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    @dataclass
+    class ReportsRequestBuilderGetRequestConfiguration(RequestConfiguration[ReportsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class ReportsRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

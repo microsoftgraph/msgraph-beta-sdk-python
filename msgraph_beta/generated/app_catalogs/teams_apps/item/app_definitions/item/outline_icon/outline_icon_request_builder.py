@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
@@ -28,7 +30,7 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}/appDefinitions/{teamsAppDefinition%2Did}/outlineIcon{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
         Delete navigation property outlineIcon for appCatalogs
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -46,12 +48,11 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[TeamsAppIcon]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[OutlineIconRequestBuilderGetQueryParameters]] = None) -> Optional[TeamsAppIcon]:
         """
-        Retrieve a Teams app icon associated with a specific definition of an app.
+        The outline version of the Teams app's icon.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamsAppIcon]
-        Find more info here: https://learn.microsoft.com/graph/api/teamsappicon-get?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,7 +68,7 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TeamsAppIcon, error_mapping)
     
-    async def patch(self,body: Optional[TeamsAppIcon] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[TeamsAppIcon]:
+    async def patch(self,body: TeamsAppIcon, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TeamsAppIcon]:
         """
         Update the navigation property outlineIcon in appCatalogs
         param body: The request body
@@ -90,7 +91,7 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, TeamsAppIcon, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Delete navigation property outlineIcon for appCatalogs
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,9 +102,9 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[OutlineIconRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve a Teams app icon associated with a specific definition of an app.
+        The outline version of the Teams app's icon.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +113,7 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[TeamsAppIcon] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: TeamsAppIcon, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update the navigation property outlineIcon in appCatalogs
         param body: The request body
@@ -127,7 +128,7 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> OutlineIconRequestBuilder:
+    def with_url(self,raw_url: str) -> OutlineIconRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -147,11 +148,18 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
         return HostedContentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
+    class OutlineIconRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
     class OutlineIconRequestBuilderGetQueryParameters():
         """
-        Retrieve a Teams app icon associated with a specific definition of an app.
+        The outline version of the Teams app's icon.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -171,5 +179,19 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    @dataclass
+    class OutlineIconRequestBuilderGetRequestConfiguration(RequestConfiguration[OutlineIconRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class OutlineIconRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

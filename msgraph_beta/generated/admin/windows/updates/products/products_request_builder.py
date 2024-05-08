@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
@@ -46,7 +48,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["product%2Did"] = product_id
         return ProductItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProductCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ProductsRequestBuilderGetQueryParameters]] = None) -> Optional[ProductCollectionResponse]:
         """
         A collection of Windows products.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -66,7 +68,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProductCollectionResponse, error_mapping)
     
-    def microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d(self,catalog_i_d: Optional[str] = None) -> MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogIDRequestBuilder:
+    def microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d(self,catalog_i_d: str) -> MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogIDRequestBuilder:
         """
         Provides operations to call the findByCatalogId method.
         param catalog_i_d: Usage: catalogID='{catalogID}'
@@ -78,7 +80,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogIDRequestBuilder(self.request_adapter, self.path_parameters, catalog_i_d)
     
-    def microsoft_graph_windows_updates_find_by_kb_number_with_kb_number(self,kb_number: Optional[int] = None) -> MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder:
+    def microsoft_graph_windows_updates_find_by_kb_number_with_kb_number(self,kb_number: int) -> MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder:
         """
         Provides operations to call the findByKbNumber method.
         param kb_number: Usage: kbNumber={kbNumber}
@@ -90,7 +92,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder(self.request_adapter, self.path_parameters, kb_number)
     
-    async def post(self,body: Optional[Product] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Product]:
+    async def post(self,body: Product, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Product]:
         """
         Create new navigation property to products for admin
         param body: The request body
@@ -113,7 +115,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Product, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ProductsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         A collection of Windows products.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -124,7 +126,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Product] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Product, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to products for admin
         param body: The request body
@@ -139,7 +141,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> ProductsRequestBuilder:
+    def with_url(self,raw_url: str) -> ProductsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -163,7 +165,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         """
         A collection of Windows products.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -213,5 +215,19 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class ProductsRequestBuilderGetRequestConfiguration(RequestConfiguration[ProductsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class ProductsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

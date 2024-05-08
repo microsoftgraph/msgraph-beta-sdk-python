@@ -56,7 +56,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, BackedModel, Parsable):
     update_type: Optional[ZebraFotaUpdateType] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ZebraFotaDeploymentSettings:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ZebraFotaDeploymentSettings:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

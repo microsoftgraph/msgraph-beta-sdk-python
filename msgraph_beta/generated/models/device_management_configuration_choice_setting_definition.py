@@ -12,15 +12,15 @@ from .device_management_configuration_setting_definition import DeviceManagement
 
 @dataclass
 class DeviceManagementConfigurationChoiceSettingDefinition(DeviceManagementConfigurationSettingDefinition):
-    # Default option for the choice setting.
+    # Default option for choice setting
     default_option_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Options for the setting that can be selected.
+    # Options for the setting that can be selected
     options: Optional[List[DeviceManagementConfigurationOptionDefinition]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationChoiceSettingDefinition:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationChoiceSettingDefinition:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

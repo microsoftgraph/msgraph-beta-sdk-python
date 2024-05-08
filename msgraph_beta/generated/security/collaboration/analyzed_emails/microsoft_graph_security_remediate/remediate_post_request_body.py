@@ -20,8 +20,6 @@ class RemediatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     action: Optional[RemediationAction] = None
     # The analyzedEmails property
     analyzed_emails: Optional[List[AnalyzedEmail]] = None
-    # The approverUpn property
-    approver_upn: Optional[str] = None
     # The description property
     description: Optional[str] = None
     # The displayName property
@@ -32,7 +30,7 @@ class RemediatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     severity: Optional[RemediationSeverity] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RemediatePostRequestBody:
+    def create_from_discriminator_value(parse_node: ParseNode) -> RemediatePostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -58,7 +56,6 @@ class RemediatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(RemediationAction)),
             "analyzedEmails": lambda n : setattr(self, 'analyzed_emails', n.get_collection_of_object_values(AnalyzedEmail)),
-            "approverUpn": lambda n : setattr(self, 'approver_upn', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "remediateSendersCopy": lambda n : setattr(self, 'remediate_senders_copy', n.get_bool_value()),
@@ -76,7 +73,6 @@ class RemediatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("action", self.action)
         writer.write_collection_of_object_values("analyzedEmails", self.analyzed_emails)
-        writer.write_str_value("approverUpn", self.approver_upn)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("remediateSendersCopy", self.remediate_senders_copy)

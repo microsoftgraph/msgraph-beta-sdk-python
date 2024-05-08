@@ -20,7 +20,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstance(DeviceManagem
     choice_setting_collection_value: Optional[List[DeviceManagementConfigurationChoiceSettingValue]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationChoiceSettingCollectionInstance:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationChoiceSettingCollectionInstance:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -38,11 +38,11 @@ class Permission(Entity):
     odata_type: Optional[str] = None
     # The type of permission, for example, read. See the Roles property values section for the full list of roles. Read-only.
     roles: Optional[List[str]] = None
-    # A unique token that can be used to access this shared item via the [shares API][]. Read-only.
+    # A unique token that can be used to access this shared item via the shares API. Read-only.
     share_id: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Permission:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Permission:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

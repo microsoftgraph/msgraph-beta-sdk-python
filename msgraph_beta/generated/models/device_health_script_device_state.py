@@ -45,7 +45,7 @@ class DeviceHealthScriptDeviceState(Entity):
     remediation_state: Optional[RemediationState] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptDeviceState:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceHealthScriptDeviceState:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

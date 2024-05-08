@@ -21,7 +21,7 @@ class Drive(BaseItem):
     odata_type: Optional[str] = "#microsoft.graph.drive"
     # The list of recent activities that took place under this drive.
     activities: Optional[List[ItemActivityOLD]] = None
-    # Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
+    # Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
     bundles: Optional[List[DriveItem]] = None
     # Describes the type of drive represented by this resource. OneDrive personal drives return personal. OneDrive for Business returns business. SharePoint document libraries return documentLibrary. Read-only.
     drive_type: Optional[str] = None
@@ -45,7 +45,7 @@ class Drive(BaseItem):
     system: Optional[SystemFacet] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Drive:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Drive:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

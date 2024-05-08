@@ -25,7 +25,7 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, BackedModel, Parsable
     status: Optional[MembershipRuleProcessingStatusDetails] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MembershipRuleProcessingStatus:
+    def create_from_discriminator_value(parse_node: ParseNode) -> MembershipRuleProcessingStatus:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

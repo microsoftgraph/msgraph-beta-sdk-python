@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -46,12 +47,11 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["unifiedGroupSource%2Did"] = unified_group_source_id
         return UnifiedGroupSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedGroupSourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[UnifiedGroupSourcesRequestBuilderGetQueryParameters]] = None) -> Optional[UnifiedGroupSourceCollectionResponse]:
         """
-        Get a list of the unifiedGroupSource objects and their properties.
+        Data source entity for groups associated with the custodian.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedGroupSourceCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-custodian-list-unifiedgroupsources?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -68,13 +68,12 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UnifiedGroupSourceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UnifiedGroupSource] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UnifiedGroupSource]:
+    async def post(self,body: UnifiedGroupSource, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[UnifiedGroupSource]:
         """
-        Create a new unifiedGroupSource object.
+        Create new navigation property to unifiedGroupSources for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedGroupSource]
-        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-custodian-post-unifiedgroupsources?view=graph-rest-1.0
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -93,9 +92,9 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UnifiedGroupSource, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UnifiedGroupSourcesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the unifiedGroupSource objects and their properties.
+        Data source entity for groups associated with the custodian.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,9 +104,9 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UnifiedGroupSource] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: UnifiedGroupSource, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new unifiedGroupSource object.
+        Create new navigation property to unifiedGroupSources for compliance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +120,7 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> UnifiedGroupSourcesRequestBuilder:
+    def with_url(self,raw_url: str) -> UnifiedGroupSourcesRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -144,9 +143,9 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UnifiedGroupSourcesRequestBuilderGetQueryParameters():
         """
-        Get a list of the unifiedGroupSource objects and their properties.
+        Data source entity for groups associated with the custodian.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -196,5 +195,19 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class UnifiedGroupSourcesRequestBuilderGetRequestConfiguration(RequestConfiguration[UnifiedGroupSourcesRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class UnifiedGroupSourcesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

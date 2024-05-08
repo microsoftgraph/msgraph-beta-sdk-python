@@ -30,7 +30,7 @@ class AwsSecretInformationAccessFinding(Finding):
     secret_information_web_services: Optional[AwsSecretInformationWebServices] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AwsSecretInformationAccessFinding:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AwsSecretInformationAccessFinding:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

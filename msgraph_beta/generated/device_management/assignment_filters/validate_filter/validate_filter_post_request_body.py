@@ -18,7 +18,7 @@ class ValidateFilterPostRequestBody(AdditionalDataHolder, BackedModel, Parsable)
     device_and_app_management_assignment_filter: Optional[DeviceAndAppManagementAssignmentFilter] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ValidateFilterPostRequestBody:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ValidateFilterPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

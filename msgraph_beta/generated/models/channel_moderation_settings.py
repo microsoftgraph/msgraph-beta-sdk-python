@@ -27,7 +27,7 @@ class ChannelModerationSettings(AdditionalDataHolder, BackedModel, Parsable):
     user_new_message_restriction: Optional[UserNewMessageRestriction] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ChannelModerationSettings:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ChannelModerationSettings:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

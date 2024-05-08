@@ -25,7 +25,7 @@ class ReportSuspiciousActivitySettings(AdditionalDataHolder, BackedModel, Parsab
     voice_reporting_code: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ReportSuspiciousActivitySettings:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ReportSuspiciousActivitySettings:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -26,7 +26,7 @@ class DeviceComplianceScriptValidationResult(AdditionalDataHolder, BackedModel, 
     script_errors: Optional[List[DeviceComplianceScriptError]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceComplianceScriptValidationResult:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceComplianceScriptValidationResult:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

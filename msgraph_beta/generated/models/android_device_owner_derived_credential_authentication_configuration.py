@@ -26,7 +26,7 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(DeviceConfi
     silent_certificate_access_details: Optional[List[AndroidDeviceOwnerSilentCertificateAccess]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

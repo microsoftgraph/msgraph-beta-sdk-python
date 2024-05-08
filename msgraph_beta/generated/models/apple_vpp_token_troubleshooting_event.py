@@ -19,7 +19,7 @@ class AppleVppTokenTroubleshootingEvent(DeviceManagementTroubleshootingEvent):
     token_id: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppleVppTokenTroubleshootingEvent:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AppleVppTokenTroubleshootingEvent:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

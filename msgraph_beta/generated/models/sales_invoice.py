@@ -103,7 +103,7 @@ class SalesInvoice(AdditionalDataHolder, BackedModel, Parsable):
     total_tax_amount: Optional[float] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SalesInvoice:
+    def create_from_discriminator_value(parse_node: ParseNode) -> SalesInvoice:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

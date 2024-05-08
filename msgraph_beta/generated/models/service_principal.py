@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .app_role import AppRole
     from .app_role_assignment import AppRoleAssignment
     from .claims_mapping_policy import ClaimsMappingPolicy
+    from .custom_claims_policy import CustomClaimsPolicy
     from .custom_security_attribute_value import CustomSecurityAttributeValue
     from .delegated_permission_classification import DelegatedPermissionClassification
     from .directory_object import DirectoryObject
@@ -65,6 +66,8 @@ class ServicePrincipal(DirectoryObject):
     application_template_id: Optional[str] = None
     # The claimsMappingPolicies assigned to this service principal. Supports $expand.
     claims_mapping_policies: Optional[List[ClaimsMappingPolicy]] = None
+    # The claimsPolicy property
+    claims_policy: Optional[CustomClaimsPolicy] = None
     # Directory objects created by this service principal. Read-only. Nullable.
     created_objects: Optional[List[DirectoryObject]] = None
     # An open complex type that holds the value of a custom security attribute that is assigned to a directory object. Nullable. Returned only on $select. Supports $filter (eq, ne, not, startsWith). Filter value is case sensitive.
@@ -153,7 +156,7 @@ class ServicePrincipal(DirectoryObject):
     verified_publisher: Optional[VerifiedPublisher] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ServicePrincipal:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ServicePrincipal:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -173,6 +176,7 @@ class ServicePrincipal(DirectoryObject):
         from .app_role import AppRole
         from .app_role_assignment import AppRoleAssignment
         from .claims_mapping_policy import ClaimsMappingPolicy
+        from .custom_claims_policy import CustomClaimsPolicy
         from .custom_security_attribute_value import CustomSecurityAttributeValue
         from .delegated_permission_classification import DelegatedPermissionClassification
         from .directory_object import DirectoryObject
@@ -198,6 +202,7 @@ class ServicePrincipal(DirectoryObject):
         from .app_role import AppRole
         from .app_role_assignment import AppRoleAssignment
         from .claims_mapping_policy import ClaimsMappingPolicy
+        from .custom_claims_policy import CustomClaimsPolicy
         from .custom_security_attribute_value import CustomSecurityAttributeValue
         from .delegated_permission_classification import DelegatedPermissionClassification
         from .directory_object import DirectoryObject
@@ -233,6 +238,7 @@ class ServicePrincipal(DirectoryObject):
             "appRoles": lambda n : setattr(self, 'app_roles', n.get_collection_of_object_values(AppRole)),
             "applicationTemplateId": lambda n : setattr(self, 'application_template_id', n.get_str_value()),
             "claimsMappingPolicies": lambda n : setattr(self, 'claims_mapping_policies', n.get_collection_of_object_values(ClaimsMappingPolicy)),
+            "claimsPolicy": lambda n : setattr(self, 'claims_policy', n.get_object_value(CustomClaimsPolicy)),
             "createdObjects": lambda n : setattr(self, 'created_objects', n.get_collection_of_object_values(DirectoryObject)),
             "customSecurityAttributes": lambda n : setattr(self, 'custom_security_attributes', n.get_object_value(CustomSecurityAttributeValue)),
             "delegatedPermissionClassifications": lambda n : setattr(self, 'delegated_permission_classifications', n.get_collection_of_object_values(DelegatedPermissionClassification)),
@@ -304,6 +310,7 @@ class ServicePrincipal(DirectoryObject):
         writer.write_collection_of_object_values("appRoles", self.app_roles)
         writer.write_str_value("applicationTemplateId", self.application_template_id)
         writer.write_collection_of_object_values("claimsMappingPolicies", self.claims_mapping_policies)
+        writer.write_object_value("claimsPolicy", self.claims_policy)
         writer.write_collection_of_object_values("createdObjects", self.created_objects)
         writer.write_object_value("customSecurityAttributes", self.custom_security_attributes)
         writer.write_collection_of_object_values("delegatedPermissionClassifications", self.delegated_permission_classifications)

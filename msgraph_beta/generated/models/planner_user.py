@@ -16,19 +16,19 @@ from .planner_delta import PlannerDelta
 class PlannerUser(PlannerDelta):
     # The all property
     all: Optional[List[PlannerDelta]] = None
-    # A collection that contains the references to the plans that the user has marked as favorites.
+    # A collection that contains the references to the plans that the user marked as favorites.
     favorite_plan_references: Optional[PlannerFavoritePlanReferenceCollection] = None
     # Read-only. Nullable. Returns the plannerPlans that the user marked as favorites.
     favorite_plans: Optional[List[PlannerPlan]] = None
-    # The myDayTasks property
+    # Read-only. Nullable. Returns the plannerTasks to be shown in the My Day view of the user.
     my_day_tasks: Optional[List[PlannerTask]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The plans property
     plans: Optional[List[PlannerPlan]] = None
-    # A collection that contains references to the plans that were viewed recently by the user in apps that support recent plans.
+    # A collection that contains references to the plans that the user recently viewed in apps that support recent plans.
     recent_plan_references: Optional[PlannerRecentPlanReferenceCollection] = None
-    # Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
+    # Read-only. Nullable. Returns the plannerPlans that the user recently viewed in apps that support recent plans.
     recent_plans: Optional[List[PlannerPlan]] = None
     # Read-only. Nullable. Returns the plannerPlans contained by the plannerRosters the user is a member.
     roster_plans: Optional[List[PlannerPlan]] = None
@@ -36,7 +36,7 @@ class PlannerUser(PlannerDelta):
     tasks: Optional[List[PlannerTask]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerUser:
+    def create_from_discriminator_value(parse_node: ParseNode) -> PlannerUser:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

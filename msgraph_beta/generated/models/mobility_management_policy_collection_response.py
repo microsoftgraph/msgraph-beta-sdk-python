@@ -15,7 +15,7 @@ class MobilityManagementPolicyCollectionResponse(BaseCollectionPaginationCountRe
     value: Optional[List[MobilityManagementPolicy]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobilityManagementPolicyCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> MobilityManagementPolicyCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -19,39 +19,39 @@ class HardwareConfiguration(Entity):
     """
     BIOS configuration and other settings provides customers the ability to configure hardware/bios settings on the enrolled Windows 10/11 Entra ID joined devices by uploading a configuration file generated with their OEM tool (e.g. Dell Command tool). A BIOS configuration policy can be assigned to multiple devices, allowing admins to remotely control a device's hardware properties (e.g. enable Secure Boot) from the Intune Portal.
     """
-    # List of the Azure AD user group ids that hardware configuration will be applied to. Only security groups and Office 365 Groups are supported.
+    # A list of the Entra user group ids that hardware configuration will be applied to. Only security groups and Office 365 Groups are supported. Optional.
     assignments: Optional[List[HardwareConfigurationAssignment]] = None
-    # File content of the hardware configuration
+    # The file content contains custom hardware settings that will be applied to the assigned devices' BIOS. Max allowed file size is 5KB. Represented as bytes. Required.
     configuration_file_content: Optional[bytes] = None
-    # Timestamp of when the hardware configuration was created. This property is read-only.
+    # The date and time  of when the BIOS configuration profile was created. The value cannot be modified and is automatically populated when the device is enrolled. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Returned by default. Read-Only. This property is read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # Description of the hardware configuration
+    # The description of the hardware configuration. Use this to provide context, purpose, applications, etc of the BIOS configuration profile for your organization's admins. Max length is 1000 characters. Optional.
     description: Optional[str] = None
-    # List of run states for the hardware configuration across all devices
+    # List of run states for the hardware configuration across all devices. Read-Only.
     device_run_states: Optional[List[HardwareConfigurationDeviceState]] = None
-    # Name of the hardware configuration
+    # The name of the hardware BIOS configuration profile. It serves as user-friendly name to identify hardware BIOS configuration profiles. Max length is 150 characters. Required. Read-Only.
     display_name: Optional[str] = None
-    # File name of the hardware configuration
+    # The file name for the BIOS configuration profile's ConfigurationFileContent. Max length is 150 characters. Required.
     file_name: Optional[str] = None
     # Indicates the supported oems of hardware configuration
     hardware_configuration_format: Optional[HardwareConfigurationFormat] = None
-    # Timestamp of when the hardware configuration was modified. This property is read-only.
+    # The date and time  of when the BIOS configuration profile was last modified. The value cannot be modified and is automatically populated when the device is enrolled. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Returned by default. Read-Only. Read-Only. This property is read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # A value indicating whether per devcive pasword disabled
+    # When TRUE, indicates whether the policy-assigned devices' passwords are disabled. When FALSE, indicates they are enabled. Default is FALSE. Required.
     per_device_password_disabled: Optional[bool] = None
-    # List of Scope Tag IDs for the hardware configuration
+    # A list of unique Scope Tag IDs associated with the hardware configuration. Optional.
     role_scope_tag_ids: Optional[List[str]] = None
-    # A summary of the results from an attempt to configure hardware settings
+    # A summary of the results from an attempt to configure hardware settings. Read-Only.
     run_summary: Optional[HardwareConfigurationRunSummary] = None
-    # List of run states for the hardware configuration across all users
+    # List of run states for the hardware configuration across all users. Read-Only.
     user_run_states: Optional[List[HardwareConfigurationUserState]] = None
-    # Version of the hardware configuration (E.g. 1, 2, 3 ...)
+    # The version of the hardware configuration (E.g. 1, 2, 3 ...). This is incremented after a change to the BIOS configuration profile's settings file name (FileName property), settings file content (ConfigurationFileContent property), or the PerDevicePasswordDisabled property. Read-Only.
     version: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> HardwareConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> HardwareConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

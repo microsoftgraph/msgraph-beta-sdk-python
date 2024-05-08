@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
@@ -44,12 +46,12 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["program%2Did"] = program_id
         return ProgramItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ProgramCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ProgramsRequestBuilderGetQueryParameters]] = None) -> Optional[ProgramCollectionResponse]:
         """
         In the Microsoft Entra access reviews feature, list all the program objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProgramCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/program-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/program-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +67,13 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProgramCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[Program] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Program]:
+    async def post(self,body: Program, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Program]:
         """
         In the Microsoft Entra access reviews feature, create a new program object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Program]
-        Find more info here: https://learn.microsoft.com/graph/api/program-create?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/program-create?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,7 +91,7 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Program, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ProgramsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         In the Microsoft Entra access reviews feature, list all the program objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +102,7 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[Program] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Program, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         In the Microsoft Entra access reviews feature, create a new program object.
         param body: The request body
@@ -115,7 +117,7 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> ProgramsRequestBuilder:
+    def with_url(self,raw_url: str) -> ProgramsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -139,7 +141,7 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
         """
         In the Microsoft Entra access reviews feature, list all the program objects.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -189,5 +191,19 @@ class ProgramsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class ProgramsRequestBuilderGetRequestConfiguration(RequestConfiguration[ProgramsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class ProgramsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

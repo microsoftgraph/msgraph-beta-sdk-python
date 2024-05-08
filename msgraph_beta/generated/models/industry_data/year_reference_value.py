@@ -14,7 +14,7 @@ class YearReferenceValue(ReferenceValue):
     odata_type: Optional[str] = "#microsoft.graph.industryData.yearReferenceValue"
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> YearReferenceValue:
+    def create_from_discriminator_value(parse_node: ParseNode) -> YearReferenceValue:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

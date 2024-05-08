@@ -20,7 +20,7 @@ class ImportDeviceIdentityListPostRequestBody(AdditionalDataHolder, BackedModel,
     overwrite_imported_device_identities: Optional[bool] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ImportDeviceIdentityListPostRequestBody:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ImportDeviceIdentityListPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

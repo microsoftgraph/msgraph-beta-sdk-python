@@ -18,7 +18,7 @@ class TooManyGlobalAdminsAssignedToTenantAlertConfiguration(UnifiedRoleManagemen
     percentage_of_global_admins_out_of_roles_threshold: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TooManyGlobalAdminsAssignedToTenantAlertConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> TooManyGlobalAdminsAssignedToTenantAlertConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -15,19 +15,19 @@ from .device_management_configuration_setting_definition import DeviceManagement
 
 @dataclass
 class DeviceManagementConfigurationSimpleSettingDefinition(DeviceManagementConfigurationSettingDefinition):
-    # Default setting value for this setting
+    # Default setting value for this setting.
     default_value: Optional[DeviceManagementConfigurationSettingValue] = None
-    # list of child settings that depend on this setting
+    # list of child settings that depend on this setting.
     depended_on_by: Optional[List[DeviceManagementConfigurationSettingDependedOnBy]] = None
-    # list of parent settings this setting is dependent on
+    # list of parent settings this setting is dependent on.
     dependent_on: Optional[List[DeviceManagementConfigurationDependentOn]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Definition of the value for this setting
+    # Definition of the value for this setting.
     value_definition: Optional[DeviceManagementConfigurationSettingValueDefinition] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSimpleSettingDefinition:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationSimpleSettingDefinition:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

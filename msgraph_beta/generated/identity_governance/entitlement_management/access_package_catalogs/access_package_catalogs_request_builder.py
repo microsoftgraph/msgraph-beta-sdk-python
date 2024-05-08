@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -47,12 +48,12 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["accessPackageCatalog%2Did"] = access_package_catalog_id
         return AccessPackageCatalogItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageCatalogCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AccessPackageCatalogsRequestBuilderGetQueryParameters]] = None) -> Optional[AccessPackageCatalogCollectionResponse]:
         """
         Retrieve a list of accessPackageCatalog objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageCatalogCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackagecatalogs?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackagecatalogs?view=graph-rest-beta
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -69,13 +70,13 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageCatalogCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AccessPackageCatalog] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AccessPackageCatalog]:
+    async def post(self,body: AccessPackageCatalog, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AccessPackageCatalog]:
         """
         Create a new accessPackageCatalog object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageCatalog]
-        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-post-accesspackagecatalogs?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-post-accesspackagecatalogs?view=graph-rest-beta
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
         if not body:
@@ -94,7 +95,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AccessPackageCatalog, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AccessPackageCatalogsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Retrieve a list of accessPackageCatalog objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -106,7 +107,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AccessPackageCatalog] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: AccessPackageCatalog, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create a new accessPackageCatalog object.
         param body: The request body
@@ -122,7 +123,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> AccessPackageCatalogsRequestBuilder:
+    def with_url(self,raw_url: str) -> AccessPackageCatalogsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -156,7 +157,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
         """
         Retrieve a list of accessPackageCatalog objects.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -206,5 +207,19 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class AccessPackageCatalogsRequestBuilderGetRequestConfiguration(RequestConfiguration[AccessPackageCatalogsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class AccessPackageCatalogsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

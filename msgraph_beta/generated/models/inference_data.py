@@ -19,7 +19,7 @@ class InferenceData(AdditionalDataHolder, BackedModel, Parsable):
     user_has_verified_accuracy: Optional[bool] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InferenceData:
+    def create_from_discriminator_value(parse_node: ParseNode) -> InferenceData:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

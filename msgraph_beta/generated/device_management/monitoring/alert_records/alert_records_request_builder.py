@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.device_management.alert_record import AlertRecord
@@ -46,12 +48,12 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["alertRecord%2Did"] = alert_record_id
         return AlertRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[AlertRecordCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AlertRecordsRequestBuilderGetQueryParameters]] = None) -> Optional[AlertRecordCollectionResponse]:
         """
         Get a list of the alertRecord objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertRecordCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/devicemanagement-alertrecord-list?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/devicemanagement-alertrecord-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,7 +69,7 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AlertRecordCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[AlertRecord] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[AlertRecord]:
+    async def post(self,body: AlertRecord, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AlertRecord]:
         """
         Create new navigation property to alertRecords for deviceManagement
         param body: The request body
@@ -90,7 +92,7 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, AlertRecord, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AlertRecordsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get a list of the alertRecord objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -101,7 +103,7 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[AlertRecord] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: AlertRecord, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to alertRecords for deviceManagement
         param body: The request body
@@ -116,7 +118,7 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> AlertRecordsRequestBuilder:
+    def with_url(self,raw_url: str) -> AlertRecordsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -158,7 +160,7 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
         """
         Get a list of the alertRecord objects and their properties.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -208,5 +210,19 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class AlertRecordsRequestBuilderGetRequestConfiguration(RequestConfiguration[AlertRecordsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class AlertRecordsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

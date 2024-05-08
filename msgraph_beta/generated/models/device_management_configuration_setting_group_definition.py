@@ -13,7 +13,7 @@ from .device_management_configuration_setting_definition import DeviceManagement
 
 @dataclass
 class DeviceManagementConfigurationSettingGroupDefinition(DeviceManagementConfigurationSettingDefinition):
-    # Dependent child settings to this group of settings.
+    # Dependent child settings to this group of settings
     child_ids: Optional[List[str]] = None
     # List of child settings that depend on this setting
     depended_on_by: Optional[List[DeviceManagementConfigurationSettingDependedOnBy]] = None
@@ -23,7 +23,7 @@ class DeviceManagementConfigurationSettingGroupDefinition(DeviceManagementConfig
     odata_type: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingGroupDefinition:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationSettingGroupDefinition:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

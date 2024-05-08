@@ -29,7 +29,7 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, BackedModel, Parsab
     workload_action_deployment_statuses: Optional[List[WorkloadActionDeploymentStatus]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagementActionDeploymentStatus:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ManagementActionDeploymentStatus:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

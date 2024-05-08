@@ -15,7 +15,7 @@ class YearTimePeriodDefinitionCollectionResponse(BaseCollectionPaginationCountRe
     value: Optional[List[YearTimePeriodDefinition]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> YearTimePeriodDefinitionCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> YearTimePeriodDefinitionCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

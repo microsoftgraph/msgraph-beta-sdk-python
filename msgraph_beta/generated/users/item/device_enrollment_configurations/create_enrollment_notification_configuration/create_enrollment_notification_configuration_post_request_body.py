@@ -18,7 +18,7 @@ class CreateEnrollmentNotificationConfigurationPostRequestBody(AdditionalDataHol
     device_enrollment_notification_configurations: Optional[List[DeviceEnrollmentConfiguration]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CreateEnrollmentNotificationConfigurationPostRequestBody:
+    def create_from_discriminator_value(parse_node: ParseNode) -> CreateEnrollmentNotificationConfigurationPostRequestBody:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

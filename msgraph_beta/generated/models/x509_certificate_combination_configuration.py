@@ -18,7 +18,7 @@ class X509CertificateCombinationConfiguration(AuthenticationCombinationConfigura
     allowed_policy_o_i_ds: Optional[List[str]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> X509CertificateCombinationConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> X509CertificateCombinationConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

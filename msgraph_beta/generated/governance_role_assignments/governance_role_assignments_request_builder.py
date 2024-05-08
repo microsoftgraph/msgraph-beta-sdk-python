@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ..models.governance_role_assignment import GovernanceRoleAssignment
@@ -45,7 +47,7 @@ class GovernanceRoleAssignmentsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["governanceRoleAssignment%2Did"] = governance_role_assignment_id
         return GovernanceRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[GovernanceRoleAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[GovernanceRoleAssignmentsRequestBuilderGetQueryParameters]] = None) -> Optional[GovernanceRoleAssignmentCollectionResponse]:
         """
         Get entities from governanceRoleAssignments
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +67,7 @@ class GovernanceRoleAssignmentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GovernanceRoleAssignmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[GovernanceRoleAssignment] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[GovernanceRoleAssignment]:
+    async def post(self,body: GovernanceRoleAssignment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[GovernanceRoleAssignment]:
         """
         Add new entity to governanceRoleAssignments
         param body: The request body
@@ -88,7 +90,7 @@ class GovernanceRoleAssignmentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, GovernanceRoleAssignment, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GovernanceRoleAssignmentsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get entities from governanceRoleAssignments
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +101,7 @@ class GovernanceRoleAssignmentsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[GovernanceRoleAssignment] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: GovernanceRoleAssignment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Add new entity to governanceRoleAssignments
         param body: The request body
@@ -114,7 +116,7 @@ class GovernanceRoleAssignmentsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> GovernanceRoleAssignmentsRequestBuilder:
+    def with_url(self,raw_url: str) -> GovernanceRoleAssignmentsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -147,7 +149,7 @@ class GovernanceRoleAssignmentsRequestBuilder(BaseRequestBuilder):
         """
         Get entities from governanceRoleAssignments
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -197,5 +199,19 @@ class GovernanceRoleAssignmentsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class GovernanceRoleAssignmentsRequestBuilderGetRequestConfiguration(RequestConfiguration[GovernanceRoleAssignmentsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class GovernanceRoleAssignmentsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

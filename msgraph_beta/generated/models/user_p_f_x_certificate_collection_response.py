@@ -15,7 +15,7 @@ class UserPFXCertificateCollectionResponse(BaseCollectionPaginationCountResponse
     value: Optional[List[UserPFXCertificate]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserPFXCertificateCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> UserPFXCertificateCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -116,7 +116,7 @@ class AndroidForWorkGeneralDeviceConfiguration(DeviceConfiguration):
     work_profile_required_password_complexity: Optional[AndroidRequiredPasswordComplexity] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkGeneralDeviceConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AndroidForWorkGeneralDeviceConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

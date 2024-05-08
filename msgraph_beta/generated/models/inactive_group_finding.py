@@ -23,7 +23,7 @@ class InactiveGroupFinding(Finding):
     permissions_creep_index: Optional[PermissionsCreepIndex] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InactiveGroupFinding:
+    def create_from_discriminator_value(parse_node: ParseNode) -> InactiveGroupFinding:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

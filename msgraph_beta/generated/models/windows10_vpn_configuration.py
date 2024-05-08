@@ -78,7 +78,7 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration):
     windows_information_protection_domain: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10VpnConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Windows10VpnConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

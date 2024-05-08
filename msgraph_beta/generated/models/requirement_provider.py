@@ -22,4 +22,6 @@ class RequirementProvider(str, Enum):
     GpsLocationCondition = "gpsLocationCondition",
     RiskBasedPolicy = "riskBasedPolicy",
     UnknownFutureValue = "unknownFutureValue",
+    ScopeBasedAuthRequirementPolicy = "scopeBasedAuthRequirementPolicy",
+    AuthenticationStrengths = "authenticationStrengths",
 

@@ -15,11 +15,11 @@ class WindowsAppXAppAssignmentSettings(MobileAppAssignmentSettings):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsAppXAppAssignmentSettings"
-    # Whether or not to use device execution context for Windows AppX mobile app.
+    # When TRUE, indicates that device execution context will be used for the AppX mobile app. When FALSE, indicates that user context will be used for the AppX mobile app. By default, this property is set to FALSE. Once this property has been set to TRUE it cannot be changed.
     use_device_context: Optional[bool] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsAppXAppAssignmentSettings:
+    def create_from_discriminator_value(parse_node: ParseNode) -> WindowsAppXAppAssignmentSettings:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

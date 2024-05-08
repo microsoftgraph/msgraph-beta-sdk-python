@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.multi_tenant_organization_member import MultiTenantOrganizationMember
@@ -44,12 +46,12 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["multiTenantOrganizationMember%2Did"] = multi_tenant_organization_member_id
         return MultiTenantOrganizationMemberItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationMemberCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[TenantsRequestBuilderGetQueryParameters]] = None) -> Optional[MultiTenantOrganizationMemberCollectionResponse]:
         """
         List the tenants and their properties in the multi-tenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationMemberCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganization-list-tenants?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganization-list-tenants?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +67,13 @@ class TenantsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganizationMemberCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[MultiTenantOrganizationMember] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[MultiTenantOrganizationMember]:
+    async def post(self,body: MultiTenantOrganizationMember, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MultiTenantOrganizationMember]:
         """
         Add a tenant to a multitenant organization. The administrator of an owner tenant has the permissions to add tenants to the multitenant organization. The added tenant is in the pending state until the administrator of the added tenant joins the multitenant organization by submitting a join request. A tenant can be part of only one multitenant organization.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganizationMember]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganization-post-tenants?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganization-post-tenants?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,7 +91,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, MultiTenantOrganizationMember, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TenantsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         List the tenants and their properties in the multi-tenant organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,7 +102,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[MultiTenantOrganizationMember] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: MultiTenantOrganizationMember, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Add a tenant to a multitenant organization. The administrator of an owner tenant has the permissions to add tenants to the multitenant organization. The added tenant is in the pending state until the administrator of the added tenant joins the multitenant organization by submitting a join request. A tenant can be part of only one multitenant organization.
         param body: The request body
@@ -115,7 +117,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> TenantsRequestBuilder:
+    def with_url(self,raw_url: str) -> TenantsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -139,7 +141,7 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         """
         List the tenants and their properties in the multi-tenant organization.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -189,5 +191,19 @@ class TenantsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class TenantsRequestBuilderGetRequestConfiguration(RequestConfiguration[TenantsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class TenantsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

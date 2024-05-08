@@ -15,7 +15,7 @@ class UnsupportedGroupPolicyExtensionCollectionResponse(BaseCollectionPagination
     value: Optional[List[UnsupportedGroupPolicyExtension]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnsupportedGroupPolicyExtensionCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> UnsupportedGroupPolicyExtensionCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -15,7 +15,7 @@ class ManagementTemplateCollectionTenantSummaryCollectionResponse(BaseCollection
     value: Optional[List[ManagementTemplateCollectionTenantSummary]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagementTemplateCollectionTenantSummaryCollectionResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ManagementTemplateCollectionTenantSummaryCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

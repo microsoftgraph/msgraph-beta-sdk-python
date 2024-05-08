@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
@@ -44,12 +46,11 @@ class AccountRequestBuilder(BaseRequestBuilder):
         url_tpl_params["userAccountInformation%2Did"] = user_account_information_id
         return UserAccountInformationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserAccountInformationCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AccountRequestBuilderGetQueryParameters]] = None) -> Optional[UserAccountInformationCollectionResponse]:
         """
-        Retrieves properties related to the user's accounts from the profile.
+        Get account from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserAccountInformationCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-accounts?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +66,12 @@ class AccountRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserAccountInformationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[UserAccountInformation] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[UserAccountInformation]:
+    async def post(self,body: UserAccountInformation, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[UserAccountInformation]:
         """
-        Create a new userAccountInformation object in a user's profile.
+        Create new navigation property to account for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserAccountInformation]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-accounts?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +89,9 @@ class AccountRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, UserAccountInformation, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AccountRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieves properties related to the user's accounts from the profile.
+        Get account from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +100,9 @@ class AccountRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[UserAccountInformation] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: UserAccountInformation, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new userAccountInformation object in a user's profile.
+        Create new navigation property to account for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -115,7 +115,7 @@ class AccountRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> AccountRequestBuilder:
+    def with_url(self,raw_url: str) -> AccountRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -137,9 +137,9 @@ class AccountRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccountRequestBuilderGetQueryParameters():
         """
-        Retrieves properties related to the user's accounts from the profile.
+        Get account from users
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -189,5 +189,19 @@ class AccountRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class AccountRequestBuilderGetRequestConfiguration(RequestConfiguration[AccountRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class AccountRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

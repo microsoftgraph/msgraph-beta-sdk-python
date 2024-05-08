@@ -31,7 +31,7 @@ class ActivityStatistics(Entity):
     time_zone_used: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ActivityStatistics:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ActivityStatistics:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -63,8 +63,8 @@ class AnalyzedEmail(Entity):
     policy: Optional[str] = None
     # The action taken on the email based on the configured policy.
     policy_action: Optional[str] = None
-    # Contains the email addresses of the recipients.
-    recipient_email_addresses: Optional[List[str]] = None
+    # Contains the email address of the recipient.
+    recipient_email_address: Optional[str] = None
     # A field that indicates where and how bounced emails are processed.
     return_path: Optional[str] = None
     # Sender details of the email.
@@ -75,15 +75,15 @@ class AnalyzedEmail(Entity):
     spam_confidence_level: Optional[str] = None
     # Subject of the email.
     subject: Optional[str] = None
-    # Indicates the threat types. The possible values are: unknown, spam, malware, phishing, none, unknownFutureValue.
-    threat_type: Optional[ThreatType] = None
+    # Indicates the threat types. The possible values are: unknown, spam, malware, phish, none, unknownFutureValue.
+    threat_types: Optional[List[ThreatType]] = None
     # A collection of the URLs in the email.
     urls: Optional[List[AnalyzedEmailUrl]] = None
     # The number of URLs in the email.
     urls_count: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AnalyzedEmail:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AnalyzedEmail:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -140,13 +140,13 @@ class AnalyzedEmail(Entity):
             "phishConfidenceLevel": lambda n : setattr(self, 'phish_confidence_level', n.get_str_value()),
             "policy": lambda n : setattr(self, 'policy', n.get_str_value()),
             "policyAction": lambda n : setattr(self, 'policy_action', n.get_str_value()),
-            "recipientEmailAddresses": lambda n : setattr(self, 'recipient_email_addresses', n.get_collection_of_primitive_values(str)),
+            "recipientEmailAddress": lambda n : setattr(self, 'recipient_email_address', n.get_str_value()),
             "returnPath": lambda n : setattr(self, 'return_path', n.get_str_value()),
             "senderDetail": lambda n : setattr(self, 'sender_detail', n.get_object_value(AnalyzedEmailSenderDetail)),
             "sizeInBytes": lambda n : setattr(self, 'size_in_bytes', n.get_int_value()),
             "spamConfidenceLevel": lambda n : setattr(self, 'spam_confidence_level', n.get_str_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
-            "threatType": lambda n : setattr(self, 'threat_type', n.get_enum_value(ThreatType)),
+            "threatTypes": lambda n : setattr(self, 'threat_types', n.get_collection_of_enum_values(ThreatType)),
             "urls": lambda n : setattr(self, 'urls', n.get_collection_of_object_values(AnalyzedEmailUrl)),
             "urlsCount": lambda n : setattr(self, 'urls_count', n.get_int_value()),
         }
@@ -184,13 +184,13 @@ class AnalyzedEmail(Entity):
         writer.write_str_value("phishConfidenceLevel", self.phish_confidence_level)
         writer.write_str_value("policy", self.policy)
         writer.write_str_value("policyAction", self.policy_action)
-        writer.write_collection_of_primitive_values("recipientEmailAddresses", self.recipient_email_addresses)
+        writer.write_str_value("recipientEmailAddress", self.recipient_email_address)
         writer.write_str_value("returnPath", self.return_path)
         writer.write_object_value("senderDetail", self.sender_detail)
         writer.write_int_value("sizeInBytes", self.size_in_bytes)
         writer.write_str_value("spamConfidenceLevel", self.spam_confidence_level)
         writer.write_str_value("subject", self.subject)
-        writer.write_enum_value("threatType", self.threat_type)
+        writer.write_collection_of_enum_values("threatTypes", self.threat_types)
         writer.write_collection_of_object_values("urls", self.urls)
         writer.write_int_value("urlsCount", self.urls_count)
     

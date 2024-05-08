@@ -17,7 +17,7 @@ class OnTokenIssuanceStartCustomExtension(CustomAuthenticationExtension):
     claims_for_token_configuration: Optional[List[OnTokenIssuanceStartReturnClaim]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnTokenIssuanceStartCustomExtension:
+    def create_from_discriminator_value(parse_node: ParseNode) -> OnTokenIssuanceStartCustomExtension:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

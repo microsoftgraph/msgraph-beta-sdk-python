@@ -19,7 +19,7 @@ class DeviceManagementSettingRequiredConstraint(DeviceManagementConstraint):
     not_configured_value: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingRequiredConstraint:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementSettingRequiredConstraint:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

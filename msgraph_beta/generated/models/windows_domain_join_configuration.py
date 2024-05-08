@@ -21,13 +21,13 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration):
     computer_name_static_prefix: Optional[str] = None
     # Dynamically generated characters used as suffix for computer name. Valid values 3 to 14
     computer_name_suffix_random_char_count: Optional[int] = None
-    # Reference to device configurations required for network connectivity. This collection can contain a maximum of 2 elements.
+    # Reference to device configurations required for network connectivity
     network_access_configurations: Optional[List[DeviceConfiguration]] = None
     # Organizational unit (OU) where the computer account will be created. If this parameter is NULL, the well known computer object container will be used as published in the domain.
     organizational_unit: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsDomainJoinConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> WindowsDomainJoinConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

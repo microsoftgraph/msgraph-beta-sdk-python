@@ -19,7 +19,7 @@ class AndroidDeviceOwnerGlobalProxyAutoConfig(AndroidDeviceOwnerGlobalProxy):
     proxy_auto_config_u_r_l: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerGlobalProxyAutoConfig:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AndroidDeviceOwnerGlobalProxyAutoConfig:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

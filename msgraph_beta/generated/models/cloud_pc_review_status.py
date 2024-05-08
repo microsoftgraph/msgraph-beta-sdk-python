@@ -37,7 +37,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
     user_access_level: Optional[CloudPcUserAccessLevel] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcReviewStatus:
+    def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcReviewStatus:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

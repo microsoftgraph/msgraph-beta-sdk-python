@@ -22,7 +22,7 @@ class MacOSSystemExtension(AdditionalDataHolder, BackedModel, Parsable):
     team_identifier: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSSystemExtension:
+    def create_from_discriminator_value(parse_node: ParseNode) -> MacOSSystemExtension:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

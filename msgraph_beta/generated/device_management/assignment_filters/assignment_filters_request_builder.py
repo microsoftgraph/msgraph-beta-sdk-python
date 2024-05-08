@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
@@ -48,7 +50,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         url_tpl_params["deviceAndAppManagementAssignmentFilter%2Did"] = device_and_app_management_assignment_filter_id
         return DeviceAndAppManagementAssignmentFilterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceAndAppManagementAssignmentFilterCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AssignmentFiltersRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceAndAppManagementAssignmentFilterCollectionResponse]:
         """
         The list of assignment filters
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -68,7 +70,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceAndAppManagementAssignmentFilterCollectionResponse, error_mapping)
     
-    def get_platform_supported_properties_with_platform(self,platform: Optional[str] = None) -> GetPlatformSupportedPropertiesWithPlatformRequestBuilder:
+    def get_platform_supported_properties_with_platform(self,platform: str) -> GetPlatformSupportedPropertiesWithPlatformRequestBuilder:
         """
         Provides operations to call the getPlatformSupportedProperties method.
         param platform: Usage: platform='{platform}'
@@ -80,7 +82,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
 
         return GetPlatformSupportedPropertiesWithPlatformRequestBuilder(self.request_adapter, self.path_parameters, platform)
     
-    async def post(self,body: Optional[DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[DeviceAndAppManagementAssignmentFilter]:
+    async def post(self,body: DeviceAndAppManagementAssignmentFilter, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DeviceAndAppManagementAssignmentFilter]:
         """
         Create new navigation property to assignmentFilters for deviceManagement
         param body: The request body
@@ -103,7 +105,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, DeviceAndAppManagementAssignmentFilter, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AssignmentFiltersRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         The list of assignment filters
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -114,7 +116,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: DeviceAndAppManagementAssignmentFilter, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to assignmentFilters for deviceManagement
         param body: The request body
@@ -129,7 +131,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> AssignmentFiltersRequestBuilder:
+    def with_url(self,raw_url: str) -> AssignmentFiltersRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -180,7 +182,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         """
         The list of assignment filters
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -230,5 +232,19 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class AssignmentFiltersRequestBuilderGetRequestConfiguration(RequestConfiguration[AssignmentFiltersRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class AssignmentFiltersRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

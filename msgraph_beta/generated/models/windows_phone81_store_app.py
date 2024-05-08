@@ -19,7 +19,7 @@ class WindowsPhone81StoreApp(MobileApp):
     app_store_url: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsPhone81StoreApp:
+    def create_from_discriminator_value(parse_node: ParseNode) -> WindowsPhone81StoreApp:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

@@ -15,7 +15,7 @@ class RetrieveScopedPermissionsGetResponse(BaseCollectionPaginationCountResponse
     value: Optional[List[CloudPcScopedPermission]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RetrieveScopedPermissionsGetResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> RetrieveScopedPermissionsGetResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

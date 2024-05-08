@@ -19,7 +19,7 @@ class PlannerRuleOverride(AdditionalDataHolder, BackedModel, Parsable):
     rules: Optional[List[str]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerRuleOverride:
+    def create_from_discriminator_value(parse_node: ParseNode) -> PlannerRuleOverride:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

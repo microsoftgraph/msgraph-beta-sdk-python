@@ -100,9 +100,11 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     user_id: Optional[str] = None
     # Represents the user principal name (UPN) associated with a user. Supports $filter (eq) and $orderby.
     user_principal_name: Optional[str] = None
+    # The vendorNames property
+    vendor_names: Optional[List[str]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> NetworkAccessTraffic:
+    def create_from_discriminator_value(parse_node: ParseNode) -> NetworkAccessTraffic:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -175,6 +177,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "transportProtocol": lambda n : setattr(self, 'transport_protocol', n.get_enum_value(NetworkingProtocol)),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "vendorNames": lambda n : setattr(self, 'vendor_names', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -225,6 +228,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("transportProtocol", self.transport_protocol)
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
+        writer.write_collection_of_primitive_values("vendorNames", self.vendor_names)
         writer.write_additional_data_value(self.additional_data)
     
 

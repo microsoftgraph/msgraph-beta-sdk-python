@@ -3,6 +3,7 @@ import datetime
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,6 +11,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.call_records.call_record import CallRecord
@@ -50,12 +52,12 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["callRecord%2Did"] = call_record_id
         return CallRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CallRecordCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[CallRecordsRequestBuilderGetQueryParameters]] = None) -> Optional[CallRecordCollectionResponse]:
         """
         Get the list of callRecord objects and their properties. The results can be optionally filtered using the $filter query parameter on the startDateTime and participant id properties. Note that the listed call records don't include expandable relationships such as sessions and participants_v2. You can expand these relationships using Get callRecord for a specific record.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CallRecordCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/callrecords-cloudcommunications-list-callrecords?view=graph-rest-1.0
+        Find more info here: https://learn.microsoft.com/graph/api/callrecords-cloudcommunications-list-callrecords?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,7 +73,7 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CallRecordCollectionResponse, error_mapping)
     
-    def microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime.datetime] = None, to_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder:
+    def microsoft_graph_call_records_get_direct_routing_calls_with_from_date_time_with_to_date_time(self,from_date_time: datetime.datetime, to_date_time: datetime.datetime) -> MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder:
         """
         Provides operations to call the getDirectRoutingCalls method.
         param from_date_time: Usage: fromDateTime={fromDateTime}
@@ -86,7 +88,7 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
     
-    def microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime.datetime] = None, to_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder:
+    def microsoft_graph_call_records_get_pstn_blocked_users_log_with_from_date_time_with_to_date_time(self,from_date_time: datetime.datetime, to_date_time: datetime.datetime) -> MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder:
         """
         Provides operations to call the getPstnBlockedUsersLog method.
         param from_date_time: Usage: fromDateTime={fromDateTime}
@@ -101,7 +103,7 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphCallRecordsGetPstnBlockedUsersLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
     
-    def microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime.datetime] = None, to_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder:
+    def microsoft_graph_call_records_get_pstn_calls_with_from_date_time_with_to_date_time(self,from_date_time: datetime.datetime, to_date_time: datetime.datetime) -> MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder:
         """
         Provides operations to call the getPstnCalls method.
         param from_date_time: Usage: fromDateTime={fromDateTime}
@@ -116,7 +118,7 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
     
-    def microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime.datetime] = None, to_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder:
+    def microsoft_graph_call_records_get_pstn_online_meeting_dialout_report_with_from_date_time_with_to_date_time(self,from_date_time: datetime.datetime, to_date_time: datetime.datetime) -> MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder:
         """
         Provides operations to call the getPstnOnlineMeetingDialoutReport method.
         param from_date_time: Usage: fromDateTime={fromDateTime}
@@ -131,7 +133,7 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphCallRecordsGetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
     
-    def microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time(self,from_date_time: Optional[datetime.datetime] = None, to_date_time: Optional[datetime.datetime] = None) -> MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder:
+    def microsoft_graph_call_records_get_sms_log_with_from_date_time_with_to_date_time(self,from_date_time: datetime.datetime, to_date_time: datetime.datetime) -> MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder:
         """
         Provides operations to call the getSmsLog method.
         param from_date_time: Usage: fromDateTime={fromDateTime}
@@ -146,7 +148,7 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphCallRecordsGetSmsLogWithFromDateTimeWithToDateTimeRequestBuilder(self.request_adapter, self.path_parameters, from_date_time, to_date_time)
     
-    async def post(self,body: Optional[CallRecord] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CallRecord]:
+    async def post(self,body: CallRecord, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CallRecord]:
         """
         Create new navigation property to callRecords for communications
         param body: The request body
@@ -169,7 +171,7 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CallRecord, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CallRecordsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get the list of callRecord objects and their properties. The results can be optionally filtered using the $filter query parameter on the startDateTime and participant id properties. Note that the listed call records don't include expandable relationships such as sessions and participants_v2. You can expand these relationships using Get callRecord for a specific record.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -180,7 +182,7 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CallRecord] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: CallRecord, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to callRecords for communications
         param body: The request body
@@ -195,7 +197,7 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> CallRecordsRequestBuilder:
+    def with_url(self,raw_url: str) -> CallRecordsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -219,7 +221,7 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
         """
         Get the list of callRecord objects and their properties. The results can be optionally filtered using the $filter query parameter on the startDateTime and participant id properties. Note that the listed call records don't include expandable relationships such as sessions and participants_v2. You can expand these relationships using Get callRecord for a specific record.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -269,5 +271,19 @@ class CallRecordsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class CallRecordsRequestBuilderGetRequestConfiguration(RequestConfiguration[CallRecordsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class CallRecordsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

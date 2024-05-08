@@ -324,7 +324,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
     work_profile_password_sign_in_failure_count_before_factory_reset: Optional[int] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerGeneralDeviceConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> AndroidDeviceOwnerGeneralDeviceConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

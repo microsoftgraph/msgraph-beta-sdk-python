@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.networkaccess.forwarding_policy import ForwardingPolicy
@@ -44,11 +46,12 @@ class ForwardingPoliciesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["forwardingPolicy%2Did"] = forwarding_policy_id
         return ForwardingPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[ForwardingPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ForwardingPoliciesRequestBuilderGetQueryParameters]] = None) -> Optional[ForwardingPolicyCollectionResponse]:
         """
-        Retrieve information about a specific forwarding policy.
+        Retrieve a list of forwarding policies associated with a specific traffic forwarding profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ForwardingPolicyCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-networkaccessroot-list-forwardingpolicies?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -64,7 +67,7 @@ class ForwardingPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ForwardingPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ForwardingPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[ForwardingPolicy]:
+    async def post(self,body: ForwardingPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ForwardingPolicy]:
         """
         Create new navigation property to forwardingPolicies for networkAccess
         param body: The request body
@@ -87,9 +90,9 @@ class ForwardingPoliciesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ForwardingPolicy, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ForwardingPoliciesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve information about a specific forwarding policy.
+        Retrieve a list of forwarding policies associated with a specific traffic forwarding profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,7 +101,7 @@ class ForwardingPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[ForwardingPolicy] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: ForwardingPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to forwardingPolicies for networkAccess
         param body: The request body
@@ -113,7 +116,7 @@ class ForwardingPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> ForwardingPoliciesRequestBuilder:
+    def with_url(self,raw_url: str) -> ForwardingPoliciesRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -135,9 +138,9 @@ class ForwardingPoliciesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ForwardingPoliciesRequestBuilderGetQueryParameters():
         """
-        Retrieve information about a specific forwarding policy.
+        Retrieve a list of forwarding policies associated with a specific traffic forwarding profile.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -187,5 +190,19 @@ class ForwardingPoliciesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class ForwardingPoliciesRequestBuilderGetRequestConfiguration(RequestConfiguration[ForwardingPoliciesRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class ForwardingPoliciesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

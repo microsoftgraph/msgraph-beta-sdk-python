@@ -14,17 +14,17 @@ class ManagedAppLogUpload(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The Mobile Application Management (MAM) Logs Uploading Component.
+    # The Mobile Application Management (MAM) Logs Uploading Component. Such components can be the application itself, the MAM SDK, and other on-device components that are capable of uploading diagnostic logs. Read-only.
     managed_app_component: Optional[str] = None
     # The Mobile Application Management (MAM) Logs Uploading Component. Such components can be the application itself, the MAM SDK, and other on-device components that are capable of uploading diagnostic logs. Read-only.
     managed_app_component_description: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # A provider-specific reference id for the uploaded logs.
+    # A provider-specific reference id for the uploaded logs. Read-only.
     reference_id: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedAppLogUpload:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ManagedAppLogUpload:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

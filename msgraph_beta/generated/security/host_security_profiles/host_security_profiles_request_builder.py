@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.host_security_profile import HostSecurityProfile
@@ -36,6 +38,7 @@ class HostSecurityProfilesRequestBuilder(BaseRequestBuilder):
         param host_security_profile_id: The unique identifier of hostSecurityProfile
         Returns: HostSecurityProfileItemRequestBuilder
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not host_security_profile_id:
             raise TypeError("host_security_profile_id cannot be null.")
         from .item.host_security_profile_item_request_builder import HostSecurityProfileItemRequestBuilder
@@ -44,12 +47,13 @@ class HostSecurityProfilesRequestBuilder(BaseRequestBuilder):
         url_tpl_params["hostSecurityProfile%2Did"] = host_security_profile_id
         return HostSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[HostSecurityProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[HostSecurityProfilesRequestBuilderGetQueryParameters]] = None) -> Optional[HostSecurityProfileCollectionResponse]:
         """
         Get hostSecurityProfiles from security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HostSecurityProfileCollectionResponse]
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -64,13 +68,14 @@ class HostSecurityProfilesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HostSecurityProfileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[HostSecurityProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[HostSecurityProfile]:
+    async def post(self,body: HostSecurityProfile, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[HostSecurityProfile]:
         """
         Create new navigation property to hostSecurityProfiles for security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HostSecurityProfile]
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -87,24 +92,26 @@ class HostSecurityProfilesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, HostSecurityProfile, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[HostSecurityProfilesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get hostSecurityProfiles from security
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[HostSecurityProfile] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: HostSecurityProfile, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to hostSecurityProfiles for security
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -113,12 +120,13 @@ class HostSecurityProfilesRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> HostSecurityProfilesRequestBuilder:
+    def with_url(self,raw_url: str) -> HostSecurityProfilesRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
         Returns: HostSecurityProfilesRequestBuilder
         """
+        warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return HostSecurityProfilesRequestBuilder(self.request_adapter, raw_url)
@@ -137,7 +145,7 @@ class HostSecurityProfilesRequestBuilder(BaseRequestBuilder):
         """
         Get hostSecurityProfiles from security
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -187,5 +195,19 @@ class HostSecurityProfilesRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class HostSecurityProfilesRequestBuilderGetRequestConfiguration(RequestConfiguration[HostSecurityProfilesRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class HostSecurityProfilesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

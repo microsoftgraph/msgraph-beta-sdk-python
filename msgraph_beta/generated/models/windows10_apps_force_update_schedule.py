@@ -28,7 +28,7 @@ class Windows10AppsForceUpdateSchedule(AdditionalDataHolder, BackedModel, Parsab
     start_date_time: Optional[datetime.datetime] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10AppsForceUpdateSchedule:
+    def create_from_discriminator_value(parse_node: ParseNode) -> Windows10AppsForceUpdateSchedule:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

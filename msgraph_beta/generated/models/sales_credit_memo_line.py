@@ -66,7 +66,7 @@ class SalesCreditMemoLine(Entity):
     unit_price: Optional[float] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SalesCreditMemoLine:
+    def create_from_discriminator_value(parse_node: ParseNode) -> SalesCreditMemoLine:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

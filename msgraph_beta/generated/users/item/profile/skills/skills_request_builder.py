@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
@@ -44,12 +46,11 @@ class SkillsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["skillProficiency%2Did"] = skill_proficiency_id
         return SkillProficiencyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[SkillProficiencyCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[SkillsRequestBuilderGetQueryParameters]] = None) -> Optional[SkillProficiencyCollectionResponse]:
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SkillProficiencyCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-list-skills?view=graph-rest-1.0
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -65,13 +66,12 @@ class SkillsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SkillProficiencyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[SkillProficiency] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[SkillProficiency]:
+    async def post(self,body: SkillProficiency, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[SkillProficiency]:
         """
-        Use this API to create a new skillProficiency object in a user's profile.
+        Create new navigation property to skills for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SkillProficiency]
-        Find more info here: https://learn.microsoft.com/graph/api/profile-post-skills?view=graph-rest-1.0
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -89,9 +89,9 @@ class SkillsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SkillProficiency, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SkillsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,9 +100,9 @@ class SkillsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[SkillProficiency] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: SkillProficiency, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Use this API to create a new skillProficiency object in a user's profile.
+        Create new navigation property to skills for users
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -115,7 +115,7 @@ class SkillsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> SkillsRequestBuilder:
+    def with_url(self,raw_url: str) -> SkillsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -137,9 +137,9 @@ class SkillsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SkillsRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of skillProficiency objects in a user's profile.
+        Represents detailed information about skills associated with a user in various services.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -189,5 +189,19 @@ class SkillsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class SkillsRequestBuilderGetRequestConfiguration(RequestConfiguration[SkillsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class SkillsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

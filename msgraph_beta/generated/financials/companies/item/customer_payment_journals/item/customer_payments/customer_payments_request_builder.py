@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -10,6 +11,7 @@ from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from uuid import UUID
+from warnings import warn
 
 if TYPE_CHECKING:
     from .......models.customer_payment import CustomerPayment
@@ -45,7 +47,7 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["customerPayment%2Did"] = customer_payment_id
         return CustomerPaymentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomerPaymentCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[CustomerPaymentsRequestBuilderGetQueryParameters]] = None) -> Optional[CustomerPaymentCollectionResponse]:
         """
         Get customerPayments from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -65,7 +67,7 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomerPaymentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[CustomerPayment] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[CustomerPayment]:
+    async def post(self,body: CustomerPayment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CustomerPayment]:
         """
         Create new navigation property to customerPayments for financials
         param body: The request body
@@ -88,7 +90,7 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CustomerPayment, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CustomerPaymentsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get customerPayments from financials
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -99,7 +101,7 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: Optional[CustomerPayment] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: CustomerPayment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to customerPayments for financials
         param body: The request body
@@ -114,7 +116,7 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> CustomerPaymentsRequestBuilder:
+    def with_url(self,raw_url: str) -> CustomerPaymentsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -138,7 +140,7 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
         """
         Get customerPayments from financials
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -188,5 +190,19 @@ class CustomerPaymentsRequestBuilder(BaseRequestBuilder):
         # Show only the first n items
         top: Optional[int] = None
 
+    
+    @dataclass
+    class CustomerPaymentsRequestBuilderGetRequestConfiguration(RequestConfiguration[CustomerPaymentsRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class CustomerPaymentsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 

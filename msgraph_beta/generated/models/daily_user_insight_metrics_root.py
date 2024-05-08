@@ -4,7 +4,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .active_users_breakdown_metric import ActiveUsersBreakdownMetric
     from .active_users_metric import ActiveUsersMetric
     from .authentications_metric import AuthenticationsMetric
     from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
@@ -21,8 +20,6 @@ from .entity import Entity
 class DailyUserInsightMetricsRoot(Entity):
     # Insights for active users on apps registered in the tenant for a specified period.
     active_users: Optional[List[ActiveUsersMetric]] = None
-    # The activeUsersBreakdown property
-    active_users_breakdown: Optional[List[ActiveUsersBreakdownMetric]] = None
     # Insights for authentications on apps registered in the tenant for a specified period.
     authentications: Optional[List[AuthenticationsMetric]] = None
     # The inactiveUsers property
@@ -41,7 +38,7 @@ class DailyUserInsightMetricsRoot(Entity):
     user_count: Optional[List[UserCountMetric]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DailyUserInsightMetricsRoot:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DailyUserInsightMetricsRoot:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
@@ -56,7 +53,6 @@ class DailyUserInsightMetricsRoot(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .active_users_breakdown_metric import ActiveUsersBreakdownMetric
         from .active_users_metric import ActiveUsersMetric
         from .authentications_metric import AuthenticationsMetric
         from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
@@ -67,7 +63,6 @@ class DailyUserInsightMetricsRoot(Entity):
         from .user_count_metric import UserCountMetric
         from .user_sign_up_metric import UserSignUpMetric
 
-        from .active_users_breakdown_metric import ActiveUsersBreakdownMetric
         from .active_users_metric import ActiveUsersMetric
         from .authentications_metric import AuthenticationsMetric
         from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
@@ -80,7 +75,6 @@ class DailyUserInsightMetricsRoot(Entity):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "activeUsers": lambda n : setattr(self, 'active_users', n.get_collection_of_object_values(ActiveUsersMetric)),
-            "activeUsersBreakdown": lambda n : setattr(self, 'active_users_breakdown', n.get_collection_of_object_values(ActiveUsersBreakdownMetric)),
             "authentications": lambda n : setattr(self, 'authentications', n.get_collection_of_object_values(AuthenticationsMetric)),
             "inactiveUsers": lambda n : setattr(self, 'inactive_users', n.get_collection_of_object_values(DailyInactiveUsersMetric)),
             "inactiveUsersByApplication": lambda n : setattr(self, 'inactive_users_by_application', n.get_collection_of_object_values(DailyInactiveUsersByApplicationMetric)),
@@ -103,7 +97,6 @@ class DailyUserInsightMetricsRoot(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("activeUsers", self.active_users)
-        writer.write_collection_of_object_values("activeUsersBreakdown", self.active_users_breakdown)
         writer.write_collection_of_object_values("authentications", self.authentications)
         writer.write_collection_of_object_values("inactiveUsers", self.inactive_users)
         writer.write_collection_of_object_values("inactiveUsersByApplication", self.inactive_users_by_application)

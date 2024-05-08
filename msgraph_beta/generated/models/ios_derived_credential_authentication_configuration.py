@@ -20,7 +20,7 @@ class IosDerivedCredentialAuthenticationConfiguration(DeviceConfiguration):
     derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosDerivedCredentialAuthenticationConfiguration:
+    def create_from_discriminator_value(parse_node: ParseNode) -> IosDerivedCredentialAuthenticationConfiguration:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object

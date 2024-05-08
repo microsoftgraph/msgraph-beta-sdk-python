@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.method import Method
 from kiota_abstractions.request_adapter import RequestAdapter
@@ -9,6 +10,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
@@ -31,7 +33,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/products/{product%2Did}{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
         Delete navigation property products for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -49,7 +51,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> Optional[Product]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ProductItemRequestBuilderGetQueryParameters]] = None) -> Optional[Product]:
         """
         A collection of Windows products.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -69,7 +71,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Product, error_mapping)
     
-    def microsoft_graph_windows_updates_get_known_issues_by_time_range_with_days_in_past_with_include_all_active(self,days_in_past: Optional[int] = None) -> MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilder:
+    def microsoft_graph_windows_updates_get_known_issues_by_time_range_with_days_in_past_with_include_all_active(self,days_in_past: int) -> MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilder:
         """
         Provides operations to call the getKnownIssuesByTimeRange method.
         param days_in_past: Usage: daysInPast={daysInPast}
@@ -81,7 +83,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
 
         return MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilder(self.request_adapter, self.path_parameters, days_in_past)
     
-    async def patch(self,body: Optional[Product] = None, request_configuration: Optional[RequestConfiguration] = None) -> Optional[Product]:
+    async def patch(self,body: Product, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Product]:
         """
         Update the navigation property products in admin
         param body: The request body
@@ -104,7 +106,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Product, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Delete navigation property products for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -115,7 +117,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ProductItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         A collection of Windows products.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -126,7 +128,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: Optional[Product] = None, request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Product, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update the navigation property products in admin
         param body: The request body
@@ -141,7 +143,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: Optional[str] = None) -> ProductItemRequestBuilder:
+    def with_url(self,raw_url: str) -> ProductItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
@@ -179,11 +181,18 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         return RevisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
+    class ProductItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
     class ProductItemRequestBuilderGetQueryParameters():
         """
         A collection of Windows products.
         """
-        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+        def get_query_parameter(self,original_name: str) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
             param original_name: The original query parameter name in the class.
@@ -203,5 +212,19 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         # Select properties to be returned
         select: Optional[List[str]] = None
 
+    
+    @dataclass
+    class ProductItemRequestBuilderGetRequestConfiguration(RequestConfiguration[ProductItemRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class ProductItemRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
 
