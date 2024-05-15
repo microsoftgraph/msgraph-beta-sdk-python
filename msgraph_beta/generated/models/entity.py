@@ -1274,6 +1274,7 @@ if TYPE_CHECKING:
     from .profile import Profile
     from .profile_card_property import ProfileCardProperty
     from .profile_photo import ProfilePhoto
+    from .profile_source import ProfileSource
     from .program import Program
     from .program_control import ProgramControl
     from .program_control_type import ProgramControlType
@@ -7062,6 +7063,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .profile_photo import ProfilePhoto
 
             return ProfilePhoto()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.profileSource".casefold():
+            from .profile_source import ProfileSource
+
+            return ProfileSource()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.program".casefold():
             from .program import Program
 
@@ -7347,10 +7352,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .secure_score_control_profile import SecureScoreControlProfile
 
             return SecureScoreControlProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security".casefold():
-            from .security.security import Security
-
-            return Security()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.alert".casefold():
             from .alert import Alert
             from .networkaccess.alert import Alert
@@ -10952,6 +10953,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .profile import Profile
         from .profile_card_property import ProfileCardProperty
         from .profile_photo import ProfilePhoto
+        from .profile_source import ProfileSource
         from .program import Program
         from .program_control import ProgramControl
         from .program_control_type import ProgramControlType
@@ -12870,6 +12872,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .profile import Profile
         from .profile_card_property import ProfileCardProperty
         from .profile_photo import ProfilePhoto
+        from .profile_source import ProfileSource
         from .program import Program
         from .program_control import ProgramControl
         from .program_control_type import ProgramControlType

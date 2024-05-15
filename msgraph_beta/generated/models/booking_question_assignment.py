@@ -15,7 +15,7 @@ class BookingQuestionAssignment(AdditionalDataHolder, BackedModel, Parsable):
     is_required: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # If it's mandatory to answer the custom question.
+    # The ID of the custom question.
     question_id: Optional[str] = None
     
     @staticmethod

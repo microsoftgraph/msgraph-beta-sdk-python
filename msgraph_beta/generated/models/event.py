@@ -55,6 +55,8 @@ class Event(OutlookItem):
     has_attachments: Optional[bool] = None
     # When set to true, each attendee only sees themselves in the meeting request and meeting Tracking list. Default is false.
     hide_attendees: Optional[bool] = None
+    # A unique identifier for an event across calendars. This ID is different for each occurrence in a recurring series. Read-only.
+    i_cal_u_id: Optional[str] = None
     # The importance of the event. Possible values are: low, normal, high.
     importance: Optional[Importance] = None
     # The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but doesn't include occurrences that have been canceled from the series. Navigation property. Read-only. Nullable.
@@ -191,6 +193,7 @@ class Event(OutlookItem):
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(Extension)),
             "hasAttachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
             "hideAttendees": lambda n : setattr(self, 'hide_attendees', n.get_bool_value()),
+            "iCalUId": lambda n : setattr(self, 'i_cal_u_id', n.get_str_value()),
             "importance": lambda n : setattr(self, 'importance', n.get_enum_value(Importance)),
             "instances": lambda n : setattr(self, 'instances', n.get_collection_of_object_values(Event)),
             "isAllDay": lambda n : setattr(self, 'is_all_day', n.get_bool_value()),
@@ -250,6 +253,7 @@ class Event(OutlookItem):
         writer.write_collection_of_object_values("extensions", self.extensions)
         writer.write_bool_value("hasAttachments", self.has_attachments)
         writer.write_bool_value("hideAttendees", self.hide_attendees)
+        writer.write_str_value("iCalUId", self.i_cal_u_id)
         writer.write_enum_value("importance", self.importance)
         writer.write_collection_of_object_values("instances", self.instances)
         writer.write_bool_value("isAllDay", self.is_all_day)

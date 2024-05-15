@@ -16,7 +16,6 @@ if TYPE_CHECKING:
     from .......models.device_log_collection_response import DeviceLogCollectionResponse
     from .......models.o_data_errors.o_data_error import ODataError
     from .create_download_url.create_download_url_request_builder import CreateDownloadUrlRequestBuilder
-    from .download_device_logs.download_device_logs_request_builder import DownloadDeviceLogsRequestBuilder
 
 class DeviceLogCollectionResponseItemRequestBuilder(BaseRequestBuilder):
     """
@@ -147,15 +146,6 @@ class DeviceLogCollectionResponseItemRequestBuilder(BaseRequestBuilder):
         from .create_download_url.create_download_url_request_builder import CreateDownloadUrlRequestBuilder
 
         return CreateDownloadUrlRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def download_device_logs(self) -> DownloadDeviceLogsRequestBuilder:
-        """
-        Provides operations to call the downloadDeviceLogs method.
-        """
-        from .download_device_logs.download_device_logs_request_builder import DownloadDeviceLogsRequestBuilder
-
-        return DownloadDeviceLogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceLogCollectionResponseItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

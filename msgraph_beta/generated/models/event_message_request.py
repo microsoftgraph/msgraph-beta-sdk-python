@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from .date_time_time_zone import DateTimeTimeZone
     from .event_message import EventMessage
     from .location import Location
+    from .meeting_request_type import MeetingRequestType
 
 from .event_message import EventMessage
 
@@ -16,6 +17,8 @@ class EventMessageRequest(EventMessage):
     odata_type: Optional[str] = "#microsoft.graph.eventMessageRequest"
     # True if the meeting organizer allows invitees to propose a new time when responding, false otherwise. Optional. Default is true.
     allow_new_time_proposals: Optional[bool] = None
+    # The meetingRequestType property
+    meeting_request_type: Optional[MeetingRequestType] = None
     # If the meeting update changes the meeting end time, this property specifies the previous meeting end time.
     previous_end_date_time: Optional[DateTimeTimeZone] = None
     # If the meeting update changes the meeting location, this property specifies the previous meeting location.
@@ -44,13 +47,16 @@ class EventMessageRequest(EventMessage):
         from .date_time_time_zone import DateTimeTimeZone
         from .event_message import EventMessage
         from .location import Location
+        from .meeting_request_type import MeetingRequestType
 
         from .date_time_time_zone import DateTimeTimeZone
         from .event_message import EventMessage
         from .location import Location
+        from .meeting_request_type import MeetingRequestType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "allowNewTimeProposals": lambda n : setattr(self, 'allow_new_time_proposals', n.get_bool_value()),
+            "meetingRequestType": lambda n : setattr(self, 'meeting_request_type', n.get_enum_value(MeetingRequestType)),
             "previousEndDateTime": lambda n : setattr(self, 'previous_end_date_time', n.get_object_value(DateTimeTimeZone)),
             "previousLocation": lambda n : setattr(self, 'previous_location', n.get_object_value(Location)),
             "previousStartDateTime": lambda n : setattr(self, 'previous_start_date_time', n.get_object_value(DateTimeTimeZone)),
@@ -70,6 +76,7 @@ class EventMessageRequest(EventMessage):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("allowNewTimeProposals", self.allow_new_time_proposals)
+        writer.write_enum_value("meetingRequestType", self.meeting_request_type)
         writer.write_object_value("previousEndDateTime", self.previous_end_date_time)
         writer.write_object_value("previousLocation", self.previous_location)
         writer.write_object_value("previousStartDateTime", self.previous_start_date_time)

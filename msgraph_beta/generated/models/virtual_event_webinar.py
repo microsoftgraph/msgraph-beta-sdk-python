@@ -20,7 +20,7 @@ class VirtualEventWebinar(VirtualEvent):
     audience: Optional[MeetingAudience] = None
     # Identity information of coorganizers of the webinar.
     co_organizers: Optional[List[CommunicationsUserIdentity]] = None
-    # The registrationConfiguration property
+    # Registration configuration of the webinar.
     registration_configuration: Optional[VirtualEventWebinarRegistrationConfiguration] = None
     # Registration records of the webinar.
     registrations: Optional[List[VirtualEventRegistration]] = None

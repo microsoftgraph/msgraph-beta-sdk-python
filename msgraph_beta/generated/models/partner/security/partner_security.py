@@ -13,7 +13,7 @@ from ...entity import Entity
 class PartnerSecurity(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
-    # The securityAlerts property
+    # The security alerts or a vulnerability of a CSP partner's customer that the partner must be made aware of for further action.
     security_alerts: Optional[List[PartnerSecurityAlert]] = None
     
     @staticmethod

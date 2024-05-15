@@ -33,7 +33,7 @@ class UserActivity(Entity):
     expiration_date_time: Optional[datetime.datetime] = None
     # Optional. URL used to launch the activity in a web-based app, if available.
     fallback_url: Optional[str] = None
-    # Optional. NavigationProperty/Containment; navigation property to the activity's historyItems.
+    # Optional. NavigationProperty/Containment; navigation property to the activity's activityHistoryItems.
     history_items: Optional[List[ActivityHistoryItem]] = None
     # Set by the server. DateTime in UTC when the object was modified on the server.
     last_modified_date_time: Optional[datetime.datetime] = None

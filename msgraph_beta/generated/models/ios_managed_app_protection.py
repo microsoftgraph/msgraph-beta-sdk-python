@@ -20,6 +20,8 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.iosManagedAppProtection"
+    # Indicates  if content sync for widgets is allowed for iOS on App Protection Policies
+    allow_widget_content_sync: Optional[bool] = None
     # Semicolon seperated list of device models allowed, as a string, for the managed app to work.
     allowed_ios_device_models: Optional[str] = None
     # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). Possible values are: block, wipe, warn.
@@ -94,6 +96,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
         from .targeted_managed_app_protection import TargetedManagedAppProtection
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "allowWidgetContentSync": lambda n : setattr(self, 'allow_widget_content_sync', n.get_bool_value()),
             "allowedIosDeviceModels": lambda n : setattr(self, 'allowed_ios_device_models', n.get_str_value()),
             "appActionIfAccountIsClockedOut": lambda n : setattr(self, 'app_action_if_account_is_clocked_out', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfIosDeviceModelNotAllowed": lambda n : setattr(self, 'app_action_if_ios_device_model_not_allowed', n.get_enum_value(ManagedAppRemediationAction)),
@@ -129,6 +132,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_bool_value("allowWidgetContentSync", self.allow_widget_content_sync)
         writer.write_str_value("allowedIosDeviceModels", self.allowed_ios_device_models)
         writer.write_enum_value("appActionIfAccountIsClockedOut", self.app_action_if_account_is_clocked_out)
         writer.write_enum_value("appActionIfIosDeviceModelNotAllowed", self.app_action_if_ios_device_model_not_allowed)

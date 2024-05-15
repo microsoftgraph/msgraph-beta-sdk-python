@@ -15,6 +15,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from ......models.virtual_event_registration import VirtualEventRegistration
+    from .cancel.cancel_request_builder import CancelRequestBuilder
 
 class RegistrationsWithEmailRequestBuilder(BaseRequestBuilder):
     """
@@ -140,6 +141,15 @@ class RegistrationsWithEmailRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return RegistrationsWithEmailRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def cancel(self) -> CancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        from .cancel.cancel_request_builder import CancelRequestBuilder
+
+        return CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RegistrationsWithEmailRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

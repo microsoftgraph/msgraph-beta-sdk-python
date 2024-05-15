@@ -31,9 +31,10 @@ class RegistrationConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RegistrationConfigurationRequestBuilderGetQueryParameters]] = None) -> Optional[VirtualEventWebinarRegistrationConfiguration]:
         """
-        Get registrationConfiguration from solutions
+        Read the properties and relationships of a virtualEventWebinarRegistrationConfiguration object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventWebinarRegistrationConfiguration]
+        Find more info here: https://learn.microsoft.com/graph/api/virtualeventwebinarregistrationconfiguration-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -51,7 +52,7 @@ class RegistrationConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RegistrationConfigurationRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get registrationConfiguration from solutions
+        Read the properties and relationships of a virtualEventWebinarRegistrationConfiguration object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,7 +74,7 @@ class RegistrationConfigurationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RegistrationConfigurationRequestBuilderGetQueryParameters():
         """
-        Get registrationConfiguration from solutions
+        Read the properties and relationships of a virtualEventWebinarRegistrationConfiguration object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

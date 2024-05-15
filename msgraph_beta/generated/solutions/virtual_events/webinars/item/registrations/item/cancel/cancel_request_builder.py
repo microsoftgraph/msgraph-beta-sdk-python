@@ -14,26 +14,25 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from ........models.o_data_errors.o_data_error import ODataError
-    from .download_device_logs_post_response import DownloadDeviceLogsPostResponse
 
-class DownloadDeviceLogsRequestBuilder(BaseRequestBuilder):
+class CancelRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to call the downloadDeviceLogs method.
+    Provides operations to call the cancel method.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
-        Instantiates a new DownloadDeviceLogsRequestBuilder and sets the default values.
+        Instantiates a new CancelRequestBuilder and sets the default values.
         param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/logCollectionRequests/{deviceLogCollectionResponse%2Did}/downloadDeviceLogs", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}/registrations/{virtualEventRegistration%2Did}/cancel", path_parameters)
     
-    async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DownloadDeviceLogsPostResponse]:
+    async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action downloadDeviceLogs
+        Invoke action cancel
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[DownloadDeviceLogsPostResponse]
+        Returns: None
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -45,13 +44,11 @@ class DownloadDeviceLogsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .download_device_logs_post_response import DownloadDeviceLogsPostResponse
-
-        return await self.request_adapter.send_async(request_info, DownloadDeviceLogsPostResponse, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action downloadDeviceLogs
+        Invoke action cancel
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -60,18 +57,18 @@ class DownloadDeviceLogsRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def with_url(self,raw_url: str) -> DownloadDeviceLogsRequestBuilder:
+    def with_url(self,raw_url: str) -> CancelRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: DownloadDeviceLogsRequestBuilder
+        Returns: CancelRequestBuilder
         """
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
-        return DownloadDeviceLogsRequestBuilder(self.request_adapter, raw_url)
+        return CancelRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class DownloadDeviceLogsRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class CancelRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
