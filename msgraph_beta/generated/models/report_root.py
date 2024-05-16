@@ -24,6 +24,9 @@ from .entity import Entity
 
 @dataclass
 class ReportRoot(Entity):
+    """
+    The resource that represents an instance of Enrollment Failure Reports.
+    """
     # Represents a collection of sign-in activities of application credentials.
     app_credential_sign_in_activities: Optional[List[AppCredentialSignInActivity]] = None
     # Represents a detailed summary of an application sign-in.

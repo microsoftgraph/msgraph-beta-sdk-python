@@ -11,9 +11,9 @@ class MfaDetail(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Indicates the MFA auth detail for the corresponding Sign-in activity when the MFA Required is 'Yes'.
+    # Indicates the MFA auth detail for the corresponding sign-in activity when the MFA Required is 'Yes'.
     auth_detail: Optional[str] = None
-    # Indicates the MFA Auth methods (SMS, Phone, Authenticator App are some of the value) for the corresponding sign-in activity when the MFA Required field is 'Yes'.
+    # Indicates the MFA Auth methods (SMS, Phone, Authenticator App are some of the values) for the corresponding sign-in activity when the MFA Required field is 'Yes'.
     auth_method: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

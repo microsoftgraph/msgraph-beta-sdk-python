@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .recommendation_priority import RecommendationPriority
     from .recommendation_status import RecommendationStatus
     from .recommendation_type import RecommendationType
+    from .required_licenses import RequiredLicenses
 
 from .entity import Entity
 
@@ -61,6 +62,8 @@ class RecommendationBase(Entity):
     release_type: Optional[str] = None
     # Description of the impact on users of the remediation. Only applies to recommendations with category set to identitySecureScore.
     remediation_impact: Optional[str] = None
+    # The required licenses to view the recommendation. The possible values are: notApplicable, microsoftEntraIdFree, microsoftEntraIdP1, microsoftEntraIdP2, microsoftEntraIdGovernance, microsoftEntraWorkloadId, unknownFutureValue.
+    required_licenses: Optional[RequiredLicenses] = None
     # The status property
     status: Optional[RecommendationStatus] = None
     
@@ -97,6 +100,7 @@ class RecommendationBase(Entity):
         from .recommendation_priority import RecommendationPriority
         from .recommendation_status import RecommendationStatus
         from .recommendation_type import RecommendationType
+        from .required_licenses import RequiredLicenses
 
         from .action_step import ActionStep
         from .entity import Entity
@@ -107,6 +111,7 @@ class RecommendationBase(Entity):
         from .recommendation_priority import RecommendationPriority
         from .recommendation_status import RecommendationStatus
         from .recommendation_type import RecommendationType
+        from .required_licenses import RequiredLicenses
 
         fields: Dict[str, Callable[[Any], None]] = {
             "actionSteps": lambda n : setattr(self, 'action_steps', n.get_collection_of_object_values(ActionStep)),
@@ -129,6 +134,7 @@ class RecommendationBase(Entity):
             "recommendationType": lambda n : setattr(self, 'recommendation_type', n.get_enum_value(RecommendationType)),
             "releaseType": lambda n : setattr(self, 'release_type', n.get_str_value()),
             "remediationImpact": lambda n : setattr(self, 'remediation_impact', n.get_str_value()),
+            "requiredLicenses": lambda n : setattr(self, 'required_licenses', n.get_enum_value(RequiredLicenses)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(RecommendationStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -164,6 +170,7 @@ class RecommendationBase(Entity):
         writer.write_enum_value("recommendationType", self.recommendation_type)
         writer.write_str_value("releaseType", self.release_type)
         writer.write_str_value("remediationImpact", self.remediation_impact)
+        writer.write_enum_value("requiredLicenses", self.required_licenses)
         writer.write_enum_value("status", self.status)
     
 

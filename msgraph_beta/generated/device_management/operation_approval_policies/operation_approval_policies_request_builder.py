@@ -17,8 +17,6 @@ if TYPE_CHECKING:
     from ...models.operation_approval_policy_collection_response import OperationApprovalPolicyCollectionResponse
     from ...models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
-    from .get_approvable_operations.get_approvable_operations_request_builder import GetApprovableOperationsRequestBuilder
-    from .get_operations_requiring_approval.get_operations_requiring_approval_request_builder import GetOperationsRequiringApprovalRequestBuilder
     from .item.operation_approval_policy_item_request_builder import OperationApprovalPolicyItemRequestBuilder
     from .retrieve_approvable_operations.retrieve_approvable_operations_request_builder import RetrieveApprovableOperationsRequestBuilder
     from .retrieve_operations_requiring_approval.retrieve_operations_requiring_approval_request_builder import RetrieveOperationsRequiringApprovalRequestBuilder
@@ -137,24 +135,6 @@ class OperationApprovalPoliciesRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_approvable_operations(self) -> GetApprovableOperationsRequestBuilder:
-        """
-        Provides operations to call the getApprovableOperations method.
-        """
-        from .get_approvable_operations.get_approvable_operations_request_builder import GetApprovableOperationsRequestBuilder
-
-        return GetApprovableOperationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_operations_requiring_approval(self) -> GetOperationsRequiringApprovalRequestBuilder:
-        """
-        Provides operations to call the getOperationsRequiringApproval method.
-        """
-        from .get_operations_requiring_approval.get_operations_requiring_approval_request_builder import GetOperationsRequiringApprovalRequestBuilder
-
-        return GetOperationsRequiringApprovalRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_approvable_operations(self) -> RetrieveApprovableOperationsRequestBuilder:

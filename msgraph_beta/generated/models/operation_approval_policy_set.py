@@ -22,7 +22,7 @@ class OperationApprovalPolicySet(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The set of available platforms for the OperationApprovalPolicy. Allows configuration of a policy to specific platform(s) for approval. If no specific platform is required or applicable, the platform is `notApplicable`.
     policy_platform: Optional[OperationApprovalPolicyPlatform] = None
-    # The set of available policy types that can be configured for approval. There is no default value for this enum, indicating that the policy type must always be chosen.
+    # The set of available policy types that can be configured for approval. The policy type must always be defined in an OperationApprovalRequest.
     policy_type: Optional[OperationApprovalPolicyType] = None
     
     @staticmethod

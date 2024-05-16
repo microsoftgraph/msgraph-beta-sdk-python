@@ -15,6 +15,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
     from .......models.virtual_event_registration import VirtualEventRegistration
+    from .cancel.cancel_request_builder import CancelRequestBuilder
     from .sessions.sessions_request_builder import SessionsRequestBuilder
     from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
 
@@ -151,6 +152,15 @@ class VirtualEventRegistrationItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return VirtualEventRegistrationItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def cancel(self) -> CancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        from .cancel.cancel_request_builder import CancelRequestBuilder
+
+        return CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sessions(self) -> SessionsRequestBuilder:

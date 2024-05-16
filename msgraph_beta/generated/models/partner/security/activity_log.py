@@ -21,9 +21,9 @@ class ActivityLog(AdditionalDataHolder, BackedModel, Parsable):
     status_from: Optional[SecurityAlertStatus] = None
     # The statusTo property
     status_to: Optional[SecurityAlertStatus] = None
-    # The updatedBy property
+    # The UPN of the partner user who did the status update activity. This attribute is set by the system.
     updated_by: Optional[str] = None
-    # The updatedDateTime property
+    # The date and time for the status update activity. This attribute is set by the system. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     updated_date_time: Optional[datetime.datetime] = None
     
     @staticmethod

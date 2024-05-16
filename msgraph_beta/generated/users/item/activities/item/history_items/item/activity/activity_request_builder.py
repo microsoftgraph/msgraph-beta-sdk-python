@@ -31,7 +31,7 @@ class ActivityRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ActivityRequestBuilderGetQueryParameters]] = None) -> Optional[UserActivity]:
         """
-        Get activity from users
+        Optional. NavigationProperty/Containment; navigation property to the associated activity.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserActivity]
         """
@@ -51,7 +51,7 @@ class ActivityRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ActivityRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get activity from users
+        Optional. NavigationProperty/Containment; navigation property to the associated activity.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,7 +73,7 @@ class ActivityRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ActivityRequestBuilderGetQueryParameters():
         """
-        Get activity from users
+        Optional. NavigationProperty/Containment; navigation property to the associated activity.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

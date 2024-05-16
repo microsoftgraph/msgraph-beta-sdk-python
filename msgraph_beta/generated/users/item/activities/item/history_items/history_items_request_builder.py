@@ -48,7 +48,7 @@ class HistoryItemsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[HistoryItemsRequestBuilderGetQueryParameters]] = None) -> Optional[ActivityHistoryItemCollectionResponse]:
         """
-        Optional. NavigationProperty/Containment; navigation property to the activity's historyItems.
+        Optional. NavigationProperty/Containment; navigation property to the activity's activityHistoryItems.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ActivityHistoryItemCollectionResponse]
         """
@@ -91,7 +91,7 @@ class HistoryItemsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[HistoryItemsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Optional. NavigationProperty/Containment; navigation property to the activity's historyItems.
+        Optional. NavigationProperty/Containment; navigation property to the activity's activityHistoryItems.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +137,7 @@ class HistoryItemsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HistoryItemsRequestBuilderGetQueryParameters():
         """
-        Optional. NavigationProperty/Containment; navigation property to the activity's historyItems.
+        Optional. NavigationProperty/Containment; navigation property to the activity's activityHistoryItems.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

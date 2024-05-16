@@ -31,7 +31,7 @@ class OperationApprovalPolicy(Entity):
     policy_platform: Optional[OperationApprovalPolicyPlatform] = None
     # Indicates areas of the Intune UX that could support MAA UX for the current logged in user. This property is required, and is defined by the user in order to correctly show the expected experience.
     policy_set: Optional[OperationApprovalPolicySet] = None
-    # The set of available policy types that can be configured for approval. There is no default value for this enum, indicating that the policy type must always be chosen.
+    # The set of available policy types that can be configured for approval. The policy type must always be defined in an OperationApprovalRequest.
     policy_type: Optional[OperationApprovalPolicyType] = None
     
     @staticmethod

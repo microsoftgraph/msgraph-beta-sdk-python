@@ -27,7 +27,7 @@ from .entity import Entity
 class CloudPC(Entity):
     # The Microsoft Entra device ID of the Cloud PC.
     aad_device_id: Optional[str] = None
-    # The allotment name divides tenant licenses into smaller batches or groups that helps restrict the number of licenses available for use in a specific assignment. When the provisioningType is dedicated, the allotment name is null. Read-only.
+    # The allotment name divides tenant licenses into smaller batches or groups that help restrict the number of licenses available for use in a specific assignment. When the provisioningType is dedicated, the allotment name is null. Read-only.
     allotment_display_name: Optional[str] = None
     # The connectionSettings property
     connection_settings: Optional[CloudPcConnectionSettings] = None
@@ -39,13 +39,13 @@ class CloudPC(Entity):
     disk_encryption_state: Optional[CloudPcDiskEncryptionState] = None
     # The display name of the Cloud PC.
     display_name: Optional[str] = None
-    # The date and time when the grace period ends and reprovisioning or deprovisioning happen. Required only if the status is inGracePeriod. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The date and time when the grace period ends and reprovisioning or deprovisioning happens. Required only if the status is inGracePeriod. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     grace_period_end_date_time: Optional[datetime.datetime] = None
     # Name of the OS image that's on the Cloud PC.
     image_display_name: Optional[str] = None
     # The last login result of the Cloud PC. For example, { 'time': '2014-01-01T00:00:00Z'}.
     last_login_result: Optional[CloudPcLoginResult] = None
-    # The last modified date and time of the Cloud PC. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The last modified date and time of the Cloud PC. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The last remote action result of the enterprise Cloud PCs. The supported remote actions are: Reboot, Rename, Reprovision, Restore, Troubleshoot.
     last_remote_action_result: Optional[CloudPcRemoteActionResult] = None
@@ -67,7 +67,7 @@ class CloudPC(Entity):
     provisioning_policy_id: Optional[str] = None
     # The provisioning policy that is applied during the provisioning of Cloud PCs.
     provisioning_policy_name: Optional[str] = None
-    # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. Default value is dedicated.
+    # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue,sharedByUser, sharedByUser. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup. The default value is dedicated. CAUTION: The shared member is deprecated and will stop returning on April 30, 2027； in the future, use the sharedByUser member.
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The scopeIds property
     scope_ids: Optional[List[str]] = None

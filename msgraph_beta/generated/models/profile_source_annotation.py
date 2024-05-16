@@ -5,35 +5,31 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 @dataclass
-class SecurityProviderStatus(AdditionalDataHolder, BackedModel, Parsable):
+class ProfileSourceAnnotation(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The enabled property
-    enabled: Optional[bool] = None
-    # The endpoint property
-    endpoint: Optional[str] = None
+    # The isDefaultSource property
+    is_default_source: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The provider property
-    provider: Optional[str] = None
-    # The region property
-    region: Optional[str] = None
-    # The vendor property
-    vendor: Optional[str] = None
+    # The properties property
+    properties: Optional[List[str]] = None
+    # The sourceId property
+    source_id: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: ParseNode) -> SecurityProviderStatus:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ProfileSourceAnnotation:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
-        Returns: SecurityProviderStatus
+        Returns: ProfileSourceAnnotation
         """
         if not parse_node:
             raise TypeError("parse_node cannot be null.")
-        return SecurityProviderStatus()
+        return ProfileSourceAnnotation()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -41,12 +37,10 @@ class SecurityProviderStatus(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields: Dict[str, Callable[[Any], None]] = {
-            "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "endpoint": lambda n : setattr(self, 'endpoint', n.get_str_value()),
+            "isDefaultSource": lambda n : setattr(self, 'is_default_source', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "provider": lambda n : setattr(self, 'provider', n.get_str_value()),
-            "region": lambda n : setattr(self, 'region', n.get_str_value()),
-            "vendor": lambda n : setattr(self, 'vendor', n.get_str_value()),
+            "properties": lambda n : setattr(self, 'properties', n.get_collection_of_primitive_values(str)),
+            "sourceId": lambda n : setattr(self, 'source_id', n.get_str_value()),
         }
         return fields
     
@@ -58,12 +52,10 @@ class SecurityProviderStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
-        writer.write_bool_value("enabled", self.enabled)
-        writer.write_str_value("endpoint", self.endpoint)
+        writer.write_bool_value("isDefaultSource", self.is_default_source)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_str_value("provider", self.provider)
-        writer.write_str_value("region", self.region)
-        writer.write_str_value("vendor", self.vendor)
+        writer.write_collection_of_primitive_values("properties", self.properties)
+        writer.write_str_value("sourceId", self.source_id)
         writer.write_additional_data_value(self.additional_data)
     
 

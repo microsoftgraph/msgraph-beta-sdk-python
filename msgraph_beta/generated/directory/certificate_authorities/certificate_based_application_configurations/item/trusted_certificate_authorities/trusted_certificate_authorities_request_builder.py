@@ -48,9 +48,10 @@ class TrustedCertificateAuthoritiesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TrustedCertificateAuthoritiesRequestBuilderGetQueryParameters]] = None) -> Optional[CertificateAuthorityAsEntityCollectionResponse]:
         """
-        Read the properties and relationships of a certificateAuthorityAsEntity object.
+        List the trusted certificate authorities in a certificateBasedApplicationConfiguration object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CertificateAuthorityAsEntityCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/certificatebasedapplicationconfiguration-list-trustedcertificateauthorities?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,10 +69,11 @@ class TrustedCertificateAuthoritiesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CertificateAuthorityAsEntity, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CertificateAuthorityAsEntity]:
         """
-        Create new navigation property to trustedCertificateAuthorities for directory
+        Create a new trusted certificate authority in a certificateBasedApplicationConfiguration object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CertificateAuthorityAsEntity]
+        Find more info here: https://learn.microsoft.com/graph/api/certificatebasedapplicationconfiguration-post-trustedcertificateauthorities?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +93,7 @@ class TrustedCertificateAuthoritiesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TrustedCertificateAuthoritiesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a certificateAuthorityAsEntity object.
+        List the trusted certificate authorities in a certificateBasedApplicationConfiguration object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +104,7 @@ class TrustedCertificateAuthoritiesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CertificateAuthorityAsEntity, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to trustedCertificateAuthorities for directory
+        Create a new trusted certificate authority in a certificateBasedApplicationConfiguration object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +139,7 @@ class TrustedCertificateAuthoritiesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TrustedCertificateAuthoritiesRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a certificateAuthorityAsEntity object.
+        List the trusted certificate authorities in a certificateBasedApplicationConfiguration object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

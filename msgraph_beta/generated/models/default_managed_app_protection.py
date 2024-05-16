@@ -23,6 +23,8 @@ class DefaultManagedAppProtection(ManagedAppProtection):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.defaultManagedAppProtection"
+    # Indicates  if content sync for widgets is allowed for iOS on App Protection Policies
+    allow_widget_content_sync: Optional[bool] = None
     # Semicolon seperated list of device manufacturers allowed, as a string, for the managed app to work. (Android only)
     allowed_android_device_manufacturers: Optional[str] = None
     # List of device models allowed, as a string, for the managed app to work. (Android Only)
@@ -177,6 +179,7 @@ class DefaultManagedAppProtection(ManagedAppProtection):
         from .managed_mobile_app import ManagedMobileApp
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "allowWidgetContentSync": lambda n : setattr(self, 'allow_widget_content_sync', n.get_bool_value()),
             "allowedAndroidDeviceManufacturers": lambda n : setattr(self, 'allowed_android_device_manufacturers', n.get_str_value()),
             "allowedAndroidDeviceModels": lambda n : setattr(self, 'allowed_android_device_models', n.get_collection_of_primitive_values(str)),
             "allowedIosDeviceModels": lambda n : setattr(self, 'allowed_ios_device_models', n.get_str_value()),
@@ -249,6 +252,7 @@ class DefaultManagedAppProtection(ManagedAppProtection):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_bool_value("allowWidgetContentSync", self.allow_widget_content_sync)
         writer.write_str_value("allowedAndroidDeviceManufacturers", self.allowed_android_device_manufacturers)
         writer.write_collection_of_primitive_values("allowedAndroidDeviceModels", self.allowed_android_device_models)
         writer.write_str_value("allowedIosDeviceModels", self.allowed_ios_device_models)

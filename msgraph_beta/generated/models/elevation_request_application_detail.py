@@ -5,7 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 @dataclass
-class ApplicationDetail(AdditionalDataHolder, BackedModel, Parsable):
+class ElevationRequestApplicationDetail(AdditionalDataHolder, BackedModel, Parsable):
     """
     The details of the application which the user has requested to elevate
     """
@@ -30,21 +30,21 @@ class ApplicationDetail(AdditionalDataHolder, BackedModel, Parsable):
     product_name: Optional[str] = None
     # The product version of the application for which elevation request has been made. For example, '2.40.1.0'
     product_version: Optional[str] = None
-    # The list of base64 encoded certificate for each signer, for example, string[encodedleafcert1, encodedleafcert2....]
+    # The list of base64 encoded certificate for each signer, for example, string[encoded_leaf_cert1, encoded_leaf_cert2....]
     publisher_cert: Optional[str] = None
     # The certificate issuer name of the certificate used to sign the application, for example, 'Sectigo Public Code Signing CA R36'
     publisher_name: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: ParseNode) -> ApplicationDetail:
+    def create_from_discriminator_value(parse_node: ParseNode) -> ElevationRequestApplicationDetail:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
-        Returns: ApplicationDetail
+        Returns: ElevationRequestApplicationDetail
         """
         if not parse_node:
             raise TypeError("parse_node cannot be null.")
-        return ApplicationDetail()
+        return ElevationRequestApplicationDetail()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """

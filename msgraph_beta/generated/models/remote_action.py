@@ -76,7 +76,7 @@ class RemoteAction(str, Enum):
     # Indicates remote device action to intiate Mobile Device Management (MDM) attestation if device is capable for it.
     InitiateDeviceAttestation = "initiateDeviceAttestation",
     # Indicates remote device action to override assignments for a Device.
-    ChangeAssignments = "changeAssignments",
+    ChangeAssignment = "changeAssignment",
     # Indicates remote device action to delete a device from Intune portal.
     Delete = "delete",
 

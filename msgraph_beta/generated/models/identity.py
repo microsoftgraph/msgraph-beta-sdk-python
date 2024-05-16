@@ -23,6 +23,8 @@ if TYPE_CHECKING:
     from .security.submission_user_identity import SubmissionUserIdentity
     from .service_principal_identity import ServicePrincipalIdentity
     from .share_point_identity import SharePointIdentity
+    from .source_provisioned_identity import SourceProvisionedIdentity
+    from .target_provisioned_identity import TargetProvisionedIdentity
     from .teamwork_application_identity import TeamworkApplicationIdentity
     from .teamwork_conversation_identity import TeamworkConversationIdentity
     from .teamwork_tag_identity import TeamworkTagIdentity
@@ -129,6 +131,14 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
             from .share_point_identity import SharePointIdentity
 
             return SharePointIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sourceProvisionedIdentity".casefold():
+            from .source_provisioned_identity import SourceProvisionedIdentity
+
+            return SourceProvisionedIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.targetProvisionedIdentity".casefold():
+            from .target_provisioned_identity import TargetProvisionedIdentity
+
+            return TargetProvisionedIdentity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamworkApplicationIdentity".casefold():
             from .teamwork_application_identity import TeamworkApplicationIdentity
 
@@ -175,6 +185,8 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.submission_user_identity import SubmissionUserIdentity
         from .service_principal_identity import ServicePrincipalIdentity
         from .share_point_identity import SharePointIdentity
+        from .source_provisioned_identity import SourceProvisionedIdentity
+        from .target_provisioned_identity import TargetProvisionedIdentity
         from .teamwork_application_identity import TeamworkApplicationIdentity
         from .teamwork_conversation_identity import TeamworkConversationIdentity
         from .teamwork_tag_identity import TeamworkTagIdentity
@@ -199,6 +211,8 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.submission_user_identity import SubmissionUserIdentity
         from .service_principal_identity import ServicePrincipalIdentity
         from .share_point_identity import SharePointIdentity
+        from .source_provisioned_identity import SourceProvisionedIdentity
+        from .target_provisioned_identity import TargetProvisionedIdentity
         from .teamwork_application_identity import TeamworkApplicationIdentity
         from .teamwork_conversation_identity import TeamworkConversationIdentity
         from .teamwork_tag_identity import TeamworkTagIdentity

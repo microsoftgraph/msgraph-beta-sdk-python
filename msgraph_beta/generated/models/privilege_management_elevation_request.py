@@ -5,7 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .application_detail import ApplicationDetail
+    from .elevation_request_application_detail import ElevationRequestApplicationDetail
     from .elevation_request_state import ElevationRequestState
     from .entity import Entity
 
@@ -17,7 +17,7 @@ class PrivilegeManagementElevationRequest(Entity):
     These are elevation approval requests for EPM support arbitrated scenario initiated by IW user that admins can take action on.
     """
     # Details of the application which is being requested to elevate, allowing the admin to understand the identity of the application. It includes file info such as FilePath, FileHash, FilePublisher, and etc. Returned by default. Read-only.
-    application_detail: Optional[ApplicationDetail] = None
+    application_detail: Optional[ElevationRequestApplicationDetail] = None
     # The device name used to initiate the elevation request. For example: 'cotonso-laptop'. Returned by default. Read-only.
     device_name: Optional[str] = None
     # The OdataType property
@@ -63,16 +63,16 @@ class PrivilegeManagementElevationRequest(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .application_detail import ApplicationDetail
+        from .elevation_request_application_detail import ElevationRequestApplicationDetail
         from .elevation_request_state import ElevationRequestState
         from .entity import Entity
 
-        from .application_detail import ApplicationDetail
+        from .elevation_request_application_detail import ElevationRequestApplicationDetail
         from .elevation_request_state import ElevationRequestState
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "applicationDetail": lambda n : setattr(self, 'application_detail', n.get_object_value(ApplicationDetail)),
+            "applicationDetail": lambda n : setattr(self, 'application_detail', n.get_object_value(ElevationRequestApplicationDetail)),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "requestCreatedDateTime": lambda n : setattr(self, 'request_created_date_time', n.get_datetime_value()),
             "requestExpiryDateTime": lambda n : setattr(self, 'request_expiry_date_time', n.get_datetime_value()),

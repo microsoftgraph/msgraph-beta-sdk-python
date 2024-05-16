@@ -13,9 +13,9 @@ class AffectedResource(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resourceId property
+    # The resource path of the resource affected by the security alert.
     resource_id: Optional[str] = None
-    # The resourceType property
+    # The type of resource.
     resource_type: Optional[str] = None
     
     @staticmethod

@@ -18,47 +18,47 @@ from ...entity import Entity
 
 @dataclass
 class PartnerSecurityAlert(Entity):
-    # The activityLogs property
+    # Represents the activity by a partner and includes details of state transitions, who performed them, and when they occurred.
     activity_logs: Optional[List[ActivityLog]] = None
-    # The additionalDetails property
+    # A bag of name-value pairs that contain additional details about an alert.
     additional_details: Optional[AdditionalDataDictionary] = None
-    # The affectedResources property
+    # Contains details of the resources affected by the security alert.
     affected_resources: Optional[List[AffectedResource]] = None
-    # The alertType property
+    # The type of vulnerability that impacts the customer due to this alert.
     alert_type: Optional[str] = None
-    # The catalogOfferId property
+    # The modern offer category ID of the subscription.
     catalog_offer_id: Optional[str] = None
     # The confidenceLevel property
     confidence_level: Optional[SecurityAlertConfidence] = None
-    # The customerTenantId property
+    # The impacted customer tenant associated with the alert.
     customer_tenant_id: Optional[str] = None
-    # The description property
+    # The description for each alert.
     description: Optional[str] = None
-    # The detectedDateTime property
+    # Time when the alert was detected or created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     detected_date_time: Optional[datetime.datetime] = None
-    # The displayName property
+    # The display name of the alert.
     display_name: Optional[str] = None
-    # The firstObservedDateTime property
+    # Time of the first activity associated with the alert. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  subscription.
     first_observed_date_time: Optional[datetime.datetime] = None
-    # The isTest property
+    # Indicates whehter an alert is a test alert.
     is_test: Optional[bool] = None
-    # The lastObservedDateTime property
+    # Time of the latest activity associated with the alert. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_observed_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resolvedBy property
+    # The UPN of the partner user who resolved the alert.
     resolved_by: Optional[str] = None
-    # The resolvedOnDateTime property
+    # Time when the alert was resolved. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     resolved_on_date_time: Optional[datetime.datetime] = None
-    # The resolvedReason property
+    # The reason provided by the partner for addressing the alert. The possible values are: legitimate, ignore, fraud, unknownFutureValue.
     resolved_reason: Optional[SecurityAlertResolvedReason] = None
     # The severity property
     severity: Optional[SecurityAlertSeverity] = None
     # The status property
     status: Optional[SecurityAlertStatus] = None
-    # The subscriptionId property
+    # The subscription associated with the alert for the customer.
     subscription_id: Optional[str] = None
-    # The valueAddedResellerTenantId property
+    # The value-added reseller tenant associated with the partner tenant and customer tenant.
     value_added_reseller_tenant_id: Optional[str] = None
     
     @staticmethod

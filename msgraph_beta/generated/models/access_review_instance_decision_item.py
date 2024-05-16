@@ -22,15 +22,15 @@ class AccessReviewInstanceDecisionItem(Entity):
     access_review_id: Optional[str] = None
     # The identifier of the user who applied the decision. 00000000-0000-0000-0000-000000000000 if the assigned reviewer hasn't applied the decision or it was automatically applied. Read-only.
     applied_by: Optional[UserIdentity] = None
-    # The timestamp when the approval decision was applied. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $select. Read-only.
+    # The timestamp when the approval decision was applied. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $select. Read-only.
     applied_date_time: Optional[datetime.datetime] = None
-    # The result of applying the decision. Possible values: New, AppliedSuccessfully, AppliedWithUnknownFailure, AppliedSuccessfullyButObjectNotFound and ApplyNotSupported. Supports $select, $orderby, and $filter (eq only). Read-only.
+    # The result of applying the decision. Possible values: New, AppliedSuccessfully, AppliedWithUnknownFailure, AppliedSuccessfullyButObjectNotFound, and ApplyNotSupported. Supports $select, $orderby, and $filter (eq only). Read-only.
     apply_result: Optional[str] = None
     # Result of the review. Possible values: Approve, Deny, NotReviewed, or DontKnow. Supports $select, $orderby, and $filter (eq only).
     decision: Optional[str] = None
     # Insights are recommendations to reviewers on whether to approve or deny a decision. There can be multiple insights associated with an accessReviewInstanceDecisionItem.
     insights: Optional[List[GovernanceInsight]] = None
-    # There is exactly one accessReviewInstance associated with each decision. The instance is the parent of the decision item, representing the recurrence of the access review the decision is made on.
+    # There's exactly one accessReviewInstance associated with each decision. The instance is the parent of the decision item, representing the recurrence of the access review the decision is made on.
     instance: Optional[AccessReviewInstance] = None
     # Justification left by the reviewer when they made the decision.
     justification: Optional[str] = None
@@ -42,7 +42,7 @@ class AccessReviewInstanceDecisionItem(Entity):
     principal_link: Optional[str] = None
     # Every decision item in an access review represents a principal's membership to a resource. This property provides the details of the membership. For example, whether the principal has direct access or indirect access to the resource. Supports $select. Read-only.
     principal_resource_membership: Optional[DecisionItemPrincipalResourceMembership] = None
-    # A system-generated recommendation for the approval decision based off last interactive sign-in to tenant. Recommend approve if sign-in is within thirty days of start of review. Recommend deny if sign-in is greater than thirty days of start of review. Recommendation not available otherwise. Possible values: Approve, Deny, or NoInfoAvailable. Supports $select, $orderby, and $filter (eq only). Read-only.
+    # A system-generated recommendation for the approval decision based off last interactive sign-in to tenant. Recommend approve if sign-in is within 30 days of start of review. Recommend deny if sign-in is greater than 30 days of start of review. Recommendation not available otherwise. Possible values: Approve, Deny, or NoInfoAvailable. Supports $select, $orderby, and $filter (eq only). Read-only.
     recommendation: Optional[str] = None
     # Every decision item in an access review represents a principal's access to a resource. This property represents details of the resource. For example, if a decision item represents access of User 'Bob' to Group 'Sales' - The principal is Bob and the resource is 'Sales'. Resources can be of multiple types. See accessReviewInstanceDecisionItemResource. Read-only.
     resource: Optional[AccessReviewInstanceDecisionItemResource] = None
@@ -52,7 +52,7 @@ class AccessReviewInstanceDecisionItem(Entity):
     reviewed_by: Optional[UserIdentity] = None
     # The timestamp when the review decision occurred. Supports $select. Read-only.
     reviewed_date_time: Optional[datetime.datetime] = None
-    # The target of this specific decision. Decision targets can be of different types – each one with its own specific properties. See accessReviewInstanceDecisionItemTarget. Read-only.  This property has been replaced by the principal and resource properties in v1.0.
+    # The target of this specific decision. Decision targets can be of different types – each one with its own specific properties. See accessReviewInstanceDecisionItemTarget. Read-only.  This property is replaced by the principal and resource properties in v1.0.
     target: Optional[AccessReviewInstanceDecisionItemTarget] = None
     
     @staticmethod

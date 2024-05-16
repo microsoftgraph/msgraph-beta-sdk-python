@@ -4,6 +4,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .managed_app_log_upload_state import ManagedAppLogUploadState
+
 @dataclass
 class ManagedAppLogUpload(AdditionalDataHolder, BackedModel, Parsable):
     """
@@ -22,6 +25,8 @@ class ManagedAppLogUpload(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # A provider-specific reference id for the uploaded logs. Read-only.
     reference_id: Optional[str] = None
+    # Represents the current status of the associated `managedAppLogCollectionRequest`.
+    status: Optional[ManagedAppLogUploadState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ManagedAppLogUpload:
@@ -39,11 +44,16 @@ class ManagedAppLogUpload(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .managed_app_log_upload_state import ManagedAppLogUploadState
+
+        from .managed_app_log_upload_state import ManagedAppLogUploadState
+
         fields: Dict[str, Callable[[Any], None]] = {
             "managedAppComponent": lambda n : setattr(self, 'managed_app_component', n.get_str_value()),
             "managedAppComponentDescription": lambda n : setattr(self, 'managed_app_component_description', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "referenceId": lambda n : setattr(self, 'reference_id', n.get_str_value()),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(ManagedAppLogUploadState)),
         }
         return fields
     
@@ -59,6 +69,7 @@ class ManagedAppLogUpload(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("managedAppComponentDescription", self.managed_app_component_description)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("referenceId", self.reference_id)
+        writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)
     
 

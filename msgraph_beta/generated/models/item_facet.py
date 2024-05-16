@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     from .person_name import PersonName
     from .person_responsibility import PersonResponsibility
     from .person_website import PersonWebsite
+    from .profile_source_annotation import ProfileSourceAnnotation
     from .project_participation import ProjectParticipation
     from .skill_proficiency import SkillProficiency
     from .user_account_information import UserAccountInformation
@@ -53,6 +54,8 @@ class ItemFacet(Entity):
     odata_type: Optional[str] = None
     # Where the values within an entity originated if synced from another service.
     source: Optional[PersonDataSources] = None
+    # The sources property
+    sources: Optional[List[ProfileSourceAnnotation]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ItemFacet:
@@ -174,6 +177,7 @@ class ItemFacet(Entity):
         from .person_name import PersonName
         from .person_responsibility import PersonResponsibility
         from .person_website import PersonWebsite
+        from .profile_source_annotation import ProfileSourceAnnotation
         from .project_participation import ProjectParticipation
         from .skill_proficiency import SkillProficiency
         from .user_account_information import UserAccountInformation
@@ -200,6 +204,7 @@ class ItemFacet(Entity):
         from .person_name import PersonName
         from .person_responsibility import PersonResponsibility
         from .person_website import PersonWebsite
+        from .profile_source_annotation import ProfileSourceAnnotation
         from .project_participation import ProjectParticipation
         from .skill_proficiency import SkillProficiency
         from .user_account_information import UserAccountInformation
@@ -215,6 +220,7 @@ class ItemFacet(Entity):
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "source": lambda n : setattr(self, 'source', n.get_object_value(PersonDataSources)),
+            "sources": lambda n : setattr(self, 'sources', n.get_collection_of_object_values(ProfileSourceAnnotation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -237,5 +243,6 @@ class ItemFacet(Entity):
         writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_object_value("source", self.source)
+        writer.write_collection_of_object_values("sources", self.sources)
     
 

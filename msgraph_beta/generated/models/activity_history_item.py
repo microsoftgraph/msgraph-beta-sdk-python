@@ -13,25 +13,25 @@ from .entity import Entity
 
 @dataclass
 class ActivityHistoryItem(Entity):
-    # The activeDurationSeconds property
+    # Optional. The duration of active user engagement. if not supplied, this is calculated from the startedDateTime and lastActiveDateTime.
     active_duration_seconds: Optional[int] = None
     # The activity property
     activity: Optional[UserActivity] = None
-    # The createdDateTime property
+    # Set by the server. DateTime in UTC when the object was created on the server.
     created_date_time: Optional[datetime.datetime] = None
-    # The expirationDateTime property
+    # Optional. UTC DateTime when the activityHistoryItem will undergo hard-delete. Can be set by the client.
     expiration_date_time: Optional[datetime.datetime] = None
-    # The lastActiveDateTime property
+    # Optional. UTC DateTime when the activityHistoryItem (activity session) was last understood as active or finished - if null, activityHistoryItem status should be Ongoing.
     last_active_date_time: Optional[datetime.datetime] = None
-    # The lastModifiedDateTime property
+    # Set by the server. DateTime in UTC when the object was modified on the server.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The startedDateTime property
+    # Required. UTC DateTime when the activityHistoryItem (activity session) was started. Required for timeline history.
     started_date_time: Optional[datetime.datetime] = None
-    # The status property
+    # Set by the server. A status code used to identify valid objects. Values: active, updated, deleted, ignored.
     status: Optional[Status] = None
-    # The userTimezone property
+    # Optional. The timezone in which the user's device used to generate the activity was located at activity creation time. Values supplied as Olson IDs in order to support cross-platform representation.
     user_timezone: Optional[str] = None
     
     @staticmethod
