@@ -31,9 +31,10 @@ class InvitedByRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[InvitedByRequestBuilderGetQueryParameters]] = None) -> Optional[DirectoryObject]:
         """
-        Get invitedBy from users
+        Get the user or servicePrincipal that invited the specified user into the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObject]
+        Find more info here: https://learn.microsoft.com/graph/api/user-list-invitedby?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -51,7 +52,7 @@ class InvitedByRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[InvitedByRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get invitedBy from users
+        Get the user or servicePrincipal that invited the specified user into the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,7 +74,7 @@ class InvitedByRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InvitedByRequestBuilderGetQueryParameters():
         """
-        Get invitedBy from users
+        Get the user or servicePrincipal that invited the specified user into the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

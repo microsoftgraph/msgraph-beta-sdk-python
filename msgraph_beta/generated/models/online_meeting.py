@@ -20,15 +20,15 @@ from .online_meeting_base import OnlineMeetingBase
 class OnlineMeeting(OnlineMeetingBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onlineMeeting"
-    # The alternativeRecording property
+    # The content stream of the alternative recording of a Microsoft Teams live event. Read-only.
     alternative_recording: Optional[bytes] = None
-    # The attendeeReport property
+    # The content stream of the attendee report of a Teams live event. Read-only.
     attendee_report: Optional[bytes] = None
     # The broadcastRecording property
     broadcast_recording: Optional[bytes] = None
-    # The broadcastSettings property
+    # Settings related to a live event.
     broadcast_settings: Optional[BroadcastMeetingSettings] = None
-    # The capabilities property
+    # The list of meeting capabilities. Possible values are: questionAndAnswer,unknownFutureValue.
     capabilities: Optional[List[MeetingCapabilities]] = None
     # The meeting creation time in UTC. Read-only.
     creation_date_time: Optional[datetime.datetime] = None
@@ -36,17 +36,17 @@ class OnlineMeeting(OnlineMeetingBase):
     end_date_time: Optional[datetime.datetime] = None
     # The external ID. A custom ID. Optional.
     external_id: Optional[str] = None
-    # The isBroadcast property
+    # Indicates whether this event is a Teams live event.
     is_broadcast: Optional[bool] = None
     # The joinUrl property
     join_url: Optional[str] = None
-    # The meetingAttendanceReport property
+    # The attendance report of the latest online meeting session. Read-only.
     meeting_attendance_report: Optional[MeetingAttendanceReport] = None
     # The ID of the meeting template.
     meeting_template_id: Optional[str] = None
     # The participants associated with the online meeting, including the organizer and the attendees.
     participants: Optional[MeetingParticipants] = None
-    # The recording property
+    # The content stream of the recording of a Teams live event. Read-only.
     recording: Optional[bytes] = None
     # The recordings of an online meeting. Read-only.
     recordings: Optional[List[CallRecording]] = None

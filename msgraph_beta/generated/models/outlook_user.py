@@ -18,11 +18,11 @@ class OutlookUser(Entity):
     master_categories: Optional[List[OutlookCategory]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The taskFolders property
+    # The user's Outlook task folders. Read-only. Nullable.
     task_folders: Optional[List[OutlookTaskFolder]] = None
-    # The taskGroups property
+    # The user's Outlook task groups. Read-only. Nullable.
     task_groups: Optional[List[OutlookTaskGroup]] = None
-    # The tasks property
+    # The user's Outlook tasks. Read-only. Nullable.
     tasks: Optional[List[OutlookTask]] = None
     
     @staticmethod

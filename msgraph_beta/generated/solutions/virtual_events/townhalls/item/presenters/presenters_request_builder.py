@@ -48,7 +48,7 @@ class PresentersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PresentersRequestBuilderGetQueryParameters]] = None) -> Optional[VirtualEventPresenterCollectionResponse]:
         """
-        Get the list of all virtualEventPresenter objects associated with a virtual event. Currently the supported virtual event type is virtualEventTownhall.
+        Get the list of all virtualEventPresenter objects associated with a virtual event. Currently the supported virtual event types are: virtualEventTownhall, virtualEventWebinar.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventPresenterCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/virtualevent-list-presenters?view=graph-rest-beta
@@ -69,7 +69,7 @@ class PresentersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: VirtualEventPresenter, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[VirtualEventPresenter]:
         """
-        Create a new virtualEventPresenter object on a virtual event.  Currently the supported virtual event type is virtualEventTownhall.
+        Create a new virtualEventPresenter object on a virtual event. Currently the supported virtual event types are: virtualEventTownhall, virtualEventWebinar.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventPresenter]
@@ -93,7 +93,7 @@ class PresentersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PresentersRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get the list of all virtualEventPresenter objects associated with a virtual event. Currently the supported virtual event type is virtualEventTownhall.
+        Get the list of all virtualEventPresenter objects associated with a virtual event. Currently the supported virtual event types are: virtualEventTownhall, virtualEventWebinar.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +104,7 @@ class PresentersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: VirtualEventPresenter, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new virtualEventPresenter object on a virtual event.  Currently the supported virtual event type is virtualEventTownhall.
+        Create a new virtualEventPresenter object on a virtual event. Currently the supported virtual event types are: virtualEventTownhall, virtualEventWebinar.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class PresentersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PresentersRequestBuilderGetQueryParameters():
         """
-        Get the list of all virtualEventPresenter objects associated with a virtual event. Currently the supported virtual event type is virtualEventTownhall.
+        Get the list of all virtualEventPresenter objects associated with a virtual event. Currently the supported virtual event types are: virtualEventTownhall, virtualEventWebinar.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

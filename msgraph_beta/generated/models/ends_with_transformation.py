@@ -15,7 +15,7 @@ class EndsWithTransformation(CustomClaimTransformation):
     odata_type: Optional[str] = "#microsoft.graph.endsWithTransformation"
     # The output property
     output: Optional[TransformationAttribute] = None
-    # The value property
+    # The value to be used as part of the transformation.
     value: Optional[str] = None
     
     @staticmethod

@@ -49,9 +49,10 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ClaimsPolicyRequestBuilderGetQueryParameters]] = None) -> Optional[CustomClaimsPolicy]:
         """
-        Get claimsPolicy from servicePrincipals
+        Get the properties and relationships of a customClaimsPolicy object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomClaimsPolicy]
+        Find more info here: https://learn.microsoft.com/graph/api/customclaimspolicy-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: CustomClaimsPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CustomClaimsPolicy]:
         """
-        Update the navigation property claimsPolicy in servicePrincipals
+        Create a new customClaimsPolicy object if it doesn't exist, or replace an existing one.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomClaimsPolicy]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-put-customclaimspolicy?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -103,7 +105,7 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ClaimsPolicyRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get claimsPolicy from servicePrincipals
+        Get the properties and relationships of a customClaimsPolicy object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +116,7 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: CustomClaimsPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property claimsPolicy in servicePrincipals
+        Create a new customClaimsPolicy object if it doesn't exist, or replace an existing one.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -147,7 +149,7 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ClaimsPolicyRequestBuilderGetQueryParameters():
         """
-        Get claimsPolicy from servicePrincipals
+        Get the properties and relationships of a customClaimsPolicy object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

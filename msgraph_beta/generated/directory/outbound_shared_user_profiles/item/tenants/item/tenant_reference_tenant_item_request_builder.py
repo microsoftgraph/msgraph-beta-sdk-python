@@ -50,7 +50,7 @@ class TenantReferenceTenantItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TenantReferenceTenantItemRequestBuilderGetQueryParameters]] = None) -> Optional[TenantReference]:
         """
-        The collection of external Microsoft Entra tenants that the user has shared profile data with. Read-only.
+        The collection of external Microsoft Entra tenants that the user shared profile data with. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantReference]
         """
@@ -104,7 +104,7 @@ class TenantReferenceTenantItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TenantReferenceTenantItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The collection of external Microsoft Entra tenants that the user has shared profile data with. Read-only.
+        The collection of external Microsoft Entra tenants that the user shared profile data with. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +157,7 @@ class TenantReferenceTenantItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantReferenceTenantItemRequestBuilderGetQueryParameters():
         """
-        The collection of external Microsoft Entra tenants that the user has shared profile data with. Read-only.
+        The collection of external Microsoft Entra tenants that the user shared profile data with. Read-only.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

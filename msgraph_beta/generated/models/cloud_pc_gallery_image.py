@@ -20,23 +20,23 @@ class CloudPcGalleryImage(Entity):
     expiration_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The offer property
+    # The offer name of this gallery image that is passed to ARM to retrieve the image resource. Read-only. The offer property is deprecated and will stop returning data on January 31, 2024. Going forward, use the offerName property.
     offer: Optional[str] = None
-    # The offerDisplayName property
+    # The official display offer name of this gallery image. For example, Windows 10 Enterprise + OS Optimizations. The offerDisplayName property is deprecated and will stop returning data on January 31, 2024.
     offer_display_name: Optional[str] = None
     # The offer name of this gallery image that is passed to ARM to retrieve the image resource. Read-only.
     offer_name: Optional[str] = None
-    # The publisher property
+    # The publisher name of this gallery image that is passed to ARM to retrieve the image resource. Read-only. The publisher property is deprecated and will stop returning data on January 31, 2024. Going forward, use the publisherName property.
     publisher: Optional[str] = None
     # The publisher name of this gallery image that is passed to ARM to retrieve the image resource. Read-only.
     publisher_name: Optional[str] = None
-    # The recommendedSku property
+    # The recommended Cloud PC SKU for this gallery image. Read-only. The recommendedSku property is deprecated and will stop returning data on January 31, 2024.
     recommended_sku: Optional[str] = None
     # Indicates the size of this image in gigabytes. For example, 64. Read-only.
     size_in_g_b: Optional[int] = None
-    # The sku property
+    # The SKU name of this image that is passed to ARM to retrieve the image resource. Read-only. The sku property is deprecated and will stop returning data on January 31, 2024. Going forward, use the skuName property.
     sku: Optional[str] = None
-    # The skuDisplayName property
+    # The official display SKU name of this gallery image. For example, 2004. Read-only. The skuDisplayName property is deprecated and will stop returning data on January 31, 2024.
     sku_display_name: Optional[str] = None
     # The SKU name of this image that is passed to ARM to retrieve the image resource. Read-only.
     sku_name: Optional[str] = None

@@ -19,7 +19,7 @@ class RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident(UnifiedRoleM
     assignee_id: Optional[str] = None
     # User principal name of the subject that the incident applies to. Applies to user principals.
     assignee_user_principal_name: Optional[str] = None
-    # The assignmentCreatedDateTime property
+    # Date and time of assignment creation.
     assignment_created_date_time: Optional[datetime.datetime] = None
     # The identifier for the directory role definition that's in scope of this incident.
     role_definition_id: Optional[str] = None

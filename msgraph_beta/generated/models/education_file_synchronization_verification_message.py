@@ -13,7 +13,7 @@ class EducationFileSynchronizationVerificationMessage(AdditionalDataHolder, Back
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Detailed information about the message type.
     description: Optional[str] = None
-    # The fileName property
+    # Source file that contains the error.
     file_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

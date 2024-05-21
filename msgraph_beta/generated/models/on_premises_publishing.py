@@ -54,7 +54,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     is_translate_links_in_body_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The onPremisesApplicationSegments property
+    # Represents the application segment collection for an on-premises wildcard application. This property is deprecated and will stop returning data on June 1, 2023. Use segmentsConfiguration instead.
     on_premises_application_segments: Optional[List[OnPremisesApplicationSegment]] = None
     # Represents the collection of application segments for an on-premises wildcard application that's published through Microsoft Entra application proxy.
     segments_configuration: Optional[SegmentConfiguration] = None

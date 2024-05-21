@@ -25,7 +25,7 @@ class ParticipantEndpoint(Endpoint):
     cpu_processor_speed_in_mhz: Optional[int] = None
     # The feedback provided by the user of this endpoint about the quality of the session.
     feedback: Optional[UserFeedback] = None
-    # The identity property
+    # Identity associated with the endpoint. The identity property is deprecated and will stop returning data on June 30, 2026. Going forward, use the associatedIdentity property.
     identity: Optional[IdentitySet] = None
     # Name of the device used by the media endpoint.
     name: Optional[str] = None

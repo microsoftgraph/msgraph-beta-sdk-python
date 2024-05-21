@@ -32,7 +32,7 @@ class BaseItem(Entity):
     created_by_user: Optional[User] = None
     # Date and time of item creation. Read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # The description property
+    # The description of the item.
     description: Optional[str] = None
     # ETag for the item. Read-only.
     e_tag: Optional[str] = None

@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from .authentication_method_target_type import AuthenticationMethodTargetType
     from .entity import Entity
     from .microsoft_authenticator_authentication_method_target import MicrosoftAuthenticatorAuthenticationMethodTarget
+    from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
     from .sms_authentication_method_target import SmsAuthenticationMethodTarget
     from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
 
@@ -38,6 +39,10 @@ class AuthenticationMethodTarget(Entity):
             from .microsoft_authenticator_authentication_method_target import MicrosoftAuthenticatorAuthenticationMethodTarget
 
             return MicrosoftAuthenticatorAuthenticationMethodTarget()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.passkeyAuthenticationMethodTarget".casefold():
+            from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
+
+            return PasskeyAuthenticationMethodTarget()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.smsAuthenticationMethodTarget".casefold():
             from .sms_authentication_method_target import SmsAuthenticationMethodTarget
 
@@ -56,12 +61,14 @@ class AuthenticationMethodTarget(Entity):
         from .authentication_method_target_type import AuthenticationMethodTargetType
         from .entity import Entity
         from .microsoft_authenticator_authentication_method_target import MicrosoftAuthenticatorAuthenticationMethodTarget
+        from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
         from .sms_authentication_method_target import SmsAuthenticationMethodTarget
         from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
 
         from .authentication_method_target_type import AuthenticationMethodTargetType
         from .entity import Entity
         from .microsoft_authenticator_authentication_method_target import MicrosoftAuthenticatorAuthenticationMethodTarget
+        from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
         from .sms_authentication_method_target import SmsAuthenticationMethodTarget
         from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
 

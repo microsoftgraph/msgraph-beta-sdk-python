@@ -13,11 +13,11 @@ from .custom_claim_transformation import CustomClaimTransformation
 class RegexReplaceTransformation(CustomClaimTransformation):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.regexReplaceTransformation"
-    # The additionalAttributes property
+    # Additional attributes that can be referenced within the replacement string.
     additional_attributes: Optional[List[SourcedAttribute]] = None
-    # The regex property
+    # The regular expression to be applied on the input directory attribute or constant.
     regex: Optional[str] = None
-    # The replacement property
+    # The transformation output replacement pattern with regular expression output group and input parameter group reference.
     replacement: Optional[str] = None
     
     @staticmethod

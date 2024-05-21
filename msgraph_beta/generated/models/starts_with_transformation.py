@@ -15,7 +15,7 @@ class StartsWithTransformation(CustomClaimTransformation):
     odata_type: Optional[str] = "#microsoft.graph.startsWithTransformation"
     # The output property
     output: Optional[TransformationAttribute] = None
-    # The value property
+    # The value to be used as part of the transformation.
     value: Optional[str] = None
     
     @staticmethod

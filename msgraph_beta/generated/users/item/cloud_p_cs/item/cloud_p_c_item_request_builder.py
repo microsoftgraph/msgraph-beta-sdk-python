@@ -30,7 +30,9 @@ if TYPE_CHECKING:
     from .reprovision.reprovision_request_builder import ReprovisionRequestBuilder
     from .resize.resize_request_builder import ResizeRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
+    from .retrieve_review_status.retrieve_review_status_request_builder import RetrieveReviewStatusRequestBuilder
     from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
+    from .set_review_status.set_review_status_request_builder import SetReviewStatusRequestBuilder
     from .start.start_request_builder import StartRequestBuilder
     from .stop.stop_request_builder import StopRequestBuilder
     from .troubleshoot.troubleshoot_request_builder import TroubleshootRequestBuilder
@@ -292,6 +294,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def retrieve_review_status(self) -> RetrieveReviewStatusRequestBuilder:
+        """
+        Provides operations to call the retrieveReviewStatus method.
+        """
+        from .retrieve_review_status.retrieve_review_status_request_builder import RetrieveReviewStatusRequestBuilder
+
+        return RetrieveReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def retry_partner_agent_installation(self) -> RetryPartnerAgentInstallationRequestBuilder:
         """
         Provides operations to call the retryPartnerAgentInstallation method.
@@ -299,6 +310,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
 
         return RetryPartnerAgentInstallationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def set_review_status(self) -> SetReviewStatusRequestBuilder:
+        """
+        Provides operations to call the setReviewStatus method.
+        """
+        from .set_review_status.set_review_status_request_builder import SetReviewStatusRequestBuilder
+
+        return SetReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def start(self) -> StartRequestBuilder:

@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .connector_group import ConnectorGroup
     from .entity import Entity
     from .hybrid_agent_updater_configuration import HybridAgentUpdaterConfiguration
+    from .ip_application_segment import IpApplicationSegment
     from .on_premises_agent import OnPremisesAgent
     from .on_premises_agent_group import OnPremisesAgentGroup
     from .published_resource import PublishedResource
@@ -20,6 +21,8 @@ class OnPremisesPublishingProfile(Entity):
     agent_groups: Optional[List[OnPremisesAgentGroup]] = None
     # List of existing onPremisesAgent objects. Read-only. Nullable.
     agents: Optional[List[OnPremisesAgent]] = None
+    # The applicationSegments property
+    application_segments: Optional[List[IpApplicationSegment]] = None
     # List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
     connector_groups: Optional[List[ConnectorGroup]] = None
     # List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
@@ -55,6 +58,7 @@ class OnPremisesPublishingProfile(Entity):
         from .connector_group import ConnectorGroup
         from .entity import Entity
         from .hybrid_agent_updater_configuration import HybridAgentUpdaterConfiguration
+        from .ip_application_segment import IpApplicationSegment
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
         from .published_resource import PublishedResource
@@ -63,6 +67,7 @@ class OnPremisesPublishingProfile(Entity):
         from .connector_group import ConnectorGroup
         from .entity import Entity
         from .hybrid_agent_updater_configuration import HybridAgentUpdaterConfiguration
+        from .ip_application_segment import IpApplicationSegment
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
         from .published_resource import PublishedResource
@@ -70,6 +75,7 @@ class OnPremisesPublishingProfile(Entity):
         fields: Dict[str, Callable[[Any], None]] = {
             "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(OnPremisesAgentGroup)),
             "agents": lambda n : setattr(self, 'agents', n.get_collection_of_object_values(OnPremisesAgent)),
+            "applicationSegments": lambda n : setattr(self, 'application_segments', n.get_collection_of_object_values(IpApplicationSegment)),
             "connectorGroups": lambda n : setattr(self, 'connector_groups', n.get_collection_of_object_values(ConnectorGroup)),
             "connectors": lambda n : setattr(self, 'connectors', n.get_collection_of_object_values(Connector)),
             "hybridAgentUpdaterConfiguration": lambda n : setattr(self, 'hybrid_agent_updater_configuration', n.get_object_value(HybridAgentUpdaterConfiguration)),
@@ -92,6 +98,7 @@ class OnPremisesPublishingProfile(Entity):
         super().serialize(writer)
         writer.write_collection_of_object_values("agentGroups", self.agent_groups)
         writer.write_collection_of_object_values("agents", self.agents)
+        writer.write_collection_of_object_values("applicationSegments", self.application_segments)
         writer.write_collection_of_object_values("connectorGroups", self.connector_groups)
         writer.write_collection_of_object_values("connectors", self.connectors)
         writer.write_object_value("hybridAgentUpdaterConfiguration", self.hybrid_agent_updater_configuration)

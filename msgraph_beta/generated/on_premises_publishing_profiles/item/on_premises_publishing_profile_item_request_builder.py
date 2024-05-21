@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from .agents.agents_request_builder import AgentsRequestBuilder
     from .agent_groups.agent_groups_request_builder import AgentGroupsRequestBuilder
+    from .application_segments.application_segments_request_builder import ApplicationSegmentsRequestBuilder
     from .connectors.connectors_request_builder import ConnectorsRequestBuilder
     from .connector_groups.connector_groups_request_builder import ConnectorGroupsRequestBuilder
     from .published_resources.published_resources_request_builder import PublishedResourcesRequestBuilder
@@ -159,6 +160,15 @@ class OnPremisesPublishingProfileItemRequestBuilder(BaseRequestBuilder):
         from .agents.agents_request_builder import AgentsRequestBuilder
 
         return AgentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def application_segments(self) -> ApplicationSegmentsRequestBuilder:
+        """
+        Provides operations to manage the applicationSegments property of the microsoft.graph.onPremisesPublishingProfile entity.
+        """
+        from .application_segments.application_segments_request_builder import ApplicationSegmentsRequestBuilder
+
+        return ApplicationSegmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def connector_groups(self) -> ConnectorGroupsRequestBuilder:

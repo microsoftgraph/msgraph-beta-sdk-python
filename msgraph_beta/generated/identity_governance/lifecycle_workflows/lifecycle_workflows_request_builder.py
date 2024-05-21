@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from .custom_task_extensions.custom_task_extensions_request_builder import CustomTaskExtensionsRequestBuilder
     from .deleted_items.deleted_items_request_builder import DeletedItemsRequestBuilder
+    from .insights.insights_request_builder import InsightsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
     from .task_definitions.task_definitions_request_builder import TaskDefinitionsRequestBuilder
     from .workflows.workflows_request_builder import WorkflowsRequestBuilder
@@ -160,6 +161,15 @@ class LifecycleWorkflowsRequestBuilder(BaseRequestBuilder):
         from .deleted_items.deleted_items_request_builder import DeletedItemsRequestBuilder
 
         return DeletedItemsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def insights(self) -> InsightsRequestBuilder:
+        """
+        Provides operations to manage the insights property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        """
+        from .insights.insights_request_builder import InsightsRequestBuilder
+
+        return InsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def settings(self) -> SettingsRequestBuilder:

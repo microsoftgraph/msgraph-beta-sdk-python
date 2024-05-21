@@ -22,7 +22,7 @@ class SecurityAction(Entity):
     app_id: Optional[str] = None
     # Azure tenant ID of the entity to determine which tenant the entity belongs to (multi-tenancy support). The azureTenantId should be extracted from the auth token and not entered manually by the calling application.
     azure_tenant_id: Optional[str] = None
-    # The clientContext property
+    # Unique client context string. Can have a maximum of 256 characters.
     client_context: Optional[str] = None
     # Timestamp when the action was completed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     completed_date_time: Optional[datetime.datetime] = None

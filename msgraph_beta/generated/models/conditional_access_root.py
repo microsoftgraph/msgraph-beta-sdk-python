@@ -19,7 +19,7 @@ class ConditionalAccessRoot(Entity):
     authentication_context_class_references: Optional[List[AuthenticationContextClassReference]] = None
     # Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy.
     authentication_strength: Optional[AuthenticationStrengthRoot] = None
-    # The authenticationStrengths property
+    # DEPRECATED. See the authenticationStrength relationship instead.
     authentication_strengths: Optional[AuthenticationStrengthRoot] = None
     # Read-only. Nullable. Returns a collection of the specified named locations.
     named_locations: Optional[List[NamedLocation]] = None

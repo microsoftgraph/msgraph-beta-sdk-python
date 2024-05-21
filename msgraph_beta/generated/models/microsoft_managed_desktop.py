@@ -20,7 +20,7 @@ class MicrosoftManagedDesktop(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The name of the Microsoft Managed Desktop profile that the Windows 365 Cloud PC is associated with.
     profile: Optional[str] = None
-    # The type property
+    # Indicates whether the provisioning policy enables Microsoft Managed Desktop and, if enabled, specifies the type of plan managing the device. Possible values are: notManaged, premiumManaged, standardManaged, starterManaged, unknownFutureValue. The type property is deprecated and will stop returning data on January 31, 2024. Going forward, use the managedType property.
     type: Optional[MicrosoftManagedDesktopType] = None
     
     @staticmethod

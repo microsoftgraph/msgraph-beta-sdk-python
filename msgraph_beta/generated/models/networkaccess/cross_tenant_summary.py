@@ -19,7 +19,7 @@ class CrossTenantSummary(AdditionalDataHolder, BackedModel, Parsable):
     new_tenant_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The rarelyUsedTenantCount property
+    # The number of tenants that are rarely used.
     rarely_used_tenant_count: Optional[int] = None
     # The number of unique tenants that were accessed, not including the device's tenant.
     tenant_count: Optional[int] = None

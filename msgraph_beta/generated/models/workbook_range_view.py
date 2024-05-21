@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class WorkbookRangeView(Entity):
-    # The cellAddresses property
+    # Represents the cell addresses
     cell_addresses: Optional[Json] = None
     # Returns the number of visible columns. Read-only.
     column_count: Optional[int] = None

@@ -13,7 +13,7 @@ from .policy_base import PolicyBase
 class TenantRelationshipAccessPolicyBase(PolicyBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.tenantRelationshipAccessPolicyBase"
-    # The definition property
+    # The raw JSON definition of the cross-tenant access policy. Deprecated. Do not use.
     definition: Optional[List[str]] = None
     
     @staticmethod

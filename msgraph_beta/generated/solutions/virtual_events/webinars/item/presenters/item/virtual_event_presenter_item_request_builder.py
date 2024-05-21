@@ -71,10 +71,11 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: VirtualEventPresenter, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[VirtualEventPresenter]:
         """
-        Update the navigation property presenters in solutions
+        Update the properties of a virtualEventPresenter object. Currently the supported virtual event type is virtualEventWebinar.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventPresenter]
+        Find more info here: https://learn.microsoft.com/graph/api/virtualeventpresenter-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -128,7 +129,7 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: VirtualEventPresenter, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property presenters in solutions
+        Update the properties of a virtualEventPresenter object. Currently the supported virtual event type is virtualEventWebinar.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

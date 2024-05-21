@@ -13,9 +13,9 @@ from .custom_claim_condition_base import CustomClaimConditionBase
 class CustomClaimCondition(CustomClaimConditionBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customClaimCondition"
-    # The memberOf property
+    # A list of groups (GUIDs) to which the user/application must be a member for this condition to be applied.
     member_of: Optional[List[str]] = None
-    # The userType property
+    # The type of user this condition applies to. The possible values are: any, members, allGuests, aadGuests, externalGuests, unknownFutureValue.
     user_type: Optional[ClaimConditionUserType] = None
     
     @staticmethod

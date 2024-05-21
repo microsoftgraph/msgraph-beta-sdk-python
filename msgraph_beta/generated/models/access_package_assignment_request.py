@@ -21,7 +21,7 @@ from .entity import Entity
 class AccessPackageAssignmentRequest(Entity):
     # The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable. Supports $expand.
     access_package: Optional[AccessPackage] = None
-    # For a requestType of UserAdd or AdminAdd, this is an access package assignment requested to be created.  For a requestType of UserRemove, AdminRemove or SystemRemove, this has the id property of an existing assignment to be removed.  Supports $expand.
+    # For a requestType of UserAdd or AdminAdd, an access package assignment requested to be created. For a requestType of UserRemove, AdminRemove, or SystemRemove, this property has the id property of an existing assignment to be removed. Supports $expand.
     access_package_assignment: Optional[AccessPackageAssignment] = None
     # Answers provided by the requestor to accessPackageQuestions asked of them at the time of request.
     answers: Optional[List[AccessPackageAnswer]] = None
@@ -33,25 +33,25 @@ class AccessPackageAssignmentRequest(Entity):
     custom_extension_callout_instances: Optional[List[CustomExtensionCalloutInstance]] = None
     # A collection of custom workflow extension instances being run on an assignment request. Read-only.
     custom_extension_handler_instances: Optional[List[CustomExtensionHandlerInstance]] = None
-    # The expirationDateTime property
+    # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     expiration_date_time: Optional[datetime.datetime] = None
-    # True if the request is not to be processed for assignment.
+    # True if the request isn't to be processed for assignment.
     is_validation_only: Optional[bool] = None
     # The requestor's supplied justification.
     justification: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # One of PendingApproval, Canceled,  Denied, Delivering, Delivered, PartiallyDelivered, DeliveryFailed, Submitted or Scheduled. Read-only.
+    # One of PendingApproval, Canceled,  Denied, Delivering, Delivered, PartiallyDelivered, DeliveryFailed, Submitted, or Scheduled. Read-only.
     request_state: Optional[str] = None
     # More information on the request processing status. Read-only.
     request_status: Optional[str] = None
-    # One of UserAdd, UserExtend, UserUpdate, UserRemove, AdminAdd, AdminRemove or SystemRemove. A request from the user themselves would have requestType of UserAdd, UserUpdate or UserRemove. Read-only.
+    # One of UserAdd, UserExtend, UserUpdate, UserRemove, AdminAdd, AdminRemove, or SystemRemove. A request from the user has a requestType of UserAdd, UserUpdate, or UserRemove. Read-only.
     request_type: Optional[str] = None
     # The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
     requestor: Optional[AccessPackageSubject] = None
     # The range of dates that access is to be assigned to the requestor. Read-only.
     schedule: Optional[RequestSchedule] = None
-    # The details of the verifiable credential that was presented by the requestor, such as the issuer and claims. Read-only.
+    # The details of the verifiable credential that the requestor presented, such as the issuer and claims. Read-only.
     verified_credentials_data: Optional[List[VerifiedCredentialData]] = None
     
     @staticmethod

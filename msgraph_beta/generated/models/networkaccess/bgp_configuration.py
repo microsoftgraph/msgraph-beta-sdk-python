@@ -13,7 +13,7 @@ class BgpConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Specifies the ASN of the BGP.
     asn: Optional[int] = None
-    # The ipAddress property
+    # Specifies the BGP IP address.
     ip_address: Optional[str] = None
     # Specifies the BGP IP address of peer (Microsoft, in this case).
     local_ip_address: Optional[str] = None

@@ -54,7 +54,7 @@ class ItemFacet(Entity):
     odata_type: Optional[str] = None
     # Where the values within an entity originated if synced from another service.
     source: Optional[PersonDataSources] = None
-    # The sources property
+    # Where the values within an entity originated if synced from another source.
     sources: Optional[List[ProfileSourceAnnotation]] = None
     
     @staticmethod

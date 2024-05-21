@@ -27,11 +27,11 @@ class CallRecord(Entity):
     modalities: Optional[List[Modality]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The organizer property
+    # The organizing party's identity. The organizer property is deprecated and will stop returning data on June 30, 2026. Going forward, use the organizer_v2 relationship.
     organizer: Optional[IdentitySet] = None
     # Identity of the organizer of the call. This relationship is expanded by default in callRecord methods.
     organizer_v2: Optional[Organizer] = None
-    # The participants property
+    # List of distinct identities involved in the call. Limited to 130 entries. The participants property is deprecated and will stop returning data on June 30, 2026. Going forward, use the participants_v2 relationship.
     participants: Optional[List[IdentitySet]] = None
     # List of distinct participants in the call.
     participants_v2: Optional[List[Participant]] = None

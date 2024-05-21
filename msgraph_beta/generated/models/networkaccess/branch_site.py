@@ -22,7 +22,7 @@ class BranchSite(Entity):
     connectivity_configuration: Optional[BranchConnectivityConfiguration] = None
     # Determines the branch site status. The possible values are: pending, connected, inactive, error.
     connectivity_state: Optional[ConnectivityState] = None
-    # The country property
+    # The branch site is created in the specified country. DO NOT USE.
     country: Optional[str] = None
     # Each unique CPE device associated with a branch is specified. Supports $expand.
     device_links: Optional[List[DeviceLink]] = None

@@ -15,7 +15,7 @@ class JoinTransformation(CustomClaimTransformation):
     odata_type: Optional[str] = "#microsoft.graph.joinTransformation"
     # The input2 property
     input2: Optional[TransformationAttribute] = None
-    # The separator property
+    # The separator value to be used.
     separator: Optional[str] = None
     
     @staticmethod

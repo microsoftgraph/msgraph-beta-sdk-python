@@ -15,6 +15,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .......models.industry_data.provisioning_flow import ProvisioningFlow
     from .......models.o_data_errors.o_data_error import ODataError
+    from .microsoft_graph_industry_data_reset.microsoft_graph_industry_data_reset_request_builder import MicrosoftGraphIndustryDataResetRequestBuilder
 
 class ProvisioningFlowItemRequestBuilder(BaseRequestBuilder):
     """
@@ -136,6 +137,15 @@ class ProvisioningFlowItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return ProvisioningFlowItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def microsoft_graph_industry_data_reset(self) -> MicrosoftGraphIndustryDataResetRequestBuilder:
+        """
+        Provides operations to call the reset method.
+        """
+        from .microsoft_graph_industry_data_reset.microsoft_graph_industry_data_reset_request_builder import MicrosoftGraphIndustryDataResetRequestBuilder
+
+        return MicrosoftGraphIndustryDataResetRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ProvisioningFlowItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

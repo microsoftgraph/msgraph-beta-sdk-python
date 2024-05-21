@@ -12,9 +12,9 @@ from .custom_claim_transformation import CustomClaimTransformation
 class SubstringTransformation(CustomClaimTransformation):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.substringTransformation"
-    # The index property
+    # The start index of the substring operation, where 0 is the first character in the string.
     index: Optional[int] = None
-    # The length property
+    # The maximum length of the string, starting from the provided index.
     length: Optional[int] = None
     
     @staticmethod

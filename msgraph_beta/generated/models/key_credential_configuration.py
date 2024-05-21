@@ -17,7 +17,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Collection of GUIDs that point to the certificateBasedApplicationConfiguration that contains the collection of allowed root and intermediate certificate authorities.
     certificate_based_application_configuration_ids: Optional[List[str]] = None
-    # The maxLifetime property
+    # Value that can be used as the maximum duration in days, hours, minutes, or seconds from the date of key creation, for which the key is valid.  Defined in ISO 8601 format for Durations. For example, P4DT12H30M5S represents a duration of four days, twelve hours, thirty minutes, and five seconds. This property is required when restrictionType is set to keyLifetime.
     max_lifetime: Optional[datetime.timedelta] = None
     # The OdataType property
     odata_type: Optional[str] = None

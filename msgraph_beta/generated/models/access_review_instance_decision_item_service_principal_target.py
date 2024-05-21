@@ -16,7 +16,7 @@ class AccessReviewInstanceDecisionItemServicePrincipalTarget(AccessReviewInstanc
     app_id: Optional[str] = None
     # The display name of the service principal whose access is being reviewed.
     service_principal_display_name: Optional[str] = None
-    # The servicePrincipalId property
+    # The identifier of the service principal whose access is being reviewed.
     service_principal_id: Optional[str] = None
     
     @staticmethod

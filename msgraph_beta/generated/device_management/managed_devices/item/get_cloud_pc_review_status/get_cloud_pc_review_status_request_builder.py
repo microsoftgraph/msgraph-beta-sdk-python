@@ -36,6 +36,7 @@ class GetCloudPcReviewStatusRequestBuilder(BaseRequestBuilder):
         Returns: Optional[CloudPcReviewStatus]
         Find more info here: https://learn.microsoft.com/graph/api/manageddevice-getcloudpcreviewstatus?view=graph-rest-beta
         """
+        warn("The getCloudPcReviewStatus API is deprecated and will stop returning data on Apr 30, 2024. Please use the new retrieveReviewStatus API as of 2024-01/getCloudPcReviewStatus", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -56,6 +57,7 @@ class GetCloudPcReviewStatusRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The getCloudPcReviewStatus API is deprecated and will stop returning data on Apr 30, 2024. Please use the new retrieveReviewStatus API as of 2024-01/getCloudPcReviewStatus", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -67,6 +69,7 @@ class GetCloudPcReviewStatusRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: GetCloudPcReviewStatusRequestBuilder
         """
+        warn("The getCloudPcReviewStatus API is deprecated and will stop returning data on Apr 30, 2024. Please use the new retrieveReviewStatus API as of 2024-01/getCloudPcReviewStatus", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return GetCloudPcReviewStatusRequestBuilder(self.request_adapter, raw_url)

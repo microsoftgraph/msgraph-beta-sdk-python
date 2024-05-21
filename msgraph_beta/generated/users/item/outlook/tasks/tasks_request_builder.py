@@ -49,7 +49,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TasksRequestBuilderGetQueryParameters]] = None) -> Optional[OutlookTaskCollectionResponse]:
         """
-        Get tasks from users
+        The user's Outlook tasks. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskCollectionResponse]
         """
@@ -94,7 +94,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TasksRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get tasks from users
+        The user's Outlook tasks. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -143,7 +143,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TasksRequestBuilderGetQueryParameters():
         """
-        Get tasks from users
+        The user's Outlook tasks. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

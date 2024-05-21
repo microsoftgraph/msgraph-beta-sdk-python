@@ -29,7 +29,7 @@ class AccessPackageSubject(Entity):
     object_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The onPremisesSecurityIdentifier property
+    # A string representation of the principal's security identifier, if known, or null if the subject doesn't have a security identifier.
     on_premises_security_identifier: Optional[str] = None
     # The principal name, if known, of the subject.
     principal_name: Optional[str] = None

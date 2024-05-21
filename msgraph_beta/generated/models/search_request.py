@@ -53,7 +53,7 @@ class SearchRequest(AdditionalDataHolder, BackedModel, Parsable):
     size: Optional[int] = None
     # Contains the ordered collection of fields and direction to sort results. There can be at most 5 sort properties in the collection. Optional.
     sort_properties: Optional[List[SortProperty]] = None
-    # The stored_fields property
+    # This is now replaced by the fields property.
     stored_fields: Optional[List[str]] = None
     # Indicates whether to trim away the duplicate SharePoint files from search results. Default value is false. Optional.
     trim_duplicates: Optional[bool] = None

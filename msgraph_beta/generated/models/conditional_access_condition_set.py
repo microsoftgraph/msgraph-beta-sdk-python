@@ -28,7 +28,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
     applications: Optional[ConditionalAccessApplications] = None
     # Authentication flows included in the policy scope. For more information, see Conditional Access: Authentication flows.
     authentication_flows: Optional[ConditionalAccessAuthenticationFlows] = None
-    # Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.  The easUnsupported enumeration member will be deprecated in favor of exchangeActiveSync, which includes EAS supported and unsupported platforms.
+    # Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.  The easUnsupported enumeration member is deprecated in favor of exchangeActiveSync, which includes EAS supported and unsupported platforms.
     client_app_types: Optional[List[ConditionalAccessClientApp]] = None
     # Client applications (service principals and workload identities) included in and excluded from the policy. Either users or clientApplications is required.
     client_applications: Optional[ConditionalAccessClientApplications] = None
@@ -36,7 +36,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
     device_states: Optional[ConditionalAccessDeviceStates] = None
     # Devices in the policy.
     devices: Optional[ConditionalAccessDevices] = None
-    # The insiderRiskLevels property
+    # Insider risk levels included in the policy. The possible values are: minor, moderate, elevated, unknownFutureValue.
     insider_risk_levels: Optional[ConditionalAccessInsiderRiskLevels] = None
     # Locations included in and excluded from the policy.
     locations: Optional[ConditionalAccessLocations] = None

@@ -45,7 +45,7 @@ class SignIn(Entity):
     app_display_name: Optional[str] = None
     # The application identifier in Microsoft Entra ID.  Supports $filter (eq).
     app_id: Optional[str] = None
-    # The appTokenProtectionStatus property
+    # Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the app token was bound to the device.
     app_token_protection_status: Optional[TokenProtectionStatus] = None
     # A list of conditional access policies that the corresponding sign-in activity triggers. Apps need more Conditional Access-related privileges to read the details of this property. For more information, see Viewing applied conditional access (CA) policies in sign-ins.
     applied_conditional_access_policies: Optional[List[AppliedConditionalAccessPolicy]] = None
@@ -115,7 +115,7 @@ class SignIn(Entity):
     location: Optional[SignInLocation] = None
     # Contains information about the managed identity used for the sign in, including its type, associated Azure Resource Manager (ARM) resource ID, and federated token information.
     managed_service_identity: Optional[ManagedIdentity] = None
-    # The mfaDetail property
+    # This property is deprecated.
     mfa_detail: Optional[MfaDetail] = None
     # The network location details including the type of network used and its names.
     network_location_details: Optional[List[NetworkLocationDetail]] = None

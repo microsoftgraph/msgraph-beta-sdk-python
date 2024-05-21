@@ -56,7 +56,7 @@ class DriveItem(BaseItem):
     c_tag: Optional[str] = None
     # Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.
     children: Optional[List[DriveItem]] = None
-    # The content property
+    # The content stream, if the item represents a file. The content property will have a potentially breaking change in behavior in the future. It will stream content directly instead of redirecting. To proactively opt in to the new behavior ahead of time, use the contentStream property instead.
     content: Optional[bytes] = None
     # The content stream, if the item represents a file.
     content_stream: Optional[bytes] = None

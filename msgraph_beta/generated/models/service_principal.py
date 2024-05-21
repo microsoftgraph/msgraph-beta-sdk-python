@@ -66,7 +66,7 @@ class ServicePrincipal(DirectoryObject):
     application_template_id: Optional[str] = None
     # The claimsMappingPolicies assigned to this service principal. Supports $expand.
     claims_mapping_policies: Optional[List[ClaimsMappingPolicy]] = None
-    # The claimsPolicy property
+    # A claims policy that allows application admins to customize the claims that will be emitted in tokens affected by this policy.
     claims_policy: Optional[CustomClaimsPolicy] = None
     # Directory objects created by this service principal. Read-only. Nullable.
     created_objects: Optional[List[DirectoryObject]] = None

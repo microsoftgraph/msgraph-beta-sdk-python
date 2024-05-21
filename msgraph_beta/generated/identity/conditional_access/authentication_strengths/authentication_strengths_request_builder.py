@@ -52,7 +52,7 @@ class AuthenticationStrengthsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AuthenticationStrengthsRequestBuilderGetQueryParameters]] = None) -> Optional[AuthenticationStrengthRoot]:
         """
-        Get authenticationStrengths from identity
+        DEPRECATED. See the authenticationStrength relationship instead.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationStrengthRoot]
         """
@@ -109,7 +109,7 @@ class AuthenticationStrengthsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AuthenticationStrengthsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get authenticationStrengths from identity
+        DEPRECATED. See the authenticationStrength relationship instead.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -174,7 +174,7 @@ class AuthenticationStrengthsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuthenticationStrengthsRequestBuilderGetQueryParameters():
         """
-        Get authenticationStrengths from identity
+        DEPRECATED. See the authenticationStrength relationship instead.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

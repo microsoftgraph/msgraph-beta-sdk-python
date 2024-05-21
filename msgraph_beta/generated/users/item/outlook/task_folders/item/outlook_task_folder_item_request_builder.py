@@ -51,7 +51,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[OutlookTaskFolderItemRequestBuilderGetQueryParameters]] = None) -> Optional[OutlookTaskFolder]:
         """
-        Get taskFolders from users
+        The user's Outlook task folders. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookTaskFolder]
         """
@@ -108,7 +108,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[OutlookTaskFolderItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get taskFolders from users
+        The user's Outlook task folders. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -164,7 +164,7 @@ class OutlookTaskFolderItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OutlookTaskFolderItemRequestBuilderGetQueryParameters():
         """
-        Get taskFolders from users
+        The user's Outlook task folders. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

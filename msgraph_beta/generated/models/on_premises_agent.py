@@ -23,7 +23,7 @@ class OnPremisesAgent(Entity):
     odata_type: Optional[str] = None
     # The status property
     status: Optional[AgentStatus] = None
-    # The supportedPublishingTypes property
+    # Possible values are: applicationProxy, exchangeOnline, authentication, provisioning, adAdministration.
     supported_publishing_types: Optional[List[OnPremisesPublishingType]] = None
     
     @staticmethod

@@ -39,7 +39,6 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/cloudpcprovisioningpolicy-delete?view=graph-rest-beta
         """
-        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -59,7 +58,6 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[CloudPcProvisioningPolicy]
         Find more info here: https://learn.microsoft.com/graph/api/cloudpcprovisioningpolicy-get?view=graph-rest-beta
         """
-        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -82,7 +80,6 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[CloudPcProvisioningPolicy]
         Find more info here: https://learn.microsoft.com/graph/api/cloudpcprovisioningpolicy-update?view=graph-rest-beta
         """
-        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -105,7 +102,6 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -117,7 +113,6 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -130,7 +125,6 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         if not body:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -145,7 +139,6 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CloudPcProvisioningPolicyItemRequestBuilder
         """
-        warn("The onPremisesConnectionId property is deprecated and will stop returning on July 30, 2023. as of 2023-03/onPremisesConnectionId", DeprecationWarning)
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return CloudPcProvisioningPolicyItemRequestBuilder(self.request_adapter, raw_url)

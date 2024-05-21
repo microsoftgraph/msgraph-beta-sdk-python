@@ -40,7 +40,7 @@ class PlannerPlan(PlannerDelta):
     is_archived: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The owner property
+    # Use the container property instead. ID of the group that owns the plan. After it's set, this property can’t be updated. This property doesn't return a valid group ID if the container of the plan isn't a group.
     owner: Optional[str] = None
     # List of containers the plan is shared with.
     shared_with_containers: Optional[List[PlannerSharedWithContainer]] = None
