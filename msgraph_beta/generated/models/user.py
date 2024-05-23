@@ -181,7 +181,7 @@ class User(DirectoryObject):
     employee_hire_date: Optional[datetime.datetime] = None
     # The employee identifier assigned to the user by the organization. The maximum length is 16 characters.Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values).
     employee_id: Optional[str] = None
-    # The date and time when the user left or will leave the organization. To read this property, the calling app must be assigned the User-LifeCycleInfo.Read.All permission. To write this property, the calling app must be assigned the User.Read.All and User-LifeCycleInfo.ReadWrite.All permissions. To read this property in delegated scenarios, the admin needs one of the following Microsoft Entra roles: Lifecycle Workflows Administrator, Global Reader, or Global Administrator. To write this property in delegated scenarios, the admin needs the Global Administrator role. Supports $filter (eq, ne, not , ge, le, in). For more information, see Configure the employeeLeaveDateTime property for a user.
+    # The date and time when the user left or will leave the organization. To read this property, the calling app must be assigned the User-LifeCycleInfo.Read.All permission. To write this property, the calling app must be assigned the User.Read.All and User-LifeCycleInfo.ReadWrite.All permissions. To read this property in delegated scenarios, the admin needs at least one of the following Microsoft Entra roles: Lifecycle Workflows Administrator, Global Reader. To write this property in delegated scenarios, the admin needs the Global Administrator role. Supports $filter (eq, ne, not , ge, le, in). For more information, see Configure the employeeLeaveDateTime property for a user.
     employee_leave_date_time: Optional[datetime.datetime] = None
     # Represents organization data (for example, division and costCenter) associated with a user. Supports $filter (eq, ne, not , ge, le, in).
     employee_org_data: Optional[EmployeeOrgData] = None
@@ -217,7 +217,7 @@ class User(DirectoryObject):
     insights: Optional[ItemInsights] = None
     # A list for users to describe their interests. Returned only on $select.
     interests: Optional[List[str]] = None
-    # The invitedBy property
+    # The user or service principal that invited the user.
     invited_by: Optional[DirectoryObject] = None
     # Indicates whether the user is pending an exchange mailbox license assignment.  Read-only.  Supports $filter (eq where true only).
     is_license_reconciliation_needed: Optional[bool] = None

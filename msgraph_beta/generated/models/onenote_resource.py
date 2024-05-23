@@ -12,9 +12,9 @@ from .onenote_entity_base_model import OnenoteEntityBaseModel
 class OnenoteResource(OnenoteEntityBaseModel):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onenoteResource"
-    # The content property
+    # The content of the resource.
     content: Optional[bytes] = None
-    # The contentUrl property
+    # The URL for the content stream.
     content_url: Optional[str] = None
     
     @staticmethod

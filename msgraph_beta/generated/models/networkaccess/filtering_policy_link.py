@@ -20,7 +20,7 @@ class FilteringPolicyLink(PolicyLink):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The loggingState property
     logging_state: Optional[Status] = None
-    # The priority property
+    # Provides an integer priority level for each instance of a URL filtering policy linked to a profile. Required.
     priority: Optional[int] = None
     
     @staticmethod

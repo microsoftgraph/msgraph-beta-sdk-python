@@ -11,13 +11,13 @@ from .entity import Entity
 
 @dataclass
 class CustomClaimsPolicy(Entity):
-    # The audienceOverride property
+    # If specified, it overrides the content of the audience claim for WS-Federation and SAML2 protocols. A custom signing key must be used for audienceOverride to be applied, otherwise, the audienceOverride value is ignored. The value provided must be in the format of an absolute URI.
     audience_override: Optional[str] = None
-    # The claims property
+    # Defines which claims are present in the tokens affected by the policy, in addition to the basic claim and the core claim set. Inherited from customclaimbase.
     claims: Optional[List[CustomClaimBase]] = None
-    # The includeApplicationIdInIssuer property
+    # Indicates whether the application ID is added to the claim. It is relevant only for SAML2.0 and if a custom signing key is used. the default value is true. Optional.
     include_application_id_in_issuer: Optional[bool] = None
-    # The includeBasicClaimSet property
+    # Determines whether the basic claim set is included in tokens affected by this policy. If set to true, all claims in the basic claim set are emitted in tokens affected by the policy. By default the basic claim set isn't in the tokens unless they're explicitly configured in this policy.
     include_basic_claim_set: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

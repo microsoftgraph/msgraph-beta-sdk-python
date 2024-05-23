@@ -16,7 +16,7 @@ class OutboundSharedUserProfile(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The collection of external Microsoft Entra tenants that the user has shared profile data with. Read-only.
+    # The collection of external Microsoft Entra tenants that the user shared profile data with. Read-only.
     tenants: Optional[List[TenantReference]] = None
     # The object id of the external user. Read-only.
     user_id: Optional[str] = None

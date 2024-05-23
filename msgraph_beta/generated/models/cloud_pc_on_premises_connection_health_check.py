@@ -18,7 +18,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, BackedModel, 
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # More details about the health check or the recommended action. Read-only.
     additional_detail: Optional[str] = None
-    # The additionalDetails property
+    # More details about the health check or the recommended action. Read-only. The additionalDetails property is deprecated and stopped returning data on January 31, 2024. Goind forward, use the additionalDetail property.
     additional_details: Optional[str] = None
     # The unique identifier of the health check item-related activities. This identifier can be useful in troubleshooting.
     correlation_id: Optional[str] = None

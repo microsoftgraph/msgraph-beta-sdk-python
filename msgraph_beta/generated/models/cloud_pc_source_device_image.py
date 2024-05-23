@@ -13,7 +13,7 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The display name for the source image. Read-only.
     display_name: Optional[str] = None
-    # The id property
+    # The unique identifier (ID) of the source image. Read-only. The id property is deprecated and will stop returning data on January 31, 2024. Going forward, use the resourceId property.
     id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

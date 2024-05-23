@@ -15,13 +15,13 @@ from .case_operation import CaseOperation
 
 @dataclass
 class EdiscoveryExportOperation(CaseOperation):
-    # The azureBlobContainer property
+    # The name of the Azure storage location where the export is stored. This only applies to exports stored in your own Azure storage location. The azureBlobContainer property is deprecated and will stop returning data on April 30th, 2023.
     azure_blob_container: Optional[str] = None
-    # The azureBlobToken property
+    # The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location. The azureBlobToken property is deprecated and will stop returning data on April 30, 2023.
     azure_blob_token: Optional[str] = None
     # The description provided for the export.
     description: Optional[str] = None
-    # The exportFileMetadata property
+    # Contains the properties for an export file metadata, including downloadUrl, fileName, and size. If you export to an Azure storage location, this property returns empty.
     export_file_metadata: Optional[List[ExportFileMetadata]] = None
     # The options provided for the export. For more information, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags. The fileInfo member is deprecated and will stop returning data on April 30, 2023. Going forward, the summary and load file are always included.
     export_options: Optional[ExportOptions] = None
@@ -29,7 +29,7 @@ class EdiscoveryExportOperation(CaseOperation):
     export_structure: Optional[ExportFileStructure] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The outputFolderId property
+    # The output folder ID. The outputFolderId property is deprecated and will stop returning data on April 30, 2023.
     output_folder_id: Optional[str] = None
     # The name provided for the export.
     output_name: Optional[str] = None

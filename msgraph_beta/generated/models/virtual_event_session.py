@@ -15,13 +15,13 @@ from .online_meeting_base import OnlineMeetingBase
 class VirtualEventSession(OnlineMeetingBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.virtualEventSession"
-    # The endDateTime property
+    # The virtual event session end time.
     end_date_time: Optional[DateTimeTimeZone] = None
     # The presenters property
     presenters: Optional[List[VirtualEventPresenter]] = None
     # The registrations property
     registrations: Optional[List[VirtualEventRegistration]] = None
-    # The startDateTime property
+    # The virtual event session start time.
     start_date_time: Optional[DateTimeTimeZone] = None
     
     @staticmethod

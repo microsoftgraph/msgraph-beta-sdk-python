@@ -18,7 +18,7 @@ class TransformationAttribute(AdditionalDataHolder, BackedModel, Parsable):
     attribute: Optional[CustomClaimAttributeBase] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The treatAsMultiValue property
+    # This flag is only relevant in the case where the attribute is multivalued. By default, transformations are only applied to the first element in a multi-valued claim, however setting this flag to true ensures the transformation is applied to all values, resulting in a multivalued output.
     treat_as_multi_value: Optional[bool] = None
     
     @staticmethod

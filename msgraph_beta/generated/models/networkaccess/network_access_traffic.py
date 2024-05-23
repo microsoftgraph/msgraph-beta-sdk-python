@@ -22,7 +22,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The action property
+    # Indicates what action to take based on filtering policies. The possible values are: block, allow.
     action: Optional[FilteringPolicyAction] = None
     # Represents the version of the Global Secure Access client agent software. Supports $filter (eq) and $orderby.
     agent_version: Optional[str] = None

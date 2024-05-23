@@ -11,11 +11,11 @@ class ProfileSourceAnnotation(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The isDefaultSource property
+    # Indicates whether the source is the default one.
     is_default_source: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The properties property
+    # The names of properties that have data from this source.
     properties: Optional[List[str]] = None
     # The sourceId property
     source_id: Optional[str] = None

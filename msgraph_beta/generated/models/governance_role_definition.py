@@ -14,17 +14,17 @@ from .entity import Entity
 class GovernanceRoleDefinition(Entity):
     # The display name of the role definition.
     display_name: Optional[str] = None
-    # The external id of the role definition.
+    # The external ID of the role definition.
     external_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Read-only. The associated resource for the role definition.
     resource: Optional[GovernanceResource] = None
-    # Required. The id of the resource associated with the role definition.
+    # Required. The ID of the resource associated with the role definition.
     resource_id: Optional[str] = None
     # The associated role setting for the role definition.
     role_setting: Optional[GovernanceRoleSetting] = None
-    # The templateId property
+    # The unique identifier for the template.
     template_id: Optional[str] = None
     
     @staticmethod

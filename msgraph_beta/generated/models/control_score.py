@@ -11,15 +11,15 @@ class ControlScore(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The controlCategory property
+    # Control action category (Identity, Data, Device, Apps, Infrastructure).
     control_category: Optional[str] = None
-    # The controlName property
+    # Control unique name
     control_name: Optional[str] = None
-    # The description property
+    # Description of the control.
     description: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The score property
+    # Tenant achieved score for the control (it varies day by day depending on tenant operations on the control).
     score: Optional[float] = None
     
     @staticmethod

@@ -32,7 +32,7 @@ class CloudPcUserSetting(Entity):
     reset_enabled: Optional[bool] = None
     # Defines how frequently a restore point is created that is, a snapshot is taken) for users' provisioned Cloud PCs (default is 12 hours), and whether the user is allowed to restore their own Cloud PCs to a backup made at a specific point in time.
     restore_point_setting: Optional[CloudPcRestorePointSetting] = None
-    # The selfServiceEnabled property
+    # Indicates whether the self-service option is enabled. Default value is false. To enable the self-service option, change the setting to true. If the self-service option is enabled, the end user is allowed to perform some self-service operations, such as upgrading the Cloud PC through the end user portal. The selfServiceEnabled property is deprecated and will stop returning data on December 1, 2023.
     self_service_enabled: Optional[bool] = None
     
     @staticmethod

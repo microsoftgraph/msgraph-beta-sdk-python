@@ -31,7 +31,7 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete content for the navigation property resources in users
+        The content of the resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
@@ -49,7 +49,7 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
         """
-        Get content for the navigation property resources from users
+        The content of the resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
         """
@@ -67,7 +67,7 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     async def put(self,body: bytes, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[OnenoteResource]:
         """
-        Update content for the navigation property resources in users
+        The content of the resource.
         param body: Binary request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnenoteResource]
@@ -90,7 +90,7 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete content for the navigation property resources in users
+        The content of the resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -101,7 +101,7 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Get content for the navigation property resources from users
+        The content of the resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +112,7 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     def to_put_request_information(self,body: bytes, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update content for the navigation property resources in users
+        The content of the resource.
         param body: Binary request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

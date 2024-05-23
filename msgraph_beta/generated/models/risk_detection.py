@@ -51,7 +51,7 @@ class RiskDetection(Entity):
     risk_level: Optional[RiskLevel] = None
     # The state of a detected risky user or sign-in. The possible values are none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, and unknownFutureValue.
     risk_state: Optional[RiskState] = None
-    # The riskType property
+    # List of risk event types.Note: This property is deprecated. Use riskEventType instead.
     risk_type: Optional[RiskEventType] = None
     # Source of the risk detection. For example, activeDirectory.
     source: Optional[str] = None

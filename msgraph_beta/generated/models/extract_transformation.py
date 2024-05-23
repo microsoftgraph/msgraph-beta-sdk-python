@@ -12,11 +12,11 @@ from .custom_claim_transformation import CustomClaimTransformation
 class ExtractTransformation(CustomClaimTransformation):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.extractTransformation"
-    # The type property
+    # The type of extract transformation to apply.
     type: Optional[str] = None
-    # The value property
+    # The value to be used as part of the transformation.
     value: Optional[str] = None
-    # The value2 property
+    # An optional secondary value to be used when dealing with between extract operations.
     value2: Optional[str] = None
     
     @staticmethod

@@ -15,6 +15,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.planner_roster import PlannerRoster
+    from .assign_sensitivity_label.assign_sensitivity_label_request_builder import AssignSensitivityLabelRequestBuilder
     from .members.members_request_builder import MembersRequestBuilder
     from .plans.plans_request_builder import PlansRequestBuilder
 
@@ -140,6 +141,15 @@ class PlannerRosterItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return PlannerRosterItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def assign_sensitivity_label(self) -> AssignSensitivityLabelRequestBuilder:
+        """
+        Provides operations to call the assignSensitivityLabel method.
+        """
+        from .assign_sensitivity_label.assign_sensitivity_label_request_builder import AssignSensitivityLabelRequestBuilder
+
+        return AssignSensitivityLabelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def members(self) -> MembersRequestBuilder:

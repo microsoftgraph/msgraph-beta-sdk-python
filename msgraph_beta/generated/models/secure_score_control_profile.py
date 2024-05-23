@@ -24,13 +24,13 @@ class SecureScoreControlProfile(Entity):
     compliance_information: Optional[List[ComplianceInformation]] = None
     # Control action category (Account, Data, Device, Apps, Infrastructure).
     control_category: Optional[str] = None
-    # Flag to indicate where the tenant has marked a control (ignore, thirdParty, reviewed) (supports update).
+    # Flag to indicate where the tenant has marked a control (ignored, thirdParty, reviewed) (supports update).
     control_state_updates: Optional[List[SecureScoreControlStateUpdate]] = None
     # Flag to indicate if a control is depreciated.
     deprecated: Optional[bool] = None
     # Resource cost of implemmentating control (low, moderate, high).
     implementation_cost: Optional[str] = None
-    # The lastModifiedDateTime property
+    # Time at which the control profile entity was last modified. The Timestamp type represents date and time
     last_modified_date_time: Optional[datetime.datetime] = None
     # Current obtained max score on specified date.
     max_score: Optional[float] = None
@@ -44,7 +44,7 @@ class SecureScoreControlProfile(Entity):
     remediation_impact: Optional[str] = None
     # Service that owns the control (Exchange, Sharepoint, Microsoft Entra ID).
     service: Optional[str] = None
-    # List of threats the control mitigates (accountBreach,dataDeletion,dataExfiltration,dataSpillage,elevationOfPrivilege,maliciousInsider,passwordCracking,phishingOrWhaling,spoofing).
+    # List of threats the control mitigates (accountBreach, dataDeletion, dataExfiltration, dataSpillage, elevationOfPrivilege, maliciousInsider, passwordCracking, phishingOrWhaling, spoofing).
     threats: Optional[List[str]] = None
     # Control tier (Core, Defense in Depth, Advanced.)
     tier: Optional[str] = None
@@ -52,7 +52,7 @@ class SecureScoreControlProfile(Entity):
     title: Optional[str] = None
     # User impact of implementing control (low, moderate, high).
     user_impact: Optional[str] = None
-    # The vendorInformation property
+    # Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.
     vendor_information: Optional[SecurityVendorInformation] = None
     
     @staticmethod

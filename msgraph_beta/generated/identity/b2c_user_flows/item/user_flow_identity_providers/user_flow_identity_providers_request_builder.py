@@ -47,7 +47,7 @@ class UserFlowIdentityProvidersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UserFlowIdentityProvidersRequestBuilderGetQueryParameters]] = None) -> Optional[IdentityProviderBaseCollectionResponse]:
         """
-        Get userFlowIdentityProviders from identity
+        The identity providers included in the user flow.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityProviderBaseCollectionResponse]
         """
@@ -67,7 +67,7 @@ class UserFlowIdentityProvidersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UserFlowIdentityProvidersRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get userFlowIdentityProviders from identity
+        The identity providers included in the user flow.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,7 +98,7 @@ class UserFlowIdentityProvidersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserFlowIdentityProvidersRequestBuilderGetQueryParameters():
         """
-        Get userFlowIdentityProviders from identity
+        The identity providers included in the user flow.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

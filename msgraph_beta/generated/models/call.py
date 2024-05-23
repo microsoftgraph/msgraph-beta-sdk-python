@@ -69,23 +69,23 @@ class Call(Entity):
     operations: Optional[List[CommsOperation]] = None
     # The participants property
     participants: Optional[List[Participant]] = None
-    # The requestedModalities property
+    # The list of requested modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data.
     requested_modalities: Optional[List[Modality]] = None
-    # The resultInfo property
+    # The result information. For example, the result can hold termination reason. Read-only.
     result_info: Optional[ResultInfo] = None
-    # The ringingTimeoutInSeconds property
+    # Ringing timeout in seconds for outgoing peer to peer calls. The max value for this attribute is 115 seconds.
     ringing_timeout_in_seconds: Optional[int] = None
-    # The routingPolicies property
+    # This property is applicable for peer to peer calls only. Possible values are: none, noMissedCall, disableForwardingExceptPhone, disableForwarding, preferSkypeForBusiness, unknownFutureValue.
     routing_policies: Optional[List[RoutingPolicy]] = None
-    # The source property
+    # The originator of the call.
     source: Optional[ParticipantInfo] = None
-    # The state property
+    # The call state. Possible values are: incoming, establishing, ringing, established, hold, transferring, transferAccepted, redirecting, terminating, terminated. Read-only.
     state: Optional[CallState] = None
-    # The subject property
+    # The subject of the conversation.
     subject: Optional[str] = None
-    # The targets property
+    # The targets of the call. Required information for creating peer to peer call.
     targets: Optional[List[InvitationParticipantInfo]] = None
-    # The tenantId property
+    # Read-only. tenantId in Microsoft Entra ID.
     tenant_id: Optional[str] = None
     # The terminationReason property
     termination_reason: Optional[str] = None

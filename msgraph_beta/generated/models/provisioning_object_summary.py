@@ -20,7 +20,7 @@ from .entity import Entity
 
 @dataclass
 class ProvisioningObjectSummary(Entity):
-    # The action property
+    # Indicates the activity name or the operation name (for example, Create user, Add member to group). For a list of activities logged, refer to Microsoft Entra activity list. This is deprecated. Please use provisioningAction instead. Supports $filter (eq, contains).
     action: Optional[str] = None
     # Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $filter (eq, gt, lt) and orderby.
     activity_date_time: Optional[datetime.datetime] = None
@@ -50,7 +50,7 @@ class ProvisioningObjectSummary(Entity):
     source_identity: Optional[ProvisionedIdentity] = None
     # Details of source system of the object being provisioned. Supports $filter (eq, contains) for displayName.
     source_system: Optional[ProvisioningSystem] = None
-    # The statusInfo property
+    # Details of provisioning status. This is deprecated. Please use provisioningStatusInfo instead. Supports $filter (eq, contains) for status.
     status_info: Optional[StatusBase] = None
     # Details of target object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
     target_identity: Optional[ProvisionedIdentity] = None

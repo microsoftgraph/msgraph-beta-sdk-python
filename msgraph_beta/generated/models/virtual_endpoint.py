@@ -55,7 +55,7 @@ class VirtualEndpoint(Entity):
     reports: Optional[CloudPcReports] = None
     # Cloud PC service plans.
     service_plans: Optional[List[CloudPcServicePlan]] = None
-    # The sharedUseServicePlans property
+    # Cloud PC shared-use service plans. The sharedUseServicePlans relationship is deprecated and stopped returning data on October 8, 2023. Going forward, use the frontLineServicePlans relationship.
     shared_use_service_plans: Optional[List[CloudPcSharedUseServicePlan]] = None
     # Cloud PC snapshots.
     snapshots: Optional[List[CloudPcSnapshot]] = None

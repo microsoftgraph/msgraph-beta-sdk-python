@@ -19,7 +19,7 @@ class VirtualEventPresenter(Entity):
     identity: Optional[Identity] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Other detail information of the presenter.
+    # Other detail information of the presenter. This property returns null when the virtual event type is virtualEventTownhall.
     presenter_details: Optional[VirtualEventPresenterDetails] = None
     # The sessions property
     sessions: Optional[List[VirtualEventSession]] = None

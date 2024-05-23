@@ -14,13 +14,13 @@ from .custom_claim_base import CustomClaimBase
 class CustomClaim(CustomClaimBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customClaim"
-    # The name property
+    # The name of the claim to be emitted.
     name: Optional[str] = None
-    # The namespace property
+    # An optional namespace to be included as part of the claim name.
     namespace: Optional[str] = None
-    # The samlAttributeNameFormat property
+    # If specified, it sets the nameFormat attribute associated with the claim in the SAML response. The possible values are: unspecified, uri, basic, unknownFutureValue.
     saml_attribute_name_format: Optional[SamlAttributeNameFormat] = None
-    # The tokenFormat property
+    # List of token formats for which this claim should be emitted. The possible values are: saml,jwt, unknownFutureValue
     token_format: Optional[List[TokenFormat]] = None
     
     @staticmethod

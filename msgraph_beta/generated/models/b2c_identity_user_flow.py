@@ -19,7 +19,7 @@ class B2cIdentityUserFlow(IdentityUserFlow):
     api_connector_configuration: Optional[UserFlowApiConnectorConfiguration] = None
     # Indicates the default language of the b2cIdentityUserFlow that is used when no ui_locale tag is specified in the request. This field is RFC 5646 compliant.
     default_language_tag: Optional[str] = None
-    # The identityProviders property
+    # The identity providers included in the user flow.
     identity_providers: Optional[List[IdentityProvider]] = None
     # The property that determines whether language customization is enabled within the B2C user flow. Language customization is not enabled by default for B2C user flows.
     is_language_customization_enabled: Optional[bool] = None
@@ -29,7 +29,7 @@ class B2cIdentityUserFlow(IdentityUserFlow):
     odata_type: Optional[str] = None
     # The user attribute assignments included in the user flow.
     user_attribute_assignments: Optional[List[IdentityUserFlowAttributeAssignment]] = None
-    # The userFlowIdentityProviders property
+    # The identity providers included in the user flow.
     user_flow_identity_providers: Optional[List[IdentityProviderBase]] = None
     
     @staticmethod

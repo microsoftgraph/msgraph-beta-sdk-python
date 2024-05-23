@@ -16,13 +16,13 @@ class MeetingParticipants(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Information of the meeting attendees.
     attendees: Optional[List[MeetingParticipantInfo]] = None
-    # The contributors property
+    # For broadcast meeting only.
     contributors: Optional[List[MeetingParticipantInfo]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Information of the meeting organizer.
     organizer: Optional[MeetingParticipantInfo] = None
-    # The producers property
+    # For broadcast meeting only.
     producers: Optional[List[MeetingParticipantInfo]] = None
     
     @staticmethod

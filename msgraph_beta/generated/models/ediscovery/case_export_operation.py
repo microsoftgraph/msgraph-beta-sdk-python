@@ -25,7 +25,7 @@ class CaseExportOperation(CaseOperation):
     export_structure: Optional[ExportFileStructure] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The outputFolderId property
+    # The output folder ID.
     output_folder_id: Optional[str] = None
     # The name provided for the export.
     output_name: Optional[str] = None

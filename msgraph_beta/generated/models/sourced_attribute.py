@@ -12,11 +12,11 @@ from .custom_claim_attribute_base import CustomClaimAttributeBase
 class SourcedAttribute(CustomClaimAttributeBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.sourcedAttribute"
-    # The id property
+    # The identifier of the attribute on the specified source.
     id: Optional[str] = None
-    # The isExtensionAttribute property
+    # A flag that indicates if the name specified is that of an extension attribute.
     is_extension_attribute: Optional[bool] = None
-    # The source property
+    # The source where the claim is going to retrieve its value. Valid sources include user, application, resource, audience and company.
     source: Optional[str] = None
     
     @staticmethod

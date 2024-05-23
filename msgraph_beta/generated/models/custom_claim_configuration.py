@@ -16,13 +16,13 @@ class CustomClaimConfiguration(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The attribute property
+    # The attribute on which we source this property.
     attribute: Optional[CustomClaimAttributeBase] = None
-    # The condition property
+    # The condition, if any, associated with this configuration.
     condition: Optional[CustomClaimConditionBase] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The transformations property
+    # An ordered list of transformations that are applied in sequence.
     transformations: Optional[List[CustomClaimTransformation]] = None
     
     @staticmethod

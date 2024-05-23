@@ -37,7 +37,7 @@ class CloudPcDeviceImage(Entity):
     source_image_resource_id: Optional[str] = None
     # The status of the image on the Cloud PC. Possible values are: pending, ready, failed, unknownFutureValue. Read-only.
     status: Optional[CloudPcDeviceImageStatus] = None
-    # The statusDetails property
+    # The details of the status of the image that indicates why the upload failed, if applicable. Possible values are: internalServerError, sourceImageNotFound, osVersionNotSupported, sourceImageInvalid, sourceImageNotGeneralized, unknownFutureValue, vmAlreadyAzureAdJoined, paidSourceImageNotSupport, sourceImageNotSupportCustomizeVMName, sourceImageSizeExceedsLimitation. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: vmAlreadyAzureAdJoined, paidSourceImageNotSupport, sourceImageNotSupportCustomizeVMName, sourceImageSizeExceedsLimitation. Read-only. The statusDetails property is deprecated and will stop returning data on January 31, 2024. Going forward, use the errorCode property.
     status_details: Optional[CloudPcDeviceImageStatusDetails] = None
     # The image version. For example, 0.0.1 and 1.5.13. Read-only.
     version: Optional[str] = None

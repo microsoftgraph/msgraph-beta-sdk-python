@@ -21,7 +21,7 @@ class HybridAgentUpdaterConfiguration(AdditionalDataHolder, BackedModel, Parsabl
     defer_update_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The updateWindow property
+    # The time window during which the agent can receive updates.
     update_window: Optional[UpdateWindow] = None
     
     @staticmethod

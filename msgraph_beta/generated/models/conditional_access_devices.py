@@ -16,11 +16,11 @@ class ConditionalAccessDevices(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Filter that defines the dynamic-device-syntax rule to include/exclude devices. A filter can use device properties (such as extension attributes) to include/exclude them. Cannot be set if includeDevices or excludeDevices is set.
     device_filter: Optional[ConditionalAccessFilter] = None
-    # The excludeDeviceStates property
+    # States excluded from the scope of the policy. Possible values: Compliant, DomainJoined.
     exclude_device_states: Optional[List[str]] = None
     # States excluded from the scope of the policy. Possible values: Compliant, DomainJoined. Cannot be set if deviceFIlter is set.
     exclude_devices: Optional[List[str]] = None
-    # The includeDeviceStates property
+    # States in the scope of the policy. All is the only allowed value.
     include_device_states: Optional[List[str]] = None
     # States in the scope of the policy. All is the only allowed value. Cannot be set if deviceFilter is set.
     include_devices: Optional[List[str]] = None

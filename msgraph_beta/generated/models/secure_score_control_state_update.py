@@ -12,17 +12,17 @@ class SecureScoreControlStateUpdate(AdditionalDataHolder, BackedModel, Parsable)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The assignedTo property
+    # Assign the control to the user who will take the action
     assigned_to: Optional[str] = None
-    # The comment property
+    # Provides optional comment about the control
     comment: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The state property
+    # State of the control can be modified using PATCH command(Ex: ignored, thirdParty etc)
     state: Optional[str] = None
-    # The updatedBy property
+    # ID of the user who updated tenant state
     updated_by: Optional[str] = None
-    # The updatedDateTime property
+    # Time at which control state was updated
     updated_date_time: Optional[datetime.datetime] = None
     
     @staticmethod

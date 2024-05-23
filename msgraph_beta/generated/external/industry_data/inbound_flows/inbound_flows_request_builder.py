@@ -48,10 +48,10 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[InboundFlowsRequestBuilderGetQueryParameters]] = None) -> Optional[InboundFlowCollectionResponse]:
         """
-        Get a list of the inboundFlow objects and their properties.
+        Get a list of the inboundFileFlow objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlowCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-list?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +69,11 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: InboundFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[InboundFlow]:
         """
-        Create a new inboundFlow object. The following prerequisite resources are required when you create an inboundFlow:
+        Create a new inboundFileFlow object. The following prerequisite resources are required when you create an inboundFileFlow:
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-post?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-post?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -93,7 +93,7 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[InboundFlowsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the inboundFlow objects and their properties.
+        Get a list of the inboundFileFlow objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +104,7 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: InboundFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new inboundFlow object. The following prerequisite resources are required when you create an inboundFlow:
+        Create a new inboundFileFlow object. The following prerequisite resources are required when you create an inboundFileFlow:
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +139,7 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InboundFlowsRequestBuilderGetQueryParameters():
         """
-        Get a list of the inboundFlow objects and their properties.
+        Get a list of the inboundFileFlow objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

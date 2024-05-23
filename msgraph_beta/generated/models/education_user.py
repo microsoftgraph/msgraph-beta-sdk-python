@@ -64,7 +64,7 @@ class EducationUser(Entity):
     mobile_phone: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The officeLocation property
+    # The office location for the user.
     office_location: Optional[str] = None
     # Additional information used to associate the Microsoft Entra user with its Active Directory counterpart.
     on_premises_info: Optional[EducationOnPremisesInfo] = None

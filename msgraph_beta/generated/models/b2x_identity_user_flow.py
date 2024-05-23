@@ -17,7 +17,7 @@ from .identity_user_flow import IdentityUserFlow
 class B2xIdentityUserFlow(IdentityUserFlow):
     # Configuration for enabling an API connector for use as part of the self-service sign-up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
     api_connector_configuration: Optional[UserFlowApiConnectorConfiguration] = None
-    # The identityProviders property
+    # The identity providers included in the user flow.
     identity_providers: Optional[List[IdentityProvider]] = None
     # The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can't create custom languages in self-service sign-up user flows.
     languages: Optional[List[UserFlowLanguageConfiguration]] = None

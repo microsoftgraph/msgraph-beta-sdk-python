@@ -15,7 +15,7 @@ class TrimTransformation(CustomClaimTransformation):
     odata_type: Optional[str] = "#microsoft.graph.trimTransformation"
     # The type property
     type: Optional[TransformationTrimType] = None
-    # The value property
+    # The value to be used as part of the transformation.
     value: Optional[str] = None
     
     @staticmethod

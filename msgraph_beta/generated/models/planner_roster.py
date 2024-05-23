@@ -7,11 +7,14 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .planner_plan import PlannerPlan
     from .planner_roster_member import PlannerRosterMember
+    from .sensitivity_label_assignment import SensitivityLabelAssignment
 
 from .entity import Entity
 
 @dataclass
 class PlannerRoster(Entity):
+    # The assignedSensitivityLabel property
+    assigned_sensitivity_label: Optional[SensitivityLabelAssignment] = None
     # Retrieves the members of the plannerRoster.
     members: Optional[List[PlannerRosterMember]] = None
     # The OdataType property
@@ -38,12 +41,15 @@ class PlannerRoster(Entity):
         from .entity import Entity
         from .planner_plan import PlannerPlan
         from .planner_roster_member import PlannerRosterMember
+        from .sensitivity_label_assignment import SensitivityLabelAssignment
 
         from .entity import Entity
         from .planner_plan import PlannerPlan
         from .planner_roster_member import PlannerRosterMember
+        from .sensitivity_label_assignment import SensitivityLabelAssignment
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "assignedSensitivityLabel": lambda n : setattr(self, 'assigned_sensitivity_label', n.get_object_value(SensitivityLabelAssignment)),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(PlannerRosterMember)),
             "plans": lambda n : setattr(self, 'plans', n.get_collection_of_object_values(PlannerPlan)),
         }
@@ -60,6 +66,7 @@ class PlannerRoster(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("assignedSensitivityLabel", self.assigned_sensitivity_label)
         writer.write_collection_of_object_values("members", self.members)
         writer.write_collection_of_object_values("plans", self.plans)
     

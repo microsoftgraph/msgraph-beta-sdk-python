@@ -15,7 +15,7 @@ class SamlNameIdClaim(CustomClaimBase):
     odata_type: Optional[str] = "#microsoft.graph.samlNameIdClaim"
     # The nameIdFormat property
     name_id_format: Optional[SamlNameIDFormat] = None
-    # The serviceProviderNameQualifier property
+    # Allows the specification of a service provider name qualifier reflected in the sAML response. The value provided must match one of the service provider names configured for the application and is only applicable for IdP-initiated applications (the sign-on URL should be empty for the IdP-initiated applications), in all other cases this value is ignored.
     service_provider_name_qualifier: Optional[str] = None
     
     @staticmethod

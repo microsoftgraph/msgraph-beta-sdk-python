@@ -12,7 +12,7 @@ from .custom_claim_attribute_base import CustomClaimAttributeBase
 class ValueBasedAttribute(CustomClaimAttributeBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.valueBasedAttribute"
-    # The value property
+    # The static value to be used an the attribute.
     value: Optional[str] = None
     
     @staticmethod

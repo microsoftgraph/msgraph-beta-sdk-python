@@ -17,7 +17,7 @@ class MediaConfig(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The removeFromDefaultAudioGroup property
+    # Remove media from the default audio group.
     remove_from_default_audio_group: Optional[bool] = None
     
     @staticmethod

@@ -25,7 +25,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
     region_group: Optional[CloudPcRegionGroup] = None
     # The supported Azure region where the IT admin wants the provisioning policy to create Cloud PCs. The underlying virtual network is created and managed by the Windows 365 service. This can only be entered if the IT admin chooses Microsoft Entra joined as the domain join type. If you enter a regionName, leave the onPremisesConnectionId property empty.
     region_name: Optional[str] = None
-    # The type property
+    # Specifies the method by which the provisioned Cloud PC joins Microsoft Entra ID. If you choose the hybridAzureADJoin type, only provide a value for the onPremisesConnectionId property and leave regionName as empty. If you choose the azureADJoin type, provide a value for either onPremisesConnectionId or regionName. The possible values are: azureADJoin, hybridAzureADJoin, unknownFutureValue. The type property is deprecated and will stop returning data on January 31, 2024. Going forward, use the domainJoinType property.
     type: Optional[CloudPcDomainJoinType] = None
     
     @staticmethod

@@ -737,6 +737,7 @@ if TYPE_CHECKING:
     from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
     from .identity_finding import IdentityFinding
     from .identity_governance.custom_task_extension import CustomTaskExtension
+    from .identity_governance.insights import Insights
     from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
     from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
     from .identity_governance.run import Run
@@ -1168,6 +1169,7 @@ if TYPE_CHECKING:
     from .partners.billing.running_operation import RunningOperation
     from .partners.billing.unbilled_usage import UnbilledUsage
     from .partners.partners import Partners
+    from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
     from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
     from .password_authentication_method import PasswordAuthenticationMethod
     from .payload import Payload
@@ -4901,6 +4903,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_governance.custom_task_extension import CustomTaskExtension
 
             return CustomTaskExtension()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.insights".casefold():
+            from .identity_governance.insights import Insights
+
+            return Insights()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecycleManagementSettings".casefold():
             from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
 
@@ -6637,6 +6643,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .partners.billing.unbilled_usage import UnbilledUsage
 
             return UnbilledUsage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.passkeyAuthenticationMethodTarget".casefold():
+            from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
+
+            return PasskeyAuthenticationMethodTarget()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.passwordAuthenticationMethod".casefold():
             from .password_authentication_method import PasswordAuthenticationMethod
 
@@ -10416,6 +10426,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
         from .identity_finding import IdentityFinding
         from .identity_governance.custom_task_extension import CustomTaskExtension
+        from .identity_governance.insights import Insights
         from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
         from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
         from .identity_governance.run import Run
@@ -10847,6 +10858,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .partners.billing.running_operation import RunningOperation
         from .partners.billing.unbilled_usage import UnbilledUsage
         from .partners.partners import Partners
+        from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
         from .password_authentication_method import PasswordAuthenticationMethod
         from .payload import Payload
@@ -12335,6 +12347,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
         from .identity_finding import IdentityFinding
         from .identity_governance.custom_task_extension import CustomTaskExtension
+        from .identity_governance.insights import Insights
         from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
         from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
         from .identity_governance.run import Run
@@ -12766,6 +12779,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .partners.billing.running_operation import RunningOperation
         from .partners.billing.unbilled_usage import UnbilledUsage
         from .partners.partners import Partners
+        from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
         from .password_authentication_method import PasswordAuthenticationMethod
         from .payload import Payload

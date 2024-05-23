@@ -28,7 +28,7 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
     api_connectors: Optional[List[IdentityApiConnector]] = None
     # The authenticationEventListeners property
     authentication_event_listeners: Optional[List[AuthenticationEventListener]] = None
-    # Represents the entry point for self-service sign up and sign in user flows in both Microsoft Entra workforce and customer tenants.
+    # Represents the entry point for self-service sign-up and sign-in user flows in both Microsoft Entra workforce and external tenants.
     authentication_events_flows: Optional[List[AuthenticationEventsFlow]] = None
     # Represents entry point for B2C identity userflows.
     b2c_user_flows: Optional[List[B2cIdentityUserFlow]] = None

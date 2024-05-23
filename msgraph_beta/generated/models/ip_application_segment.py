@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .application import Application
     from .application_segment import ApplicationSegment
     from .private_network_destination_type import PrivateNetworkDestinationType
     from .private_network_protocol import PrivateNetworkProtocol
@@ -14,6 +15,8 @@ from .application_segment import ApplicationSegment
 class IpApplicationSegment(ApplicationSegment):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.ipApplicationSegment"
+    # The application property
+    application: Optional[Application] = None
     # The destinationHost property
     destination_host: Optional[str] = None
     # The destinationType property
@@ -41,15 +44,18 @@ class IpApplicationSegment(ApplicationSegment):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .application import Application
         from .application_segment import ApplicationSegment
         from .private_network_destination_type import PrivateNetworkDestinationType
         from .private_network_protocol import PrivateNetworkProtocol
 
+        from .application import Application
         from .application_segment import ApplicationSegment
         from .private_network_destination_type import PrivateNetworkDestinationType
         from .private_network_protocol import PrivateNetworkProtocol
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "application": lambda n : setattr(self, 'application', n.get_object_value(Application)),
             "destinationHost": lambda n : setattr(self, 'destination_host', n.get_str_value()),
             "destinationType": lambda n : setattr(self, 'destination_type', n.get_enum_value(PrivateNetworkDestinationType)),
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
@@ -69,6 +75,7 @@ class IpApplicationSegment(ApplicationSegment):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("application", self.application)
         writer.write_str_value("destinationHost", self.destination_host)
         writer.write_enum_value("destinationType", self.destination_type)
         writer.write_int_value("port", self.port)

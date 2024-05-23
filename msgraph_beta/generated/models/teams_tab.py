@@ -24,7 +24,7 @@ class TeamsTab(Entity):
     sort_order_index: Optional[str] = None
     # The application that is linked to the tab.
     teams_app: Optional[TeamsApp] = None
-    # The teamsAppId property
+    # App definition identifier of the tab. This value can't be changed after tab creation. Because this property is deprecated, we recommend expanding teamsApp to retrieve the application that is linked to the tab.
     teams_app_id: Optional[str] = None
     # Deep link URL of the tab instance. Read only.
     web_url: Optional[str] = None
