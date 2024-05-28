@@ -15,6 +15,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.networkaccess.alert import Alert
     from ....models.o_data_errors.o_data_error import ODataError
+    from .policy.policy_request_builder import PolicyRequestBuilder
 
 class AlertItemRequestBuilder(BaseRequestBuilder):
     """
@@ -136,6 +137,15 @@ class AlertItemRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return AlertItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def policy(self) -> PolicyRequestBuilder:
+        """
+        Provides operations to manage the policy property of the microsoft.graph.networkaccess.alert entity.
+        """
+        from .policy.policy_request_builder import PolicyRequestBuilder
+
+        return PolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AlertItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

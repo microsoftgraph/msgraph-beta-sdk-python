@@ -31,7 +31,7 @@ class GraphUserRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GraphUserRequestBuilderGetQueryParameters]] = None) -> Optional[User]:
         """
-        Get a list of the group's direct members. A group can have users, contacts, devices, service principals, and other groups as members. This operation is not transitive.
+        Get a list of the group's direct members. A group can have users, contacts, devices, service principals, and other groups as members. This operation isn't transitive.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[User]
         Find more info here: https://learn.microsoft.com/graph/api/group-list-members?view=graph-rest-beta
@@ -52,7 +52,7 @@ class GraphUserRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GraphUserRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the group's direct members. A group can have users, contacts, devices, service principals, and other groups as members. This operation is not transitive.
+        Get a list of the group's direct members. A group can have users, contacts, devices, service principals, and other groups as members. This operation isn't transitive.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class GraphUserRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GraphUserRequestBuilderGetQueryParameters():
         """
-        Get a list of the group's direct members. A group can have users, contacts, devices, service principals, and other groups as members. This operation is not transitive.
+        Get a list of the group's direct members. A group can have users, contacts, devices, service principals, and other groups as members. This operation isn't transitive.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -77,10 +77,11 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: VirtualEventWebinar, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[VirtualEventWebinar]:
         """
-        Update the navigation property webinars in solutions
+        Update the properties of a virtualEventWebinar object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventWebinar]
+        Find more info here: https://learn.microsoft.com/graph/api/virtualeventwebinar-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -158,7 +159,7 @@ class VirtualEventWebinarItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: VirtualEventWebinar, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property webinars in solutions
+        Update the properties of a virtualEventWebinar object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

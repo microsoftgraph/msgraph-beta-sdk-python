@@ -18,12 +18,20 @@ class User(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # User display Name.
     display_name: Optional[str] = None
+    # The firstAccessDateTime property
+    first_access_date_time: Optional[datetime.datetime] = None
     # The date and time of the most recent access.
     last_access_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The totalBytesReceived property
+    total_bytes_received: Optional[int] = None
+    # The totalBytesSent property
+    total_bytes_sent: Optional[int] = None
     # The trafficType property
     traffic_type: Optional[TrafficType] = None
+    # The transactionCount property
+    transaction_count: Optional[int] = None
     # The ID for the user.
     user_id: Optional[str] = None
     # A unique identifier that is associated with a user in a system or directory. Typically, this value is an email address that is used for user authentication and identification.
@@ -55,9 +63,13 @@ class User(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "firstAccessDateTime": lambda n : setattr(self, 'first_access_date_time', n.get_datetime_value()),
             "lastAccessDateTime": lambda n : setattr(self, 'last_access_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "totalBytesReceived": lambda n : setattr(self, 'total_bytes_received', n.get_int_value()),
+            "totalBytesSent": lambda n : setattr(self, 'total_bytes_sent', n.get_int_value()),
             "trafficType": lambda n : setattr(self, 'traffic_type', n.get_enum_value(TrafficType)),
+            "transactionCount": lambda n : setattr(self, 'transaction_count', n.get_int_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
             "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(UserType)),
@@ -73,9 +85,13 @@ class User(AdditionalDataHolder, BackedModel, Parsable):
         if not writer:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("displayName", self.display_name)
+        writer.write_datetime_value("firstAccessDateTime", self.first_access_date_time)
         writer.write_datetime_value("lastAccessDateTime", self.last_access_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_int_value("totalBytesReceived", self.total_bytes_received)
+        writer.write_int_value("totalBytesSent", self.total_bytes_sent)
         writer.write_enum_value("trafficType", self.traffic_type)
+        writer.write_int_value("transactionCount", self.transaction_count)
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
         writer.write_enum_value("userType", self.user_type)

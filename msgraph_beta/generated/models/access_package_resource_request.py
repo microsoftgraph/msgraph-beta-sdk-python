@@ -21,13 +21,13 @@ class AccessPackageResourceRequest(Entity):
     execute_immediately: Optional[bool] = None
     # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     expiration_date_time: Optional[datetime.datetime] = None
-    # If set, does not add the resource.
+    # If set, doesn't add the resource.
     is_validation_only: Optional[bool] = None
     # The requestor's justification for adding or removing the resource.
     justification: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The outcome of whether the service was able to add the resource to the catalog.  The value is Delivered if the resource was added or removed. Read-Only.
+    # The outcome of whether the service was able to add the resource to the catalog. The value is Delivered if the resource was added or removed. Read-Only.
     request_state: Optional[str] = None
     # The requestStatus property
     request_status: Optional[str] = None

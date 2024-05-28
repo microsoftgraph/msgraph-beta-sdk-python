@@ -52,7 +52,7 @@ class SessionsWithJoinWebUrlRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SessionsWithJoinWebUrlRequestBuilderGetQueryParameters]] = None) -> Optional[VirtualEventSession]:
         """
-        Sessions for the virtual event.
+        The sessions for the virtual event.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventSession]
         """
@@ -106,7 +106,7 @@ class SessionsWithJoinWebUrlRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SessionsWithJoinWebUrlRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Sessions for the virtual event.
+        The sessions for the virtual event.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -150,7 +150,7 @@ class SessionsWithJoinWebUrlRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SessionsWithJoinWebUrlRequestBuilderGetQueryParameters():
         """
-        Sessions for the virtual event.
+        The sessions for the virtual event.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

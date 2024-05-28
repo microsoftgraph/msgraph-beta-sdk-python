@@ -20,11 +20,11 @@ from ...entity import Entity
 class PartnerSecurityAlert(Entity):
     # Represents the activity by a partner and includes details of state transitions, who performed them, and when they occurred.
     activity_logs: Optional[List[ActivityLog]] = None
-    # A bag of name-value pairs that contain additional details about an alert.
+    # A bag of name-value pairs that contain more details about an alert.
     additional_details: Optional[AdditionalDataDictionary] = None
     # Contains details of the resources affected by the security alert.
     affected_resources: Optional[List[AffectedResource]] = None
-    # The type of vulnerability that impacts the customer due to this alert.
+    # The type of vulnerability that impacts the customer due to this alert. For more information, see Security alerts reference guide.
     alert_type: Optional[str] = None
     # The modern offer category ID of the subscription.
     catalog_offer_id: Optional[str] = None
@@ -38,9 +38,9 @@ class PartnerSecurityAlert(Entity):
     detected_date_time: Optional[datetime.datetime] = None
     # The display name of the alert.
     display_name: Optional[str] = None
-    # Time of the first activity associated with the alert. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  subscription.
+    # Time of the first activity associated with the alert. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     first_observed_date_time: Optional[datetime.datetime] = None
-    # Indicates whehter an alert is a test alert.
+    # Indicates whether an alert is a test alert.
     is_test: Optional[bool] = None
     # Time of the latest activity associated with the alert. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_observed_date_time: Optional[datetime.datetime] = None

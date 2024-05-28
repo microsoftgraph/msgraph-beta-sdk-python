@@ -9,4 +9,5 @@ class AlertType(str, Enum):
     ThreatIntelligenceTransactions = "threatIntelligenceTransactions",
     UnknownFutureValue = "unknownFutureValue",
     WebContentBlocked = "webContentBlocked",
+    Malware = "malware",
 

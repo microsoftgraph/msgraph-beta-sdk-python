@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .related_destination import RelatedDestination
     from .related_device import RelatedDevice
+    from .related_malware import RelatedMalware
     from .related_process import RelatedProcess
     from .related_remote_network import RelatedRemoteNetwork
     from .related_tenant import RelatedTenant
@@ -44,6 +45,10 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
             from .related_device import RelatedDevice
 
             return RelatedDevice()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedMalware".casefold():
+            from .related_malware import RelatedMalware
+
+            return RelatedMalware()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedProcess".casefold():
             from .related_process import RelatedProcess
 
@@ -73,6 +78,7 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .related_destination import RelatedDestination
         from .related_device import RelatedDevice
+        from .related_malware import RelatedMalware
         from .related_process import RelatedProcess
         from .related_remote_network import RelatedRemoteNetwork
         from .related_tenant import RelatedTenant
@@ -81,6 +87,7 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
 
         from .related_destination import RelatedDestination
         from .related_device import RelatedDevice
+        from .related_malware import RelatedMalware
         from .related_process import RelatedProcess
         from .related_remote_network import RelatedRemoteNetwork
         from .related_tenant import RelatedTenant

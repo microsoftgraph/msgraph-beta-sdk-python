@@ -32,7 +32,7 @@ class AccessPackageAssignment(Entity):
     assignment_policy_id: Optional[str] = None
     # The state of the access package assignment. Possible values are Delivering, Delivered, or Expired. Read-only. Supports $filter (eq).
     assignment_state: Optional[str] = None
-    # More information about the assignment lifecycle.  Possible values include Delivering, Delivered, NearExpiry1DayNotificationTriggered, or ExpiredNotificationTriggered.  Read-only.
+    # More information about the assignment lifecycle. Possible values include Delivering, Delivered, NearExpiry1DayNotificationTriggered, or ExpiredNotificationTriggered. Read-only.
     assignment_status: Optional[str] = None
     # The identifier of the catalog containing the access package. Read-only.
     catalog_id: Optional[str] = None

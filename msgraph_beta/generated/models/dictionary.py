@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
+    from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
     from .partner.security.additional_data_dictionary import AdditionalDataDictionary
     from .planner_forms_dictionary import PlannerFormsDictionary
     from .result_template_dictionary import ResultTemplateDictionary
@@ -37,6 +38,10 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
             from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
 
             return CustomAppScopeAttributesDictionary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.fileStorageContainerCustomPropertyDictionary".casefold():
+            from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
+
+            return FileStorageContainerCustomPropertyDictionary()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.additionalDataDictionary".casefold():
             from .partner.security.additional_data_dictionary import AdditionalDataDictionary
 
@@ -57,11 +62,13 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
+        from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
         from .partner.security.additional_data_dictionary import AdditionalDataDictionary
         from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
 
         from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
+        from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
         from .partner.security.additional_data_dictionary import AdditionalDataDictionary
         from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary

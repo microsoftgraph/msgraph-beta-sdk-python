@@ -8,7 +8,9 @@ if TYPE_CHECKING:
     from ..entity import Entity
     from .alert_action import AlertAction
     from .alert_type import AlertType
+    from .filtering_policy import FilteringPolicy
     from .related_resource import RelatedResource
+    from .threat_severity import ThreatSeverity
 
 from ..entity import Entity
 
@@ -22,10 +24,20 @@ class Alert(Entity):
     creation_date_time: Optional[datetime.datetime] = None
     # The description property
     description: Optional[str] = None
+    # The detectionTechnology property
+    detection_technology: Optional[str] = None
+    # The displayName property
+    display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The policy property
+    policy: Optional[FilteringPolicy] = None
     # The relatedResources property
     related_resources: Optional[List[RelatedResource]] = None
+    # The severity property
+    severity: Optional[ThreatSeverity] = None
+    # The vendorName property
+    vendor_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Alert:
@@ -46,19 +58,28 @@ class Alert(Entity):
         from ..entity import Entity
         from .alert_action import AlertAction
         from .alert_type import AlertType
+        from .filtering_policy import FilteringPolicy
         from .related_resource import RelatedResource
+        from .threat_severity import ThreatSeverity
 
         from ..entity import Entity
         from .alert_action import AlertAction
         from .alert_type import AlertType
+        from .filtering_policy import FilteringPolicy
         from .related_resource import RelatedResource
+        from .threat_severity import ThreatSeverity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(AlertAction)),
             "alertType": lambda n : setattr(self, 'alert_type', n.get_enum_value(AlertType)),
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
+            "detectionTechnology": lambda n : setattr(self, 'detection_technology', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "policy": lambda n : setattr(self, 'policy', n.get_object_value(FilteringPolicy)),
             "relatedResources": lambda n : setattr(self, 'related_resources', n.get_collection_of_object_values(RelatedResource)),
+            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(ThreatSeverity)),
+            "vendorName": lambda n : setattr(self, 'vendor_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -77,6 +98,11 @@ class Alert(Entity):
         writer.write_enum_value("alertType", self.alert_type)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_str_value("description", self.description)
+        writer.write_str_value("detectionTechnology", self.detection_technology)
+        writer.write_str_value("displayName", self.display_name)
+        writer.write_object_value("policy", self.policy)
         writer.write_collection_of_object_values("relatedResources", self.related_resources)
+        writer.write_enum_value("severity", self.severity)
+        writer.write_str_value("vendorName", self.vendor_name)
     
 

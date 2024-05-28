@@ -73,7 +73,7 @@ class VirtualEventTownhallItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: VirtualEventTownhall, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[VirtualEventTownhall]:
         """
-        Update the properties of a virtualEventTownhall object.
+        Update the properties of a vvirtualEventTownhall object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventTownhall]
@@ -131,7 +131,7 @@ class VirtualEventTownhallItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: VirtualEventTownhall, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a virtualEventTownhall object.
+        Update the properties of a vvirtualEventTownhall object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
