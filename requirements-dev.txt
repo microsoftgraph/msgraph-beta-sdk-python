@@ -74,7 +74,7 @@ PyJWT==2.8.0
 
 python-dateutil==2.9.0.post0
 
-requests==2.32.2
+requests==2.32.3
 
 six==1.16.0
 
