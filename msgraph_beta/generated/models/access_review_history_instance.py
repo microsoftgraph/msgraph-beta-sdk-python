@@ -20,13 +20,13 @@ class AccessReviewHistoryInstance(Entity):
     fulfilled_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Timestamp, reviews ending on or before this date are in the fetched history data.
+    # The date and time for which reviews ended before this date are included in the fetched history data.
     review_history_period_end_date_time: Optional[datetime.datetime] = None
-    # Timestamp, reviews starting on or after this date are in the fetched history data.
+    # The date and time for which reviews started on or after this date are included in the fetched history data.
     review_history_period_start_date_time: Optional[datetime.datetime] = None
-    # Timestamp when the instance's history data is scheduled to be generated.
+    # The date and time when the instance's history data is scheduled to be generated.
     run_date_time: Optional[datetime.datetime] = None
-    # Represents the status of the review history data collection. The possible values are: done, inProgress, error, requested, unknownFutureValue. Once the status has been marked as done, a link can be generated to retrieve the instance's data by calling generateDownloadUri method.
+    # Represents the status of the review history data collection. The possible values are: done, inProgress, error, requested, unknownFutureValue. Once the status is marked as done, you can generate a link retrieve the instance's data by calling generateDownloadUri method.
     status: Optional[AccessReviewHistoryStatus] = None
     
     @staticmethod

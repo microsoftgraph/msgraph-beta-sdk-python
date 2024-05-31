@@ -19,7 +19,7 @@ class VirtualEventTownhall(VirtualEvent):
     audience: Optional[MeetingAudience] = None
     # Identity information of the coorganizers of the town hall.
     co_organizers: Optional[List[CommunicationsUserIdentity]] = None
-    # The attendees invited to the town hall. The supported identites are: communicationsUserIdentity and communicationsGuestIdentity.
+    # The attendees invited to the town hall. The supported identities are: communicationsUserIdentity and communicationsGuestIdentity.
     invited_attendees: Optional[List[Identity]] = None
     # Indicates whether the town hall is only open to invited people and groups within your organization. The isInviteOnly property can only be true if the value of the audience property is set to organization.
     is_invite_only: Optional[bool] = None

@@ -64,6 +64,7 @@ if TYPE_CHECKING:
     from .education.education_request_builder import EducationRequestBuilder
     from .employee_experience.employee_experience_request_builder import EmployeeExperienceRequestBuilder
     from .external.external_request_builder import ExternalRequestBuilder
+    from .filtering_policies.filtering_policies_request_builder import FilteringPoliciesRequestBuilder
     from .filter_operators.filter_operators_request_builder import FilterOperatorsRequestBuilder
     from .financials.financials_request_builder import FinancialsRequestBuilder
     from .functions.functions_request_builder import FunctionsRequestBuilder
@@ -123,6 +124,7 @@ if TYPE_CHECKING:
     from .shares.shares_request_builder import SharesRequestBuilder
     from .sites.sites_request_builder import SitesRequestBuilder
     from .solutions.solutions_request_builder import SolutionsRequestBuilder
+    from .storage.storage_request_builder import StorageRequestBuilder
     from .subscribed_skus.subscribed_skus_request_builder import SubscribedSkusRequestBuilder
     from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
     from .teams.teams_request_builder import TeamsRequestBuilder
@@ -661,6 +663,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         return FilterOperatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def filtering_policies(self) -> FilteringPoliciesRequestBuilder:
+        """
+        Provides operations to manage the collection of filteringPolicy entities.
+        """
+        from .filtering_policies.filtering_policies_request_builder import FilteringPoliciesRequestBuilder
+
+        return FilteringPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def financials(self) -> FinancialsRequestBuilder:
         """
         Provides operations to manage the financials singleton.
@@ -1154,6 +1165,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .solutions.solutions_request_builder import SolutionsRequestBuilder
 
         return SolutionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def storage(self) -> StorageRequestBuilder:
+        """
+        Provides operations to manage the storage singleton.
+        """
+        from .storage.storage_request_builder import StorageRequestBuilder
+
+        return StorageRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def subscribed_skus(self) -> SubscribedSkusRequestBuilder:

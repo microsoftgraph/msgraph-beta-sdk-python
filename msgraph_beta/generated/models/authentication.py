@@ -43,9 +43,9 @@ class Authentication(Entity):
     phone_methods: Optional[List[PhoneAuthenticationMethod]] = None
     # The platformCredentialMethods property
     platform_credential_methods: Optional[List[PlatformCredentialAuthenticationMethod]] = None
-    # The settings and preferences for to the sign-in experience of a user. Use this property to configure the user's default multifactor authentication (MFA) method.
+    # The settings and preferences for the sign-in experience of a user. Use this property to configure the user's default multifactor authentication (MFA) method.
     sign_in_preferences: Optional[SignInPreferences] = None
-    # The softwareOathMethods property
+    # The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.
     software_oath_methods: Optional[List[SoftwareOathAuthenticationMethod]] = None
     # Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.
     temporary_access_pass_methods: Optional[List[TemporaryAccessPassAuthenticationMethod]] = None

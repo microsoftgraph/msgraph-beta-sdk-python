@@ -668,6 +668,8 @@ if TYPE_CHECKING:
     from .file_attachment import FileAttachment
     from .file_classification_request import FileClassificationRequest
     from .file_security_profile import FileSecurityProfile
+    from .file_storage import FileStorage
+    from .file_storage_container import FileStorageContainer
     from .filter_operator_schema import FilterOperatorSchema
     from .finding import Finding
     from .focus_activity_statistics import FocusActivityStatistics
@@ -4626,6 +4628,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .file_security_profile import FileSecurityProfile
 
             return FileSecurityProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.fileStorage".casefold():
+            from .file_storage import FileStorage
+
+            return FileStorage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.fileStorageContainer".casefold():
+            from .file_storage_container import FileStorageContainer
+
+            return FileStorageContainer()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.filterOperatorSchema".casefold():
             from .filter_operator_schema import FilterOperatorSchema
 
@@ -10357,6 +10367,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .file_attachment import FileAttachment
         from .file_classification_request import FileClassificationRequest
         from .file_security_profile import FileSecurityProfile
+        from .file_storage import FileStorage
+        from .file_storage_container import FileStorageContainer
         from .filter_operator_schema import FilterOperatorSchema
         from .finding import Finding
         from .focus_activity_statistics import FocusActivityStatistics
@@ -12278,6 +12290,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .file_attachment import FileAttachment
         from .file_classification_request import FileClassificationRequest
         from .file_security_profile import FileSecurityProfile
+        from .file_storage import FileStorage
+        from .file_storage_container import FileStorageContainer
         from .filter_operator_schema import FilterOperatorSchema
         from .finding import Finding
         from .focus_activity_statistics import FocusActivityStatistics

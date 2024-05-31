@@ -18,23 +18,23 @@ from .entity import Entity
 
 @dataclass
 class VirtualEvent(Entity):
-    # Identity information for the creator of the virtual event. Inherited from virtualEvent.
+    # The identity information for the creator of the virtual event. Inherited from virtualEvent.
     created_by: Optional[CommunicationsIdentitySet] = None
-    # Description of the virtual event.
+    # A description of the virtual event.
     description: Optional[ItemBody] = None
-    # Display name of the virtual event.
+    # The display name of the virtual event.
     display_name: Optional[str] = None
-    # End time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.
+    # The end time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.
     end_date_time: Optional[DateTimeTimeZone] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The virtual event presenters.
     presenters: Optional[List[VirtualEventPresenter]] = None
-    # Sessions for the virtual event.
+    # The sessions for the virtual event.
     sessions: Optional[List[VirtualEventSession]] = None
     # Start time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.
     start_date_time: Optional[DateTimeTimeZone] = None
-    # Status of the virtual event. The possible values are: draft, published, canceled, unknownFutureValue.
+    # The status of the virtual event. The possible values are: draft, published, canceled, unknownFutureValue.
     status: Optional[VirtualEventStatus] = None
     
     @staticmethod
