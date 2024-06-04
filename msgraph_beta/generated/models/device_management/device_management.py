@@ -72,6 +72,7 @@ if TYPE_CHECKING:
     from ..device_protection_overview import DeviceProtectionOverview
     from ..device_shell_script import DeviceShellScript
     from ..embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
+    from ..endpoint_privilege_management_provisioning_status import EndpointPrivilegeManagementProvisioningStatus
     from ..entity import Entity
     from ..group_policy_category import GroupPolicyCategory
     from ..group_policy_configuration import GroupPolicyConfiguration
@@ -81,6 +82,7 @@ if TYPE_CHECKING:
     from ..group_policy_object_file import GroupPolicyObjectFile
     from ..group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
     from ..hardware_configuration import HardwareConfiguration
+    from ..hardware_password_detail import HardwarePasswordDetail
     from ..hardware_password_info import HardwarePasswordInfo
     from ..imported_device_identity import ImportedDeviceIdentity
     from ..imported_windows_autopilot_device_identity import ImportedWindowsAutopilotDeviceIdentity
@@ -173,6 +175,7 @@ if TYPE_CHECKING:
     from ..windows_information_protection_network_learning_summary import WindowsInformationProtectionNetworkLearningSummary
     from ..windows_malware_information import WindowsMalwareInformation
     from ..windows_malware_overview import WindowsMalwareOverview
+    from ..windows_quality_update_policy import WindowsQualityUpdatePolicy
     from ..windows_quality_update_profile import WindowsQualityUpdateProfile
     from ..windows_update_catalog_item import WindowsUpdateCatalogItem
     from ..zebra_fota_artifact import ZebraFotaArtifact
@@ -307,6 +310,8 @@ class DeviceManagement(Entity):
     elevation_requests: Optional[List[PrivilegeManagementElevationRequest]] = None
     # The embedded SIM activation code pools created by this account.
     embedded_s_i_m_activation_code_pools: Optional[List[EmbeddedSIMActivationCodePool]] = None
+    # Endpoint privilege management (EPM) tenant provisioning status contains tenant level license and onboarding state information.
+    endpoint_privilege_management_provisioning_status: Optional[EndpointPrivilegeManagementProvisioningStatus] = None
     # The list of Exchange Connectors configured by the tenant.
     exchange_connectors: Optional[List[DeviceManagementExchangeConnector]] = None
     # The list of Exchange On Premisis policies configured by the tenant.
@@ -329,6 +334,8 @@ class DeviceManagement(Entity):
     group_policy_uploaded_definition_files: Optional[List[GroupPolicyUploadedDefinitionFile]] = None
     # The hardware configurations for this account.
     hardware_configurations: Optional[List[HardwareConfiguration]] = None
+    # Device BIOS password information for devices with managed BIOS and firmware configuration, which provides device serial number, list of previous passwords, and current password.
+    hardware_password_details: Optional[List[HardwarePasswordDetail]] = None
     # The hardware password info for this account.
     hardware_password_info: Optional[List[HardwarePasswordInfo]] = None
     # The imported device identities.
@@ -553,6 +560,8 @@ class DeviceManagement(Entity):
     windows_malware_information: Optional[List[WindowsMalwareInformation]] = None
     # Malware overview for windows devices.
     windows_malware_overview: Optional[WindowsMalwareOverview] = None
+    # A collection of Windows quality update policies
+    windows_quality_update_policies: Optional[List[WindowsQualityUpdatePolicy]] = None
     # A collection of windows quality update profiles
     windows_quality_update_profiles: Optional[List[WindowsQualityUpdateProfile]] = None
     # A collection of windows update catalog items (fetaure updates item , quality updates item)
@@ -646,6 +655,7 @@ class DeviceManagement(Entity):
         from ..device_protection_overview import DeviceProtectionOverview
         from ..device_shell_script import DeviceShellScript
         from ..embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
+        from ..endpoint_privilege_management_provisioning_status import EndpointPrivilegeManagementProvisioningStatus
         from ..entity import Entity
         from ..group_policy_category import GroupPolicyCategory
         from ..group_policy_configuration import GroupPolicyConfiguration
@@ -655,6 +665,7 @@ class DeviceManagement(Entity):
         from ..group_policy_object_file import GroupPolicyObjectFile
         from ..group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
         from ..hardware_configuration import HardwareConfiguration
+        from ..hardware_password_detail import HardwarePasswordDetail
         from ..hardware_password_info import HardwarePasswordInfo
         from ..imported_device_identity import ImportedDeviceIdentity
         from ..imported_windows_autopilot_device_identity import ImportedWindowsAutopilotDeviceIdentity
@@ -747,6 +758,7 @@ class DeviceManagement(Entity):
         from ..windows_information_protection_network_learning_summary import WindowsInformationProtectionNetworkLearningSummary
         from ..windows_malware_information import WindowsMalwareInformation
         from ..windows_malware_overview import WindowsMalwareOverview
+        from ..windows_quality_update_policy import WindowsQualityUpdatePolicy
         from ..windows_quality_update_profile import WindowsQualityUpdateProfile
         from ..windows_update_catalog_item import WindowsUpdateCatalogItem
         from ..zebra_fota_artifact import ZebraFotaArtifact
@@ -820,6 +832,7 @@ class DeviceManagement(Entity):
         from ..device_protection_overview import DeviceProtectionOverview
         from ..device_shell_script import DeviceShellScript
         from ..embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
+        from ..endpoint_privilege_management_provisioning_status import EndpointPrivilegeManagementProvisioningStatus
         from ..entity import Entity
         from ..group_policy_category import GroupPolicyCategory
         from ..group_policy_configuration import GroupPolicyConfiguration
@@ -829,6 +842,7 @@ class DeviceManagement(Entity):
         from ..group_policy_object_file import GroupPolicyObjectFile
         from ..group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
         from ..hardware_configuration import HardwareConfiguration
+        from ..hardware_password_detail import HardwarePasswordDetail
         from ..hardware_password_info import HardwarePasswordInfo
         from ..imported_device_identity import ImportedDeviceIdentity
         from ..imported_windows_autopilot_device_identity import ImportedWindowsAutopilotDeviceIdentity
@@ -921,6 +935,7 @@ class DeviceManagement(Entity):
         from ..windows_information_protection_network_learning_summary import WindowsInformationProtectionNetworkLearningSummary
         from ..windows_malware_information import WindowsMalwareInformation
         from ..windows_malware_overview import WindowsMalwareOverview
+        from ..windows_quality_update_policy import WindowsQualityUpdatePolicy
         from ..windows_quality_update_profile import WindowsQualityUpdateProfile
         from ..windows_update_catalog_item import WindowsUpdateCatalogItem
         from ..zebra_fota_artifact import ZebraFotaArtifact
@@ -989,6 +1004,7 @@ class DeviceManagement(Entity):
             "domainJoinConnectors": lambda n : setattr(self, 'domain_join_connectors', n.get_collection_of_object_values(DeviceManagementDomainJoinConnector)),
             "elevationRequests": lambda n : setattr(self, 'elevation_requests', n.get_collection_of_object_values(PrivilegeManagementElevationRequest)),
             "embeddedSIMActivationCodePools": lambda n : setattr(self, 'embedded_s_i_m_activation_code_pools', n.get_collection_of_object_values(EmbeddedSIMActivationCodePool)),
+            "endpointPrivilegeManagementProvisioningStatus": lambda n : setattr(self, 'endpoint_privilege_management_provisioning_status', n.get_object_value(EndpointPrivilegeManagementProvisioningStatus)),
             "exchangeConnectors": lambda n : setattr(self, 'exchange_connectors', n.get_collection_of_object_values(DeviceManagementExchangeConnector)),
             "exchangeOnPremisesPolicies": lambda n : setattr(self, 'exchange_on_premises_policies', n.get_collection_of_object_values(DeviceManagementExchangeOnPremisesPolicy)),
             "exchangeOnPremisesPolicy": lambda n : setattr(self, 'exchange_on_premises_policy', n.get_object_value(DeviceManagementExchangeOnPremisesPolicy)),
@@ -1000,6 +1016,7 @@ class DeviceManagement(Entity):
             "groupPolicyObjectFiles": lambda n : setattr(self, 'group_policy_object_files', n.get_collection_of_object_values(GroupPolicyObjectFile)),
             "groupPolicyUploadedDefinitionFiles": lambda n : setattr(self, 'group_policy_uploaded_definition_files', n.get_collection_of_object_values(GroupPolicyUploadedDefinitionFile)),
             "hardwareConfigurations": lambda n : setattr(self, 'hardware_configurations', n.get_collection_of_object_values(HardwareConfiguration)),
+            "hardwarePasswordDetails": lambda n : setattr(self, 'hardware_password_details', n.get_collection_of_object_values(HardwarePasswordDetail)),
             "hardwarePasswordInfo": lambda n : setattr(self, 'hardware_password_info', n.get_collection_of_object_values(HardwarePasswordInfo)),
             "importedDeviceIdentities": lambda n : setattr(self, 'imported_device_identities', n.get_collection_of_object_values(ImportedDeviceIdentity)),
             "importedWindowsAutopilotDeviceIdentities": lambda n : setattr(self, 'imported_windows_autopilot_device_identities', n.get_collection_of_object_values(ImportedWindowsAutopilotDeviceIdentity)),
@@ -1111,6 +1128,7 @@ class DeviceManagement(Entity):
             "windowsInformationProtectionNetworkLearningSummaries": lambda n : setattr(self, 'windows_information_protection_network_learning_summaries', n.get_collection_of_object_values(WindowsInformationProtectionNetworkLearningSummary)),
             "windowsMalwareInformation": lambda n : setattr(self, 'windows_malware_information', n.get_collection_of_object_values(WindowsMalwareInformation)),
             "windowsMalwareOverview": lambda n : setattr(self, 'windows_malware_overview', n.get_object_value(WindowsMalwareOverview)),
+            "windowsQualityUpdatePolicies": lambda n : setattr(self, 'windows_quality_update_policies', n.get_collection_of_object_values(WindowsQualityUpdatePolicy)),
             "windowsQualityUpdateProfiles": lambda n : setattr(self, 'windows_quality_update_profiles', n.get_collection_of_object_values(WindowsQualityUpdateProfile)),
             "windowsUpdateCatalogItems": lambda n : setattr(self, 'windows_update_catalog_items', n.get_collection_of_object_values(WindowsUpdateCatalogItem)),
             "zebraFotaArtifacts": lambda n : setattr(self, 'zebra_fota_artifacts', n.get_collection_of_object_values(ZebraFotaArtifact)),
@@ -1189,6 +1207,7 @@ class DeviceManagement(Entity):
         writer.write_collection_of_object_values("domainJoinConnectors", self.domain_join_connectors)
         writer.write_collection_of_object_values("elevationRequests", self.elevation_requests)
         writer.write_collection_of_object_values("embeddedSIMActivationCodePools", self.embedded_s_i_m_activation_code_pools)
+        writer.write_object_value("endpointPrivilegeManagementProvisioningStatus", self.endpoint_privilege_management_provisioning_status)
         writer.write_collection_of_object_values("exchangeConnectors", self.exchange_connectors)
         writer.write_collection_of_object_values("exchangeOnPremisesPolicies", self.exchange_on_premises_policies)
         writer.write_object_value("exchangeOnPremisesPolicy", self.exchange_on_premises_policy)
@@ -1200,6 +1219,7 @@ class DeviceManagement(Entity):
         writer.write_collection_of_object_values("groupPolicyObjectFiles", self.group_policy_object_files)
         writer.write_collection_of_object_values("groupPolicyUploadedDefinitionFiles", self.group_policy_uploaded_definition_files)
         writer.write_collection_of_object_values("hardwareConfigurations", self.hardware_configurations)
+        writer.write_collection_of_object_values("hardwarePasswordDetails", self.hardware_password_details)
         writer.write_collection_of_object_values("hardwarePasswordInfo", self.hardware_password_info)
         writer.write_collection_of_object_values("importedDeviceIdentities", self.imported_device_identities)
         writer.write_collection_of_object_values("importedWindowsAutopilotDeviceIdentities", self.imported_windows_autopilot_device_identities)
@@ -1308,6 +1328,7 @@ class DeviceManagement(Entity):
         writer.write_collection_of_object_values("windowsInformationProtectionNetworkLearningSummaries", self.windows_information_protection_network_learning_summaries)
         writer.write_collection_of_object_values("windowsMalwareInformation", self.windows_malware_information)
         writer.write_object_value("windowsMalwareOverview", self.windows_malware_overview)
+        writer.write_collection_of_object_values("windowsQualityUpdatePolicies", self.windows_quality_update_policies)
         writer.write_collection_of_object_values("windowsQualityUpdateProfiles", self.windows_quality_update_profiles)
         writer.write_collection_of_object_values("windowsUpdateCatalogItems", self.windows_update_catalog_items)
         writer.write_collection_of_object_values("zebraFotaArtifacts", self.zebra_fota_artifacts)

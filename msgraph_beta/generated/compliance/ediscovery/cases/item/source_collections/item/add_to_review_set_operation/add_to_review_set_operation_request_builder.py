@@ -31,9 +31,10 @@ class AddToReviewSetOperationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AddToReviewSetOperationRequestBuilderGetQueryParameters]] = None) -> Optional[AddToReviewSetOperation]:
         """
-        Adds the results of the sourceCollection to the specified reviewSet.
+        Get the last addToReviewSetOperation object associated with a source collection. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AddToReviewSetOperation]
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-list-addtoreviewsetoperation?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class AddToReviewSetOperationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AddToReviewSetOperationRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Adds the results of the sourceCollection to the specified reviewSet.
+        Get the last addToReviewSetOperation object associated with a source collection. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -76,7 +77,7 @@ class AddToReviewSetOperationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AddToReviewSetOperationRequestBuilderGetQueryParameters():
         """
-        Adds the results of the sourceCollection to the specified reviewSet.
+        Get the last addToReviewSetOperation object associated with a source collection. 
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

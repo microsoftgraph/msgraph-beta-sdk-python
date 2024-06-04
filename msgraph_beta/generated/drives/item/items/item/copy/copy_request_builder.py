@@ -32,7 +32,7 @@ class CopyRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CopyPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DriveItem]:
         """
-        Asynchronously creates a copy of an driveItem (including any children), under a new parent item or with a new name.
+        Asynchronously create a copy of a driveItem (including any children) under a new parent item or with a new name.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveItem]
@@ -56,7 +56,7 @@ class CopyRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CopyPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Asynchronously creates a copy of an driveItem (including any children), under a new parent item or with a new name.
+        Asynchronously create a copy of a driveItem (including any children) under a new parent item or with a new name.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .o_auth2_permission_grant import OAuth2PermissionGrant
     from .password_credential import PasswordCredential
     from .password_single_sign_on_settings import PasswordSingleSignOnSettings
+    from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
     from .permission_scope import PermissionScope
     from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
     from .saml_single_sign_on_settings import SamlSingleSignOnSettings
@@ -116,6 +117,8 @@ class ServicePrincipal(DirectoryObject):
     password_credentials: Optional[List[PasswordCredential]] = None
     # The collection for settings related to password single sign-on. Use $select=passwordSingleSignOnSettings to read the property. Read-only for applicationTemplates except for custom applicationTemplates.
     password_single_sign_on_settings: Optional[PasswordSingleSignOnSettings] = None
+    # The permissionGrantPreApprovalPolicies property
+    permission_grant_pre_approval_policies: Optional[List[PermissionGrantPreApprovalPolicy]] = None
     # Specifies the single sign-on mode configured for this application. Microsoft Entra ID uses the preferred single sign-on mode to launch the application from Microsoft 365 or the Microsoft Entra My Apps. The supported values are password, saml, notSupported, and oidc.
     preferred_single_sign_on_mode: Optional[str] = None
     # Specifies the expiration date of the keyCredential used for token signing, marked by preferredTokenSigningKeyThumbprint. Updating this attribute isn't currently supported. For details, see ServicePrincipal property differences.
@@ -189,6 +192,7 @@ class ServicePrincipal(DirectoryObject):
         from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .password_credential import PasswordCredential
         from .password_single_sign_on_settings import PasswordSingleSignOnSettings
+        from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .permission_scope import PermissionScope
         from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
         from .saml_single_sign_on_settings import SamlSingleSignOnSettings
@@ -215,6 +219,7 @@ class ServicePrincipal(DirectoryObject):
         from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .password_credential import PasswordCredential
         from .password_single_sign_on_settings import PasswordSingleSignOnSettings
+        from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .permission_scope import PermissionScope
         from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
         from .saml_single_sign_on_settings import SamlSingleSignOnSettings
@@ -263,6 +268,7 @@ class ServicePrincipal(DirectoryObject):
             "owners": lambda n : setattr(self, 'owners', n.get_collection_of_object_values(DirectoryObject)),
             "passwordCredentials": lambda n : setattr(self, 'password_credentials', n.get_collection_of_object_values(PasswordCredential)),
             "passwordSingleSignOnSettings": lambda n : setattr(self, 'password_single_sign_on_settings', n.get_object_value(PasswordSingleSignOnSettings)),
+            "permissionGrantPreApprovalPolicies": lambda n : setattr(self, 'permission_grant_pre_approval_policies', n.get_collection_of_object_values(PermissionGrantPreApprovalPolicy)),
             "preferredSingleSignOnMode": lambda n : setattr(self, 'preferred_single_sign_on_mode', n.get_str_value()),
             "preferredTokenSigningKeyEndDateTime": lambda n : setattr(self, 'preferred_token_signing_key_end_date_time', n.get_datetime_value()),
             "preferredTokenSigningKeyThumbprint": lambda n : setattr(self, 'preferred_token_signing_key_thumbprint', n.get_str_value()),
@@ -335,6 +341,7 @@ class ServicePrincipal(DirectoryObject):
         writer.write_collection_of_object_values("owners", self.owners)
         writer.write_collection_of_object_values("passwordCredentials", self.password_credentials)
         writer.write_object_value("passwordSingleSignOnSettings", self.password_single_sign_on_settings)
+        writer.write_collection_of_object_values("permissionGrantPreApprovalPolicies", self.permission_grant_pre_approval_policies)
         writer.write_str_value("preferredSingleSignOnMode", self.preferred_single_sign_on_mode)
         writer.write_datetime_value("preferredTokenSigningKeyEndDateTime", self.preferred_token_signing_key_end_date_time)
         writer.write_str_value("preferredTokenSigningKeyThumbprint", self.preferred_token_signing_key_thumbprint)

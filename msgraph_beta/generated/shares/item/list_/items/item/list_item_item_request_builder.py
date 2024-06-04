@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .fields.fields_request_builder import FieldsRequestBuilder
     from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder import GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
     from .last_modified_by_user.last_modified_by_user_request_builder import LastModifiedByUserRequestBuilder
+    from .permissions.permissions_request_builder import PermissionsRequestBuilder
     from .versions.versions_request_builder import VersionsRequestBuilder
 
 class ListItemItemRequestBuilder(BaseRequestBuilder):
@@ -236,6 +237,15 @@ class ListItemItemRequestBuilder(BaseRequestBuilder):
         from .last_modified_by_user.last_modified_by_user_request_builder import LastModifiedByUserRequestBuilder
 
         return LastModifiedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def permissions(self) -> PermissionsRequestBuilder:
+        """
+        Provides operations to manage the permissions property of the microsoft.graph.listItem entity.
+        """
+        from .permissions.permissions_request_builder import PermissionsRequestBuilder
+
+        return PermissionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def versions(self) -> VersionsRequestBuilder:

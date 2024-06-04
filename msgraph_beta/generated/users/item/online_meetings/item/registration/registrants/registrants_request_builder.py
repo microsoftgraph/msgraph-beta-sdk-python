@@ -68,10 +68,11 @@ class RegistrantsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: MeetingRegistrantBase, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MeetingRegistrantBase]:
         """
-        Create new navigation property to registrants for users
+        Enroll a meeting registrant in an online meeting that has meeting registration enabled on behalf of the registrant. This operation has two scenarios: In either scenario, the registrant will receive an email notification that contains their registration information.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MeetingRegistrantBase]
+        Find more info here: https://learn.microsoft.com/graph/api/meetingregistration-post-registrants?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -102,7 +103,7 @@ class RegistrantsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: MeetingRegistrantBase, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to registrants for users
+        Enroll a meeting registrant in an online meeting that has meeting registration enabled on behalf of the registrant. This operation has two scenarios: In either scenario, the registrant will receive an email notification that contains their registration information.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

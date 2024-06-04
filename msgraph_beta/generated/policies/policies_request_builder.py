@@ -38,6 +38,7 @@ if TYPE_CHECKING:
     from .mobile_app_management_policies.mobile_app_management_policies_request_builder import MobileAppManagementPoliciesRequestBuilder
     from .mobile_device_management_policies.mobile_device_management_policies_request_builder import MobileDeviceManagementPoliciesRequestBuilder
     from .permission_grant_policies.permission_grant_policies_request_builder import PermissionGrantPoliciesRequestBuilder
+    from .permission_grant_pre_approval_policies.permission_grant_pre_approval_policies_request_builder import PermissionGrantPreApprovalPoliciesRequestBuilder
     from .role_management_policies.role_management_policies_request_builder import RoleManagementPoliciesRequestBuilder
     from .role_management_policy_assignments.role_management_policy_assignments_request_builder import RoleManagementPolicyAssignmentsRequestBuilder
     from .service_principal_creation_policies.service_principal_creation_policies_request_builder import ServicePrincipalCreationPoliciesRequestBuilder
@@ -342,6 +343,15 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         from .permission_grant_policies.permission_grant_policies_request_builder import PermissionGrantPoliciesRequestBuilder
 
         return PermissionGrantPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def permission_grant_pre_approval_policies(self) -> PermissionGrantPreApprovalPoliciesRequestBuilder:
+        """
+        Provides operations to manage the permissionGrantPreApprovalPolicies property of the microsoft.graph.policyRoot entity.
+        """
+        from .permission_grant_pre_approval_policies.permission_grant_pre_approval_policies_request_builder import PermissionGrantPreApprovalPoliciesRequestBuilder
+
+        return PermissionGrantPreApprovalPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def role_management_policies(self) -> RoleManagementPoliciesRequestBuilder:

@@ -12,15 +12,15 @@ from .entity import Entity
 
 @dataclass
 class CallTranscript(Entity):
-    # The callId property
+    # The unique identifier for the call that is related to this transcript. Read-only.
     call_id: Optional[str] = None
     # The content of the transcript. Read-only.
     content: Optional[bytes] = None
-    # The contentCorrelationId property
+    # The unique identifier that links the transcript with its corresponding recording. Read-only.
     content_correlation_id: Optional[str] = None
-    # Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+    # Date and time at which the transcript was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # The endDateTime property
+    # Date and time at which the transcription ends. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     end_date_time: Optional[datetime.datetime] = None
     # The unique identifier of the online meeting related to this transcript. Read-only.
     meeting_id: Optional[str] = None
@@ -32,7 +32,7 @@ class CallTranscript(Entity):
     metadata_content: Optional[bytes] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The URL which can be used to access the content of the transcript. Read-only.
+    # The URL that can be used to access the content of the transcript. Read-only.
     transcript_content_url: Optional[str] = None
     
     @staticmethod

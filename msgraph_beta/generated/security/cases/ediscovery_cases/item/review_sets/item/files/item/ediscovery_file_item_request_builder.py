@@ -53,9 +53,10 @@ class EdiscoveryFileItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[EdiscoveryFileItemRequestBuilderGetQueryParameters]] = None) -> Optional[EdiscoveryFile]:
         """
-        Represents files within the review set.
+        Read the properties and relationships of an ediscoveryFile object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EdiscoveryFile]
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryfile-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -107,7 +108,7 @@ class EdiscoveryFileItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[EdiscoveryFileItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Represents files within the review set.
+        Read the properties and relationships of an ediscoveryFile object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -187,7 +188,7 @@ class EdiscoveryFileItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EdiscoveryFileItemRequestBuilderGetQueryParameters():
         """
-        Represents files within the review set.
+        Read the properties and relationships of an ediscoveryFile object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

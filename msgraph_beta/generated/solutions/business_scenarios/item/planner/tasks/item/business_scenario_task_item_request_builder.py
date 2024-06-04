@@ -35,9 +35,10 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property tasks for solutions
+        Delete a businessScenarioTask object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/businessscenarioplanner-delete-tasks?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -53,9 +54,10 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[BusinessScenarioTaskItemRequestBuilderGetQueryParameters]] = None) -> Optional[BusinessScenarioTask]:
         """
-        The Planner tasks for the scenario.
+        Read the properties and relationships of a businessScenarioTask object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenarioTask]
+        Find more info here: https://learn.microsoft.com/graph/api/businessscenariotask-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -73,10 +75,11 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: BusinessScenarioTask, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[BusinessScenarioTask]:
         """
-        Update the navigation property tasks in solutions
+        Update the properties of a businessScenarioTask object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenarioTask]
+        Find more info here: https://learn.microsoft.com/graph/api/businessscenariotask-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -96,7 +99,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property tasks for solutions
+        Delete a businessScenarioTask object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +110,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[BusinessScenarioTaskItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The Planner tasks for the scenario.
+        Read the properties and relationships of a businessScenarioTask object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +121,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: BusinessScenarioTask, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property tasks in solutions
+        Update the properties of a businessScenarioTask object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -187,7 +190,7 @@ class BusinessScenarioTaskItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BusinessScenarioTaskItemRequestBuilderGetQueryParameters():
         """
-        The Planner tasks for the scenario.
+        Read the properties and relationships of a businessScenarioTask object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

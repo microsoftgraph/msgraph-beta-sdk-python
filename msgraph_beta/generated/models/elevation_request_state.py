@@ -15,4 +15,6 @@ class ElevationRequestState(str, Enum):
     UnknownFutureValue = "unknownFutureValue",
     # Set to expire when Approved for is elapsed or ExpireDate is elapsed, whichever is sooner.
     Revoked = "revoked",
+    # Indicates an elevation request that was previously approved and expired has been completed.
+    Completed = "completed",
 

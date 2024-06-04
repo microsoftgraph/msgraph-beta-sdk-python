@@ -48,9 +48,10 @@ class NoncustodialSourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[NoncustodialSourcesRequestBuilderGetQueryParameters]] = None) -> Optional[NoncustodialDataSourceCollectionResponse]:
         """
-        noncustodialDataSource sources that are included in the sourceCollection
+        Get a list of noncustodialDataSource associated with a sourceCollection.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[NoncustodialDataSourceCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-sourcecollection-list-noncustodialsources?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -69,7 +70,7 @@ class NoncustodialSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[NoncustodialSourcesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        noncustodialDataSource sources that are included in the sourceCollection
+        Get a list of noncustodialDataSource associated with a sourceCollection.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +103,7 @@ class NoncustodialSourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class NoncustodialSourcesRequestBuilderGetQueryParameters():
         """
-        noncustodialDataSource sources that are included in the sourceCollection
+        Get a list of noncustodialDataSource associated with a sourceCollection.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

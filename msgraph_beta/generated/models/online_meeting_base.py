@@ -28,16 +28,24 @@ class OnlineMeetingBase(Entity):
     allow_attendee_to_enable_camera: Optional[bool] = None
     # Indicates whether attendees can turn on their microphone.
     allow_attendee_to_enable_mic: Optional[bool] = None
+    # The allowBreakoutRooms property
+    allow_breakout_rooms: Optional[bool] = None
+    # The allowLiveShare property
+    allow_live_share: Optional[bool] = None
     # Specifies the mode of meeting chat.
     allow_meeting_chat: Optional[MeetingChatMode] = None
     # Specifies if participants are allowed to rename themselves in an instance of the meeting.
     allow_participants_to_change_name: Optional[bool] = None
+    # The allowPowerPointSharing property
+    allow_power_point_sharing: Optional[bool] = None
     # Indicates whether recording is enabled for the meeting.
     allow_recording: Optional[bool] = None
     # Indicates if Teams reactions are enabled for the meeting.
     allow_teamwork_reactions: Optional[bool] = None
     # Indicates whether transcription is enabled for the meeting.
     allow_transcription: Optional[bool] = None
+    # The allowWhiteboard property
+    allow_whiteboard: Optional[bool] = None
     # Specifies who can be a presenter in a meeting.
     allowed_presenters: Optional[OnlineMeetingPresenters] = None
     # Specifies whose identity is anonymized in the meeting. Possible values are: attendee. The attendee value can't be removed through a PATCH operation once added.
@@ -138,11 +146,15 @@ class OnlineMeetingBase(Entity):
         fields: Dict[str, Callable[[Any], None]] = {
             "allowAttendeeToEnableCamera": lambda n : setattr(self, 'allow_attendee_to_enable_camera', n.get_bool_value()),
             "allowAttendeeToEnableMic": lambda n : setattr(self, 'allow_attendee_to_enable_mic', n.get_bool_value()),
+            "allowBreakoutRooms": lambda n : setattr(self, 'allow_breakout_rooms', n.get_bool_value()),
+            "allowLiveShare": lambda n : setattr(self, 'allow_live_share', n.get_bool_value()),
             "allowMeetingChat": lambda n : setattr(self, 'allow_meeting_chat', n.get_enum_value(MeetingChatMode)),
             "allowParticipantsToChangeName": lambda n : setattr(self, 'allow_participants_to_change_name', n.get_bool_value()),
+            "allowPowerPointSharing": lambda n : setattr(self, 'allow_power_point_sharing', n.get_bool_value()),
             "allowRecording": lambda n : setattr(self, 'allow_recording', n.get_bool_value()),
             "allowTeamworkReactions": lambda n : setattr(self, 'allow_teamwork_reactions', n.get_bool_value()),
             "allowTranscription": lambda n : setattr(self, 'allow_transcription', n.get_bool_value()),
+            "allowWhiteboard": lambda n : setattr(self, 'allow_whiteboard', n.get_bool_value()),
             "allowedPresenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(OnlineMeetingPresenters)),
             "anonymizeIdentityForRoles": lambda n : setattr(self, 'anonymize_identity_for_roles', n.get_collection_of_enum_values(OnlineMeetingRole)),
             "attendanceReports": lambda n : setattr(self, 'attendance_reports', n.get_collection_of_object_values(MeetingAttendanceReport)),
@@ -176,11 +188,15 @@ class OnlineMeetingBase(Entity):
         super().serialize(writer)
         writer.write_bool_value("allowAttendeeToEnableCamera", self.allow_attendee_to_enable_camera)
         writer.write_bool_value("allowAttendeeToEnableMic", self.allow_attendee_to_enable_mic)
+        writer.write_bool_value("allowBreakoutRooms", self.allow_breakout_rooms)
+        writer.write_bool_value("allowLiveShare", self.allow_live_share)
         writer.write_enum_value("allowMeetingChat", self.allow_meeting_chat)
         writer.write_bool_value("allowParticipantsToChangeName", self.allow_participants_to_change_name)
+        writer.write_bool_value("allowPowerPointSharing", self.allow_power_point_sharing)
         writer.write_bool_value("allowRecording", self.allow_recording)
         writer.write_bool_value("allowTeamworkReactions", self.allow_teamwork_reactions)
         writer.write_bool_value("allowTranscription", self.allow_transcription)
+        writer.write_bool_value("allowWhiteboard", self.allow_whiteboard)
         writer.write_enum_value("allowedPresenters", self.allowed_presenters)
         writer.write_collection_of_enum_values("anonymizeIdentityForRoles", self.anonymize_identity_for_roles)
         writer.write_collection_of_object_values("attendanceReports", self.attendance_reports)

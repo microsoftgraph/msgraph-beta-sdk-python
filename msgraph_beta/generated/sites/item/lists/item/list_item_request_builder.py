@@ -23,6 +23,7 @@ if TYPE_CHECKING:
     from .items.items_request_builder import ItemsRequestBuilder
     from .last_modified_by_user.last_modified_by_user_request_builder import LastModifiedByUserRequestBuilder
     from .operations.operations_request_builder import OperationsRequestBuilder
+    from .permissions.permissions_request_builder import PermissionsRequestBuilder
     from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
 
 class ListItemRequestBuilder(BaseRequestBuilder):
@@ -58,10 +59,10 @@ class ListItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ListItemRequestBuilderGetQueryParameters]] = None) -> Optional[List_]:
         """
-        Get the list of richLongRunningOperations associated with a list.
+        Return the metadata for a list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[List_]
-        Find more info here: https://learn.microsoft.com/graph/api/list-list-operations?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/list-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -113,7 +114,7 @@ class ListItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ListItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get the list of richLongRunningOperations associated with a list.
+        Return the metadata for a list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -220,6 +221,15 @@ class ListItemRequestBuilder(BaseRequestBuilder):
         return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def permissions(self) -> PermissionsRequestBuilder:
+        """
+        Provides operations to manage the permissions property of the microsoft.graph.list entity.
+        """
+        from .permissions.permissions_request_builder import PermissionsRequestBuilder
+
+        return PermissionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def subscriptions(self) -> SubscriptionsRequestBuilder:
         """
         Provides operations to manage the subscriptions property of the microsoft.graph.list entity.
@@ -238,7 +248,7 @@ class ListItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ListItemRequestBuilderGetQueryParameters():
         """
-        Get the list of richLongRunningOperations associated with a list.
+        Return the metadata for a list.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

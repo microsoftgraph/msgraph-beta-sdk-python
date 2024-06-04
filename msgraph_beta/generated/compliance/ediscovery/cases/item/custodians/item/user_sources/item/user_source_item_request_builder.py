@@ -31,9 +31,10 @@ class UserSourceItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property userSources for compliance
+        Delete a userSource object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-usersource-delete?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -50,9 +51,10 @@ class UserSourceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UserSourceItemRequestBuilderGetQueryParameters]] = None) -> Optional[UserSource]:
         """
-        Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
+        Read the properties and relationships of a userSource object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserSource]
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-usersource-get?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -95,7 +97,7 @@ class UserSourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property userSources for compliance
+        Delete a userSource object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +109,7 @@ class UserSourceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UserSourceItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
+        Read the properties and relationships of a userSource object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -154,7 +156,7 @@ class UserSourceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserSourceItemRequestBuilderGetQueryParameters():
         """
-        Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
+        Read the properties and relationships of a userSource object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -48,9 +48,10 @@ class FilesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[FilesRequestBuilderGetQueryParameters]] = None) -> Optional[EdiscoveryFileCollectionResponse]:
         """
-        Represents files within the review set.
+        Get a list of the ediscoveryFile objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EdiscoveryFileCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-list-files?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -91,7 +92,7 @@ class FilesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[FilesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Represents files within the review set.
+        Get a list of the ediscoveryFile objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +138,7 @@ class FilesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FilesRequestBuilderGetQueryParameters():
         """
-        Represents files within the review set.
+        Get a list of the ediscoveryFile objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

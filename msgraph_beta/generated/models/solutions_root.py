@@ -5,6 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .backup_restore_root import BackupRestoreRoot
     from .booking_business import BookingBusiness
     from .booking_currency import BookingCurrency
     from .business_scenario import BusinessScenario
@@ -17,6 +18,8 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The backupRestore property
+    backup_restore: Optional[BackupRestoreRoot] = None
     # The bookingBusinesses property
     booking_businesses: Optional[List[BookingBusiness]] = None
     # The bookingCurrencies property
@@ -44,17 +47,20 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .backup_restore_root import BackupRestoreRoot
         from .booking_business import BookingBusiness
         from .booking_currency import BookingCurrency
         from .business_scenario import BusinessScenario
         from .virtual_events_root import VirtualEventsRoot
 
+        from .backup_restore_root import BackupRestoreRoot
         from .booking_business import BookingBusiness
         from .booking_currency import BookingCurrency
         from .business_scenario import BusinessScenario
         from .virtual_events_root import VirtualEventsRoot
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "backupRestore": lambda n : setattr(self, 'backup_restore', n.get_object_value(BackupRestoreRoot)),
             "bookingBusinesses": lambda n : setattr(self, 'booking_businesses', n.get_collection_of_object_values(BookingBusiness)),
             "bookingCurrencies": lambda n : setattr(self, 'booking_currencies', n.get_collection_of_object_values(BookingCurrency)),
             "businessScenarios": lambda n : setattr(self, 'business_scenarios', n.get_collection_of_object_values(BusinessScenario)),
@@ -71,6 +77,7 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         """
         if not writer:
             raise TypeError("writer cannot be null.")
+        writer.write_object_value("backupRestore", self.backup_restore)
         writer.write_collection_of_object_values("bookingBusinesses", self.booking_businesses)
         writer.write_collection_of_object_values("bookingCurrencies", self.booking_currencies)
         writer.write_collection_of_object_values("businessScenarios", self.business_scenarios)

@@ -23,29 +23,31 @@ class Domain(Entity):
     domain_name_references: Optional[List[DirectoryObject]] = None
     # Domain settings configured by customer when federated with Microsoft Entra ID. Supports $expand.
     federation_configuration: Optional[List[InternalDomainFederation]] = None
-    # The value of the property is false if the DNS record management of the domain is delegated to Microsoft 365. Otherwise, the value is true. Not nullable
+    # The value of the property is false if the DNS record management of the domain is delegated to Microsoft 365. Otherwise, the value is true. Not nullable.
     is_admin_managed: Optional[bool] = None
-    # true if this is the default domain that is used for user creation. There's only one default domain per company. Not nullable
+    # true for the default domain that is used for user creation. There's only one default domain per company. Not nullable.
     is_default: Optional[bool] = None
-    # true if this is the initial domain created by Microsoft Online Services (contoso.com). There's only one initial domain per company. Not nullable
+    # true for the initial domain created by Microsoft Online Services. For example, contoso.onmicrosoft.com. There's only one initial domain per company. Not nullable.
     is_initial: Optional[bool] = None
-    # true if the domain is a verified root domain. Otherwise, false if the domain is a subdomain or unverified. Not nullable
+    # true if the domain is a verified root domain. Otherwise, false if the domain is a subdomain or unverified. Not nullable.
     is_root: Optional[bool] = None
-    # true if the domain has completed domain ownership verification. Not nullable
+    # true for verified domains. Not nullable.
     is_verified: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Specifies the number of days before a user receives notification that their password will expire. If the property isn't set, a default value of 14 days is used.
+    # Specifies the number of days before a user receives a password expiry notification. 14 days by default.
     password_notification_window_in_days: Optional[int] = None
-    # Specifies the length of time that a password is valid before it must be changed. If the property isn't set, a default value of 90 days is used.
+    # Specifies the length of time that a password is valid before it must be changed. 90 days by default.
     password_validity_period_in_days: Optional[int] = None
+    # Root domain of a subdomain. Read-only, Nullable. Supports $expand.
+    root_domain: Optional[Domain] = None
     # DNS records the customer adds to the DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable. Supports $expand.
     service_configuration_records: Optional[List[DomainDnsRecord]] = None
     # The sharedEmailDomainInvitations property
     shared_email_domain_invitations: Optional[List[SharedEmailDomainInvitation]] = None
     # Status of asynchronous operations scheduled for the domain.
     state: Optional[DomainState] = None
-    # The capabilities assigned to the domain. Can include 0, 1 or more of following values: Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline,SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune. The values that you can add or remove using the API include: Email, OfficeCommunicationsOnline, Yammer. Not nullable.
+    # The capabilities assigned to the domain. Can include 0, 1, or more of following values: Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline,SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune, CustomUrlDomain. The values that you can add or remove using the API include: Email, OfficeCommunicationsOnline, Yammer, and CustomUrlDomain. Not nullable.  For more information about CustomUrlDomain, see Custom URL domains in external tenants.
     supported_services: Optional[List[str]] = None
     # DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Microsoft Entra ID. Read-only, Nullable. Supports $expand.
     verification_dns_records: Optional[List[DomainDnsRecord]] = None
@@ -92,6 +94,7 @@ class Domain(Entity):
             "isVerified": lambda n : setattr(self, 'is_verified', n.get_bool_value()),
             "passwordNotificationWindowInDays": lambda n : setattr(self, 'password_notification_window_in_days', n.get_int_value()),
             "passwordValidityPeriodInDays": lambda n : setattr(self, 'password_validity_period_in_days', n.get_int_value()),
+            "rootDomain": lambda n : setattr(self, 'root_domain', n.get_object_value(Domain)),
             "serviceConfigurationRecords": lambda n : setattr(self, 'service_configuration_records', n.get_collection_of_object_values(DomainDnsRecord)),
             "sharedEmailDomainInvitations": lambda n : setattr(self, 'shared_email_domain_invitations', n.get_collection_of_object_values(SharedEmailDomainInvitation)),
             "state": lambda n : setattr(self, 'state', n.get_object_value(DomainState)),
@@ -122,6 +125,7 @@ class Domain(Entity):
         writer.write_bool_value("isVerified", self.is_verified)
         writer.write_int_value("passwordNotificationWindowInDays", self.password_notification_window_in_days)
         writer.write_int_value("passwordValidityPeriodInDays", self.password_validity_period_in_days)
+        writer.write_object_value("rootDomain", self.root_domain)
         writer.write_collection_of_object_values("serviceConfigurationRecords", self.service_configuration_records)
         writer.write_collection_of_object_values("sharedEmailDomainInvitations", self.shared_email_domain_invitations)
         writer.write_object_value("state", self.state)

@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .forwarding_rule import ForwardingRule
+    from .networking_protocol import NetworkingProtocol
 
 from .forwarding_rule import ForwardingRule
 
@@ -12,6 +13,10 @@ from .forwarding_rule import ForwardingRule
 class InternetAccessForwardingRule(ForwardingRule):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.internetAccessForwardingRule"
+    # The ports property
+    ports: Optional[List[str]] = None
+    # The protocol property
+    protocol: Optional[NetworkingProtocol] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> InternetAccessForwardingRule:
@@ -30,10 +35,14 @@ class InternetAccessForwardingRule(ForwardingRule):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .forwarding_rule import ForwardingRule
+        from .networking_protocol import NetworkingProtocol
 
         from .forwarding_rule import ForwardingRule
+        from .networking_protocol import NetworkingProtocol
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "ports": lambda n : setattr(self, 'ports', n.get_collection_of_primitive_values(str)),
+            "protocol": lambda n : setattr(self, 'protocol', n.get_enum_value(NetworkingProtocol)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -48,5 +57,7 @@ class InternetAccessForwardingRule(ForwardingRule):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_primitive_values("ports", self.ports)
+        writer.write_enum_value("protocol", self.protocol)
     
 

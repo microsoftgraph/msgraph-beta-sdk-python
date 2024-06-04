@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .chat_viewpoint import ChatViewpoint
     from .conversation_member import ConversationMember
     from .entity import Entity
+    from .identity_set import IdentitySet
     from .pinned_chat_message_info import PinnedChatMessageInfo
     from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
     from .teams_app_installation import TeamsAppInstallation
@@ -24,13 +25,15 @@ from .entity import Entity
 class Chat(Entity):
     # The chatType property
     chat_type: Optional[ChatType] = None
+    # The user or application that created the chat. Read-only.
+    created_by: Optional[IdentitySet] = None
     # Date and time at which the chat was created. Read-only.
     created_date_time: Optional[datetime.datetime] = None
     # A collection of all the apps in the chat. Nullable.
     installed_apps: Optional[List[TeamsAppInstallation]] = None
     # Indicates whether the chat is hidden for all its members. Read-only.
     is_hidden_for_all_members: Optional[bool] = None
-    # Preview of the last message sent in the chat. Null if no messages have been sent in the chat. Currently, only the list chats operation supports this property.
+    # Preview of the last message sent in the chat. Null if no messages are sent in the chat. Currently, only the list chats operation supports this property.
     last_message_preview: Optional[ChatMessageInfo] = None
     # Date and time at which the chat was renamed or list of members were last changed. Read-only.
     last_updated_date_time: Optional[datetime.datetime] = None
@@ -81,6 +84,7 @@ class Chat(Entity):
         from .chat_viewpoint import ChatViewpoint
         from .conversation_member import ConversationMember
         from .entity import Entity
+        from .identity_set import IdentitySet
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .teams_app_installation import TeamsAppInstallation
@@ -94,6 +98,7 @@ class Chat(Entity):
         from .chat_viewpoint import ChatViewpoint
         from .conversation_member import ConversationMember
         from .entity import Entity
+        from .identity_set import IdentitySet
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .teams_app_installation import TeamsAppInstallation
@@ -103,6 +108,7 @@ class Chat(Entity):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "chatType": lambda n : setattr(self, 'chat_type', n.get_enum_value(ChatType)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "installedApps": lambda n : setattr(self, 'installed_apps', n.get_collection_of_object_values(TeamsAppInstallation)),
             "isHiddenForAllMembers": lambda n : setattr(self, 'is_hidden_for_all_members', n.get_bool_value()),
@@ -134,6 +140,7 @@ class Chat(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("chatType", self.chat_type)
+        writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_collection_of_object_values("installedApps", self.installed_apps)
         writer.write_bool_value("isHiddenForAllMembers", self.is_hidden_for_all_members)

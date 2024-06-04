@@ -48,9 +48,10 @@ class TasksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TasksRequestBuilderGetQueryParameters]] = None) -> Optional[BusinessScenarioTaskCollectionResponse]:
         """
-        The Planner tasks for the scenario.
+        Get a list of the businessScenarioTask objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenarioTaskCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/businessscenarioplanner-list-tasks?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,10 +69,11 @@ class TasksRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: BusinessScenarioTask, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[BusinessScenarioTask]:
         """
-        Create new navigation property to tasks for solutions
+        Create a new businessScenarioTask object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenarioTask]
+        Find more info here: https://learn.microsoft.com/graph/api/businessscenarioplanner-post-tasks?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +93,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TasksRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The Planner tasks for the scenario.
+        Get a list of the businessScenarioTask objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +104,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: BusinessScenarioTask, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to tasks for solutions
+        Create a new businessScenarioTask object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +139,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TasksRequestBuilderGetQueryParameters():
         """
-        The Planner tasks for the scenario.
+        Get a list of the businessScenarioTask objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
