@@ -10,7 +10,6 @@ on:
 
 jobs:
   validate:
-    name: Validate code accuracy matrix
     runs-on: ubuntu-latest
     timeout-minutes: 40
     strategy:
