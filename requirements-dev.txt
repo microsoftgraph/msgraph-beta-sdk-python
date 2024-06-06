@@ -20,7 +20,7 @@ cffi==1.16.0
 
 charset-normalizer==3.3.2
 
-cryptography==42.0.7
+cryptography==42.0.8
 
 Deprecated==1.2.14
 
@@ -90,6 +90,6 @@ wrapt==1.16.0
 
 yarl==1.9.4
 
-zipp==3.19.1
+zipp==3.19.2
 
 pylint==3.2.2
