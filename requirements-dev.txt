@@ -92,4 +92,4 @@ yarl==1.9.4
 
 zipp==3.19.2
 
-pylint==3.2.2
+pylint==3.2.3
