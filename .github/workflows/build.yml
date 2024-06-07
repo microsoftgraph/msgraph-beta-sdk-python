@@ -1,4 +1,4 @@
-name: Build and validate generated code
+name: Validate code accuracy
 
 on:
   workflow_dispatch:
@@ -10,7 +10,6 @@ on:
 
 jobs:
   validate:
-    name: Validate code accuracy
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v4
