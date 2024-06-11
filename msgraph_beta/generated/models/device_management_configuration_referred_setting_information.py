@@ -16,7 +16,7 @@ class DeviceManagementConfigurationReferredSettingInformation(AdditionalDataHold
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # Setting definition id that is being referred to a setting. Applicable for reusable setting
+    # Setting definition id that is being referred to a setting. Applicable for reusable setting.
     setting_definition_id: Optional[str] = None
     
     @staticmethod

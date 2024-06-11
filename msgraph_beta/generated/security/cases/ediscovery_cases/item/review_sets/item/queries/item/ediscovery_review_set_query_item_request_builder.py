@@ -34,9 +34,10 @@ class EdiscoveryReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property queries for security
+        Delete an ediscoveryReviewSetQuery object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-delete-queries?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -52,9 +53,10 @@ class EdiscoveryReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[EdiscoveryReviewSetQueryItemRequestBuilderGetQueryParameters]] = None) -> Optional[EdiscoveryReviewSetQuery]:
         """
-        Represents queries within the review set.
+        Read the properties and relationships of an ediscoveryReviewSetQuery object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EdiscoveryReviewSetQuery]
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryreviewsetquery-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -72,10 +74,11 @@ class EdiscoveryReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: EdiscoveryReviewSetQuery, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[EdiscoveryReviewSetQuery]:
         """
-        Update the navigation property queries in security
+        Update the properties of an ediscoveryReviewSetQuery object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EdiscoveryReviewSetQuery]
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryreviewsetquery-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -95,7 +98,7 @@ class EdiscoveryReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property queries for security
+        Delete an ediscoveryReviewSetQuery object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,7 +109,7 @@ class EdiscoveryReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[EdiscoveryReviewSetQueryItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Represents queries within the review set.
+        Read the properties and relationships of an ediscoveryReviewSetQuery object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,7 +120,7 @@ class EdiscoveryReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: EdiscoveryReviewSetQuery, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property queries in security
+        Update the properties of an ediscoveryReviewSetQuery object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -177,7 +180,7 @@ class EdiscoveryReviewSetQueryItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EdiscoveryReviewSetQueryItemRequestBuilderGetQueryParameters():
         """
-        Represents queries within the review set.
+        Read the properties and relationships of an ediscoveryReviewSetQuery object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

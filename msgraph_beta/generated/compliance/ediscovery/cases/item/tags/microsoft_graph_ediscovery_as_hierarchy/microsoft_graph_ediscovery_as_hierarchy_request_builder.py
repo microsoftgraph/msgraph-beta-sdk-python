@@ -31,7 +31,7 @@ class MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphEdiscoveryAsHierarchyRequestBuilderGetQueryParameters]] = None) -> Optional[AsHierarchyGetResponse]:
         """
-        Invoke function asHierarchy
+        Return a list of tag objects in hierarchial form
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AsHierarchyGetResponse]
         """
@@ -52,7 +52,7 @@ class MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphEdiscoveryAsHierarchyRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function asHierarchy
+        Return a list of tag objects in hierarchial form
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -76,7 +76,7 @@ class MicrosoftGraphEdiscoveryAsHierarchyRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MicrosoftGraphEdiscoveryAsHierarchyRequestBuilderGetQueryParameters():
         """
-        Invoke function asHierarchy
+        Return a list of tag objects in hierarchial form
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

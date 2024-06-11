@@ -49,9 +49,10 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UnifiedGroupSourcesRequestBuilderGetQueryParameters]] = None) -> Optional[UnifiedGroupSourceCollectionResponse]:
         """
-        Data source entity for groups associated with the custodian.
+        Get a list of the unifiedGroupSource objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedGroupSourceCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-custodian-list-unifiedgroupsources?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -70,10 +71,11 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: UnifiedGroupSource, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[UnifiedGroupSource]:
         """
-        Create new navigation property to unifiedGroupSources for compliance
+        Create a new unifiedGroupSource object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedGroupSource]
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-custodian-post-unifiedgroupsources?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
         if not body:
@@ -94,7 +96,7 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UnifiedGroupSourcesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Data source entity for groups associated with the custodian.
+        Get a list of the unifiedGroupSource objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,7 +108,7 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: UnifiedGroupSource, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to unifiedGroupSources for compliance
+        Create a new unifiedGroupSource object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -143,7 +145,7 @@ class UnifiedGroupSourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UnifiedGroupSourcesRequestBuilderGetQueryParameters():
         """
-        Data source entity for groups associated with the custodian.
+        Get a list of the unifiedGroupSource objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

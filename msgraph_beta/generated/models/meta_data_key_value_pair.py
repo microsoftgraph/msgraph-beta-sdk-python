@@ -4,9 +4,6 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-if TYPE_CHECKING:
-    from .json import Json
-
 @dataclass
 class MetaDataKeyValuePair(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -18,8 +15,6 @@ class MetaDataKeyValuePair(AdditionalDataHolder, BackedModel, Parsable):
     key: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Value of the metadata. Should be an object.
-    value: Optional[Json] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MetaDataKeyValuePair:
@@ -37,14 +32,9 @@ class MetaDataKeyValuePair(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .json import Json
-
-        from .json import Json
-
         fields: Dict[str, Callable[[Any], None]] = {
             "key": lambda n : setattr(self, 'key', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "value": lambda n : setattr(self, 'value', n.get_object_value(Json)),
         }
         return fields
     
@@ -58,7 +48,6 @@ class MetaDataKeyValuePair(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_str_value("key", self.key)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_object_value("value", self.value)
         writer.write_additional_data_value(self.additional_data)
     
 

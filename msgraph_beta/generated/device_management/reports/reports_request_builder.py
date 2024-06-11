@@ -87,6 +87,7 @@ if TYPE_CHECKING:
     from .get_windows_update_alerts_per_policy_per_device_report.get_windows_update_alerts_per_policy_per_device_report_request_builder import GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
     from .get_windows_update_alert_summary_report.get_windows_update_alert_summary_report_request_builder import GetWindowsUpdateAlertSummaryReportRequestBuilder
     from .get_zebra_fota_deployment_report.get_zebra_fota_deployment_report_request_builder import GetZebraFotaDeploymentReportRequestBuilder
+    from .retrieve_assigned_applications_report.retrieve_assigned_applications_report_request_builder import RetrieveAssignedApplicationsReportRequestBuilder
 
 class ReportsRequestBuilder(BaseRequestBuilder):
     """
@@ -856,6 +857,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_zebra_fota_deployment_report.get_zebra_fota_deployment_report_request_builder import GetZebraFotaDeploymentReportRequestBuilder
 
         return GetZebraFotaDeploymentReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_assigned_applications_report(self) -> RetrieveAssignedApplicationsReportRequestBuilder:
+        """
+        Provides operations to call the retrieveAssignedApplicationsReport method.
+        """
+        from .retrieve_assigned_applications_report.retrieve_assigned_applications_report_request_builder import RetrieveAssignedApplicationsReportRequestBuilder
+
+        return RetrieveAssignedApplicationsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ReportsRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

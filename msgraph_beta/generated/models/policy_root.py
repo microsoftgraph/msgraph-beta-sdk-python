@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
     from .mobility_management_policy import MobilityManagementPolicy
     from .permission_grant_policy import PermissionGrantPolicy
+    from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
     from .service_principal_creation_policy import ServicePrincipalCreationPolicy
     from .tenant_app_management_policy import TenantAppManagementPolicy
     from .token_issuance_policy import TokenIssuancePolicy
@@ -85,6 +86,8 @@ class PolicyRoot(Entity):
     odata_type: Optional[str] = None
     # The policy that specifies the conditions under which consent can be granted.
     permission_grant_policies: Optional[List[PermissionGrantPolicy]] = None
+    # Policies that specify the conditions under which consent can be granted to a specific application.
+    permission_grant_pre_approval_policies: Optional[List[PermissionGrantPreApprovalPolicy]] = None
     # Represents the role management policies.
     role_management_policies: Optional[List[UnifiedRoleManagementPolicy]] = None
     # Represents the role management policy assignments.
@@ -134,6 +137,7 @@ class PolicyRoot(Entity):
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
         from .mobility_management_policy import MobilityManagementPolicy
         from .permission_grant_policy import PermissionGrantPolicy
+        from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .service_principal_creation_policy import ServicePrincipalCreationPolicy
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .token_issuance_policy import TokenIssuancePolicy
@@ -163,6 +167,7 @@ class PolicyRoot(Entity):
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
         from .mobility_management_policy import MobilityManagementPolicy
         from .permission_grant_policy import PermissionGrantPolicy
+        from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .service_principal_creation_policy import ServicePrincipalCreationPolicy
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .token_issuance_policy import TokenIssuancePolicy
@@ -194,6 +199,7 @@ class PolicyRoot(Entity):
             "mobileAppManagementPolicies": lambda n : setattr(self, 'mobile_app_management_policies', n.get_collection_of_object_values(MobilityManagementPolicy)),
             "mobileDeviceManagementPolicies": lambda n : setattr(self, 'mobile_device_management_policies', n.get_collection_of_object_values(MobilityManagementPolicy)),
             "permissionGrantPolicies": lambda n : setattr(self, 'permission_grant_policies', n.get_collection_of_object_values(PermissionGrantPolicy)),
+            "permissionGrantPreApprovalPolicies": lambda n : setattr(self, 'permission_grant_pre_approval_policies', n.get_collection_of_object_values(PermissionGrantPreApprovalPolicy)),
             "roleManagementPolicies": lambda n : setattr(self, 'role_management_policies', n.get_collection_of_object_values(UnifiedRoleManagementPolicy)),
             "roleManagementPolicyAssignments": lambda n : setattr(self, 'role_management_policy_assignments', n.get_collection_of_object_values(UnifiedRoleManagementPolicyAssignment)),
             "servicePrincipalCreationPolicies": lambda n : setattr(self, 'service_principal_creation_policies', n.get_collection_of_object_values(ServicePrincipalCreationPolicy)),
@@ -236,6 +242,7 @@ class PolicyRoot(Entity):
         writer.write_collection_of_object_values("mobileAppManagementPolicies", self.mobile_app_management_policies)
         writer.write_collection_of_object_values("mobileDeviceManagementPolicies", self.mobile_device_management_policies)
         writer.write_collection_of_object_values("permissionGrantPolicies", self.permission_grant_policies)
+        writer.write_collection_of_object_values("permissionGrantPreApprovalPolicies", self.permission_grant_pre_approval_policies)
         writer.write_collection_of_object_values("roleManagementPolicies", self.role_management_policies)
         writer.write_collection_of_object_values("roleManagementPolicyAssignments", self.role_management_policy_assignments)
         writer.write_collection_of_object_values("servicePrincipalCreationPolicies", self.service_principal_creation_policies)

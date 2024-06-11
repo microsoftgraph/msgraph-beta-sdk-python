@@ -119,6 +119,8 @@ class ManagedDevice(Entity):
     eas_device_id: Optional[str] = None
     # Email(s) for the user associated with the device. This property is read-only.
     email_address: Optional[str] = None
+    # The Entra (Azure AD) User Principal Name (UPN) of the user responsible for the enrollment of the device. This property is read-only.
+    enrolled_by_user_principal_name: Optional[str] = None
     # Enrollment time of the device. Supports $filter operator 'lt' and 'gt'. This property is read-only.
     enrolled_date_time: Optional[datetime.datetime] = None
     # Name of the enrollment profile assigned to the device. Default value is empty string, indicating no enrollment profile was assgined. This property is read-only.
@@ -377,6 +379,7 @@ class ManagedDevice(Entity):
             "easActivationDateTime": lambda n : setattr(self, 'eas_activation_date_time', n.get_datetime_value()),
             "easDeviceId": lambda n : setattr(self, 'eas_device_id', n.get_str_value()),
             "emailAddress": lambda n : setattr(self, 'email_address', n.get_str_value()),
+            "enrolledByUserPrincipalName": lambda n : setattr(self, 'enrolled_by_user_principal_name', n.get_str_value()),
             "enrolledDateTime": lambda n : setattr(self, 'enrolled_date_time', n.get_datetime_value()),
             "enrollmentProfileName": lambda n : setattr(self, 'enrollment_profile_name', n.get_str_value()),
             "ethernetMacAddress": lambda n : setattr(self, 'ethernet_mac_address', n.get_str_value()),

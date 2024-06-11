@@ -66,10 +66,11 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     async def put(self,body: bytes, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
         """
-        The team photo.
+        Update the photo for the specified contact, group, team, or user in a tenant. The size of the photo you can update to is limited to 4 MB. You can use either PATCH or PUT for this operation.
         param body: Binary request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
+        Find more info here: https://learn.microsoft.com/graph/api/profilephoto-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -109,7 +110,7 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     def to_put_request_information(self,body: bytes, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        The team photo.
+        Update the photo for the specified contact, group, team, or user in a tenant. The size of the photo you can update to is limited to 4 MB. You can use either PATCH or PUT for this operation.
         param body: Binary request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

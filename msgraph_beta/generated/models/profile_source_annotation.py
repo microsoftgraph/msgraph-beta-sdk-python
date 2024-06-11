@@ -15,7 +15,7 @@ class ProfileSourceAnnotation(AdditionalDataHolder, BackedModel, Parsable):
     is_default_source: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The names of properties that have data from this source.
+    # Names of properties that have data from this source.
     properties: Optional[List[str]] = None
     # The sourceId property
     source_id: Optional[str] = None
