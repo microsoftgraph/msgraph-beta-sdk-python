@@ -32,7 +32,7 @@ class BulkResizeRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: BulkResizePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[BulkResizePostResponse]:
         """
-        Perform a bulk resize action to resize a group of cloudPCs that have successfully passed validation. If any devices can't be resized, those devices indicate 'resize failed'. The remaining devices are provisioned for the resize process.
+        Perform a bulk resize action to resize a group of cloudPCs that successfully pass validation. If any devices can't be resized, those devices indicate 'resize failed'. The remaining devices are provisioned for the resize process.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BulkResizePostResponse]
@@ -57,7 +57,7 @@ class BulkResizeRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: BulkResizePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Perform a bulk resize action to resize a group of cloudPCs that have successfully passed validation. If any devices can't be resized, those devices indicate 'resize failed'. The remaining devices are provisioned for the resize process.
+        Perform a bulk resize action to resize a group of cloudPCs that successfully pass validation. If any devices can't be resized, those devices indicate 'resize failed'. The remaining devices are provisioned for the resize process.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

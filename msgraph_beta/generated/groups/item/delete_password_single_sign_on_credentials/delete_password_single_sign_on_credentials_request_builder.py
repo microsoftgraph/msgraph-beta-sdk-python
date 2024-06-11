@@ -31,10 +31,11 @@ class DeletePasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: DeletePasswordSingleSignOnCredentialsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action deletePasswordSingleSignOnCredentials
+        Delete the password-based single sign-on credentials for a given group to a given service principal.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/group-deletepasswordsinglesignoncredentials?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -52,7 +53,7 @@ class DeletePasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: DeletePasswordSingleSignOnCredentialsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action deletePasswordSingleSignOnCredentials
+        Delete the password-based single sign-on credentials for a given group to a given service principal.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

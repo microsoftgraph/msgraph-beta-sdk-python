@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .force_delete.force_delete_request_builder import ForceDeleteRequestBuilder
     from .promote.promote_request_builder import PromoteRequestBuilder
     from .promote_to_initial.promote_to_initial_request_builder import PromoteToInitialRequestBuilder
+    from .root_domain.root_domain_request_builder import RootDomainRequestBuilder
     from .service_configuration_records.service_configuration_records_request_builder import ServiceConfigurationRecordsRequestBuilder
     from .shared_email_domain_invitations.shared_email_domain_invitations_request_builder import SharedEmailDomainInvitationsRequestBuilder
     from .verification_dns_records.verification_dns_records_request_builder import VerificationDnsRecordsRequestBuilder
@@ -193,6 +194,15 @@ class DomainItemRequestBuilder(BaseRequestBuilder):
         from .promote_to_initial.promote_to_initial_request_builder import PromoteToInitialRequestBuilder
 
         return PromoteToInitialRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def root_domain(self) -> RootDomainRequestBuilder:
+        """
+        Provides operations to manage the rootDomain property of the microsoft.graph.domain entity.
+        """
+        from .root_domain.root_domain_request_builder import RootDomainRequestBuilder
+
+        return RootDomainRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def service_configuration_records(self) -> ServiceConfigurationRecordsRequestBuilder:

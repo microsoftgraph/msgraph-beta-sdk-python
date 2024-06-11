@@ -44,7 +44,7 @@ class Contact(OutlookItem):
     flag: Optional[FollowupFlag] = None
     # The contact's gender.
     gender: Optional[str] = None
-    # The contact's generation.
+    # The contact's suffix.
     generation: Optional[str] = None
     # The contact's given name.
     given_name: Optional[str] = None

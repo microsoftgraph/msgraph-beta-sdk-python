@@ -19,7 +19,7 @@ class AzureADJoinPolicy(AdditionalDataHolder, BackedModel, Parsable):
     allowed_to_join: Optional[DeviceRegistrationMembership] = None
     # Determines if administrators can modify this policy.
     is_admin_configurable: Optional[bool] = None
-    # The localAdmins property
+    # Determines who becomes a local administrator on joined devices.
     local_admins: Optional[LocalAdminSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None

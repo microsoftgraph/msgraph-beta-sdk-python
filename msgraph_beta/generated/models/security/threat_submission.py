@@ -30,9 +30,9 @@ class ThreatSubmission(Entity):
     admin_review: Optional[SubmissionAdminReview] = None
     # The category property
     category: Optional[SubmissionCategory] = None
-    # Specifies the source of the submission. The possible values are: microsoft,  other and unkownFutureValue.
+    # Specifies the source of the submission. The possible values are: microsoft, other, and unkownFutureValue.
     client_source: Optional[SubmissionClientSource] = None
-    # Specifies the type of content being submitted. The possible values are: email, url, file, app and unkownFutureValue.
+    # Specifies the type of content being submitted. The possible values are: email, url, file, app, and unkownFutureValue.
     content_type: Optional[SubmissionContentType] = None
     # Specifies who submitted the email as a threat. Supports $filter = createdBy/email eq 'value'.
     created_by: Optional[SubmissionUserIdentity] = None
@@ -42,9 +42,9 @@ class ThreatSubmission(Entity):
     odata_type: Optional[str] = None
     # Specifies the result of the analysis performed by Microsoft.
     result: Optional[SubmissionResult] = None
-    # Specifies the role of the submitter. Supports $filter = source eq 'value'. The possible values are: administrator,  user and unkownFutureValue.
+    # Specifies the role of the submitter. Supports $filter = source eq 'value'. The possible values are: administrator,  user, and unkownFutureValue.
     source: Optional[SubmissionSource] = None
-    # Indicates whether the threat submission has been analyzed by Microsoft. Supports $filter = status eq 'value'. The possible values are: notStarted, running, succeeded, failed, skipped and unkownFutureValue.
+    # Indicates whether the threat submission has been analyzed by Microsoft. Supports $filter = status eq 'value'. The possible values are: notStarted, running, succeeded, failed, skipped, and unkownFutureValue.
     status: Optional[LongRunningOperationStatus] = None
     # Indicates the tenant id of the submitter. Not required when created using a POST operation. It's extracted from the token of the post API call.
     tenant_id: Optional[str] = None

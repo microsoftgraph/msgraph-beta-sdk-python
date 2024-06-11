@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .microsoft_tunnel_deployment_mode import MicrosoftTunnelDeploymentMode
     from .microsoft_tunnel_server_health_status import MicrosoftTunnelServerHealthStatus
 
 from .entity import Entity
@@ -17,6 +18,8 @@ class MicrosoftTunnelServer(Entity):
     """
     # The digest of the current agent image running on this server
     agent_image_digest: Optional[str] = None
+    # Microsoft Tunnel server deployment mode. The value is set when the server is registered. Possible values are standaloneRootful, standaloneRootless, podRootful, podRootless. Default value: standaloneRootful. Supports: $filter, $select, $top, $skip, $orderby. $search is not supported. Read-only.
+    deployment_mode: Optional[MicrosoftTunnelDeploymentMode] = None
     # The display name for the server. This property is required when a server is created and cannot be cleared during updates.
     display_name: Optional[str] = None
     # Indicates when the server last checked in
@@ -45,13 +48,16 @@ class MicrosoftTunnelServer(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .microsoft_tunnel_deployment_mode import MicrosoftTunnelDeploymentMode
         from .microsoft_tunnel_server_health_status import MicrosoftTunnelServerHealthStatus
 
         from .entity import Entity
+        from .microsoft_tunnel_deployment_mode import MicrosoftTunnelDeploymentMode
         from .microsoft_tunnel_server_health_status import MicrosoftTunnelServerHealthStatus
 
         fields: Dict[str, Callable[[Any], None]] = {
             "agentImageDigest": lambda n : setattr(self, 'agent_image_digest', n.get_str_value()),
+            "deploymentMode": lambda n : setattr(self, 'deployment_mode', n.get_enum_value(MicrosoftTunnelDeploymentMode)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastCheckinDateTime": lambda n : setattr(self, 'last_checkin_date_time', n.get_datetime_value()),
             "serverImageDigest": lambda n : setattr(self, 'server_image_digest', n.get_str_value()),
@@ -71,6 +77,7 @@ class MicrosoftTunnelServer(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("agentImageDigest", self.agent_image_digest)
+        writer.write_enum_value("deploymentMode", self.deployment_mode)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastCheckinDateTime", self.last_checkin_date_time)
         writer.write_str_value("serverImageDigest", self.server_image_digest)

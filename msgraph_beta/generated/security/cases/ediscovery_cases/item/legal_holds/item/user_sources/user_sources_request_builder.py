@@ -68,10 +68,11 @@ class UserSourcesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: UserSource, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[UserSource]:
         """
-        Create new navigation property to userSources for security
+        Create a new userSource object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserSource]
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryholdpolicy-post-usersources?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -102,7 +103,7 @@ class UserSourcesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: UserSource, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to userSources for security
+        Create a new userSource object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

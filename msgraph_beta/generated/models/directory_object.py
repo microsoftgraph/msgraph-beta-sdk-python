@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from .org_contact import OrgContact
     from .pending_external_user_profile import PendingExternalUserProfile
     from .permission_grant_policy import PermissionGrantPolicy
+    from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
     from .policy_base import PolicyBase
     from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
     from .service_principal import ServicePrincipal
@@ -180,6 +181,10 @@ class DirectoryObject(Entity):
             from .permission_grant_policy import PermissionGrantPolicy
 
             return PermissionGrantPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionGrantPreApprovalPolicy".casefold():
+            from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
+
+            return PermissionGrantPreApprovalPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyBase".casefold():
             from .policy_base import PolicyBase
 
@@ -260,6 +265,7 @@ class DirectoryObject(Entity):
         from .org_contact import OrgContact
         from .pending_external_user_profile import PendingExternalUserProfile
         from .permission_grant_policy import PermissionGrantPolicy
+        from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .policy_base import PolicyBase
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .service_principal import ServicePrincipal
@@ -301,6 +307,7 @@ class DirectoryObject(Entity):
         from .org_contact import OrgContact
         from .pending_external_user_profile import PendingExternalUserProfile
         from .permission_grant_policy import PermissionGrantPolicy
+        from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .policy_base import PolicyBase
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .service_principal import ServicePrincipal

@@ -133,7 +133,7 @@ class Group(DirectoryObject):
     on_premises_provisioning_errors: Optional[List[OnPremisesProvisioningError]] = None
     # Contains the on-premises SAM account name synchronized from the on-premises directory. The property is only populated for customers synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect.Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith). Read-only.
     on_premises_sam_account_name: Optional[str] = None
-    # Contains the on-premises security identifier (SID) for the group synchronized from on-premises to the cloud. Returned by default. Supports $filter (eq including on null values). Read-only.
+    # Contains the on-premises security identifier (SID) for the group synchronized from on-premises to the cloud. Read-only. Returned by default. Supports $filter (eq including on null values). Read-only.
     on_premises_security_identifier: Optional[str] = None
     # true if this group is synced from an on-premises directory; false if this group was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Returned by default. Read-only. Supports $filter (eq, ne, not, in, and eq on null values).
     on_premises_sync_enabled: Optional[bool] = None
@@ -167,7 +167,7 @@ class Group(DirectoryObject):
     resource_provisioning_options: Optional[List[str]] = None
     # Specifies whether the group is a security group. Required.Returned by default. Supports $filter (eq, ne, not, in).
     security_enabled: Optional[bool] = None
-    # Security identifier of the group, used in Windows scenarios. Returned by default.
+    # Security identifier of the group, used in Windows scenarios. Read-only. Returned by default.
     security_identifier: Optional[str] = None
     # Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object.
     service_provisioning_errors: Optional[List[ServiceProvisioningError]] = None

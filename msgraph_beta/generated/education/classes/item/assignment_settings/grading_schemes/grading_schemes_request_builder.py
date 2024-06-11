@@ -48,7 +48,7 @@ class GradingSchemesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GradingSchemesRequestBuilderGetQueryParameters]] = None) -> Optional[EducationGradingSchemeCollectionResponse]:
         """
-        Get gradingSchemes from education
+        Read the properties and relationships of an educationGradingScheme object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationGradingSchemeCollectionResponse]
         """
@@ -68,10 +68,11 @@ class GradingSchemesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: EducationGradingScheme, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[EducationGradingScheme]:
         """
-        Create new navigation property to gradingSchemes for education
+        Create a new educationGradingScheme object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationGradingScheme]
+        Find more info here: https://learn.microsoft.com/graph/api/educationgradingscheme-post?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -91,7 +92,7 @@ class GradingSchemesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GradingSchemesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get gradingSchemes from education
+        Read the properties and relationships of an educationGradingScheme object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +103,7 @@ class GradingSchemesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: EducationGradingScheme, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to gradingSchemes for education
+        Create a new educationGradingScheme object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +138,7 @@ class GradingSchemesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GradingSchemesRequestBuilderGetQueryParameters():
         """
-        Get gradingSchemes from education
+        Read the properties and relationships of an educationGradingScheme object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

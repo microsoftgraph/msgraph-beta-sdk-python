@@ -17,10 +17,10 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .assign.assign_request_builder import AssignRequestBuilder
     from .assignments.assignments_request_builder import AssignmentsRequestBuilder
-    from .assign_just_in_time_configuration.assign_just_in_time_configuration_request_builder import AssignJustInTimeConfigurationRequestBuilder
+    from .clear_enrollment_time_device_membership_target.clear_enrollment_time_device_membership_target_request_builder import ClearEnrollmentTimeDeviceMembershipTargetRequestBuilder
     from .create_copy.create_copy_request_builder import CreateCopyRequestBuilder
     from .reorder.reorder_request_builder import ReorderRequestBuilder
-    from .retrieve_just_in_time_configuration.retrieve_just_in_time_configuration_request_builder import RetrieveJustInTimeConfigurationRequestBuilder
+    from .retrieve_enrollment_time_device_membership_target.retrieve_enrollment_time_device_membership_target_request_builder import RetrieveEnrollmentTimeDeviceMembershipTargetRequestBuilder
     from .retrieve_latest_upgrade_default_baseline_policy.retrieve_latest_upgrade_default_baseline_policy_request_builder import RetrieveLatestUpgradeDefaultBaselinePolicyRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
 
@@ -155,15 +155,6 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder(BaseRequestBuilder):
         return AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def assign_just_in_time_configuration(self) -> AssignJustInTimeConfigurationRequestBuilder:
-        """
-        Provides operations to call the assignJustInTimeConfiguration method.
-        """
-        from .assign_just_in_time_configuration.assign_just_in_time_configuration_request_builder import AssignJustInTimeConfigurationRequestBuilder
-
-        return AssignJustInTimeConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def assignments(self) -> AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
@@ -171,6 +162,15 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder(BaseRequestBuilder):
         from .assignments.assignments_request_builder import AssignmentsRequestBuilder
 
         return AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def clear_enrollment_time_device_membership_target(self) -> ClearEnrollmentTimeDeviceMembershipTargetRequestBuilder:
+        """
+        Provides operations to call the clearEnrollmentTimeDeviceMembershipTarget method.
+        """
+        from .clear_enrollment_time_device_membership_target.clear_enrollment_time_device_membership_target_request_builder import ClearEnrollmentTimeDeviceMembershipTargetRequestBuilder
+
+        return ClearEnrollmentTimeDeviceMembershipTargetRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def create_copy(self) -> CreateCopyRequestBuilder:
@@ -191,13 +191,13 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder(BaseRequestBuilder):
         return ReorderRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def retrieve_just_in_time_configuration(self) -> RetrieveJustInTimeConfigurationRequestBuilder:
+    def retrieve_enrollment_time_device_membership_target(self) -> RetrieveEnrollmentTimeDeviceMembershipTargetRequestBuilder:
         """
-        Provides operations to call the retrieveJustInTimeConfiguration method.
+        Provides operations to call the retrieveEnrollmentTimeDeviceMembershipTarget method.
         """
-        from .retrieve_just_in_time_configuration.retrieve_just_in_time_configuration_request_builder import RetrieveJustInTimeConfigurationRequestBuilder
+        from .retrieve_enrollment_time_device_membership_target.retrieve_enrollment_time_device_membership_target_request_builder import RetrieveEnrollmentTimeDeviceMembershipTargetRequestBuilder
 
-        return RetrieveJustInTimeConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+        return RetrieveEnrollmentTimeDeviceMembershipTargetRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_latest_upgrade_default_baseline_policy(self) -> RetrieveLatestUpgradeDefaultBaselinePolicyRequestBuilder:

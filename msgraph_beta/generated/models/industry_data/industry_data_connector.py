@@ -5,8 +5,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .api_data_connector import ApiDataConnector
     from .azure_data_lake_connector import AzureDataLakeConnector
     from .file_data_connector import FileDataConnector
+    from .one_roster_api_data_connector import OneRosterApiDataConnector
     from .source_system_definition import SourceSystemDefinition
 
 from ..entity import Entity
@@ -33,6 +35,10 @@ class IndustryDataConnector(Entity):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.apiDataConnector".casefold():
+            from .api_data_connector import ApiDataConnector
+
+            return ApiDataConnector()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.azureDataLakeConnector".casefold():
             from .azure_data_lake_connector import AzureDataLakeConnector
 
@@ -41,6 +47,10 @@ class IndustryDataConnector(Entity):
             from .file_data_connector import FileDataConnector
 
             return FileDataConnector()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.oneRosterApiDataConnector".casefold():
+            from .one_roster_api_data_connector import OneRosterApiDataConnector
+
+            return OneRosterApiDataConnector()
         return IndustryDataConnector()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -49,13 +59,17 @@ class IndustryDataConnector(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .api_data_connector import ApiDataConnector
         from .azure_data_lake_connector import AzureDataLakeConnector
         from .file_data_connector import FileDataConnector
+        from .one_roster_api_data_connector import OneRosterApiDataConnector
         from .source_system_definition import SourceSystemDefinition
 
         from ..entity import Entity
+        from .api_data_connector import ApiDataConnector
         from .azure_data_lake_connector import AzureDataLakeConnector
         from .file_data_connector import FileDataConnector
+        from .one_roster_api_data_connector import OneRosterApiDataConnector
         from .source_system_definition import SourceSystemDefinition
 
         fields: Dict[str, Callable[[Any], None]] = {

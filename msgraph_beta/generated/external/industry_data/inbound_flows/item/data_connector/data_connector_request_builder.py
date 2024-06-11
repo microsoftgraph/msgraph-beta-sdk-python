@@ -31,7 +31,7 @@ class DataConnectorRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DataConnectorRequestBuilderGetQueryParameters]] = None) -> Optional[IndustryDataConnector]:
         """
-        The data connector in the context of which this flow pulls in data from a source system.
+        The data connector to the source system from where this flow gets its data.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IndustryDataConnector]
         """
@@ -51,7 +51,7 @@ class DataConnectorRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DataConnectorRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The data connector in the context of which this flow pulls in data from a source system.
+        The data connector to the source system from where this flow gets its data.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,7 +73,7 @@ class DataConnectorRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DataConnectorRequestBuilderGetQueryParameters():
         """
-        The data connector in the context of which this flow pulls in data from a source system.
+        The data connector to the source system from where this flow gets its data.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

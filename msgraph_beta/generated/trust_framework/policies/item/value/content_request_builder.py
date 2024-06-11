@@ -30,9 +30,10 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        The unique identifier for an entity. Read-only.
+        Delete an existing trustFrameworkPolicy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/trustframeworkpolicy-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -48,9 +49,10 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
         """
-        The unique identifier for an entity. Read-only.
+        Retrieve a list of trustFrameworkPolicies in the tenant/directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
+        Find more info here: https://learn.microsoft.com/graph/api/trustframework-list-trustframeworkpolicies?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -87,7 +89,7 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        The unique identifier for an entity. Read-only.
+        Delete an existing trustFrameworkPolicy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,7 +100,7 @@ class ContentRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        The unique identifier for an entity. Read-only.
+        Retrieve a list of trustFrameworkPolicies in the tenant/directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

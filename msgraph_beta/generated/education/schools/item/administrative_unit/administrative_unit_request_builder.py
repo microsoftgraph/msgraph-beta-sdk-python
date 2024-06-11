@@ -34,7 +34,7 @@ class AdministrativeUnitRequestBuilder(BaseRequestBuilder):
         Retrieve the directory administrativeUnit that corresponds to this educationSchool.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdministrativeUnit]
-        Find more info here: https://learn.microsoft.com/graph/api/educationschool-get-administrativeUnit?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/educationschool-get-administrativeunit?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

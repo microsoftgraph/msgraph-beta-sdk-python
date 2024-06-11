@@ -12,6 +12,8 @@ if TYPE_CHECKING:
     from .related_remote_network import RelatedRemoteNetwork
     from .related_tenant import RelatedTenant
     from .related_threat_intelligence import RelatedThreatIntelligence
+    from .related_token import RelatedToken
+    from .related_user import RelatedUser
     from .related_web_category import RelatedWebCategory
 
 @dataclass
@@ -65,6 +67,14 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
             from .related_threat_intelligence import RelatedThreatIntelligence
 
             return RelatedThreatIntelligence()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedToken".casefold():
+            from .related_token import RelatedToken
+
+            return RelatedToken()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedUser".casefold():
+            from .related_user import RelatedUser
+
+            return RelatedUser()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedWebCategory".casefold():
             from .related_web_category import RelatedWebCategory
 
@@ -83,6 +93,8 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
         from .related_remote_network import RelatedRemoteNetwork
         from .related_tenant import RelatedTenant
         from .related_threat_intelligence import RelatedThreatIntelligence
+        from .related_token import RelatedToken
+        from .related_user import RelatedUser
         from .related_web_category import RelatedWebCategory
 
         from .related_destination import RelatedDestination
@@ -92,6 +104,8 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
         from .related_remote_network import RelatedRemoteNetwork
         from .related_tenant import RelatedTenant
         from .related_threat_intelligence import RelatedThreatIntelligence
+        from .related_token import RelatedToken
+        from .related_user import RelatedUser
         from .related_web_category import RelatedWebCategory
 
         fields: Dict[str, Callable[[Any], None]] = {

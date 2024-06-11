@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .item_activity_o_l_d import ItemActivityOLD
     from .item_analytics import ItemAnalytics
     from .list_item_version import ListItemVersion
+    from .permission import Permission
     from .sharepoint_ids import SharepointIds
 
 from .base_item import BaseItem
@@ -35,6 +36,8 @@ class ListItem(BaseItem):
     drive_item: Optional[DriveItem] = None
     # The values of the columns set on this list item.
     fields: Optional[FieldValueSet] = None
+    # The permissions property
+    permissions: Optional[List[Permission]] = None
     # Returns identifiers useful for SharePoint REST compatibility. Read-only.
     sharepoint_ids: Optional[SharepointIds] = None
     # The list of previous versions of the list item.
@@ -65,6 +68,7 @@ class ListItem(BaseItem):
         from .item_activity_o_l_d import ItemActivityOLD
         from .item_analytics import ItemAnalytics
         from .list_item_version import ListItemVersion
+        from .permission import Permission
         from .sharepoint_ids import SharepointIds
 
         from .base_item import BaseItem
@@ -76,6 +80,7 @@ class ListItem(BaseItem):
         from .item_activity_o_l_d import ItemActivityOLD
         from .item_analytics import ItemAnalytics
         from .list_item_version import ListItemVersion
+        from .permission import Permission
         from .sharepoint_ids import SharepointIds
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -86,6 +91,7 @@ class ListItem(BaseItem):
             "documentSetVersions": lambda n : setattr(self, 'document_set_versions', n.get_collection_of_object_values(DocumentSetVersion)),
             "driveItem": lambda n : setattr(self, 'drive_item', n.get_object_value(DriveItem)),
             "fields": lambda n : setattr(self, 'fields', n.get_object_value(FieldValueSet)),
+            "permissions": lambda n : setattr(self, 'permissions', n.get_collection_of_object_values(Permission)),
             "sharepointIds": lambda n : setattr(self, 'sharepoint_ids', n.get_object_value(SharepointIds)),
             "versions": lambda n : setattr(self, 'versions', n.get_collection_of_object_values(ListItemVersion)),
         }
@@ -109,6 +115,7 @@ class ListItem(BaseItem):
         writer.write_collection_of_object_values("documentSetVersions", self.document_set_versions)
         writer.write_object_value("driveItem", self.drive_item)
         writer.write_object_value("fields", self.fields)
+        writer.write_collection_of_object_values("permissions", self.permissions)
         writer.write_object_value("sharepointIds", self.sharepoint_ids)
         writer.write_collection_of_object_values("versions", self.versions)
     

@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .permission_type import PermissionType
+    from .scope_sensitivity_labels import ScopeSensitivityLabels
 
 from .entity import Entity
 
@@ -31,6 +32,8 @@ class PermissionGrantConditionSet(Entity):
     permissions: Optional[List[str]] = None
     # The appId of the resource application (e.g. the API) for which a permission is being granted, or any to match with any resource application or API. Default is any.
     resource_application: Optional[str] = None
+    # The scopeSensitivityLabels property
+    scope_sensitivity_labels: Optional[ScopeSensitivityLabels] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PermissionGrantConditionSet:
@@ -50,9 +53,11 @@ class PermissionGrantConditionSet(Entity):
         """
         from .entity import Entity
         from .permission_type import PermissionType
+        from .scope_sensitivity_labels import ScopeSensitivityLabels
 
         from .entity import Entity
         from .permission_type import PermissionType
+        from .scope_sensitivity_labels import ScopeSensitivityLabels
 
         fields: Dict[str, Callable[[Any], None]] = {
             "certifiedClientApplicationsOnly": lambda n : setattr(self, 'certified_client_applications_only', n.get_bool_value()),
@@ -64,6 +69,7 @@ class PermissionGrantConditionSet(Entity):
             "permissionType": lambda n : setattr(self, 'permission_type', n.get_enum_value(PermissionType)),
             "permissions": lambda n : setattr(self, 'permissions', n.get_collection_of_primitive_values(str)),
             "resourceApplication": lambda n : setattr(self, 'resource_application', n.get_str_value()),
+            "scopeSensitivityLabels": lambda n : setattr(self, 'scope_sensitivity_labels', n.get_object_value(ScopeSensitivityLabels)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -87,5 +93,6 @@ class PermissionGrantConditionSet(Entity):
         writer.write_enum_value("permissionType", self.permission_type)
         writer.write_collection_of_primitive_values("permissions", self.permissions)
         writer.write_str_value("resourceApplication", self.resource_application)
+        writer.write_object_value("scopeSensitivityLabels", self.scope_sensitivity_labels)
     
 

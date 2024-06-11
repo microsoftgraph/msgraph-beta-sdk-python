@@ -39,6 +39,7 @@ if TYPE_CHECKING:
     from .oauth2_permission_grants.oauth2_permission_grants_request_builder import Oauth2PermissionGrantsRequestBuilder
     from .owned_objects.owned_objects_request_builder import OwnedObjectsRequestBuilder
     from .owners.owners_request_builder import OwnersRequestBuilder
+    from .permission_grant_pre_approval_policies.permission_grant_pre_approval_policies_request_builder import PermissionGrantPreApprovalPoliciesRequestBuilder
     from .remote_desktop_security_configuration.remote_desktop_security_configuration_request_builder import RemoteDesktopSecurityConfigurationRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
     from .synchronization.synchronization_request_builder import SynchronizationRequestBuilder
@@ -389,6 +390,15 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         from .owners.owners_request_builder import OwnersRequestBuilder
 
         return OwnersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def permission_grant_pre_approval_policies(self) -> PermissionGrantPreApprovalPoliciesRequestBuilder:
+        """
+        Provides operations to manage the permissionGrantPreApprovalPolicies property of the microsoft.graph.servicePrincipal entity.
+        """
+        from .permission_grant_pre_approval_policies.permission_grant_pre_approval_policies_request_builder import PermissionGrantPreApprovalPoliciesRequestBuilder
+
+        return PermissionGrantPreApprovalPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def remote_desktop_security_configuration(self) -> RemoteDesktopSecurityConfigurationRequestBuilder:
