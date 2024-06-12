@@ -31,7 +31,7 @@ class MicrosoftGraphSecurityExportResultRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ExportResultPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action exportResult
+        Export results from an estimated ediscoverySearch. For details, see Manage a collection estimate.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -52,7 +52,7 @@ class MicrosoftGraphSecurityExportResultRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ExportResultPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action exportResult
+        Export results from an estimated ediscoverySearch. For details, see Manage a collection estimate.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

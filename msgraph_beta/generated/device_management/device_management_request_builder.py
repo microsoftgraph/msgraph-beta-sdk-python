@@ -72,6 +72,7 @@ if TYPE_CHECKING:
     from .enable_android_device_administrator_enrollment.enable_android_device_administrator_enrollment_request_builder import EnableAndroidDeviceAdministratorEnrollmentRequestBuilder
     from .enable_legacy_pc_management.enable_legacy_pc_management_request_builder import EnableLegacyPcManagementRequestBuilder
     from .enable_unlicensed_adminstrators.enable_unlicensed_adminstrators_request_builder import EnableUnlicensedAdminstratorsRequestBuilder
+    from .endpoint_privilege_management_provisioning_status.endpoint_privilege_management_provisioning_status_request_builder import EndpointPrivilegeManagementProvisioningStatusRequestBuilder
     from .evaluate_assignment_filter.evaluate_assignment_filter_request_builder import EvaluateAssignmentFilterRequestBuilder
     from .exchange_connectors.exchange_connectors_request_builder import ExchangeConnectorsRequestBuilder
     from .exchange_on_premises_policies.exchange_on_premises_policies_request_builder import ExchangeOnPremisesPoliciesRequestBuilder
@@ -93,6 +94,7 @@ if TYPE_CHECKING:
     from .group_policy_object_files.group_policy_object_files_request_builder import GroupPolicyObjectFilesRequestBuilder
     from .group_policy_uploaded_definition_files.group_policy_uploaded_definition_files_request_builder import GroupPolicyUploadedDefinitionFilesRequestBuilder
     from .hardware_configurations.hardware_configurations_request_builder import HardwareConfigurationsRequestBuilder
+    from .hardware_password_details.hardware_password_details_request_builder import HardwarePasswordDetailsRequestBuilder
     from .hardware_password_info.hardware_password_info_request_builder import HardwarePasswordInfoRequestBuilder
     from .imported_device_identities.imported_device_identities_request_builder import ImportedDeviceIdentitiesRequestBuilder
     from .imported_windows_autopilot_device_identities.imported_windows_autopilot_device_identities_request_builder import ImportedWindowsAutopilotDeviceIdentitiesRequestBuilder
@@ -196,6 +198,7 @@ if TYPE_CHECKING:
     from .windows_information_protection_app_learning_summaries.windows_information_protection_app_learning_summaries_request_builder import WindowsInformationProtectionAppLearningSummariesRequestBuilder
     from .windows_information_protection_network_learning_summaries.windows_information_protection_network_learning_summaries_request_builder import WindowsInformationProtectionNetworkLearningSummariesRequestBuilder
     from .windows_malware_information.windows_malware_information_request_builder import WindowsMalwareInformationRequestBuilder
+    from .windows_quality_update_policies.windows_quality_update_policies_request_builder import WindowsQualityUpdatePoliciesRequestBuilder
     from .windows_quality_update_profiles.windows_quality_update_profiles_request_builder import WindowsQualityUpdateProfilesRequestBuilder
     from .windows_update_catalog_items.windows_update_catalog_items_request_builder import WindowsUpdateCatalogItemsRequestBuilder
     from .zebra_fota_artifacts.zebra_fota_artifacts_request_builder import ZebraFotaArtifactsRequestBuilder
@@ -880,6 +883,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return EnableUnlicensedAdminstratorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def endpoint_privilege_management_provisioning_status(self) -> EndpointPrivilegeManagementProvisioningStatusRequestBuilder:
+        """
+        Provides operations to manage the endpointPrivilegeManagementProvisioningStatus property of the microsoft.graph.deviceManagement entity.
+        """
+        from .endpoint_privilege_management_provisioning_status.endpoint_privilege_management_provisioning_status_request_builder import EndpointPrivilegeManagementProvisioningStatusRequestBuilder
+
+        return EndpointPrivilegeManagementProvisioningStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def evaluate_assignment_filter(self) -> EvaluateAssignmentFilterRequestBuilder:
         """
         Provides operations to call the evaluateAssignmentFilter method.
@@ -1031,6 +1043,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .hardware_configurations.hardware_configurations_request_builder import HardwareConfigurationsRequestBuilder
 
         return HardwareConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def hardware_password_details(self) -> HardwarePasswordDetailsRequestBuilder:
+        """
+        Provides operations to manage the hardwarePasswordDetails property of the microsoft.graph.deviceManagement entity.
+        """
+        from .hardware_password_details.hardware_password_details_request_builder import HardwarePasswordDetailsRequestBuilder
+
+        return HardwarePasswordDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def hardware_password_info(self) -> HardwarePasswordInfoRequestBuilder:
@@ -1940,6 +1961,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .windows_malware_information.windows_malware_information_request_builder import WindowsMalwareInformationRequestBuilder
 
         return WindowsMalwareInformationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def windows_quality_update_policies(self) -> WindowsQualityUpdatePoliciesRequestBuilder:
+        """
+        Provides operations to manage the windowsQualityUpdatePolicies property of the microsoft.graph.deviceManagement entity.
+        """
+        from .windows_quality_update_policies.windows_quality_update_policies_request_builder import WindowsQualityUpdatePoliciesRequestBuilder
+
+        return WindowsQualityUpdatePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def windows_quality_update_profiles(self) -> WindowsQualityUpdateProfilesRequestBuilder:

@@ -29,14 +29,14 @@ class ConversationThreadItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}{?%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete conversationThread.
+        Delete a thread object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/conversationthread-delete?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/group-delete-thread?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -52,10 +52,10 @@ class ConversationThreadItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ConversationThreadItemRequestBuilderGetQueryParameters]] = None) -> Optional[ConversationThread]:
         """
-        Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
+        Get a thread object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConversationThread]
-        Find more info here: https://learn.microsoft.com/graph/api/conversationthread-get?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/group-get-thread?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -97,7 +97,7 @@ class ConversationThreadItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete conversationThread.
+        Delete a thread object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +108,7 @@ class ConversationThreadItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ConversationThreadItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
+        Get a thread object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -170,7 +170,7 @@ class ConversationThreadItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConversationThreadItemRequestBuilderGetQueryParameters():
         """
-        Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
+        Get a thread object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -180,10 +180,15 @@ class ConversationThreadItemRequestBuilder(BaseRequestBuilder):
             """
             if not original_name:
                 raise TypeError("original_name cannot be null.")
+            if original_name == "expand":
+                return "%24expand"
             if original_name == "select":
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
         # Select properties to be returned
         select: Optional[List[str]] = None
 

@@ -50,9 +50,10 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[OutlineIconRequestBuilderGetQueryParameters]] = None) -> Optional[TeamsAppIcon]:
         """
-        The outline version of the Teams app's icon.
+        Retrieve a Teams app icon associated with a specific definition of an app.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamsAppIcon]
+        Find more info here: https://learn.microsoft.com/graph/api/teamsappicon-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -104,7 +105,7 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[OutlineIconRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The outline version of the Teams app's icon.
+        Retrieve a Teams app icon associated with a specific definition of an app.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +158,7 @@ class OutlineIconRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OutlineIconRequestBuilderGetQueryParameters():
         """
-        The outline version of the Teams app's icon.
+        Retrieve a Teams app icon associated with a specific definition of an app.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

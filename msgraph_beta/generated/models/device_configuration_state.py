@@ -14,7 +14,7 @@ from .entity import Entity
 @dataclass
 class DeviceConfigurationState(Entity):
     """
-    Device Configuration State for a given device.
+    Support for this Entity is being deprecated starting May 2026 & will no longer be supported.
     """
     # The name of the policy for this policyBase
     display_name: Optional[str] = None

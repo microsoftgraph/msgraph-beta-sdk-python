@@ -15,6 +15,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from ..models.solutions_root import SolutionsRoot
+    from .backup_restore.backup_restore_request_builder import BackupRestoreRequestBuilder
     from .booking_businesses.booking_businesses_request_builder import BookingBusinessesRequestBuilder
     from .booking_currencies.booking_currencies_request_builder import BookingCurrenciesRequestBuilder
     from .business_scenarios.business_scenarios_request_builder import BusinessScenariosRequestBuilder
@@ -124,6 +125,15 @@ class SolutionsRequestBuilder(BaseRequestBuilder):
         if not raw_url:
             raise TypeError("raw_url cannot be null.")
         return SolutionsRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def backup_restore(self) -> BackupRestoreRequestBuilder:
+        """
+        Provides operations to manage the backupRestore property of the microsoft.graph.solutionsRoot entity.
+        """
+        from .backup_restore.backup_restore_request_builder import BackupRestoreRequestBuilder
+
+        return BackupRestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def booking_businesses(self) -> BookingBusinessesRequestBuilder:

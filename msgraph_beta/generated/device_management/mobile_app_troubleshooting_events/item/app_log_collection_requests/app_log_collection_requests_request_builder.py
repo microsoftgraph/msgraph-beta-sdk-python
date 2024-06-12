@@ -48,7 +48,7 @@ class AppLogCollectionRequestsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AppLogCollectionRequestsRequestBuilderGetQueryParameters]] = None) -> Optional[AppLogCollectionRequestCollectionResponse]:
         """
-        The collection property of AppLogUploadRequest.
+        Indicates collection of App Log Upload Request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AppLogCollectionRequestCollectionResponse]
         """
@@ -91,7 +91,7 @@ class AppLogCollectionRequestsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AppLogCollectionRequestsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The collection property of AppLogUploadRequest.
+        Indicates collection of App Log Upload Request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +137,7 @@ class AppLogCollectionRequestsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AppLogCollectionRequestsRequestBuilderGetQueryParameters():
         """
-        The collection property of AppLogUploadRequest.
+        Indicates collection of App Log Upload Request.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

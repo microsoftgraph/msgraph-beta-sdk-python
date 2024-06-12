@@ -11,7 +11,7 @@ from .entity import Entity
 @dataclass
 class HardwarePasswordInfo(Entity):
     """
-    Intune will provide customer the ability to configure hardware/bios settings on the enrolled windows 10 Azure Active Directory joined devices.
+    Intune will provide customer the ability to configure hardware/bios settings on the enrolled windows 10 Azure Active Directory joined devices. Starting from June, 2024 (Intune Release 2406), this type will no longer be supported and will be marked as deprecated
     """
     # Current device password
     current_password: Optional[str] = None
@@ -60,8 +60,6 @@ class HardwarePasswordInfo(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_str_value("currentPassword", self.current_password)
-        writer.write_collection_of_primitive_values("previousPasswords", self.previous_passwords)
         writer.write_str_value("serialNumber", self.serial_number)
     
 

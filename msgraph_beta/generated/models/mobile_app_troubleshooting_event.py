@@ -15,7 +15,7 @@ class MobileAppTroubleshootingEvent(DeviceManagementTroubleshootingEvent):
     """
     Event representing a users device application install status.
     """
-    # The collection property of AppLogUploadRequest.
+    # Indicates collection of App Log Upload Request.
     app_log_collection_requests: Optional[List[AppLogCollectionRequest]] = None
     # Intune application identifier.
     application_id: Optional[str] = None

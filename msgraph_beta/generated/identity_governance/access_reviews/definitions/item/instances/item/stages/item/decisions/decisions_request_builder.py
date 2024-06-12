@@ -62,9 +62,10 @@ class DecisionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DecisionsRequestBuilderGetQueryParameters]] = None) -> Optional[AccessReviewInstanceDecisionItemCollectionResponse]:
         """
-        Each user reviewed in an accessReviewStage has a decision item representing if they were approved, denied, or not yet reviewed.
+        Get the decisions from a stage in a multi-stage access review. The decisions in an accessReviewStage object are represented by an accessReviewInstanceDecisionItem object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewInstanceDecisionItemCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/accessreviewstage-list-decisions?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -105,7 +106,7 @@ class DecisionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DecisionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Each user reviewed in an accessReviewStage has a decision item representing if they were approved, denied, or not yet reviewed.
+        Get the decisions from a stage in a multi-stage access review. The decisions in an accessReviewStage object are represented by an accessReviewInstanceDecisionItem object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +161,7 @@ class DecisionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DecisionsRequestBuilderGetQueryParameters():
         """
-        Each user reviewed in an accessReviewStage has a decision item representing if they were approved, denied, or not yet reviewed.
+        Get the decisions from a stage in a multi-stage access review. The decisions in an accessReviewStage object are represented by an accessReviewInstanceDecisionItem object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
