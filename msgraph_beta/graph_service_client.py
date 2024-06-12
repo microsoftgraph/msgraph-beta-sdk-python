@@ -51,4 +51,3 @@ class GraphServiceClient(BaseGraphServiceClient):
         url_tpl_parameters["user%2Did"] = "me-token-to-replace"
 
         return UserItemRequestBuilder(self.request_adapter, url_tpl_parameters)
-        
