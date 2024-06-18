@@ -14,9 +14,8 @@
         "package-name": "msgraph_beta",
         "changelog-path": "CHANGELOG.md",
         "extra-files": [
-          "README.md",
           "pyproject.toml",
-          "msgraph/_version.py"
+          "msgraph_beta/_version.py"
         ]
       }
     },
