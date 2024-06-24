@@ -66,7 +66,7 @@ opentelemetry-sdk==1.25.0
 
 opentelemetry-semantic-conventions==0.46b0
 
-portalocker==2.8.2
+portalocker==2.10.0
 
 pycparser==2.22
 
