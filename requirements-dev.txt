@@ -52,7 +52,7 @@ microsoft-kiota-serialization-json==1.2.0
 
 microsoft-kiota-serialization-text==1.0.0
 
-msal==1.28.1
+msal==1.29.0
 
 msal-extensions==1.1.0
 
