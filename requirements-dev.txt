@@ -12,7 +12,7 @@ attrs==23.2.0
 
 azure-core==1.30.2
 
-azure-identity==1.17.0
+azure-identity==1.17.1
 
 certifi==2024.6.2
 
@@ -52,9 +52,9 @@ microsoft-kiota-serialization-json==1.2.0
 
 microsoft-kiota-serialization-text==1.0.0
 
-msal==1.28.1
+msal==1.29.0
 
-msal-extensions==1.1.0
+msal-extensions==1.2.0
 
 msgraph-core==1.1.0
 
@@ -66,7 +66,7 @@ opentelemetry-sdk==1.25.0
 
 opentelemetry-semantic-conventions==0.46b0
 
-portalocker==2.8.2
+portalocker==2.10.0
 
 pycparser==2.22
 
