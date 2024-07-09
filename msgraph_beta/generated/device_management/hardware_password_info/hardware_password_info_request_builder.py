@@ -48,7 +48,7 @@ class HardwarePasswordInfoRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[HardwarePasswordInfoRequestBuilderGetQueryParameters]] = None) -> Optional[HardwarePasswordInfoCollectionResponse]:
         """
-        The hardware password info for this account.
+        Intune will provide customer the ability to configure hardware/bios settings on the enrolled windows 10 Azure Active Directory joined devices. Starting from June, 2024 (Intune Release 2406), this type will no longer be supported and will be marked as deprecated
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwarePasswordInfoCollectionResponse]
         """
@@ -91,7 +91,7 @@ class HardwarePasswordInfoRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[HardwarePasswordInfoRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The hardware password info for this account.
+        Intune will provide customer the ability to configure hardware/bios settings on the enrolled windows 10 Azure Active Directory joined devices. Starting from June, 2024 (Intune Release 2406), this type will no longer be supported and will be marked as deprecated
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +137,7 @@ class HardwarePasswordInfoRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HardwarePasswordInfoRequestBuilderGetQueryParameters():
         """
-        The hardware password info for this account.
+        Intune will provide customer the ability to configure hardware/bios settings on the enrolled windows 10 Azure Active Directory joined devices. Starting from June, 2024 (Intune Release 2406), this type will no longer be supported and will be marked as deprecated
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

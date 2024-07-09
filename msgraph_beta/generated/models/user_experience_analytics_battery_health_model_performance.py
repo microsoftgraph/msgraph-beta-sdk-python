@@ -22,7 +22,7 @@ class UserExperienceAnalyticsBatteryHealthModelPerformance(Entity):
     average_estimated_runtime_in_minutes: Optional[int] = None
     # The mean of the maximum capacity for all devices of a given model. Maximum capacity measures the full charge vs. design capacity for a device’s batteries.. Valid values 0 to 2147483647
     average_max_capacity_percentage: Optional[int] = None
-    # Name of the device manufacturer.
+    # Name of the device manufacturer. Deprecated in favor of DeviceManufacturerName.
     manufacturer: Optional[str] = None
     # The mean of number of times the battery has been discharged an amount that equals 100% of its capacity for all devices of a given model in a tenant. Valid values 0 to 2147483647
     mean_full_battery_drain_count: Optional[int] = None
@@ -32,7 +32,7 @@ class UserExperienceAnalyticsBatteryHealthModelPerformance(Entity):
     median_full_battery_drain_count: Optional[int] = None
     # The median of the maximum capacity for all devices of a given model. Maximum capacity measures the full charge vs. design capacity for a device’s batteries.. Valid values 0 to 2147483647
     median_max_capacity_percentage: Optional[int] = None
-    # The model name of the device.
+    # The model name of the device. Deprecated in favor of DeviceModelName.
     model: Optional[str] = None
     # A weighted average of a model’s maximum capacity score and runtime estimate score. Values range from 0-100. Valid values 0 to 2147483647
     model_battery_health_score: Optional[int] = None

@@ -17,7 +17,7 @@ class DirectorySettingTemplate(DirectoryObject):
     description: Optional[str] = None
     # Display name of the template. Read-only.
     display_name: Optional[str] = None
-    # Collection of settingTemplateValues that list the set of available settings, defaults and types that make up this template.  Read-only.
+    # Collection of settingTemplateValues that list the set of available settings, defaults, and types that make up this template. Read-only.
     values: Optional[List[SettingTemplateValue]] = None
     
     @staticmethod

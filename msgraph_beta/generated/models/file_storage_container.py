@@ -45,7 +45,7 @@ class FileStorageContainer(Entity):
     is_item_versioning_enabled: Optional[bool] = None
     # Maximum number of major versions allowed for items in the fileStorageContainer. Read-write.
     item_major_version_limit: Optional[int] = None
-    # The lockState property
+    # Indicates the lock state of the fileStorageContainer. The possible values are unlocked and lockedReadOnly. Read-only.
     lock_state: Optional[SiteLockState] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -59,7 +59,7 @@ class FileStorageContainer(Entity):
     recycle_bin: Optional[RecycleBin] = None
     # Status of the fileStorageContainer. Containers are created as inactive and require activation. Inactive containers are subjected to automatic deletion in 24 hours. The possible values are: inactive, active. Read-only.
     status: Optional[FileStorageContainerStatus] = None
-    # Storage used in the fileStorageContainer. In bytes. Read-only.
+    # Storage used in the fileStorageContainer, in bytes. Read-only.
     storage_used_in_bytes: Optional[int] = None
     # Data specific to the current user. Read-only.
     viewpoint: Optional[FileStorageContainerViewpoint] = None

@@ -13,13 +13,13 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
-    from .....models.o_data_errors.o_data_error import ODataError
-    from .....models.service_provisioning_error_collection_response import ServiceProvisioningErrorCollectionResponse
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.service_provisioning_error_collection_response import ServiceProvisioningErrorCollectionResponse
     from .count.count_request_builder import CountRequestBuilder
 
 class ServiceProvisioningErrorsRequestBuilder(BaseRequestBuilder):
     """
-    Builds and executes requests for operations under /invitations/{invitation-id}/invitedUser/serviceProvisioningErrors
+    Builds and executes requests for operations under /invitations/invitedUser/serviceProvisioningErrors
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
@@ -28,7 +28,7 @@ class ServiceProvisioningErrorsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/invitations/{invitation%2Did}/invitedUser/serviceProvisioningErrors{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/invitations/invitedUser/serviceProvisioningErrors{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ServiceProvisioningErrorsRequestBuilderGetQueryParameters]] = None) -> Optional[ServiceProvisioningErrorCollectionResponse]:
         """
@@ -39,14 +39,14 @@ class ServiceProvisioningErrorsRequestBuilder(BaseRequestBuilder):
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors.o_data_error import ODataError
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, ParsableFactory] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.service_provisioning_error_collection_response import ServiceProvisioningErrorCollectionResponse
+        from ....models.service_provisioning_error_collection_response import ServiceProvisioningErrorCollectionResponse
 
         return await self.request_adapter.send_async(request_info, ServiceProvisioningErrorCollectionResponse, error_mapping)
     

@@ -30,7 +30,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Time the action was initiated. The Timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
     start_date_time: Optional[datetime.datetime] = None
-    # The details of the Cloud PC status.
+    # The details of the Cloud PC status. This property is deprecated and will no longer be supported effective August 31, 2024. Use statusDetail instead.
     status_details: Optional[CloudPcStatusDetails] = None
     
     @staticmethod

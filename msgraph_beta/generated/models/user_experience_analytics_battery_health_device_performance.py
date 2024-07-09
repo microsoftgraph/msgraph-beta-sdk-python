@@ -35,11 +35,11 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity):
     full_battery_drain_count: Optional[int] = None
     # The healthStatus property
     health_status: Optional[UserExperienceAnalyticsHealthState] = None
-    # The manufacturer name of the device.
+    # The manufacturer name of the device. Deprecated in favor of DeviceManufacturerName.
     manufacturer: Optional[str] = None
     # Ratio of current capacity and design capacity of the battery with the lowest capacity. Unit in percentage and values range from 0-100. Valid values 0 to 2147483647
     max_capacity_percentage: Optional[int] = None
-    # The model name of the device.
+    # The model name of the device. Deprecated in favor of DeviceModelName.
     model: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

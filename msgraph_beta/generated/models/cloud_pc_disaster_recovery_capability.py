@@ -14,13 +14,13 @@ class CloudPcDisasterRecoveryCapability(AdditionalDataHolder, BackedModel, Parsa
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The capabilityType property
+    # The disaster recovery action that can be performed for the Cloud PC. The possible values are: none, failover, failback, unknownFutureValue.
     capability_type: Optional[CloudPcDisasterRecoveryCapabilityType] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The primaryRegion property
+    # The primary and mainly used region where the Cloud PC is located.
     primary_region: Optional[str] = None
-    # The secondaryRegion property
+    # The secondary region to which the Cloud PC can be failed over during a regional outage.
     secondary_region: Optional[str] = None
     
     @staticmethod

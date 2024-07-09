@@ -335,6 +335,7 @@ if TYPE_CHECKING:
     from .community import Community
     from .company_subscription import CompanySubscription
     from .compliance_management_partner import ComplianceManagementPartner
+    from .compliant_network_named_location import CompliantNetworkNamedLocation
     from .conditional_access_policy import ConditionalAccessPolicy
     from .conditional_access_root import ConditionalAccessRoot
     from .conditional_access_template import ConditionalAccessTemplate
@@ -780,10 +781,12 @@ if TYPE_CHECKING:
     from .inactive_users_metric_base import InactiveUsersMetricBase
     from .inactive_user_finding import InactiveUserFinding
     from .industry_data.administrative_unit_provisioning_flow import AdministrativeUnitProvisioningFlow
+    from .industry_data.api_data_connector import ApiDataConnector
     from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
     from .industry_data.class_group_provisioning_flow import ClassGroupProvisioningFlow
     from .industry_data.file_data_connector import FileDataConnector
     from .industry_data.file_validate_operation import FileValidateOperation
+    from .industry_data.inbound_api_flow import InboundApiFlow
     from .industry_data.inbound_file_flow import InboundFileFlow
     from .industry_data.inbound_flow import InboundFlow
     from .industry_data.inbound_flow_activity import InboundFlowActivity
@@ -792,6 +795,7 @@ if TYPE_CHECKING:
     from .industry_data.industry_data_root import IndustryDataRoot
     from .industry_data.industry_data_run import IndustryDataRun
     from .industry_data.industry_data_run_activity import IndustryDataRunActivity
+    from .industry_data.one_roster_api_data_connector import OneRosterApiDataConnector
     from .industry_data.outbound_flow_activity import OutboundFlowActivity
     from .industry_data.outbound_provisioning_flow_set import OutboundProvisioningFlowSet
     from .industry_data.provisioning_flow import ProvisioningFlow
@@ -3305,6 +3309,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .compliance_management_partner import ComplianceManagementPartner
 
             return ComplianceManagementPartner()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.compliantNetworkNamedLocation".casefold():
+            from .compliant_network_named_location import CompliantNetworkNamedLocation
+
+            return CompliantNetworkNamedLocation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.conditionalAccessPolicy".casefold():
             from .conditional_access_policy import ConditionalAccessPolicy
             from .networkaccess.conditional_access_policy import ConditionalAccessPolicy
@@ -5105,6 +5113,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .industry_data.administrative_unit_provisioning_flow import AdministrativeUnitProvisioningFlow
 
             return AdministrativeUnitProvisioningFlow()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.apiDataConnector".casefold():
+            from .industry_data.api_data_connector import ApiDataConnector
+
+            return ApiDataConnector()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.azureDataLakeConnector".casefold():
             from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
 
@@ -5121,6 +5133,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .industry_data.file_validate_operation import FileValidateOperation
 
             return FileValidateOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.inboundApiFlow".casefold():
+            from .industry_data.inbound_api_flow import InboundApiFlow
+
+            return InboundApiFlow()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.inboundFileFlow".casefold():
             from .industry_data.inbound_file_flow import InboundFileFlow
 
@@ -5153,6 +5169,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .industry_data.industry_data_run_activity import IndustryDataRunActivity
 
             return IndustryDataRunActivity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.oneRosterApiDataConnector".casefold():
+            from .industry_data.one_roster_api_data_connector import OneRosterApiDataConnector
+
+            return OneRosterApiDataConnector()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.outboundFlowActivity".casefold():
             from .industry_data.outbound_flow_activity import OutboundFlowActivity
 
@@ -10174,6 +10194,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .community import Community
         from .company_subscription import CompanySubscription
         from .compliance_management_partner import ComplianceManagementPartner
+        from .compliant_network_named_location import CompliantNetworkNamedLocation
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
@@ -10619,10 +10640,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .inactive_users_metric_base import InactiveUsersMetricBase
         from .inactive_user_finding import InactiveUserFinding
         from .industry_data.administrative_unit_provisioning_flow import AdministrativeUnitProvisioningFlow
+        from .industry_data.api_data_connector import ApiDataConnector
         from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
         from .industry_data.class_group_provisioning_flow import ClassGroupProvisioningFlow
         from .industry_data.file_data_connector import FileDataConnector
         from .industry_data.file_validate_operation import FileValidateOperation
+        from .industry_data.inbound_api_flow import InboundApiFlow
         from .industry_data.inbound_file_flow import InboundFileFlow
         from .industry_data.inbound_flow import InboundFlow
         from .industry_data.inbound_flow_activity import InboundFlowActivity
@@ -10631,6 +10654,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .industry_data.industry_data_root import IndustryDataRoot
         from .industry_data.industry_data_run import IndustryDataRun
         from .industry_data.industry_data_run_activity import IndustryDataRunActivity
+        from .industry_data.one_roster_api_data_connector import OneRosterApiDataConnector
         from .industry_data.outbound_flow_activity import OutboundFlowActivity
         from .industry_data.outbound_provisioning_flow_set import OutboundProvisioningFlowSet
         from .industry_data.provisioning_flow import ProvisioningFlow
@@ -12125,6 +12149,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .community import Community
         from .company_subscription import CompanySubscription
         from .compliance_management_partner import ComplianceManagementPartner
+        from .compliant_network_named_location import CompliantNetworkNamedLocation
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
@@ -12570,10 +12595,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .inactive_users_metric_base import InactiveUsersMetricBase
         from .inactive_user_finding import InactiveUserFinding
         from .industry_data.administrative_unit_provisioning_flow import AdministrativeUnitProvisioningFlow
+        from .industry_data.api_data_connector import ApiDataConnector
         from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
         from .industry_data.class_group_provisioning_flow import ClassGroupProvisioningFlow
         from .industry_data.file_data_connector import FileDataConnector
         from .industry_data.file_validate_operation import FileValidateOperation
+        from .industry_data.inbound_api_flow import InboundApiFlow
         from .industry_data.inbound_file_flow import InboundFileFlow
         from .industry_data.inbound_flow import InboundFlow
         from .industry_data.inbound_flow_activity import InboundFlowActivity
@@ -12582,6 +12609,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .industry_data.industry_data_root import IndustryDataRoot
         from .industry_data.industry_data_run import IndustryDataRun
         from .industry_data.industry_data_run_activity import IndustryDataRunActivity
+        from .industry_data.one_roster_api_data_connector import OneRosterApiDataConnector
         from .industry_data.outbound_flow_activity import OutboundFlowActivity
         from .industry_data.outbound_provisioning_flow_set import OutboundProvisioningFlowSet
         from .industry_data.provisioning_flow import ProvisioningFlow

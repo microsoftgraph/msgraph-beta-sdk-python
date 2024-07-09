@@ -32,7 +32,7 @@ class CloudPcBulkAction(Entity):
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates whether the bulk actions can be initiated during maintenance window. When true, bulk action will use maintenance window to schedule action, When false means bulk action will not use the maintenance window. Default value is false.
+    # Indicates whether the bulk action is scheduled according to the maintenance window. When true, the bulk action uses the maintenance window to schedule the action; false means that the bulk action doesn't use the maintenance window. The default value is false.
     scheduled_during_maintenance_window: Optional[bool] = None
     
     @staticmethod

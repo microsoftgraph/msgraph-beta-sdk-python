@@ -52,7 +52,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[VirtualEventsRequestBuilderGetQueryParameters]] = None) -> Optional[VirtualEventsRoot]:
         """
-        Get virtualEvents from solutions
+        A collection of virtual events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventsRoot]
         """
@@ -106,7 +106,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[VirtualEventsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get virtualEvents from solutions
+        A collection of virtual events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -177,7 +177,7 @@ class VirtualEventsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class VirtualEventsRequestBuilderGetQueryParameters():
         """
-        Get virtualEvents from solutions
+        A collection of virtual events.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -31,7 +31,7 @@ class MicrosoftTunnelConfiguration(Entity):
     last_update_date_time: Optional[datetime.datetime] = None
     # The port that both TCP and UPD will listen over on the server
     listen_port: Optional[int] = None
-    # The subnet that will be used to allocate virtual address for the clients
+    # The IPv4 subnet that will be used to allocate virtual address for the clients
     network: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

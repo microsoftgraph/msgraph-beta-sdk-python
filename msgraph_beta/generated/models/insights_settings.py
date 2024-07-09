@@ -10,9 +10,9 @@ from .entity import Entity
 
 @dataclass
 class InsightsSettings(Entity):
-    # The ID of a Microsoft Entra group, of which the specified type of insights are disabled for its members. Default is empty. Optional.
+    # The ID of a Microsoft Entra group, of which the specified type of insights are disabled for its members. The default value is null. Optional.
     disabled_for_group: Optional[str] = None
-    # true if insights of the specified type are enabled for the organization; false if insights of the specified type are disabled for all users without exceptions. Default is true. Optional.
+    # true if insights of the specified type are enabled for the organization; false if insights of the specified type are disabled for all users without exceptions. The default value is true. Optional.
     is_enabled_in_organization: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

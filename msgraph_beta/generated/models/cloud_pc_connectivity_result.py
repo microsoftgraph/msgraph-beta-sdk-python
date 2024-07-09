@@ -16,13 +16,13 @@ class CloudPcConnectivityResult(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # A list of failed health check items. If the status property is available, this property will be empty.
+    # A list of failed health check items. If the status property is available, this property is empty.
     failed_health_check_items: Optional[List[CloudPcHealthCheckItem]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The status property
     status: Optional[CloudPcConnectivityStatus] = None
-    # Datetime when the status was updated. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
+    # Datetime when the status was updated. This property is deprecated and will no longer be supported effective August 31, 2024. Use lastModifiedDateTime instead. Read-Only.
     updated_date_time: Optional[datetime.datetime] = None
     
     @staticmethod

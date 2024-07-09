@@ -32,10 +32,11 @@ class AssignSensitivityLabelRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: AssignSensitivityLabelPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[PlannerRoster]:
         """
-        Invoke action assignSensitivityLabel
+        Assign a sensitivity label to a plannerRoster object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerRoster]
+        Find more info here: https://learn.microsoft.com/graph/api/plannerroster-assignsensitivitylabel?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -55,7 +56,7 @@ class AssignSensitivityLabelRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: AssignSensitivityLabelPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action assignSensitivityLabel
+        Assign a sensitivity label to a plannerRoster object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

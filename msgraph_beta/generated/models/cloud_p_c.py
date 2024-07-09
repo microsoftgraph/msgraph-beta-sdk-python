@@ -33,7 +33,7 @@ class CloudPC(Entity):
     connection_settings: Optional[CloudPcConnectionSettings] = None
     # The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC can be connected.
     connectivity_result: Optional[CloudPcConnectivityResult] = None
-    # The disasterRecoveryCapability property
+    # The disaster recovery status of the Cloud PC, including the primary region, secondary region, and capability type. The default value is null that indicates that the disaster recovery setting is disabled. To receive a response with the disasterRecoveryCapability property, $select and $filter it by disasterRecoveryCapability/{subProperty} in the request URL. For more details, see Example 4: List Cloud PCs filtered by disaster recovery capability type. Read-only.
     disaster_recovery_capability: Optional[CloudPcDisasterRecoveryCapability] = None
     # The disk encryption applied to the Cloud PC. Possible values: notAvailable, notEncrypted, encryptedUsingPlatformManagedKey, encryptedUsingCustomerManagedKey, and unknownFutureValue.
     disk_encryption_state: Optional[CloudPcDiskEncryptionState] = None
@@ -67,7 +67,7 @@ class CloudPC(Entity):
     provisioning_policy_id: Optional[str] = None
     # The provisioning policy that is applied during the provisioning of Cloud PCs.
     provisioning_policy_name: Optional[str] = None
-    # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue,sharedByUser, sharedByUser. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup. The default value is dedicated. CAUTION: The shared member is deprecated and will stop returning on April 30, 2027； in the future, use the sharedByUser member.
+    # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue,sharedByUser, sharedByEntraGroup. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup. The default value is dedicated. CAUTION: The shared member is deprecated and will stop returning on April 30, 2027； in the future, use the sharedByUser member.
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The scopeIds property
     scope_ids: Optional[List[str]] = None
@@ -79,7 +79,7 @@ class CloudPC(Entity):
     service_plan_type: Optional[CloudPcServicePlanType] = None
     # The status property
     status: Optional[CloudPcStatus] = None
-    # The details of the Cloud PC status.
+    # The details of the Cloud PC status. For example, { 'code': 'internalServerError', 'message': 'There was an error during the Cloud PC upgrade. Please contact support.', 'additionalInformation': null }. This property is deprecated and will no longer be supported effective August 31, 2024. Use statusDetail instead.
     status_details: Optional[CloudPcStatusDetails] = None
     # The account type of the user on provisioned Cloud PCs. Possible values are: standardUser, administrator, unknownFutureValue.
     user_account_type: Optional[CloudPcUserAccountType] = None

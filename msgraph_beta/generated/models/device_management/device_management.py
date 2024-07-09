@@ -332,11 +332,11 @@ class DeviceManagement(Entity):
     group_policy_object_files: Optional[List[GroupPolicyObjectFile]] = None
     # The available group policy uploaded definition files for this account.
     group_policy_uploaded_definition_files: Optional[List[GroupPolicyUploadedDefinitionFile]] = None
-    # The hardware configurations for this account.
+    # BIOS configuration and other settings provides customers the ability to configure hardware/bios settings on the enrolled Windows 10/11 Entra ID joined devices by uploading a configuration file generated with their OEM tool (e.g. Dell Command tool). A BIOS configuration policy can be assigned to multiple devices, allowing admins to remotely control a device's hardware properties (e.g. enable Secure Boot) from the Intune Portal. Supported for Dell only at this time.
     hardware_configurations: Optional[List[HardwareConfiguration]] = None
     # Device BIOS password information for devices with managed BIOS and firmware configuration, which provides device serial number, list of previous passwords, and current password.
     hardware_password_details: Optional[List[HardwarePasswordDetail]] = None
-    # The hardware password info for this account.
+    # Intune will provide customer the ability to configure hardware/bios settings on the enrolled windows 10 Azure Active Directory joined devices. Starting from June, 2024 (Intune Release 2406), this type will no longer be supported and will be marked as deprecated
     hardware_password_info: Optional[List[HardwarePasswordInfo]] = None
     # The imported device identities.
     imported_device_identities: Optional[List[ImportedDeviceIdentity]] = None
@@ -344,7 +344,7 @@ class DeviceManagement(Entity):
     imported_windows_autopilot_device_identities: Optional[List[ImportedWindowsAutopilotDeviceIdentity]] = None
     # The device management intents
     intents: Optional[List[DeviceManagementIntent]] = None
-    # Intune Account Id for given tenant
+    # Intune Account ID for given tenant
     intune_account_id: Optional[UUID] = None
     # intuneBrand contains data which is used in customizing the appearance of the Company Portal applications as well as the end user web portal.
     intune_brand: Optional[IntuneBrand] = None
@@ -368,7 +368,7 @@ class DeviceManagement(Entity):
     managed_device_overview: Optional[ManagedDeviceOverview] = None
     # The list of managed devices.
     managed_devices: Optional[List[ManagedDevice]] = None
-    # Maximum number of dep tokens allowed per-tenant.
+    # Maximum number of DEP tokens allowed per-tenant.
     maximum_dep_tokens: Optional[int] = None
     # Collection of MicrosoftTunnelConfiguration settings associated with account.
     microsoft_tunnel_configurations: Optional[List[MicrosoftTunnelConfiguration]] = None

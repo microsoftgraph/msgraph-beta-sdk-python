@@ -44,9 +44,9 @@ class Incident(Entity):
     last_update_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # A rich text string that represents the actions that are reccomnded to take in order to resolve the incident
+    # A rich text string that represents the actions that are reccomnded to take in order to resolve the incident.
     recommended_actions: Optional[str] = None
-    # List of hunting Kusto Query Language (KQL) queries related to the incident
+    # List of hunting Kusto Query Language (KQL) queries related to the incident.
     recommended_hunting_queries: Optional[List[RecommendedHuntingQuery]] = None
     # Only populated in case an incident is grouped together with another incident, as part of the logic that processes incidents. In such a case, the status property is redirected.
     redirect_incident_id: Optional[str] = None
