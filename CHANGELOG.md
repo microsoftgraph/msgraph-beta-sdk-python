@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.1](https://github.com/microsoftgraph/msgraph-beta-sdk-python/compare/v1.5.0...v1.5.1) (2024-07-10)
+
+
+### Bug Fixes
+
+* do not use default mutable parameters ([1ba984e](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/1ba984e9549d02f0206ed191732858a32bbc81a4))
+* fixes module name for release ([567b176](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/567b176954e587183f620f68b84c600b34ff8035))
+
 ## [1.5.0] - 2024-05-23
 
 ### Changed
