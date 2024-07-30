@@ -1,4 +1,5 @@
 from __future__ import annotations
+import datetime
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -20,6 +21,8 @@ from .entity import Entity
 
 @dataclass
 class AuthenticationMethod(Entity):
+    # The createdDateTime property
+    created_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -108,6 +111,7 @@ class AuthenticationMethod(Entity):
         from .windows_hello_for_business_authentication_method import WindowsHelloForBusinessAuthenticationMethod
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -122,5 +126,6 @@ class AuthenticationMethod(Entity):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_datetime_value("createdDateTime", self.created_date_time)
     
 

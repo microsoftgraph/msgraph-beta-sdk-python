@@ -34,7 +34,7 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity):
     enrollment_mode: Optional[AndroidDeviceOwnerEnrollmentMode] = None
     # The enrollment token type for an enrollment profile.
     enrollment_token_type: Optional[AndroidDeviceOwnerEnrollmentTokenType] = None
-    # Total number of AOSP devices that have enrolled using the current token.
+    # Total number of AOSP devices that have enrolled using the current token. Valid values 0 to 20000
     enrollment_token_usage_count: Optional[int] = None
     # Boolean indicating if this profile is an Android AOSP for Teams device profile.
     is_teams_device_profile: Optional[bool] = None

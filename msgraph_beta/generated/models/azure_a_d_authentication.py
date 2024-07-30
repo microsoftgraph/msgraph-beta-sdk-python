@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class AzureADAuthentication(Entity):
-    # A list of monthly serviceLevelAgreementAttainment objects.
+    # SLA data for a Microsoft Entra tenant for a calendar month.
     attainments: Optional[List[ServiceLevelAgreementAttainment]] = None
     # The OdataType property
     odata_type: Optional[str] = None

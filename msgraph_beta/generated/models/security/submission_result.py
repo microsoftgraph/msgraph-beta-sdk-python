@@ -17,7 +17,7 @@ class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The submission result category. The possible values are: notJunk, spam, phishing, malware, allowedByPolicy, blockedByPolicy, spoof, unknown, noResultAvailable and unkownFutureValue.
+    # The submission result category. The possible values are: notJunk, spam, phishing, malware, allowedByPolicy, blockedByPolicy, spoof, unknown, noResultAvailable, unknownFutureValue, beingAnalyzed, notSubmittedToMicrosoft, phishingSimulation, allowedDueToOrganizationOverride, blockedDueToOrganizationOverride, allowedDueToUserOverride, blockedDueToUserOverride, itemNotfound, threatsFound, noThreatsFound, domainImpersonation, userImpersonation, brandImpersonation, authenticationFailure, spoofedBlocked, spoofedAllowed, bulk, and reasonLostInTransit. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: beingAnalyzed, notSubmittedToMicrosoft, phishingSimulation, allowedDueToOrganizationOverride, blockedDueToOrganizationOverride, allowedDueToUserOverride, blockedDueToUserOverride, itemNotfound, threatsFound, noThreatsFound, domainImpersonation, userImpersonation, brandImpersonation, authenticationFailure, spoofedBlocked, spoofedAllowed, bulk, and reasonLostInTransit.
     category: Optional[SubmissionResultCategory] = None
     # Specifies the extra details provided by Microsoft to substantiate their analysis result.
     detail: Optional[SubmissionResultDetail] = None

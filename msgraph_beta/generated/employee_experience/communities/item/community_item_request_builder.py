@@ -33,9 +33,10 @@ class CommunityItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property communities for employeeExperience
+        Delete a Viva Engage community along with all associated Microsoft 365 content, including the connected Microsoft 365 group, OneNote notebook, and Planner plans. For more information, see What happens if I delete a Viva Engage community connected to Microsoft 365 groups.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/community-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -72,10 +73,11 @@ class CommunityItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Community, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Community]:
         """
-        Update the navigation property communities in employeeExperience
+        Update the properties of an existing Viva Engage community.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Community]
+        Find more info here: https://learn.microsoft.com/graph/api/community-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -95,7 +97,7 @@ class CommunityItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property communities for employeeExperience
+        Delete a Viva Engage community along with all associated Microsoft 365 content, including the connected Microsoft 365 group, OneNote notebook, and Planner plans. For more information, see What happens if I delete a Viva Engage community connected to Microsoft 365 groups.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,7 +119,7 @@ class CommunityItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Community, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property communities in employeeExperience
+        Update the properties of an existing Viva Engage community.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

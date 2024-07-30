@@ -24,7 +24,7 @@ class ArchivedPrintJob(AdditionalDataHolder, BackedModel, Parsable):
     black_and_white_page_count: Optional[int] = None
     # The number of color pages that were printed. Read-only.
     color_page_count: Optional[int] = None
-    # The dateTimeOffset when the job was completed, canceled or aborted. Read-only.
+    # The dateTimeOffset when the job was completed, canceled, or aborted. Read-only.
     completion_date_time: Optional[datetime.datetime] = None
     # The number of copies that were printed. Read-only.
     copies_printed: Optional[int] = None

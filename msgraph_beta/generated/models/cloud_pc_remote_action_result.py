@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .action_state import ActionState
+    from .cloud_pc_status_detail import CloudPcStatusDetail
     from .cloud_pc_status_details import CloudPcStatusDetails
 
 @dataclass
@@ -30,7 +31,9 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Time the action was initiated. The Timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
     start_date_time: Optional[datetime.datetime] = None
-    # The details of the Cloud PC status.
+    # The extended details of the action status, including error code, error message, and additional information. For example, 'statusDetail': {'code': 'internalServerError','message': 'There was an internal server error. Please contact support xxx.','additionalInformation': [ { '@odata.type':'microsoft.graph.keyValuePair','name': 'correlationId','value': '52367774-cfb7-4e9c-ab51-1b864c31f2d1'} ]}
+    status_detail: Optional[CloudPcStatusDetail] = None
+    # The details of the Cloud PC status. This property is deprecated and will no longer be supported effective August 31, 2024. Use statusDetail instead.
     status_details: Optional[CloudPcStatusDetails] = None
     
     @staticmethod
@@ -50,9 +53,11 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .action_state import ActionState
+        from .cloud_pc_status_detail import CloudPcStatusDetail
         from .cloud_pc_status_details import CloudPcStatusDetails
 
         from .action_state import ActionState
+        from .cloud_pc_status_detail import CloudPcStatusDetail
         from .cloud_pc_status_details import CloudPcStatusDetails
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -63,6 +68,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "statusDetail": lambda n : setattr(self, 'status_detail', n.get_object_value(CloudPcStatusDetail)),
             "statusDetails": lambda n : setattr(self, 'status_details', n.get_object_value(CloudPcStatusDetails)),
         }
         return fields
@@ -82,6 +88,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("managedDeviceId", self.managed_device_id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_datetime_value("startDateTime", self.start_date_time)
+        writer.write_object_value("statusDetail", self.status_detail)
         writer.write_object_value("statusDetails", self.status_details)
         writer.write_additional_data_value(self.additional_data)
     

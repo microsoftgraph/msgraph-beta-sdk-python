@@ -30,7 +30,7 @@ class CancelRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action cancel
+        Cancel a registrant's registration record for a webinar. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
@@ -48,7 +48,7 @@ class CancelRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action cancel
+        Cancel a registrant's registration record for a webinar. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

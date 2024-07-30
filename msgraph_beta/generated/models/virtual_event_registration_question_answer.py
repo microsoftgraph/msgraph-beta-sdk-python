@@ -11,17 +11,17 @@ class VirtualEventRegistrationQuestionAnswer(AdditionalDataHolder, BackedModel, 
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Boolean answer of the virtualEventRegistrationQuestion. Only appears when answerInputType is boolean.
+    # Boolean answer to the virtualEventRegistrationCustomQuestion. Only appears when answerInputType is boolean.
     boolean_value: Optional[bool] = None
     # Display name of the registration question.
     display_name: Optional[str] = None
-    # Collection of text answer of the virtualEventRegistrationQuestion. Only appears when answerInputType is multiChoice.
+    # A collection of text answers to the virtualEventRegistrationCustomQuestion. Only appears when answerInputType is multiChoice.
     multi_choice_values: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # id of the virtualEventRegistrationQuestion.
+    # The identifier of either a virtualEventRegistrationCustomQuestion or a virtualEventRegistrationPredefinedQuestion.
     question_id: Optional[str] = None
-    # Text answer of the virtualEventRegistrationQuestion. Appears when answerInputType is text, multilineText or singleChoice.
+    # Text answer to the virtualEventRegistrationCustomQuestion or the virtualEventRegistrationPredefinedQuestion. Appears when answerInputType is text, multilineText or singleChoice.
     value: Optional[str] = None
     
     @staticmethod

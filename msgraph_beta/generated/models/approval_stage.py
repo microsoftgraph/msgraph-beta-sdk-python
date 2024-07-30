@@ -14,9 +14,9 @@ class ApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The number of days that a request can be pending a response before it's automatically denied.
+    # The number of days that a request can be pending a response before it is automatically denied.
     approval_stage_time_out_in_days: Optional[int] = None
-    # If escalation is enabled and the primary approvers don't respond before the escalation time, the escalationApprovers are the users who will be asked to approve requests. This can be a collection of singleUser, groupMembers, requestorManager, internalSponsors and externalSponsors.  When creating or updating a policy, if there are no escalation approvers, or escalation approvers aren't required for the stage, the value of this property should be an empty collection.
+    # The users who are asked to approve requests if escalation is enabled and the primary approvers don't respond before the escalation time. This property can be a collection of singleUser, groupMembers, requestorManager, internalSponsors, and externalSponsors. When you create or update a policy, if there are no escalation approvers, or escalation approvers aren't required for the stage, assign an empty collection to this property.
     escalation_approvers: Optional[List[UserSet]] = None
     # If escalation is required, the time a request can be pending a response from a primary approver.
     escalation_time_in_minutes: Optional[int] = None
@@ -26,7 +26,7 @@ class ApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
     is_escalation_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The users who are asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors, externalSponsors and targetUserSponsors. When creating or updating a policy, include at least one userSet in this collection.
+    # The users who are asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors, externalSponsors, and targetUserSponsors. When creating or updating a policy, include at least one userSet in this collection.
     primary_approvers: Optional[List[UserSet]] = None
     
     @staticmethod

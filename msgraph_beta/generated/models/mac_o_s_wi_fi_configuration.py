@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .apple_deployment_channel import AppleDeploymentChannel
     from .device_configuration import DeviceConfiguration
     from .mac_o_s_enterprise_wi_fi_configuration import MacOSEnterpriseWiFiConfiguration
     from .wi_fi_proxy_setting import WiFiProxySetting
@@ -22,6 +23,8 @@ class MacOSWiFiConfiguration(DeviceConfiguration):
     connect_automatically: Optional[bool] = None
     # Connect when the network is not broadcasting its name (SSID). When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.
     connect_when_network_name_is_hidden: Optional[bool] = None
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    deployment_channel: Optional[AppleDeploymentChannel] = None
     # Network Name
     network_name: Optional[str] = None
     # This is the pre-shared key for WPA Personal Wi-Fi network.
@@ -63,11 +66,13 @@ class MacOSWiFiConfiguration(DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .device_configuration import DeviceConfiguration
         from .mac_o_s_enterprise_wi_fi_configuration import MacOSEnterpriseWiFiConfiguration
         from .wi_fi_proxy_setting import WiFiProxySetting
         from .wi_fi_security_type import WiFiSecurityType
 
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .device_configuration import DeviceConfiguration
         from .mac_o_s_enterprise_wi_fi_configuration import MacOSEnterpriseWiFiConfiguration
         from .wi_fi_proxy_setting import WiFiProxySetting
@@ -76,6 +81,7 @@ class MacOSWiFiConfiguration(DeviceConfiguration):
         fields: Dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
             "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
+            "deploymentChannel": lambda n : setattr(self, 'deployment_channel', n.get_enum_value(AppleDeploymentChannel)),
             "networkName": lambda n : setattr(self, 'network_name', n.get_str_value()),
             "preSharedKey": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
             "proxyAutomaticConfigurationUrl": lambda n : setattr(self, 'proxy_automatic_configuration_url', n.get_str_value()),
@@ -100,6 +106,7 @@ class MacOSWiFiConfiguration(DeviceConfiguration):
         super().serialize(writer)
         writer.write_bool_value("connectAutomatically", self.connect_automatically)
         writer.write_bool_value("connectWhenNetworkNameIsHidden", self.connect_when_network_name_is_hidden)
+        writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_str_value("networkName", self.network_name)
         writer.write_str_value("preSharedKey", self.pre_shared_key)
         writer.write_str_value("proxyAutomaticConfigurationUrl", self.proxy_automatic_configuration_url)

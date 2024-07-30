@@ -13,11 +13,11 @@ from .planner_delta import PlannerDelta
 
 @dataclass
 class PlannerBucket(PlannerDelta):
-    # The archivalInfo property
+    # Read-only. Nullable. Contains information about who archived or unarchived the bucket and why.
     archival_info: Optional[PlannerArchivalInfo] = None
     # Contains information about the origin of the bucket.
     creation_source: Optional[PlannerBucketCreation] = None
-    # The isArchived property
+    # Read-only. If set totrue, the bucket is archived. An archived bucket is read-only.
     is_archived: Optional[bool] = None
     # Name of the bucket.
     name: Optional[str] = None

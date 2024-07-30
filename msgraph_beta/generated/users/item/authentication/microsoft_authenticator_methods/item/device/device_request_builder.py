@@ -31,7 +31,7 @@ class DeviceRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeviceRequestBuilderGetQueryParameters]] = None) -> Optional[Device]:
         """
-        The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.
+        The registered device on which Microsoft Authenticator resides. This property is null if the device isn't registered for passwordless Phone Sign-In.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Device]
         """
@@ -51,7 +51,7 @@ class DeviceRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeviceRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.
+        The registered device on which Microsoft Authenticator resides. This property is null if the device isn't registered for passwordless Phone Sign-In.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,7 +73,7 @@ class DeviceRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceRequestBuilderGetQueryParameters():
         """
-        The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.
+        The registered device on which Microsoft Authenticator resides. This property is null if the device isn't registered for passwordless Phone Sign-In.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

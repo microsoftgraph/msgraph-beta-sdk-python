@@ -16,5 +16,6 @@ class DeviceVendor(str, Enum):
     VmWareSdWan = "vmWareSdWan",
     Versa = "versa",
     Other = "other",
+    CiscoCatalyst = "ciscoCatalyst",
     UnknownFutureValue = "unknownFutureValue",
 

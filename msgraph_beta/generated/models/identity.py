@@ -38,9 +38,9 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The display name of the identity. The display name might not always be available or up to date. For example, if a user changes their display name the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
+    # The display name of the identity. This property is read-only.
     display_name: Optional[str] = None
-    # Unique identifier for the identity. When the unique identifier is unavailable, the displayName property is provided for the identity, but the id property isn't included in the response.
+    # The identifier of the identity. This property is read-only.
     id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

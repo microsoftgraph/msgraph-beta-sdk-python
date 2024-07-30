@@ -179,7 +179,7 @@ class SignIn(Entity):
     user_display_name: Optional[str] = None
     # The identifier of the user.  Supports $filter (eq).
     user_id: Optional[str] = None
-    # The UPN of the user.  Supports $filter (eq, startsWith).
+    # User principal name of the user that initiated the sign-in. This value is always in lowercase. For guest users whose values in the user object typically contain #EXT# before the domain part, this property stores the value in both lowercase and the 'true' format. For example, while the user object stores AdeleVance_fabrikam.com#EXT#@contoso.com, the sign-in logs store adelevance@fabrikam.com. Supports $filter (eq, startsWith).
     user_principal_name: Optional[str] = None
     # Identifies whether the user is a member or guest in the tenant. Possible values are: member, guest, unknownFutureValue.
     user_type: Optional[SignInUserType] = None

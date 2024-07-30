@@ -8,6 +8,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .action_state import ActionState
     from .activate_device_esim_action_result import ActivateDeviceEsimActionResult
+    from .change_assignments_action_result import ChangeAssignmentsActionResult
     from .configuration_manager_action_result import ConfigurationManagerActionResult
     from .delete_user_from_shared_apple_device_action_result import DeleteUserFromSharedAppleDeviceActionResult
     from .locate_device_action_result import LocateDeviceActionResult
@@ -55,6 +56,10 @@ class DeviceActionResult(AdditionalDataHolder, BackedModel, Parsable):
             from .activate_device_esim_action_result import ActivateDeviceEsimActionResult
 
             return ActivateDeviceEsimActionResult()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.changeAssignmentsActionResult".casefold():
+            from .change_assignments_action_result import ChangeAssignmentsActionResult
+
+            return ChangeAssignmentsActionResult()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationManagerActionResult".casefold():
             from .configuration_manager_action_result import ConfigurationManagerActionResult
 
@@ -96,6 +101,7 @@ class DeviceActionResult(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .action_state import ActionState
         from .activate_device_esim_action_result import ActivateDeviceEsimActionResult
+        from .change_assignments_action_result import ChangeAssignmentsActionResult
         from .configuration_manager_action_result import ConfigurationManagerActionResult
         from .delete_user_from_shared_apple_device_action_result import DeleteUserFromSharedAppleDeviceActionResult
         from .locate_device_action_result import LocateDeviceActionResult
@@ -107,6 +113,7 @@ class DeviceActionResult(AdditionalDataHolder, BackedModel, Parsable):
 
         from .action_state import ActionState
         from .activate_device_esim_action_result import ActivateDeviceEsimActionResult
+        from .change_assignments_action_result import ChangeAssignmentsActionResult
         from .configuration_manager_action_result import ConfigurationManagerActionResult
         from .delete_user_from_shared_apple_device_action_result import DeleteUserFromSharedAppleDeviceActionResult
         from .locate_device_action_result import LocateDeviceActionResult

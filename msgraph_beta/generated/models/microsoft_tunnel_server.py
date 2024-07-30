@@ -16,17 +16,17 @@ class MicrosoftTunnelServer(Entity):
     """
     Entity that represents a single Microsoft Tunnel server
     """
-    # The digest of the current agent image running on this server
+    # The digest of the current agent image running on this server. Supports: $filter, $select, $top, $skip, $orderby. $search is not supported. Read-only.
     agent_image_digest: Optional[str] = None
-    # Microsoft Tunnel server deployment mode. The value is set when the server is registered. Possible values are standaloneRootful, standaloneRootless, podRootful, podRootless. Default value: standaloneRootful. Supports: $filter, $select, $top, $skip, $orderby. $search is not supported. Read-only.
+    # Microsoft Tunnel server deployment mode. The value is set when the server is registered. Possible values are standaloneRootful, standaloneRootless, podRootful, podRootless. Default value: standaloneRootful. Supports: $filter, $select, $top, $skip, $orderby. $search is not supported. Read-only. Possible values are: standaloneRootful, standaloneRootless, podRootful, podRootless, unknownFutureValue.
     deployment_mode: Optional[MicrosoftTunnelDeploymentMode] = None
-    # The display name for the server. This property is required when a server is created and cannot be cleared during updates.
+    # The display name of the server. It is the same as the host name during registration and can be changed later. Supports: $filter, $select, $top, $skip, $orderby. $search is not supported. Max allowed length is 200 chars.
     display_name: Optional[str] = None
-    # Indicates when the server last checked in
+    # Indicates when the server last checked in. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Supports: $filter, $select, $top, $skip, $orderby. $search is not supported Read-only.
     last_checkin_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The digest of the current server image running on this server
+    # The digest of the current server image running on this server. Supports: $filter, $select, $top, $skip, $orderby. $search is not supported. Read-only.
     server_image_digest: Optional[str] = None
     # Enum of possible MicrosoftTunnelServer health status types
     tunnel_server_health_status: Optional[MicrosoftTunnelServerHealthStatus] = None

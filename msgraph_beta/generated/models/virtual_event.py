@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .item_body import ItemBody
     from .virtual_event_presenter import VirtualEventPresenter
     from .virtual_event_session import VirtualEventSession
+    from .virtual_event_settings import VirtualEventSettings
     from .virtual_event_status import VirtualEventStatus
     from .virtual_event_townhall import VirtualEventTownhall
     from .virtual_event_webinar import VirtualEventWebinar
@@ -32,6 +33,8 @@ class VirtualEvent(Entity):
     presenters: Optional[List[VirtualEventPresenter]] = None
     # The sessions for the virtual event.
     sessions: Optional[List[VirtualEventSession]] = None
+    # The virtual event settings.
+    settings: Optional[VirtualEventSettings] = None
     # Start time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.
     start_date_time: Optional[DateTimeTimeZone] = None
     # The status of the virtual event. The possible values are: draft, published, canceled, unknownFutureValue.
@@ -71,6 +74,7 @@ class VirtualEvent(Entity):
         from .item_body import ItemBody
         from .virtual_event_presenter import VirtualEventPresenter
         from .virtual_event_session import VirtualEventSession
+        from .virtual_event_settings import VirtualEventSettings
         from .virtual_event_status import VirtualEventStatus
         from .virtual_event_townhall import VirtualEventTownhall
         from .virtual_event_webinar import VirtualEventWebinar
@@ -81,6 +85,7 @@ class VirtualEvent(Entity):
         from .item_body import ItemBody
         from .virtual_event_presenter import VirtualEventPresenter
         from .virtual_event_session import VirtualEventSession
+        from .virtual_event_settings import VirtualEventSettings
         from .virtual_event_status import VirtualEventStatus
         from .virtual_event_townhall import VirtualEventTownhall
         from .virtual_event_webinar import VirtualEventWebinar
@@ -92,6 +97,7 @@ class VirtualEvent(Entity):
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_object_value(DateTimeTimeZone)),
             "presenters": lambda n : setattr(self, 'presenters', n.get_collection_of_object_values(VirtualEventPresenter)),
             "sessions": lambda n : setattr(self, 'sessions', n.get_collection_of_object_values(VirtualEventSession)),
+            "settings": lambda n : setattr(self, 'settings', n.get_object_value(VirtualEventSettings)),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_object_value(DateTimeTimeZone)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(VirtualEventStatus)),
         }
@@ -114,6 +120,7 @@ class VirtualEvent(Entity):
         writer.write_object_value("endDateTime", self.end_date_time)
         writer.write_collection_of_object_values("presenters", self.presenters)
         writer.write_collection_of_object_values("sessions", self.sessions)
+        writer.write_object_value("settings", self.settings)
         writer.write_object_value("startDateTime", self.start_date_time)
         writer.write_enum_value("status", self.status)
     
