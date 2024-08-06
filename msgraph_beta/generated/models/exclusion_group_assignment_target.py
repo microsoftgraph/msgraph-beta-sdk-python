@@ -11,7 +11,7 @@ from .group_assignment_target import GroupAssignmentTarget
 @dataclass
 class ExclusionGroupAssignmentTarget(GroupAssignmentTarget):
     """
-    Represents a group that should be excluded from an assignment.
+    The AAD Group we are deploying firmware updates to
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.exclusionGroupAssignmentTarget"

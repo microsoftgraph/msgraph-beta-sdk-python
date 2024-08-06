@@ -13,7 +13,7 @@ class SecurityGroupCreationOptions(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Indicates whether the security group should be created based on the org and role group.
     create_based_on_org_plus_role_group: Optional[bool] = None
-    # A boolean choice indicating whether the security group should be created based on the role group
+    # A Boolean choice indicating whether the security group should be created based on the role group
     create_based_on_role_group: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

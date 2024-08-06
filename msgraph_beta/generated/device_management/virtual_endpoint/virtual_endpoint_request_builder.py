@@ -31,7 +31,6 @@ if TYPE_CHECKING:
     from .retrieve_scoped_permissions.retrieve_scoped_permissions_request_builder import RetrieveScopedPermissionsRequestBuilder
     from .retrieve_tenant_encryption_setting.retrieve_tenant_encryption_setting_request_builder import RetrieveTenantEncryptionSettingRequestBuilder
     from .service_plans.service_plans_request_builder import ServicePlansRequestBuilder
-    from .shared_use_service_plans.shared_use_service_plans_request_builder import SharedUseServicePlansRequestBuilder
     from .snapshots.snapshots_request_builder import SnapshotsRequestBuilder
     from .supported_regions.supported_regions_request_builder import SupportedRegionsRequestBuilder
     from .user_settings.user_settings_request_builder import UserSettingsRequestBuilder
@@ -300,15 +299,6 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         from .service_plans.service_plans_request_builder import ServicePlansRequestBuilder
 
         return ServicePlansRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def shared_use_service_plans(self) -> SharedUseServicePlansRequestBuilder:
-        """
-        Provides operations to manage the sharedUseServicePlans property of the microsoft.graph.virtualEndpoint entity.
-        """
-        from .shared_use_service_plans.shared_use_service_plans_request_builder import SharedUseServicePlansRequestBuilder
-
-        return SharedUseServicePlansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def snapshots(self) -> SnapshotsRequestBuilder:

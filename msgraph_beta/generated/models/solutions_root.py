@@ -20,15 +20,15 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The backupRestore property
     backup_restore: Optional[BackupRestoreRoot] = None
-    # The bookingBusinesses property
+    # A collection of businesses in Microsoft Bookings. Read-only. Nullable.
     booking_businesses: Optional[List[BookingBusiness]] = None
-    # The bookingCurrencies property
+    # A collection of monetary currencies supported by a bookingBusiness. Read-only. Nullable.
     booking_currencies: Optional[List[BookingCurrency]] = None
-    # The businessScenarios property
+    # A collection of scenarios that contain relevant data and configuration information for a specific problem domain.
     business_scenarios: Optional[List[BusinessScenario]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The virtualEvents property
+    # A collection of virtual events.
     virtual_events: Optional[VirtualEventsRoot] = None
     
     @staticmethod

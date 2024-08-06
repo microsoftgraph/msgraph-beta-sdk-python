@@ -106,6 +106,7 @@ if TYPE_CHECKING:
     from .managed_device_cleanup_rules.managed_device_cleanup_rules_request_builder import ManagedDeviceCleanupRulesRequestBuilder
     from .managed_device_encryption_states.managed_device_encryption_states_request_builder import ManagedDeviceEncryptionStatesRequestBuilder
     from .managed_device_overview.managed_device_overview_request_builder import ManagedDeviceOverviewRequestBuilder
+    from .managed_device_windows_o_s_images.managed_device_windows_o_s_images_request_builder import ManagedDeviceWindowsOSImagesRequestBuilder
     from .microsoft_tunnel_configurations.microsoft_tunnel_configurations_request_builder import MicrosoftTunnelConfigurationsRequestBuilder
     from .microsoft_tunnel_health_thresholds.microsoft_tunnel_health_thresholds_request_builder import MicrosoftTunnelHealthThresholdsRequestBuilder
     from .microsoft_tunnel_server_log_collection_responses.microsoft_tunnel_server_log_collection_responses_request_builder import MicrosoftTunnelServerLogCollectionResponsesRequestBuilder
@@ -1142,6 +1143,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .managed_device_overview.managed_device_overview_request_builder import ManagedDeviceOverviewRequestBuilder
 
         return ManagedDeviceOverviewRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_device_windows_o_s_images(self) -> ManagedDeviceWindowsOSImagesRequestBuilder:
+        """
+        Provides operations to manage the managedDeviceWindowsOSImages property of the microsoft.graph.deviceManagement entity.
+        """
+        from .managed_device_windows_o_s_images.managed_device_windows_o_s_images_request_builder import ManagedDeviceWindowsOSImagesRequestBuilder
+
+        return ManagedDeviceWindowsOSImagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def managed_devices(self) -> ManagedDevicesRequestBuilder:

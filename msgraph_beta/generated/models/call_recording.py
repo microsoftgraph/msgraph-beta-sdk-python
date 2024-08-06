@@ -26,8 +26,6 @@ class CallRecording(Entity):
     meeting_id: Optional[str] = None
     # The identity information of the organizer of the onlineMeeting related to this recording. Read-only.
     meeting_organizer: Optional[IdentitySet] = None
-    # The unique identifier of the organizer of the onlineMeeting related to this recording. Read-only.
-    meeting_organizer_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The URL that can be used to access the content of the recording. Read-only.
@@ -63,7 +61,6 @@ class CallRecording(Entity):
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "meetingId": lambda n : setattr(self, 'meeting_id', n.get_str_value()),
             "meetingOrganizer": lambda n : setattr(self, 'meeting_organizer', n.get_object_value(IdentitySet)),
-            "meetingOrganizerId": lambda n : setattr(self, 'meeting_organizer_id', n.get_str_value()),
             "recordingContentUrl": lambda n : setattr(self, 'recording_content_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -86,7 +83,6 @@ class CallRecording(Entity):
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_str_value("meetingId", self.meeting_id)
         writer.write_object_value("meetingOrganizer", self.meeting_organizer)
-        writer.write_str_value("meetingOrganizerId", self.meeting_organizer_id)
         writer.write_str_value("recordingContentUrl", self.recording_content_url)
     
 

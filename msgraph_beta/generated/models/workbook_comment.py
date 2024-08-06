@@ -14,11 +14,11 @@ from .entity import Entity
 class WorkbookComment(Entity):
     # The content of the comment.
     content: Optional[str] = None
-    # Indicates the type for the comment.
+    # The content type of the comment.
     content_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The replies property
+    # The list of replies to the comment. Read-only. Nullable.
     replies: Optional[List[WorkbookCommentReply]] = None
     # The task associated with the comment. Read-only. Nullable.
     task: Optional[WorkbookDocumentTask] = None

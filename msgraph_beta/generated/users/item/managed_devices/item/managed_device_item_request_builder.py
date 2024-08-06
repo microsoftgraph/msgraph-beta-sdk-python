@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .activate_device_esim.activate_device_esim_request_builder import ActivateDeviceEsimRequestBuilder
     from .assignment_filter_evaluation_status_details.assignment_filter_evaluation_status_details_request_builder import AssignmentFilterEvaluationStatusDetailsRequestBuilder
     from .bypass_activation_lock.bypass_activation_lock_request_builder import BypassActivationLockRequestBuilder
+    from .change_assignments.change_assignments_request_builder import ChangeAssignmentsRequestBuilder
     from .clean_windows_device.clean_windows_device_request_builder import CleanWindowsDeviceRequestBuilder
     from .create_device_log_collection_request.create_device_log_collection_request_request_builder import CreateDeviceLogCollectionRequestRequestBuilder
     from .delete_user_from_shared_apple_device.delete_user_from_shared_apple_device_request_builder import DeleteUserFromSharedAppleDeviceRequestBuilder
@@ -221,6 +222,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .bypass_activation_lock.bypass_activation_lock_request_builder import BypassActivationLockRequestBuilder
 
         return BypassActivationLockRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def change_assignments(self) -> ChangeAssignmentsRequestBuilder:
+        """
+        Provides operations to call the changeAssignments method.
+        """
+        from .change_assignments.change_assignments_request_builder import ChangeAssignmentsRequestBuilder
+
+        return ChangeAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def clean_windows_device(self) -> CleanWindowsDeviceRequestBuilder:

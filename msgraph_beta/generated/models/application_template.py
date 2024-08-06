@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .configuration_uri import ConfigurationUri
     from .entity import Entity
     from .informational_urls import InformationalUrls
     from .supported_claim_configuration import SupportedClaimConfiguration
@@ -14,6 +15,8 @@ from .entity import Entity
 class ApplicationTemplate(Entity):
     # The list of categories for the application. Supported values can be: Collaboration, Business Management, Consumer, Content management, CRM, Data services, Developer services, E-commerce, Education, ERP, Finance, Health, Human resources, IT infrastructure, Mail, Management, Marketing, Media, Productivity, Project management, Telecommunications, Tools, Travel, and Web design & hosting.
     categories: Optional[List[str]] = None
+    # The URIs required for the single sign-on configuration of a preintegrated application.
+    configuration_uris: Optional[List[ConfigurationUri]] = None
     # A description of the application.
     description: Optional[str] = None
     # The name of the application.
@@ -51,16 +54,19 @@ class ApplicationTemplate(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .configuration_uri import ConfigurationUri
         from .entity import Entity
         from .informational_urls import InformationalUrls
         from .supported_claim_configuration import SupportedClaimConfiguration
 
+        from .configuration_uri import ConfigurationUri
         from .entity import Entity
         from .informational_urls import InformationalUrls
         from .supported_claim_configuration import SupportedClaimConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
+            "configurationUris": lambda n : setattr(self, 'configuration_uris', n.get_collection_of_object_values(ConfigurationUri)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "homePageUrl": lambda n : setattr(self, 'home_page_url', n.get_str_value()),
@@ -85,6 +91,7 @@ class ApplicationTemplate(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("categories", self.categories)
+        writer.write_collection_of_object_values("configurationUris", self.configuration_uris)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("homePageUrl", self.home_page_url)

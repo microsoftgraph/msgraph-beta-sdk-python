@@ -37,7 +37,7 @@ class AccessPackage(Entity):
     incompatible_access_packages: Optional[List[AccessPackage]] = None
     # The groups whose members are ineligible to be assigned this access package.
     incompatible_groups: Optional[List[Group]] = None
-    # Whether the access package is hidden from the requestor.
+    # Indicates whether the access package is hidden from the requestor.
     is_hidden: Optional[bool] = None
     # Indicates whether role scopes are visible.
     is_role_scopes_visible: Optional[bool] = None

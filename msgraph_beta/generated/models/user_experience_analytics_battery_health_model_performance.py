@@ -22,7 +22,11 @@ class UserExperienceAnalyticsBatteryHealthModelPerformance(Entity):
     average_estimated_runtime_in_minutes: Optional[int] = None
     # The mean of the maximum capacity for all devices of a given model. Maximum capacity measures the full charge vs. design capacity for a device’s batteries.. Valid values 0 to 2147483647
     average_max_capacity_percentage: Optional[int] = None
-    # Name of the device manufacturer.
+    # The manufacturer name of the device.
+    device_manufacturer_name: Optional[str] = None
+    # The model name of the device.
+    device_model_name: Optional[str] = None
+    # Name of the device manufacturer. Deprecated in favor of DeviceManufacturerName.
     manufacturer: Optional[str] = None
     # The mean of number of times the battery has been discharged an amount that equals 100% of its capacity for all devices of a given model in a tenant. Valid values 0 to 2147483647
     mean_full_battery_drain_count: Optional[int] = None
@@ -32,7 +36,7 @@ class UserExperienceAnalyticsBatteryHealthModelPerformance(Entity):
     median_full_battery_drain_count: Optional[int] = None
     # The median of the maximum capacity for all devices of a given model. Maximum capacity measures the full charge vs. design capacity for a device’s batteries.. Valid values 0 to 2147483647
     median_max_capacity_percentage: Optional[int] = None
-    # The model name of the device.
+    # The model name of the device. Deprecated in favor of DeviceModelName.
     model: Optional[str] = None
     # A weighted average of a model’s maximum capacity score and runtime estimate score. Values range from 0-100. Valid values 0 to 2147483647
     model_battery_health_score: Optional[int] = None
@@ -68,6 +72,8 @@ class UserExperienceAnalyticsBatteryHealthModelPerformance(Entity):
             "averageBatteryAgeInDays": lambda n : setattr(self, 'average_battery_age_in_days', n.get_int_value()),
             "averageEstimatedRuntimeInMinutes": lambda n : setattr(self, 'average_estimated_runtime_in_minutes', n.get_int_value()),
             "averageMaxCapacityPercentage": lambda n : setattr(self, 'average_max_capacity_percentage', n.get_int_value()),
+            "deviceManufacturerName": lambda n : setattr(self, 'device_manufacturer_name', n.get_str_value()),
+            "deviceModelName": lambda n : setattr(self, 'device_model_name', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "meanFullBatteryDrainCount": lambda n : setattr(self, 'mean_full_battery_drain_count', n.get_int_value()),
             "medianEstimatedRuntimeInMinutes": lambda n : setattr(self, 'median_estimated_runtime_in_minutes', n.get_int_value()),
@@ -94,6 +100,8 @@ class UserExperienceAnalyticsBatteryHealthModelPerformance(Entity):
         writer.write_int_value("averageBatteryAgeInDays", self.average_battery_age_in_days)
         writer.write_int_value("averageEstimatedRuntimeInMinutes", self.average_estimated_runtime_in_minutes)
         writer.write_int_value("averageMaxCapacityPercentage", self.average_max_capacity_percentage)
+        writer.write_str_value("deviceManufacturerName", self.device_manufacturer_name)
+        writer.write_str_value("deviceModelName", self.device_model_name)
         writer.write_str_value("manufacturer", self.manufacturer)
         writer.write_int_value("meanFullBatteryDrainCount", self.mean_full_battery_drain_count)
         writer.write_int_value("medianEstimatedRuntimeInMinutes", self.median_estimated_runtime_in_minutes)

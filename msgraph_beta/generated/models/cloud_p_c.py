@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .cloud_pc_connection_setting import CloudPcConnectionSetting
     from .cloud_pc_connection_settings import CloudPcConnectionSettings
     from .cloud_pc_connectivity_result import CloudPcConnectivityResult
     from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
@@ -17,6 +18,7 @@ if TYPE_CHECKING:
     from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
     from .cloud_pc_service_plan_type import CloudPcServicePlanType
     from .cloud_pc_status import CloudPcStatus
+    from .cloud_pc_status_detail import CloudPcStatusDetail
     from .cloud_pc_status_details import CloudPcStatusDetails
     from .cloud_pc_user_account_type import CloudPcUserAccountType
     from .entity import Entity
@@ -29,11 +31,15 @@ class CloudPC(Entity):
     aad_device_id: Optional[str] = None
     # The allotment name divides tenant licenses into smaller batches or groups that help restrict the number of licenses available for use in a specific assignment. When the provisioningType is dedicated, the allotment name is null. Read-only.
     allotment_display_name: Optional[str] = None
+    # The connection setting of the Cloud PC. Possible values: enableSingleSignOn. Read Only.
+    connection_setting: Optional[CloudPcConnectionSetting] = None
     # The connectionSettings property
     connection_settings: Optional[CloudPcConnectionSettings] = None
     # The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC can be connected.
     connectivity_result: Optional[CloudPcConnectivityResult] = None
-    # The disasterRecoveryCapability property
+    # The name of the geographical region where the Cloud PC is currently provisioned. For example, westus3, eastus2, and southeastasia. Read-only.
+    device_region_name: Optional[str] = None
+    # The disaster recovery status of the Cloud PC, including the primary region, secondary region, and capability type. The default value is null that indicates that the disaster recovery setting is disabled. To receive a response with the disasterRecoveryCapability property, $select and $filter it by disasterRecoveryCapability/{subProperty} in the request URL. For more details, see Example 4: List Cloud PCs filtered by disaster recovery capability type. Read-only.
     disaster_recovery_capability: Optional[CloudPcDisasterRecoveryCapability] = None
     # The disk encryption applied to the Cloud PC. Possible values: notAvailable, notEncrypted, encryptedUsingPlatformManagedKey, encryptedUsingCustomerManagedKey, and unknownFutureValue.
     disk_encryption_state: Optional[CloudPcDiskEncryptionState] = None
@@ -67,7 +73,7 @@ class CloudPC(Entity):
     provisioning_policy_id: Optional[str] = None
     # The provisioning policy that is applied during the provisioning of Cloud PCs.
     provisioning_policy_name: Optional[str] = None
-    # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue,sharedByUser, sharedByUser. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup. The default value is dedicated. CAUTION: The shared member is deprecated and will stop returning on April 30, 2027； in the future, use the sharedByUser member.
+    # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue,sharedByUser, sharedByEntraGroup. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup. The default value is dedicated. CAUTION: The shared member is deprecated and will stop returning on April 30, 2027； in the future, use the sharedByUser member.
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The scopeIds property
     scope_ids: Optional[List[str]] = None
@@ -79,7 +85,9 @@ class CloudPC(Entity):
     service_plan_type: Optional[CloudPcServicePlanType] = None
     # The status property
     status: Optional[CloudPcStatus] = None
-    # The details of the Cloud PC status.
+    # Indicates the detailed status associated with Cloud PC, including error/warning code, error/warning message, additionalInformation. For example, { 'code': 'internalServerError', 'message': 'There was an error during the Cloud PC upgrade. Please contact support.', 'additionalInformation': null }.
+    status_detail: Optional[CloudPcStatusDetail] = None
+    # The details of the Cloud PC status. For example, { 'code': 'internalServerError', 'message': 'There was an error during the Cloud PC upgrade. Please contact support.', 'additionalInformation': null }. This property is deprecated and will no longer be supported effective August 31, 2024. Use statusDetail instead.
     status_details: Optional[CloudPcStatusDetails] = None
     # The account type of the user on provisioned Cloud PCs. Possible values are: standardUser, administrator, unknownFutureValue.
     user_account_type: Optional[CloudPcUserAccountType] = None
@@ -102,6 +110,7 @@ class CloudPC(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .cloud_pc_connection_setting import CloudPcConnectionSetting
         from .cloud_pc_connection_settings import CloudPcConnectionSettings
         from .cloud_pc_connectivity_result import CloudPcConnectivityResult
         from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
@@ -114,10 +123,12 @@ class CloudPC(Entity):
         from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
         from .cloud_pc_service_plan_type import CloudPcServicePlanType
         from .cloud_pc_status import CloudPcStatus
+        from .cloud_pc_status_detail import CloudPcStatusDetail
         from .cloud_pc_status_details import CloudPcStatusDetails
         from .cloud_pc_user_account_type import CloudPcUserAccountType
         from .entity import Entity
 
+        from .cloud_pc_connection_setting import CloudPcConnectionSetting
         from .cloud_pc_connection_settings import CloudPcConnectionSettings
         from .cloud_pc_connectivity_result import CloudPcConnectivityResult
         from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
@@ -130,6 +141,7 @@ class CloudPC(Entity):
         from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
         from .cloud_pc_service_plan_type import CloudPcServicePlanType
         from .cloud_pc_status import CloudPcStatus
+        from .cloud_pc_status_detail import CloudPcStatusDetail
         from .cloud_pc_status_details import CloudPcStatusDetails
         from .cloud_pc_user_account_type import CloudPcUserAccountType
         from .entity import Entity
@@ -137,8 +149,10 @@ class CloudPC(Entity):
         fields: Dict[str, Callable[[Any], None]] = {
             "aadDeviceId": lambda n : setattr(self, 'aad_device_id', n.get_str_value()),
             "allotmentDisplayName": lambda n : setattr(self, 'allotment_display_name', n.get_str_value()),
+            "connectionSetting": lambda n : setattr(self, 'connection_setting', n.get_object_value(CloudPcConnectionSetting)),
             "connectionSettings": lambda n : setattr(self, 'connection_settings', n.get_object_value(CloudPcConnectionSettings)),
             "connectivityResult": lambda n : setattr(self, 'connectivity_result', n.get_object_value(CloudPcConnectivityResult)),
+            "deviceRegionName": lambda n : setattr(self, 'device_region_name', n.get_str_value()),
             "disasterRecoveryCapability": lambda n : setattr(self, 'disaster_recovery_capability', n.get_object_value(CloudPcDisasterRecoveryCapability)),
             "diskEncryptionState": lambda n : setattr(self, 'disk_encryption_state', n.get_enum_value(CloudPcDiskEncryptionState)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -161,6 +175,7 @@ class CloudPC(Entity):
             "servicePlanName": lambda n : setattr(self, 'service_plan_name', n.get_str_value()),
             "servicePlanType": lambda n : setattr(self, 'service_plan_type', n.get_enum_value(CloudPcServicePlanType)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcStatus)),
+            "statusDetail": lambda n : setattr(self, 'status_detail', n.get_object_value(CloudPcStatusDetail)),
             "statusDetails": lambda n : setattr(self, 'status_details', n.get_object_value(CloudPcStatusDetails)),
             "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(CloudPcUserAccountType)),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
@@ -180,8 +195,10 @@ class CloudPC(Entity):
         super().serialize(writer)
         writer.write_str_value("aadDeviceId", self.aad_device_id)
         writer.write_str_value("allotmentDisplayName", self.allotment_display_name)
+        writer.write_object_value("connectionSetting", self.connection_setting)
         writer.write_object_value("connectionSettings", self.connection_settings)
         writer.write_object_value("connectivityResult", self.connectivity_result)
+        writer.write_str_value("deviceRegionName", self.device_region_name)
         writer.write_object_value("disasterRecoveryCapability", self.disaster_recovery_capability)
         writer.write_enum_value("diskEncryptionState", self.disk_encryption_state)
         writer.write_str_value("displayName", self.display_name)
@@ -204,6 +221,7 @@ class CloudPC(Entity):
         writer.write_str_value("servicePlanName", self.service_plan_name)
         writer.write_enum_value("servicePlanType", self.service_plan_type)
         writer.write_enum_value("status", self.status)
+        writer.write_object_value("statusDetail", self.status_detail)
         writer.write_object_value("statusDetails", self.status_details)
         writer.write_enum_value("userAccountType", self.user_account_type)
         writer.write_str_value("userPrincipalName", self.user_principal_name)

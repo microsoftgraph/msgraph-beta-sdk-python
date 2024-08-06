@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class ServicePrincipalSignInActivity(Entity):
-    # The application ID of the resource.
+    # The globally unique appId (also called client ID on the Microsoft Entra admin center) of the credentialed resource application.
     app_id: Optional[str] = None
     # The sign-in activity of the application in a app-only authentication flow (app-to-app tokens) where the application acts like a client.
     application_authentication_client_sign_in_activity: Optional[SignInActivity] = None

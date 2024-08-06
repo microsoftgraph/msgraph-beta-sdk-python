@@ -77,6 +77,7 @@ if TYPE_CHECKING:
     from .user_analytics import UserAnalytics
     from .user_print import UserPrint
     from .user_settings import UserSettings
+    from .user_solution_root import UserSolutionRoot
     from .user_teamwork import UserTeamwork
     from .user_virtual_events_root import UserVirtualEventsRoot
     from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
@@ -221,7 +222,7 @@ class User(DirectoryObject):
     invited_by: Optional[DirectoryObject] = None
     # Indicates whether the user is pending an exchange mailbox license assignment.  Read-only.  Supports $filter (eq where true only).
     is_license_reconciliation_needed: Optional[bool] = None
-    # true if the user is a member of a restricted management administrative unit, which requires a role scoped to the restricted administrative unit to manage. Default value is false. Read-only.  To manage a user who is a member of a restricted administrative unit, the calling app must be assigned the Directory.Write.Restricted permission. For delegated scenarios, the administrators must also be explicitly assigned supported roles at the restricted administrative unit scope.
+    # true if the user is a member of a restricted management administrative unit. Default value is false. Read-only.  To manage a user who is a member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
     is_management_restricted: Optional[bool] = None
     # Do not use – reserved for future use.
     is_resource_account: Optional[bool] = None
@@ -369,6 +370,8 @@ class User(DirectoryObject):
     sign_in_sessions_valid_from_date_time: Optional[datetime.datetime] = None
     # A list for the user to enumerate their skills. Returned only on $select.
     skills: Optional[List[str]] = None
+    # The solutions property
+    solutions: Optional[UserSolutionRoot] = None
     # The users and groups responsible for this guest user's privileges in the tenant and keep the guest user's information and access updated. (HTTP Methods: GET, POST, DELETE.). Supports $expand.
     sponsors: Optional[List[DirectoryObject]] = None
     # The state or province in the user's address. Maximum length is 128 characters. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
@@ -486,6 +489,7 @@ class User(DirectoryObject):
         from .user_analytics import UserAnalytics
         from .user_print import UserPrint
         from .user_settings import UserSettings
+        from .user_solution_root import UserSolutionRoot
         from .user_teamwork import UserTeamwork
         from .user_virtual_events_root import UserVirtualEventsRoot
         from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
@@ -562,6 +566,7 @@ class User(DirectoryObject):
         from .user_analytics import UserAnalytics
         from .user_print import UserPrint
         from .user_settings import UserSettings
+        from .user_solution_root import UserSolutionRoot
         from .user_teamwork import UserTeamwork
         from .user_virtual_events_root import UserVirtualEventsRoot
         from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
@@ -708,6 +713,7 @@ class User(DirectoryObject):
             "signInActivity": lambda n : setattr(self, 'sign_in_activity', n.get_object_value(SignInActivity)),
             "signInSessionsValidFromDateTime": lambda n : setattr(self, 'sign_in_sessions_valid_from_date_time', n.get_datetime_value()),
             "skills": lambda n : setattr(self, 'skills', n.get_collection_of_primitive_values(str)),
+            "solutions": lambda n : setattr(self, 'solutions', n.get_object_value(UserSolutionRoot)),
             "sponsors": lambda n : setattr(self, 'sponsors', n.get_collection_of_object_values(DirectoryObject)),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
             "streetAddress": lambda n : setattr(self, 'street_address', n.get_str_value()),
@@ -877,6 +883,7 @@ class User(DirectoryObject):
         writer.write_object_value("signInActivity", self.sign_in_activity)
         writer.write_datetime_value("signInSessionsValidFromDateTime", self.sign_in_sessions_valid_from_date_time)
         writer.write_collection_of_primitive_values("skills", self.skills)
+        writer.write_object_value("solutions", self.solutions)
         writer.write_collection_of_object_values("sponsors", self.sponsors)
         writer.write_str_value("state", self.state)
         writer.write_str_value("streetAddress", self.street_address)
