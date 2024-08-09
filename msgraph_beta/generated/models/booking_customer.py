@@ -18,9 +18,9 @@ class BookingCustomer(BookingPerson):
     """
     # Addresses associated with the customer, including home, business and other addresses.
     addresses: Optional[List[PhysicalAddress]] = None
-    # The date, time and timezone when the customer was created.
+    # The date, time, and timezone when the customer was created.
     created_date_time: Optional[datetime.datetime] = None
-    # The date, time and timezone when the customer was last updated.
+    # The date, time, and timezone when the customer was last updated.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

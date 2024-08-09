@@ -15,6 +15,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from ......models.service_app import ServiceApp
+    from .activate_post_request_body import ActivatePostRequestBody
 
 class ActivateRequestBuilder(BaseRequestBuilder):
     """
@@ -29,15 +30,18 @@ class ActivateRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/serviceApps/{serviceApp%2Did}/activate", path_parameters)
     
-    async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ServiceApp]:
+    async def post(self,body: ActivatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ServiceApp]:
         """
         Activate a serviceApp.
+        param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServiceApp]
         Find more info here: https://learn.microsoft.com/graph/api/serviceapp-activate?view=graph-rest-beta
         """
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
-            request_configuration
+            body, request_configuration
         )
         from ......models.o_data_errors.o_data_error import ODataError
 
@@ -50,15 +54,19 @@ class ActivateRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ServiceApp, error_mapping)
     
-    def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_post_request_information(self,body: ActivatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Activate a serviceApp.
+        param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        if not body:
+            raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
+        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
     def with_url(self,raw_url: str) -> ActivateRequestBuilder:

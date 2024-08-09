@@ -27,11 +27,13 @@ class MicrosoftTunnelConfiguration(Entity):
     display_name: Optional[str] = None
     # The DNS servers that will be used by the clients
     dns_servers: Optional[List[str]] = None
+    # The IPv6 subnet that will be used to allocate virtual address for the clients
+    ipv6_network: Optional[str] = None
     # When the configuration was last updated
     last_update_date_time: Optional[datetime.datetime] = None
     # The port that both TCP and UPD will listen over on the server
     listen_port: Optional[int] = None
-    # The subnet that will be used to allocate virtual address for the clients
+    # The IPv4 subnet that will be used to allocate virtual address for the clients
     network: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -77,6 +79,7 @@ class MicrosoftTunnelConfiguration(Entity):
             "disableUdpConnections": lambda n : setattr(self, 'disable_udp_connections', n.get_bool_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "dnsServers": lambda n : setattr(self, 'dns_servers', n.get_collection_of_primitive_values(str)),
+            "ipv6Network": lambda n : setattr(self, 'ipv6_network', n.get_str_value()),
             "lastUpdateDateTime": lambda n : setattr(self, 'last_update_date_time', n.get_datetime_value()),
             "listenPort": lambda n : setattr(self, 'listen_port', n.get_int_value()),
             "network": lambda n : setattr(self, 'network', n.get_str_value()),
@@ -106,6 +109,7 @@ class MicrosoftTunnelConfiguration(Entity):
         writer.write_bool_value("disableUdpConnections", self.disable_udp_connections)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_primitive_values("dnsServers", self.dns_servers)
+        writer.write_str_value("ipv6Network", self.ipv6_network)
         writer.write_datetime_value("lastUpdateDateTime", self.last_update_date_time)
         writer.write_int_value("listenPort", self.listen_port)
         writer.write_str_value("network", self.network)

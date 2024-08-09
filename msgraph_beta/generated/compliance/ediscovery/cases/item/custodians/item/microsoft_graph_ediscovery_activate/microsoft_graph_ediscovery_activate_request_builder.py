@@ -30,7 +30,7 @@ class MicrosoftGraphEdiscoveryActivateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an Advanced eDiscovery case.
+        Activate a custodian that was released from a case. This method makes the custodian part of the case again. For details, see Manage custodians in an Advanced eDiscovery case.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-custodian-activate?view=graph-rest-beta
@@ -50,7 +50,7 @@ class MicrosoftGraphEdiscoveryActivateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an Advanced eDiscovery case.
+        Activate a custodian that was released from a case. This method makes the custodian part of the case again. For details, see Manage custodians in an Advanced eDiscovery case.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

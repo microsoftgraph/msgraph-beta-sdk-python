@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .meeting_attendance_report import MeetingAttendanceReport
     from .meeting_chat_history_default_mode import MeetingChatHistoryDefaultMode
     from .meeting_chat_mode import MeetingChatMode
+    from .meeting_live_share_options import MeetingLiveShareOptions
     from .online_meeting import OnlineMeeting
     from .online_meeting_presenters import OnlineMeetingPresenters
     from .online_meeting_role import OnlineMeetingRole
@@ -31,7 +32,7 @@ class OnlineMeetingBase(Entity):
     # The allowBreakoutRooms property
     allow_breakout_rooms: Optional[bool] = None
     # The allowLiveShare property
-    allow_live_share: Optional[bool] = None
+    allow_live_share: Optional[MeetingLiveShareOptions] = None
     # Specifies the mode of meeting chat.
     allow_meeting_chat: Optional[MeetingChatMode] = None
     # Specifies if participants are allowed to rename themselves in an instance of the meeting.
@@ -121,6 +122,7 @@ class OnlineMeetingBase(Entity):
         from .meeting_attendance_report import MeetingAttendanceReport
         from .meeting_chat_history_default_mode import MeetingChatHistoryDefaultMode
         from .meeting_chat_mode import MeetingChatMode
+        from .meeting_live_share_options import MeetingLiveShareOptions
         from .online_meeting import OnlineMeeting
         from .online_meeting_presenters import OnlineMeetingPresenters
         from .online_meeting_role import OnlineMeetingRole
@@ -137,6 +139,7 @@ class OnlineMeetingBase(Entity):
         from .meeting_attendance_report import MeetingAttendanceReport
         from .meeting_chat_history_default_mode import MeetingChatHistoryDefaultMode
         from .meeting_chat_mode import MeetingChatMode
+        from .meeting_live_share_options import MeetingLiveShareOptions
         from .online_meeting import OnlineMeeting
         from .online_meeting_presenters import OnlineMeetingPresenters
         from .online_meeting_role import OnlineMeetingRole
@@ -147,7 +150,7 @@ class OnlineMeetingBase(Entity):
             "allowAttendeeToEnableCamera": lambda n : setattr(self, 'allow_attendee_to_enable_camera', n.get_bool_value()),
             "allowAttendeeToEnableMic": lambda n : setattr(self, 'allow_attendee_to_enable_mic', n.get_bool_value()),
             "allowBreakoutRooms": lambda n : setattr(self, 'allow_breakout_rooms', n.get_bool_value()),
-            "allowLiveShare": lambda n : setattr(self, 'allow_live_share', n.get_bool_value()),
+            "allowLiveShare": lambda n : setattr(self, 'allow_live_share', n.get_enum_value(MeetingLiveShareOptions)),
             "allowMeetingChat": lambda n : setattr(self, 'allow_meeting_chat', n.get_enum_value(MeetingChatMode)),
             "allowParticipantsToChangeName": lambda n : setattr(self, 'allow_participants_to_change_name', n.get_bool_value()),
             "allowPowerPointSharing": lambda n : setattr(self, 'allow_power_point_sharing', n.get_bool_value()),
@@ -189,7 +192,7 @@ class OnlineMeetingBase(Entity):
         writer.write_bool_value("allowAttendeeToEnableCamera", self.allow_attendee_to_enable_camera)
         writer.write_bool_value("allowAttendeeToEnableMic", self.allow_attendee_to_enable_mic)
         writer.write_bool_value("allowBreakoutRooms", self.allow_breakout_rooms)
-        writer.write_bool_value("allowLiveShare", self.allow_live_share)
+        writer.write_enum_value("allowLiveShare", self.allow_live_share)
         writer.write_enum_value("allowMeetingChat", self.allow_meeting_chat)
         writer.write_bool_value("allowParticipantsToChangeName", self.allow_participants_to_change_name)
         writer.write_bool_value("allowPowerPointSharing", self.allow_power_point_sharing)

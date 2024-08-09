@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .....models.fido2_authentication_method_collection_response import Fido2AuthenticationMethodCollectionResponse
     from .....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
+    from .creation_options_with_challenge_timeout_in_minutes.creation_options_with_challenge_timeout_in_minutes_request_builder import CreationOptionsWithChallengeTimeoutInMinutesRequestBuilder
     from .item.fido2_authentication_method_item_request_builder import Fido2AuthenticationMethodItemRequestBuilder
 
 class Fido2MethodsRequestBuilder(BaseRequestBuilder):
@@ -94,6 +95,15 @@ class Fido2MethodsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def creation_options_with_challenge_timeout_in_minutes(self) -> CreationOptionsWithChallengeTimeoutInMinutesRequestBuilder:
+        """
+        Provides operations to call the creationOptions method.
+        """
+        from .creation_options_with_challenge_timeout_in_minutes.creation_options_with_challenge_timeout_in_minutes_request_builder import CreationOptionsWithChallengeTimeoutInMinutesRequestBuilder
+
+        return CreationOptionsWithChallengeTimeoutInMinutesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class Fido2MethodsRequestBuilderGetQueryParameters():

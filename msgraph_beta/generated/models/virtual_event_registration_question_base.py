@@ -12,9 +12,9 @@ from .entity import Entity
 
 @dataclass
 class VirtualEventRegistrationQuestionBase(Entity):
-    # The displayName property
+    # Display name of the registration question.
     display_name: Optional[str] = None
-    # The isRequired property
+    # Indicates whether an answer to the question is required. The default value is false.
     is_required: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

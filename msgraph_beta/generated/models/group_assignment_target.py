@@ -12,7 +12,7 @@ from .device_and_app_management_assignment_target import DeviceAndAppManagementA
 @dataclass
 class GroupAssignmentTarget(DeviceAndAppManagementAssignmentTarget):
     """
-    Represents an assignment to a group.
+    The AAD Group we are deploying firmware updates to
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.groupAssignmentTarget"

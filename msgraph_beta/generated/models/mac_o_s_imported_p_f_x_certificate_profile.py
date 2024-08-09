@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .apple_deployment_channel import AppleDeploymentChannel
     from .intended_purpose import IntendedPurpose
     from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
     from .managed_device_certificate_state import ManagedDeviceCertificateState
@@ -17,6 +18,8 @@ class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOSImportedPFXCertificateProfile"
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    deployment_channel: Optional[AppleDeploymentChannel] = None
     # PFX Import Options.
     intended_purpose: Optional[IntendedPurpose] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
@@ -38,15 +41,18 @@ class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .intended_purpose import IntendedPurpose
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .intended_purpose import IntendedPurpose
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "deploymentChannel": lambda n : setattr(self, 'deployment_channel', n.get_enum_value(AppleDeploymentChannel)),
             "intendedPurpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(IntendedPurpose)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),
         }
@@ -63,6 +69,7 @@ class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_enum_value("intendedPurpose", self.intended_purpose)
         writer.write_collection_of_object_values("managedDeviceCertificateStates", self.managed_device_certificate_states)
     

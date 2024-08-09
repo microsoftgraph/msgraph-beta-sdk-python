@@ -14,7 +14,7 @@ from .provisioning_flow import ProvisioningFlow
 class UserProvisioningFlow(ProvisioningFlow):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.userProvisioningFlow"
-    # A boolean choice indicating whether unmatched users should be created or ignored.
+    # A Boolean choice indicating whether unmatched users should be created or ignored.
     create_unmatched_users: Optional[bool] = None
     # The different management choices for the new users to be provisioned.
     creation_options: Optional[UserCreationOptions] = None

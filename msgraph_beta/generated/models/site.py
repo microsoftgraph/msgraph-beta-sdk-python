@@ -7,8 +7,10 @@ if TYPE_CHECKING:
     from .base_item import BaseItem
     from .base_site_page import BaseSitePage
     from .column_definition import ColumnDefinition
+    from .content_model import ContentModel
     from .content_type import ContentType
     from .deleted import Deleted
+    from .document_processing_job import DocumentProcessingJob
     from .drive import Drive
     from .information_protection import InformationProtection
     from .item_analytics import ItemAnalytics
@@ -33,12 +35,16 @@ class Site(BaseItem):
     analytics: Optional[ItemAnalytics] = None
     # The collection of column definitions reusable across lists under this site.
     columns: Optional[List[ColumnDefinition]] = None
+    # The collection of content models applied to this site.
+    content_models: Optional[List[ContentModel]] = None
     # The collection of content types defined for this site.
     content_types: Optional[List[ContentType]] = None
     # The deleted property
     deleted: Optional[Deleted] = None
     # The full title for the site. Read-only.
     display_name: Optional[str] = None
+    # The document processing jobs running on this site.
+    document_processing_jobs: Optional[List[DocumentProcessingJob]] = None
     # The default drive (document library) for this site.
     drive: Optional[Drive] = None
     # The collection of drives (document libraries) under this site.
@@ -95,8 +101,10 @@ class Site(BaseItem):
         from .base_item import BaseItem
         from .base_site_page import BaseSitePage
         from .column_definition import ColumnDefinition
+        from .content_model import ContentModel
         from .content_type import ContentType
         from .deleted import Deleted
+        from .document_processing_job import DocumentProcessingJob
         from .drive import Drive
         from .information_protection import InformationProtection
         from .item_analytics import ItemAnalytics
@@ -114,8 +122,10 @@ class Site(BaseItem):
         from .base_item import BaseItem
         from .base_site_page import BaseSitePage
         from .column_definition import ColumnDefinition
+        from .content_model import ContentModel
         from .content_type import ContentType
         from .deleted import Deleted
+        from .document_processing_job import DocumentProcessingJob
         from .drive import Drive
         from .information_protection import InformationProtection
         from .item_analytics import ItemAnalytics
@@ -133,9 +143,11 @@ class Site(BaseItem):
         fields: Dict[str, Callable[[Any], None]] = {
             "analytics": lambda n : setattr(self, 'analytics', n.get_object_value(ItemAnalytics)),
             "columns": lambda n : setattr(self, 'columns', n.get_collection_of_object_values(ColumnDefinition)),
+            "contentModels": lambda n : setattr(self, 'content_models', n.get_collection_of_object_values(ContentModel)),
             "contentTypes": lambda n : setattr(self, 'content_types', n.get_collection_of_object_values(ContentType)),
             "deleted": lambda n : setattr(self, 'deleted', n.get_object_value(Deleted)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "documentProcessingJobs": lambda n : setattr(self, 'document_processing_jobs', n.get_collection_of_object_values(DocumentProcessingJob)),
             "drive": lambda n : setattr(self, 'drive', n.get_object_value(Drive)),
             "drives": lambda n : setattr(self, 'drives', n.get_collection_of_object_values(Drive)),
             "externalColumns": lambda n : setattr(self, 'external_columns', n.get_collection_of_object_values(ColumnDefinition)),
@@ -170,9 +182,11 @@ class Site(BaseItem):
         super().serialize(writer)
         writer.write_object_value("analytics", self.analytics)
         writer.write_collection_of_object_values("columns", self.columns)
+        writer.write_collection_of_object_values("contentModels", self.content_models)
         writer.write_collection_of_object_values("contentTypes", self.content_types)
         writer.write_object_value("deleted", self.deleted)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_collection_of_object_values("documentProcessingJobs", self.document_processing_jobs)
         writer.write_object_value("drive", self.drive)
         writer.write_collection_of_object_values("drives", self.drives)
         writer.write_collection_of_object_values("externalColumns", self.external_columns)

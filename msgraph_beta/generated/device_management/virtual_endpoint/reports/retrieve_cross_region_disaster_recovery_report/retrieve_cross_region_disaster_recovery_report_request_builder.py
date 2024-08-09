@@ -31,10 +31,11 @@ class RetrieveCrossRegionDisasterRecoveryReportRequestBuilder(BaseRequestBuilder
     
     async def post(self,body: RetrieveCrossRegionDisasterRecoveryReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
         """
-        Invoke action retrieveCrossRegionDisasterRecoveryReport
+        Retrieve the Windows 365 cross-region disaster recovery report, including CloudPcId, UserId, DeviceId, CloudPCDeviceDisplayName, UserPrincipalName, IsCrossRegionEnabled, CrossRegionHealthStatus, LicenseType, DisasterRecoveryStatus, CurrentRestorePointDateTime, and ActivationExpirationDateTime.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcreports-retrievecrossregiondisasterrecoveryreport?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -52,7 +53,7 @@ class RetrieveCrossRegionDisasterRecoveryReportRequestBuilder(BaseRequestBuilder
     
     def to_post_request_information(self,body: RetrieveCrossRegionDisasterRecoveryReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action retrieveCrossRegionDisasterRecoveryReport
+        Retrieve the Windows 365 cross-region disaster recovery report, including CloudPcId, UserId, DeviceId, CloudPCDeviceDisplayName, UserPrincipalName, IsCrossRegionEnabled, CrossRegionHealthStatus, LicenseType, DisasterRecoveryStatus, CurrentRestorePointDateTime, and ActivationExpirationDateTime.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -21,7 +21,7 @@ class MeetingRegistrant(MeetingRegistrantBase):
     email: Optional[str] = None
     # The first name of the registrant.
     first_name: Optional[str] = None
-    # The last name of the registrant.
+    # The family name of the registrant.
     last_name: Optional[str] = None
     # Time in UTC when the registrant registers for the meeting. Read-only.
     registration_date_time: Optional[datetime.datetime] = None

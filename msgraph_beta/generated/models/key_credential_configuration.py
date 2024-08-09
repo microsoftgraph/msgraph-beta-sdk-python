@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .app_key_credential_restriction_type import AppKeyCredentialRestrictionType
+    from .app_management_restriction_state import AppManagementRestrictionState
 
 @dataclass
 class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,16 +16,18 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Collection of GUIDs that point to the certificateBasedApplicationConfiguration that contains the collection of allowed root and intermediate certificate authorities.
+    # Collection of GUIDs that represent certificateBasedApplicationConfiguration that is allowed as root and intermediate certificate authorities.
     certificate_based_application_configuration_ids: Optional[List[str]] = None
-    # Value that can be used as the maximum duration in days, hours, minutes, or seconds from the date of key creation, for which the key is valid.  Defined in ISO 8601 format for Durations. For example, P4DT12H30M5S represents a duration of four days, twelve hours, thirty minutes, and five seconds. This property is required when restrictionType is set to keyLifetime.
+    # String value that indicates the maximum lifetime for key expiration, defined as an ISO 8601 duration. For example, P4DT12H30M5S represents four days, 12 hours, 30 minutes, and five seconds. This property is required when restrictionType is set to keyLifetime.
     max_lifetime: Optional[datetime.timedelta] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Timestamp when the policy is enforced for all apps created on or after the specified date. For existing applications, the enforcement date would be back dated. To apply to all applications regardless of their creation date, this property would be null. Nullable.
+    # Specifies the date from which the policy restriction applies to newly created applications. For existing applications, the enforcement date can be retroactively applied.
     restrict_for_apps_created_after_date_time: Optional[datetime.datetime] = None
-    # The type of restriction being applied. Possible values are asymmetricKeyLifetime, unknownFutureValue. Each value of restrictionType can be used only once per policy.
+    # The type of restriction being applied. Possible values are asymmetricKeyLifetime, and unknownFutureValue. Each value of restrictionType can be used only once per policy.
     restriction_type: Optional[AppKeyCredentialRestrictionType] = None
+    # String value that indicates if the restriction is evaluated. The possible values are: enabled, disabled, and unknownFutureValue. If enabled, the restriction is evaluated. If disabled, the restriction isn't evaluated or enforced.
+    state: Optional[AppManagementRestrictionState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> KeyCredentialConfiguration:
@@ -43,8 +46,10 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .app_key_credential_restriction_type import AppKeyCredentialRestrictionType
+        from .app_management_restriction_state import AppManagementRestrictionState
 
         from .app_key_credential_restriction_type import AppKeyCredentialRestrictionType
+        from .app_management_restriction_state import AppManagementRestrictionState
 
         fields: Dict[str, Callable[[Any], None]] = {
             "certificateBasedApplicationConfigurationIds": lambda n : setattr(self, 'certificate_based_application_configuration_ids', n.get_collection_of_primitive_values(str)),
@@ -52,6 +57,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "restrictForAppsCreatedAfterDateTime": lambda n : setattr(self, 'restrict_for_apps_created_after_date_time', n.get_datetime_value()),
             "restrictionType": lambda n : setattr(self, 'restriction_type', n.get_enum_value(AppKeyCredentialRestrictionType)),
+            "state": lambda n : setattr(self, 'state', n.get_enum_value(AppManagementRestrictionState)),
         }
         return fields
     
@@ -68,6 +74,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_datetime_value("restrictForAppsCreatedAfterDateTime", self.restrict_for_apps_created_after_date_time)
         writer.write_enum_value("restrictionType", self.restriction_type)
+        writer.write_enum_value("state", self.state)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -39,7 +39,7 @@ class List_(BaseItem):
     list_: Optional[ListInfo] = None
     # The collection of long-running operations on the list.
     operations: Optional[List[RichLongRunningOperation]] = None
-    # The permissions property
+    # The set of permissions for the item. Read-only. Nullable.
     permissions: Optional[List[Permission]] = None
     # Returns identifiers useful for SharePoint REST compatibility. Read-only.
     sharepoint_ids: Optional[SharepointIds] = None

@@ -12,7 +12,7 @@ from .access_review_instance_decision_item_resource import AccessReviewInstanceD
 class AccessReviewInstanceDecisionItemServicePrincipalResource(AccessReviewInstanceDecisionItemResource):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalResource"
-    # The globally unique identifier of the application to which access has been granted.
+    # The globally unique identifier of the application to which access is granted.
     app_id: Optional[str] = None
     
     @staticmethod

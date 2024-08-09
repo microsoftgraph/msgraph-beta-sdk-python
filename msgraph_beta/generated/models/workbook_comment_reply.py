@@ -11,9 +11,9 @@ from .entity import Entity
 
 @dataclass
 class WorkbookCommentReply(Entity):
-    # The content of replied comment.
+    # The content of the reply.
     content: Optional[str] = None
-    # Indicates the type for the replied comment.
+    # The content type for the reply.
     content_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

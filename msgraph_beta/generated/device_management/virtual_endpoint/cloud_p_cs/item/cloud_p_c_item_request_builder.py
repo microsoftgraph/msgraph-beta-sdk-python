@@ -21,7 +21,6 @@ if TYPE_CHECKING:
     from .get_cloud_pc_connectivity_history.get_cloud_pc_connectivity_history_request_builder import GetCloudPcConnectivityHistoryRequestBuilder
     from .get_cloud_pc_launch_info.get_cloud_pc_launch_info_request_builder import GetCloudPcLaunchInfoRequestBuilder
     from .get_frontline_cloud_pc_access_state.get_frontline_cloud_pc_access_state_request_builder import GetFrontlineCloudPcAccessStateRequestBuilder
-    from .get_shift_work_cloud_pc_access_state.get_shift_work_cloud_pc_access_state_request_builder import GetShiftWorkCloudPcAccessStateRequestBuilder
     from .get_supported_cloud_pc_remote_actions.get_supported_cloud_pc_remote_actions_request_builder import GetSupportedCloudPcRemoteActionsRequestBuilder
     from .power_off.power_off_request_builder import PowerOffRequestBuilder
     from .power_on.power_on_request_builder import PowerOnRequestBuilder
@@ -30,6 +29,7 @@ if TYPE_CHECKING:
     from .reprovision.reprovision_request_builder import ReprovisionRequestBuilder
     from .resize.resize_request_builder import ResizeRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
+    from .retrieve_cloud_p_c_remote_action_results.retrieve_cloud_p_c_remote_action_results_request_builder import RetrieveCloudPCRemoteActionResultsRequestBuilder
     from .retrieve_review_status.retrieve_review_status_request_builder import RetrieveReviewStatusRequestBuilder
     from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
     from .set_review_status.set_review_status_request_builder import SetReviewStatusRequestBuilder
@@ -214,15 +214,6 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         return GetFrontlineCloudPcAccessStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_shift_work_cloud_pc_access_state(self) -> GetShiftWorkCloudPcAccessStateRequestBuilder:
-        """
-        Provides operations to call the getShiftWorkCloudPcAccessState method.
-        """
-        from .get_shift_work_cloud_pc_access_state.get_shift_work_cloud_pc_access_state_request_builder import GetShiftWorkCloudPcAccessStateRequestBuilder
-
-        return GetShiftWorkCloudPcAccessStateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def get_supported_cloud_pc_remote_actions(self) -> GetSupportedCloudPcRemoteActionsRequestBuilder:
         """
         Provides operations to call the getSupportedCloudPcRemoteActions method.
@@ -293,6 +284,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         from .restore.restore_request_builder import RestoreRequestBuilder
 
         return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_cloud_p_c_remote_action_results(self) -> RetrieveCloudPCRemoteActionResultsRequestBuilder:
+        """
+        Provides operations to call the retrieveCloudPCRemoteActionResults method.
+        """
+        from .retrieve_cloud_p_c_remote_action_results.retrieve_cloud_p_c_remote_action_results_request_builder import RetrieveCloudPCRemoteActionResultsRequestBuilder
+
+        return RetrieveCloudPCRemoteActionResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_review_status(self) -> RetrieveReviewStatusRequestBuilder:

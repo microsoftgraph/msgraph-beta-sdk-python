@@ -88,6 +88,7 @@ if TYPE_CHECKING:
     from .message_traces.message_traces_request_builder import MessageTracesRequestBuilder
     from .mobility_management_policies.mobility_management_policies_request_builder import MobilityManagementPoliciesRequestBuilder
     from .monitoring.monitoring_request_builder import MonitoringRequestBuilder
+    from .network.network_request_builder import NetworkRequestBuilder
     from .network_access.network_access_request_builder import NetworkAccessRequestBuilder
     from .oauth2_permission_grants.oauth2_permission_grants_request_builder import Oauth2PermissionGrantsRequestBuilder
     from .on_premises_publishing_profiles.on_premises_publishing_profiles_request_builder import OnPremisesPublishingProfilesRequestBuilder
@@ -859,6 +860,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .monitoring.monitoring_request_builder import MonitoringRequestBuilder
 
         return MonitoringRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def network(self) -> NetworkRequestBuilder:
+        """
+        Provides operations to manage the network singleton.
+        """
+        from .network.network_request_builder import NetworkRequestBuilder
+
+        return NetworkRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def network_access(self) -> NetworkAccessRequestBuilder:

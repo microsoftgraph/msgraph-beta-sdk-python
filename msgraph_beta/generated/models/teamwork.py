@@ -26,7 +26,7 @@ class Teamwork(Entity):
     is_teams_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Represents the region of the organization.
+    # Represents the region of the organization or the tenant. The region value can be any region supported by the Teams payload. The possible values are: Americas, Europe and MiddleEast, Asia Pacific, UAE, Australia, Brazil, Canada, Switzerland, Germany, France, India, Japan, South Korea, Norway, Singapore, United Kingdom, South Africa, Sweden, Qatar, Poland, Italy, Israel, USGov Community Cloud, USGov Community Cloud High, USGov Department of Defense, and China.
     region: Optional[str] = None
     # The templates associated with a team.
     team_templates: Optional[List[TeamTemplate]] = None

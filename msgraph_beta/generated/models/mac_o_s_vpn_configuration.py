@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .apple_deployment_channel import AppleDeploymentChannel
     from .apple_vpn_configuration import AppleVpnConfiguration
     from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
 
@@ -16,6 +17,8 @@ class MacOSVpnConfiguration(AppleVpnConfiguration):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOSVpnConfiguration"
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    deployment_channel: Optional[AppleDeploymentChannel] = None
     # Identity certificate for client authentication when authentication method is certificate.
     identity_certificate: Optional[MacOSCertificateProfileBase] = None
     
@@ -35,13 +38,16 @@ class MacOSVpnConfiguration(AppleVpnConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .apple_vpn_configuration import AppleVpnConfiguration
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
 
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .apple_vpn_configuration import AppleVpnConfiguration
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "deploymentChannel": lambda n : setattr(self, 'deployment_channel', n.get_enum_value(AppleDeploymentChannel)),
             "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(MacOSCertificateProfileBase)),
         }
         super_fields = super().get_field_deserializers()
@@ -57,6 +63,7 @@ class MacOSVpnConfiguration(AppleVpnConfiguration):
         if not writer:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_object_value("identityCertificate", self.identity_certificate)
     
 

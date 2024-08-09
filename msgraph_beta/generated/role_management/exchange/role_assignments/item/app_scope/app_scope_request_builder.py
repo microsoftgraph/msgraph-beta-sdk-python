@@ -49,7 +49,7 @@ class AppScopeRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AppScopeRequestBuilderGetQueryParameters]] = None) -> Optional[AppScope]:
         """
-        Details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand for the entitlement provider only.
+        Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand for the entitlement provider only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AppScope]
         """
@@ -103,7 +103,7 @@ class AppScopeRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AppScopeRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand for the entitlement provider only.
+        Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand for the entitlement provider only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class AppScopeRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AppScopeRequestBuilderGetQueryParameters():
         """
-        Details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand for the entitlement provider only.
+        Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand for the entitlement provider only.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -23,6 +23,7 @@ if TYPE_CHECKING:
     from .retrieve_enrollment_time_device_membership_target.retrieve_enrollment_time_device_membership_target_request_builder import RetrieveEnrollmentTimeDeviceMembershipTargetRequestBuilder
     from .retrieve_latest_upgrade_default_baseline_policy.retrieve_latest_upgrade_default_baseline_policy_request_builder import RetrieveLatestUpgradeDefaultBaselinePolicyRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
+    from .set_enrollment_time_device_membership_target.set_enrollment_time_device_membership_target_request_builder import SetEnrollmentTimeDeviceMembershipTargetRequestBuilder
 
 class DeviceManagementConfigurationPolicyItemRequestBuilder(BaseRequestBuilder):
     """
@@ -207,6 +208,15 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder(BaseRequestBuilder):
         from .retrieve_latest_upgrade_default_baseline_policy.retrieve_latest_upgrade_default_baseline_policy_request_builder import RetrieveLatestUpgradeDefaultBaselinePolicyRequestBuilder
 
         return RetrieveLatestUpgradeDefaultBaselinePolicyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def set_enrollment_time_device_membership_target(self) -> SetEnrollmentTimeDeviceMembershipTargetRequestBuilder:
+        """
+        Provides operations to call the setEnrollmentTimeDeviceMembershipTarget method.
+        """
+        from .set_enrollment_time_device_membership_target.set_enrollment_time_device_membership_target_request_builder import SetEnrollmentTimeDeviceMembershipTargetRequestBuilder
+
+        return SetEnrollmentTimeDeviceMembershipTargetRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def settings(self) -> SettingsRequestBuilder:

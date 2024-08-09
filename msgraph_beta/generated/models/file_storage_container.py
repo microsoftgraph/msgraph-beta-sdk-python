@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
     from .file_storage_container_ownership_type import FileStorageContainerOwnershipType
+    from .file_storage_container_settings import FileStorageContainerSettings
     from .file_storage_container_status import FileStorageContainerStatus
     from .file_storage_container_viewpoint import FileStorageContainerViewpoint
     from .permission import Permission
@@ -45,7 +46,7 @@ class FileStorageContainer(Entity):
     is_item_versioning_enabled: Optional[bool] = None
     # Maximum number of major versions allowed for items in the fileStorageContainer. Read-write.
     item_major_version_limit: Optional[int] = None
-    # The lockState property
+    # Indicates the lock state of the fileStorageContainer. The possible values are unlocked and lockedReadOnly. Read-only.
     lock_state: Optional[SiteLockState] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -57,9 +58,11 @@ class FileStorageContainer(Entity):
     permissions: Optional[List[Permission]] = None
     # Recycle bin of the fileStorageContainer. Read-only.
     recycle_bin: Optional[RecycleBin] = None
+    # The settings property
+    settings: Optional[FileStorageContainerSettings] = None
     # Status of the fileStorageContainer. Containers are created as inactive and require activation. Inactive containers are subjected to automatic deletion in 24 hours. The possible values are: inactive, active. Read-only.
     status: Optional[FileStorageContainerStatus] = None
-    # Storage used in the fileStorageContainer. In bytes. Read-only.
+    # Storage used in the fileStorageContainer, in bytes. Read-only.
     storage_used_in_bytes: Optional[int] = None
     # Data specific to the current user. Read-only.
     viewpoint: Optional[FileStorageContainerViewpoint] = None
@@ -86,6 +89,7 @@ class FileStorageContainer(Entity):
         from .entity import Entity
         from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
         from .file_storage_container_ownership_type import FileStorageContainerOwnershipType
+        from .file_storage_container_settings import FileStorageContainerSettings
         from .file_storage_container_status import FileStorageContainerStatus
         from .file_storage_container_viewpoint import FileStorageContainerViewpoint
         from .permission import Permission
@@ -99,6 +103,7 @@ class FileStorageContainer(Entity):
         from .entity import Entity
         from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
         from .file_storage_container_ownership_type import FileStorageContainerOwnershipType
+        from .file_storage_container_settings import FileStorageContainerSettings
         from .file_storage_container_status import FileStorageContainerStatus
         from .file_storage_container_viewpoint import FileStorageContainerViewpoint
         from .permission import Permission
@@ -123,6 +128,7 @@ class FileStorageContainer(Entity):
             "ownershipType": lambda n : setattr(self, 'ownership_type', n.get_enum_value(FileStorageContainerOwnershipType)),
             "permissions": lambda n : setattr(self, 'permissions', n.get_collection_of_object_values(Permission)),
             "recycleBin": lambda n : setattr(self, 'recycle_bin', n.get_object_value(RecycleBin)),
+            "settings": lambda n : setattr(self, 'settings', n.get_object_value(FileStorageContainerSettings)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(FileStorageContainerStatus)),
             "storageUsedInBytes": lambda n : setattr(self, 'storage_used_in_bytes', n.get_int_value()),
             "viewpoint": lambda n : setattr(self, 'viewpoint', n.get_object_value(FileStorageContainerViewpoint)),
@@ -156,6 +162,7 @@ class FileStorageContainer(Entity):
         writer.write_enum_value("ownershipType", self.ownership_type)
         writer.write_collection_of_object_values("permissions", self.permissions)
         writer.write_object_value("recycleBin", self.recycle_bin)
+        writer.write_object_value("settings", self.settings)
         writer.write_enum_value("status", self.status)
         writer.write_int_value("storageUsedInBytes", self.storage_used_in_bytes)
         writer.write_object_value("viewpoint", self.viewpoint)

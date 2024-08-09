@@ -69,10 +69,11 @@ class ReferenceDefinitionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ReferenceDefinition, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ReferenceDefinition]:
         """
-        Create new navigation property to referenceDefinitions for external
+        Create a new referenceDefinition object. referenceDefinition objects associate incoming data with standardized reference types values for validation. You can extend the following reference types with other codes that better align with your source data.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReferenceDefinition]
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-referencedefinition-post?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -103,7 +104,7 @@ class ReferenceDefinitionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ReferenceDefinition, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to referenceDefinitions for external
+        Create a new referenceDefinition object. referenceDefinition objects associate incoming data with standardized reference types values for validation. You can extend the following reference types with other codes that better align with your source data.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

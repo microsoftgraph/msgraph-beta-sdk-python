@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .cloud_pc_bulk_action_status import CloudPcBulkActionStatus
     from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
     from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
     from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
@@ -30,10 +31,14 @@ class CloudPcBulkAction(Entity):
     created_date_time: Optional[datetime.datetime] = None
     # Name of the bulk action.
     display_name: Optional[str] = None
+    # Indicates the user principal name (UPN) of the user who initiated this bulk action. Read-only.
+    initiated_by_user_principal_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates whether the bulk actions can be initiated during maintenance window. When true, bulk action will use maintenance window to schedule action, When false means bulk action will not use the maintenance window. Default value is false.
+    # Indicates whether the bulk action is scheduled according to the maintenance window. When true, the bulk action uses the maintenance window to schedule the action; false means that the bulk action doesn't use the maintenance window. The default value is false.
     scheduled_during_maintenance_window: Optional[bool] = None
+    # Indicates the status of bulk actions. Possible values are pending, succeeded, failed, unknownFutureValue. The default value is pending. Read-only.
+    status: Optional[CloudPcBulkActionStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcBulkAction:
@@ -95,6 +100,7 @@ class CloudPcBulkAction(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .cloud_pc_bulk_action_status import CloudPcBulkActionStatus
         from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
         from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
@@ -108,6 +114,7 @@ class CloudPcBulkAction(Entity):
         from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
         from .entity import Entity
 
+        from .cloud_pc_bulk_action_status import CloudPcBulkActionStatus
         from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
         from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
@@ -126,7 +133,9 @@ class CloudPcBulkAction(Entity):
             "cloudPcIds": lambda n : setattr(self, 'cloud_pc_ids', n.get_collection_of_primitive_values(str)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "initiatedByUserPrincipalName": lambda n : setattr(self, 'initiated_by_user_principal_name', n.get_str_value()),
             "scheduledDuringMaintenanceWindow": lambda n : setattr(self, 'scheduled_during_maintenance_window', n.get_bool_value()),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcBulkActionStatus)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -145,6 +154,8 @@ class CloudPcBulkAction(Entity):
         writer.write_collection_of_primitive_values("cloudPcIds", self.cloud_pc_ids)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_str_value("initiatedByUserPrincipalName", self.initiated_by_user_principal_name)
         writer.write_bool_value("scheduledDuringMaintenanceWindow", self.scheduled_during_maintenance_window)
+        writer.write_enum_value("status", self.status)
     
 

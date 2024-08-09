@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .apple_deployment_channel import AppleDeploymentChannel
     from .device_configuration import DeviceConfiguration
     from .eap_fast_configuration import EapFastConfiguration
     from .eap_type import EapType
@@ -24,6 +25,8 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration):
     odata_type: Optional[str] = "#microsoft.graph.macOSWiredNetworkConfiguration"
     # Authentication Method when EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
     authentication_method: Optional[WiFiAuthenticationMethod] = None
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    deployment_channel: Optional[AppleDeploymentChannel] = None
     # EAP-FAST Configuration Option when EAP-FAST is the selected EAP Type. Possible values are: noProtectedAccessCredential, useProtectedAccessCredential, useProtectedAccessCredentialAndProvision, useProtectedAccessCredentialAndProvisionAnonymously.
     eap_fast_configuration: Optional[EapFastConfiguration] = None
     # Extensible Authentication Protocol (EAP) configuration types.
@@ -59,6 +62,7 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .device_configuration import DeviceConfiguration
         from .eap_fast_configuration import EapFastConfiguration
         from .eap_type import EapType
@@ -68,6 +72,7 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration):
         from .wired_network_interface import WiredNetworkInterface
         from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .device_configuration import DeviceConfiguration
         from .eap_fast_configuration import EapFastConfiguration
         from .eap_type import EapType
@@ -79,6 +84,7 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WiFiAuthenticationMethod)),
+            "deploymentChannel": lambda n : setattr(self, 'deployment_channel', n.get_enum_value(AppleDeploymentChannel)),
             "eapFastConfiguration": lambda n : setattr(self, 'eap_fast_configuration', n.get_enum_value(EapFastConfiguration)),
             "eapType": lambda n : setattr(self, 'eap_type', n.get_enum_value(EapType)),
             "enableOuterIdentityPrivacy": lambda n : setattr(self, 'enable_outer_identity_privacy', n.get_str_value()),
@@ -103,6 +109,7 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
+        writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_enum_value("eapFastConfiguration", self.eap_fast_configuration)
         writer.write_enum_value("eapType", self.eap_type)
         writer.write_str_value("enableOuterIdentityPrivacy", self.enable_outer_identity_privacy)

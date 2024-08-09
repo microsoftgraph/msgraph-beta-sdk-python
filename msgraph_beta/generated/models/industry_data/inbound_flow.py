@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .inbound_api_flow import InboundApiFlow
     from .inbound_domain import InboundDomain
     from .inbound_file_flow import InboundFileFlow
     from .industry_data_activity import IndustryDataActivity
@@ -41,6 +42,10 @@ class InboundFlow(IndustryDataActivity):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.inboundApiFlow".casefold():
+            from .inbound_api_flow import InboundApiFlow
+
+            return InboundApiFlow()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.inboundFileFlow".casefold():
             from .inbound_file_flow import InboundFileFlow
 
@@ -52,12 +57,14 @@ class InboundFlow(IndustryDataActivity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .inbound_api_flow import InboundApiFlow
         from .inbound_domain import InboundDomain
         from .inbound_file_flow import InboundFileFlow
         from .industry_data_activity import IndustryDataActivity
         from .industry_data_connector import IndustryDataConnector
         from .year_time_period_definition import YearTimePeriodDefinition
 
+        from .inbound_api_flow import InboundApiFlow
         from .inbound_domain import InboundDomain
         from .inbound_file_flow import InboundFileFlow
         from .industry_data_activity import IndustryDataActivity

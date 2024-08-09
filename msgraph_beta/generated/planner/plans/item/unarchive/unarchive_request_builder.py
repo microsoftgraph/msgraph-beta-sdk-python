@@ -31,10 +31,11 @@ class UnarchiveRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: UnarchivePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action unarchive
+        Unarchive a plannerPlan object. Unarchiving a plan, also unarchives the plannerTasks and plannerBuckets in the plan.  Only a plan that is archived can be unarchived.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/plannerplan-unarchive?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -52,7 +53,7 @@ class UnarchiveRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: UnarchivePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action unarchive
+        Unarchive a plannerPlan object. Unarchiving a plan, also unarchives the plannerTasks and plannerBuckets in the plan.  Only a plan that is archived can be unarchived.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

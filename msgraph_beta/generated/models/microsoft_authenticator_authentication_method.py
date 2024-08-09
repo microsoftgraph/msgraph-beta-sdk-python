@@ -1,5 +1,4 @@
 from __future__ import annotations
-import datetime
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
@@ -17,9 +16,7 @@ class MicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod):
     odata_type: Optional[str] = "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"
     # The app that the user has registered to use to approve push notifications. The possible values are: microsoftAuthenticator, outlookMobile, unknownFutureValue.
     client_app_name: Optional[MicrosoftAuthenticatorAuthenticationMethodClientAppName] = None
-    # The date and time that this app was registered. This property is null if the device is not registered for passwordless Phone Sign-In.
-    created_date_time: Optional[datetime.datetime] = None
-    # The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.
+    # The registered device on which Microsoft Authenticator resides. This property is null if the device isn't registered for passwordless Phone Sign-In.
     device: Optional[Device] = None
     # Tags containing app metadata.
     device_tag: Optional[str] = None
@@ -54,7 +51,6 @@ class MicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "clientAppName": lambda n : setattr(self, 'client_app_name', n.get_enum_value(MicrosoftAuthenticatorAuthenticationMethodClientAppName)),
-            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "device": lambda n : setattr(self, 'device', n.get_object_value(Device)),
             "deviceTag": lambda n : setattr(self, 'device_tag', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -74,7 +70,6 @@ class MicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("clientAppName", self.client_app_name)
-        writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("device", self.device)
         writer.write_str_value("deviceTag", self.device_tag)
         writer.write_str_value("displayName", self.display_name)

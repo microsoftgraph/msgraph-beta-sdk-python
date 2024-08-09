@@ -61,7 +61,7 @@ class SignIn(Entity):
     authentication_details: Optional[List[AuthenticationDetail]] = None
     # The authentication methods used. Possible values: SMS, Authenticator App, App Verification code, Password, FIDO, PTA, or PHS.
     authentication_methods_used: Optional[List[str]] = None
-    # More authentication processing details, such as the agent name for  PTA and PHS, or a server or farm name for federated authentication.
+    # More authentication processing details, such as the agent name for PTA and PHS, or a server or farm name for federated authentication.
     authentication_processing_details: Optional[List[KeyValue]] = None
     # Lists the protocol type or grant type used in the authentication. The possible values are: none, oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue, authenticationTransfer, nativeAuth. Use none for all authentications that don't have a specific value in that list. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: authenticationTransfer, nativeAuth.
     authentication_protocol: Optional[ProtocolType] = None
@@ -77,11 +77,11 @@ class SignIn(Entity):
     client_app_used: Optional[str] = None
     # Describes the credential type that a user client or service principal provided to Microsoft Entra ID to authenticate itself. You can review this property to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
     client_credential_type: Optional[ClientCredentialType] = None
-    # A list that indicates the audience that was evaluated by Conditional Access during a sign-in event.  Supports $filter (eq).
+    # A list that indicates the audience that Conditional Access evaluated during a sign-in event.  Supports $filter (eq).
     conditional_access_audiences: Optional[List[ConditionalAccessAudience]] = None
     # The status of the conditional access policy triggered. Possible values: success, failure, notApplied, or unknownFutureValue.  Supports $filter (eq).
     conditional_access_status: Optional[ConditionalAccessStatus] = None
-    # The identifier the client sends when sign-in is initiated. This is used for troubleshooting the corresponding sign-in activity when calling for support.  Supports $filter (eq).
+    # The identifier the client sends when sign-in is initiated. This property is used for troubleshooting the corresponding sign-in activity when calling for support.  Supports $filter (eq).
     correlation_id: Optional[str] = None
     # The date and time the sign-in was initiated. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $orderby, $filter (eq, le, and ge).
     created_date_time: Optional[datetime.datetime] = None
@@ -97,7 +97,7 @@ class SignIn(Entity):
     global_secure_access_ip_address: Optional[str] = None
     # The tenant identifier of the user initiating the sign-in. Not applicable in Managed Identity or service principal sign ins.
     home_tenant_id: Optional[str] = None
-    # For user sign ins, the identifier of the tenant that the user is a member of. Only populated in cases where the home tenant has provided affirmative consent to Microsoft Entra ID to show the tenant content.
+    # For user sign ins, the identifier of the tenant that the user is a member of. Only populated in cases where the home tenant provides affirmative consent to Microsoft Entra ID to show the tenant content.
     home_tenant_name: Optional[str] = None
     # Indicates the token types that were presented to Microsoft Entra ID to authenticate the actor in the sign in. The possible values are: none, primaryRefreshToken, saml11, saml20, unknownFutureValue, remoteDesktopToken.  NOTE Microsoft Entra ID might have also used token types not listed in this enum type to authenticate the actor. Don't infer the lack of a token if it isn't one of the types listed. Also, you must use the Prefer: include-unknown-enum-members request header to get the following value or values in this evolvable enum: remoteDesktopToken.
     incoming_token_type: Optional[IncomingTokenType] = None
@@ -179,7 +179,7 @@ class SignIn(Entity):
     user_display_name: Optional[str] = None
     # The identifier of the user.  Supports $filter (eq).
     user_id: Optional[str] = None
-    # The UPN of the user.  Supports $filter (eq, startsWith).
+    # User principal name of the user that initiated the sign-in. This value is always in lowercase. For guest users whose values in the user object typically contain #EXT# before the domain part, this property stores the value in both lowercase and the 'true' format. For example, while the user object stores AdeleVance_fabrikam.com#EXT#@contoso.com, the sign-in logs store adelevance@fabrikam.com. Supports $filter (eq, startsWith).
     user_principal_name: Optional[str] = None
     # Identifies whether the user is a member or guest in the tenant. Possible values are: member, guest, unknownFutureValue.
     user_type: Optional[SignInUserType] = None

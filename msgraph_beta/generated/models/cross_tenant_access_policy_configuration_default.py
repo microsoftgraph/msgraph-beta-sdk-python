@@ -33,7 +33,7 @@ class CrossTenantAccessPolicyConfigurationDefault(Entity):
     is_service_default: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Defines the default tenant restrictions configuration for your organization users accessing an external organization on your network or devices.
+    # Defines the default tenant restrictions configuration for users in your organization who access an external organization on your network or devices.
     tenant_restrictions: Optional[CrossTenantAccessPolicyTenantRestrictions] = None
     
     @staticmethod

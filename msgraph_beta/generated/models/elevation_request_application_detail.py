@@ -30,7 +30,7 @@ class ElevationRequestApplicationDetail(AdditionalDataHolder, BackedModel, Parsa
     product_name: Optional[str] = None
     # The product version of the application for which elevation request has been made. For example, '2.40.1.0'
     product_version: Optional[str] = None
-    # The list of base64 encoded certificate for each signer, for example, string[encoded_leaf_cert1, encoded_leaf_cert2....]
+    # The list of base64 encoded certificate for each signer, for example, string[encodedleafcert1, encodedleafcert2....]
     publisher_cert: Optional[str] = None
     # The certificate issuer name of the certificate used to sign the application, for example, 'Sectigo Public Code Signing CA R36'
     publisher_name: Optional[str] = None

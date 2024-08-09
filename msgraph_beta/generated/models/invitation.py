@@ -17,13 +17,13 @@ class Invitation(Entity):
     invite_redeem_url: Optional[str] = None
     # The URL user should be redirected to once the invitation is redeemed. Required.
     invite_redirect_url: Optional[str] = None
-    # The user created as part of the invitation creation. Read-Only
+    # The user created as part of the invitation creation. Read-Only. The id property is required in the request body to reset a redemption status.
     invited_user: Optional[User] = None
     # The display name of the user being invited.
     invited_user_display_name: Optional[str] = None
     # The email address of the user being invited. Required. The following special characters aren't permitted in the email address:Tilde (~)Exclamation point (!)At sign (@)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Hyphen (-)Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (`
     invited_user_email_address: Optional[str] = None
-    # Additional configuration for the message being sent to the invited user, including customizing message text, language and cc recipient list.
+    # Contins configuration information for the message being sent to the invited user, including customizing message text, language, and cc recipient list.
     invited_user_message_info: Optional[InvitedUserMessageInfo] = None
     # The users or groups who are sponsors of the invited user. Sponsors are users and groups that are responsible for guest users' privileges in the tenant and for keeping the guest users' information and access up to date.
     invited_user_sponsors: Optional[List[DirectoryObject]] = None
@@ -31,7 +31,7 @@ class Invitation(Entity):
     invited_user_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Reset the user's redemption status and reinvite a user while retaining their user identifier, group memberships, and app assignments. This property allows you to enable a user to sign-in using a different email address from the one in the previous invitation. For more information about using this property, see Reset redemption status for a guest user (Preview).
+    # Reset the user's redemption status and reinvite a user while retaining their user identifier, group memberships, and app assignments. This property allows you to enable a user to sign-in using a different email address from the one in the previous invitation. When true, the invitedUser/id relationship is required. For more information about using this property, see Reset redemption status for a guest user.
     reset_redemption: Optional[bool] = None
     # Indicates whether an email should be sent to the user being invited. The default is false.
     send_invitation_message: Optional[bool] = None

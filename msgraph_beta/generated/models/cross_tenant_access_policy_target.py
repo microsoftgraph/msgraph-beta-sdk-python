@@ -16,7 +16,7 @@ class CrossTenantAccessPolicyTarget(AdditionalDataHolder, BackedModel, Parsable)
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # Can be one of the following values:  The unique identifier of the user, group, or application  AllUsers  AllApplications - Refers to any Microsoft cloud application.  Office365 - Includes the applications mentioned as part of the Office365 suite.
+    # Defines the target for cross-tenant access policy settings and can have one of the following values:  The unique identifier of the user, group, or application  AllUsers  AllApplications - Refers to any Microsoft cloud application.  Office365 - Includes the applications mentioned as part of the Office 365 suite.
     target: Optional[str] = None
     # The type of resource that you want to target. The possible values are: user, group, application, unknownFutureValue.
     target_type: Optional[CrossTenantAccessPolicyTargetType] = None

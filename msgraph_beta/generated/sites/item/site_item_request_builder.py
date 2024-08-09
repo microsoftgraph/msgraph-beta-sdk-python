@@ -17,8 +17,10 @@ if TYPE_CHECKING:
     from ...models.site import Site
     from .analytics.analytics_request_builder import AnalyticsRequestBuilder
     from .columns.columns_request_builder import ColumnsRequestBuilder
+    from .content_models.content_models_request_builder import ContentModelsRequestBuilder
     from .content_types.content_types_request_builder import ContentTypesRequestBuilder
     from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
+    from .document_processing_jobs.document_processing_jobs_request_builder import DocumentProcessingJobsRequestBuilder
     from .drive.drive_request_builder import DriveRequestBuilder
     from .drives.drives_request_builder import DrivesRequestBuilder
     from .external_columns.external_columns_request_builder import ExternalColumnsRequestBuilder
@@ -191,6 +193,15 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         return ColumnsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def content_models(self) -> ContentModelsRequestBuilder:
+        """
+        Provides operations to manage the contentModels property of the microsoft.graph.site entity.
+        """
+        from .content_models.content_models_request_builder import ContentModelsRequestBuilder
+
+        return ContentModelsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def content_types(self) -> ContentTypesRequestBuilder:
         """
         Provides operations to manage the contentTypes property of the microsoft.graph.site entity.
@@ -207,6 +218,15 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
 
         return CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def document_processing_jobs(self) -> DocumentProcessingJobsRequestBuilder:
+        """
+        Provides operations to manage the documentProcessingJobs property of the microsoft.graph.site entity.
+        """
+        from .document_processing_jobs.document_processing_jobs_request_builder import DocumentProcessingJobsRequestBuilder
+
+        return DocumentProcessingJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def drive(self) -> DriveRequestBuilder:

@@ -59,7 +59,7 @@ class BookingBusinessItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[BookingBusinessItemRequestBuilderGetQueryParameters]] = None) -> Optional[BookingBusiness]:
         """
-        Get bookingBusinesses from solutions
+        A collection of businesses in Microsoft Bookings. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingBusiness]
         """
@@ -113,7 +113,7 @@ class BookingBusinessItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[BookingBusinessItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get bookingBusinesses from solutions
+        A collection of businesses in Microsoft Bookings. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -238,7 +238,7 @@ class BookingBusinessItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BookingBusinessItemRequestBuilderGetQueryParameters():
         """
-        Get bookingBusinesses from solutions
+        A collection of businesses in Microsoft Bookings. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

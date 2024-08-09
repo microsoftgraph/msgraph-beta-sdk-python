@@ -20,7 +20,7 @@ class AttendanceRecord(Entity):
     identity: Optional[Identity] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Unique identifier of a meetingRegistrant. Presents when the participant has registered for the meeting.
+    # Unique identifier of a meetingRegistrant. Presents when the participant has registered for the meeting. (deprecated)
     registrant_id: Optional[str] = None
     # Role of the attendee. Possible values are: None, Attendee, Presenter, and Organizer.
     role: Optional[str] = None

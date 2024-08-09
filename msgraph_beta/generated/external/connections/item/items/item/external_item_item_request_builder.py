@@ -73,11 +73,11 @@ class ExternalItemItemRequestBuilder(BaseRequestBuilder):
     
     async def put(self,body: ExternalItem, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ExternalItem]:
         """
-        Create a new externalItem. This API can be used to create a custom item. The containing externalConnection must have a schema registered of the corresponding type.
+        Update the properties of an externalitem.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalItem]
-        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-put-items?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/externalconnectors-externalitem-update?view=graph-rest-beta
         """
         if not body:
             raise TypeError("body cannot be null.")
@@ -119,7 +119,7 @@ class ExternalItemItemRequestBuilder(BaseRequestBuilder):
     
     def to_put_request_information(self,body: ExternalItem, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new externalItem. This API can be used to create a custom item. The containing externalConnection must have a schema registered of the corresponding type.
+        Update the properties of an externalitem.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

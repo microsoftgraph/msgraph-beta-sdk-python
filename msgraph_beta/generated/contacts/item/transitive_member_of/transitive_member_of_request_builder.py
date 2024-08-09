@@ -49,9 +49,10 @@ class TransitiveMemberOfRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TransitiveMemberOfRequestBuilderGetQueryParameters]] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Get transitiveMemberOf from contacts
+        Get groups that this organizational contact is a member of. The API request is transitive, and returns all groups the organizational contact is a nested member of.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/orgcontact-list-transitivememberof?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,7 +70,7 @@ class TransitiveMemberOfRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TransitiveMemberOfRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get transitiveMemberOf from contacts
+        Get groups that this organizational contact is a member of. The API request is transitive, and returns all groups the organizational contact is a nested member of.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +119,7 @@ class TransitiveMemberOfRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TransitiveMemberOfRequestBuilderGetQueryParameters():
         """
-        Get transitiveMemberOf from contacts
+        Get groups that this organizational contact is a member of. The API request is transitive, and returns all groups the organizational contact is a nested member of.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

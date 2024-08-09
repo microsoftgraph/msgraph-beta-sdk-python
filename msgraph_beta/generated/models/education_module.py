@@ -16,7 +16,7 @@ from .entity import Entity
 class EducationModule(Entity):
     # The display name of the user that created the module.
     created_by: Optional[IdentitySet] = None
-    # Date time the module was created.  The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z
+    # Date time the module was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z
     created_date_time: Optional[datetime.datetime] = None
     # Description of the module.
     description: Optional[str] = None
@@ -26,15 +26,15 @@ class EducationModule(Entity):
     is_pinned: Optional[bool] = None
     # The last user that modified the module.
     last_modified_by: Optional[IdentitySet] = None
-    # Date time the module was last modified.  The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z
+    # Date time the module was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Learning objects that are associated with this module.  Only teachers can modify this list. Nullable.
+    # Learning objects that are associated with this module. Only teachers can modify this list. Nullable.
     resources: Optional[List[EducationModuleResource]] = None
     # Folder URL where all the file resources for this module are stored.
     resources_folder_url: Optional[str] = None
-    # Status of the module.  You can't use a PATCH operation to update this value. Possible values are: draft and published.
+    # Status of the module. You can't use a PATCH operation to update this value. Possible values are: draft and published.
     status: Optional[EducationModuleStatus] = None
     
     @staticmethod

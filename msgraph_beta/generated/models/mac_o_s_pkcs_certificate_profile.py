@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .apple_deployment_channel import AppleDeploymentChannel
     from .certificate_store import CertificateStore
     from .custom_subject_alternative_name import CustomSubjectAlternativeName
     from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
@@ -30,6 +31,8 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase):
     certification_authority_name: Optional[str] = None
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
     custom_subject_alternative_names: Optional[List[CustomSubjectAlternativeName]] = None
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    deployment_channel: Optional[AppleDeploymentChannel] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
     managed_device_certificate_states: Optional[List[ManagedDeviceCertificateState]] = None
     # Format string that defines the subject alternative name.
@@ -53,11 +56,13 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
@@ -70,6 +75,7 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase):
             "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
             "certificationAuthorityName": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(CustomSubjectAlternativeName)),
+            "deploymentChannel": lambda n : setattr(self, 'deployment_channel', n.get_enum_value(AppleDeploymentChannel)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),
             "subjectAlternativeNameFormatString": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),
             "subjectNameFormatString": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
@@ -93,6 +99,7 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase):
         writer.write_str_value("certificationAuthority", self.certification_authority)
         writer.write_str_value("certificationAuthorityName", self.certification_authority_name)
         writer.write_collection_of_object_values("customSubjectAlternativeNames", self.custom_subject_alternative_names)
+        writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_collection_of_object_values("managedDeviceCertificateStates", self.managed_device_certificate_states)
         writer.write_str_value("subjectAlternativeNameFormatString", self.subject_alternative_name_format_string)
         writer.write_str_value("subjectNameFormatString", self.subject_name_format_string)

@@ -13,7 +13,7 @@ from .virtual_event_registration_question_base import VirtualEventRegistrationQu
 class VirtualEventRegistrationPredefinedQuestion(VirtualEventRegistrationQuestionBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.virtualEventRegistrationPredefinedQuestion"
-    # The label property
+    # Label of the predefined registration question. The following label values accept a single line  of text: street, city, state, postalCode, countryOrRegion, industry, jobTitle, and organization. unknownFutureValue is an evolvable enumeration sentinel value; do not use this label.
     label: Optional[VirtualEventRegistrationPredefinedQuestionLabel] = None
     
     @staticmethod

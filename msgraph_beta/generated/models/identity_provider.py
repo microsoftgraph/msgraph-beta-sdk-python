@@ -11,9 +11,9 @@ from .entity import Entity
 
 @dataclass
 class IdentityProvider(Entity):
-    # The client ID for the application obtained when registering the application with the identity provider. This is a required field.  Required. Not nullable.
+    # The client ID for the application obtained when registering the application with the identity provider. This is a required field. Required. Not nullable.
     client_id: Optional[str] = None
-    # The client secret for the application obtained when registering the application with the identity provider. This is write-only. A read operation will return . This is a required field. Required. Not nullable.
+    # The client secret for the application obtained when registering the application with the identity provider. This is write-only. A read operation returns . This is a required field. Required. Not nullable.
     client_secret: Optional[str] = None
     # The display name of the identity provider. Not nullable.
     name: Optional[str] = None

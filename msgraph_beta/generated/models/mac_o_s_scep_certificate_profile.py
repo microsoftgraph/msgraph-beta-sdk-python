@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .apple_deployment_channel import AppleDeploymentChannel
     from .certificate_store import CertificateStore
     from .custom_subject_alternative_name import CustomSubjectAlternativeName
     from .extended_key_usage import ExtendedKeyUsage
@@ -29,6 +30,8 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase):
     certificate_store: Optional[CertificateStore] = None
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
     custom_subject_alternative_names: Optional[List[CustomSubjectAlternativeName]] = None
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    deployment_channel: Optional[AppleDeploymentChannel] = None
     # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
     extended_key_usages: Optional[List[ExtendedKeyUsage]] = None
     # SCEP Hash Algorithm. Possible values are: sha1, sha2.
@@ -64,6 +67,7 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .extended_key_usage import ExtendedKeyUsage
@@ -74,6 +78,7 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase):
         from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
+        from .apple_deployment_channel import AppleDeploymentChannel
         from .certificate_store import CertificateStore
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .extended_key_usage import ExtendedKeyUsage
@@ -88,6 +93,7 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase):
             "allowAllAppsAccess": lambda n : setattr(self, 'allow_all_apps_access', n.get_bool_value()),
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(CustomSubjectAlternativeName)),
+            "deploymentChannel": lambda n : setattr(self, 'deployment_channel', n.get_enum_value(AppleDeploymentChannel)),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
             "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_collection_of_enum_values(HashAlgorithms)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(KeySize)),
@@ -114,6 +120,7 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase):
         writer.write_bool_value("allowAllAppsAccess", self.allow_all_apps_access)
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_collection_of_object_values("customSubjectAlternativeNames", self.custom_subject_alternative_names)
+        writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_collection_of_object_values("extendedKeyUsages", self.extended_key_usages)
         writer.write_enum_value("hashAlgorithm", self.hash_algorithm)
         writer.write_enum_value("keySize", self.key_size)

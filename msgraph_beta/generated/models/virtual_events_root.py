@@ -17,9 +17,9 @@ class VirtualEventsRoot(Entity):
     events: Optional[List[VirtualEvent]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The townhalls property
+    # A collection of town halls. Nullable.
     townhalls: Optional[List[VirtualEventTownhall]] = None
-    # The webinars property
+    # A collection of webinars. Nullable.
     webinars: Optional[List[VirtualEventWebinar]] = None
     
     @staticmethod

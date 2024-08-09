@@ -13,9 +13,9 @@ from .virtual_event_registration_question_base import VirtualEventRegistrationQu
 class VirtualEventRegistrationCustomQuestion(VirtualEventRegistrationQuestionBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.virtualEventRegistrationCustomQuestion"
-    # The answerChoices property
+    # Answer choices when answerInputType is singleChoice or multiChoice.
     answer_choices: Optional[List[str]] = None
-    # The answerInputType property
+    # Input type of the registration question answer.
     answer_input_type: Optional[VirtualEventRegistrationQuestionAnswerInputType] = None
     
     @staticmethod
