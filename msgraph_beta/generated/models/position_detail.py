@@ -31,6 +31,10 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The role the position entailed.
     role: Optional[str] = None
+    # The secondaryJobTitle property
+    secondary_job_title: Optional[str] = None
+    # The secondaryRole property
+    secondary_role: Optional[str] = None
     # The start month and year of the position.
     start_month_year: Optional[datetime.date] = None
     # summary of the position.
@@ -43,7 +47,7 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: PositionDetail
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return PositionDetail()
     
@@ -65,6 +69,8 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
             "level": lambda n : setattr(self, 'level', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "role": lambda n : setattr(self, 'role', n.get_str_value()),
+            "secondaryJobTitle": lambda n : setattr(self, 'secondary_job_title', n.get_str_value()),
+            "secondaryRole": lambda n : setattr(self, 'secondary_role', n.get_str_value()),
             "startMonthYear": lambda n : setattr(self, 'start_month_year', n.get_date_value()),
             "summary": lambda n : setattr(self, 'summary', n.get_str_value()),
         }
@@ -76,7 +82,7 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("company", self.company)
         writer.write_str_value("description", self.description)
@@ -86,6 +92,8 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("level", self.level)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("role", self.role)
+        writer.write_str_value("secondaryJobTitle", self.secondary_job_title)
+        writer.write_str_value("secondaryRole", self.secondary_role)
         writer.write_date_value("startMonthYear", self.start_month_year)
         writer.write_str_value("summary", self.summary)
         writer.write_additional_data_value(self.additional_data)

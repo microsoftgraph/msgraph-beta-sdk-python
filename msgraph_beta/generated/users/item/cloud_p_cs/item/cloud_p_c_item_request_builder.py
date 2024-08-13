@@ -21,7 +21,6 @@ if TYPE_CHECKING:
     from .get_cloud_pc_connectivity_history.get_cloud_pc_connectivity_history_request_builder import GetCloudPcConnectivityHistoryRequestBuilder
     from .get_cloud_pc_launch_info.get_cloud_pc_launch_info_request_builder import GetCloudPcLaunchInfoRequestBuilder
     from .get_frontline_cloud_pc_access_state.get_frontline_cloud_pc_access_state_request_builder import GetFrontlineCloudPcAccessStateRequestBuilder
-    from .get_shift_work_cloud_pc_access_state.get_shift_work_cloud_pc_access_state_request_builder import GetShiftWorkCloudPcAccessStateRequestBuilder
     from .get_supported_cloud_pc_remote_actions.get_supported_cloud_pc_remote_actions_request_builder import GetSupportedCloudPcRemoteActionsRequestBuilder
     from .power_off.power_off_request_builder import PowerOffRequestBuilder
     from .power_on.power_on_request_builder import PowerOnRequestBuilder
@@ -30,6 +29,7 @@ if TYPE_CHECKING:
     from .reprovision.reprovision_request_builder import ReprovisionRequestBuilder
     from .resize.resize_request_builder import ResizeRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
+    from .retrieve_cloud_p_c_remote_action_results.retrieve_cloud_p_c_remote_action_results_request_builder import RetrieveCloudPCRemoteActionResultsRequestBuilder
     from .retrieve_review_status.retrieve_review_status_request_builder import RetrieveReviewStatusRequestBuilder
     from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
     from .set_review_status.set_review_status_request_builder import SetReviewStatusRequestBuilder
@@ -95,7 +95,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPC]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -140,7 +140,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -154,7 +154,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CloudPCItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CloudPCItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -211,15 +211,6 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         from .get_frontline_cloud_pc_access_state.get_frontline_cloud_pc_access_state_request_builder import GetFrontlineCloudPcAccessStateRequestBuilder
 
         return GetFrontlineCloudPcAccessStateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_shift_work_cloud_pc_access_state(self) -> GetShiftWorkCloudPcAccessStateRequestBuilder:
-        """
-        Provides operations to call the getShiftWorkCloudPcAccessState method.
-        """
-        from .get_shift_work_cloud_pc_access_state.get_shift_work_cloud_pc_access_state_request_builder import GetShiftWorkCloudPcAccessStateRequestBuilder
-
-        return GetShiftWorkCloudPcAccessStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_supported_cloud_pc_remote_actions(self) -> GetSupportedCloudPcRemoteActionsRequestBuilder:
@@ -294,6 +285,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def retrieve_cloud_p_c_remote_action_results(self) -> RetrieveCloudPCRemoteActionResultsRequestBuilder:
+        """
+        Provides operations to call the retrieveCloudPCRemoteActionResults method.
+        """
+        from .retrieve_cloud_p_c_remote_action_results.retrieve_cloud_p_c_remote_action_results_request_builder import RetrieveCloudPCRemoteActionResultsRequestBuilder
+
+        return RetrieveCloudPCRemoteActionResultsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def retrieve_review_status(self) -> RetrieveReviewStatusRequestBuilder:
         """
         Provides operations to call the retrieveReviewStatus method.
@@ -365,7 +365,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

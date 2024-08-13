@@ -37,7 +37,7 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
         param passwordless_microsoft_authenticator_authentication_method_id: The unique identifier of passwordlessMicrosoftAuthenticatorAuthenticationMethod
         Returns: PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
         """
-        if not passwordless_microsoft_authenticator_authentication_method_id:
+        if passwordless_microsoft_authenticator_authentication_method_id is None:
             raise TypeError("passwordless_microsoft_authenticator_authentication_method_id cannot be null.")
         from .item.passwordless_microsoft_authenticator_authentication_method_item_request_builder import PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
 
@@ -82,7 +82,7 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
         param raw_url: The raw URL to use for the request builder.
         Returns: PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, raw_url)
     
@@ -106,7 +106,7 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

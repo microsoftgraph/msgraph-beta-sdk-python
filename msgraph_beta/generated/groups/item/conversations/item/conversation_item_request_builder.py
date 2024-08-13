@@ -32,10 +32,10 @@ class ConversationItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a group's conversation object.
+        Delete conversation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/group-delete-conversation?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/conversation-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,10 +51,10 @@ class ConversationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ConversationItemRequestBuilderGetQueryParameters]] = None) -> Optional[Conversation]:
         """
-        Get a group's conversation object.
+        Retrieve the properties and relationships of conversation object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Conversation]
-        Find more info here: https://learn.microsoft.com/graph/api/group-get-conversation?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/conversation-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -72,7 +72,7 @@ class ConversationItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a group's conversation object.
+        Delete conversation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -83,7 +83,7 @@ class ConversationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ConversationItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a group's conversation object.
+        Retrieve the properties and relationships of conversation object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,7 +98,7 @@ class ConversationItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ConversationItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ConversationItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -121,7 +121,7 @@ class ConversationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConversationItemRequestBuilderGetQueryParameters():
         """
-        Get a group's conversation object.
+        Retrieve the properties and relationships of conversation object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -129,7 +129,7 @@ class ConversationItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

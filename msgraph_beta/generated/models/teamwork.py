@@ -26,7 +26,7 @@ class Teamwork(Entity):
     is_teams_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Represents the region of the organization.
+    # Represents the region of the organization or the tenant. The region value can be any region supported by the Teams payload. The possible values are: Americas, Europe and MiddleEast, Asia Pacific, UAE, Australia, Brazil, Canada, Switzerland, Germany, France, India, Japan, South Korea, Norway, Singapore, United Kingdom, South Africa, Sweden, Qatar, Poland, Italy, Israel, USGov Community Cloud, USGov Community Cloud High, USGov Department of Defense, and China.
     region: Optional[str] = None
     # The templates associated with a team.
     team_templates: Optional[List[TeamTemplate]] = None
@@ -42,7 +42,7 @@ class Teamwork(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Teamwork
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return Teamwork()
     
@@ -87,7 +87,7 @@ class Teamwork(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("deletedChats", self.deleted_chats)

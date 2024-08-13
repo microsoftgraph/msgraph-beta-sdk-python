@@ -17,7 +17,7 @@ class DirectorySettingTemplate(DirectoryObject):
     description: Optional[str] = None
     # Display name of the template. Read-only.
     display_name: Optional[str] = None
-    # Collection of settingTemplateValues that list the set of available settings, defaults and types that make up this template.  Read-only.
+    # Collection of settingTemplateValues that list the set of available settings, defaults, and types that make up this template. Read-only.
     values: Optional[List[SettingTemplateValue]] = None
     
     @staticmethod
@@ -27,7 +27,7 @@ class DirectorySettingTemplate(DirectoryObject):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DirectorySettingTemplate
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return DirectorySettingTemplate()
     
@@ -57,7 +57,7 @@ class DirectorySettingTemplate(DirectoryObject):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("description", self.description)

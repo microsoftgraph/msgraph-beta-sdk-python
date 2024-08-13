@@ -80,9 +80,9 @@ class ServiceActivityRequestBuilder(BaseRequestBuilder):
         param inclusive_interval_start_date_time: Usage: inclusiveIntervalStartDateTime={inclusiveIntervalStartDateTime}
         Returns: GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilder
         """
-        if not exclusive_interval_end_date_time:
+        if exclusive_interval_end_date_time is None:
             raise TypeError("exclusive_interval_end_date_time cannot be null.")
-        if not inclusive_interval_start_date_time:
+        if inclusive_interval_start_date_time is None:
             raise TypeError("inclusive_interval_start_date_time cannot be null.")
         from .get_metrics_for_conditional_access_compliant_devices_sign_in_success_with_inclusive_interval_start_date_time_with_exclusive_interval_end_date_time_with_aggregation_interval_in_minutes.get_metrics_for_conditional_access_compliant_devices_sign_in_success_with_inclusive_interval_start_date_time_with_exclusive_interval_end_date_time_with_aggregation_interval_in_minutes_request_builder import GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilder
 
@@ -95,9 +95,9 @@ class ServiceActivityRequestBuilder(BaseRequestBuilder):
         param inclusive_interval_start_date_time: Usage: inclusiveIntervalStartDateTime={inclusiveIntervalStartDateTime}
         Returns: GetMetricsForConditionalAccessManagedDevicesSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilder
         """
-        if not exclusive_interval_end_date_time:
+        if exclusive_interval_end_date_time is None:
             raise TypeError("exclusive_interval_end_date_time cannot be null.")
-        if not inclusive_interval_start_date_time:
+        if inclusive_interval_start_date_time is None:
             raise TypeError("inclusive_interval_start_date_time cannot be null.")
         from .get_metrics_for_conditional_access_managed_devices_sign_in_success_with_inclusive_interval_start_date_time_with_exclusive_interval_end_date_time_with_aggregation_interval_in_minutes.get_metrics_for_conditional_access_managed_devices_sign_in_success_with_inclusive_interval_start_date_time_with_exclusive_interval_end_date_time_with_aggregation_interval_in_minutes_request_builder import GetMetricsForConditionalAccessManagedDevicesSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilder
 
@@ -110,9 +110,9 @@ class ServiceActivityRequestBuilder(BaseRequestBuilder):
         param inclusive_interval_start_date_time: Usage: inclusiveIntervalStartDateTime={inclusiveIntervalStartDateTime}
         Returns: GetMetricsForMfaSignInFailureWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilder
         """
-        if not exclusive_interval_end_date_time:
+        if exclusive_interval_end_date_time is None:
             raise TypeError("exclusive_interval_end_date_time cannot be null.")
-        if not inclusive_interval_start_date_time:
+        if inclusive_interval_start_date_time is None:
             raise TypeError("inclusive_interval_start_date_time cannot be null.")
         from .get_metrics_for_mfa_sign_in_failure_with_inclusive_interval_start_date_time_with_exclusive_interval_end_date_time_with_aggregation_interval_in_minutes.get_metrics_for_mfa_sign_in_failure_with_inclusive_interval_start_date_time_with_exclusive_interval_end_date_time_with_aggregation_interval_in_minutes_request_builder import GetMetricsForMfaSignInFailureWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilder
 
@@ -125,9 +125,9 @@ class ServiceActivityRequestBuilder(BaseRequestBuilder):
         param inclusive_interval_start_date_time: Usage: inclusiveIntervalStartDateTime={inclusiveIntervalStartDateTime}
         Returns: GetMetricsForMfaSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilder
         """
-        if not exclusive_interval_end_date_time:
+        if exclusive_interval_end_date_time is None:
             raise TypeError("exclusive_interval_end_date_time cannot be null.")
-        if not inclusive_interval_start_date_time:
+        if inclusive_interval_start_date_time is None:
             raise TypeError("inclusive_interval_start_date_time cannot be null.")
         from .get_metrics_for_mfa_sign_in_success_with_inclusive_interval_start_date_time_with_exclusive_interval_end_date_time_with_aggregation_interval_in_minutes.get_metrics_for_mfa_sign_in_success_with_inclusive_interval_start_date_time_with_exclusive_interval_end_date_time_with_aggregation_interval_in_minutes_request_builder import GetMetricsForMfaSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilder
 
@@ -140,9 +140,9 @@ class ServiceActivityRequestBuilder(BaseRequestBuilder):
         param inclusive_interval_start_date_time: Usage: inclusiveIntervalStartDateTime={inclusiveIntervalStartDateTime}
         Returns: GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilder
         """
-        if not exclusive_interval_end_date_time:
+        if exclusive_interval_end_date_time is None:
             raise TypeError("exclusive_interval_end_date_time cannot be null.")
-        if not inclusive_interval_start_date_time:
+        if inclusive_interval_start_date_time is None:
             raise TypeError("inclusive_interval_start_date_time cannot be null.")
         from .get_metrics_for_saml_sign_in_success_with_inclusive_interval_start_date_time_with_exclusive_interval_end_date_time_with_aggregation_interval_in_minutes.get_metrics_for_saml_sign_in_success_with_inclusive_interval_start_date_time_with_exclusive_interval_end_date_time_with_aggregation_interval_in_minutes_request_builder import GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilder
 
@@ -155,7 +155,7 @@ class ServiceActivityRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServiceActivity]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -200,7 +200,7 @@ class ServiceActivityRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -214,7 +214,7 @@ class ServiceActivityRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ServiceActivityRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ServiceActivityRequestBuilder(self.request_adapter, raw_url)
     
@@ -236,7 +236,7 @@ class ServiceActivityRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

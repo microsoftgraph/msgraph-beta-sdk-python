@@ -39,7 +39,7 @@ class CustomExtensionStageSettingsRequestBuilder(BaseRequestBuilder):
         Returns: CustomExtensionStageSettingItemRequestBuilder
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not custom_extension_stage_setting_id:
+        if custom_extension_stage_setting_id is None:
             raise TypeError("custom_extension_stage_setting_id cannot be null.")
         from .item.custom_extension_stage_setting_item_request_builder import CustomExtensionStageSettingItemRequestBuilder
 
@@ -76,7 +76,7 @@ class CustomExtensionStageSettingsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[CustomExtensionStageSetting]
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -112,7 +112,7 @@ class CustomExtensionStageSettingsRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -127,7 +127,7 @@ class CustomExtensionStageSettingsRequestBuilder(BaseRequestBuilder):
         Returns: CustomExtensionStageSettingsRequestBuilder
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CustomExtensionStageSettingsRequestBuilder(self.request_adapter, raw_url)
     
@@ -151,7 +151,7 @@ class CustomExtensionStageSettingsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

@@ -37,7 +37,7 @@ class PlatformCredentialMethodsRequestBuilder(BaseRequestBuilder):
         param platform_credential_authentication_method_id: The unique identifier of platformCredentialAuthenticationMethod
         Returns: PlatformCredentialAuthenticationMethodItemRequestBuilder
         """
-        if not platform_credential_authentication_method_id:
+        if platform_credential_authentication_method_id is None:
             raise TypeError("platform_credential_authentication_method_id cannot be null.")
         from .item.platform_credential_authentication_method_item_request_builder import PlatformCredentialAuthenticationMethodItemRequestBuilder
 
@@ -82,7 +82,7 @@ class PlatformCredentialMethodsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: PlatformCredentialMethodsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PlatformCredentialMethodsRequestBuilder(self.request_adapter, raw_url)
     
@@ -106,7 +106,7 @@ class PlatformCredentialMethodsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

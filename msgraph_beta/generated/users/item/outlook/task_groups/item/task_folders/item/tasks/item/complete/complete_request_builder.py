@@ -70,7 +70,7 @@ class CompleteRequestBuilder(BaseRequestBuilder):
         Returns: CompleteRequestBuilder
         """
         warn("The Outlook tasks API is deprecated and will stop returning data on February 20, 2023. Please use the new To Do API. For more details, please visit https://developer.microsoft.com/en-us/office/blogs/announcing-the-general-availability-of-microsoft-to-do-apis-on-graph/ as of 2020-08/Outlook_Tasks", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CompleteRequestBuilder(self.request_adapter, raw_url)
     

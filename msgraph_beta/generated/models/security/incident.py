@@ -44,9 +44,9 @@ class Incident(Entity):
     last_update_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # A rich text string that represents the actions that are reccomnded to take in order to resolve the incident
+    # A rich text string that represents the actions that are reccomnded to take in order to resolve the incident.
     recommended_actions: Optional[str] = None
-    # List of hunting Kusto Query Language (KQL) queries related to the incident
+    # List of hunting Kusto Query Language (KQL) queries related to the incident.
     recommended_hunting_queries: Optional[List[RecommendedHuntingQuery]] = None
     # Only populated in case an incident is grouped together with another incident, as part of the logic that processes incidents. In such a case, the status property is redirected.
     redirect_incident_id: Optional[str] = None
@@ -56,6 +56,8 @@ class Incident(Entity):
     severity: Optional[AlertSeverity] = None
     # The status property
     status: Optional[IncidentStatus] = None
+    # The overview of an attack. When applicable, the summary contains details of what occurred, impacted assets, and the type of attack.
+    summary: Optional[str] = None
     # The collection of system tags that are associated with the incident.
     system_tags: Optional[List[str]] = None
     # The Microsoft Entra tenant in which the alert was created.
@@ -68,7 +70,7 @@ class Incident(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Incident
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return Incident()
     
@@ -114,6 +116,7 @@ class Incident(Entity):
             "resolvingComment": lambda n : setattr(self, 'resolving_comment', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(AlertSeverity)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(IncidentStatus)),
+            "summary": lambda n : setattr(self, 'summary', n.get_str_value()),
             "systemTags": lambda n : setattr(self, 'system_tags', n.get_collection_of_primitive_values(str)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
@@ -127,7 +130,7 @@ class Incident(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("alerts", self.alerts)
@@ -148,6 +151,7 @@ class Incident(Entity):
         writer.write_str_value("resolvingComment", self.resolving_comment)
         writer.write_enum_value("severity", self.severity)
         writer.write_enum_value("status", self.status)
+        writer.write_str_value("summary", self.summary)
         writer.write_collection_of_primitive_values("systemTags", self.system_tags)
         writer.write_str_value("tenantId", self.tenant_id)
     

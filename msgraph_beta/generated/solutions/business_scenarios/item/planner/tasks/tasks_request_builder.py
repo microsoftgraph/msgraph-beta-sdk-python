@@ -38,7 +38,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
         param business_scenario_task_id: The unique identifier of businessScenarioTask
         Returns: BusinessScenarioTaskItemRequestBuilder
         """
-        if not business_scenario_task_id:
+        if business_scenario_task_id is None:
             raise TypeError("business_scenario_task_id cannot be null.")
         from .item.business_scenario_task_item_request_builder import BusinessScenarioTaskItemRequestBuilder
 
@@ -75,7 +75,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
         Returns: Optional[BusinessScenarioTask]
         Find more info here: https://learn.microsoft.com/graph/api/businessscenarioplanner-post-tasks?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -109,7 +109,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -123,7 +123,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: TasksRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return TasksRequestBuilder(self.request_adapter, raw_url)
     
@@ -147,7 +147,7 @@ class TasksRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

@@ -58,7 +58,7 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         Returns: Optional[Place]
         Find more info here: https://learn.microsoft.com/graph/api/place-update?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -92,7 +92,7 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -106,7 +106,7 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: PlacesWithPlaceIdRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PlacesWithPlaceIdRequestBuilder(self.request_adapter, raw_url)
     

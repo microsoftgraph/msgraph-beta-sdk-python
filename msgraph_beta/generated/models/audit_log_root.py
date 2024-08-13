@@ -37,7 +37,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AuditLogRoot
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AuditLogRoot()
     
@@ -72,7 +72,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("customSecurityAttributeAudits", self.custom_security_attribute_audits)
         writer.write_collection_of_object_values("directoryAudits", self.directory_audits)

@@ -32,13 +32,13 @@ class ResetPasswordRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ResetPasswordPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[PasswordResetResponse]:
         """
-        Initiate a reset for the password associated with a password authentication method object. This can only be done by an administrator with appropriate permissions and can't be performed on a user's own account. This flow writes the new password to Microsoft Entra ID and pushes it to on-premises Active Directory if configured using password writeback. The admin can either provide a new password or have the system generate one. The user is prompted to change their password on their next sign in. This reset is a long-running operation and will return a Location header with a link where the caller can periodically check for the status of the reset operation.
+        Initiate a reset for the password associated with a password authentication method object. This can only be done by an administrator with appropriate permissions and can't be performed on a user's own account. To reset a user's password in in Azure AD B2C, use the Update user API operation and update the passwordProfile > forceChangePasswordNextSignIn object. This flow writes the new password to Microsoft Entra ID and pushes it to on-premises Active Directory if configured using password writeback. The admin can either provide a new password or have the system generate one. The user is prompted to change their password on their next sign in. This reset is a long-running operation and will return a Location header with a link where the caller can periodically check for the status of the reset operation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PasswordResetResponse]
         Find more info here: https://learn.microsoft.com/graph/api/authenticationmethod-resetpassword?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -56,12 +56,12 @@ class ResetPasswordRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ResetPasswordPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Initiate a reset for the password associated with a password authentication method object. This can only be done by an administrator with appropriate permissions and can't be performed on a user's own account. This flow writes the new password to Microsoft Entra ID and pushes it to on-premises Active Directory if configured using password writeback. The admin can either provide a new password or have the system generate one. The user is prompted to change their password on their next sign in. This reset is a long-running operation and will return a Location header with a link where the caller can periodically check for the status of the reset operation.
+        Initiate a reset for the password associated with a password authentication method object. This can only be done by an administrator with appropriate permissions and can't be performed on a user's own account. To reset a user's password in in Azure AD B2C, use the Update user API operation and update the passwordProfile > forceChangePasswordNextSignIn object. This flow writes the new password to Microsoft Entra ID and pushes it to on-premises Active Directory if configured using password writeback. The admin can either provide a new password or have the system generate one. The user is prompted to change their password on their next sign in. This reset is a long-running operation and will return a Location header with a link where the caller can periodically check for the status of the reset operation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -75,7 +75,7 @@ class ResetPasswordRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ResetPasswordRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ResetPasswordRequestBuilder(self.request_adapter, raw_url)
     

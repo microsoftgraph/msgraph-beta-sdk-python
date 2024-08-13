@@ -53,7 +53,7 @@ class DeviceCompliancePolicy(Entity):
     odata_type: Optional[str] = None
     # List of Scope Tags for this Entity instance.
     role_scope_tag_ids: Optional[List[str]] = None
-    # The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+    # The list of scheduled action for this rule
     scheduled_actions_for_rule: Optional[List[DeviceComplianceScheduledActionForRule]] = None
     # Device compliance users status overview
     user_status_overview: Optional[DeviceComplianceUserOverview] = None
@@ -69,7 +69,7 @@ class DeviceCompliancePolicy(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceCompliancePolicy
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
@@ -197,7 +197,7 @@ class DeviceCompliancePolicy(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("assignments", self.assignments)

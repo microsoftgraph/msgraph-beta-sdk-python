@@ -21,7 +21,7 @@ class MeetingRegistrant(MeetingRegistrantBase):
     email: Optional[str] = None
     # The first name of the registrant.
     first_name: Optional[str] = None
-    # The last name of the registrant.
+    # The family name of the registrant.
     last_name: Optional[str] = None
     # Time in UTC when the registrant registers for the meeting. Read-only.
     registration_date_time: Optional[datetime.datetime] = None
@@ -35,7 +35,7 @@ class MeetingRegistrant(MeetingRegistrantBase):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MeetingRegistrant
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return MeetingRegistrant()
     
@@ -70,7 +70,7 @@ class MeetingRegistrant(MeetingRegistrantBase):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("customQuestionAnswers", self.custom_question_answers)

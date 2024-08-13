@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "AAAD49C830E7C8A218BB6C002230DF63EB4D41820C4984020B80522204869B959229A0A5DF42558CD4BAFCEC459077984F121B7E851FE49CA2B0E1D6210B04AF",
+  "descriptionHash": "ED32B3EBBEB022C2FB45CF80C875AB3478BBD6EC9E3F5D11ABAF55A643B29AA90E4A69AD4160911D9C1369E7143FD1F108B6DB75CA0700D95A37C05CACCF4F05",
   "descriptionLocation": "../../msgraph-metadata/clean_beta_openapi/openapi.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.15.0",
+  "kiotaVersion": "1.17.0",
   "clientClassName": "BaseGraphServiceClient",
   "clientNamespaceName": "msgraph_beta.generated",
   "language": "Python",

@@ -56,9 +56,9 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
     block_after_company_portal_update_deferral_in_days: Optional[int] = None
     # Whether the app should connect to the configured VPN on launch.
     connect_to_vpn_on_launch: Optional[bool] = None
-    # Friendly name of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
+    # Friendly name of the preferred custom browser to open weblink on Android.
     custom_browser_display_name: Optional[str] = None
-    # Unique identifier of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
+    # Unique identifier of a custom browser to open weblink on Android.
     custom_browser_package_id: Optional[str] = None
     # Friendly name of a custom dialer app to click-to-open a phone number on Android.
     custom_dialer_app_display_name: Optional[str] = None
@@ -120,7 +120,7 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AndroidManagedAppProtection
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AndroidManagedAppProtection()
     
@@ -204,7 +204,7 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("allowedAndroidDeviceManufacturers", self.allowed_android_device_manufacturers)

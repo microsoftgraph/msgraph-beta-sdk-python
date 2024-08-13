@@ -20,15 +20,15 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The backupRestore property
     backup_restore: Optional[BackupRestoreRoot] = None
-    # The bookingBusinesses property
+    # A collection of businesses in Microsoft Bookings. Read-only. Nullable.
     booking_businesses: Optional[List[BookingBusiness]] = None
-    # The bookingCurrencies property
+    # A collection of monetary currencies supported by a bookingBusiness. Read-only. Nullable.
     booking_currencies: Optional[List[BookingCurrency]] = None
-    # The businessScenarios property
+    # A collection of scenarios that contain relevant data and configuration information for a specific problem domain.
     business_scenarios: Optional[List[BusinessScenario]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The virtualEvents property
+    # A collection of virtual events.
     virtual_events: Optional[VirtualEventsRoot] = None
     
     @staticmethod
@@ -38,7 +38,7 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: SolutionsRoot
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return SolutionsRoot()
     
@@ -75,7 +75,7 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("backupRestore", self.backup_restore)
         writer.write_collection_of_object_values("bookingBusinesses", self.booking_businesses)

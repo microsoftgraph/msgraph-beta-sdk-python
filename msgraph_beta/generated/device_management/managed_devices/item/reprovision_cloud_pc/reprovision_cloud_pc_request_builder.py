@@ -67,7 +67,7 @@ class ReprovisionCloudPcRequestBuilder(BaseRequestBuilder):
         Returns: ReprovisionCloudPcRequestBuilder
         """
         warn("The reprovisionCloudPc API is deprecated and will stop returning on Sep 30, 2023. Please use reprovision instead as of 2023-07/reprovisionCloudPc", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ReprovisionCloudPcRequestBuilder(self.request_adapter, raw_url)
     

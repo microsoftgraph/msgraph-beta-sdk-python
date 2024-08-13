@@ -8,6 +8,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .action_state import ActionState
     from .activate_device_esim_action_result import ActivateDeviceEsimActionResult
+    from .change_assignments_action_result import ChangeAssignmentsActionResult
     from .configuration_manager_action_result import ConfigurationManagerActionResult
     from .delete_user_from_shared_apple_device_action_result import DeleteUserFromSharedAppleDeviceActionResult
     from .locate_device_action_result import LocateDeviceActionResult
@@ -45,7 +46,7 @@ class DeviceActionResult(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceActionResult
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
@@ -55,6 +56,10 @@ class DeviceActionResult(AdditionalDataHolder, BackedModel, Parsable):
             from .activate_device_esim_action_result import ActivateDeviceEsimActionResult
 
             return ActivateDeviceEsimActionResult()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.changeAssignmentsActionResult".casefold():
+            from .change_assignments_action_result import ChangeAssignmentsActionResult
+
+            return ChangeAssignmentsActionResult()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationManagerActionResult".casefold():
             from .configuration_manager_action_result import ConfigurationManagerActionResult
 
@@ -96,6 +101,7 @@ class DeviceActionResult(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .action_state import ActionState
         from .activate_device_esim_action_result import ActivateDeviceEsimActionResult
+        from .change_assignments_action_result import ChangeAssignmentsActionResult
         from .configuration_manager_action_result import ConfigurationManagerActionResult
         from .delete_user_from_shared_apple_device_action_result import DeleteUserFromSharedAppleDeviceActionResult
         from .locate_device_action_result import LocateDeviceActionResult
@@ -107,6 +113,7 @@ class DeviceActionResult(AdditionalDataHolder, BackedModel, Parsable):
 
         from .action_state import ActionState
         from .activate_device_esim_action_result import ActivateDeviceEsimActionResult
+        from .change_assignments_action_result import ChangeAssignmentsActionResult
         from .configuration_manager_action_result import ConfigurationManagerActionResult
         from .delete_user_from_shared_apple_device_action_result import DeleteUserFromSharedAppleDeviceActionResult
         from .locate_device_action_result import LocateDeviceActionResult
@@ -131,7 +138,7 @@ class DeviceActionResult(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("actionName", self.action_name)
         writer.write_enum_value("actionState", self.action_state)

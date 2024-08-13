@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .compliant_network_named_location import CompliantNetworkNamedLocation
     from .country_named_location import CountryNamedLocation
     from .entity import Entity
     from .ip_named_location import IpNamedLocation
@@ -29,12 +30,16 @@ class NamedLocation(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: NamedLocation
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.compliantNetworkNamedLocation".casefold():
+            from .compliant_network_named_location import CompliantNetworkNamedLocation
+
+            return CompliantNetworkNamedLocation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.countryNamedLocation".casefold():
             from .country_named_location import CountryNamedLocation
 
@@ -50,10 +55,12 @@ class NamedLocation(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .compliant_network_named_location import CompliantNetworkNamedLocation
         from .country_named_location import CountryNamedLocation
         from .entity import Entity
         from .ip_named_location import IpNamedLocation
 
+        from .compliant_network_named_location import CompliantNetworkNamedLocation
         from .country_named_location import CountryNamedLocation
         from .entity import Entity
         from .ip_named_location import IpNamedLocation
@@ -73,7 +80,7 @@ class NamedLocation(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

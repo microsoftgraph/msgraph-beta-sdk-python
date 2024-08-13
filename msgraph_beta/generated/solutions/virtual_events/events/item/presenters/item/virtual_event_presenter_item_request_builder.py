@@ -76,7 +76,7 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventPresenter]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -98,7 +98,7 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
         param join_web_url: Alternate key of virtualEventSession
         Returns: SessionsWithJoinWebUrlRequestBuilder
         """
-        if not join_web_url:
+        if join_web_url is None:
             raise TypeError("join_web_url cannot be null.")
         from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
 
@@ -133,7 +133,7 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -147,7 +147,7 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: VirtualEventPresenterItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return VirtualEventPresenterItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -178,7 +178,7 @@ class VirtualEventPresenterItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

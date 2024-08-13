@@ -11,11 +11,11 @@ from .entity import Entity
 
 @dataclass
 class AppScope(Entity):
-    # Provides the display name of the app-specific resource represented by the app scope. Provided for display purposes since appScopeId is often an immutable, non-human-readable id. This property is read only.
+    # Provides the display name of the app-specific resource represented by the app scope. Provided for display purposes since appScopeId is often an immutable, non-human-readable ID. Read only.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Describes the type of app-specific resource represented by the app scope and is provided for display purposes, so a user interface can convey to the user the kind of app specific resource represented by the app scope. This property is read only.
+    # Describes the type of app-specific resource represented by the app scope. For display purposes, so a user interface can convey to the user the kind of app specific resource represented by the app scope. Read only.
     type: Optional[str] = None
     
     @staticmethod
@@ -25,7 +25,7 @@ class AppScope(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AppScope
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
@@ -62,7 +62,7 @@ class AppScope(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)

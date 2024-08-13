@@ -13,7 +13,7 @@ from .entity import Entity
 
 @dataclass
 class PlannerRoster(Entity):
-    # The assignedSensitivityLabel property
+    # The sensitivity label applied to the roster. If mandatory labeling is enabled for the user and no label is specified, the user can't create the roster. Also, if labels are mandatory for the user, the user can't change the label of the roster to null. Possible values are: standard, privileged, auto, unknownFutureValue.
     assigned_sensitivity_label: Optional[SensitivityLabelAssignment] = None
     # Retrieves the members of the plannerRoster.
     members: Optional[List[PlannerRosterMember]] = None
@@ -29,7 +29,7 @@ class PlannerRoster(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: PlannerRoster
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return PlannerRoster()
     
@@ -63,7 +63,7 @@ class PlannerRoster(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("assignedSensitivityLabel", self.assigned_sensitivity_label)
