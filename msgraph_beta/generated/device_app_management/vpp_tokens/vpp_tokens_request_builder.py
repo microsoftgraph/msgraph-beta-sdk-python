@@ -40,7 +40,7 @@ class VppTokensRequestBuilder(BaseRequestBuilder):
         param vpp_token_id: The unique identifier of vppToken
         Returns: VppTokenItemRequestBuilder
         """
-        if not vpp_token_id:
+        if vpp_token_id is None:
             raise TypeError("vpp_token_id cannot be null.")
         from .item.vpp_token_item_request_builder import VppTokenItemRequestBuilder
 
@@ -74,7 +74,7 @@ class VppTokensRequestBuilder(BaseRequestBuilder):
         param bundle_id: Usage: bundleId='{bundleId}'
         Returns: GetLicensesForAppWithBundleIdRequestBuilder
         """
-        if not bundle_id:
+        if bundle_id is None:
             raise TypeError("bundle_id cannot be null.")
         from .get_licenses_for_app_with_bundle_id.get_licenses_for_app_with_bundle_id_request_builder import GetLicensesForAppWithBundleIdRequestBuilder
 
@@ -87,7 +87,7 @@ class VppTokensRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VppToken]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -121,7 +121,7 @@ class VppTokensRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -135,7 +135,7 @@ class VppTokensRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: VppTokensRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return VppTokensRequestBuilder(self.request_adapter, raw_url)
     
@@ -168,7 +168,7 @@ class VppTokensRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

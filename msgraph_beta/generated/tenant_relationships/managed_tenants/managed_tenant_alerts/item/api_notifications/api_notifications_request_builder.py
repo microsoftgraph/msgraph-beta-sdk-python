@@ -37,7 +37,7 @@ class ApiNotificationsRequestBuilder(BaseRequestBuilder):
         param managed_tenant_api_notification_id: The unique identifier of managedTenantApiNotification
         Returns: ManagedTenantApiNotificationItemRequestBuilder
         """
-        if not managed_tenant_api_notification_id:
+        if managed_tenant_api_notification_id is None:
             raise TypeError("managed_tenant_api_notification_id cannot be null.")
         from .item.managed_tenant_api_notification_item_request_builder import ManagedTenantApiNotificationItemRequestBuilder
 
@@ -82,7 +82,7 @@ class ApiNotificationsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ApiNotificationsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ApiNotificationsRequestBuilder(self.request_adapter, raw_url)
     
@@ -106,7 +106,7 @@ class ApiNotificationsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

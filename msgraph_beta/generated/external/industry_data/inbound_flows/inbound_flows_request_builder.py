@@ -38,7 +38,7 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
         param inbound_flow_id: The unique identifier of inboundFlow
         Returns: InboundFlowItemRequestBuilder
         """
-        if not inbound_flow_id:
+        if inbound_flow_id is None:
             raise TypeError("inbound_flow_id cannot be null.")
         from .item.inbound_flow_item_request_builder import InboundFlowItemRequestBuilder
 
@@ -48,10 +48,10 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[InboundFlowsRequestBuilderGetQueryParameters]] = None) -> Optional[InboundFlowCollectionResponse]:
         """
-        Get a list of the inboundFileFlow objects and their properties.
+        Get a list of the inboundFlow objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlowCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-list?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,13 +69,13 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: InboundFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[InboundFlow]:
         """
-        Create a new inboundFlow object. The following prerequisite resources are required when you create an inboundFlow:
+        Create a new inboundFileFlow object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-post?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-post?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -93,7 +93,7 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[InboundFlowsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the inboundFileFlow objects and their properties.
+        Get a list of the inboundFlow objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,12 +104,12 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: InboundFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new inboundFlow object. The following prerequisite resources are required when you create an inboundFlow:
+        Create a new inboundFileFlow object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -123,7 +123,7 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: InboundFlowsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return InboundFlowsRequestBuilder(self.request_adapter, raw_url)
     
@@ -139,7 +139,7 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InboundFlowsRequestBuilderGetQueryParameters():
         """
-        Get a list of the inboundFileFlow objects and their properties.
+        Get a list of the inboundFlow objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -147,7 +147,7 @@ class InboundFlowsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

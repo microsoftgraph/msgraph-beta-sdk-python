@@ -10,7 +10,7 @@ from .entity import Entity
 
 @dataclass
 class AdminReportSettings(Entity):
-    # If set to true, all reports will conceal user information such as usernames, groups, and sites. If false, all reports will show identifiable information. This property represents a setting in the Microsoft 365 admin center. Required.
+    # If set to true, all reports conceal user information such as usernames, groups, and sites. If false, all reports show identifiable information. This property represents a setting in the Microsoft 365 admin center. Required.
     display_concealed_names: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -22,7 +22,7 @@ class AdminReportSettings(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AdminReportSettings
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AdminReportSettings()
     
@@ -48,7 +48,7 @@ class AdminReportSettings(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("displayConcealedNames", self.display_concealed_names)

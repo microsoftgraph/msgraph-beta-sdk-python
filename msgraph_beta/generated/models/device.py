@@ -44,7 +44,7 @@ class Device(DirectoryObject):
     domain_name: Optional[str] = None
     # Enrollment profile applied to the device. For example, Apple Device Enrollment Profile, Device enrollment - Corporate device identifiers, or Windows Autopilot profile name. This property is set by Intune.
     enrollment_profile_name: Optional[str] = None
-    # Enrollment type of the device. This property is set by Intune. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement.
+    # Enrollment type of the device. This property is set by Intune. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement, windowsAzureADJoinUsingDeviceAuth,appleUserEnrollment, appleUserEnrollmentWithServiceAccount. NOTE: This property might return other values apart from those listed.
     enrollment_type: Optional[str] = None
     # Contains extension attributes 1-15 for the device. The individual extension attributes aren't selectable. These properties are mastered in cloud and can be set during creation or update of a device object in Microsoft Entra ID. Supports $filter (eq, not, startsWith, and eq on null values).
     extension_attributes: Optional[OnPremisesExtensionAttributes] = None
@@ -56,9 +56,9 @@ class Device(DirectoryObject):
     is_compliant: Optional[bool] = None
     # true if the device is managed by a Mobile Device Management (MDM) app; otherwise, false. This can only be updated by Intune for any device OS type or by an approved MDM app for Windows OS devices. Supports $filter (eq, ne, not).
     is_managed: Optional[bool] = None
-    # Indicates whether the device is a member of a restricted management administrative unit, in which case it requires a role scoped to the restricted administrative unit to manage. The default value is false. Read-only.  To manage a device that's a member of a restricted administrative unit, the calling app must be assigned the Directory.Write.Restricted permission. For delegated scenarios, the administrators must also be explicitly assigned supported roles at the restricted administrative unit scope.
+    # Indicates whether the device is a member of a restricted management administrative unit. The default value is false. Read-only.  To manage a device that's a member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
     is_management_restricted: Optional[bool] = None
-    # true if the device is rooted; false if the device is jail-broken. This property can only be updated by Intune.
+    # true if the device is rooted or jail-broken. This property can only be updated by Intune.
     is_rooted: Optional[bool] = None
     # Form factor of the device. Only returned if the user signs in with a Microsoft account as part of Project Rome.
     kind: Optional[str] = None
@@ -114,7 +114,7 @@ class Device(DirectoryObject):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Device
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return Device()
     
@@ -193,7 +193,7 @@ class Device(DirectoryObject):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("accountEnabled", self.account_enabled)

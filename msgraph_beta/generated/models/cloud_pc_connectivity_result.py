@@ -16,13 +16,15 @@ class CloudPcConnectivityResult(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # A list of failed health check items. If the status property is available, this property will be empty.
+    # A list of failed health check items. If the status property is available, this property is empty.
     failed_health_check_items: Optional[List[CloudPcHealthCheckItem]] = None
+    # The last modified time for connectivity status of the Cloud PC. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: 2014-01-01T00:00:00Z.
+    last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The status property
     status: Optional[CloudPcConnectivityStatus] = None
-    # Datetime when the status was updated. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
+    # Datetime when the status was updated. This property is deprecated and will no longer be supported effective August 31, 2024. Use lastModifiedDateTime instead. Read-Only.
     updated_date_time: Optional[datetime.datetime] = None
     
     @staticmethod
@@ -32,7 +34,7 @@ class CloudPcConnectivityResult(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CloudPcConnectivityResult
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return CloudPcConnectivityResult()
     
@@ -49,6 +51,7 @@ class CloudPcConnectivityResult(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "failedHealthCheckItems": lambda n : setattr(self, 'failed_health_check_items', n.get_collection_of_object_values(CloudPcHealthCheckItem)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcConnectivityStatus)),
             "updatedDateTime": lambda n : setattr(self, 'updated_date_time', n.get_datetime_value()),
@@ -61,9 +64,10 @@ class CloudPcConnectivityResult(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("failedHealthCheckItems", self.failed_health_check_items)
+        writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_datetime_value("updatedDateTime", self.updated_date_time)

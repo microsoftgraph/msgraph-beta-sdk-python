@@ -37,7 +37,7 @@ class SalesInvoiceLinesRequestBuilder(BaseRequestBuilder):
         param sales_invoice_line_id: The unique identifier of salesInvoiceLine
         Returns: SalesInvoiceLineItemRequestBuilder
         """
-        if not sales_invoice_line_id:
+        if sales_invoice_line_id is None:
             raise TypeError("sales_invoice_line_id cannot be null.")
         from .item.sales_invoice_line_item_request_builder import SalesInvoiceLineItemRequestBuilder
 
@@ -82,7 +82,7 @@ class SalesInvoiceLinesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: SalesInvoiceLinesRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SalesInvoiceLinesRequestBuilder(self.request_adapter, raw_url)
     
@@ -106,7 +106,7 @@ class SalesInvoiceLinesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

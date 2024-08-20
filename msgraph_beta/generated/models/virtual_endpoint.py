@@ -16,7 +16,6 @@ if TYPE_CHECKING:
     from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
     from .cloud_pc_reports import CloudPcReports
     from .cloud_pc_service_plan import CloudPcServicePlan
-    from .cloud_pc_shared_use_service_plan import CloudPcSharedUseServicePlan
     from .cloud_pc_snapshot import CloudPcSnapshot
     from .cloud_pc_supported_region import CloudPcSupportedRegion
     from .cloud_pc_user_setting import CloudPcUserSetting
@@ -55,8 +54,6 @@ class VirtualEndpoint(Entity):
     reports: Optional[CloudPcReports] = None
     # Cloud PC service plans.
     service_plans: Optional[List[CloudPcServicePlan]] = None
-    # Cloud PC shared-use service plans. The sharedUseServicePlans relationship is deprecated and stopped returning data on October 8, 2023. Going forward, use the frontLineServicePlans relationship.
-    shared_use_service_plans: Optional[List[CloudPcSharedUseServicePlan]] = None
     # Cloud PC snapshots.
     snapshots: Optional[List[CloudPcSnapshot]] = None
     # Cloud PC supported regions.
@@ -71,7 +68,7 @@ class VirtualEndpoint(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: VirtualEndpoint
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return VirtualEndpoint()
     
@@ -92,7 +89,6 @@ class VirtualEndpoint(Entity):
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
         from .cloud_pc_reports import CloudPcReports
         from .cloud_pc_service_plan import CloudPcServicePlan
-        from .cloud_pc_shared_use_service_plan import CloudPcSharedUseServicePlan
         from .cloud_pc_snapshot import CloudPcSnapshot
         from .cloud_pc_supported_region import CloudPcSupportedRegion
         from .cloud_pc_user_setting import CloudPcUserSetting
@@ -111,7 +107,6 @@ class VirtualEndpoint(Entity):
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
         from .cloud_pc_reports import CloudPcReports
         from .cloud_pc_service_plan import CloudPcServicePlan
-        from .cloud_pc_shared_use_service_plan import CloudPcSharedUseServicePlan
         from .cloud_pc_snapshot import CloudPcSnapshot
         from .cloud_pc_supported_region import CloudPcSupportedRegion
         from .cloud_pc_user_setting import CloudPcUserSetting
@@ -132,7 +127,6 @@ class VirtualEndpoint(Entity):
             "provisioningPolicies": lambda n : setattr(self, 'provisioning_policies', n.get_collection_of_object_values(CloudPcProvisioningPolicy)),
             "reports": lambda n : setattr(self, 'reports', n.get_object_value(CloudPcReports)),
             "servicePlans": lambda n : setattr(self, 'service_plans', n.get_collection_of_object_values(CloudPcServicePlan)),
-            "sharedUseServicePlans": lambda n : setattr(self, 'shared_use_service_plans', n.get_collection_of_object_values(CloudPcSharedUseServicePlan)),
             "snapshots": lambda n : setattr(self, 'snapshots', n.get_collection_of_object_values(CloudPcSnapshot)),
             "supportedRegions": lambda n : setattr(self, 'supported_regions', n.get_collection_of_object_values(CloudPcSupportedRegion)),
             "userSettings": lambda n : setattr(self, 'user_settings', n.get_collection_of_object_values(CloudPcUserSetting)),
@@ -147,7 +141,7 @@ class VirtualEndpoint(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("auditEvents", self.audit_events)
@@ -163,7 +157,6 @@ class VirtualEndpoint(Entity):
         writer.write_collection_of_object_values("provisioningPolicies", self.provisioning_policies)
         writer.write_object_value("reports", self.reports)
         writer.write_collection_of_object_values("servicePlans", self.service_plans)
-        writer.write_collection_of_object_values("sharedUseServicePlans", self.shared_use_service_plans)
         writer.write_collection_of_object_values("snapshots", self.snapshots)
         writer.write_collection_of_object_values("supportedRegions", self.supported_regions)
         writer.write_collection_of_object_values("userSettings", self.user_settings)

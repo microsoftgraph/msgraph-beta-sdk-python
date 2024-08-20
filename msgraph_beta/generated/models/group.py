@@ -99,7 +99,7 @@ class Group(DirectoryObject):
     is_assignable_to_role: Optional[bool] = None
     # Indicates whether the user marked the group as favorite.
     is_favorite: Optional[bool] = None
-    # Indicates whether the group is a member of a restricted management administrative unit, in which case it requires a role scoped to the restricted administrative unit to manage. The default value is false. Read-only.  To manage a group member of a restricted administrative unit, the calling app must be assigned the Directory.Write.Restricted permission. For delegated scenarios, the administrators must also be explicitly assigned supported roles at the restricted administrative unit scope.
+    # Indicates whether the group is a member of a restricted management administrative unit. The default value is false. Read-only.  To manage a group member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
     is_management_restricted: Optional[bool] = None
     # Indicates whether the signed-in user is subscribed to receive email conversations. The default value is true. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
     is_subscribed_by_mail: Optional[bool] = None
@@ -133,7 +133,7 @@ class Group(DirectoryObject):
     on_premises_provisioning_errors: Optional[List[OnPremisesProvisioningError]] = None
     # Contains the on-premises SAM account name synchronized from the on-premises directory. The property is only populated for customers synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect.Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith). Read-only.
     on_premises_sam_account_name: Optional[str] = None
-    # Contains the on-premises security identifier (SID) for the group synchronized from on-premises to the cloud. Returned by default. Supports $filter (eq including on null values). Read-only.
+    # Contains the on-premises security identifier (SID) for the group synchronized from on-premises to the cloud. Read-only. Returned by default. Supports $filter (eq including on null values).
     on_premises_security_identifier: Optional[str] = None
     # true if this group is synced from an on-premises directory; false if this group was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Returned by default. Read-only. Supports $filter (eq, ne, not, in, and eq on null values).
     on_premises_sync_enabled: Optional[bool] = None
@@ -167,7 +167,7 @@ class Group(DirectoryObject):
     resource_provisioning_options: Optional[List[str]] = None
     # Specifies whether the group is a security group. Required.Returned by default. Supports $filter (eq, ne, not, in).
     security_enabled: Optional[bool] = None
-    # Security identifier of the group, used in Windows scenarios. Returned by default.
+    # Security identifier of the group, used in Windows scenarios. Read-only. Returned by default.
     security_identifier: Optional[str] = None
     # Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object.
     service_provisioning_errors: Optional[List[ServiceProvisioningError]] = None
@@ -205,7 +205,7 @@ class Group(DirectoryObject):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Group
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return Group()
     
@@ -358,7 +358,7 @@ class Group(DirectoryObject):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("acceptedSenders", self.accepted_senders)

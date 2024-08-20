@@ -61,7 +61,7 @@ class CommunicationsRequestBuilder(BaseRequestBuilder):
         param join_web_url: Alternate key of onlineMeeting
         Returns: OnlineMeetingsWithJoinWebUrlRequestBuilder
         """
-        if not join_web_url:
+        if join_web_url is None:
             raise TypeError("join_web_url cannot be null.")
         from .online_meetings_with_join_web_url.online_meetings_with_join_web_url_request_builder import OnlineMeetingsWithJoinWebUrlRequestBuilder
 
@@ -74,7 +74,7 @@ class CommunicationsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudCommunications]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -108,7 +108,7 @@ class CommunicationsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -122,7 +122,7 @@ class CommunicationsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CommunicationsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CommunicationsRequestBuilder(self.request_adapter, raw_url)
     
@@ -182,7 +182,7 @@ class CommunicationsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

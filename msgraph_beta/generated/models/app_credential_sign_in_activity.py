@@ -15,7 +15,7 @@ from .entity import Entity
 
 @dataclass
 class AppCredentialSignInActivity(Entity):
-    # The globally unique appId (also called client ID on the Microsoft Entra admin center) of the credential application.
+    # The globally unique appId (also called client ID on the Microsoft Entra admin center) of the credentialed application.
     app_id: Optional[str] = None
     # The ID of the credential application instance.
     app_object_id: Optional[str] = None
@@ -47,7 +47,7 @@ class AppCredentialSignInActivity(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AppCredentialSignInActivity
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AppCredentialSignInActivity()
     
@@ -91,7 +91,7 @@ class AppCredentialSignInActivity(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("appId", self.app_id)

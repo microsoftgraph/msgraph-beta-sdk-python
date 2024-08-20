@@ -38,7 +38,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder(BaseRe
         param advanced_threat_protection_onboarding_device_setting_state_id: The unique identifier of advancedThreatProtectionOnboardingDeviceSettingState
         Returns: AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder
         """
-        if not advanced_threat_protection_onboarding_device_setting_state_id:
+        if advanced_threat_protection_onboarding_device_setting_state_id is None:
             raise TypeError("advanced_threat_protection_onboarding_device_setting_state_id cannot be null.")
         from .item.advanced_threat_protection_onboarding_device_setting_state_item_request_builder import AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder
 
@@ -73,7 +73,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder(BaseRe
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AdvancedThreatProtectionOnboardingDeviceSettingState]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -107,7 +107,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder(BaseRe
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -121,7 +121,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder(BaseRe
         param raw_url: The raw URL to use for the request builder.
         Returns: AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder(self.request_adapter, raw_url)
     
@@ -145,7 +145,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder(BaseRe
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

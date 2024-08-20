@@ -37,7 +37,7 @@ class PrincipalsRequestBuilder(BaseRequestBuilder):
         param directory_object_id: The unique identifier of directoryObject
         Returns: DirectoryObjectItemRequestBuilder
         """
-        if not directory_object_id:
+        if directory_object_id is None:
             raise TypeError("directory_object_id cannot be null.")
         from .item.directory_object_item_request_builder import DirectoryObjectItemRequestBuilder
 
@@ -47,7 +47,7 @@ class PrincipalsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PrincipalsRequestBuilderGetQueryParameters]] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Read-only collection that references the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
+        Read-only collection that references the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
         """
@@ -67,7 +67,7 @@ class PrincipalsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PrincipalsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read-only collection that references the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
+        Read-only collection that references the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -82,7 +82,7 @@ class PrincipalsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: PrincipalsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PrincipalsRequestBuilder(self.request_adapter, raw_url)
     
@@ -98,7 +98,7 @@ class PrincipalsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PrincipalsRequestBuilderGetQueryParameters():
         """
-        Read-only collection that references the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
+        Read-only collection that references the assigned principals. Provided so that callers can get the principals using $expand at the same time as getting the role assignment. Read-only. Supports $expand.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -106,7 +106,7 @@ class PrincipalsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

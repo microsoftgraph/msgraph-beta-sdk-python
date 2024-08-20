@@ -17,14 +17,15 @@ if TYPE_CHECKING:
     from ....models.site import Site
     from .analytics.analytics_request_builder import AnalyticsRequestBuilder
     from .columns.columns_request_builder import ColumnsRequestBuilder
+    from .content_models.content_models_request_builder import ContentModelsRequestBuilder
     from .content_types.content_types_request_builder import ContentTypesRequestBuilder
     from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
+    from .document_processing_jobs.document_processing_jobs_request_builder import DocumentProcessingJobsRequestBuilder
     from .drive.drive_request_builder import DriveRequestBuilder
     from .drives.drives_request_builder import DrivesRequestBuilder
     from .external_columns.external_columns_request_builder import ExternalColumnsRequestBuilder
     from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder import GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
     from .get_applicable_content_types_for_list_with_list_id.get_applicable_content_types_for_list_with_list_id_request_builder import GetApplicableContentTypesForListWithListIdRequestBuilder
-    from .get_by_path_with_path1.get_by_path_with_path1_request_builder import GetByPathWithPath1RequestBuilder
     from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
     from .items.items_request_builder import ItemsRequestBuilder
     from .last_modified_by_user.last_modified_by_user_request_builder import LastModifiedByUserRequestBuilder
@@ -81,11 +82,11 @@ class GetByPathWithPathRequestBuilder(BaseRequestBuilder):
         param start_date_time: Usage: startDateTime='{startDateTime}'
         Returns: GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
         """
-        if not end_date_time:
+        if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
-        if not interval:
+        if interval is None:
             raise TypeError("interval cannot be null.")
-        if not start_date_time:
+        if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
         from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder import GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
 
@@ -97,23 +98,11 @@ class GetByPathWithPathRequestBuilder(BaseRequestBuilder):
         param list_id: Usage: listId='{listId}'
         Returns: GetApplicableContentTypesForListWithListIdRequestBuilder
         """
-        if not list_id:
+        if list_id is None:
             raise TypeError("list_id cannot be null.")
         from .get_applicable_content_types_for_list_with_list_id.get_applicable_content_types_for_list_with_list_id_request_builder import GetApplicableContentTypesForListWithListIdRequestBuilder
 
         return GetApplicableContentTypesForListWithListIdRequestBuilder(self.request_adapter, self.path_parameters, list_id)
-    
-    def get_by_path_with_path1(self,path1: str) -> GetByPathWithPath1RequestBuilder:
-        """
-        Provides operations to call the getByPath method.
-        param path1: Usage: path='{path1}'
-        Returns: GetByPathWithPath1RequestBuilder
-        """
-        if not path1:
-            raise TypeError("path1 cannot be null.")
-        from .get_by_path_with_path1.get_by_path_with_path1_request_builder import GetByPathWithPath1RequestBuilder
-
-        return GetByPathWithPath1RequestBuilder(self.request_adapter, self.path_parameters, path1)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
@@ -132,7 +121,7 @@ class GetByPathWithPathRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: GetByPathWithPathRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return GetByPathWithPathRequestBuilder(self.request_adapter, raw_url)
     
@@ -155,6 +144,15 @@ class GetByPathWithPathRequestBuilder(BaseRequestBuilder):
         return ColumnsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def content_models(self) -> ContentModelsRequestBuilder:
+        """
+        Provides operations to manage the contentModels property of the microsoft.graph.site entity.
+        """
+        from .content_models.content_models_request_builder import ContentModelsRequestBuilder
+
+        return ContentModelsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def content_types(self) -> ContentTypesRequestBuilder:
         """
         Provides operations to manage the contentTypes property of the microsoft.graph.site entity.
@@ -171,6 +169,15 @@ class GetByPathWithPathRequestBuilder(BaseRequestBuilder):
         from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
 
         return CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def document_processing_jobs(self) -> DocumentProcessingJobsRequestBuilder:
+        """
+        Provides operations to manage the documentProcessingJobs property of the microsoft.graph.site entity.
+        """
+        from .document_processing_jobs.document_processing_jobs_request_builder import DocumentProcessingJobsRequestBuilder
+
+        return DocumentProcessingJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def drive(self) -> DriveRequestBuilder:

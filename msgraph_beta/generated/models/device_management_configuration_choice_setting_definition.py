@@ -12,11 +12,11 @@ from .device_management_configuration_setting_definition import DeviceManagement
 
 @dataclass
 class DeviceManagementConfigurationChoiceSettingDefinition(DeviceManagementConfigurationSettingDefinition):
-    # Default option for choice setting
+    # Default option for the choice setting.
     default_option_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Options for the setting that can be selected
+    # Options for the setting that can be selected.
     options: Optional[List[DeviceManagementConfigurationOptionDefinition]] = None
     
     @staticmethod
@@ -26,7 +26,7 @@ class DeviceManagementConfigurationChoiceSettingDefinition(DeviceManagementConfi
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationChoiceSettingDefinition
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
@@ -65,7 +65,7 @@ class DeviceManagementConfigurationChoiceSettingDefinition(DeviceManagementConfi
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("defaultOptionId", self.default_option_id)

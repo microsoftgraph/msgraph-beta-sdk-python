@@ -39,7 +39,7 @@ class FeatureRolloutPoliciesRequestBuilder(BaseRequestBuilder):
         Returns: FeatureRolloutPolicyItemRequestBuilder
         """
         warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
-        if not feature_rollout_policy_id:
+        if feature_rollout_policy_id is None:
             raise TypeError("feature_rollout_policy_id cannot be null.")
         from .item.feature_rollout_policy_item_request_builder import FeatureRolloutPolicyItemRequestBuilder
 
@@ -76,7 +76,7 @@ class FeatureRolloutPoliciesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[FeatureRolloutPolicy]
         """
         warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -112,7 +112,7 @@ class FeatureRolloutPoliciesRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -127,7 +127,7 @@ class FeatureRolloutPoliciesRequestBuilder(BaseRequestBuilder):
         Returns: FeatureRolloutPoliciesRequestBuilder
         """
         warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return FeatureRolloutPoliciesRequestBuilder(self.request_adapter, raw_url)
     
@@ -151,7 +151,7 @@ class FeatureRolloutPoliciesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

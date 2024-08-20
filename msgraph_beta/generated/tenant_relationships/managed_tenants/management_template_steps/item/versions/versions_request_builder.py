@@ -37,7 +37,7 @@ class VersionsRequestBuilder(BaseRequestBuilder):
         param management_template_step_version_id: The unique identifier of managementTemplateStepVersion
         Returns: ManagementTemplateStepVersionItemRequestBuilder
         """
-        if not management_template_step_version_id:
+        if management_template_step_version_id is None:
             raise TypeError("management_template_step_version_id cannot be null.")
         from .item.management_template_step_version_item_request_builder import ManagementTemplateStepVersionItemRequestBuilder
 
@@ -82,7 +82,7 @@ class VersionsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: VersionsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return VersionsRequestBuilder(self.request_adapter, raw_url)
     
@@ -106,7 +106,7 @@ class VersionsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

@@ -10,9 +10,9 @@ from .device_management_configuration_setting_group_definition import DeviceMana
 
 @dataclass
 class DeviceManagementConfigurationSettingGroupCollectionDefinition(DeviceManagementConfigurationSettingGroupDefinition):
-    # Maximum number of setting group count in the collection
+    # Maximum number of setting group count in the collection. Valid values 1 to 100
     maximum_count: Optional[int] = None
-    # Minimum number of setting group count in the collection
+    # Minimum number of setting group count in the collection. Valid values 1 to 100
     minimum_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -24,7 +24,7 @@ class DeviceManagementConfigurationSettingGroupCollectionDefinition(DeviceManage
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationSettingGroupCollectionDefinition
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationSettingGroupCollectionDefinition()
     
@@ -51,7 +51,7 @@ class DeviceManagementConfigurationSettingGroupCollectionDefinition(DeviceManage
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("maximumCount", self.maximum_count)

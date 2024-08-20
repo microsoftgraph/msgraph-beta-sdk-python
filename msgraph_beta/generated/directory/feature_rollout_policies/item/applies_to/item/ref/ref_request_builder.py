@@ -66,7 +66,7 @@ class RefRequestBuilder(BaseRequestBuilder):
         Returns: RefRequestBuilder
         """
         warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return RefRequestBuilder(self.request_adapter, raw_url)
     

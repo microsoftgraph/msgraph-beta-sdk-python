@@ -11,7 +11,7 @@ from .group_assignment_target import GroupAssignmentTarget
 @dataclass
 class ExclusionGroupAssignmentTarget(GroupAssignmentTarget):
     """
-    Represents a group that should be excluded from an assignment.
+    The AAD Group we are deploying firmware updates to
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.exclusionGroupAssignmentTarget"
@@ -23,7 +23,7 @@ class ExclusionGroupAssignmentTarget(GroupAssignmentTarget):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ExclusionGroupAssignmentTarget
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ExclusionGroupAssignmentTarget()
     
@@ -48,7 +48,7 @@ class ExclusionGroupAssignmentTarget(GroupAssignmentTarget):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
     

@@ -39,7 +39,7 @@ class MigratableToRequestBuilder(BaseRequestBuilder):
         param device_management_template_id1: The unique identifier of deviceManagementTemplate
         Returns: DeviceManagementTemplateItemRequestBuilder
         """
-        if not device_management_template_id1:
+        if device_management_template_id1 is None:
             raise TypeError("device_management_template_id1 cannot be null.")
         from .item.device_management_template_item_request_builder import DeviceManagementTemplateItemRequestBuilder
 
@@ -74,7 +74,7 @@ class MigratableToRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceManagementTemplate]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -108,7 +108,7 @@ class MigratableToRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -122,7 +122,7 @@ class MigratableToRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MigratableToRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MigratableToRequestBuilder(self.request_adapter, raw_url)
     
@@ -155,7 +155,7 @@ class MigratableToRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

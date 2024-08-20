@@ -43,7 +43,7 @@ class GroupsRequestBuilder(BaseRequestBuilder):
         param group_id: The unique identifier of group
         Returns: GroupItemRequestBuilder
         """
-        if not group_id:
+        if group_id is None:
             raise TypeError("group_id cannot be null.")
         from .item.group_item_request_builder import GroupItemRequestBuilder
 
@@ -74,13 +74,13 @@ class GroupsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Group, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Group]:
         """
-        Create a new group object if it doesn't exist, or update the properties of an existing group object.You can create or update the following types of group: By default, this operation returns only a subset of the properties for each group. For a list of properties that are returned by default, see the Properties section of the group resource. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option.
+        Create a new group as specified in the request body. You can create one of the following groups: This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option. Note: To create a team, first create a group then add a team to it, see create team.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Group]
-        Find more info here: https://learn.microsoft.com/graph/api/group-upsert?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/group-post-groups?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -109,12 +109,12 @@ class GroupsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Group, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new group object if it doesn't exist, or update the properties of an existing group object.You can create or update the following types of group: By default, this operation returns only a subset of the properties for each group. For a list of properties that are returned by default, see the Properties section of the group resource. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option.
+        Create a new group as specified in the request body. You can create one of the following groups: This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option. Note: To create a team, first create a group then add a team to it, see create team.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -128,7 +128,7 @@ class GroupsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: GroupsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return GroupsRequestBuilder(self.request_adapter, raw_url)
     
@@ -197,7 +197,7 @@ class GroupsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
