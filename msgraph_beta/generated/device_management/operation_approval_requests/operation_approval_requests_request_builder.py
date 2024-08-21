@@ -42,7 +42,7 @@ class OperationApprovalRequestsRequestBuilder(BaseRequestBuilder):
         param operation_approval_request_id: The unique identifier of operationApprovalRequest
         Returns: OperationApprovalRequestItemRequestBuilder
         """
-        if not operation_approval_request_id:
+        if operation_approval_request_id is None:
             raise TypeError("operation_approval_request_id cannot be null.")
         from .item.operation_approval_request_item_request_builder import OperationApprovalRequestItemRequestBuilder
 
@@ -77,7 +77,7 @@ class OperationApprovalRequestsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OperationApprovalRequest]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -99,7 +99,7 @@ class OperationApprovalRequestsRequestBuilder(BaseRequestBuilder):
         param id: Usage: id='{id}'
         Returns: RetrieveMyRequestByIdWithIdRequestBuilder
         """
-        if not id:
+        if id is None:
             raise TypeError("id cannot be null.")
         from .retrieve_my_request_by_id_with_id.retrieve_my_request_by_id_with_id_request_builder import RetrieveMyRequestByIdWithIdRequestBuilder
 
@@ -123,7 +123,7 @@ class OperationApprovalRequestsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -137,7 +137,7 @@ class OperationApprovalRequestsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: OperationApprovalRequestsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return OperationApprovalRequestsRequestBuilder(self.request_adapter, raw_url)
     
@@ -188,7 +188,7 @@ class OperationApprovalRequestsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

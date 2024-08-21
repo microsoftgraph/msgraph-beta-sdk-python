@@ -33,7 +33,7 @@ class DeviceHealthScriptRemediationHistoryData(AdditionalDataHolder, BackedModel
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceHealthScriptRemediationHistoryData
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return DeviceHealthScriptRemediationHistoryData()
     
@@ -57,7 +57,7 @@ class DeviceHealthScriptRemediationHistoryData(AdditionalDataHolder, BackedModel
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_date_value("date", self.date)
         writer.write_int_value("detectFailedDeviceCount", self.detect_failed_device_count)

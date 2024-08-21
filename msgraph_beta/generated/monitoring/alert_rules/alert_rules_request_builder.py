@@ -38,7 +38,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
         param alert_rule_id: The unique identifier of alertRule
         Returns: AlertRuleItemRequestBuilder
         """
-        if not alert_rule_id:
+        if alert_rule_id is None:
             raise TypeError("alert_rule_id cannot be null.")
         from .item.alert_rule_item_request_builder import AlertRuleItemRequestBuilder
 
@@ -73,7 +73,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertRule]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -107,7 +107,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -121,7 +121,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AlertRulesRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AlertRulesRequestBuilder(self.request_adapter, raw_url)
     
@@ -145,7 +145,7 @@ class AlertRulesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

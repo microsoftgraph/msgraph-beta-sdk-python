@@ -66,7 +66,7 @@ class CountRequestBuilder(BaseRequestBuilder):
         Returns: CountRequestBuilder
         """
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CountRequestBuilder(self.request_adapter, raw_url)
     
@@ -81,7 +81,7 @@ class CountRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "filter":
                 return "%24filter"

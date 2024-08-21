@@ -13,9 +13,9 @@ from .virtual_event_registration_question_base import VirtualEventRegistrationQu
 class VirtualEventRegistrationCustomQuestion(VirtualEventRegistrationQuestionBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.virtualEventRegistrationCustomQuestion"
-    # The answerChoices property
+    # Answer choices when answerInputType is singleChoice or multiChoice.
     answer_choices: Optional[List[str]] = None
-    # The answerInputType property
+    # Input type of the registration question answer.
     answer_input_type: Optional[VirtualEventRegistrationQuestionAnswerInputType] = None
     
     @staticmethod
@@ -25,7 +25,7 @@ class VirtualEventRegistrationCustomQuestion(VirtualEventRegistrationQuestionBas
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: VirtualEventRegistrationCustomQuestion
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return VirtualEventRegistrationCustomQuestion()
     
@@ -54,7 +54,7 @@ class VirtualEventRegistrationCustomQuestion(VirtualEventRegistrationQuestionBas
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("answerChoices", self.answer_choices)

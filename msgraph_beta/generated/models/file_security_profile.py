@@ -57,7 +57,7 @@ class FileSecurityProfile(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: FileSecurityProfile
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return FileSecurityProfile()
     
@@ -106,7 +106,7 @@ class FileSecurityProfile(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("activityGroupNames", self.activity_group_names)

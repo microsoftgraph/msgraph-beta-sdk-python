@@ -106,6 +106,7 @@ if TYPE_CHECKING:
     from .managed_device_cleanup_rules.managed_device_cleanup_rules_request_builder import ManagedDeviceCleanupRulesRequestBuilder
     from .managed_device_encryption_states.managed_device_encryption_states_request_builder import ManagedDeviceEncryptionStatesRequestBuilder
     from .managed_device_overview.managed_device_overview_request_builder import ManagedDeviceOverviewRequestBuilder
+    from .managed_device_windows_o_s_images.managed_device_windows_o_s_images_request_builder import ManagedDeviceWindowsOSImagesRequestBuilder
     from .microsoft_tunnel_configurations.microsoft_tunnel_configurations_request_builder import MicrosoftTunnelConfigurationsRequestBuilder
     from .microsoft_tunnel_health_thresholds.microsoft_tunnel_health_thresholds_request_builder import MicrosoftTunnelHealthThresholdsRequestBuilder
     from .microsoft_tunnel_server_log_collection_responses.microsoft_tunnel_server_log_collection_responses_request_builder import MicrosoftTunnelServerLogCollectionResponsesRequestBuilder
@@ -244,7 +245,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         param scope: Usage: scope='{scope}'
         Returns: GetEffectivePermissionsWithScopeRequestBuilder
         """
-        if not scope:
+        if scope is None:
             raise TypeError("scope cannot be null.")
         from .get_effective_permissions_with_scope.get_effective_permissions_with_scope_request_builder import GetEffectivePermissionsWithScopeRequestBuilder
 
@@ -256,7 +257,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         param ids: Usage: ids={ids}
         Returns: GetRoleScopeTagsByIdsWithIdsRequestBuilder
         """
-        if not ids:
+        if ids is None:
             raise TypeError("ids cannot be null.")
         from .get_role_scope_tags_by_ids_with_ids.get_role_scope_tags_by_ids_with_ids_request_builder import GetRoleScopeTagsByIdsWithIdsRequestBuilder
 
@@ -268,7 +269,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         param resource: Usage: resource='{resource}'
         Returns: GetRoleScopeTagsByResourceWithResourceRequestBuilder
         """
-        if not resource:
+        if resource is None:
             raise TypeError("resource cannot be null.")
         from .get_role_scope_tags_by_resource_with_resource.get_role_scope_tags_by_resource_with_resource_request_builder import GetRoleScopeTagsByResourceWithResourceRequestBuilder
 
@@ -280,7 +281,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         param enrollment_type: Usage: enrollmentType='{enrollmentType}'
         Returns: GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder
         """
-        if not enrollment_type:
+        if enrollment_type is None:
             raise TypeError("enrollment_type cannot be null.")
         from .get_suggested_enrollment_limit_with_enrollment_type.get_suggested_enrollment_limit_with_enrollment_type_request_builder import GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder
 
@@ -293,7 +294,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceManagement]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -315,7 +316,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         param resource: Usage: resource='{resource}'
         Returns: ScopedForResourceWithResourceRequestBuilder
         """
-        if not resource:
+        if resource is None:
             raise TypeError("resource cannot be null.")
         from .scoped_for_resource_with_resource.scoped_for_resource_with_resource_request_builder import ScopedForResourceWithResourceRequestBuilder
 
@@ -339,7 +340,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -353,7 +354,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         param domain_name: Usage: domainName='{domainName}'
         Returns: VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder
         """
-        if not domain_name:
+        if domain_name is None:
             raise TypeError("domain_name cannot be null.")
         from .verify_windows_enrollment_auto_discovery_with_domain_name.verify_windows_enrollment_auto_discovery_with_domain_name_request_builder import VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder
 
@@ -365,7 +366,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: DeviceManagementRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DeviceManagementRequestBuilder(self.request_adapter, raw_url)
     
@@ -1142,6 +1143,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .managed_device_overview.managed_device_overview_request_builder import ManagedDeviceOverviewRequestBuilder
 
         return ManagedDeviceOverviewRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_device_windows_o_s_images(self) -> ManagedDeviceWindowsOSImagesRequestBuilder:
+        """
+        Provides operations to manage the managedDeviceWindowsOSImages property of the microsoft.graph.deviceManagement entity.
+        """
+        from .managed_device_windows_o_s_images.managed_device_windows_o_s_images_request_builder import ManagedDeviceWindowsOSImagesRequestBuilder
+
+        return ManagedDeviceWindowsOSImagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def managed_devices(self) -> ManagedDevicesRequestBuilder:
@@ -2027,7 +2037,7 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

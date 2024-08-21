@@ -67,7 +67,7 @@ class RefRequestBuilder(BaseRequestBuilder):
         Returns: RefRequestBuilder
         """
         warn("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return RefRequestBuilder(self.request_adapter, raw_url)
     

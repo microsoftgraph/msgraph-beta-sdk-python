@@ -41,7 +41,8 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param cloud_p_c_id: The unique identifier of cloudPC
         Returns: CloudPCItemRequestBuilder
         """
-        if not cloud_p_c_id:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if cloud_p_c_id is None:
             raise TypeError("cloud_p_c_id cannot be null.")
         from .item.cloud_p_c_item_request_builder import CloudPCItemRequestBuilder
 
@@ -55,6 +56,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPCCollectionResponse]
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -76,9 +78,10 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param service_plan_id: Usage: servicePlanId='{servicePlanId}'
         Returns: GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder
         """
-        if not group_id:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if group_id is None:
             raise TypeError("group_id cannot be null.")
-        if not service_plan_id:
+        if service_plan_id is None:
             raise TypeError("service_plan_id cannot be null.")
         from .get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id.get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id_request_builder import GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder
 
@@ -91,7 +94,8 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPC]
         """
-        if not body:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -113,6 +117,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -125,7 +130,8 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -139,7 +145,8 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CloudPCsRequestBuilder
         """
-        if not raw_url:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CloudPCsRequestBuilder(self.request_adapter, raw_url)
     
@@ -181,7 +188,7 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

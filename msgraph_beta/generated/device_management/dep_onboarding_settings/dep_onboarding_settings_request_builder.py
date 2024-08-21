@@ -39,7 +39,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         param dep_onboarding_setting_id: The unique identifier of depOnboardingSetting
         Returns: DepOnboardingSettingItemRequestBuilder
         """
-        if not dep_onboarding_setting_id:
+        if dep_onboarding_setting_id is None:
             raise TypeError("dep_onboarding_setting_id cannot be null.")
         from .item.dep_onboarding_setting_item_request_builder import DepOnboardingSettingItemRequestBuilder
 
@@ -73,7 +73,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         param expiring_before_date_time: Usage: expiringBeforeDateTime='{expiringBeforeDateTime}'
         Returns: GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder
         """
-        if not expiring_before_date_time:
+        if expiring_before_date_time is None:
             raise TypeError("expiring_before_date_time cannot be null.")
         from .get_expiring_vpp_token_count_with_expiring_before_date_time.get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder import GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder
 
@@ -86,7 +86,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DepOnboardingSetting]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -120,7 +120,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -134,7 +134,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: DepOnboardingSettingsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DepOnboardingSettingsRequestBuilder(self.request_adapter, raw_url)
     
@@ -158,7 +158,7 @@ class DepOnboardingSettingsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

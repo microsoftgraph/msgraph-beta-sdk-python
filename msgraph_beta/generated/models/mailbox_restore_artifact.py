@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
     from .restore_artifact_base import RestoreArtifactBase
 
 from .restore_artifact_base import RestoreArtifactBase
@@ -24,8 +25,16 @@ class MailboxRestoreArtifact(RestoreArtifactBase):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MailboxRestoreArtifact
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.granularMailboxRestoreArtifact".casefold():
+            from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
+
+            return GranularMailboxRestoreArtifact()
         return MailboxRestoreArtifact()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -33,8 +42,10 @@ class MailboxRestoreArtifact(RestoreArtifactBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
         from .restore_artifact_base import RestoreArtifactBase
 
+        from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
         from .restore_artifact_base import RestoreArtifactBase
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -51,7 +62,7 @@ class MailboxRestoreArtifact(RestoreArtifactBase):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("restoredFolderId", self.restored_folder_id)

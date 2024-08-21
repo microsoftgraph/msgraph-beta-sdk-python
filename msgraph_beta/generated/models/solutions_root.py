@@ -5,6 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .approval_solution import ApprovalSolution
     from .backup_restore_root import BackupRestoreRoot
     from .booking_business import BookingBusiness
     from .booking_currency import BookingCurrency
@@ -18,17 +19,19 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The approval property
+    approval: Optional[ApprovalSolution] = None
     # The backupRestore property
     backup_restore: Optional[BackupRestoreRoot] = None
-    # The bookingBusinesses property
+    # A collection of businesses in Microsoft Bookings. Read-only. Nullable.
     booking_businesses: Optional[List[BookingBusiness]] = None
-    # The bookingCurrencies property
+    # A collection of monetary currencies supported by a bookingBusiness. Read-only. Nullable.
     booking_currencies: Optional[List[BookingCurrency]] = None
-    # The businessScenarios property
+    # A collection of scenarios that contain relevant data and configuration information for a specific problem domain.
     business_scenarios: Optional[List[BusinessScenario]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The virtualEvents property
+    # A collection of virtual events.
     virtual_events: Optional[VirtualEventsRoot] = None
     
     @staticmethod
@@ -38,7 +41,7 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: SolutionsRoot
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return SolutionsRoot()
     
@@ -47,12 +50,14 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .approval_solution import ApprovalSolution
         from .backup_restore_root import BackupRestoreRoot
         from .booking_business import BookingBusiness
         from .booking_currency import BookingCurrency
         from .business_scenario import BusinessScenario
         from .virtual_events_root import VirtualEventsRoot
 
+        from .approval_solution import ApprovalSolution
         from .backup_restore_root import BackupRestoreRoot
         from .booking_business import BookingBusiness
         from .booking_currency import BookingCurrency
@@ -60,6 +65,7 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         from .virtual_events_root import VirtualEventsRoot
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "approval": lambda n : setattr(self, 'approval', n.get_object_value(ApprovalSolution)),
             "backupRestore": lambda n : setattr(self, 'backup_restore', n.get_object_value(BackupRestoreRoot)),
             "bookingBusinesses": lambda n : setattr(self, 'booking_businesses', n.get_collection_of_object_values(BookingBusiness)),
             "bookingCurrencies": lambda n : setattr(self, 'booking_currencies', n.get_collection_of_object_values(BookingCurrency)),
@@ -75,8 +81,9 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_object_value("approval", self.approval)
         writer.write_object_value("backupRestore", self.backup_restore)
         writer.write_collection_of_object_values("bookingBusinesses", self.booking_businesses)
         writer.write_collection_of_object_values("bookingCurrencies", self.booking_currencies)

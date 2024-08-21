@@ -25,7 +25,7 @@ class DeliveryOptimizationMaxCacheSizeAbsolute(DeliveryOptimizationMaxCacheSize)
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeliveryOptimizationMaxCacheSizeAbsolute
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return DeliveryOptimizationMaxCacheSizeAbsolute()
     
@@ -51,7 +51,7 @@ class DeliveryOptimizationMaxCacheSizeAbsolute(DeliveryOptimizationMaxCacheSize)
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("maximumCacheSizeInGigabytes", self.maximum_cache_size_in_gigabytes)

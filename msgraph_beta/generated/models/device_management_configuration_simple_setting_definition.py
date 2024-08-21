@@ -15,15 +15,15 @@ from .device_management_configuration_setting_definition import DeviceManagement
 
 @dataclass
 class DeviceManagementConfigurationSimpleSettingDefinition(DeviceManagementConfigurationSettingDefinition):
-    # Default setting value for this setting
+    # Default setting value for this setting.
     default_value: Optional[DeviceManagementConfigurationSettingValue] = None
-    # list of child settings that depend on this setting
+    # list of child settings that depend on this setting.
     depended_on_by: Optional[List[DeviceManagementConfigurationSettingDependedOnBy]] = None
-    # list of parent settings this setting is dependent on
+    # list of parent settings this setting is dependent on.
     dependent_on: Optional[List[DeviceManagementConfigurationDependentOn]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Definition of the value for this setting
+    # Definition of the value for this setting.
     value_definition: Optional[DeviceManagementConfigurationSettingValueDefinition] = None
     
     @staticmethod
@@ -33,7 +33,7 @@ class DeviceManagementConfigurationSimpleSettingDefinition(DeviceManagementConfi
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationSimpleSettingDefinition
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
@@ -80,7 +80,7 @@ class DeviceManagementConfigurationSimpleSettingDefinition(DeviceManagementConfi
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("defaultValue", self.default_value)

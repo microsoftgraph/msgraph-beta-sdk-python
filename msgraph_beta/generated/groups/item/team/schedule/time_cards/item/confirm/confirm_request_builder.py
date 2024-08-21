@@ -67,7 +67,7 @@ class ConfirmRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ConfirmRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ConfirmRequestBuilder(self.request_adapter, raw_url)
     

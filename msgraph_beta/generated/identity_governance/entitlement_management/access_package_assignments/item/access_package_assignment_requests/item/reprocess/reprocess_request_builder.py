@@ -66,7 +66,7 @@ class ReprocessRequestBuilder(BaseRequestBuilder):
         Returns: ReprocessRequestBuilder
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ReprocessRequestBuilder(self.request_adapter, raw_url)
     

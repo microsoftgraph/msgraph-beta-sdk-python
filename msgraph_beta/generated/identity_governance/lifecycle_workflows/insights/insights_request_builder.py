@@ -79,9 +79,9 @@ class InsightsRequestBuilder(BaseRequestBuilder):
         param start_date_time: Usage: startDateTime={startDateTime}
         Returns: MicrosoftGraphIdentityGovernanceTopTasksProcessedSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
         """
-        if not end_date_time:
+        if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
-        if not start_date_time:
+        if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
         from .microsoft_graph_identity_governance_top_tasks_processed_summary_with_start_date_time_with_end_date_time.microsoft_graph_identity_governance_top_tasks_processed_summary_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphIdentityGovernanceTopTasksProcessedSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
 
@@ -94,9 +94,9 @@ class InsightsRequestBuilder(BaseRequestBuilder):
         param start_date_time: Usage: startDateTime={startDateTime}
         Returns: MicrosoftGraphIdentityGovernanceTopWorkflowsProcessedSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
         """
-        if not end_date_time:
+        if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
-        if not start_date_time:
+        if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
         from .microsoft_graph_identity_governance_top_workflows_processed_summary_with_start_date_time_with_end_date_time.microsoft_graph_identity_governance_top_workflows_processed_summary_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphIdentityGovernanceTopWorkflowsProcessedSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
 
@@ -109,9 +109,9 @@ class InsightsRequestBuilder(BaseRequestBuilder):
         param start_date_time: Usage: startDateTime={startDateTime}
         Returns: MicrosoftGraphIdentityGovernanceWorkflowsProcessedByCategoryWithStartDateTimeWithEndDateTimeRequestBuilder
         """
-        if not end_date_time:
+        if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
-        if not start_date_time:
+        if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
         from .microsoft_graph_identity_governance_workflows_processed_by_category_with_start_date_time_with_end_date_time.microsoft_graph_identity_governance_workflows_processed_by_category_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphIdentityGovernanceWorkflowsProcessedByCategoryWithStartDateTimeWithEndDateTimeRequestBuilder
 
@@ -124,9 +124,9 @@ class InsightsRequestBuilder(BaseRequestBuilder):
         param start_date_time: Usage: startDateTime={startDateTime}
         Returns: MicrosoftGraphIdentityGovernanceWorkflowsProcessedSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
         """
-        if not end_date_time:
+        if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
-        if not start_date_time:
+        if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
         from .microsoft_graph_identity_governance_workflows_processed_summary_with_start_date_time_with_end_date_time.microsoft_graph_identity_governance_workflows_processed_summary_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphIdentityGovernanceWorkflowsProcessedSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
 
@@ -139,7 +139,7 @@ class InsightsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Insights]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -184,7 +184,7 @@ class InsightsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -198,7 +198,7 @@ class InsightsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: InsightsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return InsightsRequestBuilder(self.request_adapter, raw_url)
     
@@ -220,7 +220,7 @@ class InsightsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

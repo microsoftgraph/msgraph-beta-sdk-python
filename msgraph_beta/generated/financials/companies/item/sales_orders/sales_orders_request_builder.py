@@ -38,7 +38,7 @@ class SalesOrdersRequestBuilder(BaseRequestBuilder):
         param sales_order_id: The unique identifier of salesOrder
         Returns: SalesOrderItemRequestBuilder
         """
-        if not sales_order_id:
+        if sales_order_id is None:
             raise TypeError("sales_order_id cannot be null.")
         from .item.sales_order_item_request_builder import SalesOrderItemRequestBuilder
 
@@ -83,7 +83,7 @@ class SalesOrdersRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: SalesOrdersRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SalesOrdersRequestBuilder(self.request_adapter, raw_url)
     
@@ -107,7 +107,7 @@ class SalesOrdersRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

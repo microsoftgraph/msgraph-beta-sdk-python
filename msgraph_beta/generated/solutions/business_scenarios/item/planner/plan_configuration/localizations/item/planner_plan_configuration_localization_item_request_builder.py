@@ -31,10 +31,9 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a plannerPlanConfigurationLocalization object.
+        Delete navigation property localizations for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/plannerplanconfiguration-delete-localizations?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,10 +49,9 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PlannerPlanConfigurationLocalizationItemRequestBuilderGetQueryParameters]] = None) -> Optional[PlannerPlanConfigurationLocalization]:
         """
-        Read the properties and relationships of a plannerPlanConfigurationLocalization object.
+        Localized names for the plan configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlanConfigurationLocalization]
-        Find more info here: https://learn.microsoft.com/graph/api/plannerplanconfigurationlocalization-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,13 +69,12 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     async def patch(self,body: PlannerPlanConfigurationLocalization, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[PlannerPlanConfigurationLocalization]:
         """
-        Update the properties of a plannerPlanConfigurationLocalization object.
+        Update the navigation property localizations in solutions
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerPlanConfigurationLocalization]
-        Find more info here: https://learn.microsoft.com/graph/api/plannerplanconfigurationlocalization-update?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -95,7 +92,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a plannerPlanConfigurationLocalization object.
+        Delete navigation property localizations for solutions
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,7 +103,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PlannerPlanConfigurationLocalizationItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a plannerPlanConfigurationLocalization object.
+        Localized names for the plan configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,12 +114,12 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     
     def to_patch_request_information(self,body: PlannerPlanConfigurationLocalization, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a plannerPlanConfigurationLocalization object.
+        Update the navigation property localizations in solutions
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -136,7 +133,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
         param raw_url: The raw URL to use for the request builder.
         Returns: PlannerPlanConfigurationLocalizationItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PlannerPlanConfigurationLocalizationItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -150,7 +147,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
     @dataclass
     class PlannerPlanConfigurationLocalizationItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a plannerPlanConfigurationLocalization object.
+        Localized names for the plan configuration.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -158,7 +155,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder(BaseRequestBuilder)
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

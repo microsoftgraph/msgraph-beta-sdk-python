@@ -17,7 +17,7 @@ class EducationAssignmentResource(Entity):
     distribute_for_student_work: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Resource object that has been associated with this assignment.
+    # Resource object that is associated with this assignment.
     resource: Optional[EducationResource] = None
     
     @staticmethod
@@ -27,7 +27,7 @@ class EducationAssignmentResource(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: EducationAssignmentResource
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return EducationAssignmentResource()
     
@@ -57,7 +57,7 @@ class EducationAssignmentResource(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("dependentResources", self.dependent_resources)

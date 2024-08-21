@@ -59,7 +59,7 @@ class GraphRoomListRequestBuilder(BaseRequestBuilder):
         param place_id: Alternate key of room
         Returns: RoomsWithPlaceIdRequestBuilder
         """
-        if not place_id:
+        if place_id is None:
             raise TypeError("place_id cannot be null.")
         from .rooms_with_place_id.rooms_with_place_id_request_builder import RoomsWithPlaceIdRequestBuilder
 
@@ -82,7 +82,7 @@ class GraphRoomListRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: GraphRoomListRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return GraphRoomListRequestBuilder(self.request_adapter, raw_url)
     
@@ -92,7 +92,7 @@ class GraphRoomListRequestBuilder(BaseRequestBuilder):
         param place_id: Alternate key of workspace
         Returns: WorkspacesWithPlaceIdRequestBuilder
         """
-        if not place_id:
+        if place_id is None:
             raise TypeError("place_id cannot be null.")
         from .workspaces_with_place_id.workspaces_with_place_id_request_builder import WorkspacesWithPlaceIdRequestBuilder
 
@@ -127,7 +127,7 @@ class GraphRoomListRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

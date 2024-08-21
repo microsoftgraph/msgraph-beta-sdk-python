@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .....models.access_package_catalog import AccessPackageCatalog
     from .....models.o_data_errors.o_data_error import ODataError
     from .access_packages.access_packages_request_builder import AccessPackagesRequestBuilder
+    from .access_packages_with_unique_name.access_packages_with_unique_name_request_builder import AccessPackagesWithUniqueNameRequestBuilder
     from .access_package_custom_workflow_extensions.access_package_custom_workflow_extensions_request_builder import AccessPackageCustomWorkflowExtensionsRequestBuilder
     from .access_package_resources.access_package_resources_request_builder import AccessPackageResourcesRequestBuilder
     from .access_package_resource_roles.access_package_resource_roles_request_builder import AccessPackageResourceRolesRequestBuilder
@@ -34,6 +35,19 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageCatalogs/{accessPackageCatalog%2Did}{?%24expand,%24select}", path_parameters)
+    
+    def access_packages_with_unique_name(self,unique_name: str) -> AccessPackagesWithUniqueNameRequestBuilder:
+        """
+        Provides operations to manage the accessPackages property of the microsoft.graph.accessPackageCatalog entity.
+        param unique_name: Alternate key of accessPackage
+        Returns: AccessPackagesWithUniqueNameRequestBuilder
+        """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
+        if unique_name is None:
+            raise TypeError("unique_name cannot be null.")
+        from .access_packages_with_unique_name.access_packages_with_unique_name_request_builder import AccessPackagesWithUniqueNameRequestBuilder
+
+        return AccessPackagesWithUniqueNameRequestBuilder(self.request_adapter, self.path_parameters, unique_name)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -86,7 +100,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
         Find more info here: https://learn.microsoft.com/graph/api/accesspackagecatalog-update?view=graph-rest-beta
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -134,7 +148,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -149,7 +163,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
         Returns: AccessPackageCatalogItemRequestBuilder
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AccessPackageCatalogItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -225,7 +239,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

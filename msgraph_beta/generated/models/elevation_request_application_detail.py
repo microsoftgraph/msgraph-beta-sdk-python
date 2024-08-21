@@ -30,7 +30,7 @@ class ElevationRequestApplicationDetail(AdditionalDataHolder, BackedModel, Parsa
     product_name: Optional[str] = None
     # The product version of the application for which elevation request has been made. For example, '2.40.1.0'
     product_version: Optional[str] = None
-    # The list of base64 encoded certificate for each signer, for example, string[encoded_leaf_cert1, encoded_leaf_cert2....]
+    # The list of base64 encoded certificate for each signer, for example, string[encodedleafcert1, encodedleafcert2....]
     publisher_cert: Optional[str] = None
     # The certificate issuer name of the certificate used to sign the application, for example, 'Sectigo Public Code Signing CA R36'
     publisher_name: Optional[str] = None
@@ -42,7 +42,7 @@ class ElevationRequestApplicationDetail(AdditionalDataHolder, BackedModel, Parsa
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ElevationRequestApplicationDetail
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ElevationRequestApplicationDetail()
     
@@ -71,7 +71,7 @@ class ElevationRequestApplicationDetail(AdditionalDataHolder, BackedModel, Parsa
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("fileDescription", self.file_description)
         writer.write_str_value("fileHash", self.file_hash)

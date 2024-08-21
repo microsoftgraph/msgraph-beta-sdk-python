@@ -39,7 +39,7 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
         Returns: ReviewSetItemRequestBuilder
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
-        if not review_set_id:
+        if review_set_id is None:
             raise TypeError("review_set_id cannot be null.")
         from .item.review_set_item_request_builder import ReviewSetItemRequestBuilder
 
@@ -77,7 +77,7 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
         Find more info here: https://learn.microsoft.com/graph/api/ediscovery-case-post-reviewsets?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -113,7 +113,7 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -128,7 +128,7 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
         Returns: ReviewSetsRequestBuilder
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ReviewSetsRequestBuilder(self.request_adapter, raw_url)
     
@@ -152,7 +152,7 @@ class ReviewSetsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

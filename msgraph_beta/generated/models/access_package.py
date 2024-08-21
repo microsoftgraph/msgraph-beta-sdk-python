@@ -37,7 +37,7 @@ class AccessPackage(Entity):
     incompatible_access_packages: Optional[List[AccessPackage]] = None
     # The groups whose members are ineligible to be assigned this access package.
     incompatible_groups: Optional[List[Group]] = None
-    # Whether the access package is hidden from the requestor.
+    # Indicates whether the access package is hidden from the requestor.
     is_hidden: Optional[bool] = None
     # Indicates whether role scopes are visible.
     is_role_scopes_visible: Optional[bool] = None
@@ -47,6 +47,8 @@ class AccessPackage(Entity):
     modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The uniqueName property
+    unique_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AccessPackage:
@@ -55,7 +57,7 @@ class AccessPackage(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AccessPackage
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AccessPackage()
     
@@ -92,6 +94,7 @@ class AccessPackage(Entity):
             "isRoleScopesVisible": lambda n : setattr(self, 'is_role_scopes_visible', n.get_bool_value()),
             "modifiedBy": lambda n : setattr(self, 'modified_by', n.get_str_value()),
             "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "uniqueName": lambda n : setattr(self, 'unique_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -103,7 +106,7 @@ class AccessPackage(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("accessPackageAssignmentPolicies", self.access_package_assignment_policies)
@@ -121,5 +124,6 @@ class AccessPackage(Entity):
         writer.write_bool_value("isRoleScopesVisible", self.is_role_scopes_visible)
         writer.write_str_value("modifiedBy", self.modified_by)
         writer.write_datetime_value("modifiedDateTime", self.modified_date_time)
+        writer.write_str_value("uniqueName", self.unique_name)
     
 

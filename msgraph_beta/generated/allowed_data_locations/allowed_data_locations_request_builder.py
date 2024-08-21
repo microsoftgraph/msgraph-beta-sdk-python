@@ -38,7 +38,7 @@ class AllowedDataLocationsRequestBuilder(BaseRequestBuilder):
         param allowed_data_location_id: The unique identifier of allowedDataLocation
         Returns: AllowedDataLocationItemRequestBuilder
         """
-        if not allowed_data_location_id:
+        if allowed_data_location_id is None:
             raise TypeError("allowed_data_location_id cannot be null.")
         from .item.allowed_data_location_item_request_builder import AllowedDataLocationItemRequestBuilder
 
@@ -73,7 +73,7 @@ class AllowedDataLocationsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AllowedDataLocation]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -107,7 +107,7 @@ class AllowedDataLocationsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -121,7 +121,7 @@ class AllowedDataLocationsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AllowedDataLocationsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AllowedDataLocationsRequestBuilder(self.request_adapter, raw_url)
     
@@ -145,7 +145,7 @@ class AllowedDataLocationsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

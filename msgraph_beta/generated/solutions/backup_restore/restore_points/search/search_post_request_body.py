@@ -5,6 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .....models.artifact_query import ArtifactQuery
     from .....models.restore_point_preference import RestorePointPreference
     from .....models.restore_point_tags import RestorePointTags
     from .....models.time_period import TimePeriod
@@ -16,6 +17,8 @@ class SearchPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The artifactQuery property
+    artifact_query: Optional[ArtifactQuery] = None
     # The protectionTimePeriod property
     protection_time_period: Optional[TimePeriod] = None
     # The protectionUnitIds property
@@ -32,7 +35,7 @@ class SearchPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: SearchPostRequestBody
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return SearchPostRequestBody()
     
@@ -41,15 +44,18 @@ class SearchPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .....models.artifact_query import ArtifactQuery
         from .....models.restore_point_preference import RestorePointPreference
         from .....models.restore_point_tags import RestorePointTags
         from .....models.time_period import TimePeriod
 
+        from .....models.artifact_query import ArtifactQuery
         from .....models.restore_point_preference import RestorePointPreference
         from .....models.restore_point_tags import RestorePointTags
         from .....models.time_period import TimePeriod
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "artifactQuery": lambda n : setattr(self, 'artifact_query', n.get_object_value(ArtifactQuery)),
             "protectionTimePeriod": lambda n : setattr(self, 'protection_time_period', n.get_object_value(TimePeriod)),
             "protectionUnitIds": lambda n : setattr(self, 'protection_unit_ids', n.get_collection_of_primitive_values(str)),
             "restorePointPreference": lambda n : setattr(self, 'restore_point_preference', n.get_enum_value(RestorePointPreference)),
@@ -63,8 +69,9 @@ class SearchPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_object_value("artifactQuery", self.artifact_query)
         writer.write_object_value("protectionTimePeriod", self.protection_time_period)
         writer.write_collection_of_primitive_values("protectionUnitIds", self.protection_unit_ids)
         writer.write_enum_value("restorePointPreference", self.restore_point_preference)

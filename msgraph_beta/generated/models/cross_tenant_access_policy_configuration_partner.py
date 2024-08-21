@@ -40,7 +40,7 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedMo
     odata_type: Optional[str] = None
     # The tenant identifier for the partner Microsoft Entra organization. Read-only. Key.
     tenant_id: Optional[str] = None
-    # Defines the partner-specific tenant restrictions configuration for your organization users accessing a partner organization using partner supplied identities on your network or devices.
+    # Defines the partner-specific tenant restrictions configuration for users in your organization who access a partner organization using partner supplied identities on your network or devices.
     tenant_restrictions: Optional[CrossTenantAccessPolicyTenantRestrictions] = None
     
     @staticmethod
@@ -50,7 +50,7 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedMo
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CrossTenantAccessPolicyConfigurationPartner
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return CrossTenantAccessPolicyConfigurationPartner()
     
@@ -93,7 +93,7 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedMo
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("automaticUserConsentSettings", self.automatic_user_consent_settings)
         writer.write_object_value("b2bCollaborationInbound", self.b2b_collaboration_inbound)

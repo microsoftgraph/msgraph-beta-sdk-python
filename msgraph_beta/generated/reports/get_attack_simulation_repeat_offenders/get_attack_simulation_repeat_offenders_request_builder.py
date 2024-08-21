@@ -70,7 +70,7 @@ class GetAttackSimulationRepeatOffendersRequestBuilder(BaseRequestBuilder):
         Returns: GetAttackSimulationRepeatOffendersRequestBuilder
         """
         warn("This report function api is deprecated and will stop returning data on August 20, 2022. Api is now moved to /reports/security. Please use the new API. as of 2022-05/Tasks_And_Plans", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return GetAttackSimulationRepeatOffendersRequestBuilder(self.request_adapter, raw_url)
     
@@ -85,7 +85,7 @@ class GetAttackSimulationRepeatOffendersRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

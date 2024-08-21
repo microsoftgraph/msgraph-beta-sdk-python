@@ -40,7 +40,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         param product_id: The unique identifier of product
         Returns: ProductItemRequestBuilder
         """
-        if not product_id:
+        if product_id is None:
             raise TypeError("product_id cannot be null.")
         from .item.product_item_request_builder import ProductItemRequestBuilder
 
@@ -74,7 +74,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         param catalog_i_d: Usage: catalogID='{catalogID}'
         Returns: MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogIDRequestBuilder
         """
-        if not catalog_i_d:
+        if catalog_i_d is None:
             raise TypeError("catalog_i_d cannot be null.")
         from .microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d.microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d_request_builder import MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogIDRequestBuilder
 
@@ -86,7 +86,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         param kb_number: Usage: kbNumber={kbNumber}
         Returns: MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder
         """
-        if not kb_number:
+        if kb_number is None:
             raise TypeError("kb_number cannot be null.")
         from .microsoft_graph_windows_updates_find_by_kb_number_with_kb_number.microsoft_graph_windows_updates_find_by_kb_number_with_kb_number_request_builder import MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder
 
@@ -99,7 +99,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Product]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -133,7 +133,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -147,7 +147,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ProductsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ProductsRequestBuilder(self.request_adapter, raw_url)
     
@@ -171,7 +171,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

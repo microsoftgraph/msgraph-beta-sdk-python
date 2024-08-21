@@ -68,9 +68,9 @@ class EducationUser(Entity):
     office_location: Optional[str] = None
     # Additional information used to associate the Microsoft Entra user with its Active Directory counterpart.
     on_premises_info: Optional[EducationOnPremisesInfo] = None
-    # Specifies password policies for the user. See standard [user] resource for more details.
+    # Specifies password policies for the user. For more details, see the standard [user] resource.
     password_policies: Optional[str] = None
-    # Specifies the password profile for the user. The profile contains the user's password. This property is required when a user is created. See standard [user] resource for more details.
+    # Specifies the password profile for the user. The profile contains the user's password. This property is required when a user is created. For more details, see the standard [user] resource.
     password_profile: Optional[PasswordProfile] = None
     # The preferred language for the user. Should follow ISO 639-1 Code; for example, 'en-US'.
     preferred_language: Optional[str] = None
@@ -96,13 +96,13 @@ class EducationUser(Entity):
     surname: Optional[str] = None
     # Classes for which the user is a teacher.
     taught_classes: Optional[List[EducationClass]] = None
-    # If the primary role is teacher, this block will contain teacher specific data.
+    # If the primary role is teacher, this block contains teacher specific data.
     teacher: Optional[EducationTeacher] = None
-    # A two-letter country code ([ISO 3166 Alpha-2]). Required for users who will be assigned licenses. Not nullable. Supports /$filter.
+    # A two-letter country code ([ISO 3166 Alpha-2]). Required for users who are assigned licenses. Not nullable. Supports /$filter.
     usage_location: Optional[str] = None
     # The user property
     user: Optional[User] = None
-    # The user principal name (UPN) for the user. Supports $filter and $orderby. See standard [user] resource for additional details.
+    # The user principal name (UPN) for the user. Supports $filter and $orderby. For more details, see the standard [user] resource.
     user_principal_name: Optional[str] = None
     # A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'. Supports /$filter.
     user_type: Optional[str] = None
@@ -114,7 +114,7 @@ class EducationUser(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: EducationUser
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return EducationUser()
     
@@ -211,7 +211,7 @@ class EducationUser(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("accountEnabled", self.account_enabled)

@@ -115,6 +115,7 @@ if TYPE_CHECKING:
     from .send_mail.send_mail_request_builder import SendMailRequestBuilder
     from .service_provisioning_errors.service_provisioning_errors_request_builder import ServiceProvisioningErrorsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
+    from .solutions.solutions_request_builder import SolutionsRequestBuilder
     from .sponsors.sponsors_request_builder import SponsorsRequestBuilder
     from .teamwork.teamwork_request_builder import TeamworkRequestBuilder
     from .todo.todo_request_builder import TodoRequestBuilder
@@ -149,7 +150,8 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param app_id: Alternate key of servicePrincipal
         Returns: AppRoleAssignedResourcesWithAppIdRequestBuilder
         """
-        if not app_id:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if app_id is None:
             raise TypeError("app_id cannot be null.")
         from .app_role_assigned_resources_with_app_id.app_role_assigned_resources_with_app_id_request_builder import AppRoleAssignedResourcesWithAppIdRequestBuilder
 
@@ -157,11 +159,12 @@ class UserItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.
+        Delete a user object.   When deleted, user resources, including their mailbox and license assignments, are moved to a temporary container and if the user is restored within 30 days, these objects are restored to them. The user is also restored to any groups they were a member of. After 30 days and if not restored, the user object is permanently deleted and their assigned resources freed. To manage the deleted user object, see deletedItems.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/user-delete?view=graph-rest-beta
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -180,7 +183,8 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param device_id: Alternate key of device
         Returns: DevicesWithDeviceIdRequestBuilder
         """
-        if not device_id:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if device_id is None:
             raise TypeError("device_id cannot be null.")
         from .devices_with_device_id.devices_with_device_id_request_builder import DevicesWithDeviceIdRequestBuilder
 
@@ -193,9 +197,10 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param top: Usage: top={top}
         Returns: ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder
         """
-        if not skip:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if skip is None:
             raise TypeError("skip cannot be null.")
-        if not top:
+        if top is None:
             raise TypeError("top cannot be null.")
         from .export_device_and_app_management_data_with_skip_with_top.export_device_and_app_management_data_with_skip_with_top_request_builder import ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder
 
@@ -207,7 +212,8 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param room_list: Usage: RoomList='{RoomList}'
         Returns: FindRoomsWithRoomListRequestBuilder
         """
-        if not room_list:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if room_list is None:
             raise TypeError("room_list cannot be null.")
         from .find_rooms_with_room_list.find_rooms_with_room_list_request_builder import FindRoomsWithRoomListRequestBuilder
 
@@ -220,6 +226,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[User]
         Find more info here: https://learn.microsoft.com/graph/api/user-get?view=graph-rest-beta
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -240,7 +247,8 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param join_web_url: Alternate key of onlineMeeting
         Returns: OnlineMeetingsWithJoinWebUrlRequestBuilder
         """
-        if not join_web_url:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if join_web_url is None:
             raise TypeError("join_web_url cannot be null.")
         from .online_meetings_with_join_web_url.online_meetings_with_join_web_url_request_builder import OnlineMeetingsWithJoinWebUrlRequestBuilder
 
@@ -248,13 +256,14 @@ class UserItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: User, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[User]:
         """
-        Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage. Customers through Microsoft Entra ID for customers can also use this API operation to update their details. See Default user permissions in customer tenants for the list of properties they can update.
+        Update the properties of a user object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[User]
         Find more info here: https://learn.microsoft.com/graph/api/user-update?view=graph-rest-beta
         """
-        if not body:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -277,9 +286,10 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param start_date_time: Usage: StartDateTime='{StartDateTime}'
         Returns: ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder
         """
-        if not end_date_time:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
-        if not start_date_time:
+        if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
         from .reminder_view_with_start_date_time_with_end_date_time.reminder_view_with_start_date_time_with_end_date_time_request_builder import ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder
 
@@ -287,10 +297,11 @@ class UserItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.
+        Delete a user object.   When deleted, user resources, including their mailbox and license assignments, are moved to a temporary container and if the user is restored within 30 days, these objects are restored to them. The user is also restored to any groups they were a member of. After 30 days and if not restored, the user object is permanently deleted and their assigned resources freed. To manage the deleted user object, see deletedItems.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -302,6 +313,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -309,12 +321,13 @@ class UserItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: User, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage. Customers through Microsoft Entra ID for customers can also use this API operation to update their details. See Default user permissions in customer tenants for the list of properties they can update.
+        Update the properties of a user object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -328,7 +341,8 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: UserItemRequestBuilder
         """
-        if not raw_url:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return UserItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -1179,6 +1193,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         return SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def solutions(self) -> SolutionsRequestBuilder:
+        """
+        Provides operations to manage the solutions property of the microsoft.graph.user entity.
+        """
+        from .solutions.solutions_request_builder import SolutionsRequestBuilder
+
+        return SolutionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def sponsors(self) -> SponsorsRequestBuilder:
         """
         Provides operations to manage the sponsors property of the microsoft.graph.user entity.
@@ -1322,7 +1345,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

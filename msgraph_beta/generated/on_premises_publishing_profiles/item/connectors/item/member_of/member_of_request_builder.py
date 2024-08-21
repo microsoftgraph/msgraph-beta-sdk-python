@@ -38,7 +38,7 @@ class MemberOfRequestBuilder(BaseRequestBuilder):
         param connector_group_id: The unique identifier of connectorGroup
         Returns: ConnectorGroupItemRequestBuilder
         """
-        if not connector_group_id:
+        if connector_group_id is None:
             raise TypeError("connector_group_id cannot be null.")
         from .item.connector_group_item_request_builder import ConnectorGroupItemRequestBuilder
 
@@ -83,7 +83,7 @@ class MemberOfRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MemberOfRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MemberOfRequestBuilder(self.request_adapter, raw_url)
     
@@ -116,7 +116,7 @@ class MemberOfRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

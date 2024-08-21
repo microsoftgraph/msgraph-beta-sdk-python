@@ -37,7 +37,7 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
         param privileged_role_assignment_id1: The unique identifier of privilegedRoleAssignment
         Returns: PrivilegedRoleAssignmentItemRequestBuilder
         """
-        if not privileged_role_assignment_id1:
+        if privileged_role_assignment_id1 is None:
             raise TypeError("privileged_role_assignment_id1 cannot be null.")
         from .item.privileged_role_assignment_item_request_builder import PrivilegedRoleAssignmentItemRequestBuilder
 
@@ -82,7 +82,7 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AssignmentsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AssignmentsRequestBuilder(self.request_adapter, raw_url)
     
@@ -106,7 +106,7 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

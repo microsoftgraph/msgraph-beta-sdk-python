@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class ServicePrincipalSignInActivity(Entity):
-    # The application ID of the resource.
+    # The globally unique appId (also called client ID on the Microsoft Entra admin center) of the credentialed resource application.
     app_id: Optional[str] = None
     # The sign-in activity of the application in a app-only authentication flow (app-to-app tokens) where the application acts like a client.
     application_authentication_client_sign_in_activity: Optional[SignInActivity] = None
@@ -33,7 +33,7 @@ class ServicePrincipalSignInActivity(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: ServicePrincipalSignInActivity
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return ServicePrincipalSignInActivity()
     
@@ -66,7 +66,7 @@ class ServicePrincipalSignInActivity(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("appId", self.app_id)

@@ -12,7 +12,7 @@ from .access_review_instance_decision_item_resource import AccessReviewInstanceD
 class AccessReviewInstanceDecisionItemServicePrincipalResource(AccessReviewInstanceDecisionItemResource):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalResource"
-    # The globally unique identifier of the application to which access has been granted.
+    # The globally unique identifier of the application to which access is granted.
     app_id: Optional[str] = None
     
     @staticmethod
@@ -22,7 +22,7 @@ class AccessReviewInstanceDecisionItemServicePrincipalResource(AccessReviewInsta
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AccessReviewInstanceDecisionItemServicePrincipalResource
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AccessReviewInstanceDecisionItemServicePrincipalResource()
     
@@ -48,7 +48,7 @@ class AccessReviewInstanceDecisionItemServicePrincipalResource(AccessReviewInsta
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("appId", self.app_id)
