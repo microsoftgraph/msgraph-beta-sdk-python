@@ -36,6 +36,7 @@ class GetTeamsLicensingDetailsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[TeamsLicensingDetails]
         Find more info here: https://learn.microsoft.com/graph/api/licensedetails-getteamslicensingdetails?view=graph-rest-beta
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -56,6 +57,7 @@ class GetTeamsLicensingDetailsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -67,7 +69,8 @@ class GetTeamsLicensingDetailsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: GetTeamsLicensingDetailsRequestBuilder
         """
-        if not raw_url:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return GetTeamsLicensingDetailsRequestBuilder(self.request_adapter, raw_url)
     

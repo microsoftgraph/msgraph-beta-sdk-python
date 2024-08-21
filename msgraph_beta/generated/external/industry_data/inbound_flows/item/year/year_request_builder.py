@@ -31,7 +31,7 @@ class YearRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[YearRequestBuilderGetQueryParameters]] = None) -> Optional[YearTimePeriodDefinition]:
         """
-        The year that the data brought in via this flow applies to.
+        The year associated to the data that this flow brings in.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[YearTimePeriodDefinition]
         """
@@ -51,7 +51,7 @@ class YearRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[YearRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The year that the data brought in via this flow applies to.
+        The year associated to the data that this flow brings in.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -66,14 +66,14 @@ class YearRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: YearRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return YearRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class YearRequestBuilderGetQueryParameters():
         """
-        The year that the data brought in via this flow applies to.
+        The year associated to the data that this flow brings in.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -81,7 +81,7 @@ class YearRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

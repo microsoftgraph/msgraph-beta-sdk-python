@@ -39,7 +39,7 @@ class BulkResizeRequestBuilder(BaseRequestBuilder):
         Find more info here: https://learn.microsoft.com/graph/api/cloudpc-bulkresize?view=graph-rest-beta
         """
         warn("The bulkResize action is deprecated and will stop supporting on September 24, 2023. Please use bulk action entity api. as of 2023-05/bulkResize", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -63,7 +63,7 @@ class BulkResizeRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("The bulkResize action is deprecated and will stop supporting on September 24, 2023. Please use bulk action entity api. as of 2023-05/bulkResize", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -78,7 +78,7 @@ class BulkResizeRequestBuilder(BaseRequestBuilder):
         Returns: BulkResizeRequestBuilder
         """
         warn("The bulkResize action is deprecated and will stop supporting on September 24, 2023. Please use bulk action entity api. as of 2023-05/bulkResize", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return BulkResizeRequestBuilder(self.request_adapter, raw_url)
     

@@ -46,6 +46,7 @@ class AccessReviewInstanceItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -64,6 +65,7 @@ class AccessReviewInstanceItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewInstance]
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -85,7 +87,8 @@ class AccessReviewInstanceItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewInstance]
         """
-        if not body:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -107,6 +110,7 @@ class AccessReviewInstanceItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -118,6 +122,7 @@ class AccessReviewInstanceItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -130,7 +135,8 @@ class AccessReviewInstanceItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -144,7 +150,8 @@ class AccessReviewInstanceItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AccessReviewInstanceItemRequestBuilder
         """
-        if not raw_url:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AccessReviewInstanceItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -265,7 +272,7 @@ class AccessReviewInstanceItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

@@ -32,7 +32,7 @@ class DeviceManagementApplicabilityRuleOsVersion(AdditionalDataHolder, BackedMod
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementApplicabilityRuleOsVersion
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementApplicabilityRuleOsVersion()
     
@@ -60,7 +60,7 @@ class DeviceManagementApplicabilityRuleOsVersion(AdditionalDataHolder, BackedMod
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("maxOSVersion", self.max_o_s_version)
         writer.write_str_value("minOSVersion", self.min_o_s_version)

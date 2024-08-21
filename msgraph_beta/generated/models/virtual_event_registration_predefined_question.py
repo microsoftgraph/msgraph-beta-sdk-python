@@ -13,7 +13,7 @@ from .virtual_event_registration_question_base import VirtualEventRegistrationQu
 class VirtualEventRegistrationPredefinedQuestion(VirtualEventRegistrationQuestionBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.virtualEventRegistrationPredefinedQuestion"
-    # The label property
+    # Label of the predefined registration question. The following label values accept a single line  of text: street, city, state, postalCode, countryOrRegion, industry, jobTitle, and organization. unknownFutureValue is an evolvable enumeration sentinel value; do not use this label.
     label: Optional[VirtualEventRegistrationPredefinedQuestionLabel] = None
     
     @staticmethod
@@ -23,7 +23,7 @@ class VirtualEventRegistrationPredefinedQuestion(VirtualEventRegistrationQuestio
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: VirtualEventRegistrationPredefinedQuestion
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return VirtualEventRegistrationPredefinedQuestion()
     
@@ -51,7 +51,7 @@ class VirtualEventRegistrationPredefinedQuestion(VirtualEventRegistrationQuestio
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("label", self.label)

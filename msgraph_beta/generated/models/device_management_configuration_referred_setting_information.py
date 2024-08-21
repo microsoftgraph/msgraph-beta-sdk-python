@@ -16,7 +16,7 @@ class DeviceManagementConfigurationReferredSettingInformation(AdditionalDataHold
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # Setting definition id that is being referred to a setting. Applicable for reusable setting.
+    # Setting definition id that is being referred to a setting. Applicable for reusable setting
     setting_definition_id: Optional[str] = None
     
     @staticmethod
@@ -26,7 +26,7 @@ class DeviceManagementConfigurationReferredSettingInformation(AdditionalDataHold
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationReferredSettingInformation
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationReferredSettingInformation()
     
@@ -47,7 +47,7 @@ class DeviceManagementConfigurationReferredSettingInformation(AdditionalDataHold
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("settingDefinitionId", self.setting_definition_id)

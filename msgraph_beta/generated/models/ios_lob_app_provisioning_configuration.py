@@ -18,7 +18,7 @@ class IosLobAppProvisioningConfiguration(Entity):
     """
     This topic provides descriptions of the declared methods, properties and relationships exposed by the iOS Lob App Provisioning Configuration resource.
     """
-    # The associated group assignments for IosLobAppProvisioningConfiguration.
+    # The associated group assignments for IosLobAppProvisioningConfiguration, this determines which devices/users the IOS LOB app provisioning conifguration will be targeted to.
     assignments: Optional[List[IosLobAppProvisioningConfigurationAssignment]] = None
     # DateTime the object was created.
     created_date_time: Optional[datetime.datetime] = None
@@ -28,7 +28,7 @@ class IosLobAppProvisioningConfiguration(Entity):
     device_statuses: Optional[List[ManagedDeviceMobileAppConfigurationDeviceStatus]] = None
     # Admin provided name of the device configuration.
     display_name: Optional[str] = None
-    # Optional profile expiration date and time.
+    # Optional profile expiration date and time. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Returned by default.
     expiration_date_time: Optional[datetime.datetime] = None
     # The associated group assignments.
     group_assignments: Optional[List[MobileAppProvisioningConfigGroupAssignment]] = None
@@ -54,7 +54,7 @@ class IosLobAppProvisioningConfiguration(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: IosLobAppProvisioningConfiguration
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return IosLobAppProvisioningConfiguration()
     
@@ -100,7 +100,7 @@ class IosLobAppProvisioningConfiguration(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("assignments", self.assignments)

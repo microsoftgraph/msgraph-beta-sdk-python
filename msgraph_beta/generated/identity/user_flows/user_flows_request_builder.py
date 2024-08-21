@@ -39,7 +39,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         Returns: IdentityUserFlowItemRequestBuilder
         """
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
-        if not identity_user_flow_id:
+        if identity_user_flow_id is None:
             raise TypeError("identity_user_flow_id cannot be null.")
         from .item.identity_user_flow_item_request_builder import IdentityUserFlowItemRequestBuilder
 
@@ -78,7 +78,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         Find more info here: https://learn.microsoft.com/graph/api/identityuserflow-post-userflows?view=graph-rest-beta
         """
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -114,7 +114,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -129,7 +129,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
         Returns: UserFlowsRequestBuilder
         """
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return UserFlowsRequestBuilder(self.request_adapter, raw_url)
     
@@ -153,7 +153,7 @@ class UserFlowsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

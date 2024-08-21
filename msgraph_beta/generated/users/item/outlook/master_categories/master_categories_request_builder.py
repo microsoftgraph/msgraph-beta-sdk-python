@@ -38,7 +38,8 @@ class MasterCategoriesRequestBuilder(BaseRequestBuilder):
         param outlook_category_id: The unique identifier of outlookCategory
         Returns: OutlookCategoryItemRequestBuilder
         """
-        if not outlook_category_id:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if outlook_category_id is None:
             raise TypeError("outlook_category_id cannot be null.")
         from .item.outlook_category_item_request_builder import OutlookCategoryItemRequestBuilder
 
@@ -52,6 +53,7 @@ class MasterCategoriesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookCategoryCollectionResponse]
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -73,7 +75,8 @@ class MasterCategoriesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OutlookCategory]
         """
-        if not body:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -95,6 +98,7 @@ class MasterCategoriesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -107,7 +111,8 @@ class MasterCategoriesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -121,7 +126,8 @@ class MasterCategoriesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MasterCategoriesRequestBuilder
         """
-        if not raw_url:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MasterCategoriesRequestBuilder(self.request_adapter, raw_url)
     
@@ -145,7 +151,7 @@ class MasterCategoriesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

@@ -77,7 +77,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         param days_in_past: Usage: daysInPast={daysInPast}
         Returns: MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilder
         """
-        if not days_in_past:
+        if days_in_past is None:
             raise TypeError("days_in_past cannot be null.")
         from .microsoft_graph_windows_updates_get_known_issues_by_time_range_with_days_in_past_with_include_all_active.microsoft_graph_windows_updates_get_known_issues_by_time_range_with_days_in_past_with_include_all_active_request_builder import MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilder
 
@@ -90,7 +90,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Product]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -135,7 +135,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -149,7 +149,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ProductItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ProductItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -198,7 +198,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

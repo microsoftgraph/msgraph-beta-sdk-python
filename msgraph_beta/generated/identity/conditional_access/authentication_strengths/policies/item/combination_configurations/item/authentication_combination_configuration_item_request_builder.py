@@ -77,7 +77,7 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
         Returns: Optional[AuthenticationCombinationConfiguration]
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -125,7 +125,7 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
         Returns: RequestInformation
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -140,7 +140,7 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
         Returns: AuthenticationCombinationConfigurationItemRequestBuilder
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AuthenticationCombinationConfigurationItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -162,7 +162,7 @@ class AuthenticationCombinationConfigurationItemRequestBuilder(BaseRequestBuilde
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

@@ -32,13 +32,13 @@ class CopyRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CopyPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DriveItem]:
         """
-        Asynchronously create a copy of a driveItem (including any children) under a new parent item or with a new name.
+        Asynchronously create a copy of a driveItem (including any children) under a new parent item or with a new name. After the request is acknowledged, it enters a queue. The actual copying, including any subitems, occurs at an undetermined time. Progress is reported until the operation is completed by monitoring the progress.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveItem]
         Find more info here: https://learn.microsoft.com/graph/api/driveitem-copy?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -56,12 +56,12 @@ class CopyRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CopyPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Asynchronously create a copy of a driveItem (including any children) under a new parent item or with a new name.
+        Asynchronously create a copy of a driveItem (including any children) under a new parent item or with a new name. After the request is acknowledged, it enters a queue. The actual copying, including any subitems, occurs at an undetermined time. Progress is reported until the operation is completed by monitoring the progress.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -75,7 +75,7 @@ class CopyRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CopyRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CopyRequestBuilder(self.request_adapter, raw_url)
     

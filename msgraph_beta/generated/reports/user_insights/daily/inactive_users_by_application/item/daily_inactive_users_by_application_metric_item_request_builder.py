@@ -69,7 +69,7 @@ class DailyInactiveUsersByApplicationMetricItemRequestBuilder(BaseRequestBuilder
         Returns: DailyInactiveUsersByApplicationMetricItemRequestBuilder
         """
         warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DailyInactiveUsersByApplicationMetricItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -84,7 +84,7 @@ class DailyInactiveUsersByApplicationMetricItemRequestBuilder(BaseRequestBuilder
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

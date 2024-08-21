@@ -70,7 +70,7 @@ class GetCloudPcReviewStatusRequestBuilder(BaseRequestBuilder):
         Returns: GetCloudPcReviewStatusRequestBuilder
         """
         warn("The getCloudPcReviewStatus API is deprecated and will stop returning data on Apr 30, 2024. Please use the new retrieveReviewStatus API as of 2024-01/getCloudPcReviewStatus", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return GetCloudPcReviewStatusRequestBuilder(self.request_adapter, raw_url)
     

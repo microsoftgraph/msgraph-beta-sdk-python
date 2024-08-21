@@ -80,7 +80,7 @@ class AccessPackageResourceRequestBuilder(BaseRequestBuilder):
         Returns: Optional[AccessPackageResource]
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -128,7 +128,7 @@ class AccessPackageResourceRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -143,7 +143,7 @@ class AccessPackageResourceRequestBuilder(BaseRequestBuilder):
         Returns: AccessPackageResourceRequestBuilder
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AccessPackageResourceRequestBuilder(self.request_adapter, raw_url)
     
@@ -192,7 +192,7 @@ class AccessPackageResourceRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

@@ -20,23 +20,23 @@ from ..entity import Entity
 
 @dataclass
 class FilePlanDescriptor(Entity):
-    # The authority property
+    # Represents the file plan descriptor of type authority applied to a particular retention label.
     authority: Optional[FilePlanAuthority] = None
     # Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
     authority_template: Optional[AuthorityTemplate] = None
-    # The category property
+    # Represents the file plan descriptor of type category applied to a particular retention label.
     category: Optional[FilePlanAppliedCategory] = None
     # Specifies a group of similar types of content in a particular department.
     category_template: Optional[CategoryTemplate] = None
-    # The citation property
+    # Represents the file plan descriptor of type citation applied to a particular retention label.
     citation: Optional[FilePlanCitation] = None
     # The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
     citation_template: Optional[CitationTemplate] = None
-    # The department property
+    # Represents the file plan descriptor of type department applied to a particular retention label.
     department: Optional[FilePlanDepartment] = None
     # Specifies the  department or business unit of an organization to which a label belongs.
     department_template: Optional[DepartmentTemplate] = None
-    # The filePlanReference property
+    # Represents the file plan descriptor of type filePlanReference applied to a particular retention label.
     file_plan_reference: Optional[FilePlanReference] = None
     # Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
     file_plan_reference_template: Optional[FilePlanReferenceTemplate] = None
@@ -50,7 +50,7 @@ class FilePlanDescriptor(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: FilePlanDescriptor
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return FilePlanDescriptor()
     
@@ -105,7 +105,7 @@ class FilePlanDescriptor(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("authority", self.authority)

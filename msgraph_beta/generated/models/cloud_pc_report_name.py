@@ -12,6 +12,7 @@ class CloudPcReportName(str, Enum):
     FrontlineLicenseUsageRealTimeReport = "frontlineLicenseUsageRealTimeReport",
     RemoteConnectionQualityReports = "remoteConnectionQualityReports",
     InaccessibleCloudPcReports = "inaccessibleCloudPcReports",
+    ActionStatusReport = "actionStatusReport",
     RawRemoteConnectionReports = "rawRemoteConnectionReports",
     CloudPcUsageCategoryReports = "cloudPcUsageCategoryReports",
     CrossRegionDisasterRecoveryReport = "crossRegionDisasterRecoveryReport",

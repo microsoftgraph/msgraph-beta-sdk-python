@@ -25,7 +25,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, BackedModel, Parsable
     conditions_satisfied: Optional[ConditionalAccessConditions] = None
     # Name of the conditional access policy.
     display_name: Optional[str] = None
-    # Refers to the grant controls enforced by the conditional access policy (example: 'Require multi-factor authentication').
+    # Refers to the grant controls enforced by the conditional access policy (example: 'Require multifactor authentication').
     enforced_grant_controls: Optional[List[str]] = None
     # Refers to the session controls enforced by the conditional access policy (example: 'Require app enforced controls').
     enforced_session_controls: Optional[List[str]] = None
@@ -49,7 +49,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, BackedModel, Parsable
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AppliedConditionalAccessPolicy
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AppliedConditionalAccessPolicy()
     
@@ -90,7 +90,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, BackedModel, Parsable
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("authenticationStrength", self.authentication_strength)
         writer.write_enum_value("conditionsNotSatisfied", self.conditions_not_satisfied)

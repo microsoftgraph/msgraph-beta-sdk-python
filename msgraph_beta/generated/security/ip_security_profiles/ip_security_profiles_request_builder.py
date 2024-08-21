@@ -39,7 +39,7 @@ class IpSecurityProfilesRequestBuilder(BaseRequestBuilder):
         Returns: IpSecurityProfileItemRequestBuilder
         """
         warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
-        if not ip_security_profile_id:
+        if ip_security_profile_id is None:
             raise TypeError("ip_security_profile_id cannot be null.")
         from .item.ip_security_profile_item_request_builder import IpSecurityProfileItemRequestBuilder
 
@@ -76,7 +76,7 @@ class IpSecurityProfilesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[IpSecurityProfile]
         """
         warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -112,7 +112,7 @@ class IpSecurityProfilesRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -127,7 +127,7 @@ class IpSecurityProfilesRequestBuilder(BaseRequestBuilder):
         Returns: IpSecurityProfilesRequestBuilder
         """
         warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return IpSecurityProfilesRequestBuilder(self.request_adapter, raw_url)
     
@@ -151,7 +151,7 @@ class IpSecurityProfilesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

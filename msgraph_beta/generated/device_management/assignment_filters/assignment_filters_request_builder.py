@@ -42,7 +42,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         param device_and_app_management_assignment_filter_id: The unique identifier of deviceAndAppManagementAssignmentFilter
         Returns: DeviceAndAppManagementAssignmentFilterItemRequestBuilder
         """
-        if not device_and_app_management_assignment_filter_id:
+        if device_and_app_management_assignment_filter_id is None:
             raise TypeError("device_and_app_management_assignment_filter_id cannot be null.")
         from .item.device_and_app_management_assignment_filter_item_request_builder import DeviceAndAppManagementAssignmentFilterItemRequestBuilder
 
@@ -76,7 +76,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         param platform: Usage: platform='{platform}'
         Returns: GetPlatformSupportedPropertiesWithPlatformRequestBuilder
         """
-        if not platform:
+        if platform is None:
             raise TypeError("platform cannot be null.")
         from .get_platform_supported_properties_with_platform.get_platform_supported_properties_with_platform_request_builder import GetPlatformSupportedPropertiesWithPlatformRequestBuilder
 
@@ -89,7 +89,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceAndAppManagementAssignmentFilter]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -123,7 +123,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -137,7 +137,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AssignmentFiltersRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AssignmentFiltersRequestBuilder(self.request_adapter, raw_url)
     
@@ -188,7 +188,7 @@ class AssignmentFiltersRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

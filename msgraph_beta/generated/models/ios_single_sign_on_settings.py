@@ -37,7 +37,7 @@ class IosSingleSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: IosSingleSignOnSettings
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return IosSingleSignOnSettings()
     
@@ -66,7 +66,7 @@ class IosSingleSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("allowedAppsList", self.allowed_apps_list)
         writer.write_collection_of_primitive_values("allowedUrls", self.allowed_urls)

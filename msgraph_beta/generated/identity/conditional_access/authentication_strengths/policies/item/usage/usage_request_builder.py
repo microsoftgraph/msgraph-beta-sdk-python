@@ -70,7 +70,7 @@ class UsageRequestBuilder(BaseRequestBuilder):
         Returns: UsageRequestBuilder
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return UsageRequestBuilder(self.request_adapter, raw_url)
     

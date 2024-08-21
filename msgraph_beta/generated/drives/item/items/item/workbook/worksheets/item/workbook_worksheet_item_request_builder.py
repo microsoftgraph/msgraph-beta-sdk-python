@@ -47,9 +47,9 @@ class WorkbookWorksheetItemRequestBuilder(BaseRequestBuilder):
         param row: Usage: row={row}
         Returns: CellWithRowWithColumnRequestBuilder
         """
-        if not column:
+        if column is None:
             raise TypeError("column cannot be null.")
-        if not row:
+        if row is None:
             raise TypeError("row cannot be null.")
         from .cell_with_row_with_column.cell_with_row_with_column_request_builder import CellWithRowWithColumnRequestBuilder
 
@@ -100,7 +100,7 @@ class WorkbookWorksheetItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookWorksheet]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -122,7 +122,7 @@ class WorkbookWorksheetItemRequestBuilder(BaseRequestBuilder):
         param address: Usage: address='{address}'
         Returns: RangeWithAddressRequestBuilder
         """
-        if not address:
+        if address is None:
             raise TypeError("address cannot be null.")
         from .range_with_address.range_with_address_request_builder import RangeWithAddressRequestBuilder
 
@@ -157,7 +157,7 @@ class WorkbookWorksheetItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -171,7 +171,7 @@ class WorkbookWorksheetItemRequestBuilder(BaseRequestBuilder):
         param values_only: Usage: valuesOnly={valuesOnly}
         Returns: UsedRangeWithValuesOnlyRequestBuilder
         """
-        if not values_only:
+        if values_only is None:
             raise TypeError("values_only cannot be null.")
         from .used_range_with_values_only.used_range_with_values_only_request_builder import UsedRangeWithValuesOnlyRequestBuilder
 
@@ -183,7 +183,7 @@ class WorkbookWorksheetItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: WorkbookWorksheetItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return WorkbookWorksheetItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -277,7 +277,7 @@ class WorkbookWorksheetItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

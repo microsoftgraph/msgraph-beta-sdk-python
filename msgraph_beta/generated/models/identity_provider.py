@@ -11,9 +11,9 @@ from .entity import Entity
 
 @dataclass
 class IdentityProvider(Entity):
-    # The client ID for the application obtained when registering the application with the identity provider. This is a required field.  Required. Not nullable.
+    # The client ID for the application obtained when registering the application with the identity provider. This is a required field. Required. Not nullable.
     client_id: Optional[str] = None
-    # The client secret for the application obtained when registering the application with the identity provider. This is write-only. A read operation will return . This is a required field. Required. Not nullable.
+    # The client secret for the application obtained when registering the application with the identity provider. This is write-only. A read operation returns . This is a required field. Required. Not nullable.
     client_secret: Optional[str] = None
     # The display name of the identity provider. Not nullable.
     name: Optional[str] = None
@@ -29,7 +29,7 @@ class IdentityProvider(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: IdentityProvider
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
@@ -68,7 +68,7 @@ class IdentityProvider(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("clientId", self.client_id)

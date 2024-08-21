@@ -66,7 +66,7 @@ class ResetDefaultsRequestBuilder(BaseRequestBuilder):
         Returns: ResetDefaultsRequestBuilder
         """
         warn("The resetDefaults API is deprecated and will stop returning data on July 31, 2023. Please use the restoreFactoryDefaults API instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ResetDefaultsRequestBuilder(self.request_adapter, raw_url)
     

@@ -38,7 +38,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, BackedModel, P
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: WindowsEnrollmentStatusScreenSettings
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return WindowsEnrollmentStatusScreenSettings()
     
@@ -65,7 +65,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, BackedModel, P
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("allowDeviceUseBeforeProfileAndAppInstallComplete", self.allow_device_use_before_profile_and_app_install_complete)
         writer.write_bool_value("allowDeviceUseOnInstallFailure", self.allow_device_use_on_install_failure)

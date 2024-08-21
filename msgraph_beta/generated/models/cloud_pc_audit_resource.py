@@ -24,8 +24,6 @@ class CloudPcAuditResource(AdditionalDataHolder, BackedModel, Parsable):
     resource_id: Optional[str] = None
     # The type of the audit resource.
     resource_type: Optional[str] = None
-    # The type of the audit resource. The type property is deprecated and will stop returning data on May 8, 2024. Going forward, use the resourceType property.
-    type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcAuditResource:
@@ -34,7 +32,7 @@ class CloudPcAuditResource(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CloudPcAuditResource
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return CloudPcAuditResource()
     
@@ -53,7 +51,6 @@ class CloudPcAuditResource(AdditionalDataHolder, BackedModel, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
             "resourceType": lambda n : setattr(self, 'resource_type', n.get_str_value()),
-            "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         return fields
     
@@ -63,14 +60,13 @@ class CloudPcAuditResource(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("modifiedProperties", self.modified_properties)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("resourceId", self.resource_id)
         writer.write_str_value("resourceType", self.resource_type)
-        writer.write_str_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)
     
 

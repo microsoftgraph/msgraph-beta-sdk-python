@@ -13,13 +13,13 @@ class HardwarePasswordInfo(Entity):
     """
     Intune will provide customer the ability to configure hardware/bios settings on the enrolled windows 10 Azure Active Directory joined devices. Starting from June, 2024 (Intune Release 2406), this type will no longer be supported and will be marked as deprecated
     """
-    # Current device password
+    # Current device password. This property is read-only.
     current_password: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # List of previous device passwords
+    # List of previous device passwords. This property is read-only.
     previous_passwords: Optional[List[str]] = None
-    # Device serial number
+    # Associated device's serial number . This property is read-only.
     serial_number: Optional[str] = None
     
     @staticmethod
@@ -29,7 +29,7 @@ class HardwarePasswordInfo(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: HardwarePasswordInfo
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return HardwarePasswordInfo()
     
@@ -57,7 +57,7 @@ class HardwarePasswordInfo(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("serialNumber", self.serial_number)

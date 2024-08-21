@@ -14,7 +14,7 @@ from .authentication_method_configuration import AuthenticationMethodConfigurati
 class EmailAuthenticationMethodConfiguration(AuthenticationMethodConfiguration):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.emailAuthenticationMethodConfiguration"
-    # Determines whether email OTP is usable by external users for authentication. Possible values are: default, enabled, disabled, unknownFutureValue. Tenants in the default state who didn't use public preview will automatically have email OTP enabled beginning in October 2021.
+    # Determines whether email OTP is usable by external users for authentication. Possible values are: default, enabled, disabled, unknownFutureValue. Tenants in the default state who didn't use the beta API automatically have email OTP enabled beginning in October 2021.
     allow_external_id_to_use_email_otp: Optional[ExternalEmailOtpState] = None
     # A collection of groups that are enabled to use the authentication method.
     include_targets: Optional[List[AuthenticationMethodTarget]] = None
@@ -26,7 +26,7 @@ class EmailAuthenticationMethodConfiguration(AuthenticationMethodConfiguration):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: EmailAuthenticationMethodConfiguration
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return EmailAuthenticationMethodConfiguration()
     
@@ -57,7 +57,7 @@ class EmailAuthenticationMethodConfiguration(AuthenticationMethodConfiguration):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("allowExternalIdToUseEmailOtp", self.allow_external_id_to_use_email_otp)
