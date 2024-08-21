@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .file_data_connector import FileDataConnector
+    from .file_format_reference_value import FileFormatReferenceValue
 
 from .file_data_connector import FileDataConnector
 
@@ -12,6 +13,8 @@ from .file_data_connector import FileDataConnector
 class AzureDataLakeConnector(FileDataConnector):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.azureDataLakeConnector"
+    # The file format that external systems can upload using this connector.
+    file_format: Optional[FileFormatReferenceValue] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AzureDataLakeConnector:
@@ -20,7 +23,7 @@ class AzureDataLakeConnector(FileDataConnector):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AzureDataLakeConnector
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AzureDataLakeConnector()
     
@@ -30,10 +33,13 @@ class AzureDataLakeConnector(FileDataConnector):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .file_data_connector import FileDataConnector
+        from .file_format_reference_value import FileFormatReferenceValue
 
         from .file_data_connector import FileDataConnector
+        from .file_format_reference_value import FileFormatReferenceValue
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "fileFormat": lambda n : setattr(self, 'file_format', n.get_object_value(FileFormatReferenceValue)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -45,8 +51,9 @@ class AzureDataLakeConnector(FileDataConnector):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("fileFormat", self.file_format)
     
 

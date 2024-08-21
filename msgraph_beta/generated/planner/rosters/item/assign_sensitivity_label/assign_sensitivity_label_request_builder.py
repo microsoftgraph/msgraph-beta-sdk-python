@@ -32,12 +32,13 @@ class AssignSensitivityLabelRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: AssignSensitivityLabelPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[PlannerRoster]:
         """
-        Invoke action assignSensitivityLabel
+        Assign a sensitivity label to a plannerRoster object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerRoster]
+        Find more info here: https://learn.microsoft.com/graph/api/plannerroster-assignsensitivitylabel?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -55,12 +56,12 @@ class AssignSensitivityLabelRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: AssignSensitivityLabelPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action assignSensitivityLabel
+        Assign a sensitivity label to a plannerRoster object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -74,7 +75,7 @@ class AssignSensitivityLabelRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AssignSensitivityLabelRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AssignSensitivityLabelRequestBuilder(self.request_adapter, raw_url)
     

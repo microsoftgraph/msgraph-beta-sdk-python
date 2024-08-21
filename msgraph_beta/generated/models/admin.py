@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .admin_todo import AdminTodo
     from .admin_windows import AdminWindows
     from .edge import Edge
+    from .entra import Entra
     from .people_admin_settings import PeopleAdminSettings
     from .service_announcement import ServiceAnnouncement
     from .sharepoint import Sharepoint
@@ -30,6 +31,8 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
     dynamics: Optional[AdminDynamics] = None
     # A container for Microsoft Edge resources. Read-only.
     edge: Optional[Edge] = None
+    # The entra property
+    entra: Optional[Entra] = None
     # The forms property
     forms: Optional[AdminForms] = None
     # A container for the Microsoft 365 apps admin functionality.
@@ -56,7 +59,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Admin
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return Admin()
     
@@ -73,6 +76,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
         from .edge import Edge
+        from .entra import Entra
         from .people_admin_settings import PeopleAdminSettings
         from .service_announcement import ServiceAnnouncement
         from .sharepoint import Sharepoint
@@ -85,6 +89,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
         from .edge import Edge
+        from .entra import Entra
         from .people_admin_settings import PeopleAdminSettings
         from .service_announcement import ServiceAnnouncement
         from .sharepoint import Sharepoint
@@ -93,6 +98,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
             "appsAndServices": lambda n : setattr(self, 'apps_and_services', n.get_object_value(AdminAppsAndServices)),
             "dynamics": lambda n : setattr(self, 'dynamics', n.get_object_value(AdminDynamics)),
             "edge": lambda n : setattr(self, 'edge', n.get_object_value(Edge)),
+            "entra": lambda n : setattr(self, 'entra', n.get_object_value(Entra)),
             "forms": lambda n : setattr(self, 'forms', n.get_object_value(AdminForms)),
             "microsoft365Apps": lambda n : setattr(self, 'microsoft365_apps', n.get_object_value(AdminMicrosoft365Apps)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -111,11 +117,12 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("appsAndServices", self.apps_and_services)
         writer.write_object_value("dynamics", self.dynamics)
         writer.write_object_value("edge", self.edge)
+        writer.write_object_value("entra", self.entra)
         writer.write_object_value("forms", self.forms)
         writer.write_object_value("microsoft365Apps", self.microsoft365_apps)
         writer.write_str_value("@odata.type", self.odata_type)

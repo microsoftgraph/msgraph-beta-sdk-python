@@ -10,9 +10,9 @@ from .entity import Entity
 
 @dataclass
 class InsightsSettings(Entity):
-    # The ID of a Microsoft Entra group, of which the specified type of insights are disabled for its members. Default is empty. Optional.
+    # The ID of a Microsoft Entra group, of which the specified type of insights are disabled for its members. The default value is null. Optional.
     disabled_for_group: Optional[str] = None
-    # true if insights of the specified type are enabled for the organization; false if insights of the specified type are disabled for all users without exceptions. Default is true. Optional.
+    # true if insights of the specified type are enabled for the organization; false if insights of the specified type are disabled for all users without exceptions. The default value is true. Optional.
     is_enabled_in_organization: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -24,7 +24,7 @@ class InsightsSettings(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: InsightsSettings
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return InsightsSettings()
     
@@ -51,7 +51,7 @@ class InsightsSettings(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("disabledForGroup", self.disabled_for_group)

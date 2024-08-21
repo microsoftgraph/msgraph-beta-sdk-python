@@ -63,7 +63,7 @@ class AllowNextEnrollmentRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AllowNextEnrollmentRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AllowNextEnrollmentRequestBuilder(self.request_adapter, raw_url)
     

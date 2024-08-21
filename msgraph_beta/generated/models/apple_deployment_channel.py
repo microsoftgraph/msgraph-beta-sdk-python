@@ -5,4 +5,6 @@ class AppleDeploymentChannel(str, Enum):
     DeviceChannel = "deviceChannel",
     # Send payload down over User Channel.
     UserChannel = "userChannel",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

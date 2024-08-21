@@ -40,7 +40,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         Returns: AuthenticationStrengthPolicyItemRequestBuilder
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
-        if not authentication_strength_policy_id:
+        if authentication_strength_policy_id is None:
             raise TypeError("authentication_strength_policy_id cannot be null.")
         from .item.authentication_strength_policy_item_request_builder import AuthenticationStrengthPolicyItemRequestBuilder
 
@@ -55,7 +55,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         Returns: FindByMethodModeWithAuthenticationMethodModesRequestBuilder
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
-        if not authentication_method_modes:
+        if authentication_method_modes is None:
             raise TypeError("authentication_method_modes cannot be null.")
         from .find_by_method_mode_with_authentication_method_modes.find_by_method_mode_with_authentication_method_modes_request_builder import FindByMethodModeWithAuthenticationMethodModesRequestBuilder
 
@@ -90,7 +90,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[AuthenticationStrengthPolicy]
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -126,7 +126,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -141,7 +141,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         Returns: PoliciesRequestBuilder
         """
         warn("The &apos;authenticationStrengths&apos; segment is deprecated. Please use &apos;authenticationStrength&apos; instead. as of 2023-02/AuthenticationStrengthsRemove", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PoliciesRequestBuilder(self.request_adapter, raw_url)
     
@@ -165,7 +165,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

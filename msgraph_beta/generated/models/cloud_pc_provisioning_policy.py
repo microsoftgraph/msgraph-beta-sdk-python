@@ -23,7 +23,7 @@ class CloudPcProvisioningPolicy(Entity):
     alternate_resource_url: Optional[str] = None
     # A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Microsoft Entra ID that have provisioning policy assigned. Returned only on $expand. For an example about how to get the assignments relationship, see Get cloudPcProvisioningPolicy.
     assignments: Optional[List[CloudPcProvisioningPolicyAssignment]] = None
-    # The autopatch property
+    # The specific settings for Windows Autopatch that enable its customers to experience it on Cloud PC. The settings take effect when the tenant enrolls in Windows Autopatch and the managedType of the microsoftManagedDesktop property is set as starterManaged. Supports $select.
     autopatch: Optional[CloudPcProvisioningPolicyAutopatch] = None
     # The display name of the Cloud PC group that the Cloud PCs reside in. Read-only.
     cloud_pc_group_display_name: Optional[str] = None
@@ -69,7 +69,7 @@ class CloudPcProvisioningPolicy(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CloudPcProvisioningPolicy
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return CloudPcProvisioningPolicy()
     
@@ -132,7 +132,7 @@ class CloudPcProvisioningPolicy(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("alternateResourceUrl", self.alternate_resource_url)

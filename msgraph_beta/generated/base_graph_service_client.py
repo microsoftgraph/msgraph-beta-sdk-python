@@ -88,6 +88,7 @@ if TYPE_CHECKING:
     from .message_traces.message_traces_request_builder import MessageTracesRequestBuilder
     from .mobility_management_policies.mobility_management_policies_request_builder import MobilityManagementPoliciesRequestBuilder
     from .monitoring.monitoring_request_builder import MonitoringRequestBuilder
+    from .network.network_request_builder import NetworkRequestBuilder
     from .network_access.network_access_request_builder import NetworkAccessRequestBuilder
     from .oauth2_permission_grants.oauth2_permission_grants_request_builder import Oauth2PermissionGrantsRequestBuilder
     from .on_premises_publishing_profiles.on_premises_publishing_profiles_request_builder import OnPremisesPublishingProfilesRequestBuilder
@@ -149,7 +150,7 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        if not request_adapter:
+        if request_adapter is None:
             raise TypeError("request_adapter cannot be null.")
         super().__init__(request_adapter, "{+baseurl}", None)
         register_default_serializer(JsonSerializationWriterFactory)
@@ -170,7 +171,7 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         param app_id: Alternate key of application
         Returns: ApplicationsWithAppIdRequestBuilder
         """
-        if not app_id:
+        if app_id is None:
             raise TypeError("app_id cannot be null.")
         from .applications_with_app_id.applications_with_app_id_request_builder import ApplicationsWithAppIdRequestBuilder
 
@@ -182,7 +183,7 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         param unique_name: Alternate key of application
         Returns: ApplicationsWithUniqueNameRequestBuilder
         """
-        if not unique_name:
+        if unique_name is None:
             raise TypeError("unique_name cannot be null.")
         from .applications_with_unique_name.applications_with_unique_name_request_builder import ApplicationsWithUniqueNameRequestBuilder
 
@@ -194,7 +195,7 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         param device_id: Alternate key of device
         Returns: DevicesWithDeviceIdRequestBuilder
         """
-        if not device_id:
+        if device_id is None:
             raise TypeError("device_id cannot be null.")
         from .devices_with_device_id.devices_with_device_id_request_builder import DevicesWithDeviceIdRequestBuilder
 
@@ -206,7 +207,7 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         param role_template_id: Alternate key of directoryRole
         Returns: DirectoryRolesWithRoleTemplateIdRequestBuilder
         """
-        if not role_template_id:
+        if role_template_id is None:
             raise TypeError("role_template_id cannot be null.")
         from .directory_roles_with_role_template_id.directory_roles_with_role_template_id_request_builder import DirectoryRolesWithRoleTemplateIdRequestBuilder
 
@@ -218,7 +219,7 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         param unique_name: Alternate key of group
         Returns: GroupsWithUniqueNameRequestBuilder
         """
-        if not unique_name:
+        if unique_name is None:
             raise TypeError("unique_name cannot be null.")
         from .groups_with_unique_name.groups_with_unique_name_request_builder import GroupsWithUniqueNameRequestBuilder
 
@@ -230,7 +231,7 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         param place_id: Alternate key of place
         Returns: PlacesWithPlaceIdRequestBuilder
         """
-        if not place_id:
+        if place_id is None:
             raise TypeError("place_id cannot be null.")
         from .places_with_place_id.places_with_place_id_request_builder import PlacesWithPlaceIdRequestBuilder
 
@@ -242,7 +243,7 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         param app_id: Alternate key of servicePrincipal
         Returns: ServicePrincipalsWithAppIdRequestBuilder
         """
-        if not app_id:
+        if app_id is None:
             raise TypeError("app_id cannot be null.")
         from .service_principals_with_app_id.service_principals_with_app_id_request_builder import ServicePrincipalsWithAppIdRequestBuilder
 
@@ -859,6 +860,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .monitoring.monitoring_request_builder import MonitoringRequestBuilder
 
         return MonitoringRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def network(self) -> NetworkRequestBuilder:
+        """
+        Provides operations to manage the network singleton.
+        """
+        from .network.network_request_builder import NetworkRequestBuilder
+
+        return NetworkRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def network_access(self) -> NetworkAccessRequestBuilder:

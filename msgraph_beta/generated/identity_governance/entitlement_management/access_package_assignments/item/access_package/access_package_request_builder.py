@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from ......models.access_package import AccessPackage
     from ......models.o_data_errors.o_data_error import ODataError
     from .access_packages_incompatible_with.access_packages_incompatible_with_request_builder import AccessPackagesIncompatibleWithRequestBuilder
+    from .access_packages_incompatible_with_with_unique_name.access_packages_incompatible_with_with_unique_name_request_builder import AccessPackagesIncompatibleWithWithUniqueNameRequestBuilder
     from .access_package_assignment_policies.access_package_assignment_policies_request_builder import AccessPackageAssignmentPoliciesRequestBuilder
     from .access_package_catalog.access_package_catalog_request_builder import AccessPackageCatalogRequestBuilder
     from .access_package_resource_role_scopes.access_package_resource_role_scopes_request_builder import AccessPackageResourceRoleScopesRequestBuilder
@@ -36,6 +37,18 @@ class AccessPackageRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignments/{accessPackageAssignment%2Did}/accessPackage{?%24expand,%24select}", path_parameters)
+    
+    def access_packages_incompatible_with_with_unique_name(self,unique_name: str) -> AccessPackagesIncompatibleWithWithUniqueNameRequestBuilder:
+        """
+        Provides operations to manage the accessPackagesIncompatibleWith property of the microsoft.graph.accessPackage entity.
+        param unique_name: Alternate key of accessPackage
+        Returns: AccessPackagesIncompatibleWithWithUniqueNameRequestBuilder
+        """
+        if unique_name is None:
+            raise TypeError("unique_name cannot be null.")
+        from .access_packages_incompatible_with_with_unique_name.access_packages_incompatible_with_with_unique_name_request_builder import AccessPackagesIncompatibleWithWithUniqueNameRequestBuilder
+
+        return AccessPackagesIncompatibleWithWithUniqueNameRequestBuilder(self.request_adapter, self.path_parameters, unique_name)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -82,7 +95,7 @@ class AccessPackageRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackage]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -127,7 +140,7 @@ class AccessPackageRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -141,7 +154,7 @@ class AccessPackageRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AccessPackageRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AccessPackageRequestBuilder(self.request_adapter, raw_url)
     
@@ -235,7 +248,7 @@ class AccessPackageRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

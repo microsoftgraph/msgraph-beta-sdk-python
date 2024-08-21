@@ -39,7 +39,7 @@ class LinksRequestBuilder(BaseRequestBuilder):
         Returns: ConnectivityConfigurationLinkItemRequestBuilder
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
-        if not connectivity_configuration_link_id:
+        if connectivity_configuration_link_id is None:
             raise TypeError("connectivity_configuration_link_id cannot be null.")
         from .item.connectivity_configuration_link_item_request_builder import ConnectivityConfigurationLinkItemRequestBuilder
 
@@ -76,7 +76,7 @@ class LinksRequestBuilder(BaseRequestBuilder):
         Returns: Optional[ConnectivityConfigurationLink]
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -112,7 +112,7 @@ class LinksRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -127,7 +127,7 @@ class LinksRequestBuilder(BaseRequestBuilder):
         Returns: LinksRequestBuilder
         """
         warn("The Branches API is deprecated and will stop returning data on March 20, 2024. Please use the new Remote Network API. as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return LinksRequestBuilder(self.request_adapter, raw_url)
     
@@ -151,7 +151,7 @@ class LinksRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

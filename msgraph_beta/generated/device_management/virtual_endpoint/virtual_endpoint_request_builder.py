@@ -31,7 +31,6 @@ if TYPE_CHECKING:
     from .retrieve_scoped_permissions.retrieve_scoped_permissions_request_builder import RetrieveScopedPermissionsRequestBuilder
     from .retrieve_tenant_encryption_setting.retrieve_tenant_encryption_setting_request_builder import RetrieveTenantEncryptionSettingRequestBuilder
     from .service_plans.service_plans_request_builder import ServicePlansRequestBuilder
-    from .shared_use_service_plans.shared_use_service_plans_request_builder import SharedUseServicePlansRequestBuilder
     from .snapshots.snapshots_request_builder import SnapshotsRequestBuilder
     from .supported_regions.supported_regions_request_builder import SupportedRegionsRequestBuilder
     from .user_settings.user_settings_request_builder import UserSettingsRequestBuilder
@@ -94,7 +93,7 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEndpoint]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -139,7 +138,7 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -153,7 +152,7 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: VirtualEndpointRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return VirtualEndpointRequestBuilder(self.request_adapter, raw_url)
     
@@ -302,15 +301,6 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         return ServicePlansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def shared_use_service_plans(self) -> SharedUseServicePlansRequestBuilder:
-        """
-        Provides operations to manage the sharedUseServicePlans property of the microsoft.graph.virtualEndpoint entity.
-        """
-        from .shared_use_service_plans.shared_use_service_plans_request_builder import SharedUseServicePlansRequestBuilder
-
-        return SharedUseServicePlansRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def snapshots(self) -> SnapshotsRequestBuilder:
         """
         Provides operations to manage the snapshots property of the microsoft.graph.virtualEndpoint entity.
@@ -355,7 +345,7 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

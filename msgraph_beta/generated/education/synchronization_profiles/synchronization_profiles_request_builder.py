@@ -38,7 +38,8 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
         param education_synchronization_profile_id: The unique identifier of educationSynchronizationProfile
         Returns: EducationSynchronizationProfileItemRequestBuilder
         """
-        if not education_synchronization_profile_id:
+        warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
+        if education_synchronization_profile_id is None:
             raise TypeError("education_synchronization_profile_id cannot be null.")
         from .item.education_synchronization_profile_item_request_builder import EducationSynchronizationProfileItemRequestBuilder
 
@@ -53,6 +54,7 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[EducationSynchronizationProfileCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-list?view=graph-rest-beta
         """
+        warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -74,7 +76,8 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSynchronizationProfile]
         """
-        if not body:
+        warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -96,6 +99,7 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -108,7 +112,8 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -122,7 +127,8 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: SynchronizationProfilesRequestBuilder
         """
-        if not raw_url:
+        warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SynchronizationProfilesRequestBuilder(self.request_adapter, raw_url)
     
@@ -146,7 +152,7 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

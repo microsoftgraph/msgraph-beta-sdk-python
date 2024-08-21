@@ -37,7 +37,7 @@ class UserCountRequestBuilder(BaseRequestBuilder):
         param user_count_metric_id: The unique identifier of userCountMetric
         Returns: UserCountMetricItemRequestBuilder
         """
-        if not user_count_metric_id:
+        if user_count_metric_id is None:
             raise TypeError("user_count_metric_id cannot be null.")
         from .item.user_count_metric_item_request_builder import UserCountMetricItemRequestBuilder
 
@@ -83,7 +83,7 @@ class UserCountRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: UserCountRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return UserCountRequestBuilder(self.request_adapter, raw_url)
     
@@ -107,7 +107,7 @@ class UserCountRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

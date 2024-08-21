@@ -47,7 +47,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, BackedModel, P
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MacOsVppAppRevokeLicensesActionResult
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return MacOsVppAppRevokeLicensesActionResult()
     
@@ -82,7 +82,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, BackedModel, P
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("actionFailureReason", self.action_failure_reason)
         writer.write_str_value("actionName", self.action_name)

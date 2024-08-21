@@ -37,7 +37,7 @@ class MailboxInclusionRulesRequestBuilder(BaseRequestBuilder):
         param mailbox_protection_rule_id: The unique identifier of mailboxProtectionRule
         Returns: MailboxProtectionRuleItemRequestBuilder
         """
-        if not mailbox_protection_rule_id:
+        if mailbox_protection_rule_id is None:
             raise TypeError("mailbox_protection_rule_id cannot be null.")
         from .item.mailbox_protection_rule_item_request_builder import MailboxProtectionRuleItemRequestBuilder
 
@@ -83,7 +83,7 @@ class MailboxInclusionRulesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MailboxInclusionRulesRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MailboxInclusionRulesRequestBuilder(self.request_adapter, raw_url)
     
@@ -107,7 +107,7 @@ class MailboxInclusionRulesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

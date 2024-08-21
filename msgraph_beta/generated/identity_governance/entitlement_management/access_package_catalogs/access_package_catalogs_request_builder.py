@@ -40,7 +40,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
         Returns: AccessPackageCatalogItemRequestBuilder
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not access_package_catalog_id:
+        if access_package_catalog_id is None:
             raise TypeError("access_package_catalog_id cannot be null.")
         from .item.access_package_catalog_item_request_builder import AccessPackageCatalogItemRequestBuilder
 
@@ -79,7 +79,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
         Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-post-accesspackagecatalogs?view=graph-rest-beta
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -115,7 +115,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -130,7 +130,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
         Returns: AccessPackageCatalogsRequestBuilder
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AccessPackageCatalogsRequestBuilder(self.request_adapter, raw_url)
     
@@ -163,7 +163,7 @@ class AccessPackageCatalogsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

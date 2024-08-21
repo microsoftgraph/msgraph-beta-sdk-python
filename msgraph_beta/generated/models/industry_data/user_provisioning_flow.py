@@ -14,7 +14,7 @@ from .provisioning_flow import ProvisioningFlow
 class UserProvisioningFlow(ProvisioningFlow):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.userProvisioningFlow"
-    # A boolean choice indicating whether unmatched users should be created or ignored.
+    # A Boolean choice indicating whether unmatched users should be created or ignored.
     create_unmatched_users: Optional[bool] = None
     # The different management choices for the new users to be provisioned.
     creation_options: Optional[UserCreationOptions] = None
@@ -28,7 +28,7 @@ class UserProvisioningFlow(ProvisioningFlow):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: UserProvisioningFlow
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return UserProvisioningFlow()
     
@@ -60,7 +60,7 @@ class UserProvisioningFlow(ProvisioningFlow):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("createUnmatchedUsers", self.create_unmatched_users)

@@ -37,7 +37,7 @@ class ProtectionUnitsRequestBuilder(BaseRequestBuilder):
         param protection_unit_base_id: The unique identifier of protectionUnitBase
         Returns: ProtectionUnitBaseItemRequestBuilder
         """
-        if not protection_unit_base_id:
+        if protection_unit_base_id is None:
             raise TypeError("protection_unit_base_id cannot be null.")
         from .item.protection_unit_base_item_request_builder import ProtectionUnitBaseItemRequestBuilder
 
@@ -82,7 +82,7 @@ class ProtectionUnitsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ProtectionUnitsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ProtectionUnitsRequestBuilder(self.request_adapter, raw_url)
     
@@ -106,7 +106,7 @@ class ProtectionUnitsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

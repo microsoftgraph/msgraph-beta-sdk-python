@@ -32,7 +32,7 @@ class MeetingParticipants(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: MeetingParticipants
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return MeetingParticipants()
     
@@ -60,7 +60,7 @@ class MeetingParticipants(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("attendees", self.attendees)
         writer.write_collection_of_object_values("contributors", self.contributors)

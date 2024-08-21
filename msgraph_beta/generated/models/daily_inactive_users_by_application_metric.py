@@ -22,7 +22,7 @@ class DailyInactiveUsersByApplicationMetric(InactiveUsersByApplicationMetricBase
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DailyInactiveUsersByApplicationMetric
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return DailyInactiveUsersByApplicationMetric()
     
@@ -48,7 +48,7 @@ class DailyInactiveUsersByApplicationMetric(InactiveUsersByApplicationMetricBase
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("inactive1DayCount", self.inactive1_day_count)

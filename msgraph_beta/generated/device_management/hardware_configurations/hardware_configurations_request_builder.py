@@ -38,7 +38,7 @@ class HardwareConfigurationsRequestBuilder(BaseRequestBuilder):
         param hardware_configuration_id: The unique identifier of hardwareConfiguration
         Returns: HardwareConfigurationItemRequestBuilder
         """
-        if not hardware_configuration_id:
+        if hardware_configuration_id is None:
             raise TypeError("hardware_configuration_id cannot be null.")
         from .item.hardware_configuration_item_request_builder import HardwareConfigurationItemRequestBuilder
 
@@ -48,7 +48,7 @@ class HardwareConfigurationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[HardwareConfigurationsRequestBuilderGetQueryParameters]] = None) -> Optional[HardwareConfigurationCollectionResponse]:
         """
-        The hardware configurations for this account.
+        BIOS configuration and other settings provides customers the ability to configure hardware/bios settings on the enrolled Windows 10/11 Entra ID joined devices by uploading a configuration file generated with their OEM tool (e.g. Dell Command tool). A BIOS configuration policy can be assigned to multiple devices, allowing admins to remotely control a device's hardware properties (e.g. enable Secure Boot) from the Intune Portal. Supported for Dell only at this time.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareConfigurationCollectionResponse]
         """
@@ -73,7 +73,7 @@ class HardwareConfigurationsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareConfiguration]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -91,7 +91,7 @@ class HardwareConfigurationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[HardwareConfigurationsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The hardware configurations for this account.
+        BIOS configuration and other settings provides customers the ability to configure hardware/bios settings on the enrolled Windows 10/11 Entra ID joined devices by uploading a configuration file generated with their OEM tool (e.g. Dell Command tool). A BIOS configuration policy can be assigned to multiple devices, allowing admins to remotely control a device's hardware properties (e.g. enable Secure Boot) from the Intune Portal. Supported for Dell only at this time.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +107,7 @@ class HardwareConfigurationsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -121,7 +121,7 @@ class HardwareConfigurationsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: HardwareConfigurationsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return HardwareConfigurationsRequestBuilder(self.request_adapter, raw_url)
     
@@ -137,7 +137,7 @@ class HardwareConfigurationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HardwareConfigurationsRequestBuilderGetQueryParameters():
         """
-        The hardware configurations for this account.
+        BIOS configuration and other settings provides customers the ability to configure hardware/bios settings on the enrolled Windows 10/11 Entra ID joined devices by uploading a configuration file generated with their OEM tool (e.g. Dell Command tool). A BIOS configuration policy can be assigned to multiple devices, allowing admins to remotely control a device's hardware properties (e.g. enable Secure Boot) from the Intune Portal. Supported for Dell only at this time.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -145,7 +145,7 @@ class HardwareConfigurationsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

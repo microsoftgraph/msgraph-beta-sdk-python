@@ -5,4 +5,5 @@ class DisableReason(str, Enum):
     InvalidBillingProfile = "invalidBillingProfile",
     UserRequested = "userRequested",
     UnknownFutureValue = "unknownFutureValue",
+    ControllerServiceAppDeleted = "controllerServiceAppDeleted",
 

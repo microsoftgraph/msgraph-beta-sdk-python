@@ -69,7 +69,7 @@ class StartPrintJobRequestBuilder(BaseRequestBuilder):
         Returns: StartPrintJobRequestBuilder
         """
         warn("The startPrintJob API is deprecated and will stop returning data on July 31, 2023. Please use the start API instead of this. as of 2023-06/Tasks_And_Plans", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return StartPrintJobRequestBuilder(self.request_adapter, raw_url)
     

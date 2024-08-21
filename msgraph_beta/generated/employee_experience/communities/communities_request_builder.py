@@ -38,7 +38,7 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
         param community_id: The unique identifier of community
         Returns: CommunityItemRequestBuilder
         """
-        if not community_id:
+        if community_id is None:
             raise TypeError("community_id cannot be null.")
         from .item.community_item_request_builder import CommunityItemRequestBuilder
 
@@ -48,9 +48,10 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CommunitiesRequestBuilderGetQueryParameters]] = None) -> Optional[CommunityCollectionResponse]:
         """
-        Read the properties and relationships of a community object.
+        Get a list of the Viva Engage community objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CommunityCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/employeeexperience-list-communities?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -74,7 +75,7 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[Community]
         Find more info here: https://learn.microsoft.com/graph/api/employeeexperience-post-communities?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -92,7 +93,7 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CommunitiesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a community object.
+        Get a list of the Viva Engage community objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +109,7 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -122,7 +123,7 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CommunitiesRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CommunitiesRequestBuilder(self.request_adapter, raw_url)
     
@@ -138,7 +139,7 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CommunitiesRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a community object.
+        Get a list of the Viva Engage community objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -146,7 +147,7 @@ class CommunitiesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

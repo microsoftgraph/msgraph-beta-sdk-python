@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .meeting_attendance_report import MeetingAttendanceReport
     from .meeting_chat_history_default_mode import MeetingChatHistoryDefaultMode
     from .meeting_chat_mode import MeetingChatMode
+    from .meeting_live_share_options import MeetingLiveShareOptions
     from .online_meeting import OnlineMeeting
     from .online_meeting_presenters import OnlineMeetingPresenters
     from .online_meeting_role import OnlineMeetingRole
@@ -28,15 +29,15 @@ class OnlineMeetingBase(Entity):
     allow_attendee_to_enable_camera: Optional[bool] = None
     # Indicates whether attendees can turn on their microphone.
     allow_attendee_to_enable_mic: Optional[bool] = None
-    # The allowBreakoutRooms property
+    # Indicates whether breakout rooms are enabled for the meeting.
     allow_breakout_rooms: Optional[bool] = None
-    # The allowLiveShare property
-    allow_live_share: Optional[bool] = None
-    # Specifies the mode of meeting chat.
+    # Indicates whether live share is enabled for the meeting. Possible values are: enabled, disabled, unknownFutureValue.
+    allow_live_share: Optional[MeetingLiveShareOptions] = None
+    # Specifies the mode of meeting chat. Possible values are: enabled, disabled, limited, unknownFutureValue.
     allow_meeting_chat: Optional[MeetingChatMode] = None
     # Specifies if participants are allowed to rename themselves in an instance of the meeting.
     allow_participants_to_change_name: Optional[bool] = None
-    # The allowPowerPointSharing property
+    # Indicates whether PowerPoint live is enabled for the meeting.
     allow_power_point_sharing: Optional[bool] = None
     # Indicates whether recording is enabled for the meeting.
     allow_recording: Optional[bool] = None
@@ -44,9 +45,9 @@ class OnlineMeetingBase(Entity):
     allow_teamwork_reactions: Optional[bool] = None
     # Indicates whether transcription is enabled for the meeting.
     allow_transcription: Optional[bool] = None
-    # The allowWhiteboard property
+    # Indicates whether whiteboard is enabled for the meeting.
     allow_whiteboard: Optional[bool] = None
-    # Specifies who can be a presenter in a meeting.
+    # Specifies who can be a presenter in a meeting. Possible values are: everyone, organization, roleIsPresenter, organizer, unknownFutureValue.
     allowed_presenters: Optional[OnlineMeetingPresenters] = None
     # Specifies whose identity is anonymized in the meeting. Possible values are: attendee. The attendee value can't be removed through a PATCH operation once added.
     anonymize_identity_for_roles: Optional[List[OnlineMeetingRole]] = None
@@ -90,7 +91,7 @@ class OnlineMeetingBase(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: OnlineMeetingBase
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
@@ -121,6 +122,7 @@ class OnlineMeetingBase(Entity):
         from .meeting_attendance_report import MeetingAttendanceReport
         from .meeting_chat_history_default_mode import MeetingChatHistoryDefaultMode
         from .meeting_chat_mode import MeetingChatMode
+        from .meeting_live_share_options import MeetingLiveShareOptions
         from .online_meeting import OnlineMeeting
         from .online_meeting_presenters import OnlineMeetingPresenters
         from .online_meeting_role import OnlineMeetingRole
@@ -137,6 +139,7 @@ class OnlineMeetingBase(Entity):
         from .meeting_attendance_report import MeetingAttendanceReport
         from .meeting_chat_history_default_mode import MeetingChatHistoryDefaultMode
         from .meeting_chat_mode import MeetingChatMode
+        from .meeting_live_share_options import MeetingLiveShareOptions
         from .online_meeting import OnlineMeeting
         from .online_meeting_presenters import OnlineMeetingPresenters
         from .online_meeting_role import OnlineMeetingRole
@@ -147,7 +150,7 @@ class OnlineMeetingBase(Entity):
             "allowAttendeeToEnableCamera": lambda n : setattr(self, 'allow_attendee_to_enable_camera', n.get_bool_value()),
             "allowAttendeeToEnableMic": lambda n : setattr(self, 'allow_attendee_to_enable_mic', n.get_bool_value()),
             "allowBreakoutRooms": lambda n : setattr(self, 'allow_breakout_rooms', n.get_bool_value()),
-            "allowLiveShare": lambda n : setattr(self, 'allow_live_share', n.get_bool_value()),
+            "allowLiveShare": lambda n : setattr(self, 'allow_live_share', n.get_enum_value(MeetingLiveShareOptions)),
             "allowMeetingChat": lambda n : setattr(self, 'allow_meeting_chat', n.get_enum_value(MeetingChatMode)),
             "allowParticipantsToChangeName": lambda n : setattr(self, 'allow_participants_to_change_name', n.get_bool_value()),
             "allowPowerPointSharing": lambda n : setattr(self, 'allow_power_point_sharing', n.get_bool_value()),
@@ -183,13 +186,13 @@ class OnlineMeetingBase(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("allowAttendeeToEnableCamera", self.allow_attendee_to_enable_camera)
         writer.write_bool_value("allowAttendeeToEnableMic", self.allow_attendee_to_enable_mic)
         writer.write_bool_value("allowBreakoutRooms", self.allow_breakout_rooms)
-        writer.write_bool_value("allowLiveShare", self.allow_live_share)
+        writer.write_enum_value("allowLiveShare", self.allow_live_share)
         writer.write_enum_value("allowMeetingChat", self.allow_meeting_chat)
         writer.write_bool_value("allowParticipantsToChangeName", self.allow_participants_to_change_name)
         writer.write_bool_value("allowPowerPointSharing", self.allow_power_point_sharing)

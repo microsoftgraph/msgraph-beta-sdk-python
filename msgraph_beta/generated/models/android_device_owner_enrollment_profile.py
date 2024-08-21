@@ -34,7 +34,7 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity):
     enrollment_mode: Optional[AndroidDeviceOwnerEnrollmentMode] = None
     # The enrollment token type for an enrollment profile.
     enrollment_token_type: Optional[AndroidDeviceOwnerEnrollmentTokenType] = None
-    # Total number of AOSP devices that have enrolled using the current token.
+    # Total number of AOSP devices that have enrolled using the current token. Valid values 0 to 20000
     enrollment_token_usage_count: Optional[int] = None
     # Boolean indicating if this profile is an Android AOSP for Teams device profile.
     is_teams_device_profile: Optional[bool] = None
@@ -70,7 +70,7 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AndroidDeviceOwnerEnrollmentProfile
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AndroidDeviceOwnerEnrollmentProfile()
     
@@ -124,7 +124,7 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("accountId", self.account_id)

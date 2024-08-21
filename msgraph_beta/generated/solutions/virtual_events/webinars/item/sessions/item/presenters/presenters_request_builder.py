@@ -37,7 +37,7 @@ class PresentersRequestBuilder(BaseRequestBuilder):
         param virtual_event_presenter_id: The unique identifier of virtualEventPresenter
         Returns: VirtualEventPresenterItemRequestBuilder
         """
-        if not virtual_event_presenter_id:
+        if virtual_event_presenter_id is None:
             raise TypeError("virtual_event_presenter_id cannot be null.")
         from .item.virtual_event_presenter_item_request_builder import VirtualEventPresenterItemRequestBuilder
 
@@ -82,7 +82,7 @@ class PresentersRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: PresentersRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PresentersRequestBuilder(self.request_adapter, raw_url)
     
@@ -106,7 +106,7 @@ class PresentersRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
