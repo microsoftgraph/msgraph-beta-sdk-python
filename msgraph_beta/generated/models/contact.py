@@ -32,7 +32,7 @@ class Contact(OutlookItem):
     company_name: Optional[str] = None
     # The contact's department.
     department: Optional[str] = None
-    # The contact's display name. You can specify the display name in a create or update operation. Note that later updates to other properties may cause an automatically generated value to overwrite the displayName value you have specified. To preserve a pre-existing value, always include it as displayName in an update operation.
+    # The contact's display name. You can specify the display name in a create or update operation. Later updates to other properties might cause an automatically generated value to overwrite the displayName value you specified. To preserve a pre-existing value, always include it as displayName in an update operation.
     display_name: Optional[str] = None
     # The contact's email addresses.
     email_addresses: Optional[List[TypedEmailAddress]] = None
@@ -104,7 +104,7 @@ class Contact(OutlookItem):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Contact
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return Contact()
     
@@ -184,7 +184,7 @@ class Contact(OutlookItem):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("assistantName", self.assistant_name)

@@ -31,7 +31,7 @@ class WindowsAutopilotSettings(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: WindowsAutopilotSettings
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return WindowsAutopilotSettings()
     
@@ -61,7 +61,7 @@ class WindowsAutopilotSettings(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("lastManualSyncTriggerDateTime", self.last_manual_sync_trigger_date_time)

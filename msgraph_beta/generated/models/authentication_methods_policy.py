@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
     from .authentication_method_configuration import AuthenticationMethodConfiguration
     from .entity import Entity
+    from .microsoft_authenticator_platform_settings import MicrosoftAuthenticatorPlatformSettings
     from .registration_enforcement import RegistrationEnforcement
     from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
     from .system_credential_preferences import SystemCredentialPreferences
@@ -24,6 +25,8 @@ class AuthenticationMethodsPolicy(Entity):
     display_name: Optional[str] = None
     # The date and time of the last update to the policy.
     last_modified_date_time: Optional[datetime.datetime] = None
+    # The microsoftAuthenticatorPlatformSettings property
+    microsoft_authenticator_platform_settings: Optional[MicrosoftAuthenticatorPlatformSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authentication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Don't use.
@@ -46,7 +49,7 @@ class AuthenticationMethodsPolicy(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AuthenticationMethodsPolicy
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AuthenticationMethodsPolicy()
     
@@ -58,6 +61,7 @@ class AuthenticationMethodsPolicy(Entity):
         from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
         from .authentication_method_configuration import AuthenticationMethodConfiguration
         from .entity import Entity
+        from .microsoft_authenticator_platform_settings import MicrosoftAuthenticatorPlatformSettings
         from .registration_enforcement import RegistrationEnforcement
         from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
         from .system_credential_preferences import SystemCredentialPreferences
@@ -65,6 +69,7 @@ class AuthenticationMethodsPolicy(Entity):
         from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
         from .authentication_method_configuration import AuthenticationMethodConfiguration
         from .entity import Entity
+        from .microsoft_authenticator_platform_settings import MicrosoftAuthenticatorPlatformSettings
         from .registration_enforcement import RegistrationEnforcement
         from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
         from .system_credential_preferences import SystemCredentialPreferences
@@ -74,6 +79,7 @@ class AuthenticationMethodsPolicy(Entity):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "microsoftAuthenticatorPlatformSettings": lambda n : setattr(self, 'microsoft_authenticator_platform_settings', n.get_object_value(MicrosoftAuthenticatorPlatformSettings)),
             "policyMigrationState": lambda n : setattr(self, 'policy_migration_state', n.get_enum_value(AuthenticationMethodsPolicyMigrationState)),
             "policyVersion": lambda n : setattr(self, 'policy_version', n.get_str_value()),
             "reconfirmationInDays": lambda n : setattr(self, 'reconfirmation_in_days', n.get_int_value()),
@@ -91,13 +97,14 @@ class AuthenticationMethodsPolicy(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("authenticationMethodConfigurations", self.authentication_method_configurations)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_object_value("microsoftAuthenticatorPlatformSettings", self.microsoft_authenticator_platform_settings)
         writer.write_enum_value("policyMigrationState", self.policy_migration_state)
         writer.write_str_value("policyVersion", self.policy_version)
         writer.write_int_value("reconfirmationInDays", self.reconfirmation_in_days)

@@ -41,7 +41,7 @@ class OwnersRequestBuilder(BaseRequestBuilder):
         param directory_object_id: The unique identifier of directoryObject
         Returns: DirectoryObjectItemRequestBuilder
         """
-        if not directory_object_id:
+        if directory_object_id is None:
             raise TypeError("directory_object_id cannot be null.")
         from .item.directory_object_item_request_builder import DirectoryObjectItemRequestBuilder
 
@@ -51,10 +51,9 @@ class OwnersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[OwnersRequestBuilderGetQueryParameters]] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Retrieve a list of owners of the servicePrincipal.
+        Directory objects that are owners of this servicePrincipal. The owners are a set of nonadmin users or servicePrincipals who are allowed to modify this object. Read-only. Nullable.  Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-list-owners?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -72,7 +71,7 @@ class OwnersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[OwnersRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve a list of owners of the servicePrincipal.
+        Directory objects that are owners of this servicePrincipal. The owners are a set of nonadmin users or servicePrincipals who are allowed to modify this object. Read-only. Nullable.  Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -87,7 +86,7 @@ class OwnersRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: OwnersRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return OwnersRequestBuilder(self.request_adapter, raw_url)
     
@@ -139,7 +138,7 @@ class OwnersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OwnersRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of owners of the servicePrincipal.
+        Directory objects that are owners of this servicePrincipal. The owners are a set of nonadmin users or servicePrincipals who are allowed to modify this object. Read-only. Nullable.  Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -147,7 +146,7 @@ class OwnersRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

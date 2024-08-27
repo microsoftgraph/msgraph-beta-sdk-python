@@ -37,7 +37,7 @@ class PermissionGrantPreApprovalPoliciesRequestBuilder(BaseRequestBuilder):
         param permission_grant_pre_approval_policy_id: The unique identifier of permissionGrantPreApprovalPolicy
         Returns: PermissionGrantPreApprovalPolicyItemRequestBuilder
         """
-        if not permission_grant_pre_approval_policy_id:
+        if permission_grant_pre_approval_policy_id is None:
             raise TypeError("permission_grant_pre_approval_policy_id cannot be null.")
         from .item.permission_grant_pre_approval_policy_item_request_builder import PermissionGrantPreApprovalPolicyItemRequestBuilder
 
@@ -82,7 +82,7 @@ class PermissionGrantPreApprovalPoliciesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: PermissionGrantPreApprovalPoliciesRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PermissionGrantPreApprovalPoliciesRequestBuilder(self.request_adapter, raw_url)
     
@@ -106,7 +106,7 @@ class PermissionGrantPreApprovalPoliciesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

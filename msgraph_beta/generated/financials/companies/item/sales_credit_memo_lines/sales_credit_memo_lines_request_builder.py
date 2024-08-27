@@ -37,7 +37,7 @@ class SalesCreditMemoLinesRequestBuilder(BaseRequestBuilder):
         param sales_credit_memo_line_id: The unique identifier of salesCreditMemoLine
         Returns: SalesCreditMemoLineItemRequestBuilder
         """
-        if not sales_credit_memo_line_id:
+        if sales_credit_memo_line_id is None:
             raise TypeError("sales_credit_memo_line_id cannot be null.")
         from .item.sales_credit_memo_line_item_request_builder import SalesCreditMemoLineItemRequestBuilder
 
@@ -82,7 +82,7 @@ class SalesCreditMemoLinesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: SalesCreditMemoLinesRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SalesCreditMemoLinesRequestBuilder(self.request_adapter, raw_url)
     
@@ -106,7 +106,7 @@ class SalesCreditMemoLinesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

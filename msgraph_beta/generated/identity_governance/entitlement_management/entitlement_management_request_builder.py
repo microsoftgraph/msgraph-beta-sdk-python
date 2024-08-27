@@ -16,12 +16,14 @@ if TYPE_CHECKING:
     from ...models.entitlement_management import EntitlementManagement
     from ...models.o_data_errors.o_data_error import ODataError
     from .access_packages.access_packages_request_builder import AccessPackagesRequestBuilder
+    from .access_packages_with_unique_name.access_packages_with_unique_name_request_builder import AccessPackagesWithUniqueNameRequestBuilder
     from .access_package_assignments.access_package_assignments_request_builder import AccessPackageAssignmentsRequestBuilder
     from .access_package_assignment_approvals.access_package_assignment_approvals_request_builder import AccessPackageAssignmentApprovalsRequestBuilder
     from .access_package_assignment_policies.access_package_assignment_policies_request_builder import AccessPackageAssignmentPoliciesRequestBuilder
     from .access_package_assignment_requests.access_package_assignment_requests_request_builder import AccessPackageAssignmentRequestsRequestBuilder
     from .access_package_assignment_resource_roles.access_package_assignment_resource_roles_request_builder import AccessPackageAssignmentResourceRolesRequestBuilder
     from .access_package_catalogs.access_package_catalogs_request_builder import AccessPackageCatalogsRequestBuilder
+    from .access_package_catalogs_with_unique_name.access_package_catalogs_with_unique_name_request_builder import AccessPackageCatalogsWithUniqueNameRequestBuilder
     from .access_package_resources.access_package_resources_request_builder import AccessPackageResourcesRequestBuilder
     from .access_package_resource_environments.access_package_resource_environments_request_builder import AccessPackageResourceEnvironmentsRequestBuilder
     from .access_package_resource_requests.access_package_resource_requests_request_builder import AccessPackageResourceRequestsRequestBuilder
@@ -44,6 +46,31 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement{?%24expand,%24select}", path_parameters)
+    
+    def access_package_catalogs_with_unique_name(self,unique_name: str) -> AccessPackageCatalogsWithUniqueNameRequestBuilder:
+        """
+        Provides operations to manage the accessPackageCatalogs property of the microsoft.graph.entitlementManagement entity.
+        param unique_name: Alternate key of accessPackageCatalog
+        Returns: AccessPackageCatalogsWithUniqueNameRequestBuilder
+        """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
+        if unique_name is None:
+            raise TypeError("unique_name cannot be null.")
+        from .access_package_catalogs_with_unique_name.access_package_catalogs_with_unique_name_request_builder import AccessPackageCatalogsWithUniqueNameRequestBuilder
+
+        return AccessPackageCatalogsWithUniqueNameRequestBuilder(self.request_adapter, self.path_parameters, unique_name)
+    
+    def access_packages_with_unique_name(self,unique_name: str) -> AccessPackagesWithUniqueNameRequestBuilder:
+        """
+        Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.
+        param unique_name: Alternate key of accessPackage
+        Returns: AccessPackagesWithUniqueNameRequestBuilder
+        """
+        if unique_name is None:
+            raise TypeError("unique_name cannot be null.")
+        from .access_packages_with_unique_name.access_packages_with_unique_name_request_builder import AccessPackagesWithUniqueNameRequestBuilder
+
+        return AccessPackagesWithUniqueNameRequestBuilder(self.request_adapter, self.path_parameters, unique_name)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -90,7 +117,7 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EntitlementManagement]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -112,7 +139,7 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         param object_id: Alternate key of accessPackageSubject
         Returns: SubjectsWithObjectIdRequestBuilder
         """
-        if not object_id:
+        if object_id is None:
             raise TypeError("object_id cannot be null.")
         from .subjects_with_object_id.subjects_with_object_id_request_builder import SubjectsWithObjectIdRequestBuilder
 
@@ -147,7 +174,7 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -161,7 +188,7 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: EntitlementManagementRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return EntitlementManagementRequestBuilder(self.request_adapter, raw_url)
     
@@ -318,7 +345,7 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

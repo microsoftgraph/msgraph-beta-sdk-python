@@ -52,10 +52,10 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[InboundFlowItemRequestBuilderGetQueryParameters]] = None) -> Optional[InboundFlow]:
         """
-        Read the properties and relationships of an inboundFileFlow object.
+        Read the properties and relationships of an inboundFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-get?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -73,13 +73,13 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: InboundFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[InboundFlow]:
         """
-        Update the properties of an inboundFlow object.
+        Update the properties of an inboundFileFlow object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundflow-update?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-update?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -108,7 +108,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[InboundFlowItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an inboundFileFlow object.
+        Read the properties and relationships of an inboundFlow object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,12 +119,12 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: InboundFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of an inboundFlow object.
+        Update the properties of an inboundFileFlow object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -138,7 +138,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: InboundFlowItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return InboundFlowItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -170,7 +170,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InboundFlowItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an inboundFileFlow object.
+        Read the properties and relationships of an inboundFlow object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -178,7 +178,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

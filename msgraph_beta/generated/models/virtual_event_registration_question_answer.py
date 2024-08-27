@@ -11,17 +11,17 @@ class VirtualEventRegistrationQuestionAnswer(AdditionalDataHolder, BackedModel, 
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Boolean answer of the virtualEventRegistrationQuestion. Only appears when answerInputType is boolean.
+    # Boolean answer to the virtualEventRegistrationCustomQuestion. Only appears when answerInputType is boolean.
     boolean_value: Optional[bool] = None
     # Display name of the registration question.
     display_name: Optional[str] = None
-    # Collection of text answer of the virtualEventRegistrationQuestion. Only appears when answerInputType is multiChoice.
+    # A collection of text answers to the virtualEventRegistrationCustomQuestion. Only appears when answerInputType is multiChoice.
     multi_choice_values: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # id of the virtualEventRegistrationQuestion.
+    # The identifier of either a virtualEventRegistrationCustomQuestion or a virtualEventRegistrationPredefinedQuestion.
     question_id: Optional[str] = None
-    # Text answer of the virtualEventRegistrationQuestion. Appears when answerInputType is text, multilineText or singleChoice.
+    # Text answer to the virtualEventRegistrationCustomQuestion or the virtualEventRegistrationPredefinedQuestion. Appears when answerInputType is text, multilineText or singleChoice.
     value: Optional[str] = None
     
     @staticmethod
@@ -31,7 +31,7 @@ class VirtualEventRegistrationQuestionAnswer(AdditionalDataHolder, BackedModel, 
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: VirtualEventRegistrationQuestionAnswer
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return VirtualEventRegistrationQuestionAnswer()
     
@@ -56,7 +56,7 @@ class VirtualEventRegistrationQuestionAnswer(AdditionalDataHolder, BackedModel, 
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("booleanValue", self.boolean_value)
         writer.write_str_value("displayName", self.display_name)

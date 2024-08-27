@@ -1,18 +1,20 @@
 from enum import Enum
 
 class PlatformType(str, Enum):
-    # None Platform Type
+    # None
     None_ = "none",
-    # Android Platform Type
+    # Android
     Android = "android",
-    # Android Enterprise Platform Type
-    AndroidEnterprise = "androidEnterprise",
-    # iOS Platform Type
+    # iOS
     IOS = "iOS",
-    # MacOS Platform Type
+    # MacOS
     MacOS = "macOS",
     # Windows 10X Platform Type
     Windows10X = "windows10X",
-    # Windows 10 Platform Type
+    # Windows 10
     Windows10 = "windows10",
+    # Linux
+    Linux = "linux",
+    # UnknownFutureValue
+    UnknownFutureValue = "unknownFutureValue",
 

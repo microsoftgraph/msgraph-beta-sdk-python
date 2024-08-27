@@ -38,7 +38,7 @@ class ChildTagsRequestBuilder(BaseRequestBuilder):
         Returns: TagItemRequestBuilder
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
-        if not tag_id1:
+        if tag_id1 is None:
             raise TypeError("tag_id1 cannot be null.")
         from .item.tag_item_request_builder import TagItemRequestBuilder
 
@@ -87,7 +87,7 @@ class ChildTagsRequestBuilder(BaseRequestBuilder):
         Returns: ChildTagsRequestBuilder
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ChildTagsRequestBuilder(self.request_adapter, raw_url)
     
@@ -111,7 +111,7 @@ class ChildTagsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

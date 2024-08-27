@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .....models.fido2_authentication_method_collection_response import Fido2AuthenticationMethodCollectionResponse
     from .....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
+    from .creation_options_with_challenge_timeout_in_minutes.creation_options_with_challenge_timeout_in_minutes_request_builder import CreationOptionsWithChallengeTimeoutInMinutesRequestBuilder
     from .item.fido2_authentication_method_item_request_builder import Fido2AuthenticationMethodItemRequestBuilder
 
 class Fido2MethodsRequestBuilder(BaseRequestBuilder):
@@ -37,7 +38,8 @@ class Fido2MethodsRequestBuilder(BaseRequestBuilder):
         param fido2_authentication_method_id: The unique identifier of fido2AuthenticationMethod
         Returns: Fido2AuthenticationMethodItemRequestBuilder
         """
-        if not fido2_authentication_method_id:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if fido2_authentication_method_id is None:
             raise TypeError("fido2_authentication_method_id cannot be null.")
         from .item.fido2_authentication_method_item_request_builder import Fido2AuthenticationMethodItemRequestBuilder
 
@@ -51,6 +53,7 @@ class Fido2MethodsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Fido2AuthenticationMethodCollectionResponse]
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -71,6 +74,7 @@ class Fido2MethodsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -82,7 +86,8 @@ class Fido2MethodsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: Fido2MethodsRequestBuilder
         """
-        if not raw_url:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return Fido2MethodsRequestBuilder(self.request_adapter, raw_url)
     
@@ -95,6 +100,15 @@ class Fido2MethodsRequestBuilder(BaseRequestBuilder):
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def creation_options_with_challenge_timeout_in_minutes(self) -> CreationOptionsWithChallengeTimeoutInMinutesRequestBuilder:
+        """
+        Provides operations to call the creationOptions method.
+        """
+        from .creation_options_with_challenge_timeout_in_minutes.creation_options_with_challenge_timeout_in_minutes_request_builder import CreationOptionsWithChallengeTimeoutInMinutesRequestBuilder
+
+        return CreationOptionsWithChallengeTimeoutInMinutesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class Fido2MethodsRequestBuilderGetQueryParameters():
         """
@@ -106,7 +120,7 @@ class Fido2MethodsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

@@ -15,4 +15,5 @@ class CloudPcStatus(str, Enum):
     MovingRegion = "movingRegion",
     ResizePendingLicense = "resizePendingLicense",
     UpdatingSingleSignOn = "updatingSingleSignOn",
+    ModifyingSingleSignOn = "modifyingSingleSignOn",
 

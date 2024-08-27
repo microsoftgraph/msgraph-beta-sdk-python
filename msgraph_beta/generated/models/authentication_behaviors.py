@@ -11,13 +11,13 @@ class AuthenticationBehaviors(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The blockAzureADGraphAccess property
+    # If false, allows the app to have extended access to Azure AD Graph until June 30, 2025 when Azure AD Graph is fully retired. For more information on Azure AD retirement updates, see June 2024 update on Azure AD Graph API retirement.
     block_azure_a_d_graph_access: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Removes the email claim from tokens sent to an application when the email address's domain can't be verified.
+    # If true, removes the email claim from tokens sent to an application when the email address's domain can't be verified.
     remove_unverified_email_claim: Optional[bool] = None
-    # Requires multitenant applications to have a service principal in the resource tenant as part of authorization checks before they're granted access tokens. This property is only modifiable for multi-tenant resource applications that rely on access from clients without a service principal and had this behavior as set to false by Microsoft. Tenant administrators should respond to security advisories sent through Azure Health Service events and the Microsoft 365 message center.
+    # If true, requires multitenant applications to have a service principal in the resource tenant as part of authorization checks before they're granted access tokens. This property is only modifiable for multitenant resource applications that rely on access from clients without a service principal and had this behavior as set to false by Microsoft. Tenant administrators should respond to security advisories sent through Azure Health Service events and the Microsoft 365 message center.
     require_client_service_principal: Optional[bool] = None
     
     @staticmethod
@@ -27,7 +27,7 @@ class AuthenticationBehaviors(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AuthenticationBehaviors
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AuthenticationBehaviors()
     
@@ -50,7 +50,7 @@ class AuthenticationBehaviors(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("blockAzureADGraphAccess", self.block_azure_a_d_graph_access)
         writer.write_str_value("@odata.type", self.odata_type)

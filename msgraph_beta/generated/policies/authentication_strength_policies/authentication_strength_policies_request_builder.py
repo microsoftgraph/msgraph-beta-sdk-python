@@ -39,7 +39,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
         param authentication_strength_policy_id: The unique identifier of authenticationStrengthPolicy
         Returns: AuthenticationStrengthPolicyItemRequestBuilder
         """
-        if not authentication_strength_policy_id:
+        if authentication_strength_policy_id is None:
             raise TypeError("authentication_strength_policy_id cannot be null.")
         from .item.authentication_strength_policy_item_request_builder import AuthenticationStrengthPolicyItemRequestBuilder
 
@@ -54,7 +54,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
         Returns: FindByMethodModeWithAuthenticationMethodModesRequestBuilder
         """
         warn("The findByMethodMode function is deprecated. Please use OData filter query instead. as of 2023-02/FindByMethodModeRemove", DeprecationWarning)
-        if not authentication_method_modes:
+        if authentication_method_modes is None:
             raise TypeError("authentication_method_modes cannot be null.")
         from .find_by_method_mode_with_authentication_method_modes.find_by_method_mode_with_authentication_method_modes_request_builder import FindByMethodModeWithAuthenticationMethodModesRequestBuilder
 
@@ -89,7 +89,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[AuthenticationStrengthPolicy]
         Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthroot-post-policies?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -123,7 +123,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -137,7 +137,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AuthenticationStrengthPoliciesRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AuthenticationStrengthPoliciesRequestBuilder(self.request_adapter, raw_url)
     
@@ -161,7 +161,7 @@ class AuthenticationStrengthPoliciesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

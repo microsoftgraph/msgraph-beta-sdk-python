@@ -38,7 +38,7 @@ class ReferenceDefinitionsRequestBuilder(BaseRequestBuilder):
         param reference_definition_id: The unique identifier of referenceDefinition
         Returns: ReferenceDefinitionItemRequestBuilder
         """
-        if not reference_definition_id:
+        if reference_definition_id is None:
             raise TypeError("reference_definition_id cannot be null.")
         from .item.reference_definition_item_request_builder import ReferenceDefinitionItemRequestBuilder
 
@@ -69,12 +69,13 @@ class ReferenceDefinitionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ReferenceDefinition, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ReferenceDefinition]:
         """
-        Create new navigation property to referenceDefinitions for external
+        Create a new referenceDefinition object. referenceDefinition objects associate incoming data with standardized reference types values for validation. You can extend the following reference types with other codes that better align with your source data.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReferenceDefinition]
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-referencedefinition-post?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -103,12 +104,12 @@ class ReferenceDefinitionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ReferenceDefinition, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to referenceDefinitions for external
+        Create a new referenceDefinition object. referenceDefinition objects associate incoming data with standardized reference types values for validation. You can extend the following reference types with other codes that better align with your source data.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -122,7 +123,7 @@ class ReferenceDefinitionsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ReferenceDefinitionsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ReferenceDefinitionsRequestBuilder(self.request_adapter, raw_url)
     
@@ -146,7 +147,7 @@ class ReferenceDefinitionsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

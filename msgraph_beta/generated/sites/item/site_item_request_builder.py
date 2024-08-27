@@ -17,8 +17,10 @@ if TYPE_CHECKING:
     from ...models.site import Site
     from .analytics.analytics_request_builder import AnalyticsRequestBuilder
     from .columns.columns_request_builder import ColumnsRequestBuilder
+    from .content_models.content_models_request_builder import ContentModelsRequestBuilder
     from .content_types.content_types_request_builder import ContentTypesRequestBuilder
     from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
+    from .document_processing_jobs.document_processing_jobs_request_builder import DocumentProcessingJobsRequestBuilder
     from .drive.drive_request_builder import DriveRequestBuilder
     from .drives.drives_request_builder import DrivesRequestBuilder
     from .external_columns.external_columns_request_builder import ExternalColumnsRequestBuilder
@@ -79,11 +81,11 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         param start_date_time: Usage: startDateTime='{startDateTime}'
         Returns: GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
         """
-        if not end_date_time:
+        if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
-        if not interval:
+        if interval is None:
             raise TypeError("interval cannot be null.")
-        if not start_date_time:
+        if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
         from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder import GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
 
@@ -95,7 +97,7 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         param list_id: Usage: listId='{listId}'
         Returns: GetApplicableContentTypesForListWithListIdRequestBuilder
         """
-        if not list_id:
+        if list_id is None:
             raise TypeError("list_id cannot be null.")
         from .get_applicable_content_types_for_list_with_list_id.get_applicable_content_types_for_list_with_list_id_request_builder import GetApplicableContentTypesForListWithListIdRequestBuilder
 
@@ -107,7 +109,7 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         param path: Usage: path='{path}'
         Returns: GetByPathWithPathRequestBuilder
         """
-        if not path:
+        if path is None:
             raise TypeError("path cannot be null.")
         from .get_by_path_with_path.get_by_path_with_path_request_builder import GetByPathWithPathRequestBuilder
 
@@ -120,7 +122,7 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Site]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -154,7 +156,7 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -168,7 +170,7 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: SiteItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SiteItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -191,6 +193,15 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         return ColumnsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def content_models(self) -> ContentModelsRequestBuilder:
+        """
+        Provides operations to manage the contentModels property of the microsoft.graph.site entity.
+        """
+        from .content_models.content_models_request_builder import ContentModelsRequestBuilder
+
+        return ContentModelsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def content_types(self) -> ContentTypesRequestBuilder:
         """
         Provides operations to manage the contentTypes property of the microsoft.graph.site entity.
@@ -207,6 +218,15 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         from .created_by_user.created_by_user_request_builder import CreatedByUserRequestBuilder
 
         return CreatedByUserRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def document_processing_jobs(self) -> DocumentProcessingJobsRequestBuilder:
+        """
+        Provides operations to manage the documentProcessingJobs property of the microsoft.graph.site entity.
+        """
+        from .document_processing_jobs.document_processing_jobs_request_builder import DocumentProcessingJobsRequestBuilder
+
+        return DocumentProcessingJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def drive(self) -> DriveRequestBuilder:
@@ -345,7 +365,7 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

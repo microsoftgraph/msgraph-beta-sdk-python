@@ -13,7 +13,7 @@ from .education_outcome import EducationOutcome
 class EducationPointsOutcome(EducationOutcome):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationPointsOutcome"
-    # The numeric grade the teacher has given the student for this assignment.
+    # The numeric grade that the teacher gave the student for this assignment.
     points: Optional[EducationAssignmentPointsGrade] = None
     # A copy of the points property that is made when the grade is released to the student.
     published_points: Optional[EducationAssignmentPointsGrade] = None
@@ -25,7 +25,7 @@ class EducationPointsOutcome(EducationOutcome):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: EducationPointsOutcome
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return EducationPointsOutcome()
     
@@ -54,7 +54,7 @@ class EducationPointsOutcome(EducationOutcome):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("points", self.points)

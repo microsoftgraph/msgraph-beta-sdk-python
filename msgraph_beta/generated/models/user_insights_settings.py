@@ -10,7 +10,7 @@ from .entity import Entity
 
 @dataclass
 class UserInsightsSettings(Entity):
-    # true if user's itemInsights and meeting hours insights are enabled; false if user's itemInsights and meeting hours insights are disabled. Default is true. Optional.
+    # True if the user's itemInsights and meeting hours insights are enabled; false if the user's itemInsights and meeting hours insights are disabled. The default value is true. Optional.
     is_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -22,7 +22,7 @@ class UserInsightsSettings(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: UserInsightsSettings
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return UserInsightsSettings()
     
@@ -48,7 +48,7 @@ class UserInsightsSettings(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("isEnabled", self.is_enabled)

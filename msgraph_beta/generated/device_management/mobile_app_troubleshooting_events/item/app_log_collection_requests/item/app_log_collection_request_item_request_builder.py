@@ -50,7 +50,7 @@ class AppLogCollectionRequestItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AppLogCollectionRequestItemRequestBuilderGetQueryParameters]] = None) -> Optional[AppLogCollectionRequest]:
         """
-        Indicates collection of App Log Upload Request.
+        The collection property of AppLogUploadRequest.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AppLogCollectionRequest]
         """
@@ -75,7 +75,7 @@ class AppLogCollectionRequestItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AppLogCollectionRequest]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -104,7 +104,7 @@ class AppLogCollectionRequestItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AppLogCollectionRequestItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Indicates collection of App Log Upload Request.
+        The collection property of AppLogUploadRequest.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +120,7 @@ class AppLogCollectionRequestItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -134,7 +134,7 @@ class AppLogCollectionRequestItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AppLogCollectionRequestItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AppLogCollectionRequestItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -157,7 +157,7 @@ class AppLogCollectionRequestItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AppLogCollectionRequestItemRequestBuilderGetQueryParameters():
         """
-        Indicates collection of App Log Upload Request.
+        The collection property of AppLogUploadRequest.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -165,7 +165,7 @@ class AppLogCollectionRequestItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

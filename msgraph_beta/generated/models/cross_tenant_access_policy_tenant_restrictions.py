@@ -13,7 +13,7 @@ from .cross_tenant_access_policy_b2_b_setting import CrossTenantAccessPolicyB2BS
 class CrossTenantAccessPolicyTenantRestrictions(CrossTenantAccessPolicyB2BSetting):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.crossTenantAccessPolicyTenantRestrictions"
-    # Defines the rule for filtering devices and whether devices satisfying the rule should be allowed or blocked. Not implemented.
+    # Defines the rule for filtering devices and whether devices satisfying the rule should be allowed or blocked. This property isn't supported on the server side yet.
     devices: Optional[DevicesFilter] = None
     
     @staticmethod
@@ -23,7 +23,7 @@ class CrossTenantAccessPolicyTenantRestrictions(CrossTenantAccessPolicyB2BSettin
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CrossTenantAccessPolicyTenantRestrictions
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return CrossTenantAccessPolicyTenantRestrictions()
     
@@ -51,7 +51,7 @@ class CrossTenantAccessPolicyTenantRestrictions(CrossTenantAccessPolicyB2BSettin
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("devices", self.devices)

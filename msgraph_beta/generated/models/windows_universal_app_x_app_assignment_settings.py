@@ -15,7 +15,7 @@ class WindowsUniversalAppXAppAssignmentSettings(MobileAppAssignmentSettings):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUniversalAppXAppAssignmentSettings"
-    # If true, uses device execution context for Windows Universal AppX mobile app. Device-context install is not allowed when this type of app is targeted with Available intent. Defaults to false.
+    # Whether or not to use device execution context for Windows Universal AppX mobile app.
     use_device_context: Optional[bool] = None
     
     @staticmethod
@@ -25,7 +25,7 @@ class WindowsUniversalAppXAppAssignmentSettings(MobileAppAssignmentSettings):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: WindowsUniversalAppXAppAssignmentSettings
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return WindowsUniversalAppXAppAssignmentSettings()
     
@@ -51,7 +51,7 @@ class WindowsUniversalAppXAppAssignmentSettings(MobileAppAssignmentSettings):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("useDeviceContext", self.use_device_context)

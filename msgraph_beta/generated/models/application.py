@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
     from .informational_url import InformationalUrl
     from .key_credential import KeyCredential
+    from .native_authentication_apis_enabled import NativeAuthenticationApisEnabled
     from .on_premises_publishing import OnPremisesPublishing
     from .optional_claims import OptionalClaims
     from .parental_control_settings import ParentalControlSettings
@@ -48,7 +49,7 @@ class Application(DirectoryObject):
     app_management_policies: Optional[List[AppManagementPolicy]] = None
     # The collection of roles defined for the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.
     app_roles: Optional[List[AppRole]] = None
-    # The collection of authentication behaviors set for the application. Authentication behaviors are unset by default and must be explicitly enabled (or disabled). Returned only on $select.  For more information about authentication behaviors, see Manage application authenticationBehaviors to avoid unverified use of email claims for user identification or authorization.
+    # The collection of breaking change behaviors related to token issuance that are configured for the application. Authentication behaviors are unset by default (null) and must be explicitly enabled or disabled. Nullable. Returned only on $select.  For more information about authentication behaviors, see Manage application authenticationBehaviors to avoid unverified use of email claims for user identification or authorization.
     authentication_behaviors: Optional[AuthenticationBehaviors] = None
     # Specifies the certification status of the application.
     certification: Optional[Certification] = None
@@ -86,6 +87,8 @@ class Application(DirectoryObject):
     key_credentials: Optional[List[KeyCredential]] = None
     # The main logo for the application. Not nullable.
     logo: Optional[bytes] = None
+    # Specifies whether the Native Authentication APIs are enabled for the application. The possible values are: noneand all. Default is none. For more information, see Native Authentication.
+    native_authentication_apis_enabled: Optional[NativeAuthenticationApisEnabled] = None
     # Notes relevant for the management of the application.
     notes: Optional[str] = None
     # Represents the set of properties required for configuring Application Proxy for this application. Configuring these properties allows you to publish your on-premises application for secure remote access.
@@ -142,7 +145,7 @@ class Application(DirectoryObject):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Application
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return Application()
     
@@ -163,6 +166,7 @@ class Application(DirectoryObject):
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .informational_url import InformationalUrl
         from .key_credential import KeyCredential
+        from .native_authentication_apis_enabled import NativeAuthenticationApisEnabled
         from .on_premises_publishing import OnPremisesPublishing
         from .optional_claims import OptionalClaims
         from .parental_control_settings import ParentalControlSettings
@@ -191,6 +195,7 @@ class Application(DirectoryObject):
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .informational_url import InformationalUrl
         from .key_credential import KeyCredential
+        from .native_authentication_apis_enabled import NativeAuthenticationApisEnabled
         from .on_premises_publishing import OnPremisesPublishing
         from .optional_claims import OptionalClaims
         from .parental_control_settings import ParentalControlSettings
@@ -231,6 +236,7 @@ class Application(DirectoryObject):
             "isFallbackPublicClient": lambda n : setattr(self, 'is_fallback_public_client', n.get_bool_value()),
             "keyCredentials": lambda n : setattr(self, 'key_credentials', n.get_collection_of_object_values(KeyCredential)),
             "logo": lambda n : setattr(self, 'logo', n.get_bytes_value()),
+            "nativeAuthenticationApisEnabled": lambda n : setattr(self, 'native_authentication_apis_enabled', n.get_collection_of_enum_values(NativeAuthenticationApisEnabled)),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
             "onPremisesPublishing": lambda n : setattr(self, 'on_premises_publishing', n.get_object_value(OnPremisesPublishing)),
             "optionalClaims": lambda n : setattr(self, 'optional_claims', n.get_object_value(OptionalClaims)),
@@ -266,7 +272,7 @@ class Application(DirectoryObject):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("api", self.api)
@@ -292,6 +298,7 @@ class Application(DirectoryObject):
         writer.write_bool_value("isFallbackPublicClient", self.is_fallback_public_client)
         writer.write_collection_of_object_values("keyCredentials", self.key_credentials)
         writer.write_bytes_value("logo", self.logo)
+        writer.write_enum_value("nativeAuthenticationApisEnabled", self.native_authentication_apis_enabled)
         writer.write_str_value("notes", self.notes)
         writer.write_object_value("onPremisesPublishing", self.on_premises_publishing)
         writer.write_object_value("optionalClaims", self.optional_claims)
