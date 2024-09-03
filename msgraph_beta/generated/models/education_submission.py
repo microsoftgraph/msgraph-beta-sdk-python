@@ -16,10 +16,14 @@ from .entity import Entity
 
 @dataclass
 class EducationSubmission(Entity):
-    # The excusedBy property
+    # The user that marked the submission as excused.
     excused_by: Optional[IdentitySet] = None
-    # The excusedDateTime property
+    # Moment in time when the submission was moved to the excused state. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     excused_date_time: Optional[datetime.datetime] = None
+    # The lastModifiedBy property
+    last_modified_by: Optional[IdentitySet] = None
+    # The lastModifiedDateTime property
+    last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The outcomes property
@@ -60,7 +64,7 @@ class EducationSubmission(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: EducationSubmission
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return EducationSubmission()
     
@@ -86,6 +90,8 @@ class EducationSubmission(Entity):
         fields: Dict[str, Callable[[Any], None]] = {
             "excusedBy": lambda n : setattr(self, 'excused_by', n.get_object_value(IdentitySet)),
             "excusedDateTime": lambda n : setattr(self, 'excused_date_time', n.get_datetime_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "outcomes": lambda n : setattr(self, 'outcomes', n.get_collection_of_object_values(EducationOutcome)),
             "reassignedBy": lambda n : setattr(self, 'reassigned_by', n.get_object_value(IdentitySet)),
             "reassignedDateTime": lambda n : setattr(self, 'reassigned_date_time', n.get_datetime_value()),
@@ -112,7 +118,7 @@ class EducationSubmission(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("outcomes", self.outcomes)

@@ -47,7 +47,7 @@ class Windows10EnrollmentCompletionPageConfiguration(DeviceEnrollmentConfigurati
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Windows10EnrollmentCompletionPageConfiguration
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return Windows10EnrollmentCompletionPageConfiguration()
     
@@ -84,7 +84,7 @@ class Windows10EnrollmentCompletionPageConfiguration(DeviceEnrollmentConfigurati
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("allowDeviceResetOnInstallFailure", self.allow_device_reset_on_install_failure)

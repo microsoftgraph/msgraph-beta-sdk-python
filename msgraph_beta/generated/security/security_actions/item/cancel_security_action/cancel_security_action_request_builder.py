@@ -67,7 +67,7 @@ class CancelSecurityActionRequestBuilder(BaseRequestBuilder):
         Returns: CancelSecurityActionRequestBuilder
         """
         warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CancelSecurityActionRequestBuilder(self.request_adapter, raw_url)
     

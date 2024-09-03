@@ -14,11 +14,11 @@ class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedMode
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The crossRegionDisasterRecoveryEnabled property
+    # True if an end user is allowed to set up cross-region disaster recovery for Cloud PC; otherwise, false. The default value is false.
     cross_region_disaster_recovery_enabled: Optional[bool] = None
-    # The disasterRecoveryNetworkSetting property
+    # Indicates the network settings of the Cloud PC during a cross-region disaster recovery operation.
     disaster_recovery_network_setting: Optional[CloudPcDisasterRecoveryNetworkSetting] = None
-    # The maintainCrossRegionRestorePointEnabled property
+    # Indicates whether Windows 365 maintain the cross-region disaster recovery function generated restore points. If true, the Windows 365 stored restore points; false indicates that Windows 365 doesn't generate or keep the restore point from the original Cloud PC. If a disaster occurs, the new Cloud PC can only be provisioned using the initial image. This limitation can result in the loss of some user data on the original Cloud PC. The default value is false.
     maintain_cross_region_restore_point_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -30,7 +30,7 @@ class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedMode
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CloudPcCrossRegionDisasterRecoverySetting
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return CloudPcCrossRegionDisasterRecoverySetting()
     
@@ -57,7 +57,7 @@ class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedMode
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("crossRegionDisasterRecoveryEnabled", self.cross_region_disaster_recovery_enabled)
         writer.write_object_value("disasterRecoveryNetworkSetting", self.disaster_recovery_network_setting)

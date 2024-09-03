@@ -31,7 +31,7 @@ class ActivateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[RestoreSessionBase]:
         """
-        Activate a draft restoreSessionBase object.
+        Activate a draft restoreSessionBase object to restore a protection unit. The following points apply to restoring a protection unit:
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RestoreSessionBase]
         Find more info here: https://learn.microsoft.com/graph/api/restoresessionbase-activate?view=graph-rest-beta
@@ -52,7 +52,7 @@ class ActivateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Activate a draft restoreSessionBase object.
+        Activate a draft restoreSessionBase object to restore a protection unit. The following points apply to restoring a protection unit:
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -67,7 +67,7 @@ class ActivateRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ActivateRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ActivateRequestBuilder(self.request_adapter, raw_url)
     

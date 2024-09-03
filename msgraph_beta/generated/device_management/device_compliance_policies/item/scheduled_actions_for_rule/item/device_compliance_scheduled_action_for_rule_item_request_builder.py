@@ -50,7 +50,7 @@ class DeviceComplianceScheduledActionForRuleItemRequestBuilder(BaseRequestBuilde
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeviceComplianceScheduledActionForRuleItemRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceComplianceScheduledActionForRule]:
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceComplianceScheduledActionForRule]
         """
@@ -75,7 +75,7 @@ class DeviceComplianceScheduledActionForRuleItemRequestBuilder(BaseRequestBuilde
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceComplianceScheduledActionForRule]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -104,7 +104,7 @@ class DeviceComplianceScheduledActionForRuleItemRequestBuilder(BaseRequestBuilde
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeviceComplianceScheduledActionForRuleItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +120,7 @@ class DeviceComplianceScheduledActionForRuleItemRequestBuilder(BaseRequestBuilde
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -134,7 +134,7 @@ class DeviceComplianceScheduledActionForRuleItemRequestBuilder(BaseRequestBuilde
         param raw_url: The raw URL to use for the request builder.
         Returns: DeviceComplianceScheduledActionForRuleItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DeviceComplianceScheduledActionForRuleItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -157,7 +157,7 @@ class DeviceComplianceScheduledActionForRuleItemRequestBuilder(BaseRequestBuilde
     @dataclass
     class DeviceComplianceScheduledActionForRuleItemRequestBuilderGetQueryParameters():
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -165,7 +165,7 @@ class DeviceComplianceScheduledActionForRuleItemRequestBuilder(BaseRequestBuilde
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

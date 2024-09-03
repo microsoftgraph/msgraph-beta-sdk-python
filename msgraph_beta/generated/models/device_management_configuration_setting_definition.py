@@ -26,19 +26,19 @@ from .entity import Entity
 class DeviceManagementConfigurationSettingDefinition(Entity):
     # The accessTypes property
     access_types: Optional[DeviceManagementConfigurationSettingAccessTypes] = None
-    # Details which device setting is applicable on. Supports: $filters.
+    # Details which device setting is applicable on
     applicability: Optional[DeviceManagementConfigurationSettingApplicability] = None
     # Base CSP Path
     base_uri: Optional[str] = None
-    # Specify category in which the setting is under. Support $filters.
+    # Specifies the area group under which the setting is configured in a specified configuration service provider (CSP)
     category_id: Optional[str] = None
-    # Description of the setting.
+    # Description of the item
     description: Optional[str] = None
-    # Name of the setting. For example: Allow Toast.
+    # Display name of the item
     display_name: Optional[str] = None
-    # Help text of the setting. Give more details of the setting.
+    # Help text of the item
     help_text: Optional[str] = None
-    # List of links more info for the setting can be found at.
+    # List of links more info for the setting can be found at
     info_urls: Optional[List[str]] = None
     # Tokens which to search settings on
     keywords: Optional[List[str]] = None
@@ -52,7 +52,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity):
     offset_uri: Optional[str] = None
     # List of referred setting information.
     referred_setting_information_list: Optional[List[DeviceManagementConfigurationReferredSettingInformation]] = None
-    # Root setting definition id if the setting is a child setting.
+    # Root setting definition if the setting is a child setting.
     root_definition_id: Optional[str] = None
     # Supported setting types
     setting_usage: Optional[DeviceManagementConfigurationSettingUsage] = None
@@ -70,7 +70,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationSettingDefinition
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
@@ -173,7 +173,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("accessTypes", self.access_types)

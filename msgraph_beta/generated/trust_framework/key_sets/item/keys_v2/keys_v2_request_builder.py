@@ -37,7 +37,7 @@ class Keys_v2RequestBuilder(BaseRequestBuilder):
         param trust_framework_key_v2_kid: The unique identifier of trustFrameworkKey_v2
         Returns: TrustFrameworkKey_v2KItemRequestBuilder
         """
-        if not trust_framework_key_v2_kid:
+        if trust_framework_key_v2_kid is None:
             raise TypeError("trust_framework_key_v2_kid cannot be null.")
         from .item.trust_framework_key_v2_k_item_request_builder import TrustFrameworkKey_v2KItemRequestBuilder
 
@@ -82,7 +82,7 @@ class Keys_v2RequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: Keys_v2RequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return Keys_v2RequestBuilder(self.request_adapter, raw_url)
     
@@ -106,7 +106,7 @@ class Keys_v2RequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

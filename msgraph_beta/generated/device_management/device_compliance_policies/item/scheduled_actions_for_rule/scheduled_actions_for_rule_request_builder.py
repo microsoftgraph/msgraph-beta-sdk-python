@@ -38,7 +38,7 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
         param device_compliance_scheduled_action_for_rule_id: The unique identifier of deviceComplianceScheduledActionForRule
         Returns: DeviceComplianceScheduledActionForRuleItemRequestBuilder
         """
-        if not device_compliance_scheduled_action_for_rule_id:
+        if device_compliance_scheduled_action_for_rule_id is None:
             raise TypeError("device_compliance_scheduled_action_for_rule_id cannot be null.")
         from .item.device_compliance_scheduled_action_for_rule_item_request_builder import DeviceComplianceScheduledActionForRuleItemRequestBuilder
 
@@ -48,7 +48,7 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ScheduledActionsForRuleRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceComplianceScheduledActionForRuleCollectionResponse]:
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceComplianceScheduledActionForRuleCollectionResponse]
         """
@@ -73,7 +73,7 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceComplianceScheduledActionForRule]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -91,7 +91,7 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ScheduledActionsForRuleRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +107,7 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -121,7 +121,7 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ScheduledActionsForRuleRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ScheduledActionsForRuleRequestBuilder(self.request_adapter, raw_url)
     
@@ -137,7 +137,7 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ScheduledActionsForRuleRequestBuilderGetQueryParameters():
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -145,7 +145,7 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.partner.security.partner_security import PartnerSecurity
     from .security_alerts.security_alerts_request_builder import SecurityAlertsRequestBuilder
+    from .security_score.security_score_request_builder import SecurityScoreRequestBuilder
 
 class PartnerRequestBuilder(BaseRequestBuilder):
     """
@@ -75,7 +76,7 @@ class PartnerRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PartnerSecurity]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -120,7 +121,7 @@ class PartnerRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -134,7 +135,7 @@ class PartnerRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: PartnerRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PartnerRequestBuilder(self.request_adapter, raw_url)
     
@@ -146,6 +147,15 @@ class PartnerRequestBuilder(BaseRequestBuilder):
         from .security_alerts.security_alerts_request_builder import SecurityAlertsRequestBuilder
 
         return SecurityAlertsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def security_score(self) -> SecurityScoreRequestBuilder:
+        """
+        Provides operations to manage the securityScore property of the microsoft.graph.partner.security.partnerSecurity entity.
+        """
+        from .security_score.security_score_request_builder import SecurityScoreRequestBuilder
+
+        return SecurityScoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PartnerRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
@@ -165,7 +175,7 @@ class PartnerRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

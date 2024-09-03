@@ -32,9 +32,10 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[RefRequestBuilderDeleteQueryParameters]] = None) -> None:
         """
-        Delete ref of navigation property categories for education
+        Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/educationassignment-remove-category?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -71,12 +72,13 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ReferenceCreate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Create new navigation property ref to categories for education
+        Add one or more existing educationCategory objects to this educationAssignment. Only teachers and students can perform this operation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/educationassignment-post-categories?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -92,7 +94,7 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[RefRequestBuilderDeleteQueryParameters]] = None) -> RequestInformation:
         """
-        Delete ref of navigation property categories for education
+        Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,12 +116,12 @@ class RefRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ReferenceCreate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property ref to categories for education
+        Add one or more existing educationCategory objects to this educationAssignment. Only teachers and students can perform this operation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, '{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/categories/$ref', self.path_parameters)
         request_info.configure(request_configuration)
@@ -133,14 +135,14 @@ class RefRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: RefRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return RefRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
     class RefRequestBuilderDeleteQueryParameters():
         """
-        Delete ref of navigation property categories for education
+        Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -148,7 +150,7 @@ class RefRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "id":
                 return "%40id"
@@ -176,7 +178,7 @@ class RefRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

@@ -38,7 +38,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         param booking_business_id: The unique identifier of bookingBusiness
         Returns: BookingBusinessItemRequestBuilder
         """
-        if not booking_business_id:
+        if booking_business_id is None:
             raise TypeError("booking_business_id cannot be null.")
         from .item.booking_business_item_request_builder import BookingBusinessItemRequestBuilder
 
@@ -48,7 +48,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[BookingBusinessesRequestBuilderGetQueryParameters]] = None) -> Optional[BookingBusinessCollectionResponse]:
         """
-        Get bookingBusinesses from solutions
+        A collection of businesses in Microsoft Bookings. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingBusinessCollectionResponse]
         """
@@ -73,7 +73,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingBusiness]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -91,7 +91,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[BookingBusinessesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get bookingBusinesses from solutions
+        A collection of businesses in Microsoft Bookings. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +107,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -121,7 +121,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: BookingBusinessesRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return BookingBusinessesRequestBuilder(self.request_adapter, raw_url)
     
@@ -137,7 +137,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BookingBusinessesRequestBuilderGetQueryParameters():
         """
-        Get bookingBusinesses from solutions
+        A collection of businesses in Microsoft Bookings. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -145,7 +145,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

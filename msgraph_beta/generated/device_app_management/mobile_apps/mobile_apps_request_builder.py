@@ -62,7 +62,7 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         param mobile_app_id: The unique identifier of mobileApp
         Returns: MobileAppItemRequestBuilder
         """
-        if not mobile_app_id:
+        if mobile_app_id is None:
             raise TypeError("mobile_app_id cannot be null.")
         from .item.mobile_app_item_request_builder import MobileAppItemRequestBuilder
 
@@ -76,7 +76,7 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         param mobile_app_catalog_package_id: Usage: mobileAppCatalogPackageId='{mobileAppCatalogPackageId}'
         Returns: ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder
         """
-        if not mobile_app_catalog_package_id:
+        if mobile_app_catalog_package_id is None:
             raise TypeError("mobile_app_catalog_package_id cannot be null.")
         from .convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id.convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id_request_builder import ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder
 
@@ -109,7 +109,7 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MobileApp]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -143,7 +143,7 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -157,7 +157,7 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MobileAppsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MobileAppsRequestBuilder(self.request_adapter, raw_url)
     
@@ -388,7 +388,7 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .activate_device_esim.activate_device_esim_request_builder import ActivateDeviceEsimRequestBuilder
     from .assignment_filter_evaluation_status_details.assignment_filter_evaluation_status_details_request_builder import AssignmentFilterEvaluationStatusDetailsRequestBuilder
     from .bypass_activation_lock.bypass_activation_lock_request_builder import BypassActivationLockRequestBuilder
+    from .change_assignments.change_assignments_request_builder import ChangeAssignmentsRequestBuilder
     from .clean_windows_device.clean_windows_device_request_builder import CleanWindowsDeviceRequestBuilder
     from .create_device_log_collection_request.create_device_log_collection_request_request_builder import CreateDeviceLogCollectionRequestRequestBuilder
     from .delete_user_from_shared_apple_device.delete_user_from_shared_apple_device_request_builder import DeleteUserFromSharedAppleDeviceRequestBuilder
@@ -132,7 +133,7 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagedDevice]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -177,7 +178,7 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -191,7 +192,7 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ManagedDeviceItemRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ManagedDeviceItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -221,6 +222,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .bypass_activation_lock.bypass_activation_lock_request_builder import BypassActivationLockRequestBuilder
 
         return BypassActivationLockRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def change_assignments(self) -> ChangeAssignmentsRequestBuilder:
+        """
+        Provides operations to call the changeAssignments method.
+        """
+        from .change_assignments.change_assignments_request_builder import ChangeAssignmentsRequestBuilder
+
+        return ChangeAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def clean_windows_device(self) -> CleanWindowsDeviceRequestBuilder:
@@ -735,7 +745,7 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

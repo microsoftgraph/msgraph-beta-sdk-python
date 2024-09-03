@@ -151,6 +151,11 @@ if TYPE_CHECKING:
     from .application_sign_in_summary import ApplicationSignInSummary
     from .application_template import ApplicationTemplate
     from .approval import Approval
+    from .approval_item import ApprovalItem
+    from .approval_item_request import ApprovalItemRequest
+    from .approval_item_response import ApprovalItemResponse
+    from .approval_operation import ApprovalOperation
+    from .approval_solution import ApprovalSolution
     from .approval_step import ApprovalStep
     from .approval_workflow_provider import ApprovalWorkflowProvider
     from .app_consent_approval_route import AppConsentApprovalRoute
@@ -320,7 +325,6 @@ if TYPE_CHECKING:
     from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
     from .cloud_pc_reports import CloudPcReports
     from .cloud_pc_service_plan import CloudPcServicePlan
-    from .cloud_pc_shared_use_service_plan import CloudPcSharedUseServicePlan
     from .cloud_pc_snapshot import CloudPcSnapshot
     from .cloud_pc_supported_region import CloudPcSupportedRegion
     from .cloud_pc_user_setting import CloudPcUserSetting
@@ -335,6 +339,7 @@ if TYPE_CHECKING:
     from .community import Community
     from .company_subscription import CompanySubscription
     from .compliance_management_partner import ComplianceManagementPartner
+    from .compliant_network_named_location import CompliantNetworkNamedLocation
     from .conditional_access_policy import ConditionalAccessPolicy
     from .conditional_access_root import ConditionalAccessRoot
     from .conditional_access_template import ConditionalAccessTemplate
@@ -347,6 +352,7 @@ if TYPE_CHECKING:
     from .contact import Contact
     from .contact_folder import ContactFolder
     from .contact_merge_suggestions import ContactMergeSuggestions
+    from .content_model import ContentModel
     from .content_sharing_session import ContentSharingSession
     from .content_type import ContentType
     from .continuous_access_evaluation_policy import ContinuousAccessEvaluationPolicy
@@ -534,6 +540,7 @@ if TYPE_CHECKING:
     from .document import Document
     from .document_comment import DocumentComment
     from .document_comment_reply import DocumentCommentReply
+    from .document_processing_job import DocumentProcessingJob
     from .document_set_version import DocumentSetVersion
     from .domain import Domain
     from .domain_dns_cname_record import DomainDnsCnameRecord
@@ -623,6 +630,7 @@ if TYPE_CHECKING:
     from .enterprise_code_signing_certificate import EnterpriseCodeSigningCertificate
     from .entitlement_management import EntitlementManagement
     from .entitlement_management_settings import EntitlementManagementSettings
+    from .entra import Entra
     from .evaluate_label_job_response import EvaluateLabelJobResponse
     from .event import Event
     from .event_message import EventMessage
@@ -699,6 +707,7 @@ if TYPE_CHECKING:
     from .governance_role_definition import GovernanceRoleDefinition
     from .governance_role_setting import GovernanceRoleSetting
     from .governance_subject import GovernanceSubject
+    from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
     from .group import Group
     from .group_lifecycle_policy import GroupLifecyclePolicy
     from .group_policy_category import GroupPolicyCategory
@@ -780,10 +789,12 @@ if TYPE_CHECKING:
     from .inactive_users_metric_base import InactiveUsersMetricBase
     from .inactive_user_finding import InactiveUserFinding
     from .industry_data.administrative_unit_provisioning_flow import AdministrativeUnitProvisioningFlow
+    from .industry_data.api_data_connector import ApiDataConnector
     from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
     from .industry_data.class_group_provisioning_flow import ClassGroupProvisioningFlow
     from .industry_data.file_data_connector import FileDataConnector
     from .industry_data.file_validate_operation import FileValidateOperation
+    from .industry_data.inbound_api_flow import InboundApiFlow
     from .industry_data.inbound_file_flow import InboundFileFlow
     from .industry_data.inbound_flow import InboundFlow
     from .industry_data.inbound_flow_activity import InboundFlowActivity
@@ -792,6 +803,7 @@ if TYPE_CHECKING:
     from .industry_data.industry_data_root import IndustryDataRoot
     from .industry_data.industry_data_run import IndustryDataRun
     from .industry_data.industry_data_run_activity import IndustryDataRunActivity
+    from .industry_data.one_roster_api_data_connector import OneRosterApiDataConnector
     from .industry_data.outbound_flow_activity import OutboundFlowActivity
     from .industry_data.outbound_provisioning_flow_set import OutboundProvisioningFlowSet
     from .industry_data.provisioning_flow import ProvisioningFlow
@@ -952,6 +964,7 @@ if TYPE_CHECKING:
     from .managed_device_mobile_app_configuration_user_status import ManagedDeviceMobileAppConfigurationUserStatus
     from .managed_device_mobile_app_configuration_user_summary import ManagedDeviceMobileAppConfigurationUserSummary
     from .managed_device_overview import ManagedDeviceOverview
+    from .managed_device_windows_operating_system_image import ManagedDeviceWindowsOperatingSystemImage
     from .managed_e_book import ManagedEBook
     from .managed_e_book_assignment import ManagedEBookAssignment
     from .managed_e_book_category import ManagedEBookCategory
@@ -1152,6 +1165,7 @@ if TYPE_CHECKING:
     from .organizational_branding import OrganizationalBranding
     from .organizational_branding_localization import OrganizationalBrandingLocalization
     from .organizational_branding_properties import OrganizationalBrandingProperties
+    from .organizational_branding_theme import OrganizationalBrandingTheme
     from .organization_settings import OrganizationSettings
     from .org_contact import OrgContact
     from .outlook_category import OutlookCategory
@@ -1170,8 +1184,15 @@ if TYPE_CHECKING:
     from .participant import Participant
     from .participant_joining_notification import ParticipantJoiningNotification
     from .participant_left_notification import ParticipantLeftNotification
+    from .partner.security.admins_mfa_enforced_security_requirement import AdminsMfaEnforcedSecurityRequirement
+    from .partner.security.customers_mfa_enforced_security_requirement import CustomersMfaEnforcedSecurityRequirement
+    from .partner.security.customers_spending_budget_security_requirement import CustomersSpendingBudgetSecurityRequirement
     from .partner.security.partner_security import PartnerSecurity
     from .partner.security.partner_security_alert import PartnerSecurityAlert
+    from .partner.security.partner_security_score import PartnerSecurityScore
+    from .partner.security.response_time_security_requirement import ResponseTimeSecurityRequirement
+    from .partner.security.security_requirement import SecurityRequirement
+    from .partner.security.security_score_history import SecurityScoreHistory
     from .partners.billing.azure_usage import AzureUsage
     from .partners.billing.billed_reconciliation import BilledReconciliation
     from .partners.billing.billed_usage import BilledUsage
@@ -1739,9 +1760,11 @@ if TYPE_CHECKING:
     from .user_settings import UserSettings
     from .user_sign_in_insight import UserSignInInsight
     from .user_sign_up_metric import UserSignUpMetric
+    from .user_solution_root import UserSolutionRoot
     from .user_storage import UserStorage
     from .user_teamwork import UserTeamwork
     from .user_virtual_events_root import UserVirtualEventsRoot
+    from .ux_setting import UxSetting
     from .vertical_section import VerticalSection
     from .video_news_link_page import VideoNewsLinkPage
     from .virtual_endpoint import VirtualEndpoint
@@ -1947,6 +1970,7 @@ if TYPE_CHECKING:
     from .workbook_worksheet import WorkbookWorksheet
     from .workbook_worksheet_protection import WorkbookWorksheetProtection
     from .workforce_integration import WorkforceIntegration
+    from .working_time_schedule import WorkingTimeSchedule
     from .workplace_sensor_device import WorkplaceSensorDevice
     from .workspace import Workspace
     from .work_position import WorkPosition
@@ -1975,7 +1999,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: Entity
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
@@ -2591,6 +2615,26 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .approval import Approval
 
             return Approval()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.approvalItem".casefold():
+            from .approval_item import ApprovalItem
+
+            return ApprovalItem()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.approvalItemRequest".casefold():
+            from .approval_item_request import ApprovalItemRequest
+
+            return ApprovalItemRequest()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.approvalItemResponse".casefold():
+            from .approval_item_response import ApprovalItemResponse
+
+            return ApprovalItemResponse()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.approvalOperation".casefold():
+            from .approval_operation import ApprovalOperation
+
+            return ApprovalOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.approvalSolution".casefold():
+            from .approval_solution import ApprovalSolution
+
+            return ApprovalSolution()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.approvalStep".casefold():
             from .approval_step import ApprovalStep
 
@@ -3253,10 +3297,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_service_plan import CloudPcServicePlan
 
             return CloudPcServicePlan()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcSharedUseServicePlan".casefold():
-            from .cloud_pc_shared_use_service_plan import CloudPcSharedUseServicePlan
-
-            return CloudPcSharedUseServicePlan()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcSnapshot".casefold():
             from .cloud_pc_snapshot import CloudPcSnapshot
 
@@ -3305,6 +3345,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .compliance_management_partner import ComplianceManagementPartner
 
             return ComplianceManagementPartner()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.compliantNetworkNamedLocation".casefold():
+            from .compliant_network_named_location import CompliantNetworkNamedLocation
+
+            return CompliantNetworkNamedLocation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.conditionalAccessPolicy".casefold():
             from .conditional_access_policy import ConditionalAccessPolicy
             from .networkaccess.conditional_access_policy import ConditionalAccessPolicy
@@ -3355,6 +3399,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .contact_merge_suggestions import ContactMergeSuggestions
 
             return ContactMergeSuggestions()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.contentModel".casefold():
+            from .content_model import ContentModel
+
+            return ContentModel()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.contentSharingSession".casefold():
             from .content_sharing_session import ContentSharingSession
 
@@ -4104,6 +4152,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .document_comment_reply import DocumentCommentReply
 
             return DocumentCommentReply()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.documentProcessingJob".casefold():
+            from .document_processing_job import DocumentProcessingJob
+
+            return DocumentProcessingJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.documentSetVersion".casefold():
             from .document_set_version import DocumentSetVersion
 
@@ -4472,6 +4524,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .entitlement_management_settings import EntitlementManagementSettings
 
             return EntitlementManagementSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entra".casefold():
+            from .entra import Entra
+
+            return Entra()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.evaluateLabelJobResponse".casefold():
             from .evaluate_label_job_response import EvaluateLabelJobResponse
 
@@ -4780,6 +4836,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .governance_subject import GovernanceSubject
 
             return GovernanceSubject()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.granularMailboxRestoreArtifact".casefold():
+            from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
+
+            return GranularMailboxRestoreArtifact()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.group".casefold():
             from .group import Group
             from .term_store.group import Group
@@ -5105,6 +5165,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .industry_data.administrative_unit_provisioning_flow import AdministrativeUnitProvisioningFlow
 
             return AdministrativeUnitProvisioningFlow()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.apiDataConnector".casefold():
+            from .industry_data.api_data_connector import ApiDataConnector
+
+            return ApiDataConnector()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.azureDataLakeConnector".casefold():
             from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
 
@@ -5121,6 +5185,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .industry_data.file_validate_operation import FileValidateOperation
 
             return FileValidateOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.inboundApiFlow".casefold():
+            from .industry_data.inbound_api_flow import InboundApiFlow
+
+            return InboundApiFlow()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.inboundFileFlow".casefold():
             from .industry_data.inbound_file_flow import InboundFileFlow
 
@@ -5153,6 +5221,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .industry_data.industry_data_run_activity import IndustryDataRunActivity
 
             return IndustryDataRunActivity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.oneRosterApiDataConnector".casefold():
+            from .industry_data.one_roster_api_data_connector import OneRosterApiDataConnector
+
+            return OneRosterApiDataConnector()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.outboundFlowActivity".casefold():
             from .industry_data.outbound_flow_activity import OutboundFlowActivity
 
@@ -5794,6 +5866,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .managed_device_overview import ManagedDeviceOverview
 
             return ManagedDeviceOverview()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedDeviceWindowsOperatingSystemImage".casefold():
+            from .managed_device_windows_operating_system_image import ManagedDeviceWindowsOperatingSystemImage
+
+            return ManagedDeviceWindowsOperatingSystemImage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedEBook".casefold():
             from .managed_e_book import ManagedEBook
 
@@ -6607,6 +6683,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .organizational_branding_properties import OrganizationalBrandingProperties
 
             return OrganizationalBrandingProperties()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.organizationalBrandingTheme".casefold():
+            from .organizational_branding_theme import OrganizationalBrandingTheme
+
+            return OrganizationalBrandingTheme()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.organizationSettings".casefold():
             from .organization_settings import OrganizationSettings
 
@@ -6676,6 +6756,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .participant_left_notification import ParticipantLeftNotification
 
             return ParticipantLeftNotification()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.adminsMfaEnforcedSecurityRequirement".casefold():
+            from .partner.security.admins_mfa_enforced_security_requirement import AdminsMfaEnforcedSecurityRequirement
+
+            return AdminsMfaEnforcedSecurityRequirement()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.customersMfaEnforcedSecurityRequirement".casefold():
+            from .partner.security.customers_mfa_enforced_security_requirement import CustomersMfaEnforcedSecurityRequirement
+
+            return CustomersMfaEnforcedSecurityRequirement()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.customersSpendingBudgetSecurityRequirement".casefold():
+            from .partner.security.customers_spending_budget_security_requirement import CustomersSpendingBudgetSecurityRequirement
+
+            return CustomersSpendingBudgetSecurityRequirement()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.partnerSecurity".casefold():
             from .partner.security.partner_security import PartnerSecurity
 
@@ -6684,6 +6776,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .partner.security.partner_security_alert import PartnerSecurityAlert
 
             return PartnerSecurityAlert()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.partnerSecurityScore".casefold():
+            from .partner.security.partner_security_score import PartnerSecurityScore
+
+            return PartnerSecurityScore()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.responseTimeSecurityRequirement".casefold():
+            from .partner.security.response_time_security_requirement import ResponseTimeSecurityRequirement
+
+            return ResponseTimeSecurityRequirement()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.securityRequirement".casefold():
+            from .partner.security.security_requirement import SecurityRequirement
+
+            return SecurityRequirement()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.securityScoreHistory".casefold():
+            from .partner.security.security_score_history import SecurityScoreHistory
+
+            return SecurityScoreHistory()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.partners".casefold():
             from .partners.partners import Partners
 
@@ -8971,6 +9079,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_sign_up_metric import UserSignUpMetric
 
             return UserSignUpMetric()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userSolutionRoot".casefold():
+            from .user_solution_root import UserSolutionRoot
+
+            return UserSolutionRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userStorage".casefold():
             from .user_storage import UserStorage
 
@@ -8983,6 +9095,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_virtual_events_root import UserVirtualEventsRoot
 
             return UserVirtualEventsRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.uxSetting".casefold():
+            from .ux_setting import UxSetting
+
+            return UxSetting()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.verticalSection".casefold():
             from .vertical_section import VerticalSection
 
@@ -9805,6 +9921,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .workforce_integration import WorkforceIntegration
 
             return WorkforceIntegration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.workingTimeSchedule".casefold():
+            from .working_time_schedule import WorkingTimeSchedule
+
+            return WorkingTimeSchedule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.workplaceSensorDevice".casefold():
             from .workplace_sensor_device import WorkplaceSensorDevice
 
@@ -9990,6 +10110,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .application_sign_in_summary import ApplicationSignInSummary
         from .application_template import ApplicationTemplate
         from .approval import Approval
+        from .approval_item import ApprovalItem
+        from .approval_item_request import ApprovalItemRequest
+        from .approval_item_response import ApprovalItemResponse
+        from .approval_operation import ApprovalOperation
+        from .approval_solution import ApprovalSolution
         from .approval_step import ApprovalStep
         from .approval_workflow_provider import ApprovalWorkflowProvider
         from .app_consent_approval_route import AppConsentApprovalRoute
@@ -10159,7 +10284,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
         from .cloud_pc_reports import CloudPcReports
         from .cloud_pc_service_plan import CloudPcServicePlan
-        from .cloud_pc_shared_use_service_plan import CloudPcSharedUseServicePlan
         from .cloud_pc_snapshot import CloudPcSnapshot
         from .cloud_pc_supported_region import CloudPcSupportedRegion
         from .cloud_pc_user_setting import CloudPcUserSetting
@@ -10174,6 +10298,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .community import Community
         from .company_subscription import CompanySubscription
         from .compliance_management_partner import ComplianceManagementPartner
+        from .compliant_network_named_location import CompliantNetworkNamedLocation
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
@@ -10186,6 +10311,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .contact import Contact
         from .contact_folder import ContactFolder
         from .contact_merge_suggestions import ContactMergeSuggestions
+        from .content_model import ContentModel
         from .content_sharing_session import ContentSharingSession
         from .content_type import ContentType
         from .continuous_access_evaluation_policy import ContinuousAccessEvaluationPolicy
@@ -10373,6 +10499,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .document import Document
         from .document_comment import DocumentComment
         from .document_comment_reply import DocumentCommentReply
+        from .document_processing_job import DocumentProcessingJob
         from .document_set_version import DocumentSetVersion
         from .domain import Domain
         from .domain_dns_cname_record import DomainDnsCnameRecord
@@ -10462,6 +10589,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .enterprise_code_signing_certificate import EnterpriseCodeSigningCertificate
         from .entitlement_management import EntitlementManagement
         from .entitlement_management_settings import EntitlementManagementSettings
+        from .entra import Entra
         from .evaluate_label_job_response import EvaluateLabelJobResponse
         from .event import Event
         from .event_message import EventMessage
@@ -10538,6 +10666,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .governance_role_definition import GovernanceRoleDefinition
         from .governance_role_setting import GovernanceRoleSetting
         from .governance_subject import GovernanceSubject
+        from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
         from .group import Group
         from .group_lifecycle_policy import GroupLifecyclePolicy
         from .group_policy_category import GroupPolicyCategory
@@ -10619,10 +10748,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .inactive_users_metric_base import InactiveUsersMetricBase
         from .inactive_user_finding import InactiveUserFinding
         from .industry_data.administrative_unit_provisioning_flow import AdministrativeUnitProvisioningFlow
+        from .industry_data.api_data_connector import ApiDataConnector
         from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
         from .industry_data.class_group_provisioning_flow import ClassGroupProvisioningFlow
         from .industry_data.file_data_connector import FileDataConnector
         from .industry_data.file_validate_operation import FileValidateOperation
+        from .industry_data.inbound_api_flow import InboundApiFlow
         from .industry_data.inbound_file_flow import InboundFileFlow
         from .industry_data.inbound_flow import InboundFlow
         from .industry_data.inbound_flow_activity import InboundFlowActivity
@@ -10631,6 +10762,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .industry_data.industry_data_root import IndustryDataRoot
         from .industry_data.industry_data_run import IndustryDataRun
         from .industry_data.industry_data_run_activity import IndustryDataRunActivity
+        from .industry_data.one_roster_api_data_connector import OneRosterApiDataConnector
         from .industry_data.outbound_flow_activity import OutboundFlowActivity
         from .industry_data.outbound_provisioning_flow_set import OutboundProvisioningFlowSet
         from .industry_data.provisioning_flow import ProvisioningFlow
@@ -10791,6 +10923,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .managed_device_mobile_app_configuration_user_status import ManagedDeviceMobileAppConfigurationUserStatus
         from .managed_device_mobile_app_configuration_user_summary import ManagedDeviceMobileAppConfigurationUserSummary
         from .managed_device_overview import ManagedDeviceOverview
+        from .managed_device_windows_operating_system_image import ManagedDeviceWindowsOperatingSystemImage
         from .managed_e_book import ManagedEBook
         from .managed_e_book_assignment import ManagedEBookAssignment
         from .managed_e_book_category import ManagedEBookCategory
@@ -10991,6 +11124,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
+        from .organizational_branding_theme import OrganizationalBrandingTheme
         from .organization_settings import OrganizationSettings
         from .org_contact import OrgContact
         from .outlook_category import OutlookCategory
@@ -11009,8 +11143,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .participant import Participant
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification
+        from .partner.security.admins_mfa_enforced_security_requirement import AdminsMfaEnforcedSecurityRequirement
+        from .partner.security.customers_mfa_enforced_security_requirement import CustomersMfaEnforcedSecurityRequirement
+        from .partner.security.customers_spending_budget_security_requirement import CustomersSpendingBudgetSecurityRequirement
         from .partner.security.partner_security import PartnerSecurity
         from .partner.security.partner_security_alert import PartnerSecurityAlert
+        from .partner.security.partner_security_score import PartnerSecurityScore
+        from .partner.security.response_time_security_requirement import ResponseTimeSecurityRequirement
+        from .partner.security.security_requirement import SecurityRequirement
+        from .partner.security.security_score_history import SecurityScoreHistory
         from .partners.billing.azure_usage import AzureUsage
         from .partners.billing.billed_reconciliation import BilledReconciliation
         from .partners.billing.billed_usage import BilledUsage
@@ -11578,9 +11719,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_settings import UserSettings
         from .user_sign_in_insight import UserSignInInsight
         from .user_sign_up_metric import UserSignUpMetric
+        from .user_solution_root import UserSolutionRoot
         from .user_storage import UserStorage
         from .user_teamwork import UserTeamwork
         from .user_virtual_events_root import UserVirtualEventsRoot
+        from .ux_setting import UxSetting
         from .vertical_section import VerticalSection
         from .video_news_link_page import VideoNewsLinkPage
         from .virtual_endpoint import VirtualEndpoint
@@ -11786,6 +11929,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_worksheet import WorkbookWorksheet
         from .workbook_worksheet_protection import WorkbookWorksheetProtection
         from .workforce_integration import WorkforceIntegration
+        from .working_time_schedule import WorkingTimeSchedule
         from .workplace_sensor_device import WorkplaceSensorDevice
         from .workspace import Workspace
         from .work_position import WorkPosition
@@ -11941,6 +12085,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .application_sign_in_summary import ApplicationSignInSummary
         from .application_template import ApplicationTemplate
         from .approval import Approval
+        from .approval_item import ApprovalItem
+        from .approval_item_request import ApprovalItemRequest
+        from .approval_item_response import ApprovalItemResponse
+        from .approval_operation import ApprovalOperation
+        from .approval_solution import ApprovalSolution
         from .approval_step import ApprovalStep
         from .approval_workflow_provider import ApprovalWorkflowProvider
         from .app_consent_approval_route import AppConsentApprovalRoute
@@ -12110,7 +12259,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
         from .cloud_pc_reports import CloudPcReports
         from .cloud_pc_service_plan import CloudPcServicePlan
-        from .cloud_pc_shared_use_service_plan import CloudPcSharedUseServicePlan
         from .cloud_pc_snapshot import CloudPcSnapshot
         from .cloud_pc_supported_region import CloudPcSupportedRegion
         from .cloud_pc_user_setting import CloudPcUserSetting
@@ -12125,6 +12273,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .community import Community
         from .company_subscription import CompanySubscription
         from .compliance_management_partner import ComplianceManagementPartner
+        from .compliant_network_named_location import CompliantNetworkNamedLocation
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
@@ -12137,6 +12286,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .contact import Contact
         from .contact_folder import ContactFolder
         from .contact_merge_suggestions import ContactMergeSuggestions
+        from .content_model import ContentModel
         from .content_sharing_session import ContentSharingSession
         from .content_type import ContentType
         from .continuous_access_evaluation_policy import ContinuousAccessEvaluationPolicy
@@ -12324,6 +12474,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .document import Document
         from .document_comment import DocumentComment
         from .document_comment_reply import DocumentCommentReply
+        from .document_processing_job import DocumentProcessingJob
         from .document_set_version import DocumentSetVersion
         from .domain import Domain
         from .domain_dns_cname_record import DomainDnsCnameRecord
@@ -12413,6 +12564,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .enterprise_code_signing_certificate import EnterpriseCodeSigningCertificate
         from .entitlement_management import EntitlementManagement
         from .entitlement_management_settings import EntitlementManagementSettings
+        from .entra import Entra
         from .evaluate_label_job_response import EvaluateLabelJobResponse
         from .event import Event
         from .event_message import EventMessage
@@ -12489,6 +12641,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .governance_role_definition import GovernanceRoleDefinition
         from .governance_role_setting import GovernanceRoleSetting
         from .governance_subject import GovernanceSubject
+        from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
         from .group import Group
         from .group_lifecycle_policy import GroupLifecyclePolicy
         from .group_policy_category import GroupPolicyCategory
@@ -12570,10 +12723,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .inactive_users_metric_base import InactiveUsersMetricBase
         from .inactive_user_finding import InactiveUserFinding
         from .industry_data.administrative_unit_provisioning_flow import AdministrativeUnitProvisioningFlow
+        from .industry_data.api_data_connector import ApiDataConnector
         from .industry_data.azure_data_lake_connector import AzureDataLakeConnector
         from .industry_data.class_group_provisioning_flow import ClassGroupProvisioningFlow
         from .industry_data.file_data_connector import FileDataConnector
         from .industry_data.file_validate_operation import FileValidateOperation
+        from .industry_data.inbound_api_flow import InboundApiFlow
         from .industry_data.inbound_file_flow import InboundFileFlow
         from .industry_data.inbound_flow import InboundFlow
         from .industry_data.inbound_flow_activity import InboundFlowActivity
@@ -12582,6 +12737,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .industry_data.industry_data_root import IndustryDataRoot
         from .industry_data.industry_data_run import IndustryDataRun
         from .industry_data.industry_data_run_activity import IndustryDataRunActivity
+        from .industry_data.one_roster_api_data_connector import OneRosterApiDataConnector
         from .industry_data.outbound_flow_activity import OutboundFlowActivity
         from .industry_data.outbound_provisioning_flow_set import OutboundProvisioningFlowSet
         from .industry_data.provisioning_flow import ProvisioningFlow
@@ -12742,6 +12898,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .managed_device_mobile_app_configuration_user_status import ManagedDeviceMobileAppConfigurationUserStatus
         from .managed_device_mobile_app_configuration_user_summary import ManagedDeviceMobileAppConfigurationUserSummary
         from .managed_device_overview import ManagedDeviceOverview
+        from .managed_device_windows_operating_system_image import ManagedDeviceWindowsOperatingSystemImage
         from .managed_e_book import ManagedEBook
         from .managed_e_book_assignment import ManagedEBookAssignment
         from .managed_e_book_category import ManagedEBookCategory
@@ -12942,6 +13099,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
+        from .organizational_branding_theme import OrganizationalBrandingTheme
         from .organization_settings import OrganizationSettings
         from .org_contact import OrgContact
         from .outlook_category import OutlookCategory
@@ -12960,8 +13118,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .participant import Participant
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification
+        from .partner.security.admins_mfa_enforced_security_requirement import AdminsMfaEnforcedSecurityRequirement
+        from .partner.security.customers_mfa_enforced_security_requirement import CustomersMfaEnforcedSecurityRequirement
+        from .partner.security.customers_spending_budget_security_requirement import CustomersSpendingBudgetSecurityRequirement
         from .partner.security.partner_security import PartnerSecurity
         from .partner.security.partner_security_alert import PartnerSecurityAlert
+        from .partner.security.partner_security_score import PartnerSecurityScore
+        from .partner.security.response_time_security_requirement import ResponseTimeSecurityRequirement
+        from .partner.security.security_requirement import SecurityRequirement
+        from .partner.security.security_score_history import SecurityScoreHistory
         from .partners.billing.azure_usage import AzureUsage
         from .partners.billing.billed_reconciliation import BilledReconciliation
         from .partners.billing.billed_usage import BilledUsage
@@ -13529,9 +13694,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_settings import UserSettings
         from .user_sign_in_insight import UserSignInInsight
         from .user_sign_up_metric import UserSignUpMetric
+        from .user_solution_root import UserSolutionRoot
         from .user_storage import UserStorage
         from .user_teamwork import UserTeamwork
         from .user_virtual_events_root import UserVirtualEventsRoot
+        from .ux_setting import UxSetting
         from .vertical_section import VerticalSection
         from .video_news_link_page import VideoNewsLinkPage
         from .virtual_endpoint import VirtualEndpoint
@@ -13737,6 +13904,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .workbook_worksheet import WorkbookWorksheet
         from .workbook_worksheet_protection import WorkbookWorksheetProtection
         from .workforce_integration import WorkforceIntegration
+        from .working_time_schedule import WorkingTimeSchedule
         from .workplace_sensor_device import WorkplaceSensorDevice
         from .workspace import Workspace
         from .work_position import WorkPosition
@@ -13758,7 +13926,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("id", self.id)
         writer.write_str_value("@odata.type", self.odata_type)

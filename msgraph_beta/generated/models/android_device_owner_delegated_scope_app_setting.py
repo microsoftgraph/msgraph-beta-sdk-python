@@ -32,7 +32,7 @@ class AndroidDeviceOwnerDelegatedScopeAppSetting(AdditionalDataHolder, BackedMod
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: AndroidDeviceOwnerDelegatedScopeAppSetting
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return AndroidDeviceOwnerDelegatedScopeAppSetting()
     
@@ -60,7 +60,7 @@ class AndroidDeviceOwnerDelegatedScopeAppSetting(AdditionalDataHolder, BackedMod
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("appDetail", self.app_detail)
         writer.write_collection_of_enum_values("appScopes", self.app_scopes)
