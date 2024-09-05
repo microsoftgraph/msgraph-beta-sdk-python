@@ -28,11 +28,11 @@ class PlannerTask(PlannerDelta):
     active_checklist_item_count: Optional[int] = None
     # The categories to which the task is applied. See plannerAppliedCategories resource type for possible values.
     applied_categories: Optional[PlannerAppliedCategories] = None
-    # The archivalInfo property
+    # Read-only. Nullable. Contains information about who archived or unarchived the task and why.
     archival_info: Optional[PlannerArchivalInfo] = None
     # Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.
     assigned_to_task_board_format: Optional[PlannerAssignedToTaskBoardTaskFormat] = None
-    # A hint that is used to order items of this type in a list view. For more information, see Using order hints in Planner.
+    # A hint that is used to order items of this type in a list view. For more information, see Using order hints in planner.
     assignee_priority: Optional[str] = None
     # The set of assignees the task is assigned to.
     assignments: Optional[PlannerAssignments] = None
@@ -56,19 +56,19 @@ class PlannerTask(PlannerDelta):
     creation_source: Optional[PlannerTaskCreation] = None
     # Read-only. Nullable. More details about the task.
     details: Optional[PlannerTaskDetails] = None
-    # The date and time at which the task is due. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    # The date and time at which the task is due. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     due_date_time: Optional[datetime.datetime] = None
     # Read-only. This value is true if the details object of the task has a nonempty description. Otherwise,false.
     has_description: Optional[bool] = None
-    # The isArchived property
+    # Read-only. If set to true, the task is archived. An archived task is read-only.
     is_archived: Optional[bool] = None
-    # A Boolean value that indicates whether to show this task in the MyDay view. true to show the task. Otherwise, false.
+    # Indicates whether to show this task in the MyDay view. If true, it shows the task.
     is_on_my_day: Optional[bool] = None
     # Read-only. The date on which task is added to or removed from MyDay.
     is_on_my_day_last_modified_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The hint used to order items of this type in a list view. For more information, see Using order hints in Plannern.
+    # The hint used to order items of this type in a list view. For more information, see Using order hints in plannern.
     order_hint: Optional[str] = None
     # The percentage of task completion. When set to 100, the task is completed.
     percent_complete: Optional[int] = None
@@ -76,7 +76,7 @@ class PlannerTask(PlannerDelta):
     plan_id: Optional[str] = None
     # The type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference.
     preview_type: Optional[PlannerPreviewType] = None
-    # The priority of the task. Valid values are between 0 and 10, inclusive. Larger values indicate lower priority. For example, 0 has the highest priority and 10 has the lowest priority. Currently, Planner interprets values 0 and 1 as 'urgent', 2 and 3 and 4 as 'important', 5, 6, and 7 as 'medium', and 8, 9, and 10 as 'low'. Currently, Planner sets the value 1 for 'urgent', 3 for 'important', 5 for 'medium', and 9 for 'low'.
+    # The priority of the task. Valid values are between 0 and 10, inclusive. Larger values indicate lower priority. For example, 0 has the highest priority and 10 has the lowest priority. Currently, planner interprets values 0 and 1 as 'urgent', 2 and 3 and 4 as 'important', 5, 6, and 7 as 'medium', and 8, 9, and 10 as 'low'. Currently, planner sets the value 1 for 'urgent', 3 for 'important', 5 for 'medium', and 9 for 'low'.
     priority: Optional[int] = None
     # Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
     progress_task_board_format: Optional[PlannerProgressTaskBoardTaskFormat] = None
@@ -98,7 +98,7 @@ class PlannerTask(PlannerDelta):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: PlannerTask
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
@@ -189,7 +189,7 @@ class PlannerTask(PlannerDelta):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("activeChecklistItemCount", self.active_checklist_item_count)

@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .messages.messages_request_builder import MessagesRequestBuilder
     from .message_rules.message_rules_request_builder import MessageRulesRequestBuilder
     from .move.move_request_builder import MoveRequestBuilder
+    from .permanent_delete.permanent_delete_request_builder import PermanentDeleteRequestBuilder
     from .user_configurations.user_configurations_request_builder import UserConfigurationsRequestBuilder
 
 class MailFolderItemRequestBuilder(BaseRequestBuilder):
@@ -41,6 +42,7 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -59,6 +61,7 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailFolder]
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -80,7 +83,8 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailFolder]
         """
-        if not body:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
@@ -102,6 +106,7 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -113,6 +118,7 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -125,7 +131,8 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -139,7 +146,8 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MailFolderItemRequestBuilder
         """
-        if not raw_url:
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MailFolderItemRequestBuilder(self.request_adapter, raw_url)
     
@@ -189,6 +197,15 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         return MoveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def permanent_delete(self) -> PermanentDeleteRequestBuilder:
+        """
+        Provides operations to call the permanentDelete method.
+        """
+        from .permanent_delete.permanent_delete_request_builder import PermanentDeleteRequestBuilder
+
+        return PermanentDeleteRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def user_configurations(self) -> UserConfigurationsRequestBuilder:
         """
         Provides operations to manage the userConfigurations property of the microsoft.graph.mailFolder entity.
@@ -215,7 +232,7 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "expand":
                 return "%24expand"

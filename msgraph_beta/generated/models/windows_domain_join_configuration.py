@@ -21,7 +21,7 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration):
     computer_name_static_prefix: Optional[str] = None
     # Dynamically generated characters used as suffix for computer name. Valid values 3 to 14
     computer_name_suffix_random_char_count: Optional[int] = None
-    # Reference to device configurations required for network connectivity. This collection can contain a maximum of 2 elements.
+    # Reference to device configurations required for network connectivity
     network_access_configurations: Optional[List[DeviceConfiguration]] = None
     # Organizational unit (OU) where the computer account will be created. If this parameter is NULL, the well known computer object container will be used as published in the domain.
     organizational_unit: Optional[str] = None
@@ -33,7 +33,7 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: WindowsDomainJoinConfiguration
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return WindowsDomainJoinConfiguration()
     
@@ -63,7 +63,7 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("activeDirectoryDomainName", self.active_directory_domain_name)

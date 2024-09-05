@@ -7,4 +7,5 @@ class IncomingTokenType(str, Enum):
     Saml20 = "saml20",
     UnknownFutureValue = "unknownFutureValue",
     RemoteDesktopToken = "remoteDesktopToken",
+    RefreshToken = "refreshToken",
 

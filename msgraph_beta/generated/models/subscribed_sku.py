@@ -19,7 +19,7 @@ class SubscribedSku(Entity):
     account_name: Optional[str] = None
     # The target class for this SKU. Only SKUs with target class User are assignable. Possible values are: User, Company.
     applies_to: Optional[str] = None
-    # Enabled indicates that the prepaidUnits property has at least one unit that is enabled. LockedOut indicates that the customer cancelled their subscription. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut.
+    # Enabled indicates that the prepaidUnits property has at least one unit that is enabled. LockedOut indicates that the customer canceled their subscription. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut.
     capability_status: Optional[str] = None
     # The number of licenses that have been assigned.
     consumed_units: Optional[int] = None
@@ -43,7 +43,7 @@ class SubscribedSku(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: SubscribedSku
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return SubscribedSku()
     
@@ -82,7 +82,7 @@ class SubscribedSku(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("accountId", self.account_id)

@@ -24,9 +24,9 @@ class VirtualEventRegistration(Entity):
     last_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The preferredLanguage property
+    # The registrant's preferred language.
     preferred_language: Optional[str] = None
-    # The preferredTimezone property
+    # The registrant's time zone details.
     preferred_timezone: Optional[str] = None
     # Date and time when the registrant registers for the virtual event. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     registration_date_time: Optional[datetime.datetime] = None
@@ -46,7 +46,7 @@ class VirtualEventRegistration(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: VirtualEventRegistration
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return VirtualEventRegistration()
     
@@ -88,7 +88,7 @@ class VirtualEventRegistration(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("cancelationDateTime", self.cancelation_date_time)

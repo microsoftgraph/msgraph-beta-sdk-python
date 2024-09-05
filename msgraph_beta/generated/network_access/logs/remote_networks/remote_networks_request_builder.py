@@ -38,7 +38,7 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
         param remote_network_health_event_id: The unique identifier of remoteNetworkHealthEvent
         Returns: RemoteNetworkHealthEventItemRequestBuilder
         """
-        if not remote_network_health_event_id:
+        if remote_network_health_event_id is None:
             raise TypeError("remote_network_health_event_id cannot be null.")
         from .item.remote_network_health_event_item_request_builder import RemoteNetworkHealthEventItemRequestBuilder
 
@@ -48,10 +48,9 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RemoteNetworksRequestBuilderGetQueryParameters]] = None) -> Optional[RemoteNetworkHealthEventCollectionResponse]:
         """
-        Retrieve a list of remote network health status microsoft.graph.networkaccess.remoteNetworkHealthStatusEvent events, providing insights into the health and status of remote networks.
+        A collection of remote network health events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RemoteNetworkHealthEventCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-remotenetworkhealthstatusevent-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -74,7 +73,7 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RemoteNetworkHealthEvent]
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -92,7 +91,7 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RemoteNetworksRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve a list of remote network health status microsoft.graph.networkaccess.remoteNetworkHealthStatusEvent events, providing insights into the health and status of remote networks.
+        A collection of remote network health events.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +107,7 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -122,7 +121,7 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: RemoteNetworksRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return RemoteNetworksRequestBuilder(self.request_adapter, raw_url)
     
@@ -138,7 +137,7 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RemoteNetworksRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of remote network health status microsoft.graph.networkaccess.remoteNetworkHealthStatusEvent events, providing insights into the health and status of remote networks.
+        A collection of remote network health events.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -146,7 +145,7 @@ class RemoteNetworksRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

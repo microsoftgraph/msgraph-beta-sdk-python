@@ -37,7 +37,7 @@ class DriveProtectionUnitsRequestBuilder(BaseRequestBuilder):
         param drive_protection_unit_id: The unique identifier of driveProtectionUnit
         Returns: DriveProtectionUnitItemRequestBuilder
         """
-        if not drive_protection_unit_id:
+        if drive_protection_unit_id is None:
             raise TypeError("drive_protection_unit_id cannot be null.")
         from .item.drive_protection_unit_item_request_builder import DriveProtectionUnitItemRequestBuilder
 
@@ -83,7 +83,7 @@ class DriveProtectionUnitsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: DriveProtectionUnitsRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DriveProtectionUnitsRequestBuilder(self.request_adapter, raw_url)
     
@@ -107,7 +107,7 @@ class DriveProtectionUnitsRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

@@ -11,11 +11,11 @@ class KeyValue(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Contains the name of the field that a value is associated with.
+    # Key.
     key: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Contains the corresponding value for the specified key.
+    # Value.
     value: Optional[str] = None
     
     @staticmethod
@@ -25,7 +25,7 @@ class KeyValue(AdditionalDataHolder, BackedModel, Parsable):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: KeyValue
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return KeyValue()
     
@@ -47,7 +47,7 @@ class KeyValue(AdditionalDataHolder, BackedModel, Parsable):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("key", self.key)
         writer.write_str_value("@odata.type", self.odata_type)

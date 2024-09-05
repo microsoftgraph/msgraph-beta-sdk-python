@@ -39,7 +39,7 @@ class UserSecurityProfilesRequestBuilder(BaseRequestBuilder):
         Returns: UserSecurityProfileItemRequestBuilder
         """
         warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
-        if not user_security_profile_id:
+        if user_security_profile_id is None:
             raise TypeError("user_security_profile_id cannot be null.")
         from .item.user_security_profile_item_request_builder import UserSecurityProfileItemRequestBuilder
 
@@ -76,7 +76,7 @@ class UserSecurityProfilesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[UserSecurityProfile]
         """
         warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -112,7 +112,7 @@ class UserSecurityProfilesRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -127,7 +127,7 @@ class UserSecurityProfilesRequestBuilder(BaseRequestBuilder):
         Returns: UserSecurityProfilesRequestBuilder
         """
         warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation", DeprecationWarning)
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return UserSecurityProfilesRequestBuilder(self.request_adapter, raw_url)
     
@@ -151,7 +151,7 @@ class UserSecurityProfilesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

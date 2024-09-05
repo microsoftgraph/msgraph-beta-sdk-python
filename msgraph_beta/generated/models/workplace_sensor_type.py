@@ -9,6 +9,8 @@ class WorkplaceSensorType(str, Enum):
     InferredOccupancy = "inferredOccupancy",
     # The heartbeat sensor type.
     Heartbeat = "heartbeat",
+    # The badge swipe sensor type.
+    Badge = "badge",
     # The unknown feature value.
     UnknownFutureValue = "unknownFutureValue",
 

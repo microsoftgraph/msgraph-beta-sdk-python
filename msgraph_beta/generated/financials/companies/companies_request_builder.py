@@ -38,7 +38,7 @@ class CompaniesRequestBuilder(BaseRequestBuilder):
         param company_id: The unique identifier of company
         Returns: CompanyItemRequestBuilder
         """
-        if not company_id:
+        if company_id is None:
             raise TypeError("company_id cannot be null.")
         from .item.company_item_request_builder import CompanyItemRequestBuilder
 
@@ -83,7 +83,7 @@ class CompaniesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CompaniesRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CompaniesRequestBuilder(self.request_adapter, raw_url)
     
@@ -107,7 +107,7 @@ class CompaniesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"

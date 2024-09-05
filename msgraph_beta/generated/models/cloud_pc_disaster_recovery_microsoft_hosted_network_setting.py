@@ -15,7 +15,7 @@ class CloudPcDisasterRecoveryMicrosoftHostedNetworkSetting(CloudPcDisasterRecove
     odata_type: Optional[str] = "#microsoft.graph.cloudPcDisasterRecoveryMicrosoftHostedNetworkSetting"
     # The regionGroup property
     region_group: Optional[CloudPcRegionGroup] = None
-    # The regionName property
+    # Indicates the Azure region that the new Cloud PC is assigned to. The Windows 365 service creates and manages the underlying virtual network.
     region_name: Optional[str] = None
     
     @staticmethod
@@ -25,7 +25,7 @@ class CloudPcDisasterRecoveryMicrosoftHostedNetworkSetting(CloudPcDisasterRecove
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: CloudPcDisasterRecoveryMicrosoftHostedNetworkSetting
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return CloudPcDisasterRecoveryMicrosoftHostedNetworkSetting()
     
@@ -54,7 +54,7 @@ class CloudPcDisasterRecoveryMicrosoftHostedNetworkSetting(CloudPcDisasterRecove
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("regionGroup", self.region_group)

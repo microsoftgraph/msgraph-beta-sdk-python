@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .destination_type import DestinationType
     from .drive_restore_artifact import DriveRestoreArtifact
     from .entity import Entity
+    from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
     from .mailbox_restore_artifact import MailboxRestoreArtifact
     from .public_error import PublicError
     from .restore_point import RestorePoint
@@ -40,7 +41,7 @@ class RestoreArtifactBase(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: RestoreArtifactBase
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
@@ -50,6 +51,10 @@ class RestoreArtifactBase(Entity):
             from .drive_restore_artifact import DriveRestoreArtifact
 
             return DriveRestoreArtifact()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.granularMailboxRestoreArtifact".casefold():
+            from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
+
+            return GranularMailboxRestoreArtifact()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxRestoreArtifact".casefold():
             from .mailbox_restore_artifact import MailboxRestoreArtifact
 
@@ -69,6 +74,7 @@ class RestoreArtifactBase(Entity):
         from .destination_type import DestinationType
         from .drive_restore_artifact import DriveRestoreArtifact
         from .entity import Entity
+        from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
         from .mailbox_restore_artifact import MailboxRestoreArtifact
         from .public_error import PublicError
         from .restore_point import RestorePoint
@@ -78,6 +84,7 @@ class RestoreArtifactBase(Entity):
         from .destination_type import DestinationType
         from .drive_restore_artifact import DriveRestoreArtifact
         from .entity import Entity
+        from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
         from .mailbox_restore_artifact import MailboxRestoreArtifact
         from .public_error import PublicError
         from .restore_point import RestorePoint
@@ -101,7 +108,7 @@ class RestoreArtifactBase(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("completionDateTime", self.completion_date_time)

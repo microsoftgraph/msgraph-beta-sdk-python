@@ -27,6 +27,10 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity):
     device_battery_tags: Optional[List[str]] = None
     # The unique identifier of the device, Intune DeviceID.
     device_id: Optional[str] = None
+    # The manufacturer name of the device.
+    device_manufacturer_name: Optional[str] = None
+    # The model name of the device.
+    device_model_name: Optional[str] = None
     # Device friendly name.
     device_name: Optional[str] = None
     # The estimated runtime of the device when the battery is fully charged. Unit in minutes. Valid values 0 to 2147483647
@@ -35,11 +39,11 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity):
     full_battery_drain_count: Optional[int] = None
     # The healthStatus property
     health_status: Optional[UserExperienceAnalyticsHealthState] = None
-    # The manufacturer name of the device.
+    # The manufacturer name of the device. Deprecated in favor of DeviceManufacturerName.
     manufacturer: Optional[str] = None
     # Ratio of current capacity and design capacity of the battery with the lowest capacity. Unit in percentage and values range from 0-100. Valid values 0 to 2147483647
     max_capacity_percentage: Optional[int] = None
-    # The model name of the device.
+    # The model name of the device. Deprecated in favor of DeviceModelName.
     model: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -51,7 +55,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: UserExperienceAnalyticsBatteryHealthDevicePerformance
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsBatteryHealthDevicePerformance()
     
@@ -75,6 +79,8 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity):
             "deviceBatteryHealthScore": lambda n : setattr(self, 'device_battery_health_score', n.get_int_value()),
             "deviceBatteryTags": lambda n : setattr(self, 'device_battery_tags', n.get_collection_of_primitive_values(str)),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceManufacturerName": lambda n : setattr(self, 'device_manufacturer_name', n.get_str_value()),
+            "deviceModelName": lambda n : setattr(self, 'device_model_name', n.get_str_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "estimatedRuntimeInMinutes": lambda n : setattr(self, 'estimated_runtime_in_minutes', n.get_int_value()),
             "fullBatteryDrainCount": lambda n : setattr(self, 'full_battery_drain_count', n.get_int_value()),
@@ -93,7 +99,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("batteryAgeInDays", self.battery_age_in_days)
@@ -102,6 +108,8 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity):
         writer.write_int_value("deviceBatteryHealthScore", self.device_battery_health_score)
         writer.write_collection_of_primitive_values("deviceBatteryTags", self.device_battery_tags)
         writer.write_str_value("deviceId", self.device_id)
+        writer.write_str_value("deviceManufacturerName", self.device_manufacturer_name)
+        writer.write_str_value("deviceModelName", self.device_model_name)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_int_value("estimatedRuntimeInMinutes", self.estimated_runtime_in_minutes)
         writer.write_int_value("fullBatteryDrainCount", self.full_battery_drain_count)

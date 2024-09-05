@@ -32,13 +32,13 @@ class EnableRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: EnablePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ServiceStatus]:
         """
-        Enable the Microsoft 365 Backup Storage service for a tenant.
+        Enable the Microsoft 365 Backup Storage service for a tenant. Before you call this API, call List protection policies to initialize the data store in the tenant. Data store initialization takes about 5 minutes. If you call this API before the data store is initialized, the call results in an error.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServiceStatus]
         Find more info here: https://learn.microsoft.com/graph/api/backuprestoreroot-enable?view=graph-rest-beta
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
             body, request_configuration
@@ -56,12 +56,12 @@ class EnableRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: EnablePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Enable the Microsoft 365 Backup Storage service for a tenant.
+        Enable the Microsoft 365 Backup Storage service for a tenant. Before you call this API, call List protection policies to initialize the data store in the tenant. Data store initialization takes about 5 minutes. If you call this API before the data store is initialized, the call results in an error.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        if not body:
+        if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
@@ -75,7 +75,7 @@ class EnableRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: EnableRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return EnableRequestBuilder(self.request_adapter, raw_url)
     

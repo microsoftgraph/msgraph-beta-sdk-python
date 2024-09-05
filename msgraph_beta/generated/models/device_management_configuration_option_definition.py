@@ -42,7 +42,7 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Backed
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: DeviceManagementConfigurationOptionDefinition
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationOptionDefinition()
     
@@ -78,7 +78,7 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Backed
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_object_values("dependedOnBy", self.depended_on_by)
         writer.write_collection_of_object_values("dependentOn", self.dependent_on)

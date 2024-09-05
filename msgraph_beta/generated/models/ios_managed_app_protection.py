@@ -32,7 +32,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
     app_data_encryption_type: Optional[ManagedAppDataEncryptionType] = None
     # List of apps to which the policy is deployed.
     apps: Optional[List[ManagedMobileApp]] = None
-    # A custom browser protocol to open weblink on iOS. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
+    # A custom browser protocol to open weblink on iOS.
     custom_browser_protocol: Optional[str] = None
     # Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
     custom_dialer_app_protocol: Optional[str] = None
@@ -72,7 +72,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
         param parse_node: The parse node to use to read the discriminator value and create the object
         Returns: IosManagedAppProtection
         """
-        if not parse_node:
+        if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         return IosManagedAppProtection()
     
@@ -129,7 +129,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
         param writer: Serialization writer to use to serialize this model
         Returns: None
         """
-        if not writer:
+        if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("allowWidgetContentSync", self.allow_widget_content_sync)

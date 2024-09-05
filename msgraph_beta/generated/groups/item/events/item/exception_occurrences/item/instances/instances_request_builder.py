@@ -38,7 +38,7 @@ class InstancesRequestBuilder(BaseRequestBuilder):
         param event_id2: The unique identifier of event
         Returns: EventItemRequestBuilder
         """
-        if not event_id2:
+        if event_id2 is None:
             raise TypeError("event_id2 cannot be null.")
         from .item.event_item_request_builder import EventItemRequestBuilder
 
@@ -48,7 +48,7 @@ class InstancesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[InstancesRequestBuilderGetQueryParameters]] = None) -> Optional[EventCollectionResponse]:
         """
-        The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but doesn't include occurrences that have been canceled from the series. Navigation property. Read-only. Nullable.
+        The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern and exceptions that have been modified. It doesn't include occurrences that have been canceled from the series. Navigation property. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EventCollectionResponse]
         """
@@ -68,7 +68,7 @@ class InstancesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[InstancesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but doesn't include occurrences that have been canceled from the series. Navigation property. Read-only. Nullable.
+        The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern and exceptions that have been modified. It doesn't include occurrences that have been canceled from the series. Navigation property. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -83,7 +83,7 @@ class InstancesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: InstancesRequestBuilder
         """
-        if not raw_url:
+        if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return InstancesRequestBuilder(self.request_adapter, raw_url)
     
@@ -108,7 +108,7 @@ class InstancesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InstancesRequestBuilderGetQueryParameters():
         """
-        The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but doesn't include occurrences that have been canceled from the series. Navigation property. Read-only. Nullable.
+        The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern and exceptions that have been modified. It doesn't include occurrences that have been canceled from the series. Navigation property. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -116,7 +116,7 @@ class InstancesRequestBuilder(BaseRequestBuilder):
             param original_name: The original query parameter name in the class.
             Returns: str
             """
-            if not original_name:
+            if original_name is None:
                 raise TypeError("original_name cannot be null.")
             if original_name == "count":
                 return "%24count"
