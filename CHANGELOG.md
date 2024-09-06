@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.0](https://github.com/microsoftgraph/msgraph-beta-sdk-python/compare/v1.5.3...v1.6.0) (2024-09-06)
+
+
+### Features
+
+* readme formatting to trigger release please ([e351f0a](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/e351f0accd9009fcde9e385b25b0d25ba239fcd0))
+
+
+### Bug Fixes
+
+* release please type configuration ([5c3f611](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/5c3f6119a2b7015ddd97c1aaa54a0147353da767))
+
 ## [1.5.3](https://github.com/microsoftgraph/msgraph-beta-sdk-python/compare/v1.5.2...v1.5.3) (2024-08-02)
 
 
