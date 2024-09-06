@@ -1,13 +1,14 @@
+# Microsoft Graph Beta SDK for Python
+
 [![PyPI version](https://badge.fury.io/py/msgraph-beta-sdk.svg)](https://badge.fury.io/py/msgraph-beta-sdk)
 [![Downloads](https://pepy.tech/badge/msgraph-beta-sdk)](https://pepy.tech/project/msgraph-beta-sdk)
 [![Supported Versions](https://img.shields.io/pypi/pyversions/msgraph-beta-sdk.svg)](https://pypi.org/project/msgraph-beta-sdk)
 [![Contributors](https://img.shields.io/github/contributors/microsoftgraph/msgraph-beta-sdk-python.svg)](https://github.com/microsoftgraph/msgraph-beta-sdk-python/graphs/contributors)
 
-# Microsoft Graph Beta SDK for Python
-
 Get started with the Microsoft Graph Beta SDK for Python by integrating the [Microsoft Graph API](https://docs.microsoft.com/graph/overview) into your Python application.
 
-> **Note:** 
+> **Note:**
+>
 > * This SDK allows you to build applications using the latest [beta](https://docs.microsoft.com/graph/use-the-api#version) version of Microsoft Graph. If you want to try the v1.0 Microsoft Graph API, use the [v1.0](https://github.com/microsoftgraph/msgraph-sdk-python) SDK.
 
 ## 1. Installation
@@ -15,7 +16,9 @@ Get started with the Microsoft Graph Beta SDK for Python by integrating the [Mic
 ```py
 pip install msgraph-beta-sdk
 ```
-> **Note:** 
+
+> **Note:**
+>
 > * The Microsoft Graph Beta SDK for Python is a fairly large package. It may take a few minutes for the initial installation to complete.
 > * Enable long paths in your environment if you receive a `Could not install packages due to an OSError`. For details, see [Enable Long Paths in Windows 10, Version 1607, and Later](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=powershell#enable-long-paths-in-windows-10-version-1607-and-later).
 
@@ -94,6 +97,7 @@ asyncio.run(me())
 ### 3.1 Error Handling
 
 Failed requests raise `APIError` exceptions. You can handle these exceptions using `try` `catch` statements.
+
 ```py
 from kiota_abstractions.api_error import APIError
 async def get_user():
@@ -104,6 +108,7 @@ async def get_user():
         print(f'Error: {e.error.message}')
 asyncio.run(get_user())
 ```
+
 ## Documentation and resources
 
 * [Overview](https://docs.microsoft.com/graph/overview)
@@ -115,7 +120,6 @@ asyncio.run(get_user())
 ## Upgrading
 
 For detailed information on breaking changes, bug fixes and new functionality introduced during major upgrades, check out our [Upgrade Guide](UPGRADING.md)
-
 
 ## Issues
 
@@ -132,4 +136,5 @@ Copyright (c) Microsoft Corporation. All Rights Reserved. Licensed under the MIT
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## Third Party Notices
+
 [Third-party notices](THIRD%20PARTY%20NOTICES)
