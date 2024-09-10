@@ -15,7 +15,7 @@ from .entity import Entity
 @dataclass
 class MobileAppInstallStatus(Entity):
     """
-    Contains properties for the installation state of a mobile app for a device. This will be deprecated starting May, 2023 (Intune Release 2305).
+    Contains properties for the installation state of a mobile app for a device. This will be deprecated in May, 2023
     """
     # The navigation link to the mobile app.
     app: Optional[MobileApp] = None

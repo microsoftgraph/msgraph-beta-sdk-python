@@ -21,7 +21,7 @@ class DeviceManagementExportJob(Entity):
     expiration_date_time: Optional[datetime.datetime] = None
     # Filters applied on the report. The maximum length allowed for this property is 2000 characters.
     filter: Optional[str] = None
-    # Possible values for the file format of a report.
+    # Possible values for the file format of a report to be exported.
     format: Optional[DeviceManagementReportFileFormat] = None
     # Configures how the requested export job is localized.
     localization_type: Optional[DeviceManagementExportJobLocalizationType] = None

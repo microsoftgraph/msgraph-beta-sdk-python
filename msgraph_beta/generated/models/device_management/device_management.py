@@ -337,7 +337,7 @@ class DeviceManagement(Entity):
     hardware_configurations: Optional[List[HardwareConfiguration]] = None
     # Device BIOS password information for devices with managed BIOS and firmware configuration, which provides device serial number, list of previous passwords, and current password.
     hardware_password_details: Optional[List[HardwarePasswordDetail]] = None
-    # Intune will provide customer the ability to configure hardware/bios settings on the enrolled windows 10 Azure Active Directory joined devices. Starting from June, 2024 (Intune Release 2406), this type will no longer be supported and will be marked as deprecated
+    # Intune will provide customer the ability to configure BIOS configuration settings on the enrolled Windows 10 and Windows 11 Microsoft Entra joined devices. Starting from June, 2024, customers should start using hardwarePasswordDetail resource type - Microsoft Graph beta | Microsoft Learn. HardwarePasswordInfo will be marked as deprecated with Intune Release 2409
     hardware_password_info: Optional[List[HardwarePasswordInfo]] = None
     # The imported device identities.
     imported_device_identities: Optional[List[ImportedDeviceIdentity]] = None

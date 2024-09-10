@@ -25,4 +25,6 @@ class AssociatedAssignmentPayloadType(str, Enum):
     Win32app = "win32app",
     # Indicates that this filter is associated with a configuration or compliance policy on Device Configuration v2 Infrastructure payload type
     DeviceManagmentConfigurationAndCompliancePolicy = "deviceManagmentConfigurationAndCompliancePolicy",
+    # Indicates that this filter is associated with Bios Configurations And Other Settings payload type
+    HardwareConfiguration = "hardwareConfiguration",
 

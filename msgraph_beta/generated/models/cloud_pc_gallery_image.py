@@ -26,6 +26,8 @@ class CloudPcGalleryImage(Entity):
     offer_display_name: Optional[str] = None
     # The offer name of this gallery image that is passed to ARM to retrieve the image resource. Read-only.
     offer_name: Optional[str] = None
+    # The osVersionNumber property
+    os_version_number: Optional[str] = None
     # The publisher name of this gallery image that is passed to ARM to retrieve the image resource. Read-only. The publisher property is deprecated and will stop returning data on January 31, 2024. Going forward, use the publisherName property.
     publisher: Optional[str] = None
     # The publisher name of this gallery image that is passed to ARM to retrieve the image resource. Read-only.
@@ -74,6 +76,7 @@ class CloudPcGalleryImage(Entity):
             "offer": lambda n : setattr(self, 'offer', n.get_str_value()),
             "offerDisplayName": lambda n : setattr(self, 'offer_display_name', n.get_str_value()),
             "offerName": lambda n : setattr(self, 'offer_name', n.get_str_value()),
+            "osVersionNumber": lambda n : setattr(self, 'os_version_number', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
             "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
             "recommendedSku": lambda n : setattr(self, 'recommended_sku', n.get_str_value()),
@@ -103,6 +106,7 @@ class CloudPcGalleryImage(Entity):
         writer.write_str_value("offer", self.offer)
         writer.write_str_value("offerDisplayName", self.offer_display_name)
         writer.write_str_value("offerName", self.offer_name)
+        writer.write_str_value("osVersionNumber", self.os_version_number)
         writer.write_str_value("publisher", self.publisher)
         writer.write_str_value("publisherName", self.publisher_name)
         writer.write_str_value("recommendedSku", self.recommended_sku)

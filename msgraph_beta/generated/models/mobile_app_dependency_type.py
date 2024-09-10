@@ -5,4 +5,6 @@ class MobileAppDependencyType(str, Enum):
     Detect = "detect",
     # Indicates that the child app should be installed before installing the parent app.
     AutoInstall = "autoInstall",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

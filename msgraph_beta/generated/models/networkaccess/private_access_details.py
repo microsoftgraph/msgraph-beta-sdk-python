@@ -18,6 +18,8 @@ class PrivateAccessDetails(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The accessType property
     access_type: Optional[AccessType] = None
+    # The appSegmentId property
+    app_segment_id: Optional[str] = None
     # The connectionStatus property
     connection_status: Optional[ConnectionStatus] = None
     # The connectorId property
@@ -59,6 +61,7 @@ class PrivateAccessDetails(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accessType": lambda n : setattr(self, 'access_type', n.get_enum_value(AccessType)),
+            "appSegmentId": lambda n : setattr(self, 'app_segment_id', n.get_str_value()),
             "connectionStatus": lambda n : setattr(self, 'connection_status', n.get_enum_value(ConnectionStatus)),
             "connectorId": lambda n : setattr(self, 'connector_id', n.get_str_value()),
             "connectorIp": lambda n : setattr(self, 'connector_ip', n.get_str_value()),
@@ -78,6 +81,7 @@ class PrivateAccessDetails(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("accessType", self.access_type)
+        writer.write_str_value("appSegmentId", self.app_segment_id)
         writer.write_enum_value("connectionStatus", self.connection_status)
         writer.write_str_value("connectorId", self.connector_id)
         writer.write_str_value("connectorIp", self.connector_ip)

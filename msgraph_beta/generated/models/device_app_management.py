@@ -23,6 +23,7 @@ if TYPE_CHECKING:
     from .mobile_app import MobileApp
     from .mobile_app_catalog_package import MobileAppCatalogPackage
     from .mobile_app_category import MobileAppCategory
+    from .mobile_app_relationship import MobileAppRelationship
     from .policy_set import PolicySet
     from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
     from .targeted_managed_app_configuration import TargetedManagedAppConfiguration
@@ -81,6 +82,8 @@ class DeviceAppManagement(Entity):
     mobile_app_categories: Optional[List[MobileAppCategory]] = None
     # The Managed Device Mobile Application Configurations.
     mobile_app_configurations: Optional[List[ManagedDeviceMobileAppConfiguration]] = None
+    # List mobileAppRelationship objects for mobile applications.
+    mobile_app_relationships: Optional[List[MobileAppRelationship]] = None
     # The mobile apps.
     mobile_apps: Optional[List[MobileApp]] = None
     # The OdataType property
@@ -140,6 +143,7 @@ class DeviceAppManagement(Entity):
         from .mobile_app import MobileApp
         from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .mobile_app_category import MobileAppCategory
+        from .mobile_app_relationship import MobileAppRelationship
         from .policy_set import PolicySet
         from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
         from .targeted_managed_app_configuration import TargetedManagedAppConfiguration
@@ -169,6 +173,7 @@ class DeviceAppManagement(Entity):
         from .mobile_app import MobileApp
         from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .mobile_app_category import MobileAppCategory
+        from .mobile_app_relationship import MobileAppRelationship
         from .policy_set import PolicySet
         from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
         from .targeted_managed_app_configuration import TargetedManagedAppConfiguration
@@ -201,6 +206,7 @@ class DeviceAppManagement(Entity):
             "mobileAppCatalogPackages": lambda n : setattr(self, 'mobile_app_catalog_packages', n.get_collection_of_object_values(MobileAppCatalogPackage)),
             "mobileAppCategories": lambda n : setattr(self, 'mobile_app_categories', n.get_collection_of_object_values(MobileAppCategory)),
             "mobileAppConfigurations": lambda n : setattr(self, 'mobile_app_configurations', n.get_collection_of_object_values(ManagedDeviceMobileAppConfiguration)),
+            "mobileAppRelationships": lambda n : setattr(self, 'mobile_app_relationships', n.get_collection_of_object_values(MobileAppRelationship)),
             "mobileApps": lambda n : setattr(self, 'mobile_apps', n.get_collection_of_object_values(MobileApp)),
             "policySets": lambda n : setattr(self, 'policy_sets', n.get_collection_of_object_values(PolicySet)),
             "symantecCodeSigningCertificate": lambda n : setattr(self, 'symantec_code_signing_certificate', n.get_object_value(SymantecCodeSigningCertificate)),
@@ -246,6 +252,7 @@ class DeviceAppManagement(Entity):
         writer.write_collection_of_object_values("mobileAppCatalogPackages", self.mobile_app_catalog_packages)
         writer.write_collection_of_object_values("mobileAppCategories", self.mobile_app_categories)
         writer.write_collection_of_object_values("mobileAppConfigurations", self.mobile_app_configurations)
+        writer.write_collection_of_object_values("mobileAppRelationships", self.mobile_app_relationships)
         writer.write_collection_of_object_values("mobileApps", self.mobile_apps)
         writer.write_collection_of_object_values("policySets", self.policy_sets)
         writer.write_object_value("symantecCodeSigningCertificate", self.symantec_code_signing_certificate)

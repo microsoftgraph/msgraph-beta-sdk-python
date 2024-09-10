@@ -16,8 +16,6 @@ class AndroidStoreApp(MobileApp):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidStoreApp"
-    # The Identity Name. This property is read-only.
-    app_identifier: Optional[str] = None
     # The Android app store URL.
     app_store_url: Optional[str] = None
     # The value for the minimum applicable operating system.
@@ -48,7 +46,6 @@ class AndroidStoreApp(MobileApp):
         from .mobile_app import MobileApp
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "appIdentifier": lambda n : setattr(self, 'app_identifier', n.get_str_value()),
             "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
             "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(AndroidMinimumOperatingSystem)),
             "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),

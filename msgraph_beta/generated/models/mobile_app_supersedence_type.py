@@ -5,4 +5,6 @@ class MobileAppSupersedenceType(str, Enum):
     Update = "update",
     # Indicates that the child app should be uninstalled before installing the parent app.
     Replace = "replace",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

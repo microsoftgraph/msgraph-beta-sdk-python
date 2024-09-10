@@ -7,10 +7,10 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .alert_action import AlertAction
+    from .alert_severity import AlertSeverity
     from .alert_type import AlertType
     from .filtering_policy import FilteringPolicy
     from .related_resource import RelatedResource
-    from .threat_severity import ThreatSeverity
 
 from ..entity import Entity
 
@@ -35,7 +35,7 @@ class Alert(Entity):
     # The relatedResources property
     related_resources: Optional[List[RelatedResource]] = None
     # The severity property
-    severity: Optional[ThreatSeverity] = None
+    severity: Optional[AlertSeverity] = None
     # The vendorName property
     vendor_name: Optional[str] = None
     
@@ -57,17 +57,17 @@ class Alert(Entity):
         """
         from ..entity import Entity
         from .alert_action import AlertAction
+        from .alert_severity import AlertSeverity
         from .alert_type import AlertType
         from .filtering_policy import FilteringPolicy
         from .related_resource import RelatedResource
-        from .threat_severity import ThreatSeverity
 
         from ..entity import Entity
         from .alert_action import AlertAction
+        from .alert_severity import AlertSeverity
         from .alert_type import AlertType
         from .filtering_policy import FilteringPolicy
         from .related_resource import RelatedResource
-        from .threat_severity import ThreatSeverity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(AlertAction)),
@@ -78,7 +78,7 @@ class Alert(Entity):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "policy": lambda n : setattr(self, 'policy', n.get_object_value(FilteringPolicy)),
             "relatedResources": lambda n : setattr(self, 'related_resources', n.get_collection_of_object_values(RelatedResource)),
-            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(ThreatSeverity)),
+            "severity": lambda n : setattr(self, 'severity', n.get_enum_value(AlertSeverity)),
             "vendorName": lambda n : setattr(self, 'vendor_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

@@ -18,4 +18,7 @@ class CloudPcReportName(str, Enum):
     CrossRegionDisasterRecoveryReport = "crossRegionDisasterRecoveryReport",
     PerformanceTrendReport = "performanceTrendReport",
     InaccessibleCloudPcTrendReport = "inaccessibleCloudPcTrendReport",
+    RegionalConnectionQualityTrendReport = "regionalConnectionQualityTrendReport",
+    RegionalConnectionQualityInsightsReport = "regionalConnectionQualityInsightsReport",
+    RemoteConnectionQualityReport = "remoteConnectionQualityReport",
 

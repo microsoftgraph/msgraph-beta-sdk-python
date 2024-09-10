@@ -37,6 +37,7 @@ class GetConnectionQualityReportsRequestBuilder(BaseRequestBuilder):
         Returns: bytes
         Find more info here: https://learn.microsoft.com/graph/api/cloudpcreports-getconnectionqualityreports?view=graph-rest-beta
         """
+        warn("Starting from December 31, 2024, this API (&apos;getConnectionQualityReports&apos;) will be deprecated and no longer supported. Please use the retrieveConnectionQualityReports API. as of 2024-09/getConnectionQualityReports", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -58,6 +59,7 @@ class GetConnectionQualityReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Starting from December 31, 2024, this API (&apos;getConnectionQualityReports&apos;) will be deprecated and no longer supported. Please use the retrieveConnectionQualityReports API. as of 2024-09/getConnectionQualityReports", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -72,6 +74,7 @@ class GetConnectionQualityReportsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: GetConnectionQualityReportsRequestBuilder
         """
+        warn("Starting from December 31, 2024, this API (&apos;getConnectionQualityReports&apos;) will be deprecated and no longer supported. Please use the retrieveConnectionQualityReports API. as of 2024-09/getConnectionQualityReports", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return GetConnectionQualityReportsRequestBuilder(self.request_adapter, raw_url)

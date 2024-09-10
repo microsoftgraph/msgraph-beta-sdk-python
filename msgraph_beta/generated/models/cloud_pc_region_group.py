@@ -22,4 +22,6 @@ class CloudPcRegionGroup(str, Enum):
     Norway = "norway",
     Switzerland = "switzerland",
     SouthKorea = "southKorea",
+    MiddleEast = "middleEast",
+    Mexico = "mexico",
 

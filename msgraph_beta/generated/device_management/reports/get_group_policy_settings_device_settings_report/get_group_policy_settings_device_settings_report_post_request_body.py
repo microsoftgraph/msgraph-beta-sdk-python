@@ -27,6 +27,8 @@ class GetGroupPolicySettingsDeviceSettingsReportPostRequestBody(AdditionalDataHo
     session_id: Optional[str] = None
     # The skip property
     skip: Optional[int] = None
+    # The skiptoken property
+    skiptoken: Optional[str] = None
     # The top property
     top: Optional[int] = None
     
@@ -55,6 +57,7 @@ class GetGroupPolicySettingsDeviceSettingsReportPostRequestBody(AdditionalDataHo
             "select": lambda n : setattr(self, 'select', n.get_collection_of_primitive_values(str)),
             "sessionId": lambda n : setattr(self, 'session_id', n.get_str_value()),
             "skip": lambda n : setattr(self, 'skip', n.get_int_value()),
+            "skiptoken": lambda n : setattr(self, 'skiptoken', n.get_str_value()),
             "top": lambda n : setattr(self, 'top', n.get_int_value()),
         }
         return fields
@@ -75,6 +78,7 @@ class GetGroupPolicySettingsDeviceSettingsReportPostRequestBody(AdditionalDataHo
         writer.write_collection_of_primitive_values("select", self.select)
         writer.write_str_value("sessionId", self.session_id)
         writer.write_int_value("skip", self.skip)
+        writer.write_str_value("skiptoken", self.skiptoken)
         writer.write_int_value("top", self.top)
         writer.write_additional_data_value(self.additional_data)
     

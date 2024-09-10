@@ -17,4 +17,8 @@ class PlatformType(str, Enum):
     Linux = "linux",
     # UnknownFutureValue
     UnknownFutureValue = "unknownFutureValue",
+    # AndroidEnterprise
+    AndroidEnterprise = "androidEnterprise",
+    # Android Open Source Project
+    Aosp = "aosp",
 

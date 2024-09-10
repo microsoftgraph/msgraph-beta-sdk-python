@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     from .mobile_app_catalog_packages.mobile_app_catalog_packages_request_builder import MobileAppCatalogPackagesRequestBuilder
     from .mobile_app_categories.mobile_app_categories_request_builder import MobileAppCategoriesRequestBuilder
     from .mobile_app_configurations.mobile_app_configurations_request_builder import MobileAppConfigurationsRequestBuilder
+    from .mobile_app_relationships.mobile_app_relationships_request_builder import MobileAppRelationshipsRequestBuilder
     from .policy_sets.policy_sets_request_builder import PolicySetsRequestBuilder
     from .symantec_code_signing_certificate.symantec_code_signing_certificate_request_builder import SymantecCodeSigningCertificateRequestBuilder
     from .sync_microsoft_store_for_business_apps.sync_microsoft_store_for_business_apps_request_builder import SyncMicrosoftStoreForBusinessAppsRequestBuilder
@@ -269,6 +270,15 @@ class DeviceAppManagementRequestBuilder(BaseRequestBuilder):
         from .mobile_app_configurations.mobile_app_configurations_request_builder import MobileAppConfigurationsRequestBuilder
 
         return MobileAppConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mobile_app_relationships(self) -> MobileAppRelationshipsRequestBuilder:
+        """
+        Provides operations to manage the mobileAppRelationships property of the microsoft.graph.deviceAppManagement entity.
+        """
+        from .mobile_app_relationships.mobile_app_relationships_request_builder import MobileAppRelationshipsRequestBuilder
+
+        return MobileAppRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def mobile_apps(self) -> MobileAppsRequestBuilder:

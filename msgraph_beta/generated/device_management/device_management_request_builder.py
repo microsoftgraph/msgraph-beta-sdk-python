@@ -70,6 +70,7 @@ if TYPE_CHECKING:
     from .elevation_requests.elevation_requests_request_builder import ElevationRequestsRequestBuilder
     from .embedded_s_i_m_activation_code_pools.embedded_s_i_m_activation_code_pools_request_builder import EmbeddedSIMActivationCodePoolsRequestBuilder
     from .enable_android_device_administrator_enrollment.enable_android_device_administrator_enrollment_request_builder import EnableAndroidDeviceAdministratorEnrollmentRequestBuilder
+    from .enable_endpoint_privilege_management.enable_endpoint_privilege_management_request_builder import EnableEndpointPrivilegeManagementRequestBuilder
     from .enable_legacy_pc_management.enable_legacy_pc_management_request_builder import EnableLegacyPcManagementRequestBuilder
     from .enable_unlicensed_adminstrators.enable_unlicensed_adminstrators_request_builder import EnableUnlicensedAdminstratorsRequestBuilder
     from .endpoint_privilege_management_provisioning_status.endpoint_privilege_management_provisioning_status_request_builder import EndpointPrivilegeManagementProvisioningStatusRequestBuilder
@@ -864,6 +865,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .enable_android_device_administrator_enrollment.enable_android_device_administrator_enrollment_request_builder import EnableAndroidDeviceAdministratorEnrollmentRequestBuilder
 
         return EnableAndroidDeviceAdministratorEnrollmentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def enable_endpoint_privilege_management(self) -> EnableEndpointPrivilegeManagementRequestBuilder:
+        """
+        Provides operations to call the enableEndpointPrivilegeManagement method.
+        """
+        from .enable_endpoint_privilege_management.enable_endpoint_privilege_management_request_builder import EnableEndpointPrivilegeManagementRequestBuilder
+
+        return EnableEndpointPrivilegeManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def enable_legacy_pc_management(self) -> EnableLegacyPcManagementRequestBuilder:
