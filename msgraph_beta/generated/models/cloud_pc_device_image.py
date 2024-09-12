@@ -31,6 +31,8 @@ class CloudPcDeviceImage(Entity):
     os_build_number: Optional[str] = None
     # The OS status of this image. Possible values are: supported, supportedWithWarning, unknown, unknownFutureValue. The default value is unknown. Read-only.
     os_status: Optional[CloudPcDeviceImageOsStatus] = None
+    # The osVersionNumber property
+    os_version_number: Optional[str] = None
     # The scopeIds property
     scope_ids: Optional[List[str]] = None
     # The unique identifier (ID) of the source image resource on Azure. The required ID format is: '/subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}'. Read-only.
@@ -78,6 +80,7 @@ class CloudPcDeviceImage(Entity):
             "operatingSystem": lambda n : setattr(self, 'operating_system', n.get_str_value()),
             "osBuildNumber": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
             "osStatus": lambda n : setattr(self, 'os_status', n.get_enum_value(CloudPcDeviceImageOsStatus)),
+            "osVersionNumber": lambda n : setattr(self, 'os_version_number', n.get_str_value()),
             "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
             "sourceImageResourceId": lambda n : setattr(self, 'source_image_resource_id', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcDeviceImageStatus)),
@@ -104,6 +107,7 @@ class CloudPcDeviceImage(Entity):
         writer.write_str_value("operatingSystem", self.operating_system)
         writer.write_str_value("osBuildNumber", self.os_build_number)
         writer.write_enum_value("osStatus", self.os_status)
+        writer.write_str_value("osVersionNumber", self.os_version_number)
         writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
         writer.write_str_value("sourceImageResourceId", self.source_image_resource_id)
         writer.write_enum_value("status", self.status)

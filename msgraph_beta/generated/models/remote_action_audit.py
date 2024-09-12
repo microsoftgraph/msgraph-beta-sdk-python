@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .action_state import ActionState
+    from .device_action_category import DeviceActionCategory
     from .entity import Entity
     from .remote_action import RemoteAction
 
@@ -22,6 +23,8 @@ class RemoteActionAudit(Entity):
     action_state: Optional[ActionState] = None
     # BulkAction ID
     bulk_device_action_id: Optional[str] = None
+    # Enum type used for DeviceActionCategory
+    device_action_category: Optional[DeviceActionCategory] = None
     # Intune device name.
     device_display_name: Optional[str] = None
     # IMEI of the device.
@@ -56,10 +59,12 @@ class RemoteActionAudit(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .action_state import ActionState
+        from .device_action_category import DeviceActionCategory
         from .entity import Entity
         from .remote_action import RemoteAction
 
         from .action_state import ActionState
+        from .device_action_category import DeviceActionCategory
         from .entity import Entity
         from .remote_action import RemoteAction
 
@@ -67,6 +72,7 @@ class RemoteActionAudit(Entity):
             "action": lambda n : setattr(self, 'action', n.get_enum_value(RemoteAction)),
             "actionState": lambda n : setattr(self, 'action_state', n.get_enum_value(ActionState)),
             "bulkDeviceActionId": lambda n : setattr(self, 'bulk_device_action_id', n.get_str_value()),
+            "deviceActionCategory": lambda n : setattr(self, 'device_action_category', n.get_enum_value(DeviceActionCategory)),
             "deviceDisplayName": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
             "deviceIMEI": lambda n : setattr(self, 'device_i_m_e_i', n.get_str_value()),
             "deviceOwnerUserPrincipalName": lambda n : setattr(self, 'device_owner_user_principal_name', n.get_str_value()),
@@ -91,6 +97,7 @@ class RemoteActionAudit(Entity):
         writer.write_enum_value("action", self.action)
         writer.write_enum_value("actionState", self.action_state)
         writer.write_str_value("bulkDeviceActionId", self.bulk_device_action_id)
+        writer.write_enum_value("deviceActionCategory", self.device_action_category)
         writer.write_str_value("deviceDisplayName", self.device_display_name)
         writer.write_str_value("deviceIMEI", self.device_i_m_e_i)
         writer.write_str_value("deviceOwnerUserPrincipalName", self.device_owner_user_principal_name)

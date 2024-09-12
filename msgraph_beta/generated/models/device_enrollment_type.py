@@ -23,9 +23,9 @@ class DeviceEnrollmentType(str, Enum):
     WindowsCoManagement = "windowsCoManagement",
     # Windows 10 Azure AD Join using Device Auth.
     WindowsAzureADJoinUsingDeviceAuth = "windowsAzureADJoinUsingDeviceAuth",
-    # Device managed by Apple user enrollment
+    # Indicates the device is enrolled via Apple User Enrollment with Company Portal. It results in an enrollment with a new partition for managed apps and data and which supports a limited set of management capabilities
     AppleUserEnrollment = "appleUserEnrollment",
-    # Device managed by Apple user enrollment with service account
+    # Indicates the device is enrolled via Apple User Enrollment with Company Portal using a device enrollment manager user. It results in an enrollment with a new partition for managed apps and data and which supports a limited set of management capabilities
     AppleUserEnrollmentWithServiceAccount = "appleUserEnrollmentWithServiceAccount",
     # Azure AD Join enrollment when an Azure VM is provisioned
     AzureAdJoinUsingAzureVmExtension = "azureAdJoinUsingAzureVmExtension",

@@ -15,6 +15,8 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.networkaccess.network_access_traffic import NetworkAccessTraffic
     from .....models.o_data_errors.o_data_error import ODataError
+    from .device.device_request_builder import DeviceRequestBuilder
+    from .user.user_request_builder import UserRequestBuilder
 
 class NetworkAccessTrafficTransactionItemRequestBuilder(BaseRequestBuilder):
     """
@@ -136,6 +138,24 @@ class NetworkAccessTrafficTransactionItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return NetworkAccessTrafficTransactionItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def device(self) -> DeviceRequestBuilder:
+        """
+        Provides operations to manage the device property of the microsoft.graph.networkaccess.networkAccessTraffic entity.
+        """
+        from .device.device_request_builder import DeviceRequestBuilder
+
+        return DeviceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user(self) -> UserRequestBuilder:
+        """
+        Provides operations to manage the user property of the microsoft.graph.networkaccess.networkAccessTraffic entity.
+        """
+        from .user.user_request_builder import UserRequestBuilder
+
+        return UserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class NetworkAccessTrafficTransactionItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

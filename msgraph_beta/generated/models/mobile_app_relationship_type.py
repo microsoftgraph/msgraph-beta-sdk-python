@@ -5,4 +5,6 @@ class MobileAppRelationshipType(str, Enum):
     Child = "child",
     # Indicates that the target of a relationship is the parent in the relationship.
     Parent = "parent",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

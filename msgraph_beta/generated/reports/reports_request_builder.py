@@ -58,6 +58,9 @@ if TYPE_CHECKING:
     from .get_mailbox_usage_mailbox_counts_with_period.get_mailbox_usage_mailbox_counts_with_period_request_builder import GetMailboxUsageMailboxCountsWithPeriodRequestBuilder
     from .get_mailbox_usage_quota_status_mailbox_counts_with_period.get_mailbox_usage_quota_status_mailbox_counts_with_period_request_builder import GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder
     from .get_mailbox_usage_storage_with_period.get_mailbox_usage_storage_with_period_request_builder import GetMailboxUsageStorageWithPeriodRequestBuilder
+    from .get_microsoft365_copilot_usage_user_detail_with_period.get_microsoft365_copilot_usage_user_detail_with_period_request_builder import GetMicrosoft365CopilotUsageUserDetailWithPeriodRequestBuilder
+    from .get_microsoft365_copilot_user_count_summary_with_period.get_microsoft365_copilot_user_count_summary_with_period_request_builder import GetMicrosoft365CopilotUserCountSummaryWithPeriodRequestBuilder
+    from .get_microsoft365_copilot_user_count_trend_with_period.get_microsoft365_copilot_user_count_trend_with_period_request_builder import GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder
     from .get_office365_activations_user_counts.get_office365_activations_user_counts_request_builder import GetOffice365ActivationsUserCountsRequestBuilder
     from .get_office365_activations_user_detail.get_office365_activations_user_detail_request_builder import GetOffice365ActivationsUserDetailRequestBuilder
     from .get_office365_activation_counts.get_office365_activation_counts_request_builder import GetOffice365ActivationCountsRequestBuilder
@@ -524,6 +527,42 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_mailbox_usage_storage_with_period.get_mailbox_usage_storage_with_period_request_builder import GetMailboxUsageStorageWithPeriodRequestBuilder
 
         return GetMailboxUsageStorageWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
+    def get_microsoft365_copilot_usage_user_detail_with_period(self,period: str) -> GetMicrosoft365CopilotUsageUserDetailWithPeriodRequestBuilder:
+        """
+        Provides operations to call the getMicrosoft365CopilotUsageUserDetail method.
+        param period: Usage: period='{period}'
+        Returns: GetMicrosoft365CopilotUsageUserDetailWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise TypeError("period cannot be null.")
+        from .get_microsoft365_copilot_usage_user_detail_with_period.get_microsoft365_copilot_usage_user_detail_with_period_request_builder import GetMicrosoft365CopilotUsageUserDetailWithPeriodRequestBuilder
+
+        return GetMicrosoft365CopilotUsageUserDetailWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
+    def get_microsoft365_copilot_user_count_summary_with_period(self,period: str) -> GetMicrosoft365CopilotUserCountSummaryWithPeriodRequestBuilder:
+        """
+        Provides operations to call the getMicrosoft365CopilotUserCountSummary method.
+        param period: Usage: period='{period}'
+        Returns: GetMicrosoft365CopilotUserCountSummaryWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise TypeError("period cannot be null.")
+        from .get_microsoft365_copilot_user_count_summary_with_period.get_microsoft365_copilot_user_count_summary_with_period_request_builder import GetMicrosoft365CopilotUserCountSummaryWithPeriodRequestBuilder
+
+        return GetMicrosoft365CopilotUserCountSummaryWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
+    def get_microsoft365_copilot_user_count_trend_with_period(self,period: str) -> GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder:
+        """
+        Provides operations to call the getMicrosoft365CopilotUserCountTrend method.
+        param period: Usage: period='{period}'
+        Returns: GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise TypeError("period cannot be null.")
+        from .get_microsoft365_copilot_user_count_trend_with_period.get_microsoft365_copilot_user_count_trend_with_period_request_builder import GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder
+
+        return GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
     
     def get_office365_active_user_counts_with_period(self,period: str) -> GetOffice365ActiveUserCountsWithPeriodRequestBuilder:
         """

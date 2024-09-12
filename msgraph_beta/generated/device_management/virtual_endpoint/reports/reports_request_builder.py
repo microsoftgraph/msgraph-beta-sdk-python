@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from .get_remote_connection_historical_reports.get_remote_connection_historical_reports_request_builder import GetRemoteConnectionHistoricalReportsRequestBuilder
     from .get_shared_use_license_usage_report.get_shared_use_license_usage_report_request_builder import GetSharedUseLicenseUsageReportRequestBuilder
     from .get_total_aggregated_remote_connection_reports.get_total_aggregated_remote_connection_reports_request_builder import GetTotalAggregatedRemoteConnectionReportsRequestBuilder
+    from .retrieve_connection_quality_reports.retrieve_connection_quality_reports_request_builder import RetrieveConnectionQualityReportsRequestBuilder
     from .retrieve_cross_region_disaster_recovery_report.retrieve_cross_region_disaster_recovery_report_request_builder import RetrieveCrossRegionDisasterRecoveryReportRequestBuilder
 
 class ReportsRequestBuilder(BaseRequestBuilder):
@@ -283,6 +284,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_total_aggregated_remote_connection_reports.get_total_aggregated_remote_connection_reports_request_builder import GetTotalAggregatedRemoteConnectionReportsRequestBuilder
 
         return GetTotalAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_connection_quality_reports(self) -> RetrieveConnectionQualityReportsRequestBuilder:
+        """
+        Provides operations to call the retrieveConnectionQualityReports method.
+        """
+        from .retrieve_connection_quality_reports.retrieve_connection_quality_reports_request_builder import RetrieveConnectionQualityReportsRequestBuilder
+
+        return RetrieveConnectionQualityReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_cross_region_disaster_recovery_report(self) -> RetrieveCrossRegionDisasterRecoveryReportRequestBuilder:
