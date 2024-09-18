@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from ..models.role_management import RoleManagement
     from .cloud_p_c.cloud_p_c_request_builder import CloudPCRequestBuilder
+    from .defender.defender_request_builder import DefenderRequestBuilder
     from .device_management.device_management_request_builder import DeviceManagementRequestBuilder
     from .directory.directory_request_builder import DirectoryRequestBuilder
     from .enterprise_apps.enterprise_apps_request_builder import EnterpriseAppsRequestBuilder
@@ -122,6 +123,15 @@ class RoleManagementRequestBuilder(BaseRequestBuilder):
         from .cloud_p_c.cloud_p_c_request_builder import CloudPCRequestBuilder
 
         return CloudPCRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def defender(self) -> DefenderRequestBuilder:
+        """
+        Provides operations to manage the defender property of the microsoft.graph.roleManagement entity.
+        """
+        from .defender.defender_request_builder import DefenderRequestBuilder
+
+        return DefenderRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def device_management(self) -> DeviceManagementRequestBuilder:

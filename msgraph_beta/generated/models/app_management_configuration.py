@@ -18,7 +18,7 @@ class AppManagementConfiguration(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Collection of keyCredential restrictions settings to be applied to an application or service principal.
+    # Collection of certificate restrictions settings to be applied to an application or service principal.
     key_credentials: Optional[List[KeyCredentialConfiguration]] = None
     # The OdataType property
     odata_type: Optional[str] = None

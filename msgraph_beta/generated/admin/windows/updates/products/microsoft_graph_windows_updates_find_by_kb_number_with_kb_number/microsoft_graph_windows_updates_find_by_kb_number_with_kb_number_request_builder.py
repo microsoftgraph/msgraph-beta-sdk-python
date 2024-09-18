@@ -29,7 +29,7 @@ class MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder(BaseR
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['kbNumber'] = str(kb_number)
+            path_parameters['kbNumber'] = kb_number
         super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/products/microsoft.graph.windowsUpdates.findByKbNumber(kbNumber={kbNumber}){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilderGetQueryParameters]] = None) -> Optional[FindByKbNumberWithKbNumberGetResponse]:

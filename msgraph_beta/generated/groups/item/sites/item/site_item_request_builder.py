@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from .onenote.onenote_request_builder import OnenoteRequestBuilder
     from .operations.operations_request_builder import OperationsRequestBuilder
     from .pages.pages_request_builder import PagesRequestBuilder
+    from .page_templates.page_templates_request_builder import PageTemplatesRequestBuilder
     from .permissions.permissions_request_builder import PermissionsRequestBuilder
     from .recycle_bin.recycle_bin_request_builder import RecycleBinRequestBuilder
     from .sites.sites_request_builder import SitesRequestBuilder
@@ -307,6 +308,15 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         from .operations.operations_request_builder import OperationsRequestBuilder
 
         return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def page_templates(self) -> PageTemplatesRequestBuilder:
+        """
+        Provides operations to manage the pageTemplates property of the microsoft.graph.site entity.
+        """
+        from .page_templates.page_templates_request_builder import PageTemplatesRequestBuilder
+
+        return PageTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def pages(self) -> PagesRequestBuilder:

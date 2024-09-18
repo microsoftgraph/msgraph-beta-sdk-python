@@ -29,7 +29,7 @@ class RetrieveMyRequestByIdWithIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['id'] = str(id)
+            path_parameters['id'] = id
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/operationApprovalRequests/retrieveMyRequestById(id='{id}')", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[OperationApprovalRequest]:

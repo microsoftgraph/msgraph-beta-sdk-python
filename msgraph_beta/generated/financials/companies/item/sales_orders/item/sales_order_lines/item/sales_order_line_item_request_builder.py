@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     from ........models.o_data_errors.o_data_error import ODataError
     from ........models.sales_order_line import SalesOrderLine
     from .account.account_request_builder import AccountRequestBuilder
-    from .item.item_request_builder import ItemRequestBuilder
+    from .item_escaped.item_escaped_request_builder import Item_EscapedRequestBuilder
 
 class SalesOrderLineItemRequestBuilder(BaseRequestBuilder):
     """
@@ -120,13 +120,13 @@ class SalesOrderLineItemRequestBuilder(BaseRequestBuilder):
         return AccountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def item(self) -> ItemRequestBuilder:
+    def item(self) -> Item_EscapedRequestBuilder:
         """
         Provides operations to manage the item property of the microsoft.graph.salesOrderLine entity.
         """
-        from .item.item_request_builder import ItemRequestBuilder
+        from .item_escaped.item_escaped_request_builder import Item_EscapedRequestBuilder
 
-        return ItemRequestBuilder(self.request_adapter, self.path_parameters)
+        return Item_EscapedRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SalesOrderLineItemRequestBuilderGetQueryParameters():

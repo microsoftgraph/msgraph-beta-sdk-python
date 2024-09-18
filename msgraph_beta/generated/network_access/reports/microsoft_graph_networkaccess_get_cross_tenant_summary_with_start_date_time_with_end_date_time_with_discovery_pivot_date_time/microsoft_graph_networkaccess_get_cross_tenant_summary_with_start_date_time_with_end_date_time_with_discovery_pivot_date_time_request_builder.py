@@ -32,9 +32,9 @@ class MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithStartDateTimeWithEndDa
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['discoveryPivotDateTime'] = str(discovery_pivot_date_time)
-            path_parameters['endDateTime'] = str(end_date_time)
-            path_parameters['startDateTime'] = str(start_date_time)
+            path_parameters['discoveryPivotDateTime'] = discovery_pivot_date_time
+            path_parameters['endDateTime'] = end_date_time
+            path_parameters['startDateTime'] = start_date_time
         super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.getCrossTenantSummary(startDateTime={startDateTime},endDateTime={endDateTime},discoveryPivotDateTime={discoveryPivotDateTime})", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CrossTenantSummary]:

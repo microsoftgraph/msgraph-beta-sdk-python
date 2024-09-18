@@ -18,9 +18,9 @@ class MobileAppDependency(MobileAppRelationship):
     odata_type: Optional[str] = "#microsoft.graph.mobileAppDependency"
     # Indicates the dependency type associated with a relationship between two mobile apps.
     dependency_type: Optional[MobileAppDependencyType] = None
-    # The total number of apps that directly or indirectly depend on the parent app. This property is read-only.
+    # The total number of apps that directly or indirectly depend on the parent app. Read-Only. This property is read-only.
     dependent_app_count: Optional[int] = None
-    # The total number of apps the child app directly or indirectly depends on. This property is read-only.
+    # The total number of apps the child app directly or indirectly depends on. Read-Only. This property is read-only.
     depends_on_app_count: Optional[int] = None
     
     @staticmethod

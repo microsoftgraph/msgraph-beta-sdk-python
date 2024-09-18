@@ -29,7 +29,7 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['placeId'] = str(place_id)
+            path_parameters['placeId'] = place_id
         super().__init__(request_adapter, "{+baseurl}/places(placeId='{placeId}')", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:

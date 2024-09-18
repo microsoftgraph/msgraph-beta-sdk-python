@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .cloud_pc_bulk_action_status import CloudPcBulkActionStatus
     from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
+    from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
     from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
     from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
     from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
@@ -16,6 +17,7 @@ if TYPE_CHECKING:
     from .cloud_pc_bulk_resize import CloudPcBulkResize
     from .cloud_pc_bulk_restart import CloudPcBulkRestart
     from .cloud_pc_bulk_restore import CloudPcBulkRestore
+    from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
     from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
     from .entity import Entity
 
@@ -53,6 +55,10 @@ class CloudPcBulkAction(Entity):
             mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkCreateSnapshot".casefold():
+            from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
+
+            return CloudPcBulkCreateSnapshot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecoveryFailback".casefold():
             from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
 
@@ -89,6 +95,10 @@ class CloudPcBulkAction(Entity):
             from .cloud_pc_bulk_restore import CloudPcBulkRestore
 
             return CloudPcBulkRestore()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkSetReviewStatus".casefold():
+            from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
+
+            return CloudPcBulkSetReviewStatus()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkTroubleshoot".casefold():
             from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
 
@@ -102,6 +112,7 @@ class CloudPcBulkAction(Entity):
         """
         from .cloud_pc_bulk_action_status import CloudPcBulkActionStatus
         from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
+        from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
         from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
         from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
@@ -111,11 +122,13 @@ class CloudPcBulkAction(Entity):
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
         from .cloud_pc_bulk_restore import CloudPcBulkRestore
+        from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
         from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
         from .entity import Entity
 
         from .cloud_pc_bulk_action_status import CloudPcBulkActionStatus
         from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
+        from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
         from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
         from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
@@ -125,6 +138,7 @@ class CloudPcBulkAction(Entity):
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
         from .cloud_pc_bulk_restore import CloudPcBulkRestore
+        from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
         from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
         from .entity import Entity
 

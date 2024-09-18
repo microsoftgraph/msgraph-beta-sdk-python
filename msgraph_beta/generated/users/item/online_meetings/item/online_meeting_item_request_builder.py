@@ -15,6 +15,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.online_meeting import OnlineMeeting
     from .....models.o_data_errors.o_data_error import ODataError
+    from .ai_insights.ai_insights_request_builder import AiInsightsRequestBuilder
     from .alternative_recording.alternative_recording_request_builder import AlternativeRecordingRequestBuilder
     from .attendance_reports.attendance_reports_request_builder import AttendanceReportsRequestBuilder
     from .attendee_report.attendee_report_request_builder import AttendeeReportRequestBuilder
@@ -155,6 +156,15 @@ class OnlineMeetingItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return OnlineMeetingItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def ai_insights(self) -> AiInsightsRequestBuilder:
+        """
+        Provides operations to manage the aiInsights property of the microsoft.graph.onlineMeeting entity.
+        """
+        from .ai_insights.ai_insights_request_builder import AiInsightsRequestBuilder
+
+        return AiInsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def alternative_recording(self) -> AlternativeRecordingRequestBuilder:

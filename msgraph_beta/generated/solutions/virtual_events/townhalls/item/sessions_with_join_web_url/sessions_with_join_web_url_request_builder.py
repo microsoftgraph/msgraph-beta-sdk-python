@@ -29,7 +29,7 @@ class SessionsWithJoinWebUrlRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['joinWebUrl'] = str(join_web_url)
+            path_parameters['joinWebUrl'] = join_web_url
         super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/townhalls/{virtualEventTownhall%2Did}/sessions(joinWebUrl='{joinWebUrl}'){?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:

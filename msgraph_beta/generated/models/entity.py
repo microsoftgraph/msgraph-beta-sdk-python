@@ -270,6 +270,7 @@ if TYPE_CHECKING:
     from .calendar_sharing_message import CalendarSharingMessage
     from .call import Call
     from .call_activity_statistics import CallActivityStatistics
+    from .call_ai_insight import CallAiInsight
     from .call_event import CallEvent
     from .call_recording import CallRecording
     from .call_records.call_record import CallRecord
@@ -303,6 +304,7 @@ if TYPE_CHECKING:
     from .cloud_clipboard_root import CloudClipboardRoot
     from .cloud_pc_audit_event import CloudPcAuditEvent
     from .cloud_pc_bulk_action import CloudPcBulkAction
+    from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
     from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
     from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
     from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
@@ -312,6 +314,7 @@ if TYPE_CHECKING:
     from .cloud_pc_bulk_resize import CloudPcBulkResize
     from .cloud_pc_bulk_restart import CloudPcBulkRestart
     from .cloud_pc_bulk_restore import CloudPcBulkRestore
+    from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
     from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
     from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
     from .cloud_pc_device_image import CloudPcDeviceImage
@@ -1181,6 +1184,7 @@ if TYPE_CHECKING:
     from .overprovisioned_serverless_function_finding import OverprovisionedServerlessFunctionFinding
     from .overprovisioned_user_finding import OverprovisionedUserFinding
     from .o_auth2_permission_grant import OAuth2PermissionGrant
+    from .page_template import PageTemplate
     from .participant import Participant
     from .participant_joining_notification import ParticipantJoiningNotification
     from .participant_left_notification import ParticipantLeftNotification
@@ -3068,6 +3072,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .call_activity_statistics import CallActivityStatistics
 
             return CallActivityStatistics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.callAiInsight".casefold():
+            from .call_ai_insight import CallAiInsight
+
+            return CallAiInsight()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.callEvent".casefold():
             from .call_event import CallEvent
 
@@ -3205,6 +3213,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_bulk_action import CloudPcBulkAction
 
             return CloudPcBulkAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkCreateSnapshot".casefold():
+            from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
+
+            return CloudPcBulkCreateSnapshot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecoveryFailback".casefold():
             from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
 
@@ -3241,6 +3253,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_bulk_restore import CloudPcBulkRestore
 
             return CloudPcBulkRestore()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkSetReviewStatus".casefold():
+            from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
+
+            return CloudPcBulkSetReviewStatus()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkTroubleshoot".casefold():
             from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
 
@@ -6743,6 +6759,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .overprovisioned_user_finding import OverprovisionedUserFinding
 
             return OverprovisionedUserFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.pageTemplate".casefold():
+            from .page_template import PageTemplate
+
+            return PageTemplate()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.participant".casefold():
             from .call_records.participant import Participant
             from .participant import Participant
@@ -10229,6 +10249,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .calendar_sharing_message import CalendarSharingMessage
         from .call import Call
         from .call_activity_statistics import CallActivityStatistics
+        from .call_ai_insight import CallAiInsight
         from .call_event import CallEvent
         from .call_recording import CallRecording
         from .call_records.call_record import CallRecord
@@ -10262,6 +10283,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
+        from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
         from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
         from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
@@ -10271,6 +10293,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
         from .cloud_pc_bulk_restore import CloudPcBulkRestore
+        from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
         from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
@@ -11140,6 +11163,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .overprovisioned_serverless_function_finding import OverprovisionedServerlessFunctionFinding
         from .overprovisioned_user_finding import OverprovisionedUserFinding
         from .o_auth2_permission_grant import OAuth2PermissionGrant
+        from .page_template import PageTemplate
         from .participant import Participant
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification
@@ -12204,6 +12228,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .calendar_sharing_message import CalendarSharingMessage
         from .call import Call
         from .call_activity_statistics import CallActivityStatistics
+        from .call_ai_insight import CallAiInsight
         from .call_event import CallEvent
         from .call_recording import CallRecording
         from .call_records.call_record import CallRecord
@@ -12237,6 +12262,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
+        from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
         from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
         from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
@@ -12246,6 +12272,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
         from .cloud_pc_bulk_restore import CloudPcBulkRestore
+        from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
         from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
@@ -13115,6 +13142,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .overprovisioned_serverless_function_finding import OverprovisionedServerlessFunctionFinding
         from .overprovisioned_user_finding import OverprovisionedUserFinding
         from .o_auth2_permission_grant import OAuth2PermissionGrant
+        from .page_template import PageTemplate
         from .participant import Participant
         from .participant_joining_notification import ParticipantJoiningNotification
         from .participant_left_notification import ParticipantLeftNotification

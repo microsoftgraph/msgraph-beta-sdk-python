@@ -12,7 +12,7 @@ from ..entity import Entity
 
 @dataclass
 class IdentityContainer(Entity):
-    # Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified.
+    # Represents potential issues identified by Microsoft Defender for Identity within a customer's Microsoft Defender for Identity configuration.
     health_issues: Optional[List[HealthIssue]] = None
     # The OdataType property
     odata_type: Optional[str] = None

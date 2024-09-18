@@ -29,7 +29,7 @@ class SubscriptionsWithOcpSubscriptionIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['ocpSubscriptionId'] = str(ocp_subscription_id)
+            path_parameters['ocpSubscriptionId'] = ocp_subscription_id
         super().__init__(request_adapter, "{+baseurl}/directory/subscriptions(ocpSubscriptionId='{ocpSubscriptionId}'){?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:

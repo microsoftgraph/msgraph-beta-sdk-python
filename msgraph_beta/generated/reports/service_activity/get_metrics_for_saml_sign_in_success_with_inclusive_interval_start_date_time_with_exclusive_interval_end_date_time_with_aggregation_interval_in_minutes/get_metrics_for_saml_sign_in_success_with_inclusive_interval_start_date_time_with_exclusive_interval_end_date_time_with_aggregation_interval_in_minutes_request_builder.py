@@ -31,8 +31,8 @@ class GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclus
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['exclusiveIntervalEndDateTime'] = str(exclusive_interval_end_date_time)
-            path_parameters['inclusiveIntervalStartDateTime'] = str(inclusive_interval_start_date_time)
+            path_parameters['exclusiveIntervalEndDateTime'] = exclusive_interval_end_date_time
+            path_parameters['inclusiveIntervalStartDateTime'] = inclusive_interval_start_date_time
         super().__init__(request_adapter, "{+baseurl}/reports/serviceActivity/getMetricsForSamlSignInSuccess(inclusiveIntervalStartDateTime={inclusiveIntervalStartDateTime},exclusiveIntervalEndDateTime={exclusiveIntervalEndDateTime},aggregationIntervalInMinutes=@aggregationIntervalInMinutes){?%24count,%24filter,%24search,%24skip,%24top,aggregationIntervalInMinutes*}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetMetricsForSamlSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:

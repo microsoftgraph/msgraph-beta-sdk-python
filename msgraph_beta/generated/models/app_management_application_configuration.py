@@ -13,7 +13,7 @@ from .app_management_configuration import AppManagementConfiguration
 class AppManagementApplicationConfiguration(AppManagementConfiguration):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.appManagementApplicationConfiguration"
-    # The identifierUris property
+    # Configuration object for restrictions on identifierUris property for an application
     identifier_uris: Optional[IdentifierUriConfiguration] = None
     
     @staticmethod

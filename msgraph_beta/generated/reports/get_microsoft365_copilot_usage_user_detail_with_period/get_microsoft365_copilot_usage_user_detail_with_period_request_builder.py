@@ -28,14 +28,15 @@ class GetMicrosoft365CopilotUsageUserDetailWithPeriodRequestBuilder(BaseRequestB
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['period'] = str(period)
+            path_parameters['period'] = period
         super().__init__(request_adapter, "{+baseurl}/reports/getMicrosoft365CopilotUsageUserDetail(period='{period}')", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
         """
-        Invoke function getMicrosoft365CopilotUsageUserDetail
+        Get the most recent activity data for enabled users of Copilot for Microsoft 365 apps.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
+        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getmicrosoft365copilotusageuserdetail?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -51,7 +52,7 @@ class GetMicrosoft365CopilotUsageUserDetailWithPeriodRequestBuilder(BaseRequestB
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getMicrosoft365CopilotUsageUserDetail
+        Get the most recent activity data for enabled users of Copilot for Microsoft 365 apps.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

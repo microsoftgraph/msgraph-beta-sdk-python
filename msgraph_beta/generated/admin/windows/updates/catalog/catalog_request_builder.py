@@ -50,7 +50,7 @@ class CatalogRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CatalogRequestBuilderGetQueryParameters]] = None) -> Optional[Catalog]:
         """
-        Catalog of content that can be approved for deployment by the deployment service. Read-only.
+        Catalog of content that can be approved for deployment by Windows Autopatch. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Catalog]
         """
@@ -104,7 +104,7 @@ class CatalogRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CatalogRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Catalog of content that can be approved for deployment by the deployment service. Read-only.
+        Catalog of content that can be approved for deployment by Windows Autopatch. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +157,7 @@ class CatalogRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CatalogRequestBuilderGetQueryParameters():
         """
-        Catalog of content that can be approved for deployment by the deployment service. Read-only.
+        Catalog of content that can be approved for deployment by Windows Autopatch. Read-only.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

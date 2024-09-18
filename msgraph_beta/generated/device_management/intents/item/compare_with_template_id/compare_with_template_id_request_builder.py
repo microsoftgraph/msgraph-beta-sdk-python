@@ -29,7 +29,7 @@ class CompareWithTemplateIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['templateId'] = str(template_id)
+            path_parameters['templateId'] = template_id
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/intents/{deviceManagementIntent%2Did}/compare(templateId='{templateId}'){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CompareWithTemplateIdRequestBuilderGetQueryParameters]] = None) -> Optional[CompareWithTemplateIdGetResponse]:
