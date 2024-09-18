@@ -16,11 +16,11 @@ class MobileAppSupersedence(MobileAppRelationship):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.mobileAppSupersedence"
-    # The total number of apps directly or indirectly superseded by the child app. This property is read-only.
+    # The total number of apps directly or indirectly superseded by the child app. Read-Only. This property is read-only.
     superseded_app_count: Optional[int] = None
     # Indicates the supersedence type associated with a relationship between two mobile apps.
     supersedence_type: Optional[MobileAppSupersedenceType] = None
-    # The total number of apps directly or indirectly superseding the parent app. This property is read-only.
+    # The total number of apps directly or indirectly superseding the parent app. Read-Only. This property is read-only.
     superseding_app_count: Optional[int] = None
     
     @staticmethod

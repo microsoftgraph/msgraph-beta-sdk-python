@@ -66,6 +66,10 @@ class PlannerTask(PlannerDelta):
     is_on_my_day: Optional[bool] = None
     # Read-only. The date on which task is added to or removed from MyDay.
     is_on_my_day_last_modified_date: Optional[datetime.date] = None
+    # The lastModifiedBy property
+    last_modified_by: Optional[IdentitySet] = None
+    # The lastModifiedDateTime property
+    last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The hint used to order items of this type in a list view. For more information, see Using order hints in plannern.
@@ -167,6 +171,8 @@ class PlannerTask(PlannerDelta):
             "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
             "isOnMyDay": lambda n : setattr(self, 'is_on_my_day', n.get_bool_value()),
             "isOnMyDayLastModifiedDate": lambda n : setattr(self, 'is_on_my_day_last_modified_date', n.get_date_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "orderHint": lambda n : setattr(self, 'order_hint', n.get_str_value()),
             "percentComplete": lambda n : setattr(self, 'percent_complete', n.get_int_value()),
             "planId": lambda n : setattr(self, 'plan_id', n.get_str_value()),
@@ -213,6 +219,8 @@ class PlannerTask(PlannerDelta):
         writer.write_bool_value("isArchived", self.is_archived)
         writer.write_bool_value("isOnMyDay", self.is_on_my_day)
         writer.write_date_value("isOnMyDayLastModifiedDate", self.is_on_my_day_last_modified_date)
+        writer.write_object_value("lastModifiedBy", self.last_modified_by)
+        writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("orderHint", self.order_hint)
         writer.write_int_value("percentComplete", self.percent_complete)
         writer.write_str_value("planId", self.plan_id)

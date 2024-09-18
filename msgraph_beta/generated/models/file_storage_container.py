@@ -52,9 +52,9 @@ class FileStorageContainer(Entity):
     odata_type: Optional[str] = None
     # List of users who own the fileStorageContainer. Read-only.
     owners: Optional[List[UserIdentity]] = None
-    # Ownership type of the fileStorageContainer.The possible values are: tenantOwned. Read-only.
+    # Ownership type of the fileStorageContainer. The possible values are: tenantOwned. Read-only.
     ownership_type: Optional[FileStorageContainerOwnershipType] = None
-    # The set of permissions for users in the fileStorageContainer. The permission for each user is set by the roles property. The possible values are 'reader', 'writer', 'manager', and 'owner'. Read-write.
+    # The set of permissions for users in the fileStorageContainer. The permission for each user is set by the roles property. The possible values are reader, writer, manager, and owner. Read-write.
     permissions: Optional[List[Permission]] = None
     # Recycle bin of the fileStorageContainer. Read-only.
     recycle_bin: Optional[RecycleBin] = None

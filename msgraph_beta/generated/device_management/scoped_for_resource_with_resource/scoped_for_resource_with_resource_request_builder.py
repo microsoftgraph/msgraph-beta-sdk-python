@@ -29,7 +29,7 @@ class ScopedForResourceWithResourceRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['resource'] = str(resource)
+            path_parameters['resource'] = resource
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/scopedForResource(resource='{resource}')", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ScopedForResourceWithResourceGetResponse]:

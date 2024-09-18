@@ -29,7 +29,7 @@ class RegistrationsWithUserIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['userId'] = str(user_id)
+            path_parameters['userId'] = user_id
         super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}/sessions/{virtualEventSession%2Did}/registrations(userId='{userId}'){?%24expand,%24select}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RegistrationsWithUserIdRequestBuilderGetQueryParameters]] = None) -> Optional[VirtualEventRegistration]:

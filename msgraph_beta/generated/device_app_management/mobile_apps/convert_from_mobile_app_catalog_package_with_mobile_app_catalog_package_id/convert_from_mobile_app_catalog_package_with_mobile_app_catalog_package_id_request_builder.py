@@ -29,7 +29,7 @@ class ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuil
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['mobileAppCatalogPackageId'] = str(mobile_app_catalog_package_id)
+            path_parameters['mobileAppCatalogPackageId'] = mobile_app_catalog_package_id
         super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/mobileApps/convertFromMobileAppCatalogPackage(mobileAppCatalogPackageId='{mobileAppCatalogPackageId}')", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MobileApp]:

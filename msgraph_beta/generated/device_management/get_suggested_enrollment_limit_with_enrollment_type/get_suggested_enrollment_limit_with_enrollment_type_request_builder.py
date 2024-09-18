@@ -29,7 +29,7 @@ class GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder(BaseRequestBui
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['enrollmentType'] = str(enrollment_type)
+            path_parameters['enrollmentType'] = enrollment_type
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/getSuggestedEnrollmentLimit(enrollmentType='{enrollmentType}')", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[SuggestedEnrollmentLimit]:

@@ -32,9 +32,9 @@ class MicrosoftGraphNetworkaccessUsageProfilingWithStartDateTimeWithEndDateTimeW
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['aggregatedBy'] = str(aggregated_by)
-            path_parameters['endDateTime'] = str(end_date_time)
-            path_parameters['startDateTime'] = str(start_date_time)
+            path_parameters['aggregatedBy'] = aggregated_by
+            path_parameters['endDateTime'] = end_date_time
+            path_parameters['startDateTime'] = start_date_time
         super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.usageProfiling(startDateTime={startDateTime},endDateTime={endDateTime},aggregatedBy='{aggregatedBy}',discoveredApplicationSegmentId='@discoveredApplicationSegmentId'){?%24count,%24filter,%24search,%24skip,%24top,discoveredApplicationSegmentId*}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessUsageProfilingWithStartDateTimeWithEndDateTimeWithAggregatedBydiscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdRequestBuilderGetQueryParameters]] = None) -> Optional[UsageProfilingWithStartDateTimeWithEndDateTimeWithAggregatedBydiscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdGetResponse]:

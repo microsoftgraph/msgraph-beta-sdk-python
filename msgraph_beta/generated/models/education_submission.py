@@ -20,9 +20,9 @@ class EducationSubmission(Entity):
     excused_by: Optional[IdentitySet] = None
     # Moment in time when the submission was moved to the excused state. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     excused_date_time: Optional[datetime.datetime] = None
-    # The lastModifiedBy property
+    # The identities of those who modified the submission.
     last_modified_by: Optional[IdentitySet] = None
-    # The lastModifiedDateTime property
+    # The date and time the submission was modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -42,7 +42,7 @@ class EducationSubmission(Entity):
     returned_by: Optional[IdentitySet] = None
     # Moment in time when the submission was returned. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     returned_date_time: Optional[datetime.datetime] = None
-    # Read-only. Possible values are: working, submitted, returned, unknownFutureValue, reassigned, and excused. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: reassigned, and excused.
+    # Read-only. Possible values are: working, submitted, returned, unknownFutureValue, reassigned, and excused. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: reassigned, and excused.
     status: Optional[EducationSubmissionStatus] = None
     # User who moved the resource into the submitted state.
     submitted_by: Optional[IdentitySet] = None

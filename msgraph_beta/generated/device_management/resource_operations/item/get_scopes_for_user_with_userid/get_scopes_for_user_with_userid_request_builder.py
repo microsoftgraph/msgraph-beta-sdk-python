@@ -29,7 +29,7 @@ class GetScopesForUserWithUseridRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['userid'] = str(userid)
+            path_parameters['userid'] = userid
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/resourceOperations/{resourceOperation%2Did}/getScopesForUser(userid='{userid}'){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetScopesForUserWithUseridRequestBuilderGetQueryParameters]] = None) -> Optional[GetScopesForUserWithUseridGetResponse]:

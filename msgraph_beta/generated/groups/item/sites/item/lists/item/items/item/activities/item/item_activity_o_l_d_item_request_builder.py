@@ -15,8 +15,6 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...........models.item_activity_o_l_d import ItemActivityOLD
     from ...........models.o_data_errors.o_data_error import ODataError
-    from .drive_item.drive_item_request_builder import DriveItemRequestBuilder
-    from .list_item.list_item_request_builder import ListItemRequestBuilder
 
 class ItemActivityOLDItemRequestBuilder(BaseRequestBuilder):
     """
@@ -140,22 +138,18 @@ class ItemActivityOLDItemRequestBuilder(BaseRequestBuilder):
         return ItemActivityOLDItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def drive_item(self) -> DriveItemRequestBuilder:
+    def drive_item(self) -> DriveItem_EscapedRequestBuilder:
         """
         Provides operations to manage the driveItem property of the microsoft.graph.itemActivityOLD entity.
         """
-        from .drive_item.drive_item_request_builder import DriveItemRequestBuilder
-
-        return DriveItemRequestBuilder(self.request_adapter, self.path_parameters)
+        return DriveItem_EscapedRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def list_item(self) -> ListItemRequestBuilder:
+    def list_item(self) -> ListItem_EscapedRequestBuilder:
         """
         Provides operations to manage the listItem property of the microsoft.graph.itemActivityOLD entity.
         """
-        from .list_item.list_item_request_builder import ListItemRequestBuilder
-
-        return ListItemRequestBuilder(self.request_adapter, self.path_parameters)
+        return ListItem_EscapedRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ItemActivityOLDItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

@@ -29,7 +29,7 @@ class AccessPackageCatalogsWithUniqueNameRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['uniqueName'] = str(unique_name)
+            path_parameters['uniqueName'] = unique_name
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageCatalogs(uniqueName='{uniqueName}'){?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:

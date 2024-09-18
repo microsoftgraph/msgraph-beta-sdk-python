@@ -18,13 +18,13 @@ class MobileAppRelationship(Entity):
     """
     # The OdataType property
     odata_type: Optional[str] = None
-    # The target mobile app's display name. This property is read-only.
+    # The display name of the app that is the target of the mobile app relationship entity. Read-Only. This property is read-only.
     target_display_name: Optional[str] = None
-    # The target mobile app's display version. This property is read-only.
+    # The display version of the app that is the target of the mobile app relationship entity. Read-Only. This property is read-only.
     target_display_version: Optional[str] = None
-    # The target mobile app's app id.
+    # App ID of the app that is the target of the mobile app relationship entity. Read-Only
     target_id: Optional[str] = None
-    # The target mobile app's publisher. This property is read-only.
+    # The publisher of the app that is the target of the mobile app relationship entity. Read-Only. This property is read-only.
     target_publisher: Optional[str] = None
     # Indicates whether the target of a relationship is the parent or the child in the relationship.
     target_type: Optional[MobileAppRelationshipType] = None

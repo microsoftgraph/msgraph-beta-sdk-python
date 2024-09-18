@@ -29,7 +29,7 @@ class ApplicationsWithUniqueNameRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['uniqueName'] = str(unique_name)
+            path_parameters['uniqueName'] = unique_name
         super().__init__(request_adapter, "{+baseurl}/onPremisesPublishingProfiles/{onPremisesPublishingProfile%2Did}/connectorGroups/{connectorGroup%2Did}/applications(uniqueName='{uniqueName}'){?%24expand,%24select}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ApplicationsWithUniqueNameRequestBuilderGetQueryParameters]] = None) -> Optional[Application]:

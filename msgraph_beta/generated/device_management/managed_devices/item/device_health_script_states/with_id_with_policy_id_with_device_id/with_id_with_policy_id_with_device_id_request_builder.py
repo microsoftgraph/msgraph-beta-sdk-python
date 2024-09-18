@@ -31,9 +31,9 @@ class WithIdWithPolicyIdWithDeviceIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['deviceId'] = str(device_id)
-            path_parameters['id'] = str(id)
-            path_parameters['policyId'] = str(policy_id)
+            path_parameters['deviceId'] = device_id
+            path_parameters['id'] = id
+            path_parameters['policyId'] = policy_id
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/deviceHealthScriptStates/id='{id}',policyId='{policyId}',deviceId='{deviceId}'{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:

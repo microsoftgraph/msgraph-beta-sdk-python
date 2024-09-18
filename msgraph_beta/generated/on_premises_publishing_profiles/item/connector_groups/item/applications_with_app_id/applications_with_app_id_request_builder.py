@@ -29,7 +29,7 @@ class ApplicationsWithAppIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['appId'] = str(app_id)
+            path_parameters['appId'] = app_id
         super().__init__(request_adapter, "{+baseurl}/onPremisesPublishingProfiles/{onPremisesPublishingProfile%2Did}/connectorGroups/{connectorGroup%2Did}/applications(appId='{appId}'){?%24expand,%24select}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ApplicationsWithAppIdRequestBuilderGetQueryParameters]] = None) -> Optional[Application]:

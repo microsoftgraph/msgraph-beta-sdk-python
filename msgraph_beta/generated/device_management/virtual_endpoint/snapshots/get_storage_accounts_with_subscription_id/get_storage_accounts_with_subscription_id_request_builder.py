@@ -29,7 +29,7 @@ class GetStorageAccountsWithSubscriptionIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['subscriptionId'] = str(subscription_id)
+            path_parameters['subscriptionId'] = subscription_id
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/snapshots/getStorageAccounts(subscriptionId='{subscriptionId}'){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetStorageAccountsWithSubscriptionIdRequestBuilderGetQueryParameters]] = None) -> Optional[GetStorageAccountsWithSubscriptionIdGetResponse]:

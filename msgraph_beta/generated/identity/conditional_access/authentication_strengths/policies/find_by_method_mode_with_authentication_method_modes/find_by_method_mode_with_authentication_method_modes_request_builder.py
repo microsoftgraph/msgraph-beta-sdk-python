@@ -29,7 +29,7 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['authenticationMethodModes'] = str(authentication_method_modes)
+            path_parameters['authenticationMethodModes'] = authentication_method_modes
         super().__init__(request_adapter, "{+baseurl}/identity/conditionalAccess/authenticationStrengths/policies/findByMethodMode(authenticationMethodModes={authenticationMethodModes}){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[FindByMethodModeWithAuthenticationMethodModesRequestBuilderGetQueryParameters]] = None) -> Optional[FindByMethodModeWithAuthenticationMethodModesGetResponse]:
