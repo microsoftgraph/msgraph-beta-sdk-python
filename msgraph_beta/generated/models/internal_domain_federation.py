@@ -23,7 +23,7 @@ class InternalDomainFederation(SamlOrWsFedProvider):
     is_signed_authentication_request_required: Optional[bool] = None
     # Fallback token signing certificate that can also be used to sign tokens, for example when the primary signing certificate expires. Formatted as Base64 encoded strings of the public portion of the federated IdP's token signing certificate. Needs to be compatible with the X509Certificate2 class. Much like the signingCertificate, the nextSigningCertificate property is used if a rollover is required outside of the auto-rollover update, a new federation service is being set up, or if the new token signing certificate isn't present in the federation properties after the federation service certificate has been updated.
     next_signing_certificate: Optional[str] = None
-    # The passwordResetUri property
+    # URI that clients are redirected to for resetting their password.
     password_reset_uri: Optional[str] = None
     # Sets the preferred behavior for the sign-in prompt. The possible values are: translateToFreshPasswordAuthentication, nativeSupport, disabled, unknownFutureValue.
     prompt_login_behavior: Optional[PromptLoginBehavior] = None

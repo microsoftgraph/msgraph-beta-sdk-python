@@ -16,27 +16,27 @@ from ..entity import Entity
 
 @dataclass
 class Sensor(Entity):
-    # The createdDateTime property
+    # The date and time when the sensor was generated.
     created_date_time: Optional[datetime.datetime] = None
     # The deploymentStatus property
     deployment_status: Optional[DeploymentStatus] = None
-    # The displayName property
+    # The display name of the sensor.
     display_name: Optional[str] = None
-    # The domainName property
+    # The fully qualified domain name of the sensor.
     domain_name: Optional[str] = None
-    # The healthIssues property
+    # Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified related to the sensor.
     health_issues: Optional[List[HealthIssue]] = None
     # The healthStatus property
     health_status: Optional[SensorHealthStatus] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The openHealthIssuesCount property
+    # This field displays the count of health issues related to this sensor.
     open_health_issues_count: Optional[int] = None
     # The sensorType property
     sensor_type: Optional[SensorType] = None
     # The settings property
     settings: Optional[SensorSettings] = None
-    # The version property
+    # The version of the sensor.
     version: Optional[str] = None
     
     @staticmethod

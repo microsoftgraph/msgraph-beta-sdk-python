@@ -29,7 +29,7 @@ class RetrieveMyRequestByIdWithIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['id'] = str(id)
+            path_parameters['id'] = id
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/operationApprovalRequests/retrieveMyRequestById(id='{id}')", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[OperationApprovalRequest]:
@@ -43,7 +43,7 @@ class RetrieveMyRequestByIdWithIdRequestBuilder(BaseRequestBuilder):
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

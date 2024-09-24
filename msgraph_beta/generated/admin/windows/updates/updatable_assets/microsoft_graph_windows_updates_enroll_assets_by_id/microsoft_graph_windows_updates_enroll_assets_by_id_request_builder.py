@@ -31,7 +31,7 @@ class MicrosoftGraphWindowsUpdatesEnrollAssetsByIdRequestBuilder(BaseRequestBuil
     
     async def post(self,body: EnrollAssetsByIdPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Enroll updatableAsset resources of the same type in update management by the deployment service. You can also use the method enrollAssets to enroll assets.
+        Enroll updatableAsset resources of the same type in update management by Windows Autopatch. You can also use the method enrollAssets to enroll assets.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -43,7 +43,7 @@ class MicrosoftGraphWindowsUpdatesEnrollAssetsByIdRequestBuilder(BaseRequestBuil
         )
         from ......models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -52,7 +52,7 @@ class MicrosoftGraphWindowsUpdatesEnrollAssetsByIdRequestBuilder(BaseRequestBuil
     
     def to_post_request_information(self,body: EnrollAssetsByIdPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Enroll updatableAsset resources of the same type in update management by the deployment service. You can also use the method enrollAssets to enroll assets.
+        Enroll updatableAsset resources of the same type in update management by Windows Autopatch. You can also use the method enrollAssets to enroll assets.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

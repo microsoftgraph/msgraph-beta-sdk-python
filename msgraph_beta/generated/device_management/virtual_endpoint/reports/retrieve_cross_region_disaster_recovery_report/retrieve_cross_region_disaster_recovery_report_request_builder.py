@@ -29,7 +29,7 @@ class RetrieveCrossRegionDisasterRecoveryReportRequestBuilder(BaseRequestBuilder
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/reports/retrieveCrossRegionDisasterRecoveryReport", path_parameters)
     
-    async def post(self,body: RetrieveCrossRegionDisasterRecoveryReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def post(self,body: RetrieveCrossRegionDisasterRecoveryReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         Retrieve the Windows 365 cross-region disaster recovery report, including CloudPcId, UserId, DeviceId, CloudPCDeviceDisplayName, UserPrincipalName, IsCrossRegionEnabled, CrossRegionHealthStatus, LicenseType, DisasterRecoveryStatus, CurrentRestorePointDateTime, and ActivationExpirationDateTime.
         param body: The request body
@@ -44,7 +44,7 @@ class RetrieveCrossRegionDisasterRecoveryReportRequestBuilder(BaseRequestBuilder
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

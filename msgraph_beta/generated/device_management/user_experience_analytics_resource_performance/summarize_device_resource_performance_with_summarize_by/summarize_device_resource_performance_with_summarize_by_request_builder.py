@@ -29,7 +29,7 @@ class SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder(BaseReques
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['summarizeBy'] = str(summarize_by)
+            path_parameters['summarizeBy'] = summarize_by
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/userExperienceAnalyticsResourcePerformance/summarizeDeviceResourcePerformance(summarizeBy='{summarizeBy}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilderGetQueryParameters]] = None) -> Optional[SummarizeDeviceResourcePerformanceWithSummarizeByGetResponse]:
@@ -43,7 +43,7 @@ class SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder(BaseReques
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

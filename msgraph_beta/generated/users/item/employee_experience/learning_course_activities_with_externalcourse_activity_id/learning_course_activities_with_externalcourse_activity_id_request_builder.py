@@ -29,7 +29,7 @@ class LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder(BaseReq
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['externalcourseActivityId'] = str(externalcourse_activity_id)
+            path_parameters['externalcourseActivityId'] = externalcourse_activity_id
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/employeeExperience/learningCourseActivities(externalcourseActivityId='{externalcourseActivityId}'){?%24expand,%24select}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilderGetQueryParameters]] = None) -> Optional[LearningCourseActivity]:
@@ -45,7 +45,7 @@ class LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder(BaseReq
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

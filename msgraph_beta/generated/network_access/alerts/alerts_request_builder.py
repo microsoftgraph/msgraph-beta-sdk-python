@@ -1,4 +1,5 @@
 from __future__ import annotations
+import datetime
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
@@ -18,6 +19,8 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .item.alert_item_request_builder import AlertItemRequestBuilder
+    from .microsoft_graph_networkaccess_get_alert_frequencies_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_get_alert_frequencies_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessGetAlertFrequenciesWithStartDateTimeWithEndDateTimeRequestBuilder
+    from .microsoft_graph_networkaccess_get_alert_severity_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_get_alert_severity_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessGetAlertSeveritySummariesWithStartDateTimeWithEndDateTimeRequestBuilder
 
 class AlertsRequestBuilder(BaseRequestBuilder):
     """
@@ -57,7 +60,7 @@ class AlertsRequestBuilder(BaseRequestBuilder):
         )
         from ...models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -65,6 +68,38 @@ class AlertsRequestBuilder(BaseRequestBuilder):
         from ...models.networkaccess.alert_collection_response import AlertCollectionResponse
 
         return await self.request_adapter.send_async(request_info, AlertCollectionResponse, error_mapping)
+    
+    def microsoft_graph_networkaccess_get_alert_frequencies_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetAlertFrequenciesWithStartDateTimeWithEndDateTimeRequestBuilder:
+        """
+        Provides operations to call the getAlertFrequencies method.
+        param end_date_time: Usage: endDateTime={endDateTime}
+        param start_date_time: Usage: startDateTime={startDateTime}
+        Returns: MicrosoftGraphNetworkaccessGetAlertFrequenciesWithStartDateTimeWithEndDateTimeRequestBuilder
+        """
+        warn(" as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
+        if end_date_time is None:
+            raise TypeError("end_date_time cannot be null.")
+        if start_date_time is None:
+            raise TypeError("start_date_time cannot be null.")
+        from .microsoft_graph_networkaccess_get_alert_frequencies_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_get_alert_frequencies_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessGetAlertFrequenciesWithStartDateTimeWithEndDateTimeRequestBuilder
+
+        return MicrosoftGraphNetworkaccessGetAlertFrequenciesWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+    
+    def microsoft_graph_networkaccess_get_alert_severity_summaries_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetAlertSeveritySummariesWithStartDateTimeWithEndDateTimeRequestBuilder:
+        """
+        Provides operations to call the getAlertSeveritySummaries method.
+        param end_date_time: Usage: endDateTime={endDateTime}
+        param start_date_time: Usage: startDateTime={startDateTime}
+        Returns: MicrosoftGraphNetworkaccessGetAlertSeveritySummariesWithStartDateTimeWithEndDateTimeRequestBuilder
+        """
+        warn(" as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
+        if end_date_time is None:
+            raise TypeError("end_date_time cannot be null.")
+        if start_date_time is None:
+            raise TypeError("start_date_time cannot be null.")
+        from .microsoft_graph_networkaccess_get_alert_severity_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_get_alert_severity_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessGetAlertSeveritySummariesWithStartDateTimeWithEndDateTimeRequestBuilder
+
+        return MicrosoftGraphNetworkaccessGetAlertSeveritySummariesWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
     async def post(self,body: Alert, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Alert]:
         """
@@ -80,7 +115,7 @@ class AlertsRequestBuilder(BaseRequestBuilder):
         )
         from ...models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

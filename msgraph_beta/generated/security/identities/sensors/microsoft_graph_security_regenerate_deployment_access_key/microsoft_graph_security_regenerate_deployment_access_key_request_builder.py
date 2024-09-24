@@ -31,16 +31,17 @@ class MicrosoftGraphSecurityRegenerateDeploymentAccessKeyRequestBuilder(BaseRequ
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DeploymentAccessKeyType]:
         """
-        Invoke action regenerateDeploymentAccessKey
+        Generate a new deployment access key that can be used to install a sensor associated with the workspace.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeploymentAccessKeyType]
+        Find more info here: https://learn.microsoft.com/graph/api/security-sensor-regeneratedeploymentaccesskey?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -51,7 +52,7 @@ class MicrosoftGraphSecurityRegenerateDeploymentAccessKeyRequestBuilder(BaseRequ
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action regenerateDeploymentAccessKey
+        Generate a new deployment access key that can be used to install a sensor associated with the workspace.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

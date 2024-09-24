@@ -29,7 +29,7 @@ class GetRemoteConnectionHistoricalReportsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/reports/getRemoteConnectionHistoricalReports", path_parameters)
     
-    async def post(self,body: GetRemoteConnectionHistoricalReportsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def post(self,body: GetRemoteConnectionHistoricalReportsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         Get the remote connection history records of a Cloud PC during a given period. This report contains data such as signInDateTime, signOutDateTime, usageInHour, remoteSignInTimeInSec and roundTripTimeInMsP50, and so on. This data is aggregated hourly for a specified time period, such as the last seven days.
         param body: The request body
@@ -44,7 +44,7 @@ class GetRemoteConnectionHistoricalReportsRequestBuilder(BaseRequestBuilder):
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

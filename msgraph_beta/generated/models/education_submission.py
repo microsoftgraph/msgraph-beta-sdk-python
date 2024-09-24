@@ -16,13 +16,15 @@ from .entity import Entity
 
 @dataclass
 class EducationSubmission(Entity):
+    # The unique identifier for the assignment with which this submission is associated. A submission is always associated with one and only one assignment.
+    assignment_id: Optional[str] = None
     # The user that marked the submission as excused.
     excused_by: Optional[IdentitySet] = None
     # Moment in time when the submission was moved to the excused state. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     excused_date_time: Optional[datetime.datetime] = None
-    # The lastModifiedBy property
+    # The identities of those who modified the submission.
     last_modified_by: Optional[IdentitySet] = None
-    # The lastModifiedDateTime property
+    # The date and time the submission was modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -42,7 +44,7 @@ class EducationSubmission(Entity):
     returned_by: Optional[IdentitySet] = None
     # Moment in time when the submission was returned. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     returned_date_time: Optional[datetime.datetime] = None
-    # Read-only. Possible values are: working, submitted, returned, unknownFutureValue, reassigned, and excused. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: reassigned, and excused.
+    # Read-only. Possible values are: working, submitted, returned, unknownFutureValue, reassigned, and excused. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: reassigned, and excused.
     status: Optional[EducationSubmissionStatus] = None
     # User who moved the resource into the submitted state.
     submitted_by: Optional[IdentitySet] = None
@@ -88,6 +90,7 @@ class EducationSubmission(Entity):
         from .identity_set import IdentitySet
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "assignmentId": lambda n : setattr(self, 'assignment_id', n.get_str_value()),
             "excusedBy": lambda n : setattr(self, 'excused_by', n.get_object_value(IdentitySet)),
             "excusedDateTime": lambda n : setattr(self, 'excused_date_time', n.get_datetime_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),

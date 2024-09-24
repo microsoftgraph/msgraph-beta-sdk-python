@@ -29,7 +29,7 @@ class GetRawRemoteConnectionReportsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/reports/getRawRemoteConnectionReports", path_parameters)
     
-    async def post(self,body: GetRawRemoteConnectionReportsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def post(self,body: GetRawRemoteConnectionReportsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         Get the raw real-time remote connection report for a Cloud PC without any calculation, such as roundTripTime or available bandwidth, which are aggregated hourly from the raw event data.
         param body: The request body
@@ -44,7 +44,7 @@ class GetRawRemoteConnectionReportsRequestBuilder(BaseRequestBuilder):
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

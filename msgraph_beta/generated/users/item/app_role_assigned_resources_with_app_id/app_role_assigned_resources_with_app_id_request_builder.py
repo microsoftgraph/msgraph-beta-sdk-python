@@ -29,7 +29,7 @@ class AppRoleAssignedResourcesWithAppIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['appId'] = str(app_id)
+            path_parameters['appId'] = app_id
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/appRoleAssignedResources(appId='{appId}'){?%24expand,%24select}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AppRoleAssignedResourcesWithAppIdRequestBuilderGetQueryParameters]] = None) -> Optional[ServicePrincipal]:
@@ -44,7 +44,7 @@ class AppRoleAssignedResourcesWithAppIdRequestBuilder(BaseRequestBuilder):
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

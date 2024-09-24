@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .broadcast_meeting_settings import BroadcastMeetingSettings
+    from .call_ai_insight import CallAiInsight
     from .call_recording import CallRecording
     from .call_transcript import CallTranscript
     from .meeting_attendance_report import MeetingAttendanceReport
@@ -20,6 +21,8 @@ from .online_meeting_base import OnlineMeetingBase
 class OnlineMeeting(OnlineMeetingBase):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onlineMeeting"
+    # The aiInsights property
+    ai_insights: Optional[List[CallAiInsight]] = None
     # The content stream of the alternative recording of a Microsoft Teams live event. Read-only.
     alternative_recording: Optional[bytes] = None
     # The content stream of the attendee report of a Teams live event. Read-only.
@@ -74,6 +77,7 @@ class OnlineMeeting(OnlineMeetingBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .broadcast_meeting_settings import BroadcastMeetingSettings
+        from .call_ai_insight import CallAiInsight
         from .call_recording import CallRecording
         from .call_transcript import CallTranscript
         from .meeting_attendance_report import MeetingAttendanceReport
@@ -83,6 +87,7 @@ class OnlineMeeting(OnlineMeetingBase):
         from .online_meeting_base import OnlineMeetingBase
 
         from .broadcast_meeting_settings import BroadcastMeetingSettings
+        from .call_ai_insight import CallAiInsight
         from .call_recording import CallRecording
         from .call_transcript import CallTranscript
         from .meeting_attendance_report import MeetingAttendanceReport
@@ -92,6 +97,7 @@ class OnlineMeeting(OnlineMeetingBase):
         from .online_meeting_base import OnlineMeetingBase
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "aiInsights": lambda n : setattr(self, 'ai_insights', n.get_collection_of_object_values(CallAiInsight)),
             "alternativeRecording": lambda n : setattr(self, 'alternative_recording', n.get_bytes_value()),
             "attendeeReport": lambda n : setattr(self, 'attendee_report', n.get_bytes_value()),
             "broadcastRecording": lambda n : setattr(self, 'broadcast_recording', n.get_bytes_value()),
@@ -124,6 +130,7 @@ class OnlineMeeting(OnlineMeetingBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("aiInsights", self.ai_insights)
         writer.write_bytes_value("alternativeRecording", self.alternative_recording)
         writer.write_bytes_value("attendeeReport", self.attendee_report)
         writer.write_bytes_value("broadcastRecording", self.broadcast_recording)

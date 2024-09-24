@@ -28,10 +28,10 @@ class GetTeamsUserActivityTotalUserCountsWithPeriodRequestBuilder(BaseRequestBui
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['period'] = str(period)
+            path_parameters['period'] = period
         super().__init__(request_adapter, "{+baseurl}/reports/getTeamsUserActivityTotalUserCounts(period='{period}')", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         Invoke function getTeamsUserActivityTotalUserCounts
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -42,7 +42,7 @@ class GetTeamsUserActivityTotalUserCountsWithPeriodRequestBuilder(BaseRequestBui
         )
         from ...models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

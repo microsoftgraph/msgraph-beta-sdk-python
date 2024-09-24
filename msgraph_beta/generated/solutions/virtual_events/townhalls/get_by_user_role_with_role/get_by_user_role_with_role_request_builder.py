@@ -29,7 +29,7 @@ class GetByUserRoleWithRoleRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['role'] = str(role)
+            path_parameters['role'] = role
         super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/townhalls/getByUserRole(role='{role}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetByUserRoleWithRoleRequestBuilderGetQueryParameters]] = None) -> Optional[GetByUserRoleWithRoleGetResponse]:
@@ -43,7 +43,7 @@ class GetByUserRoleWithRoleRequestBuilder(BaseRequestBuilder):
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

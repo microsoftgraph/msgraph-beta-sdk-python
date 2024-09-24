@@ -29,7 +29,7 @@ class GetInaccessibleCloudPcReportsRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/reports/getInaccessibleCloudPcReports", path_parameters)
     
-    async def post(self,body: GetInaccessibleCloudPcReportsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def post(self,body: GetInaccessibleCloudPcReportsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         Get inaccessible Cloud PCs with details, including the latest health state, failed connection count, failed health check count, and system status. An inaccessible Cloud PC represents a Cloud PC that is in an unavailable state (at least one of the health checks failed) or has consecutive user connections failure.
         param body: The request body
@@ -44,7 +44,7 @@ class GetInaccessibleCloudPcReportsRequestBuilder(BaseRequestBuilder):
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

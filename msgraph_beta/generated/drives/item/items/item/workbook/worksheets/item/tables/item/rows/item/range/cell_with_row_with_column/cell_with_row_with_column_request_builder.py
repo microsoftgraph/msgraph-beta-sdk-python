@@ -30,8 +30,8 @@ class CellWithRowWithColumnRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['column'] = str(column)
-            path_parameters['row'] = str(row)
+            path_parameters['column'] = column
+            path_parameters['row'] = row
         super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/rows/{workbookTableRow%2Did}/range()/cell(row={row},column={column})", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WorkbookRange]:
@@ -45,7 +45,7 @@ class CellWithRowWithColumnRequestBuilder(BaseRequestBuilder):
         )
         from ..............models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

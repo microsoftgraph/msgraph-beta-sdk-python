@@ -28,7 +28,7 @@ class GetOffice365ActivationsUserDetailRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/reports/getOffice365ActivationsUserDetail()", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         Invoke function getOffice365ActivationsUserDetail
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -39,7 +39,7 @@ class GetOffice365ActivationsUserDetailRequestBuilder(BaseRequestBuilder):
         )
         from ...models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

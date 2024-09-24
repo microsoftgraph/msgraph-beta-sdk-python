@@ -32,16 +32,17 @@ class SensorItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property sensors for security
+        Delete a sensor object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/security-identitycontainer-delete-sensors?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -50,16 +51,17 @@ class SensorItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SensorItemRequestBuilderGetQueryParameters]] = None) -> Optional[Sensor]:
         """
-        Get sensors from security
+        Read the properties and relationships of a sensor object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Sensor]
+        Find more info here: https://learn.microsoft.com/graph/api/security-sensor-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -70,10 +72,11 @@ class SensorItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Sensor, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Sensor]:
         """
-        Update the navigation property sensors in security
+        Update the properties of a sensor object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Sensor]
+        Find more info here: https://learn.microsoft.com/graph/api/security-sensor-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -82,7 +85,7 @@ class SensorItemRequestBuilder(BaseRequestBuilder):
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -93,7 +96,7 @@ class SensorItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property sensors for security
+        Delete a sensor object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +107,7 @@ class SensorItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SensorItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get sensors from security
+        Read the properties and relationships of a sensor object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +118,7 @@ class SensorItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Sensor, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property sensors in security
+        Update the properties of a sensor object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -157,7 +160,7 @@ class SensorItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SensorItemRequestBuilderGetQueryParameters():
         """
-        Get sensors from security
+        Read the properties and relationships of a sensor object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

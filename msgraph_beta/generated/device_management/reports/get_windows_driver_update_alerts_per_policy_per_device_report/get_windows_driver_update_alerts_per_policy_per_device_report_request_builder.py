@@ -29,7 +29,7 @@ class GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(BaseReq
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/reports/getWindowsDriverUpdateAlertsPerPolicyPerDeviceReport", path_parameters)
     
-    async def post(self,body: GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def post(self,body: GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         Invoke action getWindowsDriverUpdateAlertsPerPolicyPerDeviceReport
         param body: The request body
@@ -43,7 +43,7 @@ class GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(BaseReq
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

@@ -80,6 +80,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     private_access_details: Optional[PrivateAccessDetails] = None
     # Represents the total number of bytes received in a network communication or data transfer. Supports $filter (eq) and $orderby.
     received_bytes: Optional[int] = None
+    # The remoteNetworkId property
+    remote_network_id: Optional[str] = None
     # The resourceTenantId property
     resource_tenant_id: Optional[str] = None
     # Represents the total number of bytes sent in a network communication or data transfer. Supports $filter (eq) and $orderby.
@@ -176,6 +178,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "policyRuleName": lambda n : setattr(self, 'policy_rule_name', n.get_str_value()),
             "privateAccessDetails": lambda n : setattr(self, 'private_access_details', n.get_object_value(PrivateAccessDetails)),
             "receivedBytes": lambda n : setattr(self, 'received_bytes', n.get_int_value()),
+            "remoteNetworkId": lambda n : setattr(self, 'remote_network_id', n.get_str_value()),
             "resourceTenantId": lambda n : setattr(self, 'resource_tenant_id', n.get_str_value()),
             "sentBytes": lambda n : setattr(self, 'sent_bytes', n.get_int_value()),
             "sessionId": lambda n : setattr(self, 'session_id', n.get_str_value()),
@@ -229,6 +232,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("policyRuleName", self.policy_rule_name)
         writer.write_object_value("privateAccessDetails", self.private_access_details)
         writer.write_int_value("receivedBytes", self.received_bytes)
+        writer.write_str_value("remoteNetworkId", self.remote_network_id)
         writer.write_str_value("resourceTenantId", self.resource_tenant_id)
         writer.write_int_value("sentBytes", self.sent_bytes)
         writer.write_str_value("sessionId", self.session_id)

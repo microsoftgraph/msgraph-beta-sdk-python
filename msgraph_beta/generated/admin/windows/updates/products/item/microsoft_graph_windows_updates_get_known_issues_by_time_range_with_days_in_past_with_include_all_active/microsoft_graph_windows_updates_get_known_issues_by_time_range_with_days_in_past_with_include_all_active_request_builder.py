@@ -29,7 +29,7 @@ class MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithInc
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['daysInPast'] = str(days_in_past)
+            path_parameters['daysInPast'] = days_in_past
         super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/products/{product%2Did}/microsoft.graph.windowsUpdates.getKnownIssuesByTimeRange(daysInPast={daysInPast},includeAllActive=@includeAllActive){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top,includeAllActive*}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilderGetQueryParameters]] = None) -> Optional[GetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveGetResponse]:
@@ -44,7 +44,7 @@ class MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithInc
         )
         from .......models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

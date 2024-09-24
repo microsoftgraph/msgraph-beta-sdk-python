@@ -30,8 +30,8 @@ class ResizedRangeWithDeltaRowsWithDeltaColumnsRequestBuilder(BaseRequestBuilder
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['deltaColumns'] = str(delta_columns)
-            path_parameters['deltaRows'] = str(delta_rows)
+            path_parameters['deltaColumns'] = delta_columns
+            path_parameters['deltaRows'] = delta_rows
         super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/range()/resizedRange(deltaRows={deltaRows},deltaColumns={deltaColumns})", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WorkbookRange]:
@@ -45,7 +45,7 @@ class ResizedRangeWithDeltaRowsWithDeltaColumnsRequestBuilder(BaseRequestBuilder
         )
         from ..........models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

@@ -29,7 +29,7 @@ class GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder(BaseRequestBui
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['enrollmentType'] = str(enrollment_type)
+            path_parameters['enrollmentType'] = enrollment_type
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/getSuggestedEnrollmentLimit(enrollmentType='{enrollmentType}')", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[SuggestedEnrollmentLimit]:
@@ -43,7 +43,7 @@ class GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder(BaseRequestBui
         )
         from ...models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

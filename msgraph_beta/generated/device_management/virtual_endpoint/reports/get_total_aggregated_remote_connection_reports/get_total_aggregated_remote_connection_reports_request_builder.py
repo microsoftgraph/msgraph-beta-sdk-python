@@ -29,7 +29,7 @@ class GetTotalAggregatedRemoteConnectionReportsRequestBuilder(BaseRequestBuilder
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/reports/getTotalAggregatedRemoteConnectionReports", path_parameters)
     
-    async def post(self,body: GetTotalAggregatedRemoteConnectionReportsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def post(self,body: GetTotalAggregatedRemoteConnectionReportsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         Get the total aggregated remote connection usage of a Cloud PC during a given time span.
         param body: The request body
@@ -44,7 +44,7 @@ class GetTotalAggregatedRemoteConnectionReportsRequestBuilder(BaseRequestBuilder
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

@@ -39,7 +39,7 @@ class CloudPC(Entity):
     connectivity_result: Optional[CloudPcConnectivityResult] = None
     # The name of the geographical region where the Cloud PC is currently provisioned. For example, westus3, eastus2, and southeastasia. Read-only.
     device_region_name: Optional[str] = None
-    # The disaster recovery status of the Cloud PC, including the primary region, secondary region, and capability type. The default value is null that indicates that the disaster recovery setting is disabled. To receive a response with the disasterRecoveryCapability property, $select and $filter it by disasterRecoveryCapability/{subProperty} in the request URL. For more details, see Example 4: List Cloud PCs filtered by disaster recovery capability type. Read-only.
+    # The disaster recovery status of the Cloud PC, including the primary region, secondary region, and capability type. The default value is null that indicates that the disaster recovery setting is disabled. To receive a response with the disasterRecoveryCapability property, $select and $filter it by disasterRecoveryCapability/{subProperty} in the request URL. For more information, see Example 4: List Cloud PCs filtered by disaster recovery capability type. Read-only.
     disaster_recovery_capability: Optional[CloudPcDisasterRecoveryCapability] = None
     # The disk encryption applied to the Cloud PC. Possible values: notAvailable, notEncrypted, encryptedUsingPlatformManagedKey, encryptedUsingCustomerManagedKey, and unknownFutureValue.
     disk_encryption_state: Optional[CloudPcDiskEncryptionState] = None

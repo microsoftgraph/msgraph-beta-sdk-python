@@ -29,7 +29,7 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['name'] = str(name)
+            path_parameters['name'] = name
         super().__init__(request_adapter, "{+baseurl}/applications/{application%2Did}/federatedIdentityCredentials(name='{name}'){?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
@@ -44,7 +44,7 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -63,7 +63,7 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -87,7 +87,7 @@ class FederatedIdentityCredentialsWithNameRequestBuilder(BaseRequestBuilder):
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

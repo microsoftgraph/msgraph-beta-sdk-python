@@ -29,7 +29,7 @@ class DirectoryRolesWithRoleTemplateIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['roleTemplateId'] = str(role_template_id)
+            path_parameters['roleTemplateId'] = role_template_id
         super().__init__(request_adapter, "{+baseurl}/directoryRoles(roleTemplateId='{roleTemplateId}'){?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
@@ -43,7 +43,7 @@ class DirectoryRolesWithRoleTemplateIdRequestBuilder(BaseRequestBuilder):
         )
         from ..models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -62,7 +62,7 @@ class DirectoryRolesWithRoleTemplateIdRequestBuilder(BaseRequestBuilder):
         )
         from ..models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -85,7 +85,7 @@ class DirectoryRolesWithRoleTemplateIdRequestBuilder(BaseRequestBuilder):
         )
         from ..models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

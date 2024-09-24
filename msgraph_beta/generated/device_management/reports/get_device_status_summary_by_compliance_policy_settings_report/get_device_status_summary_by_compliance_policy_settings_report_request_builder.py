@@ -29,7 +29,7 @@ class GetDeviceStatusSummaryByCompliancePolicySettingsReportRequestBuilder(BaseR
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/reports/getDeviceStatusSummaryByCompliancePolicySettingsReport", path_parameters)
     
-    async def post(self,body: GetDeviceStatusSummaryByCompliancePolicySettingsReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def post(self,body: GetDeviceStatusSummaryByCompliancePolicySettingsReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         Invoke action getDeviceStatusSummaryByCompliancePolicySettingsReport
         param body: The request body
@@ -43,7 +43,7 @@ class GetDeviceStatusSummaryByCompliancePolicySettingsReportRequestBuilder(BaseR
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
