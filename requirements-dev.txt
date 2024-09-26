@@ -1,4 +1,4 @@
-aiohttp==3.10.5
+aiohttp==3.10.6
 aiosignal==1.3.1
 anyio==4.6.0
 astroid==3.2.4
@@ -42,7 +42,7 @@ microsoft-kiota-serialization-multipart==0.1.0
 microsoft-kiota-serialization-text==1.0.0
 msal==1.31.0
 msal-extensions==1.2.0
-msgraph-core==1.1.3
+msgraph-core==1.1.4
 multidict==6.1.0
 mypy==1.11.2
 mypy-extensions==1.0.0
@@ -74,5 +74,5 @@ uritemplate==4.1.1
 urllib3==2.2.3
 wrapt==1.16.0
 yapf==0.40.2
-yarl==1.11.1
+yarl==1.12.1
 zipp==3.20.2
