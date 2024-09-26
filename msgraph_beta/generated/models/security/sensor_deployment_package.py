@@ -11,11 +11,11 @@ class SensorDeploymentPackage(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The downloadUrl property
+    # URL to download the sensor deployment package.
     download_url: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The version property
+    # Version of the sensor.
     version: Optional[str] = None
     
     @staticmethod

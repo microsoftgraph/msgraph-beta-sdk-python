@@ -29,7 +29,7 @@ class GetPlatformSupportedPropertiesWithPlatformRequestBuilder(BaseRequestBuilde
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['platform'] = str(platform)
+            path_parameters['platform'] = platform
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/assignmentFilters/getPlatformSupportedProperties(platform='{platform}'){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetPlatformSupportedPropertiesWithPlatformRequestBuilderGetQueryParameters]] = None) -> Optional[GetPlatformSupportedPropertiesWithPlatformGetResponse]:
@@ -43,7 +43,7 @@ class GetPlatformSupportedPropertiesWithPlatformRequestBuilder(BaseRequestBuilde
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

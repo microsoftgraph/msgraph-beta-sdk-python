@@ -32,9 +32,9 @@ class MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithStartDateTimeWithEndDa
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['activityPivotDateTime'] = str(activity_pivot_date_time)
-            path_parameters['endDateTime'] = str(end_date_time)
-            path_parameters['startDateTime'] = str(start_date_time)
+            path_parameters['activityPivotDateTime'] = activity_pivot_date_time
+            path_parameters['endDateTime'] = end_date_time
+            path_parameters['startDateTime'] = start_date_time
         super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.getDeviceUsageSummary(startDateTime={startDateTime},endDateTime={endDateTime},activityPivotDateTime={activityPivotDateTime})", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DeviceUsageSummary]:
@@ -48,7 +48,7 @@ class MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithStartDateTimeWithEndDa
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

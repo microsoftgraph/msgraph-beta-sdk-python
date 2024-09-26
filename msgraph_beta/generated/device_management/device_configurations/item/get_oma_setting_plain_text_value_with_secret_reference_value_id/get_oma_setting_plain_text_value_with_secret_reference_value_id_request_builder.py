@@ -29,7 +29,7 @@ class GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(BaseRe
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['secretReferenceValueId'] = str(secret_reference_value_id)
+            path_parameters['secretReferenceValueId'] = secret_reference_value_id
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/getOmaSettingPlainTextValue(secretReferenceValueId='{secretReferenceValueId}')", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[GetOmaSettingPlainTextValueWithSecretReferenceValueIdGetResponse]:
@@ -43,7 +43,7 @@ class GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(BaseRe
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

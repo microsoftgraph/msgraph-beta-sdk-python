@@ -29,7 +29,7 @@ class GetDailyAggregatedRemoteConnectionReportsRequestBuilder(BaseRequestBuilder
         """
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/reports/getDailyAggregatedRemoteConnectionReports", path_parameters)
     
-    async def post(self,body: GetDailyAggregatedRemoteConnectionReportsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> bytes:
+    async def post(self,body: GetDailyAggregatedRemoteConnectionReportsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
         Get the daily aggregated remote connection reports, such as round trip time, available bandwidth, and so on, in a given period.
         param body: The request body
@@ -44,7 +44,7 @@ class GetDailyAggregatedRemoteConnectionReportsRequestBuilder(BaseRequestBuilder
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

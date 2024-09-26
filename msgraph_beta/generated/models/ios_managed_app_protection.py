@@ -32,7 +32,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
     app_data_encryption_type: Optional[ManagedAppDataEncryptionType] = None
     # List of apps to which the policy is deployed.
     apps: Optional[List[ManagedMobileApp]] = None
-    # A custom browser protocol to open weblink on iOS. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
+    # A custom browser protocol to open weblink on iOS.
     custom_browser_protocol: Optional[str] = None
     # Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
     custom_dialer_app_protocol: Optional[str] = None

@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from .base_item import BaseItem
     from .news_link_page import NewsLinkPage
     from .page_layout_type import PageLayoutType
+    from .page_template import PageTemplate
     from .publication_facet import PublicationFacet
     from .site_page import SitePage
     from .video_news_link_page import VideoNewsLinkPage
@@ -41,6 +42,10 @@ class BaseSitePage(BaseItem):
             from .news_link_page import NewsLinkPage
 
             return NewsLinkPage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.pageTemplate".casefold():
+            from .page_template import PageTemplate
+
+            return PageTemplate()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sitePage".casefold():
             from .site_page import SitePage
 
@@ -59,6 +64,7 @@ class BaseSitePage(BaseItem):
         from .base_item import BaseItem
         from .news_link_page import NewsLinkPage
         from .page_layout_type import PageLayoutType
+        from .page_template import PageTemplate
         from .publication_facet import PublicationFacet
         from .site_page import SitePage
         from .video_news_link_page import VideoNewsLinkPage
@@ -66,6 +72,7 @@ class BaseSitePage(BaseItem):
         from .base_item import BaseItem
         from .news_link_page import NewsLinkPage
         from .page_layout_type import PageLayoutType
+        from .page_template import PageTemplate
         from .publication_facet import PublicationFacet
         from .site_page import SitePage
         from .video_news_link_page import VideoNewsLinkPage

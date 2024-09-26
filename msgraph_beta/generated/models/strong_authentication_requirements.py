@@ -16,7 +16,7 @@ class StrongAuthenticationRequirements(AdditionalDataHolder, BackedModel, Parsab
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # Sets the per-user MFA state for the user. The possible values are: disabled, enforced, enabled, unknownFutureValue.
+    # Sets the per-user MFA state for the user. The possible values are: disabled, enforced, enabled, unknownFutureValue. When you update a user's MFA state to enabled and the user has already registered an MFA method, their state changes automatically to enforced.
     per_user_mfa_state: Optional[PerUserMfaState] = None
     
     @staticmethod

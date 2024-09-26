@@ -31,8 +31,8 @@ class MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDat
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['endDateTime'] = str(end_date_time)
-            path_parameters['startDateTime'] = str(start_date_time)
+            path_parameters['endDateTime'] = end_date_time
+            path_parameters['startDateTime'] = start_date_time
         super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.transactionSummaries(startDateTime={startDateTime},endDateTime={endDateTime}){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters]] = None) -> Optional[TransactionSummariesWithStartDateTimeWithEndDateTimeGetResponse]:
@@ -47,7 +47,7 @@ class MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDat
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

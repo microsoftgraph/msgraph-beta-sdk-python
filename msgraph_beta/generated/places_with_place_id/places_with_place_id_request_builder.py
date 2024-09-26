@@ -29,7 +29,7 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['placeId'] = str(place_id)
+            path_parameters['placeId'] = place_id
         super().__init__(request_adapter, "{+baseurl}/places(placeId='{placeId}')", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
@@ -43,7 +43,7 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         )
         from ..models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -65,7 +65,7 @@ class PlacesWithPlaceIdRequestBuilder(BaseRequestBuilder):
         )
         from ..models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

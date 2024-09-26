@@ -17,11 +17,11 @@ from .entity import Entity
 
 @dataclass
 class AdminWindowsUpdates(Entity):
-    # Catalog of content that can be approved for deployment by the deployment service. Read-only.
+    # Catalog of content that can be approved for deployment by Windows Autopatch. Read-only.
     catalog: Optional[Catalog] = None
     # The set of updatableAsset resources to which a deployment can apply.
     deployment_audiences: Optional[List[DeploymentAudience]] = None
-    # Deployments created using the deployment service.
+    # Deployments created using Windows Autopatch.
     deployments: Optional[List[Deployment]] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -29,7 +29,7 @@ class AdminWindowsUpdates(Entity):
     products: Optional[List[Product]] = None
     # Service connections to external resources such as analytics workspaces.
     resource_connections: Optional[List[ResourceConnection]] = None
-    # Assets registered with the deployment service that can receive updates.
+    # Assets registered with Windows Autopatch that can receive updates.
     updatable_assets: Optional[List[UpdatableAsset]] = None
     # A collection of policies for approving the deployment of different content to an audience over time.
     update_policies: Optional[List[UpdatePolicy]] = None

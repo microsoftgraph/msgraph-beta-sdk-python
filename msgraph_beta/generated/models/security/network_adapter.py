@@ -10,9 +10,9 @@ from ..entity import Entity
 
 @dataclass
 class NetworkAdapter(Entity):
-    # The isEnabled property
+    # Indicates whether the network adapter is selected for capturing and analyzing network traffic.
     is_enabled: Optional[bool] = None
-    # The name property
+    # The name of the network adapter.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

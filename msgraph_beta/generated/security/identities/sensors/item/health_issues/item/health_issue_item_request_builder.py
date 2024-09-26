@@ -31,7 +31,7 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[HealthIssueItemRequestBuilderGetQueryParameters]] = None) -> Optional[HealthIssue]:
         """
-        Get healthIssues from security
+        Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified related to the sensor.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HealthIssue]
         """
@@ -40,7 +40,7 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
         )
         from .......models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -51,7 +51,7 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[HealthIssueItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get healthIssues from security
+        Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified related to the sensor.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,7 +73,7 @@ class HealthIssueItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HealthIssueItemRequestBuilderGetQueryParameters():
         """
-        Get healthIssues from security
+        Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified related to the sensor.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

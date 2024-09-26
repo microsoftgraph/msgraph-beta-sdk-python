@@ -29,7 +29,7 @@ class SessionsWithJoinWebUrlRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['joinWebUrl'] = str(join_web_url)
+            path_parameters['joinWebUrl'] = join_web_url
         super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}/sessions(joinWebUrl='{joinWebUrl}'){?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
@@ -43,7 +43,7 @@ class SessionsWithJoinWebUrlRequestBuilder(BaseRequestBuilder):
         )
         from ......models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -61,7 +61,7 @@ class SessionsWithJoinWebUrlRequestBuilder(BaseRequestBuilder):
         )
         from ......models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -84,7 +84,7 @@ class SessionsWithJoinWebUrlRequestBuilder(BaseRequestBuilder):
         )
         from ......models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

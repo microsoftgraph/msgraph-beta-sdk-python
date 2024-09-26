@@ -29,7 +29,7 @@ class UsedRangeWithValuesOnlyRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['valuesOnly'] = str(values_only)
+            path_parameters['valuesOnly'] = values_only
         super().__init__(request_adapter, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/totalRowRange()/usedRange(valuesOnly={valuesOnly})", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WorkbookRange]:
@@ -43,7 +43,7 @@ class UsedRangeWithValuesOnlyRequestBuilder(BaseRequestBuilder):
         )
         from ..............models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

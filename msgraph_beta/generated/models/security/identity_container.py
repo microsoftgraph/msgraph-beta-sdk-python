@@ -16,7 +16,7 @@ class IdentityContainer(Entity):
     health_issues: Optional[List[HealthIssue]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sensors property
+    # Represents a customer's Microsoft Defender for Identity sensors.
     sensors: Optional[List[Sensor]] = None
     
     @staticmethod

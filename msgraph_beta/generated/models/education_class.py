@@ -46,7 +46,7 @@ class EducationClass(Entity):
     external_name: Optional[str] = None
     # The type of external source this resource was generated from (automatically determined from externalSourceDetail). Possible values are: sis, lms, or manual.
     external_source: Optional[EducationExternalSource] = None
-    # The name of the external source this resources was generated from.
+    # The name of the external source from which this resource was generated.
     external_source_detail: Optional[str] = None
     # Grade level of the class.
     grade: Optional[str] = None

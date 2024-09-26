@@ -29,7 +29,7 @@ class AccessPackagesWithUniqueNameRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['uniqueName'] = str(unique_name)
+            path_parameters['uniqueName'] = unique_name
         super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageCatalogs/{accessPackageCatalog%2Did}/accessPackages(uniqueName='{uniqueName}'){?%24expand,%24select}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AccessPackagesWithUniqueNameRequestBuilderGetQueryParameters]] = None) -> Optional[AccessPackage]:
@@ -44,7 +44,7 @@ class AccessPackagesWithUniqueNameRequestBuilder(BaseRequestBuilder):
         )
         from ......models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

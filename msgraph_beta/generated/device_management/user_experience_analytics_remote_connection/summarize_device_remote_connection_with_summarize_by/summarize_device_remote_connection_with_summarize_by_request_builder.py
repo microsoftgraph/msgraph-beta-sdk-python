@@ -29,12 +29,12 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(BaseRequestBu
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['summarizeBy'] = str(summarize_by)
+            path_parameters['summarizeBy'] = summarize_by
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/userExperienceAnalyticsRemoteConnection/summarizeDeviceRemoteConnection(summarizeBy='{summarizeBy}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetQueryParameters]] = None) -> Optional[SummarizeDeviceRemoteConnectionWithSummarizeByGetResponse]:
         """
-        Invoke function summarizeDeviceRemoteConnection
+        The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SummarizeDeviceRemoteConnectionWithSummarizeByGetResponse]
         """
@@ -43,7 +43,7 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(BaseRequestBu
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -54,7 +54,7 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(BaseRequestBu
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function summarizeDeviceRemoteConnection
+        The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -76,7 +76,7 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(BaseRequestBu
     @dataclass
     class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetQueryParameters():
         """
-        Invoke function summarizeDeviceRemoteConnection
+        The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

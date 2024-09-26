@@ -14,11 +14,11 @@ class SensorSettings(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The description property
+    # Description of the sensor.
     description: Optional[str] = None
-    # The domainControllerDnsNames property
+    # DNS names for the domain controller
     domain_controller_dns_names: Optional[List[str]] = None
-    # The isDelayedDeploymentEnabled property
+    # Indicates whether to delay updates for the sensor.
     is_delayed_deployment_enabled: Optional[bool] = None
     # The networkAdapters property
     network_adapters: Optional[List[NetworkAdapter]] = None

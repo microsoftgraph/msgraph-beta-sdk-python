@@ -48,7 +48,7 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RelationshipsRequestBuilderGetQueryParameters]] = None) -> Optional[MobileAppRelationshipCollectionResponse]:
         """
-        List of relationships for this mobile app.
+        The set of direct relationships for this app.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MobileAppRelationshipCollectionResponse]
         """
@@ -57,7 +57,7 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
         )
         from ......models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -80,7 +80,7 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
         )
         from ......models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -91,7 +91,7 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RelationshipsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        List of relationships for this mobile app.
+        The set of direct relationships for this app.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +137,7 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RelationshipsRequestBuilderGetQueryParameters():
         """
-        List of relationships for this mobile app.
+        The set of direct relationships for this app.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

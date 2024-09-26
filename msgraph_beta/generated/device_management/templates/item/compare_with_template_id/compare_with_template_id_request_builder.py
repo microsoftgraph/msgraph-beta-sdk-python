@@ -29,7 +29,7 @@ class CompareWithTemplateIdRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['templateId'] = str(template_id)
+            path_parameters['templateId'] = template_id
         super().__init__(request_adapter, "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/compare(templateId='{templateId}'){?%24count,%24filter,%24search,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CompareWithTemplateIdRequestBuilderGetQueryParameters]] = None) -> Optional[CompareWithTemplateIdGetResponse]:
@@ -43,7 +43,7 @@ class CompareWithTemplateIdRequestBuilder(BaseRequestBuilder):
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

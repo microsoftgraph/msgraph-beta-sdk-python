@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .list_ import List_
     from .list_item import ListItem
     from .news_link_page import NewsLinkPage
+    from .page_template import PageTemplate
     from .recycle_bin import RecycleBin
     from .recycle_bin_item import RecycleBinItem
     from .shared_drive_item import SharedDriveItem
@@ -88,6 +89,10 @@ class BaseItem(Entity):
             from .news_link_page import NewsLinkPage
 
             return NewsLinkPage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.pageTemplate".casefold():
+            from .page_template import PageTemplate
+
+            return PageTemplate()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.recycleBin".casefold():
             from .recycle_bin import RecycleBin
 
@@ -128,6 +133,7 @@ class BaseItem(Entity):
         from .list_ import List_
         from .list_item import ListItem
         from .news_link_page import NewsLinkPage
+        from .page_template import PageTemplate
         from .recycle_bin import RecycleBin
         from .recycle_bin_item import RecycleBinItem
         from .shared_drive_item import SharedDriveItem
@@ -145,6 +151,7 @@ class BaseItem(Entity):
         from .list_ import List_
         from .list_item import ListItem
         from .news_link_page import NewsLinkPage
+        from .page_template import PageTemplate
         from .recycle_bin import RecycleBin
         from .recycle_bin_item import RecycleBinItem
         from .shared_drive_item import SharedDriveItem

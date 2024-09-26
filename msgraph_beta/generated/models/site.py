@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .item_analytics import ItemAnalytics
     from .list_ import List_
     from .onenote import Onenote
+    from .page_template import PageTemplate
     from .permission import Permission
     from .recycle_bin import RecycleBin
     from .rich_long_running_operation import RichLongRunningOperation
@@ -63,6 +64,8 @@ class Site(BaseItem):
     onenote: Optional[Onenote] = None
     # The collection of long running operations for the site.
     operations: Optional[List[RichLongRunningOperation]] = None
+    # The collection of page templates on this site.
+    page_templates: Optional[List[PageTemplate]] = None
     # The collection of pages in the baseSitePages list on this site.
     pages: Optional[List[BaseSitePage]] = None
     # The permissions associated with the site. Nullable.
@@ -110,6 +113,7 @@ class Site(BaseItem):
         from .item_analytics import ItemAnalytics
         from .list_ import List_
         from .onenote import Onenote
+        from .page_template import PageTemplate
         from .permission import Permission
         from .recycle_bin import RecycleBin
         from .rich_long_running_operation import RichLongRunningOperation
@@ -131,6 +135,7 @@ class Site(BaseItem):
         from .item_analytics import ItemAnalytics
         from .list_ import List_
         from .onenote import Onenote
+        from .page_template import PageTemplate
         from .permission import Permission
         from .recycle_bin import RecycleBin
         from .rich_long_running_operation import RichLongRunningOperation
@@ -157,6 +162,7 @@ class Site(BaseItem):
             "lists": lambda n : setattr(self, 'lists', n.get_collection_of_object_values(List_)),
             "onenote": lambda n : setattr(self, 'onenote', n.get_object_value(Onenote)),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(RichLongRunningOperation)),
+            "pageTemplates": lambda n : setattr(self, 'page_templates', n.get_collection_of_object_values(PageTemplate)),
             "pages": lambda n : setattr(self, 'pages', n.get_collection_of_object_values(BaseSitePage)),
             "permissions": lambda n : setattr(self, 'permissions', n.get_collection_of_object_values(Permission)),
             "recycleBin": lambda n : setattr(self, 'recycle_bin', n.get_object_value(RecycleBin)),
@@ -196,6 +202,7 @@ class Site(BaseItem):
         writer.write_collection_of_object_values("lists", self.lists)
         writer.write_object_value("onenote", self.onenote)
         writer.write_collection_of_object_values("operations", self.operations)
+        writer.write_collection_of_object_values("pageTemplates", self.page_templates)
         writer.write_collection_of_object_values("pages", self.pages)
         writer.write_collection_of_object_values("permissions", self.permissions)
         writer.write_object_value("recycleBin", self.recycle_bin)

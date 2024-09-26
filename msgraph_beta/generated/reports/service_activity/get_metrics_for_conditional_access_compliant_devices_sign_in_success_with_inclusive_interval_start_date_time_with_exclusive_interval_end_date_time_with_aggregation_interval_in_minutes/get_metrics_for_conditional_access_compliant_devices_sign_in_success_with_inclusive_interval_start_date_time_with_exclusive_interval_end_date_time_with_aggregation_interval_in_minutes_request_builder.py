@@ -31,8 +31,8 @@ class GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIn
         Returns: None
         """
         if isinstance(path_parameters, dict):
-            path_parameters['exclusiveIntervalEndDateTime'] = str(exclusive_interval_end_date_time)
-            path_parameters['inclusiveIntervalStartDateTime'] = str(inclusive_interval_start_date_time)
+            path_parameters['exclusiveIntervalEndDateTime'] = exclusive_interval_end_date_time
+            path_parameters['inclusiveIntervalStartDateTime'] = inclusive_interval_start_date_time
         super().__init__(request_adapter, "{+baseurl}/reports/serviceActivity/getMetricsForConditionalAccessCompliantDevicesSignInSuccess(inclusiveIntervalStartDateTime={inclusiveIntervalStartDateTime},exclusiveIntervalEndDateTime={exclusiveIntervalEndDateTime},aggregationIntervalInMinutes=@aggregationIntervalInMinutes){?%24count,%24filter,%24search,%24skip,%24top,aggregationIntervalInMinutes*}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
@@ -47,7 +47,7 @@ class GetMetricsForConditionalAccessCompliantDevicesSignInSuccessWithInclusiveIn
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:

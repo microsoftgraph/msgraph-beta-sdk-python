@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     from .restore.restore_request_builder import RestoreRequestBuilder
     from .retrieve_cloud_p_c_remote_action_results.retrieve_cloud_p_c_remote_action_results_request_builder import RetrieveCloudPCRemoteActionResultsRequestBuilder
     from .retrieve_review_status.retrieve_review_status_request_builder import RetrieveReviewStatusRequestBuilder
+    from .retrieve_snapshots.retrieve_snapshots_request_builder import RetrieveSnapshotsRequestBuilder
     from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
     from .set_review_status.set_review_status_request_builder import SetReviewStatusRequestBuilder
     from .start.start_request_builder import StartRequestBuilder
@@ -61,7 +62,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -80,7 +81,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -103,7 +104,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, ParsableFactory] = {
+        error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -302,6 +303,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         from .retrieve_review_status.retrieve_review_status_request_builder import RetrieveReviewStatusRequestBuilder
 
         return RetrieveReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_snapshots(self) -> RetrieveSnapshotsRequestBuilder:
+        """
+        Provides operations to call the retrieveSnapshots method.
+        """
+        from .retrieve_snapshots.retrieve_snapshots_request_builder import RetrieveSnapshotsRequestBuilder
+
+        return RetrieveSnapshotsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retry_partner_agent_installation(self) -> RetryPartnerAgentInstallationRequestBuilder:
