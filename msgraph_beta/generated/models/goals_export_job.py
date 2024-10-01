@@ -11,6 +11,9 @@ from .long_running_operation import LongRunningOperation
 
 @dataclass
 class GoalsExportJob(LongRunningOperation):
+    """
+    The status of a long-running operation.
+    """
     # The content of the goalsExportJob.
     content: Optional[bytes] = None
     # The date and time of expiry of the result of the operation.

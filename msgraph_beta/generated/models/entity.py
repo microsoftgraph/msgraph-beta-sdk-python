@@ -188,6 +188,7 @@ if TYPE_CHECKING:
     from .authentication_events_flow import AuthenticationEventsFlow
     from .authentication_events_policy import AuthenticationEventsPolicy
     from .authentication_event_listener import AuthenticationEventListener
+    from .authentication_failure import AuthenticationFailure
     from .authentication_flows_policy import AuthenticationFlowsPolicy
     from .authentication_listener import AuthenticationListener
     from .authentication_method import AuthenticationMethod
@@ -617,6 +618,7 @@ if TYPE_CHECKING:
     from .embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
     from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
     from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
+    from .emergency_call_event import EmergencyCallEvent
     from .employee_experience_user import EmployeeExperienceUser
     from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
     from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
@@ -750,6 +752,9 @@ if TYPE_CHECKING:
     from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
     from .hardware_password_detail import HardwarePasswordDetail
     from .hardware_password_info import HardwarePasswordInfo
+    from .health_monitoring.alert import Alert
+    from .health_monitoring.alert_configuration import AlertConfiguration
+    from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
     from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
     from .horizontal_section import HorizontalSection
     from .horizontal_section_column import HorizontalSectionColumn
@@ -2215,6 +2220,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return AgreementFileVersion()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.alert".casefold():
             from .alert import Alert
+            from .health_monitoring.alert import Alert
             from .networkaccess.alert import Alert
             from .security.alert import Alert
 
@@ -2740,6 +2746,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .authentication_events_policy import AuthenticationEventsPolicy
 
             return AuthenticationEventsPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationFailure".casefold():
+            from .authentication_failure import AuthenticationFailure
+
+            return AuthenticationFailure()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationFlowsPolicy".casefold():
             from .authentication_flows_policy import AuthenticationFlowsPolicy
 
@@ -4476,6 +4486,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
 
             return EmbeddedSIMDeviceState()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.emergencyCallEvent".casefold():
+            from .emergency_call_event import EmergencyCallEvent
+
+            return EmergencyCallEvent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.employeeExperienceUser".casefold():
             from .employee_experience_user import EmployeeExperienceUser
 
@@ -5013,6 +5027,21 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .hardware_password_info import HardwarePasswordInfo
 
             return HardwarePasswordInfo()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.alert".casefold():
+            from .alert import Alert
+            from .health_monitoring.alert import Alert
+            from .networkaccess.alert import Alert
+            from .security.alert import Alert
+
+            return Alert()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.alertConfiguration".casefold():
+            from .health_monitoring.alert_configuration import AlertConfiguration
+
+            return AlertConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.healthMonitoringRoot".casefold():
+            from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
+
+            return HealthMonitoringRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.homeRealmDiscoveryPolicy".casefold():
             from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
 
@@ -6320,6 +6349,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return NdesConnector()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.alert".casefold():
             from .alert import Alert
+            from .health_monitoring.alert import Alert
             from .networkaccess.alert import Alert
             from .security.alert import Alert
 
@@ -7610,6 +7640,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return SecureScoreControlProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.alert".casefold():
             from .alert import Alert
+            from .health_monitoring.alert import Alert
             from .networkaccess.alert import Alert
             from .security.alert import Alert
 
@@ -10167,6 +10198,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .authentication_events_flow import AuthenticationEventsFlow
         from .authentication_events_policy import AuthenticationEventsPolicy
         from .authentication_event_listener import AuthenticationEventListener
+        from .authentication_failure import AuthenticationFailure
         from .authentication_flows_policy import AuthenticationFlowsPolicy
         from .authentication_listener import AuthenticationListener
         from .authentication_method import AuthenticationMethod
@@ -10596,6 +10628,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
         from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
         from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
+        from .emergency_call_event import EmergencyCallEvent
         from .employee_experience_user import EmployeeExperienceUser
         from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
         from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
@@ -10729,6 +10762,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
         from .hardware_password_detail import HardwarePasswordDetail
         from .hardware_password_info import HardwarePasswordInfo
+        from .health_monitoring.alert import Alert
+        from .health_monitoring.alert_configuration import AlertConfiguration
+        from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .horizontal_section import HorizontalSection
         from .horizontal_section_column import HorizontalSectionColumn
@@ -12146,6 +12182,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .authentication_events_flow import AuthenticationEventsFlow
         from .authentication_events_policy import AuthenticationEventsPolicy
         from .authentication_event_listener import AuthenticationEventListener
+        from .authentication_failure import AuthenticationFailure
         from .authentication_flows_policy import AuthenticationFlowsPolicy
         from .authentication_listener import AuthenticationListener
         from .authentication_method import AuthenticationMethod
@@ -12575,6 +12612,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
         from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
         from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
+        from .emergency_call_event import EmergencyCallEvent
         from .employee_experience_user import EmployeeExperienceUser
         from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
         from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
@@ -12708,6 +12746,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
         from .hardware_password_detail import HardwarePasswordDetail
         from .hardware_password_info import HardwarePasswordInfo
+        from .health_monitoring.alert import Alert
+        from .health_monitoring.alert_configuration import AlertConfiguration
+        from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .horizontal_section import HorizontalSection
         from .horizontal_section_column import HorizontalSectionColumn

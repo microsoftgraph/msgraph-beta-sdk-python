@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .call_event_type import CallEventType
+    from .emergency_call_event import EmergencyCallEvent
     from .entity import Entity
     from .participant import Participant
 
@@ -31,6 +32,14 @@ class CallEvent(Entity):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.emergencyCallEvent".casefold():
+            from .emergency_call_event import EmergencyCallEvent
+
+            return EmergencyCallEvent()
         return CallEvent()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -39,10 +48,12 @@ class CallEvent(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .call_event_type import CallEventType
+        from .emergency_call_event import EmergencyCallEvent
         from .entity import Entity
         from .participant import Participant
 
         from .call_event_type import CallEventType
+        from .emergency_call_event import EmergencyCallEvent
         from .entity import Entity
         from .participant import Participant
 

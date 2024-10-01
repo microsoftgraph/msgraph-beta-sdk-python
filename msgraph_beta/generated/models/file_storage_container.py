@@ -42,9 +42,9 @@ class FileStorageContainer(Entity):
     drive: Optional[Drive] = None
     # The externalGroupId property
     external_group_id: Optional[UUID] = None
-    # Indicates whether versioning is enabled for the fileStorageContainer. The setting is applicable to all items in the fileStorageContainer. Read-Write.
+    # The isItemVersioningEnabled property
     is_item_versioning_enabled: Optional[bool] = None
-    # Maximum number of major versions allowed for items in the fileStorageContainer. Read-write.
+    # The itemMajorVersionLimit property
     item_major_version_limit: Optional[int] = None
     # Indicates the lock state of the fileStorageContainer. The possible values are unlocked and lockedReadOnly. Read-only.
     lock_state: Optional[SiteLockState] = None

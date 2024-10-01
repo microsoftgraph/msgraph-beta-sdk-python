@@ -33,10 +33,9 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete permissions from a fileStorageContainer object.
+        Delete navigation property permissions for storage
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainer-delete-permissions?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -72,11 +71,10 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Permission, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Permission]:
         """
-        Update an existing permission on a fileStorageContainer by making a PATCH request on the permission resource. Only the roles property can be updated.  One role per user is supported. A new ID is generated for the updated permissions object.
+        Update the navigation property permissions in storage
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Permission]
-        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainer-update-permissions?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -96,7 +94,7 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete permissions from a fileStorageContainer object.
+        Delete navigation property permissions for storage
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +116,7 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Permission, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update an existing permission on a fileStorageContainer by making a PATCH request on the permission resource. Only the roles property can be updated.  One role per user is supported. A new ID is generated for the updated permissions object.
+        Update the navigation property permissions in storage
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

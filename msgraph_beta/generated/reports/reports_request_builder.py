@@ -146,6 +146,7 @@ if TYPE_CHECKING:
     from .get_yammer_groups_activity_detail_with_date.get_yammer_groups_activity_detail_with_date_request_builder import GetYammerGroupsActivityDetailWithDateRequestBuilder
     from .get_yammer_groups_activity_detail_with_period.get_yammer_groups_activity_detail_with_period_request_builder import GetYammerGroupsActivityDetailWithPeriodRequestBuilder
     from .get_yammer_groups_activity_group_counts_with_period.get_yammer_groups_activity_group_counts_with_period_request_builder import GetYammerGroupsActivityGroupCountsWithPeriodRequestBuilder
+    from .health_monitoring.health_monitoring_request_builder import HealthMonitoringRequestBuilder
     from .managed_device_enrollment_abandonment_details_with_skip_with_top_with_filter_with_skip_token.managed_device_enrollment_abandonment_details_with_skip_with_top_with_filter_with_skip_token_request_builder import ManagedDeviceEnrollmentAbandonmentDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder
     from .managed_device_enrollment_abandonment_summary_with_skip_with_top_with_filter_with_skip_token.managed_device_enrollment_abandonment_summary_with_skip_with_top_with_filter_with_skip_token_request_builder import ManagedDeviceEnrollmentAbandonmentSummaryWithSkipWithTopWithFilterWithSkipTokenRequestBuilder
     from .managed_device_enrollment_failure_details.managed_device_enrollment_failure_details_request_builder import ManagedDeviceEnrollmentFailureDetailsRequestBuilder
@@ -1855,6 +1856,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_office365_activations_user_detail.get_office365_activations_user_detail_request_builder import GetOffice365ActivationsUserDetailRequestBuilder
 
         return GetOffice365ActivationsUserDetailRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def health_monitoring(self) -> HealthMonitoringRequestBuilder:
+        """
+        Provides operations to manage the healthMonitoring property of the microsoft.graph.reportRoot entity.
+        """
+        from .health_monitoring.health_monitoring_request_builder import HealthMonitoringRequestBuilder
+
+        return HealthMonitoringRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def managed_device_enrollment_failure_details(self) -> ManagedDeviceEnrollmentFailureDetailsRequestBuilder:

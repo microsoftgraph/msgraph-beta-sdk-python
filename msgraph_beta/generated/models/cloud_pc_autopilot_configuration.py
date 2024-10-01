@@ -11,13 +11,13 @@ class CloudPcAutopilotConfiguration(AdditionalDataHolder, BackedModel, Parsable)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The applicationTimeoutInMinutes property
+    # Indicates the number of minutes allowed for the Autopilot application to apply the device preparation profile (DPP) configurations to the device. If the Autopilot application doesn't finish within the specified time (applicationTimeoutInMinutes), the application error is added to the statusDetail property of the cloudPC object. The supported value is an integer between 10 and 360. Required.
     application_timeout_in_minutes: Optional[int] = None
-    # The devicePreparationProfileId property
+    # The unique identifier (ID) of the Autopilot device preparation profile (DPP) that links a Windows Autopilot device preparation policy to ensure that devices are ready for users after provisioning. Required.
     device_preparation_profile_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The onFailureDeviceAccessDenied property
+    # Indicates whether the access to the device is allowed when the application of Autopilot device preparation profile (DPP) configurations fails or times out. If true, the status of the device is failed and the device is unable to access; otherwise, the status of the device is provisionedWithWarnings and the device is allowed to access. The default value is false. Required.
     on_failure_device_access_denied: Optional[bool] = None
     
     @staticmethod

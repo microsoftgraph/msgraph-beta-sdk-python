@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .authentication_failure import AuthenticationFailure
     from .entity import Entity
 
 from .entity import Entity
@@ -15,10 +16,16 @@ class AuthenticationsMetric(Entity):
     appid: Optional[str] = None
     # The number of authentication requests made in the specified period. Supports $filter (eq).
     attempts_count: Optional[int] = None
+    # The authFlow property
+    auth_flow: Optional[str] = None
+    # The browser property
+    browser: Optional[str] = None
     # The location where the customers authenticated from. Supports $filter (eq).
     country: Optional[str] = None
     # The date of the user insight.
     fact_date: Optional[datetime.date] = None
+    # The failures property
+    failures: Optional[List[AuthenticationFailure]] = None
     # The identityProvider property
     identity_provider: Optional[str] = None
     # The language property
@@ -46,15 +53,20 @@ class AuthenticationsMetric(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .authentication_failure import AuthenticationFailure
         from .entity import Entity
 
+        from .authentication_failure import AuthenticationFailure
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appid": lambda n : setattr(self, 'appid', n.get_str_value()),
             "attemptsCount": lambda n : setattr(self, 'attempts_count', n.get_int_value()),
+            "authFlow": lambda n : setattr(self, 'auth_flow', n.get_str_value()),
+            "browser": lambda n : setattr(self, 'browser', n.get_str_value()),
             "country": lambda n : setattr(self, 'country', n.get_str_value()),
             "factDate": lambda n : setattr(self, 'fact_date', n.get_date_value()),
+            "failures": lambda n : setattr(self, 'failures', n.get_collection_of_object_values(AuthenticationFailure)),
             "identityProvider": lambda n : setattr(self, 'identity_provider', n.get_str_value()),
             "language": lambda n : setattr(self, 'language', n.get_str_value()),
             "os": lambda n : setattr(self, 'os', n.get_str_value()),
@@ -75,8 +87,11 @@ class AuthenticationsMetric(Entity):
         super().serialize(writer)
         writer.write_str_value("appid", self.appid)
         writer.write_int_value("attemptsCount", self.attempts_count)
+        writer.write_str_value("authFlow", self.auth_flow)
+        writer.write_str_value("browser", self.browser)
         writer.write_str_value("country", self.country)
         writer.write_date_value("factDate", self.fact_date)
+        writer.write_collection_of_object_values("failures", self.failures)
         writer.write_str_value("identityProvider", self.identity_provider)
         writer.write_str_value("language", self.language)
         writer.write_str_value("os", self.os)

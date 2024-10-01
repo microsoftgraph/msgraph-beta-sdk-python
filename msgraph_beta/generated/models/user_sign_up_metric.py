@@ -13,6 +13,8 @@ from .entity import Entity
 class UserSignUpMetric(Entity):
     # The appId property
     app_id: Optional[str] = None
+    # The browser property
+    browser: Optional[str] = None
     # The total number of users who signed up in the specified period. Supports $filter (eq).
     count: Optional[int] = None
     # The country property
@@ -50,6 +52,7 @@ class UserSignUpMetric(Entity):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
+            "browser": lambda n : setattr(self, 'browser', n.get_str_value()),
             "count": lambda n : setattr(self, 'count', n.get_int_value()),
             "country": lambda n : setattr(self, 'country', n.get_str_value()),
             "factDate": lambda n : setattr(self, 'fact_date', n.get_date_value()),
@@ -71,6 +74,7 @@ class UserSignUpMetric(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("appId", self.app_id)
+        writer.write_str_value("browser", self.browser)
         writer.write_int_value("count", self.count)
         writer.write_str_value("country", self.country)
         writer.write_date_value("factDate", self.fact_date)

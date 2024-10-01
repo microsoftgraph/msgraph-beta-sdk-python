@@ -12,6 +12,9 @@ from ..long_running_operation import LongRunningOperation
 
 @dataclass
 class ValidateOperation(LongRunningOperation):
+    """
+    The status of a long-running operation.
+    """
     # Set of errors discovered through validation.
     errors: Optional[List[PublicError]] = None
     # The OdataType property

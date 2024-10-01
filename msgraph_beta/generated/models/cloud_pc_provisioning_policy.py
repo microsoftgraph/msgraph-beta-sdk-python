@@ -26,7 +26,7 @@ class CloudPcProvisioningPolicy(Entity):
     assignments: Optional[List[CloudPcProvisioningPolicyAssignment]] = None
     # The specific settings for Windows Autopatch that enable its customers to experience it on Cloud PC. The settings take effect when the tenant enrolls in Windows Autopatch and the managedType of the microsoftManagedDesktop property is set as starterManaged. Supports $select.
     autopatch: Optional[CloudPcProvisioningPolicyAutopatch] = None
-    # The autopilotConfiguration property
+    # The specific settings for Windows Autopilot that enable Windows 365 customers to experience it on Cloud PC. Supports $select.
     autopilot_configuration: Optional[CloudPcAutopilotConfiguration] = None
     # The display name of the Cloud PC group that the Cloud PCs reside in. Read-only.
     cloud_pc_group_display_name: Optional[str] = None
