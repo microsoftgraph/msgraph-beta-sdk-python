@@ -48,10 +48,9 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PermissionsRequestBuilderGetQueryParameters]] = None) -> Optional[PermissionCollectionResponse]:
         """
-        Get a list of the permission objects associated with a fileStorageContainer.
+        The set of permissions for users in the fileStorageContainer. The permission for each user is set by the roles property. The possible values are reader, writer, manager, and owner. Read-write.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PermissionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainer-list-permissions?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,11 +68,10 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Permission, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Permission]:
         """
-        Add a permission to an existing fileStorageContainer. 
+        Create new navigation property to permissions for storage
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Permission]
-        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainer-post-permissions?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -93,7 +91,7 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PermissionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the permission objects associated with a fileStorageContainer.
+        The set of permissions for users in the fileStorageContainer. The permission for each user is set by the roles property. The possible values are reader, writer, manager, and owner. Read-write.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +102,7 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Permission, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Add a permission to an existing fileStorageContainer. 
+        Create new navigation property to permissions for storage
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +137,7 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PermissionsRequestBuilderGetQueryParameters():
         """
-        Get a list of the permission objects associated with a fileStorageContainer.
+        The set of permissions for users in the fileStorageContainer. The permission for each user is set by the roles property. The possible values are reader, writer, manager, and owner. Read-write.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

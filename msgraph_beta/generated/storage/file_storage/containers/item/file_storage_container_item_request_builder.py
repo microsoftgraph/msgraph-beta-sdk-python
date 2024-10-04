@@ -77,11 +77,10 @@ class FileStorageContainerItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: FileStorageContainer, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[FileStorageContainer]:
         """
-        Update the properties of a fileStorageContainer object.
+        Update the navigation property containers in storage
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FileStorageContainer]
-        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainer-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -123,7 +122,7 @@ class FileStorageContainerItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: FileStorageContainer, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a fileStorageContainer object.
+        Update the navigation property containers in storage
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

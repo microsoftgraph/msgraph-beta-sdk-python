@@ -31,7 +31,7 @@ class CloudPcDeviceImage(Entity):
     os_build_number: Optional[str] = None
     # The OS status of this image. Possible values are: supported, supportedWithWarning, unknown, unknownFutureValue. The default value is unknown. Read-only.
     os_status: Optional[CloudPcDeviceImageOsStatus] = None
-    # The osVersionNumber property
+    # The operating system version of this image. For example, 10.0.22000.296. Read-only.
     os_version_number: Optional[str] = None
     # The scopeIds property
     scope_ids: Optional[List[str]] = None

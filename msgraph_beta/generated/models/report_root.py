@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .authentication_methods_root import AuthenticationMethodsRoot
     from .credential_user_registration_details import CredentialUserRegistrationDetails
     from .entity import Entity
+    from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
     from .partners.partners import Partners
     from .print_usage import PrintUsage
     from .print_usage_by_printer import PrintUsageByPrinter
@@ -45,6 +46,8 @@ class ReportRoot(Entity):
     daily_print_usage_summaries_by_printer: Optional[List[PrintUsageByPrinter]] = None
     # The dailyPrintUsageSummariesByUser property
     daily_print_usage_summaries_by_user: Optional[List[PrintUsageByUser]] = None
+    # The healthMonitoring property
+    health_monitoring: Optional[HealthMonitoringRoot] = None
     # Retrieve a list of monthly print usage summaries, grouped by printer.
     monthly_print_usage_by_printer: Optional[List[PrintUsageByPrinter]] = None
     # Retrieve a list of monthly print usage summaries, grouped by user.
@@ -91,6 +94,7 @@ class ReportRoot(Entity):
         from .authentication_methods_root import AuthenticationMethodsRoot
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .entity import Entity
+        from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
         from .partners.partners import Partners
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
@@ -107,6 +111,7 @@ class ReportRoot(Entity):
         from .authentication_methods_root import AuthenticationMethodsRoot
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .entity import Entity
+        from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
         from .partners.partners import Partners
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
@@ -128,6 +133,7 @@ class ReportRoot(Entity):
             "dailyPrintUsageByUser": lambda n : setattr(self, 'daily_print_usage_by_user', n.get_collection_of_object_values(PrintUsageByUser)),
             "dailyPrintUsageSummariesByPrinter": lambda n : setattr(self, 'daily_print_usage_summaries_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
             "dailyPrintUsageSummariesByUser": lambda n : setattr(self, 'daily_print_usage_summaries_by_user', n.get_collection_of_object_values(PrintUsageByUser)),
+            "healthMonitoring": lambda n : setattr(self, 'health_monitoring', n.get_object_value(HealthMonitoringRoot)),
             "monthlyPrintUsageByPrinter": lambda n : setattr(self, 'monthly_print_usage_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
             "monthlyPrintUsageByUser": lambda n : setattr(self, 'monthly_print_usage_by_user', n.get_collection_of_object_values(PrintUsageByUser)),
             "monthlyPrintUsageSummariesByPrinter": lambda n : setattr(self, 'monthly_print_usage_summaries_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
@@ -162,6 +168,7 @@ class ReportRoot(Entity):
         writer.write_collection_of_object_values("dailyPrintUsageByUser", self.daily_print_usage_by_user)
         writer.write_collection_of_object_values("dailyPrintUsageSummariesByPrinter", self.daily_print_usage_summaries_by_printer)
         writer.write_collection_of_object_values("dailyPrintUsageSummariesByUser", self.daily_print_usage_summaries_by_user)
+        writer.write_object_value("healthMonitoring", self.health_monitoring)
         writer.write_collection_of_object_values("monthlyPrintUsageByPrinter", self.monthly_print_usage_by_printer)
         writer.write_collection_of_object_values("monthlyPrintUsageByUser", self.monthly_print_usage_by_user)
         writer.write_collection_of_object_values("monthlyPrintUsageSummariesByPrinter", self.monthly_print_usage_summaries_by_printer)

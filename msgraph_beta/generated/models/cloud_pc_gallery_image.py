@@ -26,7 +26,7 @@ class CloudPcGalleryImage(Entity):
     offer_display_name: Optional[str] = None
     # The offer name of this gallery image that is passed to ARM to retrieve the image resource. Read-only.
     offer_name: Optional[str] = None
-    # The osVersionNumber property
+    # The operating system version of this gallery image. For example, 10.0.22000.296. Read-only.
     os_version_number: Optional[str] = None
     # The publisher name of this gallery image that is passed to ARM to retrieve the image resource. Read-only. The publisher property is deprecated and will stop returning data on January 31, 2024. Going forward, use the publisherName property.
     publisher: Optional[str] = None

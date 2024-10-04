@@ -10,6 +10,9 @@ from .validate_operation import ValidateOperation
 
 @dataclass
 class FileValidateOperation(ValidateOperation):
+    """
+    The status of a long-running operation.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.fileValidateOperation"
     # Set of files validated by the validate operation.

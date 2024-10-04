@@ -32,7 +32,7 @@ class BulkSetCloudPcReviewStatusRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: BulkSetCloudPcReviewStatusPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcBulkRemoteActionResult]:
         """
-        Set the review status of multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices.
+        Invoke action bulkSetCloudPcReviewStatus
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcBulkRemoteActionResult]
@@ -57,7 +57,7 @@ class BulkSetCloudPcReviewStatusRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: BulkSetCloudPcReviewStatusPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Set the review status of multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices.
+        Invoke action bulkSetCloudPcReviewStatus
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

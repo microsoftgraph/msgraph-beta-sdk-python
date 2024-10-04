@@ -36,6 +36,7 @@ if TYPE_CHECKING:
     from .sign_in_user_type import SignInUserType
     from .token_issuer_type import TokenIssuerType
     from .token_protection_status import TokenProtectionStatus
+    from .token_protection_status_details import TokenProtectionStatusDetails
 
 from .entity import Entity
 
@@ -171,6 +172,8 @@ class SignIn(Entity):
     token_issuer_name: Optional[str] = None
     # The type of identity provider. The possible values are: AzureAD, ADFederationServices, UnknownFutureValue, AzureADBackupAuth, ADFederationServicesMFAAdapter, NPSExtension. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: AzureADBackupAuth , ADFederationServicesMFAAdapter , NPSExtension.
     token_issuer_type: Optional[TokenIssuerType] = None
+    # The tokenProtectionStatusDetails property
+    token_protection_status_details: Optional[TokenProtectionStatusDetails] = None
     # A unique base64 encoded request identifier used to track tokens issued by Microsoft Entra ID as they're redeemed at resource providers.
     unique_token_identifier: Optional[str] = None
     # The user agent information related to sign-in.  Supports $filter (eq, startsWith).
@@ -231,6 +234,7 @@ class SignIn(Entity):
         from .sign_in_user_type import SignInUserType
         from .token_issuer_type import TokenIssuerType
         from .token_protection_status import TokenProtectionStatus
+        from .token_protection_status_details import TokenProtectionStatusDetails
 
         from .applied_authentication_event_listener import AppliedAuthenticationEventListener
         from .applied_conditional_access_policy import AppliedConditionalAccessPolicy
@@ -263,6 +267,7 @@ class SignIn(Entity):
         from .sign_in_user_type import SignInUserType
         from .token_issuer_type import TokenIssuerType
         from .token_protection_status import TokenProtectionStatus
+        from .token_protection_status_details import TokenProtectionStatusDetails
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
@@ -329,6 +334,7 @@ class SignIn(Entity):
             "status": lambda n : setattr(self, 'status', n.get_object_value(SignInStatus)),
             "tokenIssuerName": lambda n : setattr(self, 'token_issuer_name', n.get_str_value()),
             "tokenIssuerType": lambda n : setattr(self, 'token_issuer_type', n.get_enum_value(TokenIssuerType)),
+            "tokenProtectionStatusDetails": lambda n : setattr(self, 'token_protection_status_details', n.get_object_value(TokenProtectionStatusDetails)),
             "uniqueTokenIdentifier": lambda n : setattr(self, 'unique_token_identifier', n.get_str_value()),
             "userAgent": lambda n : setattr(self, 'user_agent', n.get_str_value()),
             "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
@@ -413,6 +419,7 @@ class SignIn(Entity):
         writer.write_object_value("status", self.status)
         writer.write_str_value("tokenIssuerName", self.token_issuer_name)
         writer.write_enum_value("tokenIssuerType", self.token_issuer_type)
+        writer.write_object_value("tokenProtectionStatusDetails", self.token_protection_status_details)
         writer.write_str_value("uniqueTokenIdentifier", self.unique_token_identifier)
         writer.write_str_value("userAgent", self.user_agent)
         writer.write_str_value("userDisplayName", self.user_display_name)

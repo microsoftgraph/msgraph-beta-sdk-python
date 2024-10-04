@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .app_management_configuration import AppManagementConfiguration
+    from .custom_app_management_application_configuration import CustomAppManagementApplicationConfiguration
 
 from .app_management_configuration import AppManagementConfiguration
 
@@ -12,6 +13,8 @@ from .app_management_configuration import AppManagementConfiguration
 class CustomAppManagementConfiguration(AppManagementConfiguration):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customAppManagementConfiguration"
+    # Restrictions applicable only to application objects that the policy applies to.
+    application_restrictions: Optional[CustomAppManagementApplicationConfiguration] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CustomAppManagementConfiguration:
@@ -30,10 +33,13 @@ class CustomAppManagementConfiguration(AppManagementConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .app_management_configuration import AppManagementConfiguration
+        from .custom_app_management_application_configuration import CustomAppManagementApplicationConfiguration
 
         from .app_management_configuration import AppManagementConfiguration
+        from .custom_app_management_application_configuration import CustomAppManagementApplicationConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "applicationRestrictions": lambda n : setattr(self, 'application_restrictions', n.get_object_value(CustomAppManagementApplicationConfiguration)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -48,5 +54,6 @@ class CustomAppManagementConfiguration(AppManagementConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("applicationRestrictions", self.application_restrictions)
     
 
