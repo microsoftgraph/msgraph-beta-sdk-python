@@ -77,11 +77,11 @@ class EducationUserItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: EducationUser, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[EducationUser]:
         """
-        Update the properties of an educationuser object.
+        Update the relatedContact collection of an educationUser object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationUser]
-        Find more info here: https://learn.microsoft.com/graph/api/educationuser-update?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/relatedcontact-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -123,7 +123,7 @@ class EducationUserItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: EducationUser, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of an educationuser object.
+        Update the relatedContact collection of an educationUser object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
