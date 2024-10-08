@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .user_experience_analytics_battery_health_app_impact_battery_usage_percentage import UserExperienceAnalyticsBatteryHealthAppImpact_batteryUsagePercentage
 
 from .entity import Entity
 
@@ -22,7 +23,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpact(Entity):
     # App publisher. Eg: Microsoft Corporation
     app_publisher: Optional[str] = None
     # The percent of total battery power used by this application when the device was not plugged into AC power, over 14 days computed across all devices in the tenant. Unit in percentage. Valid values 0 to 1.79769313486232E+308
-    battery_usage_percentage: Optional[float] = None
+    battery_usage_percentage: Optional[UserExperienceAnalyticsBatteryHealthAppImpact_batteryUsagePercentage] = None
     # true if the user had active interaction with the app.
     is_foreground_app: Optional[bool] = None
     # The OdataType property
@@ -45,15 +46,17 @@ class UserExperienceAnalyticsBatteryHealthAppImpact(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .user_experience_analytics_battery_health_app_impact_battery_usage_percentage import UserExperienceAnalyticsBatteryHealthAppImpact_batteryUsagePercentage
 
         from .entity import Entity
+        from .user_experience_analytics_battery_health_app_impact_battery_usage_percentage import UserExperienceAnalyticsBatteryHealthAppImpact_batteryUsagePercentage
 
         fields: Dict[str, Callable[[Any], None]] = {
             "activeDevices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appName": lambda n : setattr(self, 'app_name', n.get_str_value()),
             "appPublisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
-            "batteryUsagePercentage": lambda n : setattr(self, 'battery_usage_percentage', n.get_float_value()),
+            "batteryUsagePercentage": lambda n : setattr(self, 'battery_usage_percentage', n.get_object_value(UserExperienceAnalyticsBatteryHealthAppImpact_batteryUsagePercentage)),
             "isForegroundApp": lambda n : setattr(self, 'is_foreground_app', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -73,7 +76,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpact(Entity):
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appName", self.app_name)
         writer.write_str_value("appPublisher", self.app_publisher)
-        writer.write_float_value("batteryUsagePercentage", self.battery_usage_percentage)
+        writer.write_object_value("batteryUsagePercentage", self.battery_usage_percentage)
         writer.write_bool_value("isForegroundApp", self.is_foreground_app)
     
 

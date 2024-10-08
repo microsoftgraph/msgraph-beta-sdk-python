@@ -8,6 +8,12 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
     from .user_experience_analytics_machine_type import UserExperienceAnalyticsMachineType
+    from .user_experience_analytics_resource_performance_cpu_clock_speed_in_m_hz import UserExperienceAnalyticsResourcePerformance_cpuClockSpeedInMHz
+    from .user_experience_analytics_resource_performance_cpu_spike_time_percentage import UserExperienceAnalyticsResourcePerformance_cpuSpikeTimePercentage
+    from .user_experience_analytics_resource_performance_cpu_spike_time_percentage_threshold import UserExperienceAnalyticsResourcePerformance_cpuSpikeTimePercentageThreshold
+    from .user_experience_analytics_resource_performance_ram_spike_time_percentage import UserExperienceAnalyticsResourcePerformance_ramSpikeTimePercentage
+    from .user_experience_analytics_resource_performance_ram_spike_time_percentage_threshold import UserExperienceAnalyticsResourcePerformance_ramSpikeTimePercentageThreshold
+    from .user_experience_analytics_resource_performance_total_ram_in_m_b import UserExperienceAnalyticsResourcePerformance_totalRamInMB
 
 from .entity import Entity
 
@@ -19,13 +25,13 @@ class UserExperienceAnalyticsResourcePerformance(Entity):
     # AverageSpikeTimeScore of a device or a model type. Valid values 0 to 100
     average_spike_time_score: Optional[int] = None
     # The clock speed of the processor, in MHz. Valid values 0 to 1000000
-    cpu_clock_speed_in_m_hz: Optional[float] = None
+    cpu_clock_speed_in_m_hz: Optional[UserExperienceAnalyticsResourcePerformance_cpuClockSpeedInMHz] = None
     # The name of the processor on the device, For example, 11th Gen Intel(R) Core(TM) i7.
     cpu_display_name: Optional[str] = None
     # CPU spike time in percentage. Valid values 0 to 100
-    cpu_spike_time_percentage: Optional[float] = None
+    cpu_spike_time_percentage: Optional[UserExperienceAnalyticsResourcePerformance_cpuSpikeTimePercentage] = None
     # Threshold of cpuSpikeTimeScore. Valid values 0 to 100
-    cpu_spike_time_percentage_threshold: Optional[float] = None
+    cpu_spike_time_percentage_threshold: Optional[UserExperienceAnalyticsResourcePerformance_cpuSpikeTimePercentageThreshold] = None
     # The user experience analytics device CPU spike time score. Valid values 0 to 100
     cpu_spike_time_score: Optional[int] = None
     # User experience analytics summarized device count.
@@ -49,15 +55,15 @@ class UserExperienceAnalyticsResourcePerformance(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # RAM spike time in percentage. Valid values 0 to 100
-    ram_spike_time_percentage: Optional[float] = None
+    ram_spike_time_percentage: Optional[UserExperienceAnalyticsResourcePerformance_ramSpikeTimePercentage] = None
     # Threshold of ramSpikeTimeScore. Valid values 0 to 100
-    ram_spike_time_percentage_threshold: Optional[float] = None
+    ram_spike_time_percentage_threshold: Optional[UserExperienceAnalyticsResourcePerformance_ramSpikeTimePercentageThreshold] = None
     # The user experience analytics device RAM spike time score. Valid values 0 to 100
     ram_spike_time_score: Optional[int] = None
     # The count of cores of the processor of device. Valid values 0 to 512
     total_processor_core_count: Optional[int] = None
     # The total RAM of the device, in MB. Valid values 0 to 1000000
-    total_ram_in_m_b: Optional[float] = None
+    total_ram_in_m_b: Optional[UserExperienceAnalyticsResourcePerformance_totalRamInMB] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> UserExperienceAnalyticsResourcePerformance:
@@ -79,18 +85,30 @@ class UserExperienceAnalyticsResourcePerformance(Entity):
         from .entity import Entity
         from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
         from .user_experience_analytics_machine_type import UserExperienceAnalyticsMachineType
+        from .user_experience_analytics_resource_performance_cpu_clock_speed_in_m_hz import UserExperienceAnalyticsResourcePerformance_cpuClockSpeedInMHz
+        from .user_experience_analytics_resource_performance_cpu_spike_time_percentage import UserExperienceAnalyticsResourcePerformance_cpuSpikeTimePercentage
+        from .user_experience_analytics_resource_performance_cpu_spike_time_percentage_threshold import UserExperienceAnalyticsResourcePerformance_cpuSpikeTimePercentageThreshold
+        from .user_experience_analytics_resource_performance_ram_spike_time_percentage import UserExperienceAnalyticsResourcePerformance_ramSpikeTimePercentage
+        from .user_experience_analytics_resource_performance_ram_spike_time_percentage_threshold import UserExperienceAnalyticsResourcePerformance_ramSpikeTimePercentageThreshold
+        from .user_experience_analytics_resource_performance_total_ram_in_m_b import UserExperienceAnalyticsResourcePerformance_totalRamInMB
 
         from .disk_type import DiskType
         from .entity import Entity
         from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
         from .user_experience_analytics_machine_type import UserExperienceAnalyticsMachineType
+        from .user_experience_analytics_resource_performance_cpu_clock_speed_in_m_hz import UserExperienceAnalyticsResourcePerformance_cpuClockSpeedInMHz
+        from .user_experience_analytics_resource_performance_cpu_spike_time_percentage import UserExperienceAnalyticsResourcePerformance_cpuSpikeTimePercentage
+        from .user_experience_analytics_resource_performance_cpu_spike_time_percentage_threshold import UserExperienceAnalyticsResourcePerformance_cpuSpikeTimePercentageThreshold
+        from .user_experience_analytics_resource_performance_ram_spike_time_percentage import UserExperienceAnalyticsResourcePerformance_ramSpikeTimePercentage
+        from .user_experience_analytics_resource_performance_ram_spike_time_percentage_threshold import UserExperienceAnalyticsResourcePerformance_ramSpikeTimePercentageThreshold
+        from .user_experience_analytics_resource_performance_total_ram_in_m_b import UserExperienceAnalyticsResourcePerformance_totalRamInMB
 
         fields: Dict[str, Callable[[Any], None]] = {
             "averageSpikeTimeScore": lambda n : setattr(self, 'average_spike_time_score', n.get_int_value()),
-            "cpuClockSpeedInMHz": lambda n : setattr(self, 'cpu_clock_speed_in_m_hz', n.get_float_value()),
+            "cpuClockSpeedInMHz": lambda n : setattr(self, 'cpu_clock_speed_in_m_hz', n.get_object_value(UserExperienceAnalyticsResourcePerformance_cpuClockSpeedInMHz)),
             "cpuDisplayName": lambda n : setattr(self, 'cpu_display_name', n.get_str_value()),
-            "cpuSpikeTimePercentage": lambda n : setattr(self, 'cpu_spike_time_percentage', n.get_float_value()),
-            "cpuSpikeTimePercentageThreshold": lambda n : setattr(self, 'cpu_spike_time_percentage_threshold', n.get_float_value()),
+            "cpuSpikeTimePercentage": lambda n : setattr(self, 'cpu_spike_time_percentage', n.get_object_value(UserExperienceAnalyticsResourcePerformance_cpuSpikeTimePercentage)),
+            "cpuSpikeTimePercentageThreshold": lambda n : setattr(self, 'cpu_spike_time_percentage_threshold', n.get_object_value(UserExperienceAnalyticsResourcePerformance_cpuSpikeTimePercentageThreshold)),
             "cpuSpikeTimeScore": lambda n : setattr(self, 'cpu_spike_time_score', n.get_int_value()),
             "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
@@ -101,11 +119,11 @@ class UserExperienceAnalyticsResourcePerformance(Entity):
             "machineType": lambda n : setattr(self, 'machine_type', n.get_enum_value(UserExperienceAnalyticsMachineType)),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "ramSpikeTimePercentage": lambda n : setattr(self, 'ram_spike_time_percentage', n.get_float_value()),
-            "ramSpikeTimePercentageThreshold": lambda n : setattr(self, 'ram_spike_time_percentage_threshold', n.get_float_value()),
+            "ramSpikeTimePercentage": lambda n : setattr(self, 'ram_spike_time_percentage', n.get_object_value(UserExperienceAnalyticsResourcePerformance_ramSpikeTimePercentage)),
+            "ramSpikeTimePercentageThreshold": lambda n : setattr(self, 'ram_spike_time_percentage_threshold', n.get_object_value(UserExperienceAnalyticsResourcePerformance_ramSpikeTimePercentageThreshold)),
             "ramSpikeTimeScore": lambda n : setattr(self, 'ram_spike_time_score', n.get_int_value()),
             "totalProcessorCoreCount": lambda n : setattr(self, 'total_processor_core_count', n.get_int_value()),
-            "totalRamInMB": lambda n : setattr(self, 'total_ram_in_m_b', n.get_float_value()),
+            "totalRamInMB": lambda n : setattr(self, 'total_ram_in_m_b', n.get_object_value(UserExperienceAnalyticsResourcePerformance_totalRamInMB)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -121,10 +139,10 @@ class UserExperienceAnalyticsResourcePerformance(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("averageSpikeTimeScore", self.average_spike_time_score)
-        writer.write_float_value("cpuClockSpeedInMHz", self.cpu_clock_speed_in_m_hz)
+        writer.write_object_value("cpuClockSpeedInMHz", self.cpu_clock_speed_in_m_hz)
         writer.write_str_value("cpuDisplayName", self.cpu_display_name)
-        writer.write_float_value("cpuSpikeTimePercentage", self.cpu_spike_time_percentage)
-        writer.write_float_value("cpuSpikeTimePercentageThreshold", self.cpu_spike_time_percentage_threshold)
+        writer.write_object_value("cpuSpikeTimePercentage", self.cpu_spike_time_percentage)
+        writer.write_object_value("cpuSpikeTimePercentageThreshold", self.cpu_spike_time_percentage_threshold)
         writer.write_int_value("cpuSpikeTimeScore", self.cpu_spike_time_score)
         writer.write_int_value("deviceCount", self.device_count)
         writer.write_str_value("deviceId", self.device_id)
@@ -135,10 +153,10 @@ class UserExperienceAnalyticsResourcePerformance(Entity):
         writer.write_enum_value("machineType", self.machine_type)
         writer.write_str_value("manufacturer", self.manufacturer)
         writer.write_str_value("model", self.model)
-        writer.write_float_value("ramSpikeTimePercentage", self.ram_spike_time_percentage)
-        writer.write_float_value("ramSpikeTimePercentageThreshold", self.ram_spike_time_percentage_threshold)
+        writer.write_object_value("ramSpikeTimePercentage", self.ram_spike_time_percentage)
+        writer.write_object_value("ramSpikeTimePercentageThreshold", self.ram_spike_time_percentage_threshold)
         writer.write_int_value("ramSpikeTimeScore", self.ram_spike_time_score)
         writer.write_int_value("totalProcessorCoreCount", self.total_processor_core_count)
-        writer.write_float_value("totalRamInMB", self.total_ram_in_m_b)
+        writer.write_object_value("totalRamInMB", self.total_ram_in_m_b)
     
 

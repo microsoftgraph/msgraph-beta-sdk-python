@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .booking_question_assignment import BookingQuestionAssignment
     from .booking_reminder import BookingReminder
     from .booking_scheduling_policy import BookingSchedulingPolicy
+    from .booking_service_default_price import BookingService_defaultPrice
     from .location import Location
 
 from .booking_named_entity import BookingNamedEntity
@@ -32,7 +33,7 @@ class BookingService(BookingNamedEntity):
     # The default physical location for the service.
     default_location: Optional[Location] = None
     # The default monetary price for the service.
-    default_price: Optional[float] = None
+    default_price: Optional[BookingService_defaultPrice] = None
     # Represents the type of pricing of a booking service.
     default_price_type: Optional[BookingPriceType] = None
     # The default set of reminders for an appointment of this service. The value of this property is available only when reading this bookingService by its ID.
@@ -89,6 +90,7 @@ class BookingService(BookingNamedEntity):
         from .booking_question_assignment import BookingQuestionAssignment
         from .booking_reminder import BookingReminder
         from .booking_scheduling_policy import BookingSchedulingPolicy
+        from .booking_service_default_price import BookingService_defaultPrice
         from .location import Location
 
         from .booking_named_entity import BookingNamedEntity
@@ -96,6 +98,7 @@ class BookingService(BookingNamedEntity):
         from .booking_question_assignment import BookingQuestionAssignment
         from .booking_reminder import BookingReminder
         from .booking_scheduling_policy import BookingSchedulingPolicy
+        from .booking_service_default_price import BookingService_defaultPrice
         from .location import Location
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -104,7 +107,7 @@ class BookingService(BookingNamedEntity):
             "customQuestions": lambda n : setattr(self, 'custom_questions', n.get_collection_of_object_values(BookingQuestionAssignment)),
             "defaultDuration": lambda n : setattr(self, 'default_duration', n.get_timedelta_value()),
             "defaultLocation": lambda n : setattr(self, 'default_location', n.get_object_value(Location)),
-            "defaultPrice": lambda n : setattr(self, 'default_price', n.get_float_value()),
+            "defaultPrice": lambda n : setattr(self, 'default_price', n.get_object_value(BookingService_defaultPrice)),
             "defaultPriceType": lambda n : setattr(self, 'default_price_type', n.get_enum_value(BookingPriceType)),
             "defaultReminders": lambda n : setattr(self, 'default_reminders', n.get_collection_of_object_values(BookingReminder)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -141,7 +144,7 @@ class BookingService(BookingNamedEntity):
         writer.write_collection_of_object_values("customQuestions", self.custom_questions)
         writer.write_timedelta_value("defaultDuration", self.default_duration)
         writer.write_object_value("defaultLocation", self.default_location)
-        writer.write_float_value("defaultPrice", self.default_price)
+        writer.write_object_value("defaultPrice", self.default_price)
         writer.write_enum_value("defaultPriceType", self.default_price_type)
         writer.write_collection_of_object_values("defaultReminders", self.default_reminders)
         writer.write_str_value("description", self.description)

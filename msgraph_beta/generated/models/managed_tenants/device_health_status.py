@@ -6,6 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .device_health_status_boot_total_duration_in_seconds import DeviceHealthStatus_bootTotalDurationInSeconds
+    from .device_health_status_startup_performance_score import DeviceHealthStatus_startupPerformanceScore
 
 from ..entity import Entity
 
@@ -14,7 +16,7 @@ class DeviceHealthStatus(Entity):
     # The blueScreenCount property
     blue_screen_count: Optional[int] = None
     # The bootTotalDurationInSeconds property
-    boot_total_duration_in_seconds: Optional[float] = None
+    boot_total_duration_in_seconds: Optional[DeviceHealthStatus_bootTotalDurationInSeconds] = None
     # The deviceId property
     device_id: Optional[str] = None
     # The deviceMake property
@@ -36,7 +38,7 @@ class DeviceHealthStatus(Entity):
     # The restartCount property
     restart_count: Optional[int] = None
     # The startupPerformanceScore property
-    startup_performance_score: Optional[float] = None
+    startup_performance_score: Optional[DeviceHealthStatus_startupPerformanceScore] = None
     # The tenantDisplayName property
     tenant_display_name: Optional[str] = None
     # The tenantId property
@@ -61,12 +63,16 @@ class DeviceHealthStatus(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .device_health_status_boot_total_duration_in_seconds import DeviceHealthStatus_bootTotalDurationInSeconds
+        from .device_health_status_startup_performance_score import DeviceHealthStatus_startupPerformanceScore
 
         from ..entity import Entity
+        from .device_health_status_boot_total_duration_in_seconds import DeviceHealthStatus_bootTotalDurationInSeconds
+        from .device_health_status_startup_performance_score import DeviceHealthStatus_startupPerformanceScore
 
         fields: Dict[str, Callable[[Any], None]] = {
             "blueScreenCount": lambda n : setattr(self, 'blue_screen_count', n.get_int_value()),
-            "bootTotalDurationInSeconds": lambda n : setattr(self, 'boot_total_duration_in_seconds', n.get_float_value()),
+            "bootTotalDurationInSeconds": lambda n : setattr(self, 'boot_total_duration_in_seconds', n.get_object_value(DeviceHealthStatus_bootTotalDurationInSeconds)),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceMake": lambda n : setattr(self, 'device_make', n.get_str_value()),
             "deviceModel": lambda n : setattr(self, 'device_model', n.get_str_value()),
@@ -76,7 +82,7 @@ class DeviceHealthStatus(Entity):
             "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
             "primaryDiskType": lambda n : setattr(self, 'primary_disk_type', n.get_str_value()),
             "restartCount": lambda n : setattr(self, 'restart_count', n.get_int_value()),
-            "startupPerformanceScore": lambda n : setattr(self, 'startup_performance_score', n.get_float_value()),
+            "startupPerformanceScore": lambda n : setattr(self, 'startup_performance_score', n.get_object_value(DeviceHealthStatus_startupPerformanceScore)),
             "tenantDisplayName": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "topProcesses": lambda n : setattr(self, 'top_processes', n.get_str_value()),
@@ -95,7 +101,7 @@ class DeviceHealthStatus(Entity):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("blueScreenCount", self.blue_screen_count)
-        writer.write_float_value("bootTotalDurationInSeconds", self.boot_total_duration_in_seconds)
+        writer.write_object_value("bootTotalDurationInSeconds", self.boot_total_duration_in_seconds)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("deviceMake", self.device_make)
         writer.write_str_value("deviceModel", self.device_model)
@@ -105,7 +111,7 @@ class DeviceHealthStatus(Entity):
         writer.write_str_value("osVersion", self.os_version)
         writer.write_str_value("primaryDiskType", self.primary_disk_type)
         writer.write_int_value("restartCount", self.restart_count)
-        writer.write_float_value("startupPerformanceScore", self.startup_performance_score)
+        writer.write_object_value("startupPerformanceScore", self.startup_performance_score)
         writer.write_str_value("tenantDisplayName", self.tenant_display_name)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_str_value("topProcesses", self.top_processes)

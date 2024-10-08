@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .user_experience_analytics_battery_health_device_app_impact_battery_usage_percentage import UserExperienceAnalyticsBatteryHealthDeviceAppImpact_batteryUsagePercentage
 
 from .entity import Entity
 
@@ -20,7 +21,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpact(Entity):
     # App publisher. Eg: Microsoft Corporation
     app_publisher: Optional[str] = None
     # The percent of total battery power used by this application when the device was not plugged into AC power, over 14 days. Unit in percentage. Valid values 0 to 1.79769313486232E+308
-    battery_usage_percentage: Optional[float] = None
+    battery_usage_percentage: Optional[UserExperienceAnalyticsBatteryHealthDeviceAppImpact_batteryUsagePercentage] = None
     # The unique identifier of the device, Intune DeviceID or SCCM device id.
     device_id: Optional[str] = None
     # true if the user had active interaction with the app.
@@ -45,14 +46,16 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpact(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .user_experience_analytics_battery_health_device_app_impact_battery_usage_percentage import UserExperienceAnalyticsBatteryHealthDeviceAppImpact_batteryUsagePercentage
 
         from .entity import Entity
+        from .user_experience_analytics_battery_health_device_app_impact_battery_usage_percentage import UserExperienceAnalyticsBatteryHealthDeviceAppImpact_batteryUsagePercentage
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appName": lambda n : setattr(self, 'app_name', n.get_str_value()),
             "appPublisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
-            "batteryUsagePercentage": lambda n : setattr(self, 'battery_usage_percentage', n.get_float_value()),
+            "batteryUsagePercentage": lambda n : setattr(self, 'battery_usage_percentage', n.get_object_value(UserExperienceAnalyticsBatteryHealthDeviceAppImpact_batteryUsagePercentage)),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "isForegroundApp": lambda n : setattr(self, 'is_foreground_app', n.get_bool_value()),
         }
@@ -72,7 +75,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpact(Entity):
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appName", self.app_name)
         writer.write_str_value("appPublisher", self.app_publisher)
-        writer.write_float_value("batteryUsagePercentage", self.battery_usage_percentage)
+        writer.write_object_value("batteryUsagePercentage", self.battery_usage_percentage)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_bool_value("isForegroundApp", self.is_foreground_app)
     

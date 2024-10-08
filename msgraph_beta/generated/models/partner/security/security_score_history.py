@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ...entity import Entity
+    from .security_score_history_score import SecurityScoreHistory_score
 
 from ...entity import Entity
 
@@ -18,7 +19,7 @@ class SecurityScoreHistory(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The score recorded at the time.
-    score: Optional[float] = None
+    score: Optional[SecurityScoreHistory_score] = None
     # The total number of requirements at the time.
     total_requirements_count: Optional[int] = None
     
@@ -39,13 +40,15 @@ class SecurityScoreHistory(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from ...entity import Entity
+        from .security_score_history_score import SecurityScoreHistory_score
 
         from ...entity import Entity
+        from .security_score_history_score import SecurityScoreHistory_score
 
         fields: Dict[str, Callable[[Any], None]] = {
             "compliantRequirementsCount": lambda n : setattr(self, 'compliant_requirements_count', n.get_int_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "score": lambda n : setattr(self, 'score', n.get_float_value()),
+            "score": lambda n : setattr(self, 'score', n.get_object_value(SecurityScoreHistory_score)),
             "totalRequirementsCount": lambda n : setattr(self, 'total_requirements_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -63,7 +66,7 @@ class SecurityScoreHistory(Entity):
         super().serialize(writer)
         writer.write_int_value("compliantRequirementsCount", self.compliant_requirements_count)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
-        writer.write_float_value("score", self.score)
+        writer.write_object_value("score", self.score)
         writer.write_int_value("totalRequirementsCount", self.total_requirements_count)
     
 

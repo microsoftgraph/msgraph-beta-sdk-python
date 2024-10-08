@@ -4,6 +4,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .preview_post_request_body_zoom import PreviewPostRequestBody_zoom
+
 @dataclass
 class PreviewPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -20,7 +23,7 @@ class PreviewPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # The viewer property
     viewer: Optional[str] = None
     # The zoom property
-    zoom: Optional[float] = None
+    zoom: Optional[PreviewPostRequestBody_zoom] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PreviewPostRequestBody:
@@ -38,12 +41,16 @@ class PreviewPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .preview_post_request_body_zoom import PreviewPostRequestBody_zoom
+
+        from .preview_post_request_body_zoom import PreviewPostRequestBody_zoom
+
         fields: Dict[str, Callable[[Any], None]] = {
             "allowEdit": lambda n : setattr(self, 'allow_edit', n.get_bool_value()),
             "chromeless": lambda n : setattr(self, 'chromeless', n.get_bool_value()),
             "page": lambda n : setattr(self, 'page', n.get_str_value()),
             "viewer": lambda n : setattr(self, 'viewer', n.get_str_value()),
-            "zoom": lambda n : setattr(self, 'zoom', n.get_float_value()),
+            "zoom": lambda n : setattr(self, 'zoom', n.get_object_value(PreviewPostRequestBody_zoom)),
         }
         return fields
     
@@ -59,7 +66,7 @@ class PreviewPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("chromeless", self.chromeless)
         writer.write_str_value("page", self.page)
         writer.write_str_value("viewer", self.viewer)
-        writer.write_float_value("zoom", self.zoom)
+        writer.write_object_value("zoom", self.zoom)
         writer.write_additional_data_value(self.additional_data)
     
 

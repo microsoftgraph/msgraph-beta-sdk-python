@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .user_experience_analytics_anomaly_correlation_group_feature import UserExperienceAnalyticsAnomalyCorrelationGroupFeature
+    from .user_experience_analytics_anomaly_correlation_group_overview_correlation_group_prevalence_percentage import UserExperienceAnalyticsAnomalyCorrelationGroupOverview_correlationGroupPrevalencePercentage
     from .user_experience_analytics_anomaly_correlation_group_prevalence import UserExperienceAnalyticsAnomalyCorrelationGroupPrevalence
 
 from .entity import Entity
@@ -32,7 +33,7 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity):
     # Indicates the level of prevalence of the correlation group features in the anomaly. Possible values are: high, medium or low
     correlation_group_prevalence: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupPrevalence] = None
     # The percentage of the devices in the correlation group that are anomalous. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-    correlation_group_prevalence_percentage: Optional[float] = None
+    correlation_group_prevalence_percentage: Optional[UserExperienceAnalyticsAnomalyCorrelationGroupOverview_correlationGroupPrevalencePercentage] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Indicates the total number of devices in the tenant. Valid values -2147483648 to 2147483647
@@ -56,10 +57,12 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity):
         """
         from .entity import Entity
         from .user_experience_analytics_anomaly_correlation_group_feature import UserExperienceAnalyticsAnomalyCorrelationGroupFeature
+        from .user_experience_analytics_anomaly_correlation_group_overview_correlation_group_prevalence_percentage import UserExperienceAnalyticsAnomalyCorrelationGroupOverview_correlationGroupPrevalencePercentage
         from .user_experience_analytics_anomaly_correlation_group_prevalence import UserExperienceAnalyticsAnomalyCorrelationGroupPrevalence
 
         from .entity import Entity
         from .user_experience_analytics_anomaly_correlation_group_feature import UserExperienceAnalyticsAnomalyCorrelationGroupFeature
+        from .user_experience_analytics_anomaly_correlation_group_overview_correlation_group_prevalence_percentage import UserExperienceAnalyticsAnomalyCorrelationGroupOverview_correlationGroupPrevalencePercentage
         from .user_experience_analytics_anomaly_correlation_group_prevalence import UserExperienceAnalyticsAnomalyCorrelationGroupPrevalence
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -71,7 +74,7 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity):
             "correlationGroupFeatures": lambda n : setattr(self, 'correlation_group_features', n.get_collection_of_object_values(UserExperienceAnalyticsAnomalyCorrelationGroupFeature)),
             "correlationGroupId": lambda n : setattr(self, 'correlation_group_id', n.get_str_value()),
             "correlationGroupPrevalence": lambda n : setattr(self, 'correlation_group_prevalence', n.get_enum_value(UserExperienceAnalyticsAnomalyCorrelationGroupPrevalence)),
-            "correlationGroupPrevalencePercentage": lambda n : setattr(self, 'correlation_group_prevalence_percentage', n.get_float_value()),
+            "correlationGroupPrevalencePercentage": lambda n : setattr(self, 'correlation_group_prevalence_percentage', n.get_object_value(UserExperienceAnalyticsAnomalyCorrelationGroupOverview_correlationGroupPrevalencePercentage)),
             "totalDeviceCount": lambda n : setattr(self, 'total_device_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -95,7 +98,7 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity):
         writer.write_collection_of_object_values("correlationGroupFeatures", self.correlation_group_features)
         writer.write_str_value("correlationGroupId", self.correlation_group_id)
         writer.write_enum_value("correlationGroupPrevalence", self.correlation_group_prevalence)
-        writer.write_float_value("correlationGroupPrevalencePercentage", self.correlation_group_prevalence_percentage)
+        writer.write_object_value("correlationGroupPrevalencePercentage", self.correlation_group_prevalence_percentage)
         writer.write_int_value("totalDeviceCount", self.total_device_count)
     
 

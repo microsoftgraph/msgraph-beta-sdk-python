@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .response_time_security_requirement_average_response_time_in_hours import ResponseTimeSecurityRequirement_averageResponseTimeInHours
     from .security_requirement import SecurityRequirement
 
 from .security_requirement import SecurityRequirement
@@ -11,7 +12,7 @@ from .security_requirement import SecurityRequirement
 @dataclass
 class ResponseTimeSecurityRequirement(SecurityRequirement):
     # The average response time for alerts from the past 30 days.
-    average_response_time_in_hours: Optional[float] = None
+    average_response_time_in_hours: Optional[ResponseTimeSecurityRequirement_averageResponseTimeInHours] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -31,12 +32,14 @@ class ResponseTimeSecurityRequirement(SecurityRequirement):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .response_time_security_requirement_average_response_time_in_hours import ResponseTimeSecurityRequirement_averageResponseTimeInHours
         from .security_requirement import SecurityRequirement
 
+        from .response_time_security_requirement_average_response_time_in_hours import ResponseTimeSecurityRequirement_averageResponseTimeInHours
         from .security_requirement import SecurityRequirement
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "averageResponseTimeInHours": lambda n : setattr(self, 'average_response_time_in_hours', n.get_float_value()),
+            "averageResponseTimeInHours": lambda n : setattr(self, 'average_response_time_in_hours', n.get_object_value(ResponseTimeSecurityRequirement_averageResponseTimeInHours)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -51,6 +54,6 @@ class ResponseTimeSecurityRequirement(SecurityRequirement):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_float_value("averageResponseTimeInHours", self.average_response_time_in_hours)
+        writer.write_object_value("averageResponseTimeInHours", self.average_response_time_in_hours)
     
 

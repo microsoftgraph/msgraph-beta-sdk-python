@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .user_experience_analytics_impacting_process_impact_value import UserExperienceAnalyticsImpactingProcess_impactValue
 
 from .entity import Entity
 
@@ -20,7 +21,7 @@ class UserExperienceAnalyticsImpactingProcess(Entity):
     # The unique identifier of the impacted device.
     device_id: Optional[str] = None
     # The impact value of the process. Valid values 0 to 1.79769313486232E+308
-    impact_value: Optional[float] = None
+    impact_value: Optional[UserExperienceAnalyticsImpactingProcess_impactValue] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The process name.
@@ -45,14 +46,16 @@ class UserExperienceAnalyticsImpactingProcess(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .user_experience_analytics_impacting_process_impact_value import UserExperienceAnalyticsImpactingProcess_impactValue
 
         from .entity import Entity
+        from .user_experience_analytics_impacting_process_impact_value import UserExperienceAnalyticsImpactingProcess_impactValue
 
         fields: Dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "impactValue": lambda n : setattr(self, 'impact_value', n.get_float_value()),
+            "impactValue": lambda n : setattr(self, 'impact_value', n.get_object_value(UserExperienceAnalyticsImpactingProcess_impactValue)),
             "processName": lambda n : setattr(self, 'process_name', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
         }
@@ -72,7 +75,7 @@ class UserExperienceAnalyticsImpactingProcess(Entity):
         writer.write_str_value("category", self.category)
         writer.write_str_value("description", self.description)
         writer.write_str_value("deviceId", self.device_id)
-        writer.write_float_value("impactValue", self.impact_value)
+        writer.write_object_value("impactValue", self.impact_value)
         writer.write_str_value("processName", self.process_name)
         writer.write_str_value("publisher", self.publisher)
     

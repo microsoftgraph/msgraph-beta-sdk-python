@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .application_sign_in_summary_success_percentage import ApplicationSignInSummary_successPercentage
     from .entity import Entity
 
 from .entity import Entity
@@ -17,7 +18,7 @@ class ApplicationSignInSummary(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # Percentage of successful sign-ins made by the application.
-    success_percentage: Optional[float] = None
+    success_percentage: Optional[ApplicationSignInSummary_successPercentage] = None
     # Count of successful sign-ins made by the application.
     successful_sign_in_count: Optional[int] = None
     
@@ -37,14 +38,16 @@ class ApplicationSignInSummary(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .application_sign_in_summary_success_percentage import ApplicationSignInSummary_successPercentage
         from .entity import Entity
 
+        from .application_sign_in_summary_success_percentage import ApplicationSignInSummary_successPercentage
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "failedSignInCount": lambda n : setattr(self, 'failed_sign_in_count', n.get_int_value()),
-            "successPercentage": lambda n : setattr(self, 'success_percentage', n.get_float_value()),
+            "successPercentage": lambda n : setattr(self, 'success_percentage', n.get_object_value(ApplicationSignInSummary_successPercentage)),
             "successfulSignInCount": lambda n : setattr(self, 'successful_sign_in_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -62,7 +65,7 @@ class ApplicationSignInSummary(Entity):
         super().serialize(writer)
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_int_value("failedSignInCount", self.failed_sign_in_count)
-        writer.write_float_value("successPercentage", self.success_percentage)
+        writer.write_object_value("successPercentage", self.success_percentage)
         writer.write_int_value("successfulSignInCount", self.successful_sign_in_count)
     
 

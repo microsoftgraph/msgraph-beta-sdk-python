@@ -5,6 +5,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .booking_appointment_invoice_amount import BookingAppointment_invoiceAmount
+    from .booking_appointment_price import BookingAppointment_price
     from .booking_customer_information_base import BookingCustomerInformationBase
     from .booking_invoice_status import BookingInvoiceStatus
     from .booking_price_type import BookingPriceType
@@ -51,7 +53,7 @@ class BookingAppointment(Entity):
     # The current number of customers in the appointment.
     filled_attendees_count: Optional[int] = None
     # The billed amount on the invoice.
-    invoice_amount: Optional[float] = None
+    invoice_amount: Optional[BookingAppointment_invoiceAmount] = None
     # The date, time, and time zone of the invoice for this appointment.
     invoice_date: Optional[DateTimeTimeZone] = None
     # The ID of the invoice.
@@ -81,7 +83,7 @@ class BookingAppointment(Entity):
     # The amount of time to reserve before the appointment begins, for preparation, as an example. The value is expressed in ISO8601 format.
     pre_buffer: Optional[datetime.timedelta] = None
     # The regular price for an appointment for the specified bookingService.
-    price: Optional[float] = None
+    price: Optional[BookingAppointment_price] = None
     # Represents the type of pricing of a booking service.
     price_type: Optional[BookingPriceType] = None
     # The collection of customer reminders sent for this appointment. The value of this property is available only when reading this bookingAppointment by its ID.
@@ -119,6 +121,8 @@ class BookingAppointment(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .booking_appointment_invoice_amount import BookingAppointment_invoiceAmount
+        from .booking_appointment_price import BookingAppointment_price
         from .booking_customer_information_base import BookingCustomerInformationBase
         from .booking_invoice_status import BookingInvoiceStatus
         from .booking_price_type import BookingPriceType
@@ -127,6 +131,8 @@ class BookingAppointment(Entity):
         from .entity import Entity
         from .location import Location
 
+        from .booking_appointment_invoice_amount import BookingAppointment_invoiceAmount
+        from .booking_appointment_price import BookingAppointment_price
         from .booking_customer_information_base import BookingCustomerInformationBase
         from .booking_invoice_status import BookingInvoiceStatus
         from .booking_price_type import BookingPriceType
@@ -151,7 +157,7 @@ class BookingAppointment(Entity):
             "duration": lambda n : setattr(self, 'duration', n.get_timedelta_value()),
             "end": lambda n : setattr(self, 'end', n.get_object_value(DateTimeTimeZone)),
             "filledAttendeesCount": lambda n : setattr(self, 'filled_attendees_count', n.get_int_value()),
-            "invoiceAmount": lambda n : setattr(self, 'invoice_amount', n.get_float_value()),
+            "invoiceAmount": lambda n : setattr(self, 'invoice_amount', n.get_object_value(BookingAppointment_invoiceAmount)),
             "invoiceDate": lambda n : setattr(self, 'invoice_date', n.get_object_value(DateTimeTimeZone)),
             "invoiceId": lambda n : setattr(self, 'invoice_id', n.get_str_value()),
             "invoiceStatus": lambda n : setattr(self, 'invoice_status', n.get_enum_value(BookingInvoiceStatus)),
@@ -165,7 +171,7 @@ class BookingAppointment(Entity):
             "optOutOfCustomerEmail": lambda n : setattr(self, 'opt_out_of_customer_email', n.get_bool_value()),
             "postBuffer": lambda n : setattr(self, 'post_buffer', n.get_timedelta_value()),
             "preBuffer": lambda n : setattr(self, 'pre_buffer', n.get_timedelta_value()),
-            "price": lambda n : setattr(self, 'price', n.get_float_value()),
+            "price": lambda n : setattr(self, 'price', n.get_object_value(BookingAppointment_price)),
             "priceType": lambda n : setattr(self, 'price_type', n.get_enum_value(BookingPriceType)),
             "reminders": lambda n : setattr(self, 'reminders', n.get_collection_of_object_values(BookingReminder)),
             "selfServiceAppointmentId": lambda n : setattr(self, 'self_service_appointment_id', n.get_str_value()),
@@ -203,7 +209,7 @@ class BookingAppointment(Entity):
         writer.write_str_value("customerTimeZone", self.customer_time_zone)
         writer.write_collection_of_object_values("customers", self.customers)
         writer.write_object_value("end", self.end)
-        writer.write_float_value("invoiceAmount", self.invoice_amount)
+        writer.write_object_value("invoiceAmount", self.invoice_amount)
         writer.write_object_value("invoiceDate", self.invoice_date)
         writer.write_str_value("invoiceId", self.invoice_id)
         writer.write_enum_value("invoiceStatus", self.invoice_status)
@@ -217,7 +223,7 @@ class BookingAppointment(Entity):
         writer.write_bool_value("optOutOfCustomerEmail", self.opt_out_of_customer_email)
         writer.write_timedelta_value("postBuffer", self.post_buffer)
         writer.write_timedelta_value("preBuffer", self.pre_buffer)
-        writer.write_float_value("price", self.price)
+        writer.write_object_value("price", self.price)
         writer.write_enum_value("priceType", self.price_type)
         writer.write_collection_of_object_values("reminders", self.reminders)
         writer.write_str_value("selfServiceAppointmentId", self.self_service_appointment_id)

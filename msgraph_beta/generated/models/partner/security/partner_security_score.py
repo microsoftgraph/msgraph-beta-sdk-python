@@ -7,6 +7,8 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ...entity import Entity
     from .customer_insight import CustomerInsight
+    from .partner_security_score_current_score import PartnerSecurityScore_currentScore
+    from .partner_security_score_max_score import PartnerSecurityScore_maxScore
     from .security_requirement import SecurityRequirement
     from .security_score_history import SecurityScoreHistory
 
@@ -15,7 +17,7 @@ from ...entity import Entity
 @dataclass
 class PartnerSecurityScore(Entity):
     # The current security score for the partner.
-    current_score: Optional[float] = None
+    current_score: Optional[PartnerSecurityScore_currentScore] = None
     # Contains customer-specific information for certain requirements.
     customer_insights: Optional[List[CustomerInsight]] = None
     # Contains a list of recent score changes.
@@ -23,7 +25,7 @@ class PartnerSecurityScore(Entity):
     # The last time the data was checked.
     last_refresh_date_time: Optional[datetime.datetime] = None
     # The maximum score possible.
-    max_score: Optional[float] = None
+    max_score: Optional[PartnerSecurityScore_maxScore] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Contains the list of security requirements that make up the score.
@@ -49,20 +51,24 @@ class PartnerSecurityScore(Entity):
         """
         from ...entity import Entity
         from .customer_insight import CustomerInsight
+        from .partner_security_score_current_score import PartnerSecurityScore_currentScore
+        from .partner_security_score_max_score import PartnerSecurityScore_maxScore
         from .security_requirement import SecurityRequirement
         from .security_score_history import SecurityScoreHistory
 
         from ...entity import Entity
         from .customer_insight import CustomerInsight
+        from .partner_security_score_current_score import PartnerSecurityScore_currentScore
+        from .partner_security_score_max_score import PartnerSecurityScore_maxScore
         from .security_requirement import SecurityRequirement
         from .security_score_history import SecurityScoreHistory
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "currentScore": lambda n : setattr(self, 'current_score', n.get_float_value()),
+            "currentScore": lambda n : setattr(self, 'current_score', n.get_object_value(PartnerSecurityScore_currentScore)),
             "customerInsights": lambda n : setattr(self, 'customer_insights', n.get_collection_of_object_values(CustomerInsight)),
             "history": lambda n : setattr(self, 'history', n.get_collection_of_object_values(SecurityScoreHistory)),
             "lastRefreshDateTime": lambda n : setattr(self, 'last_refresh_date_time', n.get_datetime_value()),
-            "maxScore": lambda n : setattr(self, 'max_score', n.get_float_value()),
+            "maxScore": lambda n : setattr(self, 'max_score', n.get_object_value(PartnerSecurityScore_maxScore)),
             "requirements": lambda n : setattr(self, 'requirements', n.get_collection_of_object_values(SecurityRequirement)),
             "updatedDateTime": lambda n : setattr(self, 'updated_date_time', n.get_datetime_value()),
         }
@@ -79,11 +85,11 @@ class PartnerSecurityScore(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_float_value("currentScore", self.current_score)
+        writer.write_object_value("currentScore", self.current_score)
         writer.write_collection_of_object_values("customerInsights", self.customer_insights)
         writer.write_collection_of_object_values("history", self.history)
         writer.write_datetime_value("lastRefreshDateTime", self.last_refresh_date_time)
-        writer.write_float_value("maxScore", self.max_score)
+        writer.write_object_value("maxScore", self.max_score)
         writer.write_collection_of_object_values("requirements", self.requirements)
         writer.write_datetime_value("updatedDateTime", self.updated_date_time)
     

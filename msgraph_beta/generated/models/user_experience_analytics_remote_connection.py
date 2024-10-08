@@ -5,6 +5,12 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .user_experience_analytics_remote_connection_cloud_pc_failure_percentage import UserExperienceAnalyticsRemoteConnection_cloudPcFailurePercentage
+    from .user_experience_analytics_remote_connection_cloud_pc_round_trip_time import UserExperienceAnalyticsRemoteConnection_cloudPcRoundTripTime
+    from .user_experience_analytics_remote_connection_cloud_pc_sign_in_time import UserExperienceAnalyticsRemoteConnection_cloudPcSignInTime
+    from .user_experience_analytics_remote_connection_core_boot_time import UserExperienceAnalyticsRemoteConnection_coreBootTime
+    from .user_experience_analytics_remote_connection_core_sign_in_time import UserExperienceAnalyticsRemoteConnection_coreSignInTime
+    from .user_experience_analytics_remote_connection_remote_sign_in_time import UserExperienceAnalyticsRemoteConnection_remoteSignInTime
 
 from .entity import Entity
 
@@ -14,15 +20,15 @@ class UserExperienceAnalyticsRemoteConnection(Entity):
     The user experience analytics remote connection entity. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
     """
     # The sign in failure percentage of Cloud PC Device. Valid values 0 to 100
-    cloud_pc_failure_percentage: Optional[float] = None
+    cloud_pc_failure_percentage: Optional[UserExperienceAnalyticsRemoteConnection_cloudPcFailurePercentage] = None
     # The round tip time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
-    cloud_pc_round_trip_time: Optional[float] = None
+    cloud_pc_round_trip_time: Optional[UserExperienceAnalyticsRemoteConnection_cloudPcRoundTripTime] = None
     # The sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
-    cloud_pc_sign_in_time: Optional[float] = None
+    cloud_pc_sign_in_time: Optional[UserExperienceAnalyticsRemoteConnection_cloudPcSignInTime] = None
     # The core boot time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
-    core_boot_time: Optional[float] = None
+    core_boot_time: Optional[UserExperienceAnalyticsRemoteConnection_coreBootTime] = None
     # The core sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
-    core_sign_in_time: Optional[float] = None
+    core_sign_in_time: Optional[UserExperienceAnalyticsRemoteConnection_coreSignInTime] = None
     # The count of remote connection. Valid values 0 to 2147483647
     device_count: Optional[int] = None
     # The id of the device.
@@ -36,7 +42,7 @@ class UserExperienceAnalyticsRemoteConnection(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
     # The remote sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
-    remote_sign_in_time: Optional[float] = None
+    remote_sign_in_time: Optional[UserExperienceAnalyticsRemoteConnection_remoteSignInTime] = None
     # The user experience analytics userPrincipalName.
     user_principal_name: Optional[str] = None
     # The user experience analytics virtual network.
@@ -59,21 +65,33 @@ class UserExperienceAnalyticsRemoteConnection(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .user_experience_analytics_remote_connection_cloud_pc_failure_percentage import UserExperienceAnalyticsRemoteConnection_cloudPcFailurePercentage
+        from .user_experience_analytics_remote_connection_cloud_pc_round_trip_time import UserExperienceAnalyticsRemoteConnection_cloudPcRoundTripTime
+        from .user_experience_analytics_remote_connection_cloud_pc_sign_in_time import UserExperienceAnalyticsRemoteConnection_cloudPcSignInTime
+        from .user_experience_analytics_remote_connection_core_boot_time import UserExperienceAnalyticsRemoteConnection_coreBootTime
+        from .user_experience_analytics_remote_connection_core_sign_in_time import UserExperienceAnalyticsRemoteConnection_coreSignInTime
+        from .user_experience_analytics_remote_connection_remote_sign_in_time import UserExperienceAnalyticsRemoteConnection_remoteSignInTime
 
         from .entity import Entity
+        from .user_experience_analytics_remote_connection_cloud_pc_failure_percentage import UserExperienceAnalyticsRemoteConnection_cloudPcFailurePercentage
+        from .user_experience_analytics_remote_connection_cloud_pc_round_trip_time import UserExperienceAnalyticsRemoteConnection_cloudPcRoundTripTime
+        from .user_experience_analytics_remote_connection_cloud_pc_sign_in_time import UserExperienceAnalyticsRemoteConnection_cloudPcSignInTime
+        from .user_experience_analytics_remote_connection_core_boot_time import UserExperienceAnalyticsRemoteConnection_coreBootTime
+        from .user_experience_analytics_remote_connection_core_sign_in_time import UserExperienceAnalyticsRemoteConnection_coreSignInTime
+        from .user_experience_analytics_remote_connection_remote_sign_in_time import UserExperienceAnalyticsRemoteConnection_remoteSignInTime
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "cloudPcFailurePercentage": lambda n : setattr(self, 'cloud_pc_failure_percentage', n.get_float_value()),
-            "cloudPcRoundTripTime": lambda n : setattr(self, 'cloud_pc_round_trip_time', n.get_float_value()),
-            "cloudPcSignInTime": lambda n : setattr(self, 'cloud_pc_sign_in_time', n.get_float_value()),
-            "coreBootTime": lambda n : setattr(self, 'core_boot_time', n.get_float_value()),
-            "coreSignInTime": lambda n : setattr(self, 'core_sign_in_time', n.get_float_value()),
+            "cloudPcFailurePercentage": lambda n : setattr(self, 'cloud_pc_failure_percentage', n.get_object_value(UserExperienceAnalyticsRemoteConnection_cloudPcFailurePercentage)),
+            "cloudPcRoundTripTime": lambda n : setattr(self, 'cloud_pc_round_trip_time', n.get_object_value(UserExperienceAnalyticsRemoteConnection_cloudPcRoundTripTime)),
+            "cloudPcSignInTime": lambda n : setattr(self, 'cloud_pc_sign_in_time', n.get_object_value(UserExperienceAnalyticsRemoteConnection_cloudPcSignInTime)),
+            "coreBootTime": lambda n : setattr(self, 'core_boot_time', n.get_object_value(UserExperienceAnalyticsRemoteConnection_coreBootTime)),
+            "coreSignInTime": lambda n : setattr(self, 'core_sign_in_time', n.get_object_value(UserExperienceAnalyticsRemoteConnection_coreSignInTime)),
             "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "remoteSignInTime": lambda n : setattr(self, 'remote_sign_in_time', n.get_float_value()),
+            "remoteSignInTime": lambda n : setattr(self, 'remote_sign_in_time', n.get_object_value(UserExperienceAnalyticsRemoteConnection_remoteSignInTime)),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
             "virtualNetwork": lambda n : setattr(self, 'virtual_network', n.get_str_value()),
         }
@@ -90,17 +108,17 @@ class UserExperienceAnalyticsRemoteConnection(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_float_value("cloudPcFailurePercentage", self.cloud_pc_failure_percentage)
-        writer.write_float_value("cloudPcRoundTripTime", self.cloud_pc_round_trip_time)
-        writer.write_float_value("cloudPcSignInTime", self.cloud_pc_sign_in_time)
-        writer.write_float_value("coreBootTime", self.core_boot_time)
-        writer.write_float_value("coreSignInTime", self.core_sign_in_time)
+        writer.write_object_value("cloudPcFailurePercentage", self.cloud_pc_failure_percentage)
+        writer.write_object_value("cloudPcRoundTripTime", self.cloud_pc_round_trip_time)
+        writer.write_object_value("cloudPcSignInTime", self.cloud_pc_sign_in_time)
+        writer.write_object_value("coreBootTime", self.core_boot_time)
+        writer.write_object_value("coreSignInTime", self.core_sign_in_time)
         writer.write_int_value("deviceCount", self.device_count)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_str_value("manufacturer", self.manufacturer)
         writer.write_str_value("model", self.model)
-        writer.write_float_value("remoteSignInTime", self.remote_sign_in_time)
+        writer.write_object_value("remoteSignInTime", self.remote_sign_in_time)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
         writer.write_str_value("virtualNetwork", self.virtual_network)
     

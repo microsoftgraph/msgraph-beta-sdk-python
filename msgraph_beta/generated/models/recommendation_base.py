@@ -9,6 +9,8 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .impacted_resource import ImpactedResource
     from .recommendation import Recommendation
+    from .recommendation_base_current_score import RecommendationBase_currentScore
+    from .recommendation_base_max_score import RecommendationBase_maxScore
     from .recommendation_category import RecommendationCategory
     from .recommendation_feature_areas import RecommendationFeatureAreas
     from .recommendation_priority import RecommendationPriority
@@ -29,7 +31,7 @@ class RecommendationBase(Entity):
     # The date and time when the recommendation was detected as applicable to your directory.
     created_date_time: Optional[datetime.datetime] = None
     # The number of points the tenant has attained. Only applies to recommendations with category set to identitySecureScore.
-    current_score: Optional[float] = None
+    current_score: Optional[RecommendationBase_currentScore] = None
     # The title of the recommendation.
     display_name: Optional[str] = None
     # The directory feature that the recommendation is related to.
@@ -49,7 +51,7 @@ class RecommendationBase(Entity):
     # The date and time the status of a recommendation was last updated.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The maximum number of points attainable. Only applies to recommendations with category set to identitySecureScore.
-    max_score: Optional[float] = None
+    max_score: Optional[RecommendationBase_maxScore] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The future date and time when the status of a postponed recommendation will be active again.
@@ -95,6 +97,8 @@ class RecommendationBase(Entity):
         from .entity import Entity
         from .impacted_resource import ImpactedResource
         from .recommendation import Recommendation
+        from .recommendation_base_current_score import RecommendationBase_currentScore
+        from .recommendation_base_max_score import RecommendationBase_maxScore
         from .recommendation_category import RecommendationCategory
         from .recommendation_feature_areas import RecommendationFeatureAreas
         from .recommendation_priority import RecommendationPriority
@@ -106,6 +110,8 @@ class RecommendationBase(Entity):
         from .entity import Entity
         from .impacted_resource import ImpactedResource
         from .recommendation import Recommendation
+        from .recommendation_base_current_score import RecommendationBase_currentScore
+        from .recommendation_base_max_score import RecommendationBase_maxScore
         from .recommendation_category import RecommendationCategory
         from .recommendation_feature_areas import RecommendationFeatureAreas
         from .recommendation_priority import RecommendationPriority
@@ -118,7 +124,7 @@ class RecommendationBase(Entity):
             "benefits": lambda n : setattr(self, 'benefits', n.get_str_value()),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(RecommendationCategory)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "currentScore": lambda n : setattr(self, 'current_score', n.get_float_value()),
+            "currentScore": lambda n : setattr(self, 'current_score', n.get_object_value(RecommendationBase_currentScore)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "featureAreas": lambda n : setattr(self, 'feature_areas', n.get_collection_of_enum_values(RecommendationFeatureAreas)),
             "impactStartDateTime": lambda n : setattr(self, 'impact_start_date_time', n.get_datetime_value()),
@@ -128,7 +134,7 @@ class RecommendationBase(Entity):
             "lastCheckedDateTime": lambda n : setattr(self, 'last_checked_date_time', n.get_datetime_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "maxScore": lambda n : setattr(self, 'max_score', n.get_float_value()),
+            "maxScore": lambda n : setattr(self, 'max_score', n.get_object_value(RecommendationBase_maxScore)),
             "postponeUntilDateTime": lambda n : setattr(self, 'postpone_until_date_time', n.get_datetime_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_enum_value(RecommendationPriority)),
             "recommendationType": lambda n : setattr(self, 'recommendation_type', n.get_enum_value(RecommendationType)),
@@ -154,7 +160,7 @@ class RecommendationBase(Entity):
         writer.write_str_value("benefits", self.benefits)
         writer.write_enum_value("category", self.category)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
-        writer.write_float_value("currentScore", self.current_score)
+        writer.write_object_value("currentScore", self.current_score)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_enum_values("featureAreas", self.feature_areas)
         writer.write_datetime_value("impactStartDateTime", self.impact_start_date_time)
@@ -164,7 +170,7 @@ class RecommendationBase(Entity):
         writer.write_datetime_value("lastCheckedDateTime", self.last_checked_date_time)
         writer.write_str_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
-        writer.write_float_value("maxScore", self.max_score)
+        writer.write_object_value("maxScore", self.max_score)
         writer.write_datetime_value("postponeUntilDateTime", self.postpone_until_date_time)
         writer.write_enum_value("priority", self.priority)
         writer.write_enum_value("recommendationType", self.recommendation_type)

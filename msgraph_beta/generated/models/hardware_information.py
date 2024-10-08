@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .device_guard_virtualization_based_security_hardware_requirement_state import DeviceGuardVirtualizationBasedSecurityHardwareRequirementState
     from .device_guard_virtualization_based_security_state import DeviceGuardVirtualizationBasedSecurityState
     from .device_licensing_status import DeviceLicensingStatus
+    from .hardware_information_battery_level_percentage import HardwareInformation_batteryLevelPercentage
     from .shared_apple_device_user import SharedAppleDeviceUser
 
 @dataclass
@@ -26,7 +27,7 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
     # The device’s current battery’s health percentage. Valid values 0 to 100
     battery_health_percentage: Optional[int] = None
     # The battery level, between 0.0 and 100, or null if the battery level cannot be determined. The update frequency of this property is per-checkin. Note this property is currently supported only on devices running iOS 5.0 and later, and is available only when Device Information access right is obtained. Valid values 0 to 100
-    battery_level_percentage: Optional[float] = None
+    battery_level_percentage: Optional[HardwareInformation_batteryLevelPercentage] = None
     # The serial number of the device’s current battery
     battery_serial_number: Optional[str] = None
     # Cellular technology of the device
@@ -124,18 +125,20 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
         from .device_guard_virtualization_based_security_hardware_requirement_state import DeviceGuardVirtualizationBasedSecurityHardwareRequirementState
         from .device_guard_virtualization_based_security_state import DeviceGuardVirtualizationBasedSecurityState
         from .device_licensing_status import DeviceLicensingStatus
+        from .hardware_information_battery_level_percentage import HardwareInformation_batteryLevelPercentage
         from .shared_apple_device_user import SharedAppleDeviceUser
 
         from .device_guard_local_system_authority_credential_guard_state import DeviceGuardLocalSystemAuthorityCredentialGuardState
         from .device_guard_virtualization_based_security_hardware_requirement_state import DeviceGuardVirtualizationBasedSecurityHardwareRequirementState
         from .device_guard_virtualization_based_security_state import DeviceGuardVirtualizationBasedSecurityState
         from .device_licensing_status import DeviceLicensingStatus
+        from .hardware_information_battery_level_percentage import HardwareInformation_batteryLevelPercentage
         from .shared_apple_device_user import SharedAppleDeviceUser
 
         fields: Dict[str, Callable[[Any], None]] = {
             "batteryChargeCycles": lambda n : setattr(self, 'battery_charge_cycles', n.get_int_value()),
             "batteryHealthPercentage": lambda n : setattr(self, 'battery_health_percentage', n.get_int_value()),
-            "batteryLevelPercentage": lambda n : setattr(self, 'battery_level_percentage', n.get_float_value()),
+            "batteryLevelPercentage": lambda n : setattr(self, 'battery_level_percentage', n.get_object_value(HardwareInformation_batteryLevelPercentage)),
             "batterySerialNumber": lambda n : setattr(self, 'battery_serial_number', n.get_str_value()),
             "cellularTechnology": lambda n : setattr(self, 'cellular_technology', n.get_str_value()),
             "deviceFullQualifiedDomainName": lambda n : setattr(self, 'device_full_qualified_domain_name', n.get_str_value()),
@@ -187,7 +190,7 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_int_value("batteryChargeCycles", self.battery_charge_cycles)
         writer.write_int_value("batteryHealthPercentage", self.battery_health_percentage)
-        writer.write_float_value("batteryLevelPercentage", self.battery_level_percentage)
+        writer.write_object_value("batteryLevelPercentage", self.battery_level_percentage)
         writer.write_str_value("batterySerialNumber", self.battery_serial_number)
         writer.write_str_value("cellularTechnology", self.cellular_technology)
         writer.write_str_value("deviceFullQualifiedDomainName", self.device_full_qualified_domain_name)

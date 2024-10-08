@@ -7,6 +7,8 @@ from uuid import UUID
 
 if TYPE_CHECKING:
     from .app_log_upload_state import AppLogUploadState
+    from .device_log_collection_response_size import DeviceLogCollectionResponse_size
+    from .device_log_collection_response_size_in_k_b import DeviceLogCollectionResponse_sizeInKB
     from .entity import Entity
 
 from .entity import Entity
@@ -33,9 +35,9 @@ class DeviceLogCollectionResponse(Entity):
     # The DateTime of the request.
     requested_date_time_u_t_c: Optional[datetime.datetime] = None
     # The size of the logs. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-    size: Optional[float] = None
+    size: Optional[DeviceLogCollectionResponse_size] = None
     # The size of the logs in KB. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-    size_in_k_b: Optional[float] = None
+    size_in_k_b: Optional[DeviceLogCollectionResponse_sizeInKB] = None
     # AppLogUploadStatus
     status: Optional[AppLogUploadState] = None
     
@@ -56,9 +58,13 @@ class DeviceLogCollectionResponse(Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .app_log_upload_state import AppLogUploadState
+        from .device_log_collection_response_size import DeviceLogCollectionResponse_size
+        from .device_log_collection_response_size_in_k_b import DeviceLogCollectionResponse_sizeInKB
         from .entity import Entity
 
         from .app_log_upload_state import AppLogUploadState
+        from .device_log_collection_response_size import DeviceLogCollectionResponse_size
+        from .device_log_collection_response_size_in_k_b import DeviceLogCollectionResponse_sizeInKB
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -69,8 +75,8 @@ class DeviceLogCollectionResponse(Entity):
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_uuid_value()),
             "receivedDateTimeUTC": lambda n : setattr(self, 'received_date_time_u_t_c', n.get_datetime_value()),
             "requestedDateTimeUTC": lambda n : setattr(self, 'requested_date_time_u_t_c', n.get_datetime_value()),
-            "size": lambda n : setattr(self, 'size', n.get_float_value()),
-            "sizeInKB": lambda n : setattr(self, 'size_in_k_b', n.get_float_value()),
+            "size": lambda n : setattr(self, 'size', n.get_object_value(DeviceLogCollectionResponse_size)),
+            "sizeInKB": lambda n : setattr(self, 'size_in_k_b', n.get_object_value(DeviceLogCollectionResponse_sizeInKB)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(AppLogUploadState)),
         }
         super_fields = super().get_field_deserializers()
@@ -93,8 +99,8 @@ class DeviceLogCollectionResponse(Entity):
         writer.write_uuid_value("managedDeviceId", self.managed_device_id)
         writer.write_datetime_value("receivedDateTimeUTC", self.received_date_time_u_t_c)
         writer.write_datetime_value("requestedDateTimeUTC", self.requested_date_time_u_t_c)
-        writer.write_float_value("size", self.size)
-        writer.write_float_value("sizeInKB", self.size_in_k_b)
+        writer.write_object_value("size", self.size)
+        writer.write_object_value("sizeInKB", self.size_in_k_b)
         writer.write_enum_value("status", self.status)
     
 

@@ -4,6 +4,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .inference_data_confidence_score import InferenceData_confidenceScore
+
 @dataclass
 class InferenceData(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -12,7 +15,7 @@ class InferenceData(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Confidence score reflecting the accuracy of the data inferred about the user.
-    confidence_score: Optional[float] = None
+    confidence_score: Optional[InferenceData_confidenceScore] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Records if the user has confirmed this inference as being True or False.
@@ -34,8 +37,12 @@ class InferenceData(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .inference_data_confidence_score import InferenceData_confidenceScore
+
+        from .inference_data_confidence_score import InferenceData_confidenceScore
+
         fields: Dict[str, Callable[[Any], None]] = {
-            "confidenceScore": lambda n : setattr(self, 'confidence_score', n.get_float_value()),
+            "confidenceScore": lambda n : setattr(self, 'confidence_score', n.get_object_value(InferenceData_confidenceScore)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "userHasVerifiedAccuracy": lambda n : setattr(self, 'user_has_verified_accuracy', n.get_bool_value()),
         }
@@ -49,7 +56,7 @@ class InferenceData(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_float_value("confidenceScore", self.confidence_score)
+        writer.write_object_value("confidenceScore", self.confidence_score)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bool_value("userHasVerifiedAccuracy", self.user_has_verified_accuracy)
         writer.write_additional_data_value(self.additional_data)

@@ -4,6 +4,10 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .education_grading_scheme_grade_default_percentage import EducationGradingSchemeGrade_defaultPercentage
+    from .education_grading_scheme_grade_min_percentage import EducationGradingSchemeGrade_minPercentage
+
 @dataclass
 class EducationGradingSchemeGrade(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -12,11 +16,11 @@ class EducationGradingSchemeGrade(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The midpoint of the grade range.
-    default_percentage: Optional[float] = None
+    default_percentage: Optional[EducationGradingSchemeGrade_defaultPercentage] = None
     # The name of the grading scheme.
     display_name: Optional[str] = None
     # The minimum percentage of the total points needed to achieve this grade.
-    min_percentage: Optional[float] = None
+    min_percentage: Optional[EducationGradingSchemeGrade_minPercentage] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -36,10 +40,16 @@ class EducationGradingSchemeGrade(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .education_grading_scheme_grade_default_percentage import EducationGradingSchemeGrade_defaultPercentage
+        from .education_grading_scheme_grade_min_percentage import EducationGradingSchemeGrade_minPercentage
+
+        from .education_grading_scheme_grade_default_percentage import EducationGradingSchemeGrade_defaultPercentage
+        from .education_grading_scheme_grade_min_percentage import EducationGradingSchemeGrade_minPercentage
+
         fields: Dict[str, Callable[[Any], None]] = {
-            "defaultPercentage": lambda n : setattr(self, 'default_percentage', n.get_float_value()),
+            "defaultPercentage": lambda n : setattr(self, 'default_percentage', n.get_object_value(EducationGradingSchemeGrade_defaultPercentage)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "minPercentage": lambda n : setattr(self, 'min_percentage', n.get_float_value()),
+            "minPercentage": lambda n : setattr(self, 'min_percentage', n.get_object_value(EducationGradingSchemeGrade_minPercentage)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -52,9 +62,9 @@ class EducationGradingSchemeGrade(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_float_value("defaultPercentage", self.default_percentage)
+        writer.write_object_value("defaultPercentage", self.default_percentage)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_float_value("minPercentage", self.min_percentage)
+        writer.write_object_value("minPercentage", self.min_percentage)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
