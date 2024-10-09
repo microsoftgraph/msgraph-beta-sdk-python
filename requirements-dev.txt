@@ -74,5 +74,5 @@ uritemplate==4.1.1
 urllib3==2.2.3
 wrapt==1.16.0
 yapf==0.40.2
-yarl==1.13.1
+yarl==1.14.0
 zipp==3.20.2
