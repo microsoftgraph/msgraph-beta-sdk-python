@@ -27,7 +27,7 @@ class CloudPcUserSetting(Entity):
     last_modified_date_time: Optional[datetime.datetime] = None
     # Indicates whether the local admin option is enabled. Default value is false. To enable the local admin option, change the setting to true. If the local admin option is enabled, the end user can be an admin of the Cloud PC device.
     local_admin_enabled: Optional[bool] = None
-    # The notificationSetting property
+    # Defines the setting of the Cloud PC notification prompts for the Cloud PC user.
     notification_setting: Optional[CloudPcNotificationSetting] = None
     # The OdataType property
     odata_type: Optional[str] = None

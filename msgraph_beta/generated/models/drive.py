@@ -41,7 +41,7 @@ class Drive(BaseItem):
     share_point_ids: Optional[SharepointIds] = None
     # Collection of common folders available in OneDrive. Read-only. Nullable.
     special: Optional[List[DriveItem]] = None
-    # If present, indicates that this is a system-managed drive. Read-only.
+    # If present, indicates that it's a system-managed drive. Read-only.
     system: Optional[SystemFacet] = None
     
     @staticmethod

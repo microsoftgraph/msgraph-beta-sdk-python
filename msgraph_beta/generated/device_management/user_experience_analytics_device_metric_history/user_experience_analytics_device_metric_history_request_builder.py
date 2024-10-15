@@ -48,7 +48,7 @@ class UserExperienceAnalyticsDeviceMetricHistoryRequestBuilder(BaseRequestBuilde
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UserExperienceAnalyticsDeviceMetricHistoryRequestBuilderGetQueryParameters]] = None) -> Optional[UserExperienceAnalyticsMetricHistoryCollectionResponse]:
         """
-        User experience analytics device metric history
+        User experience analytics device metric history. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserExperienceAnalyticsMetricHistoryCollectionResponse]
         """
@@ -91,7 +91,7 @@ class UserExperienceAnalyticsDeviceMetricHistoryRequestBuilder(BaseRequestBuilde
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UserExperienceAnalyticsDeviceMetricHistoryRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        User experience analytics device metric history
+        User experience analytics device metric history. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +137,7 @@ class UserExperienceAnalyticsDeviceMetricHistoryRequestBuilder(BaseRequestBuilde
     @dataclass
     class UserExperienceAnalyticsDeviceMetricHistoryRequestBuilderGetQueryParameters():
         """
-        User experience analytics device metric history
+        User experience analytics device metric history. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

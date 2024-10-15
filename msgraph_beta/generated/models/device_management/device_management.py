@@ -497,7 +497,7 @@ class DeviceManagement(Entity):
     user_experience_analytics_battery_health_runtime_details: Optional[UserExperienceAnalyticsBatteryHealthRuntimeDetails] = None
     # User experience analytics categories
     user_experience_analytics_categories: Optional[List[UserExperienceAnalyticsCategory]] = None
-    # User experience analytics device metric history
+    # User experience analytics device metric history. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
     user_experience_analytics_device_metric_history: Optional[List[UserExperienceAnalyticsMetricHistory]] = None
     # User experience analytics device performance
     user_experience_analytics_device_performance: Optional[List[UserExperienceAnalyticsDevicePerformance]] = None
@@ -527,7 +527,7 @@ class DeviceManagement(Entity):
     user_experience_analytics_not_autopilot_ready_device: Optional[List[UserExperienceAnalyticsNotAutopilotReadyDevice]] = None
     # User experience analytics overview
     user_experience_analytics_overview: Optional[UserExperienceAnalyticsOverview] = None
-    # User experience analytics remote connection
+    # User experience analytics remote connection. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
     user_experience_analytics_remote_connection: Optional[List[UserExperienceAnalyticsRemoteConnection]] = None
     # User experience analytics resource performance
     user_experience_analytics_resource_performance: Optional[List[UserExperienceAnalyticsResourcePerformance]] = None

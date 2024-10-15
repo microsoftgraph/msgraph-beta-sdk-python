@@ -36,9 +36,10 @@ class GetByUserIdAndRoleWithUserIdWithRoleRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetByUserIdAndRoleWithUserIdWithRoleRequestBuilderGetQueryParameters]] = None) -> Optional[GetByUserIdAndRoleWithUserIdWithRoleGetResponse]:
         """
-        Invoke function getByUserIdAndRole
+        Get a list of virtualEventTownhall objects where the specified user is either the organizer or a coorganizer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetByUserIdAndRoleWithUserIdWithRoleGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/virtualeventtownhall-getbyuseridandrole?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -56,7 +57,7 @@ class GetByUserIdAndRoleWithUserIdWithRoleRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetByUserIdAndRoleWithUserIdWithRoleRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getByUserIdAndRole
+        Get a list of virtualEventTownhall objects where the specified user is either the organizer or a coorganizer.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -78,7 +79,7 @@ class GetByUserIdAndRoleWithUserIdWithRoleRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GetByUserIdAndRoleWithUserIdWithRoleRequestBuilderGetQueryParameters():
         """
-        Invoke function getByUserIdAndRole
+        Get a list of virtualEventTownhall objects where the specified user is either the organizer or a coorganizer.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

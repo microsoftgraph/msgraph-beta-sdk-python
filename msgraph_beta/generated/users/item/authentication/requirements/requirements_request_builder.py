@@ -13,112 +13,89 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
-    from .......models.mobile_app_relationship import MobileAppRelationship
-    from .......models.o_data_errors.o_data_error import ODataError
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .....models.strong_authentication_requirements import StrongAuthenticationRequirements
 
-class MobileAppRelationshipItemRequestBuilder(BaseRequestBuilder):
+class RequirementsRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the relationships property of the microsoft.graph.mobileApp entity.
+    Builds and executes requests for operations under /users/{user-id}/authentication/requirements
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
         """
-        Instantiates a new MobileAppRelationshipItemRequestBuilder and sets the default values.
+        Instantiates a new RequirementsRequestBuilder and sets the default values.
         param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.androidLobApp/relationships/{mobileAppRelationship%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/authentication/requirements{?%24expand,%24select}", path_parameters)
     
-    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
+    async def get(self,request_configuration: Optional[RequestConfiguration[RequirementsRequestBuilderGetQueryParameters]] = None) -> Optional[StrongAuthenticationRequirements]:
         """
-        Delete navigation property relationships for deviceAppManagement
+        Read the properties of a user's authentication states. Use this API to retrieve the following information:
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: None
+        Returns: Optional[StrongAuthenticationRequirements]
+        Find more info here: https://learn.microsoft.com/graph/api/authentication-get?view=graph-rest-beta
         """
-        request_info = self.to_delete_request_information(
-            request_configuration
-        )
-        from .......models.o_data_errors.o_data_error import ODataError
-
-        error_mapping: Dict[str, type[ParsableFactory]] = {
-            "XXX": ODataError,
-        }
-        if not self.request_adapter:
-            raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
-    
-    async def get(self,request_configuration: Optional[RequestConfiguration[MobileAppRelationshipItemRequestBuilderGetQueryParameters]] = None) -> Optional[MobileAppRelationship]:
-        """
-        List of relationships for this mobile app.
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[MobileAppRelationship]
-        """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .......models.o_data_errors.o_data_error import ODataError
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models.mobile_app_relationship import MobileAppRelationship
+        from .....models.strong_authentication_requirements import StrongAuthenticationRequirements
 
-        return await self.request_adapter.send_async(request_info, MobileAppRelationship, error_mapping)
+        return await self.request_adapter.send_async(request_info, StrongAuthenticationRequirements, error_mapping)
     
-    async def patch(self,body: MobileAppRelationship, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MobileAppRelationship]:
+    async def patch(self,body: StrongAuthenticationRequirements, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[StrongAuthenticationRequirements]:
         """
-        Update the navigation property relationships in deviceAppManagement
+        Update the properties of a user's authentication method states. Use this API to update the following information:
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[MobileAppRelationship]
+        Returns: Optional[StrongAuthenticationRequirements]
+        Find more info here: https://learn.microsoft.com/graph/api/authentication-update?view=graph-rest-beta
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .......models.o_data_errors.o_data_error import ODataError
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: Dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models.mobile_app_relationship import MobileAppRelationship
+        from .....models.strong_authentication_requirements import StrongAuthenticationRequirements
 
-        return await self.request_adapter.send_async(request_info, MobileAppRelationship, error_mapping)
+        return await self.request_adapter.send_async(request_info, StrongAuthenticationRequirements, error_mapping)
     
-    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RequirementsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property relationships for deviceAppManagement
+        Read the properties of a user's authentication states. Use this API to retrieve the following information:
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
-        request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
-        return request_info
-    
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MobileAppRelationshipItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
-        """
-        List of relationships for this mobile app.
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: MobileAppRelationship, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: StrongAuthenticationRequirements, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property relationships in deviceAppManagement
+        Update the properties of a user's authentication method states. Use this API to update the following information:
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -127,27 +104,21 @@ class MobileAppRelationshipItemRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: str) -> MobileAppRelationshipItemRequestBuilder:
+    def with_url(self,raw_url: str) -> RequirementsRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: MobileAppRelationshipItemRequestBuilder
+        Returns: RequirementsRequestBuilder
         """
+        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
-        return MobileAppRelationshipItemRequestBuilder(self.request_adapter, raw_url)
+        return RequirementsRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class MobileAppRelationshipItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class RequirementsRequestBuilderGetQueryParameters():
         """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
-    
-    @dataclass
-    class MobileAppRelationshipItemRequestBuilderGetQueryParameters():
-        """
-        List of relationships for this mobile app.
+        Read the properties of a user's authentication states. Use this API to retrieve the following information:
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -171,14 +142,14 @@ class MobileAppRelationshipItemRequestBuilder(BaseRequestBuilder):
 
     
     @dataclass
-    class MobileAppRelationshipItemRequestBuilderGetRequestConfiguration(RequestConfiguration[MobileAppRelationshipItemRequestBuilderGetQueryParameters]):
+    class RequirementsRequestBuilderGetRequestConfiguration(RequestConfiguration[RequirementsRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
     @dataclass
-    class MobileAppRelationshipItemRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class RequirementsRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

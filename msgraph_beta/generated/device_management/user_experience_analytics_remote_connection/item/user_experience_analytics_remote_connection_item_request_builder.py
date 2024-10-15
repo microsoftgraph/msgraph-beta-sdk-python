@@ -49,7 +49,7 @@ class UserExperienceAnalyticsRemoteConnectionItemRequestBuilder(BaseRequestBuild
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UserExperienceAnalyticsRemoteConnectionItemRequestBuilderGetQueryParameters]] = None) -> Optional[UserExperienceAnalyticsRemoteConnection]:
         """
-        User experience analytics remote connection
+        User experience analytics remote connection. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserExperienceAnalyticsRemoteConnection]
         """
@@ -103,7 +103,7 @@ class UserExperienceAnalyticsRemoteConnectionItemRequestBuilder(BaseRequestBuild
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UserExperienceAnalyticsRemoteConnectionItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        User experience analytics remote connection
+        User experience analytics remote connection. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class UserExperienceAnalyticsRemoteConnectionItemRequestBuilder(BaseRequestBuild
     @dataclass
     class UserExperienceAnalyticsRemoteConnectionItemRequestBuilderGetQueryParameters():
         """
-        User experience analytics remote connection
+        User experience analytics remote connection. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
