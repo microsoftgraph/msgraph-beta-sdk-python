@@ -7,12 +7,16 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .related_destination import RelatedDestination
     from .related_device import RelatedDevice
+    from .related_file import RelatedFile
+    from .related_file_hash import RelatedFileHash
     from .related_malware import RelatedMalware
     from .related_process import RelatedProcess
     from .related_remote_network import RelatedRemoteNetwork
     from .related_tenant import RelatedTenant
     from .related_threat_intelligence import RelatedThreatIntelligence
     from .related_token import RelatedToken
+    from .related_transaction import RelatedTransaction
+    from .related_url import RelatedUrl
     from .related_user import RelatedUser
     from .related_web_category import RelatedWebCategory
 
@@ -47,6 +51,14 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
             from .related_device import RelatedDevice
 
             return RelatedDevice()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedFile".casefold():
+            from .related_file import RelatedFile
+
+            return RelatedFile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedFileHash".casefold():
+            from .related_file_hash import RelatedFileHash
+
+            return RelatedFileHash()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedMalware".casefold():
             from .related_malware import RelatedMalware
 
@@ -71,6 +83,14 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
             from .related_token import RelatedToken
 
             return RelatedToken()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedTransaction".casefold():
+            from .related_transaction import RelatedTransaction
+
+            return RelatedTransaction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedUrl".casefold():
+            from .related_url import RelatedUrl
+
+            return RelatedUrl()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedUser".casefold():
             from .related_user import RelatedUser
 
@@ -88,23 +108,31 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .related_destination import RelatedDestination
         from .related_device import RelatedDevice
+        from .related_file import RelatedFile
+        from .related_file_hash import RelatedFileHash
         from .related_malware import RelatedMalware
         from .related_process import RelatedProcess
         from .related_remote_network import RelatedRemoteNetwork
         from .related_tenant import RelatedTenant
         from .related_threat_intelligence import RelatedThreatIntelligence
         from .related_token import RelatedToken
+        from .related_transaction import RelatedTransaction
+        from .related_url import RelatedUrl
         from .related_user import RelatedUser
         from .related_web_category import RelatedWebCategory
 
         from .related_destination import RelatedDestination
         from .related_device import RelatedDevice
+        from .related_file import RelatedFile
+        from .related_file_hash import RelatedFileHash
         from .related_malware import RelatedMalware
         from .related_process import RelatedProcess
         from .related_remote_network import RelatedRemoteNetwork
         from .related_tenant import RelatedTenant
         from .related_threat_intelligence import RelatedThreatIntelligence
         from .related_token import RelatedToken
+        from .related_transaction import RelatedTransaction
+        from .related_url import RelatedUrl
         from .related_user import RelatedUser
         from .related_web_category import RelatedWebCategory
 

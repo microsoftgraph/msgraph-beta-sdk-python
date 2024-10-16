@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
-    from .teams_user_configuration.user_configuration import UserConfiguration
+    from .user_configuration import UserConfiguration
 
 from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
@@ -31,10 +31,10 @@ class UserConfigurationCollectionResponse(BaseCollectionPaginationCountResponse)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
-        from .teams_user_configuration.user_configuration import UserConfiguration
+        from .user_configuration import UserConfiguration
 
         from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
-        from .teams_user_configuration.user_configuration import UserConfiguration
+        from .user_configuration import UserConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(UserConfiguration)),

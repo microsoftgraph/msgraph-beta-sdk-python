@@ -11,9 +11,9 @@ class EmailNotificationConfiguration(AdditionalDataHolder, BackedModel, Parsable
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The groupId property
+    # The identifier of the group to send an email to. All group types with configured email addresses are supported.
     group_id: Optional[str] = None
-    # The isEnabled property
+    # Indicates whether email notifications are enabled on the alert type.
     is_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
