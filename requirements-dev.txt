@@ -35,7 +35,7 @@ looseversion==1.3.0
 mccabe==0.7.0
 microsoft-kiota-abstractions==1.4.5
 microsoft-kiota-authentication-azure==1.4.5
-microsoft-kiota-http==1.3.4
+microsoft-kiota-http==1.4.5
 microsoft-kiota-serialization-form==1.4.5
 microsoft-kiota-serialization-json==1.3.3
 microsoft-kiota-serialization-multipart==0.1.0
