@@ -22,9 +22,11 @@ if TYPE_CHECKING:
     from .bulk_set_cloud_pc_review_status.bulk_set_cloud_pc_review_status_request_builder import BulkSetCloudPcReviewStatusRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .download_app_diagnostics.download_app_diagnostics_request_builder import DownloadAppDiagnosticsRequestBuilder
+    from .download_powerlift_app_diagnostic.download_powerlift_app_diagnostic_request_builder import DownloadPowerliftAppDiagnosticRequestBuilder
     from .execute_action.execute_action_request_builder import ExecuteActionRequestBuilder
     from .item.managed_device_item_request_builder import ManagedDeviceItemRequestBuilder
     from .move_devices_to_o_u.move_devices_to_o_u_request_builder import MoveDevicesToOURequestBuilder
+    from .retrieve_powerlift_app_diagnostics_details_with_user_principal_name.retrieve_powerlift_app_diagnostics_details_with_user_principal_name_request_builder import RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder
 
 class ManagedDevicesRequestBuilder(BaseRequestBuilder):
     """
@@ -108,6 +110,18 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagedDevice, error_mapping)
     
+    def retrieve_powerlift_app_diagnostics_details_with_user_principal_name(self,user_principal_name: str) -> RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder:
+        """
+        Provides operations to call the retrievePowerliftAppDiagnosticsDetails method.
+        param user_principal_name: Usage: userPrincipalName='{userPrincipalName}'
+        Returns: RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder
+        """
+        if user_principal_name is None:
+            raise TypeError("user_principal_name cannot be null.")
+        from .retrieve_powerlift_app_diagnostics_details_with_user_principal_name.retrieve_powerlift_app_diagnostics_details_with_user_principal_name_request_builder import RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder
+
+        return RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder(self.request_adapter, self.path_parameters, user_principal_name)
+    
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ManagedDevicesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         The list of managed devices.
@@ -188,6 +202,15 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
         from .download_app_diagnostics.download_app_diagnostics_request_builder import DownloadAppDiagnosticsRequestBuilder
 
         return DownloadAppDiagnosticsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def download_powerlift_app_diagnostic(self) -> DownloadPowerliftAppDiagnosticRequestBuilder:
+        """
+        Provides operations to call the downloadPowerliftAppDiagnostic method.
+        """
+        from .download_powerlift_app_diagnostic.download_powerlift_app_diagnostic_request_builder import DownloadPowerliftAppDiagnosticRequestBuilder
+
+        return DownloadPowerliftAppDiagnosticRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def execute_action(self) -> ExecuteActionRequestBuilder:

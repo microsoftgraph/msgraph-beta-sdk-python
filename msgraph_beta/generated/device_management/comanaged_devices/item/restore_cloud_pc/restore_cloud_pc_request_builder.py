@@ -31,11 +31,10 @@ class RestoreCloudPcRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: RestoreCloudPcPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Restore a Cloud PC device to a previous state with an Intune managed device ID.
+        Invoke action restoreCloudPc
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/manageddevice-restorecloudpc?view=graph-rest-beta
         """
         warn("The restoreCloudPc API is deprecated and will stop returning on Sep 30, 2023. Please use restore instead as of 2023-07/restoreCloudPc", DeprecationWarning)
         if body is None:
@@ -54,7 +53,7 @@ class RestoreCloudPcRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: RestoreCloudPcPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Restore a Cloud PC device to a previous state with an Intune managed device ID.
+        Invoke action restoreCloudPc
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

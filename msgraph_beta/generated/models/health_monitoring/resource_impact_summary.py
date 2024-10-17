@@ -19,13 +19,13 @@ class ResourceImpactSummary(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The impactedCount property
+    # The number of resources impacted. The number could be an exhaustive count or a sampling count.
     impacted_count: Optional[str] = None
-    # The impactedCountLimitExceeded property
+    # Indicates whether impactedCount is exhaustive or a sampling. When this value is true, the limit was exceeded and impactedCount represents a sampling; otherwise, impactedCount represents the true number of impacts.
     impacted_count_limit_exceeded: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resourceType property
+    # The type of resource that was impacted. Examples include user, group, application, servicePrincipal, device.
     resource_type: Optional[str] = None
     
     @staticmethod

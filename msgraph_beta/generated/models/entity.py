@@ -285,9 +285,11 @@ if TYPE_CHECKING:
     from .canvas_layout import CanvasLayout
     from .cart_to_class_association import CartToClassAssociation
     from .certificate_authority_as_entity import CertificateAuthorityAsEntity
+    from .certificate_authority_detail import CertificateAuthorityDetail
     from .certificate_authority_path import CertificateAuthorityPath
     from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
     from .certificate_based_auth_configuration import CertificateBasedAuthConfiguration
+    from .certificate_based_auth_pki import CertificateBasedAuthPki
     from .certificate_connector_details import CertificateConnectorDetails
     from .change_tracked_entity import ChangeTrackedEntity
     from .channel import Channel
@@ -301,6 +303,8 @@ if TYPE_CHECKING:
     from .claims_mapping_policy import ClaimsMappingPolicy
     from .classification_job_response import ClassificationJobResponse
     from .cloud_app_security_profile import CloudAppSecurityProfile
+    from .cloud_certification_authority import CloudCertificationAuthority
+    from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
     from .cloud_clipboard_item import CloudClipboardItem
     from .cloud_clipboard_root import CloudClipboardRoot
     from .cloud_pc_audit_event import CloudPcAuditEvent
@@ -442,7 +446,6 @@ if TYPE_CHECKING:
     from .device_configuration_device_status import DeviceConfigurationDeviceStatus
     from .device_configuration_group_assignment import DeviceConfigurationGroupAssignment
     from .device_configuration_policy_set_item import DeviceConfigurationPolicySetItem
-    from .device_configuration_profile import DeviceConfigurationProfile
     from .device_configuration_state import DeviceConfigurationState
     from .device_configuration_user_overview import DeviceConfigurationUserOverview
     from .device_configuration_user_state_summary import DeviceConfigurationUserStateSummary
@@ -559,6 +562,7 @@ if TYPE_CHECKING:
     from .drive_item_version import DriveItemVersion
     from .drive_protection_rule import DriveProtectionRule
     from .drive_protection_unit import DriveProtectionUnit
+    from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
     from .drive_restore_artifact import DriveRestoreArtifact
     from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
     from .edge import Edge
@@ -940,6 +944,7 @@ if TYPE_CHECKING:
     from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
     from .mailbox_protection_rule import MailboxProtectionRule
     from .mailbox_protection_unit import MailboxProtectionUnit
+    from .mailbox_protection_units_bulk_addition_job import MailboxProtectionUnitsBulkAdditionJob
     from .mailbox_restore_artifact import MailboxRestoreArtifact
     from .mail_assessment_request import MailAssessmentRequest
     from .mail_folder import MailFolder
@@ -1330,9 +1335,11 @@ if TYPE_CHECKING:
     from .pronouns_settings import PronounsSettings
     from .protection_policy_base import ProtectionPolicyBase
     from .protection_rule_base import ProtectionRuleBase
+    from .protection_units_bulk_job_base import ProtectionUnitsBulkJobBase
     from .protection_unit_base import ProtectionUnitBase
     from .provider_tenant_setting import ProviderTenantSetting
     from .provisioning_object_summary import ProvisioningObjectSummary
+    from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
     from .published_resource import PublishedResource
     from .purchase_invoice_line import PurchaseInvoiceLine
     from .rbac_application import RbacApplication
@@ -1558,6 +1565,7 @@ if TYPE_CHECKING:
     from .site_page import SitePage
     from .site_protection_rule import SiteProtectionRule
     from .site_protection_unit import SiteProtectionUnit
+    from .site_protection_units_bulk_addition_job import SiteProtectionUnitsBulkAdditionJob
     from .site_restore_artifact import SiteRestoreArtifact
     from .skill_proficiency import SkillProficiency
     from .skype_for_business_user_conversation_member import SkypeForBusinessUserConversationMember
@@ -1602,6 +1610,7 @@ if TYPE_CHECKING:
     from .task_file_attachment import TaskFileAttachment
     from .tax_group import TaxGroup
     from .team import Team
+    from .teams_administration.teams_admin_root import TeamsAdminRoot
     from .teams_app import TeamsApp
     from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
     from .teams_app_definition import TeamsAppDefinition
@@ -1611,8 +1620,6 @@ if TYPE_CHECKING:
     from .teams_async_operation import TeamsAsyncOperation
     from .teams_tab import TeamsTab
     from .teams_template import TeamsTemplate
-    from .teams_user_configuration.teams_admin_root import TeamsAdminRoot
-    from .teams_user_configuration.user_configuration import UserConfiguration
     from .teamwork import Teamwork
     from .teamwork_bot import TeamworkBot
     from .teamwork_device import TeamworkDevice
@@ -1710,6 +1717,7 @@ if TYPE_CHECKING:
     from .user_activity import UserActivity
     from .user_analytics import UserAnalytics
     from .user_app_install_status import UserAppInstallStatus
+    from .user_configuration import UserConfiguration
     from .user_consent_request import UserConsentRequest
     from .user_count_metric import UserCountMetric
     from .user_credential_usage_details import UserCredentialUsageDetails
@@ -3139,6 +3147,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .certificate_authority_as_entity import CertificateAuthorityAsEntity
 
             return CertificateAuthorityAsEntity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.certificateAuthorityDetail".casefold():
+            from .certificate_authority_detail import CertificateAuthorityDetail
+
+            return CertificateAuthorityDetail()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.certificateAuthorityPath".casefold():
             from .certificate_authority_path import CertificateAuthorityPath
 
@@ -3151,6 +3163,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .certificate_based_auth_configuration import CertificateBasedAuthConfiguration
 
             return CertificateBasedAuthConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.certificateBasedAuthPki".casefold():
+            from .certificate_based_auth_pki import CertificateBasedAuthPki
+
+            return CertificateBasedAuthPki()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.certificateConnectorDetails".casefold():
             from .certificate_connector_details import CertificateConnectorDetails
 
@@ -3203,6 +3219,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_app_security_profile import CloudAppSecurityProfile
 
             return CloudAppSecurityProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudCertificationAuthority".casefold():
+            from .cloud_certification_authority import CloudCertificationAuthority
+
+            return CloudCertificationAuthority()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudCertificationAuthorityLeafCertificate".casefold():
+            from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
+
+            return CloudCertificationAuthorityLeafCertificate()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudClipboardItem".casefold():
             from .cloud_clipboard_item import CloudClipboardItem
 
@@ -3770,10 +3794,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .device_configuration_policy_set_item import DeviceConfigurationPolicySetItem
 
             return DeviceConfigurationPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceConfigurationProfile".casefold():
-            from .device_configuration_profile import DeviceConfigurationProfile
-
-            return DeviceConfigurationProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceConfigurationState".casefold():
             from .device_configuration_state import DeviceConfigurationState
 
@@ -4238,6 +4258,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .drive_protection_unit import DriveProtectionUnit
 
             return DriveProtectionUnit()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.driveProtectionUnitsBulkAdditionJob".casefold():
+            from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
+
+            return DriveProtectionUnitsBulkAdditionJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.driveRestoreArtifact".casefold():
             from .drive_restore_artifact import DriveRestoreArtifact
 
@@ -5787,6 +5811,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mailbox_protection_unit import MailboxProtectionUnit
 
             return MailboxProtectionUnit()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxProtectionUnitsBulkAdditionJob".casefold():
+            from .mailbox_protection_units_bulk_addition_job import MailboxProtectionUnitsBulkAdditionJob
+
+            return MailboxProtectionUnitsBulkAdditionJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxRestoreArtifact".casefold():
             from .mailbox_restore_artifact import MailboxRestoreArtifact
 
@@ -7361,6 +7389,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .protection_unit_base import ProtectionUnitBase
 
             return ProtectionUnitBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.protectionUnitsBulkJobBase".casefold():
+            from .protection_units_bulk_job_base import ProtectionUnitsBulkJobBase
+
+            return ProtectionUnitsBulkJobBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.providerTenantSetting".casefold():
             from .provider_tenant_setting import ProviderTenantSetting
 
@@ -7369,6 +7401,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .provisioning_object_summary import ProvisioningObjectSummary
 
             return ProvisioningObjectSummary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.publicKeyInfrastructureRoot".casefold():
+            from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
+
+            return PublicKeyInfrastructureRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.publishedResource".casefold():
             from .published_resource import PublishedResource
 
@@ -8285,6 +8321,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .site_protection_unit import SiteProtectionUnit
 
             return SiteProtectionUnit()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.siteProtectionUnitsBulkAdditionJob".casefold():
+            from .site_protection_units_bulk_addition_job import SiteProtectionUnitsBulkAdditionJob
+
+            return SiteProtectionUnitsBulkAdditionJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.siteRestoreArtifact".casefold():
             from .site_restore_artifact import SiteRestoreArtifact
 
@@ -8465,6 +8505,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .team_info import TeamInfo
 
             return TeamInfo()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAdministration.teamsAdminRoot".casefold():
+            from .teams_administration.teams_admin_root import TeamsAdminRoot
+
+            return TeamsAdminRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsApp".casefold():
             from .teams_app import TeamsApp
 
@@ -8501,10 +8545,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .teams_template import TeamsTemplate
 
             return TeamsTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsUserConfiguration.teamsAdminRoot".casefold():
-            from .teams_user_configuration.teams_admin_root import TeamsAdminRoot
-
-            return TeamsAdminRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamTemplate".casefold():
             from .team_template import TeamTemplate
 
@@ -8891,7 +8931,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return UserAppInstallStatus()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userConfiguration".casefold():
-            from .teams_user_configuration.user_configuration import UserConfiguration
+            from .user_configuration import UserConfiguration
 
             return UserConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userConsentRequest".casefold():
@@ -10295,9 +10335,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .canvas_layout import CanvasLayout
         from .cart_to_class_association import CartToClassAssociation
         from .certificate_authority_as_entity import CertificateAuthorityAsEntity
+        from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_authority_path import CertificateAuthorityPath
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
         from .certificate_based_auth_configuration import CertificateBasedAuthConfiguration
+        from .certificate_based_auth_pki import CertificateBasedAuthPki
         from .certificate_connector_details import CertificateConnectorDetails
         from .change_tracked_entity import ChangeTrackedEntity
         from .channel import Channel
@@ -10311,6 +10353,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .classification_job_response import ClassificationJobResponse
         from .cloud_app_security_profile import CloudAppSecurityProfile
+        from .cloud_certification_authority import CloudCertificationAuthority
+        from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
         from .cloud_clipboard_item import CloudClipboardItem
         from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_pc_audit_event import CloudPcAuditEvent
@@ -10452,7 +10496,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .device_configuration_device_status import DeviceConfigurationDeviceStatus
         from .device_configuration_group_assignment import DeviceConfigurationGroupAssignment
         from .device_configuration_policy_set_item import DeviceConfigurationPolicySetItem
-        from .device_configuration_profile import DeviceConfigurationProfile
         from .device_configuration_state import DeviceConfigurationState
         from .device_configuration_user_overview import DeviceConfigurationUserOverview
         from .device_configuration_user_state_summary import DeviceConfigurationUserStateSummary
@@ -10569,6 +10612,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .drive_item_version import DriveItemVersion
         from .drive_protection_rule import DriveProtectionRule
         from .drive_protection_unit import DriveProtectionUnit
+        from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
         from .drive_restore_artifact import DriveRestoreArtifact
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
         from .edge import Edge
@@ -10950,6 +10994,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .mailbox_protection_rule import MailboxProtectionRule
         from .mailbox_protection_unit import MailboxProtectionUnit
+        from .mailbox_protection_units_bulk_addition_job import MailboxProtectionUnitsBulkAdditionJob
         from .mailbox_restore_artifact import MailboxRestoreArtifact
         from .mail_assessment_request import MailAssessmentRequest
         from .mail_folder import MailFolder
@@ -11340,9 +11385,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .pronouns_settings import PronounsSettings
         from .protection_policy_base import ProtectionPolicyBase
         from .protection_rule_base import ProtectionRuleBase
+        from .protection_units_bulk_job_base import ProtectionUnitsBulkJobBase
         from .protection_unit_base import ProtectionUnitBase
         from .provider_tenant_setting import ProviderTenantSetting
         from .provisioning_object_summary import ProvisioningObjectSummary
+        from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .published_resource import PublishedResource
         from .purchase_invoice_line import PurchaseInvoiceLine
         from .rbac_application import RbacApplication
@@ -11568,6 +11615,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .site_page import SitePage
         from .site_protection_rule import SiteProtectionRule
         from .site_protection_unit import SiteProtectionUnit
+        from .site_protection_units_bulk_addition_job import SiteProtectionUnitsBulkAdditionJob
         from .site_restore_artifact import SiteRestoreArtifact
         from .skill_proficiency import SkillProficiency
         from .skype_for_business_user_conversation_member import SkypeForBusinessUserConversationMember
@@ -11612,6 +11660,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .task_file_attachment import TaskFileAttachment
         from .tax_group import TaxGroup
         from .team import Team
+        from .teams_administration.teams_admin_root import TeamsAdminRoot
         from .teams_app import TeamsApp
         from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
         from .teams_app_definition import TeamsAppDefinition
@@ -11621,8 +11670,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_async_operation import TeamsAsyncOperation
         from .teams_tab import TeamsTab
         from .teams_template import TeamsTemplate
-        from .teams_user_configuration.teams_admin_root import TeamsAdminRoot
-        from .teams_user_configuration.user_configuration import UserConfiguration
         from .teamwork import Teamwork
         from .teamwork_bot import TeamworkBot
         from .teamwork_device import TeamworkDevice
@@ -11720,6 +11767,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_activity import UserActivity
         from .user_analytics import UserAnalytics
         from .user_app_install_status import UserAppInstallStatus
+        from .user_configuration import UserConfiguration
         from .user_consent_request import UserConsentRequest
         from .user_count_metric import UserCountMetric
         from .user_credential_usage_details import UserCredentialUsageDetails
@@ -12279,9 +12327,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .canvas_layout import CanvasLayout
         from .cart_to_class_association import CartToClassAssociation
         from .certificate_authority_as_entity import CertificateAuthorityAsEntity
+        from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_authority_path import CertificateAuthorityPath
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
         from .certificate_based_auth_configuration import CertificateBasedAuthConfiguration
+        from .certificate_based_auth_pki import CertificateBasedAuthPki
         from .certificate_connector_details import CertificateConnectorDetails
         from .change_tracked_entity import ChangeTrackedEntity
         from .channel import Channel
@@ -12295,6 +12345,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .classification_job_response import ClassificationJobResponse
         from .cloud_app_security_profile import CloudAppSecurityProfile
+        from .cloud_certification_authority import CloudCertificationAuthority
+        from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
         from .cloud_clipboard_item import CloudClipboardItem
         from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_pc_audit_event import CloudPcAuditEvent
@@ -12436,7 +12488,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .device_configuration_device_status import DeviceConfigurationDeviceStatus
         from .device_configuration_group_assignment import DeviceConfigurationGroupAssignment
         from .device_configuration_policy_set_item import DeviceConfigurationPolicySetItem
-        from .device_configuration_profile import DeviceConfigurationProfile
         from .device_configuration_state import DeviceConfigurationState
         from .device_configuration_user_overview import DeviceConfigurationUserOverview
         from .device_configuration_user_state_summary import DeviceConfigurationUserStateSummary
@@ -12553,6 +12604,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .drive_item_version import DriveItemVersion
         from .drive_protection_rule import DriveProtectionRule
         from .drive_protection_unit import DriveProtectionUnit
+        from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
         from .drive_restore_artifact import DriveRestoreArtifact
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
         from .edge import Edge
@@ -12934,6 +12986,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .mailbox_protection_rule import MailboxProtectionRule
         from .mailbox_protection_unit import MailboxProtectionUnit
+        from .mailbox_protection_units_bulk_addition_job import MailboxProtectionUnitsBulkAdditionJob
         from .mailbox_restore_artifact import MailboxRestoreArtifact
         from .mail_assessment_request import MailAssessmentRequest
         from .mail_folder import MailFolder
@@ -13324,9 +13377,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .pronouns_settings import PronounsSettings
         from .protection_policy_base import ProtectionPolicyBase
         from .protection_rule_base import ProtectionRuleBase
+        from .protection_units_bulk_job_base import ProtectionUnitsBulkJobBase
         from .protection_unit_base import ProtectionUnitBase
         from .provider_tenant_setting import ProviderTenantSetting
         from .provisioning_object_summary import ProvisioningObjectSummary
+        from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .published_resource import PublishedResource
         from .purchase_invoice_line import PurchaseInvoiceLine
         from .rbac_application import RbacApplication
@@ -13552,6 +13607,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .site_page import SitePage
         from .site_protection_rule import SiteProtectionRule
         from .site_protection_unit import SiteProtectionUnit
+        from .site_protection_units_bulk_addition_job import SiteProtectionUnitsBulkAdditionJob
         from .site_restore_artifact import SiteRestoreArtifact
         from .skill_proficiency import SkillProficiency
         from .skype_for_business_user_conversation_member import SkypeForBusinessUserConversationMember
@@ -13596,6 +13652,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .task_file_attachment import TaskFileAttachment
         from .tax_group import TaxGroup
         from .team import Team
+        from .teams_administration.teams_admin_root import TeamsAdminRoot
         from .teams_app import TeamsApp
         from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
         from .teams_app_definition import TeamsAppDefinition
@@ -13605,8 +13662,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_async_operation import TeamsAsyncOperation
         from .teams_tab import TeamsTab
         from .teams_template import TeamsTemplate
-        from .teams_user_configuration.teams_admin_root import TeamsAdminRoot
-        from .teams_user_configuration.user_configuration import UserConfiguration
         from .teamwork import Teamwork
         from .teamwork_bot import TeamworkBot
         from .teamwork_device import TeamworkDevice
@@ -13704,6 +13759,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_activity import UserActivity
         from .user_analytics import UserAnalytics
         from .user_app_install_status import UserAppInstallStatus
+        from .user_configuration import UserConfiguration
         from .user_consent_request import UserConsentRequest
         from .user_count_metric import UserCountMetric
         from .user_credential_usage_details import UserCredentialUsageDetails

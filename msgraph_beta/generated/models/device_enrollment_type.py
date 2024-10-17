@@ -39,4 +39,8 @@ class DeviceEnrollmentType(str, Enum):
     AndroidAOSPUserOwnedDeviceEnrollment = "androidAOSPUserOwnedDeviceEnrollment",
     # Indicates the device enrollment is for user less android device using Android Open Source Project (AOSP) on a non-Google mobile services.
     AndroidAOSPUserlessDeviceEnrollment = "androidAOSPUserlessDeviceEnrollment",
+    # Indicates the device is enrolled via Apple Account Driven User Enrollment, a form of enrollment where the user enrolls via iOS Settings without using the iOS Company Portal. It results in an enrollment with a new partition for managed apps and data and which supports a limited set of management capabilities.
+    AppleAccountDrivenUserEnrollment = "appleAccountDrivenUserEnrollment",
+    # Evolvable enum member
+    UnknownFutureValue = "unknownFutureValue",
 

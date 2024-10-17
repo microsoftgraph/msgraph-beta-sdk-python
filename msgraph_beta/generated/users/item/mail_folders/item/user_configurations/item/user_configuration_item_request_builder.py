@@ -14,7 +14,7 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
-    from .......models.teams_user_configuration.user_configuration import UserConfiguration
+    from .......models.user_configuration import UserConfiguration
 
 class UserConfigurationItemRequestBuilder(BaseRequestBuilder):
     """
@@ -35,7 +35,6 @@ class UserConfigurationItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserConfiguration]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -46,7 +45,7 @@ class UserConfigurationItemRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .......models.teams_user_configuration.user_configuration import UserConfiguration
+        from .......models.user_configuration import UserConfiguration
 
         return await self.request_adapter.send_async(request_info, UserConfiguration, error_mapping)
     
@@ -56,7 +55,6 @@ class UserConfigurationItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -68,7 +66,6 @@ class UserConfigurationItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: UserConfigurationItemRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return UserConfigurationItemRequestBuilder(self.request_adapter, raw_url)
