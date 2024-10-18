@@ -51,7 +51,7 @@ class HealthMonitoringRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[HealthMonitoringRequestBuilderGetQueryParameters]] = None) -> Optional[HealthMonitoringRoot]:
         """
-        Get healthMonitoring from reports
+        Reports for Microsoft Entra Health Monitoring.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HealthMonitoringRoot]
         """
@@ -105,7 +105,7 @@ class HealthMonitoringRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[HealthMonitoringRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get healthMonitoring from reports
+        Reports for Microsoft Entra Health Monitoring.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -167,7 +167,7 @@ class HealthMonitoringRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HealthMonitoringRequestBuilderGetQueryParameters():
         """
-        Get healthMonitoring from reports
+        Reports for Microsoft Entra Health Monitoring.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

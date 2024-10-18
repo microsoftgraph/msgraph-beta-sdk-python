@@ -23,7 +23,7 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, 
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The Id of the filter for the target assignment.
+    # The ID of the filter for the target assignment.
     device_and_app_management_assignment_filter_id: Optional[str] = None
     # Represents type of the assignment filter.
     device_and_app_management_assignment_filter_type: Optional[DeviceAndAppManagementAssignmentFilterType] = None

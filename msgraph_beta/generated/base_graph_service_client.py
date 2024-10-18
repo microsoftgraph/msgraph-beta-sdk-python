@@ -50,7 +50,6 @@ if TYPE_CHECKING:
     from .devices.devices_request_builder import DevicesRequestBuilder
     from .devices_with_device_id.devices_with_device_id_request_builder import DevicesWithDeviceIdRequestBuilder
     from .device_app_management.device_app_management_request_builder import DeviceAppManagementRequestBuilder
-    from .device_local_credentials.device_local_credentials_request_builder import DeviceLocalCredentialsRequestBuilder
     from .device_management.device_management_request_builder import DeviceManagementRequestBuilder
     from .directory.directory_request_builder import DirectoryRequestBuilder
     from .directory_objects.directory_objects_request_builder import DirectoryObjectsRequestBuilder
@@ -527,15 +526,6 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .device_app_management.device_app_management_request_builder import DeviceAppManagementRequestBuilder
 
         return DeviceAppManagementRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def device_local_credentials(self) -> DeviceLocalCredentialsRequestBuilder:
-        """
-        Provides operations to manage the collection of deviceLocalCredentialInfo entities.
-        """
-        from .device_local_credentials.device_local_credentials_request_builder import DeviceLocalCredentialsRequestBuilder
-
-        return DeviceLocalCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def device_management(self) -> DeviceManagementRequestBuilder:
