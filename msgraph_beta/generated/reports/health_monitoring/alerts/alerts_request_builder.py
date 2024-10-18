@@ -48,9 +48,10 @@ class AlertsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AlertsRequestBuilderGetQueryParameters]] = None) -> Optional[AlertCollectionResponse]:
         """
-        Get alerts from reports
+        Get the list of the Microsoft Entra health monitoring alert objects and their properties from the past 30 days.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AlertCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/healthmonitoring-healthmonitoringroot-list-alerts?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -91,7 +92,7 @@ class AlertsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AlertsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get alerts from reports
+        Get the list of the Microsoft Entra health monitoring alert objects and their properties from the past 30 days.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +138,7 @@ class AlertsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AlertsRequestBuilderGetQueryParameters():
         """
-        Get alerts from reports
+        Get the list of the Microsoft Entra health monitoring alert objects and their properties from the past 30 days.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

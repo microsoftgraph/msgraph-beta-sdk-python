@@ -108,6 +108,7 @@ if TYPE_CHECKING:
     from .remove_all_devices_from_management.remove_all_devices_from_management_request_builder import RemoveAllDevicesFromManagementRequestBuilder
     from .reprocess_license_assignment.reprocess_license_assignment_request_builder import ReprocessLicenseAssignmentRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
+    from .retrieve_managed_devices_with_app_installation_issues.retrieve_managed_devices_with_app_installation_issues_request_builder import RetrieveManagedDevicesWithAppInstallationIssuesRequestBuilder
     from .retry_service_provisioning.retry_service_provisioning_request_builder import RetryServiceProvisioningRequestBuilder
     from .revoke_sign_in_sessions.revoke_sign_in_sessions_request_builder import RevokeSignInSessionsRequestBuilder
     from .scoped_role_member_of.scoped_role_member_of_request_builder import ScopedRoleMemberOfRequestBuilder
@@ -150,7 +151,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param app_id: Alternate key of servicePrincipal
         Returns: AppRoleAssignedResourcesWithAppIdRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if app_id is None:
             raise TypeError("app_id cannot be null.")
         from .app_role_assigned_resources_with_app_id.app_role_assigned_resources_with_app_id_request_builder import AppRoleAssignedResourcesWithAppIdRequestBuilder
@@ -164,7 +164,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/user-delete?view=graph-rest-beta
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -183,7 +182,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param device_id: Alternate key of device
         Returns: DevicesWithDeviceIdRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if device_id is None:
             raise TypeError("device_id cannot be null.")
         from .devices_with_device_id.devices_with_device_id_request_builder import DevicesWithDeviceIdRequestBuilder
@@ -197,7 +195,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param top: Usage: top={top}
         Returns: ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if skip is None:
             raise TypeError("skip cannot be null.")
         if top is None:
@@ -212,7 +209,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param room_list: Usage: RoomList='{RoomList}'
         Returns: FindRoomsWithRoomListRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if room_list is None:
             raise TypeError("room_list cannot be null.")
         from .find_rooms_with_room_list.find_rooms_with_room_list_request_builder import FindRoomsWithRoomListRequestBuilder
@@ -226,7 +222,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[User]
         Find more info here: https://learn.microsoft.com/graph/api/user-get?view=graph-rest-beta
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -247,7 +242,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param join_web_url: Alternate key of onlineMeeting
         Returns: OnlineMeetingsWithJoinWebUrlRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if join_web_url is None:
             raise TypeError("join_web_url cannot be null.")
         from .online_meetings_with_join_web_url.online_meetings_with_join_web_url_request_builder import OnlineMeetingsWithJoinWebUrlRequestBuilder
@@ -262,7 +256,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[User]
         Find more info here: https://learn.microsoft.com/graph/api/user-update?view=graph-rest-beta
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -286,7 +279,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param start_date_time: Usage: StartDateTime='{StartDateTime}'
         Returns: ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
@@ -301,7 +293,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -313,7 +304,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -326,7 +316,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -341,7 +330,6 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: UserItemRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return UserItemRequestBuilder(self.request_adapter, raw_url)
@@ -1128,6 +1116,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .restore.restore_request_builder import RestoreRequestBuilder
 
         return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_managed_devices_with_app_installation_issues(self) -> RetrieveManagedDevicesWithAppInstallationIssuesRequestBuilder:
+        """
+        Provides operations to call the retrieveManagedDevicesWithAppInstallationIssues method.
+        """
+        from .retrieve_managed_devices_with_app_installation_issues.retrieve_managed_devices_with_app_installation_issues_request_builder import RetrieveManagedDevicesWithAppInstallationIssuesRequestBuilder
+
+        return RetrieveManagedDevicesWithAppInstallationIssuesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retry_service_provisioning(self) -> RetryServiceProvisioningRequestBuilder:
