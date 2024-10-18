@@ -39,7 +39,7 @@ class Team(Entity):
     classification: Optional[str] = None
     # Timestamp at which the team was created.
     created_date_time: Optional[datetime.datetime] = None
-    # An optional description for the team. Maximum length: 1024 characters.
+    # An optional description for the team. Maximum length: 1,024 characters.
     description: Optional[str] = None
     # Settings to configure team discoverability by others.
     discovery_settings: Optional[TeamDiscoverySettings] = None
@@ -95,7 +95,7 @@ class Team(Entity):
     tenant_id: Optional[str] = None
     # The visibility of the group and team. Defaults to Public.
     visibility: Optional[TeamVisibilityType] = None
-    # A hyperlink that goes to the team in the Microsoft Teams client. It is the URL you get when you right-click a team in the Microsoft Teams client and select Get link to team. This URL should be treated as an opaque blob, and not parsed.
+    # A hyperlink that goes to the team in the Microsoft Teams client. It's the URL you get when you right-click a team in the Microsoft Teams client and select Get link to team. This URL should be treated as an opaque blob, and not parsed.
     web_url: Optional[str] = None
     
     @staticmethod

@@ -31,11 +31,10 @@ class ResizeCloudPcRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ResizeCloudPcPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Upgrade or downgrade an existing Cloud PC to another configuration with a new virtual CPU (vCPU) and storage size.
+        Invoke action resizeCloudPc
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/manageddevice-resizecloudpc?view=graph-rest-beta
         """
         warn("The resizeCloudPc API is deprecated and will stop returning on Oct 30, 2023. Please use resize instead as of 2023-05/resizeCloudPc", DeprecationWarning)
         if body is None:
@@ -54,7 +53,7 @@ class ResizeCloudPcRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ResizeCloudPcPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Upgrade or downgrade an existing Cloud PC to another configuration with a new virtual CPU (vCPU) and storage size.
+        Invoke action resizeCloudPc
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

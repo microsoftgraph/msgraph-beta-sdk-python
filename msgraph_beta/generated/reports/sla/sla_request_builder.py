@@ -50,7 +50,7 @@ class SlaRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SlaRequestBuilderGetQueryParameters]] = None) -> Optional[ServiceLevelAgreementRoot]:
         """
-        Reports that relate to tenant-level Microsoft Entra SLA attainment.
+        Reports that relate to tenant-level Microsoft Entra Health SLA attainment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ServiceLevelAgreementRoot]
         """
@@ -104,7 +104,7 @@ class SlaRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SlaRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Reports that relate to tenant-level Microsoft Entra SLA attainment.
+        Reports that relate to tenant-level Microsoft Entra Health SLA attainment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +157,7 @@ class SlaRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SlaRequestBuilderGetQueryParameters():
         """
-        Reports that relate to tenant-level Microsoft Entra SLA attainment.
+        Reports that relate to tenant-level Microsoft Entra Health SLA attainment.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -31,6 +31,8 @@ if TYPE_CHECKING:
     from .categories.categories_request_builder import CategoriesRequestBuilder
     from .certificate_connector_details.certificate_connector_details_request_builder import CertificateConnectorDetailsRequestBuilder
     from .chrome_o_s_onboarding_settings.chrome_o_s_onboarding_settings_request_builder import ChromeOSOnboardingSettingsRequestBuilder
+    from .cloud_certification_authority.cloud_certification_authority_request_builder import CloudCertificationAuthorityRequestBuilder
+    from .cloud_certification_authority_leaf_certificate.cloud_certification_authority_leaf_certificate_request_builder import CloudCertificationAuthorityLeafCertificateRequestBuilder
     from .cloud_p_c_connectivity_issues.cloud_p_c_connectivity_issues_request_builder import CloudPCConnectivityIssuesRequestBuilder
     from .comanaged_devices.comanaged_devices_request_builder import ComanagedDevicesRequestBuilder
     from .comanagement_eligible_devices.comanagement_eligible_devices_request_builder import ComanagementEligibleDevicesRequestBuilder
@@ -57,7 +59,6 @@ if TYPE_CHECKING:
     from .device_configurations_all_managed_device_certificate_states.device_configurations_all_managed_device_certificate_states_request_builder import DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder
     from .device_configuration_conflict_summary.device_configuration_conflict_summary_request_builder import DeviceConfigurationConflictSummaryRequestBuilder
     from .device_configuration_device_state_summaries.device_configuration_device_state_summaries_request_builder import DeviceConfigurationDeviceStateSummariesRequestBuilder
-    from .device_configuration_profiles.device_configuration_profiles_request_builder import DeviceConfigurationProfilesRequestBuilder
     from .device_configuration_restricted_apps_violations.device_configuration_restricted_apps_violations_request_builder import DeviceConfigurationRestrictedAppsViolationsRequestBuilder
     from .device_configuration_user_state_summaries.device_configuration_user_state_summaries_request_builder import DeviceConfigurationUserStateSummariesRequestBuilder
     from .device_custom_attribute_shell_scripts.device_custom_attribute_shell_scripts_request_builder import DeviceCustomAttributeShellScriptsRequestBuilder
@@ -516,6 +517,24 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return ChromeOSOnboardingSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def cloud_certification_authority(self) -> CloudCertificationAuthorityRequestBuilder:
+        """
+        Provides operations to manage the cloudCertificationAuthority property of the microsoft.graph.deviceManagement entity.
+        """
+        from .cloud_certification_authority.cloud_certification_authority_request_builder import CloudCertificationAuthorityRequestBuilder
+
+        return CloudCertificationAuthorityRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def cloud_certification_authority_leaf_certificate(self) -> CloudCertificationAuthorityLeafCertificateRequestBuilder:
+        """
+        Provides operations to manage the cloudCertificationAuthorityLeafCertificate property of the microsoft.graph.deviceManagement entity.
+        """
+        from .cloud_certification_authority_leaf_certificate.cloud_certification_authority_leaf_certificate_request_builder import CloudCertificationAuthorityLeafCertificateRequestBuilder
+
+        return CloudCertificationAuthorityLeafCertificateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def cloud_p_c_connectivity_issues(self) -> CloudPCConnectivityIssuesRequestBuilder:
         """
         Provides operations to manage the cloudPCConnectivityIssues property of the microsoft.graph.deviceManagement entity.
@@ -730,15 +749,6 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .device_configuration_device_state_summaries.device_configuration_device_state_summaries_request_builder import DeviceConfigurationDeviceStateSummariesRequestBuilder
 
         return DeviceConfigurationDeviceStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def device_configuration_profiles(self) -> DeviceConfigurationProfilesRequestBuilder:
-        """
-        Provides operations to manage the deviceConfigurationProfiles property of the microsoft.graph.deviceManagement entity.
-        """
-        from .device_configuration_profiles.device_configuration_profiles_request_builder import DeviceConfigurationProfilesRequestBuilder
-
-        return DeviceConfigurationProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def device_configuration_restricted_apps_violations(self) -> DeviceConfigurationRestrictedAppsViolationsRequestBuilder:

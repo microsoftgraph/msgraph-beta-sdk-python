@@ -39,7 +39,6 @@ class ChildFoldersRequestBuilder(BaseRequestBuilder):
         param contact_folder_id1: The unique identifier of contactFolder
         Returns: ContactFolderItemRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if contact_folder_id1 is None:
             raise TypeError("contact_folder_id1 cannot be null.")
         from .item.contact_folder_item_request_builder import ContactFolderItemRequestBuilder
@@ -54,7 +53,6 @@ class ChildFoldersRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContactFolderCollectionResponse]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -76,7 +74,6 @@ class ChildFoldersRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContactFolder]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -99,7 +96,6 @@ class ChildFoldersRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -112,7 +108,6 @@ class ChildFoldersRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -127,7 +122,6 @@ class ChildFoldersRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ChildFoldersRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ChildFoldersRequestBuilder(self.request_adapter, raw_url)

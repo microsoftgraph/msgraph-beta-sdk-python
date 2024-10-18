@@ -31,7 +31,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Deletes an authenticationEventListener object.
+        Delete an authenticationEventListener object. The following derived types are currently supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/authenticationeventlistener-delete?view=graph-rest-beta
@@ -70,7 +70,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: AuthenticationEventListener, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AuthenticationEventListener]:
         """
-        Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update.
+        Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update. The following derived types are currently supported.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationEventListener]
@@ -94,7 +94,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Deletes an authenticationEventListener object.
+        Delete an authenticationEventListener object. The following derived types are currently supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +116,7 @@ class AuthenticationEventListenerItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: AuthenticationEventListener, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update.
+        Update the properties of an authenticationEventListener object. You must specify the @odata.type property and the value of the authenticationEventListener object type to update. The following derived types are currently supported.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -13,7 +13,7 @@ class CloudPcNotificationSetting(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The restartPromptsDisabled property
+    # If true, doesn't prompt the user to restart the Cloud PC. If false, prompts the user to restart Cloud PC. The default value is false.
     restart_prompts_disabled: Optional[bool] = None
     
     @staticmethod

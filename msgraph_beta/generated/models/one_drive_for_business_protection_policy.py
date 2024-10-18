@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .drive_protection_rule import DriveProtectionRule
     from .drive_protection_unit import DriveProtectionUnit
+    from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
     from .protection_policy_base import ProtectionPolicyBase
 
 from .protection_policy_base import ProtectionPolicyBase
@@ -18,6 +19,8 @@ class OneDriveForBusinessProtectionPolicy(ProtectionPolicyBase):
     drive_inclusion_rules: Optional[List[DriveProtectionRule]] = None
     # Contains the protection units associated with a  OneDrive for Business protection policy.
     drive_protection_units: Optional[List[DriveProtectionUnit]] = None
+    # The driveProtectionUnitsBulkAdditionJobs property
+    drive_protection_units_bulk_addition_jobs: Optional[List[DriveProtectionUnitsBulkAdditionJob]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OneDriveForBusinessProtectionPolicy:
@@ -37,15 +40,18 @@ class OneDriveForBusinessProtectionPolicy(ProtectionPolicyBase):
         """
         from .drive_protection_rule import DriveProtectionRule
         from .drive_protection_unit import DriveProtectionUnit
+        from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
         from .protection_policy_base import ProtectionPolicyBase
 
         from .drive_protection_rule import DriveProtectionRule
         from .drive_protection_unit import DriveProtectionUnit
+        from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
         from .protection_policy_base import ProtectionPolicyBase
 
         fields: Dict[str, Callable[[Any], None]] = {
             "driveInclusionRules": lambda n : setattr(self, 'drive_inclusion_rules', n.get_collection_of_object_values(DriveProtectionRule)),
             "driveProtectionUnits": lambda n : setattr(self, 'drive_protection_units', n.get_collection_of_object_values(DriveProtectionUnit)),
+            "driveProtectionUnitsBulkAdditionJobs": lambda n : setattr(self, 'drive_protection_units_bulk_addition_jobs', n.get_collection_of_object_values(DriveProtectionUnitsBulkAdditionJob)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -62,5 +68,6 @@ class OneDriveForBusinessProtectionPolicy(ProtectionPolicyBase):
         super().serialize(writer)
         writer.write_collection_of_object_values("driveInclusionRules", self.drive_inclusion_rules)
         writer.write_collection_of_object_values("driveProtectionUnits", self.drive_protection_units)
+        writer.write_collection_of_object_values("driveProtectionUnitsBulkAdditionJobs", self.drive_protection_units_bulk_addition_jobs)
     
 

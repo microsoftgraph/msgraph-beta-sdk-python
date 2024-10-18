@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from .device_category import DeviceCategory
     from .filtering_policy_action import FilteringPolicyAction
     from .headers import Headers
+    from .http_method import HttpMethod
     from .networking_protocol import NetworkingProtocol
     from .private_access_details import PrivateAccessDetails
     from .traffic_type import TrafficType
@@ -62,6 +63,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     filtering_profile_name: Optional[str] = None
     # Represents the headers included in a network request or response. Supports $filter (eq) and $orderby.
     headers: Optional[Headers] = None
+    # The httpMethod property
+    http_method: Optional[HttpMethod] = None
     # The initiatingProcessName property
     initiating_process_name: Optional[str] = None
     # Represents the networking protocol used for communication.The possible values are: ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII, unknownFutureValue. Supports $filter (eq) and $orderby.
@@ -84,6 +87,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     remote_network_id: Optional[str] = None
     # The resourceTenantId property
     resource_tenant_id: Optional[str] = None
+    # The responseCode property
+    response_code: Optional[int] = None
     # Represents the total number of bytes sent in a network communication or data transfer. Supports $filter (eq) and $orderby.
     sent_bytes: Optional[int] = None
     # Represents a unique identifier assigned to a session or connection within a network infrastructure. Supports $filter (eq) and $orderby.
@@ -133,6 +138,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         from .device_category import DeviceCategory
         from .filtering_policy_action import FilteringPolicyAction
         from .headers import Headers
+        from .http_method import HttpMethod
         from .networking_protocol import NetworkingProtocol
         from .private_access_details import PrivateAccessDetails
         from .traffic_type import TrafficType
@@ -144,6 +150,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         from .device_category import DeviceCategory
         from .filtering_policy_action import FilteringPolicyAction
         from .headers import Headers
+        from .http_method import HttpMethod
         from .networking_protocol import NetworkingProtocol
         from .private_access_details import PrivateAccessDetails
         from .traffic_type import TrafficType
@@ -169,6 +176,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "filteringProfileId": lambda n : setattr(self, 'filtering_profile_id', n.get_str_value()),
             "filteringProfileName": lambda n : setattr(self, 'filtering_profile_name', n.get_str_value()),
             "headers": lambda n : setattr(self, 'headers', n.get_object_value(Headers)),
+            "httpMethod": lambda n : setattr(self, 'http_method', n.get_enum_value(HttpMethod)),
             "initiatingProcessName": lambda n : setattr(self, 'initiating_process_name', n.get_str_value()),
             "networkProtocol": lambda n : setattr(self, 'network_protocol', n.get_enum_value(NetworkingProtocol)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -180,6 +188,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "receivedBytes": lambda n : setattr(self, 'received_bytes', n.get_int_value()),
             "remoteNetworkId": lambda n : setattr(self, 'remote_network_id', n.get_str_value()),
             "resourceTenantId": lambda n : setattr(self, 'resource_tenant_id', n.get_str_value()),
+            "responseCode": lambda n : setattr(self, 'response_code', n.get_int_value()),
             "sentBytes": lambda n : setattr(self, 'sent_bytes', n.get_int_value()),
             "sessionId": lambda n : setattr(self, 'session_id', n.get_str_value()),
             "sourceIp": lambda n : setattr(self, 'source_ip', n.get_str_value()),
@@ -223,6 +232,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("filteringProfileId", self.filtering_profile_id)
         writer.write_str_value("filteringProfileName", self.filtering_profile_name)
         writer.write_object_value("headers", self.headers)
+        writer.write_enum_value("httpMethod", self.http_method)
         writer.write_str_value("initiatingProcessName", self.initiating_process_name)
         writer.write_enum_value("networkProtocol", self.network_protocol)
         writer.write_str_value("@odata.type", self.odata_type)
@@ -234,6 +244,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_int_value("receivedBytes", self.received_bytes)
         writer.write_str_value("remoteNetworkId", self.remote_network_id)
         writer.write_str_value("resourceTenantId", self.resource_tenant_id)
+        writer.write_int_value("responseCode", self.response_code)
         writer.write_int_value("sentBytes", self.sent_bytes)
         writer.write_str_value("sessionId", self.session_id)
         writer.write_str_value("sourceIp", self.source_ip)

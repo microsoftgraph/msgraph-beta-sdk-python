@@ -38,7 +38,6 @@ class TemporaryAccessPassMethodsRequestBuilder(BaseRequestBuilder):
         param temporary_access_pass_authentication_method_id: The unique identifier of temporaryAccessPassAuthenticationMethod
         Returns: TemporaryAccessPassAuthenticationMethodItemRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if temporary_access_pass_authentication_method_id is None:
             raise TypeError("temporary_access_pass_authentication_method_id cannot be null.")
         from .item.temporary_access_pass_authentication_method_item_request_builder import TemporaryAccessPassAuthenticationMethodItemRequestBuilder
@@ -54,7 +53,6 @@ class TemporaryAccessPassMethodsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[TemporaryAccessPassAuthenticationMethodCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-beta
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -77,7 +75,6 @@ class TemporaryAccessPassMethodsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[TemporaryAccessPassAuthenticationMethod]
         Find more info here: https://learn.microsoft.com/graph/api/authentication-post-temporaryaccesspassmethods?view=graph-rest-beta
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -100,7 +97,6 @@ class TemporaryAccessPassMethodsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -113,7 +109,6 @@ class TemporaryAccessPassMethodsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -128,7 +123,6 @@ class TemporaryAccessPassMethodsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: TemporaryAccessPassMethodsRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return TemporaryAccessPassMethodsRequestBuilder(self.request_adapter, raw_url)

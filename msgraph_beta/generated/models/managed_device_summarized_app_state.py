@@ -5,12 +5,12 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .run_state import RunState
+    from .device_management_script_run_state import DeviceManagementScriptRunState
 
 @dataclass
 class ManagedDeviceSummarizedAppState(AdditionalDataHolder, BackedModel, Parsable):
     """
-    Event representing a user's devices with failed or pending apps.
+    The summarized information associated with managed device app installation status.
     """
     # Stores model information.
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
@@ -21,8 +21,8 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, BackedModel, Parsabl
     device_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates the type of execution status of the device management script.
-    summarized_app_state: Optional[RunState] = None
+    # Indicates the type of execution status of the device management script. This status provides insights into whether the script has been successfully executed, encountered errors, or is pending execution.
+    summarized_app_state: Optional[DeviceManagementScriptRunState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ManagedDeviceSummarizedAppState:
@@ -40,14 +40,14 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, BackedModel, Parsabl
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .run_state import RunState
+        from .device_management_script_run_state import DeviceManagementScriptRunState
 
-        from .run_state import RunState
+        from .device_management_script_run_state import DeviceManagementScriptRunState
 
         fields: Dict[str, Callable[[Any], None]] = {
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "summarizedAppState": lambda n : setattr(self, 'summarized_app_state', n.get_enum_value(RunState)),
+            "summarizedAppState": lambda n : setattr(self, 'summarized_app_state', n.get_enum_value(DeviceManagementScriptRunState)),
         }
         return fields
     

@@ -69,10 +69,11 @@ class FileThreatsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: FileThreatSubmission, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[FileThreatSubmission]:
         """
-        Create new navigation property to fileThreats for security
+        Create a new fileThreatSubmission object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FileThreatSubmission]
+        Find more info here: https://learn.microsoft.com/graph/api/security-filethreatsubmission-post-filethreats?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -103,7 +104,7 @@ class FileThreatsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: FileThreatSubmission, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to fileThreats for security
+        Create a new fileThreatSubmission object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

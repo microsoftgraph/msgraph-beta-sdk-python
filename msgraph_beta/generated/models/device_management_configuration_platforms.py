@@ -17,4 +17,8 @@ class DeviceManagementConfigurationPlatforms(str, Enum):
     Linux = "linux",
     # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
+    # Indicates that the settings contained in associated configuration applies to the android operating system corporate owned devices.
+    AndroidEnterprise = "androidEnterprise",
+    # Indicates that the settings contained in associated configuration applies to the android open source operating system.
+    Aosp = "aosp",
 

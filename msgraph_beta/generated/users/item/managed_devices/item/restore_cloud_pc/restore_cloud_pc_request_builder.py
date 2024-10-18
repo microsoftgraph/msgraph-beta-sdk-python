@@ -31,13 +31,12 @@ class RestoreCloudPcRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: RestoreCloudPcPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Restore a Cloud PC device to a previous state with an Intune managed device ID.
+        Invoke action restoreCloudPc
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/manageddevice-restorecloudpc?view=graph-rest-beta
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        warn("The restoreCloudPc API is deprecated and will stop returning on Sep 30, 2023. Please use restore instead as of 2023-07/restoreCloudPc", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -54,12 +53,12 @@ class RestoreCloudPcRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: RestoreCloudPcPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Restore a Cloud PC device to a previous state with an Intune managed device ID.
+        Invoke action restoreCloudPc
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        warn("The restoreCloudPc API is deprecated and will stop returning on Sep 30, 2023. Please use restore instead as of 2023-07/restoreCloudPc", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -74,7 +73,7 @@ class RestoreCloudPcRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: RestoreCloudPcRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        warn("The restoreCloudPc API is deprecated and will stop returning on Sep 30, 2023. Please use restore instead as of 2023-07/restoreCloudPc", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return RestoreCloudPcRequestBuilder(self.request_adapter, raw_url)

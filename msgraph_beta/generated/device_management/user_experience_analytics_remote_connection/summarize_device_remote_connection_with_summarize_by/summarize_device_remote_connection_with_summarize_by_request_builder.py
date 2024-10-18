@@ -34,7 +34,7 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(BaseRequestBu
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetQueryParameters]] = None) -> Optional[SummarizeDeviceRemoteConnectionWithSummarizeByGetResponse]:
         """
-        The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
+        Invoke function summarizeDeviceRemoteConnection
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SummarizeDeviceRemoteConnectionWithSummarizeByGetResponse]
         """
@@ -54,7 +54,7 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(BaseRequestBu
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
+        Invoke function summarizeDeviceRemoteConnection
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -76,7 +76,7 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder(BaseRequestBu
     @dataclass
     class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetQueryParameters():
         """
-        The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
+        Invoke function summarizeDeviceRemoteConnection
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

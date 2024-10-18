@@ -37,7 +37,6 @@ class AssignedUsersRequestBuilder(BaseRequestBuilder):
         param user_id: The unique identifier of user
         Returns: UserItemRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if user_id is None:
             raise TypeError("user_id cannot be null.")
         from .item.user_item_request_builder import UserItemRequestBuilder
@@ -52,7 +51,6 @@ class AssignedUsersRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserCollectionResponse]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -73,7 +71,6 @@ class AssignedUsersRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -85,7 +82,6 @@ class AssignedUsersRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AssignedUsersRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AssignedUsersRequestBuilder(self.request_adapter, raw_url)

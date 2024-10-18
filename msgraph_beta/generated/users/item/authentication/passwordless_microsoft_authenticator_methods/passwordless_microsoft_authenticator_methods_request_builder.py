@@ -37,7 +37,6 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
         param passwordless_microsoft_authenticator_authentication_method_id: The unique identifier of passwordlessMicrosoftAuthenticatorAuthenticationMethod
         Returns: PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if passwordless_microsoft_authenticator_authentication_method_id is None:
             raise TypeError("passwordless_microsoft_authenticator_authentication_method_id cannot be null.")
         from .item.passwordless_microsoft_authenticator_authentication_method_item_request_builder import PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
@@ -52,7 +51,6 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodCollectionResponse]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -73,7 +71,6 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -85,7 +82,6 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
         param raw_url: The raw URL to use for the request builder.
         Returns: PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, raw_url)

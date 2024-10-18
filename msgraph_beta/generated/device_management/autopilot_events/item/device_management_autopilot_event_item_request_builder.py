@@ -15,7 +15,6 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.device_management_autopilot_event import DeviceManagementAutopilotEvent
     from ....models.o_data_errors.o_data_error import ODataError
-    from .policy_status_details.policy_status_details_request_builder import PolicyStatusDetailsRequestBuilder
 
 class DeviceManagementAutopilotEventItemRequestBuilder(BaseRequestBuilder):
     """
@@ -137,15 +136,6 @@ class DeviceManagementAutopilotEventItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DeviceManagementAutopilotEventItemRequestBuilder(self.request_adapter, raw_url)
-    
-    @property
-    def policy_status_details(self) -> PolicyStatusDetailsRequestBuilder:
-        """
-        Provides operations to manage the policyStatusDetails property of the microsoft.graph.deviceManagementAutopilotEvent entity.
-        """
-        from .policy_status_details.policy_status_details_request_builder import PolicyStatusDetailsRequestBuilder
-
-        return PolicyStatusDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DeviceManagementAutopilotEventItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

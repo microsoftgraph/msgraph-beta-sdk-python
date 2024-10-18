@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
     from .outbound_shared_user_profile import OutboundSharedUserProfile
     from .pending_external_user_profile import PendingExternalUserProfile
+    from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
     from .recommendation import Recommendation
     from .shared_email_domain import SharedEmailDomain
 
@@ -57,6 +58,8 @@ class Directory(Entity):
     outbound_shared_user_profiles: Optional[List[OutboundSharedUserProfile]] = None
     # Collection of pending external user profiles representing collaborators in the directory that are unredeemed.
     pending_external_user_profiles: Optional[List[PendingExternalUserProfile]] = None
+    # The publicKeyInfrastructure property
+    public_key_infrastructure: Optional[PublicKeyInfrastructureRoot] = None
     # List of recommended improvements to improve tenant posture.
     recommendations: Optional[List[Recommendation]] = None
     # The sharedEmailDomains property
@@ -96,6 +99,7 @@ class Directory(Entity):
         from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
         from .outbound_shared_user_profile import OutboundSharedUserProfile
         from .pending_external_user_profile import PendingExternalUserProfile
+        from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .recommendation import Recommendation
         from .shared_email_domain import SharedEmailDomain
 
@@ -115,6 +119,7 @@ class Directory(Entity):
         from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
         from .outbound_shared_user_profile import OutboundSharedUserProfile
         from .pending_external_user_profile import PendingExternalUserProfile
+        from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .recommendation import Recommendation
         from .shared_email_domain import SharedEmailDomain
 
@@ -133,6 +138,7 @@ class Directory(Entity):
             "onPremisesSynchronization": lambda n : setattr(self, 'on_premises_synchronization', n.get_collection_of_object_values(OnPremisesDirectorySynchronization)),
             "outboundSharedUserProfiles": lambda n : setattr(self, 'outbound_shared_user_profiles', n.get_collection_of_object_values(OutboundSharedUserProfile)),
             "pendingExternalUserProfiles": lambda n : setattr(self, 'pending_external_user_profiles', n.get_collection_of_object_values(PendingExternalUserProfile)),
+            "publicKeyInfrastructure": lambda n : setattr(self, 'public_key_infrastructure', n.get_object_value(PublicKeyInfrastructureRoot)),
             "recommendations": lambda n : setattr(self, 'recommendations', n.get_collection_of_object_values(Recommendation)),
             "sharedEmailDomains": lambda n : setattr(self, 'shared_email_domains', n.get_collection_of_object_values(SharedEmailDomain)),
             "subscriptions": lambda n : setattr(self, 'subscriptions', n.get_collection_of_object_values(CompanySubscription)),
@@ -164,6 +170,7 @@ class Directory(Entity):
         writer.write_collection_of_object_values("onPremisesSynchronization", self.on_premises_synchronization)
         writer.write_collection_of_object_values("outboundSharedUserProfiles", self.outbound_shared_user_profiles)
         writer.write_collection_of_object_values("pendingExternalUserProfiles", self.pending_external_user_profiles)
+        writer.write_object_value("publicKeyInfrastructure", self.public_key_infrastructure)
         writer.write_collection_of_object_values("recommendations", self.recommendations)
         writer.write_collection_of_object_values("sharedEmailDomains", self.shared_email_domains)
         writer.write_collection_of_object_values("subscriptions", self.subscriptions)

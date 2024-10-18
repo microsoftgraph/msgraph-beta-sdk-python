@@ -22,9 +22,11 @@ if TYPE_CHECKING:
     from .bulk_set_cloud_pc_review_status.bulk_set_cloud_pc_review_status_request_builder import BulkSetCloudPcReviewStatusRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .download_app_diagnostics.download_app_diagnostics_request_builder import DownloadAppDiagnosticsRequestBuilder
+    from .download_powerlift_app_diagnostic.download_powerlift_app_diagnostic_request_builder import DownloadPowerliftAppDiagnosticRequestBuilder
     from .execute_action.execute_action_request_builder import ExecuteActionRequestBuilder
     from .item.managed_device_item_request_builder import ManagedDeviceItemRequestBuilder
     from .move_devices_to_o_u.move_devices_to_o_u_request_builder import MoveDevicesToOURequestBuilder
+    from .retrieve_powerlift_app_diagnostics_details_with_user_principal_name.retrieve_powerlift_app_diagnostics_details_with_user_principal_name_request_builder import RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder
 
 class ManagedDevicesRequestBuilder(BaseRequestBuilder):
     """
@@ -45,7 +47,6 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
         param upn: Usage: upn='{upn}'
         Returns: AppDiagnosticsWithUpnRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if upn is None:
             raise TypeError("upn cannot be null.")
         from .app_diagnostics_with_upn.app_diagnostics_with_upn_request_builder import AppDiagnosticsWithUpnRequestBuilder
@@ -58,7 +59,6 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
         param managed_device_id: The unique identifier of managedDevice
         Returns: ManagedDeviceItemRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if managed_device_id is None:
             raise TypeError("managed_device_id cannot be null.")
         from .item.managed_device_item_request_builder import ManagedDeviceItemRequestBuilder
@@ -73,7 +73,6 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagedDeviceCollectionResponse]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -95,7 +94,6 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ManagedDevice]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -112,13 +110,24 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagedDevice, error_mapping)
     
+    def retrieve_powerlift_app_diagnostics_details_with_user_principal_name(self,user_principal_name: str) -> RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder:
+        """
+        Provides operations to call the retrievePowerliftAppDiagnosticsDetails method.
+        param user_principal_name: Usage: userPrincipalName='{userPrincipalName}'
+        Returns: RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder
+        """
+        if user_principal_name is None:
+            raise TypeError("user_principal_name cannot be null.")
+        from .retrieve_powerlift_app_diagnostics_details_with_user_principal_name.retrieve_powerlift_app_diagnostics_details_with_user_principal_name_request_builder import RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder
+
+        return RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder(self.request_adapter, self.path_parameters, user_principal_name)
+    
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ManagedDevicesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         The managed devices associated with the user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -131,7 +140,6 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -146,7 +154,6 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ManagedDevicesRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ManagedDevicesRequestBuilder(self.request_adapter, raw_url)
@@ -195,6 +202,15 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
         from .download_app_diagnostics.download_app_diagnostics_request_builder import DownloadAppDiagnosticsRequestBuilder
 
         return DownloadAppDiagnosticsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def download_powerlift_app_diagnostic(self) -> DownloadPowerliftAppDiagnosticRequestBuilder:
+        """
+        Provides operations to call the downloadPowerliftAppDiagnostic method.
+        """
+        from .download_powerlift_app_diagnostic.download_powerlift_app_diagnostic_request_builder import DownloadPowerliftAppDiagnosticRequestBuilder
+
+        return DownloadPowerliftAppDiagnosticRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def execute_action(self) -> ExecuteActionRequestBuilder:

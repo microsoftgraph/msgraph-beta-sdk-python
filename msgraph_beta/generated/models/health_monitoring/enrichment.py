@@ -16,13 +16,13 @@ class Enrichment(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The impacts property
+    # A collection of resource impact summaries that gives a high level view of the kind of resources that were impacted and to what degree.
     impacts: Optional[List[ResourceImpactSummary]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The state property
     state: Optional[EnrichmentState] = None
-    # The supportingData property
+    # A collection of supportingData locations that can be queried for debugging the alert.
     supporting_data: Optional[SupportingData] = None
     
     @staticmethod

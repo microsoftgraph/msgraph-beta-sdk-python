@@ -11,7 +11,7 @@ from ..entity import Entity
 
 @dataclass
 class AlertConfiguration(Entity):
-    # The emailNotificationConfigurations property
+    # Defines the recipients of email notifications for an alert type. Currently, only one email notification configuration is supported for an alert configuration, meaning only one group can receive notifications for an alert type.
     email_notification_configurations: Optional[List[EmailNotificationConfiguration]] = None
     # The OdataType property
     odata_type: Optional[str] = None

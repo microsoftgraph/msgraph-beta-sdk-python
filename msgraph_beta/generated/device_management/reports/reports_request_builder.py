@@ -87,7 +87,7 @@ if TYPE_CHECKING:
     from .get_windows_update_alerts_per_policy_per_device_report.get_windows_update_alerts_per_policy_per_device_report_request_builder import GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
     from .get_windows_update_alert_summary_report.get_windows_update_alert_summary_report_request_builder import GetWindowsUpdateAlertSummaryReportRequestBuilder
     from .get_zebra_fota_deployment_report.get_zebra_fota_deployment_report_request_builder import GetZebraFotaDeploymentReportRequestBuilder
-    from .retrieve_assigned_applications_report.retrieve_assigned_applications_report_request_builder import RetrieveAssignedApplicationsReportRequestBuilder
+    from .retrieve_security_task_apps_report.retrieve_security_task_apps_report_request_builder import RetrieveSecurityTaskAppsReportRequestBuilder
     from .retrieve_win32_catalog_apps_update_report.retrieve_win32_catalog_apps_update_report_request_builder import RetrieveWin32CatalogAppsUpdateReportRequestBuilder
 
 class ReportsRequestBuilder(BaseRequestBuilder):
@@ -860,13 +860,13 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetZebraFotaDeploymentReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def retrieve_assigned_applications_report(self) -> RetrieveAssignedApplicationsReportRequestBuilder:
+    def retrieve_security_task_apps_report(self) -> RetrieveSecurityTaskAppsReportRequestBuilder:
         """
-        Provides operations to call the retrieveAssignedApplicationsReport method.
+        Provides operations to call the retrieveSecurityTaskAppsReport method.
         """
-        from .retrieve_assigned_applications_report.retrieve_assigned_applications_report_request_builder import RetrieveAssignedApplicationsReportRequestBuilder
+        from .retrieve_security_task_apps_report.retrieve_security_task_apps_report_request_builder import RetrieveSecurityTaskAppsReportRequestBuilder
 
-        return RetrieveAssignedApplicationsReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return RetrieveSecurityTaskAppsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_win32_catalog_apps_update_report(self) -> RetrieveWin32CatalogAppsUpdateReportRequestBuilder:

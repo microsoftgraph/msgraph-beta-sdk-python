@@ -37,7 +37,6 @@ class WindowsHelloForBusinessMethodsRequestBuilder(BaseRequestBuilder):
         param windows_hello_for_business_authentication_method_id: The unique identifier of windowsHelloForBusinessAuthenticationMethod
         Returns: WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if windows_hello_for_business_authentication_method_id is None:
             raise TypeError("windows_hello_for_business_authentication_method_id cannot be null.")
         from .item.windows_hello_for_business_authentication_method_item_request_builder import WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder
@@ -53,7 +52,6 @@ class WindowsHelloForBusinessMethodsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[WindowsHelloForBusinessAuthenticationMethodCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-list?view=graph-rest-beta
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -74,7 +72,6 @@ class WindowsHelloForBusinessMethodsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -86,7 +83,6 @@ class WindowsHelloForBusinessMethodsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: WindowsHelloForBusinessMethodsRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return WindowsHelloForBusinessMethodsRequestBuilder(self.request_adapter, raw_url)

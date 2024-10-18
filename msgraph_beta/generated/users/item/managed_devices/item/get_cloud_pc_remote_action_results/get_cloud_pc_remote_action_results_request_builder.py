@@ -36,7 +36,7 @@ class GetCloudPcRemoteActionResultsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[GetCloudPcRemoteActionResultsGetResponse]
         Find more info here: https://learn.microsoft.com/graph/api/manageddevice-getcloudpcremoteactionresults?view=graph-rest-beta
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        warn("Starting September 30, 2024, getCloudPcRemoteActionResults API bound to managedDevice entity will be deprecated and no longer supported. Please use retrieveCloudPcRemoteActionResults API bound to cloudpc entity instead. as of 2024-05/getCloudPcRemoteActionResults", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -57,7 +57,7 @@ class GetCloudPcRemoteActionResultsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        warn("Starting September 30, 2024, getCloudPcRemoteActionResults API bound to managedDevice entity will be deprecated and no longer supported. Please use retrieveCloudPcRemoteActionResults API bound to cloudpc entity instead. as of 2024-05/getCloudPcRemoteActionResults", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -69,7 +69,7 @@ class GetCloudPcRemoteActionResultsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: GetCloudPcRemoteActionResultsRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
+        warn("Starting September 30, 2024, getCloudPcRemoteActionResults API bound to managedDevice entity will be deprecated and no longer supported. Please use retrieveCloudPcRemoteActionResults API bound to cloudpc entity instead. as of 2024-05/getCloudPcRemoteActionResults", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return GetCloudPcRemoteActionResultsRequestBuilder(self.request_adapter, raw_url)

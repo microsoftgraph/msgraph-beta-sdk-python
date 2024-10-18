@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .password_methods.password_methods_request_builder import PasswordMethodsRequestBuilder
     from .phone_methods.phone_methods_request_builder import PhoneMethodsRequestBuilder
     from .platform_credential_methods.platform_credential_methods_request_builder import PlatformCredentialMethodsRequestBuilder
+    from .requirements.requirements_request_builder import RequirementsRequestBuilder
     from .sign_in_preferences.sign_in_preferences_request_builder import SignInPreferencesRequestBuilder
     from .software_oath_methods.software_oath_methods_request_builder import SoftwareOathMethodsRequestBuilder
     from .temporary_access_pass_methods.temporary_access_pass_methods_request_builder import TemporaryAccessPassMethodsRequestBuilder
@@ -48,7 +49,6 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -67,7 +67,6 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Authentication]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -89,7 +88,6 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Authentication]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -112,7 +110,6 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -124,7 +121,6 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -137,7 +133,6 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -152,7 +147,6 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AuthenticationRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AuthenticationRequestBuilder(self.request_adapter, raw_url)
@@ -237,6 +231,15 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         from .platform_credential_methods.platform_credential_methods_request_builder import PlatformCredentialMethodsRequestBuilder
 
         return PlatformCredentialMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def requirements(self) -> RequirementsRequestBuilder:
+        """
+        The requirements property
+        """
+        from .requirements.requirements_request_builder import RequirementsRequestBuilder
+
+        return RequirementsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sign_in_preferences(self) -> SignInPreferencesRequestBuilder:

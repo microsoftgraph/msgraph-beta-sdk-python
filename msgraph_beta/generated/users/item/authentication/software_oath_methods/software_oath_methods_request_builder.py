@@ -37,7 +37,6 @@ class SoftwareOathMethodsRequestBuilder(BaseRequestBuilder):
         param software_oath_authentication_method_id: The unique identifier of softwareOathAuthenticationMethod
         Returns: SoftwareOathAuthenticationMethodItemRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if software_oath_authentication_method_id is None:
             raise TypeError("software_oath_authentication_method_id cannot be null.")
         from .item.software_oath_authentication_method_item_request_builder import SoftwareOathAuthenticationMethodItemRequestBuilder
@@ -52,7 +51,6 @@ class SoftwareOathMethodsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SoftwareOathAuthenticationMethodCollectionResponse]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -73,7 +71,6 @@ class SoftwareOathMethodsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -85,7 +82,6 @@ class SoftwareOathMethodsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: SoftwareOathMethodsRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SoftwareOathMethodsRequestBuilder(self.request_adapter, raw_url)

@@ -46,7 +46,7 @@ class ReportRoot(Entity):
     daily_print_usage_summaries_by_printer: Optional[List[PrintUsageByPrinter]] = None
     # The dailyPrintUsageSummariesByUser property
     daily_print_usage_summaries_by_user: Optional[List[PrintUsageByUser]] = None
-    # The healthMonitoring property
+    # Reports for Microsoft Entra Health Monitoring.
     health_monitoring: Optional[HealthMonitoringRoot] = None
     # Retrieve a list of monthly print usage summaries, grouped by printer.
     monthly_print_usage_by_printer: Optional[List[PrintUsageByPrinter]] = None
@@ -66,7 +66,7 @@ class ReportRoot(Entity):
     service_activity: Optional[ServiceActivity] = None
     # Represents a collection of sign-in activities of service principals.
     service_principal_sign_in_activities: Optional[List[ServicePrincipalSignInActivity]] = None
-    # Reports that relate to tenant-level Microsoft Entra SLA attainment.
+    # Reports that relate to tenant-level Microsoft Entra Health SLA attainment.
     sla: Optional[ServiceLevelAgreementRoot] = None
     # Represents the self-service password reset (SSPR) usage for a given tenant.
     user_credential_usage_details: Optional[List[UserCredentialUsageDetails]] = None

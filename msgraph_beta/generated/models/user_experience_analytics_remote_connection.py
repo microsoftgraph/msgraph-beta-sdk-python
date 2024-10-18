@@ -11,7 +11,7 @@ from .entity import Entity
 @dataclass
 class UserExperienceAnalyticsRemoteConnection(Entity):
     """
-    The user experience analytics remote connection entity. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://go.microsoft.com/fwlink/?linkid=2283835.
+    The user experience analyte remote connection entity.
     """
     # The sign in failure percentage of Cloud PC Device. Valid values 0 to 100
     cloud_pc_failure_percentage: Optional[float] = None

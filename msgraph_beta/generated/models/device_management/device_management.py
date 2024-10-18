@@ -20,6 +20,8 @@ if TYPE_CHECKING:
     from ..cart_to_class_association import CartToClassAssociation
     from ..certificate_connector_details import CertificateConnectorDetails
     from ..chrome_o_s_onboarding_settings import ChromeOSOnboardingSettings
+    from ..cloud_certification_authority import CloudCertificationAuthority
+    from ..cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
     from ..cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
     from ..comanagement_eligible_device import ComanagementEligibleDevice
     from ..compliance_management_partner import ComplianceManagementPartner
@@ -39,7 +41,6 @@ if TYPE_CHECKING:
     from ..device_configuration import DeviceConfiguration
     from ..device_configuration_conflict_summary import DeviceConfigurationConflictSummary
     from ..device_configuration_device_state_summary import DeviceConfigurationDeviceStateSummary
-    from ..device_configuration_profile import DeviceConfigurationProfile
     from ..device_configuration_user_state_summary import DeviceConfigurationUserStateSummary
     from ..device_custom_attribute_shell_script import DeviceCustomAttributeShellScript
     from ..device_enrollment_configuration import DeviceEnrollmentConfiguration
@@ -227,6 +228,10 @@ class DeviceManagement(Entity):
     certificate_connector_details: Optional[List[CertificateConnectorDetails]] = None
     # Collection of ChromeOSOnboardingSettings settings associated with account.
     chrome_o_s_onboarding_settings: Optional[List[ChromeOSOnboardingSettings]] = None
+    # Collection of CloudCertificationAuthority records associated with account.
+    cloud_certification_authority: Optional[List[CloudCertificationAuthority]] = None
+    # Collection of CloudCertificationAuthorityLeafCertificate records associated with account.
+    cloud_certification_authority_leaf_certificate: Optional[List[CloudCertificationAuthorityLeafCertificate]] = None
     # The list of CloudPC Connectivity Issue.
     cloud_p_c_connectivity_issues: Optional[List[CloudPCConnectivityIssue]] = None
     # The list of co-managed devices report
@@ -281,8 +286,6 @@ class DeviceManagement(Entity):
     device_configuration_conflict_summary: Optional[List[DeviceConfigurationConflictSummary]] = None
     # The device configuration device state summary for this account.
     device_configuration_device_state_summaries: Optional[DeviceConfigurationDeviceStateSummary] = None
-    # Profile Id of the object.
-    device_configuration_profiles: Optional[List[DeviceConfigurationProfile]] = None
     # Restricted apps violations for this account.
     device_configuration_restricted_apps_violations: Optional[List[RestrictedAppsViolation]] = None
     # The device configuration user state summary for this account.
@@ -606,6 +609,8 @@ class DeviceManagement(Entity):
         from ..cart_to_class_association import CartToClassAssociation
         from ..certificate_connector_details import CertificateConnectorDetails
         from ..chrome_o_s_onboarding_settings import ChromeOSOnboardingSettings
+        from ..cloud_certification_authority import CloudCertificationAuthority
+        from ..cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
         from ..cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
         from ..comanagement_eligible_device import ComanagementEligibleDevice
         from ..compliance_management_partner import ComplianceManagementPartner
@@ -625,7 +630,6 @@ class DeviceManagement(Entity):
         from ..device_configuration import DeviceConfiguration
         from ..device_configuration_conflict_summary import DeviceConfigurationConflictSummary
         from ..device_configuration_device_state_summary import DeviceConfigurationDeviceStateSummary
-        from ..device_configuration_profile import DeviceConfigurationProfile
         from ..device_configuration_user_state_summary import DeviceConfigurationUserStateSummary
         from ..device_custom_attribute_shell_script import DeviceCustomAttributeShellScript
         from ..device_enrollment_configuration import DeviceEnrollmentConfiguration
@@ -784,6 +788,8 @@ class DeviceManagement(Entity):
         from ..cart_to_class_association import CartToClassAssociation
         from ..certificate_connector_details import CertificateConnectorDetails
         from ..chrome_o_s_onboarding_settings import ChromeOSOnboardingSettings
+        from ..cloud_certification_authority import CloudCertificationAuthority
+        from ..cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
         from ..cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
         from ..comanagement_eligible_device import ComanagementEligibleDevice
         from ..compliance_management_partner import ComplianceManagementPartner
@@ -803,7 +809,6 @@ class DeviceManagement(Entity):
         from ..device_configuration import DeviceConfiguration
         from ..device_configuration_conflict_summary import DeviceConfigurationConflictSummary
         from ..device_configuration_device_state_summary import DeviceConfigurationDeviceStateSummary
-        from ..device_configuration_profile import DeviceConfigurationProfile
         from ..device_configuration_user_state_summary import DeviceConfigurationUserStateSummary
         from ..device_custom_attribute_shell_script import DeviceCustomAttributeShellScript
         from ..device_enrollment_configuration import DeviceEnrollmentConfiguration
@@ -967,6 +972,8 @@ class DeviceManagement(Entity):
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_object_values(DeviceManagementSettingCategory)),
             "certificateConnectorDetails": lambda n : setattr(self, 'certificate_connector_details', n.get_collection_of_object_values(CertificateConnectorDetails)),
             "chromeOSOnboardingSettings": lambda n : setattr(self, 'chrome_o_s_onboarding_settings', n.get_collection_of_object_values(ChromeOSOnboardingSettings)),
+            "cloudCertificationAuthority": lambda n : setattr(self, 'cloud_certification_authority', n.get_collection_of_object_values(CloudCertificationAuthority)),
+            "cloudCertificationAuthorityLeafCertificate": lambda n : setattr(self, 'cloud_certification_authority_leaf_certificate', n.get_collection_of_object_values(CloudCertificationAuthorityLeafCertificate)),
             "cloudPCConnectivityIssues": lambda n : setattr(self, 'cloud_p_c_connectivity_issues', n.get_collection_of_object_values(CloudPCConnectivityIssue)),
             "comanagedDevices": lambda n : setattr(self, 'comanaged_devices', n.get_collection_of_object_values(ManagedDevice)),
             "comanagementEligibleDevices": lambda n : setattr(self, 'comanagement_eligible_devices', n.get_collection_of_object_values(ComanagementEligibleDevice)),
@@ -994,7 +1001,6 @@ class DeviceManagement(Entity):
             "deviceComplianceScripts": lambda n : setattr(self, 'device_compliance_scripts', n.get_collection_of_object_values(DeviceComplianceScript)),
             "deviceConfigurationConflictSummary": lambda n : setattr(self, 'device_configuration_conflict_summary', n.get_collection_of_object_values(DeviceConfigurationConflictSummary)),
             "deviceConfigurationDeviceStateSummaries": lambda n : setattr(self, 'device_configuration_device_state_summaries', n.get_object_value(DeviceConfigurationDeviceStateSummary)),
-            "deviceConfigurationProfiles": lambda n : setattr(self, 'device_configuration_profiles', n.get_collection_of_object_values(DeviceConfigurationProfile)),
             "deviceConfigurationRestrictedAppsViolations": lambda n : setattr(self, 'device_configuration_restricted_apps_violations', n.get_collection_of_object_values(RestrictedAppsViolation)),
             "deviceConfigurationUserStateSummaries": lambda n : setattr(self, 'device_configuration_user_state_summaries', n.get_object_value(DeviceConfigurationUserStateSummary)),
             "deviceConfigurations": lambda n : setattr(self, 'device_configurations', n.get_collection_of_object_values(DeviceConfiguration)),
@@ -1172,6 +1178,8 @@ class DeviceManagement(Entity):
         writer.write_collection_of_object_values("categories", self.categories)
         writer.write_collection_of_object_values("certificateConnectorDetails", self.certificate_connector_details)
         writer.write_collection_of_object_values("chromeOSOnboardingSettings", self.chrome_o_s_onboarding_settings)
+        writer.write_collection_of_object_values("cloudCertificationAuthority", self.cloud_certification_authority)
+        writer.write_collection_of_object_values("cloudCertificationAuthorityLeafCertificate", self.cloud_certification_authority_leaf_certificate)
         writer.write_collection_of_object_values("cloudPCConnectivityIssues", self.cloud_p_c_connectivity_issues)
         writer.write_collection_of_object_values("comanagedDevices", self.comanaged_devices)
         writer.write_collection_of_object_values("comanagementEligibleDevices", self.comanagement_eligible_devices)
@@ -1198,7 +1206,6 @@ class DeviceManagement(Entity):
         writer.write_collection_of_object_values("deviceComplianceScripts", self.device_compliance_scripts)
         writer.write_collection_of_object_values("deviceConfigurationConflictSummary", self.device_configuration_conflict_summary)
         writer.write_object_value("deviceConfigurationDeviceStateSummaries", self.device_configuration_device_state_summaries)
-        writer.write_collection_of_object_values("deviceConfigurationProfiles", self.device_configuration_profiles)
         writer.write_collection_of_object_values("deviceConfigurationRestrictedAppsViolations", self.device_configuration_restricted_apps_violations)
         writer.write_object_value("deviceConfigurationUserStateSummaries", self.device_configuration_user_state_summaries)
         writer.write_collection_of_object_values("deviceConfigurations", self.device_configurations)

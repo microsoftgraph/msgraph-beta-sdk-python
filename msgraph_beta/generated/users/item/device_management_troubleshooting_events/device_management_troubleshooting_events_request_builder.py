@@ -38,7 +38,6 @@ class DeviceManagementTroubleshootingEventsRequestBuilder(BaseRequestBuilder):
         param device_management_troubleshooting_event_id: The unique identifier of deviceManagementTroubleshootingEvent
         Returns: DeviceManagementTroubleshootingEventItemRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if device_management_troubleshooting_event_id is None:
             raise TypeError("device_management_troubleshooting_event_id cannot be null.")
         from .item.device_management_troubleshooting_event_item_request_builder import DeviceManagementTroubleshootingEventItemRequestBuilder
@@ -53,7 +52,6 @@ class DeviceManagementTroubleshootingEventsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceManagementTroubleshootingEventCollectionResponse]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -75,7 +73,6 @@ class DeviceManagementTroubleshootingEventsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceManagementTroubleshootingEvent]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -98,7 +95,6 @@ class DeviceManagementTroubleshootingEventsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -111,7 +107,6 @@ class DeviceManagementTroubleshootingEventsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -126,7 +121,6 @@ class DeviceManagementTroubleshootingEventsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: DeviceManagementTroubleshootingEventsRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DeviceManagementTroubleshootingEventsRequestBuilder(self.request_adapter, raw_url)

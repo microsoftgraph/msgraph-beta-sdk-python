@@ -5,7 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .device_management_autopilot_policy_status_detail import DeviceManagementAutopilotPolicyStatusDetail
     from .enrollment_state import EnrollmentState
     from .entity import Entity
     from .windows_autopilot_deployment_state import WindowsAutopilotDeploymentState
@@ -34,8 +33,6 @@ class DeviceManagementAutopilotEvent(Entity):
     deployment_total_duration: Optional[datetime.timedelta] = None
     # Device id associated with the object
     device_id: Optional[str] = None
-    # Time spent in device enrollment.
-    device_preparation_duration: Optional[datetime.timedelta] = None
     # Device registration date.
     device_registered_date_time: Optional[datetime.datetime] = None
     # Device serial number.
@@ -60,12 +57,8 @@ class DeviceManagementAutopilotEvent(Entity):
     odata_type: Optional[str] = None
     # Device operating system version.
     os_version: Optional[str] = None
-    # Policy and application status details for this device.
-    policy_status_details: Optional[List[DeviceManagementAutopilotPolicyStatusDetail]] = None
-    # Count of applications targeted.
-    targeted_app_count: Optional[int] = None
-    # Count of policies targeted.
-    targeted_policy_count: Optional[int] = None
+    # UserId id associated with the object
+    user_id: Optional[str] = None
     # User principal name used to enroll the device.
     user_principal_name: Optional[str] = None
     # Autopilot profile name.
@@ -91,13 +84,11 @@ class DeviceManagementAutopilotEvent(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .device_management_autopilot_policy_status_detail import DeviceManagementAutopilotPolicyStatusDetail
         from .enrollment_state import EnrollmentState
         from .entity import Entity
         from .windows_autopilot_deployment_state import WindowsAutopilotDeploymentState
         from .windows_autopilot_enrollment_type import WindowsAutopilotEnrollmentType
 
-        from .device_management_autopilot_policy_status_detail import DeviceManagementAutopilotPolicyStatusDetail
         from .enrollment_state import EnrollmentState
         from .entity import Entity
         from .windows_autopilot_deployment_state import WindowsAutopilotDeploymentState
@@ -112,7 +103,6 @@ class DeviceManagementAutopilotEvent(Entity):
             "deploymentState": lambda n : setattr(self, 'deployment_state', n.get_enum_value(WindowsAutopilotDeploymentState)),
             "deploymentTotalDuration": lambda n : setattr(self, 'deployment_total_duration', n.get_timedelta_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "devicePreparationDuration": lambda n : setattr(self, 'device_preparation_duration', n.get_timedelta_value()),
             "deviceRegisteredDateTime": lambda n : setattr(self, 'device_registered_date_time', n.get_datetime_value()),
             "deviceSerialNumber": lambda n : setattr(self, 'device_serial_number', n.get_str_value()),
             "deviceSetupDuration": lambda n : setattr(self, 'device_setup_duration', n.get_timedelta_value()),
@@ -124,9 +114,7 @@ class DeviceManagementAutopilotEvent(Entity):
             "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
             "managedDeviceName": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
             "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
-            "policyStatusDetails": lambda n : setattr(self, 'policy_status_details', n.get_collection_of_object_values(DeviceManagementAutopilotPolicyStatusDetail)),
-            "targetedAppCount": lambda n : setattr(self, 'targeted_app_count', n.get_int_value()),
-            "targetedPolicyCount": lambda n : setattr(self, 'targeted_policy_count', n.get_int_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
             "windowsAutopilotDeploymentProfileDisplayName": lambda n : setattr(self, 'windows_autopilot_deployment_profile_display_name', n.get_str_value()),
             "windows10EnrollmentCompletionPageConfigurationDisplayName": lambda n : setattr(self, 'windows10_enrollment_completion_page_configuration_display_name', n.get_str_value()),
@@ -153,7 +141,6 @@ class DeviceManagementAutopilotEvent(Entity):
         writer.write_enum_value("deploymentState", self.deployment_state)
         writer.write_timedelta_value("deploymentTotalDuration", self.deployment_total_duration)
         writer.write_str_value("deviceId", self.device_id)
-        writer.write_timedelta_value("devicePreparationDuration", self.device_preparation_duration)
         writer.write_datetime_value("deviceRegisteredDateTime", self.device_registered_date_time)
         writer.write_str_value("deviceSerialNumber", self.device_serial_number)
         writer.write_timedelta_value("deviceSetupDuration", self.device_setup_duration)
@@ -165,9 +152,7 @@ class DeviceManagementAutopilotEvent(Entity):
         writer.write_datetime_value("eventDateTime", self.event_date_time)
         writer.write_str_value("managedDeviceName", self.managed_device_name)
         writer.write_str_value("osVersion", self.os_version)
-        writer.write_collection_of_object_values("policyStatusDetails", self.policy_status_details)
-        writer.write_int_value("targetedAppCount", self.targeted_app_count)
-        writer.write_int_value("targetedPolicyCount", self.targeted_policy_count)
+        writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
         writer.write_str_value("windowsAutopilotDeploymentProfileDisplayName", self.windows_autopilot_deployment_profile_display_name)
         writer.write_str_value("windows10EnrollmentCompletionPageConfigurationDisplayName", self.windows10_enrollment_completion_page_configuration_display_name)

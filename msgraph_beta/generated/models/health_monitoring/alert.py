@@ -22,17 +22,17 @@ class Alert(Entity):
     alert_type: Optional[AlertType] = None
     # The category property
     category: Optional[Category] = None
-    # The createdDateTime property
+    # The time when Microsoft Entra Health monitoring generated the alert. Supports $orderby.
     created_date_time: Optional[datetime.datetime] = None
-    # The documentation property
+    # A key-value pair that contains the name of and link to the documentation to aid in investigation of the alert.
     documentation: Optional[Documentation] = None
-    # The enrichment property
+    # Investigative information on the alert. This information typically includes counts of impacted objects, which include directory objects such as users, groups, and devices, and a pointer to supporting data.
     enrichment: Optional[Enrichment] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The scenario property
     scenario: Optional[Scenario] = None
-    # The signals property
+    # The collection of signals that were used in the generation of the alert. These signals are sourced from serviceActivity APIs and are added to the alert as key-value pairs.
     signals: Optional[Signals] = None
     # The state property
     state: Optional[AlertState] = None

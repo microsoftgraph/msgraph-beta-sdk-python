@@ -41,7 +41,6 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param cloud_p_c_id: The unique identifier of cloudPC
         Returns: CloudPCItemRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if cloud_p_c_id is None:
             raise TypeError("cloud_p_c_id cannot be null.")
         from .item.cloud_p_c_item_request_builder import CloudPCItemRequestBuilder
@@ -56,7 +55,6 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPCCollectionResponse]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -78,7 +76,6 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param service_plan_id: Usage: servicePlanId='{servicePlanId}'
         Returns: GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if group_id is None:
             raise TypeError("group_id cannot be null.")
         if service_plan_id is None:
@@ -94,7 +91,6 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPC]
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -117,7 +113,6 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -130,7 +125,6 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -145,7 +139,6 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CloudPCsRequestBuilder
         """
-        warn(" as of 2024-07/PrivatePreview:copilotExportAPI", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CloudPCsRequestBuilder(self.request_adapter, raw_url)

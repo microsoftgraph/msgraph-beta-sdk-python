@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from .custom_extension_callout_instance import CustomExtensionCalloutInstance
     from .custom_extension_handler_instance import CustomExtensionHandlerInstance
     from .entity import Entity
+    from .request_activity import RequestActivity
     from .request_schedule import RequestSchedule
     from .verified_credential_data import VerifiedCredentialData
 
@@ -35,6 +36,8 @@ class AccessPackageAssignmentRequest(Entity):
     custom_extension_handler_instances: Optional[List[CustomExtensionHandlerInstance]] = None
     # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     expiration_date_time: Optional[datetime.datetime] = None
+    # The history property
+    history: Optional[List[RequestActivity]] = None
     # True if the request isn't to be processed for assignment.
     is_validation_only: Optional[bool] = None
     # The requestor's supplied justification.
@@ -77,6 +80,7 @@ class AccessPackageAssignmentRequest(Entity):
         from .custom_extension_callout_instance import CustomExtensionCalloutInstance
         from .custom_extension_handler_instance import CustomExtensionHandlerInstance
         from .entity import Entity
+        from .request_activity import RequestActivity
         from .request_schedule import RequestSchedule
         from .verified_credential_data import VerifiedCredentialData
 
@@ -87,6 +91,7 @@ class AccessPackageAssignmentRequest(Entity):
         from .custom_extension_callout_instance import CustomExtensionCalloutInstance
         from .custom_extension_handler_instance import CustomExtensionHandlerInstance
         from .entity import Entity
+        from .request_activity import RequestActivity
         from .request_schedule import RequestSchedule
         from .verified_credential_data import VerifiedCredentialData
 
@@ -99,6 +104,7 @@ class AccessPackageAssignmentRequest(Entity):
             "customExtensionCalloutInstances": lambda n : setattr(self, 'custom_extension_callout_instances', n.get_collection_of_object_values(CustomExtensionCalloutInstance)),
             "customExtensionHandlerInstances": lambda n : setattr(self, 'custom_extension_handler_instances', n.get_collection_of_object_values(CustomExtensionHandlerInstance)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "history": lambda n : setattr(self, 'history', n.get_collection_of_object_values(RequestActivity)),
             "isValidationOnly": lambda n : setattr(self, 'is_validation_only', n.get_bool_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
             "requestState": lambda n : setattr(self, 'request_state', n.get_str_value()),
@@ -129,6 +135,7 @@ class AccessPackageAssignmentRequest(Entity):
         writer.write_collection_of_object_values("customExtensionCalloutInstances", self.custom_extension_callout_instances)
         writer.write_collection_of_object_values("customExtensionHandlerInstances", self.custom_extension_handler_instances)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
+        writer.write_collection_of_object_values("history", self.history)
         writer.write_bool_value("isValidationOnly", self.is_validation_only)
         writer.write_str_value("justification", self.justification)
         writer.write_str_value("requestState", self.request_state)

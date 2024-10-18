@@ -11,7 +11,7 @@ from .entity import Entity
 @dataclass
 class MobileAppInstallSummary(Entity):
     """
-    Contains properties for the installation summary of a mobile app. This will be deprecated in May, 2023
+    Contains properties for the installation summary of a mobile app. This will be deprecated starting May, 2023 (Intune Release 2305).
     """
     # Number of Devices that have failed to install this app.
     failed_device_count: Optional[int] = None

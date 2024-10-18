@@ -105,7 +105,7 @@ class ManagedDevice(Entity):
     device_health_attestation_state: Optional[DeviceHealthAttestationState] = None
     # Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
     device_health_script_states: Optional[List[DeviceHealthScriptPolicyState]] = None
-    # Name of the device. This property is read-only.
+    # Name of the device. Supports $filter operator 'eq' and 'contains'. This property is read-only.
     device_name: Optional[str] = None
     # Device registration status.
     device_registration_state: Optional[DeviceRegistrationState] = None

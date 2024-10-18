@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from .on_premises_synchronization.on_premises_synchronization_request_builder import OnPremisesSynchronizationRequestBuilder
     from .outbound_shared_user_profiles.outbound_shared_user_profiles_request_builder import OutboundSharedUserProfilesRequestBuilder
     from .pending_external_user_profiles.pending_external_user_profiles_request_builder import PendingExternalUserProfilesRequestBuilder
+    from .public_key_infrastructure.public_key_infrastructure_request_builder import PublicKeyInfrastructureRequestBuilder
     from .recommendations.recommendations_request_builder import RecommendationsRequestBuilder
     from .shared_email_domains.shared_email_domains_request_builder import SharedEmailDomainsRequestBuilder
     from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
@@ -276,6 +277,15 @@ class DirectoryRequestBuilder(BaseRequestBuilder):
         from .pending_external_user_profiles.pending_external_user_profiles_request_builder import PendingExternalUserProfilesRequestBuilder
 
         return PendingExternalUserProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def public_key_infrastructure(self) -> PublicKeyInfrastructureRequestBuilder:
+        """
+        Provides operations to manage the publicKeyInfrastructure property of the microsoft.graph.directory entity.
+        """
+        from .public_key_infrastructure.public_key_infrastructure_request_builder import PublicKeyInfrastructureRequestBuilder
+
+        return PublicKeyInfrastructureRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def recommendations(self) -> RecommendationsRequestBuilder:
