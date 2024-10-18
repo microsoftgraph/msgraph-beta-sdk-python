@@ -35,11 +35,11 @@ looseversion==1.3.0
 mccabe==0.7.0
 microsoft-kiota-abstractions==1.4.5
 microsoft-kiota-authentication-azure==1.4.5
-microsoft-kiota-http==1.3.4
+microsoft-kiota-http==1.4.5
 microsoft-kiota-serialization-form==1.4.5
-microsoft-kiota-serialization-json==1.3.3
-microsoft-kiota-serialization-multipart==0.1.0
-microsoft-kiota-serialization-text==1.0.0
+microsoft-kiota-serialization-json==1.4.5
+microsoft-kiota-serialization-multipart==1.4.5
+microsoft-kiota-serialization-text==1.4.5
 msal==1.31.0
 msal-extensions==1.2.0
 msgraph-core==1.1.5
@@ -74,5 +74,5 @@ uritemplate==4.1.1
 urllib3==2.2.3
 wrapt==1.16.0
 yapf==0.40.2
-yarl==1.15.3
+yarl==1.15.4
 zipp==3.20.2
