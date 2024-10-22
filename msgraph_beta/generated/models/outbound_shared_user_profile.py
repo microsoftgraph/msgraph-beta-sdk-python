@@ -56,6 +56,8 @@ class OutboundSharedUserProfile(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .tenant_reference import TenantReference
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("tenants", self.tenants)
         writer.write_str_value("userId", self.user_id)

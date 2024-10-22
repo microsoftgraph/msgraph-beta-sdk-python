@@ -76,6 +76,9 @@ class MessageTrace(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .message_recipient import MessageRecipient
+
         writer.write_str_value("destinationIPAddress", self.destination_i_p_address)
         writer.write_str_value("messageId", self.message_id)
         writer.write_datetime_value("receivedDateTime", self.received_date_time)

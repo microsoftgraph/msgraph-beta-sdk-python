@@ -59,6 +59,8 @@ class DeviceManagementConfigurationGroupSettingValueTemplate(AdditionalDataHolde
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
+
         writer.write_collection_of_object_values("children", self.children)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("settingValueTemplateId", self.setting_value_template_id)

@@ -75,6 +75,11 @@ class IpApplicationSegment(ApplicationSegment):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .application import Application
+        from .application_segment import ApplicationSegment
+        from .private_network_destination_type import PrivateNetworkDestinationType
+        from .private_network_protocol import PrivateNetworkProtocol
+
         writer.write_object_value("application", self.application)
         writer.write_str_value("destinationHost", self.destination_host)
         writer.write_enum_value("destinationType", self.destination_type)

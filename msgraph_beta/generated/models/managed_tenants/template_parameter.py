@@ -65,6 +65,8 @@ class TemplateParameter(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .management_parameter_value_type import ManagementParameterValueType
+
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("jsonAllowedValues", self.json_allowed_values)

@@ -64,6 +64,9 @@ class FilteringPolicyLink(PolicyLink):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .policy_link import PolicyLink
+        from .status import Status
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_enum_value("loggingState", self.logging_state)

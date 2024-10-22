@@ -66,6 +66,11 @@ class InactiveGroupFinding(Finding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .action_summary import ActionSummary
+        from .authorization_system_identity import AuthorizationSystemIdentity
+        from .finding import Finding
+        from .permissions_creep_index import PermissionsCreepIndex
+
         writer.write_object_value("actionSummary", self.action_summary)
         writer.write_object_value("group", self.group)
         writer.write_object_value("permissionsCreepIndex", self.permissions_creep_index)

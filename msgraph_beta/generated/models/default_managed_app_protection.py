@@ -252,6 +252,16 @@ class DefaultManagedAppProtection(ManagedAppProtection):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
+        from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
+        from .android_managed_app_safety_net_evaluation_type import AndroidManagedAppSafetyNetEvaluationType
+        from .key_value_pair import KeyValuePair
+        from .managed_app_data_encryption_type import ManagedAppDataEncryptionType
+        from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
+        from .managed_app_protection import ManagedAppProtection
+        from .managed_app_remediation_action import ManagedAppRemediationAction
+        from .managed_mobile_app import ManagedMobileApp
+
         writer.write_bool_value("allowWidgetContentSync", self.allow_widget_content_sync)
         writer.write_str_value("allowedAndroidDeviceManufacturers", self.allowed_android_device_manufacturers)
         writer.write_collection_of_primitive_values("allowedAndroidDeviceModels", self.allowed_android_device_models)

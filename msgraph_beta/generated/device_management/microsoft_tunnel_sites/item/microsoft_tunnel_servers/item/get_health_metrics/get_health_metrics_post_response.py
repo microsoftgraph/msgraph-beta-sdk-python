@@ -52,6 +52,9 @@ class GetHealthMetricsPostResponse(BaseCollectionPaginationCountResponse):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .......models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .......models.key_long_value_pair import KeyLongValuePair
+
         writer.write_collection_of_object_values("value", self.value)
     
 

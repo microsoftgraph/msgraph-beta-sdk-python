@@ -72,6 +72,9 @@ class AddContentFooterAction(InformationProtectionAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .content_alignment import ContentAlignment
+        from .information_protection_action import InformationProtectionAction
+
         writer.write_enum_value("alignment", self.alignment)
         writer.write_str_value("fontColor", self.font_color)
         writer.write_str_value("fontName", self.font_name)

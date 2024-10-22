@@ -56,6 +56,8 @@ class TokenProtectionStatusDetails(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .token_protection_status import TokenProtectionStatus
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("signInSessionStatus", self.sign_in_session_status)
         writer.write_int_value("signInSessionStatusCode", self.sign_in_session_status_code)

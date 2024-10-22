@@ -68,6 +68,9 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_configured_peripheral import TeamworkConfiguredPeripheral
+        from .teamwork_display_screen_configuration import TeamworkDisplayScreenConfiguration
+
         writer.write_collection_of_object_values("configuredDisplays", self.configured_displays)
         writer.write_int_value("displayCount", self.display_count)
         writer.write_object_value("inBuiltDisplayScreenConfiguration", self.in_built_display_screen_configuration)

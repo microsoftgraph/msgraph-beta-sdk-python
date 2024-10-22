@@ -54,6 +54,8 @@ class GroupPolicyPresentationValueLongDecimal(GroupPolicyPresentationValue):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .group_policy_presentation_value import GroupPolicyPresentationValue
+
         writer.write_int_value("value", self.value)
     
 

@@ -60,6 +60,9 @@ class ShiftsRoleDefinition(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .shifts_role_permission import ShiftsRolePermission
+
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("shiftsRolePermissions", self.shifts_role_permissions)

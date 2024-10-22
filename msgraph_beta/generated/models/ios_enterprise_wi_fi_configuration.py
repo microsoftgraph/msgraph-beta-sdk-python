@@ -105,6 +105,15 @@ class IosEnterpriseWiFiConfiguration(IosWiFiConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
+        from .eap_fast_configuration import EapFastConfiguration
+        from .eap_type import EapType
+        from .ios_certificate_profile_base import IosCertificateProfileBase
+        from .ios_trusted_root_certificate import IosTrustedRootCertificate
+        from .ios_wi_fi_configuration import IosWiFiConfiguration
+        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
+        from .wi_fi_authentication_method import WiFiAuthenticationMethod
+
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_object_value("derivedCredentialSettings", self.derived_credential_settings)
         writer.write_enum_value("eapFastConfiguration", self.eap_fast_configuration)

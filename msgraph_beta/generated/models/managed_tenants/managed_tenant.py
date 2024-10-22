@@ -270,6 +270,45 @@ class ManagedTenant(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .aggregated_policy_compliance import AggregatedPolicyCompliance
+        from .app_performance import AppPerformance
+        from .audit_event import AuditEvent
+        from .cloud_pc_connection import CloudPcConnection
+        from .cloud_pc_device import CloudPcDevice
+        from .cloud_pc_overview import CloudPcOverview
+        from .conditional_access_policy_coverage import ConditionalAccessPolicyCoverage
+        from .credential_user_registrations_summary import CredentialUserRegistrationsSummary
+        from .device_app_performance import DeviceAppPerformance
+        from .device_compliance_policy_setting_state_summary import DeviceCompliancePolicySettingStateSummary
+        from .device_health_status import DeviceHealthStatus
+        from .managed_device_compliance import ManagedDeviceCompliance
+        from .managed_device_compliance_trend import ManagedDeviceComplianceTrend
+        from .managed_tenant_alert import ManagedTenantAlert
+        from .managed_tenant_alert_log import ManagedTenantAlertLog
+        from .managed_tenant_alert_rule import ManagedTenantAlertRule
+        from .managed_tenant_alert_rule_definition import ManagedTenantAlertRuleDefinition
+        from .managed_tenant_api_notification import ManagedTenantApiNotification
+        from .managed_tenant_email_notification import ManagedTenantEmailNotification
+        from .managed_tenant_ticketing_endpoint import ManagedTenantTicketingEndpoint
+        from .management_action import ManagementAction
+        from .management_action_tenant_deployment_status import ManagementActionTenantDeploymentStatus
+        from .management_intent import ManagementIntent
+        from .management_template import ManagementTemplate
+        from .management_template_collection import ManagementTemplateCollection
+        from .management_template_collection_tenant_summary import ManagementTemplateCollectionTenantSummary
+        from .management_template_step import ManagementTemplateStep
+        from .management_template_step_tenant_summary import ManagementTemplateStepTenantSummary
+        from .management_template_step_version import ManagementTemplateStepVersion
+        from .my_role import MyRole
+        from .tenant import Tenant
+        from .tenant_customized_information import TenantCustomizedInformation
+        from .tenant_detailed_information import TenantDetailedInformation
+        from .tenant_group import TenantGroup
+        from .tenant_tag import TenantTag
+        from .windows_device_malware_state import WindowsDeviceMalwareState
+        from .windows_protection_state import WindowsProtectionState
+
         writer.write_collection_of_object_values("aggregatedPolicyCompliances", self.aggregated_policy_compliances)
         writer.write_collection_of_object_values("appPerformances", self.app_performances)
         writer.write_collection_of_object_values("auditEvents", self.audit_events)

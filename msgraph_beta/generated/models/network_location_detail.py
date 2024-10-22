@@ -56,6 +56,8 @@ class NetworkLocationDetail(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .network_type import NetworkType
+
         writer.write_collection_of_primitive_values("networkNames", self.network_names)
         writer.write_enum_value("networkType", self.network_type)
         writer.write_str_value("@odata.type", self.odata_type)

@@ -39,7 +39,8 @@ class AwsSecurityToolAdministrationFinding(Finding):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityToolAwsResourceAdministratorFinding".casefold():
@@ -104,6 +105,16 @@ class AwsSecurityToolAdministrationFinding(Finding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system_identity import AuthorizationSystemIdentity
+        from .aws_security_tool_web_services import AwsSecurityToolWebServices
+        from .finding import Finding
+        from .identity_details import IdentityDetails
+        from .permissions_creep_index import PermissionsCreepIndex
+        from .security_tool_aws_resource_administrator_finding import SecurityToolAwsResourceAdministratorFinding
+        from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
+        from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
+        from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
+
         writer.write_object_value("identity", self.identity)
         writer.write_object_value("identityDetails", self.identity_details)
         writer.write_object_value("permissionsCreepIndex", self.permissions_creep_index)

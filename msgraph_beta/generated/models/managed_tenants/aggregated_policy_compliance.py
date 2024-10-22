@@ -82,6 +82,8 @@ class AggregatedPolicyCompliance(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("compliancePolicyId", self.compliance_policy_id)
         writer.write_str_value("compliancePolicyName", self.compliance_policy_name)
         writer.write_str_value("compliancePolicyPlatform", self.compliance_policy_platform)

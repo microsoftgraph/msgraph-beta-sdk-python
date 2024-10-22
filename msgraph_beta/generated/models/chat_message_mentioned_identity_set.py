@@ -60,6 +60,10 @@ class ChatMessageMentionedIdentitySet(IdentitySet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .identity_set import IdentitySet
+        from .teamwork_conversation_identity import TeamworkConversationIdentity
+        from .teamwork_tag_identity import TeamworkTagIdentity
+
         writer.write_object_value("conversation", self.conversation)
         writer.write_object_value("tag", self.tag)
     

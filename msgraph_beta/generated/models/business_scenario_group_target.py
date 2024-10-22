@@ -51,6 +51,8 @@ class BusinessScenarioGroupTarget(BusinessScenarioTaskTargetBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .business_scenario_task_target_base import BusinessScenarioTaskTargetBase
+
         writer.write_str_value("groupId", self.group_id)
     
 

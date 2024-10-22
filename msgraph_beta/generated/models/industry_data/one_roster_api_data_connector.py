@@ -60,6 +60,8 @@ class OneRosterApiDataConnector(ApiDataConnector):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .api_data_connector import ApiDataConnector
+
         writer.write_str_value("apiVersion", self.api_version)
         writer.write_bool_value("isContactsEnabled", self.is_contacts_enabled)
         writer.write_bool_value("isDemographicsEnabled", self.is_demographics_enabled)

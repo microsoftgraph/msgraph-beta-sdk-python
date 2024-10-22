@@ -72,6 +72,11 @@ class AwsExternalSystemAccessFinding(Finding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system import AuthorizationSystem
+        from .authorization_system_info import AuthorizationSystemInfo
+        from .external_system_access_methods import ExternalSystemAccessMethods
+        from .finding import Finding
+
         writer.write_enum_value("accessMethods", self.access_methods)
         writer.write_object_value("affectedSystem", self.affected_system)
         writer.write_object_value("systemWithAccess", self.system_with_access)

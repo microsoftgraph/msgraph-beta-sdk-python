@@ -96,6 +96,14 @@ class MacOSEnterpriseWiFiConfiguration(MacOSWiFiConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .eap_fast_configuration import EapFastConfiguration
+        from .eap_type import EapType
+        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+        from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
+        from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
+        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
+        from .wi_fi_authentication_method import WiFiAuthenticationMethod
+
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_enum_value("eapFastConfiguration", self.eap_fast_configuration)
         writer.write_enum_value("eapType", self.eap_type)

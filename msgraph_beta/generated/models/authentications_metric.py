@@ -85,6 +85,9 @@ class AuthenticationsMetric(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_failure import AuthenticationFailure
+        from .entity import Entity
+
         writer.write_str_value("appid", self.appid)
         writer.write_int_value("attemptsCount", self.attempts_count)
         writer.write_str_value("authFlow", self.auth_flow)

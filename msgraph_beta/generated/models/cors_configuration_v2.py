@@ -63,6 +63,8 @@ class CorsConfiguration_v2(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_collection_of_primitive_values("allowedHeaders", self.allowed_headers)
         writer.write_collection_of_primitive_values("allowedMethods", self.allowed_methods)
         writer.write_collection_of_primitive_values("allowedOrigins", self.allowed_origins)

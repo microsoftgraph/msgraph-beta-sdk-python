@@ -52,6 +52,9 @@ class GetAlertFrequenciesWithStartDateTimeWithEndDateTimeGetResponse(BaseCollect
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from ....models.networkaccess.alert_frequency_point import AlertFrequencyPoint
+
         writer.write_collection_of_object_values("value", self.value)
     
 

@@ -63,6 +63,9 @@ class DeviceConfigurationGroupAssignment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .entity import Entity
+
         writer.write_object_value("deviceConfiguration", self.device_configuration)
         writer.write_bool_value("excludeGroup", self.exclude_group)
         writer.write_str_value("targetGroupId", self.target_group_id)

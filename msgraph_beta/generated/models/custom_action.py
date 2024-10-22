@@ -57,6 +57,9 @@ class CustomAction(InformationProtectionAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .information_protection_action import InformationProtectionAction
+        from .key_value_pair import KeyValuePair
+
         writer.write_str_value("name", self.name)
         writer.write_collection_of_object_values("properties", self.properties)
     

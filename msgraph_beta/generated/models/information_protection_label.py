@@ -72,6 +72,9 @@ class InformationProtectionLabel(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .parent_label_details import ParentLabelDetails
+
         writer.write_str_value("color", self.color)
         writer.write_str_value("description", self.description)
         writer.write_bool_value("isActive", self.is_active)

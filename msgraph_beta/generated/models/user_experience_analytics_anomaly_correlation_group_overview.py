@@ -87,6 +87,10 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .user_experience_analytics_anomaly_correlation_group_feature import UserExperienceAnalyticsAnomalyCorrelationGroupFeature
+        from .user_experience_analytics_anomaly_correlation_group_prevalence import UserExperienceAnalyticsAnomalyCorrelationGroupPrevalence
+
         writer.write_int_value("anomalyCorrelationGroupCount", self.anomaly_correlation_group_count)
         writer.write_str_value("anomalyId", self.anomaly_id)
         writer.write_int_value("correlationGroupAnomalousDeviceCount", self.correlation_group_anomalous_device_count)

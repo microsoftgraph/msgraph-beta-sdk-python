@@ -100,6 +100,8 @@ class CustomerPayment(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .customer import Customer
+
         writer.write_float_value("amount", self.amount)
         writer.write_uuid_value("appliesToInvoiceId", self.applies_to_invoice_id)
         writer.write_str_value("appliesToInvoiceNumber", self.applies_to_invoice_number)

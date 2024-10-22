@@ -69,6 +69,9 @@ class SkillProficiency(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .item_facet import ItemFacet
+        from .skill_proficiency_level import SkillProficiencyLevel
+
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_collection_of_primitive_values("collaborationTags", self.collaboration_tags)
         writer.write_str_value("displayName", self.display_name)

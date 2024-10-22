@@ -78,6 +78,13 @@ class GcpAuthorizationSystem(AuthorizationSystem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system import AuthorizationSystem
+        from .authorization_system_type_service import AuthorizationSystemTypeService
+        from .gcp_associated_identities import GcpAssociatedIdentities
+        from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
+        from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
+        from .gcp_role import GcpRole
+
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_object_value("associatedIdentities", self.associated_identities)
         writer.write_collection_of_object_values("resources", self.resources)

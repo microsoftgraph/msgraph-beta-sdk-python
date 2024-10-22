@@ -54,6 +54,8 @@ class EncryptWithTemplate(EncryptContent):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .encrypt_content import EncryptContent
+
         writer.write_bool_value("availableForEncryption", self.available_for_encryption)
         writer.write_str_value("templateId", self.template_id)
     

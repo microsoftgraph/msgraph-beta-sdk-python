@@ -51,5 +51,7 @@ class Win32CatalogAppAssignmentSettings(Win32LobAppAssignmentSettings):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .win32_lob_app_assignment_settings import Win32LobAppAssignmentSettings
+
     
 

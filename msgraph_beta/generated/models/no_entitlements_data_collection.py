@@ -48,5 +48,7 @@ class NoEntitlementsDataCollection(EntitlementsDataCollectionInfo):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entitlements_data_collection_info import EntitlementsDataCollectionInfo
+
     
 

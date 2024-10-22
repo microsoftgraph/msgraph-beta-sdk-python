@@ -60,6 +60,9 @@ class UnsupportedDeviceConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .unsupported_device_configuration_detail import UnsupportedDeviceConfigurationDetail
+
         writer.write_collection_of_object_values("details", self.details)
         writer.write_str_value("originalEntityTypeName", self.original_entity_type_name)
     

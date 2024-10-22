@@ -33,7 +33,8 @@ class DeviceManagementConfigurationSimpleSettingValueTemplate(AdditionalDataHold
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueTemplate".casefold():
@@ -71,6 +72,9 @@ class DeviceManagementConfigurationSimpleSettingValueTemplate(AdditionalDataHold
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_configuration_integer_setting_value_template import DeviceManagementConfigurationIntegerSettingValueTemplate
+        from .device_management_configuration_string_setting_value_template import DeviceManagementConfigurationStringSettingValueTemplate
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("settingValueTemplateId", self.setting_value_template_id)
         writer.write_additional_data_value(self.additional_data)

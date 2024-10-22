@@ -66,6 +66,10 @@ class WindowsHealthMonitoringConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .enablement import Enablement
+        from .windows_health_monitoring_scope import WindowsHealthMonitoringScope
+
         writer.write_enum_value("allowDeviceHealthMonitoring", self.allow_device_health_monitoring)
         writer.write_str_value("configDeviceHealthMonitoringCustomScope", self.config_device_health_monitoring_custom_scope)
         writer.write_enum_value("configDeviceHealthMonitoringScope", self.config_device_health_monitoring_scope)

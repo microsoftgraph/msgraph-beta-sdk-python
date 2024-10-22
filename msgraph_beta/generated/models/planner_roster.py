@@ -66,6 +66,11 @@ class PlannerRoster(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .planner_plan import PlannerPlan
+        from .planner_roster_member import PlannerRosterMember
+        from .sensitivity_label_assignment import SensitivityLabelAssignment
+
         writer.write_object_value("assignedSensitivityLabel", self.assigned_sensitivity_label)
         writer.write_collection_of_object_values("members", self.members)
         writer.write_collection_of_object_values("plans", self.plans)

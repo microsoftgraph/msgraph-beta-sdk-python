@@ -72,6 +72,9 @@ class PlannerExternalTaskSource(PlannerTaskCreation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_external_task_source_display_type import PlannerExternalTaskSourceDisplayType
+        from .planner_task_creation import PlannerTaskCreation
+
         writer.write_str_value("contextScenarioId", self.context_scenario_id)
         writer.write_enum_value("displayLinkType", self.display_link_type)
         writer.write_collection_of_primitive_values("displayNameSegments", self.display_name_segments)

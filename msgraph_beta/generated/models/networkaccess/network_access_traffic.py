@@ -213,6 +213,18 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ..device import Device
+        from ..user import User
+        from .application_snapshot import ApplicationSnapshot
+        from .device_category import DeviceCategory
+        from .filtering_policy_action import FilteringPolicyAction
+        from .headers import Headers
+        from .http_method import HttpMethod
+        from .networking_protocol import NetworkingProtocol
+        from .private_access_details import PrivateAccessDetails
+        from .traffic_type import TrafficType
+        from .web_category import WebCategory
+
         writer.write_enum_value("action", self.action)
         writer.write_str_value("agentVersion", self.agent_version)
         writer.write_object_value("applicationSnapshot", self.application_snapshot)

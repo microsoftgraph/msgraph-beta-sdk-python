@@ -96,6 +96,11 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .compliance_status import ComplianceStatus
+        from .device_type import DeviceType
+        from .managed_device_owner_type import ManagedDeviceOwnerType
+        from .management_agent_type import ManagementAgentType
+
         writer.write_enum_value("complianceState", self.compliance_state)
         writer.write_str_value("deviceCompliancePolicyId", self.device_compliance_policy_id)
         writer.write_str_value("deviceCompliancePolicyName", self.device_compliance_policy_name)

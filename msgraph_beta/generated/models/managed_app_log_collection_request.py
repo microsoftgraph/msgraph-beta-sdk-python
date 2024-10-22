@@ -85,6 +85,10 @@ class ManagedAppLogCollectionRequest(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .managed_app_log_upload import ManagedAppLogUpload
+        from .managed_app_log_upload_consent import ManagedAppLogUploadConsent
+
         writer.write_datetime_value("completedDateTime", self.completed_date_time)
         writer.write_str_value("managedAppRegistrationId", self.managed_app_registration_id)
         writer.write_str_value("requestedBy", self.requested_by)

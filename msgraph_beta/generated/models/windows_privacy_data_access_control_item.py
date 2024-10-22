@@ -69,6 +69,10 @@ class WindowsPrivacyDataAccessControlItem(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .windows_privacy_data_access_level import WindowsPrivacyDataAccessLevel
+        from .windows_privacy_data_category import WindowsPrivacyDataCategory
+
         writer.write_enum_value("accessLevel", self.access_level)
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appPackageFamilyName", self.app_package_family_name)

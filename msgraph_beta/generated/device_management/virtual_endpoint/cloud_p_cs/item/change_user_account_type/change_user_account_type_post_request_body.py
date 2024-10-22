@@ -50,6 +50,8 @@ class ChangeUserAccountTypePostRequestBody(AdditionalDataHolder, BackedModel, Pa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ......models.cloud_pc_user_account_type import CloudPcUserAccountType
+
         writer.write_enum_value("userAccountType", self.user_account_type)
         writer.write_additional_data_value(self.additional_data)
     

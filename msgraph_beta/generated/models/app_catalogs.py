@@ -53,6 +53,8 @@ class AppCatalogs(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teams_app import TeamsApp
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("teamsApps", self.teams_apps)
         writer.write_additional_data_value(self.additional_data)

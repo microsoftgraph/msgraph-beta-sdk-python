@@ -56,6 +56,8 @@ class SessionLifetimePolicy(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .expiration_requirement import ExpirationRequirement
+
         writer.write_str_value("detail", self.detail)
         writer.write_enum_value("expirationRequirement", self.expiration_requirement)
         writer.write_str_value("@odata.type", self.odata_type)

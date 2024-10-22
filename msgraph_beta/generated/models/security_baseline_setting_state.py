@@ -84,6 +84,11 @@ class SecurityBaselineSettingState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .security_baseline_compliance_state import SecurityBaselineComplianceState
+        from .security_baseline_contributing_policy import SecurityBaselineContributingPolicy
+        from .setting_source import SettingSource
+
         writer.write_collection_of_object_values("contributingPolicies", self.contributing_policies)
         writer.write_str_value("errorCode", self.error_code)
         writer.write_str_value("settingCategoryId", self.setting_category_id)

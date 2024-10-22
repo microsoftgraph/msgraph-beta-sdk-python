@@ -63,6 +63,9 @@ class WebApplicationSegment(ApplicationSegment):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .application_segment import ApplicationSegment
+        from .cors_configuration_v2 import CorsConfiguration_v2
+
         writer.write_str_value("alternateUrl", self.alternate_url)
         writer.write_collection_of_object_values("corsConfigurations", self.cors_configurations)
         writer.write_str_value("externalUrl", self.external_url)

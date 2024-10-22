@@ -126,6 +126,14 @@ class ComanagementEligibleDevice(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .comanagement_eligible_type import ComanagementEligibleType
+        from .device_registration_state import DeviceRegistrationState
+        from .device_type import DeviceType
+        from .entity import Entity
+        from .management_agent_type import ManagementAgentType
+        from .management_state import ManagementState
+        from .owner_type import OwnerType
+
         writer.write_enum_value("clientRegistrationStatus", self.client_registration_status)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_enum_value("deviceType", self.device_type)

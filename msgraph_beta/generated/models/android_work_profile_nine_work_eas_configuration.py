@@ -60,6 +60,8 @@ class AndroidWorkProfileNineWorkEasConfiguration(AndroidWorkProfileEasEmailProfi
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_work_profile_eas_email_profile_base import AndroidWorkProfileEasEmailProfileBase
+
         writer.write_bool_value("syncCalendar", self.sync_calendar)
         writer.write_bool_value("syncContacts", self.sync_contacts)
         writer.write_bool_value("syncTasks", self.sync_tasks)

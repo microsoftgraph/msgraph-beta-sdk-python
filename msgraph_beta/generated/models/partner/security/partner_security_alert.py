@@ -130,6 +130,15 @@ class PartnerSecurityAlert(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ...entity import Entity
+        from .activity_log import ActivityLog
+        from .additional_data_dictionary import AdditionalDataDictionary
+        from .affected_resource import AffectedResource
+        from .security_alert_confidence import SecurityAlertConfidence
+        from .security_alert_resolved_reason import SecurityAlertResolvedReason
+        from .security_alert_severity import SecurityAlertSeverity
+        from .security_alert_status import SecurityAlertStatus
+
         writer.write_collection_of_object_values("activityLogs", self.activity_logs)
         writer.write_object_value("additionalDetails", self.additional_details)
         writer.write_collection_of_object_values("affectedResources", self.affected_resources)

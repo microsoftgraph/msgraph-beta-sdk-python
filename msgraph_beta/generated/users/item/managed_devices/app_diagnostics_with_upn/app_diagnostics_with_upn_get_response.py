@@ -52,6 +52,9 @@ class AppDiagnosticsWithUpnGetResponse(BaseCollectionPaginationCountResponse):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .....models.powerlift_incident_metadata import PowerliftIncidentMetadata
+
         writer.write_collection_of_object_values("value", self.value)
     
 

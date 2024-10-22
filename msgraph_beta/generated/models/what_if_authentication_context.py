@@ -51,6 +51,8 @@ class WhatIfAuthenticationContext(ConditionalAccessContext):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .conditional_access_context import ConditionalAccessContext
+
         writer.write_str_value("authenticationContext", self.authentication_context)
     
 

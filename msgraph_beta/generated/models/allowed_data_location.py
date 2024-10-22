@@ -60,6 +60,8 @@ class AllowedDataLocation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("domain", self.domain)
         writer.write_bool_value("isDefault", self.is_default)

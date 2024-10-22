@@ -111,6 +111,9 @@ class DeviceHealthScriptPolicyState(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .remediation_state import RemediationState
+        from .run_state import RunState
+
         writer.write_collection_of_primitive_values("assignmentFilterIds", self.assignment_filter_ids)
         writer.write_enum_value("detectionState", self.detection_state)
         writer.write_str_value("deviceId", self.device_id)

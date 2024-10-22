@@ -85,6 +85,11 @@ class GroupPolicyCategory(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .group_policy_definition import GroupPolicyDefinition
+        from .group_policy_definition_file import GroupPolicyDefinitionFile
+        from .ingestion_source import IngestionSource
+
         writer.write_collection_of_object_values("children", self.children)
         writer.write_object_value("definitionFile", self.definition_file)
         writer.write_collection_of_object_values("definitions", self.definitions)

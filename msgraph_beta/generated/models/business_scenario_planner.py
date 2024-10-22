@@ -66,6 +66,11 @@ class BusinessScenarioPlanner(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .business_scenario_task import BusinessScenarioTask
+        from .entity import Entity
+        from .planner_plan_configuration import PlannerPlanConfiguration
+        from .planner_task_configuration import PlannerTaskConfiguration
+
         writer.write_object_value("planConfiguration", self.plan_configuration)
         writer.write_object_value("taskConfiguration", self.task_configuration)
         writer.write_collection_of_object_values("tasks", self.tasks)

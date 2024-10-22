@@ -48,5 +48,7 @@ class OnAttributeCollectionSubmitCustomExtension(CustomAuthenticationExtension):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_authentication_extension import CustomAuthenticationExtension
+
     
 

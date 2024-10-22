@@ -56,6 +56,9 @@ class EvaluateClassificationResultsPostRequestBody(AdditionalDataHolder, BackedM
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.security.classification_result import ClassificationResult
+        from .....models.security.content_info import ContentInfo
+
         writer.write_collection_of_object_values("classificationResults", self.classification_results)
         writer.write_object_value("contentInfo", self.content_info)
         writer.write_additional_data_value(self.additional_data)

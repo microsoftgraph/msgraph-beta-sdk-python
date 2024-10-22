@@ -54,6 +54,9 @@ class AwsLambda(AwsIdentity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aws_authorization_system_resource import AwsAuthorizationSystemResource
+        from .aws_identity import AwsIdentity
+
         writer.write_object_value("resource", self.resource)
     
 

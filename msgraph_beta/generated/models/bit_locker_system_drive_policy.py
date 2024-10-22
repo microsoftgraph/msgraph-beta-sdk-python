@@ -95,6 +95,10 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .bit_locker_encryption_method import BitLockerEncryptionMethod
+        from .bit_locker_recovery_options import BitLockerRecoveryOptions
+        from .configuration_usage import ConfigurationUsage
+
         writer.write_enum_value("encryptionMethod", self.encryption_method)
         writer.write_int_value("minimumPinLength", self.minimum_pin_length)
         writer.write_str_value("@odata.type", self.odata_type)

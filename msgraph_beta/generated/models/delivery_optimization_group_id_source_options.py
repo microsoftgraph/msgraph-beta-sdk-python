@@ -57,6 +57,9 @@ class DeliveryOptimizationGroupIdSourceOptions(DeliveryOptimizationGroupIdSource
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .delivery_optimization_group_id_options_type import DeliveryOptimizationGroupIdOptionsType
+        from .delivery_optimization_group_id_source import DeliveryOptimizationGroupIdSource
+
         writer.write_enum_value("groupIdSourceOption", self.group_id_source_option)
     
 

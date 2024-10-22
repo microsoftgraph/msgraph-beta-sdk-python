@@ -91,6 +91,10 @@ class PrivilegedRoleAssignmentRequest(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .governance_schedule import GovernanceSchedule
+        from .privileged_role import PrivilegedRole
+
         writer.write_str_value("assignmentState", self.assignment_state)
         writer.write_str_value("duration", self.duration)
         writer.write_str_value("reason", self.reason)

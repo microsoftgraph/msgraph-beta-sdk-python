@@ -65,6 +65,9 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .bit_locker_encryption_method import BitLockerEncryptionMethod
+        from .bit_locker_recovery_options import BitLockerRecoveryOptions
+
         writer.write_enum_value("encryptionMethod", self.encryption_method)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("recoveryOptions", self.recovery_options)

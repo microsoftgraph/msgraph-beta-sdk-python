@@ -146,6 +146,20 @@ class FileStorageContainer(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .assigned_label import AssignedLabel
+        from .column_definition import ColumnDefinition
+        from .drive import Drive
+        from .entity import Entity
+        from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
+        from .file_storage_container_ownership_type import FileStorageContainerOwnershipType
+        from .file_storage_container_settings import FileStorageContainerSettings
+        from .file_storage_container_status import FileStorageContainerStatus
+        from .file_storage_container_viewpoint import FileStorageContainerViewpoint
+        from .permission import Permission
+        from .recycle_bin import RecycleBin
+        from .site_lock_state import SiteLockState
+        from .user_identity import UserIdentity
+
         writer.write_object_value("assignedSensitivityLabel", self.assigned_sensitivity_label)
         writer.write_collection_of_object_values("columns", self.columns)
         writer.write_uuid_value("containerTypeId", self.container_type_id)

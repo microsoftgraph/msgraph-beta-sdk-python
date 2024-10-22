@@ -60,6 +60,8 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("deviceId", self.device_id)
         writer.write_int_value("estimatedRuntimeInMinutes", self.estimated_runtime_in_minutes)
         writer.write_str_value("runtimeDateTime", self.runtime_date_time)

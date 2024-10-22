@@ -78,6 +78,11 @@ class RegionalAndLanguageSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .locale_info import LocaleInfo
+        from .regional_format_overrides import RegionalFormatOverrides
+        from .translation_preferences import TranslationPreferences
+
         writer.write_collection_of_object_values("authoringLanguages", self.authoring_languages)
         writer.write_object_value("defaultDisplayLanguage", self.default_display_language)
         writer.write_object_value("defaultRegionalFormat", self.default_regional_format)

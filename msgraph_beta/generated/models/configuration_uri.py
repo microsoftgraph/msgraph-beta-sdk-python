@@ -65,6 +65,8 @@ class ConfigurationUri(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .uri_usage_type import UriUsageType
+
         writer.write_str_value("appliesToSingleSignOnMode", self.applies_to_single_sign_on_mode)
         writer.write_collection_of_primitive_values("examples", self.examples)
         writer.write_bool_value("isRequired", self.is_required)

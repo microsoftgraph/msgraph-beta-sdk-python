@@ -60,6 +60,8 @@ class ManagedDeviceWindowsOperatingSystemEdition(AdditionalDataHolder, BackedMod
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .managed_device_windows_operating_system_edition_type import ManagedDeviceWindowsOperatingSystemEditionType
+
         writer.write_enum_value("editionType", self.edition_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_date_value("supportEndDate", self.support_end_date)

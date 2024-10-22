@@ -70,6 +70,10 @@ class TeamworkDeviceActivity(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .teamwork_active_peripherals import TeamworkActivePeripherals
+
         writer.write_object_value("activePeripherals", self.active_peripherals)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

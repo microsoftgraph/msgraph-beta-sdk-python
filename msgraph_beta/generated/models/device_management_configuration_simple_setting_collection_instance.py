@@ -57,6 +57,9 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstance(DeviceManagem
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
+        from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
+
         writer.write_collection_of_object_values("simpleSettingCollectionValue", self.simple_setting_collection_value)
     
 

@@ -37,7 +37,8 @@ class VpnProxyServer(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10VpnProxyServer".casefold():
@@ -77,6 +78,9 @@ class VpnProxyServer(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .windows10_vpn_proxy_server import Windows10VpnProxyServer
+        from .windows81_vpn_proxy_server import Windows81VpnProxyServer
+
         writer.write_str_value("address", self.address)
         writer.write_str_value("automaticConfigurationScriptUrl", self.automatic_configuration_script_url)
         writer.write_str_value("@odata.type", self.odata_type)

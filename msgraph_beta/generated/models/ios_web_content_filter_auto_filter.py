@@ -57,6 +57,8 @@ class IosWebContentFilterAutoFilter(IosWebContentFilterBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .ios_web_content_filter_base import IosWebContentFilterBase
+
         writer.write_collection_of_primitive_values("allowedUrls", self.allowed_urls)
         writer.write_collection_of_primitive_values("blockedUrls", self.blocked_urls)
     

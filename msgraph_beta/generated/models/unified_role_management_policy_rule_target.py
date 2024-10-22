@@ -68,6 +68,8 @@ class UnifiedRoleManagementPolicyRuleTarget(AdditionalDataHolder, BackedModel, P
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .directory_object import DirectoryObject
+
         writer.write_str_value("caller", self.caller)
         writer.write_collection_of_primitive_values("enforcedSettings", self.enforced_settings)
         writer.write_collection_of_primitive_values("inheritableSettings", self.inheritable_settings)

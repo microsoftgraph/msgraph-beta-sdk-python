@@ -48,5 +48,7 @@ class SecretInformationAccessAwsServerlessFunctionFinding(AwsSecretInformationAc
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aws_secret_information_access_finding import AwsSecretInformationAccessFinding
+
     
 

@@ -72,6 +72,9 @@ class EducationPowerSchoolDataProvider(EducationSynchronizationDataProvider):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .education_synchronization_customizations import EducationSynchronizationCustomizations
+        from .education_synchronization_data_provider import EducationSynchronizationDataProvider
+
         writer.write_bool_value("allowTeachersInMultipleSchools", self.allow_teachers_in_multiple_schools)
         writer.write_str_value("clientId", self.client_id)
         writer.write_str_value("clientSecret", self.client_secret)

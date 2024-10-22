@@ -47,7 +47,8 @@ class AndroidWorkProfileEasEmailProfileBase(DeviceConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidWorkProfileGmailEasConfiguration".casefold():
@@ -105,6 +106,15 @@ class AndroidWorkProfileEasEmailProfileBase(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_username_source import AndroidUsernameSource
+        from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
+        from .android_work_profile_gmail_eas_configuration import AndroidWorkProfileGmailEasConfiguration
+        from .android_work_profile_nine_work_eas_configuration import AndroidWorkProfileNineWorkEasConfiguration
+        from .device_configuration import DeviceConfiguration
+        from .eas_authentication_method import EasAuthenticationMethod
+        from .email_sync_duration import EmailSyncDuration
+        from .user_email_source import UserEmailSource
+
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_enum_value("durationOfEmailToSync", self.duration_of_email_to_sync)
         writer.write_enum_value("emailAddressSource", self.email_address_source)

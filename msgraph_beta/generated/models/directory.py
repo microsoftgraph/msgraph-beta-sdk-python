@@ -156,6 +156,26 @@ class Directory(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .administrative_unit import AdministrativeUnit
+        from .attribute_set import AttributeSet
+        from .certificate_authority_path import CertificateAuthorityPath
+        from .company_subscription import CompanySubscription
+        from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
+        from .device_local_credential_info import DeviceLocalCredentialInfo
+        from .directory_object import DirectoryObject
+        from .entity import Entity
+        from .external_user_profile import ExternalUserProfile
+        from .feature_rollout_policy import FeatureRolloutPolicy
+        from .identity_provider_base import IdentityProviderBase
+        from .impacted_resource import ImpactedResource
+        from .inbound_shared_user_profile import InboundSharedUserProfile
+        from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
+        from .outbound_shared_user_profile import OutboundSharedUserProfile
+        from .pending_external_user_profile import PendingExternalUserProfile
+        from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
+        from .recommendation import Recommendation
+        from .shared_email_domain import SharedEmailDomain
+
         writer.write_collection_of_object_values("administrativeUnits", self.administrative_units)
         writer.write_collection_of_object_values("attributeSets", self.attribute_sets)
         writer.write_object_value("certificateAuthorities", self.certificate_authorities)

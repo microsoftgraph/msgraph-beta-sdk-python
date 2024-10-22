@@ -112,6 +112,9 @@ class CloudCertificationAuthorityLeafCertificate(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_certification_authority_leaf_certificate_status import CloudCertificationAuthorityLeafCertificateStatus
+        from .entity import Entity
+
         writer.write_enum_value("certificateStatus", self.certificate_status)
         writer.write_str_value("certificationAuthorityIssuerUri", self.certification_authority_issuer_uri)
         writer.write_str_value("crlDistributionPointUrl", self.crl_distribution_point_url)

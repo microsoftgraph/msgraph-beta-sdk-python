@@ -65,6 +65,10 @@ class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .planner_approval_requirement import PlannerApprovalRequirement
+        from .planner_checklist_requirement import PlannerChecklistRequirement
+        from .planner_forms_requirement import PlannerFormsRequirement
+
         writer.write_object_value("approvalRequirement", self.approval_requirement)
         writer.write_object_value("checklistRequirement", self.checklist_requirement)
         writer.write_object_value("formsRequirement", self.forms_requirement)

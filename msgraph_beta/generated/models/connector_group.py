@@ -78,6 +78,12 @@ class ConnectorGroup(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .application import Application
+        from .connector import Connector
+        from .connector_group_region import ConnectorGroupRegion
+        from .connector_group_type import ConnectorGroupType
+        from .entity import Entity
+
         writer.write_collection_of_object_values("applications", self.applications)
         writer.write_enum_value("connectorGroupType", self.connector_group_type)
         writer.write_bool_value("isDefault", self.is_default)

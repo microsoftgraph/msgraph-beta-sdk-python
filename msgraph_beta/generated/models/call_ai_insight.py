@@ -79,6 +79,11 @@ class CallAiInsight(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .action_item import ActionItem
+        from .call_ai_insight_view_point import CallAiInsightViewPoint
+        from .entity import Entity
+        from .meeting_note import MeetingNote
+
         writer.write_collection_of_object_values("actionItems", self.action_items)
         writer.write_str_value("callId", self.call_id)
         writer.write_str_value("contentCorrelationId", self.content_correlation_id)

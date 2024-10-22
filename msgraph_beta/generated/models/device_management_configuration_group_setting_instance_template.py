@@ -57,6 +57,9 @@ class DeviceManagementConfigurationGroupSettingInstanceTemplate(DeviceManagement
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_group_setting_value_template import DeviceManagementConfigurationGroupSettingValueTemplate
+        from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
+
         writer.write_object_value("groupSettingValueTemplate", self.group_setting_value_template)
     
 

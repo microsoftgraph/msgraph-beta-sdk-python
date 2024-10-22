@@ -51,6 +51,8 @@ class MonthlyInactiveUsersMetric(InactiveUsersMetricBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .inactive_users_metric_base import InactiveUsersMetricBase
+
         writer.write_int_value("inactiveCalendarMonthCount", self.inactive_calendar_month_count)
     
 

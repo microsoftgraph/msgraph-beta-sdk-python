@@ -48,5 +48,7 @@ class DriverUpdateFilter(WindowsUpdateFilter):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_update_filter import WindowsUpdateFilter
+
     
 

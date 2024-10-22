@@ -60,6 +60,9 @@ class Program(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .program_control import ProgramControl
+
         writer.write_collection_of_object_values("controls", self.controls)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

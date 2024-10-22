@@ -60,6 +60,10 @@ class RecycleBin(BaseItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_item import BaseItem
+        from .recycle_bin_item import RecycleBinItem
+        from .recycle_bin_settings import RecycleBinSettings
+
         writer.write_collection_of_object_values("items", self.items)
         writer.write_object_value("settings", self.settings)
     

@@ -90,6 +90,11 @@ class WindowsPhoneEASEmailProfileConfiguration(EasEmailProfileConfigurationBase)
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
+        from .email_sync_duration import EmailSyncDuration
+        from .email_sync_schedule import EmailSyncSchedule
+        from .user_email_source import UserEmailSource
+
         writer.write_str_value("accountName", self.account_name)
         writer.write_enum_value("durationOfEmailToSync", self.duration_of_email_to_sync)
         writer.write_enum_value("emailAddressSource", self.email_address_source)

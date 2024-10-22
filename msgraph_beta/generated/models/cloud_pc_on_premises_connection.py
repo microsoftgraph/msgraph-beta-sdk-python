@@ -39,7 +39,7 @@ class CloudPcOnPremisesConnection(Entity):
     managed_by: Optional[CloudPcManagementService] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The organizational unit (OU) in which the computer account is created. If left null, the OU that’s configured as the default (a well-known computer object container) in your Active Directory domain (OU) is used. Optional.
+    # The organizational unit (OU) in which the computer account is created. If left null, the OU configured as the default (a well-known computer object container) in your Active Directory domain (OU) is used. Optional.
     organizational_unit: Optional[str] = None
     # The ID of the target resource group. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}.
     resource_group_id: Optional[str] = None
@@ -51,7 +51,7 @@ class CloudPcOnPremisesConnection(Entity):
     subscription_id: Optional[str] = None
     # The name of the target Azure subscription. Read-only.
     subscription_name: Optional[str] = None
-    # Specifies the method by which a provisioned Cloud PC is joined to Microsoft Entra. The azureADJoin option indicates the absence of an on-premises Active Directory (AD) in the current tenant that results in the Cloud PC device only joining to Microsoft Entra. The hybridAzureADJoin option indicates the presence of an on-premises AD in the current tenant and that the Cloud PC joins both the on-premises AD and Microsoft Entra. The selected option also determines the types of users who can be assigned and can sign into a Cloud PC. The azureADJoin option allows both cloud-only and hybrid users to be assigned and sign in, whereas hybridAzureADJoin is restricted to hybrid users only. The default value is hybridAzureADJoin. The possible values are: hybridAzureADJoin, azureADJoin, unknownFutureValue. The type property is deprecated and stopped returning data on January 31, 2024. Goind forward, use the connectionType property.
+    # Specifies the method by which a provisioned Cloud PC is joined to Microsoft Entra. The azureADJoin option indicates the absence of an on-premises Active Directory (AD) in the current tenant that results in the Cloud PC device only joining to Microsoft Entra. The hybridAzureADJoin option indicates the presence of an on-premises AD in the current tenant and that the Cloud PC joins both the on-premises AD and Microsoft Entra. The selected option also determines the types of users who can be assigned and can sign into a Cloud PC. The azureADJoin option allows both cloud-only and hybrid users to be assigned and sign in, whereas hybridAzureADJoin is restricted to hybrid users only. The default value is hybridAzureADJoin. The possible values are: hybridAzureADJoin, azureADJoin, unknownFutureValue. The type property is deprecated and stopped returning data on January 31, 2024. Going forward, use the connectionType property.
     type: Optional[CloudPcOnPremisesConnectionType] = None
     # The ID of the target virtual network. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}.
     virtual_network_id: Optional[str] = None
@@ -123,6 +123,13 @@ class CloudPcOnPremisesConnection(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_management_service import CloudPcManagementService
+        from .cloud_pc_on_premises_connection_status import CloudPcOnPremisesConnectionStatus
+        from .cloud_pc_on_premises_connection_status_detail import CloudPcOnPremisesConnectionStatusDetail
+        from .cloud_pc_on_premises_connection_status_details import CloudPcOnPremisesConnectionStatusDetails
+        from .cloud_pc_on_premises_connection_type import CloudPcOnPremisesConnectionType
+        from .entity import Entity
+
         writer.write_str_value("adDomainName", self.ad_domain_name)
         writer.write_str_value("adDomainPassword", self.ad_domain_password)
         writer.write_str_value("adDomainUsername", self.ad_domain_username)

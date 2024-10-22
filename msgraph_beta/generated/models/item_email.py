@@ -60,6 +60,9 @@ class ItemEmail(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .email_type import EmailType
+        from .item_facet import ItemFacet
+
         writer.write_str_value("address", self.address)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("type", self.type)

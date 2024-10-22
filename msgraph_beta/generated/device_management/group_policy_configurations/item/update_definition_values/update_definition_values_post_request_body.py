@@ -56,6 +56,8 @@ class UpdateDefinitionValuesPostRequestBody(AdditionalDataHolder, BackedModel, P
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.group_policy_definition_value import GroupPolicyDefinitionValue
+
         writer.write_collection_of_object_values("added", self.added)
         writer.write_collection_of_primitive_values("deletedIds", self.deleted_ids)
         writer.write_collection_of_object_values("updated", self.updated)

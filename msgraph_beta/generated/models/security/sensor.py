@@ -94,6 +94,13 @@ class Sensor(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .deployment_status import DeploymentStatus
+        from .health_issue import HealthIssue
+        from .sensor_health_status import SensorHealthStatus
+        from .sensor_settings import SensorSettings
+        from .sensor_type import SensorType
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_enum_value("deploymentStatus", self.deployment_status)
         writer.write_str_value("displayName", self.display_name)

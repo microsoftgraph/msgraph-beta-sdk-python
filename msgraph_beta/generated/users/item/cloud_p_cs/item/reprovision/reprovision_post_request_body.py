@@ -56,6 +56,9 @@ class ReprovisionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ......models.cloud_pc_operating_system import CloudPcOperatingSystem
+        from ......models.cloud_pc_user_account_type import CloudPcUserAccountType
+
         writer.write_enum_value("osVersion", self.os_version)
         writer.write_enum_value("userAccountType", self.user_account_type)
         writer.write_additional_data_value(self.additional_data)

@@ -90,6 +90,9 @@ class UserExperienceAnalyticsBatteryHealthOsPerformance(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
+
         writer.write_int_value("activeDevices", self.active_devices)
         writer.write_int_value("averageBatteryAgeInDays", self.average_battery_age_in_days)
         writer.write_int_value("averageEstimatedRuntimeInMinutes", self.average_estimated_runtime_in_minutes)

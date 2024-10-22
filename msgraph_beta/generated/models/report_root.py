@@ -159,6 +159,23 @@ class ReportRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
+        from .app_credential_sign_in_activity import AppCredentialSignInActivity
+        from .authentication_methods_root import AuthenticationMethodsRoot
+        from .credential_user_registration_details import CredentialUserRegistrationDetails
+        from .entity import Entity
+        from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
+        from .partners.partners import Partners
+        from .print_usage import PrintUsage
+        from .print_usage_by_printer import PrintUsageByPrinter
+        from .print_usage_by_user import PrintUsageByUser
+        from .security_reports_root import SecurityReportsRoot
+        from .service_activity import ServiceActivity
+        from .service_level_agreement_root import ServiceLevelAgreementRoot
+        from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
+        from .user_credential_usage_details import UserCredentialUsageDetails
+        from .user_insights_root import UserInsightsRoot
+
         writer.write_collection_of_object_values("appCredentialSignInActivities", self.app_credential_sign_in_activities)
         writer.write_collection_of_object_values("applicationSignInDetailedSummary", self.application_sign_in_detailed_summary)
         writer.write_object_value("authenticationMethods", self.authentication_methods)

@@ -103,6 +103,13 @@ class LegalHold(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from ..identity_set import IdentitySet
+        from .legal_hold_status import LegalHoldStatus
+        from .site_source import SiteSource
+        from .unified_group_source import UnifiedGroupSource
+        from .user_source import UserSource
+
         writer.write_str_value("contentQuery", self.content_query)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

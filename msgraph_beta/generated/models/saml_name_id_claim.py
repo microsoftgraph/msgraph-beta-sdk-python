@@ -57,6 +57,9 @@ class SamlNameIdClaim(CustomClaimBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_claim_base import CustomClaimBase
+        from .saml_name_i_d_format import SamlNameIDFormat
+
         writer.write_enum_value("nameIdFormat", self.name_id_format)
         writer.write_str_value("serviceProviderNameQualifier", self.service_provider_name_qualifier)
     

@@ -66,6 +66,8 @@ class AndroidForWorkApp(MobileApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app import MobileApp
+
         writer.write_str_value("appStoreUrl", self.app_store_url)
         writer.write_int_value("totalLicenseCount", self.total_license_count)
         writer.write_int_value("usedLicenseCount", self.used_license_count)

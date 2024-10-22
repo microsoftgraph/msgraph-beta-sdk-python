@@ -65,6 +65,9 @@ class SharePointSharingAbilities(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .direct_sharing_abilities import DirectSharingAbilities
+        from .link_scope_abilities import LinkScopeAbilities
+
         writer.write_object_value("anyoneLinkAbilities", self.anyone_link_abilities)
         writer.write_object_value("directSharingAbilities", self.direct_sharing_abilities)
         writer.write_str_value("@odata.type", self.odata_type)

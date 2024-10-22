@@ -87,6 +87,12 @@ class PlannerUser(PlannerDelta):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_delta import PlannerDelta
+        from .planner_favorite_plan_reference_collection import PlannerFavoritePlanReferenceCollection
+        from .planner_plan import PlannerPlan
+        from .planner_recent_plan_reference_collection import PlannerRecentPlanReferenceCollection
+        from .planner_task import PlannerTask
+
         writer.write_collection_of_object_values("all", self.all)
         writer.write_object_value("favoritePlanReferences", self.favorite_plan_references)
         writer.write_collection_of_object_values("favoritePlans", self.favorite_plans)

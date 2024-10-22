@@ -65,6 +65,8 @@ class TeamworkSpeakerConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_peripheral import TeamworkPeripheral
+
         writer.write_object_value("defaultCommunicationSpeaker", self.default_communication_speaker)
         writer.write_object_value("defaultSpeaker", self.default_speaker)
         writer.write_bool_value("isCommunicationSpeakerOptional", self.is_communication_speaker_optional)

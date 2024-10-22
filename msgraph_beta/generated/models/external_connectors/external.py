@@ -65,6 +65,10 @@ class External(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ..authorization_system import AuthorizationSystem
+        from ..industry_data.industry_data_root import IndustryDataRoot
+        from .external_connection import ExternalConnection
+
         writer.write_collection_of_object_values("authorizationSystems", self.authorization_systems)
         writer.write_collection_of_object_values("connections", self.connections)
         writer.write_object_value("industryData", self.industry_data)

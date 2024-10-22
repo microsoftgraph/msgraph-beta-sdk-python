@@ -77,6 +77,9 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .bit_locker_recovery_information_type import BitLockerRecoveryInformationType
+        from .configuration_usage import ConfigurationUsage
+
         writer.write_bool_value("blockDataRecoveryAgent", self.block_data_recovery_agent)
         writer.write_bool_value("enableBitLockerAfterRecoveryInformationToStore", self.enable_bit_locker_after_recovery_information_to_store)
         writer.write_bool_value("enableRecoveryInformationSaveToStore", self.enable_recovery_information_save_to_store)

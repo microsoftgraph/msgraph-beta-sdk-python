@@ -57,6 +57,8 @@ class RevokeAppleVppLicensesActionResult(DeviceActionResult):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_action_result import DeviceActionResult
+
         writer.write_int_value("failedLicensesCount", self.failed_licenses_count)
         writer.write_int_value("totalLicensesCount", self.total_licenses_count)
     

@@ -56,6 +56,8 @@ class UnenrollAssetsByIdPostRequestBody(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ........models.windows_updates.update_category import UpdateCategory
+
         writer.write_collection_of_primitive_values("ids", self.ids)
         writer.write_str_value("memberEntityType", self.member_entity_type)
         writer.write_enum_value("updateCategory", self.update_category)

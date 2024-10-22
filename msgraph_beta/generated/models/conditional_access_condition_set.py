@@ -119,6 +119,18 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .conditional_access_applications import ConditionalAccessApplications
+        from .conditional_access_authentication_flows import ConditionalAccessAuthenticationFlows
+        from .conditional_access_client_app import ConditionalAccessClientApp
+        from .conditional_access_client_applications import ConditionalAccessClientApplications
+        from .conditional_access_devices import ConditionalAccessDevices
+        from .conditional_access_device_states import ConditionalAccessDeviceStates
+        from .conditional_access_insider_risk_levels import ConditionalAccessInsiderRiskLevels
+        from .conditional_access_locations import ConditionalAccessLocations
+        from .conditional_access_platforms import ConditionalAccessPlatforms
+        from .conditional_access_users import ConditionalAccessUsers
+        from .risk_level import RiskLevel
+
         writer.write_object_value("applications", self.applications)
         writer.write_object_value("authenticationFlows", self.authentication_flows)
         writer.write_collection_of_enum_values("clientAppTypes", self.client_app_types)

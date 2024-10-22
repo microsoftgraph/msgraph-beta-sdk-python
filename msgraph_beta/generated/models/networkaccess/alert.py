@@ -94,6 +94,13 @@ class Alert(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .alert_action import AlertAction
+        from .alert_severity import AlertSeverity
+        from .alert_type import AlertType
+        from .filtering_policy import FilteringPolicy
+        from .related_resource import RelatedResource
+
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_enum_value("alertType", self.alert_type)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)

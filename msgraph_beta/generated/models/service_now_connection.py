@@ -79,6 +79,10 @@ class ServiceNowConnection(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .service_now_authentication_method import ServiceNowAuthenticationMethod
+        from .service_now_connection_status import ServiceNowConnectionStatus
+
         writer.write_object_value("authenticationMethod", self.authentication_method)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("incidentApiUrl", self.incident_api_url)

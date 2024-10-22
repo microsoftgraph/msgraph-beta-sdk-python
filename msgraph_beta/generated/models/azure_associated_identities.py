@@ -71,6 +71,11 @@ class AzureAssociatedIdentities(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .azure_identity import AzureIdentity
+        from .azure_managed_identity import AzureManagedIdentity
+        from .azure_service_principal import AzureServicePrincipal
+        from .azure_user import AzureUser
+
         writer.write_collection_of_object_values("all", self.all)
         writer.write_collection_of_object_values("managedIdentities", self.managed_identities)
         writer.write_str_value("@odata.type", self.odata_type)

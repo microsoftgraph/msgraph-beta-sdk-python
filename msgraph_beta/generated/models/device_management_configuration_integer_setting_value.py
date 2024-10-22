@@ -54,6 +54,8 @@ class DeviceManagementConfigurationIntegerSettingValue(DeviceManagementConfigura
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
+
         writer.write_int_value("value", self.value)
     
 

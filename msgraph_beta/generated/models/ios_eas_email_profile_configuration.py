@@ -156,6 +156,16 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
+        from .eas_authentication_method import EasAuthenticationMethod
+        from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
+        from .eas_services import EasServices
+        from .email_certificate_type import EmailCertificateType
+        from .email_sync_duration import EmailSyncDuration
+        from .ios_certificate_profile import IosCertificateProfile
+        from .ios_certificate_profile_base import IosCertificateProfileBase
+        from .user_email_source import UserEmailSource
+
         writer.write_str_value("accountName", self.account_name)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_bool_value("blockMovingMessagesToOtherEmailAccounts", self.block_moving_messages_to_other_email_accounts)

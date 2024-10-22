@@ -53,6 +53,8 @@ class ChangeCloudCertificationAuthorityStatusPostRequestBody(AdditionalDataHolde
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.cloud_certification_authority_status import CloudCertificationAuthorityStatus
+
         writer.write_enum_value("certificationAuthorityStatus", self.certification_authority_status)
         writer.write_int_value("certificationAuthorityVersion", self.certification_authority_version)
         writer.write_additional_data_value(self.additional_data)

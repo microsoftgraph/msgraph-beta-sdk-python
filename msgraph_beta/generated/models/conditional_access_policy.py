@@ -45,7 +45,8 @@ class ConditionalAccessPolicy(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.conditionalAccessWhatIfPolicy".casefold():
@@ -96,6 +97,13 @@ class ConditionalAccessPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .conditional_access_condition_set import ConditionalAccessConditionSet
+        from .conditional_access_grant_controls import ConditionalAccessGrantControls
+        from .conditional_access_policy_state import ConditionalAccessPolicyState
+        from .conditional_access_session_controls import ConditionalAccessSessionControls
+        from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
+        from .entity import Entity
+
         writer.write_object_value("conditions", self.conditions)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

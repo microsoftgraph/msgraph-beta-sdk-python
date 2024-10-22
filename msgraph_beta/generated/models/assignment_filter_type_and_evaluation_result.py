@@ -62,6 +62,9 @@ class AssignmentFilterTypeAndEvaluationResult(AdditionalDataHolder, BackedModel,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .assignment_filter_evaluation_result import AssignmentFilterEvaluationResult
+        from .device_and_app_management_assignment_filter_type import DeviceAndAppManagementAssignmentFilterType
+
         writer.write_enum_value("assignmentFilterType", self.assignment_filter_type)
         writer.write_enum_value("evaluationResult", self.evaluation_result)
         writer.write_str_value("@odata.type", self.odata_type)

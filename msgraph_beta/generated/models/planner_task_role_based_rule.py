@@ -62,6 +62,9 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .planner_task_configuration_role_base import PlannerTaskConfigurationRoleBase
+        from .planner_task_property_rule import PlannerTaskPropertyRule
+
         writer.write_str_value("defaultRule", self.default_rule)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("propertyRule", self.property_rule)

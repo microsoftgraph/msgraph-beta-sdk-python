@@ -31,7 +31,8 @@ class GenericError(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewError".casefold():
@@ -64,6 +65,8 @@ class GenericError(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .access_review_error import AccessReviewError
+
         writer.write_str_value("code", self.code)
         writer.write_str_value("message", self.message)
         writer.write_str_value("@odata.type", self.odata_type)

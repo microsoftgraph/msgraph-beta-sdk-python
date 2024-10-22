@@ -53,6 +53,8 @@ class PrinterDiscoverySettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .air_print_settings import AirPrintSettings
+
         writer.write_object_value("airPrint", self.air_print)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

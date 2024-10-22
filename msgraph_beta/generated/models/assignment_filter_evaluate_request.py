@@ -71,6 +71,8 @@ class AssignmentFilterEvaluateRequest(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_platform_type import DevicePlatformType
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_primitive_values("orderBy", self.order_by)
         writer.write_enum_value("platform", self.platform)

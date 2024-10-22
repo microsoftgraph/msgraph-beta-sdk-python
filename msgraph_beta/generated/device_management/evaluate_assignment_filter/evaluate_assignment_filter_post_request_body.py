@@ -50,6 +50,8 @@ class EvaluateAssignmentFilterPostRequestBody(AdditionalDataHolder, BackedModel,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ...models.assignment_filter_evaluate_request import AssignmentFilterEvaluateRequest
+
         writer.write_object_value("data", self.data)
         writer.write_additional_data_value(self.additional_data)
     

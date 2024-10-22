@@ -50,6 +50,8 @@ class AddLanguageFilesPostRequestBody(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.group_policy_uploaded_language_file import GroupPolicyUploadedLanguageFile
+
         writer.write_collection_of_object_values("groupPolicyUploadedLanguageFiles", self.group_policy_uploaded_language_files)
         writer.write_additional_data_value(self.additional_data)
     

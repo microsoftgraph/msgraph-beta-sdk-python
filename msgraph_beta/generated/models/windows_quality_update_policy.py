@@ -76,6 +76,9 @@ class WindowsQualityUpdatePolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .windows_quality_update_policy_assignment import WindowsQualityUpdatePolicyAssignment
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

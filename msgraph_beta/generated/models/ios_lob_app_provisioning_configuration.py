@@ -18,7 +18,7 @@ class IosLobAppProvisioningConfiguration(Entity):
     """
     This topic provides descriptions of the declared methods, properties and relationships exposed by the iOS Lob App Provisioning Configuration resource.
     """
-    # The associated group assignments for IosLobAppProvisioningConfiguration.
+    # The associated group assignments for IosLobAppProvisioningConfiguration, this determines which devices/users the IOS LOB app provisioning conifguration will be targeted to.
     assignments: Optional[List[IosLobAppProvisioningConfigurationAssignment]] = None
     # DateTime the object was created.
     created_date_time: Optional[datetime.datetime] = None
@@ -28,7 +28,7 @@ class IosLobAppProvisioningConfiguration(Entity):
     device_statuses: Optional[List[ManagedDeviceMobileAppConfigurationDeviceStatus]] = None
     # Admin provided name of the device configuration.
     display_name: Optional[str] = None
-    # Optional profile expiration date and time.
+    # Optional profile expiration date and time. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Returned by default.
     expiration_date_time: Optional[datetime.datetime] = None
     # The associated group assignments.
     group_assignments: Optional[List[MobileAppProvisioningConfigGroupAssignment]] = None
@@ -103,6 +103,12 @@ class IosLobAppProvisioningConfiguration(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .ios_lob_app_provisioning_configuration_assignment import IosLobAppProvisioningConfigurationAssignment
+        from .managed_device_mobile_app_configuration_device_status import ManagedDeviceMobileAppConfigurationDeviceStatus
+        from .managed_device_mobile_app_configuration_user_status import ManagedDeviceMobileAppConfigurationUserStatus
+        from .mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

@@ -54,6 +54,9 @@ class AzureServerlessFunction(AzureIdentity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .azure_authorization_system_resource import AzureAuthorizationSystemResource
+        from .azure_identity import AzureIdentity
+
         writer.write_object_value("resource", self.resource)
     
 

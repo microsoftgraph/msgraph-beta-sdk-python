@@ -48,5 +48,7 @@ class GcpServiceAccount(GcpIdentity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .gcp_identity import GcpIdentity
+
     
 

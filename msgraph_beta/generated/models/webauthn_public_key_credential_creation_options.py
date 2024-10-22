@@ -92,6 +92,13 @@ class WebauthnPublicKeyCredentialCreationOptions(AdditionalDataHolder, BackedMod
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .webauthn_authentication_extensions_client_inputs import WebauthnAuthenticationExtensionsClientInputs
+        from .webauthn_authenticator_selection_criteria import WebauthnAuthenticatorSelectionCriteria
+        from .webauthn_public_key_credential_descriptor import WebauthnPublicKeyCredentialDescriptor
+        from .webauthn_public_key_credential_parameters import WebauthnPublicKeyCredentialParameters
+        from .webauthn_public_key_credential_rp_entity import WebauthnPublicKeyCredentialRpEntity
+        from .webauthn_public_key_credential_user_entity import WebauthnPublicKeyCredentialUserEntity
+
         writer.write_str_value("attestation", self.attestation)
         writer.write_object_value("authenticatorSelection", self.authenticator_selection)
         writer.write_str_value("challenge", self.challenge)

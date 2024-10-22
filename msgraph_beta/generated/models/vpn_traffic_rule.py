@@ -98,6 +98,12 @@ class VpnTrafficRule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .i_pv4_range import IPv4Range
+        from .number_range import NumberRange
+        from .vpn_traffic_direction import VpnTrafficDirection
+        from .vpn_traffic_rule_app_type import VpnTrafficRuleAppType
+        from .vpn_traffic_rule_routing_policy_type import VpnTrafficRuleRoutingPolicyType
+
         writer.write_str_value("appId", self.app_id)
         writer.write_enum_value("appType", self.app_type)
         writer.write_str_value("claims", self.claims)

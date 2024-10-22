@@ -59,6 +59,8 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .mac_o_s_system_extension_type import MacOSSystemExtensionType
+
         writer.write_enum_value("allowedTypes", self.allowed_types)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("teamIdentifier", self.team_identifier)

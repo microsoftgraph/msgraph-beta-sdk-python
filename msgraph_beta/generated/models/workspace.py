@@ -75,6 +75,8 @@ class Workspace(Place):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .place import Place
+
         writer.write_str_value("building", self.building)
         writer.write_int_value("capacity", self.capacity)
         writer.write_str_value("emailAddress", self.email_address)

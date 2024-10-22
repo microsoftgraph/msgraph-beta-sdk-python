@@ -66,6 +66,10 @@ class DeviceManagementConfigurationIntegerSettingValueTemplate(DeviceManagementC
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_integer_setting_value_default_template import DeviceManagementConfigurationIntegerSettingValueDefaultTemplate
+        from .device_management_configuration_integer_setting_value_definition_template import DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate
+        from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
+
         writer.write_object_value("defaultValue", self.default_value)
         writer.write_object_value("recommendedValueDefinition", self.recommended_value_definition)
         writer.write_object_value("requiredValueDefinition", self.required_value_definition)

@@ -61,6 +61,9 @@ class FilteringProfile(Profile):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .conditional_access_policy import ConditionalAccessPolicy
+        from .profile import Profile
+
         writer.write_collection_of_object_values("conditionalAccessPolicies", self.conditional_access_policies)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_int_value("priority", self.priority)

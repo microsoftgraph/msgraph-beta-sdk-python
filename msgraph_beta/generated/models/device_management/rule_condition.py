@@ -74,6 +74,11 @@ class RuleCondition(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .aggregation_type import AggregationType
+        from .condition_category import ConditionCategory
+        from .operator_type import OperatorType
+        from .relationship_type import RelationshipType
+
         writer.write_enum_value("aggregation", self.aggregation)
         writer.write_enum_value("conditionCategory", self.condition_category)
         writer.write_str_value("@odata.type", self.odata_type)

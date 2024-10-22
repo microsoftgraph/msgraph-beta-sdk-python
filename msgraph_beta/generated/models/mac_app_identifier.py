@@ -54,6 +54,8 @@ class MacAppIdentifier(MobileAppIdentifier):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app_identifier import MobileAppIdentifier
+
         writer.write_str_value("bundleId", self.bundle_id)
     
 

@@ -51,5 +51,7 @@ class DeviceHealthScriptDailySchedule(DeviceHealthScriptTimeSchedule):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_health_script_time_schedule import DeviceHealthScriptTimeSchedule
+
     
 

@@ -79,6 +79,11 @@ class GroupPolicyDefinitionValue(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .group_policy_configuration_type import GroupPolicyConfigurationType
+        from .group_policy_definition import GroupPolicyDefinition
+        from .group_policy_presentation_value import GroupPolicyPresentationValue
+
         writer.write_enum_value("configurationType", self.configuration_type)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("definition", self.definition)

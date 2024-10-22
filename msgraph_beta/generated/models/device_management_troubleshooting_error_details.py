@@ -68,6 +68,8 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, BackedMo
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_troubleshooting_error_resource import DeviceManagementTroubleshootingErrorResource
+
         writer.write_str_value("context", self.context)
         writer.write_str_value("failure", self.failure)
         writer.write_str_value("failureDetails", self.failure_details)

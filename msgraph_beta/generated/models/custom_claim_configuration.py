@@ -65,6 +65,10 @@ class CustomClaimConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .custom_claim_attribute_base import CustomClaimAttributeBase
+        from .custom_claim_condition_base import CustomClaimConditionBase
+        from .custom_claim_transformation import CustomClaimTransformation
+
         writer.write_object_value("attribute", self.attribute)
         writer.write_object_value("condition", self.condition)
         writer.write_str_value("@odata.type", self.odata_type)

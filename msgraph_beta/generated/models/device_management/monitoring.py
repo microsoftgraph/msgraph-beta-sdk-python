@@ -60,6 +60,10 @@ class Monitoring(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .alert_record import AlertRecord
+        from .alert_rule import AlertRule
+
         writer.write_collection_of_object_values("alertRecords", self.alert_records)
         writer.write_collection_of_object_values("alertRules", self.alert_rules)
     

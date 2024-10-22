@@ -52,6 +52,9 @@ class SalesCreditMemoLineCollectionResponse(BaseCollectionPaginationCountRespons
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .sales_credit_memo_line import SalesCreditMemoLine
+
         writer.write_collection_of_object_values("value", self.value)
     
 

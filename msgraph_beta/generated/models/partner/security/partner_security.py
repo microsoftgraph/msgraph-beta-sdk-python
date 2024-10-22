@@ -60,6 +60,10 @@ class PartnerSecurity(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ...entity import Entity
+        from .partner_security_alert import PartnerSecurityAlert
+        from .partner_security_score import PartnerSecurityScore
+
         writer.write_collection_of_object_values("securityAlerts", self.security_alerts)
         writer.write_object_value("securityScore", self.security_score)
     

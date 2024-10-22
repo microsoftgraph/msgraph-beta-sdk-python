@@ -57,6 +57,9 @@ class TeamsAppIcon(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .teamwork_hosted_content import TeamworkHostedContent
+
         writer.write_object_value("hostedContent", self.hosted_content)
         writer.write_str_value("webUrl", self.web_url)
     

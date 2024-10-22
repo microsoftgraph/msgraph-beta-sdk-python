@@ -63,6 +63,9 @@ class InformationProtectionContentLabel(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .assignment_method import AssignmentMethod
+        from .label_details import LabelDetails
+
         writer.write_enum_value("assignmentMethod", self.assignment_method)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_object_value("label", self.label)

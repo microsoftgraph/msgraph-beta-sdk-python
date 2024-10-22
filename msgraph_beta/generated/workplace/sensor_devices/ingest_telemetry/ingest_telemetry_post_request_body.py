@@ -50,6 +50,8 @@ class IngestTelemetryPostRequestBody(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.workplace_sensor_device_telemetry import WorkplaceSensorDeviceTelemetry
+
         writer.write_collection_of_object_values("telemetry", self.telemetry)
         writer.write_additional_data_value(self.additional_data)
     

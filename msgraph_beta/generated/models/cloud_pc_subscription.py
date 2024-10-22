@@ -54,6 +54,8 @@ class CloudPcSubscription(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("subscriptionId", self.subscription_id)
         writer.write_str_value("subscriptionName", self.subscription_name)
     

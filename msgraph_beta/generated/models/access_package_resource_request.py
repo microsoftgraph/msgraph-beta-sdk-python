@@ -85,6 +85,10 @@ class AccessPackageResourceRequest(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_package_resource import AccessPackageResource
+        from .access_package_subject import AccessPackageSubject
+        from .entity import Entity
+
         writer.write_object_value("accessPackageResource", self.access_package_resource)
         writer.write_str_value("catalogId", self.catalog_id)
         writer.write_bool_value("executeImmediately", self.execute_immediately)

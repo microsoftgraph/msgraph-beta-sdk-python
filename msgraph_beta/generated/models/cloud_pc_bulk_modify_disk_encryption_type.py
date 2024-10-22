@@ -54,6 +54,9 @@ class CloudPcBulkModifyDiskEncryptionType(CloudPcBulkAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_bulk_action import CloudPcBulkAction
+        from .cloud_pc_disk_encryption_type import CloudPcDiskEncryptionType
+
         writer.write_enum_value("diskEncryptionType", self.disk_encryption_type)
     
 

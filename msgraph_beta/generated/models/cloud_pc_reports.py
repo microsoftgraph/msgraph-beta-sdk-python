@@ -54,6 +54,9 @@ class CloudPcReports(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_export_job import CloudPcExportJob
+        from .entity import Entity
+
         writer.write_collection_of_object_values("exportJobs", self.export_jobs)
     
 

@@ -106,6 +106,13 @@ class AccessReview(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_review_decision import AccessReviewDecision
+        from .access_review_reviewer import AccessReviewReviewer
+        from .access_review_settings import AccessReviewSettings
+        from .entity import Entity
+        from .identity import Identity
+        from .user_identity import UserIdentity
+
         writer.write_str_value("businessFlowTemplateId", self.business_flow_template_id)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_collection_of_object_values("decisions", self.decisions)

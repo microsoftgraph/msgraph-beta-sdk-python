@@ -58,6 +58,8 @@ class UserCountMetric(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_int_value("count", self.count)
         writer.write_date_value("factDate", self.fact_date)
         writer.write_str_value("language", self.language)

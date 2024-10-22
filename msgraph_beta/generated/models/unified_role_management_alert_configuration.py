@@ -41,7 +41,8 @@ class UnifiedRoleManagementAlertConfiguration(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.invalidLicenseAlertConfiguration".casefold():
@@ -119,6 +120,16 @@ class UnifiedRoleManagementAlertConfiguration(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .invalid_license_alert_configuration import InvalidLicenseAlertConfiguration
+        from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
+        from .redundant_assignment_alert_configuration import RedundantAssignmentAlertConfiguration
+        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+        from .sequential_activation_renewals_alert_configuration import SequentialActivationRenewalsAlertConfiguration
+        from .stale_sign_in_alert_configuration import StaleSignInAlertConfiguration
+        from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
+        from .unified_role_management_alert_definition import UnifiedRoleManagementAlertDefinition
+
         writer.write_object_value("alertDefinition", self.alert_definition)
         writer.write_str_value("alertDefinitionId", self.alert_definition_id)
         writer.write_bool_value("isEnabled", self.is_enabled)

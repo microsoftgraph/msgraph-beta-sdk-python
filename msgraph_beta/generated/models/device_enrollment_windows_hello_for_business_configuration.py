@@ -99,6 +99,10 @@ class DeviceEnrollmentWindowsHelloForBusinessConfiguration(DeviceEnrollmentConfi
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_enrollment_configuration import DeviceEnrollmentConfiguration
+        from .enablement import Enablement
+        from .windows_hello_for_business_pin_usage import WindowsHelloForBusinessPinUsage
+
         writer.write_enum_value("enhancedBiometricsState", self.enhanced_biometrics_state)
         writer.write_int_value("enhancedSignInSecurity", self.enhanced_sign_in_security)
         writer.write_int_value("pinExpirationInDays", self.pin_expiration_in_days)

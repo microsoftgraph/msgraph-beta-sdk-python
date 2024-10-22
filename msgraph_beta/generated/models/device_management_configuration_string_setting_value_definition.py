@@ -18,15 +18,15 @@ class DeviceManagementConfigurationStringSettingValueDefinition(DeviceManagement
     odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition"
     # Supported file types for this setting.
     file_types: Optional[List[str]] = None
-    # Pre-defined format of the string. Possible values are: none, email, guid, ip, base64, url, version, xml, date, time, binary, regEx, json, dateTime, surfaceHub.
+    # Pre-defined format of the string. Possible values are: none, email, guid, ip, base64, url, version, xml, date, time, binary, regEx, json, dateTime, surfaceHub, bashScript, unknownFutureValue.
     format: Optional[DeviceManagementConfigurationStringFormat] = None
     # Regular expression or any xml or json schema that the input string should match
     input_validation_schema: Optional[str] = None
     # Specifies whether the setting needs to be treated as a secret. Settings marked as yes will be encrypted in transit and at rest and will be displayed as asterisks when represented in the UX.
     is_secret: Optional[bool] = None
-    # Maximum length of string
+    # Maximum length of string. Valid values 0 to 87516
     maximum_length: Optional[int] = None
-    # Minimum length of string
+    # Minimum length of string. Valid values 0 to 87516
     minimum_length: Optional[int] = None
     
     @staticmethod
@@ -72,6 +72,9 @@ class DeviceManagementConfigurationStringSettingValueDefinition(DeviceManagement
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_setting_value_definition import DeviceManagementConfigurationSettingValueDefinition
+        from .device_management_configuration_string_format import DeviceManagementConfigurationStringFormat
+
         writer.write_collection_of_primitive_values("fileTypes", self.file_types)
         writer.write_enum_value("format", self.format)
         writer.write_str_value("inputValidationSchema", self.input_validation_schema)

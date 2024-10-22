@@ -100,6 +100,11 @@ class GovernanceRoleAssignment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .governance_resource import GovernanceResource
+        from .governance_role_definition import GovernanceRoleDefinition
+        from .governance_subject import GovernanceSubject
+
         writer.write_str_value("assignmentState", self.assignment_state)
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_str_value("externalId", self.external_id)

@@ -50,6 +50,8 @@ class AssignPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
+
         writer.write_collection_of_object_values("wdacPolicyAssignments", self.wdac_policy_assignments)
         writer.write_additional_data_value(self.additional_data)
     

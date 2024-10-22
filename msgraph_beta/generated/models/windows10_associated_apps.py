@@ -59,6 +59,8 @@ class Windows10AssociatedApps(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .windows10_app_type import Windows10AppType
+
         writer.write_enum_value("appType", self.app_type)
         writer.write_str_value("identifier", self.identifier)
         writer.write_str_value("@odata.type", self.odata_type)

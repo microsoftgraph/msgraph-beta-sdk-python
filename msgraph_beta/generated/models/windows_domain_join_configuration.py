@@ -66,6 +66,8 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+
         writer.write_str_value("activeDirectoryDomainName", self.active_directory_domain_name)
         writer.write_str_value("computerNameStaticPrefix", self.computer_name_static_prefix)
         writer.write_int_value("computerNameSuffixRandomCharCount", self.computer_name_suffix_random_char_count)

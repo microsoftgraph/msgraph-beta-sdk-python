@@ -90,6 +90,14 @@ class TimeCard(ChangeTrackedEntity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .change_tracked_entity import ChangeTrackedEntity
+        from .confirmed_by import ConfirmedBy
+        from .item_body import ItemBody
+        from .time_card_break import TimeCardBreak
+        from .time_card_entry import TimeCardEntry
+        from .time_card_event import TimeCardEvent
+        from .time_card_state import TimeCardState
+
         writer.write_collection_of_object_values("breaks", self.breaks)
         writer.write_object_value("clockInEvent", self.clock_in_event)
         writer.write_object_value("clockOutEvent", self.clock_out_event)

@@ -69,6 +69,8 @@ class PlannerTaskRecurrence(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .planner_recurrence_schedule import PlannerRecurrenceSchedule
+
         writer.write_str_value("nextInSeriesTaskId", self.next_in_series_task_id)
         writer.write_int_value("occurrenceId", self.occurrence_id)
         writer.write_str_value("@odata.type", self.odata_type)

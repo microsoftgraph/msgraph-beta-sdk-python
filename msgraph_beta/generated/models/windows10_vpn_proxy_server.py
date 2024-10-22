@@ -54,6 +54,8 @@ class Windows10VpnProxyServer(VpnProxyServer):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .vpn_proxy_server import VpnProxyServer
+
         writer.write_bool_value("bypassProxyServerForLocalAddress", self.bypass_proxy_server_for_local_address)
     
 

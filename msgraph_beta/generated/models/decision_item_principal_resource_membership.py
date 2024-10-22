@@ -53,6 +53,8 @@ class DecisionItemPrincipalResourceMembership(AdditionalDataHolder, BackedModel,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .decision_item_principal_resource_membership_type import DecisionItemPrincipalResourceMembershipType
+
         writer.write_enum_value("membershipType", self.membership_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

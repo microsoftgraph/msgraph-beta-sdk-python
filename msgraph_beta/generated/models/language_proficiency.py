@@ -72,6 +72,9 @@ class LanguageProficiency(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .item_facet import ItemFacet
+        from .language_proficiency_level import LanguageProficiencyLevel
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("proficiency", self.proficiency)
         writer.write_enum_value("reading", self.reading)

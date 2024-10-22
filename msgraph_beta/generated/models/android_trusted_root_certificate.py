@@ -57,6 +57,8 @@ class AndroidTrustedRootCertificate(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+
         writer.write_str_value("certFileName", self.cert_file_name)
         writer.write_bytes_value("trustedRootCertificate", self.trusted_root_certificate)
     

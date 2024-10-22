@@ -52,6 +52,9 @@ class ManagementTemplateCollectionTenantSummaryCollectionResponse(BaseCollection
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .management_template_collection_tenant_summary import ManagementTemplateCollectionTenantSummary
+
         writer.write_collection_of_object_values("value", self.value)
     
 

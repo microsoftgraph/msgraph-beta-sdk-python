@@ -54,6 +54,9 @@ class WebSegmentConfiguration(SegmentConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .segment_configuration import SegmentConfiguration
+        from .web_application_segment import WebApplicationSegment
+
         writer.write_collection_of_object_values("applicationSegments", self.application_segments)
     
 

@@ -54,6 +54,8 @@ class EdgeHomeButtonOpensCustomURL(EdgeHomeButtonConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .edge_home_button_configuration import EdgeHomeButtonConfiguration
+
         writer.write_str_value("homeButtonCustomURL", self.home_button_custom_u_r_l)
     
 

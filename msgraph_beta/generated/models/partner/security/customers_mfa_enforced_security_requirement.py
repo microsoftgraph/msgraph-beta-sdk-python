@@ -54,6 +54,8 @@ class CustomersMfaEnforcedSecurityRequirement(SecurityRequirement):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .security_requirement import SecurityRequirement
+
         writer.write_int_value("compliantTenantCount", self.compliant_tenant_count)
         writer.write_int_value("totalTenantCount", self.total_tenant_count)
     

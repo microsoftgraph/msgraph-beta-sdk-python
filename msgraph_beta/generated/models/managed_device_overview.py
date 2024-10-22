@@ -82,6 +82,11 @@ class ManagedDeviceOverview(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_exchange_access_state_summary import DeviceExchangeAccessStateSummary
+        from .device_operating_system_summary import DeviceOperatingSystemSummary
+        from .entity import Entity
+        from .managed_device_models_and_manufacturers import ManagedDeviceModelsAndManufacturers
+
         writer.write_object_value("deviceExchangeAccessStateSummary", self.device_exchange_access_state_summary)
         writer.write_object_value("deviceOperatingSystemSummary", self.device_operating_system_summary)
         writer.write_int_value("dualEnrolledDeviceCount", self.dual_enrolled_device_count)

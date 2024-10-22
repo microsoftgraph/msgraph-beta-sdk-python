@@ -54,6 +54,9 @@ class PlannerTaskConfiguration(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .planner_task_policy import PlannerTaskPolicy
+
         writer.write_object_value("editPolicy", self.edit_policy)
     
 

@@ -57,6 +57,8 @@ class EncryptWithUserDefinedRights(EncryptContent):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .encrypt_content import EncryptContent
+
         writer.write_bool_value("allowAdHocPermissions", self.allow_ad_hoc_permissions)
         writer.write_bool_value("allowMailForwarding", self.allow_mail_forwarding)
         writer.write_str_value("decryptionRightsManagementTemplateId", self.decryption_rights_management_template_id)

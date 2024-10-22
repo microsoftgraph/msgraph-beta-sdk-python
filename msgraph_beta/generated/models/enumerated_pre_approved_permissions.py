@@ -54,6 +54,8 @@ class EnumeratedPreApprovedPermissions(PreApprovedPermissions):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .pre_approved_permissions import PreApprovedPermissions
+
         writer.write_collection_of_primitive_values("permissionIds", self.permission_ids)
         writer.write_str_value("resourceApplicationId", self.resource_application_id)
     

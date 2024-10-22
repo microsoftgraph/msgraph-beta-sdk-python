@@ -54,6 +54,9 @@ class CustomAppScope(AppScope):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .app_scope import AppScope
+        from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
+
         writer.write_object_value("customAttributes", self.custom_attributes)
     
 

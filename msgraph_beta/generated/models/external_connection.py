@@ -90,6 +90,14 @@ class ExternalConnection(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .configuration import Configuration
+        from .connection_operation import ConnectionOperation
+        from .connection_state import ConnectionState
+        from .entity import Entity
+        from .external_group import ExternalGroup
+        from .external_item import ExternalItem
+        from .schema import Schema
+
         writer.write_object_value("configuration", self.configuration)
         writer.write_str_value("description", self.description)
         writer.write_collection_of_object_values("groups", self.groups)

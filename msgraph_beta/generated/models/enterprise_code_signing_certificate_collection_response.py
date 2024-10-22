@@ -52,6 +52,9 @@ class EnterpriseCodeSigningCertificateCollectionResponse(BaseCollectionPaginatio
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .enterprise_code_signing_certificate import EnterpriseCodeSigningCertificate
+
         writer.write_collection_of_object_values("value", self.value)
     
 

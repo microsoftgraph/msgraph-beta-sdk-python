@@ -82,6 +82,9 @@ class MfaCompletionMetric(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .mfa_failure import MfaFailure
+
         writer.write_str_value("appId", self.app_id)
         writer.write_int_value("attemptsCount", self.attempts_count)
         writer.write_str_value("country", self.country)

@@ -54,6 +54,8 @@ class MicrosoftApplicationDataAccessSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("disabledForGroup", self.disabled_for_group)
         writer.write_bool_value("isEnabledForAllMicrosoftApplications", self.is_enabled_for_all_microsoft_applications)
     

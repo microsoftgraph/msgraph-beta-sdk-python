@@ -54,6 +54,9 @@ class AuthorizationSystemTypeService(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system_type_action import AuthorizationSystemTypeAction
+        from .entity import Entity
+
         writer.write_collection_of_object_values("actions", self.actions)
     
 

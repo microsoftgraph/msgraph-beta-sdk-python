@@ -57,6 +57,8 @@ class UnifiedRbacResourceScope(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("scope", self.scope)
         writer.write_str_value("type", self.type)

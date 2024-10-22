@@ -62,6 +62,9 @@ class UpdatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.policy_set_assignment import PolicySetAssignment
+        from .....models.policy_set_item import PolicySetItem
+
         writer.write_collection_of_object_values("addedPolicySetItems", self.added_policy_set_items)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_collection_of_primitive_values("deletedPolicySetItems", self.deleted_policy_set_items)

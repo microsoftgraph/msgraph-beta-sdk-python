@@ -93,6 +93,12 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_deployment_channel import AppleDeploymentChannel
+        from .certificate_store import CertificateStore
+        from .custom_subject_alternative_name import CustomSubjectAlternativeName
+        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+
         writer.write_bool_value("allowAllAppsAccess", self.allow_all_apps_access)
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_str_value("certificateTemplateName", self.certificate_template_name)

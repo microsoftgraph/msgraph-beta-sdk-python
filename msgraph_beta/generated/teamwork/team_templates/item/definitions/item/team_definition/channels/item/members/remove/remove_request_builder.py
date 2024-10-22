@@ -32,10 +32,11 @@ class RemoveRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: RemovePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[RemovePostResponse]:
         """
-        Invoke action remove
+        Remove multiple members from a team in a single request. The response provides details about which memberships could and couldn't be removed.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RemovePostResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/conversationmember-remove?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -55,7 +56,7 @@ class RemoveRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: RemovePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action remove
+        Remove multiple members from a team in a single request. The response provides details about which memberships could and couldn't be removed.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -56,6 +56,8 @@ class OrganizationalScope(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .scope_type import ScopeType
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_primitive_values("scopeNames", self.scope_names)
         writer.write_enum_value("scopeType", self.scope_type)

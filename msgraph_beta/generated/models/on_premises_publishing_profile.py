@@ -96,6 +96,15 @@ class OnPremisesPublishingProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .connector import Connector
+        from .connector_group import ConnectorGroup
+        from .entity import Entity
+        from .hybrid_agent_updater_configuration import HybridAgentUpdaterConfiguration
+        from .ip_application_segment import IpApplicationSegment
+        from .on_premises_agent import OnPremisesAgent
+        from .on_premises_agent_group import OnPremisesAgentGroup
+        from .published_resource import PublishedResource
+
         writer.write_collection_of_object_values("agentGroups", self.agent_groups)
         writer.write_collection_of_object_values("agents", self.agents)
         writer.write_collection_of_object_values("applicationSegments", self.application_segments)

@@ -51,6 +51,8 @@ class FileContentThreatSubmission(FileThreatSubmission):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .file_threat_submission import FileThreatSubmission
+
         writer.write_str_value("fileContent", self.file_content)
     
 

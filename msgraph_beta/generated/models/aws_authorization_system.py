@@ -78,6 +78,13 @@ class AwsAuthorizationSystem(AuthorizationSystem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system import AuthorizationSystem
+        from .authorization_system_type_service import AuthorizationSystemTypeService
+        from .aws_associated_identities import AwsAssociatedIdentities
+        from .aws_authorization_system_resource import AwsAuthorizationSystemResource
+        from .aws_authorization_system_type_action import AwsAuthorizationSystemTypeAction
+        from .aws_policy import AwsPolicy
+
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_object_value("associatedIdentities", self.associated_identities)
         writer.write_collection_of_object_values("policies", self.policies)

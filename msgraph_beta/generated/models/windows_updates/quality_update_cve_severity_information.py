@@ -62,6 +62,9 @@ class QualityUpdateCveSeverityInformation(AdditionalDataHolder, BackedModel, Par
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cve_information import CveInformation
+        from .cve_severity_level import CveSeverityLevel
+
         writer.write_collection_of_object_values("exploitedCves", self.exploited_cves)
         writer.write_float_value("maxBaseScore", self.max_base_score)
         writer.write_enum_value("maxSeverity", self.max_severity)

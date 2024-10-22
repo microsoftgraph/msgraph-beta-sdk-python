@@ -68,6 +68,9 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, BackedModel, Par
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .vpn_encryption_algorithm_type import VpnEncryptionAlgorithmType
+        from .vpn_integrity_algorithm_type import VpnIntegrityAlgorithmType
+
         writer.write_int_value("lifetimeInMinutes", self.lifetime_in_minutes)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("securityDiffieHellmanGroup", self.security_diffie_hellman_group)

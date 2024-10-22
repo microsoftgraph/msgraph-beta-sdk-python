@@ -108,6 +108,14 @@ class OfficeSuiteApp(MobileApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .excluded_apps import ExcludedApps
+        from .mobile_app import MobileApp
+        from .office_product_id import OfficeProductId
+        from .office_suite_default_file_format_type import OfficeSuiteDefaultFileFormatType
+        from .office_suite_install_progress_display_level import OfficeSuiteInstallProgressDisplayLevel
+        from .office_update_channel import OfficeUpdateChannel
+        from .windows_architecture import WindowsArchitecture
+
         writer.write_bool_value("autoAcceptEula", self.auto_accept_eula)
         writer.write_object_value("excludedApps", self.excluded_apps)
         writer.write_enum_value("installProgressDisplayLevel", self.install_progress_display_level)

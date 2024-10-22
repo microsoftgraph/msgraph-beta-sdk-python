@@ -107,6 +107,11 @@ class GroupPolicyMigrationReport(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .group_policy_migration_readiness import GroupPolicyMigrationReadiness
+        from .group_policy_setting_mapping import GroupPolicySettingMapping
+        from .unsupported_group_policy_extension import UnsupportedGroupPolicyExtension
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("groupPolicyCreatedDateTime", self.group_policy_created_date_time)

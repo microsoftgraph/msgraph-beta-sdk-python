@@ -94,6 +94,10 @@ class MicrosoftTunnelSite(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .microsoft_tunnel_configuration import MicrosoftTunnelConfiguration
+        from .microsoft_tunnel_server import MicrosoftTunnelServer
+
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("internalNetworkProbeUrl", self.internal_network_probe_url)

@@ -76,6 +76,10 @@ class MicrosoftTunnelServer(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .microsoft_tunnel_deployment_mode import MicrosoftTunnelDeploymentMode
+        from .microsoft_tunnel_server_health_status import MicrosoftTunnelServerHealthStatus
+
         writer.write_str_value("agentImageDigest", self.agent_image_digest)
         writer.write_enum_value("deploymentMode", self.deployment_mode)
         writer.write_str_value("displayName", self.display_name)

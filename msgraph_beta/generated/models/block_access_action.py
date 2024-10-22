@@ -48,5 +48,7 @@ class BlockAccessAction(DlpActionInfo):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .dlp_action_info import DlpActionInfo
+
     
 

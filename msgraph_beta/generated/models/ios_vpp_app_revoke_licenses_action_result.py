@@ -84,6 +84,9 @@ class IosVppAppRevokeLicensesActionResult(AdditionalDataHolder, BackedModel, Par
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .action_state import ActionState
+        from .vpp_token_action_failure_reason import VppTokenActionFailureReason
+
         writer.write_enum_value("actionFailureReason", self.action_failure_reason)
         writer.write_str_value("actionName", self.action_name)
         writer.write_enum_value("actionState", self.action_state)

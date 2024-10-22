@@ -90,6 +90,10 @@ class DeviceAssignmentItem(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_assignment_item_intent import DeviceAssignmentItemIntent
+        from .device_assignment_item_status import DeviceAssignmentItemStatus
+        from .device_assignment_item_type import DeviceAssignmentItemType
+
         writer.write_enum_value("assignmentItemActionIntent", self.assignment_item_action_intent)
         writer.write_enum_value("assignmentItemActionStatus", self.assignment_item_action_status)
         writer.write_str_value("itemId", self.item_id)

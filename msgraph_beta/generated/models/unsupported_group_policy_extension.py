@@ -66,6 +66,9 @@ class UnsupportedGroupPolicyExtension(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .group_policy_setting_scope import GroupPolicySettingScope
+
         writer.write_str_value("extensionType", self.extension_type)
         writer.write_str_value("namespaceUrl", self.namespace_url)
         writer.write_str_value("nodeName", self.node_name)

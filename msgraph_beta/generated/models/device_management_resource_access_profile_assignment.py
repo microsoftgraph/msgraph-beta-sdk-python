@@ -66,6 +66,10 @@ class DeviceManagementResourceAccessProfileAssignment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_and_app_management_assignment_target import DeviceAndAppManagementAssignmentTarget
+        from .device_management_resource_access_profile_intent import DeviceManagementResourceAccessProfileIntent
+        from .entity import Entity
+
         writer.write_enum_value("intent", self.intent)
         writer.write_str_value("sourceId", self.source_id)
         writer.write_object_value("target", self.target)

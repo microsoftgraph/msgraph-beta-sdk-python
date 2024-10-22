@@ -57,6 +57,9 @@ class CredentialUserRegistrationCount(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .user_registration_count import UserRegistrationCount
+
         writer.write_int_value("totalUserCount", self.total_user_count)
         writer.write_collection_of_object_values("userRegistrationCounts", self.user_registration_counts)
     

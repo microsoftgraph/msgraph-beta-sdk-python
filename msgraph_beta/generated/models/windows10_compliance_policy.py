@@ -171,6 +171,12 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_compliance_policy import DeviceCompliancePolicy
+        from .device_compliance_policy_script import DeviceCompliancePolicyScript
+        from .device_threat_protection_level import DeviceThreatProtectionLevel
+        from .operating_system_version_range import OperatingSystemVersionRange
+        from .required_password_type import RequiredPasswordType
+
         writer.write_bool_value("activeFirewallRequired", self.active_firewall_required)
         writer.write_bool_value("antiSpywareRequired", self.anti_spyware_required)
         writer.write_bool_value("antivirusRequired", self.antivirus_required)

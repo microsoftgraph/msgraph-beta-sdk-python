@@ -67,6 +67,9 @@ class OutlookTaskGroup(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .outlook_task_folder import OutlookTaskFolder
+
         writer.write_str_value("changeKey", self.change_key)
         writer.write_uuid_value("groupKey", self.group_key)
         writer.write_bool_value("isDefaultGroup", self.is_default_group)

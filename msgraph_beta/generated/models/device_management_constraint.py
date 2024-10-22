@@ -44,7 +44,8 @@ class DeviceManagementConstraint(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementEnumConstraint".casefold():
@@ -159,6 +160,22 @@ class DeviceManagementConstraint(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_enum_constraint import DeviceManagementEnumConstraint
+        from .device_management_intent_setting_secret_constraint import DeviceManagementIntentSettingSecretConstraint
+        from .device_management_setting_abstract_implementation_constraint import DeviceManagementSettingAbstractImplementationConstraint
+        from .device_management_setting_app_constraint import DeviceManagementSettingAppConstraint
+        from .device_management_setting_boolean_constraint import DeviceManagementSettingBooleanConstraint
+        from .device_management_setting_collection_constraint import DeviceManagementSettingCollectionConstraint
+        from .device_management_setting_enrollment_type_constraint import DeviceManagementSettingEnrollmentTypeConstraint
+        from .device_management_setting_file_constraint import DeviceManagementSettingFileConstraint
+        from .device_management_setting_integer_constraint import DeviceManagementSettingIntegerConstraint
+        from .device_management_setting_profile_constraint import DeviceManagementSettingProfileConstraint
+        from .device_management_setting_regex_constraint import DeviceManagementSettingRegexConstraint
+        from .device_management_setting_required_constraint import DeviceManagementSettingRequiredConstraint
+        from .device_management_setting_sddl_constraint import DeviceManagementSettingSddlConstraint
+        from .device_management_setting_string_length_constraint import DeviceManagementSettingStringLengthConstraint
+        from .device_management_setting_xml_constraint import DeviceManagementSettingXmlConstraint
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

@@ -40,7 +40,8 @@ class EasEmailProfileConfigurationBase(DeviceConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosEasEmailProfileConfiguration".casefold():
@@ -97,6 +98,14 @@ class EasEmailProfileConfigurationBase(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .domain_name_source import DomainNameSource
+        from .ios_eas_email_profile_configuration import IosEasEmailProfileConfiguration
+        from .username_source import UsernameSource
+        from .user_email_source import UserEmailSource
+        from .windows10_eas_email_profile_configuration import Windows10EasEmailProfileConfiguration
+        from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
+
         writer.write_str_value("customDomainName", self.custom_domain_name)
         writer.write_enum_value("userDomainNameSource", self.user_domain_name_source)
         writer.write_enum_value("usernameAADSource", self.username_a_a_d_source)

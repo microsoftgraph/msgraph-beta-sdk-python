@@ -57,6 +57,9 @@ class DeviceManagementTemplateSettingCategory(DeviceManagementSettingCategory):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_setting_category import DeviceManagementSettingCategory
+        from .device_management_setting_instance import DeviceManagementSettingInstance
+
         writer.write_collection_of_object_values("recommendedSettings", self.recommended_settings)
     
 

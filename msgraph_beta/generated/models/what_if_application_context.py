@@ -51,6 +51,8 @@ class WhatIfApplicationContext(ConditionalAccessContext):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .conditional_access_context import ConditionalAccessContext
+
         writer.write_collection_of_primitive_values("includeApplications", self.include_applications)
     
 

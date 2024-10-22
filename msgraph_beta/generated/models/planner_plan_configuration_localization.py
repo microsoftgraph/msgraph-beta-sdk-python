@@ -60,6 +60,9 @@ class PlannerPlanConfigurationLocalization(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .planner_plan_configuration_bucket_localization import PlannerPlanConfigurationBucketLocalization
+
         writer.write_collection_of_object_values("buckets", self.buckets)
         writer.write_str_value("languageTag", self.language_tag)
         writer.write_str_value("planTitle", self.plan_title)

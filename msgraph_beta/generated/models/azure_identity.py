@@ -28,7 +28,8 @@ class AzureIdentity(AuthorizationSystemIdentity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureGroup".casefold():
@@ -87,5 +88,12 @@ class AzureIdentity(AuthorizationSystemIdentity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system_identity import AuthorizationSystemIdentity
+        from .azure_group import AzureGroup
+        from .azure_managed_identity import AzureManagedIdentity
+        from .azure_serverless_function import AzureServerlessFunction
+        from .azure_service_principal import AzureServicePrincipal
+        from .azure_user import AzureUser
+
     
 

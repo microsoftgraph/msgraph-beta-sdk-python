@@ -54,6 +54,9 @@ class ClassificationJobResponse(JobResponseBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .detected_sensitive_content_wrapper import DetectedSensitiveContentWrapper
+        from .job_response_base import JobResponseBase
+
         writer.write_object_value("result", self.result)
     
 

@@ -62,6 +62,8 @@ class MobileAppSupportedDeviceType(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_type import DeviceType
+
         writer.write_str_value("maximumOperatingSystemVersion", self.maximum_operating_system_version)
         writer.write_str_value("minimumOperatingSystemVersion", self.minimum_operating_system_version)
         writer.write_str_value("@odata.type", self.odata_type)

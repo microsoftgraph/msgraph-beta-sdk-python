@@ -52,6 +52,9 @@ class GetHealthMetricTimeSeriesPostResponse(BaseCollectionPaginationCountRespons
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .....models.certificate_connector_health_metric_value import CertificateConnectorHealthMetricValue
+
         writer.write_collection_of_object_values("value", self.value)
     
 

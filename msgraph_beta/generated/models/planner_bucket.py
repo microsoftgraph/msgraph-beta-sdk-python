@@ -78,6 +78,11 @@ class PlannerBucket(PlannerDelta):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_archival_info import PlannerArchivalInfo
+        from .planner_bucket_creation import PlannerBucketCreation
+        from .planner_delta import PlannerDelta
+        from .planner_task import PlannerTask
+
         writer.write_object_value("archivalInfo", self.archival_info)
         writer.write_object_value("creationSource", self.creation_source)
         writer.write_bool_value("isArchived", self.is_archived)

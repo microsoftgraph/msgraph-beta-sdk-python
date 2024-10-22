@@ -123,6 +123,15 @@ class AndroidEasEmailProfileConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_certificate_profile_base import AndroidCertificateProfileBase
+        from .android_username_source import AndroidUsernameSource
+        from .device_configuration import DeviceConfiguration
+        from .domain_name_source import DomainNameSource
+        from .eas_authentication_method import EasAuthenticationMethod
+        from .email_sync_duration import EmailSyncDuration
+        from .email_sync_schedule import EmailSyncSchedule
+        from .user_email_source import UserEmailSource
+
         writer.write_str_value("accountName", self.account_name)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_str_value("customDomainName", self.custom_domain_name)

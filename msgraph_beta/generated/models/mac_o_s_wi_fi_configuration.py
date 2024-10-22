@@ -52,7 +52,8 @@ class MacOSWiFiConfiguration(DeviceConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSEnterpriseWiFiConfiguration".casefold():
@@ -104,6 +105,12 @@ class MacOSWiFiConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_deployment_channel import AppleDeploymentChannel
+        from .device_configuration import DeviceConfiguration
+        from .mac_o_s_enterprise_wi_fi_configuration import MacOSEnterpriseWiFiConfiguration
+        from .wi_fi_proxy_setting import WiFiProxySetting
+        from .wi_fi_security_type import WiFiSecurityType
+
         writer.write_bool_value("connectAutomatically", self.connect_automatically)
         writer.write_bool_value("connectWhenNetworkNameIsHidden", self.connect_when_network_name_is_hidden)
         writer.write_enum_value("deploymentChannel", self.deployment_channel)

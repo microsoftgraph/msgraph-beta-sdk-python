@@ -26,7 +26,8 @@ class CustomAuthenticationExtension(CustomCalloutExtension):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onAttributeCollectionStartCustomExtension".casefold():
@@ -73,5 +74,10 @@ class CustomAuthenticationExtension(CustomCalloutExtension):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_callout_extension import CustomCalloutExtension
+        from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
+        from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
+        from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
+
     
 

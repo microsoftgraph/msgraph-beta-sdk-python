@@ -70,6 +70,8 @@ class DriverUpdateCatalogEntry(SoftwareUpdateCatalogEntry):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
+
         writer.write_str_value("description", self.description)
         writer.write_str_value("driverClass", self.driver_class)
         writer.write_str_value("manufacturer", self.manufacturer)

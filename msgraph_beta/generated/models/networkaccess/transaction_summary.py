@@ -59,6 +59,8 @@ class TransactionSummary(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .traffic_type import TrafficType
+
         writer.write_int_value("blockedCount", self.blocked_count)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("totalCount", self.total_count)

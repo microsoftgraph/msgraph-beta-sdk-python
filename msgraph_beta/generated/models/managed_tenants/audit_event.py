@@ -88,6 +88,8 @@ class AuditEvent(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("activity", self.activity)
         writer.write_datetime_value("activityDateTime", self.activity_date_time)
         writer.write_str_value("activityId", self.activity_id)

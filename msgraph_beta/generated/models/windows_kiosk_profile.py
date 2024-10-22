@@ -65,6 +65,9 @@ class WindowsKioskProfile(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
+        from .windows_kiosk_user import WindowsKioskUser
+
         writer.write_object_value("appConfiguration", self.app_configuration)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("profileId", self.profile_id)

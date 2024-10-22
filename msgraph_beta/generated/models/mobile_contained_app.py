@@ -28,7 +28,8 @@ class MobileContainedApp(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.microsoftStoreForBusinessContainedApp".casefold():
@@ -69,5 +70,9 @@ class MobileContainedApp(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .microsoft_store_for_business_contained_app import MicrosoftStoreForBusinessContainedApp
+        from .windows_universal_app_x_contained_app import WindowsUniversalAppXContainedApp
+
     
 

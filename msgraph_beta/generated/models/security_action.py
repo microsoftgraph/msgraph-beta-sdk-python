@@ -106,6 +106,13 @@ class SecurityAction(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .key_value_pair import KeyValuePair
+        from .operation_status import OperationStatus
+        from .result_info import ResultInfo
+        from .security_action_state import SecurityActionState
+        from .security_vendor_information import SecurityVendorInformation
+
         writer.write_str_value("actionReason", self.action_reason)
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("azureTenantId", self.azure_tenant_id)

@@ -59,6 +59,8 @@ class CreateInstancePostRequestBody(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .......models.device_management_setting_instance import DeviceManagementSettingInstance
+
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)

@@ -66,6 +66,10 @@ class PrivilegeEscalation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system_resource import AuthorizationSystemResource
+        from .authorization_system_type_action import AuthorizationSystemTypeAction
+        from .entity import Entity
+
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

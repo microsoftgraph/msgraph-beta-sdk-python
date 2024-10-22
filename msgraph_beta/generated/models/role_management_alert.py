@@ -72,6 +72,12 @@ class RoleManagementAlert(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .long_running_operation import LongRunningOperation
+        from .unified_role_management_alert import UnifiedRoleManagementAlert
+        from .unified_role_management_alert_configuration import UnifiedRoleManagementAlertConfiguration
+        from .unified_role_management_alert_definition import UnifiedRoleManagementAlertDefinition
+
         writer.write_collection_of_object_values("alertConfigurations", self.alert_configurations)
         writer.write_collection_of_object_values("alertDefinitions", self.alert_definitions)
         writer.write_collection_of_object_values("alerts", self.alerts)

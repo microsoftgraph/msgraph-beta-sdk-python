@@ -54,6 +54,9 @@ class CollaborationRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .analyzed_email import AnalyzedEmail
+
         writer.write_collection_of_object_values("analyzedEmails", self.analyzed_emails)
     
 

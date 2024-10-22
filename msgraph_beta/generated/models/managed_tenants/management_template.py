@@ -118,6 +118,15 @@ class ManagementTemplate(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..action_url import ActionUrl
+        from ..entity import Entity
+        from .management_category import ManagementCategory
+        from .management_provider import ManagementProvider
+        from .management_template_collection import ManagementTemplateCollection
+        from .management_template_step import ManagementTemplateStep
+        from .template_parameter import TemplateParameter
+        from .workload_action import WorkloadAction
+
         writer.write_enum_value("category", self.category)
         writer.write_str_value("createdByUserId", self.created_by_user_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
