@@ -50,6 +50,8 @@ class MoveToContainerPostRequestBody(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.planner_plan_container import PlannerPlanContainer
+
         writer.write_object_value("container", self.container)
         writer.write_additional_data_value(self.additional_data)
     

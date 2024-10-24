@@ -355,6 +355,39 @@ class SignIn(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .applied_authentication_event_listener import AppliedAuthenticationEventListener
+        from .applied_conditional_access_policy import AppliedConditionalAccessPolicy
+        from .authentication_app_device_details import AuthenticationAppDeviceDetails
+        from .authentication_app_policy_details import AuthenticationAppPolicyDetails
+        from .authentication_context import AuthenticationContext
+        from .authentication_detail import AuthenticationDetail
+        from .authentication_requirement_policy import AuthenticationRequirementPolicy
+        from .client_credential_type import ClientCredentialType
+        from .conditional_access_audience import ConditionalAccessAudience
+        from .conditional_access_status import ConditionalAccessStatus
+        from .device_detail import DeviceDetail
+        from .entity import Entity
+        from .incoming_token_type import IncomingTokenType
+        from .key_value import KeyValue
+        from .managed_identity import ManagedIdentity
+        from .mfa_detail import MfaDetail
+        from .network_location_detail import NetworkLocationDetail
+        from .original_transfer_methods import OriginalTransferMethods
+        from .private_link_details import PrivateLinkDetails
+        from .protocol_type import ProtocolType
+        from .risk_detail import RiskDetail
+        from .risk_level import RiskLevel
+        from .risk_state import RiskState
+        from .session_lifetime_policy import SessionLifetimePolicy
+        from .sign_in_access_type import SignInAccessType
+        from .sign_in_identifier_type import SignInIdentifierType
+        from .sign_in_location import SignInLocation
+        from .sign_in_status import SignInStatus
+        from .sign_in_user_type import SignInUserType
+        from .token_issuer_type import TokenIssuerType
+        from .token_protection_status import TokenProtectionStatus
+        from .token_protection_status_details import TokenProtectionStatusDetails
+
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appId", self.app_id)
         writer.write_enum_value("appTokenProtectionStatus", self.app_token_protection_status)

@@ -66,6 +66,11 @@ class OpenNetworkAzureSecurityGroupFinding(Finding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system_resource import AuthorizationSystemResource
+        from .finding import Finding
+        from .inbound_ports import InboundPorts
+        from .virtual_machine_details import VirtualMachineDetails
+
         writer.write_object_value("inboundPorts", self.inbound_ports)
         writer.write_object_value("securityGroup", self.security_group)
         writer.write_collection_of_object_values("virtualMachines", self.virtual_machines)

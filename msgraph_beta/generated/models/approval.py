@@ -54,6 +54,9 @@ class Approval(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .approval_step import ApprovalStep
+        from .entity import Entity
+
         writer.write_collection_of_object_values("steps", self.steps)
     
 

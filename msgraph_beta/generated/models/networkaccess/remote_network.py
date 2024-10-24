@@ -82,6 +82,12 @@ class RemoteNetwork(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .device_link import DeviceLink
+        from .forwarding_profile import ForwardingProfile
+        from .region import Region
+        from .remote_network_connectivity_configuration import RemoteNetworkConnectivityConfiguration
+
         writer.write_object_value("connectivityConfiguration", self.connectivity_configuration)
         writer.write_collection_of_object_values("deviceLinks", self.device_links)
         writer.write_collection_of_object_values("forwardingProfiles", self.forwarding_profiles)

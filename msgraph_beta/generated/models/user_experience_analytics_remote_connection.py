@@ -90,6 +90,8 @@ class UserExperienceAnalyticsRemoteConnection(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_float_value("cloudPcFailurePercentage", self.cloud_pc_failure_percentage)
         writer.write_float_value("cloudPcRoundTripTime", self.cloud_pc_round_trip_time)
         writer.write_float_value("cloudPcSignInTime", self.cloud_pc_sign_in_time)

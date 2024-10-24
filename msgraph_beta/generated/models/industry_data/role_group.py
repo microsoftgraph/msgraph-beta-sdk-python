@@ -57,6 +57,9 @@ class RoleGroup(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .role_reference_value import RoleReferenceValue
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("roles", self.roles)
     

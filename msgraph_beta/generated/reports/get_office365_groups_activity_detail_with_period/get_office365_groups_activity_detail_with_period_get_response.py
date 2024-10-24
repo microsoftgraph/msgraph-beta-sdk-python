@@ -52,6 +52,9 @@ class GetOffice365GroupsActivityDetailWithPeriodGetResponse(BaseCollectionPagina
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ...models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from ...models.office365_groups_activity_detail import Office365GroupsActivityDetail
+
         writer.write_collection_of_object_values("value", self.value)
     
 

@@ -75,6 +75,12 @@ class UnifiedRbacApplication(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_app_scope import CustomAppScope
+        from .entity import Entity
+        from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
+        from .unified_role_assignment import UnifiedRoleAssignment
+        from .unified_role_definition import UnifiedRoleDefinition
+
         writer.write_collection_of_object_values("customAppScopes", self.custom_app_scopes)
         writer.write_collection_of_object_values("resourceNamespaces", self.resource_namespaces)
         writer.write_collection_of_object_values("roleAssignments", self.role_assignments)

@@ -84,6 +84,14 @@ class ExternalUsersSelfServiceSignUpEventsFlow(AuthenticationEventsFlow):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_events_flow import AuthenticationEventsFlow
+        from .on_attribute_collection_handler import OnAttributeCollectionHandler
+        from .on_attribute_collection_start_handler import OnAttributeCollectionStartHandler
+        from .on_attribute_collection_submit_handler import OnAttributeCollectionSubmitHandler
+        from .on_authentication_method_load_start_handler import OnAuthenticationMethodLoadStartHandler
+        from .on_interactive_auth_flow_start_handler import OnInteractiveAuthFlowStartHandler
+        from .on_user_create_start_handler import OnUserCreateStartHandler
+
         writer.write_object_value("onAttributeCollection", self.on_attribute_collection)
         writer.write_object_value("onAttributeCollectionStart", self.on_attribute_collection_start)
         writer.write_object_value("onAttributeCollectionSubmit", self.on_attribute_collection_submit)

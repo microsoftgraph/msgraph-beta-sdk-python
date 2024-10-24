@@ -54,6 +54,9 @@ class InvokeUserFlowListener(AuthenticationListener):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_listener import AuthenticationListener
+        from .b2x_identity_user_flow import B2xIdentityUserFlow
+
         writer.write_object_value("userFlow", self.user_flow)
     
 

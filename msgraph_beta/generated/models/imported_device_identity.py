@@ -47,7 +47,8 @@ class ImportedDeviceIdentity(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.importedDeviceIdentityResult".casefold():
@@ -96,6 +97,12 @@ class ImportedDeviceIdentity(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .enrollment_state import EnrollmentState
+        from .entity import Entity
+        from .imported_device_identity_result import ImportedDeviceIdentityResult
+        from .imported_device_identity_type import ImportedDeviceIdentityType
+        from .platform import Platform
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)
         writer.write_enum_value("enrollmentState", self.enrollment_state)

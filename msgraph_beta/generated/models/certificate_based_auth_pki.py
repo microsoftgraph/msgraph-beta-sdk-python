@@ -67,6 +67,9 @@ class CertificateBasedAuthPki(DirectoryObject):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .certificate_authority_detail import CertificateAuthorityDetail
+        from .directory_object import DirectoryObject
+
         writer.write_collection_of_object_values("certificateAuthorities", self.certificate_authorities)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)

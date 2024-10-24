@@ -65,6 +65,10 @@ class AwsAssociatedIdentities(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .aws_identity import AwsIdentity
+        from .aws_role import AwsRole
+        from .aws_user import AwsUser
+
         writer.write_collection_of_object_values("all", self.all)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("roles", self.roles)

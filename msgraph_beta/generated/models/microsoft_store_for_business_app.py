@@ -81,6 +81,11 @@ class MicrosoftStoreForBusinessApp(MobileApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .microsoft_store_for_business_license_type import MicrosoftStoreForBusinessLicenseType
+        from .mobile_app import MobileApp
+        from .mobile_contained_app import MobileContainedApp
+        from .vpp_licensing_type import VppLicensingType
+
         writer.write_collection_of_object_values("containedApps", self.contained_apps)
         writer.write_enum_value("licenseType", self.license_type)
         writer.write_object_value("licensingType", self.licensing_type)

@@ -54,6 +54,8 @@ class RelatedProcess(RelatedResource):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .related_resource import RelatedResource
+
         writer.write_bool_value("isSuspicious", self.is_suspicious)
         writer.write_str_value("processName", self.process_name)
     

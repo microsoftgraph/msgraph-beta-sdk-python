@@ -60,6 +60,10 @@ class AzureADDevice(UpdatableAsset):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .updatable_asset import UpdatableAsset
+        from .updatable_asset_enrollment import UpdatableAssetEnrollment
+        from .updatable_asset_error import UpdatableAssetError
+
         writer.write_collection_of_object_values("enrollments", self.enrollments)
         writer.write_collection_of_object_values("errors", self.errors)
     

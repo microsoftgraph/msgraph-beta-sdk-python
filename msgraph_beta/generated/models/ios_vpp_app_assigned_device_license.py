@@ -57,6 +57,8 @@ class IosVppAppAssignedDeviceLicense(IosVppAppAssignedLicense):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .ios_vpp_app_assigned_license import IosVppAppAssignedLicense
+
         writer.write_str_value("deviceName", self.device_name)
         writer.write_str_value("managedDeviceId", self.managed_device_id)
     

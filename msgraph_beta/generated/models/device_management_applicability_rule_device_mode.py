@@ -62,6 +62,9 @@ class DeviceManagementApplicabilityRuleDeviceMode(AdditionalDataHolder, BackedMo
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_applicability_rule_type import DeviceManagementApplicabilityRuleType
+        from .windows10_device_mode_type import Windows10DeviceModeType
+
         writer.write_enum_value("deviceMode", self.device_mode)
         writer.write_str_value("name", self.name)
         writer.write_str_value("@odata.type", self.odata_type)

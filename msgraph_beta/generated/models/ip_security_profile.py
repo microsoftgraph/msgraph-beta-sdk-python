@@ -97,6 +97,11 @@ class IpSecurityProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .ip_category import IpCategory
+        from .ip_reference_data import IpReferenceData
+        from .security_vendor_information import SecurityVendorInformation
+
         writer.write_collection_of_primitive_values("activityGroupNames", self.activity_group_names)
         writer.write_str_value("address", self.address)
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)

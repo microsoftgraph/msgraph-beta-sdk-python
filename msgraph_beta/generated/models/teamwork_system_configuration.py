@@ -90,6 +90,9 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_date_time_configuration import TeamworkDateTimeConfiguration
+        from .teamwork_network_configuration import TeamworkNetworkConfiguration
+
         writer.write_object_value("dateTimeConfiguration", self.date_time_configuration)
         writer.write_str_value("defaultPassword", self.default_password)
         writer.write_timedelta_value("deviceLockTimeout", self.device_lock_timeout)

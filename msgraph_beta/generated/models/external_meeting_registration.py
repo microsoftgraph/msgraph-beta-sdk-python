@@ -48,5 +48,7 @@ class ExternalMeetingRegistration(MeetingRegistrationBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .meeting_registration_base import MeetingRegistrationBase
+
     
 

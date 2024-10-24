@@ -91,6 +91,8 @@ class PrivilegedOperationEvent(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("additionalInformation", self.additional_information)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)

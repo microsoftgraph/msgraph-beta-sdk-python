@@ -52,6 +52,9 @@ class GetCustomizedSettingsGetResponse(BaseCollectionPaginationCountResponse):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .....models.device_management_intent_customized_setting import DeviceManagementIntentCustomizedSetting
+
         writer.write_collection_of_object_values("value", self.value)
     
 

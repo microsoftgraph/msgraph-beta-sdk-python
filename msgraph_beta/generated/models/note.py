@@ -87,6 +87,13 @@ class Note(OutlookItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .attachment import Attachment
+        from .extension import Extension
+        from .item_body import ItemBody
+        from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
+        from .outlook_item import OutlookItem
+        from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
+
         writer.write_collection_of_object_values("attachments", self.attachments)
         writer.write_object_value("body", self.body)
         writer.write_collection_of_object_values("extensions", self.extensions)

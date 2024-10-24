@@ -88,6 +88,11 @@ class AndroidForWorkSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_for_work_bind_status import AndroidForWorkBindStatus
+        from .android_for_work_enrollment_target import AndroidForWorkEnrollmentTarget
+        from .android_for_work_sync_status import AndroidForWorkSyncStatus
+        from .entity import Entity
+
         writer.write_enum_value("bindStatus", self.bind_status)
         writer.write_bool_value("deviceOwnerManagementEnabled", self.device_owner_management_enabled)
         writer.write_enum_value("enrollmentTarget", self.enrollment_target)

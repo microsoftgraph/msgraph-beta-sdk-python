@@ -62,6 +62,8 @@ class SensorSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .network_adapter import NetworkAdapter
+
         writer.write_str_value("description", self.description)
         writer.write_collection_of_primitive_values("domainControllerDnsNames", self.domain_controller_dns_names)
         writer.write_bool_value("isDelayedDeploymentEnabled", self.is_delayed_deployment_enabled)

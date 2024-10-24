@@ -48,5 +48,7 @@ class VerifiableCredentialVerified(VerifiableCredentialRequirementStatus):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .verifiable_credential_requirement_status import VerifiableCredentialRequirementStatus
+
     
 

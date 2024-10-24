@@ -68,6 +68,8 @@ class CustomerMfaInsight(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .policy_status import PolicyStatus
+
         writer.write_int_value("compliantAdminsCount", self.compliant_admins_count)
         writer.write_int_value("compliantNonAdminsCount", self.compliant_non_admins_count)
         writer.write_enum_value("legacyPerUserMfaStatus", self.legacy_per_user_mfa_status)

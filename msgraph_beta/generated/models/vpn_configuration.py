@@ -39,7 +39,8 @@ class VpnConfiguration(DeviceConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerVpnConfiguration".casefold():
@@ -83,6 +84,11 @@ class VpnConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_vpn_configuration import AndroidDeviceOwnerVpnConfiguration
+        from .device_configuration import DeviceConfiguration
+        from .vpn_authentication_method import VpnAuthenticationMethod
+        from .vpn_server import VpnServer
+
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_str_value("connectionName", self.connection_name)
         writer.write_str_value("realm", self.realm)

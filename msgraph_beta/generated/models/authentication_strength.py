@@ -59,6 +59,8 @@ class AuthenticationStrength(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .authentication_strength_result import AuthenticationStrengthResult
+
         writer.write_str_value("authenticationStrengthId", self.authentication_strength_id)
         writer.write_enum_value("authenticationStrengthResult", self.authentication_strength_result)
         writer.write_str_value("displayName", self.display_name)

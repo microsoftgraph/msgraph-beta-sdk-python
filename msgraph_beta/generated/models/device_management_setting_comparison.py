@@ -71,6 +71,8 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_comparison_result import DeviceManagementComparisonResult
+
         writer.write_enum_value("comparisonResult", self.comparison_result)
         writer.write_str_value("currentValueJson", self.current_value_json)
         writer.write_str_value("definitionId", self.definition_id)

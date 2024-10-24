@@ -62,6 +62,8 @@ class ExpressionEvaluationDetails(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .property_to_evaluate import PropertyToEvaluate
+
         writer.write_str_value("expression", self.expression)
         writer.write_collection_of_object_values("expressionEvaluationDetails", self.expression_evaluation_details)
         writer.write_bool_value("expressionResult", self.expression_result)

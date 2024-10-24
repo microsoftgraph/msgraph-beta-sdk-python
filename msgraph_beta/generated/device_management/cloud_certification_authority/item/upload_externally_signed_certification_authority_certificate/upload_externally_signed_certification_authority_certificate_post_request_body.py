@@ -56,6 +56,8 @@ class UploadExternallySignedCertificationAuthorityCertificatePostRequestBody(Add
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.trust_chain_certificate import TrustChainCertificate
+
         writer.write_int_value("certificationAuthorityVersion", self.certification_authority_version)
         writer.write_str_value("signedCertificate", self.signed_certificate)
         writer.write_collection_of_object_values("trustChainCertificates", self.trust_chain_certificates)

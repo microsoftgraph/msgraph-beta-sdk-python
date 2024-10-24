@@ -72,6 +72,12 @@ class AccessReviewSet(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_review_history_definition import AccessReviewHistoryDefinition
+        from .access_review_instance_decision_item import AccessReviewInstanceDecisionItem
+        from .access_review_policy import AccessReviewPolicy
+        from .access_review_schedule_definition import AccessReviewScheduleDefinition
+        from .entity import Entity
+
         writer.write_collection_of_object_values("decisions", self.decisions)
         writer.write_collection_of_object_values("definitions", self.definitions)
         writer.write_collection_of_object_values("historyDefinitions", self.history_definitions)

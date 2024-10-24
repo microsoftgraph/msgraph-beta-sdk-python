@@ -79,6 +79,11 @@ class OutlookTaskFolder(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
+        from .outlook_task import OutlookTask
+        from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
+
         writer.write_str_value("changeKey", self.change_key)
         writer.write_bool_value("isDefaultFolder", self.is_default_folder)
         writer.write_collection_of_object_values("multiValueExtendedProperties", self.multi_value_extended_properties)

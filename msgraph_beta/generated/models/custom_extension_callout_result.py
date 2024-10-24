@@ -64,6 +64,8 @@ class CustomExtensionCalloutResult(AuthenticationEventHandlerResult):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_event_handler_result import AuthenticationEventHandlerResult
+
         writer.write_datetime_value("calloutDateTime", self.callout_date_time)
         writer.write_str_value("customExtensionId", self.custom_extension_id)
         writer.write_int_value("errorCode", self.error_code)

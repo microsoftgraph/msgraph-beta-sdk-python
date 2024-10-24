@@ -57,6 +57,8 @@ class WindowsKioskAzureADGroup(WindowsKioskUser):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_kiosk_user import WindowsKioskUser
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("groupId", self.group_id)
     

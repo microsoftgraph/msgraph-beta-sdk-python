@@ -79,6 +79,11 @@ class Notification(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .payload_types import PayloadTypes
+        from .priority import Priority
+        from .target_policy_endpoints import TargetPolicyEndpoints
+
         writer.write_int_value("displayTimeToLive", self.display_time_to_live)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("groupName", self.group_name)

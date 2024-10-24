@@ -67,6 +67,10 @@ class RecommendLabelAction(InformationProtectionAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .action_source import ActionSource
+        from .information_protection_action import InformationProtectionAction
+        from .label_details import LabelDetails
+
         writer.write_enum_value("actionSource", self.action_source)
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_object_value("label", self.label)

@@ -65,6 +65,8 @@ class OathTokenMetadata(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .key_value import KeyValue
+
         writer.write_bool_value("enabled", self.enabled)
         writer.write_str_value("manufacturer", self.manufacturer)
         writer.write_collection_of_object_values("manufacturerProperties", self.manufacturer_properties)

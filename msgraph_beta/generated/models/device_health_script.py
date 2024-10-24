@@ -130,6 +130,14 @@ class DeviceHealthScript(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_health_script_assignment import DeviceHealthScriptAssignment
+        from .device_health_script_device_state import DeviceHealthScriptDeviceState
+        from .device_health_script_parameter import DeviceHealthScriptParameter
+        from .device_health_script_run_summary import DeviceHealthScriptRunSummary
+        from .device_health_script_type import DeviceHealthScriptType
+        from .entity import Entity
+        from .run_as_account_type import RunAsAccountType
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_str_value("description", self.description)
         writer.write_bytes_value("detectionScriptContent", self.detection_script_content)

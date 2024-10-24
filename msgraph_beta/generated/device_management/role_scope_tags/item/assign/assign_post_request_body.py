@@ -50,6 +50,8 @@ class AssignPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.role_scope_tag_auto_assignment import RoleScopeTagAutoAssignment
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_additional_data_value(self.additional_data)
     

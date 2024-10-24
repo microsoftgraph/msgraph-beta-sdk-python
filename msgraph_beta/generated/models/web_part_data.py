@@ -65,6 +65,8 @@ class WebPartData(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .server_processed_content import ServerProcessedContent
+
         writer.write_collection_of_primitive_values("audiences", self.audiences)
         writer.write_str_value("dataVersion", self.data_version)
         writer.write_str_value("description", self.description)

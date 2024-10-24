@@ -66,6 +66,11 @@ class PermissionsManagement(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .approval import Approval
+        from .entity import Entity
+        from .permissions_request_change import PermissionsRequestChange
+        from .scheduled_permissions_request import ScheduledPermissionsRequest
+
         writer.write_collection_of_object_values("permissionsRequestChanges", self.permissions_request_changes)
         writer.write_collection_of_object_values("scheduledPermissionsApprovals", self.scheduled_permissions_approvals)
         writer.write_collection_of_object_values("scheduledPermissionsRequests", self.scheduled_permissions_requests)

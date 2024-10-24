@@ -48,5 +48,7 @@ class SecurityToolAwsServerlessFunctionAdministratorFinding(AwsSecurityToolAdmin
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aws_security_tool_administration_finding import AwsSecurityToolAdministrationFinding
+
     
 

@@ -144,6 +144,24 @@ class VirtualEndpoint(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_audit_event import CloudPcAuditEvent
+        from .cloud_pc_bulk_action import CloudPcBulkAction
+        from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
+        from .cloud_pc_device_image import CloudPcDeviceImage
+        from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
+        from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
+        from .cloud_pc_gallery_image import CloudPcGalleryImage
+        from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
+        from .cloud_pc_organization_settings import CloudPcOrganizationSettings
+        from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
+        from .cloud_pc_reports import CloudPcReports
+        from .cloud_pc_service_plan import CloudPcServicePlan
+        from .cloud_pc_snapshot import CloudPcSnapshot
+        from .cloud_pc_supported_region import CloudPcSupportedRegion
+        from .cloud_pc_user_setting import CloudPcUserSetting
+        from .cloud_p_c import CloudPC
+        from .entity import Entity
+
         writer.write_collection_of_object_values("auditEvents", self.audit_events)
         writer.write_collection_of_object_values("bulkActions", self.bulk_actions)
         writer.write_collection_of_object_values("cloudPCs", self.cloud_p_cs)

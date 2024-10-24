@@ -54,6 +54,9 @@ class ImpactedMailboxAsset(ImpactedAsset):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .impacted_asset import ImpactedAsset
+        from .mailbox_asset_identifier import MailboxAssetIdentifier
+
         writer.write_enum_value("identifier", self.identifier)
     
 

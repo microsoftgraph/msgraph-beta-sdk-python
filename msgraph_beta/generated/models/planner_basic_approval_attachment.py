@@ -51,6 +51,8 @@ class PlannerBasicApprovalAttachment(PlannerBaseApprovalAttachment):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_base_approval_attachment import PlannerBaseApprovalAttachment
+
         writer.write_str_value("approvalId", self.approval_id)
     
 

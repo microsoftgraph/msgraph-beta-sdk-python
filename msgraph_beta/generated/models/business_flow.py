@@ -81,6 +81,10 @@ class BusinessFlow(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .business_flow_settings import BusinessFlowSettings
+        from .entity import Entity
+        from .governance_policy import GovernancePolicy
+
         writer.write_str_value("customData", self.custom_data)
         writer.write_str_value("deDuplicationId", self.de_duplication_id)
         writer.write_str_value("description", self.description)

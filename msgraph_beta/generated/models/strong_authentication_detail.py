@@ -54,6 +54,8 @@ class StrongAuthenticationDetail(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_bytes_value("encryptedPinHashHistory", self.encrypted_pin_hash_history)
         writer.write_int_value("proofupTime", self.proofup_time)
     

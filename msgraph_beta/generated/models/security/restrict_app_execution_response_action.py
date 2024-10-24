@@ -54,6 +54,9 @@ class RestrictAppExecutionResponseAction(ResponseAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_id_entity_identifier import DeviceIdEntityIdentifier
+        from .response_action import ResponseAction
+
         writer.write_enum_value("identifier", self.identifier)
     
 

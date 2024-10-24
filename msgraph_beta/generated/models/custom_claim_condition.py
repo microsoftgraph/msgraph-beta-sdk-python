@@ -57,6 +57,9 @@ class CustomClaimCondition(CustomClaimConditionBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .claim_condition_user_type import ClaimConditionUserType
+        from .custom_claim_condition_base import CustomClaimConditionBase
+
         writer.write_collection_of_primitive_values("memberOf", self.member_of)
         writer.write_enum_value("userType", self.user_type)
     

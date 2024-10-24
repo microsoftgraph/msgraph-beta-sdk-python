@@ -56,6 +56,8 @@ class TranslationLanguageOverride(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .translation_behavior import TranslationBehavior
+
         writer.write_str_value("languageTag", self.language_tag)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("translationBehavior", self.translation_behavior)

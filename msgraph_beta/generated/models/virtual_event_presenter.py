@@ -69,6 +69,11 @@ class VirtualEventPresenter(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .identity import Identity
+        from .virtual_event_presenter_details import VirtualEventPresenterDetails
+        from .virtual_event_session import VirtualEventSession
+
         writer.write_str_value("email", self.email)
         writer.write_object_value("identity", self.identity)
         writer.write_object_value("presenterDetails", self.presenter_details)

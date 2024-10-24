@@ -57,6 +57,9 @@ class PrivilegedSignupStatus(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .setup_status import SetupStatus
+
         writer.write_bool_value("isRegistered", self.is_registered)
         writer.write_enum_value("status", self.status)
     

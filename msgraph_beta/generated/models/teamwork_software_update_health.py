@@ -68,6 +68,8 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_software_update_status import TeamworkSoftwareUpdateStatus
+
         writer.write_object_value("adminAgentSoftwareUpdateStatus", self.admin_agent_software_update_status)
         writer.write_object_value("companyPortalSoftwareUpdateStatus", self.company_portal_software_update_status)
         writer.write_object_value("firmwareSoftwareUpdateStatus", self.firmware_software_update_status)

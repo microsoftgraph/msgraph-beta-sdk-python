@@ -57,6 +57,8 @@ class OmaSettingInteger(OmaSetting):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .oma_setting import OmaSetting
+
         writer.write_bool_value("isReadOnly", self.is_read_only)
         writer.write_int_value("value", self.value)
     

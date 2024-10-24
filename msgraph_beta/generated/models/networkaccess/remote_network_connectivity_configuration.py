@@ -59,6 +59,8 @@ class RemoteNetworkConnectivityConfiguration(AdditionalDataHolder, BackedModel, 
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .connectivity_configuration_link import ConnectivityConfigurationLink
+
         writer.write_collection_of_object_values("links", self.links)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("remoteNetworkId", self.remote_network_id)

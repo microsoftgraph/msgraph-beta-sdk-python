@@ -57,6 +57,9 @@ class CompliantNetworkNamedLocation(NamedLocation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .compliant_network_type import CompliantNetworkType
+        from .named_location import NamedLocation
+
         writer.write_enum_value("compliantNetworkType", self.compliant_network_type)
         writer.write_bool_value("isTrusted", self.is_trusted)
     

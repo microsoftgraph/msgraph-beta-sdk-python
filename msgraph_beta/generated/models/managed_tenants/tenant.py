@@ -73,6 +73,10 @@ class Tenant(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .tenant_contract import TenantContract
+        from .tenant_status_information import TenantStatusInformation
+
         writer.write_object_value("contract", self.contract)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("displayName", self.display_name)

@@ -51,6 +51,8 @@ class GsuiteSource(AuthorizationSystemIdentitySource):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system_identity_source import AuthorizationSystemIdentitySource
+
         writer.write_str_value("domain", self.domain)
     
 

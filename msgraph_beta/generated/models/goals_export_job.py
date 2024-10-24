@@ -64,6 +64,8 @@ class GoalsExportJob(LongRunningOperation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .long_running_operation import LongRunningOperation
+
         writer.write_bytes_value("content", self.content)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("explorerViewId", self.explorer_view_id)

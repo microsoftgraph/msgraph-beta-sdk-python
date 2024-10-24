@@ -42,7 +42,8 @@ class MacOSCertificateProfileBase(DeviceConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSImportedPFXCertificateProfile".casefold():
@@ -100,6 +101,14 @@ class MacOSCertificateProfileBase(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_subject_name_format import AppleSubjectNameFormat
+        from .certificate_validity_period_scale import CertificateValidityPeriodScale
+        from .device_configuration import DeviceConfiguration
+        from .mac_o_s_imported_p_f_x_certificate_profile import MacOSImportedPFXCertificateProfile
+        from .mac_o_s_pkcs_certificate_profile import MacOSPkcsCertificateProfile
+        from .mac_o_s_scep_certificate_profile import MacOSScepCertificateProfile
+        from .subject_alternative_name_type import SubjectAlternativeNameType
+
         writer.write_enum_value("certificateValidityPeriodScale", self.certificate_validity_period_scale)
         writer.write_int_value("certificateValidityPeriodValue", self.certificate_validity_period_value)
         writer.write_int_value("renewalThresholdPercentage", self.renewal_threshold_percentage)

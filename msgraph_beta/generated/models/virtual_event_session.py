@@ -69,6 +69,11 @@ class VirtualEventSession(OnlineMeetingBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .date_time_time_zone import DateTimeTimeZone
+        from .online_meeting_base import OnlineMeetingBase
+        from .virtual_event_presenter import VirtualEventPresenter
+        from .virtual_event_registration import VirtualEventRegistration
+
         writer.write_object_value("endDateTime", self.end_date_time)
         writer.write_collection_of_object_values("presenters", self.presenters)
         writer.write_collection_of_object_values("registrations", self.registrations)

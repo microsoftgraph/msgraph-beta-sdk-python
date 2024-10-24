@@ -65,6 +65,10 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.conditional_access_context import ConditionalAccessContext
+        from ....models.conditional_access_what_if_conditions import ConditionalAccessWhatIfConditions
+        from ....models.conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
+
         writer.write_bool_value("appliedPoliciesOnly", self.applied_policies_only)
         writer.write_object_value("conditionalAccessContext", self.conditional_access_context)
         writer.write_object_value("conditionalAccessWhatIfConditions", self.conditional_access_what_if_conditions)

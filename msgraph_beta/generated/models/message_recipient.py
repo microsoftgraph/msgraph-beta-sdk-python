@@ -63,6 +63,10 @@ class MessageRecipient(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .message_event import MessageEvent
+        from .message_status import MessageStatus
+
         writer.write_enum_value("deliveryStatus", self.delivery_status)
         writer.write_collection_of_object_values("events", self.events)
         writer.write_str_value("recipientEmail", self.recipient_email)

@@ -70,6 +70,10 @@ class GroupPolicyOperation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .group_policy_operation_status import GroupPolicyOperationStatus
+        from .group_policy_operation_type import GroupPolicyOperationType
+
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_enum_value("operationStatus", self.operation_status)
         writer.write_enum_value("operationType", self.operation_type)

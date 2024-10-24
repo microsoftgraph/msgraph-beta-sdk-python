@@ -57,6 +57,9 @@ class JoinTransformation(CustomClaimTransformation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_claim_transformation import CustomClaimTransformation
+        from .transformation_attribute import TransformationAttribute
+
         writer.write_object_value("input2", self.input2)
         writer.write_str_value("separator", self.separator)
     

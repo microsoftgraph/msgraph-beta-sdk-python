@@ -50,6 +50,8 @@ class WindowsPrivacyAccessControlsPostRequestBody(AdditionalDataHolder, BackedMo
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.windows_privacy_data_access_control_item import WindowsPrivacyDataAccessControlItem
+
         writer.write_collection_of_object_values("windowsPrivacyAccessControls", self.windows_privacy_access_controls)
         writer.write_additional_data_value(self.additional_data)
     

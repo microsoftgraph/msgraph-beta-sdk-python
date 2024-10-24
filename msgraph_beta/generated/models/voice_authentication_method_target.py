@@ -48,5 +48,7 @@ class VoiceAuthenticationMethodTarget(AuthenticationMethodTarget):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_method_target import AuthenticationMethodTarget
+
     
 

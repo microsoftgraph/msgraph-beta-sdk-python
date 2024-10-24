@@ -76,6 +76,12 @@ class UpdatePolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .compliance_change import ComplianceChange
+        from .compliance_change_rule import ComplianceChangeRule
+        from .deployment_audience import DeploymentAudience
+        from .deployment_settings import DeploymentSettings
+
         writer.write_object_value("audience", self.audience)
         writer.write_collection_of_object_values("complianceChangeRules", self.compliance_change_rules)
         writer.write_collection_of_object_values("complianceChanges", self.compliance_changes)

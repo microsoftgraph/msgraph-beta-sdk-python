@@ -63,6 +63,10 @@ class AndroidImportedPFXCertificateProfile(AndroidCertificateProfileBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_certificate_profile_base import AndroidCertificateProfileBase
+        from .intended_purpose import IntendedPurpose
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+
         writer.write_enum_value("intendedPurpose", self.intended_purpose)
         writer.write_collection_of_object_values("managedDeviceCertificateStates", self.managed_device_certificate_states)
     

@@ -65,6 +65,10 @@ class EvaluateLabelJobResult(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .matching_label import MatchingLabel
+        from .responsible_policy import ResponsiblePolicy
+        from .responsible_sensitive_type import ResponsibleSensitiveType
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("responsiblePolicy", self.responsible_policy)
         writer.write_collection_of_object_values("responsibleSensitiveTypes", self.responsible_sensitive_types)

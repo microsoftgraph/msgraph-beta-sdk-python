@@ -70,6 +70,9 @@ class SecurityBaselineDeviceState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .security_baseline_compliance_state import SecurityBaselineComplianceState
+
         writer.write_str_value("deviceDisplayName", self.device_display_name)
         writer.write_datetime_value("lastReportedDateTime", self.last_reported_date_time)
         writer.write_str_value("managedDeviceId", self.managed_device_id)

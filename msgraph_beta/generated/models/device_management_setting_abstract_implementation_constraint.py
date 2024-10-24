@@ -54,6 +54,8 @@ class DeviceManagementSettingAbstractImplementationConstraint(DeviceManagementCo
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_constraint import DeviceManagementConstraint
+
         writer.write_collection_of_primitive_values("allowedAbstractImplementationDefinitionIds", self.allowed_abstract_implementation_definition_ids)
     
 

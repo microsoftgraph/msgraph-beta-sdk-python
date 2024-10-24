@@ -59,6 +59,9 @@ class SharingViewpoint(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .default_sharing_link import DefaultSharingLink
+        from .share_point_sharing_abilities import SharePointSharingAbilities
+
         writer.write_object_value("defaultSharingLink", self.default_sharing_link)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("sharingAbilities", self.sharing_abilities)

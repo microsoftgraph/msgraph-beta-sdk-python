@@ -78,6 +78,11 @@ class ZebraFotaDeployment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_fota_deployment_assignment import AndroidFotaDeploymentAssignment
+        from .entity import Entity
+        from .zebra_fota_deployment_settings import ZebraFotaDeploymentSettings
+        from .zebra_fota_deployment_status import ZebraFotaDeploymentStatus
+
         writer.write_collection_of_object_values("deploymentAssignments", self.deployment_assignments)
         writer.write_object_value("deploymentSettings", self.deployment_settings)
         writer.write_object_value("deploymentStatus", self.deployment_status)

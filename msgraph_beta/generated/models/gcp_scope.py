@@ -56,6 +56,8 @@ class GcpScope(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .authorization_system_type_service import AuthorizationSystemTypeService
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("resourceType", self.resource_type)
         writer.write_object_value("service", self.service)

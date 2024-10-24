@@ -68,6 +68,9 @@ class WebCategoriesSummary(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .filtering_policy_action import FilteringPolicyAction
+        from .web_category import WebCategory
+
         writer.write_enum_value("action", self.action)
         writer.write_int_value("deviceCount", self.device_count)
         writer.write_str_value("@odata.type", self.odata_type)

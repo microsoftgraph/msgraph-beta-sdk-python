@@ -54,6 +54,9 @@ class CertificateAuthorityPath(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
+        from .entity import Entity
+
         writer.write_collection_of_object_values("certificateBasedApplicationConfigurations", self.certificate_based_application_configurations)
     
 

@@ -72,6 +72,10 @@ class SecurityBaselineState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .security_baseline_compliance_state import SecurityBaselineComplianceState
+        from .security_baseline_setting_state import SecurityBaselineSettingState
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("securityBaselineTemplateId", self.security_baseline_template_id)
         writer.write_collection_of_object_values("settingStates", self.setting_states)

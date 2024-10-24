@@ -54,6 +54,8 @@ class AppleVppTokenTroubleshootingEvent(DeviceManagementTroubleshootingEvent):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
+
         writer.write_str_value("tokenId", self.token_id)
     
 

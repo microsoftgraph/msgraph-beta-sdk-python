@@ -56,6 +56,8 @@ class LocalAdminSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_registration_membership import DeviceRegistrationMembership
+
         writer.write_bool_value("enableGlobalAdmins", self.enable_global_admins)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("registeringUsers", self.registering_users)

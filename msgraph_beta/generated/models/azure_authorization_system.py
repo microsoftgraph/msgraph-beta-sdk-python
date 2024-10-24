@@ -78,6 +78,13 @@ class AzureAuthorizationSystem(AuthorizationSystem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system import AuthorizationSystem
+        from .authorization_system_type_service import AuthorizationSystemTypeService
+        from .azure_associated_identities import AzureAssociatedIdentities
+        from .azure_authorization_system_resource import AzureAuthorizationSystemResource
+        from .azure_authorization_system_type_action import AzureAuthorizationSystemTypeAction
+        from .azure_role_definition import AzureRoleDefinition
+
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_object_value("associatedIdentities", self.associated_identities)
         writer.write_collection_of_object_values("resources", self.resources)

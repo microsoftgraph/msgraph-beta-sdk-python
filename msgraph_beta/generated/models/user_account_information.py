@@ -63,6 +63,9 @@ class UserAccountInformation(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .item_facet import ItemFacet
+        from .locale_info import LocaleInfo
+
         writer.write_str_value("ageGroup", self.age_group)
         writer.write_str_value("countryCode", self.country_code)
         writer.write_object_value("preferredLanguageTag", self.preferred_language_tag)

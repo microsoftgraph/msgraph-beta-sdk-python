@@ -69,6 +69,8 @@ class IosiPadOSWebClip(MobileApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app import MobileApp
+
         writer.write_str_value("appUrl", self.app_url)
         writer.write_bool_value("fullScreenEnabled", self.full_screen_enabled)
         writer.write_bool_value("ignoreManifestScope", self.ignore_manifest_scope)

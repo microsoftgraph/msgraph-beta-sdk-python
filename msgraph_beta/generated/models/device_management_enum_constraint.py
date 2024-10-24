@@ -57,6 +57,9 @@ class DeviceManagementEnumConstraint(DeviceManagementConstraint):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_constraint import DeviceManagementConstraint
+        from .device_management_enum_value import DeviceManagementEnumValue
+
         writer.write_collection_of_object_values("values", self.values)
     
 

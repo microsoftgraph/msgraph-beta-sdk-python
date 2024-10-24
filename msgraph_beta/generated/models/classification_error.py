@@ -51,6 +51,8 @@ class ClassificationError(ClassifcationErrorBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .classifcation_error_base import ClassifcationErrorBase
+
         writer.write_collection_of_object_values("details", self.details)
     
 

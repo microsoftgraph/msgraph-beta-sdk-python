@@ -69,6 +69,11 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(DeviceConfi
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
+        from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
+        from .device_configuration import DeviceConfiguration
+        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
+
         writer.write_enum_value("certificateAccessType", self.certificate_access_type)
         writer.write_object_value("derivedCredentialSettings", self.derived_credential_settings)
         writer.write_collection_of_object_values("silentCertificateAccessDetails", self.silent_certificate_access_details)

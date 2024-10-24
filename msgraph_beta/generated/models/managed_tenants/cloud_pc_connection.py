@@ -64,6 +64,8 @@ class CloudPcConnection(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("healthCheckStatus", self.health_check_status)
         writer.write_datetime_value("lastRefreshedDateTime", self.last_refreshed_date_time)

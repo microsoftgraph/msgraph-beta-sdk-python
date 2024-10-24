@@ -63,6 +63,10 @@ class DeviceManagementReports(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_cached_report_configuration import DeviceManagementCachedReportConfiguration
+        from .device_management_export_job import DeviceManagementExportJob
+        from .entity import Entity
+
         writer.write_collection_of_object_values("cachedReportConfigurations", self.cached_report_configurations)
         writer.write_collection_of_object_values("exportJobs", self.export_jobs)
     

@@ -103,6 +103,9 @@ class MicrosoftTunnelConfiguration(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .key_value_pair import KeyValuePair
+
         writer.write_collection_of_object_values("advancedSettings", self.advanced_settings)
         writer.write_str_value("defaultDomainSuffix", self.default_domain_suffix)
         writer.write_str_value("description", self.description)

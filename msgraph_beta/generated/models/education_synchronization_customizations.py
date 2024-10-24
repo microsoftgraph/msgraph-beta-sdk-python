@@ -69,6 +69,9 @@ class EducationSynchronizationCustomizations(EducationSynchronizationCustomizati
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .education_synchronization_customization import EducationSynchronizationCustomization
+        from .education_synchronization_customizations_base import EducationSynchronizationCustomizationsBase
+
         writer.write_object_value("school", self.school)
         writer.write_object_value("section", self.section)
         writer.write_object_value("student", self.student)

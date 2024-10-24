@@ -71,6 +71,9 @@ class ServerProcessedContent(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .meta_data_key_string_pair import MetaDataKeyStringPair
+        from .meta_data_key_value_pair import MetaDataKeyValuePair
+
         writer.write_collection_of_object_values("componentDependencies", self.component_dependencies)
         writer.write_collection_of_object_values("customMetadata", self.custom_metadata)
         writer.write_collection_of_object_values("htmlStrings", self.html_strings)

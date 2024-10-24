@@ -88,6 +88,11 @@ class UnifiedRoleManagementAlert(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .unified_role_management_alert_configuration import UnifiedRoleManagementAlertConfiguration
+        from .unified_role_management_alert_definition import UnifiedRoleManagementAlertDefinition
+        from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIncident
+
         writer.write_object_value("alertConfiguration", self.alert_configuration)
         writer.write_object_value("alertDefinition", self.alert_definition)
         writer.write_str_value("alertDefinitionId", self.alert_definition_id)

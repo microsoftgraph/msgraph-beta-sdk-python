@@ -66,6 +66,10 @@ class ApprovalWorkflowProvider(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .business_flow import BusinessFlow
+        from .entity import Entity
+        from .governance_policy_template import GovernancePolicyTemplate
+
         writer.write_collection_of_object_values("businessFlows", self.business_flows)
         writer.write_collection_of_object_values("businessFlowsWithRequestsAwaitingMyDecision", self.business_flows_with_requests_awaiting_my_decision)
         writer.write_str_value("displayName", self.display_name)

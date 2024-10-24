@@ -54,6 +54,9 @@ class EnumeratedAccountsWithAccess(AccountsWithAccess):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .accounts_with_access import AccountsWithAccess
+        from .authorization_system import AuthorizationSystem
+
         writer.write_collection_of_object_values("accounts", self.accounts)
     
 

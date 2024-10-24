@@ -53,7 +53,7 @@ class DeviceCompliancePolicy(Entity):
     odata_type: Optional[str] = None
     # List of Scope Tags for this Entity instance.
     role_scope_tag_ids: Optional[List[str]] = None
-    # The list of scheduled action for this rule
+    # The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
     scheduled_actions_for_rule: Optional[List[DeviceComplianceScheduledActionForRule]] = None
     # Device compliance users status overview
     user_status_overview: Optional[DeviceComplianceUserOverview] = None
@@ -72,7 +72,8 @@ class DeviceCompliancePolicy(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidCompliancePolicy".casefold():
@@ -200,6 +201,27 @@ class DeviceCompliancePolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_compliance_policy import AndroidCompliancePolicy
+        from .android_device_owner_compliance_policy import AndroidDeviceOwnerCompliancePolicy
+        from .android_for_work_compliance_policy import AndroidForWorkCompliancePolicy
+        from .android_work_profile_compliance_policy import AndroidWorkProfileCompliancePolicy
+        from .aosp_device_owner_compliance_policy import AospDeviceOwnerCompliancePolicy
+        from .default_device_compliance_policy import DefaultDeviceCompliancePolicy
+        from .device_compliance_device_overview import DeviceComplianceDeviceOverview
+        from .device_compliance_device_status import DeviceComplianceDeviceStatus
+        from .device_compliance_policy_assignment import DeviceCompliancePolicyAssignment
+        from .device_compliance_scheduled_action_for_rule import DeviceComplianceScheduledActionForRule
+        from .device_compliance_user_overview import DeviceComplianceUserOverview
+        from .device_compliance_user_status import DeviceComplianceUserStatus
+        from .entity import Entity
+        from .ios_compliance_policy import IosCompliancePolicy
+        from .mac_o_s_compliance_policy import MacOSCompliancePolicy
+        from .setting_state_device_summary import SettingStateDeviceSummary
+        from .windows10_compliance_policy import Windows10CompliancePolicy
+        from .windows10_mobile_compliance_policy import Windows10MobileCompliancePolicy
+        from .windows81_compliance_policy import Windows81CompliancePolicy
+        from .windows_phone81_compliance_policy import WindowsPhone81CompliancePolicy
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

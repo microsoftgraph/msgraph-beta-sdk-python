@@ -60,6 +60,8 @@ class ApplicationSignInSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_int_value("failedSignInCount", self.failed_sign_in_count)
         writer.write_float_value("successPercentage", self.success_percentage)

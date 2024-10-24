@@ -54,6 +54,9 @@ class WhatIfUserActionContext(ConditionalAccessContext):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .conditional_access_context import ConditionalAccessContext
+        from .user_action import UserAction
+
         writer.write_enum_value("userAction", self.user_action)
     
 

@@ -141,6 +141,18 @@ class CloudPcProvisioningPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_autopilot_configuration import CloudPcAutopilotConfiguration
+        from .cloud_pc_domain_join_configuration import CloudPcDomainJoinConfiguration
+        from .cloud_pc_management_service import CloudPcManagementService
+        from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
+        from .cloud_pc_provisioning_policy_autopatch import CloudPcProvisioningPolicyAutopatch
+        from .cloud_pc_provisioning_policy_image_type import CloudPcProvisioningPolicyImageType
+        from .cloud_pc_provisioning_type import CloudPcProvisioningType
+        from .cloud_pc_windows_setting import CloudPcWindowsSetting
+        from .cloud_pc_windows_settings import CloudPcWindowsSettings
+        from .entity import Entity
+        from .microsoft_managed_desktop import MicrosoftManagedDesktop
+
         writer.write_str_value("alternateResourceUrl", self.alternate_resource_url)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_object_value("autopatch", self.autopatch)

@@ -57,6 +57,8 @@ class GroupPolicyPresentationListBox(GroupPolicyUploadedPresentation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
+
         writer.write_bool_value("explicitValue", self.explicit_value)
         writer.write_str_value("valuePrefix", self.value_prefix)
     

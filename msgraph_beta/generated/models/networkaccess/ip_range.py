@@ -54,6 +54,8 @@ class IpRange(RuleDestination):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .rule_destination import RuleDestination
+
         writer.write_str_value("beginAddress", self.begin_address)
         writer.write_str_value("endAddress", self.end_address)
     

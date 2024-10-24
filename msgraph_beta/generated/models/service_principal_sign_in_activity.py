@@ -69,6 +69,9 @@ class ServicePrincipalSignInActivity(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .sign_in_activity import SignInActivity
+
         writer.write_str_value("appId", self.app_id)
         writer.write_object_value("applicationAuthenticationClientSignInActivity", self.application_authentication_client_sign_in_activity)
         writer.write_object_value("applicationAuthenticationResourceSignInActivity", self.application_authentication_resource_sign_in_activity)

@@ -54,6 +54,8 @@ class DeviceManagementConfigurationSimpleSettingCollectionDefinition(DeviceManag
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_simple_setting_definition import DeviceManagementConfigurationSimpleSettingDefinition
+
         writer.write_int_value("maximumCount", self.maximum_count)
         writer.write_int_value("minimumCount", self.minimum_count)
     

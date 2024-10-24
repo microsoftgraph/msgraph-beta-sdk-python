@@ -78,5 +78,9 @@ class InboundActivityResults(IndustryDataActivityStatistics):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .industry_data_activity_statistics import IndustryDataActivityStatistics
+        from .industry_data_run_entity_count_metric import IndustryDataRunEntityCountMetric
+        from .industry_data_run_role_count_metric import IndustryDataRunRoleCountMetric
+
     
 

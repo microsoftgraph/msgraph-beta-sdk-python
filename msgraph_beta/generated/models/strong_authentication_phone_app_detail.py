@@ -98,6 +98,9 @@ class StrongAuthenticationPhoneAppDetail(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .oath_token_metadata import OathTokenMetadata
+
         writer.write_str_value("authenticationType", self.authentication_type)
         writer.write_str_value("authenticatorFlavor", self.authenticator_flavor)
         writer.write_uuid_value("deviceId", self.device_id)

@@ -54,6 +54,8 @@ class RoleMembershipGovernanceCriteria(GovernanceCriteria):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .governance_criteria import GovernanceCriteria
+
         writer.write_str_value("roleId", self.role_id)
         writer.write_str_value("roleTemplateId", self.role_template_id)
     

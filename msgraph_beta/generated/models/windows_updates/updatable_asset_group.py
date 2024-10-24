@@ -51,6 +51,8 @@ class UpdatableAssetGroup(UpdatableAsset):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .updatable_asset import UpdatableAsset
+
         writer.write_collection_of_object_values("members", self.members)
     
 

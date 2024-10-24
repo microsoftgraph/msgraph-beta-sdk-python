@@ -63,6 +63,8 @@ class DiscoveredSensitiveType(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .classification_attribute import ClassificationAttribute
+
         writer.write_collection_of_object_values("classificationAttributes", self.classification_attributes)
         writer.write_int_value("confidence", self.confidence)
         writer.write_int_value("count", self.count)

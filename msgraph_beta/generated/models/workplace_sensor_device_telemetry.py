@@ -78,6 +78,9 @@ class WorkplaceSensorDeviceTelemetry(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .workplace_sensor_event_value import WorkplaceSensorEventValue
+        from .workplace_sensor_type import WorkplaceSensorType
+
         writer.write_bool_value("boolValue", self.bool_value)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_object_value("eventValue", self.event_value)

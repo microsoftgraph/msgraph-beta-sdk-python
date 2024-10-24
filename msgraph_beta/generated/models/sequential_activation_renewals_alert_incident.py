@@ -76,6 +76,8 @@ class SequentialActivationRenewalsAlertIncident(UnifiedRoleManagementAlertIncide
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIncident
+
         writer.write_int_value("activationCount", self.activation_count)
         writer.write_str_value("assigneeDisplayName", self.assignee_display_name)
         writer.write_str_value("assigneeId", self.assignee_id)

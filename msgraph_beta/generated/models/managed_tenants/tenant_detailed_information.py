@@ -78,6 +78,8 @@ class TenantDetailedInformation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("city", self.city)
         writer.write_str_value("countryCode", self.country_code)
         writer.write_str_value("countryName", self.country_name)

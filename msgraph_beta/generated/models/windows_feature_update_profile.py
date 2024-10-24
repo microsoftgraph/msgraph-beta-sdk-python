@@ -94,6 +94,10 @@ class WindowsFeatureUpdateProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .windows_feature_update_profile_assignment import WindowsFeatureUpdateProfileAssignment
+        from .windows_update_rollout_settings import WindowsUpdateRolloutSettings
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("deployableContentDisplayName", self.deployable_content_display_name)

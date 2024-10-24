@@ -57,6 +57,9 @@ class DeviceManagementConfigurationChoiceSettingInstanceTemplate(DeviceManagemen
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_choice_setting_value_template import DeviceManagementConfigurationChoiceSettingValueTemplate
+        from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
+
         writer.write_object_value("choiceSettingValueTemplate", self.choice_setting_value_template)
     
 

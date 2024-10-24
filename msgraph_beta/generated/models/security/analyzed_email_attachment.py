@@ -71,6 +71,9 @@ class AnalyzedEmailAttachment(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .detonation_details import DetonationDetails
+        from .threat_type import ThreatType
+
         writer.write_object_value("detonationDetails", self.detonation_details)
         writer.write_str_value("fileName", self.file_name)
         writer.write_str_value("fileType", self.file_type)

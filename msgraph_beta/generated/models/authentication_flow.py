@@ -53,6 +53,8 @@ class AuthenticationFlow(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .conditional_access_transfer_methods import ConditionalAccessTransferMethods
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("transferMethod", self.transfer_method)
         writer.write_additional_data_value(self.additional_data)

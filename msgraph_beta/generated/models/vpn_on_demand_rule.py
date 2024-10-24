@@ -86,6 +86,10 @@ class VpnOnDemandRule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .vpn_on_demand_rule_connection_action import VpnOnDemandRuleConnectionAction
+        from .vpn_on_demand_rule_connection_domain_action import VpnOnDemandRuleConnectionDomainAction
+        from .vpn_on_demand_rule_interface_type_match import VpnOnDemandRuleInterfaceTypeMatch
+
         writer.write_enum_value("action", self.action)
         writer.write_collection_of_primitive_values("dnsSearchDomains", self.dns_search_domains)
         writer.write_collection_of_primitive_values("dnsServerAddressMatch", self.dns_server_address_match)

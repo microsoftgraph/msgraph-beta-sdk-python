@@ -74,6 +74,9 @@ class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .setting import Setting
+        from .workload_action_category import WorkloadActionCategory
+
         writer.write_str_value("actionId", self.action_id)
         writer.write_enum_value("category", self.category)
         writer.write_str_value("description", self.description)

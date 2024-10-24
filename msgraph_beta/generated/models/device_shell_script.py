@@ -118,6 +118,14 @@ class DeviceShellScript(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_script_assignment import DeviceManagementScriptAssignment
+        from .device_management_script_device_state import DeviceManagementScriptDeviceState
+        from .device_management_script_group_assignment import DeviceManagementScriptGroupAssignment
+        from .device_management_script_run_summary import DeviceManagementScriptRunSummary
+        from .device_management_script_user_state import DeviceManagementScriptUserState
+        from .entity import Entity
+        from .run_as_account_type import RunAsAccountType
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_bool_value("blockExecutionNotifications", self.block_execution_notifications)
         writer.write_str_value("description", self.description)

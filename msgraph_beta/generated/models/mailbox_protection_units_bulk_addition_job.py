@@ -54,6 +54,8 @@ class MailboxProtectionUnitsBulkAdditionJob(ProtectionUnitsBulkJobBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .protection_units_bulk_job_base import ProtectionUnitsBulkJobBase
+
         writer.write_collection_of_primitive_values("directoryObjectIds", self.directory_object_ids)
         writer.write_collection_of_primitive_values("mailboxes", self.mailboxes)
     

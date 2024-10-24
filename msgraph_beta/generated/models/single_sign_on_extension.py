@@ -42,7 +42,8 @@ class SingleSignOnExtension(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.credentialSingleSignOnExtension".casefold():
@@ -145,6 +146,20 @@ class SingleSignOnExtension(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .credential_single_sign_on_extension import CredentialSingleSignOnExtension
+        from .ios_azure_ad_single_sign_on_extension import IosAzureAdSingleSignOnExtension
+        from .ios_credential_single_sign_on_extension import IosCredentialSingleSignOnExtension
+        from .ios_kerberos_single_sign_on_extension import IosKerberosSingleSignOnExtension
+        from .ios_redirect_single_sign_on_extension import IosRedirectSingleSignOnExtension
+        from .ios_single_sign_on_extension import IosSingleSignOnExtension
+        from .kerberos_single_sign_on_extension import KerberosSingleSignOnExtension
+        from .mac_o_s_azure_ad_single_sign_on_extension import MacOSAzureAdSingleSignOnExtension
+        from .mac_o_s_credential_single_sign_on_extension import MacOSCredentialSingleSignOnExtension
+        from .mac_o_s_kerberos_single_sign_on_extension import MacOSKerberosSingleSignOnExtension
+        from .mac_o_s_redirect_single_sign_on_extension import MacOSRedirectSingleSignOnExtension
+        from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
+        from .redirect_single_sign_on_extension import RedirectSingleSignOnExtension
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

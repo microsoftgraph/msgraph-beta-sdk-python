@@ -53,6 +53,8 @@ class UpdateStatusPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.device_app_management_task_status import DeviceAppManagementTaskStatus
+
         writer.write_str_value("note", self.note)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)

@@ -57,6 +57,8 @@ class DeviceManagementSettingStringLengthConstraint(DeviceManagementConstraint):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_constraint import DeviceManagementConstraint
+
         writer.write_int_value("maximumLength", self.maximum_length)
         writer.write_int_value("minimumLength", self.minimum_length)
     

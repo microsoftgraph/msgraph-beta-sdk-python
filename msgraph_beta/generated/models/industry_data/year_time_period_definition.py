@@ -64,6 +64,9 @@ class YearTimePeriodDefinition(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .year_reference_value import YearReferenceValue
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_date_value("endDate", self.end_date)
         writer.write_date_value("startDate", self.start_date)

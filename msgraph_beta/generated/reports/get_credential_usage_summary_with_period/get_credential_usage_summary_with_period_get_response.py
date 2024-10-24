@@ -52,6 +52,9 @@ class GetCredentialUsageSummaryWithPeriodGetResponse(BaseCollectionPaginationCou
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ...models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from ...models.credential_usage_summary import CredentialUsageSummary
+
         writer.write_collection_of_object_values("value", self.value)
     
 

@@ -30,7 +30,8 @@ class MacOSSingleSignOnExtension(SingleSignOnExtension):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSAzureAdSingleSignOnExtension".casefold():
@@ -83,5 +84,11 @@ class MacOSSingleSignOnExtension(SingleSignOnExtension):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mac_o_s_azure_ad_single_sign_on_extension import MacOSAzureAdSingleSignOnExtension
+        from .mac_o_s_credential_single_sign_on_extension import MacOSCredentialSingleSignOnExtension
+        from .mac_o_s_kerberos_single_sign_on_extension import MacOSKerberosSingleSignOnExtension
+        from .mac_o_s_redirect_single_sign_on_extension import MacOSRedirectSingleSignOnExtension
+        from .single_sign_on_extension import SingleSignOnExtension
+
     
 

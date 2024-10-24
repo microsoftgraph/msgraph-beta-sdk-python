@@ -115,6 +115,14 @@ class AccessPackageCatalog(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_package import AccessPackage
+        from .access_package_resource import AccessPackageResource
+        from .access_package_resource_role import AccessPackageResourceRole
+        from .access_package_resource_scope import AccessPackageResourceScope
+        from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
+        from .custom_callout_extension import CustomCalloutExtension
+        from .entity import Entity
+
         writer.write_collection_of_object_values("accessPackageCustomWorkflowExtensions", self.access_package_custom_workflow_extensions)
         writer.write_collection_of_object_values("accessPackageResourceRoles", self.access_package_resource_roles)
         writer.write_collection_of_object_values("accessPackageResourceScopes", self.access_package_resource_scopes)

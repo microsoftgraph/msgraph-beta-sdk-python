@@ -67,6 +67,9 @@ class ApplicationSignInDetailedSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .sign_in_status import SignInStatus
+
         writer.write_datetime_value("aggregatedEventDateTime", self.aggregated_event_date_time)
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appId", self.app_id)

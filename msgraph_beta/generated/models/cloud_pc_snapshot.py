@@ -73,6 +73,10 @@ class CloudPcSnapshot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_snapshot_status import CloudPcSnapshotStatus
+        from .cloud_pc_snapshot_type import CloudPcSnapshotType
+        from .entity import Entity
+
         writer.write_str_value("cloudPcId", self.cloud_pc_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)

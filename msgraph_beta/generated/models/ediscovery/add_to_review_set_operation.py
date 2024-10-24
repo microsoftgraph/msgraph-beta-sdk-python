@@ -60,6 +60,10 @@ class AddToReviewSetOperation(CaseOperation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .case_operation import CaseOperation
+        from .review_set import ReviewSet
+        from .source_collection import SourceCollection
+
         writer.write_object_value("reviewSet", self.review_set)
         writer.write_object_value("sourceCollection", self.source_collection)
     

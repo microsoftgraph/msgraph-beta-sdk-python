@@ -59,6 +59,8 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .expression_evaluation_details import ExpressionEvaluationDetails
+
         writer.write_str_value("membershipRule", self.membership_rule)
         writer.write_object_value("membershipRuleEvaluationDetails", self.membership_rule_evaluation_details)
         writer.write_bool_value("membershipRuleEvaluationResult", self.membership_rule_evaluation_result)

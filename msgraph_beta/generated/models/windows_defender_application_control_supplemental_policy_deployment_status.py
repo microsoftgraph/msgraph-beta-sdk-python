@@ -88,6 +88,10 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(Entity
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
+        from .windows_defender_application_control_supplemental_policy_statuses import WindowsDefenderApplicationControlSupplementalPolicyStatuses
+
         writer.write_enum_value("deploymentStatus", self.deployment_status)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("deviceName", self.device_name)

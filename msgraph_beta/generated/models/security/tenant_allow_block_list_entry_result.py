@@ -69,6 +69,9 @@ class TenantAllowBlockListEntryResult(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .long_running_operation_status import LongRunningOperationStatus
+        from .tenant_allow_block_list_entry_type import TenantAllowBlockListEntryType
+
         writer.write_enum_value("entryType", self.entry_type)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("identity", self.identity)

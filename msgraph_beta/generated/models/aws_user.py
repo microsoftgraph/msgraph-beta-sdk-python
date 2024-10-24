@@ -54,6 +54,9 @@ class AwsUser(AwsIdentity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aws_identity import AwsIdentity
+        from .aws_role import AwsRole
+
         writer.write_collection_of_object_values("assumableRoles", self.assumable_roles)
     
 

@@ -51,6 +51,8 @@ class SimplePasswordSettings(PasswordSettings):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .password_settings import PasswordSettings
+
         writer.write_str_value("password", self.password)
     
 

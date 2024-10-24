@@ -59,6 +59,8 @@ class EnrollmentTimeDeviceMembershipTarget(AdditionalDataHolder, BackedModel, Pa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .enrollment_time_device_membership_target_type import EnrollmentTimeDeviceMembershipTargetType
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("targetId", self.target_id)
         writer.write_enum_value("targetType", self.target_type)

@@ -48,5 +48,7 @@ class AzureManagedIdentity(AzureIdentity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .azure_identity import AzureIdentity
+
     
 

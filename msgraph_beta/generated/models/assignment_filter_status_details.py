@@ -71,6 +71,9 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .assignment_filter_evaluation_summary import AssignmentFilterEvaluationSummary
+        from .key_value_pair import KeyValuePair
+
         writer.write_collection_of_object_values("deviceProperties", self.device_properties)
         writer.write_collection_of_object_values("evalutionSummaries", self.evalution_summaries)
         writer.write_str_value("managedDeviceId", self.managed_device_id)

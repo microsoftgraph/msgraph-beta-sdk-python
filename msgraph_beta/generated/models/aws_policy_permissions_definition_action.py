@@ -57,6 +57,9 @@ class AwsPolicyPermissionsDefinitionAction(AwsPermissionsDefinitionAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aws_permissions_definition_action import AwsPermissionsDefinitionAction
+        from .permissions_definition_aws_policy import PermissionsDefinitionAwsPolicy
+
         writer.write_str_value("assignToRoleId", self.assign_to_role_id)
         writer.write_collection_of_object_values("policies", self.policies)
     

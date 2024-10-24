@@ -63,6 +63,10 @@ class MacOSVpnConfiguration(AppleVpnConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_deployment_channel import AppleDeploymentChannel
+        from .apple_vpn_configuration import AppleVpnConfiguration
+        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+
         writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_object_value("identityCertificate", self.identity_certificate)
     

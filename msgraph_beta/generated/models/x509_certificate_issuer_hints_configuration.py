@@ -53,6 +53,8 @@ class X509CertificateIssuerHintsConfiguration(AdditionalDataHolder, BackedModel,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .x509_certificate_issuer_hints_state import X509CertificateIssuerHintsState
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("state", self.state)
         writer.write_additional_data_value(self.additional_data)

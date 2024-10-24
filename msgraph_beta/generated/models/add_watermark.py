@@ -54,6 +54,9 @@ class AddWatermark(MarkContent):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mark_content import MarkContent
+        from .page_orientation import PageOrientation
+
         writer.write_enum_value("orientation", self.orientation)
     
 

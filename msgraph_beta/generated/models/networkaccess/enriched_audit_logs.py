@@ -60,6 +60,9 @@ class EnrichedAuditLogs(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .enriched_audit_logs_settings import EnrichedAuditLogsSettings
+
         writer.write_object_value("exchange", self.exchange)
         writer.write_object_value("sharepoint", self.sharepoint)
         writer.write_object_value("teams", self.teams)

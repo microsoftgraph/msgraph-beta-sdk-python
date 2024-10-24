@@ -70,6 +70,10 @@ class BookingCustomer(BookingPerson):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .booking_person import BookingPerson
+        from .phone import Phone
+        from .physical_address import PhysicalAddress
+
         writer.write_collection_of_object_values("addresses", self.addresses)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)

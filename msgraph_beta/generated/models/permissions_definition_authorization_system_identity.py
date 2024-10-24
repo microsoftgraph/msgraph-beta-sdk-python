@@ -62,6 +62,9 @@ class PermissionsDefinitionAuthorizationSystemIdentity(AdditionalDataHolder, Bac
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .permissions_definition_identity_source import PermissionsDefinitionIdentitySource
+        from .permissions_definition_identity_type import PermissionsDefinitionIdentityType
+
         writer.write_str_value("externalId", self.external_id)
         writer.write_enum_value("identityType", self.identity_type)
         writer.write_str_value("@odata.type", self.odata_type)

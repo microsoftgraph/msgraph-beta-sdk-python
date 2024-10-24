@@ -57,6 +57,9 @@ class ChangeAssignmentsActionResult(DeviceActionResult):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_action_result import DeviceActionResult
+        from .device_assignment_item import DeviceAssignmentItem
+
         writer.write_collection_of_object_values("deviceAssignmentItems", self.device_assignment_items)
     
 

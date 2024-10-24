@@ -77,6 +77,11 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .data_type import DataType
+        from .device_compliance_script_rule_data_type import DeviceComplianceScriptRuleDataType
+        from .device_compliance_script_rul_operator import DeviceComplianceScriptRulOperator
+        from .operator import Operator
+
         writer.write_enum_value("dataType", self.data_type)
         writer.write_enum_value("deviceComplianceScriptRulOperator", self.device_compliance_script_rul_operator)
         writer.write_enum_value("deviceComplianceScriptRuleDataType", self.device_compliance_script_rule_data_type)

@@ -60,6 +60,8 @@ class GroupPolicyPresentationMultiTextBox(GroupPolicyUploadedPresentation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
+
         writer.write_int_value("maxLength", self.max_length)
         writer.write_int_value("maxStrings", self.max_strings)
         writer.write_bool_value("required", self.required)

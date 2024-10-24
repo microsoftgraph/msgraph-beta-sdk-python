@@ -51,6 +51,8 @@ class ServicePrincipalSubject(ConditionalAccessWhatIfSubject):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
+
         writer.write_str_value("servicePrincipalId", self.service_principal_id)
     
 

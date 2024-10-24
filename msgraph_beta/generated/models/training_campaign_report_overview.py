@@ -65,6 +65,10 @@ class TrainingCampaignReportOverview(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .training_events_content import TrainingEventsContent
+        from .training_notification_delivery import TrainingNotificationDelivery
+        from .user_training_completion_summary import UserTrainingCompletionSummary
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("trainingModuleCompletion", self.training_module_completion)
         writer.write_object_value("trainingNotificationDeliveryStatus", self.training_notification_delivery_status)

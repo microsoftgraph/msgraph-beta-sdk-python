@@ -54,6 +54,9 @@ class CatalogContent(DeployableContent):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .catalog_entry import CatalogEntry
+        from .deployable_content import DeployableContent
+
         writer.write_object_value("catalogEntry", self.catalog_entry)
     
 

@@ -69,6 +69,11 @@ class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_deployment_channel import AppleDeploymentChannel
+        from .intended_purpose import IntendedPurpose
+        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+
         writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_enum_value("intendedPurpose", self.intended_purpose)
         writer.write_collection_of_object_values("managedDeviceCertificateStates", self.managed_device_certificate_states)

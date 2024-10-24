@@ -49,7 +49,8 @@ class DeviceAndAppManagementAssignmentFilter(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.payloadCompatibleAssignmentFilter".casefold():
@@ -99,6 +100,12 @@ class DeviceAndAppManagementAssignmentFilter(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .assignment_filter_management_type import AssignmentFilterManagementType
+        from .device_platform_type import DevicePlatformType
+        from .entity import Entity
+        from .payload_by_filter import PayloadByFilter
+        from .payload_compatible_assignment_filter import PayloadCompatibleAssignmentFilter
+
         writer.write_enum_value("assignmentFilterManagementType", self.assignment_filter_management_type)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

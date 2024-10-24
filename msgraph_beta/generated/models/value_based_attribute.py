@@ -51,6 +51,8 @@ class ValueBasedAttribute(CustomClaimAttributeBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_claim_attribute_base import CustomClaimAttributeBase
+
         writer.write_str_value("value", self.value)
     
 

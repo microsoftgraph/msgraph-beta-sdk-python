@@ -100,6 +100,12 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_enrollment_company_code import AndroidEnrollmentCompanyCode
+        from .android_managed_store_account_app_sync_status import AndroidManagedStoreAccountAppSyncStatus
+        from .android_managed_store_account_bind_status import AndroidManagedStoreAccountBindStatus
+        from .android_managed_store_account_enrollment_target import AndroidManagedStoreAccountEnrollmentTarget
+        from .entity import Entity
+
         writer.write_bool_value("androidDeviceOwnerFullyManagedEnrollmentEnabled", self.android_device_owner_fully_managed_enrollment_enabled)
         writer.write_enum_value("bindStatus", self.bind_status)
         writer.write_collection_of_object_values("companyCodes", self.company_codes)

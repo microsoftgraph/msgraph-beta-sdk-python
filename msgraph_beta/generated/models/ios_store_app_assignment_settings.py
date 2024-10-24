@@ -63,6 +63,8 @@ class IosStoreAppAssignmentSettings(MobileAppAssignmentSettings):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app_assignment_settings import MobileAppAssignmentSettings
+
         writer.write_bool_value("isRemovable", self.is_removable)
         writer.write_bool_value("preventManagedAppBackup", self.prevent_managed_app_backup)
         writer.write_bool_value("uninstallOnDeviceRemoval", self.uninstall_on_device_removal)

@@ -66,6 +66,10 @@ class Presence(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .out_of_office_settings import OutOfOfficeSettings
+        from .presence_status_message import PresenceStatusMessage
+
         writer.write_str_value("activity", self.activity)
         writer.write_str_value("availability", self.availability)
         writer.write_object_value("outOfOfficeSettings", self.out_of_office_settings)

@@ -52,6 +52,9 @@ class SalesQuoteLineCollectionResponse(BaseCollectionPaginationCountResponse):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .sales_quote_line import SalesQuoteLine
+
         writer.write_collection_of_object_values("value", self.value)
     
 

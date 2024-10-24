@@ -66,6 +66,10 @@ class ExternalAuthenticationMethodConfiguration(AuthenticationMethodConfiguratio
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .authentication_method_target import AuthenticationMethodTarget
+        from .open_id_connect_setting import OpenIdConnectSetting
+
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("includeTargets", self.include_targets)

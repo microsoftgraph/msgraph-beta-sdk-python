@@ -88,6 +88,10 @@ class ManagementTemplateStepVersion(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .management_template_step import ManagementTemplateStep
+        from .management_template_step_deployment import ManagementTemplateStepDeployment
+
         writer.write_object_value("acceptedFor", self.accepted_for)
         writer.write_str_value("contentMarkdown", self.content_markdown)
         writer.write_str_value("createdByUserId", self.created_by_user_id)

@@ -54,6 +54,8 @@ class FileClassificationRequest(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_bytes_value("file", self.file)
         writer.write_collection_of_primitive_values("sensitiveTypeIds", self.sensitive_type_ids)
     

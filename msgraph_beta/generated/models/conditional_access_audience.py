@@ -56,6 +56,8 @@ class ConditionalAccessAudience(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .conditional_access_audience_reason import ConditionalAccessAudienceReason
+
         writer.write_str_value("applicationId", self.application_id)
         writer.write_enum_value("audienceReasons", self.audience_reasons)
         writer.write_str_value("@odata.type", self.odata_type)

@@ -54,6 +54,9 @@ class AdminTodo(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .todo_settings import TodoSettings
+
         writer.write_object_value("settings", self.settings)
     
 

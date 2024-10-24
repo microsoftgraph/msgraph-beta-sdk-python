@@ -96,6 +96,9 @@ class AospDeviceOwnerDeviceConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+        from .device_configuration import DeviceConfiguration
+
         writer.write_bool_value("appsBlockInstallFromUnknownSources", self.apps_block_install_from_unknown_sources)
         writer.write_bool_value("bluetoothBlockConfiguration", self.bluetooth_block_configuration)
         writer.write_bool_value("bluetoothBlocked", self.bluetooth_blocked)

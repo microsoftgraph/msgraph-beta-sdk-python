@@ -60,6 +60,10 @@ class UserAnalytics(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .activity_statistics import ActivityStatistics
+        from .entity import Entity
+        from .settings import Settings
+
         writer.write_collection_of_object_values("activityStatistics", self.activity_statistics)
         writer.write_object_value("settings", self.settings)
     

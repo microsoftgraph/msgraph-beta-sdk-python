@@ -57,6 +57,8 @@ class TooManyGlobalAdminsAssignedToTenantAlertIncident(UnifiedRoleManagementAler
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIncident
+
         writer.write_str_value("assigneeDisplayName", self.assignee_display_name)
         writer.write_str_value("assigneeId", self.assignee_id)
         writer.write_str_value("assigneeUserPrincipalName", self.assignee_user_principal_name)

@@ -57,6 +57,9 @@ class MachineLearningDetectedSensitiveContent(DetectedSensitiveContent):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .detected_sensitive_content import DetectedSensitiveContent
+        from .ml_classification_match_tolerance import MlClassificationMatchTolerance
+
         writer.write_enum_value("matchTolerance", self.match_tolerance)
         writer.write_str_value("modelVersion", self.model_version)
     

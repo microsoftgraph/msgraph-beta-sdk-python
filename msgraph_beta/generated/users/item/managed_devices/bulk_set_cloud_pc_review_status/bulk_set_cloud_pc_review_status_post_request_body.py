@@ -53,6 +53,8 @@ class BulkSetCloudPcReviewStatusPostRequestBody(AdditionalDataHolder, BackedMode
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.cloud_pc_review_status import CloudPcReviewStatus
+
         writer.write_collection_of_primitive_values("managedDeviceIds", self.managed_device_ids)
         writer.write_object_value("reviewStatus", self.review_status)
         writer.write_additional_data_value(self.additional_data)

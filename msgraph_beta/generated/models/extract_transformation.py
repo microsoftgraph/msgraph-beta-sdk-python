@@ -57,6 +57,8 @@ class ExtractTransformation(CustomClaimTransformation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_claim_transformation import CustomClaimTransformation
+
         writer.write_str_value("type", self.type)
         writer.write_str_value("value", self.value)
         writer.write_str_value("value2", self.value2)

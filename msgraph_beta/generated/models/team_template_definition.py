@@ -94,6 +94,11 @@ class TeamTemplateDefinition(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .team import Team
+        from .team_template_audience import TeamTemplateAudience
+
         writer.write_enum_value("audience", self.audience)
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_str_value("description", self.description)

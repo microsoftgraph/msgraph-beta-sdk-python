@@ -53,6 +53,8 @@ class ImportAppleDeviceIdentityListPostRequestBody(AdditionalDataHolder, BackedM
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ......models.imported_apple_device_identity import ImportedAppleDeviceIdentity
+
         writer.write_collection_of_object_values("importedAppleDeviceIdentities", self.imported_apple_device_identities)
         writer.write_bool_value("overwriteImportedDeviceIdentities", self.overwrite_imported_device_identities)
         writer.write_additional_data_value(self.additional_data)

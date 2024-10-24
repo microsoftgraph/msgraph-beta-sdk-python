@@ -38,7 +38,8 @@ class ExactMatchJobBase(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.exactMatchLookupJob".casefold():
@@ -92,6 +93,12 @@ class ExactMatchJobBase(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .classification_error import ClassificationError
+        from .entity import Entity
+        from .exact_match_lookup_job import ExactMatchLookupJob
+        from .exact_match_session import ExactMatchSession
+        from .exact_match_session_base import ExactMatchSessionBase
+
         writer.write_datetime_value("completionDateTime", self.completion_date_time)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_object_value("error", self.error)

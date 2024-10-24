@@ -112,6 +112,17 @@ class TeamworkDeviceConfiguration(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .teamwork_camera_configuration import TeamworkCameraConfiguration
+        from .teamwork_device_software_versions import TeamworkDeviceSoftwareVersions
+        from .teamwork_display_configuration import TeamworkDisplayConfiguration
+        from .teamwork_hardware_configuration import TeamworkHardwareConfiguration
+        from .teamwork_microphone_configuration import TeamworkMicrophoneConfiguration
+        from .teamwork_speaker_configuration import TeamworkSpeakerConfiguration
+        from .teamwork_system_configuration import TeamworkSystemConfiguration
+        from .teamwork_teams_client_configuration import TeamworkTeamsClientConfiguration
+
         writer.write_object_value("cameraConfiguration", self.camera_configuration)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

@@ -67,6 +67,9 @@ class ChromeOSOnboardingSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .onboarding_status import OnboardingStatus
+
         writer.write_datetime_value("lastDirectorySyncDateTime", self.last_directory_sync_date_time)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_enum_value("onboardingStatus", self.onboarding_status)

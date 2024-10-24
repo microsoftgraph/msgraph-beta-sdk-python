@@ -81,6 +81,11 @@ class OpenIdConnectIdentityProvider(IdentityProviderBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .claims_mapping import ClaimsMapping
+        from .identity_provider_base import IdentityProviderBase
+        from .open_id_connect_response_mode import OpenIdConnectResponseMode
+        from .open_id_connect_response_types import OpenIdConnectResponseTypes
+
         writer.write_object_value("claimsMapping", self.claims_mapping)
         writer.write_str_value("clientId", self.client_id)
         writer.write_str_value("clientSecret", self.client_secret)

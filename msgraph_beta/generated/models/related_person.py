@@ -62,6 +62,8 @@ class RelatedPerson(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .person_relationship import PersonRelationship
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("relationship", self.relationship)

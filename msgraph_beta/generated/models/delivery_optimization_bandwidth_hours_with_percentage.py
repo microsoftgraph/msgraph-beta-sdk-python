@@ -60,6 +60,9 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(DeliveryOptimizationBandw
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
+        from .delivery_optimization_bandwidth_business_hours_limit import DeliveryOptimizationBandwidthBusinessHoursLimit
+
         writer.write_object_value("bandwidthBackgroundPercentageHours", self.bandwidth_background_percentage_hours)
         writer.write_object_value("bandwidthForegroundPercentageHours", self.bandwidth_foreground_percentage_hours)
     

@@ -57,6 +57,8 @@ class AccessReviewInstanceDecisionItemServicePrincipalTarget(AccessReviewInstanc
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_review_instance_decision_item_target import AccessReviewInstanceDecisionItemTarget
+
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("servicePrincipalDisplayName", self.service_principal_display_name)
         writer.write_str_value("servicePrincipalId", self.service_principal_id)

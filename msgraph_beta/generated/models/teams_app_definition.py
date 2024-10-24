@@ -115,6 +115,15 @@ class TeamsAppDefinition(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .teams_app_authorization import TeamsAppAuthorization
+        from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
+        from .teams_app_icon import TeamsAppIcon
+        from .teams_app_installation_scopes import TeamsAppInstallationScopes
+        from .teams_app_publishing_state import TeamsAppPublishingState
+        from .teamwork_bot import TeamworkBot
+
         writer.write_enum_value("allowedInstallationScopes", self.allowed_installation_scopes)
         writer.write_object_value("authorization", self.authorization)
         writer.write_str_value("azureADAppId", self.azure_a_d_app_id)

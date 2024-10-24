@@ -57,6 +57,9 @@ class AddFooter(MarkContent):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .alignment import Alignment
+        from .mark_content import MarkContent
+
         writer.write_enum_value("alignment", self.alignment)
         writer.write_int_value("margin", self.margin)
     

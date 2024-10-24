@@ -62,6 +62,9 @@ class ReportSuspiciousActivitySettings(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .advanced_config_state import AdvancedConfigState
+        from .include_target import IncludeTarget
+
         writer.write_object_value("includeTarget", self.include_target)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("state", self.state)

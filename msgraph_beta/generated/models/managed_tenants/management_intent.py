@@ -60,6 +60,9 @@ class ManagementIntent(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .management_template_detailed_info import ManagementTemplateDetailedInfo
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("isGlobal", self.is_global)
         writer.write_collection_of_object_values("managementTemplates", self.management_templates)

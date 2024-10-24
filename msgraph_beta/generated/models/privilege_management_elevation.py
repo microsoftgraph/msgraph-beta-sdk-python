@@ -127,6 +127,11 @@ class PrivilegeManagementElevation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .privilege_management_elevation_type import PrivilegeManagementElevationType
+        from .privilege_management_end_user_type import PrivilegeManagementEndUserType
+        from .privilege_management_process_type import PrivilegeManagementProcessType
+
         writer.write_str_value("certificatePayload", self.certificate_payload)
         writer.write_str_value("companyName", self.company_name)
         writer.write_str_value("deviceId", self.device_id)

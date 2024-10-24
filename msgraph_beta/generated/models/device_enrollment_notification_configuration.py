@@ -79,6 +79,11 @@ class DeviceEnrollmentNotificationConfiguration(DeviceEnrollmentConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_enrollment_configuration import DeviceEnrollmentConfiguration
+        from .enrollment_notification_branding_options import EnrollmentNotificationBrandingOptions
+        from .enrollment_notification_template_type import EnrollmentNotificationTemplateType
+        from .enrollment_restriction_platform_type import EnrollmentRestrictionPlatformType
+
         writer.write_enum_value("brandingOptions", self.branding_options)
         writer.write_str_value("defaultLocale", self.default_locale)
         writer.write_uuid_value("notificationMessageTemplateId", self.notification_message_template_id)

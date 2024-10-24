@@ -76,6 +76,9 @@ class MicrosoftTunnelServerLogCollectionResponse(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .microsoft_tunnel_log_collection_status import MicrosoftTunnelLogCollectionStatus
+
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_datetime_value("expiryDateTime", self.expiry_date_time)
         writer.write_datetime_value("requestDateTime", self.request_date_time)

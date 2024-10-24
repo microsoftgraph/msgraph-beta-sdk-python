@@ -48,5 +48,7 @@ class SamlIdentitySource(PermissionsDefinitionIdentitySource):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .permissions_definition_identity_source import PermissionsDefinitionIdentitySource
+
     
 

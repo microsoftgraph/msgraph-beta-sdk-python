@@ -68,6 +68,9 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .management_action_status import ManagementActionStatus
+        from .workload_action_deployment_status import WorkloadActionDeploymentStatus
+
         writer.write_str_value("managementActionId", self.management_action_id)
         writer.write_str_value("managementTemplateId", self.management_template_id)
         writer.write_int_value("managementTemplateVersion", self.management_template_version)

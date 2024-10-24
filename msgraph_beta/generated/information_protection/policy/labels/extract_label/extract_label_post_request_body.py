@@ -50,6 +50,8 @@ class ExtractLabelPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.content_info import ContentInfo
+
         writer.write_object_value("contentInfo", self.content_info)
         writer.write_additional_data_value(self.additional_data)
     

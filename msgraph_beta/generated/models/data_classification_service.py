@@ -90,6 +90,13 @@ class DataClassificationService(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .exact_match_data_store import ExactMatchDataStore
+        from .exact_match_upload_agent import ExactMatchUploadAgent
+        from .job_response_base import JobResponseBase
+        from .sensitive_type import SensitiveType
+        from .sensitivity_label import SensitivityLabel
+
         writer.write_collection_of_object_values("classifyFileJobs", self.classify_file_jobs)
         writer.write_collection_of_object_values("classifyTextJobs", self.classify_text_jobs)
         writer.write_collection_of_object_values("evaluateDlpPoliciesJobs", self.evaluate_dlp_policies_jobs)

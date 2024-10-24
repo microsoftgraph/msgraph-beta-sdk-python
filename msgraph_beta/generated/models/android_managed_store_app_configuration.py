@@ -75,6 +75,10 @@ class AndroidManagedStoreAppConfiguration(ManagedDeviceMobileAppConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_permission_action import AndroidPermissionAction
+        from .android_profile_applicability import AndroidProfileApplicability
+        from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
+
         writer.write_bool_value("connectedAppsEnabled", self.connected_apps_enabled)
         writer.write_str_value("packageId", self.package_id)
         writer.write_str_value("payloadJson", self.payload_json)

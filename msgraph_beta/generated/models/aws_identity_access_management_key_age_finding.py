@@ -78,6 +78,13 @@ class AwsIdentityAccessManagementKeyAgeFinding(Finding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .action_summary import ActionSummary
+        from .aws_access_key import AwsAccessKey
+        from .aws_access_key_details import AwsAccessKeyDetails
+        from .finding import Finding
+        from .iam_status import IamStatus
+        from .permissions_creep_index import PermissionsCreepIndex
+
         writer.write_object_value("accessKey", self.access_key)
         writer.write_object_value("actionSummary", self.action_summary)
         writer.write_object_value("awsAccessKeyDetails", self.aws_access_key_details)

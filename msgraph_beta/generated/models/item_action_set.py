@@ -107,6 +107,17 @@ class ItemActionSet(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .comment_action import CommentAction
+        from .create_action import CreateAction
+        from .delete_action import DeleteAction
+        from .edit_action import EditAction
+        from .mention_action import MentionAction
+        from .move_action import MoveAction
+        from .rename_action import RenameAction
+        from .restore_action import RestoreAction
+        from .share_action import ShareAction
+        from .version_action import VersionAction
+
         writer.write_object_value("comment", self.comment)
         writer.write_object_value("create", self.create)
         writer.write_object_value("delete", self.delete)

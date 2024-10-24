@@ -57,6 +57,8 @@ class DeviceManagementSettingProfileConstraint(DeviceManagementConstraint):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_constraint import DeviceManagementConstraint
+
         writer.write_str_value("source", self.source)
         writer.write_collection_of_primitive_values("types", self.types)
     

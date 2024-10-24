@@ -94,6 +94,11 @@ class AuditLogRecord(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .audit_data import AuditData
+        from .audit_log_record_type import AuditLogRecordType
+        from .audit_log_user_type import AuditLogUserType
+
         writer.write_collection_of_primitive_values("administrativeUnits", self.administrative_units)
         writer.write_object_value("auditData", self.audit_data)
         writer.write_enum_value("auditLogRecordType", self.audit_log_record_type)

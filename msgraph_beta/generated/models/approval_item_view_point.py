@@ -53,6 +53,8 @@ class ApprovalItemViewPoint(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .approver_role import ApproverRole
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_enum_values("roles", self.roles)
         writer.write_additional_data_value(self.additional_data)

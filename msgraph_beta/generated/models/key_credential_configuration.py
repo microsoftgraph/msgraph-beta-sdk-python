@@ -69,6 +69,9 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .app_key_credential_restriction_type import AppKeyCredentialRestrictionType
+        from .app_management_restriction_state import AppManagementRestrictionState
+
         writer.write_collection_of_primitive_values("certificateBasedApplicationConfigurationIds", self.certificate_based_application_configuration_ids)
         writer.write_timedelta_value("maxLifetime", self.max_lifetime)
         writer.write_str_value("@odata.type", self.odata_type)

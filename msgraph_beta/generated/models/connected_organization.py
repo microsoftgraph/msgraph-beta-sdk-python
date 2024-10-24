@@ -88,6 +88,11 @@ class ConnectedOrganization(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .connected_organization_state import ConnectedOrganizationState
+        from .directory_object import DirectoryObject
+        from .entity import Entity
+        from .identity_source import IdentitySource
+
         writer.write_str_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

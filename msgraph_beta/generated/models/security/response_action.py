@@ -42,7 +42,8 @@ class ResponseAction(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.allowFileResponseAction".casefold():
@@ -163,6 +164,23 @@ class ResponseAction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .allow_file_response_action import AllowFileResponseAction
+        from .block_file_response_action import BlockFileResponseAction
+        from .collect_investigation_package_response_action import CollectInvestigationPackageResponseAction
+        from .disable_user_response_action import DisableUserResponseAction
+        from .force_user_password_reset_response_action import ForceUserPasswordResetResponseAction
+        from .hard_delete_response_action import HardDeleteResponseAction
+        from .initiate_investigation_response_action import InitiateInvestigationResponseAction
+        from .isolate_device_response_action import IsolateDeviceResponseAction
+        from .mark_user_as_compromised_response_action import MarkUserAsCompromisedResponseAction
+        from .move_to_deleted_items_response_action import MoveToDeletedItemsResponseAction
+        from .move_to_inbox_response_action import MoveToInboxResponseAction
+        from .move_to_junk_response_action import MoveToJunkResponseAction
+        from .restrict_app_execution_response_action import RestrictAppExecutionResponseAction
+        from .run_antivirus_scan_response_action import RunAntivirusScanResponseAction
+        from .soft_delete_response_action import SoftDeleteResponseAction
+        from .stop_and_quarantine_file_response_action import StopAndQuarantineFileResponseAction
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

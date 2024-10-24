@@ -63,6 +63,9 @@ class MeetingRegistrationQuestion(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .answer_input_type import AnswerInputType
+        from .entity import Entity
+
         writer.write_enum_value("answerInputType", self.answer_input_type)
         writer.write_collection_of_primitive_values("answerOptions", self.answer_options)
         writer.write_str_value("displayName", self.display_name)

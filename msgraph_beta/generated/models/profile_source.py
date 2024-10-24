@@ -54,6 +54,8 @@ class ProfileSource(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("webUrl", self.web_url)
     

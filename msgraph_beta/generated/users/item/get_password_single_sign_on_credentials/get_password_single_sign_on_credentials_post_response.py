@@ -52,6 +52,9 @@ class GetPasswordSingleSignOnCredentialsPostResponse(BaseCollectionPaginationCou
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from ....models.password_single_sign_on_credential_set import PasswordSingleSignOnCredentialSet
+
         writer.write_collection_of_object_values("value", self.value)
     
 

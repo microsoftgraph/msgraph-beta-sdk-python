@@ -79,6 +79,12 @@ class Deployment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .deployable_content import DeployableContent
+        from .deployment_audience import DeploymentAudience
+        from .deployment_settings import DeploymentSettings
+        from .deployment_state import DeploymentState
+
         writer.write_object_value("audience", self.audience)
         writer.write_object_value("content", self.content)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

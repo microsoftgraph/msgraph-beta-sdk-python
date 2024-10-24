@@ -91,6 +91,11 @@ class GovernanceRoleSetting(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .governance_resource import GovernanceResource
+        from .governance_role_definition import GovernanceRoleDefinition
+        from .governance_rule_setting import GovernanceRuleSetting
+
         writer.write_collection_of_object_values("adminEligibleSettings", self.admin_eligible_settings)
         writer.write_collection_of_object_values("adminMemberSettings", self.admin_member_settings)
         writer.write_bool_value("isDefault", self.is_default)

@@ -31,7 +31,8 @@ class DirectoryObjectImpactSummary(ResourceImpactSummary):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.applicationImpactSummary".casefold():
@@ -93,6 +94,14 @@ class DirectoryObjectImpactSummary(ResourceImpactSummary):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..directory_object import DirectoryObject
+        from .application_impact_summary import ApplicationImpactSummary
+        from .device_impact_summary import DeviceImpactSummary
+        from .group_impact_summary import GroupImpactSummary
+        from .resource_impact_summary import ResourceImpactSummary
+        from .service_principal_impact_summary import ServicePrincipalImpactSummary
+        from .user_impact_summary import UserImpactSummary
+
         writer.write_collection_of_object_values("resourceSampling", self.resource_sampling)
     
 

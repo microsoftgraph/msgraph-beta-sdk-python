@@ -50,6 +50,8 @@ class SetCloudPcReviewStatusPostRequestBody(AdditionalDataHolder, BackedModel, P
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.cloud_pc_review_status import CloudPcReviewStatus
+
         writer.write_object_value("reviewStatus", self.review_status)
         writer.write_additional_data_value(self.additional_data)
     

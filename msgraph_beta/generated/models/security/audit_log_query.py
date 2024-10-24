@@ -97,6 +97,11 @@ class AuditLogQuery(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .audit_log_query_status import AuditLogQueryStatus
+        from .audit_log_record import AuditLogRecord
+        from .audit_log_record_type import AuditLogRecordType
+
         writer.write_collection_of_primitive_values("administrativeUnitIdFilters", self.administrative_unit_id_filters)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("filterEndDateTime", self.filter_end_date_time)

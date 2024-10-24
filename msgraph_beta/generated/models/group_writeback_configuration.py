@@ -51,6 +51,8 @@ class GroupWritebackConfiguration(WritebackConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .writeback_configuration import WritebackConfiguration
+
         writer.write_str_value("onPremisesGroupType", self.on_premises_group_type)
     
 

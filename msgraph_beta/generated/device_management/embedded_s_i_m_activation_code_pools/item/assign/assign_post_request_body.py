@@ -50,6 +50,8 @@ class AssignPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_additional_data_value(self.additional_data)
     

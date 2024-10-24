@@ -38,7 +38,8 @@ class ResourceImpactSummary(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.applicationImpactSummary".casefold():
@@ -102,6 +103,13 @@ class ResourceImpactSummary(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .application_impact_summary import ApplicationImpactSummary
+        from .device_impact_summary import DeviceImpactSummary
+        from .directory_object_impact_summary import DirectoryObjectImpactSummary
+        from .group_impact_summary import GroupImpactSummary
+        from .service_principal_impact_summary import ServicePrincipalImpactSummary
+        from .user_impact_summary import UserImpactSummary
+
         writer.write_str_value("impactedCount", self.impacted_count)
         writer.write_bool_value("impactedCountLimitExceeded", self.impacted_count_limit_exceeded)
         writer.write_str_value("@odata.type", self.odata_type)

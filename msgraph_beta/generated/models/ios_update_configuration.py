@@ -88,6 +88,11 @@ class IosUpdateConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_update_time_window import CustomUpdateTimeWindow
+        from .day_of_week import DayOfWeek
+        from .device_configuration import DeviceConfiguration
+        from .ios_software_update_schedule_type import IosSoftwareUpdateScheduleType
+
         writer.write_time_value("activeHoursEnd", self.active_hours_end)
         writer.write_time_value("activeHoursStart", self.active_hours_start)
         writer.write_collection_of_object_values("customUpdateTimeWindows", self.custom_update_time_windows)

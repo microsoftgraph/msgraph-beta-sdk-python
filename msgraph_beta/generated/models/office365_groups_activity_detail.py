@@ -112,6 +112,8 @@ class Office365GroupsActivityDetail(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_int_value("exchangeMailboxStorageUsedInBytes", self.exchange_mailbox_storage_used_in_bytes)
         writer.write_int_value("exchangeMailboxTotalItemCount", self.exchange_mailbox_total_item_count)
         writer.write_int_value("exchangeReceivedEmailCount", self.exchange_received_email_count)

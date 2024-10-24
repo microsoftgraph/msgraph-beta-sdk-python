@@ -51,6 +51,8 @@ class DailyInactiveUsersByApplicationMetric(InactiveUsersByApplicationMetricBase
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .inactive_users_by_application_metric_base import InactiveUsersByApplicationMetricBase
+
         writer.write_int_value("inactive1DayCount", self.inactive1_day_count)
     
 

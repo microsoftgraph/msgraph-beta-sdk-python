@@ -54,6 +54,8 @@ class ExternalIdentitiesPolicy(PolicyBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .policy_base import PolicyBase
+
         writer.write_bool_value("allowDeletedIdentitiesDataRemoval", self.allow_deleted_identities_data_removal)
         writer.write_bool_value("allowExternalIdentitiesToLeave", self.allow_external_identities_to_leave)
     

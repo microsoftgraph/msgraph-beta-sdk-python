@@ -63,6 +63,10 @@ class IosImportedPFXCertificateProfile(IosCertificateProfile):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .intended_purpose import IntendedPurpose
+        from .ios_certificate_profile import IosCertificateProfile
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+
         writer.write_enum_value("intendedPurpose", self.intended_purpose)
         writer.write_collection_of_object_values("managedDeviceCertificateStates", self.managed_device_certificate_states)
     

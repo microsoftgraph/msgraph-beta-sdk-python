@@ -65,6 +65,8 @@ class DeviceManagementConfigurationPolicyTemplateReference(AdditionalDataHolder,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_configuration_template_family import DeviceManagementConfigurationTemplateFamily
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("templateFamily", self.template_family)
         writer.write_str_value("templateId", self.template_id)

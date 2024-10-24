@@ -51,6 +51,8 @@ class RequestorManager(UserSet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .user_set import UserSet
+
         writer.write_int_value("managerLevel", self.manager_level)
     
 

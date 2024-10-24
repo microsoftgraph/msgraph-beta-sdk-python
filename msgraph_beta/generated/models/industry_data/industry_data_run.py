@@ -76,6 +76,11 @@ class IndustryDataRun(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from ..public_error import PublicError
+        from .industry_data_run_activity import IndustryDataRunActivity
+        from .industry_data_run_status import IndustryDataRunStatus
+
         writer.write_collection_of_object_values("activities", self.activities)
         writer.write_enum_value("status", self.status)
     

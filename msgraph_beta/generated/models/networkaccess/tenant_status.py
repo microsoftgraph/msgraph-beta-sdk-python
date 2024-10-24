@@ -57,6 +57,9 @@ class TenantStatus(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .onboarding_status import OnboardingStatus
+
         writer.write_str_value("onboardingErrorMessage", self.onboarding_error_message)
         writer.write_enum_value("onboardingStatus", self.onboarding_status)
     

@@ -88,6 +88,13 @@ class ScheduledPermissionsRequest(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .permissions_definition import PermissionsDefinition
+        from .request_schedule import RequestSchedule
+        from .status_detail import StatusDetail
+        from .ticket_info import TicketInfo
+        from .unified_role_schedule_request_actions import UnifiedRoleScheduleRequestActions
+
         writer.write_enum_value("action", self.action)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("justification", self.justification)

@@ -63,6 +63,9 @@ class SensitivityPolicySettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .sensitivity_label_target import SensitivityLabelTarget
+
         writer.write_enum_value("applicableTo", self.applicable_to)
         writer.write_bool_value("downgradeSensitivityRequiresJustification", self.downgrade_sensitivity_requires_justification)
         writer.write_str_value("helpWebUrl", self.help_web_url)

@@ -57,6 +57,9 @@ class Windows10PFXImportCertificateProfile(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .key_storage_provider_option import KeyStorageProviderOption
+
         writer.write_enum_value("keyStorageProvider", self.key_storage_provider)
     
 

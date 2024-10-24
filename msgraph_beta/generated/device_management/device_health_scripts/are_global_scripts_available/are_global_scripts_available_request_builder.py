@@ -47,7 +47,7 @@ class AreGlobalScriptsAvailableRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         from ....models.global_device_health_script_state import GlobalDeviceHealthScriptState
 
-        return await self.request_adapter.send_async(request_info, globalDeviceHealthScriptState, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "globalDeviceHealthScriptState", error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """

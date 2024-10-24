@@ -70,6 +70,8 @@ class CloudPCConnectivityIssue(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("errorCode", self.error_code)
         writer.write_datetime_value("errorDateTime", self.error_date_time)

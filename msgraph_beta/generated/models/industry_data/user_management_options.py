@@ -59,6 +59,9 @@ class UserManagementOptions(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .additional_user_attributes import AdditionalUserAttributes
+        from .additional_user_options import AdditionalUserOptions
+
         writer.write_collection_of_enum_values("additionalAttributes", self.additional_attributes)
         writer.write_object_value("additionalOptions", self.additional_options)
         writer.write_str_value("@odata.type", self.odata_type)

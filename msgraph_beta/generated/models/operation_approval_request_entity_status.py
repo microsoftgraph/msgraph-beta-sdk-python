@@ -66,6 +66,8 @@ class OperationApprovalRequestEntityStatus(AdditionalDataHolder, BackedModel, Pa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .operation_approval_request_status import OperationApprovalRequestStatus
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("requestStatus", self.request_status)
         writer.write_additional_data_value(self.additional_data)

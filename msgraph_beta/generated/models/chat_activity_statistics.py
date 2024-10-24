@@ -52,6 +52,8 @@ class ChatActivityStatistics(ActivityStatistics):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .activity_statistics import ActivityStatistics
+
         writer.write_timedelta_value("afterHours", self.after_hours)
     
 

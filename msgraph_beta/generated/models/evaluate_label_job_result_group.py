@@ -56,6 +56,8 @@ class EvaluateLabelJobResultGroup(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .evaluate_label_job_result import EvaluateLabelJobResult
+
         writer.write_object_value("automatic", self.automatic)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("recommended", self.recommended)

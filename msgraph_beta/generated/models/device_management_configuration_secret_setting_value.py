@@ -60,6 +60,9 @@ class DeviceManagementConfigurationSecretSettingValue(DeviceManagementConfigurat
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_secret_setting_value_state import DeviceManagementConfigurationSecretSettingValueState
+        from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
+
         writer.write_str_value("value", self.value)
         writer.write_enum_value("valueState", self.value_state)
     

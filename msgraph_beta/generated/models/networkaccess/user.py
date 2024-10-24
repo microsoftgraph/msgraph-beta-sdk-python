@@ -84,6 +84,9 @@ class User(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .traffic_type import TrafficType
+        from .user_type import UserType
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("firstAccessDateTime", self.first_access_date_time)
         writer.write_datetime_value("lastAccessDateTime", self.last_access_date_time)

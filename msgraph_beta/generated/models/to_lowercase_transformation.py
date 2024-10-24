@@ -48,5 +48,7 @@ class ToLowercaseTransformation(CustomClaimTransformation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_claim_transformation import CustomClaimTransformation
+
     
 

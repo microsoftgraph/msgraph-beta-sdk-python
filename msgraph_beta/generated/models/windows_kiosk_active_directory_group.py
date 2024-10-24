@@ -54,6 +54,8 @@ class WindowsKioskActiveDirectoryGroup(WindowsKioskUser):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_kiosk_user import WindowsKioskUser
+
         writer.write_str_value("groupName", self.group_name)
     
 

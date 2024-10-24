@@ -85,6 +85,8 @@ class DeviceHealthScriptRunSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_int_value("detectionScriptErrorDeviceCount", self.detection_script_error_device_count)
         writer.write_int_value("detectionScriptNotApplicableDeviceCount", self.detection_script_not_applicable_device_count)
         writer.write_int_value("detectionScriptPendingDeviceCount", self.detection_script_pending_device_count)

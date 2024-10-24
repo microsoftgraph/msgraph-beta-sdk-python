@@ -76,6 +76,10 @@ class DeviceManagementAutopilotPolicyStatusDetail(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_autopilot_policy_compliance_status import DeviceManagementAutopilotPolicyComplianceStatus
+        from .device_management_autopilot_policy_type import DeviceManagementAutopilotPolicyType
+        from .entity import Entity
+
         writer.write_enum_value("complianceStatus", self.compliance_status)
         writer.write_str_value("displayName", self.display_name)
         writer.write_int_value("errorCode", self.error_code)

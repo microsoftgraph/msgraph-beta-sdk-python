@@ -69,6 +69,8 @@ class UserExperienceAnalyticsImpactingProcess(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("category", self.category)
         writer.write_str_value("description", self.description)
         writer.write_str_value("deviceId", self.device_id)

@@ -54,6 +54,9 @@ class AwsAccessKey(AwsIdentity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aws_identity import AwsIdentity
+        from .aws_user import AwsUser
+
         writer.write_object_value("owner", self.owner)
     
 

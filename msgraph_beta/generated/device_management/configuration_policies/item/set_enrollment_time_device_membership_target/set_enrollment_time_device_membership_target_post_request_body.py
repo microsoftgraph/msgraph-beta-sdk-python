@@ -50,6 +50,8 @@ class SetEnrollmentTimeDeviceMembershipTargetPostRequestBody(AdditionalDataHolde
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.enrollment_time_device_membership_target import EnrollmentTimeDeviceMembershipTarget
+
         writer.write_collection_of_object_values("enrollmentTimeDeviceMembershipTargets", self.enrollment_time_device_membership_targets)
         writer.write_additional_data_value(self.additional_data)
     

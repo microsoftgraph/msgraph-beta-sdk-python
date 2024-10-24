@@ -56,6 +56,9 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ..........models.current_label import CurrentLabel
+        from ..........models.discovered_sensitive_type import DiscoveredSensitiveType
+
         writer.write_object_value("currentLabel", self.current_label)
         writer.write_collection_of_object_values("discoveredSensitiveTypes", self.discovered_sensitive_types)
         writer.write_additional_data_value(self.additional_data)

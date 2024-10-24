@@ -57,6 +57,9 @@ class AssignedComputeInstanceDetails(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system_resource import AuthorizationSystemResource
+        from .entity import Entity
+
         writer.write_collection_of_object_values("accessedStorageBuckets", self.accessed_storage_buckets)
         writer.write_object_value("assignedComputeInstance", self.assigned_compute_instance)
     

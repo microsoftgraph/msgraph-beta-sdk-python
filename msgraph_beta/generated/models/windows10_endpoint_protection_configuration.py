@@ -847,6 +847,47 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .application_guard_block_clipboard_sharing_type import ApplicationGuardBlockClipboardSharingType
+        from .application_guard_block_file_transfer_type import ApplicationGuardBlockFileTransferType
+        from .application_guard_enabled_options import ApplicationGuardEnabledOptions
+        from .app_locker_application_control_type import AppLockerApplicationControlType
+        from .bit_locker_fixed_drive_policy import BitLockerFixedDrivePolicy
+        from .bit_locker_recovery_password_rotation_type import BitLockerRecoveryPasswordRotationType
+        from .bit_locker_removable_drive_policy import BitLockerRemovableDrivePolicy
+        from .bit_locker_system_drive_policy import BitLockerSystemDrivePolicy
+        from .defender_attack_surface_type import DefenderAttackSurfaceType
+        from .defender_cloud_block_level_type import DefenderCloudBlockLevelType
+        from .defender_detected_malware_actions import DefenderDetectedMalwareActions
+        from .defender_protection_type import DefenderProtectionType
+        from .defender_realtime_scan_direction import DefenderRealtimeScanDirection
+        from .defender_scan_type import DefenderScanType
+        from .defender_security_center_i_t_contact_display_type import DefenderSecurityCenterITContactDisplayType
+        from .defender_security_center_notifications_from_app_type import DefenderSecurityCenterNotificationsFromAppType
+        from .defender_submit_samples_consent_type import DefenderSubmitSamplesConsentType
+        from .device_configuration import DeviceConfiguration
+        from .device_guard_local_system_authority_credential_guard_type import DeviceGuardLocalSystemAuthorityCredentialGuardType
+        from .device_management_user_rights_setting import DeviceManagementUserRightsSetting
+        from .dma_guard_device_enumeration_policy_type import DmaGuardDeviceEnumerationPolicyType
+        from .enablement import Enablement
+        from .firewall_certificate_revocation_list_check_method_type import FirewallCertificateRevocationListCheckMethodType
+        from .firewall_packet_queueing_method_type import FirewallPacketQueueingMethodType
+        from .firewall_pre_shared_key_encoding_method_type import FirewallPreSharedKeyEncodingMethodType
+        from .folder_protection_type import FolderProtectionType
+        from .lan_manager_authentication_level import LanManagerAuthenticationLevel
+        from .local_security_options_administrator_elevation_prompt_behavior_type import LocalSecurityOptionsAdministratorElevationPromptBehaviorType
+        from .local_security_options_format_and_eject_of_removable_media_allowed_user_type import LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType
+        from .local_security_options_information_displayed_on_lock_screen_type import LocalSecurityOptionsInformationDisplayedOnLockScreenType
+        from .local_security_options_information_shown_on_lock_screen_type import LocalSecurityOptionsInformationShownOnLockScreenType
+        from .local_security_options_minimum_session_security import LocalSecurityOptionsMinimumSessionSecurity
+        from .local_security_options_smart_card_removal_behavior_type import LocalSecurityOptionsSmartCardRemovalBehaviorType
+        from .local_security_options_standard_user_elevation_prompt_behavior_type import LocalSecurityOptionsStandardUserElevationPromptBehaviorType
+        from .secure_boot_with_d_m_a_type import SecureBootWithDMAType
+        from .service_start_type import ServiceStartType
+        from .weekly_schedule import WeeklySchedule
+        from .windows_defender_tamper_protection_options import WindowsDefenderTamperProtectionOptions
+        from .windows_firewall_network_profile import WindowsFirewallNetworkProfile
+        from .windows_firewall_rule import WindowsFirewallRule
+
         writer.write_enum_value("appLockerApplicationControl", self.app_locker_application_control)
         writer.write_bool_value("applicationGuardAllowCameraMicrophoneRedirection", self.application_guard_allow_camera_microphone_redirection)
         writer.write_bool_value("applicationGuardAllowFileSaveOnHost", self.application_guard_allow_file_save_on_host)

@@ -42,7 +42,8 @@ class Win32LobAppAssignmentSettings(MobileAppAssignmentSettings):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32CatalogAppAssignmentSettings".casefold():
@@ -92,6 +93,14 @@ class Win32LobAppAssignmentSettings(MobileAppAssignmentSettings):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app_assignment_settings import MobileAppAssignmentSettings
+        from .mobile_app_install_time_settings import MobileAppInstallTimeSettings
+        from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
+        from .win32_lob_app_auto_update_settings import Win32LobAppAutoUpdateSettings
+        from .win32_lob_app_delivery_optimization_priority import Win32LobAppDeliveryOptimizationPriority
+        from .win32_lob_app_notification import Win32LobAppNotification
+        from .win32_lob_app_restart_settings import Win32LobAppRestartSettings
+
         writer.write_object_value("autoUpdateSettings", self.auto_update_settings)
         writer.write_enum_value("deliveryOptimizationPriority", self.delivery_optimization_priority)
         writer.write_object_value("installTimeSettings", self.install_time_settings)

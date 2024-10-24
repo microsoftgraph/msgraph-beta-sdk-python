@@ -65,6 +65,8 @@ class ApprovalSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .approval_stage import ApprovalStage
+
         writer.write_str_value("approvalMode", self.approval_mode)
         writer.write_collection_of_object_values("approvalStages", self.approval_stages)
         writer.write_bool_value("isApprovalRequired", self.is_approval_required)

@@ -88,6 +88,10 @@ class AccessPackageResourceEnvironment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_package_resource import AccessPackageResource
+        from .connection_info import ConnectionInfo
+        from .entity import Entity
+
         writer.write_collection_of_object_values("accessPackageResources", self.access_package_resources)
         writer.write_object_value("connectionInfo", self.connection_info)
         writer.write_str_value("createdBy", self.created_by)

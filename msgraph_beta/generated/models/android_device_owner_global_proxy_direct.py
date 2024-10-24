@@ -60,6 +60,8 @@ class AndroidDeviceOwnerGlobalProxyDirect(AndroidDeviceOwnerGlobalProxy):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
+
         writer.write_collection_of_primitive_values("excludedHosts", self.excluded_hosts)
         writer.write_str_value("host", self.host)
         writer.write_int_value("port", self.port)

@@ -60,6 +60,10 @@ class PermissionsAnalytics(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .finding import Finding
+        from .permissions_creep_index_distribution import PermissionsCreepIndexDistribution
+
         writer.write_collection_of_object_values("findings", self.findings)
         writer.write_collection_of_object_values("permissionsCreepIndexDistributions", self.permissions_creep_index_distributions)
     

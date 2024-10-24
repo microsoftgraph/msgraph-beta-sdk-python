@@ -51,5 +51,7 @@ class DeviceManagementSettingXmlConstraint(DeviceManagementConstraint):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_constraint import DeviceManagementConstraint
+
     
 

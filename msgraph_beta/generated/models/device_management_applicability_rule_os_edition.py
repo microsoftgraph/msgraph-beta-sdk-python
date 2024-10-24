@@ -62,6 +62,9 @@ class DeviceManagementApplicabilityRuleOsEdition(AdditionalDataHolder, BackedMod
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_applicability_rule_type import DeviceManagementApplicabilityRuleType
+        from .windows10_edition_type import Windows10EditionType
+
         writer.write_str_value("name", self.name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_enum_values("osEditionTypes", self.os_edition_types)

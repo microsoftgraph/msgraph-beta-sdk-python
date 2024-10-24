@@ -59,6 +59,8 @@ class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedMode
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cloud_pc_disaster_recovery_network_setting import CloudPcDisasterRecoveryNetworkSetting
+
         writer.write_bool_value("crossRegionDisasterRecoveryEnabled", self.cross_region_disaster_recovery_enabled)
         writer.write_object_value("disasterRecoveryNetworkSetting", self.disaster_recovery_network_setting)
         writer.write_bool_value("maintainCrossRegionRestorePointEnabled", self.maintain_cross_region_restore_point_enabled)

@@ -48,5 +48,7 @@ class FocusActivityStatistics(ActivityStatistics):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .activity_statistics import ActivityStatistics
+
     
 

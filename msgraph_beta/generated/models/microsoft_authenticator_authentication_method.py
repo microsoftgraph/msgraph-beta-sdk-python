@@ -69,6 +69,10 @@ class MicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_method import AuthenticationMethod
+        from .device import Device
+        from .microsoft_authenticator_authentication_method_client_app_name import MicrosoftAuthenticatorAuthenticationMethodClientAppName
+
         writer.write_enum_value("clientAppName", self.client_app_name)
         writer.write_object_value("device", self.device)
         writer.write_str_value("deviceTag", self.device_tag)

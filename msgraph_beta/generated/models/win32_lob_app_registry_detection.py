@@ -75,6 +75,10 @@ class Win32LobAppRegistryDetection(Win32LobAppDetection):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .win32_lob_app_detection import Win32LobAppDetection
+        from .win32_lob_app_detection_operator import Win32LobAppDetectionOperator
+        from .win32_lob_app_registry_detection_type import Win32LobAppRegistryDetectionType
+
         writer.write_bool_value("check32BitOn64System", self.check32_bit_on64_system)
         writer.write_enum_value("detectionType", self.detection_type)
         writer.write_str_value("detectionValue", self.detection_value)

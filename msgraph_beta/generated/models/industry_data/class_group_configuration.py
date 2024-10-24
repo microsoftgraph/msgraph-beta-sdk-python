@@ -65,6 +65,10 @@ class ClassGroupConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .additional_class_group_attributes import AdditionalClassGroupAttributes
+        from .additional_class_group_options import AdditionalClassGroupOptions
+        from .enrollment_mappings import EnrollmentMappings
+
         writer.write_collection_of_enum_values("additionalAttributes", self.additional_attributes)
         writer.write_object_value("additionalOptions", self.additional_options)
         writer.write_object_value("enrollmentMappings", self.enrollment_mappings)

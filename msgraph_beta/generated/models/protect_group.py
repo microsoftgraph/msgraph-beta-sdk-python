@@ -60,6 +60,9 @@ class ProtectGroup(LabelActionBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .group_privacy import GroupPrivacy
+        from .label_action_base import LabelActionBase
+
         writer.write_bool_value("allowEmailFromGuestUsers", self.allow_email_from_guest_users)
         writer.write_bool_value("allowGuestUsers", self.allow_guest_users)
         writer.write_enum_value("privacy", self.privacy)

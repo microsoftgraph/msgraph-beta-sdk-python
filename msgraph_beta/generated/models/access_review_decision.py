@@ -79,6 +79,9 @@ class AccessReviewDecision(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .user_identity import UserIdentity
+
         writer.write_str_value("accessRecommendation", self.access_recommendation)
         writer.write_str_value("accessReviewId", self.access_review_id)
         writer.write_object_value("appliedBy", self.applied_by)

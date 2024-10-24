@@ -88,6 +88,12 @@ class AlertRecord(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .alert_impact import AlertImpact
+        from .alert_rule_template import AlertRuleTemplate
+        from .alert_status_type import AlertStatusType
+        from .rule_severity_type import RuleSeverityType
+
         writer.write_object_value("alertImpact", self.alert_impact)
         writer.write_str_value("alertRuleId", self.alert_rule_id)
         writer.write_enum_value("alertRuleTemplate", self.alert_rule_template)

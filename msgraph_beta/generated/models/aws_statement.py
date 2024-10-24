@@ -74,6 +74,9 @@ class AwsStatement(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .aws_condition import AwsCondition
+        from .aws_statement_effect import AwsStatementEffect
+
         writer.write_collection_of_primitive_values("actions", self.actions)
         writer.write_object_value("condition", self.condition)
         writer.write_enum_value("effect", self.effect)

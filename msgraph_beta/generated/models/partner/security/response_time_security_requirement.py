@@ -51,6 +51,8 @@ class ResponseTimeSecurityRequirement(SecurityRequirement):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .security_requirement import SecurityRequirement
+
         writer.write_float_value("averageResponseTimeInHours", self.average_response_time_in_hours)
     
 

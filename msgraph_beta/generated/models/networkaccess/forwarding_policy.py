@@ -54,6 +54,9 @@ class ForwardingPolicy(Policy):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .policy import Policy
+        from .traffic_forwarding_type import TrafficForwardingType
+
         writer.write_enum_value("trafficForwardingType", self.traffic_forwarding_type)
     
 

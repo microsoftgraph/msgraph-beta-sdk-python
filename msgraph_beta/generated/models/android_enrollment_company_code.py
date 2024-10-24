@@ -62,6 +62,8 @@ class AndroidEnrollmentCompanyCode(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .mime_content import MimeContent
+
         writer.write_str_value("enrollmentToken", self.enrollment_token)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("qrCodeContent", self.qr_code_content)

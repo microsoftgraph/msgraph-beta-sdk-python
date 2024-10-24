@@ -69,6 +69,9 @@ class DetonationDetails(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .detonation_chain import DetonationChain
+        from .detonation_observables import DetonationObservables
+
         writer.write_datetime_value("analysisDateTime", self.analysis_date_time)
         writer.write_object_value("detonationChain", self.detonation_chain)
         writer.write_object_value("detonationObservables", self.detonation_observables)

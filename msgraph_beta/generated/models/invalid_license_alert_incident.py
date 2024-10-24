@@ -51,6 +51,8 @@ class InvalidLicenseAlertIncident(UnifiedRoleManagementAlertIncident):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIncident
+
         writer.write_str_value("tenantLicenseStatus", self.tenant_license_status)
     
 

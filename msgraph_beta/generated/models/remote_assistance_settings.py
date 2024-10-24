@@ -63,6 +63,9 @@ class RemoteAssistanceSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .remote_assistance_state import RemoteAssistanceState
+
         writer.write_bool_value("allowSessionsToUnenrolledDevices", self.allow_sessions_to_unenrolled_devices)
         writer.write_bool_value("blockChat", self.block_chat)
         writer.write_enum_value("remoteAssistanceState", self.remote_assistance_state)

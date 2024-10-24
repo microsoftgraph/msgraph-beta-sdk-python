@@ -66,6 +66,10 @@ class CredentialUsageSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .feature_type import FeatureType
+        from .usage_auth_method import UsageAuthMethod
+
         writer.write_enum_value("authMethod", self.auth_method)
         writer.write_int_value("failureActivityCount", self.failure_activity_count)
         writer.write_enum_value("feature", self.feature)

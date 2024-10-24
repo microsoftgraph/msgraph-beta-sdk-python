@@ -137,7 +137,8 @@ class ManagedAppProtection(ManagedAppPolicy):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidManagedAppProtection".casefold():
@@ -261,6 +262,24 @@ class ManagedAppProtection(ManagedAppPolicy):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_managed_app_protection import AndroidManagedAppProtection
+        from .default_managed_app_protection import DefaultManagedAppProtection
+        from .ios_managed_app_protection import IosManagedAppProtection
+        from .managed_app_clipboard_sharing_level import ManagedAppClipboardSharingLevel
+        from .managed_app_data_ingestion_location import ManagedAppDataIngestionLocation
+        from .managed_app_data_storage_location import ManagedAppDataStorageLocation
+        from .managed_app_data_transfer_level import ManagedAppDataTransferLevel
+        from .managed_app_device_threat_level import ManagedAppDeviceThreatLevel
+        from .managed_app_notification_restriction import ManagedAppNotificationRestriction
+        from .managed_app_phone_number_redirect_level import ManagedAppPhoneNumberRedirectLevel
+        from .managed_app_pin_character_set import ManagedAppPinCharacterSet
+        from .managed_app_policy import ManagedAppPolicy
+        from .managed_app_remediation_action import ManagedAppRemediationAction
+        from .managed_browser_type import ManagedBrowserType
+        from .messaging_redirect_app_type import MessagingRedirectAppType
+        from .mobile_threat_defense_partner_priority import MobileThreatDefensePartnerPriority
+        from .targeted_managed_app_protection import TargetedManagedAppProtection
+
         writer.write_collection_of_enum_values("allowedDataIngestionLocations", self.allowed_data_ingestion_locations)
         writer.write_collection_of_enum_values("allowedDataStorageLocations", self.allowed_data_storage_locations)
         writer.write_enum_value("allowedInboundDataTransferSources", self.allowed_inbound_data_transfer_sources)

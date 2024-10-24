@@ -58,6 +58,8 @@ class EmailActivityStatistics(ActivityStatistics):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .activity_statistics import ActivityStatistics
+
         writer.write_timedelta_value("afterHours", self.after_hours)
         writer.write_timedelta_value("readEmail", self.read_email)
         writer.write_timedelta_value("sentEmail", self.sent_email)

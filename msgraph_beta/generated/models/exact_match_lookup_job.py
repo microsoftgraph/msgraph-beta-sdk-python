@@ -57,6 +57,9 @@ class ExactMatchLookupJob(ExactMatchJobBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .exact_match_job_base import ExactMatchJobBase
+        from .lookup_result_row import LookupResultRow
+
         writer.write_collection_of_object_values("matchingRows", self.matching_rows)
         writer.write_str_value("state", self.state)
     

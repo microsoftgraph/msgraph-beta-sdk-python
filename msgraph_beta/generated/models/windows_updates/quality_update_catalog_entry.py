@@ -81,6 +81,12 @@ class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .product_revision import ProductRevision
+        from .quality_update_cadence import QualityUpdateCadence
+        from .quality_update_classification import QualityUpdateClassification
+        from .quality_update_cve_severity_information import QualityUpdateCveSeverityInformation
+        from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
+
         writer.write_str_value("catalogName", self.catalog_name)
         writer.write_object_value("cveSeverityInformation", self.cve_severity_information)
         writer.write_bool_value("isExpeditable", self.is_expeditable)

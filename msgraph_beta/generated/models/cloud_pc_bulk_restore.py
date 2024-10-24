@@ -58,6 +58,9 @@ class CloudPcBulkRestore(CloudPcBulkAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_bulk_action import CloudPcBulkAction
+        from .restore_time_range import RestoreTimeRange
+
         writer.write_datetime_value("restorePointDateTime", self.restore_point_date_time)
         writer.write_enum_value("timeRange", self.time_range)
     

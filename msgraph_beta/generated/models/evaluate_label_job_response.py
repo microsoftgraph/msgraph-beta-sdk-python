@@ -54,6 +54,9 @@ class EvaluateLabelJobResponse(JobResponseBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .evaluate_label_job_result_group import EvaluateLabelJobResultGroup
+        from .job_response_base import JobResponseBase
+
         writer.write_object_value("result", self.result)
     
 

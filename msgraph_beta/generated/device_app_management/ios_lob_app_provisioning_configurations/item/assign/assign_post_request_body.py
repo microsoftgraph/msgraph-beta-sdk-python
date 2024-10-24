@@ -56,6 +56,9 @@ class AssignPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.ios_lob_app_provisioning_configuration_assignment import IosLobAppProvisioningConfigurationAssignment
+        from .....models.mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
+
         writer.write_collection_of_object_values("appProvisioningConfigurationGroupAssignments", self.app_provisioning_configuration_group_assignments)
         writer.write_collection_of_object_values("iOSLobAppProvisioningConfigAssignments", self.i_o_s_lob_app_provisioning_config_assignments)
         writer.write_additional_data_value(self.additional_data)

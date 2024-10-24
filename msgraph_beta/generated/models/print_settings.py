@@ -56,6 +56,8 @@ class PrintSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .printer_discovery_settings import PrinterDiscoverySettings
+
         writer.write_bool_value("documentConversionEnabled", self.document_conversion_enabled)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("printerDiscoverySettings", self.printer_discovery_settings)

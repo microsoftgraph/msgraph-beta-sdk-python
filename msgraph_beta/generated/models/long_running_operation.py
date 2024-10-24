@@ -44,7 +44,8 @@ class LongRunningOperation(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.attackSimulationOperation".casefold():
@@ -116,6 +117,15 @@ class LongRunningOperation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .attack_simulation_operation import AttackSimulationOperation
+        from .engagement_async_operation import EngagementAsyncOperation
+        from .entity import Entity
+        from .goals_export_job import GoalsExportJob
+        from .industry_data.file_validate_operation import FileValidateOperation
+        from .industry_data.validate_operation import ValidateOperation
+        from .long_running_operation_status import LongRunningOperationStatus
+        from .rich_long_running_operation import RichLongRunningOperation
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("lastActionDateTime", self.last_action_date_time)
         writer.write_str_value("resourceLocation", self.resource_location)

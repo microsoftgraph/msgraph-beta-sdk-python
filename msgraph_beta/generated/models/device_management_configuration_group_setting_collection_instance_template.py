@@ -60,6 +60,9 @@ class DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate(Device
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_group_setting_value_template import DeviceManagementConfigurationGroupSettingValueTemplate
+        from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
+
         writer.write_bool_value("allowUnmanagedValues", self.allow_unmanaged_values)
         writer.write_collection_of_object_values("groupSettingCollectionValueTemplate", self.group_setting_collection_value_template)
     

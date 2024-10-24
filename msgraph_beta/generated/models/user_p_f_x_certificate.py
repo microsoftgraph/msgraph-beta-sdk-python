@@ -94,6 +94,10 @@ class UserPFXCertificate(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .user_pfx_intended_purpose import UserPfxIntendedPurpose
+        from .user_pfx_padding_scheme import UserPfxPaddingScheme
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_bytes_value("encryptedPfxBlob", self.encrypted_pfx_blob)
         writer.write_str_value("encryptedPfxPassword", self.encrypted_pfx_password)

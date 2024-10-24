@@ -92,6 +92,8 @@ class DeviceManagementSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .derived_credential_provider_type import DerivedCredentialProviderType
+
         writer.write_bool_value("androidDeviceAdministratorEnrollmentEnabled", self.android_device_administrator_enrollment_enabled)
         writer.write_enum_value("derivedCredentialProvider", self.derived_credential_provider)
         writer.write_str_value("derivedCredentialUrl", self.derived_credential_url)

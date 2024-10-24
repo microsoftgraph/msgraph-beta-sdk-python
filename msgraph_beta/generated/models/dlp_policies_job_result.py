@@ -60,6 +60,8 @@ class DlpPoliciesJobResult(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .matching_dlp_rule import MatchingDlpRule
+
         writer.write_str_value("auditCorrelationId", self.audit_correlation_id)
         writer.write_datetime_value("evaluationDateTime", self.evaluation_date_time)
         writer.write_collection_of_object_values("matchingRules", self.matching_rules)

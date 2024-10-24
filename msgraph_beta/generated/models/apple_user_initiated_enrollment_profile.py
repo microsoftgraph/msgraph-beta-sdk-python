@@ -91,6 +91,12 @@ class AppleUserInitiatedEnrollmentProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_enrollment_profile_assignment import AppleEnrollmentProfileAssignment
+        from .apple_owner_type_enrollment_type import AppleOwnerTypeEnrollmentType
+        from .apple_user_initiated_enrollment_type import AppleUserInitiatedEnrollmentType
+        from .device_platform_type import DevicePlatformType
+        from .entity import Entity
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_collection_of_object_values("availableEnrollmentTypeOptions", self.available_enrollment_type_options)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

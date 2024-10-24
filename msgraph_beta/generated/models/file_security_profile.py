@@ -109,6 +109,12 @@ class FileSecurityProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .file_hash import FileHash
+        from .malware_state import MalwareState
+        from .security_vendor_information import SecurityVendorInformation
+        from .vulnerability_state import VulnerabilityState
+
         writer.write_collection_of_primitive_values("activityGroupNames", self.activity_group_names)
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)
         writer.write_str_value("azureTenantId", self.azure_tenant_id)

@@ -56,6 +56,8 @@ class ConvertExternalToInternalMemberUserPostRequestBody(AdditionalDataHolder, B
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.password_profile import PasswordProfile
+
         writer.write_str_value("mail", self.mail)
         writer.write_object_value("passwordProfile", self.password_profile)
         writer.write_str_value("userPrincipalName", self.user_principal_name)

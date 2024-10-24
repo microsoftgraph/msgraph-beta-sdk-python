@@ -52,6 +52,9 @@ class HardwarePasswordDetailCollectionResponse(BaseCollectionPaginationCountResp
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .hardware_password_detail import HardwarePasswordDetail
+
         writer.write_collection_of_object_values("value", self.value)
     
 

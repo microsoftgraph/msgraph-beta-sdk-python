@@ -36,7 +36,8 @@ class WindowsVpnConfiguration(DeviceConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10VpnConfiguration".casefold():
@@ -88,6 +89,12 @@ class WindowsVpnConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .vpn_server import VpnServer
+        from .windows10_vpn_configuration import Windows10VpnConfiguration
+        from .windows81_vpn_configuration import Windows81VpnConfiguration
+        from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
+
         writer.write_str_value("connectionName", self.connection_name)
         writer.write_bytes_value("customXml", self.custom_xml)
         writer.write_collection_of_object_values("servers", self.servers)

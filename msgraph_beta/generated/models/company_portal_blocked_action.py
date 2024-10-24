@@ -68,6 +68,10 @@ class CompanyPortalBlockedAction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .company_portal_action import CompanyPortalAction
+        from .device_platform_type import DevicePlatformType
+        from .owner_type import OwnerType
+
         writer.write_enum_value("action", self.action)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("ownerType", self.owner_type)

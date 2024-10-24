@@ -60,6 +60,8 @@ class ContentLabel(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .assignment_method import AssignmentMethod
+
         writer.write_enum_value("assignmentMethod", self.assignment_method)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("@odata.type", self.odata_type)

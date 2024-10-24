@@ -112,6 +112,11 @@ class HostSecurityProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .logon_user import LogonUser
+        from .network_interface import NetworkInterface
+        from .security_vendor_information import SecurityVendorInformation
+
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)
         writer.write_str_value("azureTenantId", self.azure_tenant_id)
         writer.write_datetime_value("firstSeenDateTime", self.first_seen_date_time)

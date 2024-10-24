@@ -69,6 +69,10 @@ class WorkPosition(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .item_facet import ItemFacet
+        from .position_detail import PositionDetail
+        from .related_person import RelatedPerson
+
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_collection_of_object_values("colleagues", self.colleagues)
         writer.write_object_value("detail", self.detail)

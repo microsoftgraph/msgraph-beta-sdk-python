@@ -77,6 +77,9 @@ class MatchingDlpRule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .dlp_action_info import DlpActionInfo
+        from .rule_mode import RuleMode
+
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_bool_value("isMostRestrictive", self.is_most_restrictive)
         writer.write_str_value("@odata.type", self.odata_type)

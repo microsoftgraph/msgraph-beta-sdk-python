@@ -57,7 +57,8 @@ class DeviceManagementTemplate(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityBaselineTemplate".casefold():
@@ -114,6 +115,14 @@ class DeviceManagementTemplate(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_setting_instance import DeviceManagementSettingInstance
+        from .device_management_template_setting_category import DeviceManagementTemplateSettingCategory
+        from .device_management_template_subtype import DeviceManagementTemplateSubtype
+        from .device_management_template_type import DeviceManagementTemplateType
+        from .entity import Entity
+        from .policy_platform_type import PolicyPlatformType
+        from .security_baseline_template import SecurityBaselineTemplate
+
         writer.write_collection_of_object_values("categories", self.categories)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

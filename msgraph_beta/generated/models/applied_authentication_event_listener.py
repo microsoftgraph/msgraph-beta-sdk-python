@@ -62,6 +62,9 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, BackedModel, Pars
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .authentication_event_handler_result import AuthenticationEventHandlerResult
+        from .authentication_event_type import AuthenticationEventType
+
         writer.write_enum_value("eventType", self.event_type)
         writer.write_str_value("executedListenerId", self.executed_listener_id)
         writer.write_object_value("handlerResult", self.handler_result)

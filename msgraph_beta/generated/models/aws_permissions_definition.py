@@ -54,6 +54,9 @@ class AwsPermissionsDefinition(PermissionsDefinition):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aws_permissions_definition_action import AwsPermissionsDefinitionAction
+        from .permissions_definition import PermissionsDefinition
+
         writer.write_object_value("actionInfo", self.action_info)
     
 

@@ -61,6 +61,9 @@ class DayNote(ChangeTrackedEntity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .change_tracked_entity import ChangeTrackedEntity
+        from .item_body import ItemBody
+
         writer.write_date_value("dayNoteDate", self.day_note_date)
         writer.write_object_value("draftDayNote", self.draft_day_note)
         writer.write_object_value("sharedDayNote", self.shared_day_note)

@@ -54,6 +54,8 @@ class DeviceManagementSettingRegexConstraint(DeviceManagementConstraint):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_constraint import DeviceManagementConstraint
+
         writer.write_str_value("regex", self.regex)
     
 

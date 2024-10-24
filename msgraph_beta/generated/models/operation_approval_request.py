@@ -88,6 +88,11 @@ class OperationApprovalRequest(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .operation_approval_policy_type import OperationApprovalPolicyType
+        from .operation_approval_request_status import OperationApprovalRequestStatus
+
         writer.write_enum_value("status", self.status)
     
 

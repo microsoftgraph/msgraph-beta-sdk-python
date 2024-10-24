@@ -115,6 +115,16 @@ class Windows10XSCEPCertificateProfile(Windows10XCertificateProfile):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .certificate_store import CertificateStore
+        from .certificate_validity_period_scale import CertificateValidityPeriodScale
+        from .extended_key_usage import ExtendedKeyUsage
+        from .hash_algorithms import HashAlgorithms
+        from .key_size import KeySize
+        from .key_storage_provider_option import KeyStorageProviderOption
+        from .key_usages import KeyUsages
+        from .windows10_x_certificate_profile import Windows10XCertificateProfile
+        from .windows10_x_custom_subject_alternative_name import Windows10XCustomSubjectAlternativeName
+
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_enum_value("certificateValidityPeriodScale", self.certificate_validity_period_scale)
         writer.write_int_value("certificateValidityPeriodValue", self.certificate_validity_period_value)

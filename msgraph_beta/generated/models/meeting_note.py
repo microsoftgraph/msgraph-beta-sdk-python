@@ -59,6 +59,8 @@ class MeetingNote(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .meeting_note_subpoint import MeetingNoteSubpoint
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("subpoints", self.subpoints)
         writer.write_str_value("text", self.text)

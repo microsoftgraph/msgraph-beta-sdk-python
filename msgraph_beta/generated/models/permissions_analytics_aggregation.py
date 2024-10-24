@@ -60,6 +60,9 @@ class PermissionsAnalyticsAggregation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .permissions_analytics import PermissionsAnalytics
+
         writer.write_object_value("aws", self.aws)
         writer.write_object_value("azure", self.azure)
         writer.write_object_value("gcp", self.gcp)

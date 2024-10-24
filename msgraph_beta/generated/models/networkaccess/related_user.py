@@ -54,6 +54,8 @@ class RelatedUser(RelatedResource):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .related_resource import RelatedResource
+
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
     

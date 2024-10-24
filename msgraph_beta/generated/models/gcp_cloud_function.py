@@ -54,6 +54,9 @@ class GcpCloudFunction(GcpIdentity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
+        from .gcp_identity import GcpIdentity
+
         writer.write_object_value("resource", self.resource)
     
 

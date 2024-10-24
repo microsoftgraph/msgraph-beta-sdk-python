@@ -48,5 +48,7 @@ class OAuth1ClientCredential(OAuthClientCredential):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .o_auth_client_credential import OAuthClientCredential
+
     
 

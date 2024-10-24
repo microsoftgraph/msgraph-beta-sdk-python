@@ -57,6 +57,9 @@ class PayloadCompatibleAssignmentFilter(DeviceAndAppManagementAssignmentFilter):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .assignment_filter_payload_type import AssignmentFilterPayloadType
+        from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
+
         writer.write_enum_value("payloadType", self.payload_type)
     
 

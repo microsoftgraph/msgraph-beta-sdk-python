@@ -48,5 +48,7 @@ class OverprovisionedUserFinding(IdentityFinding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .identity_finding import IdentityFinding
+
     
 

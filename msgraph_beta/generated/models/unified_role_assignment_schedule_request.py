@@ -117,6 +117,15 @@ class UnifiedRoleAssignmentScheduleRequest(Request):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .app_scope import AppScope
+        from .directory_object import DirectoryObject
+        from .request import Request
+        from .request_schedule import RequestSchedule
+        from .ticket_info import TicketInfo
+        from .unified_role_assignment_schedule import UnifiedRoleAssignmentSchedule
+        from .unified_role_definition import UnifiedRoleDefinition
+        from .unified_role_eligibility_schedule import UnifiedRoleEligibilitySchedule
+
         writer.write_str_value("action", self.action)
         writer.write_object_value("activatedUsing", self.activated_using)
         writer.write_object_value("appScope", self.app_scope)

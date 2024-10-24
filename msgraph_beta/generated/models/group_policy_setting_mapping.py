@@ -120,6 +120,11 @@ class GroupPolicySettingMapping(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .group_policy_setting_scope import GroupPolicySettingScope
+        from .group_policy_setting_type import GroupPolicySettingType
+        from .mdm_supported_state import MdmSupportedState
+
         writer.write_str_value("admxSettingDefinitionId", self.admx_setting_definition_id)
         writer.write_collection_of_primitive_values("childIdList", self.child_id_list)
         writer.write_str_value("intuneSettingDefinitionId", self.intune_setting_definition_id)

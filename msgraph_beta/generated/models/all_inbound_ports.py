@@ -48,5 +48,7 @@ class AllInboundPorts(InboundPorts):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .inbound_ports import InboundPorts
+
     
 

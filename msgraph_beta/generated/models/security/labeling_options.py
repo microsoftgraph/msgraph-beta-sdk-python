@@ -68,6 +68,10 @@ class LabelingOptions(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .assignment_method import AssignmentMethod
+        from .downgrade_justification import DowngradeJustification
+        from .key_value_pair import KeyValuePair
+
         writer.write_enum_value("assignmentMethod", self.assignment_method)
         writer.write_object_value("downgradeJustification", self.downgrade_justification)
         writer.write_collection_of_object_values("extendedProperties", self.extended_properties)

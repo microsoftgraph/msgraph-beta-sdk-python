@@ -60,6 +60,10 @@ class HealthMonitoringRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .alert import Alert
+        from .alert_configuration import AlertConfiguration
+
         writer.write_collection_of_object_values("alertConfigurations", self.alert_configurations)
         writer.write_collection_of_object_values("alerts", self.alerts)
     

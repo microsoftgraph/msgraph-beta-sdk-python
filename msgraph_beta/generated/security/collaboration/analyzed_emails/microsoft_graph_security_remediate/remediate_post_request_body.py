@@ -71,6 +71,10 @@ class RemediatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.security.analyzed_email import AnalyzedEmail
+        from .....models.security.remediation_action import RemediationAction
+        from .....models.security.remediation_severity import RemediationSeverity
+
         writer.write_enum_value("action", self.action)
         writer.write_collection_of_object_values("analyzedEmails", self.analyzed_emails)
         writer.write_str_value("description", self.description)

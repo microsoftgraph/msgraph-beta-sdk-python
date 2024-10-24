@@ -60,6 +60,8 @@ class WindowsKioskUWPApp(WindowsKioskAppBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_kiosk_app_base import WindowsKioskAppBase
+
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("appUserModelId", self.app_user_model_id)
         writer.write_str_value("containedAppId", self.contained_app_id)

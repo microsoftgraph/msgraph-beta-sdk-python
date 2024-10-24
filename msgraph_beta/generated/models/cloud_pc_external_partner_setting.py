@@ -67,6 +67,9 @@ class CloudPcExternalPartnerSetting(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_external_partner_status import CloudPcExternalPartnerStatus
+        from .entity import Entity
+
         writer.write_bool_value("enableConnection", self.enable_connection)
         writer.write_datetime_value("lastSyncDateTime", self.last_sync_date_time)
         writer.write_str_value("partnerId", self.partner_id)

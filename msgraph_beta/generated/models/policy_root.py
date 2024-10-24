@@ -64,7 +64,7 @@ class PolicyRoot(Entity):
     cross_tenant_access_policy: Optional[CrossTenantAccessPolicy] = None
     # The tenant-wide policy that enforces app management restrictions for all applications and service principals.
     default_app_management_policy: Optional[TenantAppManagementPolicy] = None
-    # The deviceRegistrationPolicy property
+    # Represents the policy scope that controls quota restrictions, additional authentication, and authorization policies to register device identities to your organization.
     device_registration_policy: Optional[DeviceRegistrationPolicy] = None
     # The directoryRoleAccessReviewPolicy property
     directory_role_access_review_policy: Optional[DirectoryRoleAccessReviewPolicy] = None
@@ -219,6 +219,36 @@ class PolicyRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_review_policy import AccessReviewPolicy
+        from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
+        from .admin_consent_request_policy import AdminConsentRequestPolicy
+        from .app_management_policy import AppManagementPolicy
+        from .authentication_flows_policy import AuthenticationFlowsPolicy
+        from .authentication_methods_policy import AuthenticationMethodsPolicy
+        from .authentication_strength_policy import AuthenticationStrengthPolicy
+        from .authorization_policy import AuthorizationPolicy
+        from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
+        from .claims_mapping_policy import ClaimsMappingPolicy
+        from .conditional_access_policy import ConditionalAccessPolicy
+        from .cross_tenant_access_policy import CrossTenantAccessPolicy
+        from .device_registration_policy import DeviceRegistrationPolicy
+        from .directory_role_access_review_policy import DirectoryRoleAccessReviewPolicy
+        from .entity import Entity
+        from .external_identities_policy import ExternalIdentitiesPolicy
+        from .feature_rollout_policy import FeatureRolloutPolicy
+        from .federated_token_validation_policy import FederatedTokenValidationPolicy
+        from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
+        from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
+        from .mobility_management_policy import MobilityManagementPolicy
+        from .permission_grant_policy import PermissionGrantPolicy
+        from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
+        from .service_principal_creation_policy import ServicePrincipalCreationPolicy
+        from .tenant_app_management_policy import TenantAppManagementPolicy
+        from .token_issuance_policy import TokenIssuancePolicy
+        from .token_lifetime_policy import TokenLifetimePolicy
+        from .unified_role_management_policy import UnifiedRoleManagementPolicy
+        from .unified_role_management_policy_assignment import UnifiedRoleManagementPolicyAssignment
+
         writer.write_object_value("accessReviewPolicy", self.access_review_policy)
         writer.write_collection_of_object_values("activityBasedTimeoutPolicies", self.activity_based_timeout_policies)
         writer.write_object_value("adminConsentRequestPolicy", self.admin_consent_request_policy)

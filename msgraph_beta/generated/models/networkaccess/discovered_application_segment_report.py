@@ -93,6 +93,9 @@ class DiscoveredApplicationSegmentReport(AdditionalDataHolder, BackedModel, Pars
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .access_type import AccessType
+        from .networking_protocol import NetworkingProtocol
+
         writer.write_enum_value("accessType", self.access_type)
         writer.write_int_value("deviceCount", self.device_count)
         writer.write_str_value("discoveredApplicationSegmentId", self.discovered_application_segment_id)

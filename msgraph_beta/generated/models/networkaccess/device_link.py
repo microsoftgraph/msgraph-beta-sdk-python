@@ -88,6 +88,13 @@ class DeviceLink(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .bandwidth_capacity_in_mbps import BandwidthCapacityInMbps
+        from .bgp_configuration import BgpConfiguration
+        from .device_vendor import DeviceVendor
+        from .redundancy_configuration import RedundancyConfiguration
+        from .tunnel_configuration import TunnelConfiguration
+
         writer.write_enum_value("bandwidthCapacityInMbps", self.bandwidth_capacity_in_mbps)
         writer.write_object_value("bgpConfiguration", self.bgp_configuration)
         writer.write_enum_value("deviceVendor", self.device_vendor)

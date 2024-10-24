@@ -60,6 +60,8 @@ class Win32LobAppPowerShellScriptDetection(Win32LobAppDetection):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .win32_lob_app_detection import Win32LobAppDetection
+
         writer.write_bool_value("enforceSignatureCheck", self.enforce_signature_check)
         writer.write_bool_value("runAs32Bit", self.run_as32_bit)
         writer.write_str_value("scriptContent", self.script_content)

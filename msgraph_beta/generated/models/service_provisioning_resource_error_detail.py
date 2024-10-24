@@ -33,7 +33,8 @@ class ServiceProvisioningResourceErrorDetail(AdditionalDataHolder, BackedModel, 
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceProvisioningLinkedResourceErrorDetail".casefold():
@@ -67,6 +68,8 @@ class ServiceProvisioningResourceErrorDetail(AdditionalDataHolder, BackedModel, 
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .service_provisioning_linked_resource_error_detail import ServiceProvisioningLinkedResourceErrorDetail
+
         writer.write_str_value("code", self.code)
         writer.write_str_value("details", self.details)
         writer.write_str_value("message", self.message)

@@ -69,6 +69,10 @@ class EdiscoveryHoldPolicy(PolicyBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .policy_base import PolicyBase
+        from .site_source import SiteSource
+        from .user_source import UserSource
+
         writer.write_str_value("contentQuery", self.content_query)
         writer.write_collection_of_primitive_values("errors", self.errors)
         writer.write_bool_value("isEnabled", self.is_enabled)

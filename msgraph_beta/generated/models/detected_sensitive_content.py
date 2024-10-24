@@ -39,7 +39,8 @@ class DetectedSensitiveContent(DetectedSensitiveContentBase):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.machineLearningDetectedSensitiveContent".casefold():
@@ -89,6 +90,14 @@ class DetectedSensitiveContent(DetectedSensitiveContentBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .classification_attribute import ClassificationAttribute
+        from .classification_method import ClassificationMethod
+        from .detected_sensitive_content_base import DetectedSensitiveContentBase
+        from .machine_learning_detected_sensitive_content import MachineLearningDetectedSensitiveContent
+        from .sensitive_content_location import SensitiveContentLocation
+        from .sensitive_type_scope import SensitiveTypeScope
+        from .sensitive_type_source import SensitiveTypeSource
+
         writer.write_collection_of_object_values("classificationAttributes", self.classification_attributes)
         writer.write_enum_value("classificationMethod", self.classification_method)
         writer.write_collection_of_object_values("matches", self.matches)

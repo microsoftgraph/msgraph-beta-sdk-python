@@ -54,6 +54,9 @@ class ForceUserPasswordResetResponseAction(ResponseAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .force_user_password_reset_entity_identifier import ForceUserPasswordResetEntityIdentifier
+        from .response_action import ResponseAction
+
         writer.write_enum_value("identifier", self.identifier)
     
 

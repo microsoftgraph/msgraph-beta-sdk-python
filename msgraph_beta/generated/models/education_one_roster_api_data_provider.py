@@ -72,6 +72,10 @@ class EducationOneRosterApiDataProvider(EducationSynchronizationDataProvider):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
+        from .education_synchronization_customizations import EducationSynchronizationCustomizations
+        from .education_synchronization_data_provider import EducationSynchronizationDataProvider
+
         writer.write_object_value("connectionSettings", self.connection_settings)
         writer.write_str_value("connectionUrl", self.connection_url)
         writer.write_object_value("customizations", self.customizations)

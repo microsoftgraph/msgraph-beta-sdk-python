@@ -57,6 +57,8 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.driver_approval_action import DriverApprovalAction
+
         writer.write_enum_value("actionName", self.action_name)
         writer.write_datetime_value("deploymentDate", self.deployment_date)
         writer.write_collection_of_primitive_values("driverIds", self.driver_ids)

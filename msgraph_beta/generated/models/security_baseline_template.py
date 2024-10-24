@@ -69,6 +69,11 @@ class SecurityBaselineTemplate(DeviceManagementTemplate):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_template import DeviceManagementTemplate
+        from .security_baseline_category_state_summary import SecurityBaselineCategoryStateSummary
+        from .security_baseline_device_state import SecurityBaselineDeviceState
+        from .security_baseline_state_summary import SecurityBaselineStateSummary
+
         writer.write_collection_of_object_values("categoryDeviceStateSummaries", self.category_device_state_summaries)
         writer.write_object_value("deviceStateSummary", self.device_state_summary)
         writer.write_collection_of_object_values("deviceStates", self.device_states)

@@ -121,6 +121,16 @@ class DeviceManagementIntent(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_intent_assignment import DeviceManagementIntentAssignment
+        from .device_management_intent_device_setting_state_summary import DeviceManagementIntentDeviceSettingStateSummary
+        from .device_management_intent_device_state import DeviceManagementIntentDeviceState
+        from .device_management_intent_device_state_summary import DeviceManagementIntentDeviceStateSummary
+        from .device_management_intent_setting_category import DeviceManagementIntentSettingCategory
+        from .device_management_intent_user_state import DeviceManagementIntentUserState
+        from .device_management_intent_user_state_summary import DeviceManagementIntentUserStateSummary
+        from .device_management_setting_instance import DeviceManagementSettingInstance
+        from .entity import Entity
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_collection_of_object_values("categories", self.categories)
         writer.write_str_value("description", self.description)

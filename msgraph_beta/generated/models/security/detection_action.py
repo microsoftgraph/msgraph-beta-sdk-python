@@ -65,6 +65,10 @@ class DetectionAction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .alert_template import AlertTemplate
+        from .organizational_scope import OrganizationalScope
+        from .response_action import ResponseAction
+
         writer.write_object_value("alertTemplate", self.alert_template)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("organizationalScope", self.organizational_scope)

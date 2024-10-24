@@ -56,6 +56,8 @@ class AccessPackageLocalizedContent(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .access_package_localized_text import AccessPackageLocalizedText
+
         writer.write_str_value("defaultText", self.default_text)
         writer.write_collection_of_object_values("localizedTexts", self.localized_texts)
         writer.write_str_value("@odata.type", self.odata_type)

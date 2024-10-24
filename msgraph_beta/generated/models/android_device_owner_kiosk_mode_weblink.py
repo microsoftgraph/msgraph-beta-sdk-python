@@ -57,6 +57,8 @@ class AndroidDeviceOwnerKioskModeWeblink(AndroidDeviceOwnerKioskModeFolderItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_kiosk_mode_folder_item import AndroidDeviceOwnerKioskModeFolderItem
+
         writer.write_str_value("label", self.label)
         writer.write_str_value("link", self.link)
     

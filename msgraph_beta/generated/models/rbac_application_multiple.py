@@ -66,6 +66,11 @@ class RbacApplicationMultiple(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
+        from .unified_role_assignment_multiple import UnifiedRoleAssignmentMultiple
+        from .unified_role_definition import UnifiedRoleDefinition
+
         writer.write_collection_of_object_values("resourceNamespaces", self.resource_namespaces)
         writer.write_collection_of_object_values("roleAssignments", self.role_assignments)
         writer.write_collection_of_object_values("roleDefinitions", self.role_definitions)

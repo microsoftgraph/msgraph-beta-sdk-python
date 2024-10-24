@@ -51,6 +51,8 @@ class CloudPcDisasterRecoveryAzureConnectionSetting(CloudPcDisasterRecoveryNetwo
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_disaster_recovery_network_setting import CloudPcDisasterRecoveryNetworkSetting
+
         writer.write_str_value("onPremisesConnectionId", self.on_premises_connection_id)
     
 

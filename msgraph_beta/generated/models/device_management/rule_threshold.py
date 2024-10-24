@@ -62,6 +62,9 @@ class RuleThreshold(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .aggregation_type import AggregationType
+        from .operator_type import OperatorType
+
         writer.write_enum_value("aggregation", self.aggregation)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("operator", self.operator)

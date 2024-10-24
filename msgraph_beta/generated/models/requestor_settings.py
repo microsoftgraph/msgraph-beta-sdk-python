@@ -59,6 +59,8 @@ class RequestorSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .user_set import UserSet
+
         writer.write_bool_value("acceptRequests", self.accept_requests)
         writer.write_collection_of_object_values("allowedRequestors", self.allowed_requestors)
         writer.write_str_value("@odata.type", self.odata_type)

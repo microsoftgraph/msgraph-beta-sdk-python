@@ -57,6 +57,9 @@ class MediaPrompt(Prompt):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .media_info import MediaInfo
+        from .prompt import Prompt
+
         writer.write_int_value("loop", self.loop)
         writer.write_object_value("mediaInfo", self.media_info)
     

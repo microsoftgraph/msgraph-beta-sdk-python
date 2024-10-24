@@ -59,6 +59,9 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .conditional_access_conditions import ConditionalAccessConditions
+        from .conditional_access_rule import ConditionalAccessRule
+
         writer.write_enum_value("conditionalAccessCondition", self.conditional_access_condition)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("ruleSatisfied", self.rule_satisfied)

@@ -53,6 +53,8 @@ class EnrichedAuditLogsSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .status import Status
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("status", self.status)
         writer.write_additional_data_value(self.additional_data)

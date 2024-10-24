@@ -63,6 +63,8 @@ class MacOsVppAppAssignedLicense(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("userEmailAddress", self.user_email_address)
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userName", self.user_name)

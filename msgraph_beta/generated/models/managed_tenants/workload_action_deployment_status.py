@@ -78,6 +78,9 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ..generic_error import GenericError
+        from .workload_action_status import WorkloadActionStatus
+
         writer.write_str_value("actionId", self.action_id)
         writer.write_str_value("deployedPolicyId", self.deployed_policy_id)
         writer.write_object_value("error", self.error)

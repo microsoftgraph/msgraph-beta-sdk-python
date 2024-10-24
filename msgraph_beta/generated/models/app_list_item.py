@@ -38,7 +38,8 @@ class AppListItem(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.appleAppListItem".casefold():
@@ -73,6 +74,8 @@ class AppListItem(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .apple_app_list_item import AppleAppListItem
+
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("appStoreUrl", self.app_store_url)
         writer.write_str_value("name", self.name)

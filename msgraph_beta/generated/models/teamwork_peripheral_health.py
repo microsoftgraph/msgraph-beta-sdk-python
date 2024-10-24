@@ -62,6 +62,9 @@ class TeamworkPeripheralHealth(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_connection import TeamworkConnection
+        from .teamwork_peripheral import TeamworkPeripheral
+
         writer.write_object_value("connection", self.connection)
         writer.write_bool_value("isOptional", self.is_optional)
         writer.write_str_value("@odata.type", self.odata_type)

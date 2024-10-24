@@ -63,6 +63,9 @@ class Windows10XTrustedRootCertificate(DeviceManagementResourceAccessProfileBase
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .certificate_destination_store import CertificateDestinationStore
+        from .device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
+
         writer.write_str_value("certFileName", self.cert_file_name)
         writer.write_enum_value("destinationStore", self.destination_store)
         writer.write_bytes_value("trustedRootCertificate", self.trusted_root_certificate)

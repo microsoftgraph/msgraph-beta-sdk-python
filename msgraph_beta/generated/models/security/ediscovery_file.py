@@ -60,6 +60,10 @@ class EdiscoveryFile(File):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .ediscovery_custodian import EdiscoveryCustodian
+        from .ediscovery_review_tag import EdiscoveryReviewTag
+        from .file import File
+
         writer.write_object_value("custodian", self.custodian)
         writer.write_collection_of_object_values("tags", self.tags)
     

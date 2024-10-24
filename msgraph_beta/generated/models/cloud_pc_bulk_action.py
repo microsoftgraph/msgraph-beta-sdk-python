@@ -52,7 +52,8 @@ class CloudPcBulkAction(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkCreateSnapshot".casefold():
@@ -164,6 +165,22 @@ class CloudPcBulkAction(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_bulk_action_status import CloudPcBulkActionStatus
+        from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
+        from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
+        from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
+        from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
+        from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
+        from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
+        from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
+        from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
+        from .cloud_pc_bulk_resize import CloudPcBulkResize
+        from .cloud_pc_bulk_restart import CloudPcBulkRestart
+        from .cloud_pc_bulk_restore import CloudPcBulkRestore
+        from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
+        from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
+        from .entity import Entity
+
         writer.write_object_value("actionSummary", self.action_summary)
         writer.write_collection_of_primitive_values("cloudPcIds", self.cloud_pc_ids)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

@@ -69,6 +69,11 @@ class ManagedDeviceWindowsOperatingSystemImage(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .managed_device_architecture import ManagedDeviceArchitecture
+        from .managed_device_windows_operating_system_edition import ManagedDeviceWindowsOperatingSystemEdition
+        from .managed_device_windows_operating_system_update import ManagedDeviceWindowsOperatingSystemUpdate
+
         writer.write_collection_of_object_values("availableUpdates", self.available_updates)
         writer.write_collection_of_enum_values("supportedArchitectures", self.supported_architectures)
         writer.write_collection_of_object_values("supportedEditions", self.supported_editions)

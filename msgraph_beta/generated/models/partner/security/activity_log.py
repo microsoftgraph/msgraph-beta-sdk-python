@@ -63,6 +63,8 @@ class ActivityLog(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .security_alert_status import SecurityAlertStatus
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("statusFrom", self.status_from)
         writer.write_enum_value("statusTo", self.status_to)

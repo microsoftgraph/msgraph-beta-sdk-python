@@ -70,6 +70,8 @@ class ActiveUsersMetric(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("appName", self.app_name)
         writer.write_int_value("count", self.count)

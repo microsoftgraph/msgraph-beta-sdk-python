@@ -81,6 +81,9 @@ class AdvancedThreatProtectionOnboardingStateSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
+        from .entity import Entity
+
         writer.write_collection_of_object_values("advancedThreatProtectionOnboardingDeviceSettingStates", self.advanced_threat_protection_onboarding_device_setting_states)
         writer.write_int_value("compliantDeviceCount", self.compliant_device_count)
         writer.write_int_value("conflictDeviceCount", self.conflict_device_count)

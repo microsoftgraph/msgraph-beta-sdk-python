@@ -50,6 +50,8 @@ class UpdatePolicyRulesPostRequestBody(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.networkaccess.policy_rule_delta import PolicyRuleDelta
+
         writer.write_collection_of_object_values("rules", self.rules)
         writer.write_additional_data_value(self.additional_data)
     

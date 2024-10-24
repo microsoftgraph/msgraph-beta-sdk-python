@@ -75,6 +75,11 @@ class TeamsAppDashboardCardDefinition(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .teams_app_dashboard_card_content_source import TeamsAppDashboardCardContentSource
+        from .teams_app_dashboard_card_icon import TeamsAppDashboardCardIcon
+        from .teams_app_dashboard_card_size import TeamsAppDashboardCardSize
+
         writer.write_object_value("contentSource", self.content_source)
         writer.write_enum_value("defaultSize", self.default_size)
         writer.write_str_value("description", self.description)

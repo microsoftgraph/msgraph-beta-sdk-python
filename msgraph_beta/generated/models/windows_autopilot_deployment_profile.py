@@ -73,7 +73,8 @@ class WindowsAutopilotDeploymentProfile(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.activeDirectoryWindowsAutopilotDeploymentProfile".casefold():
@@ -145,6 +146,16 @@ class WindowsAutopilotDeploymentProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
+        from .azure_a_d_windows_autopilot_deployment_profile import AzureADWindowsAutopilotDeploymentProfile
+        from .entity import Entity
+        from .out_of_box_experience_setting import OutOfBoxExperienceSetting
+        from .out_of_box_experience_settings import OutOfBoxExperienceSettings
+        from .windows_autopilot_deployment_profile_assignment import WindowsAutopilotDeploymentProfileAssignment
+        from .windows_autopilot_device_identity import WindowsAutopilotDeviceIdentity
+        from .windows_autopilot_device_type import WindowsAutopilotDeviceType
+        from .windows_enrollment_status_screen_settings import WindowsEnrollmentStatusScreenSettings
+
         writer.write_collection_of_object_values("assignedDevices", self.assigned_devices)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

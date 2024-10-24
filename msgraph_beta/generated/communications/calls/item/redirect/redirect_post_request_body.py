@@ -68,6 +68,9 @@ class RedirectPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.call_disposition import CallDisposition
+        from .....models.invitation_participant_info import InvitationParticipantInfo
+
         writer.write_str_value("callbackUri", self.callback_uri)
         writer.write_bool_value("maskCallee", self.mask_callee)
         writer.write_bool_value("maskCaller", self.mask_caller)

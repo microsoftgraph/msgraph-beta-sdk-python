@@ -51,6 +51,8 @@ class BusinessFlowSettings(AccessReviewSettings):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_review_settings import AccessReviewSettings
+
         writer.write_int_value("durationInDays", self.duration_in_days)
     
 

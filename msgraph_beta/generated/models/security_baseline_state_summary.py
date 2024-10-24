@@ -39,7 +39,8 @@ class SecurityBaselineStateSummary(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityBaselineCategoryStateSummary".casefold():
@@ -80,6 +81,9 @@ class SecurityBaselineStateSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .security_baseline_category_state_summary import SecurityBaselineCategoryStateSummary
+
         writer.write_int_value("conflictCount", self.conflict_count)
         writer.write_int_value("errorCount", self.error_count)
         writer.write_int_value("notApplicableCount", self.not_applicable_count)

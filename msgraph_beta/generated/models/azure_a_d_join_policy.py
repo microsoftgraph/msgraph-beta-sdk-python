@@ -62,6 +62,9 @@ class AzureADJoinPolicy(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_registration_membership import DeviceRegistrationMembership
+        from .local_admin_settings import LocalAdminSettings
+
         writer.write_object_value("allowedToJoin", self.allowed_to_join)
         writer.write_bool_value("isAdminConfigurable", self.is_admin_configurable)
         writer.write_object_value("localAdmins", self.local_admins)

@@ -54,6 +54,8 @@ class ExternalMeetingRegistrant(MeetingRegistrantBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .meeting_registrant_base import MeetingRegistrantBase
+
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_str_value("userId", self.user_id)
     

@@ -50,6 +50,8 @@ class QueryByPlatformTypePostRequestBody(AdditionalDataHolder, BackedModel, Pars
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.policy_platform_type import PolicyPlatformType
+
         writer.write_enum_value("platformType", self.platform_type)
         writer.write_additional_data_value(self.additional_data)
     

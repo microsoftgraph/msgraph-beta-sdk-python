@@ -54,6 +54,8 @@ class OAuth2ClientCredential(OAuthClientCredential):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .o_auth_client_credential import OAuthClientCredential
+
         writer.write_str_value("scope", self.scope)
         writer.write_str_value("tokenUrl", self.token_url)
     

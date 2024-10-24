@@ -68,6 +68,9 @@ class ExportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ........models.ediscovery.export_file_structure import ExportFileStructure
+        from ........models.ediscovery.export_options import ExportOptions
+
         writer.write_str_value("azureBlobContainer", self.azure_blob_container)
         writer.write_str_value("azureBlobToken", self.azure_blob_token)
         writer.write_str_value("description", self.description)

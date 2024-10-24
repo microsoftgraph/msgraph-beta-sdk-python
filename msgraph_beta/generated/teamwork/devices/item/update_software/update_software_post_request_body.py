@@ -53,6 +53,8 @@ class UpdateSoftwarePostRequestBody(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.teamwork_software_type import TeamworkSoftwareType
+
         writer.write_enum_value("softwareType", self.software_type)
         writer.write_str_value("softwareVersion", self.software_version)
         writer.write_additional_data_value(self.additional_data)

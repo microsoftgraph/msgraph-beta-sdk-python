@@ -62,6 +62,8 @@ class ManagementTemplateDetailedInfo(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .management_category import ManagementCategory
+
         writer.write_enum_value("category", self.category)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("managementTemplateId", self.management_template_id)

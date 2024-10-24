@@ -65,6 +65,9 @@ class AnalyzedEmailUrl(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .detonation_details import DetonationDetails
+        from .threat_type import ThreatType
+
         writer.write_str_value("detectionMethod", self.detection_method)
         writer.write_object_value("detonationDetails", self.detonation_details)
         writer.write_str_value("@odata.type", self.odata_type)

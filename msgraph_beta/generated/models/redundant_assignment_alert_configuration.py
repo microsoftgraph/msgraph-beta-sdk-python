@@ -52,6 +52,8 @@ class RedundantAssignmentAlertConfiguration(UnifiedRoleManagementAlertConfigurat
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .unified_role_management_alert_configuration import UnifiedRoleManagementAlertConfiguration
+
         writer.write_timedelta_value("duration", self.duration)
     
 

@@ -50,6 +50,8 @@ class CreateDeviceLogCollectionRequestPostRequestBody(AdditionalDataHolder, Back
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ......models.device_log_collection_request import DeviceLogCollectionRequest
+
         writer.write_object_value("templateType", self.template_type)
         writer.write_additional_data_value(self.additional_data)
     

@@ -52,6 +52,9 @@ class GetSupportedCloudPcRemoteActionsGetResponse(BaseCollectionPaginationCountR
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ......models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from ......models.cloud_pc_remote_action_capability import CloudPcRemoteActionCapability
+
         writer.write_collection_of_object_values("value", self.value)
     
 

@@ -145,6 +145,16 @@ class ManagedDeviceCertificateState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .certificate_issuance_states import CertificateIssuanceStates
+        from .certificate_revocation_status import CertificateRevocationStatus
+        from .certificate_validity_period_scale import CertificateValidityPeriodScale
+        from .device_platform_type import DevicePlatformType
+        from .entity import Entity
+        from .key_storage_provider_option import KeyStorageProviderOption
+        from .key_usages import KeyUsages
+        from .subject_alternative_name_type import SubjectAlternativeNameType
+        from .subject_name_format import SubjectNameFormat
+
         writer.write_str_value("certificateEnhancedKeyUsage", self.certificate_enhanced_key_usage)
         writer.write_int_value("certificateErrorCode", self.certificate_error_code)
         writer.write_datetime_value("certificateExpirationDateTime", self.certificate_expiration_date_time)

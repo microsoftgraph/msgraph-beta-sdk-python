@@ -66,6 +66,11 @@ class ExternallyAccessibleAwsStorageBucketFinding(Finding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .accounts_with_access import AccountsWithAccess
+        from .authorization_system_resource import AuthorizationSystemResource
+        from .aws_access_type import AwsAccessType
+        from .finding import Finding
+
         writer.write_enum_value("accessibility", self.accessibility)
         writer.write_object_value("accountsWithAccess", self.accounts_with_access)
         writer.write_object_value("storageBucket", self.storage_bucket)

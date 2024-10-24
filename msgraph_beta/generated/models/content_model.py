@@ -73,6 +73,10 @@ class ContentModel(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .content_model_type import ContentModelType
+        from .entity import Entity
+        from .identity_set import IdentitySet
+
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("lastModifiedBy", self.last_modified_by)

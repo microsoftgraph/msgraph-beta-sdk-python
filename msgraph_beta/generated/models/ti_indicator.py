@@ -235,6 +235,12 @@ class TiIndicator(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .diamond_model import DiamondModel
+        from .entity import Entity
+        from .file_hash_type import FileHashType
+        from .ti_action import TiAction
+        from .tlp_level import TlpLevel
+
         writer.write_enum_value("action", self.action)
         writer.write_collection_of_primitive_values("activityGroupNames", self.activity_group_names)
         writer.write_str_value("additionalInformation", self.additional_information)

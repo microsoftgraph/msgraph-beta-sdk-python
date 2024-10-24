@@ -76,6 +76,8 @@ class Office365GroupsActivityCounts(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_int_value("exchangeEmailsReceived", self.exchange_emails_received)
         writer.write_date_value("reportDate", self.report_date)
         writer.write_str_value("reportPeriod", self.report_period)

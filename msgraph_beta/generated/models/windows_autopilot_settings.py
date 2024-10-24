@@ -64,6 +64,9 @@ class WindowsAutopilotSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .windows_autopilot_sync_status import WindowsAutopilotSyncStatus
+
         writer.write_datetime_value("lastManualSyncTriggerDateTime", self.last_manual_sync_trigger_date_time)
         writer.write_datetime_value("lastSyncDateTime", self.last_sync_date_time)
         writer.write_enum_value("syncStatus", self.sync_status)

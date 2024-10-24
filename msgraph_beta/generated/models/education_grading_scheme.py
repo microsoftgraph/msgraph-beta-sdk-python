@@ -60,6 +60,9 @@ class EducationGradingScheme(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .education_grading_scheme_grade import EducationGradingSchemeGrade
+        from .entity import Entity
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("grades", self.grades)
         writer.write_bool_value("hidePointsDuringGrading", self.hide_points_during_grading)

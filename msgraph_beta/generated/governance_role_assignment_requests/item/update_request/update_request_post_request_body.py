@@ -59,6 +59,8 @@ class UpdateRequestPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.governance_schedule import GovernanceSchedule
+
         writer.write_str_value("assignmentState", self.assignment_state)
         writer.write_str_value("decision", self.decision)
         writer.write_str_value("reason", self.reason)

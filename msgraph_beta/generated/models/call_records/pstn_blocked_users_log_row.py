@@ -75,6 +75,8 @@ class PstnBlockedUsersLogRow(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .pstn_user_block_mode import PstnUserBlockMode
+
         writer.write_datetime_value("blockDateTime", self.block_date_time)
         writer.write_str_value("blockReason", self.block_reason)
         writer.write_str_value("@odata.type", self.odata_type)

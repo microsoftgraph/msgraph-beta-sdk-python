@@ -109,6 +109,13 @@ class HardwareConfiguration(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .hardware_configuration_assignment import HardwareConfigurationAssignment
+        from .hardware_configuration_device_state import HardwareConfigurationDeviceState
+        from .hardware_configuration_format import HardwareConfigurationFormat
+        from .hardware_configuration_run_summary import HardwareConfigurationRunSummary
+        from .hardware_configuration_user_state import HardwareConfigurationUserState
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_bytes_value("configurationFileContent", self.configuration_file_content)
         writer.write_str_value("description", self.description)

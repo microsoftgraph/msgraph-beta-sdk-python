@@ -51,5 +51,7 @@ class AppleAppListItem(AppListItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .app_list_item import AppListItem
+
     
 

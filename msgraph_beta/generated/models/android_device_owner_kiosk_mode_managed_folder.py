@@ -62,6 +62,8 @@ class AndroidDeviceOwnerKioskModeManagedFolder(AdditionalDataHolder, BackedModel
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .android_device_owner_kiosk_mode_folder_item import AndroidDeviceOwnerKioskModeFolderItem
+
         writer.write_str_value("folderIdentifier", self.folder_identifier)
         writer.write_str_value("folderName", self.folder_name)
         writer.write_collection_of_object_values("items", self.items)

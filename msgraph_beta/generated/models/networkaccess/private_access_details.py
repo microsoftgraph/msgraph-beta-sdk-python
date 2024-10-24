@@ -80,6 +80,10 @@ class PrivateAccessDetails(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .access_type import AccessType
+        from .connection_status import ConnectionStatus
+        from .third_party_token_details import ThirdPartyTokenDetails
+
         writer.write_enum_value("accessType", self.access_type)
         writer.write_str_value("appSegmentId", self.app_segment_id)
         writer.write_enum_value("connectionStatus", self.connection_status)

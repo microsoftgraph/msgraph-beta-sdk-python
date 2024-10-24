@@ -54,6 +54,9 @@ class PlannerSharedWithContainer(PlannerPlanContainer):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_plan_access_level import PlannerPlanAccessLevel
+        from .planner_plan_container import PlannerPlanContainer
+
         writer.write_enum_value("accessLevel", self.access_level)
     
 

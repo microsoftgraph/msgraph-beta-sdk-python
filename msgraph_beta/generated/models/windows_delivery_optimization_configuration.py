@@ -120,6 +120,14 @@ class WindowsDeliveryOptimizationConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
+        from .delivery_optimization_group_id_source import DeliveryOptimizationGroupIdSource
+        from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
+        from .delivery_optimization_restrict_peer_selection_by_options import DeliveryOptimizationRestrictPeerSelectionByOptions
+        from .device_configuration import DeviceConfiguration
+        from .enablement import Enablement
+        from .windows_delivery_optimization_mode import WindowsDeliveryOptimizationMode
+
         writer.write_int_value("backgroundDownloadFromHttpDelayInSeconds", self.background_download_from_http_delay_in_seconds)
         writer.write_object_value("bandwidthMode", self.bandwidth_mode)
         writer.write_int_value("cacheServerBackgroundDownloadFallbackToHttpDelayInSeconds", self.cache_server_background_download_fallback_to_http_delay_in_seconds)

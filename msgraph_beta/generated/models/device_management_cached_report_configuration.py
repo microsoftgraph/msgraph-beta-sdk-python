@@ -79,6 +79,9 @@ class DeviceManagementCachedReportConfiguration(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_report_status import DeviceManagementReportStatus
+        from .entity import Entity
+
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("filter", self.filter)
         writer.write_datetime_value("lastRefreshDateTime", self.last_refresh_date_time)

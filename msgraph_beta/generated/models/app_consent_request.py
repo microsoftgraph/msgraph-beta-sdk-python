@@ -69,6 +69,10 @@ class AppConsentRequest(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .app_consent_request_scope import AppConsentRequestScope
+        from .entity import Entity
+        from .user_consent_request import UserConsentRequest
+
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("consentType", self.consent_type)

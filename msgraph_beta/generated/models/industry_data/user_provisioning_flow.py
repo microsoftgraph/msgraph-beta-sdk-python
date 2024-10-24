@@ -63,6 +63,10 @@ class UserProvisioningFlow(ProvisioningFlow):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .provisioning_flow import ProvisioningFlow
+        from .user_creation_options import UserCreationOptions
+        from .user_management_options import UserManagementOptions
+
         writer.write_bool_value("createUnmatchedUsers", self.create_unmatched_users)
         writer.write_object_value("creationOptions", self.creation_options)
         writer.write_object_value("managementOptions", self.management_options)

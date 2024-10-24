@@ -91,6 +91,11 @@ class WindowsDefenderApplicationControlSupplementalPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
+        from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
+        from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_bytes_value("content", self.content)
         writer.write_str_value("contentFileName", self.content_file_name)

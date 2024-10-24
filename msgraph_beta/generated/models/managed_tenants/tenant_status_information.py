@@ -87,6 +87,11 @@ class TenantStatusInformation(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .delegated_privilege_status import DelegatedPrivilegeStatus
+        from .tenant_onboarding_eligibility_reason import TenantOnboardingEligibilityReason
+        from .tenant_onboarding_status import TenantOnboardingStatus
+        from .workload_status import WorkloadStatus
+
         writer.write_enum_value("delegatedPrivilegeStatus", self.delegated_privilege_status)
         writer.write_datetime_value("lastDelegatedPrivilegeRefreshDateTime", self.last_delegated_privilege_refresh_date_time)
         writer.write_str_value("@odata.type", self.odata_type)

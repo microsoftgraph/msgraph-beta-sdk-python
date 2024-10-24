@@ -94,6 +94,8 @@ class DeviceHealthStatus(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_int_value("blueScreenCount", self.blue_screen_count)
         writer.write_float_value("bootTotalDurationInSeconds", self.boot_total_duration_in_seconds)
         writer.write_str_value("deviceId", self.device_id)

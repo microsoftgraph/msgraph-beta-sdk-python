@@ -54,6 +54,8 @@ class DeviceHealthScriptBooleanParameter(DeviceHealthScriptParameter):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_health_script_parameter import DeviceHealthScriptParameter
+
         writer.write_bool_value("defaultValue", self.default_value)
     
 

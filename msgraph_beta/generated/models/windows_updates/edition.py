@@ -73,6 +73,9 @@ class Edition(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .servicing_period import ServicingPeriod
+
         writer.write_str_value("deviceFamily", self.device_family)
         writer.write_datetime_value("endOfServiceDateTime", self.end_of_service_date_time)
         writer.write_datetime_value("generalAvailabilityDateTime", self.general_availability_date_time)

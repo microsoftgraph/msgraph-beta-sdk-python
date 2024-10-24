@@ -130,6 +130,16 @@ class ManagedTenantAlert(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .alert_data import AlertData
+        from .alert_data_reference_string import AlertDataReferenceString
+        from .alert_severity import AlertSeverity
+        from .alert_status import AlertStatus
+        from .managed_tenant_alert_log import ManagedTenantAlertLog
+        from .managed_tenant_alert_rule import ManagedTenantAlertRule
+        from .managed_tenant_api_notification import ManagedTenantApiNotification
+        from .managed_tenant_email_notification import ManagedTenantEmailNotification
+
         writer.write_object_value("alertData", self.alert_data)
         writer.write_collection_of_object_values("alertDataReferenceStrings", self.alert_data_reference_strings)
         writer.write_collection_of_object_values("alertLogs", self.alert_logs)

@@ -65,6 +65,8 @@ class SensitiveContentLocation(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .sensitive_content_evidence import SensitiveContentEvidence
+
         writer.write_int_value("confidence", self.confidence)
         writer.write_collection_of_object_values("evidences", self.evidences)
         writer.write_str_value("idMatch", self.id_match)

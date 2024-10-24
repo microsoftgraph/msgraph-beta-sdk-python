@@ -77,6 +77,9 @@ class WindowsPackageInformation(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .windows_architecture import WindowsArchitecture
+        from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
+
         writer.write_enum_value("applicableArchitecture", self.applicable_architecture)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("identityName", self.identity_name)

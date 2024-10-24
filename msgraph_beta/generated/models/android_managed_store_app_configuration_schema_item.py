@@ -89,6 +89,9 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Backed
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .android_managed_store_app_configuration_schema_item_data_type import AndroidManagedStoreAppConfigurationSchemaItemDataType
+        from .key_value_pair import KeyValuePair
+
         writer.write_enum_value("dataType", self.data_type)
         writer.write_bool_value("defaultBoolValue", self.default_bool_value)
         writer.write_int_value("defaultIntValue", self.default_int_value)

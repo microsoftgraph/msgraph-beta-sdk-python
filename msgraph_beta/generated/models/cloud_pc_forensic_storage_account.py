@@ -54,6 +54,8 @@ class CloudPcForensicStorageAccount(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("storageAccountId", self.storage_account_id)
         writer.write_str_value("storageAccountName", self.storage_account_name)
     

@@ -48,5 +48,7 @@ class ExternalUserProfile(ExternalProfile):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .external_profile import ExternalProfile
+
     
 

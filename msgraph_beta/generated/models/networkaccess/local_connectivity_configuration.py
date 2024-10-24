@@ -62,6 +62,8 @@ class LocalConnectivityConfiguration(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .region import Region
+
         writer.write_int_value("asn", self.asn)
         writer.write_str_value("bgpAddress", self.bgp_address)
         writer.write_str_value("endpoint", self.endpoint)

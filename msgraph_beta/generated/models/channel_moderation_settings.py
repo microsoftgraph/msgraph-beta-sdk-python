@@ -65,6 +65,9 @@ class ChannelModerationSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .reply_restriction import ReplyRestriction
+        from .user_new_message_restriction import UserNewMessageRestriction
+
         writer.write_bool_value("allowNewMessageFromBots", self.allow_new_message_from_bots)
         writer.write_bool_value("allowNewMessageFromConnectors", self.allow_new_message_from_connectors)
         writer.write_str_value("@odata.type", self.odata_type)

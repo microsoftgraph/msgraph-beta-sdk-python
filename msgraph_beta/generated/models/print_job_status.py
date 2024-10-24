@@ -74,6 +74,9 @@ class PrintJobStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .print_job_processing_state import PrintJobProcessingState
+        from .print_job_state_detail import PrintJobStateDetail
+
         writer.write_bool_value("acquiredByPrinter", self.acquired_by_printer)
         writer.write_str_value("description", self.description)
         writer.write_collection_of_enum_values("details", self.details)

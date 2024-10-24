@@ -75,6 +75,12 @@ class DetectionRule(ProtectionRule):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .detection_action import DetectionAction
+        from .protection_rule import ProtectionRule
+        from .query_condition import QueryCondition
+        from .rule_schedule import RuleSchedule
+        from .run_details import RunDetails
+
         writer.write_object_value("detectionAction", self.detection_action)
         writer.write_str_value("detectorId", self.detector_id)
         writer.write_object_value("lastRunDetails", self.last_run_details)

@@ -52,6 +52,9 @@ class ProjectParticipationCollectionResponse(BaseCollectionPaginationCountRespon
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .project_participation import ProjectParticipation
+
         writer.write_collection_of_object_values("value", self.value)
     
 

@@ -78,6 +78,10 @@ class UserAppInstallStatus(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .mobile_app import MobileApp
+        from .mobile_app_install_status import MobileAppInstallStatus
+
         writer.write_object_value("app", self.app)
         writer.write_collection_of_object_values("deviceStatuses", self.device_statuses)
         writer.write_int_value("failedDeviceCount", self.failed_device_count)

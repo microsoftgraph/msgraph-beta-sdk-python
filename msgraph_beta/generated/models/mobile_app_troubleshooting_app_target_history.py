@@ -63,6 +63,9 @@ class MobileAppTroubleshootingAppTargetHistory(MobileAppTroubleshootingHistoryIt
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app_troubleshooting_history_item import MobileAppTroubleshootingHistoryItem
+        from .run_state import RunState
+
         writer.write_str_value("errorCode", self.error_code)
         writer.write_enum_value("runState", self.run_state)
         writer.write_str_value("securityGroupId", self.security_group_id)

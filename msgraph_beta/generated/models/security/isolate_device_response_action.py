@@ -60,6 +60,10 @@ class IsolateDeviceResponseAction(ResponseAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_id_entity_identifier import DeviceIdEntityIdentifier
+        from .isolation_type import IsolationType
+        from .response_action import ResponseAction
+
         writer.write_enum_value("identifier", self.identifier)
         writer.write_enum_value("isolationType", self.isolation_type)
     

@@ -56,6 +56,8 @@ class PasswordSingleSignOnCredentialSet(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .credential import Credential
+
         writer.write_collection_of_object_values("credentials", self.credentials)
         writer.write_str_value("id", self.id)
         writer.write_str_value("@odata.type", self.odata_type)

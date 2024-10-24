@@ -72,6 +72,9 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .day_of_week import DayOfWeek
+        from .windows10_apps_update_recurrence import Windows10AppsUpdateRecurrence
+
         writer.write_int_value("dayofMonth", self.dayof_month)
         writer.write_enum_value("dayofWeek", self.dayof_week)
         writer.write_str_value("@odata.type", self.odata_type)

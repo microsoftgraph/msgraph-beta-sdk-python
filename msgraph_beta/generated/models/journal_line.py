@@ -91,6 +91,8 @@ class JournalLine(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .account import Account
+
         writer.write_object_value("account", self.account)
         writer.write_uuid_value("accountId", self.account_id)
         writer.write_str_value("accountNumber", self.account_number)

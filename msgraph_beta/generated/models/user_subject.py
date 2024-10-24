@@ -60,6 +60,9 @@ class UserSubject(ConditionalAccessWhatIfSubject):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .conditional_access_guest_or_external_user_types import ConditionalAccessGuestOrExternalUserTypes
+        from .conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
+
         writer.write_str_value("externalTenantId", self.external_tenant_id)
         writer.write_enum_value("externalUserType", self.external_user_type)
         writer.write_str_value("userId", self.user_id)

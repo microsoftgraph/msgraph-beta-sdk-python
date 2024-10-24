@@ -77,6 +77,10 @@ class RoleManagement(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .rbac_application import RbacApplication
+        from .rbac_application_multiple import RbacApplicationMultiple
+        from .unified_rbac_application import UnifiedRbacApplication
+
         writer.write_object_value("cloudPC", self.cloud_p_c)
         writer.write_object_value("defender", self.defender)
         writer.write_object_value("deviceManagement", self.device_management)

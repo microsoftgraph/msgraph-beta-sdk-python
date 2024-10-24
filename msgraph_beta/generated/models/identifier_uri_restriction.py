@@ -63,6 +63,8 @@ class IdentifierUriRestriction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .app_management_restriction_state import AppManagementRestrictionState
+
         writer.write_bool_value("excludeAppsReceivingV2Tokens", self.exclude_apps_receiving_v2_tokens)
         writer.write_bool_value("excludeSaml", self.exclude_saml)
         writer.write_str_value("@odata.type", self.odata_type)

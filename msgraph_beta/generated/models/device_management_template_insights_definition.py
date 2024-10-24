@@ -57,6 +57,9 @@ class DeviceManagementTemplateInsightsDefinition(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_setting_insights_definition import DeviceManagementSettingInsightsDefinition
+        from .entity import Entity
+
         writer.write_collection_of_object_values("settingInsights", self.setting_insights)
     
 

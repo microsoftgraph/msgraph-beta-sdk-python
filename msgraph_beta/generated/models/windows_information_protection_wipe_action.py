@@ -73,6 +73,9 @@ class WindowsInformationProtectionWipeAction(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .action_state import ActionState
+        from .entity import Entity
+
         writer.write_datetime_value("lastCheckInDateTime", self.last_check_in_date_time)
         writer.write_enum_value("status", self.status)
         writer.write_str_value("targetedDeviceMacAddress", self.targeted_device_mac_address)

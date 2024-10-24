@@ -29,7 +29,8 @@ class AppleExpeditedCheckinConfigurationBase(DeviceConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosExpeditedCheckinConfiguration".casefold():
@@ -65,6 +66,9 @@ class AppleExpeditedCheckinConfigurationBase(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .ios_expedited_checkin_configuration import IosExpeditedCheckinConfiguration
+
         writer.write_bool_value("enableExpeditedCheckin", self.enable_expedited_checkin)
     
 

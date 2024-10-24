@@ -69,6 +69,9 @@ class WindowsKioskWin32App(WindowsKioskAppBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_edge_kiosk_type import WindowsEdgeKioskType
+        from .windows_kiosk_app_base import WindowsKioskAppBase
+
         writer.write_str_value("classicAppPath", self.classic_app_path)
         writer.write_str_value("edgeKiosk", self.edge_kiosk)
         writer.write_int_value("edgeKioskIdleTimeoutMinutes", self.edge_kiosk_idle_timeout_minutes)

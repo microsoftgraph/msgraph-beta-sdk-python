@@ -59,7 +59,8 @@ class ThreatSubmission(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.emailContentThreatSubmission".casefold():
@@ -156,6 +157,23 @@ class ThreatSubmission(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .email_content_threat_submission import EmailContentThreatSubmission
+        from .email_threat_submission import EmailThreatSubmission
+        from .email_url_threat_submission import EmailUrlThreatSubmission
+        from .file_content_threat_submission import FileContentThreatSubmission
+        from .file_threat_submission import FileThreatSubmission
+        from .file_url_threat_submission import FileUrlThreatSubmission
+        from .long_running_operation_status import LongRunningOperationStatus
+        from .submission_admin_review import SubmissionAdminReview
+        from .submission_category import SubmissionCategory
+        from .submission_client_source import SubmissionClientSource
+        from .submission_content_type import SubmissionContentType
+        from .submission_result import SubmissionResult
+        from .submission_source import SubmissionSource
+        from .submission_user_identity import SubmissionUserIdentity
+        from .url_threat_submission import UrlThreatSubmission
+
         writer.write_object_value("adminReview", self.admin_review)
         writer.write_enum_value("category", self.category)
         writer.write_enum_value("clientSource", self.client_source)

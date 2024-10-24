@@ -555,6 +555,37 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_app_auto_update_policy_type import AndroidDeviceOwnerAppAutoUpdatePolicyType
+        from .android_device_owner_battery_plugged_mode import AndroidDeviceOwnerBatteryPluggedMode
+        from .android_device_owner_cross_profile_data_sharing import AndroidDeviceOwnerCrossProfileDataSharing
+        from .android_device_owner_default_app_permission_policy_type import AndroidDeviceOwnerDefaultAppPermissionPolicyType
+        from .android_device_owner_delegated_scope_app_setting import AndroidDeviceOwnerDelegatedScopeAppSetting
+        from .android_device_owner_enrollment_profile_type import AndroidDeviceOwnerEnrollmentProfileType
+        from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
+        from .android_device_owner_kiosk_customization_status_bar import AndroidDeviceOwnerKioskCustomizationStatusBar
+        from .android_device_owner_kiosk_customization_system_navigation import AndroidDeviceOwnerKioskCustomizationSystemNavigation
+        from .android_device_owner_kiosk_mode_app_position_item import AndroidDeviceOwnerKioskModeAppPositionItem
+        from .android_device_owner_kiosk_mode_folder_icon import AndroidDeviceOwnerKioskModeFolderIcon
+        from .android_device_owner_kiosk_mode_icon_size import AndroidDeviceOwnerKioskModeIconSize
+        from .android_device_owner_kiosk_mode_managed_folder import AndroidDeviceOwnerKioskModeManagedFolder
+        from .android_device_owner_kiosk_mode_screen_orientation import AndroidDeviceOwnerKioskModeScreenOrientation
+        from .android_device_owner_location_mode import AndroidDeviceOwnerLocationMode
+        from .android_device_owner_play_store_mode import AndroidDeviceOwnerPlayStoreMode
+        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+        from .android_device_owner_required_password_unlock import AndroidDeviceOwnerRequiredPasswordUnlock
+        from .android_device_owner_system_update_freeze_period import AndroidDeviceOwnerSystemUpdateFreezePeriod
+        from .android_device_owner_system_update_install_type import AndroidDeviceOwnerSystemUpdateInstallType
+        from .android_device_owner_user_facing_message import AndroidDeviceOwnerUserFacingMessage
+        from .android_device_owner_virtual_home_button_type import AndroidDeviceOwnerVirtualHomeButtonType
+        from .android_keyguard_feature import AndroidKeyguardFeature
+        from .app_list_item import AppListItem
+        from .device_configuration import DeviceConfiguration
+        from .kiosk_mode_managed_home_screen_pin_complexity import KioskModeManagedHomeScreenPinComplexity
+        from .kiosk_mode_type import KioskModeType
+        from .microsoft_launcher_dock_presence import MicrosoftLauncherDockPresence
+        from .microsoft_launcher_search_bar_placement import MicrosoftLauncherSearchBarPlacement
+        from .personal_profile_personal_play_store_mode import PersonalProfilePersonalPlayStoreMode
+
         writer.write_bool_value("accountsBlockModification", self.accounts_block_modification)
         writer.write_collection_of_object_values("androidDeviceOwnerDelegatedScopeAppSettings", self.android_device_owner_delegated_scope_app_settings)
         writer.write_bool_value("appsAllowInstallFromUnknownSources", self.apps_allow_install_from_unknown_sources)

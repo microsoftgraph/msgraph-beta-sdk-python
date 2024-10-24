@@ -63,6 +63,10 @@ class DeviceManagementConfigurationSettingTemplate(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_setting_definition import DeviceManagementConfigurationSettingDefinition
+        from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
+        from .entity import Entity
+
         writer.write_collection_of_object_values("settingDefinitions", self.setting_definitions)
         writer.write_object_value("settingInstanceTemplate", self.setting_instance_template)
     

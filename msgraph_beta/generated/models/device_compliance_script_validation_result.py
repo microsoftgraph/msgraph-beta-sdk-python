@@ -65,6 +65,10 @@ class DeviceComplianceScriptValidationResult(AdditionalDataHolder, BackedModel, 
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_compliance_script_error import DeviceComplianceScriptError
+        from .device_compliance_script_rule import DeviceComplianceScriptRule
+        from .device_compliance_script_rule_error import DeviceComplianceScriptRuleError
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("ruleErrors", self.rule_errors)
         writer.write_collection_of_object_values("rules", self.rules)

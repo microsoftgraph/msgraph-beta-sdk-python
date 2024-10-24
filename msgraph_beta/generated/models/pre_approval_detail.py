@@ -65,6 +65,10 @@ class PreApprovalDetail(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .pre_approved_permissions import PreApprovedPermissions
+        from .resource_scope_type import ResourceScopeType
+        from .scope_sensitivity_labels import ScopeSensitivityLabels
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("permissions", self.permissions)
         writer.write_enum_value("scopeType", self.scope_type)

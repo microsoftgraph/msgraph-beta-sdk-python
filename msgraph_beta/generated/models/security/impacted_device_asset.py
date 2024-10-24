@@ -54,6 +54,9 @@ class ImpactedDeviceAsset(ImpactedAsset):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_asset_identifier import DeviceAssetIdentifier
+        from .impacted_asset import ImpactedAsset
+
         writer.write_enum_value("identifier", self.identifier)
     
 

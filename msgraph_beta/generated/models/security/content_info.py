@@ -65,6 +65,9 @@ class ContentInfo(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .content_state import ContentState
+        from .key_value_pair import KeyValuePair
+
         writer.write_str_value("contentFormat", self.content_format)
         writer.write_str_value("identifier", self.identifier)
         writer.write_collection_of_object_values("metadata", self.metadata)

@@ -60,6 +60,10 @@ class ConnectionOperation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .connection_operation_status import ConnectionOperationStatus
+        from .entity import Entity
+        from .public_error import PublicError
+
         writer.write_object_value("error", self.error)
         writer.write_enum_value("status", self.status)
     

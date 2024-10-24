@@ -69,6 +69,11 @@ class PrivilegedRole(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .privileged_role_assignment import PrivilegedRoleAssignment
+        from .privileged_role_settings import PrivilegedRoleSettings
+        from .privileged_role_summary import PrivilegedRoleSummary
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_str_value("name", self.name)
         writer.write_object_value("settings", self.settings)

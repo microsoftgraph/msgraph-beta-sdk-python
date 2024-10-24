@@ -70,6 +70,10 @@ class PermissionsRequestChange(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .permissions_request_occurrence_status import PermissionsRequestOccurrenceStatus
+        from .status_detail import StatusDetail
+
         writer.write_enum_value("activeOccurrenceStatus", self.active_occurrence_status)
         writer.write_datetime_value("modificationDateTime", self.modification_date_time)
         writer.write_str_value("permissionsRequestId", self.permissions_request_id)

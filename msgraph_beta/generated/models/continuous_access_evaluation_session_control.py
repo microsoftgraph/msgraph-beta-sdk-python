@@ -53,6 +53,8 @@ class ContinuousAccessEvaluationSessionControl(AdditionalDataHolder, BackedModel
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .continuous_access_evaluation_mode import ContinuousAccessEvaluationMode
+
         writer.write_enum_value("mode", self.mode)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

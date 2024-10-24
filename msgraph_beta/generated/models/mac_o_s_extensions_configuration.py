@@ -81,6 +81,11 @@ class MacOSExtensionsConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .mac_o_s_kernel_extension import MacOSKernelExtension
+        from .mac_o_s_system_extension import MacOSSystemExtension
+        from .mac_o_s_system_extension_type_mapping import MacOSSystemExtensionTypeMapping
+
         writer.write_collection_of_primitive_values("kernelExtensionAllowedTeamIdentifiers", self.kernel_extension_allowed_team_identifiers)
         writer.write_bool_value("kernelExtensionOverridesAllowed", self.kernel_extension_overrides_allowed)
         writer.write_collection_of_object_values("kernelExtensionsAllowed", self.kernel_extensions_allowed)

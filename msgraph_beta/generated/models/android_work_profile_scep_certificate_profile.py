@@ -96,6 +96,14 @@ class AndroidWorkProfileScepCertificateProfile(AndroidWorkProfileCertificateProf
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
+        from .certificate_store import CertificateStore
+        from .custom_subject_alternative_name import CustomSubjectAlternativeName
+        from .hash_algorithms import HashAlgorithms
+        from .key_size import KeySize
+        from .key_usages import KeyUsages
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_collection_of_object_values("customSubjectAlternativeNames", self.custom_subject_alternative_names)
         writer.write_enum_value("hashAlgorithm", self.hash_algorithm)

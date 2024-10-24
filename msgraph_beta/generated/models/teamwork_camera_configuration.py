@@ -62,6 +62,9 @@ class TeamworkCameraConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_content_camera_configuration import TeamworkContentCameraConfiguration
+        from .teamwork_peripheral import TeamworkPeripheral
+
         writer.write_collection_of_object_values("cameras", self.cameras)
         writer.write_object_value("contentCameraConfiguration", self.content_camera_configuration)
         writer.write_object_value("defaultContentCamera", self.default_content_camera)

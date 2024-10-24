@@ -59,6 +59,8 @@ class ManagementIntentInfo(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .management_template_detailed_info import ManagementTemplateDetailedInfo
+
         writer.write_str_value("managementIntentDisplayName", self.management_intent_display_name)
         writer.write_str_value("managementIntentId", self.management_intent_id)
         writer.write_collection_of_object_values("managementTemplates", self.management_templates)

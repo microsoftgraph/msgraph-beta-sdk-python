@@ -60,6 +60,8 @@ class HybridAgentUpdaterConfiguration(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .update_window import UpdateWindow
+
         writer.write_bool_value("allowUpdateConfigurationOverride", self.allow_update_configuration_override)
         writer.write_datetime_value("deferUpdateDateTime", self.defer_update_date_time)
         writer.write_str_value("@odata.type", self.odata_type)

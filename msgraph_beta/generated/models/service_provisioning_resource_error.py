@@ -54,6 +54,9 @@ class ServiceProvisioningResourceError(ServiceProvisioningError):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .service_provisioning_error import ServiceProvisioningError
+        from .service_provisioning_resource_error_detail import ServiceProvisioningResourceErrorDetail
+
         writer.write_collection_of_object_values("errors", self.errors)
     
 

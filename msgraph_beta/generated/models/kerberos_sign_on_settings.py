@@ -56,6 +56,8 @@ class KerberosSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .kerberos_sign_on_mapping_attribute_type import KerberosSignOnMappingAttributeType
+
         writer.write_str_value("kerberosServicePrincipalName", self.kerberos_service_principal_name)
         writer.write_enum_value("kerberosSignOnMappingAttributeType", self.kerberos_sign_on_mapping_attribute_type)
         writer.write_str_value("@odata.type", self.odata_type)

@@ -59,6 +59,9 @@ class TeamsAppDashboardCardContentSource(AdditionalDataHolder, BackedModel, Pars
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teams_app_dashboard_card_bot_configuration import TeamsAppDashboardCardBotConfiguration
+        from .teams_app_dashboard_card_source_type import TeamsAppDashboardCardSourceType
+
         writer.write_object_value("botConfiguration", self.bot_configuration)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("sourceType", self.source_type)

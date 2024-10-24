@@ -141,6 +141,14 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .eap_type import EapType
+        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
+        from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
+        from .windows_certificate_profile_base import WindowsCertificateProfileBase
+        from .wired_network_authentication_method import WiredNetworkAuthenticationMethod
+        from .wired_network_authentication_type import WiredNetworkAuthenticationType
+
         writer.write_int_value("authenticationBlockPeriodInMinutes", self.authentication_block_period_in_minutes)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_int_value("authenticationPeriodInSeconds", self.authentication_period_in_seconds)

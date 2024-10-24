@@ -87,6 +87,8 @@ class Windows10EnrollmentCompletionPageConfiguration(DeviceEnrollmentConfigurati
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_enrollment_configuration import DeviceEnrollmentConfiguration
+
         writer.write_bool_value("allowDeviceResetOnInstallFailure", self.allow_device_reset_on_install_failure)
         writer.write_bool_value("allowDeviceUseOnInstallFailure", self.allow_device_use_on_install_failure)
         writer.write_bool_value("allowLogCollectionOnInstallFailure", self.allow_log_collection_on_install_failure)

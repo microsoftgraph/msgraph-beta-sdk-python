@@ -56,6 +56,9 @@ class EvaluateRemovalPostRequestBody(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .........models.content_info import ContentInfo
+        from .........models.downgrade_justification import DowngradeJustification
+
         writer.write_object_value("contentInfo", self.content_info)
         writer.write_object_value("downgradeJustification", self.downgrade_justification)
         writer.write_additional_data_value(self.additional_data)

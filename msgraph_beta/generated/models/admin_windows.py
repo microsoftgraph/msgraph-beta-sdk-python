@@ -54,6 +54,9 @@ class AdminWindows(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .admin_windows_updates import AdminWindowsUpdates
+        from .entity import Entity
+
         writer.write_object_value("updates", self.updates)
     
 

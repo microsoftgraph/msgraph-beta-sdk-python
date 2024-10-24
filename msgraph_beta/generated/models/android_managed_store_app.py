@@ -46,7 +46,8 @@ class AndroidManagedStoreApp(MobileApp):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidManagedStoreWebApp".casefold():
@@ -92,6 +93,10 @@ class AndroidManagedStoreApp(MobileApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_managed_store_app_track import AndroidManagedStoreAppTrack
+        from .android_managed_store_web_app import AndroidManagedStoreWebApp
+        from .mobile_app import MobileApp
+
         writer.write_str_value("appIdentifier", self.app_identifier)
         writer.write_bool_value("isSystemApp", self.is_system_app)
     

@@ -57,6 +57,9 @@ class TrimTransformation(CustomClaimTransformation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_claim_transformation import CustomClaimTransformation
+        from .transformation_trim_type import TransformationTrimType
+
         writer.write_enum_value("type", self.type)
         writer.write_str_value("value", self.value)
     

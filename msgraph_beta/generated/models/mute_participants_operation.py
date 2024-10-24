@@ -51,6 +51,8 @@ class MuteParticipantsOperation(CommsOperation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .comms_operation import CommsOperation
+
         writer.write_collection_of_primitive_values("participants", self.participants)
     
 

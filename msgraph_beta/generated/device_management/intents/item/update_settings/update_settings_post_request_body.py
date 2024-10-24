@@ -50,6 +50,8 @@ class UpdateSettingsPostRequestBody(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.device_management_setting_instance import DeviceManagementSettingInstance
+
         writer.write_collection_of_object_values("settings", self.settings)
         writer.write_additional_data_value(self.additional_data)
     

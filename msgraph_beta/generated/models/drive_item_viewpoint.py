@@ -59,6 +59,9 @@ class DriveItemViewpoint(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .drive_item_access_operations_viewpoint import DriveItemAccessOperationsViewpoint
+        from .sharing_viewpoint import SharingViewpoint
+
         writer.write_object_value("accessOperations", self.access_operations)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("sharing", self.sharing)

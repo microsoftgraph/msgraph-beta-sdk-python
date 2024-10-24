@@ -70,6 +70,9 @@ class WindowsManagementAppHealthState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .health_state import HealthState
+
         writer.write_str_value("deviceName", self.device_name)
         writer.write_str_value("deviceOSVersion", self.device_o_s_version)
         writer.write_enum_value("healthState", self.health_state)

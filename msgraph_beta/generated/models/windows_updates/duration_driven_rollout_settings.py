@@ -52,6 +52,8 @@ class DurationDrivenRolloutSettings(GradualRolloutSettings):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .gradual_rollout_settings import GradualRolloutSettings
+
         writer.write_timedelta_value("durationUntilDeploymentEnd", self.duration_until_deployment_end)
     
 

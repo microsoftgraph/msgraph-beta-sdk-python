@@ -65,6 +65,8 @@ class PlannerTeamsPublicationInfo(PlannerTaskCreation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_task_creation import PlannerTaskCreation
+
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("publicationId", self.publication_id)

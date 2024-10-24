@@ -68,6 +68,8 @@ class LinkScopeAbilities(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .link_role_abilities import LinkRoleAbilities
+
         writer.write_object_value("blockDownloadLinkAbilities", self.block_download_link_abilities)
         writer.write_object_value("editLinkAbilities", self.edit_link_abilities)
         writer.write_object_value("manageListLinkAbilities", self.manage_list_link_abilities)

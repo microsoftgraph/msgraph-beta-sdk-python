@@ -66,6 +66,9 @@ class Win32MobileAppCatalogPackage(MobileAppCatalogPackage):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app_catalog_package import MobileAppCatalogPackage
+        from .windows_architecture import WindowsArchitecture
+
         writer.write_enum_value("applicableArchitectures", self.applicable_architectures)
     
 

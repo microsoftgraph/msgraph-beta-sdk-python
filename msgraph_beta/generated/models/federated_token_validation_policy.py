@@ -54,6 +54,9 @@ class FederatedTokenValidationPolicy(DirectoryObject):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .directory_object import DirectoryObject
+        from .validating_domains import ValidatingDomains
+
         writer.write_object_value("validatingDomains", self.validating_domains)
     
 

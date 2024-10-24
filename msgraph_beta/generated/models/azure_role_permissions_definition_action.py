@@ -54,6 +54,9 @@ class AzureRolePermissionsDefinitionAction(AzurePermissionsDefinitionAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .azure_permissions_definition_action import AzurePermissionsDefinitionAction
+        from .permissions_definition_azure_role import PermissionsDefinitionAzureRole
+
         writer.write_collection_of_object_values("roles", self.roles)
     
 

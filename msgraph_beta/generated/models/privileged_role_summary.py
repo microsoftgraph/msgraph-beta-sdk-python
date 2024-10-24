@@ -66,6 +66,9 @@ class PrivilegedRoleSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .role_summary_status import RoleSummaryStatus
+
         writer.write_int_value("elevatedCount", self.elevated_count)
         writer.write_int_value("managedCount", self.managed_count)
         writer.write_bool_value("mfaEnabled", self.mfa_enabled)

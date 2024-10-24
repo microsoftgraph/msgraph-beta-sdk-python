@@ -62,6 +62,8 @@ class WorkplaceSensor(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .workplace_sensor_type import WorkplaceSensorType
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("placeId", self.place_id)

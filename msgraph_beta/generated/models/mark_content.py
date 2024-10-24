@@ -32,7 +32,8 @@ class MarkContent(LabelActionBase):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.addFooter".casefold():
@@ -82,6 +83,11 @@ class MarkContent(LabelActionBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .add_footer import AddFooter
+        from .add_header import AddHeader
+        from .add_watermark import AddWatermark
+        from .label_action_base import LabelActionBase
+
         writer.write_str_value("fontColor", self.font_color)
         writer.write_int_value("fontSize", self.font_size)
         writer.write_str_value("text", self.text)

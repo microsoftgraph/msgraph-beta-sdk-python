@@ -60,6 +60,9 @@ class RegexReplaceTransformation(CustomClaimTransformation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_claim_transformation import CustomClaimTransformation
+        from .sourced_attribute import SourcedAttribute
+
         writer.write_collection_of_object_values("additionalAttributes", self.additional_attributes)
         writer.write_str_value("regex", self.regex)
         writer.write_str_value("replacement", self.replacement)

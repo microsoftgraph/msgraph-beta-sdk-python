@@ -66,6 +66,11 @@ class OneDriveForBusinessProtectionPolicy(ProtectionPolicyBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .drive_protection_rule import DriveProtectionRule
+        from .drive_protection_unit import DriveProtectionUnit
+        from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
+        from .protection_policy_base import ProtectionPolicyBase
+
         writer.write_collection_of_object_values("driveInclusionRules", self.drive_inclusion_rules)
         writer.write_collection_of_object_values("driveProtectionUnits", self.drive_protection_units)
         writer.write_collection_of_object_values("driveProtectionUnitsBulkAdditionJobs", self.drive_protection_units_bulk_addition_jobs)

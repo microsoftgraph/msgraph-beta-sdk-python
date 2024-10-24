@@ -57,6 +57,8 @@ class ScheduleSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .gradual_rollout_settings import GradualRolloutSettings
+
         writer.write_object_value("gradualRollout", self.gradual_rollout)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_datetime_value("startDateTime", self.start_date_time)

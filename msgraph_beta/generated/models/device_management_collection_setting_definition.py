@@ -54,6 +54,8 @@ class DeviceManagementCollectionSettingDefinition(DeviceManagementSettingDefinit
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_setting_definition import DeviceManagementSettingDefinition
+
         writer.write_str_value("elementDefinitionId", self.element_definition_id)
     
 

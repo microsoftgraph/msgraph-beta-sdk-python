@@ -53,6 +53,8 @@ class IdentifierUriConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .identifier_uri_restriction import IdentifierUriRestriction
+
         writer.write_object_value("nonDefaultUriAddition", self.non_default_uri_addition)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

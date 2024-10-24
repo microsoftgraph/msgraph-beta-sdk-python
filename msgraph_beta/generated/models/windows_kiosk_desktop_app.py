@@ -60,6 +60,8 @@ class WindowsKioskDesktopApp(WindowsKioskAppBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_kiosk_app_base import WindowsKioskAppBase
+
         writer.write_str_value("desktopApplicationId", self.desktop_application_id)
         writer.write_str_value("desktopApplicationLinkPath", self.desktop_application_link_path)
         writer.write_str_value("path", self.path)

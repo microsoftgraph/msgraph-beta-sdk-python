@@ -56,6 +56,8 @@ class AlertSeveritySummary(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .alert_severity import AlertSeverity
+
         writer.write_int_value("count", self.count)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("severity", self.severity)

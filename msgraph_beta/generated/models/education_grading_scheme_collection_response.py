@@ -52,6 +52,9 @@ class EducationGradingSchemeCollectionResponse(BaseCollectionPaginationCountResp
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .education_grading_scheme import EducationGradingScheme
+
         writer.write_collection_of_object_values("value", self.value)
     
 

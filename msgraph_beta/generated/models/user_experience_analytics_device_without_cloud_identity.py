@@ -57,6 +57,8 @@ class UserExperienceAnalyticsDeviceWithoutCloudIdentity(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("azureAdDeviceId", self.azure_ad_device_id)
         writer.write_str_value("deviceName", self.device_name)
     

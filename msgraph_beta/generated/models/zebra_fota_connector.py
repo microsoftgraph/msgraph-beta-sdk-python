@@ -70,6 +70,9 @@ class ZebraFotaConnector(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .zebra_fota_connector_state import ZebraFotaConnectorState
+
         writer.write_str_value("enrollmentAuthorizationUrl", self.enrollment_authorization_url)
         writer.write_str_value("enrollmentToken", self.enrollment_token)
         writer.write_bool_value("fotaAppsApproved", self.fota_apps_approved)

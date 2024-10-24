@@ -76,6 +76,9 @@ class TenantTag(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .tenant_info import TenantInfo
+
         writer.write_str_value("createdByUserId", self.created_by_user_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("deletedDateTime", self.deleted_date_time)

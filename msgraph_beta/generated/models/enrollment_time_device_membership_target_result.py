@@ -59,6 +59,8 @@ class EnrollmentTimeDeviceMembershipTargetResult(AdditionalDataHolder, BackedMod
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .enrollment_time_device_membership_target_status import EnrollmentTimeDeviceMembershipTargetStatus
+
         writer.write_collection_of_object_values("enrollmentTimeDeviceMembershipTargetValidationStatuses", self.enrollment_time_device_membership_target_validation_statuses)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bool_value("validationSucceeded", self.validation_succeeded)

@@ -59,6 +59,8 @@ class DeviceManagementSettingDependency(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_constraint import DeviceManagementConstraint
+
         writer.write_collection_of_object_values("constraints", self.constraints)
         writer.write_str_value("definitionId", self.definition_id)
         writer.write_str_value("@odata.type", self.odata_type)

@@ -55,6 +55,8 @@ class SequentialActivationRenewalsAlertConfiguration(UnifiedRoleManagementAlertC
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .unified_role_management_alert_configuration import UnifiedRoleManagementAlertConfiguration
+
         writer.write_int_value("sequentialActivationCounterThreshold", self.sequential_activation_counter_threshold)
         writer.write_timedelta_value("timeIntervalBetweenActivations", self.time_interval_between_activations)
     

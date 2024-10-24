@@ -63,6 +63,8 @@ class ContentProperties(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .content_metadata import ContentMetadata
+
         writer.write_collection_of_primitive_values("extensions", self.extensions)
         writer.write_str_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)

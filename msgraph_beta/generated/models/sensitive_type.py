@@ -84,6 +84,11 @@ class SensitiveType(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .classification_method import ClassificationMethod
+        from .entity import Entity
+        from .sensitive_type_scope import SensitiveTypeScope
+        from .sensitive_type_source import SensitiveTypeSource
+
         writer.write_enum_value("classificationMethod", self.classification_method)
         writer.write_str_value("description", self.description)
         writer.write_str_value("name", self.name)

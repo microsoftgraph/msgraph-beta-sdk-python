@@ -207,6 +207,13 @@ class AndroidForWorkGeneralDeviceConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_for_work_cross_profile_data_sharing_type import AndroidForWorkCrossProfileDataSharingType
+        from .android_for_work_default_app_permission_policy_type import AndroidForWorkDefaultAppPermissionPolicyType
+        from .android_for_work_required_password_type import AndroidForWorkRequiredPasswordType
+        from .android_required_password_complexity import AndroidRequiredPasswordComplexity
+        from .android_work_profile_account_use import AndroidWorkProfileAccountUse
+        from .device_configuration import DeviceConfiguration
+
         writer.write_collection_of_primitive_values("allowedGoogleAccountDomains", self.allowed_google_account_domains)
         writer.write_bool_value("blockUnifiedPasswordForWorkProfile", self.block_unified_password_for_work_profile)
         writer.write_bool_value("passwordBlockFaceUnlock", self.password_block_face_unlock)

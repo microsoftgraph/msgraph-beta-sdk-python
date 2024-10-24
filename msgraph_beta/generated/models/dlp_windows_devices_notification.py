@@ -54,6 +54,8 @@ class DlpWindowsDevicesNotification(DlpNotification):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .dlp_notification import DlpNotification
+
         writer.write_str_value("contentName", self.content_name)
         writer.write_str_value("lastModfiedBy", self.last_modfied_by)
     

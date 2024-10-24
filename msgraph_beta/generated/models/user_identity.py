@@ -28,7 +28,8 @@ class UserIdentity(Identity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.auditUserIdentity".casefold():
@@ -65,6 +66,9 @@ class UserIdentity(Identity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .audit_user_identity import AuditUserIdentity
+        from .identity import Identity
+
         writer.write_str_value("ipAddress", self.ip_address)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
     

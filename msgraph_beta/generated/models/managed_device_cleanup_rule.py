@@ -70,6 +70,9 @@ class ManagedDeviceCleanupRule(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_cleanup_rule_platform_type import DeviceCleanupRulePlatformType
+        from .entity import Entity
+
         writer.write_str_value("description", self.description)
         writer.write_enum_value("deviceCleanupRulePlatformType", self.device_cleanup_rule_platform_type)
         writer.write_int_value("deviceInactivityBeforeRetirementInDays", self.device_inactivity_before_retirement_in_days)

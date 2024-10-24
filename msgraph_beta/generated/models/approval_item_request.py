@@ -64,5 +64,8 @@ class ApprovalItemRequest(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .approval_identity_set import ApprovalIdentitySet
+        from .entity import Entity
+
     
 

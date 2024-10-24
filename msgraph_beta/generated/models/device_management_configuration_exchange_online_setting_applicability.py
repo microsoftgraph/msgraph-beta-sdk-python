@@ -51,5 +51,7 @@ class DeviceManagementConfigurationExchangeOnlineSettingApplicability(DeviceMana
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_setting_applicability import DeviceManagementConfigurationSettingApplicability
+
     
 

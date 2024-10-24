@@ -96,6 +96,16 @@ class DailyUserInsightMetricsRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .active_users_metric import ActiveUsersMetric
+        from .authentications_metric import AuthenticationsMetric
+        from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
+        from .daily_inactive_users_metric import DailyInactiveUsersMetric
+        from .entity import Entity
+        from .insight_summary import InsightSummary
+        from .mfa_completion_metric import MfaCompletionMetric
+        from .user_count_metric import UserCountMetric
+        from .user_sign_up_metric import UserSignUpMetric
+
         writer.write_collection_of_object_values("activeUsers", self.active_users)
         writer.write_collection_of_object_values("authentications", self.authentications)
         writer.write_collection_of_object_values("inactiveUsers", self.inactive_users)

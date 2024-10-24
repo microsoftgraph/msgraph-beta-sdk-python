@@ -102,6 +102,14 @@ class AndroidEnterpriseWiFiConfiguration(AndroidWiFiConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_certificate_profile_base import AndroidCertificateProfileBase
+        from .android_eap_type import AndroidEapType
+        from .android_trusted_root_certificate import AndroidTrustedRootCertificate
+        from .android_wi_fi_configuration import AndroidWiFiConfiguration
+        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
+        from .non_eap_authentication_method_for_peap import NonEapAuthenticationMethodForPeap
+        from .wi_fi_authentication_method import WiFiAuthenticationMethod
+
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_enum_value("eapType", self.eap_type)
         writer.write_object_value("identityCertificateForClientAuthentication", self.identity_certificate_for_client_authentication)

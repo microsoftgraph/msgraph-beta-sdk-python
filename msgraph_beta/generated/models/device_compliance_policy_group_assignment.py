@@ -63,6 +63,9 @@ class DeviceCompliancePolicyGroupAssignment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_compliance_policy import DeviceCompliancePolicy
+        from .entity import Entity
+
         writer.write_object_value("deviceCompliancePolicy", self.device_compliance_policy)
         writer.write_bool_value("excludeGroup", self.exclude_group)
         writer.write_str_value("targetGroupId", self.target_group_id)

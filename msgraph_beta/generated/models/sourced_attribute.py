@@ -57,6 +57,8 @@ class SourcedAttribute(CustomClaimAttributeBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_claim_attribute_base import CustomClaimAttributeBase
+
         writer.write_str_value("id", self.id)
         writer.write_bool_value("isExtensionAttribute", self.is_extension_attribute)
         writer.write_str_value("source", self.source)

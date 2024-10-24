@@ -56,6 +56,8 @@ class CustomerInsight(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .customer_mfa_insight import CustomerMfaInsight
+
         writer.write_object_value("mfa", self.mfa)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("tenantId", self.tenant_id)

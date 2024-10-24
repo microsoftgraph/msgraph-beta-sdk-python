@@ -85,6 +85,10 @@ class MacOSSoftwareUpdateCategorySummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .mac_o_s_software_update_category import MacOSSoftwareUpdateCategory
+        from .mac_o_s_software_update_state_summary import MacOSSoftwareUpdateStateSummary
+
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("displayName", self.display_name)
         writer.write_int_value("failedUpdateCount", self.failed_update_count)

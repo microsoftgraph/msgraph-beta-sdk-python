@@ -48,5 +48,7 @@ class AllPreApprovedPermissions(PreApprovedPermissions):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .pre_approved_permissions import PreApprovedPermissions
+
     
 

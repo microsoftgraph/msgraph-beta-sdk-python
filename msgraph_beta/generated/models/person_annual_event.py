@@ -61,6 +61,9 @@ class PersonAnnualEvent(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .item_facet import ItemFacet
+        from .person_annual_event_type import PersonAnnualEventType
+
         writer.write_date_value("date", self.date)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("type", self.type)

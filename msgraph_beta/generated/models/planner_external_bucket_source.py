@@ -57,6 +57,8 @@ class PlannerExternalBucketSource(PlannerBucketCreation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_bucket_creation import PlannerBucketCreation
+
         writer.write_str_value("contextScenarioId", self.context_scenario_id)
         writer.write_str_value("externalContextId", self.external_context_id)
         writer.write_str_value("externalObjectId", self.external_object_id)

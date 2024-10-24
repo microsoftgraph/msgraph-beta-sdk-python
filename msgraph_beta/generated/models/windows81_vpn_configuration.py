@@ -39,7 +39,8 @@ class Windows81VpnConfiguration(WindowsVpnConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhone81VpnConfiguration".casefold():
@@ -83,6 +84,11 @@ class Windows81VpnConfiguration(WindowsVpnConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows81_vpn_proxy_server import Windows81VpnProxyServer
+        from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
+        from .windows_vpn_configuration import WindowsVpnConfiguration
+        from .windows_vpn_connection_type import WindowsVpnConnectionType
+
         writer.write_enum_value("connectionType", self.connection_type)
         writer.write_bool_value("enableSplitTunneling", self.enable_split_tunneling)
         writer.write_str_value("loginGroupOrDomain", self.login_group_or_domain)

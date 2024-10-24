@@ -66,6 +66,9 @@ class DeviceManagementScriptUserState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_script_device_state import DeviceManagementScriptDeviceState
+        from .entity import Entity
+
         writer.write_collection_of_object_values("deviceRunStates", self.device_run_states)
         writer.write_int_value("errorDeviceCount", self.error_device_count)
         writer.write_int_value("successDeviceCount", self.success_device_count)

@@ -91,6 +91,12 @@ class CloudPcUserSetting(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_cross_region_disaster_recovery_setting import CloudPcCrossRegionDisasterRecoverySetting
+        from .cloud_pc_notification_setting import CloudPcNotificationSetting
+        from .cloud_pc_restore_point_setting import CloudPcRestorePointSetting
+        from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
+        from .entity import Entity
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("crossRegionDisasterRecoverySetting", self.cross_region_disaster_recovery_setting)

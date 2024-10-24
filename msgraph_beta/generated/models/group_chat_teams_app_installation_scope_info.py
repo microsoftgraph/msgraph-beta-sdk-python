@@ -51,6 +51,8 @@ class GroupChatTeamsAppInstallationScopeInfo(TeamsAppInstallationScopeInfo):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .teams_app_installation_scope_info import TeamsAppInstallationScopeInfo
+
         writer.write_str_value("chatId", self.chat_id)
     
 

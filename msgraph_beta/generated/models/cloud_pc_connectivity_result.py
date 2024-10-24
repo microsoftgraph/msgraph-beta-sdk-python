@@ -66,6 +66,9 @@ class CloudPcConnectivityResult(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cloud_pc_connectivity_status import CloudPcConnectivityStatus
+        from .cloud_pc_health_check_item import CloudPcHealthCheckItem
+
         writer.write_collection_of_object_values("failedHealthCheckItems", self.failed_health_check_items)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("@odata.type", self.odata_type)

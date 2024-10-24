@@ -62,6 +62,9 @@ class DeviceManagementUserRightsSetting(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_user_rights_local_user_or_group import DeviceManagementUserRightsLocalUserOrGroup
+        from .state_management_setting import StateManagementSetting
+
         writer.write_collection_of_object_values("localUsersOrGroups", self.local_users_or_groups)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("state", self.state)

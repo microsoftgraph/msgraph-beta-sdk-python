@@ -54,6 +54,9 @@ class Goals(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .goals_export_job import GoalsExportJob
+
         writer.write_collection_of_object_values("exportJobs", self.export_jobs)
     
 

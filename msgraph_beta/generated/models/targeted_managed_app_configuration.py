@@ -87,6 +87,13 @@ class TargetedManagedAppConfiguration(ManagedAppConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .app_management_level import AppManagementLevel
+        from .managed_app_configuration import ManagedAppConfiguration
+        from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
+        from .managed_mobile_app import ManagedMobileApp
+        from .targeted_managed_app_group_type import TargetedManagedAppGroupType
+        from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
+
         writer.write_enum_value("appGroupType", self.app_group_type)
         writer.write_collection_of_object_values("apps", self.apps)
         writer.write_collection_of_object_values("assignments", self.assignments)

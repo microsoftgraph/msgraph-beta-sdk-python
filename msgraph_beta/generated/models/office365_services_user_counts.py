@@ -97,6 +97,8 @@ class Office365ServicesUserCounts(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_int_value("exchangeActive", self.exchange_active)
         writer.write_int_value("exchangeInactive", self.exchange_inactive)
         writer.write_int_value("office365Active", self.office365_active)

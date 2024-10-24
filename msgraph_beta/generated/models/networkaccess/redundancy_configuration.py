@@ -56,6 +56,8 @@ class RedundancyConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .redundancy_tier import RedundancyTier
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("redundancyTier", self.redundancy_tier)
         writer.write_str_value("zoneLocalIpAddress", self.zone_local_ip_address)

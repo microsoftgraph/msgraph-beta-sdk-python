@@ -55,6 +55,8 @@ class CustomAccessPackageWorkflowExtension(CustomCalloutExtension):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_callout_extension import CustomCalloutExtension
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
     

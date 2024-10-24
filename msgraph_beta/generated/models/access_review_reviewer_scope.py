@@ -57,6 +57,8 @@ class AccessReviewReviewerScope(AccessReviewScope):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_review_scope import AccessReviewScope
+
         writer.write_str_value("query", self.query)
         writer.write_str_value("queryRoot", self.query_root)
         writer.write_str_value("queryType", self.query_type)

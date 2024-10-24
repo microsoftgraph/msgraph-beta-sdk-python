@@ -94,6 +94,14 @@ class EducationSynchronizationProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .education_identity_synchronization_configuration import EducationIdentitySynchronizationConfiguration
+        from .education_synchronization_data_provider import EducationSynchronizationDataProvider
+        from .education_synchronization_error import EducationSynchronizationError
+        from .education_synchronization_license_assignment import EducationSynchronizationLicenseAssignment
+        from .education_synchronization_profile_state import EducationSynchronizationProfileState
+        from .education_synchronization_profile_status import EducationSynchronizationProfileStatus
+        from .entity import Entity
+
         writer.write_object_value("dataProvider", self.data_provider)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("errors", self.errors)

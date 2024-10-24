@@ -62,6 +62,8 @@ class DeviceManagementApplicabilityRuleOsVersion(AdditionalDataHolder, BackedMod
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_applicability_rule_type import DeviceManagementApplicabilityRuleType
+
         writer.write_str_value("maxOSVersion", self.max_o_s_version)
         writer.write_str_value("minOSVersion", self.min_o_s_version)
         writer.write_str_value("name", self.name)

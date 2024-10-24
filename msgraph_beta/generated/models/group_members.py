@@ -54,6 +54,8 @@ class GroupMembers(UserSet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .user_set import UserSet
+
         writer.write_str_value("description", self.description)
         writer.write_str_value("id", self.id)
     

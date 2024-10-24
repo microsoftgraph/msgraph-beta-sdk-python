@@ -56,6 +56,9 @@ class AddToReviewSetPostRequestBody(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ........models.ediscovery.additional_data_options import AdditionalDataOptions
+        from ........models.ediscovery.source_collection import SourceCollection
+
         writer.write_enum_value("additionalDataOptions", self.additional_data_options)
         writer.write_object_value("sourceCollection", self.source_collection)
         writer.write_additional_data_value(self.additional_data)

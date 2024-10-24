@@ -77,6 +77,8 @@ class IosEduCertificateSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .certificate_validity_period_scale import CertificateValidityPeriodScale
+
         writer.write_str_value("certFileName", self.cert_file_name)
         writer.write_str_value("certificateTemplateName", self.certificate_template_name)
         writer.write_enum_value("certificateValidityPeriodScale", self.certificate_validity_period_scale)

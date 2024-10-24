@@ -109,6 +109,9 @@ class Item(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .item_category import ItemCategory
+        from .picture import Picture
+
         writer.write_uuid_value("baseUnitOfMeasureId", self.base_unit_of_measure_id)
         writer.write_bool_value("blocked", self.blocked)
         writer.write_str_value("displayName", self.display_name)

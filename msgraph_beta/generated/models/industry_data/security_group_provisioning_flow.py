@@ -54,6 +54,9 @@ class SecurityGroupProvisioningFlow(ProvisioningFlow):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .provisioning_flow import ProvisioningFlow
+        from .security_group_creation_options import SecurityGroupCreationOptions
+
         writer.write_object_value("creationOptions", self.creation_options)
     
 

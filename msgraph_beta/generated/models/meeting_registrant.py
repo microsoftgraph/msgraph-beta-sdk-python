@@ -73,6 +73,10 @@ class MeetingRegistrant(MeetingRegistrantBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_question_answer import CustomQuestionAnswer
+        from .meeting_registrant_base import MeetingRegistrantBase
+        from .meeting_registrant_status import MeetingRegistrantStatus
+
         writer.write_collection_of_object_values("customQuestionAnswers", self.custom_question_answers)
         writer.write_str_value("email", self.email)
         writer.write_str_value("firstName", self.first_name)

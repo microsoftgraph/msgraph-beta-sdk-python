@@ -108,6 +108,15 @@ class AndroidDeviceOwnerVpnConfiguration(VpnConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
+        from .android_vpn_connection_type import AndroidVpnConnectionType
+        from .app_list_item import AppListItem
+        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
+        from .key_value import KeyValue
+        from .key_value_pair import KeyValuePair
+        from .vpn_configuration import VpnConfiguration
+        from .vpn_proxy_server import VpnProxyServer
+
         writer.write_bool_value("alwaysOn", self.always_on)
         writer.write_bool_value("alwaysOnLockdown", self.always_on_lockdown)
         writer.write_enum_value("connectionType", self.connection_type)

@@ -92,6 +92,11 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, BackedMod
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .access_package_answer import AccessPackageAnswer
+        from .access_package_question import AccessPackageQuestion
+        from .request_schedule import RequestSchedule
+        from .verifiable_credential_requirement_status import VerifiableCredentialRequirementStatus
+
         writer.write_collection_of_object_values("existingAnswers", self.existing_answers)
         writer.write_bool_value("isApprovalRequired", self.is_approval_required)
         writer.write_bool_value("isApprovalRequiredForExtension", self.is_approval_required_for_extension)

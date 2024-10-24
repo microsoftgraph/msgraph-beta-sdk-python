@@ -57,6 +57,9 @@ class Windows10NetworkBoundaryConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .windows_network_isolation_policy import WindowsNetworkIsolationPolicy
+
         writer.write_object_value("windowsNetworkIsolationPolicy", self.windows_network_isolation_policy)
     
 

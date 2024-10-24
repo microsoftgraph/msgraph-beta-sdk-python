@@ -59,6 +59,9 @@ class AnalyzedEmailDeliveryDetail(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .delivery_action import DeliveryAction
+        from .delivery_location import DeliveryLocation
+
         writer.write_enum_value("action", self.action)
         writer.write_enum_value("location", self.location)
         writer.write_str_value("@odata.type", self.odata_type)

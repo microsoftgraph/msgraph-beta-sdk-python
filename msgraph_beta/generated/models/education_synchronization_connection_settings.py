@@ -32,7 +32,8 @@ class EducationSynchronizationConnectionSettings(AdditionalDataHolder, BackedMod
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.educationSynchronizationOAuth1ConnectionSettings".casefold():
@@ -71,6 +72,9 @@ class EducationSynchronizationConnectionSettings(AdditionalDataHolder, BackedMod
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .education_synchronization_o_auth1_connection_settings import EducationSynchronizationOAuth1ConnectionSettings
+        from .education_synchronization_o_auth2_client_credentials_connection_settings import EducationSynchronizationOAuth2ClientCredentialsConnectionSettings
+
         writer.write_str_value("clientId", self.client_id)
         writer.write_str_value("clientSecret", self.client_secret)
         writer.write_str_value("@odata.type", self.odata_type)

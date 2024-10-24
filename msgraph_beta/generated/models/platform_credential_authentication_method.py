@@ -69,6 +69,11 @@ class PlatformCredentialAuthenticationMethod(AuthenticationMethod):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_method import AuthenticationMethod
+        from .authentication_method_key_strength import AuthenticationMethodKeyStrength
+        from .authentication_method_platform import AuthenticationMethodPlatform
+        from .device import Device
+
         writer.write_object_value("device", self.device)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("keyStrength", self.key_strength)

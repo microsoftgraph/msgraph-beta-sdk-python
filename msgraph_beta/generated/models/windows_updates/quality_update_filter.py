@@ -60,6 +60,10 @@ class QualityUpdateFilter(WindowsUpdateFilter):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .quality_update_cadence import QualityUpdateCadence
+        from .quality_update_classification import QualityUpdateClassification
+        from .windows_update_filter import WindowsUpdateFilter
+
         writer.write_enum_value("cadence", self.cadence)
         writer.write_enum_value("classification", self.classification)
     

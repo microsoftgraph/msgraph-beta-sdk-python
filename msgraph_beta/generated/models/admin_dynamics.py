@@ -54,6 +54,9 @@ class AdminDynamics(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .customer_voice_settings import CustomerVoiceSettings
+        from .entity import Entity
+
         writer.write_object_value("customerVoice", self.customer_voice)
     
 

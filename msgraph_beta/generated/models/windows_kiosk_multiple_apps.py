@@ -69,6 +69,9 @@ class WindowsKioskMultipleApps(WindowsKioskAppConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_kiosk_app_base import WindowsKioskAppBase
+        from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
+
         writer.write_bool_value("allowAccessToDownloadsFolder", self.allow_access_to_downloads_folder)
         writer.write_collection_of_object_values("apps", self.apps)
         writer.write_bool_value("disallowDesktopApps", self.disallow_desktop_apps)

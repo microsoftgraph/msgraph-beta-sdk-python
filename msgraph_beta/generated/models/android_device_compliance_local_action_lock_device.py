@@ -51,5 +51,7 @@ class AndroidDeviceComplianceLocalActionLockDevice(AndroidDeviceComplianceLocalA
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_compliance_local_action_base import AndroidDeviceComplianceLocalActionBase
+
     
 

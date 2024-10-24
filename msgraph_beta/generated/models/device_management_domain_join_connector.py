@@ -67,6 +67,9 @@ class DeviceManagementDomainJoinConnector(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_domain_join_connector_state import DeviceManagementDomainJoinConnectorState
+        from .entity import Entity
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastConnectionDateTime", self.last_connection_date_time)
         writer.write_enum_value("state", self.state)

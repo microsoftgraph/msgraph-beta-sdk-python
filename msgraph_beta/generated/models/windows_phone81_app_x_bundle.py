@@ -57,6 +57,9 @@ class WindowsPhone81AppXBundle(WindowsPhone81AppX):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_package_information import WindowsPackageInformation
+        from .windows_phone81_app_x import WindowsPhone81AppX
+
         writer.write_collection_of_object_values("appXPackageInformationList", self.app_x_package_information_list)
     
 

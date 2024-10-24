@@ -54,6 +54,9 @@ class Security(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .information_protection import InformationProtection
+
         writer.write_object_value("informationProtection", self.information_protection)
     
 

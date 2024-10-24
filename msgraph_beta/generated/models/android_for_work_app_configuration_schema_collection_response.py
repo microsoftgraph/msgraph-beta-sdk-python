@@ -52,6 +52,9 @@ class AndroidForWorkAppConfigurationSchemaCollectionResponse(BaseCollectionPagin
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_for_work_app_configuration_schema import AndroidForWorkAppConfigurationSchema
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+
         writer.write_collection_of_object_values("value", self.value)
     
 

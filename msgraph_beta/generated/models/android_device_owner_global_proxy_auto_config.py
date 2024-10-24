@@ -54,6 +54,8 @@ class AndroidDeviceOwnerGlobalProxyAutoConfig(AndroidDeviceOwnerGlobalProxy):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
+
         writer.write_str_value("proxyAutoConfigURL", self.proxy_auto_config_u_r_l)
     
 

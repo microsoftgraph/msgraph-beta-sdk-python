@@ -72,6 +72,9 @@ class CredentialUserRegistrationDetails(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .registration_auth_method import RegistrationAuthMethod
+
         writer.write_collection_of_enum_values("authMethods", self.auth_methods)
         writer.write_bool_value("isCapable", self.is_capable)
         writer.write_bool_value("isEnabled", self.is_enabled)

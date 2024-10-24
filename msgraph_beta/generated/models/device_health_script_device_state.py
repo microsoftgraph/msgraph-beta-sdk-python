@@ -97,6 +97,11 @@ class DeviceHealthScriptDeviceState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .managed_device import ManagedDevice
+        from .remediation_state import RemediationState
+        from .run_state import RunState
+
         writer.write_collection_of_primitive_values("assignmentFilterIds", self.assignment_filter_ids)
         writer.write_enum_value("detectionState", self.detection_state)
         writer.write_datetime_value("expectedStateUpdateDateTime", self.expected_state_update_date_time)

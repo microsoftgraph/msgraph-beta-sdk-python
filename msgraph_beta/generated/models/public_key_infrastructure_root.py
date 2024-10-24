@@ -54,6 +54,9 @@ class PublicKeyInfrastructureRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .certificate_based_auth_pki import CertificateBasedAuthPki
+        from .entity import Entity
+
         writer.write_collection_of_object_values("certificateBasedAuthConfigurations", self.certificate_based_auth_configurations)
     
 

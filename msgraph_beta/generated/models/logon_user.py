@@ -75,6 +75,9 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .logon_type import LogonType
+        from .user_account_security_type import UserAccountSecurityType
+
         writer.write_str_value("accountDomain", self.account_domain)
         writer.write_str_value("accountName", self.account_name)
         writer.write_enum_value("accountType", self.account_type)

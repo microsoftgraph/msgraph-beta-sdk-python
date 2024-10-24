@@ -57,6 +57,9 @@ class WindowsKioskSingleUWPApp(WindowsKioskAppConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
+        from .windows_kiosk_u_w_p_app import WindowsKioskUWPApp
+
         writer.write_object_value("uwpApp", self.uwp_app)
     
 

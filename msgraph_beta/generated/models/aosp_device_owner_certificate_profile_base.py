@@ -47,7 +47,8 @@ class AospDeviceOwnerCertificateProfileBase(DeviceConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.aospDeviceOwnerPkcsCertificateProfile".casefold():
@@ -105,6 +106,15 @@ class AospDeviceOwnerCertificateProfileBase(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aosp_device_owner_pkcs_certificate_profile import AospDeviceOwnerPkcsCertificateProfile
+        from .aosp_device_owner_scep_certificate_profile import AospDeviceOwnerScepCertificateProfile
+        from .aosp_device_owner_trusted_root_certificate import AospDeviceOwnerTrustedRootCertificate
+        from .certificate_validity_period_scale import CertificateValidityPeriodScale
+        from .device_configuration import DeviceConfiguration
+        from .extended_key_usage import ExtendedKeyUsage
+        from .subject_alternative_name_type import SubjectAlternativeNameType
+        from .subject_name_format import SubjectNameFormat
+
         writer.write_enum_value("certificateValidityPeriodScale", self.certificate_validity_period_scale)
         writer.write_int_value("certificateValidityPeriodValue", self.certificate_validity_period_value)
         writer.write_collection_of_object_values("extendedKeyUsages", self.extended_key_usages)

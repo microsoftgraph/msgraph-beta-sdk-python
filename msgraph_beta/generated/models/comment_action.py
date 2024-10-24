@@ -59,6 +59,8 @@ class CommentAction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .identity_set import IdentitySet
+
         writer.write_bool_value("isReply", self.is_reply)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("parentAuthor", self.parent_author)

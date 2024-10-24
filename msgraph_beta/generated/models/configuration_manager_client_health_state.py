@@ -63,6 +63,8 @@ class ConfigurationManagerClientHealthState(AdditionalDataHolder, BackedModel, P
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .configuration_manager_client_state import ConfigurationManagerClientState
+
         writer.write_int_value("errorCode", self.error_code)
         writer.write_datetime_value("lastSyncDateTime", self.last_sync_date_time)
         writer.write_str_value("@odata.type", self.odata_type)

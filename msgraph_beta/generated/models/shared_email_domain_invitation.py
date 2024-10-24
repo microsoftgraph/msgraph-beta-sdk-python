@@ -58,6 +58,8 @@ class SharedEmailDomainInvitation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_datetime_value("expiryTime", self.expiry_time)
         writer.write_str_value("invitationDomain", self.invitation_domain)
         writer.write_str_value("invitationStatus", self.invitation_status)

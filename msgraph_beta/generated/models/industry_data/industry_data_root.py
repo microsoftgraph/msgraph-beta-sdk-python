@@ -102,6 +102,17 @@ class IndustryDataRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from ..long_running_operation import LongRunningOperation
+        from .inbound_flow import InboundFlow
+        from .industry_data_connector import IndustryDataConnector
+        from .industry_data_run import IndustryDataRun
+        from .outbound_provisioning_flow_set import OutboundProvisioningFlowSet
+        from .reference_definition import ReferenceDefinition
+        from .role_group import RoleGroup
+        from .source_system_definition import SourceSystemDefinition
+        from .year_time_period_definition import YearTimePeriodDefinition
+
         writer.write_collection_of_object_values("dataConnectors", self.data_connectors)
         writer.write_collection_of_object_values("inboundFlows", self.inbound_flows)
         writer.write_collection_of_object_values("operations", self.operations)

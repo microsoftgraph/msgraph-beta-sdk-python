@@ -52,6 +52,9 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCollectionResponse(B
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .user_experience_analytics_anomaly_correlation_group_overview import UserExperienceAnalyticsAnomalyCorrelationGroupOverview
+
         writer.write_collection_of_object_values("value", self.value)
     
 

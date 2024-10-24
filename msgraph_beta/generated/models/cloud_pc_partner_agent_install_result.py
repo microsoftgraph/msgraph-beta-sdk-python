@@ -68,6 +68,9 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cloud_pc_partner_agent_install_status import CloudPcPartnerAgentInstallStatus
+        from .cloud_pc_partner_agent_name import CloudPcPartnerAgentName
+
         writer.write_str_value("errorMessage", self.error_message)
         writer.write_enum_value("installStatus", self.install_status)
         writer.write_bool_value("isThirdPartyPartner", self.is_third_party_partner)

@@ -57,6 +57,9 @@ class DefaultUserRoleOverride(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .unified_role_permission import UnifiedRolePermission
+
         writer.write_bool_value("isDefault", self.is_default)
         writer.write_collection_of_object_values("rolePermissions", self.role_permissions)
     

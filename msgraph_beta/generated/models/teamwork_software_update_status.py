@@ -59,6 +59,8 @@ class TeamworkSoftwareUpdateStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_software_freshness import TeamworkSoftwareFreshness
+
         writer.write_str_value("availableVersion", self.available_version)
         writer.write_str_value("currentVersion", self.current_version)
         writer.write_str_value("@odata.type", self.odata_type)

@@ -51,6 +51,8 @@ class DeviceComplianceScriptRuleError(DeviceComplianceScriptError):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_compliance_script_error import DeviceComplianceScriptError
+
         writer.write_str_value("settingName", self.setting_name)
     
 

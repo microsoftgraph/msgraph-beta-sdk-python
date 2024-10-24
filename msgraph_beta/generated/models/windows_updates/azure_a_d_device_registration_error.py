@@ -54,6 +54,9 @@ class AzureADDeviceRegistrationError(UpdatableAssetError):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .azure_a_d_device_registration_error_reason import AzureADDeviceRegistrationErrorReason
+        from .updatable_asset_error import UpdatableAssetError
+
         writer.write_enum_value("reason", self.reason)
     
 

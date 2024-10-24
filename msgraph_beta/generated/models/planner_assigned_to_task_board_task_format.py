@@ -57,6 +57,9 @@ class PlannerAssignedToTaskBoardTaskFormat(PlannerDelta):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_delta import PlannerDelta
+        from .planner_order_hints_by_assignee import PlannerOrderHintsByAssignee
+
         writer.write_object_value("orderHintsByAssignee", self.order_hints_by_assignee)
         writer.write_str_value("unassignedOrderHint", self.unassigned_order_hint)
     

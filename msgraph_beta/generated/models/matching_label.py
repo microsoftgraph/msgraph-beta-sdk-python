@@ -83,6 +83,9 @@ class MatchingLabel(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .application_mode import ApplicationMode
+        from .label_action_base import LabelActionBase
+
         writer.write_enum_value("applicationMode", self.application_mode)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

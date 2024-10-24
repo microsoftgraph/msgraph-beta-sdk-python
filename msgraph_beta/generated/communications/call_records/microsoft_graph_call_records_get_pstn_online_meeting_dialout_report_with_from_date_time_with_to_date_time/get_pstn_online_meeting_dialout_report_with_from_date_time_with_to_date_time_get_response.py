@@ -52,6 +52,9 @@ class GetPstnOnlineMeetingDialoutReportWithFromDateTimeWithToDateTimeGetResponse
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from ....models.call_records.pstn_online_meeting_dialout_report import PstnOnlineMeetingDialoutReport
+
         writer.write_collection_of_object_values("value", self.value)
     
 

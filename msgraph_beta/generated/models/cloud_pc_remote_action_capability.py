@@ -59,6 +59,9 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .action_capability import ActionCapability
+        from .cloud_pc_remote_action_name import CloudPcRemoteActionName
+
         writer.write_enum_value("actionCapability", self.action_capability)
         writer.write_enum_value("actionName", self.action_name)
         writer.write_str_value("@odata.type", self.odata_type)

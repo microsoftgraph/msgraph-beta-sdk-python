@@ -130,6 +130,16 @@ class OnlineMeeting(OnlineMeetingBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .broadcast_meeting_settings import BroadcastMeetingSettings
+        from .call_ai_insight import CallAiInsight
+        from .call_recording import CallRecording
+        from .call_transcript import CallTranscript
+        from .meeting_attendance_report import MeetingAttendanceReport
+        from .meeting_capabilities import MeetingCapabilities
+        from .meeting_participants import MeetingParticipants
+        from .meeting_registration import MeetingRegistration
+        from .online_meeting_base import OnlineMeetingBase
+
         writer.write_collection_of_object_values("aiInsights", self.ai_insights)
         writer.write_bytes_value("alternativeRecording", self.alternative_recording)
         writer.write_bytes_value("attendeeReport", self.attendee_report)

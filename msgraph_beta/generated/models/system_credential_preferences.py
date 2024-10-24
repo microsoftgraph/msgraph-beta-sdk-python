@@ -65,6 +65,10 @@ class SystemCredentialPreferences(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .advanced_config_state import AdvancedConfigState
+        from .exclude_target import ExcludeTarget
+        from .include_target import IncludeTarget
+
         writer.write_collection_of_object_values("excludeTargets", self.exclude_targets)
         writer.write_collection_of_object_values("includeTargets", self.include_targets)
         writer.write_str_value("@odata.type", self.odata_type)

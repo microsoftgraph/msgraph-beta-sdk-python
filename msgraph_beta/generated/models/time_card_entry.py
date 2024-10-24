@@ -62,6 +62,9 @@ class TimeCardEntry(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .time_card_break import TimeCardBreak
+        from .time_card_event import TimeCardEvent
+
         writer.write_collection_of_object_values("breaks", self.breaks)
         writer.write_object_value("clockInEvent", self.clock_in_event)
         writer.write_object_value("clockOutEvent", self.clock_out_event)

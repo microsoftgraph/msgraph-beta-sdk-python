@@ -120,6 +120,11 @@ class UserExperienceAnalyticsResourcePerformance(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .disk_type import DiskType
+        from .entity import Entity
+        from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
+        from .user_experience_analytics_machine_type import UserExperienceAnalyticsMachineType
+
         writer.write_int_value("averageSpikeTimeScore", self.average_spike_time_score)
         writer.write_float_value("cpuClockSpeedInMHz", self.cpu_clock_speed_in_m_hz)
         writer.write_str_value("cpuDisplayName", self.cpu_display_name)

@@ -57,6 +57,9 @@ class TypedEmailAddress(EmailAddress):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .email_address import EmailAddress
+        from .email_type import EmailType
+
         writer.write_str_value("otherLabel", self.other_label)
         writer.write_enum_value("type", self.type)
     

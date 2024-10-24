@@ -137,6 +137,14 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .external_authentication_type import ExternalAuthenticationType
+        from .key_credential import KeyCredential
+        from .on_premises_application_segment import OnPremisesApplicationSegment
+        from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
+        from .password_credential import PasswordCredential
+        from .segment_configuration import SegmentConfiguration
+        from .verified_custom_domain_certificates_metadata import VerifiedCustomDomainCertificatesMetadata
+
         writer.write_str_value("alternateUrl", self.alternate_url)
         writer.write_str_value("applicationServerTimeout", self.application_server_timeout)
         writer.write_str_value("applicationType", self.application_type)

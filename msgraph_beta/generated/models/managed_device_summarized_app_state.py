@@ -59,6 +59,8 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_script_run_state import DeviceManagementScriptRunState
+
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("summarizedAppState", self.summarized_app_state)

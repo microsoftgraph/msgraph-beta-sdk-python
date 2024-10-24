@@ -59,6 +59,8 @@ class CloudPcStatusDetails(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .key_value_pair import KeyValuePair
+
         writer.write_collection_of_object_values("additionalInformation", self.additional_information)
         writer.write_str_value("code", self.code)
         writer.write_str_value("message", self.message)

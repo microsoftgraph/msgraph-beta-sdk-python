@@ -63,6 +63,8 @@ class Windows10AppsForceUpdateSchedule(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .windows10_apps_update_recurrence import Windows10AppsUpdateRecurrence
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("recurrence", self.recurrence)
         writer.write_bool_value("runImmediatelyIfAfterStartDateTime", self.run_immediately_if_after_start_date_time)

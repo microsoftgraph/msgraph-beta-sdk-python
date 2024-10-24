@@ -65,6 +65,8 @@ class DeviceScopeActionResult(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_scope_action_status import DeviceScopeActionStatus
+
         writer.write_str_value("deviceScopeAction", self.device_scope_action)
         writer.write_str_value("deviceScopeId", self.device_scope_id)
         writer.write_str_value("failedMessage", self.failed_message)

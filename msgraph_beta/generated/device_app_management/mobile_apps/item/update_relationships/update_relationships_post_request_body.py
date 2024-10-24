@@ -50,6 +50,8 @@ class UpdateRelationshipsPostRequestBody(AdditionalDataHolder, BackedModel, Pars
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.mobile_app_relationship import MobileAppRelationship
+
         writer.write_collection_of_object_values("relationships", self.relationships)
         writer.write_additional_data_value(self.additional_data)
     

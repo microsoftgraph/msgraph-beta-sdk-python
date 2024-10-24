@@ -71,6 +71,8 @@ class SharingLink(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .identity import Identity
+
         writer.write_object_value("application", self.application)
         writer.write_str_value("configuratorUrl", self.configurator_url)
         writer.write_str_value("@odata.type", self.odata_type)

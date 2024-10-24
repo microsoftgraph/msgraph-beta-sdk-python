@@ -54,6 +54,9 @@ class Ediscoveryroot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .case import Case
+
         writer.write_collection_of_object_values("cases", self.cases)
     
 

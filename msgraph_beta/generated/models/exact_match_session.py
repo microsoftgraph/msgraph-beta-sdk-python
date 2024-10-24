@@ -75,6 +75,9 @@ class ExactMatchSession(ExactMatchSessionBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .exact_match_session_base import ExactMatchSessionBase
+        from .exact_match_upload_agent import ExactMatchUploadAgent
+
         writer.write_str_value("checksum", self.checksum)
         writer.write_str_value("dataUploadURI", self.data_upload_u_r_i)
         writer.write_collection_of_primitive_values("fields", self.fields)

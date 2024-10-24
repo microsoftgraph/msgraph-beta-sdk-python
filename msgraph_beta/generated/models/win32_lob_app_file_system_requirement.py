@@ -66,6 +66,9 @@ class Win32LobAppFileSystemRequirement(Win32LobAppRequirement):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .win32_lob_app_file_system_detection_type import Win32LobAppFileSystemDetectionType
+        from .win32_lob_app_requirement import Win32LobAppRequirement
+
         writer.write_bool_value("check32BitOn64System", self.check32_bit_on64_system)
         writer.write_enum_value("detectionType", self.detection_type)
         writer.write_str_value("fileOrFolderName", self.file_or_folder_name)

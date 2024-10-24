@@ -66,6 +66,10 @@ class WorkbookComment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .workbook_comment_reply import WorkbookCommentReply
+        from .workbook_document_task import WorkbookDocumentTask
+
         writer.write_str_value("content", self.content)
         writer.write_str_value("contentType", self.content_type)
         writer.write_collection_of_object_values("replies", self.replies)

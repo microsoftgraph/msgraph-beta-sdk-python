@@ -82,6 +82,11 @@ class ManagementTemplateStepDeployment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .graph_a_p_i_error_details import GraphAPIErrorDetails
+        from .management_template_deployment_status import ManagementTemplateDeploymentStatus
+        from .management_template_step_version import ManagementTemplateStepVersion
+
         writer.write_str_value("createdByUserId", self.created_by_user_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("error", self.error)

@@ -51,6 +51,8 @@ class CloudPcBulkResize(CloudPcBulkAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_bulk_action import CloudPcBulkAction
+
         writer.write_str_value("targetServicePlanId", self.target_service_plan_id)
     
 

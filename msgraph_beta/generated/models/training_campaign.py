@@ -103,6 +103,14 @@ class TrainingCampaign(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .account_target_content import AccountTargetContent
+        from .campaign_schedule import CampaignSchedule
+        from .email_identity import EmailIdentity
+        from .end_user_notification_setting import EndUserNotificationSetting
+        from .entity import Entity
+        from .training_campaign_report import TrainingCampaignReport
+        from .training_setting import TrainingSetting
+
         writer.write_object_value("campaignSchedule", self.campaign_schedule)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

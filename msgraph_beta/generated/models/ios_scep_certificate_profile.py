@@ -102,6 +102,15 @@ class IosScepCertificateProfile(IosCertificateProfileBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .certificate_store import CertificateStore
+        from .custom_subject_alternative_name import CustomSubjectAlternativeName
+        from .extended_key_usage import ExtendedKeyUsage
+        from .ios_certificate_profile_base import IosCertificateProfileBase
+        from .ios_trusted_root_certificate import IosTrustedRootCertificate
+        from .key_size import KeySize
+        from .key_usages import KeyUsages
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_collection_of_object_values("customSubjectAlternativeNames", self.custom_subject_alternative_names)
         writer.write_collection_of_object_values("extendedKeyUsages", self.extended_key_usages)

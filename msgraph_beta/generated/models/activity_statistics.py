@@ -40,7 +40,8 @@ class ActivityStatistics(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.callActivityStatistics".casefold():
@@ -106,6 +107,14 @@ class ActivityStatistics(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .analytics_activity_type import AnalyticsActivityType
+        from .call_activity_statistics import CallActivityStatistics
+        from .chat_activity_statistics import ChatActivityStatistics
+        from .email_activity_statistics import EmailActivityStatistics
+        from .entity import Entity
+        from .focus_activity_statistics import FocusActivityStatistics
+        from .meeting_activity_statistics import MeetingActivityStatistics
+
         writer.write_enum_value("activity", self.activity)
         writer.write_timedelta_value("duration", self.duration)
         writer.write_date_value("endDate", self.end_date)

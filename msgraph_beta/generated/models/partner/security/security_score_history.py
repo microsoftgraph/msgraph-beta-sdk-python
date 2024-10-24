@@ -61,6 +61,8 @@ class SecurityScoreHistory(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ...entity import Entity
+
         writer.write_int_value("compliantRequirementsCount", self.compliant_requirements_count)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_float_value("score", self.score)

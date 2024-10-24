@@ -38,7 +38,8 @@ class LabelActionBase(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.addFooter".casefold():
@@ -124,6 +125,17 @@ class LabelActionBase(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .add_footer import AddFooter
+        from .add_header import AddHeader
+        from .add_watermark import AddWatermark
+        from .encrypt_content import EncryptContent
+        from .encrypt_with_template import EncryptWithTemplate
+        from .encrypt_with_user_defined_rights import EncryptWithUserDefinedRights
+        from .mark_content import MarkContent
+        from .protect_group import ProtectGroup
+        from .protect_online_meeting_action import ProtectOnlineMeetingAction
+        from .protect_site import ProtectSite
+
         writer.write_str_value("name", self.name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

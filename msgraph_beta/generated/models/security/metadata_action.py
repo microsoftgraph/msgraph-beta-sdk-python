@@ -57,6 +57,9 @@ class MetadataAction(InformationProtectionAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .information_protection_action import InformationProtectionAction
+        from .key_value_pair import KeyValuePair
+
         writer.write_collection_of_object_values("metadataToAdd", self.metadata_to_add)
         writer.write_collection_of_primitive_values("metadataToRemove", self.metadata_to_remove)
     

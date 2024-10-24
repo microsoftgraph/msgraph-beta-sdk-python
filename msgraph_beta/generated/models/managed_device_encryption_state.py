@@ -105,6 +105,15 @@ class ManagedDeviceEncryptionState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .advanced_bit_locker_state import AdvancedBitLockerState
+        from .compliance_status import ComplianceStatus
+        from .device_types import DeviceTypes
+        from .encryption_readiness_state import EncryptionReadinessState
+        from .encryption_report_policy_details import EncryptionReportPolicyDetails
+        from .encryption_state import EncryptionState
+        from .entity import Entity
+        from .file_vault_state import FileVaultState
+
         writer.write_enum_value("advancedBitLockerStates", self.advanced_bit_locker_states)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_enum_value("deviceType", self.device_type)

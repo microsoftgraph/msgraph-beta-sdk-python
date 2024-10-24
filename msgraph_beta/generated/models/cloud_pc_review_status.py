@@ -78,6 +78,8 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cloud_pc_user_access_level import CloudPcUserAccessLevel
+
         writer.write_str_value("azureStorageAccountId", self.azure_storage_account_id)
         writer.write_str_value("azureStorageAccountName", self.azure_storage_account_name)
         writer.write_str_value("azureStorageContainerName", self.azure_storage_container_name)

@@ -48,5 +48,7 @@ class InternalSponsors(UserSet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .user_set import UserSet
+
     
 

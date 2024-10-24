@@ -66,6 +66,8 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .day_of_week import DayOfWeek
+
         writer.write_enum_value("endDay", self.end_day)
         writer.write_time_value("endTime", self.end_time)
         writer.write_str_value("@odata.type", self.odata_type)

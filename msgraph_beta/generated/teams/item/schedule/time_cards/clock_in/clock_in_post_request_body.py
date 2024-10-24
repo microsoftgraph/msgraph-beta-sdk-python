@@ -56,6 +56,8 @@ class ClockInPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ......models.item_body import ItemBody
+
         writer.write_bool_value("atApprovedLocation", self.at_approved_location)
         writer.write_object_value("notes", self.notes)
         writer.write_str_value("onBehalfOfUserId", self.on_behalf_of_user_id)

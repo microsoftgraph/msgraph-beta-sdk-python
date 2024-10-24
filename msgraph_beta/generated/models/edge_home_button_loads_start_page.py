@@ -51,5 +51,7 @@ class EdgeHomeButtonLoadsStartPage(EdgeHomeButtonConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .edge_home_button_configuration import EdgeHomeButtonConfiguration
+
     
 

@@ -139,6 +139,20 @@ class Chat(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .chat_message import ChatMessage
+        from .chat_message_info import ChatMessageInfo
+        from .chat_type import ChatType
+        from .chat_viewpoint import ChatViewpoint
+        from .conversation_member import ConversationMember
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .pinned_chat_message_info import PinnedChatMessageInfo
+        from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
+        from .teams_app_installation import TeamsAppInstallation
+        from .teams_async_operation import TeamsAsyncOperation
+        from .teams_tab import TeamsTab
+        from .teamwork_online_meeting_info import TeamworkOnlineMeetingInfo
+
         writer.write_enum_value("chatType", self.chat_type)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

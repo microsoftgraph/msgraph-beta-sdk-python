@@ -71,6 +71,8 @@ class GetSharedUseLicenseUsageReportPostRequestBody(AdditionalDataHolder, Backed
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.cloud_pc_report_name import CloudPcReportName
+
         writer.write_str_value("filter", self.filter)
         writer.write_collection_of_primitive_values("groupBy", self.group_by)
         writer.write_collection_of_primitive_values("orderBy", self.order_by)

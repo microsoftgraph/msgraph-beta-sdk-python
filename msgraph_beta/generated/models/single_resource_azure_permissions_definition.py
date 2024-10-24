@@ -57,6 +57,9 @@ class SingleResourceAzurePermissionsDefinition(PermissionsDefinition):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .azure_permissions_definition_action import AzurePermissionsDefinitionAction
+        from .permissions_definition import PermissionsDefinition
+
         writer.write_object_value("actionInfo", self.action_info)
         writer.write_str_value("resourceId", self.resource_id)
     

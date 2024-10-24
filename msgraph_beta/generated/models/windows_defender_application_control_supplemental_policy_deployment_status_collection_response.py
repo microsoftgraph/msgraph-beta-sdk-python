@@ -52,6 +52,9 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollect
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
+
         writer.write_collection_of_object_values("value", self.value)
     
 

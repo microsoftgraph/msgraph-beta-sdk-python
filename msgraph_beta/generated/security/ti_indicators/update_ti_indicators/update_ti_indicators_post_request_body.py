@@ -50,6 +50,8 @@ class UpdateTiIndicatorsPostRequestBody(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.ti_indicator import TiIndicator
+
         writer.write_collection_of_object_values("value", self.value)
         writer.write_additional_data_value(self.additional_data)
     

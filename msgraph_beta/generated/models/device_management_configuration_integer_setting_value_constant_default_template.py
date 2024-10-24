@@ -54,6 +54,8 @@ class DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate(De
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_integer_setting_value_default_template import DeviceManagementConfigurationIntegerSettingValueDefaultTemplate
+
         writer.write_int_value("constantValue", self.constant_value)
     
 

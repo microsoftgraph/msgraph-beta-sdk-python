@@ -57,6 +57,8 @@ class AndroidDeviceOwnerKioskModeManagedFolderReference(AndroidDeviceOwnerKioskM
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_kiosk_mode_home_screen_item import AndroidDeviceOwnerKioskModeHomeScreenItem
+
         writer.write_str_value("folderIdentifier", self.folder_identifier)
         writer.write_str_value("folderName", self.folder_name)
     

@@ -90,6 +90,11 @@ class ApplicationTemplate(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .configuration_uri import ConfigurationUri
+        from .entity import Entity
+        from .informational_urls import InformationalUrls
+        from .supported_claim_configuration import SupportedClaimConfiguration
+
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_collection_of_object_values("configurationUris", self.configuration_uris)
         writer.write_str_value("description", self.description)

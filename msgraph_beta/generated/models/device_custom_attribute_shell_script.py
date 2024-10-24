@@ -118,6 +118,15 @@ class DeviceCustomAttributeShellScript(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_custom_attribute_value_type import DeviceCustomAttributeValueType
+        from .device_management_script_assignment import DeviceManagementScriptAssignment
+        from .device_management_script_device_state import DeviceManagementScriptDeviceState
+        from .device_management_script_group_assignment import DeviceManagementScriptGroupAssignment
+        from .device_management_script_run_summary import DeviceManagementScriptRunSummary
+        from .device_management_script_user_state import DeviceManagementScriptUserState
+        from .entity import Entity
+        from .run_as_account_type import RunAsAccountType
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_str_value("customAttributeName", self.custom_attribute_name)
         writer.write_enum_value("customAttributeType", self.custom_attribute_type)

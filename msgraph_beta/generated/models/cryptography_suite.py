@@ -83,6 +83,12 @@ class CryptographySuite(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .authentication_transform_constant import AuthenticationTransformConstant
+        from .diffie_hellman_group import DiffieHellmanGroup
+        from .perfect_forward_secrecy_group import PerfectForwardSecrecyGroup
+        from .vpn_encryption_algorithm_type import VpnEncryptionAlgorithmType
+        from .vpn_integrity_algorithm_type import VpnIntegrityAlgorithmType
+
         writer.write_enum_value("authenticationTransformConstants", self.authentication_transform_constants)
         writer.write_enum_value("cipherTransformConstants", self.cipher_transform_constants)
         writer.write_enum_value("dhGroup", self.dh_group)

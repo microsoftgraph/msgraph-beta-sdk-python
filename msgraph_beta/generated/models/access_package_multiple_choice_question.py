@@ -57,6 +57,9 @@ class AccessPackageMultipleChoiceQuestion(AccessPackageQuestion):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_package_answer_choice import AccessPackageAnswerChoice
+        from .access_package_question import AccessPackageQuestion
+
         writer.write_bool_value("allowsMultipleSelection", self.allows_multiple_selection)
         writer.write_collection_of_object_values("choices", self.choices)
     

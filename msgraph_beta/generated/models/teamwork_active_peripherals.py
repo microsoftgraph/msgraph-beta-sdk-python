@@ -65,6 +65,8 @@ class TeamworkActivePeripherals(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_peripheral import TeamworkPeripheral
+
         writer.write_object_value("communicationSpeaker", self.communication_speaker)
         writer.write_object_value("contentCamera", self.content_camera)
         writer.write_object_value("microphone", self.microphone)

@@ -54,6 +54,8 @@ class AuditUserIdentity(UserIdentity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .user_identity import UserIdentity
+
         writer.write_str_value("homeTenantId", self.home_tenant_id)
         writer.write_str_value("homeTenantName", self.home_tenant_name)
     

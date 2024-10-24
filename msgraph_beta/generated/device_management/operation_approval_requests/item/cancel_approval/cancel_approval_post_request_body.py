@@ -53,6 +53,8 @@ class CancelApprovalPostRequestBody(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.operation_approval_source import OperationApprovalSource
+
         writer.write_enum_value("approvalSource", self.approval_source)
         writer.write_str_value("justification", self.justification)
         writer.write_additional_data_value(self.additional_data)

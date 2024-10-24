@@ -56,6 +56,8 @@ class Media(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .media_source import MediaSource
+
         writer.write_bool_value("isTranscriptionShown", self.is_transcription_shown)
         writer.write_object_value("mediaSource", self.media_source)
         writer.write_str_value("@odata.type", self.odata_type)

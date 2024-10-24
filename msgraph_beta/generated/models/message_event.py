@@ -61,6 +61,9 @@ class MessageEvent(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .message_event_type import MessageEventType
+
         writer.write_datetime_value("dateTime", self.date_time)
         writer.write_str_value("description", self.description)
         writer.write_enum_value("eventType", self.event_type)

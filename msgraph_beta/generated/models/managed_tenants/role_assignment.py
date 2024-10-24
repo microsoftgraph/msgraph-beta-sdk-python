@@ -59,6 +59,9 @@ class RoleAssignment(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .delegated_privilege_status import DelegatedPrivilegeStatus
+        from .role_definition import RoleDefinition
+
         writer.write_enum_value("assignmentType", self.assignment_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("roles", self.roles)

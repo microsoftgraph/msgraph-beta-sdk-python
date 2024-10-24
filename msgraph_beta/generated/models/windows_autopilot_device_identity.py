@@ -154,6 +154,14 @@ class WindowsAutopilotDeviceIdentity(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .enrollment_state import EnrollmentState
+        from .entity import Entity
+        from .windows_autopilot_deployment_profile import WindowsAutopilotDeploymentProfile
+        from .windows_autopilot_device_remediation_state import WindowsAutopilotDeviceRemediationState
+        from .windows_autopilot_profile_assignment_detailed_status import WindowsAutopilotProfileAssignmentDetailedStatus
+        from .windows_autopilot_profile_assignment_status import WindowsAutopilotProfileAssignmentStatus
+        from .windows_autopilot_userless_enrollment_status import WindowsAutopilotUserlessEnrollmentStatus
+
         writer.write_str_value("addressableUserName", self.addressable_user_name)
         writer.write_str_value("azureActiveDirectoryDeviceId", self.azure_active_directory_device_id)
         writer.write_str_value("azureAdDeviceId", self.azure_ad_device_id)

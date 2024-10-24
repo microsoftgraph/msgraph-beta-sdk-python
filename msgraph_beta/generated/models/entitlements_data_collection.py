@@ -64,6 +64,10 @@ class EntitlementsDataCollection(EntitlementsDataCollectionInfo):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .data_collection_status import DataCollectionStatus
+        from .entitlements_data_collection_info import EntitlementsDataCollectionInfo
+        from .permissions_modification_capability import PermissionsModificationCapability
+
         writer.write_datetime_value("lastCollectionDateTime", self.last_collection_date_time)
         writer.write_enum_value("permissionsModificationCapability", self.permissions_modification_capability)
         writer.write_enum_value("status", self.status)

@@ -69,6 +69,8 @@ class GroupPolicyPresentationLongDecimalTextBox(GroupPolicyUploadedPresentation)
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
+
         writer.write_int_value("defaultValue", self.default_value)
         writer.write_int_value("maxValue", self.max_value)
         writer.write_int_value("minValue", self.min_value)

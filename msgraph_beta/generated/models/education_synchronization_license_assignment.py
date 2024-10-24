@@ -56,6 +56,8 @@ class EducationSynchronizationLicenseAssignment(AdditionalDataHolder, BackedMode
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .education_user_role import EducationUserRole
+
         writer.write_enum_value("appliesTo", self.applies_to)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_primitive_values("skuIds", self.sku_ids)

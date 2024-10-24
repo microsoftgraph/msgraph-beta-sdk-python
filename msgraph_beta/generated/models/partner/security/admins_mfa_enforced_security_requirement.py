@@ -78,6 +78,9 @@ class AdminsMfaEnforcedSecurityRequirement(SecurityRequirement):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .policy_status import PolicyStatus
+        from .security_requirement import SecurityRequirement
+
         writer.write_int_value("adminsRequiredNotUsingMfaCount", self.admins_required_not_using_mfa_count)
         writer.write_enum_value("legacyPerUserMfaStatus", self.legacy_per_user_mfa_status)
         writer.write_enum_value("mfaConditionalAccessPolicyStatus", self.mfa_conditional_access_policy_status)

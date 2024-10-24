@@ -87,6 +87,14 @@ class TunnelConfigurationIKEv2Custom(TunnelConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .dh_group import DhGroup
+        from .ike_encryption import IkeEncryption
+        from .ike_integrity import IkeIntegrity
+        from .ip_sec_encryption import IpSecEncryption
+        from .ip_sec_integrity import IpSecIntegrity
+        from .pfs_group import PfsGroup
+        from .tunnel_configuration import TunnelConfiguration
+
         writer.write_enum_value("dhGroup", self.dh_group)
         writer.write_enum_value("ikeEncryption", self.ike_encryption)
         writer.write_enum_value("ikeIntegrity", self.ike_integrity)

@@ -106,6 +106,10 @@ class CloudAppSecurityProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .application_permissions_required import ApplicationPermissionsRequired
+        from .entity import Entity
+        from .security_vendor_information import SecurityVendorInformation
+
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)
         writer.write_str_value("azureTenantId", self.azure_tenant_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

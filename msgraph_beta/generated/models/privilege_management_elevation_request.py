@@ -100,6 +100,10 @@ class PrivilegeManagementElevationRequest(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .elevation_request_application_detail import ElevationRequestApplicationDetail
+        from .elevation_request_state import ElevationRequestState
+        from .entity import Entity
+
         writer.write_object_value("applicationDetail", self.application_detail)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_datetime_value("requestCreatedDateTime", self.request_created_date_time)

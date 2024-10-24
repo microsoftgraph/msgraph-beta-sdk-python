@@ -67,6 +67,8 @@ class MeetingActivityStatistics(ActivityStatistics):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .activity_statistics import ActivityStatistics
+
         writer.write_timedelta_value("afterHours", self.after_hours)
         writer.write_timedelta_value("conflicting", self.conflicting)
         writer.write_timedelta_value("long", self.long)

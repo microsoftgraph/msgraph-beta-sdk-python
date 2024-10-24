@@ -54,6 +54,9 @@ class ExactMatchDetectedSensitiveContent(DetectedSensitiveContentBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .detected_sensitive_content_base import DetectedSensitiveContentBase
+        from .sensitive_content_location import SensitiveContentLocation
+
         writer.write_collection_of_object_values("matches", self.matches)
     
 

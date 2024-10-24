@@ -54,6 +54,8 @@ class AndroidManagedAppRegistration(ManagedAppRegistration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .managed_app_registration import ManagedAppRegistration
+
         writer.write_str_value("patchVersion", self.patch_version)
     
 

@@ -61,6 +61,8 @@ class Windows10XVpnConfiguration(DeviceManagementResourceAccessProfileBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
+
         writer.write_uuid_value("authenticationCertificateId", self.authentication_certificate_id)
         writer.write_bytes_value("customXml", self.custom_xml)
         writer.write_str_value("customXmlFileName", self.custom_xml_file_name)

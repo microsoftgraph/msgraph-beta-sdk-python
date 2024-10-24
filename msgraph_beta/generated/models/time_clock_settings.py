@@ -53,6 +53,8 @@ class TimeClockSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .geo_coordinates import GeoCoordinates
+
         writer.write_object_value("approvedLocation", self.approved_location)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

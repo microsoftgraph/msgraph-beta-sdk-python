@@ -52,6 +52,9 @@ class GetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveGetResponse(Bas
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .......models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .......models.windows_updates.known_issue import KnownIssue
+
         writer.write_collection_of_object_values("value", self.value)
     
 

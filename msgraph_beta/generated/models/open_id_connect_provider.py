@@ -75,6 +75,11 @@ class OpenIdConnectProvider(IdentityProvider):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .claims_mapping import ClaimsMapping
+        from .identity_provider import IdentityProvider
+        from .open_id_connect_response_mode import OpenIdConnectResponseMode
+        from .open_id_connect_response_types import OpenIdConnectResponseTypes
+
         writer.write_object_value("claimsMapping", self.claims_mapping)
         writer.write_str_value("domainHint", self.domain_hint)
         writer.write_str_value("metadataUrl", self.metadata_url)

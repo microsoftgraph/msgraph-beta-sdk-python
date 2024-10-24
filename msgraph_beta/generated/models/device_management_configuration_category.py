@@ -93,6 +93,11 @@ class DeviceManagementConfigurationCategory(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_platforms import DeviceManagementConfigurationPlatforms
+        from .device_management_configuration_setting_usage import DeviceManagementConfigurationSettingUsage
+        from .device_management_configuration_technologies import DeviceManagementConfigurationTechnologies
+        from .entity import Entity
+
         writer.write_str_value("categoryDescription", self.category_description)
         writer.write_collection_of_primitive_values("childCategoryIds", self.child_category_ids)
         writer.write_str_value("description", self.description)

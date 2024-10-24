@@ -76,6 +76,10 @@ class Tag(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from ..identity_set import IdentitySet
+        from .child_selectability import ChildSelectability
+
         writer.write_enum_value("childSelectability", self.child_selectability)
         writer.write_collection_of_object_values("childTags", self.child_tags)
         writer.write_object_value("createdBy", self.created_by)

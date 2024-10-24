@@ -32,7 +32,8 @@ class DeviceManagementConfigurationSettingGroupDefinition(DeviceManagementConfig
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition".casefold():
@@ -74,6 +75,11 @@ class DeviceManagementConfigurationSettingGroupDefinition(DeviceManagementConfig
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_dependent_on import DeviceManagementConfigurationDependentOn
+        from .device_management_configuration_setting_definition import DeviceManagementConfigurationSettingDefinition
+        from .device_management_configuration_setting_depended_on_by import DeviceManagementConfigurationSettingDependedOnBy
+        from .device_management_configuration_setting_group_collection_definition import DeviceManagementConfigurationSettingGroupCollectionDefinition
+
         writer.write_collection_of_primitive_values("childIds", self.child_ids)
         writer.write_collection_of_object_values("dependedOnBy", self.depended_on_by)
         writer.write_collection_of_object_values("dependentOn", self.dependent_on)

@@ -66,6 +66,10 @@ class GcpRole(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .gcp_role_type import GcpRoleType
+        from .gcp_scope import GcpScope
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("externalId", self.external_id)
         writer.write_enum_value("gcpRoleType", self.gcp_role_type)

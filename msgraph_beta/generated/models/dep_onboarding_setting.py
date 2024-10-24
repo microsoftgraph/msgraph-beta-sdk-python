@@ -115,6 +115,13 @@ class DepOnboardingSetting(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
+        from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
+        from .dep_token_type import DepTokenType
+        from .enrollment_profile import EnrollmentProfile
+        from .entity import Entity
+        from .imported_apple_device_identity import ImportedAppleDeviceIdentity
+
         writer.write_str_value("appleIdentifier", self.apple_identifier)
         writer.write_bool_value("dataSharingConsentGranted", self.data_sharing_consent_granted)
         writer.write_object_value("defaultIosEnrollmentProfile", self.default_ios_enrollment_profile)

@@ -69,6 +69,8 @@ class UserAccount(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .account_status import AccountStatus
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastSeenDateTime", self.last_seen_date_time)
         writer.write_str_value("@odata.type", self.odata_type)

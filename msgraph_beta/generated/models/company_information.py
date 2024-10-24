@@ -91,6 +91,8 @@ class CompanyInformation(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .postal_address_type import PostalAddressType
+
         writer.write_object_value("address", self.address)
         writer.write_str_value("currencyCode", self.currency_code)
         writer.write_date_value("currentFiscalYearStartDate", self.current_fiscal_year_start_date)

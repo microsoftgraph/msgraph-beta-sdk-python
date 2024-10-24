@@ -63,6 +63,10 @@ class DeviceEnrollmentPlatformRestrictionConfiguration(DeviceEnrollmentConfigura
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_enrollment_configuration import DeviceEnrollmentConfiguration
+        from .device_enrollment_platform_restriction import DeviceEnrollmentPlatformRestriction
+        from .enrollment_restriction_platform_type import EnrollmentRestrictionPlatformType
+
         writer.write_object_value("platformRestriction", self.platform_restriction)
         writer.write_enum_value("platformType", self.platform_type)
     

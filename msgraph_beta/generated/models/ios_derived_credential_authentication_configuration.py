@@ -57,6 +57,9 @@ class IosDerivedCredentialAuthenticationConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
+
         writer.write_object_value("derivedCredentialSettings", self.derived_credential_settings)
     
 

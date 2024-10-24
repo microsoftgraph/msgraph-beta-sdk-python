@@ -54,6 +54,8 @@ class CertificateBasedApplicationConfiguration(TrustedCertificateAuthorityAsEnti
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
+
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
     

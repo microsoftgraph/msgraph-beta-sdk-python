@@ -60,6 +60,10 @@ class InformationProtection(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .information_protection_policy_setting import InformationProtectionPolicySetting
+        from .sensitivity_label import SensitivityLabel
+
         writer.write_object_value("labelPolicySettings", self.label_policy_settings)
         writer.write_collection_of_object_values("sensitivityLabels", self.sensitivity_labels)
     

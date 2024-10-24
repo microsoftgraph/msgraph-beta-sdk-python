@@ -68,6 +68,8 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_peripheral_health import TeamworkPeripheralHealth
+
         writer.write_object_value("communicationSpeakerHealth", self.communication_speaker_health)
         writer.write_object_value("contentCameraHealth", self.content_camera_health)
         writer.write_collection_of_object_values("displayHealthCollection", self.display_health_collection)

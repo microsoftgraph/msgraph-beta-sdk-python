@@ -99,6 +99,9 @@ class ArchivedPrintJob(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .print_job_processing_state import PrintJobProcessingState
+        from .user_identity import UserIdentity
+
         writer.write_bool_value("acquiredByPrinter", self.acquired_by_printer)
         writer.write_datetime_value("acquiredDateTime", self.acquired_date_time)
         writer.write_int_value("blackAndWhitePageCount", self.black_and_white_page_count)

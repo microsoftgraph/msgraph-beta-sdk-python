@@ -87,6 +87,11 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .assignment_filter_evaluation_result import AssignmentFilterEvaluationResult
+        from .assignment_filter_type_and_evaluation_result import AssignmentFilterTypeAndEvaluationResult
+        from .device_and_app_management_assignment_filter_type import DeviceAndAppManagementAssignmentFilterType
+        from .device_platform_type import DevicePlatformType
+
         writer.write_str_value("assignmentFilterDisplayName", self.assignment_filter_display_name)
         writer.write_str_value("assignmentFilterId", self.assignment_filter_id)
         writer.write_datetime_value("assignmentFilterLastModifiedDateTime", self.assignment_filter_last_modified_date_time)

@@ -52,6 +52,9 @@ class TeamTemplateCollectionResponse(BaseCollectionPaginationCountResponse):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .team_template import TeamTemplate
+
         writer.write_collection_of_object_values("value", self.value)
     
 

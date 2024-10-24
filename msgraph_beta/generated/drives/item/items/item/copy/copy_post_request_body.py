@@ -59,6 +59,8 @@ class CopyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ......models.item_reference import ItemReference
+
         writer.write_bool_value("childrenOnly", self.children_only)
         writer.write_bool_value("includeAllVersionHistory", self.include_all_version_history)
         writer.write_str_value("name", self.name)

@@ -60,6 +60,10 @@ class OnAttributeCollectionSubmitCustomExtensionHandler(OnAttributeCollectionSub
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_extension_overwrite_configuration import CustomExtensionOverwriteConfiguration
+        from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
+        from .on_attribute_collection_submit_handler import OnAttributeCollectionSubmitHandler
+
         writer.write_object_value("configuration", self.configuration)
         writer.write_object_value("customExtension", self.custom_extension)
     

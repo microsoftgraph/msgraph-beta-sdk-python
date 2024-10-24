@@ -59,6 +59,8 @@ class TeamworkLoginStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_connection import TeamworkConnection
+
         writer.write_object_value("exchangeConnection", self.exchange_connection)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("skypeConnection", self.skype_connection)

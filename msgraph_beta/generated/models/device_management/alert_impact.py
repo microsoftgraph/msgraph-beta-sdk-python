@@ -62,6 +62,9 @@ class AlertImpact(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ..key_value_pair import KeyValuePair
+        from .aggregation_type import AggregationType
+
         writer.write_enum_value("aggregationType", self.aggregation_type)
         writer.write_collection_of_object_values("alertImpactDetails", self.alert_impact_details)
         writer.write_str_value("@odata.type", self.odata_type)

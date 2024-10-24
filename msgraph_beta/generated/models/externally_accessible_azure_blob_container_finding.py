@@ -66,6 +66,11 @@ class ExternallyAccessibleAzureBlobContainerFinding(Finding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system_resource import AuthorizationSystemResource
+        from .azure_access_type import AzureAccessType
+        from .azure_encryption import AzureEncryption
+        from .finding import Finding
+
         writer.write_enum_value("accessibility", self.accessibility)
         writer.write_enum_value("encryptionManagedBy", self.encryption_managed_by)
         writer.write_object_value("storageAccount", self.storage_account)

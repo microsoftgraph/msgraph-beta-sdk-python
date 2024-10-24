@@ -81,6 +81,13 @@ class EdiscoverySearch(Search):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .data_source import DataSource
+        from .data_source_scopes import DataSourceScopes
+        from .ediscovery_add_to_review_set_operation import EdiscoveryAddToReviewSetOperation
+        from .ediscovery_estimate_operation import EdiscoveryEstimateOperation
+        from .ediscovery_noncustodial_data_source import EdiscoveryNoncustodialDataSource
+        from .search import Search
+
         writer.write_object_value("addToReviewSetOperation", self.add_to_review_set_operation)
         writer.write_collection_of_object_values("additionalSources", self.additional_sources)
         writer.write_collection_of_object_values("custodianSources", self.custodian_sources)

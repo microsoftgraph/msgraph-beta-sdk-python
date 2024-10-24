@@ -96,6 +96,14 @@ class Windows81SCEPCertificateProfile(Windows81CertificateProfileBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .certificate_store import CertificateStore
+        from .hash_algorithms import HashAlgorithms
+        from .key_size import KeySize
+        from .key_usages import KeyUsages
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+        from .windows81_certificate_profile_base import Windows81CertificateProfileBase
+        from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
+
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_enum_value("hashAlgorithm", self.hash_algorithm)
         writer.write_enum_value("keySize", self.key_size)

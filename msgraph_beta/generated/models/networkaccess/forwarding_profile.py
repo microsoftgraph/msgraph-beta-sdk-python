@@ -69,6 +69,11 @@ class ForwardingProfile(Profile):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..service_principal import ServicePrincipal
+        from .association import Association
+        from .profile import Profile
+        from .traffic_forwarding_type import TrafficForwardingType
+
         writer.write_collection_of_object_values("associations", self.associations)
         writer.write_int_value("priority", self.priority)
         writer.write_object_value("servicePrincipal", self.service_principal)

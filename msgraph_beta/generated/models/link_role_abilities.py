@@ -83,6 +83,10 @@ class LinkRoleAbilities(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .sharing_link_expiration_status import SharingLinkExpirationStatus
+        from .sharing_link_variants import SharingLinkVariants
+        from .sharing_operation_status import SharingOperationStatus
+
         writer.write_object_value("addExistingExternalUsers", self.add_existing_external_users)
         writer.write_object_value("addNewExternalUsers", self.add_new_external_users)
         writer.write_object_value("applyVariants", self.apply_variants)

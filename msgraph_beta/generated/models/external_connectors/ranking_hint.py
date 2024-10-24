@@ -53,6 +53,8 @@ class RankingHint(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .importance_score import ImportanceScore
+
         writer.write_enum_value("importanceScore", self.importance_score)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

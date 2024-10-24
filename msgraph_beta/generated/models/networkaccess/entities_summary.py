@@ -62,6 +62,8 @@ class EntitiesSummary(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .traffic_type import TrafficType
+
         writer.write_int_value("deviceCount", self.device_count)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("trafficType", self.traffic_type)

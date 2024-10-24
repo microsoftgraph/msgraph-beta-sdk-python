@@ -59,6 +59,9 @@ class GovernancePolicy(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .governance_criteria import GovernanceCriteria
+        from .governance_notification_policy import GovernanceNotificationPolicy
+
         writer.write_collection_of_object_values("decisionMakerCriteria", self.decision_maker_criteria)
         writer.write_object_value("notificationPolicy", self.notification_policy)
         writer.write_str_value("@odata.type", self.odata_type)

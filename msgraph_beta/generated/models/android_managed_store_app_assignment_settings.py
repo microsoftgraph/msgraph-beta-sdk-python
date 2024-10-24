@@ -60,6 +60,9 @@ class AndroidManagedStoreAppAssignmentSettings(MobileAppAssignmentSettings):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_managed_store_auto_update_mode import AndroidManagedStoreAutoUpdateMode
+        from .mobile_app_assignment_settings import MobileAppAssignmentSettings
+
         writer.write_collection_of_primitive_values("androidManagedStoreAppTrackIds", self.android_managed_store_app_track_ids)
         writer.write_enum_value("autoUpdateMode", self.auto_update_mode)
     

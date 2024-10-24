@@ -63,6 +63,9 @@ class CustomClaimsPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_claim_base import CustomClaimBase
+        from .entity import Entity
+
         writer.write_str_value("audienceOverride", self.audience_override)
         writer.write_collection_of_object_values("claims", self.claims)
         writer.write_bool_value("includeApplicationIdInIssuer", self.include_application_id_in_issuer)

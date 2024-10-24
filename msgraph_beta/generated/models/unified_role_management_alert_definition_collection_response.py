@@ -52,6 +52,9 @@ class UnifiedRoleManagementAlertDefinitionCollectionResponse(BaseCollectionPagin
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .unified_role_management_alert_definition import UnifiedRoleManagementAlertDefinition
+
         writer.write_collection_of_object_values("value", self.value)
     
 

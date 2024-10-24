@@ -29,7 +29,8 @@ class DeviceManagementConfigurationChoiceSettingDefinition(DeviceManagementConfi
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionDefinition".casefold():
@@ -68,6 +69,10 @@ class DeviceManagementConfigurationChoiceSettingDefinition(DeviceManagementConfi
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_choice_setting_collection_definition import DeviceManagementConfigurationChoiceSettingCollectionDefinition
+        from .device_management_configuration_option_definition import DeviceManagementConfigurationOptionDefinition
+        from .device_management_configuration_setting_definition import DeviceManagementConfigurationSettingDefinition
+
         writer.write_str_value("defaultOptionId", self.default_option_id)
         writer.write_collection_of_object_values("options", self.options)
     

@@ -54,6 +54,9 @@ class AppManagementApplicationConfiguration(AppManagementConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .app_management_configuration import AppManagementConfiguration
+        from .identifier_uri_configuration import IdentifierUriConfiguration
+
         writer.write_object_value("identifierUris", self.identifier_uris)
     
 

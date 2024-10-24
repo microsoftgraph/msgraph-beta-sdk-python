@@ -63,6 +63,8 @@ class PersonWebsite(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .item_facet import ItemFacet
+
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

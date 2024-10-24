@@ -51,6 +51,8 @@ class RateDrivenRolloutSettings(GradualRolloutSettings):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .gradual_rollout_settings import GradualRolloutSettings
+
         writer.write_int_value("devicesPerOffer", self.devices_per_offer)
     
 

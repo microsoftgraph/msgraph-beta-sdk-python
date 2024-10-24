@@ -62,6 +62,8 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .education_user_role import EducationUserRole
+
         writer.write_enum_value("appliesTo", self.applies_to)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("sourcePropertyName", self.source_property_name)

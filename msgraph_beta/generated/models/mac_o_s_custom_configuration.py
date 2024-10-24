@@ -66,6 +66,9 @@ class MacOSCustomConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_deployment_channel import AppleDeploymentChannel
+        from .device_configuration import DeviceConfiguration
+
         writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_bytes_value("payload", self.payload)
         writer.write_str_value("payloadFileName", self.payload_file_name)

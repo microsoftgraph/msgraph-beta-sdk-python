@@ -137,6 +137,10 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .enablement import Enablement
+        from .mac_o_s_apple_event_receiver import MacOSAppleEventReceiver
+        from .mac_o_s_process_identifier_type import MacOSProcessIdentifierType
+
         writer.write_enum_value("accessibility", self.accessibility)
         writer.write_enum_value("addressBook", self.address_book)
         writer.write_collection_of_object_values("appleEventsAllowedReceivers", self.apple_events_allowed_receivers)

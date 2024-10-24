@@ -60,6 +60,9 @@ class RiskyServicePrincipalHistoryItem(RiskyServicePrincipal):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .risky_service_principal import RiskyServicePrincipal
+        from .risk_service_principal_activity import RiskServicePrincipalActivity
+
         writer.write_object_value("activity", self.activity)
         writer.write_str_value("initiatedBy", self.initiated_by)
         writer.write_str_value("servicePrincipalId", self.service_principal_id)

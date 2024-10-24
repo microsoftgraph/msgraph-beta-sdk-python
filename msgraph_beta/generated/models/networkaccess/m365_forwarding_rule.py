@@ -63,6 +63,10 @@ class M365ForwardingRule(ForwardingRule):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .forwarding_category import ForwardingCategory
+        from .forwarding_rule import ForwardingRule
+        from .networking_protocol import NetworkingProtocol
+
         writer.write_enum_value("category", self.category)
         writer.write_collection_of_primitive_values("ports", self.ports)
         writer.write_enum_value("protocol", self.protocol)

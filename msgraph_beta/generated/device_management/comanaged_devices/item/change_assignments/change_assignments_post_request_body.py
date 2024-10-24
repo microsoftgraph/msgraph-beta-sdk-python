@@ -50,6 +50,8 @@ class ChangeAssignmentsPostRequestBody(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.device_assignment_item import DeviceAssignmentItem
+
         writer.write_collection_of_object_values("deviceAssignmentItems", self.device_assignment_items)
         writer.write_additional_data_value(self.additional_data)
     

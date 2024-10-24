@@ -79,6 +79,11 @@ class PartnerSecurityScore(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ...entity import Entity
+        from .customer_insight import CustomerInsight
+        from .security_requirement import SecurityRequirement
+        from .security_score_history import SecurityScoreHistory
+
         writer.write_float_value("currentScore", self.current_score)
         writer.write_collection_of_object_values("customerInsights", self.customer_insights)
         writer.write_collection_of_object_values("history", self.history)

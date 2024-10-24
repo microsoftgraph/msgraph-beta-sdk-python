@@ -96,6 +96,14 @@ class AospDeviceOwnerScepCertificateProfile(AospDeviceOwnerCertificateProfileBas
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aosp_device_owner_certificate_profile_base import AospDeviceOwnerCertificateProfileBase
+        from .certificate_store import CertificateStore
+        from .custom_subject_alternative_name import CustomSubjectAlternativeName
+        from .hash_algorithms import HashAlgorithms
+        from .key_size import KeySize
+        from .key_usages import KeyUsages
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_collection_of_object_values("customSubjectAlternativeNames", self.custom_subject_alternative_names)
         writer.write_enum_value("hashAlgorithm", self.hash_algorithm)

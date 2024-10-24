@@ -75,6 +75,11 @@ class Product(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .edition import Edition
+        from .known_issue import KnownIssue
+        from .product_revision import ProductRevision
+
         writer.write_collection_of_object_values("editions", self.editions)
         writer.write_collection_of_primitive_values("friendlyNames", self.friendly_names)
         writer.write_str_value("groupName", self.group_name)

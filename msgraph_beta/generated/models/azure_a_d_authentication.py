@@ -54,6 +54,9 @@ class AzureADAuthentication(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .service_level_agreement_attainment import ServiceLevelAgreementAttainment
+
         writer.write_collection_of_object_values("attainments", self.attainments)
     
 

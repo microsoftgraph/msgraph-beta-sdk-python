@@ -54,6 +54,9 @@ class DlpEvaluatePoliciesJobResponse(JobResponseBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .dlp_policies_job_result import DlpPoliciesJobResult
+        from .job_response_base import JobResponseBase
+
         writer.write_object_value("result", self.result)
     
 

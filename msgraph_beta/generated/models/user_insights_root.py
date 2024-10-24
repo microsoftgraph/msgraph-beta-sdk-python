@@ -60,6 +60,10 @@ class UserInsightsRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .daily_user_insight_metrics_root import DailyUserInsightMetricsRoot
+        from .entity import Entity
+        from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
+
         writer.write_object_value("daily", self.daily)
         writer.write_object_value("monthly", self.monthly)
     

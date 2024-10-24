@@ -60,6 +60,8 @@ class DeviceComanagementAuthorityConfiguration(DeviceEnrollmentConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_enrollment_configuration import DeviceEnrollmentConfiguration
+
         writer.write_str_value("configurationManagerAgentCommandLineArgument", self.configuration_manager_agent_command_line_argument)
         writer.write_bool_value("installConfigurationManagerAgent", self.install_configuration_manager_agent)
         writer.write_int_value("managedDeviceAuthority", self.managed_device_authority)

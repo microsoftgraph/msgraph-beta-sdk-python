@@ -60,6 +60,9 @@ class ConfigurationManagerActionResult(DeviceActionResult):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .configuration_manager_action_delivery_status import ConfigurationManagerActionDeliveryStatus
+        from .device_action_result import DeviceActionResult
+
         writer.write_enum_value("actionDeliveryStatus", self.action_delivery_status)
         writer.write_int_value("errorCode", self.error_code)
     

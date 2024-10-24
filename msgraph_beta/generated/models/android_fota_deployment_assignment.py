@@ -68,6 +68,9 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .android_fota_deployment_assignment_target import AndroidFotaDeploymentAssignmentTarget
+        from .device_and_app_management_assignment_target import DeviceAndAppManagementAssignmentTarget
+
         writer.write_object_value("assignmentTarget", self.assignment_target)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("id", self.id)

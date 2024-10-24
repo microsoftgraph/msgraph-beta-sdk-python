@@ -72,6 +72,12 @@ class Settings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .conditional_access_settings import ConditionalAccessSettings
+        from .cross_tenant_access_settings import CrossTenantAccessSettings
+        from .enriched_audit_logs import EnrichedAuditLogs
+        from .forwarding_options import ForwardingOptions
+
         writer.write_object_value("conditionalAccess", self.conditional_access)
         writer.write_object_value("crossTenantAccess", self.cross_tenant_access)
         writer.write_object_value("enrichedAuditLogs", self.enriched_audit_logs)

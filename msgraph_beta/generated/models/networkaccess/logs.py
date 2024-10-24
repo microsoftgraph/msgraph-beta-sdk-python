@@ -60,6 +60,10 @@ class Logs(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .network_access_traffic import NetworkAccessTraffic
+        from .remote_network_health_event import RemoteNetworkHealthEvent
+
         writer.write_collection_of_object_values("remoteNetworks", self.remote_networks)
         writer.write_collection_of_object_values("traffic", self.traffic)
     

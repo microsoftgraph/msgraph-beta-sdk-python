@@ -54,6 +54,8 @@ class ServiceNowOauthSecretAuthentication(ServiceNowAuthenticationMethod):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .service_now_authentication_method import ServiceNowAuthenticationMethod
+
         writer.write_str_value("appId", self.app_id)
     
 

@@ -63,6 +63,9 @@ class VppTokenRevokeLicensesActionResult(VppTokenActionResult):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .vpp_token_action_failure_reason import VppTokenActionFailureReason
+        from .vpp_token_action_result import VppTokenActionResult
+
         writer.write_enum_value("actionFailureReason", self.action_failure_reason)
         writer.write_int_value("failedLicensesCount", self.failed_licenses_count)
         writer.write_int_value("totalLicensesCount", self.total_licenses_count)

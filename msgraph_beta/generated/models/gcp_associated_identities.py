@@ -65,6 +65,10 @@ class GcpAssociatedIdentities(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .gcp_identity import GcpIdentity
+        from .gcp_service_account import GcpServiceAccount
+        from .gcp_user import GcpUser
+
         writer.write_collection_of_object_values("all", self.all)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("serviceAccounts", self.service_accounts)

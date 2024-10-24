@@ -84,6 +84,12 @@ class AndroidScepCertificateProfile(AndroidCertificateProfileBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_certificate_profile_base import AndroidCertificateProfileBase
+        from .hash_algorithms import HashAlgorithms
+        from .key_size import KeySize
+        from .key_usages import KeyUsages
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+
         writer.write_enum_value("hashAlgorithm", self.hash_algorithm)
         writer.write_enum_value("keySize", self.key_size)
         writer.write_enum_value("keyUsage", self.key_usage)

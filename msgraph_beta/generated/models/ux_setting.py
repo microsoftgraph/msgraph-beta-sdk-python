@@ -54,6 +54,9 @@ class UxSetting(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .non_admin_setting import NonAdminSetting
+
         writer.write_enum_value("restrictNonAdminAccess", self.restrict_non_admin_access)
     
 

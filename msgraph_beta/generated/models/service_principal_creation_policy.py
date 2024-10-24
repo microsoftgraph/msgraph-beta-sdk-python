@@ -60,6 +60,9 @@ class ServicePrincipalCreationPolicy(PolicyBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .policy_base import PolicyBase
+        from .service_principal_creation_condition_set import ServicePrincipalCreationConditionSet
+
         writer.write_collection_of_object_values("excludes", self.excludes)
         writer.write_collection_of_object_values("includes", self.includes)
         writer.write_bool_value("isBuiltIn", self.is_built_in)

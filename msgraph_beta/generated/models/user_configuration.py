@@ -51,6 +51,8 @@ class UserConfiguration(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_bytes_value("binaryData", self.binary_data)
     
 

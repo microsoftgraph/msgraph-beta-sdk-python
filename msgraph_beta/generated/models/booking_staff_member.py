@@ -91,6 +91,11 @@ class BookingStaffMember(BookingPerson):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .booking_person import BookingPerson
+        from .booking_staff_membership_status import BookingStaffMembershipStatus
+        from .booking_staff_role import BookingStaffRole
+        from .booking_work_hours import BookingWorkHours
+
         writer.write_bool_value("availabilityIsAffectedByPersonalCalendar", self.availability_is_affected_by_personal_calendar)
         writer.write_int_value("colorIndex", self.color_index)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

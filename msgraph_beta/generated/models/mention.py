@@ -76,6 +76,9 @@ class Mention(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .email_address import EmailAddress
+        from .entity import Entity
+
         writer.write_str_value("application", self.application)
         writer.write_str_value("clientReference", self.client_reference)
         writer.write_object_value("createdBy", self.created_by)

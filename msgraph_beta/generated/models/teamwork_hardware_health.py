@@ -56,6 +56,8 @@ class TeamworkHardwareHealth(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_peripheral_health import TeamworkPeripheralHealth
+
         writer.write_object_value("computeHealth", self.compute_health)
         writer.write_object_value("hdmiIngestHealth", self.hdmi_ingest_health)
         writer.write_str_value("@odata.type", self.odata_type)

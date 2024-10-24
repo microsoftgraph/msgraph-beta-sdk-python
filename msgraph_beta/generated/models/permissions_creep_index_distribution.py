@@ -70,6 +70,10 @@ class PermissionsCreepIndexDistribution(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system import AuthorizationSystem
+        from .entity import Entity
+        from .risk_profile import RiskProfile
+
         writer.write_object_value("authorizationSystem", self.authorization_system)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("highRiskProfile", self.high_risk_profile)

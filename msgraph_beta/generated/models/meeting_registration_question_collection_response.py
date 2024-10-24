@@ -52,6 +52,9 @@ class MeetingRegistrationQuestionCollectionResponse(BaseCollectionPaginationCoun
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .meeting_registration_question import MeetingRegistrationQuestion
+
         writer.write_collection_of_object_values("value", self.value)
     
 

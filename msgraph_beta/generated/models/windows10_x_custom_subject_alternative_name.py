@@ -59,6 +59,8 @@ class Windows10XCustomSubjectAlternativeName(AdditionalDataHolder, BackedModel, 
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .subject_alternative_name_type import SubjectAlternativeNameType
+
         writer.write_str_value("name", self.name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("sanType", self.san_type)

@@ -53,6 +53,8 @@ class MicrosoftAuthenticatorPlatformSettings(AdditionalDataHolder, BackedModel, 
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .enforce_app_p_i_n import EnforceAppPIN
+
         writer.write_object_value("enforceAppPIN", self.enforce_app_p_i_n)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

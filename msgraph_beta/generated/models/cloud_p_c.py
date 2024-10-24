@@ -193,6 +193,24 @@ class CloudPC(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_connection_setting import CloudPcConnectionSetting
+        from .cloud_pc_connection_settings import CloudPcConnectionSettings
+        from .cloud_pc_connectivity_result import CloudPcConnectivityResult
+        from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
+        from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
+        from .cloud_pc_login_result import CloudPcLoginResult
+        from .cloud_pc_operating_system import CloudPcOperatingSystem
+        from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
+        from .cloud_pc_power_state import CloudPcPowerState
+        from .cloud_pc_provisioning_type import CloudPcProvisioningType
+        from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
+        from .cloud_pc_service_plan_type import CloudPcServicePlanType
+        from .cloud_pc_status import CloudPcStatus
+        from .cloud_pc_status_detail import CloudPcStatusDetail
+        from .cloud_pc_status_details import CloudPcStatusDetails
+        from .cloud_pc_user_account_type import CloudPcUserAccountType
+        from .entity import Entity
+
         writer.write_str_value("aadDeviceId", self.aad_device_id)
         writer.write_str_value("allotmentDisplayName", self.allotment_display_name)
         writer.write_object_value("connectionSetting", self.connection_setting)

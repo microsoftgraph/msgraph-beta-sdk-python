@@ -50,6 +50,8 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ......models.cloud_pc_policy_setting_type import CloudPcPolicySettingType
+
         writer.write_enum_value("policySettings", self.policy_settings)
         writer.write_additional_data_value(self.additional_data)
     

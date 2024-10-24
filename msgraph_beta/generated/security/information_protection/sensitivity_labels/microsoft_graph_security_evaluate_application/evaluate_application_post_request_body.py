@@ -56,6 +56,9 @@ class EvaluateApplicationPostRequestBody(AdditionalDataHolder, BackedModel, Pars
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.security.content_info import ContentInfo
+        from .....models.security.labeling_options import LabelingOptions
+
         writer.write_object_value("contentInfo", self.content_info)
         writer.write_object_value("labelingOptions", self.labeling_options)
         writer.write_additional_data_value(self.additional_data)

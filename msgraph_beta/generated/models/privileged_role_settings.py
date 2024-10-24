@@ -79,6 +79,8 @@ class PrivilegedRoleSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_bool_value("approvalOnElevation", self.approval_on_elevation)
         writer.write_collection_of_primitive_values("approverIds", self.approver_ids)
         writer.write_timedelta_value("elevationDuration", self.elevation_duration)

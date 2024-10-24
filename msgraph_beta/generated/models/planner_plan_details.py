@@ -66,6 +66,11 @@ class PlannerPlanDetails(PlannerDelta):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_category_descriptions import PlannerCategoryDescriptions
+        from .planner_delta import PlannerDelta
+        from .planner_plan_context_details_collection import PlannerPlanContextDetailsCollection
+        from .planner_user_ids import PlannerUserIds
+
         writer.write_object_value("categoryDescriptions", self.category_descriptions)
         writer.write_object_value("contextDetails", self.context_details)
         writer.write_object_value("sharedWith", self.shared_with)

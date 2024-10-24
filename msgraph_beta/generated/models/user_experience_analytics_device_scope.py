@@ -94,6 +94,11 @@ class UserExperienceAnalyticsDeviceScope(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_scope_operator import DeviceScopeOperator
+        from .device_scope_parameter import DeviceScopeParameter
+        from .device_scope_status import DeviceScopeStatus
+        from .entity import Entity
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("deviceScopeName", self.device_scope_name)
         writer.write_bool_value("enabled", self.enabled)

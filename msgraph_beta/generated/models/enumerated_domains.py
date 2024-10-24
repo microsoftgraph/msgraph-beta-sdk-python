@@ -51,6 +51,8 @@ class EnumeratedDomains(ValidatingDomains):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .validating_domains import ValidatingDomains
+
         writer.write_collection_of_primitive_values("domainNames", self.domain_names)
     
 

@@ -73,6 +73,9 @@ class UserExperienceAnalyticsDeviceTimelineEvent(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_event_level import DeviceEventLevel
+        from .entity import Entity
+
         writer.write_str_value("deviceId", self.device_id)
         writer.write_datetime_value("eventDateTime", self.event_date_time)
         writer.write_str_value("eventDetails", self.event_details)

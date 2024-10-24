@@ -159,6 +159,19 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cryptography_suite import CryptographySuite
+        from .extended_key_usage import ExtendedKeyUsage
+        from .vpn_dns_rule import VpnDnsRule
+        from .vpn_route import VpnRoute
+        from .vpn_traffic_rule import VpnTrafficRule
+        from .windows10_associated_apps import Windows10AssociatedApps
+        from .windows10_vpn_authentication_method import Windows10VpnAuthenticationMethod
+        from .windows10_vpn_connection_type import Windows10VpnConnectionType
+        from .windows10_vpn_profile_target import Windows10VpnProfileTarget
+        from .windows10_vpn_proxy_server import Windows10VpnProxyServer
+        from .windows_certificate_profile_base import WindowsCertificateProfileBase
+        from .windows_vpn_configuration import WindowsVpnConfiguration
+
         writer.write_collection_of_object_values("associatedApps", self.associated_apps)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_enum_value("connectionType", self.connection_type)

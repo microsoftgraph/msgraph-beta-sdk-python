@@ -93,6 +93,15 @@ class PlannerTaskDetails(PlannerDelta):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .item_body import ItemBody
+        from .planner_base_approval_attachment import PlannerBaseApprovalAttachment
+        from .planner_checklist_items import PlannerChecklistItems
+        from .planner_delta import PlannerDelta
+        from .planner_external_references import PlannerExternalReferences
+        from .planner_forms_dictionary import PlannerFormsDictionary
+        from .planner_preview_type import PlannerPreviewType
+        from .planner_task_completion_requirement_details import PlannerTaskCompletionRequirementDetails
+
         writer.write_object_value("approvalAttachment", self.approval_attachment)
         writer.write_object_value("checklist", self.checklist)
         writer.write_object_value("completionRequirements", self.completion_requirements)

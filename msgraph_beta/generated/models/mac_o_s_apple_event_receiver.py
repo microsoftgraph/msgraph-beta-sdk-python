@@ -65,6 +65,8 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .mac_o_s_process_identifier_type import MacOSProcessIdentifierType
+
         writer.write_bool_value("allowed", self.allowed)
         writer.write_str_value("codeRequirement", self.code_requirement)
         writer.write_str_value("identifier", self.identifier)

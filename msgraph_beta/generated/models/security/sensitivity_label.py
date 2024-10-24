@@ -78,6 +78,8 @@ class SensitivityLabel(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("color", self.color)
         writer.write_collection_of_primitive_values("contentFormats", self.content_formats)
         writer.write_str_value("description", self.description)

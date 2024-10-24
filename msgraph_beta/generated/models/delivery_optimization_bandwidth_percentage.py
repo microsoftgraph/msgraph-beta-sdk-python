@@ -57,6 +57,8 @@ class DeliveryOptimizationBandwidthPercentage(DeliveryOptimizationBandwidth):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
+
         writer.write_int_value("maximumBackgroundBandwidthPercentage", self.maximum_background_bandwidth_percentage)
         writer.write_int_value("maximumForegroundBandwidthPercentage", self.maximum_foreground_bandwidth_percentage)
     

@@ -54,6 +54,9 @@ class AlertConfiguration(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .email_notification_configuration import EmailNotificationConfiguration
+
         writer.write_collection_of_object_values("emailNotificationConfigurations", self.email_notification_configurations)
     
 

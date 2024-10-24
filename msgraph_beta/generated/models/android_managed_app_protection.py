@@ -56,9 +56,9 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
     block_after_company_portal_update_deferral_in_days: Optional[int] = None
     # Whether the app should connect to the configured VPN on launch.
     connect_to_vpn_on_launch: Optional[bool] = None
-    # Friendly name of the preferred custom browser to open weblink on Android.
+    # Friendly name of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
     custom_browser_display_name: Optional[str] = None
-    # Unique identifier of a custom browser to open weblink on Android.
+    # Unique identifier of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
     custom_browser_package_id: Optional[str] = None
     # Friendly name of a custom dialer app to click-to-open a phone number on Android.
     custom_dialer_app_display_name: Optional[str] = None
@@ -207,6 +207,15 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
+        from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
+        from .android_managed_app_safety_net_evaluation_type import AndroidManagedAppSafetyNetEvaluationType
+        from .key_value_pair import KeyValuePair
+        from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
+        from .managed_app_remediation_action import ManagedAppRemediationAction
+        from .managed_mobile_app import ManagedMobileApp
+        from .targeted_managed_app_protection import TargetedManagedAppProtection
+
         writer.write_str_value("allowedAndroidDeviceManufacturers", self.allowed_android_device_manufacturers)
         writer.write_collection_of_primitive_values("allowedAndroidDeviceModels", self.allowed_android_device_models)
         writer.write_enum_value("appActionIfAccountIsClockedOut", self.app_action_if_account_is_clocked_out)

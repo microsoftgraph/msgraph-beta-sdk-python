@@ -124,6 +124,18 @@ class TeamworkDevice(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .teamwork_device_activity import TeamworkDeviceActivity
+        from .teamwork_device_activity_state import TeamworkDeviceActivityState
+        from .teamwork_device_configuration import TeamworkDeviceConfiguration
+        from .teamwork_device_health import TeamworkDeviceHealth
+        from .teamwork_device_health_status import TeamworkDeviceHealthStatus
+        from .teamwork_device_operation import TeamworkDeviceOperation
+        from .teamwork_device_type import TeamworkDeviceType
+        from .teamwork_hardware_detail import TeamworkHardwareDetail
+        from .teamwork_user_identity import TeamworkUserIdentity
+
         writer.write_object_value("activity", self.activity)
         writer.write_enum_value("activityState", self.activity_state)
         writer.write_str_value("companyAssetTag", self.company_asset_tag)

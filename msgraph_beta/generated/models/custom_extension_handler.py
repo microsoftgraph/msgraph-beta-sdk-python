@@ -60,6 +60,10 @@ class CustomExtensionHandler(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_package_custom_extension_stage import AccessPackageCustomExtensionStage
+        from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
+        from .entity import Entity
+
         writer.write_object_value("customExtension", self.custom_extension)
         writer.write_enum_value("stage", self.stage)
     

@@ -162,6 +162,27 @@ class Profile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .educational_activity import EducationalActivity
+        from .entity import Entity
+        from .item_address import ItemAddress
+        from .item_email import ItemEmail
+        from .item_patent import ItemPatent
+        from .item_phone import ItemPhone
+        from .item_publication import ItemPublication
+        from .language_proficiency import LanguageProficiency
+        from .person_annotation import PersonAnnotation
+        from .person_annual_event import PersonAnnualEvent
+        from .person_award import PersonAward
+        from .person_certification import PersonCertification
+        from .person_interest import PersonInterest
+        from .person_name import PersonName
+        from .person_website import PersonWebsite
+        from .project_participation import ProjectParticipation
+        from .skill_proficiency import SkillProficiency
+        from .user_account_information import UserAccountInformation
+        from .web_account import WebAccount
+        from .work_position import WorkPosition
+
         writer.write_collection_of_object_values("account", self.account)
         writer.write_collection_of_object_values("addresses", self.addresses)
         writer.write_collection_of_object_values("anniversaries", self.anniversaries)

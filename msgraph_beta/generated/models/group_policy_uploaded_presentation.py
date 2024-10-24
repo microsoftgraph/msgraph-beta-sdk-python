@@ -35,7 +35,8 @@ class GroupPolicyUploadedPresentation(GroupPolicyPresentation):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationCheckBox".casefold():
@@ -118,5 +119,16 @@ class GroupPolicyUploadedPresentation(GroupPolicyPresentation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .group_policy_presentation import GroupPolicyPresentation
+        from .group_policy_presentation_check_box import GroupPolicyPresentationCheckBox
+        from .group_policy_presentation_combo_box import GroupPolicyPresentationComboBox
+        from .group_policy_presentation_decimal_text_box import GroupPolicyPresentationDecimalTextBox
+        from .group_policy_presentation_dropdown_list import GroupPolicyPresentationDropdownList
+        from .group_policy_presentation_list_box import GroupPolicyPresentationListBox
+        from .group_policy_presentation_long_decimal_text_box import GroupPolicyPresentationLongDecimalTextBox
+        from .group_policy_presentation_multi_text_box import GroupPolicyPresentationMultiTextBox
+        from .group_policy_presentation_text import GroupPolicyPresentationText
+        from .group_policy_presentation_text_box import GroupPolicyPresentationTextBox
+
     
 

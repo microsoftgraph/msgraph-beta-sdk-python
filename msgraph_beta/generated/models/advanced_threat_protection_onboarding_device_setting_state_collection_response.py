@@ -52,6 +52,9 @@ class AdvancedThreatProtectionOnboardingDeviceSettingStateCollectionResponse(Bas
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+
         writer.write_collection_of_object_values("value", self.value)
     
 

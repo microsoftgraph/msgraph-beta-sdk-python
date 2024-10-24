@@ -66,6 +66,11 @@ class ContentApproval(ComplianceChange):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .compliance_change import ComplianceChange
+        from .deployable_content import DeployableContent
+        from .deployment import Deployment
+        from .deployment_settings import DeploymentSettings
+
         writer.write_object_value("content", self.content)
         writer.write_object_value("deploymentSettings", self.deployment_settings)
         writer.write_collection_of_object_values("deployments", self.deployments)

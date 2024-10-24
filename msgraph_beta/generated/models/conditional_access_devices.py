@@ -65,6 +65,8 @@ class ConditionalAccessDevices(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .conditional_access_filter import ConditionalAccessFilter
+
         writer.write_object_value("deviceFilter", self.device_filter)
         writer.write_collection_of_primitive_values("excludeDeviceStates", self.exclude_device_states)
         writer.write_collection_of_primitive_values("excludeDevices", self.exclude_devices)

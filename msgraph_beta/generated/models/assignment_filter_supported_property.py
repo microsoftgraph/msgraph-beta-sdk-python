@@ -71,6 +71,8 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .assignment_filter_operator import AssignmentFilterOperator
+
         writer.write_str_value("dataType", self.data_type)
         writer.write_bool_value("isCollection", self.is_collection)
         writer.write_str_value("name", self.name)

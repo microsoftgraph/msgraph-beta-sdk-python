@@ -61,6 +61,8 @@ class NotifyUserAction(DlpActionInfo):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .dlp_action_info import DlpActionInfo
+
         writer.write_datetime_value("actionLastModifiedDateTime", self.action_last_modified_date_time)
         writer.write_str_value("emailText", self.email_text)
         writer.write_str_value("policyTip", self.policy_tip)

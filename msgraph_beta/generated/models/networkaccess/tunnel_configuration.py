@@ -32,7 +32,8 @@ class TunnelConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Custom".casefold():
@@ -71,6 +72,9 @@ class TunnelConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .tunnel_configuration_i_k_ev2_custom import TunnelConfigurationIKEv2Custom
+        from .tunnel_configuration_i_k_ev2_default import TunnelConfigurationIKEv2Default
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("preSharedKey", self.pre_shared_key)
         writer.write_str_value("zoneRedundancyPreSharedKey", self.zone_redundancy_pre_shared_key)

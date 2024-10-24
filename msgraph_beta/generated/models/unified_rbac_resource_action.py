@@ -81,6 +81,10 @@ class UnifiedRbacResourceAction(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_context_class_reference import AuthenticationContextClassReference
+        from .entity import Entity
+        from .unified_rbac_resource_scope import UnifiedRbacResourceScope
+
         writer.write_str_value("actionVerb", self.action_verb)
         writer.write_object_value("authenticationContext", self.authentication_context)
         writer.write_str_value("authenticationContextId", self.authentication_context_id)

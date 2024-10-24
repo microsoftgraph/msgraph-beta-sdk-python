@@ -127,6 +127,17 @@ class AccessPackageAssignmentRequest(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_package import AccessPackage
+        from .access_package_answer import AccessPackageAnswer
+        from .access_package_assignment import AccessPackageAssignment
+        from .access_package_subject import AccessPackageSubject
+        from .custom_extension_callout_instance import CustomExtensionCalloutInstance
+        from .custom_extension_handler_instance import CustomExtensionHandlerInstance
+        from .entity import Entity
+        from .request_activity import RequestActivity
+        from .request_schedule import RequestSchedule
+        from .verified_credential_data import VerifiedCredentialData
+
         writer.write_object_value("accessPackage", self.access_package)
         writer.write_object_value("accessPackageAssignment", self.access_package_assignment)
         writer.write_collection_of_object_values("answers", self.answers)

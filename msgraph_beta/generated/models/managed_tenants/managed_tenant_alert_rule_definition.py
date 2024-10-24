@@ -76,6 +76,10 @@ class ManagedTenantAlertRuleDefinition(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .alert_rule_definition_template import AlertRuleDefinitionTemplate
+        from .managed_tenant_alert_rule import ManagedTenantAlertRule
+
         writer.write_collection_of_object_values("alertRules", self.alert_rules)
         writer.write_str_value("createdByUserId", self.created_by_user_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

@@ -67,6 +67,8 @@ class UserExperienceAnalyticsBatteryHealthCapacityDetails(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_int_value("activeDevices", self.active_devices)
         writer.write_int_value("batteryCapacityFair", self.battery_capacity_fair)
         writer.write_int_value("batteryCapacityGood", self.battery_capacity_good)

@@ -59,6 +59,9 @@ class ExactMatchClassificationResult(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .classification_error import ClassificationError
+        from .exact_match_detected_sensitive_content import ExactMatchDetectedSensitiveContent
+
         writer.write_collection_of_object_values("classification", self.classification)
         writer.write_collection_of_object_values("errors", self.errors)
         writer.write_str_value("@odata.type", self.odata_type)

@@ -97,6 +97,8 @@ class DeviceAppPerformance(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("appFriendlyName", self.app_friendly_name)
         writer.write_str_value("appName", self.app_name)
         writer.write_str_value("appPublisher", self.app_publisher)

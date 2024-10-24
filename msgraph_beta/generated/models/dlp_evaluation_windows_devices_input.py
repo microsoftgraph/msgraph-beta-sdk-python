@@ -57,6 +57,9 @@ class DlpEvaluationWindowsDevicesInput(DlpEvaluationInput):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .content_properties import ContentProperties
+        from .dlp_evaluation_input import DlpEvaluationInput
+
         writer.write_object_value("contentProperties", self.content_properties)
         writer.write_str_value("sharedBy", self.shared_by)
     

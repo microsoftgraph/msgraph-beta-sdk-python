@@ -57,6 +57,9 @@ class CloudPcDisasterRecoveryMicrosoftHostedNetworkSetting(CloudPcDisasterRecove
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_disaster_recovery_network_setting import CloudPcDisasterRecoveryNetworkSetting
+        from .cloud_pc_region_group import CloudPcRegionGroup
+
         writer.write_enum_value("regionGroup", self.region_group)
         writer.write_str_value("regionName", self.region_name)
     

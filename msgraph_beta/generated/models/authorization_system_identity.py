@@ -51,7 +51,8 @@ class AuthorizationSystemIdentity(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsAccessKey".casefold():
@@ -196,6 +197,28 @@ class AuthorizationSystemIdentity(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system import AuthorizationSystem
+        from .authorization_system_identity_source import AuthorizationSystemIdentitySource
+        from .aws_access_key import AwsAccessKey
+        from .aws_ec2_instance import AwsEc2Instance
+        from .aws_group import AwsGroup
+        from .aws_identity import AwsIdentity
+        from .aws_lambda import AwsLambda
+        from .aws_role import AwsRole
+        from .aws_user import AwsUser
+        from .azure_group import AzureGroup
+        from .azure_identity import AzureIdentity
+        from .azure_managed_identity import AzureManagedIdentity
+        from .azure_serverless_function import AzureServerlessFunction
+        from .azure_service_principal import AzureServicePrincipal
+        from .azure_user import AzureUser
+        from .entity import Entity
+        from .gcp_cloud_function import GcpCloudFunction
+        from .gcp_group import GcpGroup
+        from .gcp_identity import GcpIdentity
+        from .gcp_service_account import GcpServiceAccount
+        from .gcp_user import GcpUser
+
         writer.write_object_value("authorizationSystem", self.authorization_system)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("externalId", self.external_id)

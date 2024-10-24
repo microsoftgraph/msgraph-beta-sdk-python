@@ -78,6 +78,9 @@ class DeviceEnrollmentPlatformRestrictionsConfiguration(DeviceEnrollmentConfigur
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_enrollment_configuration import DeviceEnrollmentConfiguration
+        from .device_enrollment_platform_restriction import DeviceEnrollmentPlatformRestriction
+
         writer.write_object_value("androidForWorkRestriction", self.android_for_work_restriction)
         writer.write_object_value("androidRestriction", self.android_restriction)
         writer.write_object_value("iosRestriction", self.ios_restriction)

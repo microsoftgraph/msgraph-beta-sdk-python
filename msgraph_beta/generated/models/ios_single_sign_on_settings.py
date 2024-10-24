@@ -68,6 +68,8 @@ class IosSingleSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .app_list_item import AppListItem
+
         writer.write_collection_of_object_values("allowedAppsList", self.allowed_apps_list)
         writer.write_collection_of_primitive_values("allowedUrls", self.allowed_urls)
         writer.write_str_value("displayName", self.display_name)

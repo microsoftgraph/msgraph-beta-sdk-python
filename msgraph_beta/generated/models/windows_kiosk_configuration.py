@@ -87,6 +87,10 @@ class WindowsKioskConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .windows_kiosk_force_update_schedule import WindowsKioskForceUpdateSchedule
+        from .windows_kiosk_profile import WindowsKioskProfile
+
         writer.write_bool_value("edgeKioskEnablePublicBrowsing", self.edge_kiosk_enable_public_browsing)
         writer.write_collection_of_primitive_values("kioskBrowserBlockedURLs", self.kiosk_browser_blocked_u_r_ls)
         writer.write_collection_of_primitive_values("kioskBrowserBlockedUrlExceptions", self.kiosk_browser_blocked_url_exceptions)

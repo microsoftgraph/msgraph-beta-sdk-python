@@ -95,6 +95,13 @@ class ConditionalAccessWhatIfConditions(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .authentication_flow import AuthenticationFlow
+        from .conditional_access_client_app import ConditionalAccessClientApp
+        from .conditional_access_device_platform import ConditionalAccessDevicePlatform
+        from .device_info import DeviceInfo
+        from .insider_risk_level import InsiderRiskLevel
+        from .risk_level import RiskLevel
+
         writer.write_object_value("authenticationFlow", self.authentication_flow)
         writer.write_enum_value("clientAppType", self.client_app_type)
         writer.write_str_value("country", self.country)

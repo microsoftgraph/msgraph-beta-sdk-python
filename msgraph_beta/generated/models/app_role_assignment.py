@@ -71,6 +71,8 @@ class AppRoleAssignment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_uuid_value("appRoleId", self.app_role_id)
         writer.write_datetime_value("creationTimestamp", self.creation_timestamp)
         writer.write_str_value("principalDisplayName", self.principal_display_name)

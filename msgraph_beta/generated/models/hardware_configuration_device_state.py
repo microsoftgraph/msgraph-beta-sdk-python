@@ -85,6 +85,9 @@ class HardwareConfigurationDeviceState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .run_state import RunState
+
         writer.write_str_value("assignmentFilterIds", self.assignment_filter_ids)
         writer.write_str_value("configurationError", self.configuration_error)
         writer.write_str_value("configurationOutput", self.configuration_output)

@@ -71,7 +71,8 @@ class Win32LobApp(MobileLobApp):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32CatalogApp".casefold():
@@ -140,6 +141,17 @@ class Win32LobApp(MobileLobApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_lob_app import MobileLobApp
+        from .win32_catalog_app import Win32CatalogApp
+        from .win32_lob_app_detection import Win32LobAppDetection
+        from .win32_lob_app_install_experience import Win32LobAppInstallExperience
+        from .win32_lob_app_msi_information import Win32LobAppMsiInformation
+        from .win32_lob_app_requirement import Win32LobAppRequirement
+        from .win32_lob_app_return_code import Win32LobAppReturnCode
+        from .win32_lob_app_rule import Win32LobAppRule
+        from .windows_architecture import WindowsArchitecture
+        from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
+
         writer.write_bool_value("allowAvailableUninstall", self.allow_available_uninstall)
         writer.write_enum_value("applicableArchitectures", self.applicable_architectures)
         writer.write_collection_of_object_values("detectionRules", self.detection_rules)

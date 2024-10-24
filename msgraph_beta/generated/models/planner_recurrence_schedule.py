@@ -60,6 +60,8 @@ class PlannerRecurrenceSchedule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .recurrence_pattern import RecurrencePattern
+
         writer.write_datetime_value("nextOccurrenceDateTime", self.next_occurrence_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("pattern", self.pattern)

@@ -56,6 +56,8 @@ class AuthenticationRequirementPolicy(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .requirement_provider import RequirementProvider
+
         writer.write_str_value("detail", self.detail)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("requirementProvider", self.requirement_provider)

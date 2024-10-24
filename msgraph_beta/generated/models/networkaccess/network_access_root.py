@@ -108,6 +108,18 @@ class NetworkAccessRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .alert import Alert
+        from .connectivity import Connectivity
+        from .filtering_policy import FilteringPolicy
+        from .filtering_profile import FilteringProfile
+        from .forwarding_policy import ForwardingPolicy
+        from .forwarding_profile import ForwardingProfile
+        from .logs import Logs
+        from .reports import Reports
+        from .settings import Settings
+        from .tenant_status import TenantStatus
+
         writer.write_collection_of_object_values("alerts", self.alerts)
         writer.write_object_value("connectivity", self.connectivity)
         writer.write_collection_of_object_values("filteringPolicies", self.filtering_policies)

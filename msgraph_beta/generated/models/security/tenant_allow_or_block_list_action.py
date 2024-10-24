@@ -66,6 +66,9 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .tenant_allow_block_list_action import TenantAllowBlockListAction
+        from .tenant_allow_block_list_entry_result import TenantAllowBlockListEntryResult
+
         writer.write_enum_value("action", self.action)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("note", self.note)

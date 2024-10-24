@@ -275,6 +275,35 @@ class Application(DirectoryObject):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .api_application import ApiApplication
+        from .app_management_policy import AppManagementPolicy
+        from .app_role import AppRole
+        from .authentication_behaviors import AuthenticationBehaviors
+        from .certification import Certification
+        from .connector_group import ConnectorGroup
+        from .directory_object import DirectoryObject
+        from .extension_property import ExtensionProperty
+        from .federated_identity_credential import FederatedIdentityCredential
+        from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
+        from .informational_url import InformationalUrl
+        from .key_credential import KeyCredential
+        from .native_authentication_apis_enabled import NativeAuthenticationApisEnabled
+        from .on_premises_publishing import OnPremisesPublishing
+        from .optional_claims import OptionalClaims
+        from .parental_control_settings import ParentalControlSettings
+        from .password_credential import PasswordCredential
+        from .public_client_application import PublicClientApplication
+        from .request_signature_verification import RequestSignatureVerification
+        from .required_resource_access import RequiredResourceAccess
+        from .service_principal_lock_configuration import ServicePrincipalLockConfiguration
+        from .spa_application import SpaApplication
+        from .synchronization import Synchronization
+        from .token_issuance_policy import TokenIssuancePolicy
+        from .token_lifetime_policy import TokenLifetimePolicy
+        from .verified_publisher import VerifiedPublisher
+        from .web_application import WebApplication
+        from .windows_application import WindowsApplication
+
         writer.write_object_value("api", self.api)
         writer.write_str_value("appId", self.app_id)
         writer.write_collection_of_object_values("appManagementPolicies", self.app_management_policies)

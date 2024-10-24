@@ -56,6 +56,8 @@ class SignInPreferences(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .user_default_authentication_method_type import UserDefaultAuthenticationMethodType
+
         writer.write_bool_value("isSystemPreferredAuthenticationMethodEnabled", self.is_system_preferred_authentication_method_enabled)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("userPreferredMethodForSecondaryAuthentication", self.user_preferred_method_for_secondary_authentication)

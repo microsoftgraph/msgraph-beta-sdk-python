@@ -87,6 +87,8 @@ class EmailThreatSubmissionPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("customizedNotificationSenderEmailAddress", self.customized_notification_sender_email_address)
         writer.write_str_value("customizedReportRecipientEmailAddress", self.customized_report_recipient_email_address)
         writer.write_bool_value("isAlwaysReportEnabledForUsers", self.is_always_report_enabled_for_users)

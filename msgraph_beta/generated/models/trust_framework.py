@@ -59,6 +59,9 @@ class TrustFramework(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .trust_framework_key_set import TrustFrameworkKeySet
+        from .trust_framework_policy import TrustFrameworkPolicy
+
         writer.write_collection_of_object_values("keySets", self.key_sets)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("policies", self.policies)

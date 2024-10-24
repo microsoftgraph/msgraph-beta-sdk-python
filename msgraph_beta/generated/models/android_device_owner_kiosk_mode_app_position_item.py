@@ -59,6 +59,8 @@ class AndroidDeviceOwnerKioskModeAppPositionItem(AdditionalDataHolder, BackedMod
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .android_device_owner_kiosk_mode_home_screen_item import AndroidDeviceOwnerKioskModeHomeScreenItem
+
         writer.write_object_value("item", self.item)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("position", self.position)

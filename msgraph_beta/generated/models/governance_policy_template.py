@@ -63,6 +63,10 @@ class GovernancePolicyTemplate(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .business_flow_settings import BusinessFlowSettings
+        from .entity import Entity
+        from .governance_policy import GovernancePolicy
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("policy", self.policy)
         writer.write_object_value("settings", self.settings)

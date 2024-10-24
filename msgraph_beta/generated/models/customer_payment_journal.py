@@ -79,6 +79,9 @@ class CustomerPaymentJournal(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .account import Account
+        from .customer_payment import CustomerPayment
+
         writer.write_object_value("account", self.account)
         writer.write_uuid_value("balancingAccountId", self.balancing_account_id)
         writer.write_str_value("balancingAccountNumber", self.balancing_account_number)

@@ -103,6 +103,15 @@ class AccessReviewInstance(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_review_error import AccessReviewError
+        from .access_review_instance_decision_item import AccessReviewInstanceDecisionItem
+        from .access_review_reviewer import AccessReviewReviewer
+        from .access_review_reviewer_scope import AccessReviewReviewerScope
+        from .access_review_schedule_definition import AccessReviewScheduleDefinition
+        from .access_review_scope import AccessReviewScope
+        from .access_review_stage import AccessReviewStage
+        from .entity import Entity
+
         writer.write_collection_of_object_values("contactedReviewers", self.contacted_reviewers)
         writer.write_collection_of_object_values("decisions", self.decisions)
         writer.write_object_value("definition", self.definition)

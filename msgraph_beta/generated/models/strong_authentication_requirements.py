@@ -53,6 +53,8 @@ class StrongAuthenticationRequirements(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .per_user_mfa_state import PerUserMfaState
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("perUserMfaState", self.per_user_mfa_state)
         writer.write_additional_data_value(self.additional_data)

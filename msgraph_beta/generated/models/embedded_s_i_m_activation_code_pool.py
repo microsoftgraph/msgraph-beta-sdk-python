@@ -82,6 +82,11 @@ class EmbeddedSIMActivationCodePool(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .embedded_s_i_m_activation_code import EmbeddedSIMActivationCode
+        from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
+        from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
+        from .entity import Entity
+
         writer.write_int_value("activationCodeCount", self.activation_code_count)
         writer.write_collection_of_object_values("activationCodes", self.activation_codes)
         writer.write_collection_of_object_values("assignments", self.assignments)

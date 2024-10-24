@@ -54,6 +54,9 @@ class GcpAuthorizationSystemTypeAction(AuthorizationSystemTypeAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system_type_action import AuthorizationSystemTypeAction
+        from .authorization_system_type_service import AuthorizationSystemTypeService
+
         writer.write_object_value("service", self.service)
     
 

@@ -79,6 +79,11 @@ class PlannerPlanConfiguration(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .planner_plan_configuration_bucket_definition import PlannerPlanConfigurationBucketDefinition
+        from .planner_plan_configuration_localization import PlannerPlanConfigurationLocalization
+
         writer.write_collection_of_object_values("buckets", self.buckets)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

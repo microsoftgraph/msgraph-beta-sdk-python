@@ -66,6 +66,11 @@ class Connectivity(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .branch_site import BranchSite
+        from .remote_network import RemoteNetwork
+        from .web_category import WebCategory
+
         writer.write_collection_of_object_values("branches", self.branches)
         writer.write_collection_of_object_values("remoteNetworks", self.remote_networks)
         writer.write_collection_of_object_values("webCategories", self.web_categories)

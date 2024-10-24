@@ -54,6 +54,9 @@ class IpSegmentConfiguration(SegmentConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .ip_application_segment import IpApplicationSegment
+        from .segment_configuration import SegmentConfiguration
+
         writer.write_collection_of_object_values("applicationSegments", self.application_segments)
     
 
