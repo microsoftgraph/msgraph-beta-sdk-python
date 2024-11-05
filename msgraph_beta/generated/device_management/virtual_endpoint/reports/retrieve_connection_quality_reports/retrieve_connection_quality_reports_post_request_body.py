@@ -71,6 +71,8 @@ class RetrieveConnectionQualityReportsPostRequestBody(AdditionalDataHolder, Back
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.cloud_p_c_connection_quality_report_type import CloudPCConnectionQualityReportType
+
         writer.write_str_value("filter", self.filter)
         writer.write_collection_of_primitive_values("groupBy", self.group_by)
         writer.write_collection_of_primitive_values("orderBy", self.order_by)

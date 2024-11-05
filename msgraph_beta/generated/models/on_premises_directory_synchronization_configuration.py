@@ -81,6 +81,10 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Back
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .on_premises_accidental_deletion_prevention import OnPremisesAccidentalDeletionPrevention
+        from .on_premises_current_export_data import OnPremisesCurrentExportData
+        from .on_premises_writeback_configuration import OnPremisesWritebackConfiguration
+
         writer.write_object_value("accidentalDeletionPrevention", self.accidental_deletion_prevention)
         writer.write_str_value("anchorAttribute", self.anchor_attribute)
         writer.write_str_value("applicationId", self.application_id)

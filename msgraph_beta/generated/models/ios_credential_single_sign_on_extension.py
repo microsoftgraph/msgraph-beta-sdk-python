@@ -69,6 +69,9 @@ class IosCredentialSingleSignOnExtension(IosSingleSignOnExtension):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .ios_single_sign_on_extension import IosSingleSignOnExtension
+        from .key_typed_value_pair import KeyTypedValuePair
+
         writer.write_collection_of_object_values("configurations", self.configurations)
         writer.write_collection_of_primitive_values("domains", self.domains)
         writer.write_str_value("extensionIdentifier", self.extension_identifier)

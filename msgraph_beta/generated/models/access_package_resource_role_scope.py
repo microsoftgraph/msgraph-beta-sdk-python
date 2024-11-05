@@ -73,6 +73,10 @@ class AccessPackageResourceRoleScope(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_package_resource_role import AccessPackageResourceRole
+        from .access_package_resource_scope import AccessPackageResourceScope
+        from .entity import Entity
+
         writer.write_object_value("accessPackageResourceRole", self.access_package_resource_role)
         writer.write_object_value("accessPackageResourceScope", self.access_package_resource_scope)
         writer.write_str_value("createdBy", self.created_by)

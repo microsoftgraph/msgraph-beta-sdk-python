@@ -75,6 +75,10 @@ class WindowsPhone81VpnConfiguration(Windows81VpnConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .vpn_authentication_method import VpnAuthenticationMethod
+        from .windows81_vpn_configuration import Windows81VpnConfiguration
+        from .windows_phone81_certificate_profile_base import WindowsPhone81CertificateProfileBase
+
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_bool_value("bypassVpnOnCompanyWifi", self.bypass_vpn_on_company_wifi)
         writer.write_bool_value("bypassVpnOnHomeWifi", self.bypass_vpn_on_home_wifi)

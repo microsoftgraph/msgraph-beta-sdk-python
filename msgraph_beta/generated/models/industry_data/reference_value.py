@@ -37,7 +37,8 @@ class ReferenceValue(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.fileFormatReferenceValue".casefold():
@@ -102,6 +103,14 @@ class ReferenceValue(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .file_format_reference_value import FileFormatReferenceValue
+        from .identifier_type_reference_value import IdentifierTypeReferenceValue
+        from .reference_definition import ReferenceDefinition
+        from .role_reference_value import RoleReferenceValue
+        from .section_role_reference_value import SectionRoleReferenceValue
+        from .user_match_target_reference_value import UserMatchTargetReferenceValue
+        from .year_reference_value import YearReferenceValue
+
         writer.write_str_value("code", self.code)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("value", self.value)

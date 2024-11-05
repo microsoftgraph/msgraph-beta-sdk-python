@@ -84,6 +84,8 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .company_detail import CompanyDetail
+
         writer.write_object_value("company", self.company)
         writer.write_str_value("description", self.description)
         writer.write_date_value("endMonthYear", self.end_month_year)

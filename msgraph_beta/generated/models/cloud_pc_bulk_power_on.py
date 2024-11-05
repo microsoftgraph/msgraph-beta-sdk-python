@@ -48,5 +48,7 @@ class CloudPcBulkPowerOn(CloudPcBulkAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_bulk_action import CloudPcBulkAction
+
     
 

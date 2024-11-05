@@ -80,6 +80,8 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.managed_device_remote_action import ManagedDeviceRemoteAction
+
         writer.write_enum_value("actionName", self.action_name)
         writer.write_str_value("carrierUrl", self.carrier_url)
         writer.write_str_value("deprovisionReason", self.deprovision_reason)

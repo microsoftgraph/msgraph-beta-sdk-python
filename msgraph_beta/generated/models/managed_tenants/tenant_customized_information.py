@@ -82,6 +82,9 @@ class TenantCustomizedInformation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .tenant_contact_information import TenantContactInformation
+
         writer.write_str_value("businessRelationship", self.business_relationship)
         writer.write_collection_of_primitive_values("complianceRequirements", self.compliance_requirements)
         writer.write_collection_of_object_values("contacts", self.contacts)

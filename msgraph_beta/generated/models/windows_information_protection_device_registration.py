@@ -70,6 +70,8 @@ class WindowsInformationProtectionDeviceRegistration(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("deviceMacAddress", self.device_mac_address)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_str_value("deviceRegistrationId", self.device_registration_id)

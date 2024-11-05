@@ -69,6 +69,10 @@ class WindowsManagementApp(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .managed_installer_status import ManagedInstallerStatus
+        from .windows_management_app_health_state import WindowsManagementAppHealthState
+
         writer.write_str_value("availableVersion", self.available_version)
         writer.write_collection_of_object_values("healthStates", self.health_states)
         writer.write_enum_value("managedInstaller", self.managed_installer)

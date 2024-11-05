@@ -129,6 +129,17 @@ class OutlookTask(OutlookItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .attachment import Attachment
+        from .date_time_time_zone import DateTimeTimeZone
+        from .importance import Importance
+        from .item_body import ItemBody
+        from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
+        from .outlook_item import OutlookItem
+        from .patterned_recurrence import PatternedRecurrence
+        from .sensitivity import Sensitivity
+        from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
+        from .task_status import TaskStatus
+
         writer.write_str_value("assignedTo", self.assigned_to)
         writer.write_collection_of_object_values("attachments", self.attachments)
         writer.write_object_value("body", self.body)

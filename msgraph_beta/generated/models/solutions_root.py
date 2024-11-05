@@ -83,6 +83,13 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .approval_solution import ApprovalSolution
+        from .backup_restore_root import BackupRestoreRoot
+        from .booking_business import BookingBusiness
+        from .booking_currency import BookingCurrency
+        from .business_scenario import BusinessScenario
+        from .virtual_events_root import VirtualEventsRoot
+
         writer.write_object_value("approval", self.approval)
         writer.write_object_value("backupRestore", self.backup_restore)
         writer.write_collection_of_object_values("bookingBusinesses", self.booking_businesses)

@@ -60,6 +60,10 @@ class EdiscoveryReviewSet(DataSet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .data_set import DataSet
+        from .ediscovery_file import EdiscoveryFile
+        from .ediscovery_review_set_query import EdiscoveryReviewSetQuery
+
         writer.write_collection_of_object_values("files", self.files)
         writer.write_collection_of_object_values("queries", self.queries)
     

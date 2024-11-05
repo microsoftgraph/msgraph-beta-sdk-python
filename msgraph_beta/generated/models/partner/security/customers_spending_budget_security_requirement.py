@@ -54,6 +54,8 @@ class CustomersSpendingBudgetSecurityRequirement(SecurityRequirement):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .security_requirement import SecurityRequirement
+
         writer.write_int_value("customersWithSpendBudgetCount", self.customers_with_spend_budget_count)
         writer.write_int_value("totalCustomersCount", self.total_customers_count)
     

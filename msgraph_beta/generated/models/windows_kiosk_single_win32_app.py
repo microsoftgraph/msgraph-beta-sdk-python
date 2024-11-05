@@ -57,6 +57,9 @@ class WindowsKioskSingleWin32App(WindowsKioskAppConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
+        from .windows_kiosk_win32_app import WindowsKioskWin32App
+
         writer.write_object_value("win32App", self.win32_app)
     
 

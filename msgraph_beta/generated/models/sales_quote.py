@@ -178,6 +178,13 @@ class SalesQuote(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .currency import Currency
+        from .customer import Customer
+        from .payment_term import PaymentTerm
+        from .postal_address_type import PostalAddressType
+        from .sales_quote_line import SalesQuoteLine
+        from .shipment_method import ShipmentMethod
+
         writer.write_date_value("acceptedDate", self.accepted_date)
         writer.write_uuid_value("billToCustomerId", self.bill_to_customer_id)
         writer.write_str_value("billToCustomerNumber", self.bill_to_customer_number)

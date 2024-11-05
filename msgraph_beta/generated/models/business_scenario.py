@@ -79,6 +79,10 @@ class BusinessScenario(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .business_scenario_planner import BusinessScenarioPlanner
+        from .entity import Entity
+        from .identity_set import IdentitySet
+
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("displayName", self.display_name)

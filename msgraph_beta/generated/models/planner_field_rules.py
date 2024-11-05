@@ -56,6 +56,8 @@ class PlannerFieldRules(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .planner_rule_override import PlannerRuleOverride
+
         writer.write_collection_of_primitive_values("defaultRules", self.default_rules)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("overrides", self.overrides)

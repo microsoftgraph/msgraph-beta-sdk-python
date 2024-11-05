@@ -54,6 +54,8 @@ class ImportedAppleDeviceIdentityResult(ImportedAppleDeviceIdentity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .imported_apple_device_identity import ImportedAppleDeviceIdentity
+
         writer.write_bool_value("status", self.status)
     
 

@@ -69,6 +69,9 @@ class ConnectorStatusDetails(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .connector_health_state import ConnectorHealthState
+        from .connector_name import ConnectorName
+
         writer.write_str_value("connectorInstanceId", self.connector_instance_id)
         writer.write_enum_value("connectorName", self.connector_name)
         writer.write_datetime_value("eventDateTime", self.event_date_time)

@@ -72,6 +72,8 @@ class DeviceManagementIntentDeviceSettingStateSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_int_value("compliantCount", self.compliant_count)
         writer.write_int_value("conflictCount", self.conflict_count)
         writer.write_int_value("errorCount", self.error_count)

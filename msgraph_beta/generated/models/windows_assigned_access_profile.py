@@ -69,6 +69,8 @@ class WindowsAssignedAccessProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_collection_of_primitive_values("appUserModelIds", self.app_user_model_ids)
         writer.write_collection_of_primitive_values("desktopAppPaths", self.desktop_app_paths)
         writer.write_str_value("profileName", self.profile_name)

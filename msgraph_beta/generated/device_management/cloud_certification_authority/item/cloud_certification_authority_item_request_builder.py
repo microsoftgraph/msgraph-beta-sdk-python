@@ -24,6 +24,8 @@ if TYPE_CHECKING:
     from .post_cloud_certification_authority.post_cloud_certification_authority_request_builder import PostCloudCertificationAuthorityRequestBuilder
     from .revoke_cloud_certification_authority_certificate.revoke_cloud_certification_authority_certificate_request_builder import RevokeCloudCertificationAuthorityCertificateRequestBuilder
     from .revoke_leaf_certificate.revoke_leaf_certificate_request_builder import RevokeLeafCertificateRequestBuilder
+    from .revoke_leaf_certificate_by_serial_number.revoke_leaf_certificate_by_serial_number_request_builder import RevokeLeafCertificateBySerialNumberRequestBuilder
+    from .search_cloud_certification_authority_leaf_certificate_by_serial_number.search_cloud_certification_authority_leaf_certificate_by_serial_number_request_builder import SearchCloudCertificationAuthorityLeafCertificateBySerialNumberRequestBuilder
     from .upload_externally_signed_certification_authority_certificate.upload_externally_signed_certification_authority_certificate_request_builder import UploadExternallySignedCertificationAuthorityCertificateRequestBuilder
 
 class CloudCertificationAuthorityItemRequestBuilder(BaseRequestBuilder):
@@ -227,6 +229,24 @@ class CloudCertificationAuthorityItemRequestBuilder(BaseRequestBuilder):
         from .revoke_leaf_certificate.revoke_leaf_certificate_request_builder import RevokeLeafCertificateRequestBuilder
 
         return RevokeLeafCertificateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def revoke_leaf_certificate_by_serial_number(self) -> RevokeLeafCertificateBySerialNumberRequestBuilder:
+        """
+        Provides operations to call the revokeLeafCertificateBySerialNumber method.
+        """
+        from .revoke_leaf_certificate_by_serial_number.revoke_leaf_certificate_by_serial_number_request_builder import RevokeLeafCertificateBySerialNumberRequestBuilder
+
+        return RevokeLeafCertificateBySerialNumberRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def search_cloud_certification_authority_leaf_certificate_by_serial_number(self) -> SearchCloudCertificationAuthorityLeafCertificateBySerialNumberRequestBuilder:
+        """
+        Provides operations to call the searchCloudCertificationAuthorityLeafCertificateBySerialNumber method.
+        """
+        from .search_cloud_certification_authority_leaf_certificate_by_serial_number.search_cloud_certification_authority_leaf_certificate_by_serial_number_request_builder import SearchCloudCertificationAuthorityLeafCertificateBySerialNumberRequestBuilder
+
+        return SearchCloudCertificationAuthorityLeafCertificateBySerialNumberRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def upload_externally_signed_certification_authority_certificate(self) -> UploadExternallySignedCertificationAuthorityCertificateRequestBuilder:

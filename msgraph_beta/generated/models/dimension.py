@@ -67,6 +67,8 @@ class Dimension(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .dimension_value import DimensionValue
+
         writer.write_str_value("code", self.code)
         writer.write_collection_of_object_values("dimensionValues", self.dimension_values)
         writer.write_str_value("displayName", self.display_name)

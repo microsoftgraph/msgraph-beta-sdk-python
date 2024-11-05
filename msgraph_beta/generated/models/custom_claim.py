@@ -66,6 +66,10 @@ class CustomClaim(CustomClaimBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_claim_base import CustomClaimBase
+        from .saml_attribute_name_format import SamlAttributeNameFormat
+        from .token_format import TokenFormat
+
         writer.write_str_value("name", self.name)
         writer.write_str_value("namespace", self.namespace)
         writer.write_enum_value("samlAttributeNameFormat", self.saml_attribute_name_format)

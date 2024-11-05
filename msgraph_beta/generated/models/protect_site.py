@@ -57,6 +57,9 @@ class ProtectSite(LabelActionBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .label_action_base import LabelActionBase
+        from .site_access_type import SiteAccessType
+
         writer.write_enum_value("accessType", self.access_type)
         writer.write_str_value("conditionalAccessProtectionLevelId", self.conditional_access_protection_level_id)
     

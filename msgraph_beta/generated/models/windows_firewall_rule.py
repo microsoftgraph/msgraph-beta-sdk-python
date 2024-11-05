@@ -110,6 +110,11 @@ class WindowsFirewallRule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .state_management_setting import StateManagementSetting
+        from .windows_firewall_rule_interface_types import WindowsFirewallRuleInterfaceTypes
+        from .windows_firewall_rule_network_profile_types import WindowsFirewallRuleNetworkProfileTypes
+        from .windows_firewall_rule_traffic_direction_type import WindowsFirewallRuleTrafficDirectionType
+
         writer.write_enum_value("action", self.action)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

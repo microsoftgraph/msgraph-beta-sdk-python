@@ -69,6 +69,11 @@ class OpenAwsSecurityGroupFinding(Finding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .assigned_compute_instance_details import AssignedComputeInstanceDetails
+        from .aws_authorization_system_resource import AwsAuthorizationSystemResource
+        from .finding import Finding
+        from .inbound_ports import InboundPorts
+
         writer.write_collection_of_object_values("assignedComputeInstancesDetails", self.assigned_compute_instances_details)
         writer.write_object_value("inboundPorts", self.inbound_ports)
         writer.write_object_value("securityGroup", self.security_group)

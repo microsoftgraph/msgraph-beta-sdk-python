@@ -57,6 +57,9 @@ class GroupPolicyPresentationValueList(GroupPolicyPresentationValue):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .group_policy_presentation_value import GroupPolicyPresentationValue
+        from .key_value_pair import KeyValuePair
+
         writer.write_collection_of_object_values("values", self.values)
     
 

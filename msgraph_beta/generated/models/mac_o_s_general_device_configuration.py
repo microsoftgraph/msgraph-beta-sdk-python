@@ -246,6 +246,13 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .app_list_item import AppListItem
+        from .app_list_type import AppListType
+        from .device_configuration import DeviceConfiguration
+        from .mac_o_s_privacy_access_control_item import MacOSPrivacyAccessControlItem
+        from .mac_o_s_software_update_delay_policy import MacOSSoftwareUpdateDelayPolicy
+        from .required_password_type import RequiredPasswordType
+
         writer.write_bool_value("activationLockWhenSupervisedAllowed", self.activation_lock_when_supervised_allowed)
         writer.write_bool_value("addingGameCenterFriendsBlocked", self.adding_game_center_friends_blocked)
         writer.write_bool_value("airDropBlocked", self.air_drop_blocked)

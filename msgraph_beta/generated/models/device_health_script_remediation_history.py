@@ -60,6 +60,8 @@ class DeviceHealthScriptRemediationHistory(AdditionalDataHolder, BackedModel, Pa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_health_script_remediation_history_data import DeviceHealthScriptRemediationHistoryData
+
         writer.write_collection_of_object_values("historyData", self.history_data)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("@odata.type", self.odata_type)

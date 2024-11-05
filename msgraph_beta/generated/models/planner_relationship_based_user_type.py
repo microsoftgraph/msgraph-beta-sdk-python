@@ -54,6 +54,9 @@ class PlannerRelationshipBasedUserType(PlannerTaskConfigurationRoleBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_relationship_user_roles import PlannerRelationshipUserRoles
+        from .planner_task_configuration_role_base import PlannerTaskConfigurationRoleBase
+
         writer.write_enum_value("role", self.role)
     
 

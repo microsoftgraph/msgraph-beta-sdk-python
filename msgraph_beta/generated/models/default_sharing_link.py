@@ -62,6 +62,9 @@ class DefaultSharingLink(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .sharing_role import SharingRole
+        from .sharing_scope import SharingScope
+
         writer.write_bool_value("defaultToExistingAccess", self.default_to_existing_access)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("role", self.role)

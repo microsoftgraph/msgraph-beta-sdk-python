@@ -47,7 +47,8 @@ class SecurityRequirement(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.adminsMfaEnforcedSecurityRequirement".casefold():
@@ -114,6 +115,15 @@ class SecurityRequirement(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ...entity import Entity
+        from .admins_mfa_enforced_security_requirement import AdminsMfaEnforcedSecurityRequirement
+        from .compliance_status import ComplianceStatus
+        from .customers_mfa_enforced_security_requirement import CustomersMfaEnforcedSecurityRequirement
+        from .customers_spending_budget_security_requirement import CustomersSpendingBudgetSecurityRequirement
+        from .response_time_security_requirement import ResponseTimeSecurityRequirement
+        from .security_requirement_state import SecurityRequirementState
+        from .security_requirement_type import SecurityRequirementType
+
         writer.write_str_value("actionUrl", self.action_url)
         writer.write_enum_value("complianceStatus", self.compliance_status)
         writer.write_str_value("helpUrl", self.help_url)

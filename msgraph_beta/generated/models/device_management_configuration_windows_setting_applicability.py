@@ -72,6 +72,10 @@ class DeviceManagementConfigurationWindowsSettingApplicability(DeviceManagementC
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_azure_ad_trust_type import DeviceManagementConfigurationAzureAdTrustType
+        from .device_management_configuration_setting_applicability import DeviceManagementConfigurationSettingApplicability
+        from .device_management_configuration_windows_skus import DeviceManagementConfigurationWindowsSkus
+
         writer.write_str_value("configurationServiceProviderVersion", self.configuration_service_provider_version)
         writer.write_str_value("maximumSupportedVersion", self.maximum_supported_version)
         writer.write_str_value("minimumSupportedVersion", self.minimum_supported_version)

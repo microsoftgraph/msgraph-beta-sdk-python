@@ -63,6 +63,9 @@ class IosAzureAdSingleSignOnExtension(IosSingleSignOnExtension):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .ios_single_sign_on_extension import IosSingleSignOnExtension
+        from .key_typed_value_pair import KeyTypedValuePair
+
         writer.write_collection_of_primitive_values("bundleIdAccessControlList", self.bundle_id_access_control_list)
         writer.write_collection_of_object_values("configurations", self.configurations)
         writer.write_bool_value("enableSharedDeviceMode", self.enable_shared_device_mode)

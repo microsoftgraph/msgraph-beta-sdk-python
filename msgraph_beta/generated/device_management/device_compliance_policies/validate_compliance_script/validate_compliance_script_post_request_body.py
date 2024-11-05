@@ -50,6 +50,8 @@ class ValidateComplianceScriptPostRequestBody(AdditionalDataHolder, BackedModel,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.device_compliance_policy_script import DeviceCompliancePolicyScript
+
         writer.write_object_value("deviceCompliancePolicyScript", self.device_compliance_policy_script)
         writer.write_additional_data_value(self.additional_data)
     

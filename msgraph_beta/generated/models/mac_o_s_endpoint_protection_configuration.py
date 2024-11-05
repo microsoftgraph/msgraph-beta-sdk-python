@@ -135,6 +135,12 @@ class MacOSEndpointProtectionConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .enablement import Enablement
+        from .mac_o_s_file_vault_recovery_key_types import MacOSFileVaultRecoveryKeyTypes
+        from .mac_o_s_firewall_application import MacOSFirewallApplication
+        from .mac_o_s_gatekeeper_app_sources import MacOSGatekeeperAppSources
+
         writer.write_enum_value("advancedThreatProtectionAutomaticSampleSubmission", self.advanced_threat_protection_automatic_sample_submission)
         writer.write_enum_value("advancedThreatProtectionCloudDelivered", self.advanced_threat_protection_cloud_delivered)
         writer.write_enum_value("advancedThreatProtectionDiagnosticDataCollection", self.advanced_threat_protection_diagnostic_data_collection)

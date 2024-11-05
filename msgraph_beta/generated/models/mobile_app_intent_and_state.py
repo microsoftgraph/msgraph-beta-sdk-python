@@ -63,6 +63,9 @@ class MobileAppIntentAndState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .mobile_app_intent_and_state_detail import MobileAppIntentAndStateDetail
+
         writer.write_str_value("managedDeviceIdentifier", self.managed_device_identifier)
         writer.write_collection_of_object_values("mobileAppList", self.mobile_app_list)
         writer.write_str_value("userId", self.user_id)

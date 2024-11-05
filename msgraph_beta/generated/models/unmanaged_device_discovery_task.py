@@ -57,6 +57,9 @@ class UnmanagedDeviceDiscoveryTask(DeviceAppManagementTask):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_app_management_task import DeviceAppManagementTask
+        from .unmanaged_device import UnmanagedDevice
+
         writer.write_collection_of_object_values("unmanagedDevices", self.unmanaged_devices)
     
 

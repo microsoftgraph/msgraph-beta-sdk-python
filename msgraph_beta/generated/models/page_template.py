@@ -66,6 +66,11 @@ class PageTemplate(BaseSitePage):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_site_page import BaseSitePage
+        from .canvas_layout import CanvasLayout
+        from .title_area import TitleArea
+        from .web_part import WebPart
+
         writer.write_object_value("canvasLayout", self.canvas_layout)
         writer.write_object_value("titleArea", self.title_area)
         writer.write_collection_of_object_values("webParts", self.web_parts)

@@ -50,6 +50,8 @@ class GetHealthMetricTimeSeriesPostRequestBody(AdditionalDataHolder, BackedModel
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.time_series_parameter import TimeSeriesParameter
+
         writer.write_object_value("timeSeries", self.time_series)
         writer.write_additional_data_value(self.additional_data)
     

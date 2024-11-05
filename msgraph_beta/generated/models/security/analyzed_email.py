@@ -163,6 +163,16 @@ class AnalyzedEmail(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .analyzed_email_attachment import AnalyzedEmailAttachment
+        from .analyzed_email_authentication_detail import AnalyzedEmailAuthenticationDetail
+        from .analyzed_email_delivery_detail import AnalyzedEmailDeliveryDetail
+        from .analyzed_email_exchange_transport_rule_info import AnalyzedEmailExchangeTransportRuleInfo
+        from .analyzed_email_sender_detail import AnalyzedEmailSenderDetail
+        from .analyzed_email_url import AnalyzedEmailUrl
+        from .antispam_directionality import AntispamDirectionality
+        from .threat_type import ThreatType
+
         writer.write_collection_of_primitive_values("alertIds", self.alert_ids)
         writer.write_collection_of_object_values("attachments", self.attachments)
         writer.write_int_value("attachmentsCount", self.attachments_count)

@@ -113,6 +113,18 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .authentication_events_flow import AuthenticationEventsFlow
+        from .authentication_event_listener import AuthenticationEventListener
+        from .b2c_identity_user_flow import B2cIdentityUserFlow
+        from .b2x_identity_user_flow import B2xIdentityUserFlow
+        from .conditional_access_root import ConditionalAccessRoot
+        from .continuous_access_evaluation_policy import ContinuousAccessEvaluationPolicy
+        from .custom_authentication_extension import CustomAuthenticationExtension
+        from .identity_api_connector import IdentityApiConnector
+        from .identity_provider_base import IdentityProviderBase
+        from .identity_user_flow import IdentityUserFlow
+        from .identity_user_flow_attribute import IdentityUserFlowAttribute
+
         writer.write_collection_of_object_values("apiConnectors", self.api_connectors)
         writer.write_collection_of_object_values("authenticationEventListeners", self.authentication_event_listeners)
         writer.write_collection_of_object_values("authenticationEventsFlows", self.authentication_events_flows)

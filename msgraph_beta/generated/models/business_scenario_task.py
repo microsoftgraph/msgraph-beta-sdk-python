@@ -60,6 +60,10 @@ class BusinessScenarioTask(PlannerTask):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .business_scenario_properties import BusinessScenarioProperties
+        from .business_scenario_task_target_base import BusinessScenarioTaskTargetBase
+        from .planner_task import PlannerTask
+
         writer.write_object_value("businessScenarioProperties", self.business_scenario_properties)
         writer.write_object_value("target", self.target)
     

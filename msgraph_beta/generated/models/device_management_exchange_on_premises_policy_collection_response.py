@@ -52,6 +52,9 @@ class DeviceManagementExchangeOnPremisesPolicyCollectionResponse(BaseCollectionP
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .device_management_exchange_on_premises_policy import DeviceManagementExchangeOnPremisesPolicy
+
         writer.write_collection_of_object_values("value", self.value)
     
 

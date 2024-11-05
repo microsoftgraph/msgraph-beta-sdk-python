@@ -77,6 +77,12 @@ class DeploymentSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .content_applicability_settings import ContentApplicabilitySettings
+        from .expedite_settings import ExpediteSettings
+        from .monitoring_settings import MonitoringSettings
+        from .schedule_settings import ScheduleSettings
+        from .user_experience_settings import UserExperienceSettings
+
         writer.write_object_value("contentApplicability", self.content_applicability)
         writer.write_object_value("expedite", self.expedite)
         writer.write_object_value("monitoring", self.monitoring)

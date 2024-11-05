@@ -59,6 +59,8 @@ class ClassifyExactMatchesPostRequestBody(AdditionalDataHolder, BackedModel, Par
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ...models.content_classification import ContentClassification
+
         writer.write_collection_of_object_values("contentClassifications", self.content_classifications)
         writer.write_collection_of_primitive_values("sensitiveTypeIds", self.sensitive_type_ids)
         writer.write_str_value("text", self.text)

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .assigned_label import AssignedLabel
     from .assigned_license import AssignedLicense
     from .calendar import Calendar
+    from .cloud_licensing.group_cloud_licensing import GroupCloudLicensing
     from .conversation import Conversation
     from .conversation_thread import ConversationThread
     from .directory_object import DirectoryObject
@@ -60,6 +61,8 @@ class Group(DirectoryObject):
     calendar_view: Optional[List[Event]] = None
     # Describes a classification for the group (such as low, medium or high business impact). Valid values for this property are defined by creating a ClassificationList setting value, based on the template definition.Returned by default. Supports $filter (eq, ne, not, ge, le, startsWith).
     classification: Optional[str] = None
+    # The relationships of a group to cloud licensing resources.
+    cloud_licensing: Optional[GroupCloudLicensing] = None
     # The group's conversations.
     conversations: Optional[List[Conversation]] = None
     # App ID of the app used to create the group. Can be null for some groups. Returned by default. Read-only. Supports $filter (eq, ne, not, in, startsWith).
@@ -221,6 +224,7 @@ class Group(DirectoryObject):
         from .assigned_label import AssignedLabel
         from .assigned_license import AssignedLicense
         from .calendar import Calendar
+        from .cloud_licensing.group_cloud_licensing import GroupCloudLicensing
         from .conversation import Conversation
         from .conversation_thread import ConversationThread
         from .directory_object import DirectoryObject
@@ -247,6 +251,7 @@ class Group(DirectoryObject):
         from .assigned_label import AssignedLabel
         from .assigned_license import AssignedLicense
         from .calendar import Calendar
+        from .cloud_licensing.group_cloud_licensing import GroupCloudLicensing
         from .conversation import Conversation
         from .conversation_thread import ConversationThread
         from .directory_object import DirectoryObject
@@ -280,6 +285,7 @@ class Group(DirectoryObject):
             "calendar": lambda n : setattr(self, 'calendar', n.get_object_value(Calendar)),
             "calendarView": lambda n : setattr(self, 'calendar_view', n.get_collection_of_object_values(Event)),
             "classification": lambda n : setattr(self, 'classification', n.get_str_value()),
+            "cloudLicensing": lambda n : setattr(self, 'cloud_licensing', n.get_object_value(GroupCloudLicensing)),
             "conversations": lambda n : setattr(self, 'conversations', n.get_collection_of_object_values(Conversation)),
             "createdByAppId": lambda n : setattr(self, 'created_by_app_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -364,6 +370,33 @@ class Group(DirectoryObject):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .app_role_assignment import AppRoleAssignment
+        from .assigned_label import AssignedLabel
+        from .assigned_license import AssignedLicense
+        from .calendar import Calendar
+        from .cloud_licensing.group_cloud_licensing import GroupCloudLicensing
+        from .conversation import Conversation
+        from .conversation_thread import ConversationThread
+        from .directory_object import DirectoryObject
+        from .directory_setting import DirectorySetting
+        from .drive import Drive
+        from .endpoint import Endpoint
+        from .event import Event
+        from .extension import Extension
+        from .group_access_type import GroupAccessType
+        from .group_lifecycle_policy import GroupLifecyclePolicy
+        from .group_writeback_configuration import GroupWritebackConfiguration
+        from .license_processing_state import LicenseProcessingState
+        from .membership_rule_processing_status import MembershipRuleProcessingStatus
+        from .onenote import Onenote
+        from .on_premises_provisioning_error import OnPremisesProvisioningError
+        from .planner_group import PlannerGroup
+        from .profile_photo import ProfilePhoto
+        from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
+        from .service_provisioning_error import ServiceProvisioningError
+        from .site import Site
+        from .team import Team
+
         writer.write_collection_of_object_values("acceptedSenders", self.accepted_senders)
         writer.write_enum_value("accessType", self.access_type)
         writer.write_bool_value("allowExternalSenders", self.allow_external_senders)
@@ -374,6 +407,7 @@ class Group(DirectoryObject):
         writer.write_object_value("calendar", self.calendar)
         writer.write_collection_of_object_values("calendarView", self.calendar_view)
         writer.write_str_value("classification", self.classification)
+        writer.write_object_value("cloudLicensing", self.cloud_licensing)
         writer.write_collection_of_object_values("conversations", self.conversations)
         writer.write_str_value("createdByAppId", self.created_by_app_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

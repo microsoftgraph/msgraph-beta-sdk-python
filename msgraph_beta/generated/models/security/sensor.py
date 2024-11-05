@@ -16,7 +16,7 @@ from ..entity import Entity
 
 @dataclass
 class Sensor(Entity):
-    # The date and time when the sensor was generated.
+    # The date and time when the sensor was generated. The Timestamp represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
     # The deploymentStatus property
     deployment_status: Optional[DeploymentStatus] = None
@@ -94,6 +94,13 @@ class Sensor(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .deployment_status import DeploymentStatus
+        from .health_issue import HealthIssue
+        from .sensor_health_status import SensorHealthStatus
+        from .sensor_settings import SensorSettings
+        from .sensor_type import SensorType
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_enum_value("deploymentStatus", self.deployment_status)
         writer.write_str_value("displayName", self.display_name)

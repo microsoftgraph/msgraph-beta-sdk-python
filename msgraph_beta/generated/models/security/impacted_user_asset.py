@@ -54,6 +54,9 @@ class ImpactedUserAsset(ImpactedAsset):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .impacted_asset import ImpactedAsset
+        from .user_asset_identifier import UserAssetIdentifier
+
         writer.write_enum_value("identifier", self.identifier)
     
 

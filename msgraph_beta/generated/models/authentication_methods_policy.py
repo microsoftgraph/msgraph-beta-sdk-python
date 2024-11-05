@@ -100,6 +100,14 @@ class AuthenticationMethodsPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
+        from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .entity import Entity
+        from .microsoft_authenticator_platform_settings import MicrosoftAuthenticatorPlatformSettings
+        from .registration_enforcement import RegistrationEnforcement
+        from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
+        from .system_credential_preferences import SystemCredentialPreferences
+
         writer.write_collection_of_object_values("authenticationMethodConfigurations", self.authentication_method_configurations)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

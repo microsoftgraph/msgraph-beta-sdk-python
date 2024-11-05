@@ -101,6 +101,16 @@ class IdentityGovernance(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ..access_review_set import AccessReviewSet
+        from ..app_consent_approval_route import AppConsentApprovalRoute
+        from ..entitlement_management import EntitlementManagement
+        from ..permissions_analytics_aggregation import PermissionsAnalyticsAggregation
+        from ..permissions_management import PermissionsManagement
+        from ..privileged_access_root import PrivilegedAccessRoot
+        from ..role_management_alert import RoleManagementAlert
+        from ..terms_of_use_container import TermsOfUseContainer
+        from .lifecycle_workflows_container import LifecycleWorkflowsContainer
+
         writer.write_object_value("accessReviews", self.access_reviews)
         writer.write_object_value("appConsent", self.app_consent)
         writer.write_object_value("entitlementManagement", self.entitlement_management)

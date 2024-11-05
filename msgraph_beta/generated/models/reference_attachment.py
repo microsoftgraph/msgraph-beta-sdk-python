@@ -72,6 +72,10 @@ class ReferenceAttachment(Attachment):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .attachment import Attachment
+        from .reference_attachment_permission import ReferenceAttachmentPermission
+        from .reference_attachment_provider import ReferenceAttachmentProvider
+
         writer.write_bool_value("isFolder", self.is_folder)
         writer.write_enum_value("permission", self.permission)
         writer.write_str_value("previewUrl", self.preview_url)

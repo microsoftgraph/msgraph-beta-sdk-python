@@ -59,6 +59,8 @@ class GovernanceRoleAssignmentRequestStatus(AdditionalDataHolder, BackedModel, P
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .key_value import KeyValue
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("status", self.status)
         writer.write_collection_of_object_values("statusDetails", self.status_details)

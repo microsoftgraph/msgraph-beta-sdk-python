@@ -232,6 +232,36 @@ class DeviceAppManagement(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_managed_app_protection import AndroidManagedAppProtection
+        from .default_managed_app_protection import DefaultManagedAppProtection
+        from .device_app_management_task import DeviceAppManagementTask
+        from .enterprise_code_signing_certificate import EnterpriseCodeSigningCertificate
+        from .entity import Entity
+        from .ios_lob_app_provisioning_configuration import IosLobAppProvisioningConfiguration
+        from .ios_managed_app_protection import IosManagedAppProtection
+        from .managed_app_policy import ManagedAppPolicy
+        from .managed_app_registration import ManagedAppRegistration
+        from .managed_app_status import ManagedAppStatus
+        from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
+        from .managed_e_book import ManagedEBook
+        from .managed_e_book_category import ManagedEBookCategory
+        from .mdm_windows_information_protection_policy import MdmWindowsInformationProtectionPolicy
+        from .microsoft_store_for_business_portal_selection_options import MicrosoftStoreForBusinessPortalSelectionOptions
+        from .mobile_app import MobileApp
+        from .mobile_app_catalog_package import MobileAppCatalogPackage
+        from .mobile_app_category import MobileAppCategory
+        from .mobile_app_relationship import MobileAppRelationship
+        from .policy_set import PolicySet
+        from .symantec_code_signing_certificate import SymantecCodeSigningCertificate
+        from .targeted_managed_app_configuration import TargetedManagedAppConfiguration
+        from .vpp_token import VppToken
+        from .windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
+        from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
+        from .windows_information_protection_policy import WindowsInformationProtectionPolicy
+        from .windows_information_protection_wipe_action import WindowsInformationProtectionWipeAction
+        from .windows_managed_app_protection import WindowsManagedAppProtection
+        from .windows_management_app import WindowsManagementApp
+
         writer.write_collection_of_object_values("androidManagedAppProtections", self.android_managed_app_protections)
         writer.write_collection_of_object_values("defaultManagedAppProtections", self.default_managed_app_protections)
         writer.write_collection_of_object_values("deviceAppManagementTasks", self.device_app_management_tasks)

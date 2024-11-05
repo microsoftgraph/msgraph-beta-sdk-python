@@ -149,6 +149,11 @@ class IntuneBrand(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .company_portal_blocked_action import CompanyPortalBlockedAction
+        from .enrollment_availability_options import EnrollmentAvailabilityOptions
+        from .mime_content import MimeContent
+        from .rgb_color import RgbColor
+
         writer.write_collection_of_object_values("companyPortalBlockedActions", self.company_portal_blocked_actions)
         writer.write_str_value("contactITEmailAddress", self.contact_i_t_email_address)
         writer.write_str_value("contactITName", self.contact_i_t_name)

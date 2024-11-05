@@ -59,6 +59,8 @@ class VerifiedCredentialData(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .verified_credential_claims import VerifiedCredentialClaims
+
         writer.write_str_value("authority", self.authority)
         writer.write_object_value("claims", self.claims)
         writer.write_str_value("@odata.type", self.odata_type)

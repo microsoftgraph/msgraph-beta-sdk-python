@@ -60,6 +60,9 @@ class ItemPhone(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .item_facet import ItemFacet
+        from .phone_type import PhoneType
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("number", self.number)
         writer.write_enum_value("type", self.type)

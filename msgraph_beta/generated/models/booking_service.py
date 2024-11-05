@@ -136,6 +136,13 @@ class BookingService(BookingNamedEntity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .booking_named_entity import BookingNamedEntity
+        from .booking_price_type import BookingPriceType
+        from .booking_question_assignment import BookingQuestionAssignment
+        from .booking_reminder import BookingReminder
+        from .booking_scheduling_policy import BookingSchedulingPolicy
+        from .location import Location
+
         writer.write_str_value("additionalInformation", self.additional_information)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_collection_of_object_values("customQuestions", self.custom_questions)

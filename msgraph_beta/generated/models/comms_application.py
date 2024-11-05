@@ -59,6 +59,9 @@ class CommsApplication(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .call import Call
+        from .online_meeting import OnlineMeeting
+
         writer.write_collection_of_object_values("calls", self.calls)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("onlineMeetings", self.online_meetings)

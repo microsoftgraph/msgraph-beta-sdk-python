@@ -77,6 +77,10 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .mobile_app_intent import MobileAppIntent
+        from .mobile_app_supported_device_type import MobileAppSupportedDeviceType
+        from .resultant_app_state import ResultantAppState
+
         writer.write_str_value("applicationId", self.application_id)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("displayVersion", self.display_version)

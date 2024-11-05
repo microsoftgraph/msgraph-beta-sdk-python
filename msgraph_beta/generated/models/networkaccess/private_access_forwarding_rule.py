@@ -48,5 +48,7 @@ class PrivateAccessForwardingRule(ForwardingRule):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .forwarding_rule import ForwardingRule
+
     
 

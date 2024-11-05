@@ -51,6 +51,8 @@ class GcpActionPermissionsDefinitionAction(GcpPermissionsDefinitionAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .gcp_permissions_definition_action import GcpPermissionsDefinitionAction
+
         writer.write_collection_of_primitive_values("actions", self.actions)
     
 

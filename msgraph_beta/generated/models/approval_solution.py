@@ -66,6 +66,11 @@ class ApprovalSolution(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .approval_item import ApprovalItem
+        from .approval_operation import ApprovalOperation
+        from .entity import Entity
+        from .provision_state import ProvisionState
+
         writer.write_collection_of_object_values("approvalItems", self.approval_items)
         writer.write_collection_of_object_values("operations", self.operations)
         writer.write_enum_value("provisioningStatus", self.provisioning_status)

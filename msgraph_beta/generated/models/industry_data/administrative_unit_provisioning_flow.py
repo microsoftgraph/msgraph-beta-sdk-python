@@ -54,6 +54,9 @@ class AdministrativeUnitProvisioningFlow(ProvisioningFlow):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .admin_unit_creation_options import AdminUnitCreationOptions
+        from .provisioning_flow import ProvisioningFlow
+
         writer.write_object_value("creationOptions", self.creation_options)
     
 

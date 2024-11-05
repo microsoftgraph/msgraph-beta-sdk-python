@@ -59,6 +59,9 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ......models.dlp_evaluation_input import DlpEvaluationInput
+        from ......models.dlp_notification import DlpNotification
+
         writer.write_object_value("evaluationInput", self.evaluation_input)
         writer.write_object_value("notificationInfo", self.notification_info)
         writer.write_str_value("target", self.target)

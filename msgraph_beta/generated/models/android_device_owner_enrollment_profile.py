@@ -127,6 +127,12 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_enrollment_mode import AndroidDeviceOwnerEnrollmentMode
+        from .android_device_owner_enrollment_token_type import AndroidDeviceOwnerEnrollmentTokenType
+        from .aosp_wifi_security_type import AospWifiSecurityType
+        from .entity import Entity
+        from .mime_content import MimeContent
+
         writer.write_str_value("accountId", self.account_id)
         writer.write_bool_value("configureWifi", self.configure_wifi)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

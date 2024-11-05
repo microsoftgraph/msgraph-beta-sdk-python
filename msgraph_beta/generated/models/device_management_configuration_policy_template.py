@@ -102,6 +102,13 @@ class DeviceManagementConfigurationPolicyTemplate(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_platforms import DeviceManagementConfigurationPlatforms
+        from .device_management_configuration_setting_template import DeviceManagementConfigurationSettingTemplate
+        from .device_management_configuration_technologies import DeviceManagementConfigurationTechnologies
+        from .device_management_configuration_template_family import DeviceManagementConfigurationTemplateFamily
+        from .device_management_template_lifecycle_state import DeviceManagementTemplateLifecycleState
+        from .entity import Entity
+
         writer.write_bool_value("allowUnmanagedSettings", self.allow_unmanaged_settings)
         writer.write_str_value("baseId", self.base_id)
         writer.write_str_value("description", self.description)

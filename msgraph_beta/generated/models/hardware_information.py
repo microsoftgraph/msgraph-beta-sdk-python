@@ -185,6 +185,12 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_guard_local_system_authority_credential_guard_state import DeviceGuardLocalSystemAuthorityCredentialGuardState
+        from .device_guard_virtualization_based_security_hardware_requirement_state import DeviceGuardVirtualizationBasedSecurityHardwareRequirementState
+        from .device_guard_virtualization_based_security_state import DeviceGuardVirtualizationBasedSecurityState
+        from .device_licensing_status import DeviceLicensingStatus
+        from .shared_apple_device_user import SharedAppleDeviceUser
+
         writer.write_int_value("batteryChargeCycles", self.battery_charge_cycles)
         writer.write_int_value("batteryHealthPercentage", self.battery_health_percentage)
         writer.write_float_value("batteryLevelPercentage", self.battery_level_percentage)

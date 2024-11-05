@@ -71,6 +71,8 @@ class PhysicalAddress(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .physical_address_type import PhysicalAddressType
+
         writer.write_str_value("city", self.city)
         writer.write_str_value("countryOrRegion", self.country_or_region)
         writer.write_str_value("@odata.type", self.odata_type)

@@ -51,6 +51,8 @@ class IpSubnet(RuleDestination):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .rule_destination import RuleDestination
+
         writer.write_str_value("value", self.value)
     
 

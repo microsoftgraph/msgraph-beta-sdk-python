@@ -53,6 +53,8 @@ class PlannerTaskPolicy(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .planner_task_role_based_rule import PlannerTaskRoleBasedRule
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("rules", self.rules)
         writer.write_additional_data_value(self.additional_data)

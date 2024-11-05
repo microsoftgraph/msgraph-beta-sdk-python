@@ -140,6 +140,10 @@ class SalesOrderLine(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .account import Account
+        from .entity import Entity
+        from .item import Item
+
         writer.write_object_value("account", self.account)
         writer.write_uuid_value("accountId", self.account_id)
         writer.write_float_value("amountExcludingTax", self.amount_excluding_tax)

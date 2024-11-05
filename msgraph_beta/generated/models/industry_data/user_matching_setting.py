@@ -68,6 +68,10 @@ class UserMatchingSetting(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .identifier_type_reference_value import IdentifierTypeReferenceValue
+        from .role_group import RoleGroup
+        from .user_match_target_reference_value import UserMatchTargetReferenceValue
+
         writer.write_object_value("matchTarget", self.match_target)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("priorityOrder", self.priority_order)

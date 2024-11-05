@@ -91,6 +91,11 @@ class PrivilegedApproval(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .approval_state import ApprovalState
+        from .entity import Entity
+        from .privileged_role import PrivilegedRole
+        from .privileged_role_assignment_request import PrivilegedRoleAssignmentRequest
+
         writer.write_timedelta_value("approvalDuration", self.approval_duration)
         writer.write_enum_value("approvalState", self.approval_state)
         writer.write_str_value("approvalType", self.approval_type)

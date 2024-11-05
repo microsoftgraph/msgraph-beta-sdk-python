@@ -81,7 +81,8 @@ class AppleVpnConfiguration(DeviceConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosikEv2VpnConfiguration".casefold():
@@ -166,6 +167,19 @@ class AppleVpnConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_vpn_connection_type import AppleVpnConnectionType
+        from .device_configuration import DeviceConfiguration
+        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
+        from .ios_vpn_configuration import IosVpnConfiguration
+        from .key_value import KeyValue
+        from .key_value_pair import KeyValuePair
+        from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
+        from .vpn_authentication_method import VpnAuthenticationMethod
+        from .vpn_on_demand_rule import VpnOnDemandRule
+        from .vpn_provider_type import VpnProviderType
+        from .vpn_proxy_server import VpnProxyServer
+        from .vpn_server import VpnServer
+
         writer.write_collection_of_primitive_values("associatedDomains", self.associated_domains)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_str_value("connectionName", self.connection_name)

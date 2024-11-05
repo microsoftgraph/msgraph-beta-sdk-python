@@ -102,6 +102,13 @@ class SensitivityLabel(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .application_mode import ApplicationMode
+        from .auto_labeling import AutoLabeling
+        from .entity import Entity
+        from .label_action_base import LabelActionBase
+        from .label_policy import LabelPolicy
+        from .sensitivity_label_target import SensitivityLabelTarget
+
         writer.write_enum_value("applicableTo", self.applicable_to)
         writer.write_enum_value("applicationMode", self.application_mode)
         writer.write_collection_of_object_values("assignedPolicies", self.assigned_policies)

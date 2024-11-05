@@ -72,6 +72,10 @@ class DeviceManagementDerivedCredentialSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_derived_credential_issuer import DeviceManagementDerivedCredentialIssuer
+        from .device_management_derived_credential_notification_type import DeviceManagementDerivedCredentialNotificationType
+        from .entity import Entity
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("helpUrl", self.help_url)
         writer.write_enum_value("issuer", self.issuer)

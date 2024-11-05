@@ -66,6 +66,9 @@ class RedirectSingleSignOnExtension(SingleSignOnExtension):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .key_typed_value_pair import KeyTypedValuePair
+        from .single_sign_on_extension import SingleSignOnExtension
+
         writer.write_collection_of_object_values("configurations", self.configurations)
         writer.write_str_value("extensionIdentifier", self.extension_identifier)
         writer.write_str_value("teamIdentifier", self.team_identifier)

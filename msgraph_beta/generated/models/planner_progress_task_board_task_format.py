@@ -51,6 +51,8 @@ class PlannerProgressTaskBoardTaskFormat(PlannerDelta):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_delta import PlannerDelta
+
         writer.write_str_value("orderHint", self.order_hint)
     
 

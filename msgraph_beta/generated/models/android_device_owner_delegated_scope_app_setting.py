@@ -62,6 +62,9 @@ class AndroidDeviceOwnerDelegatedScopeAppSetting(AdditionalDataHolder, BackedMod
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .android_device_owner_delegated_app_scope_type import AndroidDeviceOwnerDelegatedAppScopeType
+        from .app_list_item import AppListItem
+
         writer.write_object_value("appDetail", self.app_detail)
         writer.write_collection_of_enum_values("appScopes", self.app_scopes)
         writer.write_str_value("@odata.type", self.odata_type)

@@ -105,7 +105,8 @@ class PlannerTask(PlannerDelta):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.businessScenarioTask".casefold():
@@ -198,6 +199,21 @@ class PlannerTask(PlannerDelta):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .business_scenario_task import BusinessScenarioTask
+        from .identity_set import IdentitySet
+        from .planner_applied_categories import PlannerAppliedCategories
+        from .planner_archival_info import PlannerArchivalInfo
+        from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
+        from .planner_assignments import PlannerAssignments
+        from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
+        from .planner_delta import PlannerDelta
+        from .planner_preview_type import PlannerPreviewType
+        from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
+        from .planner_task_completion_requirements import PlannerTaskCompletionRequirements
+        from .planner_task_creation import PlannerTaskCreation
+        from .planner_task_details import PlannerTaskDetails
+        from .planner_task_recurrence import PlannerTaskRecurrence
+
         writer.write_int_value("activeChecklistItemCount", self.active_checklist_item_count)
         writer.write_object_value("appliedCategories", self.applied_categories)
         writer.write_object_value("archivalInfo", self.archival_info)

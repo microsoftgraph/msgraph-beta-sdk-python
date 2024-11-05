@@ -41,7 +41,8 @@ class IosCertificateProfileBase(IosCertificateProfile):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosPkcsCertificateProfile".casefold():
@@ -93,6 +94,13 @@ class IosCertificateProfileBase(IosCertificateProfile):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_subject_name_format import AppleSubjectNameFormat
+        from .certificate_validity_period_scale import CertificateValidityPeriodScale
+        from .ios_certificate_profile import IosCertificateProfile
+        from .ios_pkcs_certificate_profile import IosPkcsCertificateProfile
+        from .ios_scep_certificate_profile import IosScepCertificateProfile
+        from .subject_alternative_name_type import SubjectAlternativeNameType
+
         writer.write_enum_value("certificateValidityPeriodScale", self.certificate_validity_period_scale)
         writer.write_int_value("certificateValidityPeriodValue", self.certificate_validity_period_value)
         writer.write_int_value("renewalThresholdPercentage", self.renewal_threshold_percentage)

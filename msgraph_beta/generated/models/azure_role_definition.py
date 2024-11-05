@@ -63,6 +63,9 @@ class AzureRoleDefinition(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .azure_role_definition_type import AzureRoleDefinitionType
+        from .entity import Entity
+
         writer.write_collection_of_primitive_values("assignableScopes", self.assignable_scopes)
         writer.write_enum_value("azureRoleDefinitionType", self.azure_role_definition_type)
         writer.write_str_value("displayName", self.display_name)

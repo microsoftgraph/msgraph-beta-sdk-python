@@ -83,6 +83,8 @@ class SearchHit(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .entity import Entity
+
         writer.write_str_value("_id", self._id)
         writer.write_int_value("_score", self._score)
         writer.write_object_value("_source", self._source)

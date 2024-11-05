@@ -15,6 +15,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.cloud_pc_bulk_action import CloudPcBulkAction
     from .....models.o_data_errors.o_data_error import ODataError
+    from .retry.retry_request_builder import RetryRequestBuilder
 
 class CloudPcBulkActionItemRequestBuilder(BaseRequestBuilder):
     """
@@ -137,6 +138,15 @@ class CloudPcBulkActionItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CloudPcBulkActionItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def retry(self) -> RetryRequestBuilder:
+        """
+        Provides operations to call the retry method.
+        """
+        from .retry.retry_request_builder import RetryRequestBuilder
+
+        return RetryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CloudPcBulkActionItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

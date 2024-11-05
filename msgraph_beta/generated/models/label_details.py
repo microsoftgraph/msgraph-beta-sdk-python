@@ -48,5 +48,7 @@ class LabelDetails(ParentLabelDetails):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .parent_label_details import ParentLabelDetails
+
     
 

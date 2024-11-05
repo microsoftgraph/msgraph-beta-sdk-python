@@ -40,7 +40,8 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.detectedSensitiveContent".casefold():
@@ -88,6 +89,10 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .detected_sensitive_content import DetectedSensitiveContent
+        from .exact_match_detected_sensitive_content import ExactMatchDetectedSensitiveContent
+        from .machine_learning_detected_sensitive_content import MachineLearningDetectedSensitiveContent
+
         writer.write_int_value("confidence", self.confidence)
         writer.write_str_value("displayName", self.display_name)
         writer.write_uuid_value("id", self.id)

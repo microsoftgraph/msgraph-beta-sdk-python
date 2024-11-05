@@ -75,6 +75,11 @@ class OpenShift(ChangeTrackedEntity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .change_tracked_entity import ChangeTrackedEntity
+        from .open_shift_item import OpenShiftItem
+        from .scheduling_group_info import SchedulingGroupInfo
+        from .shifts_team_info import ShiftsTeamInfo
+
         writer.write_object_value("draftOpenShift", self.draft_open_shift)
         writer.write_bool_value("isStagedForDeletion", self.is_staged_for_deletion)
         writer.write_str_value("schedulingGroupId", self.scheduling_group_id)

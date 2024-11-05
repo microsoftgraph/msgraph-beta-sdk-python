@@ -72,6 +72,11 @@ class OnPremisesAgent(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .agent_status import AgentStatus
+        from .entity import Entity
+        from .on_premises_agent_group import OnPremisesAgentGroup
+        from .on_premises_publishing_type import OnPremisesPublishingType
+
         writer.write_collection_of_object_values("agentGroups", self.agent_groups)
         writer.write_str_value("externalIp", self.external_ip)
         writer.write_str_value("machineName", self.machine_name)

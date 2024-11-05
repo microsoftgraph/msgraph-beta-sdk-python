@@ -171,6 +171,10 @@ class DeviceHealthAttestationState(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .azure_attestation_setting_status import AzureAttestationSettingStatus
+        from .firmware_protection_type import FirmwareProtectionType
+        from .system_management_mode_level import SystemManagementModeLevel
+
         writer.write_str_value("attestationIdentityKey", self.attestation_identity_key)
         writer.write_str_value("bitLockerStatus", self.bit_locker_status)
         writer.write_str_value("bootAppSecurityVersion", self.boot_app_security_version)

@@ -108,6 +108,10 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .zebra_fota_network_type import ZebraFotaNetworkType
+        from .zebra_fota_schedule_mode import ZebraFotaScheduleMode
+        from .zebra_fota_update_type import ZebraFotaUpdateType
+
         writer.write_int_value("batteryRuleMinimumBatteryLevelPercentage", self.battery_rule_minimum_battery_level_percentage)
         writer.write_bool_value("batteryRuleRequireCharger", self.battery_rule_require_charger)
         writer.write_str_value("deviceModel", self.device_model)

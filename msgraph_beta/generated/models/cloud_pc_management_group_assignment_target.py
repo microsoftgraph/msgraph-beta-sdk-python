@@ -60,6 +60,8 @@ class CloudPcManagementGroupAssignmentTarget(CloudPcManagementAssignmentTarget):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_management_assignment_target import CloudPcManagementAssignmentTarget
+
         writer.write_str_value("allotmentDisplayName", self.allotment_display_name)
         writer.write_int_value("allotmentLicensesCount", self.allotment_licenses_count)
         writer.write_str_value("groupId", self.group_id)

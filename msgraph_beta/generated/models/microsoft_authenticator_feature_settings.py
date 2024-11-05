@@ -62,6 +62,8 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, BackedModel, P
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .authentication_method_feature_configuration import AuthenticationMethodFeatureConfiguration
+
         writer.write_object_value("companionAppAllowedState", self.companion_app_allowed_state)
         writer.write_object_value("displayAppInformationRequiredState", self.display_app_information_required_state)
         writer.write_object_value("displayLocationInformationRequiredState", self.display_location_information_required_state)

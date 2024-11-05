@@ -97,6 +97,10 @@ class ImpactedResource(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .key_value import KeyValue
+        from .recommendation_status import RecommendationStatus
+
         writer.write_datetime_value("addedDateTime", self.added_date_time)
         writer.write_collection_of_object_values("additionalDetails", self.additional_details)
         writer.write_str_value("apiUrl", self.api_url)

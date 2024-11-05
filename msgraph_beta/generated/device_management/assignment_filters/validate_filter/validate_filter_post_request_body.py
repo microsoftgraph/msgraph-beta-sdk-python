@@ -50,6 +50,8 @@ class ValidateFilterPostRequestBody(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
+
         writer.write_object_value("deviceAndAppManagementAssignmentFilter", self.device_and_app_management_assignment_filter)
         writer.write_additional_data_value(self.additional_data)
     

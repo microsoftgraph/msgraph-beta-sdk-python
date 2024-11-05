@@ -54,6 +54,8 @@ class SecurityBaselineCategoryStateSummary(SecurityBaselineStateSummary):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .security_baseline_state_summary import SecurityBaselineStateSummary
+
         writer.write_str_value("displayName", self.display_name)
     
 

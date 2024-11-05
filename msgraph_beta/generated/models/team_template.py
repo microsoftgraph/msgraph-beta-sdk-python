@@ -54,6 +54,9 @@ class TeamTemplate(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .team_template_definition import TeamTemplateDefinition
+
         writer.write_collection_of_object_values("definitions", self.definitions)
     
 

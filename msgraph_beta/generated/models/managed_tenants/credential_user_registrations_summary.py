@@ -85,6 +85,8 @@ class CredentialUserRegistrationsSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_datetime_value("lastRefreshedDateTime", self.last_refreshed_date_time)
         writer.write_int_value("mfaAndSsprCapableUserCount", self.mfa_and_sspr_capable_user_count)
         writer.write_str_value("mfaConditionalAccessPolicyState", self.mfa_conditional_access_policy_state)

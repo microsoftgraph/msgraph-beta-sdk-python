@@ -31,7 +31,8 @@ class AppleDeviceFeaturesConfigurationBase(DeviceConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosDeviceFeaturesConfiguration".casefold():
@@ -75,6 +76,11 @@ class AppleDeviceFeaturesConfigurationBase(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .air_print_destination import AirPrintDestination
+        from .device_configuration import DeviceConfiguration
+        from .ios_device_features_configuration import IosDeviceFeaturesConfiguration
+        from .mac_o_s_device_features_configuration import MacOSDeviceFeaturesConfiguration
+
         writer.write_collection_of_object_values("airPrintDestinations", self.air_print_destinations)
     
 

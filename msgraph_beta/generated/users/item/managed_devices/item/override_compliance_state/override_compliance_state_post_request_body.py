@@ -53,6 +53,8 @@ class OverrideComplianceStatePostRequestBody(AdditionalDataHolder, BackedModel, 
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ......models.administrator_configured_device_compliance_state import AdministratorConfiguredDeviceComplianceState
+
         writer.write_enum_value("complianceState", self.compliance_state)
         writer.write_str_value("remediationUrl", self.remediation_url)
         writer.write_additional_data_value(self.additional_data)

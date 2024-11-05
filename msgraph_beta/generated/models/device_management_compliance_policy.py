@@ -106,6 +106,13 @@ class DeviceManagementCompliancePolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_compliance_scheduled_action_for_rule import DeviceManagementComplianceScheduledActionForRule
+        from .device_management_configuration_platforms import DeviceManagementConfigurationPlatforms
+        from .device_management_configuration_policy_assignment import DeviceManagementConfigurationPolicyAssignment
+        from .device_management_configuration_setting import DeviceManagementConfigurationSetting
+        from .device_management_configuration_technologies import DeviceManagementConfigurationTechnologies
+        from .entity import Entity
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_str_value("creationSource", self.creation_source)
         writer.write_str_value("description", self.description)

@@ -84,6 +84,14 @@ class InformationProtection(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .bitlocker import Bitlocker
+        from .data_loss_prevention_policy import DataLossPreventionPolicy
+        from .entity import Entity
+        from .information_protection_policy import InformationProtectionPolicy
+        from .sensitivity_label import SensitivityLabel
+        from .sensitivity_policy_settings import SensitivityPolicySettings
+        from .threat_assessment_request import ThreatAssessmentRequest
+
         writer.write_object_value("bitlocker", self.bitlocker)
         writer.write_collection_of_object_values("dataLossPreventionPolicies", self.data_loss_prevention_policies)
         writer.write_object_value("policy", self.policy)

@@ -48,5 +48,7 @@ class EducationSynchronizationOAuth1ConnectionSettings(EducationSynchronizationC
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
+
     
 

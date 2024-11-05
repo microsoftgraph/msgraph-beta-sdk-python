@@ -54,6 +54,9 @@ class ClassGroupProvisioningFlow(ProvisioningFlow):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .class_group_configuration import ClassGroupConfiguration
+        from .provisioning_flow import ProvisioningFlow
+
         writer.write_object_value("configuration", self.configuration)
     
 

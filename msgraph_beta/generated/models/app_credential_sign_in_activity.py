@@ -94,6 +94,12 @@ class AppCredentialSignInActivity(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .application_key_origin import ApplicationKeyOrigin
+        from .application_key_type import ApplicationKeyType
+        from .application_key_usage import ApplicationKeyUsage
+        from .entity import Entity
+        from .sign_in_activity import SignInActivity
+
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("appObjectId", self.app_object_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

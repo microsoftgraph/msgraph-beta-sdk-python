@@ -54,6 +54,8 @@ class DeliveryOptimizationMaxCacheSizePercentage(DeliveryOptimizationMaxCacheSiz
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
+
         writer.write_int_value("maximumCacheSizePercentage", self.maximum_cache_size_percentage)
     
 

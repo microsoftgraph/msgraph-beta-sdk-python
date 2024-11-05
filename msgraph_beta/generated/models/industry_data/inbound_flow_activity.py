@@ -48,5 +48,7 @@ class InboundFlowActivity(IndustryDataRunActivity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .industry_data_run_activity import IndustryDataRunActivity
+
     
 

@@ -15,7 +15,7 @@ from ..entity import Entity
 
 @dataclass
 class AlertRule(Entity):
-    # The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, cloudPcInGracePeriodScenario, cloudPcFrontlineInsufficientLicensesScenario, cloudPcInaccessibleScenario. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: cloudPcInGracePeriodScenario.
+    # The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, cloudPcInGracePeriodScenario, cloudPcFrontlineInsufficientLicensesScenario, cloudPcInaccessibleScenario. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: cloudPcInGracePeriodScenario.
     alert_rule_template: Optional[AlertRuleTemplate] = None
     # The conditions that determine when to send alerts. For example, you can configure a condition to send an alert when provisioning fails for six or more Cloud PCs.
     conditions: Optional[List[RuleCondition]] = None
@@ -90,6 +90,13 @@ class AlertRule(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .alert_rule_template import AlertRuleTemplate
+        from .notification_channel import NotificationChannel
+        from .rule_condition import RuleCondition
+        from .rule_severity_type import RuleSeverityType
+        from .rule_threshold import RuleThreshold
+
         writer.write_enum_value("alertRuleTemplate", self.alert_rule_template)
         writer.write_collection_of_object_values("conditions", self.conditions)
         writer.write_str_value("description", self.description)

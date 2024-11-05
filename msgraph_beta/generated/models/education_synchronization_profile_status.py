@@ -67,6 +67,9 @@ class EducationSynchronizationProfileStatus(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .education_synchronization_status import EducationSynchronizationStatus
+        from .entity import Entity
+
         writer.write_int_value("errorCount", self.error_count)
         writer.write_datetime_value("lastActivityDateTime", self.last_activity_date_time)
         writer.write_datetime_value("lastSynchronizationDateTime", self.last_synchronization_date_time)

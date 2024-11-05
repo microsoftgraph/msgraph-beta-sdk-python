@@ -130,6 +130,17 @@ class ProvisioningObjectSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .initiator import Initiator
+        from .modified_property import ModifiedProperty
+        from .provisioned_identity import ProvisionedIdentity
+        from .provisioning_action import ProvisioningAction
+        from .provisioning_service_principal import ProvisioningServicePrincipal
+        from .provisioning_status_info import ProvisioningStatusInfo
+        from .provisioning_step import ProvisioningStep
+        from .provisioning_system import ProvisioningSystem
+        from .status_base import StatusBase
+
         writer.write_str_value("action", self.action)
         writer.write_datetime_value("activityDateTime", self.activity_date_time)
         writer.write_str_value("changeId", self.change_id)

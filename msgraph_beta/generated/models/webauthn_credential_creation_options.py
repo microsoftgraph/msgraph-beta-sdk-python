@@ -57,6 +57,8 @@ class WebauthnCredentialCreationOptions(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .webauthn_public_key_credential_creation_options import WebauthnPublicKeyCredentialCreationOptions
+
         writer.write_datetime_value("challengeTimeoutDateTime", self.challenge_timeout_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("publicKey", self.public_key)

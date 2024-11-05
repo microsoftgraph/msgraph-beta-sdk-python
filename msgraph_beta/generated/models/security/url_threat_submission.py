@@ -51,6 +51,8 @@ class UrlThreatSubmission(ThreatSubmission):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .threat_submission import ThreatSubmission
+
         writer.write_str_value("webUrl", self.web_url)
     
 

@@ -40,7 +40,8 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Ba
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationApplicationSettingApplicability".casefold():
@@ -93,6 +94,13 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Ba
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_configuration_application_setting_applicability import DeviceManagementConfigurationApplicationSettingApplicability
+        from .device_management_configuration_device_mode import DeviceManagementConfigurationDeviceMode
+        from .device_management_configuration_exchange_online_setting_applicability import DeviceManagementConfigurationExchangeOnlineSettingApplicability
+        from .device_management_configuration_platforms import DeviceManagementConfigurationPlatforms
+        from .device_management_configuration_technologies import DeviceManagementConfigurationTechnologies
+        from .device_management_configuration_windows_setting_applicability import DeviceManagementConfigurationWindowsSettingApplicability
+
         writer.write_str_value("description", self.description)
         writer.write_enum_value("deviceMode", self.device_mode)
         writer.write_str_value("@odata.type", self.odata_type)

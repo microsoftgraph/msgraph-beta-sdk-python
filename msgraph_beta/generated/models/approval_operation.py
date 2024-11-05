@@ -70,6 +70,10 @@ class ApprovalOperation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .approval_operation_status import ApprovalOperationStatus
+        from .entity import Entity
+        from .public_error import PublicError
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("error", self.error)
         writer.write_datetime_value("lastActionDateTime", self.last_action_date_time)

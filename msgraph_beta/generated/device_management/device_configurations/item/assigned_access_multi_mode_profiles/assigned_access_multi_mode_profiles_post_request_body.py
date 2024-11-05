@@ -50,6 +50,8 @@ class AssignedAccessMultiModeProfilesPostRequestBody(AdditionalDataHolder, Backe
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.windows_assigned_access_profile import WindowsAssignedAccessProfile
+
         writer.write_collection_of_object_values("assignedAccessMultiModeProfiles", self.assigned_access_multi_mode_profiles)
         writer.write_additional_data_value(self.additional_data)
     

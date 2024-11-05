@@ -42,7 +42,8 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, BackedM
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstance".casefold():
@@ -119,6 +120,16 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, BackedM
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_configuration_choice_setting_collection_instance import DeviceManagementConfigurationChoiceSettingCollectionInstance
+        from .device_management_configuration_choice_setting_instance import DeviceManagementConfigurationChoiceSettingInstance
+        from .device_management_configuration_group_setting_collection_instance import DeviceManagementConfigurationGroupSettingCollectionInstance
+        from .device_management_configuration_group_setting_instance import DeviceManagementConfigurationGroupSettingInstance
+        from .device_management_configuration_setting_group_collection_instance import DeviceManagementConfigurationSettingGroupCollectionInstance
+        from .device_management_configuration_setting_group_instance import DeviceManagementConfigurationSettingGroupInstance
+        from .device_management_configuration_setting_instance_template_reference import DeviceManagementConfigurationSettingInstanceTemplateReference
+        from .device_management_configuration_simple_setting_collection_instance import DeviceManagementConfigurationSimpleSettingCollectionInstance
+        from .device_management_configuration_simple_setting_instance import DeviceManagementConfigurationSimpleSettingInstance
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("settingDefinitionId", self.setting_definition_id)
         writer.write_object_value("settingInstanceTemplateReference", self.setting_instance_template_reference)

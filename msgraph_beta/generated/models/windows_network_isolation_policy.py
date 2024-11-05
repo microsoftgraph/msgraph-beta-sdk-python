@@ -80,6 +80,9 @@ class WindowsNetworkIsolationPolicy(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .ip_range import IpRange
+        from .proxied_domain import ProxiedDomain
+
         writer.write_collection_of_object_values("enterpriseCloudResources", self.enterprise_cloud_resources)
         writer.write_collection_of_object_values("enterpriseIPRanges", self.enterprise_i_p_ranges)
         writer.write_bool_value("enterpriseIPRangesAreAuthoritative", self.enterprise_i_p_ranges_are_authoritative)

@@ -59,6 +59,8 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupFeature(AdditionalDataHolder
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .user_experience_analytics_anomaly_device_feature_type import UserExperienceAnalyticsAnomalyDeviceFeatureType
+
         writer.write_enum_value("deviceFeatureType", self.device_feature_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_primitive_values("values", self.values)

@@ -50,6 +50,8 @@ class SearchExistingIdentitiesPostRequestBody(AdditionalDataHolder, BackedModel,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.imported_device_identity import ImportedDeviceIdentity
+
         writer.write_collection_of_object_values("importedDeviceIdentities", self.imported_device_identities)
         writer.write_additional_data_value(self.additional_data)
     

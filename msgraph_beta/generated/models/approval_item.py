@@ -112,6 +112,14 @@ class ApprovalItem(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .approval_identity_set import ApprovalIdentitySet
+        from .approval_item_request import ApprovalItemRequest
+        from .approval_item_response import ApprovalItemResponse
+        from .approval_item_state import ApprovalItemState
+        from .approval_item_type import ApprovalItemType
+        from .approval_item_view_point import ApprovalItemViewPoint
+        from .entity import Entity
+
         writer.write_bool_value("allowEmailNotification", self.allow_email_notification)
         writer.write_enum_value("approvalType", self.approval_type)
         writer.write_collection_of_object_values("approvers", self.approvers)

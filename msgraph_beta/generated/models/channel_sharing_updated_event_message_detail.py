@@ -63,6 +63,9 @@ class ChannelSharingUpdatedEventMessageDetail(EventMessageDetail):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .event_message_detail import EventMessageDetail
+        from .identity_set import IdentitySet
+
         writer.write_object_value("initiator", self.initiator)
         writer.write_str_value("ownerTeamId", self.owner_team_id)
         writer.write_str_value("ownerTenantId", self.owner_tenant_id)

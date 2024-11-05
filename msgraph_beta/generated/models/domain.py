@@ -114,6 +114,13 @@ class Domain(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .directory_object import DirectoryObject
+        from .domain_dns_record import DomainDnsRecord
+        from .domain_state import DomainState
+        from .entity import Entity
+        from .internal_domain_federation import InternalDomainFederation
+        from .shared_email_domain_invitation import SharedEmailDomainInvitation
+
         writer.write_str_value("authenticationType", self.authentication_type)
         writer.write_str_value("availabilityStatus", self.availability_status)
         writer.write_collection_of_object_values("domainNameReferences", self.domain_name_references)

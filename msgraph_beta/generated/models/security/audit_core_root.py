@@ -54,6 +54,9 @@ class AuditCoreRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .audit_log_query import AuditLogQuery
+
         writer.write_collection_of_object_values("queries", self.queries)
     
 

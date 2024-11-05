@@ -63,6 +63,10 @@ class Windows10ImportedPFXCertificateProfile(WindowsCertificateProfileBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .intended_purpose import IntendedPurpose
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+        from .windows_certificate_profile_base import WindowsCertificateProfileBase
+
         writer.write_enum_value("intendedPurpose", self.intended_purpose)
         writer.write_collection_of_object_values("managedDeviceCertificateStates", self.managed_device_certificate_states)
     

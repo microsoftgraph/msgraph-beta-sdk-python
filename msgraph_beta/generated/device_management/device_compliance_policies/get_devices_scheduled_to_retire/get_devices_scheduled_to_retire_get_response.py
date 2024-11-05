@@ -52,6 +52,9 @@ class GetDevicesScheduledToRetireGetResponse(BaseCollectionPaginationCountRespon
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from ....models.retire_scheduled_managed_device import RetireScheduledManagedDevice
+
         writer.write_collection_of_object_values("value", self.value)
     
 

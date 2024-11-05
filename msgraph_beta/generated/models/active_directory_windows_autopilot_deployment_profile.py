@@ -60,6 +60,9 @@ class ActiveDirectoryWindowsAutopilotDeploymentProfile(WindowsAutopilotDeploymen
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_autopilot_deployment_profile import WindowsAutopilotDeploymentProfile
+        from .windows_domain_join_configuration import WindowsDomainJoinConfiguration
+
         writer.write_object_value("domainJoinConfiguration", self.domain_join_configuration)
         writer.write_bool_value("hybridAzureADJoinSkipConnectivityCheck", self.hybrid_azure_a_d_join_skip_connectivity_check)
     

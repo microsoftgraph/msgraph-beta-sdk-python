@@ -63,6 +63,9 @@ class MacOSTrustedRootCertificate(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_deployment_channel import AppleDeploymentChannel
+        from .device_configuration import DeviceConfiguration
+
         writer.write_str_value("certFileName", self.cert_file_name)
         writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_bytes_value("trustedRootCertificate", self.trusted_root_certificate)

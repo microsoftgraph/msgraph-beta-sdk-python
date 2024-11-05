@@ -35,7 +35,8 @@ class AuthorizationSystem(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsAuthorizationSystem".casefold():
@@ -88,6 +89,12 @@ class AuthorizationSystem(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aws_authorization_system import AwsAuthorizationSystem
+        from .azure_authorization_system import AzureAuthorizationSystem
+        from .data_collection_info import DataCollectionInfo
+        from .entity import Entity
+        from .gcp_authorization_system import GcpAuthorizationSystem
+
         writer.write_str_value("authorizationSystemId", self.authorization_system_id)
         writer.write_str_value("authorizationSystemName", self.authorization_system_name)
         writer.write_str_value("authorizationSystemType", self.authorization_system_type)

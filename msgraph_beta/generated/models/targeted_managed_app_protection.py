@@ -39,7 +39,8 @@ class TargetedManagedAppProtection(ManagedAppProtection):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidManagedAppProtection".casefold():
@@ -90,6 +91,13 @@ class TargetedManagedAppProtection(ManagedAppProtection):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_managed_app_protection import AndroidManagedAppProtection
+        from .app_management_level import AppManagementLevel
+        from .ios_managed_app_protection import IosManagedAppProtection
+        from .managed_app_protection import ManagedAppProtection
+        from .targeted_managed_app_group_type import TargetedManagedAppGroupType
+        from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
+
         writer.write_enum_value("appGroupType", self.app_group_type)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_bool_value("isAssigned", self.is_assigned)

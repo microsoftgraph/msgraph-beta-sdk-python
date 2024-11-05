@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from .members.members_request_builder import MembersRequestBuilder
     from .operations.operations_request_builder import OperationsRequestBuilder
     from .owners.owners_request_builder import OwnersRequestBuilder
+    from .owners_with_user_principal_name.owners_with_user_principal_name_request_builder import OwnersWithUserPrincipalNameRequestBuilder
     from .permission_grants.permission_grants_request_builder import PermissionGrantsRequestBuilder
     from .photo.photo_request_builder import PhotoRequestBuilder
     from .primary_channel.primary_channel_request_builder import PrimaryChannelRequestBuilder
@@ -87,6 +88,18 @@ class TeamDefinitionRequestBuilder(BaseRequestBuilder):
         from .......models.team import Team
 
         return await self.request_adapter.send_async(request_info, Team, error_mapping)
+    
+    def owners_with_user_principal_name(self,user_principal_name: str) -> OwnersWithUserPrincipalNameRequestBuilder:
+        """
+        Provides operations to manage the owners property of the microsoft.graph.team entity.
+        param user_principal_name: Alternate key of user
+        Returns: OwnersWithUserPrincipalNameRequestBuilder
+        """
+        if user_principal_name is None:
+            raise TypeError("user_principal_name cannot be null.")
+        from .owners_with_user_principal_name.owners_with_user_principal_name_request_builder import OwnersWithUserPrincipalNameRequestBuilder
+
+        return OwnersWithUserPrincipalNameRequestBuilder(self.request_adapter, self.path_parameters, user_principal_name)
     
     async def patch(self,body: Team, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Team]:
         """

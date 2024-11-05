@@ -9,6 +9,12 @@ class DeviceManagementConfigurationTechnologies(str, Enum):
     Windows10XManagement = "windows10XManagement",
     # Setting can be deployed through the ConfigManager channel.
     ConfigManager = "configManager",
+    # Setting can be deployed through the IntuneManagementExtension channel.
+    IntuneManagementExtension = "intuneManagementExtension",
+    # Setting can be deployed through a ThirdParty channel.
+    ThirdParty = "thirdParty",
+    # Setting can be deployed through Document Gateway Service.
+    DocumentGateway = "documentGateway",
     # Setting can be deployed through the AppleRemoteManagement channel.
     AppleRemoteManagement = "appleRemoteManagement",
     # Setting can be deployed through the SENSE agent channel.
@@ -27,4 +33,6 @@ class DeviceManagementConfigurationTechnologies(str, Enum):
     UnknownFutureValue = "unknownFutureValue",
     # Setting can be deployed using the Operating System Recovery channel
     WindowsOsRecovery = "windowsOsRecovery",
+    # Indicates the settings that can be deployed through the Android channel.
+    Android = "android",
 

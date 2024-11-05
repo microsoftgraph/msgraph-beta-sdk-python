@@ -54,6 +54,9 @@ class VirtualMachineDetails(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system_resource import AuthorizationSystemResource
+        from .entity import Entity
+
         writer.write_object_value("virtualMachine", self.virtual_machine)
     
 

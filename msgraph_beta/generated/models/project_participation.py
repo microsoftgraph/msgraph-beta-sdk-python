@@ -81,6 +81,11 @@ class ProjectParticipation(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .company_detail import CompanyDetail
+        from .item_facet import ItemFacet
+        from .position_detail import PositionDetail
+        from .related_person import RelatedPerson
+
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_object_value("client", self.client)
         writer.write_collection_of_primitive_values("collaborationTags", self.collaboration_tags)

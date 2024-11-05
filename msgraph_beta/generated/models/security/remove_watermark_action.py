@@ -51,6 +51,8 @@ class RemoveWatermarkAction(InformationProtectionAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .information_protection_action import InformationProtectionAction
+
         writer.write_collection_of_primitive_values("uiElementNames", self.ui_element_names)
     
 

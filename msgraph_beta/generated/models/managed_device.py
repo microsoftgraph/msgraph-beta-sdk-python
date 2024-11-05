@@ -252,7 +252,8 @@ class ManagedDevice(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsManagedDevice".casefold():
@@ -453,6 +454,45 @@ class ManagedDevice(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .assignment_filter_evaluation_status_details import AssignmentFilterEvaluationStatusDetails
+        from .chassis_type import ChassisType
+        from .chrome_o_s_device_property import ChromeOSDeviceProperty
+        from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
+        from .compliance_state import ComplianceState
+        from .configuration_manager_client_enabled_features import ConfigurationManagerClientEnabledFeatures
+        from .configuration_manager_client_health_state import ConfigurationManagerClientHealthState
+        from .configuration_manager_client_information import ConfigurationManagerClientInformation
+        from .detected_app import DetectedApp
+        from .device_action_result import DeviceActionResult
+        from .device_category import DeviceCategory
+        from .device_compliance_policy_state import DeviceCompliancePolicyState
+        from .device_configuration_state import DeviceConfigurationState
+        from .device_enrollment_type import DeviceEnrollmentType
+        from .device_health_attestation_state import DeviceHealthAttestationState
+        from .device_health_script_policy_state import DeviceHealthScriptPolicyState
+        from .device_log_collection_response import DeviceLogCollectionResponse
+        from .device_management_exchange_access_state import DeviceManagementExchangeAccessState
+        from .device_management_exchange_access_state_reason import DeviceManagementExchangeAccessStateReason
+        from .device_registration_state import DeviceRegistrationState
+        from .device_type import DeviceType
+        from .entity import Entity
+        from .hardware_information import HardwareInformation
+        from .join_type import JoinType
+        from .logged_on_user import LoggedOnUser
+        from .lost_mode_state import LostModeState
+        from .managed_device_architecture import ManagedDeviceArchitecture
+        from .managed_device_management_features import ManagedDeviceManagementFeatures
+        from .managed_device_mobile_app_configuration_state import ManagedDeviceMobileAppConfigurationState
+        from .managed_device_owner_type import ManagedDeviceOwnerType
+        from .managed_device_partner_reported_health_state import ManagedDevicePartnerReportedHealthState
+        from .management_agent_type import ManagementAgentType
+        from .management_state import ManagementState
+        from .owner_type import OwnerType
+        from .security_baseline_state import SecurityBaselineState
+        from .user import User
+        from .windows_managed_device import WindowsManagedDevice
+        from .windows_protection_state import WindowsProtectionState
+
         writer.write_collection_of_object_values("assignmentFilterEvaluationStatusDetails", self.assignment_filter_evaluation_status_details)
         writer.write_enum_value("chassisType", self.chassis_type)
         writer.write_collection_of_object_values("chromeOSDeviceInfo", self.chrome_o_s_device_info)

@@ -53,6 +53,8 @@ class UserCreationOptions(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .user_configuration import UserConfiguration
+
         writer.write_collection_of_object_values("configurations", self.configurations)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

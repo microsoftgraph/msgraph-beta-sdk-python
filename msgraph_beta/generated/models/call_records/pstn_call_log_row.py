@@ -121,6 +121,9 @@ class PstnCallLogRow(CallLogRow):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .call_log_row import CallLogRow
+        from .pstn_call_duration_source import PstnCallDurationSource
+
         writer.write_enum_value("callDurationSource", self.call_duration_source)
         writer.write_str_value("callId", self.call_id)
         writer.write_str_value("callType", self.call_type)

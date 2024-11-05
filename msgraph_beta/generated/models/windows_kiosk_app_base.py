@@ -42,7 +42,8 @@ class WindowsKioskAppBase(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsKioskDesktopApp".casefold():
@@ -93,6 +94,12 @@ class WindowsKioskAppBase(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .windows_app_start_layout_tile_size import WindowsAppStartLayoutTileSize
+        from .windows_kiosk_app_type import WindowsKioskAppType
+        from .windows_kiosk_desktop_app import WindowsKioskDesktopApp
+        from .windows_kiosk_u_w_p_app import WindowsKioskUWPApp
+        from .windows_kiosk_win32_app import WindowsKioskWin32App
+
         writer.write_enum_value("appType", self.app_type)
         writer.write_bool_value("autoLaunch", self.auto_launch)
         writer.write_str_value("name", self.name)

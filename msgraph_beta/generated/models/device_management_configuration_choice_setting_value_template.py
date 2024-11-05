@@ -68,6 +68,9 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_configuration_choice_setting_value_default_template import DeviceManagementConfigurationChoiceSettingValueDefaultTemplate
+        from .device_management_configuration_choice_setting_value_definition_template import DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate
+
         writer.write_object_value("defaultValue", self.default_value)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("recommendedValueDefinition", self.recommended_value_definition)

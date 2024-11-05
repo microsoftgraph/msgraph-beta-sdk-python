@@ -90,6 +90,14 @@ class UserSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .contact_merge_suggestions import ContactMergeSuggestions
+        from .entity import Entity
+        from .regional_and_language_settings import RegionalAndLanguageSettings
+        from .shift_preferences import ShiftPreferences
+        from .user_insights_settings import UserInsightsSettings
+        from .user_storage import UserStorage
+        from .windows_setting import WindowsSetting
+
         writer.write_object_value("contactMergeSuggestions", self.contact_merge_suggestions)
         writer.write_bool_value("contributionToContentDiscoveryAsOrganizationDisabled", self.contribution_to_content_discovery_as_organization_disabled)
         writer.write_bool_value("contributionToContentDiscoveryDisabled", self.contribution_to_content_discovery_disabled)

@@ -71,6 +71,8 @@ class GetCloudPcPerformanceReportPostRequestBody(AdditionalDataHolder, BackedMod
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.cloud_p_c_performance_report_name import CloudPCPerformanceReportName
+
         writer.write_str_value("filter", self.filter)
         writer.write_collection_of_primitive_values("groupBy", self.group_by)
         writer.write_collection_of_primitive_values("orderBy", self.order_by)

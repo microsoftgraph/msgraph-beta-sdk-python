@@ -57,6 +57,8 @@ class WebCategory(RuleDestination):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .rule_destination import RuleDestination
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("group", self.group)
         writer.write_str_value("name", self.name)

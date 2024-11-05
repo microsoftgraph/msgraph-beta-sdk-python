@@ -48,5 +48,7 @@ class Recommendation(RecommendationBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .recommendation_base import RecommendationBase
+
     
 

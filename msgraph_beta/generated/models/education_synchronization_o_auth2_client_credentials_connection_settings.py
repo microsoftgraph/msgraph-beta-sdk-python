@@ -54,6 +54,8 @@ class EducationSynchronizationOAuth2ClientCredentialsConnectionSettings(Educatio
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
+
         writer.write_str_value("scope", self.scope)
         writer.write_str_value("tokenUrl", self.token_url)
     

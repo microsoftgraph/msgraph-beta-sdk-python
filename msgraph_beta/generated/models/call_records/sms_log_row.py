@@ -88,6 +88,8 @@ class SmsLogRow(CallLogRow):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .call_log_row import CallLogRow
+
         writer.write_float_value("callCharge", self.call_charge)
         writer.write_str_value("currency", self.currency)
         writer.write_str_value("destinationContext", self.destination_context)

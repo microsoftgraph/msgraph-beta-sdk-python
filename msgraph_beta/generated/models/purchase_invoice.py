@@ -151,6 +151,11 @@ class PurchaseInvoice(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .currency import Currency
+        from .postal_address_type import PostalAddressType
+        from .purchase_invoice_line import PurchaseInvoiceLine
+        from .vendor import Vendor
+
         writer.write_object_value("buyFromAddress", self.buy_from_address)
         writer.write_object_value("currency", self.currency)
         writer.write_str_value("currencyCode", self.currency_code)

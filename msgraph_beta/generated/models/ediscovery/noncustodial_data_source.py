@@ -57,6 +57,9 @@ class NoncustodialDataSource(DataSourceContainer):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .data_source import DataSource
+        from .data_source_container import DataSourceContainer
+
         writer.write_bool_value("applyHoldToSource", self.apply_hold_to_source)
         writer.write_object_value("dataSource", self.data_source)
     

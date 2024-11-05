@@ -72,6 +72,11 @@ class CloudPcOrganizationSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_operating_system import CloudPcOperatingSystem
+        from .cloud_pc_user_account_type import CloudPcUserAccountType
+        from .cloud_pc_windows_settings import CloudPcWindowsSettings
+        from .entity import Entity
+
         writer.write_bool_value("enableMEMAutoEnroll", self.enable_m_e_m_auto_enroll)
         writer.write_bool_value("enableSingleSignOn", self.enable_single_sign_on)
         writer.write_enum_value("osVersion", self.os_version)

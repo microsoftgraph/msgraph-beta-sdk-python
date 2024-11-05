@@ -88,6 +88,9 @@ class ManagedAllDeviceCertificateState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .certificate_revocation_status import CertificateRevocationStatus
+        from .entity import Entity
+
         writer.write_datetime_value("certificateExpirationDateTime", self.certificate_expiration_date_time)
         writer.write_str_value("certificateExtendedKeyUsages", self.certificate_extended_key_usages)
         writer.write_datetime_value("certificateIssuanceDateTime", self.certificate_issuance_date_time)

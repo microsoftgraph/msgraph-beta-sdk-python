@@ -106,6 +106,13 @@ class IosVppApp(MobileApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .ios_device_type import IosDeviceType
+        from .ios_vpp_app_assigned_license import IosVppAppAssignedLicense
+        from .ios_vpp_app_revoke_licenses_action_result import IosVppAppRevokeLicensesActionResult
+        from .mobile_app import MobileApp
+        from .vpp_licensing_type import VppLicensingType
+        from .vpp_token_account_type import VppTokenAccountType
+
         writer.write_str_value("appStoreUrl", self.app_store_url)
         writer.write_object_value("applicableDeviceType", self.applicable_device_type)
         writer.write_collection_of_object_values("assignedLicenses", self.assigned_licenses)

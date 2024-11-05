@@ -139,6 +139,13 @@ class Customer(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .currency import Currency
+        from .payment_method import PaymentMethod
+        from .payment_term import PaymentTerm
+        from .picture import Picture
+        from .postal_address_type import PostalAddressType
+        from .shipment_method import ShipmentMethod
+
         writer.write_object_value("address", self.address)
         writer.write_str_value("blocked", self.blocked)
         writer.write_object_value("currency", self.currency)

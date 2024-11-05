@@ -68,6 +68,8 @@ class ApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .user_set import UserSet
+
         writer.write_int_value("approvalStageTimeOutInDays", self.approval_stage_time_out_in_days)
         writer.write_collection_of_object_values("escalationApprovers", self.escalation_approvers)
         writer.write_int_value("escalationTimeInMinutes", self.escalation_time_in_minutes)

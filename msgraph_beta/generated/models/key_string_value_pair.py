@@ -54,6 +54,8 @@ class KeyStringValuePair(KeyTypedValuePair):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .key_typed_value_pair import KeyTypedValuePair
+
         writer.write_str_value("value", self.value)
     
 

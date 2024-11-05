@@ -85,6 +85,11 @@ class TeamworkDeviceOperation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .operation_error import OperationError
+        from .teamwork_device_operation_type import TeamworkDeviceOperationType
+
         writer.write_datetime_value("completedDateTime", self.completed_date_time)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

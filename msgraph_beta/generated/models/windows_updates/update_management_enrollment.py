@@ -54,6 +54,9 @@ class UpdateManagementEnrollment(UpdatableAssetEnrollment):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .updatable_asset_enrollment import UpdatableAssetEnrollment
+        from .update_category import UpdateCategory
+
         writer.write_enum_value("updateCategory", self.update_category)
     
 

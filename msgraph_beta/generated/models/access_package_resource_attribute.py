@@ -71,6 +71,9 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .access_package_resource_attribute_destination import AccessPackageResourceAttributeDestination
+        from .access_package_resource_attribute_source import AccessPackageResourceAttributeSource
+
         writer.write_object_value("attributeDestination", self.attribute_destination)
         writer.write_str_value("attributeName", self.attribute_name)
         writer.write_object_value("attributeSource", self.attribute_source)

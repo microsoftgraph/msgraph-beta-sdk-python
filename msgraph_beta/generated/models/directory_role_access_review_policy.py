@@ -54,6 +54,9 @@ class DirectoryRoleAccessReviewPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_review_schedule_settings import AccessReviewScheduleSettings
+        from .entity import Entity
+
         writer.write_object_value("settings", self.settings)
     
 

@@ -153,6 +153,15 @@ class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .eap_type import EapType
+        from .network_single_sign_on_type import NetworkSingleSignOnType
+        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
+        from .wifi_authentication_type import WifiAuthenticationType
+        from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
+        from .windows_certificate_profile_base import WindowsCertificateProfileBase
+        from .windows_wifi_configuration import WindowsWifiConfiguration
+        from .wi_fi_authentication_method import WiFiAuthenticationMethod
+
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_int_value("authenticationPeriodInSeconds", self.authentication_period_in_seconds)
         writer.write_int_value("authenticationRetryDelayPeriodInSeconds", self.authentication_retry_delay_period_in_seconds)

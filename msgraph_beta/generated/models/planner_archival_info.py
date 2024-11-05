@@ -60,6 +60,8 @@ class PlannerArchivalInfo(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .identity_set import IdentitySet
+
         writer.write_str_value("justification", self.justification)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("statusChangedBy", self.status_changed_by)

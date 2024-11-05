@@ -57,6 +57,9 @@ class BasicFilter(Filter):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .filter import Filter
+        from .filter_options import FilterOptions
+
         writer.write_enum_value("attribute", self.attribute)
         writer.write_collection_of_primitive_values("in", self.in_)
     

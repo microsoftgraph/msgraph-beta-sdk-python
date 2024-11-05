@@ -75,6 +75,10 @@ class MobileAppTroubleshootingEvent(DeviceManagementTroubleshootingEvent):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .app_log_collection_request import AppLogCollectionRequest
+        from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
+        from .mobile_app_troubleshooting_history_item import MobileAppTroubleshootingHistoryItem
+
         writer.write_collection_of_object_values("appLogCollectionRequests", self.app_log_collection_requests)
         writer.write_str_value("applicationId", self.application_id)
         writer.write_str_value("deviceId", self.device_id)

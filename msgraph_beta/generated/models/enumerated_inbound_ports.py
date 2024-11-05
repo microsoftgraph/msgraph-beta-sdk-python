@@ -51,6 +51,8 @@ class EnumeratedInboundPorts(InboundPorts):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .inbound_ports import InboundPorts
+
         writer.write_collection_of_primitive_values("ports", self.ports)
     
 

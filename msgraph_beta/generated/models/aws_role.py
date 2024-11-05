@@ -60,6 +60,10 @@ class AwsRole(AwsIdentity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aws_identity import AwsIdentity
+        from .aws_role_trust_entity_type import AwsRoleTrustEntityType
+        from .aws_role_type import AwsRoleType
+
         writer.write_enum_value("roleType", self.role_type)
         writer.write_enum_value("trustEntityType", self.trust_entity_type)
     

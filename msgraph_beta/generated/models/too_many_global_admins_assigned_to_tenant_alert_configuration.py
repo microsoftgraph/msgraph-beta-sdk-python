@@ -54,6 +54,8 @@ class TooManyGlobalAdminsAssignedToTenantAlertConfiguration(UnifiedRoleManagemen
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .unified_role_management_alert_configuration import UnifiedRoleManagementAlertConfiguration
+
         writer.write_int_value("globalAdminCountThreshold", self.global_admin_count_threshold)
         writer.write_int_value("percentageOfGlobalAdminsOutOfRolesThreshold", self.percentage_of_global_admins_out_of_roles_threshold)
     

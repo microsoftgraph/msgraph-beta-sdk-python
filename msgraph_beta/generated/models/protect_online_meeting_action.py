@@ -72,6 +72,11 @@ class ProtectOnlineMeetingAction(LabelActionBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .label_action_base import LabelActionBase
+        from .lobby_bypass_settings import LobbyBypassSettings
+        from .online_meeting_forwarders import OnlineMeetingForwarders
+        from .online_meeting_presenters import OnlineMeetingPresenters
+
         writer.write_enum_value("allowedForwarders", self.allowed_forwarders)
         writer.write_enum_value("allowedPresenters", self.allowed_presenters)
         writer.write_bool_value("isCopyToClipboardEnabled", self.is_copy_to_clipboard_enabled)

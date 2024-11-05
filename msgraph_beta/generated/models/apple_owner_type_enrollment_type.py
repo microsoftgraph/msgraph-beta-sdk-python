@@ -59,6 +59,9 @@ class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .apple_user_initiated_enrollment_type import AppleUserInitiatedEnrollmentType
+        from .managed_device_owner_type import ManagedDeviceOwnerType
+
         writer.write_enum_value("enrollmentType", self.enrollment_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("ownerType", self.owner_type)

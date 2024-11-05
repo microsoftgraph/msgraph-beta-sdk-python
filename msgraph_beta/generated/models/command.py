@@ -81,6 +81,10 @@ class Command(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .payload_request import PayloadRequest
+        from .payload_response import PayloadResponse
+
         writer.write_str_value("appServiceName", self.app_service_name)
         writer.write_str_value("error", self.error)
         writer.write_str_value("packageFamilyName", self.package_family_name)

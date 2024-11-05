@@ -54,6 +54,8 @@ class DeviceManagementComplexSettingInstance(DeviceManagementSettingInstance):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_setting_instance import DeviceManagementSettingInstance
+
         writer.write_collection_of_object_values("value", self.value)
     
 

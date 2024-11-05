@@ -59,6 +59,8 @@ class AndroidPermissionAction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .android_permission_action_type import AndroidPermissionActionType
+
         writer.write_enum_value("action", self.action)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("permission", self.permission)

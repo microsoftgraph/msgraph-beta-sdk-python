@@ -72,6 +72,8 @@ class CrossTenantAccess(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .usage_status import UsageStatus
+
         writer.write_int_value("deviceCount", self.device_count)
         writer.write_datetime_value("lastAccessDateTime", self.last_access_date_time)
         writer.write_str_value("@odata.type", self.odata_type)

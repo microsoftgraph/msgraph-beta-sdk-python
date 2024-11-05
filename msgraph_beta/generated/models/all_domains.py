@@ -48,5 +48,7 @@ class AllDomains(ValidatingDomains):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .validating_domains import ValidatingDomains
+
     
 

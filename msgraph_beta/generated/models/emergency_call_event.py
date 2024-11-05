@@ -60,6 +60,9 @@ class EmergencyCallEvent(CallEvent):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .call_event import CallEvent
+        from .emergency_caller_info import EmergencyCallerInfo
+
         writer.write_object_value("callerInfo", self.caller_info)
         writer.write_str_value("emergencyNumberDialed", self.emergency_number_dialed)
         writer.write_str_value("policyName", self.policy_name)

@@ -91,6 +91,8 @@ class ManagedDeviceCompliance(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("complianceStatus", self.compliance_status)
         writer.write_str_value("deviceType", self.device_type)
         writer.write_datetime_value("inGracePeriodUntilDateTime", self.in_grace_period_until_date_time)

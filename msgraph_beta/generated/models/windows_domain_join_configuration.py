@@ -21,7 +21,7 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration):
     computer_name_static_prefix: Optional[str] = None
     # Dynamically generated characters used as suffix for computer name. Valid values 3 to 14
     computer_name_suffix_random_char_count: Optional[int] = None
-    # Reference to device configurations required for network connectivity. This collection can contain a maximum of 2 elements.
+    # Reference to device configurations required for network connectivity
     network_access_configurations: Optional[List[DeviceConfiguration]] = None
     # Organizational unit (OU) where the computer account will be created. If this parameter is NULL, the well known computer object container will be used as published in the domain.
     organizational_unit: Optional[str] = None
@@ -66,6 +66,8 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+
         writer.write_str_value("activeDirectoryDomainName", self.active_directory_domain_name)
         writer.write_str_value("computerNameStaticPrefix", self.computer_name_static_prefix)
         writer.write_int_value("computerNameSuffixRandomCharCount", self.computer_name_suffix_random_char_count)

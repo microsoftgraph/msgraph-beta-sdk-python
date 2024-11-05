@@ -79,6 +79,11 @@ class ProductRevision(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .build_version_details import BuildVersionDetails
+        from .catalog_entry import CatalogEntry
+        from .knowledge_base_article import KnowledgeBaseArticle
+
         writer.write_object_value("catalogEntry", self.catalog_entry)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("knowledgeBaseArticle", self.knowledge_base_article)

@@ -74,6 +74,11 @@ class SubmissionResult(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .submission_detected_file import SubmissionDetectedFile
+        from .submission_result_category import SubmissionResultCategory
+        from .submission_result_detail import SubmissionResultDetail
+        from .user_mailbox_setting import UserMailboxSetting
+
         writer.write_enum_value("category", self.category)
         writer.write_enum_value("detail", self.detail)
         writer.write_collection_of_object_values("detectedFiles", self.detected_files)

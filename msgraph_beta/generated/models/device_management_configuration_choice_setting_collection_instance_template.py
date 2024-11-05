@@ -60,6 +60,9 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(Devic
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_choice_setting_value_template import DeviceManagementConfigurationChoiceSettingValueTemplate
+        from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
+
         writer.write_bool_value("allowUnmanagedValues", self.allow_unmanaged_values)
         writer.write_collection_of_object_values("choiceSettingCollectionValueTemplate", self.choice_setting_collection_value_template)
     

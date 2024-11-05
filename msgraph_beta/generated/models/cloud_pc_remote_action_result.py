@@ -81,6 +81,10 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .action_state import ActionState
+        from .cloud_pc_status_detail import CloudPcStatusDetail
+        from .cloud_pc_status_details import CloudPcStatusDetails
+
         writer.write_str_value("actionName", self.action_name)
         writer.write_enum_value("actionState", self.action_state)
         writer.write_str_value("cloudPcId", self.cloud_pc_id)

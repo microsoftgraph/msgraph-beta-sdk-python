@@ -80,6 +80,10 @@ class PortalNotification(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .alert_impact import AlertImpact
+        from .alert_rule_template import AlertRuleTemplate
+        from .rule_severity_type import RuleSeverityType
+
         writer.write_object_value("alertImpact", self.alert_impact)
         writer.write_str_value("alertRecordId", self.alert_record_id)
         writer.write_str_value("alertRuleId", self.alert_rule_id)

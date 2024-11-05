@@ -72,6 +72,10 @@ class ManagementAction(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .management_category import ManagementCategory
+        from .workload_action import WorkloadAction
+
         writer.write_enum_value("category", self.category)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

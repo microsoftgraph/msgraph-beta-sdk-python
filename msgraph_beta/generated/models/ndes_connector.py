@@ -76,6 +76,9 @@ class NdesConnector(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .ndes_connector_state import NdesConnectorState
+
         writer.write_str_value("connectorVersion", self.connector_version)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("enrolledDateTime", self.enrolled_date_time)

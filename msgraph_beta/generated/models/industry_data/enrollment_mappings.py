@@ -56,6 +56,8 @@ class EnrollmentMappings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .section_role_reference_value import SectionRoleReferenceValue
+
         writer.write_collection_of_object_values("memberEnrollmentMappings", self.member_enrollment_mappings)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("ownerEnrollmentMappings", self.owner_enrollment_mappings)

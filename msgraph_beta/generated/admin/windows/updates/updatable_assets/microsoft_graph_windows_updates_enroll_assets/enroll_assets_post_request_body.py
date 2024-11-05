@@ -56,6 +56,9 @@ class EnrollAssetsPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ......models.windows_updates.updatable_asset import UpdatableAsset
+        from ......models.windows_updates.update_category import UpdateCategory
+
         writer.write_collection_of_object_values("assets", self.assets)
         writer.write_enum_value("updateCategory", self.update_category)
         writer.write_additional_data_value(self.additional_data)

@@ -85,6 +85,8 @@ class CloudPcDevice(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("cloudPcStatus", self.cloud_pc_status)
         writer.write_str_value("deviceSpecification", self.device_specification)
         writer.write_str_value("displayName", self.display_name)

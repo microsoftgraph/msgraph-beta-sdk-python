@@ -31,7 +31,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
     dynamics: Optional[AdminDynamics] = None
     # A container for Microsoft Edge resources. Read-only.
     edge: Optional[Edge] = None
-    # The entra property
+    # A container for Microsoft Entra resources. Read-only.
     entra: Optional[Entra] = None
     # The forms property
     forms: Optional[AdminForms] = None
@@ -119,6 +119,19 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .admin_apps_and_services import AdminAppsAndServices
+        from .admin_dynamics import AdminDynamics
+        from .admin_forms import AdminForms
+        from .admin_microsoft365_apps import AdminMicrosoft365Apps
+        from .admin_report_settings import AdminReportSettings
+        from .admin_todo import AdminTodo
+        from .admin_windows import AdminWindows
+        from .edge import Edge
+        from .entra import Entra
+        from .people_admin_settings import PeopleAdminSettings
+        from .service_announcement import ServiceAnnouncement
+        from .sharepoint import Sharepoint
+
         writer.write_object_value("appsAndServices", self.apps_and_services)
         writer.write_object_value("dynamics", self.dynamics)
         writer.write_object_value("edge", self.edge)

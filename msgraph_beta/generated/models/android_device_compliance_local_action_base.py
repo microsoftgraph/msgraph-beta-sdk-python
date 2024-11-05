@@ -30,7 +30,8 @@ class AndroidDeviceComplianceLocalActionBase(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceComplianceLocalActionLockDevice".casefold():
@@ -72,6 +73,10 @@ class AndroidDeviceComplianceLocalActionBase(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_compliance_local_action_lock_device import AndroidDeviceComplianceLocalActionLockDevice
+        from .android_device_compliance_local_action_lock_device_with_passcode import AndroidDeviceComplianceLocalActionLockDeviceWithPasscode
+        from .entity import Entity
+
         writer.write_int_value("gracePeriodInMinutes", self.grace_period_in_minutes)
     
 

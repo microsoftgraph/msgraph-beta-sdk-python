@@ -60,6 +60,8 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .membership_rule_processing_status_details import MembershipRuleProcessingStatusDetails
+
         writer.write_str_value("errorMessage", self.error_message)
         writer.write_datetime_value("lastMembershipUpdated", self.last_membership_updated)
         writer.write_str_value("@odata.type", self.odata_type)

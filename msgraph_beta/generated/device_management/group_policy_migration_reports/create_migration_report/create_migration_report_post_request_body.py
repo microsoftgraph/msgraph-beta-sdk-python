@@ -50,6 +50,8 @@ class CreateMigrationReportPostRequestBody(AdditionalDataHolder, BackedModel, Pa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.group_policy_object_file import GroupPolicyObjectFile
+
         writer.write_object_value("groupPolicyObjectFile", self.group_policy_object_file)
         writer.write_additional_data_value(self.additional_data)
     

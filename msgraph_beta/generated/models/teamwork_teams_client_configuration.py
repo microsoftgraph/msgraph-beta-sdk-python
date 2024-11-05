@@ -59,6 +59,9 @@ class TeamworkTeamsClientConfiguration(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_account_configuration import TeamworkAccountConfiguration
+        from .teamwork_features_configuration import TeamworkFeaturesConfiguration
+
         writer.write_object_value("accountConfiguration", self.account_configuration)
         writer.write_object_value("featuresConfiguration", self.features_configuration)
         writer.write_str_value("@odata.type", self.odata_type)

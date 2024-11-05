@@ -102,6 +102,9 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .zebra_fota_deployment_state import ZebraFotaDeploymentState
+        from .zebra_fota_error_code import ZebraFotaErrorCode
+
         writer.write_bool_value("cancelRequested", self.cancel_requested)
         writer.write_datetime_value("completeOrCanceledDateTime", self.complete_or_canceled_date_time)
         writer.write_enum_value("errorCode", self.error_code)

@@ -54,6 +54,9 @@ class PlayPromptOperation(CommsOperation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .comms_operation import CommsOperation
+        from .play_prompt_completion_reason import PlayPromptCompletionReason
+
         writer.write_enum_value("completionReason", self.completion_reason)
     
 

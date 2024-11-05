@@ -86,6 +86,9 @@ class IosNotificationSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .ios_notification_alert_type import IosNotificationAlertType
+        from .ios_notification_preview_visibility import IosNotificationPreviewVisibility
+
         writer.write_enum_value("alertType", self.alert_type)
         writer.write_str_value("appName", self.app_name)
         writer.write_bool_value("badgesEnabled", self.badges_enabled)

@@ -63,6 +63,10 @@ class DeploymentAudience(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .applicable_content import ApplicableContent
+        from .updatable_asset import UpdatableAsset
+
         writer.write_collection_of_object_values("applicableContent", self.applicable_content)
         writer.write_collection_of_object_values("exclusions", self.exclusions)
         writer.write_collection_of_object_values("members", self.members)

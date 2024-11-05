@@ -58,6 +58,8 @@ class RecycleBinItem(BaseItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_item import BaseItem
+
         writer.write_datetime_value("deletedDateTime", self.deleted_date_time)
         writer.write_str_value("deletedFromLocation", self.deleted_from_location)
         writer.write_int_value("size", self.size)

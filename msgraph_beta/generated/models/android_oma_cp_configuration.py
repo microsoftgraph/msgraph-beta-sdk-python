@@ -54,6 +54,8 @@ class AndroidOmaCpConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+
         writer.write_bytes_value("configurationXml", self.configuration_xml)
     
 

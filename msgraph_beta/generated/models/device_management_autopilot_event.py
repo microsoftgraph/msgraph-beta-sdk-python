@@ -133,6 +133,11 @@ class DeviceManagementAutopilotEvent(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .enrollment_state import EnrollmentState
+        from .entity import Entity
+        from .windows_autopilot_deployment_state import WindowsAutopilotDeploymentState
+        from .windows_autopilot_enrollment_type import WindowsAutopilotEnrollmentType
+
         writer.write_timedelta_value("accountSetupDuration", self.account_setup_duration)
         writer.write_enum_value("accountSetupStatus", self.account_setup_status)
         writer.write_timedelta_value("deploymentDuration", self.deployment_duration)

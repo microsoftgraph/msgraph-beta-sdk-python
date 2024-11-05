@@ -29,7 +29,8 @@ class DeviceManagementConfigurationStringSettingValue(DeviceManagementConfigurat
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationReferenceSettingValue".casefold():
@@ -65,6 +66,9 @@ class DeviceManagementConfigurationStringSettingValue(DeviceManagementConfigurat
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_reference_setting_value import DeviceManagementConfigurationReferenceSettingValue
+        from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
+
         writer.write_str_value("value", self.value)
     
 

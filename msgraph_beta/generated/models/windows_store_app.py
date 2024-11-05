@@ -54,6 +54,8 @@ class WindowsStoreApp(MobileApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app import MobileApp
+
         writer.write_str_value("appStoreUrl", self.app_store_url)
     
 

@@ -59,6 +59,8 @@ class MeetingCapability(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .auto_admitted_users_type import AutoAdmittedUsersType
+
         writer.write_bool_value("allowAnonymousUsersToDialOut", self.allow_anonymous_users_to_dial_out)
         writer.write_bool_value("allowAnonymousUsersToStartMeeting", self.allow_anonymous_users_to_start_meeting)
         writer.write_enum_value("autoAdmittedUsers", self.auto_admitted_users)

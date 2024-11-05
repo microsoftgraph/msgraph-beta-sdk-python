@@ -50,9 +50,10 @@ class UxSettingRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UxSettingRequestBuilderGetQueryParameters]] = None) -> Optional[UxSetting]:
         """
-        Get uxSetting from admin
+        Get the properties and relationships of a uxSetting object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UxSetting]
+        Find more info here: https://learn.microsoft.com/graph/api/uxsetting-get?view=graph-rest-beta
         """
         warn(" as of 2023-11/PrivatePreview:BulkJobs", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -71,10 +72,11 @@ class UxSettingRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: UxSetting, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[UxSetting]:
         """
-        Update the navigation property uxSetting in admin
+        Update the properties of a uxSetting object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UxSetting]
+        Find more info here: https://learn.microsoft.com/graph/api/uxsetting-update?view=graph-rest-beta
         """
         warn(" as of 2023-11/PrivatePreview:BulkJobs", DeprecationWarning)
         if body is None:
@@ -107,7 +109,7 @@ class UxSettingRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UxSettingRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get uxSetting from admin
+        Get the properties and relationships of a uxSetting object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,7 +121,7 @@ class UxSettingRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: UxSetting, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property uxSetting in admin
+        Update the properties of a uxSetting object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +156,7 @@ class UxSettingRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UxSettingRequestBuilderGetQueryParameters():
         """
-        Get uxSetting from admin
+        Get the properties and relationships of a uxSetting object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

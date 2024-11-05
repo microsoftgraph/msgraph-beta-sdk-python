@@ -88,6 +88,9 @@ class MacOSSoftwareUpdateAccountSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .mac_o_s_software_update_category_summary import MacOSSoftwareUpdateCategorySummary
+
         writer.write_collection_of_object_values("categorySummaries", self.category_summaries)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("deviceName", self.device_name)

@@ -49,7 +49,7 @@ class UserExperienceAnalyticsMetricHistoryItemRequestBuilder(BaseRequestBuilder)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UserExperienceAnalyticsMetricHistoryItemRequestBuilderGetQueryParameters]] = None) -> Optional[UserExperienceAnalyticsMetricHistory]:
         """
-        User experience analytics device metric history
+        User experience analytics device metric history. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://learn.microsoft.com/windows-365/enterprise/report-cloud-pc-connection-quality.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserExperienceAnalyticsMetricHistory]
         """
@@ -103,7 +103,7 @@ class UserExperienceAnalyticsMetricHistoryItemRequestBuilder(BaseRequestBuilder)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UserExperienceAnalyticsMetricHistoryItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        User experience analytics device metric history
+        User experience analytics device metric history. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://learn.microsoft.com/windows-365/enterprise/report-cloud-pc-connection-quality.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class UserExperienceAnalyticsMetricHistoryItemRequestBuilder(BaseRequestBuilder)
     @dataclass
     class UserExperienceAnalyticsMetricHistoryItemRequestBuilderGetQueryParameters():
         """
-        User experience analytics device metric history
+        User experience analytics device metric history. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://learn.microsoft.com/windows-365/enterprise/report-cloud-pc-connection-quality.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

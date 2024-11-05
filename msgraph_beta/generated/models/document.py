@@ -54,6 +54,9 @@ class Document(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .document_comment import DocumentComment
+        from .entity import Entity
+
         writer.write_collection_of_object_values("comments", self.comments)
     
 

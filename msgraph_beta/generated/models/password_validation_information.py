@@ -56,6 +56,8 @@ class PasswordValidationInformation(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .validation_result import ValidationResult
+
         writer.write_bool_value("isValid", self.is_valid)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("validationResults", self.validation_results)

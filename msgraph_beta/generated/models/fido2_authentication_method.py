@@ -72,6 +72,10 @@ class Fido2AuthenticationMethod(AuthenticationMethod):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .attestation_level import AttestationLevel
+        from .authentication_method import AuthenticationMethod
+        from .webauthn_public_key_credential import WebauthnPublicKeyCredential
+
         writer.write_str_value("aaGuid", self.aa_guid)
         writer.write_collection_of_primitive_values("attestationCertificates", self.attestation_certificates)
         writer.write_enum_value("attestationLevel", self.attestation_level)

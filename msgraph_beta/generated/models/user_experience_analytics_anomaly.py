@@ -100,6 +100,11 @@ class UserExperienceAnalyticsAnomaly(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .user_experience_analytics_anomaly_severity import UserExperienceAnalyticsAnomalySeverity
+        from .user_experience_analytics_anomaly_state import UserExperienceAnalyticsAnomalyState
+        from .user_experience_analytics_anomaly_type import UserExperienceAnalyticsAnomalyType
+
         writer.write_datetime_value("anomalyFirstOccurrenceDateTime", self.anomaly_first_occurrence_date_time)
         writer.write_str_value("anomalyId", self.anomaly_id)
         writer.write_datetime_value("anomalyLatestOccurrenceDateTime", self.anomaly_latest_occurrence_date_time)

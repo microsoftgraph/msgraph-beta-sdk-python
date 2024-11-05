@@ -51,5 +51,7 @@ class IosExpeditedCheckinConfiguration(AppleExpeditedCheckinConfigurationBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_expedited_checkin_configuration_base import AppleExpeditedCheckinConfigurationBase
+
     
 

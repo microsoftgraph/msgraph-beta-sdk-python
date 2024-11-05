@@ -41,7 +41,8 @@ class InformationProtectionAction(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.addContentFooterAction".casefold():
@@ -156,6 +157,22 @@ class InformationProtectionAction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .add_content_footer_action import AddContentFooterAction
+        from .add_content_header_action import AddContentHeaderAction
+        from .add_watermark_action import AddWatermarkAction
+        from .apply_label_action import ApplyLabelAction
+        from .custom_action import CustomAction
+        from .justify_action import JustifyAction
+        from .metadata_action import MetadataAction
+        from .protect_adhoc_action import ProtectAdhocAction
+        from .protect_by_template_action import ProtectByTemplateAction
+        from .protect_do_not_forward_action import ProtectDoNotForwardAction
+        from .recommend_label_action import RecommendLabelAction
+        from .remove_content_footer_action import RemoveContentFooterAction
+        from .remove_content_header_action import RemoveContentHeaderAction
+        from .remove_protection_action import RemoveProtectionAction
+        from .remove_watermark_action import RemoveWatermarkAction
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

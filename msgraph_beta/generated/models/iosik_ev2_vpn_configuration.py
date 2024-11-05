@@ -138,6 +138,14 @@ class IosikEv2VpnConfiguration(IosVpnConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_vpn_always_on_configuration import AppleVpnAlwaysOnConfiguration
+        from .ios_vpn_configuration import IosVpnConfiguration
+        from .ios_vpn_security_association_parameters import IosVpnSecurityAssociationParameters
+        from .vpn_client_authentication_type import VpnClientAuthenticationType
+        from .vpn_dead_peer_detection_rate import VpnDeadPeerDetectionRate
+        from .vpn_local_identifier import VpnLocalIdentifier
+        from .vpn_server_certificate_type import VpnServerCertificateType
+
         writer.write_bool_value("allowDefaultChildSecurityAssociationParameters", self.allow_default_child_security_association_parameters)
         writer.write_bool_value("allowDefaultSecurityAssociationParameters", self.allow_default_security_association_parameters)
         writer.write_object_value("alwaysOnConfiguration", self.always_on_configuration)

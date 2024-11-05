@@ -54,6 +54,9 @@ class AwsIdentitySource(PermissionsDefinitionIdentitySource):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .permissions_definition_authorization_system import PermissionsDefinitionAuthorizationSystem
+        from .permissions_definition_identity_source import PermissionsDefinitionIdentitySource
+
         writer.write_object_value("authorizationSystemInfo", self.authorization_system_info)
     
 

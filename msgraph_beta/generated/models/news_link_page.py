@@ -60,6 +60,9 @@ class NewsLinkPage(BaseSitePage):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_site_page import BaseSitePage
+        from .sharepoint_ids import SharepointIds
+
         writer.write_str_value("bannerImageWebUrl", self.banner_image_web_url)
         writer.write_object_value("newsSharepointIds", self.news_sharepoint_ids)
         writer.write_str_value("newsWebUrl", self.news_web_url)

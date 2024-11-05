@@ -51,11 +51,8 @@ if TYPE_CHECKING:
     from .reenable.reenable_request_builder import ReenableRequestBuilder
     from .remote_lock.remote_lock_request_builder import RemoteLockRequestBuilder
     from .remove_device_firmware_configuration_interface_management.remove_device_firmware_configuration_interface_management_request_builder import RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder
-    from .reprovision_cloud_pc.reprovision_cloud_pc_request_builder import ReprovisionCloudPcRequestBuilder
     from .request_remote_assistance.request_remote_assistance_request_builder import RequestRemoteAssistanceRequestBuilder
     from .reset_passcode.reset_passcode_request_builder import ResetPasscodeRequestBuilder
-    from .resize_cloud_pc.resize_cloud_pc_request_builder import ResizeCloudPcRequestBuilder
-    from .restore_cloud_pc.restore_cloud_pc_request_builder import RestoreCloudPcRequestBuilder
     from .retire.retire_request_builder import RetireRequestBuilder
     from .revoke_apple_vpp_licenses.revoke_apple_vpp_licenses_request_builder import RevokeAppleVppLicensesRequestBuilder
     from .rotate_bit_locker_keys.rotate_bit_locker_keys_request_builder import RotateBitLockerKeysRequestBuilder
@@ -521,15 +518,6 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         return RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reprovision_cloud_pc(self) -> ReprovisionCloudPcRequestBuilder:
-        """
-        Provides operations to call the reprovisionCloudPc method.
-        """
-        from .reprovision_cloud_pc.reprovision_cloud_pc_request_builder import ReprovisionCloudPcRequestBuilder
-
-        return ReprovisionCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def request_remote_assistance(self) -> RequestRemoteAssistanceRequestBuilder:
         """
         Provides operations to call the requestRemoteAssistance method.
@@ -546,24 +534,6 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .reset_passcode.reset_passcode_request_builder import ResetPasscodeRequestBuilder
 
         return ResetPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def resize_cloud_pc(self) -> ResizeCloudPcRequestBuilder:
-        """
-        Provides operations to call the resizeCloudPc method.
-        """
-        from .resize_cloud_pc.resize_cloud_pc_request_builder import ResizeCloudPcRequestBuilder
-
-        return ResizeCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def restore_cloud_pc(self) -> RestoreCloudPcRequestBuilder:
-        """
-        Provides operations to call the restoreCloudPc method.
-        """
-        from .restore_cloud_pc.restore_cloud_pc_request_builder import RestoreCloudPcRequestBuilder
-
-        return RestoreCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retire(self) -> RetireRequestBuilder:

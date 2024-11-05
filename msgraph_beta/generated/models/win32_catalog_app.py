@@ -63,6 +63,9 @@ class Win32CatalogApp(Win32LobApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app_catalog_package import MobileAppCatalogPackage
+        from .win32_lob_app import Win32LobApp
+
         writer.write_object_value("latestUpgradeCatalogPackage", self.latest_upgrade_catalog_package)
         writer.write_str_value("mobileAppCatalogPackageId", self.mobile_app_catalog_package_id)
         writer.write_object_value("referencedCatalogPackage", self.referenced_catalog_package)

@@ -51,5 +51,7 @@ class IosVppAppAssignedUserLicense(IosVppAppAssignedLicense):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .ios_vpp_app_assigned_license import IosVppAppAssignedLicense
+
     
 

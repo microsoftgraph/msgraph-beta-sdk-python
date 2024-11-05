@@ -74,6 +74,8 @@ class PartnerInformation(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .partner_tenant_type import PartnerTenantType
+
         writer.write_str_value("commerceUrl", self.commerce_url)
         writer.write_str_value("companyName", self.company_name)
         writer.write_enum_value("companyType", self.company_type)

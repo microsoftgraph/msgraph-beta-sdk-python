@@ -132,6 +132,22 @@ class Authentication(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_method import AuthenticationMethod
+        from .email_authentication_method import EmailAuthenticationMethod
+        from .entity import Entity
+        from .fido2_authentication_method import Fido2AuthenticationMethod
+        from .long_running_operation import LongRunningOperation
+        from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
+        from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
+        from .password_authentication_method import PasswordAuthenticationMethod
+        from .phone_authentication_method import PhoneAuthenticationMethod
+        from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
+        from .sign_in_preferences import SignInPreferences
+        from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
+        from .strong_authentication_requirements import StrongAuthenticationRequirements
+        from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
+        from .windows_hello_for_business_authentication_method import WindowsHelloForBusinessAuthenticationMethod
+
         writer.write_collection_of_object_values("emailMethods", self.email_methods)
         writer.write_collection_of_object_values("fido2Methods", self.fido2_methods)
         writer.write_collection_of_object_values("methods", self.methods)

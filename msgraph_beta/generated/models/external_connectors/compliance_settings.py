@@ -53,6 +53,8 @@ class ComplianceSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .display_template import DisplayTemplate
+
         writer.write_collection_of_object_values("eDiscoveryResultTemplates", self.e_discovery_result_templates)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

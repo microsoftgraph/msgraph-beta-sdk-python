@@ -54,6 +54,8 @@ class DeliveryOptimizationGroupIdCustom(DeliveryOptimizationGroupIdSource):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .delivery_optimization_group_id_source import DeliveryOptimizationGroupIdSource
+
         writer.write_str_value("groupIdCustom", self.group_id_custom)
     
 

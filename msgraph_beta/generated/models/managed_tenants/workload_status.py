@@ -63,6 +63,8 @@ class WorkloadStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .workload_onboarding_status import WorkloadOnboardingStatus
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_datetime_value("offboardedDateTime", self.offboarded_date_time)

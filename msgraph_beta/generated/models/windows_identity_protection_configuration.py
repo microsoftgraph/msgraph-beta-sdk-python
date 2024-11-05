@@ -96,6 +96,9 @@ class WindowsIdentityProtectionConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .configuration_usage import ConfigurationUsage
+        from .device_configuration import DeviceConfiguration
+
         writer.write_bool_value("enhancedAntiSpoofingForFacialFeaturesEnabled", self.enhanced_anti_spoofing_for_facial_features_enabled)
         writer.write_int_value("pinExpirationInDays", self.pin_expiration_in_days)
         writer.write_enum_value("pinLowercaseCharactersUsage", self.pin_lowercase_characters_usage)

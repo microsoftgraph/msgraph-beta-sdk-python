@@ -52,6 +52,8 @@ class DateDrivenRolloutSettings(GradualRolloutSettings):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .gradual_rollout_settings import GradualRolloutSettings
+
         writer.write_datetime_value("endDateTime", self.end_date_time)
     
 

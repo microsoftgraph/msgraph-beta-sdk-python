@@ -52,6 +52,9 @@ class MacOSSoftwareUpdateStateSummaryCollectionResponse(BaseCollectionPagination
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .mac_o_s_software_update_state_summary import MacOSSoftwareUpdateStateSummary
+
         writer.write_collection_of_object_values("value", self.value)
     
 

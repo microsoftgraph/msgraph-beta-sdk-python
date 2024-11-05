@@ -63,6 +63,8 @@ class CloudPcHealthCheckItem(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cloud_pc_connectivity_event_result import CloudPcConnectivityEventResult
+
         writer.write_str_value("additionalDetails", self.additional_details)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastHealthCheckDateTime", self.last_health_check_date_time)

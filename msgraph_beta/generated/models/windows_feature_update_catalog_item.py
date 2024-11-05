@@ -54,6 +54,8 @@ class WindowsFeatureUpdateCatalogItem(WindowsUpdateCatalogItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_update_catalog_item import WindowsUpdateCatalogItem
+
         writer.write_str_value("version", self.version)
     
 

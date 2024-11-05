@@ -94,6 +94,12 @@ class PolicySet(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .error_code import ErrorCode
+        from .policy_set_assignment import PolicySetAssignment
+        from .policy_set_item import PolicySetItem
+        from .policy_set_status import PolicySetStatus
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

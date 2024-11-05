@@ -53,6 +53,8 @@ class CreatePasswordSingleSignOnCredentialsPostRequestBody(AdditionalDataHolder,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.credential import Credential
+
         writer.write_collection_of_object_values("credentials", self.credentials)
         writer.write_str_value("id", self.id)
         writer.write_additional_data_value(self.additional_data)

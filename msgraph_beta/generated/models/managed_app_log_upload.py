@@ -65,6 +65,8 @@ class ManagedAppLogUpload(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .managed_app_log_upload_state import ManagedAppLogUploadState
+
         writer.write_str_value("managedAppComponent", self.managed_app_component)
         writer.write_str_value("managedAppComponentDescription", self.managed_app_component_description)
         writer.write_str_value("@odata.type", self.odata_type)

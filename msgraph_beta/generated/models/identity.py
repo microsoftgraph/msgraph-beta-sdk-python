@@ -38,9 +38,9 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The display name of the identity. This property is read-only.
+    # The display name of the identity. For drive items, the display name might not always be available or up to date. For example, if a user changes their display name the API might show the new value in a future response, but the items associated with the user don't show up as changed when using delta.
     display_name: Optional[str] = None
-    # The identifier of the identity. This property is read-only.
+    # Unique identifier for the identity or actor. For example, in the access reviews decisions API, this property might record the id of the principal, that is, the group, user, or application that's subject to review.
     id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -55,7 +55,8 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.auditUserIdentity".casefold():
@@ -234,6 +235,32 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .audit_user_identity import AuditUserIdentity
+        from .azure_communication_services_user_identity import AzureCommunicationServicesUserIdentity
+        from .call_records.user_identity import UserIdentity
+        from .communications_application_identity import CommunicationsApplicationIdentity
+        from .communications_application_instance_identity import CommunicationsApplicationInstanceIdentity
+        from .communications_encrypted_identity import CommunicationsEncryptedIdentity
+        from .communications_guest_identity import CommunicationsGuestIdentity
+        from .communications_phone_identity import CommunicationsPhoneIdentity
+        from .communications_user_identity import CommunicationsUserIdentity
+        from .email_identity import EmailIdentity
+        from .initiator import Initiator
+        from .program_resource import ProgramResource
+        from .provisioned_identity import ProvisionedIdentity
+        from .provisioning_service_principal import ProvisioningServicePrincipal
+        from .provisioning_system import ProvisioningSystem
+        from .security.submission_user_identity import SubmissionUserIdentity
+        from .service_principal_identity import ServicePrincipalIdentity
+        from .share_point_identity import SharePointIdentity
+        from .source_provisioned_identity import SourceProvisionedIdentity
+        from .target_provisioned_identity import TargetProvisionedIdentity
+        from .teamwork_application_identity import TeamworkApplicationIdentity
+        from .teamwork_conversation_identity import TeamworkConversationIdentity
+        from .teamwork_tag_identity import TeamworkTagIdentity
+        from .teamwork_user_identity import TeamworkUserIdentity
+        from .user_identity import UserIdentity
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("id", self.id)
         writer.write_str_value("@odata.type", self.odata_type)

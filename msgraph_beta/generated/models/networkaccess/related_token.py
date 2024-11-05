@@ -51,6 +51,8 @@ class RelatedToken(RelatedResource):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .related_resource import RelatedResource
+
         writer.write_str_value("uniqueTokenIdentifier", self.unique_token_identifier)
     
 

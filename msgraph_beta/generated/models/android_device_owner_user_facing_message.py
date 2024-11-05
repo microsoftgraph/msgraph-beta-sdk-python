@@ -59,6 +59,8 @@ class AndroidDeviceOwnerUserFacingMessage(AdditionalDataHolder, BackedModel, Par
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .key_value_pair import KeyValuePair
+
         writer.write_str_value("defaultMessage", self.default_message)
         writer.write_collection_of_object_values("localizedMessages", self.localized_messages)
         writer.write_str_value("@odata.type", self.odata_type)
