@@ -63,6 +63,9 @@ class GroupPolicyPresentationDropdownList(GroupPolicyUploadedPresentation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .group_policy_presentation_dropdown_list_item import GroupPolicyPresentationDropdownListItem
+        from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
+
         writer.write_object_value("defaultItem", self.default_item)
         writer.write_collection_of_object_values("items", self.items)
         writer.write_bool_value("required", self.required)

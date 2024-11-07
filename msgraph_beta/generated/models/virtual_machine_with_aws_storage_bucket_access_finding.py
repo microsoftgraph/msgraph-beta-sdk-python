@@ -72,6 +72,11 @@ class VirtualMachineWithAwsStorageBucketAccessFinding(Finding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authorization_system_resource import AuthorizationSystemResource
+        from .aws_role import AwsRole
+        from .finding import Finding
+        from .permissions_creep_index import PermissionsCreepIndex
+
         writer.write_int_value("accessibleCount", self.accessible_count)
         writer.write_int_value("bucketCount", self.bucket_count)
         writer.write_object_value("ec2Instance", self.ec2_instance)

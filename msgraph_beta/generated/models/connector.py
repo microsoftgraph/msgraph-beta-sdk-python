@@ -69,6 +69,10 @@ class Connector(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .connector_group import ConnectorGroup
+        from .connector_status import ConnectorStatus
+        from .entity import Entity
+
         writer.write_str_value("externalIp", self.external_ip)
         writer.write_str_value("machineName", self.machine_name)
         writer.write_collection_of_object_values("memberOf", self.member_of)

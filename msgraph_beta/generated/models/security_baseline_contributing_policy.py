@@ -62,6 +62,8 @@ class SecurityBaselineContributingPolicy(AdditionalDataHolder, BackedModel, Pars
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .security_baseline_policy_source_type import SecurityBaselinePolicySourceType
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("sourceId", self.source_id)

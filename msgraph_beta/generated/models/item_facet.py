@@ -67,7 +67,8 @@ class ItemFacet(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.educationalActivity".casefold():
@@ -235,6 +236,33 @@ class ItemFacet(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .allowed_audiences import AllowedAudiences
+        from .educational_activity import EducationalActivity
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .inference_data import InferenceData
+        from .item_address import ItemAddress
+        from .item_email import ItemEmail
+        from .item_patent import ItemPatent
+        from .item_phone import ItemPhone
+        from .item_publication import ItemPublication
+        from .language_proficiency import LanguageProficiency
+        from .person_annotation import PersonAnnotation
+        from .person_annual_event import PersonAnnualEvent
+        from .person_award import PersonAward
+        from .person_certification import PersonCertification
+        from .person_data_sources import PersonDataSources
+        from .person_interest import PersonInterest
+        from .person_name import PersonName
+        from .person_responsibility import PersonResponsibility
+        from .person_website import PersonWebsite
+        from .profile_source_annotation import ProfileSourceAnnotation
+        from .project_participation import ProjectParticipation
+        from .skill_proficiency import SkillProficiency
+        from .user_account_information import UserAccountInformation
+        from .web_account import WebAccount
+        from .work_position import WorkPosition
+
         writer.write_enum_value("allowedAudiences", self.allowed_audiences)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

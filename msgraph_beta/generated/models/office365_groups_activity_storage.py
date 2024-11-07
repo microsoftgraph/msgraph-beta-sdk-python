@@ -64,6 +64,8 @@ class Office365GroupsActivityStorage(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_int_value("mailboxStorageUsedInBytes", self.mailbox_storage_used_in_bytes)
         writer.write_date_value("reportDate", self.report_date)
         writer.write_str_value("reportPeriod", self.report_period)

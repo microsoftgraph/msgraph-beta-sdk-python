@@ -59,6 +59,9 @@ class TeamworkAccountConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_on_premises_calendar_sync_configuration import TeamworkOnPremisesCalendarSyncConfiguration
+        from .teamwork_supported_client import TeamworkSupportedClient
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("onPremisesCalendarSyncConfiguration", self.on_premises_calendar_sync_configuration)
         writer.write_enum_value("supportedClient", self.supported_client)

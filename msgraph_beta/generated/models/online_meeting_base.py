@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .allowed_lobby_admitter_roles import AllowedLobbyAdmitterRoles
     from .audio_conferencing import AudioConferencing
     from .chat_info import ChatInfo
     from .chat_restrictions import ChatRestrictions
@@ -47,6 +48,8 @@ class OnlineMeetingBase(Entity):
     allow_transcription: Optional[bool] = None
     # Indicates whether whiteboard is enabled for the meeting.
     allow_whiteboard: Optional[bool] = None
+    # The allowedLobbyAdmitters property
+    allowed_lobby_admitters: Optional[AllowedLobbyAdmitterRoles] = None
     # Specifies who can be a presenter in a meeting. Possible values are: everyone, organization, roleIsPresenter, organizer, unknownFutureValue.
     allowed_presenters: Optional[OnlineMeetingPresenters] = None
     # Specifies whose identity is anonymized in the meeting. Possible values are: attendee. The attendee value can't be removed through a PATCH operation once added.
@@ -94,7 +97,8 @@ class OnlineMeetingBase(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onlineMeeting".casefold():
@@ -112,6 +116,7 @@ class OnlineMeetingBase(Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .allowed_lobby_admitter_roles import AllowedLobbyAdmitterRoles
         from .audio_conferencing import AudioConferencing
         from .chat_info import ChatInfo
         from .chat_restrictions import ChatRestrictions
@@ -129,6 +134,7 @@ class OnlineMeetingBase(Entity):
         from .virtual_event_session import VirtualEventSession
         from .watermark_protection_values import WatermarkProtectionValues
 
+        from .allowed_lobby_admitter_roles import AllowedLobbyAdmitterRoles
         from .audio_conferencing import AudioConferencing
         from .chat_info import ChatInfo
         from .chat_restrictions import ChatRestrictions
@@ -158,6 +164,7 @@ class OnlineMeetingBase(Entity):
             "allowTeamworkReactions": lambda n : setattr(self, 'allow_teamwork_reactions', n.get_bool_value()),
             "allowTranscription": lambda n : setattr(self, 'allow_transcription', n.get_bool_value()),
             "allowWhiteboard": lambda n : setattr(self, 'allow_whiteboard', n.get_bool_value()),
+            "allowedLobbyAdmitters": lambda n : setattr(self, 'allowed_lobby_admitters', n.get_enum_value(AllowedLobbyAdmitterRoles)),
             "allowedPresenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(OnlineMeetingPresenters)),
             "anonymizeIdentityForRoles": lambda n : setattr(self, 'anonymize_identity_for_roles', n.get_collection_of_enum_values(OnlineMeetingRole)),
             "attendanceReports": lambda n : setattr(self, 'attendance_reports', n.get_collection_of_object_values(MeetingAttendanceReport)),
@@ -189,6 +196,24 @@ class OnlineMeetingBase(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .allowed_lobby_admitter_roles import AllowedLobbyAdmitterRoles
+        from .audio_conferencing import AudioConferencing
+        from .chat_info import ChatInfo
+        from .chat_restrictions import ChatRestrictions
+        from .entity import Entity
+        from .item_body import ItemBody
+        from .join_meeting_id_settings import JoinMeetingIdSettings
+        from .lobby_bypass_settings import LobbyBypassSettings
+        from .meeting_attendance_report import MeetingAttendanceReport
+        from .meeting_chat_history_default_mode import MeetingChatHistoryDefaultMode
+        from .meeting_chat_mode import MeetingChatMode
+        from .meeting_live_share_options import MeetingLiveShareOptions
+        from .online_meeting import OnlineMeeting
+        from .online_meeting_presenters import OnlineMeetingPresenters
+        from .online_meeting_role import OnlineMeetingRole
+        from .virtual_event_session import VirtualEventSession
+        from .watermark_protection_values import WatermarkProtectionValues
+
         writer.write_bool_value("allowAttendeeToEnableCamera", self.allow_attendee_to_enable_camera)
         writer.write_bool_value("allowAttendeeToEnableMic", self.allow_attendee_to_enable_mic)
         writer.write_bool_value("allowBreakoutRooms", self.allow_breakout_rooms)
@@ -200,6 +225,7 @@ class OnlineMeetingBase(Entity):
         writer.write_bool_value("allowTeamworkReactions", self.allow_teamwork_reactions)
         writer.write_bool_value("allowTranscription", self.allow_transcription)
         writer.write_bool_value("allowWhiteboard", self.allow_whiteboard)
+        writer.write_enum_value("allowedLobbyAdmitters", self.allowed_lobby_admitters)
         writer.write_enum_value("allowedPresenters", self.allowed_presenters)
         writer.write_collection_of_enum_values("anonymizeIdentityForRoles", self.anonymize_identity_for_roles)
         writer.write_collection_of_object_values("attendanceReports", self.attendance_reports)

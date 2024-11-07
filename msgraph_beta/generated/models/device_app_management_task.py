@@ -53,7 +53,8 @@ class DeviceAppManagementTask(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.appVulnerabilityTask".casefold():
@@ -116,6 +117,14 @@ class DeviceAppManagementTask(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .app_vulnerability_task import AppVulnerabilityTask
+        from .device_app_management_task_category import DeviceAppManagementTaskCategory
+        from .device_app_management_task_priority import DeviceAppManagementTaskPriority
+        from .device_app_management_task_status import DeviceAppManagementTaskStatus
+        from .entity import Entity
+        from .security_configuration_task import SecurityConfigurationTask
+        from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
+
         writer.write_str_value("assignedTo", self.assigned_to)
         writer.write_enum_value("category", self.category)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

@@ -85,6 +85,9 @@ class WorkbookDocumentTaskChange(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .workbook_email_identity import WorkbookEmailIdentity
+
         writer.write_object_value("assignee", self.assignee)
         writer.write_object_value("changedBy", self.changed_by)
         writer.write_str_value("commentId", self.comment_id)

@@ -52,6 +52,9 @@ class DailyInactiveUsersByApplicationMetricCollectionResponse(BaseCollectionPagi
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
+
         writer.write_collection_of_object_values("value", self.value)
     
 

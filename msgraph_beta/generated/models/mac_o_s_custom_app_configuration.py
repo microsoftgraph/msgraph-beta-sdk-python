@@ -60,6 +60,8 @@ class MacOSCustomAppConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+
         writer.write_str_value("bundleId", self.bundle_id)
         writer.write_bytes_value("configurationXml", self.configuration_xml)
         writer.write_str_value("fileName", self.file_name)

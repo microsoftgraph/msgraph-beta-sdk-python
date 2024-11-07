@@ -156,6 +156,8 @@ class SignIn(Entity):
     service_principal_id: Optional[str] = None
     # The application name used for sign-in. This field is populated when you're signing in using an application.  Supports $filter (eq, startsWith).
     service_principal_name: Optional[str] = None
+    # The sessionId property
+    session_id: Optional[str] = None
     # Any conditional access session management policies that were applied during the sign-in event.
     session_lifetime_policies: Optional[List[SessionLifetimePolicy]] = None
     # Indicates the category of sign in that the event represents. For user sign ins, the category can be interactiveUser or nonInteractiveUser and corresponds to the value for the isInteractive property on the signin resource. For managed identity sign ins, the category is managedIdentity. For service principal sign-ins, the category is servicePrincipal. Possible values are: interactiveUser, nonInteractiveUser, servicePrincipal, managedIdentity, unknownFutureValue.  Supports $filter (eq, ne).
@@ -326,6 +328,7 @@ class SignIn(Entity):
             "servicePrincipalCredentialThumbprint": lambda n : setattr(self, 'service_principal_credential_thumbprint', n.get_str_value()),
             "servicePrincipalId": lambda n : setattr(self, 'service_principal_id', n.get_str_value()),
             "servicePrincipalName": lambda n : setattr(self, 'service_principal_name', n.get_str_value()),
+            "sessionId": lambda n : setattr(self, 'session_id', n.get_str_value()),
             "sessionLifetimePolicies": lambda n : setattr(self, 'session_lifetime_policies', n.get_collection_of_object_values(SessionLifetimePolicy)),
             "signInEventTypes": lambda n : setattr(self, 'sign_in_event_types', n.get_collection_of_primitive_values(str)),
             "signInIdentifier": lambda n : setattr(self, 'sign_in_identifier', n.get_str_value()),
@@ -355,6 +358,39 @@ class SignIn(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .applied_authentication_event_listener import AppliedAuthenticationEventListener
+        from .applied_conditional_access_policy import AppliedConditionalAccessPolicy
+        from .authentication_app_device_details import AuthenticationAppDeviceDetails
+        from .authentication_app_policy_details import AuthenticationAppPolicyDetails
+        from .authentication_context import AuthenticationContext
+        from .authentication_detail import AuthenticationDetail
+        from .authentication_requirement_policy import AuthenticationRequirementPolicy
+        from .client_credential_type import ClientCredentialType
+        from .conditional_access_audience import ConditionalAccessAudience
+        from .conditional_access_status import ConditionalAccessStatus
+        from .device_detail import DeviceDetail
+        from .entity import Entity
+        from .incoming_token_type import IncomingTokenType
+        from .key_value import KeyValue
+        from .managed_identity import ManagedIdentity
+        from .mfa_detail import MfaDetail
+        from .network_location_detail import NetworkLocationDetail
+        from .original_transfer_methods import OriginalTransferMethods
+        from .private_link_details import PrivateLinkDetails
+        from .protocol_type import ProtocolType
+        from .risk_detail import RiskDetail
+        from .risk_level import RiskLevel
+        from .risk_state import RiskState
+        from .session_lifetime_policy import SessionLifetimePolicy
+        from .sign_in_access_type import SignInAccessType
+        from .sign_in_identifier_type import SignInIdentifierType
+        from .sign_in_location import SignInLocation
+        from .sign_in_status import SignInStatus
+        from .sign_in_user_type import SignInUserType
+        from .token_issuer_type import TokenIssuerType
+        from .token_protection_status import TokenProtectionStatus
+        from .token_protection_status_details import TokenProtectionStatusDetails
+
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appId", self.app_id)
         writer.write_enum_value("appTokenProtectionStatus", self.app_token_protection_status)
@@ -411,6 +447,7 @@ class SignIn(Entity):
         writer.write_str_value("servicePrincipalCredentialThumbprint", self.service_principal_credential_thumbprint)
         writer.write_str_value("servicePrincipalId", self.service_principal_id)
         writer.write_str_value("servicePrincipalName", self.service_principal_name)
+        writer.write_str_value("sessionId", self.session_id)
         writer.write_collection_of_object_values("sessionLifetimePolicies", self.session_lifetime_policies)
         writer.write_collection_of_primitive_values("signInEventTypes", self.sign_in_event_types)
         writer.write_str_value("signInIdentifier", self.sign_in_identifier)

@@ -47,7 +47,8 @@ class AccessReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.businessFlowSettings".casefold():
@@ -91,6 +92,10 @@ class AccessReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .access_review_recurrence_settings import AccessReviewRecurrenceSettings
+        from .auto_review_settings import AutoReviewSettings
+        from .business_flow_settings import BusinessFlowSettings
+
         writer.write_bool_value("accessRecommendationsEnabled", self.access_recommendations_enabled)
         writer.write_int_value("activityDurationInDays", self.activity_duration_in_days)
         writer.write_bool_value("autoApplyReviewResultsEnabled", self.auto_apply_review_results_enabled)

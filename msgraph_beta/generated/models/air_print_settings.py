@@ -53,6 +53,8 @@ class AirPrintSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .incompatible_printer_settings import IncompatiblePrinterSettings
+
         writer.write_enum_value("incompatiblePrinters", self.incompatible_printers)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

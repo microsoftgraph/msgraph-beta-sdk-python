@@ -69,6 +69,10 @@ class TenantGroup(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .management_action_info import ManagementActionInfo
+        from .management_intent_info import ManagementIntentInfo
+
         writer.write_bool_value("allTenantsIncluded", self.all_tenants_included)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("managementActions", self.management_actions)

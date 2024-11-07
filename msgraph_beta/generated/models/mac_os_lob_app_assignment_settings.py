@@ -15,7 +15,7 @@ class MacOsLobAppAssignmentSettings(MobileAppAssignmentSettings):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOsLobAppAssignmentSettings"
-    # When TRUE, indicates that the app should be uninstalled when the device is removed from Intune. When FALSE, indicates that the app will not be uninstalled when the device is removed from Intune.
+    # Whether or not to uninstall the app when device is removed from Intune.
     uninstall_on_device_removal: Optional[bool] = None
     
     @staticmethod
@@ -54,6 +54,8 @@ class MacOsLobAppAssignmentSettings(MobileAppAssignmentSettings):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app_assignment_settings import MobileAppAssignmentSettings
+
         writer.write_bool_value("uninstallOnDeviceRemoval", self.uninstall_on_device_removal)
     
 

@@ -78,6 +78,12 @@ class DeviceManagementExchangeOnPremisesPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_exchange_access_level import DeviceManagementExchangeAccessLevel
+        from .device_management_exchange_access_rule import DeviceManagementExchangeAccessRule
+        from .device_management_exchange_device_class import DeviceManagementExchangeDeviceClass
+        from .entity import Entity
+        from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
+
         writer.write_collection_of_object_values("accessRules", self.access_rules)
         writer.write_object_value("conditionalAccessSettings", self.conditional_access_settings)
         writer.write_enum_value("defaultAccessLevel", self.default_access_level)

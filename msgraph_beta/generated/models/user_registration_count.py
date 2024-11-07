@@ -56,6 +56,8 @@ class UserRegistrationCount(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .registration_status_type import RegistrationStatusType
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("registrationCount", self.registration_count)
         writer.write_enum_value("registrationStatus", self.registration_status)

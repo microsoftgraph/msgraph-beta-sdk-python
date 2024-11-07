@@ -13,7 +13,7 @@ from .entity import Entity
 class Entra(Entity):
     # The OdataType property
     odata_type: Optional[str] = None
-    # The uxSetting property
+    # Represents settings related to access to the Microsoft Entra admin center.
     ux_setting: Optional[UxSetting] = None
     
     @staticmethod
@@ -54,6 +54,9 @@ class Entra(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .ux_setting import UxSetting
+
         writer.write_object_value("uxSetting", self.ux_setting)
     
 

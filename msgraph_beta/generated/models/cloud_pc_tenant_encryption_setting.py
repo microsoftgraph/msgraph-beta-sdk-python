@@ -57,6 +57,8 @@ class CloudPcTenantEncryptionSetting(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cloud_pc_disk_encryption_type import CloudPcDiskEncryptionType
+
         writer.write_datetime_value("lastSyncDateTime", self.last_sync_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("tenantDiskEncryptionType", self.tenant_disk_encryption_type)

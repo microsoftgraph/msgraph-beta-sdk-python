@@ -51,5 +51,7 @@ class AndroidManagedStoreWebApp(AndroidManagedStoreApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_managed_store_app import AndroidManagedStoreApp
+
     
 

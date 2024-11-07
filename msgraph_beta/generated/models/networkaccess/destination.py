@@ -93,6 +93,9 @@ class Destination(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .networking_protocol import NetworkingProtocol
+        from .traffic_type import TrafficType
+
         writer.write_int_value("deviceCount", self.device_count)
         writer.write_datetime_value("firstAccessDateTime", self.first_access_date_time)
         writer.write_str_value("fqdn", self.fqdn)

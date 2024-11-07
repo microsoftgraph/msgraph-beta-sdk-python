@@ -48,5 +48,7 @@ class AccessReviewError(GenericError):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .generic_error import GenericError
+
     
 

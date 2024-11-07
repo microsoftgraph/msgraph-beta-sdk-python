@@ -54,6 +54,9 @@ class PermissionGrantPreApprovalPolicy(DirectoryObject):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .directory_object import DirectoryObject
+        from .pre_approval_detail import PreApprovalDetail
+
         writer.write_collection_of_object_values("conditions", self.conditions)
     
 

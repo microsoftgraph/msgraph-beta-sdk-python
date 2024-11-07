@@ -85,6 +85,10 @@ class WindowsQualityUpdateProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .expedited_windows_quality_update_settings import ExpeditedWindowsQualityUpdateSettings
+        from .windows_quality_update_profile_assignment import WindowsQualityUpdateProfileAssignment
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("deployableContentDisplayName", self.deployable_content_display_name)

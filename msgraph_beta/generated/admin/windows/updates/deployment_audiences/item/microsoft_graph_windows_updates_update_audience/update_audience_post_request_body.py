@@ -59,6 +59,8 @@ class UpdateAudiencePostRequestBody(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .......models.windows_updates.updatable_asset import UpdatableAsset
+
         writer.write_collection_of_object_values("addExclusions", self.add_exclusions)
         writer.write_collection_of_object_values("addMembers", self.add_members)
         writer.write_collection_of_object_values("removeExclusions", self.remove_exclusions)

@@ -94,6 +94,13 @@ class BranchSite(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .branch_connectivity_configuration import BranchConnectivityConfiguration
+        from .connectivity_state import ConnectivityState
+        from .device_link import DeviceLink
+        from .forwarding_profile import ForwardingProfile
+        from .region import Region
+
         writer.write_int_value("bandwidthCapacity", self.bandwidth_capacity)
         writer.write_object_value("connectivityConfiguration", self.connectivity_configuration)
         writer.write_enum_value("connectivityState", self.connectivity_state)

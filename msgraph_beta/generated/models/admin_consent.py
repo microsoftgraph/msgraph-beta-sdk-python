@@ -59,6 +59,8 @@ class AdminConsent(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .admin_consent_state import AdminConsentState
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("shareAPNSData", self.share_a_p_n_s_data)
         writer.write_enum_value("shareUserExperienceAnalyticsData", self.share_user_experience_analytics_data)

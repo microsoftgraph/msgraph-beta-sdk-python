@@ -87,6 +87,7 @@ if TYPE_CHECKING:
     from .get_windows_update_alerts_per_policy_per_device_report.get_windows_update_alerts_per_policy_per_device_report_request_builder import GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
     from .get_windows_update_alert_summary_report.get_windows_update_alert_summary_report_request_builder import GetWindowsUpdateAlertSummaryReportRequestBuilder
     from .get_zebra_fota_deployment_report.get_zebra_fota_deployment_report_request_builder import GetZebraFotaDeploymentReportRequestBuilder
+    from .retrieve_device_app_installation_status_report.retrieve_device_app_installation_status_report_request_builder import RetrieveDeviceAppInstallationStatusReportRequestBuilder
     from .retrieve_security_task_apps_report.retrieve_security_task_apps_report_request_builder import RetrieveSecurityTaskAppsReportRequestBuilder
     from .retrieve_win32_catalog_apps_update_report.retrieve_win32_catalog_apps_update_report_request_builder import RetrieveWin32CatalogAppsUpdateReportRequestBuilder
 
@@ -858,6 +859,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_zebra_fota_deployment_report.get_zebra_fota_deployment_report_request_builder import GetZebraFotaDeploymentReportRequestBuilder
 
         return GetZebraFotaDeploymentReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_device_app_installation_status_report(self) -> RetrieveDeviceAppInstallationStatusReportRequestBuilder:
+        """
+        Provides operations to call the retrieveDeviceAppInstallationStatusReport method.
+        """
+        from .retrieve_device_app_installation_status_report.retrieve_device_app_installation_status_report_request_builder import RetrieveDeviceAppInstallationStatusReportRequestBuilder
+
+        return RetrieveDeviceAppInstallationStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_security_task_apps_report(self) -> RetrieveSecurityTaskAppsReportRequestBuilder:

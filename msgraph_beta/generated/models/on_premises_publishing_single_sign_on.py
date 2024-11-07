@@ -59,6 +59,9 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .kerberos_sign_on_settings import KerberosSignOnSettings
+        from .single_sign_on_mode import SingleSignOnMode
+
         writer.write_object_value("kerberosSignOnSettings", self.kerberos_sign_on_settings)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("singleSignOnMode", self.single_sign_on_mode)

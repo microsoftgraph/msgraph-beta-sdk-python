@@ -52,6 +52,9 @@ class AllowedDataLocationCollectionResponse(BaseCollectionPaginationCountRespons
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .allowed_data_location import AllowedDataLocation
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+
         writer.write_collection_of_object_values("value", self.value)
     
 

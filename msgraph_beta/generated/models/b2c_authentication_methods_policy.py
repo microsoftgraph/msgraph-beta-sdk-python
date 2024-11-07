@@ -57,6 +57,8 @@ class B2cAuthenticationMethodsPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_bool_value("isEmailPasswordAuthenticationEnabled", self.is_email_password_authentication_enabled)
         writer.write_bool_value("isPhoneOneTimePasswordAuthenticationEnabled", self.is_phone_one_time_password_authentication_enabled)
         writer.write_bool_value("isUserNameAuthenticationEnabled", self.is_user_name_authentication_enabled)

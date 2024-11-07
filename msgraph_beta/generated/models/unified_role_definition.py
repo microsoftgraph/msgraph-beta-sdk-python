@@ -87,6 +87,10 @@ class UnifiedRoleDefinition(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .allowed_role_principal_types import AllowedRolePrincipalTypes
+        from .entity import Entity
+        from .unified_role_permission import UnifiedRolePermission
+
         writer.write_enum_value("allowedPrincipalTypes", self.allowed_principal_types)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

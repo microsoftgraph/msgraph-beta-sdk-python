@@ -57,6 +57,8 @@ class WindowsKioskAzureADUser(WindowsKioskUser):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_kiosk_user import WindowsKioskUser
+
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
     

@@ -106,6 +106,8 @@ class ManagementTemplateCollectionTenantSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_int_value("completeStepsCount", self.complete_steps_count)
         writer.write_int_value("completeUsersCount", self.complete_users_count)
         writer.write_str_value("createdByUserId", self.created_by_user_id)

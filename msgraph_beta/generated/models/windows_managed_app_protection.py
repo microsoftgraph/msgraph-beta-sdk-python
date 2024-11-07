@@ -148,6 +148,15 @@ class WindowsManagedAppProtection(ManagedAppPolicy):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .managed_app_device_threat_level import ManagedAppDeviceThreatLevel
+        from .managed_app_policy import ManagedAppPolicy
+        from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
+        from .managed_app_remediation_action import ManagedAppRemediationAction
+        from .managed_mobile_app import ManagedMobileApp
+        from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
+        from .windows_managed_app_clipboard_sharing_level import WindowsManagedAppClipboardSharingLevel
+        from .windows_managed_app_data_transfer_level import WindowsManagedAppDataTransferLevel
+
         writer.write_enum_value("allowedInboundDataTransferSources", self.allowed_inbound_data_transfer_sources)
         writer.write_enum_value("allowedOutboundClipboardSharingLevel", self.allowed_outbound_clipboard_sharing_level)
         writer.write_enum_value("allowedOutboundDataTransferDestinations", self.allowed_outbound_data_transfer_destinations)

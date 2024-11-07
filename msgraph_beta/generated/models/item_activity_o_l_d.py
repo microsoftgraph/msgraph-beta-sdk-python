@@ -78,6 +78,13 @@ class ItemActivityOLD(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .drive_item import DriveItem
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .item_action_set import ItemActionSet
+        from .item_activity_time_set import ItemActivityTimeSet
+        from .list_item import ListItem
+
         writer.write_object_value("action", self.action)
         writer.write_object_value("actor", self.actor)
         writer.write_object_value("driveItem", self.drive_item)

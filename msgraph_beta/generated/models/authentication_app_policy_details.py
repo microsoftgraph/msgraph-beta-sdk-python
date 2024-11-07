@@ -68,6 +68,10 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .authentication_app_admin_configuration import AuthenticationAppAdminConfiguration
+        from .authentication_app_evaluation import AuthenticationAppEvaluation
+        from .authentication_app_policy_status import AuthenticationAppPolicyStatus
+
         writer.write_enum_value("adminConfiguration", self.admin_configuration)
         writer.write_enum_value("authenticationEvaluation", self.authentication_evaluation)
         writer.write_str_value("@odata.type", self.odata_type)

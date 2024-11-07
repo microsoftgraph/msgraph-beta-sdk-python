@@ -79,6 +79,10 @@ class DeviceComplianceScriptDeviceState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .managed_device import ManagedDevice
+        from .run_state import RunState
+
         writer.write_enum_value("detectionState", self.detection_state)
         writer.write_datetime_value("expectedStateUpdateDateTime", self.expected_state_update_date_time)
         writer.write_datetime_value("lastStateUpdateDateTime", self.last_state_update_date_time)

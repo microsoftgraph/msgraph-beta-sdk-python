@@ -63,6 +63,9 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .windows_quality_update_classification import WindowsQualityUpdateClassification
+        from .windows_update_catalog_item import WindowsUpdateCatalogItem
+
         writer.write_enum_value("classification", self.classification)
         writer.write_bool_value("isExpeditable", self.is_expeditable)
         writer.write_str_value("kbArticleId", self.kb_article_id)

@@ -54,6 +54,9 @@ class AuthenticationEventsPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_listener import AuthenticationListener
+        from .entity import Entity
+
         writer.write_collection_of_object_values("onSignupStart", self.on_signup_start)
     
 

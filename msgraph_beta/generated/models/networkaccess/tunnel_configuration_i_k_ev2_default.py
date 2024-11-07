@@ -48,5 +48,7 @@ class TunnelConfigurationIKEv2Default(TunnelConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .tunnel_configuration import TunnelConfiguration
+
     
 

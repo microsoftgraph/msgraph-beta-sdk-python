@@ -60,6 +60,9 @@ class AndroidForWorkAppConfigurationSchema(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_for_work_app_configuration_schema_item import AndroidForWorkAppConfigurationSchemaItem
+        from .entity import Entity
+
         writer.write_bytes_value("exampleJson", self.example_json)
         writer.write_collection_of_object_values("schemaItems", self.schema_items)
     

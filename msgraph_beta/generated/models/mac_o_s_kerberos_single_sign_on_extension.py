@@ -141,6 +141,8 @@ class MacOSKerberosSingleSignOnExtension(MacOSSingleSignOnExtension):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
+
         writer.write_str_value("activeDirectorySiteCode", self.active_directory_site_code)
         writer.write_bool_value("blockActiveDirectorySiteAutoDiscovery", self.block_active_directory_site_auto_discovery)
         writer.write_bool_value("blockAutomaticLogin", self.block_automatic_login)

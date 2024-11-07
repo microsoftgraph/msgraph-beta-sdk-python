@@ -52,6 +52,9 @@ class HardwareConfigurationDeviceStateCollectionResponse(BaseCollectionPaginatio
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .hardware_configuration_device_state import HardwareConfigurationDeviceState
+
         writer.write_collection_of_object_values("value", self.value)
     
 

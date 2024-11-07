@@ -178,6 +178,15 @@ class CloudCertificationAuthority(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_certification_authority_certificate_key_size import CloudCertificationAuthorityCertificateKeySize
+        from .cloud_certification_authority_hashing_algorithm import CloudCertificationAuthorityHashingAlgorithm
+        from .cloud_certification_authority_key_platform_type import CloudCertificationAuthorityKeyPlatformType
+        from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
+        from .cloud_certification_authority_status import CloudCertificationAuthorityStatus
+        from .cloud_certification_authority_type import CloudCertificationAuthorityType
+        from .entity import Entity
+        from .extended_key_usage import ExtendedKeyUsage
+
         writer.write_str_value("certificateDownloadUrl", self.certificate_download_url)
         writer.write_enum_value("certificateKeySize", self.certificate_key_size)
         writer.write_str_value("certificateRevocationListUrl", self.certificate_revocation_list_url)

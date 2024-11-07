@@ -56,6 +56,8 @@ class SetScheduledRetireStatePostRequestBody(AdditionalDataHolder, BackedModel, 
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.scheduled_retire_state import ScheduledRetireState
+
         writer.write_collection_of_primitive_values("managedDeviceIds", self.managed_device_ids)
         writer.write_bool_value("scopedToAllDevices", self.scoped_to_all_devices)
         writer.write_enum_value("state", self.state)

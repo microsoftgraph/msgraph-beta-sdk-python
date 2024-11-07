@@ -60,6 +60,8 @@ class WindowsDriverUpdateProfileInventorySyncStatus(AdditionalDataHolder, Backed
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .windows_driver_update_profile_inventory_sync_state import WindowsDriverUpdateProfileInventorySyncState
+
         writer.write_enum_value("driverInventorySyncState", self.driver_inventory_sync_state)
         writer.write_datetime_value("lastSuccessfulSyncDateTime", self.last_successful_sync_date_time)
         writer.write_str_value("@odata.type", self.odata_type)

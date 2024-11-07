@@ -58,6 +58,9 @@ class ContentApprovalRule(ComplianceChangeRule):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .compliance_change_rule import ComplianceChangeRule
+        from .content_filter import ContentFilter
+
         writer.write_object_value("contentFilter", self.content_filter)
         writer.write_timedelta_value("durationBeforeDeploymentStart", self.duration_before_deployment_start)
     

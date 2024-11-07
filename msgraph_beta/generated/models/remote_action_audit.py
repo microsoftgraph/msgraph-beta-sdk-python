@@ -94,6 +94,11 @@ class RemoteActionAudit(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .action_state import ActionState
+        from .device_action_category import DeviceActionCategory
+        from .entity import Entity
+        from .remote_action import RemoteAction
+
         writer.write_enum_value("action", self.action)
         writer.write_enum_value("actionState", self.action_state)
         writer.write_str_value("bulkDeviceActionId", self.bulk_device_action_id)

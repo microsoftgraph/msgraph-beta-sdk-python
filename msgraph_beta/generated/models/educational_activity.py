@@ -70,6 +70,10 @@ class EducationalActivity(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .educational_activity_detail import EducationalActivityDetail
+        from .institution_data import InstitutionData
+        from .item_facet import ItemFacet
+
         writer.write_date_value("completionMonthYear", self.completion_month_year)
         writer.write_date_value("endMonthYear", self.end_month_year)
         writer.write_object_value("institution", self.institution)

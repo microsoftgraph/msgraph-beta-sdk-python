@@ -56,6 +56,8 @@ class MyRole(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .role_assignment import RoleAssignment
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("tenantId", self.tenant_id)

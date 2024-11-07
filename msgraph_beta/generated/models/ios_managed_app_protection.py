@@ -32,7 +32,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
     app_data_encryption_type: Optional[ManagedAppDataEncryptionType] = None
     # List of apps to which the policy is deployed.
     apps: Optional[List[ManagedMobileApp]] = None
-    # A custom browser protocol to open weblink on iOS.
+    # A custom browser protocol to open weblink on iOS. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
     custom_browser_protocol: Optional[str] = None
     # Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
     custom_dialer_app_protocol: Optional[str] = None
@@ -132,6 +132,13 @@ class IosManagedAppProtection(TargetedManagedAppProtection):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .key_value_pair import KeyValuePair
+        from .managed_app_data_encryption_type import ManagedAppDataEncryptionType
+        from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
+        from .managed_app_remediation_action import ManagedAppRemediationAction
+        from .managed_mobile_app import ManagedMobileApp
+        from .targeted_managed_app_protection import TargetedManagedAppProtection
+
         writer.write_bool_value("allowWidgetContentSync", self.allow_widget_content_sync)
         writer.write_str_value("allowedIosDeviceModels", self.allowed_ios_device_models)
         writer.write_enum_value("appActionIfAccountIsClockedOut", self.app_action_if_account_is_clocked_out)

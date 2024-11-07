@@ -76,6 +76,10 @@ class DeviceManagementScriptDeviceState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .managed_device import ManagedDevice
+        from .run_state import RunState
+
         writer.write_int_value("errorCode", self.error_code)
         writer.write_str_value("errorDescription", self.error_description)
         writer.write_datetime_value("lastStateUpdateDateTime", self.last_state_update_date_time)

@@ -63,6 +63,9 @@ class AndroidManagedStoreAppConfigurationSchema(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_managed_store_app_configuration_schema_item import AndroidManagedStoreAppConfigurationSchemaItem
+        from .entity import Entity
+
         writer.write_bytes_value("exampleJson", self.example_json)
         writer.write_collection_of_object_values("nestedSchemaItems", self.nested_schema_items)
         writer.write_collection_of_object_values("schemaItems", self.schema_items)

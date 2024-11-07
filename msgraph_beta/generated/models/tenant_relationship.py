@@ -71,6 +71,11 @@ class TenantRelationship(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .delegated_admin_customer import DelegatedAdminCustomer
+        from .delegated_admin_relationship import DelegatedAdminRelationship
+        from .managed_tenants.managed_tenant import ManagedTenant
+        from .multi_tenant_organization import MultiTenantOrganization
+
         writer.write_collection_of_object_values("delegatedAdminCustomers", self.delegated_admin_customers)
         writer.write_collection_of_object_values("delegatedAdminRelationships", self.delegated_admin_relationships)
         writer.write_object_value("managedTenants", self.managed_tenants)

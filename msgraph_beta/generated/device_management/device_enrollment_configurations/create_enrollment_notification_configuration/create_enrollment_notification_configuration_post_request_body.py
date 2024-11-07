@@ -50,6 +50,8 @@ class CreateEnrollmentNotificationConfigurationPostRequestBody(AdditionalDataHol
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.device_enrollment_configuration import DeviceEnrollmentConfiguration
+
         writer.write_collection_of_object_values("deviceEnrollmentNotificationConfigurations", self.device_enrollment_notification_configurations)
         writer.write_additional_data_value(self.additional_data)
     

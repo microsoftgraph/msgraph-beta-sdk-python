@@ -78,6 +78,10 @@ class MobilityManagementPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .group import Group
+        from .policy_scope import PolicyScope
+
         writer.write_enum_value("appliesTo", self.applies_to)
         writer.write_str_value("complianceUrl", self.compliance_url)
         writer.write_str_value("description", self.description)

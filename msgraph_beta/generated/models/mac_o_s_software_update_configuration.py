@@ -90,6 +90,12 @@ class MacOSSoftwareUpdateConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .custom_update_time_window import CustomUpdateTimeWindow
+        from .device_configuration import DeviceConfiguration
+        from .mac_o_s_priority import MacOSPriority
+        from .mac_o_s_software_update_behavior import MacOSSoftwareUpdateBehavior
+        from .mac_o_s_software_update_schedule_type import MacOSSoftwareUpdateScheduleType
+
         writer.write_enum_value("allOtherUpdateBehavior", self.all_other_update_behavior)
         writer.write_enum_value("configDataUpdateBehavior", self.config_data_update_behavior)
         writer.write_enum_value("criticalUpdateBehavior", self.critical_update_behavior)

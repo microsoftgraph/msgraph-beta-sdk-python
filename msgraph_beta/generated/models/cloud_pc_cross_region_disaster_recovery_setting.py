@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_disaster_recovery_network_setting import CloudPcDisasterRecoveryNetworkSetting
+    from .cloud_pc_disaster_recovery_type import CloudPcDisasterRecoveryType
 
 @dataclass
 class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedModel, Parsable):
@@ -18,6 +19,8 @@ class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedMode
     cross_region_disaster_recovery_enabled: Optional[bool] = None
     # Indicates the network settings of the Cloud PC during a cross-region disaster recovery operation.
     disaster_recovery_network_setting: Optional[CloudPcDisasterRecoveryNetworkSetting] = None
+    # The disasterRecoveryType property
+    disaster_recovery_type: Optional[CloudPcDisasterRecoveryType] = None
     # Indicates whether Windows 365 maintain the cross-region disaster recovery function generated restore points. If true, the Windows 365 stored restore points; false indicates that Windows 365 doesn't generate or keep the restore point from the original Cloud PC. If a disaster occurs, the new Cloud PC can only be provisioned using the initial image. This limitation can result in the loss of some user data on the original Cloud PC. The default value is false.
     maintain_cross_region_restore_point_enabled: Optional[bool] = None
     # The OdataType property
@@ -40,12 +43,15 @@ class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedMode
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_disaster_recovery_network_setting import CloudPcDisasterRecoveryNetworkSetting
+        from .cloud_pc_disaster_recovery_type import CloudPcDisasterRecoveryType
 
         from .cloud_pc_disaster_recovery_network_setting import CloudPcDisasterRecoveryNetworkSetting
+        from .cloud_pc_disaster_recovery_type import CloudPcDisasterRecoveryType
 
         fields: Dict[str, Callable[[Any], None]] = {
             "crossRegionDisasterRecoveryEnabled": lambda n : setattr(self, 'cross_region_disaster_recovery_enabled', n.get_bool_value()),
             "disasterRecoveryNetworkSetting": lambda n : setattr(self, 'disaster_recovery_network_setting', n.get_object_value(CloudPcDisasterRecoveryNetworkSetting)),
+            "disasterRecoveryType": lambda n : setattr(self, 'disaster_recovery_type', n.get_enum_value(CloudPcDisasterRecoveryType)),
             "maintainCrossRegionRestorePointEnabled": lambda n : setattr(self, 'maintain_cross_region_restore_point_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -59,8 +65,12 @@ class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedMode
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cloud_pc_disaster_recovery_network_setting import CloudPcDisasterRecoveryNetworkSetting
+        from .cloud_pc_disaster_recovery_type import CloudPcDisasterRecoveryType
+
         writer.write_bool_value("crossRegionDisasterRecoveryEnabled", self.cross_region_disaster_recovery_enabled)
         writer.write_object_value("disasterRecoveryNetworkSetting", self.disaster_recovery_network_setting)
+        writer.write_enum_value("disasterRecoveryType", self.disaster_recovery_type)
         writer.write_bool_value("maintainCrossRegionRestorePointEnabled", self.maintain_cross_region_restore_point_enabled)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

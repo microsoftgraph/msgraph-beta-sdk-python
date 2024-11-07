@@ -54,6 +54,9 @@ class CustomAppManagementConfiguration(AppManagementConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .app_management_configuration import AppManagementConfiguration
+        from .custom_app_management_application_configuration import CustomAppManagementApplicationConfiguration
+
         writer.write_object_value("applicationRestrictions", self.application_restrictions)
     
 

@@ -35,7 +35,8 @@ class DeviceComplianceScriptError(AdditionalDataHolder, BackedModel, Parsable):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceComplianceScriptRuleError".casefold():
@@ -73,6 +74,10 @@ class DeviceComplianceScriptError(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .code import Code
+        from .device_compliance_script_rules_validation_error import DeviceComplianceScriptRulesValidationError
+        from .device_compliance_script_rule_error import DeviceComplianceScriptRuleError
+
         writer.write_enum_value("code", self.code)
         writer.write_enum_value("deviceComplianceScriptRulesValidationError", self.device_compliance_script_rules_validation_error)
         writer.write_str_value("message", self.message)

@@ -56,6 +56,8 @@ class PolicyRuleDelta(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .forwarding_rule_action import ForwardingRuleAction
+
         writer.write_enum_value("action", self.action)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("ruleId", self.rule_id)

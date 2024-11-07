@@ -81,6 +81,9 @@ class AospDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
+        from .device_compliance_policy import DeviceCompliancePolicy
+
         writer.write_str_value("minAndroidSecurityPatchLevel", self.min_android_security_patch_level)
         writer.write_str_value("osMaximumVersion", self.os_maximum_version)
         writer.write_str_value("osMinimumVersion", self.os_minimum_version)

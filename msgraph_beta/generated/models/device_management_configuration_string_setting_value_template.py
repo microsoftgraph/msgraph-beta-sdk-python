@@ -57,6 +57,9 @@ class DeviceManagementConfigurationStringSettingValueTemplate(DeviceManagementCo
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
+        from .device_management_configuration_string_setting_value_default_template import DeviceManagementConfigurationStringSettingValueDefaultTemplate
+
         writer.write_object_value("defaultValue", self.default_value)
     
 

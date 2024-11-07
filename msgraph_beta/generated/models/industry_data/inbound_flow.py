@@ -39,7 +39,8 @@ class InboundFlow(IndustryDataActivity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.inboundApiFlow".casefold():
@@ -91,6 +92,13 @@ class InboundFlow(IndustryDataActivity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .inbound_api_flow import InboundApiFlow
+        from .inbound_domain import InboundDomain
+        from .inbound_file_flow import InboundFileFlow
+        from .industry_data_activity import IndustryDataActivity
+        from .industry_data_connector import IndustryDataConnector
+        from .year_time_period_definition import YearTimePeriodDefinition
+
         writer.write_object_value("dataConnector", self.data_connector)
         writer.write_enum_value("dataDomain", self.data_domain)
         writer.write_datetime_value("effectiveDateTime", self.effective_date_time)

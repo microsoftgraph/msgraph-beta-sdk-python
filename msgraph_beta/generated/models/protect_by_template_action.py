@@ -51,6 +51,8 @@ class ProtectByTemplateAction(InformationProtectionAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .information_protection_action import InformationProtectionAction
+
         writer.write_str_value("templateId", self.template_id)
     
 

@@ -53,6 +53,8 @@ class Compliance(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .ediscovery.ediscoveryroot import Ediscoveryroot
+
         writer.write_object_value("ediscovery", self.ediscovery)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

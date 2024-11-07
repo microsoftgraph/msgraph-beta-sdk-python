@@ -59,6 +59,8 @@ class DestinationSummary(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .traffic_type import TrafficType
+
         writer.write_int_value("count", self.count)
         writer.write_str_value("destination", self.destination)
         writer.write_str_value("@odata.type", self.odata_type)

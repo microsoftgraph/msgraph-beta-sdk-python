@@ -101,6 +101,8 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .trust_framework_key_status import TrustFrameworkKeyStatus
+
         writer.write_str_value("d", self.d)
         writer.write_str_value("dp", self.dp)
         writer.write_str_value("dq", self.dq)

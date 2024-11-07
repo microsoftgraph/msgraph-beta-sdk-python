@@ -72,6 +72,12 @@ class ThreatSubmissionRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .email_threat_submission import EmailThreatSubmission
+        from .email_threat_submission_policy import EmailThreatSubmissionPolicy
+        from .file_threat_submission import FileThreatSubmission
+        from .url_threat_submission import UrlThreatSubmission
+
         writer.write_collection_of_object_values("emailThreatSubmissionPolicies", self.email_threat_submission_policies)
         writer.write_collection_of_object_values("emailThreats", self.email_threats)
         writer.write_collection_of_object_values("fileThreats", self.file_threats)

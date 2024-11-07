@@ -72,6 +72,10 @@ class TenantSetupInfo(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .privileged_role_settings import PrivilegedRoleSettings
+        from .setup_status import SetupStatus
+
         writer.write_object_value("defaultRolesSettings", self.default_roles_settings)
         writer.write_bool_value("firstTimeSetup", self.first_time_setup)
         writer.write_collection_of_primitive_values("relevantRolesSettings", self.relevant_roles_settings)

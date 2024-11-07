@@ -36,7 +36,8 @@ class DeviceManagementSettingInstance(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementAbstractComplexSettingInstance".casefold():
@@ -103,6 +104,14 @@ class DeviceManagementSettingInstance(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_abstract_complex_setting_instance import DeviceManagementAbstractComplexSettingInstance
+        from .device_management_boolean_setting_instance import DeviceManagementBooleanSettingInstance
+        from .device_management_collection_setting_instance import DeviceManagementCollectionSettingInstance
+        from .device_management_complex_setting_instance import DeviceManagementComplexSettingInstance
+        from .device_management_integer_setting_instance import DeviceManagementIntegerSettingInstance
+        from .device_management_string_setting_instance import DeviceManagementStringSettingInstance
+        from .entity import Entity
+
         writer.write_str_value("definitionId", self.definition_id)
         writer.write_str_value("valueJson", self.value_json)
     

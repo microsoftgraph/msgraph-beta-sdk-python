@@ -54,6 +54,8 @@ class NoMfaOnRoleActivationAlertIncident(UnifiedRoleManagementAlertIncident):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIncident
+
         writer.write_str_value("roleDisplayName", self.role_display_name)
         writer.write_str_value("roleTemplateId", self.role_template_id)
     

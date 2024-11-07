@@ -54,6 +54,9 @@ class InformationProtectionPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .information_protection_label import InformationProtectionLabel
+
         writer.write_collection_of_object_values("labels", self.labels)
     
 

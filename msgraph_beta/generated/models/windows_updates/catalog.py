@@ -54,6 +54,9 @@ class Catalog(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .catalog_entry import CatalogEntry
+
         writer.write_collection_of_object_values("entries", self.entries)
     
 

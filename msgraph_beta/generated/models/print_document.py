@@ -70,6 +70,9 @@ class PrintDocument(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .printer_document_configuration import PrinterDocumentConfiguration
+
         writer.write_object_value("configuration", self.configuration)
         writer.write_str_value("contentType", self.content_type)
         writer.write_str_value("displayName", self.display_name)

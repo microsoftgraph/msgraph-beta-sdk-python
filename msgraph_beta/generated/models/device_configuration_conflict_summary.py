@@ -63,6 +63,9 @@ class DeviceConfigurationConflictSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .setting_source import SettingSource
+
         writer.write_collection_of_object_values("conflictingDeviceConfigurations", self.conflicting_device_configurations)
         writer.write_collection_of_primitive_values("contributingSettings", self.contributing_settings)
         writer.write_int_value("deviceCheckinsImpacted", self.device_checkins_impacted)

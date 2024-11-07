@@ -54,6 +54,8 @@ class KeyBooleanValuePair(KeyTypedValuePair):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .key_typed_value_pair import KeyTypedValuePair
+
         writer.write_bool_value("value", self.value)
     
 

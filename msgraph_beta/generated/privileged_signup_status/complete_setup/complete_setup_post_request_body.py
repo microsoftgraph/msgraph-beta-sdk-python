@@ -50,6 +50,8 @@ class CompleteSetupPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ...models.tenant_setup_info import TenantSetupInfo
+
         writer.write_object_value("tenantSetupInfo", self.tenant_setup_info)
         writer.write_additional_data_value(self.additional_data)
     

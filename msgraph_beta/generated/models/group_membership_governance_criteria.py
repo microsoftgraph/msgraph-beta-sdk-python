@@ -51,6 +51,8 @@ class GroupMembershipGovernanceCriteria(GovernanceCriteria):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .governance_criteria import GovernanceCriteria
+
         writer.write_str_value("groupId", self.group_id)
     
 

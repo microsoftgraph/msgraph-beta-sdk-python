@@ -57,6 +57,9 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstance(DeviceManagem
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_choice_setting_value import DeviceManagementConfigurationChoiceSettingValue
+        from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
+
         writer.write_collection_of_object_values("choiceSettingCollectionValue", self.choice_setting_collection_value)
     
 

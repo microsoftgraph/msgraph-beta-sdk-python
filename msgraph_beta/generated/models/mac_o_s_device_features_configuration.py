@@ -210,6 +210,19 @@ class MacOSDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
+        from .ip_range import IpRange
+        from .key_value_pair import KeyValuePair
+        from .mac_o_s_associated_domains_item import MacOSAssociatedDomainsItem
+        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
+        from .mac_o_s_content_caching_client_policy import MacOSContentCachingClientPolicy
+        from .mac_o_s_content_caching_parent_selection_policy import MacOSContentCachingParentSelectionPolicy
+        from .mac_o_s_content_caching_peer_policy import MacOSContentCachingPeerPolicy
+        from .mac_o_s_content_caching_type import MacOSContentCachingType
+        from .mac_o_s_launch_item import MacOSLaunchItem
+        from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
+        from .single_sign_on_extension import SingleSignOnExtension
+
         writer.write_bool_value("adminShowHostInfo", self.admin_show_host_info)
         writer.write_collection_of_object_values("appAssociatedDomains", self.app_associated_domains)
         writer.write_collection_of_object_values("associatedDomains", self.associated_domains)

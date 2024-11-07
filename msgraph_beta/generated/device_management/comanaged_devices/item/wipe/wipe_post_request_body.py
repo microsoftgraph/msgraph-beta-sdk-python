@@ -65,6 +65,8 @@ class WipePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.obliteration_behavior import ObliterationBehavior
+
         writer.write_bool_value("keepEnrollmentData", self.keep_enrollment_data)
         writer.write_bool_value("keepUserData", self.keep_user_data)
         writer.write_str_value("macOsUnlockCode", self.mac_os_unlock_code)

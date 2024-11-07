@@ -63,6 +63,10 @@ class ConnectivityConfigurationLink(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .local_connectivity_configuration import LocalConnectivityConfiguration
+        from .peer_connectivity_configuration import PeerConnectivityConfiguration
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("localConfigurations", self.local_configurations)
         writer.write_object_value("peerConfiguration", self.peer_configuration)

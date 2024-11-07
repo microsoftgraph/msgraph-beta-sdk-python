@@ -99,6 +99,14 @@ class AndroidForWorkVpnConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_for_work_certificate_profile_base import AndroidForWorkCertificateProfileBase
+        from .android_for_work_vpn_connection_type import AndroidForWorkVpnConnectionType
+        from .device_configuration import DeviceConfiguration
+        from .key_value import KeyValue
+        from .key_value_pair import KeyValuePair
+        from .vpn_authentication_method import VpnAuthenticationMethod
+        from .vpn_server import VpnServer
+
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_str_value("connectionName", self.connection_name)
         writer.write_enum_value("connectionType", self.connection_type)

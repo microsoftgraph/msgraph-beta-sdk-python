@@ -79,6 +79,11 @@ class GroupPolicyUploadedDefinitionFile(GroupPolicyDefinitionFile):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .group_policy_definition_file import GroupPolicyDefinitionFile
+        from .group_policy_operation import GroupPolicyOperation
+        from .group_policy_uploaded_definition_file_status import GroupPolicyUploadedDefinitionFileStatus
+        from .group_policy_uploaded_language_file import GroupPolicyUploadedLanguageFile
+
         writer.write_bytes_value("content", self.content)
         writer.write_str_value("defaultLanguageCode", self.default_language_code)
         writer.write_collection_of_object_values("groupPolicyOperations", self.group_policy_operations)

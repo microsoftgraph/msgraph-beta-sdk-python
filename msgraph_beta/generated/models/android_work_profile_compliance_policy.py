@@ -162,6 +162,13 @@ class AndroidWorkProfileCompliancePolicy(DeviceCompliancePolicy):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_required_password_complexity import AndroidRequiredPasswordComplexity
+        from .android_required_password_type import AndroidRequiredPasswordType
+        from .android_safety_net_evaluation_type import AndroidSafetyNetEvaluationType
+        from .android_work_profile_required_password_type import AndroidWorkProfileRequiredPasswordType
+        from .device_compliance_policy import DeviceCompliancePolicy
+        from .device_threat_protection_level import DeviceThreatProtectionLevel
+
         writer.write_enum_value("advancedThreatProtectionRequiredSecurityLevel", self.advanced_threat_protection_required_security_level)
         writer.write_bool_value("deviceThreatProtectionEnabled", self.device_threat_protection_enabled)
         writer.write_enum_value("deviceThreatProtectionRequiredSecurityLevel", self.device_threat_protection_required_security_level)

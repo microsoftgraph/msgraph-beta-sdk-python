@@ -120,6 +120,10 @@ class Windows10DeviceFirmwareConfigurationInterface(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .change_uefi_settings_permission import ChangeUefiSettingsPermission
+        from .device_configuration import DeviceConfiguration
+        from .enablement import Enablement
+
         writer.write_enum_value("bluetooth", self.bluetooth)
         writer.write_enum_value("bootFromBuiltInNetworkAdapters", self.boot_from_built_in_network_adapters)
         writer.write_enum_value("bootFromExternalMedia", self.boot_from_external_media)

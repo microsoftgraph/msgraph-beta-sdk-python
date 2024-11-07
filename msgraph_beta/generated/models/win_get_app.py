@@ -63,6 +63,9 @@ class WinGetApp(MobileApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app import MobileApp
+        from .win_get_app_install_experience import WinGetAppInstallExperience
+
         writer.write_object_value("installExperience", self.install_experience)
         writer.write_str_value("manifestHash", self.manifest_hash)
         writer.write_str_value("packageIdentifier", self.package_identifier)

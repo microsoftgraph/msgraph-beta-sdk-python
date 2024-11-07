@@ -59,6 +59,9 @@ class WorkplaceSensorEventValue(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .email_identity import EmailIdentity
+        from .workplace_sensor_event_type import WorkplaceSensorEventType
+
         writer.write_enum_value("eventType", self.event_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("user", self.user)

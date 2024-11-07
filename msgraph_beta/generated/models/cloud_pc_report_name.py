@@ -21,4 +21,7 @@ class CloudPcReportName(str, Enum):
     RegionalConnectionQualityTrendReport = "regionalConnectionQualityTrendReport",
     RegionalConnectionQualityInsightsReport = "regionalConnectionQualityInsightsReport",
     RemoteConnectionQualityReport = "remoteConnectionQualityReport",
+    FrontlineLicenseHourlyUsageReport = "frontlineLicenseHourlyUsageReport",
+    FrontlineRealtimeUserConnectionsReport = "frontlineRealtimeUserConnectionsReport",
+    BulkActionStatusReport = "bulkActionStatusReport",
 

@@ -59,6 +59,8 @@ class CloudPcDisasterRecoveryCapability(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cloud_pc_disaster_recovery_capability_type import CloudPcDisasterRecoveryCapabilityType
+
         writer.write_enum_value("capabilityType", self.capability_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("primaryRegion", self.primary_region)

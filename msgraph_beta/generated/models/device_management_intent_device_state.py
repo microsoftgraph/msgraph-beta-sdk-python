@@ -73,6 +73,9 @@ class DeviceManagementIntentDeviceState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .compliance_status import ComplianceStatus
+        from .entity import Entity
+
         writer.write_str_value("deviceDisplayName", self.device_display_name)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_datetime_value("lastReportedDateTime", self.last_reported_date_time)

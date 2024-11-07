@@ -74,6 +74,11 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .custom_security_attribute_audit import CustomSecurityAttributeAudit
+        from .directory_audit import DirectoryAudit
+        from .provisioning_object_summary import ProvisioningObjectSummary
+        from .sign_in import SignIn
+
         writer.write_collection_of_object_values("customSecurityAttributeAudits", self.custom_security_attribute_audits)
         writer.write_collection_of_object_values("directoryAudits", self.directory_audits)
         writer.write_collection_of_object_values("directoryProvisioning", self.directory_provisioning)

@@ -67,6 +67,9 @@ class ApprovalItemResponse(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .approval_identity_set import ApprovalIdentitySet
+        from .entity import Entity
+
         writer.write_str_value("comments", self.comments)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_str_value("response", self.response)

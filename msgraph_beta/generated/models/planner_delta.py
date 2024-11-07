@@ -33,7 +33,8 @@ class PlannerDelta(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.businessScenarioTask".casefold():
@@ -122,5 +123,17 @@ class PlannerDelta(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .business_scenario_task import BusinessScenarioTask
+        from .entity import Entity
+        from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
+        from .planner_bucket import PlannerBucket
+        from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
+        from .planner_plan import PlannerPlan
+        from .planner_plan_details import PlannerPlanDetails
+        from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
+        from .planner_task import PlannerTask
+        from .planner_task_details import PlannerTaskDetails
+        from .planner_user import PlannerUser
+
     
 

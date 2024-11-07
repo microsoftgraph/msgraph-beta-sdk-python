@@ -57,6 +57,8 @@ class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(AndroidDeviceComp
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_compliance_local_action_base import AndroidDeviceComplianceLocalActionBase
+
         writer.write_int_value("passcodeSignInFailureCountBeforeWipe", self.passcode_sign_in_failure_count_before_wipe)
     
 

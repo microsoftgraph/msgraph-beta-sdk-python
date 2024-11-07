@@ -48,7 +48,8 @@ class MobileLobApp(MobileApp):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidLobApp".casefold():
@@ -161,6 +162,22 @@ class MobileLobApp(MobileApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_lob_app import AndroidLobApp
+        from .ios_lob_app import IosLobApp
+        from .mac_o_s_dmg_app import MacOSDmgApp
+        from .mac_o_s_lob_app import MacOSLobApp
+        from .mac_o_s_pkg_app import MacOSPkgApp
+        from .mobile_app import MobileApp
+        from .mobile_app_content import MobileAppContent
+        from .win32_catalog_app import Win32CatalogApp
+        from .win32_lob_app import Win32LobApp
+        from .windows_app_x import WindowsAppX
+        from .windows_mobile_m_s_i import WindowsMobileMSI
+        from .windows_phone81_app_x import WindowsPhone81AppX
+        from .windows_phone81_app_x_bundle import WindowsPhone81AppXBundle
+        from .windows_phone_x_a_p import WindowsPhoneXAP
+        from .windows_universal_app_x import WindowsUniversalAppX
+
         writer.write_str_value("committedContentVersion", self.committed_content_version)
         writer.write_collection_of_object_values("contentVersions", self.content_versions)
         writer.write_str_value("fileName", self.file_name)

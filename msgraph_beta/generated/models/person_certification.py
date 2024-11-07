@@ -79,6 +79,8 @@ class PersonCertification(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .item_facet import ItemFacet
+
         writer.write_str_value("certificationId", self.certification_id)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

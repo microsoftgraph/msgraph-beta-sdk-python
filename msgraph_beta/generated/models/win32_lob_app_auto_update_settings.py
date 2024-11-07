@@ -56,6 +56,8 @@ class Win32LobAppAutoUpdateSettings(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .win32_lob_auto_update_superseded_apps_state import Win32LobAutoUpdateSupersededAppsState
+
         writer.write_enum_value("autoUpdateSupersededAppsState", self.auto_update_superseded_apps_state)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

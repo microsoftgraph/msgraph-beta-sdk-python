@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .headers import Headers
     from .http_method import HttpMethod
     from .networking_protocol import NetworkingProtocol
+    from .network_traffic_operation_status import NetworkTrafficOperationStatus
     from .private_access_details import PrivateAccessDetails
     from .traffic_type import TrafficType
     from .web_category import WebCategory
@@ -71,6 +72,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     network_protocol: Optional[NetworkingProtocol] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The operationStatus property
+    operation_status: Optional[NetworkTrafficOperationStatus] = None
     # Represents a unique identifier assigned to a policy. Supports $filter (eq) and $orderby.
     policy_id: Optional[str] = None
     # The policyName property
@@ -79,6 +82,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     policy_rule_id: Optional[str] = None
     # The policyRuleName property
     policy_rule_name: Optional[str] = None
+    # The popProcessingRegion property
+    pop_processing_region: Optional[str] = None
     # The privateAccessDetails property
     private_access_details: Optional[PrivateAccessDetails] = None
     # Represents the total number of bytes received in a network communication or data transfer. Supports $filter (eq) and $orderby.
@@ -140,6 +145,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         from .headers import Headers
         from .http_method import HttpMethod
         from .networking_protocol import NetworkingProtocol
+        from .network_traffic_operation_status import NetworkTrafficOperationStatus
         from .private_access_details import PrivateAccessDetails
         from .traffic_type import TrafficType
         from .web_category import WebCategory
@@ -152,6 +158,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         from .headers import Headers
         from .http_method import HttpMethod
         from .networking_protocol import NetworkingProtocol
+        from .network_traffic_operation_status import NetworkTrafficOperationStatus
         from .private_access_details import PrivateAccessDetails
         from .traffic_type import TrafficType
         from .web_category import WebCategory
@@ -180,10 +187,12 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "initiatingProcessName": lambda n : setattr(self, 'initiating_process_name', n.get_str_value()),
             "networkProtocol": lambda n : setattr(self, 'network_protocol', n.get_enum_value(NetworkingProtocol)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "operationStatus": lambda n : setattr(self, 'operation_status', n.get_enum_value(NetworkTrafficOperationStatus)),
             "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
             "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
             "policyRuleId": lambda n : setattr(self, 'policy_rule_id', n.get_str_value()),
             "policyRuleName": lambda n : setattr(self, 'policy_rule_name', n.get_str_value()),
+            "popProcessingRegion": lambda n : setattr(self, 'pop_processing_region', n.get_str_value()),
             "privateAccessDetails": lambda n : setattr(self, 'private_access_details', n.get_object_value(PrivateAccessDetails)),
             "receivedBytes": lambda n : setattr(self, 'received_bytes', n.get_int_value()),
             "remoteNetworkId": lambda n : setattr(self, 'remote_network_id', n.get_str_value()),
@@ -213,6 +222,19 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ..device import Device
+        from ..user import User
+        from .application_snapshot import ApplicationSnapshot
+        from .device_category import DeviceCategory
+        from .filtering_policy_action import FilteringPolicyAction
+        from .headers import Headers
+        from .http_method import HttpMethod
+        from .networking_protocol import NetworkingProtocol
+        from .network_traffic_operation_status import NetworkTrafficOperationStatus
+        from .private_access_details import PrivateAccessDetails
+        from .traffic_type import TrafficType
+        from .web_category import WebCategory
+
         writer.write_enum_value("action", self.action)
         writer.write_str_value("agentVersion", self.agent_version)
         writer.write_object_value("applicationSnapshot", self.application_snapshot)
@@ -236,10 +258,12 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("initiatingProcessName", self.initiating_process_name)
         writer.write_enum_value("networkProtocol", self.network_protocol)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_enum_value("operationStatus", self.operation_status)
         writer.write_str_value("policyId", self.policy_id)
         writer.write_str_value("policyName", self.policy_name)
         writer.write_str_value("policyRuleId", self.policy_rule_id)
         writer.write_str_value("policyRuleName", self.policy_rule_name)
+        writer.write_str_value("popProcessingRegion", self.pop_processing_region)
         writer.write_object_value("privateAccessDetails", self.private_access_details)
         writer.write_int_value("receivedBytes", self.received_bytes)
         writer.write_str_value("remoteNetworkId", self.remote_network_id)

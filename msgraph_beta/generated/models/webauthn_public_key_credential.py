@@ -62,6 +62,9 @@ class WebauthnPublicKeyCredential(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .webauthn_authentication_extensions_client_outputs import WebauthnAuthenticationExtensionsClientOutputs
+        from .webauthn_authenticator_attestation_response import WebauthnAuthenticatorAttestationResponse
+
         writer.write_object_value("clientExtensionResults", self.client_extension_results)
         writer.write_str_value("id", self.id)
         writer.write_str_value("@odata.type", self.odata_type)

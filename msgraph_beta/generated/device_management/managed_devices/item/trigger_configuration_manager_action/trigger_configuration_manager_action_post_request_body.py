@@ -50,6 +50,8 @@ class TriggerConfigurationManagerActionPostRequestBody(AdditionalDataHolder, Bac
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.configuration_manager_action import ConfigurationManagerAction
+
         writer.write_object_value("configurationManagerAction", self.configuration_manager_action)
         writer.write_additional_data_value(self.additional_data)
     

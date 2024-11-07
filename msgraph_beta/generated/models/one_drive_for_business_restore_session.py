@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .drive_restore_artifact import DriveRestoreArtifact
+    from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
     from .restore_session_base import RestoreSessionBase
 
 from .restore_session_base import RestoreSessionBase
@@ -15,6 +16,8 @@ class OneDriveForBusinessRestoreSession(RestoreSessionBase):
     odata_type: Optional[str] = "#microsoft.graph.oneDriveForBusinessRestoreSession"
     # A collection of restore points and destination details that can be used to restore a OneDrive for Business drive.
     drive_restore_artifacts: Optional[List[DriveRestoreArtifact]] = None
+    # The driveRestoreArtifactsBulkAdditionRequests property
+    drive_restore_artifacts_bulk_addition_requests: Optional[List[DriveRestoreArtifactsBulkAdditionRequest]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OneDriveForBusinessRestoreSession:
@@ -33,13 +36,16 @@ class OneDriveForBusinessRestoreSession(RestoreSessionBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .drive_restore_artifact import DriveRestoreArtifact
+        from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
         from .restore_session_base import RestoreSessionBase
 
         from .drive_restore_artifact import DriveRestoreArtifact
+        from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
         from .restore_session_base import RestoreSessionBase
 
         fields: Dict[str, Callable[[Any], None]] = {
             "driveRestoreArtifacts": lambda n : setattr(self, 'drive_restore_artifacts', n.get_collection_of_object_values(DriveRestoreArtifact)),
+            "driveRestoreArtifactsBulkAdditionRequests": lambda n : setattr(self, 'drive_restore_artifacts_bulk_addition_requests', n.get_collection_of_object_values(DriveRestoreArtifactsBulkAdditionRequest)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,6 +60,11 @@ class OneDriveForBusinessRestoreSession(RestoreSessionBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .drive_restore_artifact import DriveRestoreArtifact
+        from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
+        from .restore_session_base import RestoreSessionBase
+
         writer.write_collection_of_object_values("driveRestoreArtifacts", self.drive_restore_artifacts)
+        writer.write_collection_of_object_values("driveRestoreArtifactsBulkAdditionRequests", self.drive_restore_artifacts_bulk_addition_requests)
     
 

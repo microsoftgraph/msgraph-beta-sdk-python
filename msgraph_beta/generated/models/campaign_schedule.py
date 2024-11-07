@@ -60,6 +60,8 @@ class CampaignSchedule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .campaign_status import CampaignStatus
+
         writer.write_datetime_value("completionDateTime", self.completion_date_time)
         writer.write_datetime_value("launchDateTime", self.launch_date_time)
         writer.write_str_value("@odata.type", self.odata_type)

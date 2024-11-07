@@ -53,6 +53,8 @@ class CallAiInsightViewPoint(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .mention_event import MentionEvent
+
         writer.write_collection_of_object_values("mentionEvents", self.mention_events)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

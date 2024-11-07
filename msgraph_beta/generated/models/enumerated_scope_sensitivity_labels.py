@@ -51,6 +51,8 @@ class EnumeratedScopeSensitivityLabels(ScopeSensitivityLabels):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .scope_sensitivity_labels import ScopeSensitivityLabels
+
         writer.write_collection_of_primitive_values("sensitivityLabels", self.sensitivity_labels)
     
 

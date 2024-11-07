@@ -57,6 +57,8 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary(Entit
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_int_value("deployedDeviceCount", self.deployed_device_count)
         writer.write_int_value("failedDeviceCount", self.failed_device_count)
     

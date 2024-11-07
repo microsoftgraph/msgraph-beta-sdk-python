@@ -72,6 +72,9 @@ class DeviceManagementConfigurationStringSettingValueDefinition(DeviceManagement
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_setting_value_definition import DeviceManagementConfigurationSettingValueDefinition
+        from .device_management_configuration_string_format import DeviceManagementConfigurationStringFormat
+
         writer.write_collection_of_primitive_values("fileTypes", self.file_types)
         writer.write_enum_value("format", self.format)
         writer.write_str_value("inputValidationSchema", self.input_validation_schema)

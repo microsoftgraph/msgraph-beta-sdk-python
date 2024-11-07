@@ -31,7 +31,8 @@ class MeetingRegistrationBase(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalMeetingRegistration".casefold():
@@ -78,6 +79,12 @@ class MeetingRegistrationBase(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .external_meeting_registration import ExternalMeetingRegistration
+        from .meeting_audience import MeetingAudience
+        from .meeting_registrant_base import MeetingRegistrantBase
+        from .meeting_registration import MeetingRegistration
+
         writer.write_enum_value("allowedRegistrant", self.allowed_registrant)
         writer.write_collection_of_object_values("registrants", self.registrants)
     

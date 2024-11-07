@@ -63,6 +63,9 @@ class WindowsPhoneXAP(MobileLobApp):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_lob_app import MobileLobApp
+        from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
+
         writer.write_str_value("identityVersion", self.identity_version)
         writer.write_object_value("minimumSupportedOperatingSystem", self.minimum_supported_operating_system)
         writer.write_str_value("productIdentifier", self.product_identifier)

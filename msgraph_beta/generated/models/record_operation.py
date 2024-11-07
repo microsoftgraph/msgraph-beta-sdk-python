@@ -60,6 +60,9 @@ class RecordOperation(CommsOperation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .comms_operation import CommsOperation
+        from .record_completion_reason import RecordCompletionReason
+
         writer.write_enum_value("completionReason", self.completion_reason)
         writer.write_str_value("recordingAccessToken", self.recording_access_token)
         writer.write_str_value("recordingLocation", self.recording_location)

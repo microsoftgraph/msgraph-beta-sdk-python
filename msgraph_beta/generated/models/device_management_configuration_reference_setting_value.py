@@ -54,6 +54,8 @@ class DeviceManagementConfigurationReferenceSettingValue(DeviceManagementConfigu
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_string_setting_value import DeviceManagementConfigurationStringSettingValue
+
         writer.write_str_value("note", self.note)
     
 

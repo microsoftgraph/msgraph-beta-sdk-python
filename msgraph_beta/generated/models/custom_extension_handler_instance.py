@@ -65,6 +65,9 @@ class CustomExtensionHandlerInstance(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .access_package_custom_extension_handler_status import AccessPackageCustomExtensionHandlerStatus
+        from .access_package_custom_extension_stage import AccessPackageCustomExtensionStage
+
         writer.write_str_value("customExtensionId", self.custom_extension_id)
         writer.write_str_value("externalCorrelationId", self.external_correlation_id)
         writer.write_str_value("@odata.type", self.odata_type)

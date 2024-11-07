@@ -57,6 +57,8 @@ class OperationalInsightsConnection(ResourceConnection):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .resource_connection import ResourceConnection
+
         writer.write_str_value("azureResourceGroupName", self.azure_resource_group_name)
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)
         writer.write_str_value("workspaceName", self.workspace_name)

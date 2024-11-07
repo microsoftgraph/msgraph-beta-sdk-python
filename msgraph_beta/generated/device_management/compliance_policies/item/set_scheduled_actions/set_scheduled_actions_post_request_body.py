@@ -50,6 +50,8 @@ class SetScheduledActionsPostRequestBody(AdditionalDataHolder, BackedModel, Pars
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.device_management_compliance_scheduled_action_for_rule import DeviceManagementComplianceScheduledActionForRule
+
         writer.write_collection_of_object_values("scheduledActions", self.scheduled_actions)
         writer.write_additional_data_value(self.additional_data)
     

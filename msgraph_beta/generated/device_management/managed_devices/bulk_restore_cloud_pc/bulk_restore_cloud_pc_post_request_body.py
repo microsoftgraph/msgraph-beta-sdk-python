@@ -57,6 +57,8 @@ class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ....models.restore_time_range import RestoreTimeRange
+
         writer.write_collection_of_primitive_values("managedDeviceIds", self.managed_device_ids)
         writer.write_datetime_value("restorePointDateTime", self.restore_point_date_time)
         writer.write_enum_value("timeRange", self.time_range)

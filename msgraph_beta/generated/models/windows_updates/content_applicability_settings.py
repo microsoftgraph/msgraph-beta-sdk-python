@@ -56,6 +56,8 @@ class ContentApplicabilitySettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .safeguard_settings import SafeguardSettings
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_primitive_values("offerWhileRecommendedBy", self.offer_while_recommended_by)
         writer.write_object_value("safeguard", self.safeguard)

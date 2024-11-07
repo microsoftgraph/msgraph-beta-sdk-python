@@ -66,6 +66,10 @@ class EducationAssignmentSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .education_grading_category import EducationGradingCategory
+        from .education_grading_scheme import EducationGradingScheme
+        from .entity import Entity
+
         writer.write_object_value("defaultGradingScheme", self.default_grading_scheme)
         writer.write_collection_of_object_values("gradingCategories", self.grading_categories)
         writer.write_collection_of_object_values("gradingSchemes", self.grading_schemes)

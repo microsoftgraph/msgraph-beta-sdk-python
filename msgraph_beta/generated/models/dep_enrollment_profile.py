@@ -129,6 +129,10 @@ class DepEnrollmentProfile(EnrollmentProfile):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .enrollment_profile import EnrollmentProfile
+        from .i_tunes_pairing_mode import ITunesPairingMode
+        from .management_certificate_with_thumbprint import ManagementCertificateWithThumbprint
+
         writer.write_bool_value("appleIdDisabled", self.apple_id_disabled)
         writer.write_bool_value("applePayDisabled", self.apple_pay_disabled)
         writer.write_bool_value("awaitDeviceConfiguredConfirmation", self.await_device_configured_confirmation)

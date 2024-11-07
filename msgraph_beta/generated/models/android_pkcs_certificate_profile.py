@@ -69,6 +69,9 @@ class AndroidPkcsCertificateProfile(AndroidCertificateProfileBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_certificate_profile_base import AndroidCertificateProfileBase
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+
         writer.write_str_value("certificateTemplateName", self.certificate_template_name)
         writer.write_str_value("certificationAuthority", self.certification_authority)
         writer.write_str_value("certificationAuthorityName", self.certification_authority_name)

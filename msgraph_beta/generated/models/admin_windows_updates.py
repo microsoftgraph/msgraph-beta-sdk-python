@@ -90,6 +90,15 @@ class AdminWindowsUpdates(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .windows_updates.catalog import Catalog
+        from .windows_updates.deployment import Deployment
+        from .windows_updates.deployment_audience import DeploymentAudience
+        from .windows_updates.product import Product
+        from .windows_updates.resource_connection import ResourceConnection
+        from .windows_updates.updatable_asset import UpdatableAsset
+        from .windows_updates.update_policy import UpdatePolicy
+
         writer.write_object_value("catalog", self.catalog)
         writer.write_collection_of_object_values("deploymentAudiences", self.deployment_audiences)
         writer.write_collection_of_object_values("deployments", self.deployments)

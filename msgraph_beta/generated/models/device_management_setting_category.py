@@ -35,7 +35,8 @@ class DeviceManagementSettingCategory(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementIntentSettingCategory".casefold():
@@ -81,6 +82,11 @@ class DeviceManagementSettingCategory(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_intent_setting_category import DeviceManagementIntentSettingCategory
+        from .device_management_setting_definition import DeviceManagementSettingDefinition
+        from .device_management_template_setting_category import DeviceManagementTemplateSettingCategory
+        from .entity import Entity
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("hasRequiredSetting", self.has_required_setting)
         writer.write_collection_of_object_values("settingDefinitions", self.setting_definitions)

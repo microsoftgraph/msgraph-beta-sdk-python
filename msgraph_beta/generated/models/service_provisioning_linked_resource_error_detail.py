@@ -54,6 +54,8 @@ class ServiceProvisioningLinkedResourceErrorDetail(ServiceProvisioningResourceEr
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .service_provisioning_resource_error_detail import ServiceProvisioningResourceErrorDetail
+
         writer.write_str_value("propertyName", self.property_name)
         writer.write_str_value("target", self.target)
     

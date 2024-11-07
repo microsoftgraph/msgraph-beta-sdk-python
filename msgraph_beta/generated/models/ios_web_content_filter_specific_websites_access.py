@@ -60,6 +60,9 @@ class IosWebContentFilterSpecificWebsitesAccess(IosWebContentFilterBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .ios_bookmark import IosBookmark
+        from .ios_web_content_filter_base import IosWebContentFilterBase
+
         writer.write_collection_of_object_values("specificWebsitesOnly", self.specific_websites_only)
         writer.write_collection_of_object_values("websiteList", self.website_list)
     

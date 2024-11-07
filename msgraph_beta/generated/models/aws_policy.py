@@ -60,6 +60,9 @@ class AwsPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aws_policy_type import AwsPolicyType
+        from .entity import Entity
+
         writer.write_enum_value("awsPolicyType", self.aws_policy_type)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("externalId", self.external_id)

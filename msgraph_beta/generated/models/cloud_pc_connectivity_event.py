@@ -69,6 +69,9 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cloud_pc_connectivity_event_result import CloudPcConnectivityEventResult
+        from .cloud_pc_connectivity_event_type import CloudPcConnectivityEventType
+
         writer.write_datetime_value("eventDateTime", self.event_date_time)
         writer.write_str_value("eventName", self.event_name)
         writer.write_enum_value("eventResult", self.event_result)

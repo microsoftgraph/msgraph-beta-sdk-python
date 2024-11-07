@@ -106,6 +106,14 @@ class SourceCollection(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from ..identity_set import IdentitySet
+        from .add_to_review_set_operation import AddToReviewSetOperation
+        from .data_source import DataSource
+        from .data_source_scopes import DataSourceScopes
+        from .estimate_statistics_operation import EstimateStatisticsOperation
+        from .noncustodial_data_source import NoncustodialDataSource
+
         writer.write_object_value("addToReviewSetOperation", self.add_to_review_set_operation)
         writer.write_collection_of_object_values("additionalSources", self.additional_sources)
         writer.write_str_value("contentQuery", self.content_query)

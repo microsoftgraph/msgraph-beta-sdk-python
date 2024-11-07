@@ -54,6 +54,9 @@ class CloudPcBulkSetReviewStatus(CloudPcBulkAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_bulk_action import CloudPcBulkAction
+        from .cloud_pc_review_status import CloudPcReviewStatus
+
         writer.write_object_value("reviewStatus", self.review_status)
     
 

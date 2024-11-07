@@ -84,6 +84,11 @@ class AndroidWorkProfilePkcsCertificateProfile(AndroidWorkProfileCertificateProf
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
+        from .certificate_store import CertificateStore
+        from .custom_subject_alternative_name import CustomSubjectAlternativeName
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_str_value("certificateTemplateName", self.certificate_template_name)
         writer.write_str_value("certificationAuthority", self.certification_authority)

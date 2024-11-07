@@ -144,6 +144,10 @@ class DepIOSEnrollmentProfile(DepEnrollmentBaseProfile):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .dep_enrollment_base_profile import DepEnrollmentBaseProfile
+        from .i_tunes_pairing_mode import ITunesPairingMode
+        from .management_certificate_with_thumbprint import ManagementCertificateWithThumbprint
+
         writer.write_bool_value("appearanceScreenDisabled", self.appearance_screen_disabled)
         writer.write_bool_value("awaitDeviceConfiguredConfirmation", self.await_device_configured_confirmation)
         writer.write_str_value("carrierActivationUrl", self.carrier_activation_url)

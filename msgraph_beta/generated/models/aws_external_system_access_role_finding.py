@@ -63,6 +63,10 @@ class AwsExternalSystemAccessRoleFinding(Finding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .aws_role import AwsRole
+        from .finding import Finding
+        from .permissions_creep_index import PermissionsCreepIndex
+
         writer.write_collection_of_primitive_values("accessibleSystemIds", self.accessible_system_ids)
         writer.write_object_value("permissionsCreepIndex", self.permissions_creep_index)
         writer.write_object_value("role", self.role)

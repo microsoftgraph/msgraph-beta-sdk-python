@@ -60,6 +60,8 @@ class WindowsManagementAppHealthSummary(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_int_value("healthyDeviceCount", self.healthy_device_count)
         writer.write_int_value("unhealthyDeviceCount", self.unhealthy_device_count)
         writer.write_int_value("unknownDeviceCount", self.unknown_device_count)

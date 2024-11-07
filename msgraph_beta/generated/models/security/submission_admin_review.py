@@ -60,6 +60,8 @@ class SubmissionAdminReview(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .submission_result_category import SubmissionResultCategory
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("reviewBy", self.review_by)
         writer.write_datetime_value("reviewDateTime", self.review_date_time)

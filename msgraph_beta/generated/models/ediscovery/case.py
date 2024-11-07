@@ -130,6 +130,18 @@ class Case(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from ..identity_set import IdentitySet
+        from .case_operation import CaseOperation
+        from .case_settings import CaseSettings
+        from .case_status import CaseStatus
+        from .custodian import Custodian
+        from .legal_hold import LegalHold
+        from .noncustodial_data_source import NoncustodialDataSource
+        from .review_set import ReviewSet
+        from .source_collection import SourceCollection
+        from .tag import Tag
+
         writer.write_object_value("closedBy", self.closed_by)
         writer.write_datetime_value("closedDateTime", self.closed_date_time)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

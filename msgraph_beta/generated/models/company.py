@@ -273,6 +273,42 @@ class Company(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .account import Account
+        from .aged_accounts_payable import AgedAccountsPayable
+        from .aged_accounts_receivable import AgedAccountsReceivable
+        from .company_information import CompanyInformation
+        from .country_region import CountryRegion
+        from .currency import Currency
+        from .customer import Customer
+        from .customer_payment import CustomerPayment
+        from .customer_payment_journal import CustomerPaymentJournal
+        from .dimension import Dimension
+        from .dimension_value import DimensionValue
+        from .employee import Employee
+        from .general_ledger_entry import GeneralLedgerEntry
+        from .item import Item
+        from .item_category import ItemCategory
+        from .journal import Journal
+        from .journal_line import JournalLine
+        from .payment_method import PaymentMethod
+        from .payment_term import PaymentTerm
+        from .picture import Picture
+        from .purchase_invoice import PurchaseInvoice
+        from .purchase_invoice_line import PurchaseInvoiceLine
+        from .sales_credit_memo import SalesCreditMemo
+        from .sales_credit_memo_line import SalesCreditMemoLine
+        from .sales_invoice import SalesInvoice
+        from .sales_invoice_line import SalesInvoiceLine
+        from .sales_order import SalesOrder
+        from .sales_order_line import SalesOrderLine
+        from .sales_quote import SalesQuote
+        from .sales_quote_line import SalesQuoteLine
+        from .shipment_method import ShipmentMethod
+        from .tax_area import TaxArea
+        from .tax_group import TaxGroup
+        from .unit_of_measure import UnitOfMeasure
+        from .vendor import Vendor
+
         writer.write_collection_of_object_values("accounts", self.accounts)
         writer.write_collection_of_object_values("agedAccountsPayable", self.aged_accounts_payable)
         writer.write_collection_of_object_values("agedAccountsReceivable", self.aged_accounts_receivable)

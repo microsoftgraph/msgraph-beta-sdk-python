@@ -60,6 +60,9 @@ class AuthenticationFailure(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_failure_reason_code import AuthenticationFailureReasonCode
+        from .entity import Entity
+
         writer.write_int_value("count", self.count)
         writer.write_str_value("reason", self.reason)
         writer.write_enum_value("reasonCode", self.reason_code)

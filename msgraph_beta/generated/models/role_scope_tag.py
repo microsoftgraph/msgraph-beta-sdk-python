@@ -66,6 +66,9 @@ class RoleScopeTag(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .role_scope_tag_auto_assignment import RoleScopeTagAutoAssignment
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

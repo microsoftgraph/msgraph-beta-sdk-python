@@ -54,6 +54,9 @@ class RulesRoot(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .detection_rule import DetectionRule
+
         writer.write_collection_of_object_values("detectionRules", self.detection_rules)
     
 

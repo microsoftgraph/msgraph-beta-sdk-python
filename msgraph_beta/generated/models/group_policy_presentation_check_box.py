@@ -54,6 +54,8 @@ class GroupPolicyPresentationCheckBox(GroupPolicyUploadedPresentation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
+
         writer.write_bool_value("defaultChecked", self.default_checked)
     
 

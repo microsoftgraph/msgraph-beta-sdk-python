@@ -62,6 +62,9 @@ class OperationApprovalPolicySet(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .operation_approval_policy_platform import OperationApprovalPolicyPlatform
+        from .operation_approval_policy_type import OperationApprovalPolicyType
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("policyPlatform", self.policy_platform)
         writer.write_enum_value("policyType", self.policy_type)

@@ -69,6 +69,9 @@ class WebAccount(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .item_facet import ItemFacet
+        from .service_information import ServiceInformation
+
         writer.write_str_value("description", self.description)
         writer.write_object_value("service", self.service)
         writer.write_str_value("statusMessage", self.status_message)

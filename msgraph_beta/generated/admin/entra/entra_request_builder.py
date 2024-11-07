@@ -51,7 +51,7 @@ class EntraRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[EntraRequestBuilderGetQueryParameters]] = None) -> Optional[Entra]:
         """
-        Get entra from admin
+        A container for Microsoft Entra resources. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Entra]
         """
@@ -108,7 +108,7 @@ class EntraRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[EntraRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get entra from admin
+        A container for Microsoft Entra resources. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -164,7 +164,7 @@ class EntraRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EntraRequestBuilderGetQueryParameters():
         """
-        Get entra from admin
+        A container for Microsoft Entra resources. Read-only.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

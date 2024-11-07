@@ -56,6 +56,8 @@ class TransformationAttribute(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .custom_claim_attribute_base import CustomClaimAttributeBase
+
         writer.write_object_value("attribute", self.attribute)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bool_value("treatAsMultiValue", self.treat_as_multi_value)

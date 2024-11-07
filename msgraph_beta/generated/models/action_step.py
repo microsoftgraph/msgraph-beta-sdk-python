@@ -59,6 +59,8 @@ class ActionStep(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .action_url import ActionUrl
+
         writer.write_object_value("actionUrl", self.action_url)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("stepNumber", self.step_number)

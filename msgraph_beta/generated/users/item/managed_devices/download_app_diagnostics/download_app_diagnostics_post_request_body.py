@@ -50,6 +50,8 @@ class DownloadAppDiagnosticsPostRequestBody(AdditionalDataHolder, BackedModel, P
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .....models.powerlift_download_request import PowerliftDownloadRequest
+
         writer.write_object_value("request", self.request)
         writer.write_additional_data_value(self.additional_data)
     

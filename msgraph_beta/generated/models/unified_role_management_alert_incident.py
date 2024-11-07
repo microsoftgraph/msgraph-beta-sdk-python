@@ -30,7 +30,8 @@ class UnifiedRoleManagementAlertIncident(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.invalidLicenseAlertIncident".casefold():
@@ -101,5 +102,14 @@ class UnifiedRoleManagementAlertIncident(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .invalid_license_alert_incident import InvalidLicenseAlertIncident
+        from .no_mfa_on_role_activation_alert_incident import NoMfaOnRoleActivationAlertIncident
+        from .redundant_assignment_alert_incident import RedundantAssignmentAlertIncident
+        from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
+        from .sequential_activation_renewals_alert_incident import SequentialActivationRenewalsAlertIncident
+        from .stale_sign_in_alert_incident import StaleSignInAlertIncident
+        from .too_many_global_admins_assigned_to_tenant_alert_incident import TooManyGlobalAdminsAssignedToTenantAlertIncident
+
     
 

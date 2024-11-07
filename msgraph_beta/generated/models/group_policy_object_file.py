@@ -71,6 +71,8 @@ class GroupPolicyObjectFile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("content", self.content)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_uuid_value("groupPolicyObjectId", self.group_policy_object_id)

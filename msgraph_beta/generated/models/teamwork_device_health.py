@@ -94,6 +94,14 @@ class TeamworkDeviceHealth(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .identity_set import IdentitySet
+        from .teamwork_connection import TeamworkConnection
+        from .teamwork_hardware_health import TeamworkHardwareHealth
+        from .teamwork_login_status import TeamworkLoginStatus
+        from .teamwork_peripherals_health import TeamworkPeripheralsHealth
+        from .teamwork_software_update_health import TeamworkSoftwareUpdateHealth
+
         writer.write_object_value("connection", self.connection)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

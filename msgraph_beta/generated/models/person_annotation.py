@@ -60,6 +60,9 @@ class PersonAnnotation(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .item_body import ItemBody
+        from .item_facet import ItemFacet
+
         writer.write_object_value("detail", self.detail)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("thumbnailUrl", self.thumbnail_url)

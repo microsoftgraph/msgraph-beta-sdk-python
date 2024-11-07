@@ -35,7 +35,8 @@ class ForwardingRule(PolicyRule):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.internetAccessForwardingRule".casefold():
@@ -91,6 +92,14 @@ class ForwardingRule(PolicyRule):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .forwarding_rule_action import ForwardingRuleAction
+        from .internet_access_forwarding_rule import InternetAccessForwardingRule
+        from .m365_forwarding_rule import M365ForwardingRule
+        from .network_destination_type import NetworkDestinationType
+        from .policy_rule import PolicyRule
+        from .private_access_forwarding_rule import PrivateAccessForwardingRule
+        from .rule_destination import RuleDestination
+
         writer.write_enum_value("action", self.action)
         writer.write_collection_of_object_values("destinations", self.destinations)
         writer.write_enum_value("ruleType", self.rule_type)

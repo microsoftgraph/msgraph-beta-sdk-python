@@ -60,6 +60,9 @@ class UsageRight(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .usage_right_state import UsageRightState
+
         writer.write_str_value("catalogId", self.catalog_id)
         writer.write_str_value("serviceIdentifier", self.service_identifier)
         writer.write_enum_value("state", self.state)

@@ -60,6 +60,9 @@ class TermsAndConditionsGroupAssignment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .terms_and_conditions import TermsAndConditions
+
         writer.write_str_value("targetGroupId", self.target_group_id)
         writer.write_object_value("termsAndConditions", self.terms_and_conditions)
     

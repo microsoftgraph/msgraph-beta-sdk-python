@@ -102,6 +102,9 @@ class PlannerTaskPropertyRule(PlannerPropertyRule):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .planner_field_rules import PlannerFieldRules
+        from .planner_property_rule import PlannerPropertyRule
+
         writer.write_object_value("appliedCategories", self.applied_categories)
         writer.write_object_value("approvalAttachment", self.approval_attachment)
         writer.write_object_value("assignments", self.assignments)

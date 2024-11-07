@@ -85,6 +85,11 @@ class ProgramControl(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .program import Program
+        from .program_resource import ProgramResource
+        from .user_identity import UserIdentity
+
         writer.write_str_value("controlId", self.control_id)
         writer.write_str_value("controlTypeId", self.control_type_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

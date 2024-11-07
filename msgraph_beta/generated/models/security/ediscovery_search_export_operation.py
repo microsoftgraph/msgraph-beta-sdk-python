@@ -18,9 +18,9 @@ from .case_operation import CaseOperation
 class EdiscoverySearchExportOperation(CaseOperation):
     # The additional items to include in the export. The possible values are: none, teamsAndYammerConversations, cloudAttachments, allDocumentVersions, subfolderContents, listAttachments, unknownFutureValue.
     additional_options: Optional[AdditionalOptions] = None
-    # The name of export provided by the user.
-    description: Optional[str] = None
     # The description of the export by the user.
+    description: Optional[str] = None
+    # The name of export provided by the user.
     display_name: Optional[str] = None
     # Items to be included in the export. The possible values are: searchHits, partiallyIndexed, unknownFutureValue.
     export_criteria: Optional[ExportCriteria] = None
@@ -93,6 +93,14 @@ class EdiscoverySearchExportOperation(CaseOperation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .additional_options import AdditionalOptions
+        from .case_operation import CaseOperation
+        from .ediscovery_search import EdiscoverySearch
+        from .export_criteria import ExportCriteria
+        from .export_file_metadata import ExportFileMetadata
+        from .export_format import ExportFormat
+        from .export_location import ExportLocation
+
         writer.write_enum_value("additionalOptions", self.additional_options)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

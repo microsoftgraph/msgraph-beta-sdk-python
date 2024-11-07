@@ -115,6 +115,17 @@ class PlannerPlan(PlannerDelta):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .identity_set import IdentitySet
+        from .planner_archival_info import PlannerArchivalInfo
+        from .planner_bucket import PlannerBucket
+        from .planner_delta import PlannerDelta
+        from .planner_plan_container import PlannerPlanContainer
+        from .planner_plan_context_collection import PlannerPlanContextCollection
+        from .planner_plan_creation import PlannerPlanCreation
+        from .planner_plan_details import PlannerPlanDetails
+        from .planner_shared_with_container import PlannerSharedWithContainer
+        from .planner_task import PlannerTask
+
         writer.write_object_value("archivalInfo", self.archival_info)
         writer.write_collection_of_object_values("buckets", self.buckets)
         writer.write_object_value("container", self.container)

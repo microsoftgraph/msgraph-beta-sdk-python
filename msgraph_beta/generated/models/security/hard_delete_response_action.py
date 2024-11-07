@@ -54,6 +54,9 @@ class HardDeleteResponseAction(ResponseAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .email_entity_identifier import EmailEntityIdentifier
+        from .response_action import ResponseAction
+
         writer.write_enum_value("identifier", self.identifier)
     
 

@@ -54,5 +54,7 @@ class FileValidateOperation(ValidateOperation):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .validate_operation import ValidateOperation
+
     
 

@@ -57,6 +57,8 @@ class DeliveryOptimizationBandwidthAbsolute(DeliveryOptimizationBandwidth):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
+
         writer.write_int_value("maximumDownloadBandwidthInKilobytesPerSecond", self.maximum_download_bandwidth_in_kilobytes_per_second)
         writer.write_int_value("maximumUploadBandwidthInKilobytesPerSecond", self.maximum_upload_bandwidth_in_kilobytes_per_second)
     

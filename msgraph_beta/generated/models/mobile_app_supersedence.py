@@ -63,6 +63,9 @@ class MobileAppSupersedence(MobileAppRelationship):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app_relationship import MobileAppRelationship
+        from .mobile_app_supersedence_type import MobileAppSupersedenceType
+
         writer.write_enum_value("supersedenceType", self.supersedence_type)
     
 

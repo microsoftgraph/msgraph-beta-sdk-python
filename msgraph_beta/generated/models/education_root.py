@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .education_school import EducationSchool
     from .education_synchronization_profile import EducationSynchronizationProfile
     from .education_user import EducationUser
+    from .reports_root import ReportsRoot
 
 @dataclass
 class EducationRoot(AdditionalDataHolder, BackedModel, Parsable):
@@ -23,6 +24,8 @@ class EducationRoot(AdditionalDataHolder, BackedModel, Parsable):
     me: Optional[EducationUser] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The reports property
+    reports: Optional[ReportsRoot] = None
     # The schools property
     schools: Optional[List[EducationSchool]] = None
     # The synchronizationProfiles property
@@ -50,16 +53,19 @@ class EducationRoot(AdditionalDataHolder, BackedModel, Parsable):
         from .education_school import EducationSchool
         from .education_synchronization_profile import EducationSynchronizationProfile
         from .education_user import EducationUser
+        from .reports_root import ReportsRoot
 
         from .education_class import EducationClass
         from .education_school import EducationSchool
         from .education_synchronization_profile import EducationSynchronizationProfile
         from .education_user import EducationUser
+        from .reports_root import ReportsRoot
 
         fields: Dict[str, Callable[[Any], None]] = {
             "classes": lambda n : setattr(self, 'classes', n.get_collection_of_object_values(EducationClass)),
             "me": lambda n : setattr(self, 'me', n.get_object_value(EducationUser)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "reports": lambda n : setattr(self, 'reports', n.get_object_value(ReportsRoot)),
             "schools": lambda n : setattr(self, 'schools', n.get_collection_of_object_values(EducationSchool)),
             "synchronizationProfiles": lambda n : setattr(self, 'synchronization_profiles', n.get_collection_of_object_values(EducationSynchronizationProfile)),
             "users": lambda n : setattr(self, 'users', n.get_collection_of_object_values(EducationUser)),
@@ -74,9 +80,16 @@ class EducationRoot(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .education_class import EducationClass
+        from .education_school import EducationSchool
+        from .education_synchronization_profile import EducationSynchronizationProfile
+        from .education_user import EducationUser
+        from .reports_root import ReportsRoot
+
         writer.write_collection_of_object_values("classes", self.classes)
         writer.write_object_value("me", self.me)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_object_value("reports", self.reports)
         writer.write_collection_of_object_values("schools", self.schools)
         writer.write_collection_of_object_values("synchronizationProfiles", self.synchronization_profiles)
         writer.write_collection_of_object_values("users", self.users)

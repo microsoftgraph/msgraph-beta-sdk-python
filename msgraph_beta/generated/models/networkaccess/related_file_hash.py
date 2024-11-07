@@ -57,6 +57,9 @@ class RelatedFileHash(RelatedResource):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .algorithm import Algorithm
+        from .related_resource import RelatedResource
+
         writer.write_enum_value("algorithm", self.algorithm)
         writer.write_str_value("value", self.value)
     

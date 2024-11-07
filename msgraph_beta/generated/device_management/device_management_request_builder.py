@@ -127,6 +127,7 @@ if TYPE_CHECKING:
     from .reports.reports_request_builder import ReportsRequestBuilder
     from .resource_access_profiles.resource_access_profiles_request_builder import ResourceAccessProfilesRequestBuilder
     from .resource_operations.resource_operations_request_builder import ResourceOperationsRequestBuilder
+    from .retrieve_user_role_detail_with_userid.retrieve_user_role_detail_with_userid_request_builder import RetrieveUserRoleDetailWithUseridRequestBuilder
     from .reusable_policy_settings.reusable_policy_settings_request_builder import ReusablePolicySettingsRequestBuilder
     from .reusable_settings.reusable_settings_request_builder import ReusableSettingsRequestBuilder
     from .role_assignments.role_assignments_request_builder import RoleAssignmentsRequestBuilder
@@ -311,6 +312,18 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from ..models.device_management.device_management import DeviceManagement
 
         return await self.request_adapter.send_async(request_info, DeviceManagement, error_mapping)
+    
+    def retrieve_user_role_detail_with_userid(self,userid: str) -> RetrieveUserRoleDetailWithUseridRequestBuilder:
+        """
+        Provides operations to call the retrieveUserRoleDetail method.
+        param userid: Usage: userid='{userid}'
+        Returns: RetrieveUserRoleDetailWithUseridRequestBuilder
+        """
+        if userid is None:
+            raise TypeError("userid cannot be null.")
+        from .retrieve_user_role_detail_with_userid.retrieve_user_role_detail_with_userid_request_builder import RetrieveUserRoleDetailWithUseridRequestBuilder
+
+        return RetrieveUserRoleDetailWithUseridRequestBuilder(self.request_adapter, self.path_parameters, userid)
     
     def scoped_for_resource_with_resource(self,resource: str) -> ScopedForResourceWithResourceRequestBuilder:
         """

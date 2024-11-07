@@ -63,6 +63,9 @@ class RelatedDestination(RelatedResource):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .networking_protocol import NetworkingProtocol
+        from .related_resource import RelatedResource
+
         writer.write_str_value("fqdn", self.fqdn)
         writer.write_str_value("ip", self.ip)
         writer.write_enum_value("networkingProtocol", self.networking_protocol)

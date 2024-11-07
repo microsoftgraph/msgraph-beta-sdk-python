@@ -100,6 +100,12 @@ class WindowsDriverUpdateProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .driver_update_profile_approval_type import DriverUpdateProfileApprovalType
+        from .entity import Entity
+        from .windows_driver_update_inventory import WindowsDriverUpdateInventory
+        from .windows_driver_update_profile_assignment import WindowsDriverUpdateProfileAssignment
+        from .windows_driver_update_profile_inventory_sync_status import WindowsDriverUpdateProfileInventorySyncStatus
+
         writer.write_enum_value("approvalType", self.approval_type)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

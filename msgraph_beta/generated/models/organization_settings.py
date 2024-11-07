@@ -66,6 +66,10 @@ class OrganizationSettings(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .insights_settings import InsightsSettings
+        from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
+
         writer.write_object_value("contactInsights", self.contact_insights)
         writer.write_object_value("itemInsights", self.item_insights)
         writer.write_object_value("microsoftApplicationDataAccess", self.microsoft_application_data_access)

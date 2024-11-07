@@ -124,6 +124,8 @@ class WindowsProtectionState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("antiMalwareVersion", self.anti_malware_version)
         writer.write_bool_value("attentionRequired", self.attention_required)
         writer.write_bool_value("deviceDeleted", self.device_deleted)

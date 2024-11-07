@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .device_threat_protection_level import DeviceThreatProtectionLevel
     from .operating_system_version_range import OperatingSystemVersionRange
     from .required_password_type import RequiredPasswordType
+    from .wsl_distribution_configuration import WslDistributionConfiguration
 
 from .device_compliance_policy import DeviceCompliancePolicy
 
@@ -91,6 +92,8 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
     valid_operating_system_build_ranges: Optional[List[OperatingSystemVersionRange]] = None
     # When TRUE, indicates that Virtualization-based Security is required to be reported as healthy by Microsoft Azure Attestion. When FALSE, indicates that Virtualization-based Security is not required to be reported as healthy. Default value is FALSE.
     virtualization_based_security_enabled: Optional[bool] = None
+    # The wslDistributions property
+    wsl_distributions: Optional[List[WslDistributionConfiguration]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Windows10CompliancePolicy:
@@ -113,12 +116,14 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
         from .device_threat_protection_level import DeviceThreatProtectionLevel
         from .operating_system_version_range import OperatingSystemVersionRange
         from .required_password_type import RequiredPasswordType
+        from .wsl_distribution_configuration import WslDistributionConfiguration
 
         from .device_compliance_policy import DeviceCompliancePolicy
         from .device_compliance_policy_script import DeviceCompliancePolicyScript
         from .device_threat_protection_level import DeviceThreatProtectionLevel
         from .operating_system_version_range import OperatingSystemVersionRange
         from .required_password_type import RequiredPasswordType
+        from .wsl_distribution_configuration import WslDistributionConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "activeFirewallRequired": lambda n : setattr(self, 'active_firewall_required', n.get_bool_value()),
@@ -157,6 +162,7 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
             "tpmRequired": lambda n : setattr(self, 'tpm_required', n.get_bool_value()),
             "validOperatingSystemBuildRanges": lambda n : setattr(self, 'valid_operating_system_build_ranges', n.get_collection_of_object_values(OperatingSystemVersionRange)),
             "virtualizationBasedSecurityEnabled": lambda n : setattr(self, 'virtualization_based_security_enabled', n.get_bool_value()),
+            "wslDistributions": lambda n : setattr(self, 'wsl_distributions', n.get_collection_of_object_values(WslDistributionConfiguration)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -171,6 +177,13 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_compliance_policy import DeviceCompliancePolicy
+        from .device_compliance_policy_script import DeviceCompliancePolicyScript
+        from .device_threat_protection_level import DeviceThreatProtectionLevel
+        from .operating_system_version_range import OperatingSystemVersionRange
+        from .required_password_type import RequiredPasswordType
+        from .wsl_distribution_configuration import WslDistributionConfiguration
+
         writer.write_bool_value("activeFirewallRequired", self.active_firewall_required)
         writer.write_bool_value("antiSpywareRequired", self.anti_spyware_required)
         writer.write_bool_value("antivirusRequired", self.antivirus_required)
@@ -207,5 +220,6 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy):
         writer.write_bool_value("tpmRequired", self.tpm_required)
         writer.write_collection_of_object_values("validOperatingSystemBuildRanges", self.valid_operating_system_build_ranges)
         writer.write_bool_value("virtualizationBasedSecurityEnabled", self.virtualization_based_security_enabled)
+        writer.write_collection_of_object_values("wslDistributions", self.wsl_distributions)
     
 

@@ -72,6 +72,8 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+
         writer.write_bool_value("advancedThreatProtectionAutoPopulateOnboardingBlob", self.advanced_threat_protection_auto_populate_onboarding_blob)
         writer.write_str_value("advancedThreatProtectionOffboardingBlob", self.advanced_threat_protection_offboarding_blob)
         writer.write_str_value("advancedThreatProtectionOffboardingFilename", self.advanced_threat_protection_offboarding_filename)

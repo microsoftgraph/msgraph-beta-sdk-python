@@ -92,6 +92,11 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .applied_conditional_access_policy_result import AppliedConditionalAccessPolicyResult
+        from .authentication_strength import AuthenticationStrength
+        from .conditional_access_conditions import ConditionalAccessConditions
+        from .conditional_access_rule_satisfied import ConditionalAccessRuleSatisfied
+
         writer.write_object_value("authenticationStrength", self.authentication_strength)
         writer.write_enum_value("conditionsNotSatisfied", self.conditions_not_satisfied)
         writer.write_enum_value("conditionsSatisfied", self.conditions_satisfied)

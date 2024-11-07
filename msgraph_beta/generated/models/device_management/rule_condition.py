@@ -25,7 +25,7 @@ class RuleCondition(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The built-in operator for the rule condition. The possible values are: greaterOrEqual, equal, greater, less, lessOrEqual, notEqual, unknownFutureValue.
     operator: Optional[OperatorType] = None
-    # The relationship type.  Possible values are: and, or.
+    # The relationship type. Possible values are: and, or.
     relationship_type: Optional[RelationshipType] = None
     # The threshold value of the alert condition. The threshold value can be a number in string form or string like 'WestUS'.
     threshold_value: Optional[str] = None
@@ -74,6 +74,11 @@ class RuleCondition(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .aggregation_type import AggregationType
+        from .condition_category import ConditionCategory
+        from .operator_type import OperatorType
+        from .relationship_type import RelationshipType
+
         writer.write_enum_value("aggregation", self.aggregation)
         writer.write_enum_value("conditionCategory", self.condition_category)
         writer.write_str_value("@odata.type", self.odata_type)

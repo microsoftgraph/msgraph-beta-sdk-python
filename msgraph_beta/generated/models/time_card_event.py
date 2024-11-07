@@ -60,6 +60,8 @@ class TimeCardEvent(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .item_body import ItemBody
+
         writer.write_bool_value("atApprovedLocation", self.at_approved_location)
         writer.write_datetime_value("dateTime", self.date_time)
         writer.write_object_value("notes", self.notes)

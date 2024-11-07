@@ -81,6 +81,9 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .access_review_timeout_behavior import AccessReviewTimeoutBehavior
+        from .user_set import UserSet
+
         writer.write_enum_value("accessReviewTimeoutBehavior", self.access_review_timeout_behavior)
         writer.write_int_value("durationInDays", self.duration_in_days)
         writer.write_bool_value("isAccessRecommendationEnabled", self.is_access_recommendation_enabled)

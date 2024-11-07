@@ -61,6 +61,8 @@ class ConditionalAccessPolicyCoverage(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("conditionalAccessPolicyState", self.conditional_access_policy_state)
         writer.write_datetime_value("latestPolicyModifiedDateTime", self.latest_policy_modified_date_time)
         writer.write_bool_value("requiresDeviceCompliance", self.requires_device_compliance)

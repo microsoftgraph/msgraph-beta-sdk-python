@@ -106,6 +106,8 @@ class DirectRoutingLogRow(CallLogRow):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .call_log_row import CallLogRow
+
         writer.write_int_value("callEndSubReason", self.call_end_sub_reason)
         writer.write_str_value("callType", self.call_type)
         writer.write_str_value("calleeNumber", self.callee_number)

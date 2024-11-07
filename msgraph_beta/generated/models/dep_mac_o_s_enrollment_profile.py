@@ -114,6 +114,8 @@ class DepMacOSEnrollmentProfile(DepEnrollmentBaseProfile):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .dep_enrollment_base_profile import DepEnrollmentBaseProfile
+
         writer.write_bool_value("accessibilityScreenDisabled", self.accessibility_screen_disabled)
         writer.write_str_value("adminAccountFullName", self.admin_account_full_name)
         writer.write_str_value("adminAccountPassword", self.admin_account_password)

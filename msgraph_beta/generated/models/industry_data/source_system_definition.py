@@ -60,6 +60,9 @@ class SourceSystemDefinition(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .user_matching_setting import UserMatchingSetting
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("userMatchingSettings", self.user_matching_settings)
         writer.write_str_value("vendor", self.vendor)

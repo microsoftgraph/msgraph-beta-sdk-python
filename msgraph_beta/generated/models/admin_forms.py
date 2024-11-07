@@ -54,6 +54,9 @@ class AdminForms(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .forms_settings import FormsSettings
+
         writer.write_object_value("settings", self.settings)
     
 

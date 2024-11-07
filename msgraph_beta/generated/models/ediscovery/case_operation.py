@@ -49,7 +49,8 @@ class CaseOperation(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.addToReviewSetOperation".casefold():
@@ -135,6 +136,19 @@ class CaseOperation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from ..identity_set import IdentitySet
+        from ..result_info import ResultInfo
+        from .add_to_review_set_operation import AddToReviewSetOperation
+        from .case_action import CaseAction
+        from .case_export_operation import CaseExportOperation
+        from .case_hold_operation import CaseHoldOperation
+        from .case_index_operation import CaseIndexOperation
+        from .case_operation_status import CaseOperationStatus
+        from .estimate_statistics_operation import EstimateStatisticsOperation
+        from .purge_data_operation import PurgeDataOperation
+        from .tag_operation import TagOperation
+
         writer.write_enum_value("action", self.action)
         writer.write_datetime_value("completedDateTime", self.completed_date_time)
         writer.write_object_value("createdBy", self.created_by)

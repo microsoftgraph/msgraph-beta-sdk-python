@@ -63,6 +63,10 @@ class MobileAppPolicySetItem(PolicySetItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .install_intent import InstallIntent
+        from .mobile_app_assignment_settings import MobileAppAssignmentSettings
+        from .policy_set_item import PolicySetItem
+
         writer.write_enum_value("intent", self.intent)
         writer.write_object_value("settings", self.settings)
     

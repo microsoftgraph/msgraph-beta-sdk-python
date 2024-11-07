@@ -44,7 +44,8 @@ class JobResponseBase(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.classificationJobResponse".casefold():
@@ -101,6 +102,12 @@ class JobResponseBase(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .classification_error import ClassificationError
+        from .classification_job_response import ClassificationJobResponse
+        from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
+        from .entity import Entity
+        from .evaluate_label_job_response import EvaluateLabelJobResponse
+
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_object_value("error", self.error)

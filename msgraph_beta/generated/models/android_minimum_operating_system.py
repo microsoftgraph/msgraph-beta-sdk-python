@@ -26,6 +26,8 @@ class AndroidMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable)
     v13_0: Optional[bool] = None
     # When TRUE, only Version 14.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
     v14_0: Optional[bool] = None
+    # When TRUE, only Version 15.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    v15_0: Optional[bool] = None
     # When TRUE, only Version 4.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
     v4_0: Optional[bool] = None
     # When TRUE, only Version 4.0.3 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
@@ -78,6 +80,7 @@ class AndroidMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable)
             "v12_0": lambda n : setattr(self, 'v12_0', n.get_bool_value()),
             "v13_0": lambda n : setattr(self, 'v13_0', n.get_bool_value()),
             "v14_0": lambda n : setattr(self, 'v14_0', n.get_bool_value()),
+            "v15_0": lambda n : setattr(self, 'v15_0', n.get_bool_value()),
             "v4_0": lambda n : setattr(self, 'v4_0', n.get_bool_value()),
             "v4_0_3": lambda n : setattr(self, 'v4_0_3', n.get_bool_value()),
             "v4_1": lambda n : setattr(self, 'v4_1', n.get_bool_value()),
@@ -109,6 +112,7 @@ class AndroidMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable)
         writer.write_bool_value("v12_0", self.v12_0)
         writer.write_bool_value("v13_0", self.v13_0)
         writer.write_bool_value("v14_0", self.v14_0)
+        writer.write_bool_value("v15_0", self.v15_0)
         writer.write_bool_value("v4_0", self.v4_0)
         writer.write_bool_value("v4_0_3", self.v4_0_3)
         writer.write_bool_value("v4_1", self.v4_1)

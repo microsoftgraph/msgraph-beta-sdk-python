@@ -32,7 +32,8 @@ class ApiDataConnector(IndustryDataConnector):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.oneRosterApiDataConnector".casefold():
@@ -74,6 +75,11 @@ class ApiDataConnector(IndustryDataConnector):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .api_format import ApiFormat
+        from .credential import Credential
+        from .industry_data_connector import IndustryDataConnector
+        from .one_roster_api_data_connector import OneRosterApiDataConnector
+
         writer.write_enum_value("apiFormat", self.api_format)
         writer.write_str_value("baseUrl", self.base_url)
         writer.write_object_value("credential", self.credential)

@@ -10,9 +10,9 @@ from .device_management_configuration_choice_setting_definition import DeviceMan
 
 @dataclass
 class DeviceManagementConfigurationChoiceSettingCollectionDefinition(DeviceManagementConfigurationChoiceSettingDefinition):
-    # Maximum number of choices in the collection
+    # Maximum number of choices in the collection. Valid values 1 to 100
     maximum_count: Optional[int] = None
-    # Minimum number of choices in the collection
+    # Minimum number of choices in the collection. Valid values 1 to 100
     minimum_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -54,6 +54,8 @@ class DeviceManagementConfigurationChoiceSettingCollectionDefinition(DeviceManag
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_choice_setting_definition import DeviceManagementConfigurationChoiceSettingDefinition
+
         writer.write_int_value("maximumCount", self.maximum_count)
         writer.write_int_value("minimumCount", self.minimum_count)
     

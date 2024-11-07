@@ -29,8 +29,10 @@ if TYPE_CHECKING:
     from .get_remote_connection_historical_reports.get_remote_connection_historical_reports_request_builder import GetRemoteConnectionHistoricalReportsRequestBuilder
     from .get_shared_use_license_usage_report.get_shared_use_license_usage_report_request_builder import GetSharedUseLicenseUsageReportRequestBuilder
     from .get_total_aggregated_remote_connection_reports.get_total_aggregated_remote_connection_reports_request_builder import GetTotalAggregatedRemoteConnectionReportsRequestBuilder
+    from .retrieve_bulk_action_status_report.retrieve_bulk_action_status_report_request_builder import RetrieveBulkActionStatusReportRequestBuilder
     from .retrieve_connection_quality_reports.retrieve_connection_quality_reports_request_builder import RetrieveConnectionQualityReportsRequestBuilder
     from .retrieve_cross_region_disaster_recovery_report.retrieve_cross_region_disaster_recovery_report_request_builder import RetrieveCrossRegionDisasterRecoveryReportRequestBuilder
+    from .retrieve_frontline_reports.retrieve_frontline_reports_request_builder import RetrieveFrontlineReportsRequestBuilder
 
 class ReportsRequestBuilder(BaseRequestBuilder):
     """
@@ -286,6 +288,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetTotalAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def retrieve_bulk_action_status_report(self) -> RetrieveBulkActionStatusReportRequestBuilder:
+        """
+        Provides operations to call the retrieveBulkActionStatusReport method.
+        """
+        from .retrieve_bulk_action_status_report.retrieve_bulk_action_status_report_request_builder import RetrieveBulkActionStatusReportRequestBuilder
+
+        return RetrieveBulkActionStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def retrieve_connection_quality_reports(self) -> RetrieveConnectionQualityReportsRequestBuilder:
         """
         Provides operations to call the retrieveConnectionQualityReports method.
@@ -302,6 +313,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .retrieve_cross_region_disaster_recovery_report.retrieve_cross_region_disaster_recovery_report_request_builder import RetrieveCrossRegionDisasterRecoveryReportRequestBuilder
 
         return RetrieveCrossRegionDisasterRecoveryReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_frontline_reports(self) -> RetrieveFrontlineReportsRequestBuilder:
+        """
+        Provides operations to call the retrieveFrontlineReports method.
+        """
+        from .retrieve_frontline_reports.retrieve_frontline_reports_request_builder import RetrieveFrontlineReportsRequestBuilder
+
+        return RetrieveFrontlineReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ReportsRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

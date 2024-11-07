@@ -54,6 +54,9 @@ class EducationCsvDataProvider(EducationSynchronizationDataProvider):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .education_synchronization_customizations import EducationSynchronizationCustomizations
+        from .education_synchronization_data_provider import EducationSynchronizationDataProvider
+
         writer.write_object_value("customizations", self.customizations)
     
 

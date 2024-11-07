@@ -16,6 +16,8 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The policySettings property
     policy_settings: Optional[CloudPcPolicySettingType] = None
+    # The reservePercentage property
+    reserve_percentage: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApplyPostRequestBody:
@@ -39,6 +41,7 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "policySettings": lambda n : setattr(self, 'policy_settings', n.get_collection_of_enum_values(CloudPcPolicySettingType)),
+            "reservePercentage": lambda n : setattr(self, 'reserve_percentage', n.get_int_value()),
         }
         return fields
     
@@ -50,7 +53,10 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from ......models.cloud_pc_policy_setting_type import CloudPcPolicySettingType
+
         writer.write_enum_value("policySettings", self.policy_settings)
+        writer.write_int_value("reservePercentage", self.reserve_percentage)
         writer.write_additional_data_value(self.additional_data)
     
 

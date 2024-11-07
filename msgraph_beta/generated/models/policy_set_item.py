@@ -58,7 +58,8 @@ class PolicySetItem(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceCompliancePolicyPolicySetItem".casefold():
@@ -177,6 +178,23 @@ class PolicySetItem(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_compliance_policy_policy_set_item import DeviceCompliancePolicyPolicySetItem
+        from .device_configuration_policy_set_item import DeviceConfigurationPolicySetItem
+        from .device_management_configuration_policy_policy_set_item import DeviceManagementConfigurationPolicyPolicySetItem
+        from .device_management_script_policy_set_item import DeviceManagementScriptPolicySetItem
+        from .enrollment_restrictions_configuration_policy_set_item import EnrollmentRestrictionsConfigurationPolicySetItem
+        from .entity import Entity
+        from .error_code import ErrorCode
+        from .ios_lob_app_provisioning_configuration_policy_set_item import IosLobAppProvisioningConfigurationPolicySetItem
+        from .managed_app_protection_policy_set_item import ManagedAppProtectionPolicySetItem
+        from .managed_device_mobile_app_configuration_policy_set_item import ManagedDeviceMobileAppConfigurationPolicySetItem
+        from .mdm_windows_information_protection_policy_policy_set_item import MdmWindowsInformationProtectionPolicyPolicySetItem
+        from .mobile_app_policy_set_item import MobileAppPolicySetItem
+        from .policy_set_status import PolicySetStatus
+        from .targeted_managed_app_configuration_policy_set_item import TargetedManagedAppConfigurationPolicySetItem
+        from .windows10_enrollment_completion_page_configuration_policy_set_item import Windows10EnrollmentCompletionPageConfigurationPolicySetItem
+        from .windows_autopilot_deployment_profile_policy_set_item import WindowsAutopilotDeploymentProfilePolicySetItem
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("errorCode", self.error_code)

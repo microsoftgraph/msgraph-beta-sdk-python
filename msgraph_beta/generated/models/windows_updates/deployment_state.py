@@ -65,6 +65,10 @@ class DeploymentState(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .deployment_state_reason import DeploymentStateReason
+        from .deployment_state_value import DeploymentStateValue
+        from .requested_deployment_state_value import RequestedDeploymentStateValue
+
         writer.write_enum_value("effectiveValue", self.effective_value)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("reasons", self.reasons)

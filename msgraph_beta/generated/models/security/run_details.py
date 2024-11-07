@@ -66,6 +66,9 @@ class RunDetails(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .hunting_rule_error_code import HuntingRuleErrorCode
+        from .hunting_rule_run_status import HuntingRuleRunStatus
+
         writer.write_enum_value("errorCode", self.error_code)
         writer.write_str_value("failureReason", self.failure_reason)
         writer.write_datetime_value("lastRunDateTime", self.last_run_date_time)

@@ -54,6 +54,9 @@ class ExactMatchDataStore(ExactMatchDataStoreBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .exact_match_data_store_base import ExactMatchDataStoreBase
+        from .exact_match_session import ExactMatchSession
+
         writer.write_collection_of_object_values("sessions", self.sessions)
     
 

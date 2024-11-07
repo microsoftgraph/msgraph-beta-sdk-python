@@ -91,6 +91,11 @@ class KnownIssue(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .knowledge_base_article import KnowledgeBaseArticle
+        from .known_issue_history_item import KnownIssueHistoryItem
+        from .windows_release_health_status import WindowsReleaseHealthStatus
+
         writer.write_str_value("description", self.description)
         writer.write_collection_of_object_values("knownIssueHistories", self.known_issue_histories)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)

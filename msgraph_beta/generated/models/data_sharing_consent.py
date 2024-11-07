@@ -70,6 +70,8 @@ class DataSharingConsent(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_datetime_value("grantDateTime", self.grant_date_time)
         writer.write_bool_value("granted", self.granted)
         writer.write_str_value("grantedByUpn", self.granted_by_upn)

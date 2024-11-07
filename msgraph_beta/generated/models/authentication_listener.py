@@ -29,7 +29,8 @@ class AuthenticationListener(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.invokeUserFlowListener".casefold():
@@ -68,6 +69,10 @@ class AuthenticationListener(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .authentication_source_filter import AuthenticationSourceFilter
+        from .entity import Entity
+        from .invoke_user_flow_listener import InvokeUserFlowListener
+
         writer.write_int_value("priority", self.priority)
         writer.write_object_value("sourceFilter", self.source_filter)
     

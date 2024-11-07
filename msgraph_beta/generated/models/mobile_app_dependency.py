@@ -63,6 +63,9 @@ class MobileAppDependency(MobileAppRelationship):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app_dependency_type import MobileAppDependencyType
+        from .mobile_app_relationship import MobileAppRelationship
+
         writer.write_enum_value("dependencyType", self.dependency_type)
     
 

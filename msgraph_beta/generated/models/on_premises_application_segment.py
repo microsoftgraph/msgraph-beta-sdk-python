@@ -62,6 +62,8 @@ class OnPremisesApplicationSegment(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cors_configuration import CorsConfiguration
+
         writer.write_str_value("alternateUrl", self.alternate_url)
         writer.write_collection_of_object_values("corsConfigurations", self.cors_configurations)
         writer.write_str_value("externalUrl", self.external_url)

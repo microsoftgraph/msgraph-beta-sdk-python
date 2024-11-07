@@ -59,6 +59,8 @@ class DeviceManagementExchangeDeviceClass(AdditionalDataHolder, BackedModel, Par
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_exchange_access_rule_type import DeviceManagementExchangeAccessRuleType
+
         writer.write_str_value("name", self.name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("type", self.type)

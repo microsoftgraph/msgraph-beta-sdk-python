@@ -60,6 +60,9 @@ class DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate(Dev
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_choice_setting_value_default_template import DeviceManagementConfigurationChoiceSettingValueDefaultTemplate
+        from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
+
         writer.write_collection_of_object_values("children", self.children)
         writer.write_str_value("settingDefinitionOptionId", self.setting_definition_option_id)
     

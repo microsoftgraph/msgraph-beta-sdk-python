@@ -61,6 +61,9 @@ class FilteringPolicy(Policy):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .filtering_policy_action import FilteringPolicyAction
+        from .policy import Policy
+
         writer.write_enum_value("action", self.action)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)

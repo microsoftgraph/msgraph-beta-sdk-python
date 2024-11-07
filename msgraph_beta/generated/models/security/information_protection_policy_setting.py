@@ -60,6 +60,8 @@ class InformationProtectionPolicySetting(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_str_value("defaultLabelId", self.default_label_id)
         writer.write_bool_value("isDowngradeJustificationRequired", self.is_downgrade_justification_required)
         writer.write_bool_value("isMandatory", self.is_mandatory)

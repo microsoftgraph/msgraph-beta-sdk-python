@@ -63,6 +63,9 @@ class ApplyLabelAction(InformationProtectionAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .action_source import ActionSource
+        from .information_protection_action import InformationProtectionAction
+
         writer.write_enum_value("actionSource", self.action_source)
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_collection_of_primitive_values("responsibleSensitiveTypeIds", self.responsible_sensitive_type_ids)

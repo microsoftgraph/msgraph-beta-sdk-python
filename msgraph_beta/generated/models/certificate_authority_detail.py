@@ -85,6 +85,9 @@ class CertificateAuthorityDetail(DirectoryObject):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .certificate_authority_type import CertificateAuthorityType
+        from .directory_object import DirectoryObject
+
         writer.write_bytes_value("certificate", self.certificate)
         writer.write_enum_value("certificateAuthorityType", self.certificate_authority_type)
         writer.write_str_value("certificateRevocationListUrl", self.certificate_revocation_list_url)

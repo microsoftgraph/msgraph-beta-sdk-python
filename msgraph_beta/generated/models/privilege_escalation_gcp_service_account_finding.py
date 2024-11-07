@@ -48,5 +48,7 @@ class PrivilegeEscalationGcpServiceAccountFinding(PrivilegeEscalationFinding):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .privilege_escalation_finding import PrivilegeEscalationFinding
+
     
 

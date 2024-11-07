@@ -54,6 +54,9 @@ class AzureDataLakeConnector(FileDataConnector):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .file_data_connector import FileDataConnector
+        from .file_format_reference_value import FileFormatReferenceValue
+
         writer.write_object_value("fileFormat", self.file_format)
     
 

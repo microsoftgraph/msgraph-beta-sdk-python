@@ -54,6 +54,8 @@ class FeatureUpdateCatalogEntry(SoftwareUpdateCatalogEntry):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
+
         writer.write_str_value("buildNumber", self.build_number)
         writer.write_str_value("version", self.version)
     

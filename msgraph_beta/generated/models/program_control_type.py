@@ -54,6 +54,8 @@ class ProgramControlType(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("controlTypeGroupId", self.control_type_group_id)
         writer.write_str_value("displayName", self.display_name)
     

@@ -34,7 +34,8 @@ class CatalogEntry(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.driverUpdateCatalogEntry".casefold():
@@ -90,6 +91,12 @@ class CatalogEntry(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .driver_update_catalog_entry import DriverUpdateCatalogEntry
+        from .feature_update_catalog_entry import FeatureUpdateCatalogEntry
+        from .quality_update_catalog_entry import QualityUpdateCatalogEntry
+        from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
+
         writer.write_datetime_value("deployableUntilDateTime", self.deployable_until_date_time)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("releaseDateTime", self.release_date_time)

@@ -74,6 +74,9 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .alert_severity import AlertSeverity
+        from .impacted_asset import ImpactedAsset
+
         writer.write_str_value("category", self.category)
         writer.write_str_value("description", self.description)
         writer.write_collection_of_object_values("impactedAssets", self.impacted_assets)

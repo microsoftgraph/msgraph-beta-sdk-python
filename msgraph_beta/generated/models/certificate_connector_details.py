@@ -67,6 +67,8 @@ class CertificateConnectorDetails(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("connectorName", self.connector_name)
         writer.write_str_value("connectorVersion", self.connector_version)
         writer.write_datetime_value("enrollmentDateTime", self.enrollment_date_time)

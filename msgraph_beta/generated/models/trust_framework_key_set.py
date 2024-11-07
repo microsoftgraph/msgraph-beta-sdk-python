@@ -60,6 +60,10 @@ class TrustFrameworkKeySet(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .trust_framework_key import TrustFrameworkKey
+        from .trust_framework_key_v2 import TrustFrameworkKey_v2
+
         writer.write_collection_of_object_values("keys", self.keys)
         writer.write_collection_of_object_values("keys_v2", self.keys_v2)
     

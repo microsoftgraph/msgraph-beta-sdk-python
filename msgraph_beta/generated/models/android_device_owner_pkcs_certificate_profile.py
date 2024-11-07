@@ -102,6 +102,14 @@ class AndroidDeviceOwnerPkcsCertificateProfile(AndroidDeviceOwnerCertificateProf
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
+        from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
+        from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
+        from .certificate_store import CertificateStore
+        from .custom_subject_alternative_name import CustomSubjectAlternativeName
+        from .device_management_certification_authority import DeviceManagementCertificationAuthority
+        from .managed_device_certificate_state import ManagedDeviceCertificateState
+
         writer.write_enum_value("certificateAccessType", self.certificate_access_type)
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_str_value("certificateTemplateName", self.certificate_template_name)

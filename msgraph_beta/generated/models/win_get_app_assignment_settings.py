@@ -69,6 +69,11 @@ class WinGetAppAssignmentSettings(MobileAppAssignmentSettings):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .mobile_app_assignment_settings import MobileAppAssignmentSettings
+        from .win_get_app_install_time_settings import WinGetAppInstallTimeSettings
+        from .win_get_app_notification import WinGetAppNotification
+        from .win_get_app_restart_settings import WinGetAppRestartSettings
+
         writer.write_object_value("installTimeSettings", self.install_time_settings)
         writer.write_enum_value("notifications", self.notifications)
         writer.write_object_value("restartSettings", self.restart_settings)

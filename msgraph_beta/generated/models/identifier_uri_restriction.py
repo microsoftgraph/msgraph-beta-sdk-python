@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
     from .app_management_restriction_state import AppManagementRestrictionState
 
 @dataclass
@@ -15,6 +16,8 @@ class IdentifierUriRestriction(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The excludeActors property
+    exclude_actors: Optional[AppManagementPolicyActorExemptions] = None
     # If true, the restriction isn't enforced for applications that are configured to receive V2 tokens in Entra ID; else, the restriction isn't enforced for those applications.
     exclude_apps_receiving_v2_tokens: Optional[bool] = None
     # If true, the restriction isn't enforced for SAML applications in Microsoft Entra ID; else, the restriction is enforced for those applications.
@@ -42,11 +45,14 @@ class IdentifierUriRestriction(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
         from .app_management_restriction_state import AppManagementRestrictionState
 
+        from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
         from .app_management_restriction_state import AppManagementRestrictionState
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "excludeActors": lambda n : setattr(self, 'exclude_actors', n.get_object_value(AppManagementPolicyActorExemptions)),
             "excludeAppsReceivingV2Tokens": lambda n : setattr(self, 'exclude_apps_receiving_v2_tokens', n.get_bool_value()),
             "excludeSaml": lambda n : setattr(self, 'exclude_saml', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -63,6 +69,10 @@ class IdentifierUriRestriction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
+        from .app_management_restriction_state import AppManagementRestrictionState
+
+        writer.write_object_value("excludeActors", self.exclude_actors)
         writer.write_bool_value("excludeAppsReceivingV2Tokens", self.exclude_apps_receiving_v2_tokens)
         writer.write_bool_value("excludeSaml", self.exclude_saml)
         writer.write_str_value("@odata.type", self.odata_type)

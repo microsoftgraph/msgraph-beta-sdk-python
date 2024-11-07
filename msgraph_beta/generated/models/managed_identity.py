@@ -62,6 +62,8 @@ class ManagedIdentity(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .msi_type import MsiType
+
         writer.write_str_value("associatedResourceId", self.associated_resource_id)
         writer.write_str_value("federatedTokenId", self.federated_token_id)
         writer.write_str_value("federatedTokenIssuer", self.federated_token_issuer)

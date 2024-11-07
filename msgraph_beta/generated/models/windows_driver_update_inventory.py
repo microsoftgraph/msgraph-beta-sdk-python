@@ -85,6 +85,10 @@ class WindowsDriverUpdateInventory(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .driver_approval_status import DriverApprovalStatus
+        from .driver_category import DriverCategory
+        from .entity import Entity
+
         writer.write_int_value("applicableDeviceCount", self.applicable_device_count)
         writer.write_enum_value("approvalStatus", self.approval_status)
         writer.write_enum_value("category", self.category)

@@ -51,6 +51,8 @@ class AllPreApprovedPermissionsOnResourceApp(PreApprovedPermissions):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .pre_approved_permissions import PreApprovedPermissions
+
         writer.write_str_value("resourceApplicationId", self.resource_application_id)
     
 

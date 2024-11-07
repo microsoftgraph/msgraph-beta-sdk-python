@@ -54,6 +54,9 @@ class StopAndQuarantineFileResponseAction(ResponseAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .response_action import ResponseAction
+        from .stop_and_quarantine_file_entity_identifier import StopAndQuarantineFileEntityIdentifier
+
         writer.write_enum_value("identifier", self.identifier)
     
 

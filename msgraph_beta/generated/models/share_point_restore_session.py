@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .restore_session_base import RestoreSessionBase
     from .site_restore_artifact import SiteRestoreArtifact
+    from .site_restore_artifacts_bulk_addition_request import SiteRestoreArtifactsBulkAdditionRequest
 
 from .restore_session_base import RestoreSessionBase
 
@@ -15,6 +16,8 @@ class SharePointRestoreSession(RestoreSessionBase):
     odata_type: Optional[str] = "#microsoft.graph.sharePointRestoreSession"
     # A collection of restore points and destination details that can be used to restore SharePoint sites.
     site_restore_artifacts: Optional[List[SiteRestoreArtifact]] = None
+    # The siteRestoreArtifactsBulkAdditionRequests property
+    site_restore_artifacts_bulk_addition_requests: Optional[List[SiteRestoreArtifactsBulkAdditionRequest]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> SharePointRestoreSession:
@@ -34,12 +37,15 @@ class SharePointRestoreSession(RestoreSessionBase):
         """
         from .restore_session_base import RestoreSessionBase
         from .site_restore_artifact import SiteRestoreArtifact
+        from .site_restore_artifacts_bulk_addition_request import SiteRestoreArtifactsBulkAdditionRequest
 
         from .restore_session_base import RestoreSessionBase
         from .site_restore_artifact import SiteRestoreArtifact
+        from .site_restore_artifacts_bulk_addition_request import SiteRestoreArtifactsBulkAdditionRequest
 
         fields: Dict[str, Callable[[Any], None]] = {
             "siteRestoreArtifacts": lambda n : setattr(self, 'site_restore_artifacts', n.get_collection_of_object_values(SiteRestoreArtifact)),
+            "siteRestoreArtifactsBulkAdditionRequests": lambda n : setattr(self, 'site_restore_artifacts_bulk_addition_requests', n.get_collection_of_object_values(SiteRestoreArtifactsBulkAdditionRequest)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,6 +60,11 @@ class SharePointRestoreSession(RestoreSessionBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .restore_session_base import RestoreSessionBase
+        from .site_restore_artifact import SiteRestoreArtifact
+        from .site_restore_artifacts_bulk_addition_request import SiteRestoreArtifactsBulkAdditionRequest
+
         writer.write_collection_of_object_values("siteRestoreArtifacts", self.site_restore_artifacts)
+        writer.write_collection_of_object_values("siteRestoreArtifactsBulkAdditionRequests", self.site_restore_artifacts_bulk_addition_requests)
     
 

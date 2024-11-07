@@ -69,6 +69,8 @@ class Device(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .traffic_type import TrafficType
+
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("isCompliant", self.is_compliant)

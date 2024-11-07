@@ -57,6 +57,8 @@ class AndroidDeviceOwnerKioskModeApp(AndroidDeviceOwnerKioskModeFolderItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_device_owner_kiosk_mode_folder_item import AndroidDeviceOwnerKioskModeFolderItem
+
         writer.write_str_value("className", self.class_name)
         writer.write_str_value("package", self.package)
     

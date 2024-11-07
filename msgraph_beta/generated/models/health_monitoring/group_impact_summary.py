@@ -48,5 +48,7 @@ class GroupImpactSummary(DirectoryObjectImpactSummary):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .directory_object_impact_summary import DirectoryObjectImpactSummary
+
     
 

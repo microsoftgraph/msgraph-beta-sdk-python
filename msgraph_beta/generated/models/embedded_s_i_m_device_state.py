@@ -79,6 +79,9 @@ class EmbeddedSIMDeviceState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .embedded_s_i_m_device_state_value import EmbeddedSIMDeviceStateValue
+        from .entity import Entity
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_datetime_value("lastSyncDateTime", self.last_sync_date_time)

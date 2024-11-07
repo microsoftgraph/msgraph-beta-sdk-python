@@ -88,6 +88,10 @@ class AccessPackageSubject(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_package_subject_lifecycle import AccessPackageSubjectLifecycle
+        from .connected_organization import ConnectedOrganization
+        from .entity import Entity
+
         writer.write_str_value("altSecId", self.alt_sec_id)
         writer.write_datetime_value("cleanupScheduledDateTime", self.cleanup_scheduled_date_time)
         writer.write_object_value("connectedOrganization", self.connected_organization)

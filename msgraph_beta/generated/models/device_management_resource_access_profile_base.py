@@ -47,7 +47,8 @@ class DeviceManagementResourceAccessProfileBase(Entity):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10XCertificateProfile".casefold():
@@ -115,6 +116,14 @@ class DeviceManagementResourceAccessProfileBase(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_resource_access_profile_assignment import DeviceManagementResourceAccessProfileAssignment
+        from .entity import Entity
+        from .windows10_x_certificate_profile import Windows10XCertificateProfile
+        from .windows10_x_s_c_e_p_certificate_profile import Windows10XSCEPCertificateProfile
+        from .windows10_x_trusted_root_certificate import Windows10XTrustedRootCertificate
+        from .windows10_x_vpn_configuration import Windows10XVpnConfiguration
+        from .windows10_x_wifi_configuration import Windows10XWifiConfiguration
+
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_str_value("description", self.description)

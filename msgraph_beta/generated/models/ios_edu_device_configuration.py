@@ -63,6 +63,9 @@ class IosEduDeviceConfiguration(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_configuration import DeviceConfiguration
+        from .ios_edu_certificate_settings import IosEduCertificateSettings
+
         writer.write_object_value("deviceCertificateSettings", self.device_certificate_settings)
         writer.write_object_value("studentCertificateSettings", self.student_certificate_settings)
         writer.write_object_value("teacherCertificateSettings", self.teacher_certificate_settings)

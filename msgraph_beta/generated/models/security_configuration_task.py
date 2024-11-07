@@ -87,6 +87,13 @@ class SecurityConfigurationTask(DeviceAppManagementTask):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_app_management_task import DeviceAppManagementTask
+        from .endpoint_security_configuration_applicable_platform import EndpointSecurityConfigurationApplicablePlatform
+        from .endpoint_security_configuration_profile_type import EndpointSecurityConfigurationProfileType
+        from .endpoint_security_configuration_type import EndpointSecurityConfigurationType
+        from .key_value_pair import KeyValuePair
+        from .vulnerable_managed_device import VulnerableManagedDevice
+
         writer.write_enum_value("applicablePlatform", self.applicable_platform)
         writer.write_enum_value("endpointSecurityPolicy", self.endpoint_security_policy)
         writer.write_enum_value("endpointSecurityPolicyProfile", self.endpoint_security_policy_profile)

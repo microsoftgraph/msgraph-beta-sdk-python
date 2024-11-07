@@ -85,6 +85,10 @@ class UserSecurityProfile(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .security_vendor_information import SecurityVendorInformation
+        from .user_account import UserAccount
+
         writer.write_collection_of_object_values("accounts", self.accounts)
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)
         writer.write_str_value("azureTenantId", self.azure_tenant_id)

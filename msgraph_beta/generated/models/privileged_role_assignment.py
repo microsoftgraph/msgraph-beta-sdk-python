@@ -70,6 +70,9 @@ class PrivilegedRoleAssignment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .privileged_role import PrivilegedRole
+
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_bool_value("isElevated", self.is_elevated)
         writer.write_str_value("resultMessage", self.result_message)

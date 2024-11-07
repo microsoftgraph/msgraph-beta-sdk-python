@@ -57,6 +57,8 @@ class AccessReviewInstanceDecisionItemUserTarget(AccessReviewInstanceDecisionIte
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_review_instance_decision_item_target import AccessReviewInstanceDecisionItemTarget
+
         writer.write_str_value("userDisplayName", self.user_display_name)
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userPrincipalName", self.user_principal_name)

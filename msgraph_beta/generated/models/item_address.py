@@ -63,6 +63,10 @@ class ItemAddress(ItemFacet):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .geo_coordinates import GeoCoordinates
+        from .item_facet import ItemFacet
+        from .physical_address import PhysicalAddress
+
         writer.write_object_value("detail", self.detail)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("geoCoordinates", self.geo_coordinates)

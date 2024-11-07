@@ -60,6 +60,8 @@ class CertificateAuthorityAsEntity(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_bytes_value("certificate", self.certificate)
         writer.write_bool_value("isRootAuthority", self.is_root_authority)
         writer.write_str_value("issuer", self.issuer)

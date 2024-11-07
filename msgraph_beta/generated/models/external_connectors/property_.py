@@ -86,6 +86,10 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .label import Label
+        from .property_type import PropertyType
+        from .ranking_hint import RankingHint
+
         writer.write_collection_of_primitive_values("aliases", self.aliases)
         writer.write_bool_value("isExactMatchRequired", self.is_exact_match_required)
         writer.write_bool_value("isQueryable", self.is_queryable)

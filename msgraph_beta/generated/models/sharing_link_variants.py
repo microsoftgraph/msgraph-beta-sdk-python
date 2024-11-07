@@ -65,6 +65,9 @@ class SharingLinkVariants(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .sharing_operation_status import SharingOperationStatus
+        from .sharing_role import SharingRole
+
         writer.write_enum_value("addressBarLinkPermission", self.address_bar_link_permission)
         writer.write_object_value("allowEmbed", self.allow_embed)
         writer.write_str_value("@odata.type", self.odata_type)

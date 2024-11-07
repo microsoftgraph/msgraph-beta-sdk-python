@@ -57,6 +57,8 @@ class DeviceManagementConfigurationRedirectSettingDefinition(DeviceManagementCon
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_management_configuration_setting_definition import DeviceManagementConfigurationSettingDefinition
+
         writer.write_str_value("deepLink", self.deep_link)
         writer.write_str_value("redirectMessage", self.redirect_message)
         writer.write_str_value("redirectReason", self.redirect_reason)

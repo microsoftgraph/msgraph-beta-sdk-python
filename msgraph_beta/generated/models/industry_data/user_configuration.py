@@ -62,6 +62,9 @@ class UserConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .password_settings import PasswordSettings
+        from .role_group import RoleGroup
+
         writer.write_object_value("defaultPasswordSettings", self.default_password_settings)
         writer.write_collection_of_primitive_values("licenseSkus", self.license_skus)
         writer.write_str_value("@odata.type", self.odata_type)

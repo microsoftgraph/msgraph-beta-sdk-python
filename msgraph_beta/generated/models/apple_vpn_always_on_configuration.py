@@ -89,6 +89,10 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .specified_captive_network_plugins import SpecifiedCaptiveNetworkPlugins
+        from .vpn_service_exception_action import VpnServiceExceptionAction
+        from .vpn_tunnel_configuration_type import VpnTunnelConfigurationType
+
         writer.write_enum_value("airPrintExceptionAction", self.air_print_exception_action)
         writer.write_bool_value("allowAllCaptiveNetworkPlugins", self.allow_all_captive_network_plugins)
         writer.write_bool_value("allowCaptiveWebSheet", self.allow_captive_web_sheet)

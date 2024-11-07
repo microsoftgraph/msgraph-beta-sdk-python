@@ -59,6 +59,8 @@ class BranchConnectivityConfiguration(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .connectivity_configuration_link import ConnectivityConfigurationLink
+
         writer.write_str_value("branchId", self.branch_id)
         writer.write_str_value("branchName", self.branch_name)
         writer.write_collection_of_object_values("links", self.links)

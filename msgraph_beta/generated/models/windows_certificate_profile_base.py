@@ -48,7 +48,8 @@ class WindowsCertificateProfileBase(DeviceConfiguration):
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10CertificateProfileBase".casefold():
@@ -127,6 +128,18 @@ class WindowsCertificateProfileBase(DeviceConfiguration):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .certificate_validity_period_scale import CertificateValidityPeriodScale
+        from .device_configuration import DeviceConfiguration
+        from .key_storage_provider_option import KeyStorageProviderOption
+        from .subject_alternative_name_type import SubjectAlternativeNameType
+        from .subject_name_format import SubjectNameFormat
+        from .windows10_certificate_profile_base import Windows10CertificateProfileBase
+        from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
+        from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
+        from .windows81_certificate_profile_base import Windows81CertificateProfileBase
+        from .windows81_s_c_e_p_certificate_profile import Windows81SCEPCertificateProfile
+        from .windows_phone81_imported_p_f_x_certificate_profile import WindowsPhone81ImportedPFXCertificateProfile
+
         writer.write_enum_value("certificateValidityPeriodScale", self.certificate_validity_period_scale)
         writer.write_int_value("certificateValidityPeriodValue", self.certificate_validity_period_value)
         writer.write_enum_value("keyStorageProvider", self.key_storage_provider)

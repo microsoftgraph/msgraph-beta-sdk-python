@@ -51,7 +51,7 @@ class ConnectRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         from ....models.chrome_o_s_onboarding_status import ChromeOSOnboardingStatus
 
-        return await self.request_adapter.send_async(request_info, chromeOSOnboardingStatus, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "chromeOSOnboardingStatus", error_mapping)
     
     def to_post_request_information(self,body: ConnectPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """

@@ -52,6 +52,9 @@ class GroupPolicyUploadedDefinitionFileCollectionResponse(BaseCollectionPaginati
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
+
         writer.write_collection_of_object_values("value", self.value)
     
 

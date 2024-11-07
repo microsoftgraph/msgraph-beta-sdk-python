@@ -66,6 +66,9 @@ class StatusDetails(StatusBase):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .provisioning_status_error_category import ProvisioningStatusErrorCategory
+        from .status_base import StatusBase
+
         writer.write_str_value("additionalDetails", self.additional_details)
         writer.write_enum_value("errorCategory", self.error_category)
         writer.write_str_value("errorCode", self.error_code)

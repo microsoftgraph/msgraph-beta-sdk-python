@@ -39,7 +39,8 @@ class DeviceManagementConfigurationSettingValue(AdditionalDataHolder, BackedMode
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue".casefold():
@@ -109,6 +110,15 @@ class DeviceManagementConfigurationSettingValue(AdditionalDataHolder, BackedMode
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_configuration_choice_setting_value import DeviceManagementConfigurationChoiceSettingValue
+        from .device_management_configuration_group_setting_value import DeviceManagementConfigurationGroupSettingValue
+        from .device_management_configuration_integer_setting_value import DeviceManagementConfigurationIntegerSettingValue
+        from .device_management_configuration_reference_setting_value import DeviceManagementConfigurationReferenceSettingValue
+        from .device_management_configuration_secret_setting_value import DeviceManagementConfigurationSecretSettingValue
+        from .device_management_configuration_setting_value_template_reference import DeviceManagementConfigurationSettingValueTemplateReference
+        from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
+        from .device_management_configuration_string_setting_value import DeviceManagementConfigurationStringSettingValue
+
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("settingValueTemplateReference", self.setting_value_template_reference)
         writer.write_additional_data_value(self.additional_data)

@@ -62,6 +62,9 @@ class ApplicableContent(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .applicable_content_device_match import ApplicableContentDeviceMatch
+        from .catalog_entry import CatalogEntry
+
         writer.write_object_value("catalogEntry", self.catalog_entry)
         writer.write_str_value("catalogEntryId", self.catalog_entry_id)
         writer.write_collection_of_object_values("matchedDevices", self.matched_devices)

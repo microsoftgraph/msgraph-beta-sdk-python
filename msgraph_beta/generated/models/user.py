@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .calendar_group import CalendarGroup
     from .chat import Chat
     from .cloud_clipboard_root import CloudClipboardRoot
+    from .cloud_licensing.user_cloud_licensing import UserCloudLicensing
     from .cloud_p_c import CloudPC
     from .cloud_realtime_communication_info import CloudRealtimeCommunicationInfo
     from .contact import Contact
@@ -137,6 +138,8 @@ class User(DirectoryObject):
     city: Optional[str] = None
     # The cloudClipboard property
     cloud_clipboard: Optional[CloudClipboardRoot] = None
+    # The relationships of a user to cloud licensing resources.
+    cloud_licensing: Optional[UserCloudLicensing] = None
     # The cloudPCs property
     cloud_p_cs: Optional[List[CloudPC]] = None
     # Microsoft realtime communication information related to the user.  Supports $filter (eq, ne,not).
@@ -433,6 +436,7 @@ class User(DirectoryObject):
         from .calendar_group import CalendarGroup
         from .chat import Chat
         from .cloud_clipboard_root import CloudClipboardRoot
+        from .cloud_licensing.user_cloud_licensing import UserCloudLicensing
         from .cloud_p_c import CloudPC
         from .cloud_realtime_communication_info import CloudRealtimeCommunicationInfo
         from .contact import Contact
@@ -510,6 +514,7 @@ class User(DirectoryObject):
         from .calendar_group import CalendarGroup
         from .chat import Chat
         from .cloud_clipboard_root import CloudClipboardRoot
+        from .cloud_licensing.user_cloud_licensing import UserCloudLicensing
         from .cloud_p_c import CloudPC
         from .cloud_realtime_communication_info import CloudRealtimeCommunicationInfo
         from .contact import Contact
@@ -598,6 +603,7 @@ class User(DirectoryObject):
             "chats": lambda n : setattr(self, 'chats', n.get_collection_of_object_values(Chat)),
             "city": lambda n : setattr(self, 'city', n.get_str_value()),
             "cloudClipboard": lambda n : setattr(self, 'cloud_clipboard', n.get_object_value(CloudClipboardRoot)),
+            "cloudLicensing": lambda n : setattr(self, 'cloud_licensing', n.get_object_value(UserCloudLicensing)),
             "cloudPCs": lambda n : setattr(self, 'cloud_p_cs', n.get_collection_of_object_values(CloudPC)),
             "cloudRealtimeCommunicationInfo": lambda n : setattr(self, 'cloud_realtime_communication_info', n.get_object_value(CloudRealtimeCommunicationInfo)),
             "companyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
@@ -745,6 +751,84 @@ class User(DirectoryObject):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .access_review_instance import AccessReviewInstance
+        from .agreement_acceptance import AgreementAcceptance
+        from .approval import Approval
+        from .app_consent_request import AppConsentRequest
+        from .app_role_assignment import AppRoleAssignment
+        from .assigned_license import AssignedLicense
+        from .assigned_plan import AssignedPlan
+        from .authentication import Authentication
+        from .authorization_info import AuthorizationInfo
+        from .calendar import Calendar
+        from .calendar_group import CalendarGroup
+        from .chat import Chat
+        from .cloud_clipboard_root import CloudClipboardRoot
+        from .cloud_licensing.user_cloud_licensing import UserCloudLicensing
+        from .cloud_p_c import CloudPC
+        from .cloud_realtime_communication_info import CloudRealtimeCommunicationInfo
+        from .contact import Contact
+        from .contact_folder import ContactFolder
+        from .custom_security_attribute_value import CustomSecurityAttributeValue
+        from .device import Device
+        from .device_enrollment_configuration import DeviceEnrollmentConfiguration
+        from .device_key import DeviceKey
+        from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
+        from .directory_object import DirectoryObject
+        from .drive import Drive
+        from .employee_experience_user import EmployeeExperienceUser
+        from .employee_org_data import EmployeeOrgData
+        from .event import Event
+        from .extension import Extension
+        from .group import Group
+        from .inference_classification import InferenceClassification
+        from .information_protection import InformationProtection
+        from .item_insights import ItemInsights
+        from .license_assignment_state import LicenseAssignmentState
+        from .license_details import LicenseDetails
+        from .mailbox_settings import MailboxSettings
+        from .mail_folder import MailFolder
+        from .managed_app_log_collection_request import ManagedAppLogCollectionRequest
+        from .managed_app_registration import ManagedAppRegistration
+        from .managed_device import ManagedDevice
+        from .message import Message
+        from .mobile_app_intent_and_state import MobileAppIntentAndState
+        from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
+        from .notification import Notification
+        from .object_identity import ObjectIdentity
+        from .onenote import Onenote
+        from .online_meeting import OnlineMeeting
+        from .on_premises_extension_attributes import OnPremisesExtensionAttributes
+        from .on_premises_provisioning_error import OnPremisesProvisioningError
+        from .on_premises_sip_info import OnPremisesSipInfo
+        from .outlook_user import OutlookUser
+        from .o_auth2_permission_grant import OAuth2PermissionGrant
+        from .password_profile import PasswordProfile
+        from .person import Person
+        from .planner_user import PlannerUser
+        from .presence import Presence
+        from .profile import Profile
+        from .profile_photo import ProfilePhoto
+        from .provisioned_plan import ProvisionedPlan
+        from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
+        from .scoped_role_membership import ScopedRoleMembership
+        from .security.security import Security
+        from .service_principal import ServicePrincipal
+        from .service_provisioning_error import ServiceProvisioningError
+        from .sign_in_activity import SignInActivity
+        from .site import Site
+        from .team import Team
+        from .todo import Todo
+        from .usage_right import UsageRight
+        from .user_activity import UserActivity
+        from .user_analytics import UserAnalytics
+        from .user_print import UserPrint
+        from .user_settings import UserSettings
+        from .user_solution_root import UserSolutionRoot
+        from .user_teamwork import UserTeamwork
+        from .user_virtual_events_root import UserVirtualEventsRoot
+        from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
+
         writer.write_str_value("aboutMe", self.about_me)
         writer.write_bool_value("accountEnabled", self.account_enabled)
         writer.write_collection_of_object_values("activities", self.activities)
@@ -768,6 +852,7 @@ class User(DirectoryObject):
         writer.write_collection_of_object_values("chats", self.chats)
         writer.write_str_value("city", self.city)
         writer.write_object_value("cloudClipboard", self.cloud_clipboard)
+        writer.write_object_value("cloudLicensing", self.cloud_licensing)
         writer.write_collection_of_object_values("cloudPCs", self.cloud_p_cs)
         writer.write_object_value("cloudRealtimeCommunicationInfo", self.cloud_realtime_communication_info)
         writer.write_str_value("companyName", self.company_name)

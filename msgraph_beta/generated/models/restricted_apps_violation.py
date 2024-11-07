@@ -87,6 +87,11 @@ class RestrictedAppsViolation(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .managed_device_reported_app import ManagedDeviceReportedApp
+        from .policy_platform_type import PolicyPlatformType
+        from .restricted_apps_state import RestrictedAppsState
+
         writer.write_str_value("deviceConfigurationId", self.device_configuration_id)
         writer.write_str_value("deviceConfigurationName", self.device_configuration_name)
         writer.write_str_value("deviceName", self.device_name)

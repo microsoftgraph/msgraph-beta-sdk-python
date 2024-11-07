@@ -51,5 +51,7 @@ class DeviceCompliancePolicyPolicySetItem(PolicySetItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .policy_set_item import PolicySetItem
+
     
 

@@ -121,6 +121,8 @@ class Office365ActiveUserDetail(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_collection_of_primitive_values("assignedProducts", self.assigned_products)
         writer.write_date_value("deletedDate", self.deleted_date)
         writer.write_str_value("displayName", self.display_name)

@@ -40,7 +40,8 @@ class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, BackedModel, Par
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
         try:
-            mapping_value = parse_node.get_child_node("@odata.type").get_str_value()
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppPolicyCreationHistory".casefold():
@@ -99,6 +100,13 @@ class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, BackedModel, Par
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_troubleshooting_error_details import DeviceManagementTroubleshootingErrorDetails
+        from .mobile_app_troubleshooting_app_policy_creation_history import MobileAppTroubleshootingAppPolicyCreationHistory
+        from .mobile_app_troubleshooting_app_state_history import MobileAppTroubleshootingAppStateHistory
+        from .mobile_app_troubleshooting_app_target_history import MobileAppTroubleshootingAppTargetHistory
+        from .mobile_app_troubleshooting_app_update_history import MobileAppTroubleshootingAppUpdateHistory
+        from .mobile_app_troubleshooting_device_checkin_history import MobileAppTroubleshootingDeviceCheckinHistory
+
         writer.write_datetime_value("occurrenceDateTime", self.occurrence_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("troubleshootingErrorDetails", self.troubleshooting_error_details)

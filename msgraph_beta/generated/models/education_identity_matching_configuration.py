@@ -54,6 +54,9 @@ class EducationIdentityMatchingConfiguration(EducationIdentitySynchronizationCon
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .education_identity_matching_options import EducationIdentityMatchingOptions
+        from .education_identity_synchronization_configuration import EducationIdentitySynchronizationConfiguration
+
         writer.write_collection_of_object_values("matchingOptions", self.matching_options)
     
 

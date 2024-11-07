@@ -112,6 +112,8 @@ class CloudPcOverview(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+
         writer.write_int_value("frontlineLicensesCount", self.frontline_licenses_count)
         writer.write_datetime_value("lastRefreshedDateTime", self.last_refreshed_date_time)
         writer.write_int_value("numberOfCloudPcConnectionStatusFailed", self.number_of_cloud_pc_connection_status_failed)

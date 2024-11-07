@@ -61,6 +61,9 @@ class GroupPolicyConfigurationAssignment(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .device_and_app_management_assignment_target import DeviceAndAppManagementAssignmentTarget
+        from .entity import Entity
+
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_object_value("target", self.target)
     

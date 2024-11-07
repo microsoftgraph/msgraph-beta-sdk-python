@@ -51,5 +51,7 @@ class AndroidWorkProfileGmailEasConfiguration(AndroidWorkProfileEasEmailProfileB
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_work_profile_eas_email_profile_base import AndroidWorkProfileEasEmailProfileBase
+
     
 

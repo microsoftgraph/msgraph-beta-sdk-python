@@ -67,6 +67,10 @@ class DocumentProcessingJob(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .document_processing_job_status import DocumentProcessingJobStatus
+        from .document_processing_job_type import DocumentProcessingJobType
+        from .entity import Entity
+
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_enum_value("jobType", self.job_type)
         writer.write_str_value("listItemUniqueId", self.list_item_unique_id)

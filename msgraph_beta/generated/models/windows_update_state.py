@@ -79,6 +79,9 @@ class WindowsUpdateState(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .windows_update_status import WindowsUpdateStatus
+
         writer.write_str_value("deviceDisplayName", self.device_display_name)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("featureUpdateVersion", self.feature_update_version)

@@ -18,7 +18,7 @@ from .entity import Entity
 
 @dataclass
 class ServicePrincipalRiskDetection(Entity):
-    # Indicates the activity type the detected risk is linked to.  The possible values are: signin, servicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: servicePrincipal.
+    # Indicates the activity type the detected risk is linked to. The possible values are: signin, servicePrincipal. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipal.
     activity: Optional[ActivityType] = None
     # Date and time when the risky activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     activity_date_time: Optional[datetime.datetime] = None
@@ -26,11 +26,11 @@ class ServicePrincipalRiskDetection(Entity):
     additional_info: Optional[str] = None
     # The unique identifier for the associated application.
     app_id: Optional[str] = None
-    # Correlation ID of the sign-in activity associated with the risk detection. This property is null if the risk detection is not associated with a sign-in activity.
+    # Correlation ID of the sign-in activity associated with the risk detection. This property is null if the risk detection isn't associated with a sign-in activity.
     correlation_id: Optional[str] = None
     # Date and time when the risk was detected. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     detected_date_time: Optional[datetime.datetime] = None
-    # Timing of the detected risk , whether real-time or offline). The possible values are: notDefined, realtime, nearRealtime, offline, unknownFutureValue.
+    # Timing of the detected risk, whether real-time or offline). The possible values are: notDefined, realtime, nearRealtime, offline, unknownFutureValue.
     detection_timing_type: Optional[RiskDetectionTimingType] = None
     # Provides the IP address of the client from where the risk occurred.
     ip_address: Optional[str] = None
@@ -44,13 +44,13 @@ class ServicePrincipalRiskDetection(Entity):
     mitre_technique_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Request identifier of the sign-in activity associated with the risk detection. This property is null if the risk detection is not associated with a sign-in activity. Supports $filter (eq).
+    # Request identifier of the sign-in activity associated with the risk detection. This property is null if the risk detection isn't associated with a sign-in activity. Supports $filter (eq).
     request_id: Optional[str] = None
-    # Details of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license will be returned hidden. The possible values are: none, hidden, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.
+    # Details of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license are returned hidden. The possible values are: none, hidden, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.
     risk_detail: Optional[RiskDetail] = None
-    # The type of risk event detected. The possible values are: investigationsThreatIntelligence, generic, adminConfirmedServicePrincipalCompromised, suspiciousSignins, leakedCredentials, anomalousServicePrincipalActivity, maliciousApplication, suspiciousApplication.
+    # The type of risk event detected. The possible values are: investigationsThreatIntelligence, generic, adminConfirmedServicePrincipalCompromised, suspiciousSignins, leakedCredentials, anomalousServicePrincipalActivity, maliciousApplication, suspiciousApplication, suspiciousAPITraffic.
     risk_event_type: Optional[str] = None
-    # Level of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license will be returned hidden. The possible values are: low, medium, high, hidden, none.
+    # Level of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license are returned hidden. The possible values are: low, medium, high, hidden, none.
     risk_level: Optional[RiskLevel] = None
     # The state of a detected risky service principal or sign-in activity. The possible values are: none, dismissed, atRisk, confirmedCompromised.
     risk_state: Optional[RiskState] = None
@@ -133,6 +133,15 @@ class ServicePrincipalRiskDetection(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .activity_type import ActivityType
+        from .entity import Entity
+        from .risk_detail import RiskDetail
+        from .risk_detection_timing_type import RiskDetectionTimingType
+        from .risk_level import RiskLevel
+        from .risk_state import RiskState
+        from .sign_in_location import SignInLocation
+        from .token_issuer_type import TokenIssuerType
+
         writer.write_enum_value("activity", self.activity)
         writer.write_datetime_value("activityDateTime", self.activity_date_time)
         writer.write_str_value("additionalInfo", self.additional_info)

@@ -79,6 +79,9 @@ class RemoteNetworkHealthEvent(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from ..entity import Entity
+        from .remote_network_status import RemoteNetworkStatus
+
         writer.write_int_value("bgpRoutesAdvertisedCount", self.bgp_routes_advertised_count)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

@@ -48,7 +48,7 @@ class GetFrontlineCloudPcAccessStateRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         from ......models.frontline_cloud_pc_access_state import FrontlineCloudPcAccessState
 
-        return await self.request_adapter.send_async(request_info, frontlineCloudPcAccessState, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "frontlineCloudPcAccessState", error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """

@@ -75,6 +75,11 @@ class TextClassificationRequest(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .classification_request_content_meta_data import ClassificationRequestContentMetaData
+        from .entity import Entity
+        from .ml_classification_match_tolerance import MlClassificationMatchTolerance
+        from .sensitive_type_scope import SensitiveTypeScope
+
         writer.write_object_value("contentMetaData", self.content_meta_data)
         writer.write_str_value("fileExtension", self.file_extension)
         writer.write_enum_value("matchTolerancesToInclude", self.match_tolerances_to_include)

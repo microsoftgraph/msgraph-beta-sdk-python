@@ -57,6 +57,9 @@ class BlockFileResponseAction(ResponseAction):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .file_entity_identifier import FileEntityIdentifier
+        from .response_action import ResponseAction
+
         writer.write_collection_of_primitive_values("deviceGroupNames", self.device_group_names)
         writer.write_enum_value("identifier", self.identifier)
     

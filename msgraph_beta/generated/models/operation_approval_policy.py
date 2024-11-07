@@ -82,6 +82,11 @@ class OperationApprovalPolicy(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .operation_approval_policy_platform import OperationApprovalPolicyPlatform
+        from .operation_approval_policy_set import OperationApprovalPolicySet
+        from .operation_approval_policy_type import OperationApprovalPolicyType
+
         writer.write_collection_of_primitive_values("approverGroupIds", self.approver_group_ids)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

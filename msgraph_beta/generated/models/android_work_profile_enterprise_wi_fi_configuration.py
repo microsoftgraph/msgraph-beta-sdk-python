@@ -11,7 +11,6 @@ if TYPE_CHECKING:
     from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
     from .non_eap_authentication_method_for_peap import NonEapAuthenticationMethodForPeap
     from .wi_fi_authentication_method import WiFiAuthenticationMethod
-    from .wi_fi_proxy_setting import WiFiProxySetting
 
 from .android_work_profile_wi_fi_configuration import AndroidWorkProfileWiFiConfiguration
 
@@ -34,10 +33,6 @@ class AndroidWorkProfileEnterpriseWiFiConfiguration(AndroidWorkProfileWiFiConfig
     inner_authentication_protocol_for_peap: Optional[NonEapAuthenticationMethodForPeap] = None
     # Enable identity privacy (Outer Identity) when EAP Type is configured to EAP-TTLS or PEAP. The String provided here is used to mask the username of individual users when they attempt to connect to Wi-Fi network.
     outer_identity_privacy_temporary_value: Optional[str] = None
-    # URL of the proxy server automatic configuration script when automatic configuration is selected. This URL is typically the location of PAC (Proxy Auto Configuration) file.
-    proxy_automatic_configuration_url: Optional[str] = None
-    # Wi-Fi Proxy Settings.
-    proxy_settings: Optional[WiFiProxySetting] = None
     # Trusted Root Certificate for Server Validation when EAP Type is configured to EAP-TLS, EAP-TTLS or PEAP. This is the certificate presented by the Wi-Fi endpoint when the device attempts to connect to Wi-Fi endpoint. The device (or user) must accept this certificate to continue the connection attempt.
     root_certificate_for_server_validation: Optional[AndroidWorkProfileTrustedRootCertificate] = None
     # Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users' devices when they connect to this Wi-Fi network.
@@ -66,7 +61,6 @@ class AndroidWorkProfileEnterpriseWiFiConfiguration(AndroidWorkProfileWiFiConfig
         from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
         from .non_eap_authentication_method_for_peap import NonEapAuthenticationMethodForPeap
         from .wi_fi_authentication_method import WiFiAuthenticationMethod
-        from .wi_fi_proxy_setting import WiFiProxySetting
 
         from .android_eap_type import AndroidEapType
         from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
@@ -75,7 +69,6 @@ class AndroidWorkProfileEnterpriseWiFiConfiguration(AndroidWorkProfileWiFiConfig
         from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
         from .non_eap_authentication_method_for_peap import NonEapAuthenticationMethodForPeap
         from .wi_fi_authentication_method import WiFiAuthenticationMethod
-        from .wi_fi_proxy_setting import WiFiProxySetting
 
         fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WiFiAuthenticationMethod)),
@@ -84,8 +77,6 @@ class AndroidWorkProfileEnterpriseWiFiConfiguration(AndroidWorkProfileWiFiConfig
             "innerAuthenticationProtocolForEapTtls": lambda n : setattr(self, 'inner_authentication_protocol_for_eap_ttls', n.get_enum_value(NonEapAuthenticationMethodForEapTtlsType)),
             "innerAuthenticationProtocolForPeap": lambda n : setattr(self, 'inner_authentication_protocol_for_peap', n.get_enum_value(NonEapAuthenticationMethodForPeap)),
             "outerIdentityPrivacyTemporaryValue": lambda n : setattr(self, 'outer_identity_privacy_temporary_value', n.get_str_value()),
-            "proxyAutomaticConfigurationUrl": lambda n : setattr(self, 'proxy_automatic_configuration_url', n.get_str_value()),
-            "proxySettings": lambda n : setattr(self, 'proxy_settings', n.get_enum_value(WiFiProxySetting)),
             "rootCertificateForServerValidation": lambda n : setattr(self, 'root_certificate_for_server_validation', n.get_object_value(AndroidWorkProfileTrustedRootCertificate)),
             "trustedServerCertificateNames": lambda n : setattr(self, 'trusted_server_certificate_names', n.get_collection_of_primitive_values(str)),
         }
@@ -102,14 +93,20 @@ class AndroidWorkProfileEnterpriseWiFiConfiguration(AndroidWorkProfileWiFiConfig
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .android_eap_type import AndroidEapType
+        from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
+        from .android_work_profile_trusted_root_certificate import AndroidWorkProfileTrustedRootCertificate
+        from .android_work_profile_wi_fi_configuration import AndroidWorkProfileWiFiConfiguration
+        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
+        from .non_eap_authentication_method_for_peap import NonEapAuthenticationMethodForPeap
+        from .wi_fi_authentication_method import WiFiAuthenticationMethod
+
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_enum_value("eapType", self.eap_type)
         writer.write_object_value("identityCertificateForClientAuthentication", self.identity_certificate_for_client_authentication)
         writer.write_enum_value("innerAuthenticationProtocolForEapTtls", self.inner_authentication_protocol_for_eap_ttls)
         writer.write_enum_value("innerAuthenticationProtocolForPeap", self.inner_authentication_protocol_for_peap)
         writer.write_str_value("outerIdentityPrivacyTemporaryValue", self.outer_identity_privacy_temporary_value)
-        writer.write_str_value("proxyAutomaticConfigurationUrl", self.proxy_automatic_configuration_url)
-        writer.write_enum_value("proxySettings", self.proxy_settings)
         writer.write_object_value("rootCertificateForServerValidation", self.root_certificate_for_server_validation)
         writer.write_collection_of_primitive_values("trustedServerCertificateNames", self.trusted_server_certificate_names)
     

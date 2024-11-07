@@ -48,5 +48,7 @@ class AirAdminActionInvestigationData(AuditData):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .audit_data import AuditData
+
     
 

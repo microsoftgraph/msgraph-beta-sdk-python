@@ -80,6 +80,10 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Backed
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .device_management_configuration_dependent_on import DeviceManagementConfigurationDependentOn
+        from .device_management_configuration_setting_depended_on_by import DeviceManagementConfigurationSettingDependedOnBy
+        from .device_management_configuration_setting_value import DeviceManagementConfigurationSettingValue
+
         writer.write_collection_of_object_values("dependedOnBy", self.depended_on_by)
         writer.write_collection_of_object_values("dependentOn", self.dependent_on)
         writer.write_str_value("description", self.description)

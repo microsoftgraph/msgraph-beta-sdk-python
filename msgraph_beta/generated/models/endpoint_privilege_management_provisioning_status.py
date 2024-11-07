@@ -60,6 +60,9 @@ class EndpointPrivilegeManagementProvisioningStatus(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+        from .license_type import LicenseType
+
         writer.write_enum_value("licenseType", self.license_type)
         writer.write_bool_value("onboardedToMicrosoftManagedPlatform", self.onboarded_to_microsoft_managed_platform)
     

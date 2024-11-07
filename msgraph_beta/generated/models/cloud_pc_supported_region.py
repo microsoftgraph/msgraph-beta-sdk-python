@@ -69,6 +69,11 @@ class CloudPcSupportedRegion(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_management_service import CloudPcManagementService
+        from .cloud_pc_region_group import CloudPcRegionGroup
+        from .cloud_pc_supported_region_status import CloudPcSupportedRegionStatus
+        from .entity import Entity
+
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("regionGroup", self.region_group)
         writer.write_enum_value("regionStatus", self.region_status)

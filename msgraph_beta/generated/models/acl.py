@@ -68,6 +68,10 @@ class Acl(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .access_type import AccessType
+        from .acl_type import AclType
+        from .identity_source_type import IdentitySourceType
+
         writer.write_enum_value("accessType", self.access_type)
         writer.write_enum_value("identitySource", self.identity_source)
         writer.write_str_value("@odata.type", self.odata_type)

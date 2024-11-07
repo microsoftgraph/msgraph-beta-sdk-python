@@ -59,6 +59,8 @@ class TeamworkMicrophoneConfiguration(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .teamwork_peripheral import TeamworkPeripheral
+
         writer.write_object_value("defaultMicrophone", self.default_microphone)
         writer.write_bool_value("isMicrophoneOptional", self.is_microphone_optional)
         writer.write_collection_of_object_values("microphones", self.microphones)

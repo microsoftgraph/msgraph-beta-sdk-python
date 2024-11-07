@@ -108,6 +108,18 @@ class ListItem(BaseItem):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .base_item import BaseItem
+        from .content_type_info import ContentTypeInfo
+        from .deleted import Deleted
+        from .document_set_version import DocumentSetVersion
+        from .drive_item import DriveItem
+        from .field_value_set import FieldValueSet
+        from .item_activity_o_l_d import ItemActivityOLD
+        from .item_analytics import ItemAnalytics
+        from .list_item_version import ListItemVersion
+        from .permission import Permission
+        from .sharepoint_ids import SharepointIds
+
         writer.write_collection_of_object_values("activities", self.activities)
         writer.write_object_value("analytics", self.analytics)
         writer.write_object_value("contentType", self.content_type)

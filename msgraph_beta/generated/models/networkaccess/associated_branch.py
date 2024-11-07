@@ -51,6 +51,8 @@ class AssociatedBranch(Association):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .association import Association
+
         writer.write_str_value("branchId", self.branch_id)
     
 

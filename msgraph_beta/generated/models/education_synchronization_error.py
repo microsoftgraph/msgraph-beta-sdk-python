@@ -67,6 +67,8 @@ class EducationSynchronizationError(Entity):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .entity import Entity
+
         writer.write_str_value("entryType", self.entry_type)
         writer.write_str_value("errorCode", self.error_code)
         writer.write_str_value("errorMessage", self.error_message)
