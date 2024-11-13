@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .group_policy_presentation_value import GroupPolicyPresentationValue
 
 @dataclass
-class GroupPolicyPresentationValueBoolean(GroupPolicyPresentationValue):
+class GroupPolicyPresentationValueBoolean(GroupPolicyPresentationValue, Parsable):
     """
     The entity represents a Boolean value of a checkbox presentation on a policy definition.
     """

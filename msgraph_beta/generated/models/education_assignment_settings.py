@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EducationAssignmentSettings(Entity):
+class EducationAssignmentSettings(Entity, Parsable):
     # The defaultGradingScheme property
     default_grading_scheme: Optional[EducationGradingScheme] = None
     # When set, enables users to weight assignments differently when computing a class average grade.

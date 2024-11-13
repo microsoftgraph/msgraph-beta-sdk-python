@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .device_app_management_task import DeviceAppManagementTask
 
 @dataclass
-class SecurityConfigurationTask(DeviceAppManagementTask):
+class SecurityConfigurationTask(DeviceAppManagementTask, Parsable):
     """
     A security configuration task.
     """
@@ -30,7 +30,7 @@ class SecurityConfigurationTask(DeviceAppManagementTask):
     insights: Optional[str] = None
     # The intended settings and their values.
     intended_settings: Optional[List[KeyValuePair]] = None
-    # The number of vulnerable devices. Valid values 0 to 65536
+    # The number of vulnerable devices.
     managed_device_count: Optional[int] = None
     # The vulnerable managed devices.
     managed_devices: Optional[List[VulnerableManagedDevice]] = None

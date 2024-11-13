@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .imported_device_identity import ImportedDeviceIdentity
 
 @dataclass
-class ImportedDeviceIdentityResult(ImportedDeviceIdentity):
+class ImportedDeviceIdentityResult(ImportedDeviceIdentity, Parsable):
     """
     The importedDeviceIdentityResult resource represents the result of attempting to import a device identity.
     """

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserSecurityProfile(Entity):
+class UserSecurityProfile(Entity, Parsable):
     # The accounts property
     accounts: Optional[List[UserAccount]] = None
     # The azureSubscriptionId property

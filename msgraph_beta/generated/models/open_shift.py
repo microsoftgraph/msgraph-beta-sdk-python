@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .change_tracked_entity import ChangeTrackedEntity
 
 @dataclass
-class OpenShift(ChangeTrackedEntity):
+class OpenShift(ChangeTrackedEntity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.openShift"
     # Draft changes in the openShift are only visible to managers until they're shared.

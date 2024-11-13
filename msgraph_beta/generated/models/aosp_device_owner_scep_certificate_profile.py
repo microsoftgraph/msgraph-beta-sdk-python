@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .aosp_device_owner_certificate_profile_base import AospDeviceOwnerCertificateProfileBase
 
 @dataclass
-class AospDeviceOwnerScepCertificateProfile(AospDeviceOwnerCertificateProfileBase):
+class AospDeviceOwnerScepCertificateProfile(AospDeviceOwnerCertificateProfileBase, Parsable):
     """
     AOSP Device Owner SCEP certificate profile
     """

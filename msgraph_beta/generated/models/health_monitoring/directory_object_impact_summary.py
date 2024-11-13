@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .resource_impact_summary import ResourceImpactSummary
 
 @dataclass
-class DirectoryObjectImpactSummary(ResourceImpactSummary):
+class DirectoryObjectImpactSummary(ResourceImpactSummary, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.healthMonitoring.directoryObjectImpactSummary"
     # The resourceSampling property

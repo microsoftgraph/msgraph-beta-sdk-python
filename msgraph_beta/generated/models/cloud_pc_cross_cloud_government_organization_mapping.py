@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CloudPcCrossCloudGovernmentOrganizationMapping(Entity):
+class CloudPcCrossCloudGovernmentOrganizationMapping(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The tenant ID in the Azure Government cloud corresponding to the GCC tenant in the public cloud. Currently, 1:1 mappings are supported, so this collection can only contain one tenant ID.

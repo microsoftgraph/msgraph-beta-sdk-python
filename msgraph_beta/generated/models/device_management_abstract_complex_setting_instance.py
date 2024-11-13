@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_setting_instance import DeviceManagementSettingInstance
 
 @dataclass
-class DeviceManagementAbstractComplexSettingInstance(DeviceManagementSettingInstance):
+class DeviceManagementAbstractComplexSettingInstance(DeviceManagementSettingInstance, Parsable):
     """
     A setting instance representing a complex value for an abstract setting
     """

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .unified_role_management_alert_configuration import UnifiedRoleManagementAlertConfiguration
 
 @dataclass
-class InvalidLicenseAlertConfiguration(UnifiedRoleManagementAlertConfiguration):
+class InvalidLicenseAlertConfiguration(UnifiedRoleManagementAlertConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.invalidLicenseAlertConfiguration"
     

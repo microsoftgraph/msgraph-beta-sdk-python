@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .custom_claim_transformation import CustomClaimTransformation
 
 @dataclass
-class StartsWithTransformation(CustomClaimTransformation):
+class StartsWithTransformation(CustomClaimTransformation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.startsWithTransformation"
     # The output property

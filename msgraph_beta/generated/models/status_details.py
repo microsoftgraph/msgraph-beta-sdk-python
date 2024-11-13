@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .status_base import StatusBase
 
 @dataclass
-class StatusDetails(StatusBase):
+class StatusDetails(StatusBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.statusDetails"
     # Additional details if there is an error.

@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class AwsIdentityAccessManagementKeyAgeFinding(Finding):
+class AwsIdentityAccessManagementKeyAgeFinding(Finding, Parsable):
     # The accessKey property
     access_key: Optional[AwsAccessKey] = None
     # The actionSummary property

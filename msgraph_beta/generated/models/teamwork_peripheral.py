@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamworkPeripheral(Entity):
+class TeamworkPeripheral(Entity, Parsable):
     # Display name for the peripheral.
     display_name: Optional[str] = None
     # The OdataType property

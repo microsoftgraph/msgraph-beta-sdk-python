@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .unified_role_management_alert_configuration import UnifiedRoleManagementAlertConfiguration
 
 @dataclass
-class StaleSignInAlertConfiguration(UnifiedRoleManagementAlertConfiguration):
+class StaleSignInAlertConfiguration(UnifiedRoleManagementAlertConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.staleSignInAlertConfiguration"
     # The number of days to look back from current timestamp within which the account hasn't signed in.

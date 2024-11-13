@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .response_action import ResponseAction
 
 @dataclass
-class RunAntivirusScanResponseAction(ResponseAction):
+class RunAntivirusScanResponseAction(ResponseAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.runAntivirusScanResponseAction"
     # The identifier property

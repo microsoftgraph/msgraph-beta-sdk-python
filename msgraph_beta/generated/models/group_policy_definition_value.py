@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GroupPolicyDefinitionValue(Entity):
+class GroupPolicyDefinitionValue(Entity, Parsable):
     """
     The definition value entity stores the value for a single group policy definition.
     """

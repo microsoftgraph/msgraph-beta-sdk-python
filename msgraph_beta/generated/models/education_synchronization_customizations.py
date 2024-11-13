@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .education_synchronization_customizations_base import EducationSynchronizationCustomizationsBase
 
 @dataclass
-class EducationSynchronizationCustomizations(EducationSynchronizationCustomizationsBase):
+class EducationSynchronizationCustomizations(EducationSynchronizationCustomizationsBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationSynchronizationCustomizations"
     # Customizations for School entities.

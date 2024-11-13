@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .response_action import ResponseAction
 
 @dataclass
-class IsolateDeviceResponseAction(ResponseAction):
+class IsolateDeviceResponseAction(ResponseAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.isolateDeviceResponseAction"
     # The identifier property

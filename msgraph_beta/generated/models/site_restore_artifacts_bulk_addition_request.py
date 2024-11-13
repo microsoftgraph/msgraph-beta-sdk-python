@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
 
 @dataclass
-class SiteRestoreArtifactsBulkAdditionRequest(RestoreArtifactsBulkRequestBase):
+class SiteRestoreArtifactsBulkAdditionRequest(RestoreArtifactsBulkRequestBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The siteIds property

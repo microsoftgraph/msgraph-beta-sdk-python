@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Command(Entity):
+class Command(Entity, Parsable):
     # The appServiceName property
     app_service_name: Optional[str] = None
     # The error property

@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DataClassificationService(Entity):
+class DataClassificationService(Entity, Parsable):
     # The classifyFileJobs property
     classify_file_jobs: Optional[List[JobResponseBase]] = None
     # The classifyTextJobs property

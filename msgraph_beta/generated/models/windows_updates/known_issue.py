@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class KnownIssue(Entity):
+class KnownIssue(Entity, Parsable):
     # The description of the particular known issue.
     description: Optional[str] = None
     # The knownIssueHistories property

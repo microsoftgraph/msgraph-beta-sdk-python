@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
 
 @dataclass
-class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase):
+class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase, Parsable):
     """
     MacOS PKCS certificate profile.
     """

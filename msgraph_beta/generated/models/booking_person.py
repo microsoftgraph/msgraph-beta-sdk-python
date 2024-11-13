@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .booking_named_entity import BookingNamedEntity
 
 @dataclass
-class BookingPerson(BookingNamedEntity):
+class BookingPerson(BookingNamedEntity, Parsable):
     """
     Represents a booking customer or staff member.
     """

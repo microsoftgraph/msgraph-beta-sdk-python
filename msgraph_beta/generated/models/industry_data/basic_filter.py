@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .filter import Filter
 
 @dataclass
-class BasicFilter(Filter):
+class BasicFilter(Filter, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.basicFilter"
     # The attribute property

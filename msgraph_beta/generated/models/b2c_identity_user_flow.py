@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .identity_user_flow import IdentityUserFlow
 
 @dataclass
-class B2cIdentityUserFlow(IdentityUserFlow):
+class B2cIdentityUserFlow(IdentityUserFlow, Parsable):
     # Configuration for enabling an API connector for use as part of the user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
     api_connector_configuration: Optional[UserFlowApiConnectorConfiguration] = None
     # Indicates the default language of the b2cIdentityUserFlow that is used when no ui_locale tag is specified in the request. This field is RFC 5646 compliant.

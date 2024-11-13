@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class RemoteActionAudit(Entity):
+class RemoteActionAudit(Entity, Parsable):
     """
     Report of remote actions initiated on the devices belonging to a certain tenant.
     """

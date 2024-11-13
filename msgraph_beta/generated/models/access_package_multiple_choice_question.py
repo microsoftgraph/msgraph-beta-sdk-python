@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .access_package_question import AccessPackageQuestion
 
 @dataclass
-class AccessPackageMultipleChoiceQuestion(AccessPackageQuestion):
+class AccessPackageMultipleChoiceQuestion(AccessPackageQuestion, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.accessPackageMultipleChoiceQuestion"
     # Indicates whether requestor can select multiple choices as their answer.

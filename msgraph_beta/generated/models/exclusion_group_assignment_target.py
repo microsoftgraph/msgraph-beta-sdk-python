@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .group_assignment_target import GroupAssignmentTarget
 
 @dataclass
-class ExclusionGroupAssignmentTarget(GroupAssignmentTarget):
+class ExclusionGroupAssignmentTarget(GroupAssignmentTarget, Parsable):
     """
     The AAD Group we are deploying firmware updates to
     """

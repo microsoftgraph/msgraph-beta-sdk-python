@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ContactMergeSuggestions(Entity):
+class ContactMergeSuggestions(Entity, Parsable):
     # true if the duplicate contact merge suggestions feature is enabled for the user; false if the feature is disabled. Default value is true.
     is_enabled: Optional[bool] = None
     # The OdataType property

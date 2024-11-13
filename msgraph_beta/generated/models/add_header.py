@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mark_content import MarkContent
 
 @dataclass
-class AddHeader(MarkContent):
+class AddHeader(MarkContent, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.addHeader"
     # The alignment property

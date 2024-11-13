@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessPackageResourceRole(Entity):
+class AccessPackageResourceRole(Entity, Parsable):
     # The accessPackageResource property
     access_package_resource: Optional[AccessPackageResource] = None
     # A description for the resource role.

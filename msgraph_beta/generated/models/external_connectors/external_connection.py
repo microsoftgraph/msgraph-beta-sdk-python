@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ExternalConnection(Entity):
+class ExternalConnection(Entity, Parsable):
     # Collects configurable settings related to activities involving connector content.
     activity_settings: Optional[ActivitySettings] = None
     # The complianceSettings property

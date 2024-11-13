@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .rule_destination import RuleDestination
 
 @dataclass
-class Url(RuleDestination):
+class Url(RuleDestination, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.url"
     # URL Address

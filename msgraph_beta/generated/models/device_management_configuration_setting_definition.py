@@ -23,22 +23,22 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementConfigurationSettingDefinition(Entity):
+class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
     # The accessTypes property
     access_types: Optional[DeviceManagementConfigurationSettingAccessTypes] = None
-    # Details which device setting is applicable on
+    # Details which device setting is applicable on. Supports: $filters.
     applicability: Optional[DeviceManagementConfigurationSettingApplicability] = None
     # Base CSP Path
     base_uri: Optional[str] = None
-    # Specifies the area group under which the setting is configured in a specified configuration service provider (CSP)
+    # Specify category in which the setting is under. Support $filters.
     category_id: Optional[str] = None
-    # Description of the item
+    # Description of the setting.
     description: Optional[str] = None
-    # Display name of the item
+    # Name of the setting. For example: Allow Toast.
     display_name: Optional[str] = None
-    # Help text of the item
+    # Help text of the setting. Give more details of the setting.
     help_text: Optional[str] = None
-    # List of links more info for the setting can be found at
+    # List of links more info for the setting can be found at.
     info_urls: Optional[List[str]] = None
     # Tokens which to search settings on
     keywords: Optional[List[str]] = None
@@ -52,7 +52,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity):
     offset_uri: Optional[str] = None
     # List of referred setting information.
     referred_setting_information_list: Optional[List[DeviceManagementConfigurationReferredSettingInformation]] = None
-    # Root setting definition if the setting is a child setting.
+    # Root setting definition id if the setting is a child setting.
     root_definition_id: Optional[str] = None
     # Supported setting types
     setting_usage: Optional[DeviceManagementConfigurationSettingUsage] = None

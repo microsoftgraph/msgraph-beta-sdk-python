@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementConfigurationPolicyAssignment(Entity):
+class DeviceManagementConfigurationPolicyAssignment(Entity, Parsable):
     """
     The DeviceManagementConfigurationPolicyAssignment entity assigns a specific DeviceManagementConfigurationPolicy to an AAD group.
     """

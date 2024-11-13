@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .response_action import ResponseAction
 
 @dataclass
-class MarkUserAsCompromisedResponseAction(ResponseAction):
+class MarkUserAsCompromisedResponseAction(ResponseAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.markUserAsCompromisedResponseAction"
     # The identifier property

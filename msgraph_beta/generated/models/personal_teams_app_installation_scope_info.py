@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .teams_app_installation_scope_info import TeamsAppInstallationScopeInfo
 
 @dataclass
-class PersonalTeamsAppInstallationScopeInfo(TeamsAppInstallationScopeInfo):
+class PersonalTeamsAppInstallationScopeInfo(TeamsAppInstallationScopeInfo, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.personalTeamsAppInstallationScopeInfo"
     # The userId property

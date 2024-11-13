@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .information_protection_action import InformationProtectionAction
 
 @dataclass
-class AddWatermarkAction(InformationProtectionAction):
+class AddWatermarkAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.addWatermarkAction"
     # Color of the font to use for the watermark.

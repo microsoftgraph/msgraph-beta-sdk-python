@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MobileAppRelationship(Entity):
+class MobileAppRelationship(Entity, Parsable):
     """
     Describes a relationship between two mobile apps.
     """
@@ -26,13 +26,13 @@ class MobileAppRelationship(Entity):
     source_id: Optional[str] = None
     # The publisher display name of the app that is the source of the mobile app relationship entity. For example: Fabrikam. Maximum length is 500 characters. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
     source_publisher_display_name: Optional[str] = None
-    # The display name of the app that is the target of the mobile app relationship entity. Read-Only. This property is read-only.
+    # The display name of the app that is the target of the mobile app relationship entity. For example: Firefox Setup 52.0.2 32bit.intunewin. Maximum length is 500 characters. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
     target_display_name: Optional[str] = None
-    # The display version of the app that is the target of the mobile app relationship entity. Read-Only. This property is read-only.
+    # The display version of the app that is the target of the mobile app relationship entity. For example 1.0 or 1.2203.156. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
     target_display_version: Optional[str] = None
-    # App ID of the app that is the target of the mobile app relationship entity. Read-Only
+    # The unique app identifier of the target of the mobile app relationship entity. For example: 2dbc75b9-e993-4e4d-a071-91ac5a218672. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy.
     target_id: Optional[str] = None
-    # The publisher of the app that is the target of the mobile app relationship entity. Read-Only. This property is read-only.
+    # The publisher of the app that is the target of the mobile app relationship entity. For example: Fabrikam. Maximum length is 500 characters. Read-Only. Returned by default. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
     target_publisher: Optional[str] = None
     # The publisher display name of the app that is the target of the mobile app relationship entity. For example: Fabrikam. Maximum length is 500 characters. Read-Only. Supports: $select. Does not support $search, $filter, $orderBy. This property is read-only.
     target_publisher_display_name: Optional[str] = None

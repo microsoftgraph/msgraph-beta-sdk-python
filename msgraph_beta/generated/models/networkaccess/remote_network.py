@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class RemoteNetwork(Entity):
+class RemoteNetwork(Entity, Parsable):
     # Specifies the connectivity details of all device links associated with a remote network.
     connectivity_configuration: Optional[RemoteNetworkConnectivityConfiguration] = None
     # Each unique CPE device associated with a remote network is specified. Supports $expand.

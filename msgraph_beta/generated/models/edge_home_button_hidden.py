@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .edge_home_button_configuration import EdgeHomeButtonConfiguration
 
 @dataclass
-class EdgeHomeButtonHidden(EdgeHomeButtonConfiguration):
+class EdgeHomeButtonHidden(EdgeHomeButtonConfiguration, Parsable):
     """
     Hide the home button.
     """

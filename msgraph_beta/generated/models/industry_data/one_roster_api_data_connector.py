@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .api_data_connector import ApiDataConnector
 
 @dataclass
-class OneRosterApiDataConnector(ApiDataConnector):
+class OneRosterApiDataConnector(ApiDataConnector, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.oneRosterApiDataConnector"
     # The API version of the OneRoster source. Example: 1.1, 1.2

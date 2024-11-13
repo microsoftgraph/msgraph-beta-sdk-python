@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class InformationProtection(Entity):
+class InformationProtection(Entity, Parsable):
     # The bitlocker property
     bitlocker: Optional[Bitlocker] = None
     # The dataLossPreventionPolicies property

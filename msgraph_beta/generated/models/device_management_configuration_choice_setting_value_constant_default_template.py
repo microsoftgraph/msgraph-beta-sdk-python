@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_choice_setting_value_default_template import DeviceManagementConfigurationChoiceSettingValueDefaultTemplate
 
 @dataclass
-class DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate(DeviceManagementConfigurationChoiceSettingValueDefaultTemplate):
+class DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate(DeviceManagementConfigurationChoiceSettingValueDefaultTemplate, Parsable):
     """
     Choice Setting Value Constant Default Template
     """

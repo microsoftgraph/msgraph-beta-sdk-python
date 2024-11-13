@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .app_list_item import AppListItem
 
 @dataclass
-class AppleAppListItem(AppListItem):
+class AppleAppListItem(AppListItem, Parsable):
     """
     Represents an app in the list of managed Apple applications
     """

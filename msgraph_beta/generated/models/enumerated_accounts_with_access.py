@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .accounts_with_access import AccountsWithAccess
 
 @dataclass
-class EnumeratedAccountsWithAccess(AccountsWithAccess):
+class EnumeratedAccountsWithAccess(AccountsWithAccess, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.enumeratedAccountsWithAccess"
     # The accounts property

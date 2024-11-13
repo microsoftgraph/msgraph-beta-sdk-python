@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ExactMatchUploadAgent(Entity):
+class ExactMatchUploadAgent(Entity, Parsable):
     # The creationDateTime property
     creation_date_time: Optional[datetime.datetime] = None
     # The description property

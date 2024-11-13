@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
 
 @dataclass
-class DeliveryOptimizationMaxCacheSizeAbsolute(DeliveryOptimizationMaxCacheSize):
+class DeliveryOptimizationMaxCacheSizeAbsolute(DeliveryOptimizationMaxCacheSize, Parsable):
     """
     Delivery Optimization max cache size absolute type.
     """

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .information_protection_action import InformationProtectionAction
 
 @dataclass
-class RemoveContentHeaderAction(InformationProtectionAction):
+class RemoveContentHeaderAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.removeContentHeaderAction"
     # The name of the UI element of the header to be removed.

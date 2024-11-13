@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
 
 @dataclass
-class Windows10EasEmailProfileConfiguration(EasEmailProfileConfigurationBase):
+class Windows10EasEmailProfileConfiguration(EasEmailProfileConfigurationBase, Parsable):
     """
     By providing configurations in this profile you can instruct the native email client (Outlook) on Windows 10 devices to communicate with an Exchange server and get email, contacts, calendar, and tasks. Furthermore, you can also specify how much email to sync and how often the device should sync.
     """

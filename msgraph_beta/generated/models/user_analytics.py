@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserAnalytics(Entity):
+class UserAnalytics(Entity, Parsable):
     # The collection of work activities that a user spent time on during and outside of working hours. Read-only. Nullable.
     activity_statistics: Optional[List[ActivityStatistics]] = None
     # The OdataType property

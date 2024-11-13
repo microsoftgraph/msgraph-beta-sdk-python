@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .android_managed_store_app import AndroidManagedStoreApp
 
 @dataclass
-class AndroidManagedStoreWebApp(AndroidManagedStoreApp):
+class AndroidManagedStoreWebApp(AndroidManagedStoreApp, Parsable):
     """
     Contains properties and inherited properties for web apps configured to be distributed via the managed Android app store.
     """

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UsageRight(Entity):
+class UsageRight(Entity, Parsable):
     # Product id corresponding to the usage right.
     catalog_id: Optional[str] = None
     # The OdataType property

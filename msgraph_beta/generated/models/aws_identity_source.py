@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .permissions_definition_identity_source import PermissionsDefinitionIdentitySource
 
 @dataclass
-class AwsIdentitySource(PermissionsDefinitionIdentitySource):
+class AwsIdentitySource(PermissionsDefinitionIdentitySource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsIdentitySource"
     # The authorizationSystemInfo property

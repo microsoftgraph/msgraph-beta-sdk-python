@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CloudPcReports(Entity):
+class CloudPcReports(Entity, Parsable):
     # The export jobs created for downloading reports.
     export_jobs: Optional[List[CloudPcExportJob]] = None
     # The OdataType property

@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Alert(Entity):
+class Alert(Entity, Parsable):
     # The alertType property
     alert_type: Optional[AlertType] = None
     # The category property

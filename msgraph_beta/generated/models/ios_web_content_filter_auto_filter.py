@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .ios_web_content_filter_base import IosWebContentFilterBase
 
 @dataclass
-class IosWebContentFilterAutoFilter(IosWebContentFilterBase):
+class IosWebContentFilterAutoFilter(IosWebContentFilterBase, Parsable):
     """
     Represents an iOS Web Content Filter setting type, which enables iOS automatic filter feature and allows for additional URL access control. When constructed with no property values, the iOS device will enable the automatic filter regardless.
     """

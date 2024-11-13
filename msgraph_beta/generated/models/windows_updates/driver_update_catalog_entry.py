@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
 
 @dataclass
-class DriverUpdateCatalogEntry(SoftwareUpdateCatalogEntry):
+class DriverUpdateCatalogEntry(SoftwareUpdateCatalogEntry, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.driverUpdateCatalogEntry"
     # The description of the content.

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class FileClassificationRequest(Entity):
+class FileClassificationRequest(Entity, Parsable):
     # The file property
     file: Optional[bytes] = None
     # The OdataType property

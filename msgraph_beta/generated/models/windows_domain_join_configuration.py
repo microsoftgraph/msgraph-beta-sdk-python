@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class WindowsDomainJoinConfiguration(DeviceConfiguration):
+class WindowsDomainJoinConfiguration(DeviceConfiguration, Parsable):
     """
     Windows Domain Join device configuration.
     """

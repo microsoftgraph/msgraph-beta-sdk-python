@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegeManagementElevationRequest(Entity):
+class PrivilegeManagementElevationRequest(Entity, Parsable):
     """
     These are elevation approval requests for EPM support arbitrated scenario initiated by IW user that admins can take action on.
     """

@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GroupPolicyDefinition(Entity):
+class GroupPolicyDefinition(Entity, Parsable):
     """
     The entity describes all of the information about a single group policy.
     """

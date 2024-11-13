@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_value_definition import DeviceManagementConfigurationSettingValueDefinition
 
 @dataclass
-class DeviceManagementConfigurationIntegerSettingValueDefinition(DeviceManagementConfigurationSettingValueDefinition):
+class DeviceManagementConfigurationIntegerSettingValueDefinition(DeviceManagementConfigurationSettingValueDefinition, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueDefinition"
     # Maximum allowed value of the integer

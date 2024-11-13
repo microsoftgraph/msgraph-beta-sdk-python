@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class IdentityProvider(Entity):
+class IdentityProvider(Entity, Parsable):
     # The client ID for the application obtained when registering the application with the identity provider. This is a required field. Required. Not nullable.
     client_id: Optional[str] = None
     # The client secret for the application obtained when registering the application with the identity provider. This is write-only. A read operation returns . This is a required field. Required. Not nullable.

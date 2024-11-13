@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessPackageCatalog(Entity):
+class AccessPackageCatalog(Entity, Parsable):
     # The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
     access_package_custom_workflow_extensions: Optional[List[CustomCalloutExtension]] = None
     # The roles in each resource in a catalog. Read-only.

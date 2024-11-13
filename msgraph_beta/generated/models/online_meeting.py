@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 from .online_meeting_base import OnlineMeetingBase
 
 @dataclass
-class OnlineMeeting(OnlineMeetingBase):
+class OnlineMeeting(OnlineMeetingBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onlineMeeting"
     # The aiInsights property

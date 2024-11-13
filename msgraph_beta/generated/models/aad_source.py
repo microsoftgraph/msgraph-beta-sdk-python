@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .authorization_system_identity_source import AuthorizationSystemIdentitySource
 
 @dataclass
-class AadSource(AuthorizationSystemIdentitySource):
+class AadSource(AuthorizationSystemIdentitySource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.aadSource"
     # Domain name

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .response_action import ResponseAction
 
 @dataclass
-class BlockFileResponseAction(ResponseAction):
+class BlockFileResponseAction(ResponseAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.blockFileResponseAction"
     # Device groups to which the actions set in the custom detection rule are applied. More information

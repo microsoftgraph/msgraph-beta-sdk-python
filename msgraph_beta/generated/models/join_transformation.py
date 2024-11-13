@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .custom_claim_transformation import CustomClaimTransformation
 
 @dataclass
-class JoinTransformation(CustomClaimTransformation):
+class JoinTransformation(CustomClaimTransformation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.joinTransformation"
     # The input2 property

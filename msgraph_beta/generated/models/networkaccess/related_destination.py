@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .related_resource import RelatedResource
 
 @dataclass
-class RelatedDestination(RelatedResource):
+class RelatedDestination(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedDestination"
     # The fqdn property

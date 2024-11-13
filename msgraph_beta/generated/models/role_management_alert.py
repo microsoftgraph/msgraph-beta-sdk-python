@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class RoleManagementAlert(Entity):
+class RoleManagementAlert(Entity, Parsable):
     # The various configurations of an alert for Microsoft Entra roles. The configurations are predefined and can't be created or deleted, but some of the configurations can be modified.
     alert_configurations: Optional[List[UnifiedRoleManagementAlertConfiguration]] = None
     # Defines an alert, its impact, and measures to mitigate or prevent it.

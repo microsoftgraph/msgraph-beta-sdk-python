@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .group_policy_presentation_value import GroupPolicyPresentationValue
 
 @dataclass
-class GroupPolicyPresentationValueDecimal(GroupPolicyPresentationValue):
+class GroupPolicyPresentationValueDecimal(GroupPolicyPresentationValue, Parsable):
     """
     The entity represents an unsigned integer value of a decimal text box presentation on a policy definition.
     """

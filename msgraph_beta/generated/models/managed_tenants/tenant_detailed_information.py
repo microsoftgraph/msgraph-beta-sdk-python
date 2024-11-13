@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class TenantDetailedInformation(Entity):
+class TenantDetailedInformation(Entity, Parsable):
     # The city where the managed tenant is located. Optional. Read-only.
     city: Optional[str] = None
     # The code for the country where the managed tenant is located. Optional. Read-only.

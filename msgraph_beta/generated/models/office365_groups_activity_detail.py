@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Office365GroupsActivityDetail(Entity):
+class Office365GroupsActivityDetail(Entity, Parsable):
     # The storage used of the group mailbox.
     exchange_mailbox_storage_used_in_bytes: Optional[int] = None
     # The number of items in the group mailbox.

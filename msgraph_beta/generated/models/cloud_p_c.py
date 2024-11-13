@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CloudPC(Entity):
+class CloudPC(Entity, Parsable):
     # The Microsoft Entra device ID of the Cloud PC.
     aad_device_id: Optional[str] = None
     # The allotment name divides tenant licenses into smaller batches or groups that help restrict the number of licenses available for use in a specific assignment. When the provisioningType is dedicated, the allotment name is null. Read-only.

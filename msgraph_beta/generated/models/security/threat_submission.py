@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ThreatSubmission(Entity):
+class ThreatSubmission(Entity, Parsable):
     # Specifies the admin review property that constitutes of who reviewed the user submission, when and what was it identified as.
     admin_review: Optional[SubmissionAdminReview] = None
     # The category property

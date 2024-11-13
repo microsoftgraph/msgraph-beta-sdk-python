@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserConfiguration(Entity):
+class UserConfiguration(Entity, Parsable):
     # The binaryData property
     binary_data: Optional[bytes] = None
     # The OdataType property

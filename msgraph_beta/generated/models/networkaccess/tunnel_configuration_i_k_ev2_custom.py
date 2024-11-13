@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .tunnel_configuration import TunnelConfiguration
 
 @dataclass
-class TunnelConfigurationIKEv2Custom(TunnelConfiguration):
+class TunnelConfigurationIKEv2Custom(TunnelConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Custom"
     # The dhGroup property

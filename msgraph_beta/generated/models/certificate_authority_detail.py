@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .directory_object import DirectoryObject
 
 @dataclass
-class CertificateAuthorityDetail(DirectoryObject):
+class CertificateAuthorityDetail(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.certificateAuthorityDetail"
     # The certificate property

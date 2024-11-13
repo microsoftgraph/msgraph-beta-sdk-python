@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
 
 @dataclass
-class Windows10XTrustedRootCertificate(DeviceManagementResourceAccessProfileBase):
+class Windows10XTrustedRootCertificate(DeviceManagementResourceAccessProfileBase, Parsable):
     """
     Windows X Trusted Root Certificate configuration profile
     """

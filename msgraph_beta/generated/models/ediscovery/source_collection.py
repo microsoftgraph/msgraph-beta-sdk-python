@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class SourceCollection(Entity):
+class SourceCollection(Entity, Parsable):
     # Adds the results of the sourceCollection to the specified reviewSet.
     add_to_review_set_operation: Optional[AddToReviewSetOperation] = None
     # Adds an additional source to the sourceCollection.

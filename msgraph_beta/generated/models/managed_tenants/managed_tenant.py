@@ -46,7 +46,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagedTenant(Entity):
+class ManagedTenant(Entity, Parsable):
     # Aggregate view of device compliance policies across managed tenants.
     aggregated_policy_compliances: Optional[List[AggregatedPolicyCompliance]] = None
     # The appPerformances property

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .user_set import UserSet
 
 @dataclass
-class ExternalSponsors(UserSet):
+class ExternalSponsors(UserSet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.externalSponsors"
     

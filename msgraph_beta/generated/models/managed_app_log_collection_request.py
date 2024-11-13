@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ManagedAppLogCollectionRequest(Entity):
+class ManagedAppLogCollectionRequest(Entity, Parsable):
     """
     The Managed App log collection response
     """

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserExperienceAnalyticsBatteryHealthAppImpact(Entity):
+class UserExperienceAnalyticsBatteryHealthAppImpact(Entity, Parsable):
     """
     The user experience analytics battery health app impact entity contains battery usage related information at an app level for the tenant.
     """

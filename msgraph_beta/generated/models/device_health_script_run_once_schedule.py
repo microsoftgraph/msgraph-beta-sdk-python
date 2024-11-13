@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_health_script_time_schedule import DeviceHealthScriptTimeSchedule
 
 @dataclass
-class DeviceHealthScriptRunOnceSchedule(DeviceHealthScriptTimeSchedule):
+class DeviceHealthScriptRunOnceSchedule(DeviceHealthScriptTimeSchedule, Parsable):
     """
     Device health script run once schedule.
     """

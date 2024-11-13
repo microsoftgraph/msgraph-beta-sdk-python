@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PermissionGrantConditionSet(Entity):
+class PermissionGrantConditionSet(Entity, Parsable):
     # Set to true to only match on client applications that are Microsoft 365 certified. Set to false to match on any other client app. Default is false.
     certified_client_applications_only: Optional[bool] = None
     # A list of appId values for the client applications to match with, or a list with the single value all to match any client application. Default is the single value all.

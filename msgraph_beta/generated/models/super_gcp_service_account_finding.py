@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .identity_finding import IdentityFinding
 
 @dataclass
-class SuperGcpServiceAccountFinding(IdentityFinding):
+class SuperGcpServiceAccountFinding(IdentityFinding, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

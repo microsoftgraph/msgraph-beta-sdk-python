@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mobile_app_catalog_package import MobileAppCatalogPackage
 
 @dataclass
-class Win32MobileAppCatalogPackage(MobileAppCatalogPackage):
+class Win32MobileAppCatalogPackage(MobileAppCatalogPackage, Parsable):
     """
     win32MobileAppCatalogPackage extends mobileAppCatalogPackage by providing information necessary for the creation of a win32CatalogApp instance.
     """

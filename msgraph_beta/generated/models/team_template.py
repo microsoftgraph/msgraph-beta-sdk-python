@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamTemplate(Entity):
+class TeamTemplate(Entity, Parsable):
     # A generic representation of a team template definition for a team with a specific structure and configuration.
     definitions: Optional[List[TeamTemplateDefinition]] = None
     # The OdataType property

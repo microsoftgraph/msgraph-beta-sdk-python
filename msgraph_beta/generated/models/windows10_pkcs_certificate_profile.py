@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .windows10_certificate_profile_base import Windows10CertificateProfileBase
 
 @dataclass
-class Windows10PkcsCertificateProfile(Windows10CertificateProfileBase):
+class Windows10PkcsCertificateProfile(Windows10CertificateProfileBase, Parsable):
     """
     Windows 10 Desktop and Mobile PKCS certificate profile
     """

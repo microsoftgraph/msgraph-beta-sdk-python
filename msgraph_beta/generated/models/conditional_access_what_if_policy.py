@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .conditional_access_policy import ConditionalAccessPolicy
 
 @dataclass
-class ConditionalAccessWhatIfPolicy(ConditionalAccessPolicy):
+class ConditionalAccessWhatIfPolicy(ConditionalAccessPolicy, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The policyApplies property

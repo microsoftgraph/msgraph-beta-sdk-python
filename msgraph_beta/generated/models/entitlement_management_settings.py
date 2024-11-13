@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EntitlementManagementSettings(Entity):
+class EntitlementManagementSettings(Entity, Parsable):
     # If externalUserLifecycleAction is BlockSignInAndDelete, the number of days after an external user is blocked from sign in before their account is deleted.
     days_until_external_user_deleted_after_blocked: Optional[int] = None
     # One of None, BlockSignIn, or BlockSignInAndDelete.

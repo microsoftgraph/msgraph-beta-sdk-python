@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Entra(Entity):
+class Entra(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents settings related to access to the Microsoft Entra admin center.

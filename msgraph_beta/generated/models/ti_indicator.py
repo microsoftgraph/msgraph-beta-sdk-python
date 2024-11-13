@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TiIndicator(Entity):
+class TiIndicator(Entity, Parsable):
     # The action to apply if the indicator is matched from within the targetProduct security tool. Possible values are: unknown, allow, block, alert. Required.
     action: Optional[TiAction] = None
     # The cyber threat intelligence name(s) for the parties responsible for the malicious activity covered by the threat indicator.

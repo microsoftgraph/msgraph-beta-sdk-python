@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .writeback_configuration import WritebackConfiguration
 
 @dataclass
-class GroupWritebackConfiguration(WritebackConfiguration):
+class GroupWritebackConfiguration(WritebackConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Indicates the target on-premises group type the cloud object is written back as. Nullable. The possible values are: universalDistributionGroup, universalSecurityGroup, universalMailEnabledSecurityGroup.If the cloud group is a unified (Microsoft 365) group, this property can be one of the following: universalDistributionGroup, universalSecurityGroup, universalMailEnabledSecurityGroup. Microsoft Entra security groups can be written back as universalSecurityGroup. If isEnabled or the NewUnifiedGroupWritebackDefault group setting is true but this property isn't explicitly configured: Microsoft 365 groups are written back as universalDistributionGroup by defaultSecurity groups are written back as universalSecurityGroup by default

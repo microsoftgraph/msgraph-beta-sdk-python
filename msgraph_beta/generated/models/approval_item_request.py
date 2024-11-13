@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ApprovalItemRequest(Entity):
+class ApprovalItemRequest(Entity, Parsable):
     # The identity set of the principal assigned to this request.
     approver: Optional[ApprovalIdentitySet] = None
     # Creation date and time for the request.

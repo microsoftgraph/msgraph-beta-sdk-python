@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class IndustryDataRun(Entity):
+class IndustryDataRun(Entity, Parsable):
     # The set of activities performed during the run.
     activities: Optional[List[IndustryDataRunActivity]] = None
     # An error object to diagnose critical failures in the run.

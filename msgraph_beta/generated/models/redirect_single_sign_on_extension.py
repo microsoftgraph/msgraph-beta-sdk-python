@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .single_sign_on_extension import SingleSignOnExtension
 
 @dataclass
-class RedirectSingleSignOnExtension(SingleSignOnExtension):
+class RedirectSingleSignOnExtension(SingleSignOnExtension, Parsable):
     """
     Represents an Apple Single Sign-On Extension.
     """

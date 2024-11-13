@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .group_policy_definition_file import GroupPolicyDefinitionFile
 
 @dataclass
-class GroupPolicyUploadedDefinitionFile(GroupPolicyDefinitionFile):
+class GroupPolicyUploadedDefinitionFile(GroupPolicyDefinitionFile, Parsable):
     """
     The entity represents an ADMX (Administrative Template) XML file uploaded by Administrator. The ADMX file contains a collection of group policy definitions and their locations by category path. The group policy definition file also contains the languages supported as determined by the language dependent ADML (Administrative Template) language files.
     """

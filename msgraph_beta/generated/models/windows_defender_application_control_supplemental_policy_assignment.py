@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsDefenderApplicationControlSupplementalPolicyAssignment(Entity):
+class WindowsDefenderApplicationControlSupplementalPolicyAssignment(Entity, Parsable):
     """
     A class containing the properties used for assignment of a WindowsDefenderApplicationControl supplemental policy to a group.
     """

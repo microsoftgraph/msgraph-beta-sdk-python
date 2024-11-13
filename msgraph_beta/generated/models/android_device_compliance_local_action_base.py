@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AndroidDeviceComplianceLocalActionBase(Entity):
+class AndroidDeviceComplianceLocalActionBase(Entity, Parsable):
     """
     Local Action Configuration
     """

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class TenantStatus(Entity):
+class TenantStatus(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Reflects a message to the user if there's an error.

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class ExternallyAccessibleGcpStorageBucketFinding(Finding):
+class ExternallyAccessibleGcpStorageBucketFinding(Finding, Parsable):
     # The accessibility property
     accessibility: Optional[GcpAccessType] = None
     # The encryptionManagedBy property

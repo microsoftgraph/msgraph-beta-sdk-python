@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .single_sign_on_extension import SingleSignOnExtension
 
 @dataclass
-class CredentialSingleSignOnExtension(SingleSignOnExtension):
+class CredentialSingleSignOnExtension(SingleSignOnExtension, Parsable):
     """
     Represents a Credential-type Single Sign-On extension profile.
     """

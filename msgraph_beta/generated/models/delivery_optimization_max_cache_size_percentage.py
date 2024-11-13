@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
 
 @dataclass
-class DeliveryOptimizationMaxCacheSizePercentage(DeliveryOptimizationMaxCacheSize):
+class DeliveryOptimizationMaxCacheSizePercentage(DeliveryOptimizationMaxCacheSize, Parsable):
     """
     Delivery Optimization Max cache size percentage types.
     """

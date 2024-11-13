@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DefaultUserRoleOverride(Entity):
+class DefaultUserRoleOverride(Entity, Parsable):
     # The isDefault property
     is_default: Optional[bool] = None
     # The OdataType property

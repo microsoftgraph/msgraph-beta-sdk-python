@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mobile_app_troubleshooting_history_item import MobileAppTroubleshootingHistoryItem
 
 @dataclass
-class MobileAppTroubleshootingAppTargetHistory(MobileAppTroubleshootingHistoryItem):
+class MobileAppTroubleshootingAppTargetHistory(MobileAppTroubleshootingHistoryItem, Parsable):
     """
     History Item contained in the Mobile App Troubleshooting Event.
     """

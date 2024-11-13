@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .unified_role_management_alert_configuration import UnifiedRoleManagementAlertConfiguration
 
 @dataclass
-class RedundantAssignmentAlertConfiguration(UnifiedRoleManagementAlertConfiguration):
+class RedundantAssignmentAlertConfiguration(UnifiedRoleManagementAlertConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.redundantAssignmentAlertConfiguration"
     # The number of days without activation to look back on from current timestamp.

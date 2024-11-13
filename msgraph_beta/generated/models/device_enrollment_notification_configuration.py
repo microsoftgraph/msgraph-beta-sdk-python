@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .device_enrollment_configuration import DeviceEnrollmentConfiguration
 
 @dataclass
-class DeviceEnrollmentNotificationConfiguration(DeviceEnrollmentConfiguration):
+class DeviceEnrollmentNotificationConfiguration(DeviceEnrollmentConfiguration, Parsable):
     """
     Enrollment Notification Configuration which is used to send notification
     """

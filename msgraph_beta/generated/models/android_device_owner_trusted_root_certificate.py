@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AndroidDeviceOwnerTrustedRootCertificate(DeviceConfiguration):
+class AndroidDeviceOwnerTrustedRootCertificate(DeviceConfiguration, Parsable):
     """
     Android Device Owner Trusted Root Certificate configuration profile
     """

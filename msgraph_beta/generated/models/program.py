@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Program(Entity):
+class Program(Entity, Parsable):
     # Controls associated with the program.
     controls: Optional[List[ProgramControl]] = None
     # The description of the program.

@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class VirtualEndpoint(Entity):
+class VirtualEndpoint(Entity, Parsable):
     # Cloud PC audit event.
     audit_events: Optional[List[CloudPcAuditEvent]] = None
     # Bulk actions applied to a Cloud PC.

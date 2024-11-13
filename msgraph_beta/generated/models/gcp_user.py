@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .gcp_identity import GcpIdentity
 
 @dataclass
-class GcpUser(GcpIdentity):
+class GcpUser(GcpIdentity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gcpUser"
     

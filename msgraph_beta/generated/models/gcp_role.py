@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GcpRole(Entity):
+class GcpRole(Entity, Parsable):
     # The name of the GCP role. Supports $filter and (eq,contains).
     display_name: Optional[str] = None
     # The ID of the GCP role as defined by GCP. Alternate key.

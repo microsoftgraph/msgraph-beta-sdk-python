@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementSettingCollectionConstraint(DeviceManagementConstraint):
+class DeviceManagementSettingCollectionConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint that enforces the maximum number of elements a collection
     """

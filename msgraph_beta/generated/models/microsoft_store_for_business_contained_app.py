@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .mobile_contained_app import MobileContainedApp
 
 @dataclass
-class MicrosoftStoreForBusinessContainedApp(MobileContainedApp):
+class MicrosoftStoreForBusinessContainedApp(MobileContainedApp, Parsable):
     """
     A class that represents a contained app of a MicrosoftStoreForBusinessApp.
     """

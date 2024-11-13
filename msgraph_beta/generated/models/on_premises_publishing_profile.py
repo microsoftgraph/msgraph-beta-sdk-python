@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class OnPremisesPublishingProfile(Entity):
+class OnPremisesPublishingProfile(Entity, Parsable):
     # List of existing onPremisesAgentGroup objects. Read-only. Nullable.
     agent_groups: Optional[List[OnPremisesAgentGroup]] = None
     # List of existing onPremisesAgent objects. Read-only. Nullable.

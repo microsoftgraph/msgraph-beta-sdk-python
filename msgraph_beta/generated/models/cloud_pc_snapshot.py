@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CloudPcSnapshot(Entity):
+class CloudPcSnapshot(Entity, Parsable):
     # The unique identifier for the Cloud PC.
     cloud_pc_id: Optional[str] = None
     # The date and time at which the snapshot was taken. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .android_device_compliance_local_action_base import AndroidDeviceComplianceLocalActionBase
 
 @dataclass
-class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(AndroidDeviceComplianceLocalActionBase):
+class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(AndroidDeviceComplianceLocalActionBase, Parsable):
     """
     Local Action Lock Device with Passcode Configuration
     """

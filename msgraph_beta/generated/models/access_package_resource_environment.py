@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessPackageResourceEnvironment(Entity):
+class AccessPackageResourceEnvironment(Entity, Parsable):
     # Read-only. Required.
     access_package_resources: Optional[List[AccessPackageResource]] = None
     # Connection information of an environment used to connect to a resource.

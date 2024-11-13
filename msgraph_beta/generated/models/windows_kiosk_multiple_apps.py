@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
 
 @dataclass
-class WindowsKioskMultipleApps(WindowsKioskAppConfiguration):
+class WindowsKioskMultipleApps(WindowsKioskAppConfiguration, Parsable):
     """
     The class used to identify the MultiMode app configuration for the kiosk configuration
     """

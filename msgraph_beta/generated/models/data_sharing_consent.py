@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DataSharingConsent(Entity):
+class DataSharingConsent(Entity, Parsable):
     """
     Data sharing consent information.
     """

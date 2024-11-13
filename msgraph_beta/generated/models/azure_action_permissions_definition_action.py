@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .azure_permissions_definition_action import AzurePermissionsDefinitionAction
 
 @dataclass
-class AzureActionPermissionsDefinitionAction(AzurePermissionsDefinitionAction):
+class AzureActionPermissionsDefinitionAction(AzurePermissionsDefinitionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureActionPermissionsDefinitionAction"
     # List of actions relating to the Azure permission.

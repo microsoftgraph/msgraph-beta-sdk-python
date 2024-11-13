@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class AwsSecurityToolAdministrationFinding(Finding):
+class AwsSecurityToolAdministrationFinding(Finding, Parsable):
     # The identity property
     identity: Optional[AuthorizationSystemIdentity] = None
     # The identityDetails property

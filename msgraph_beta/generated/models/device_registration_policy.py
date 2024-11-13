@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceRegistrationPolicy(Entity):
+class DeviceRegistrationPolicy(Entity, Parsable):
     # Specifies the authorization policy for controlling registration of new devices using Microsoft Entra join within your organization. Required. For more information, see What is a device identity?.
     azure_a_d_join: Optional[AzureADJoinPolicy] = None
     # Specifies the authorization policy for controlling registration of new devices using Microsoft Entra registered within your organization. Required. For more information, see What is a device identity?.

@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from ...entity import Entity
 
 @dataclass
-class SecurityRequirement(Entity):
+class SecurityRequirement(Entity, Parsable):
     # The link to the site where the admin can take action on the requirement.
     action_url: Optional[str] = None
     # The complianceStatus property

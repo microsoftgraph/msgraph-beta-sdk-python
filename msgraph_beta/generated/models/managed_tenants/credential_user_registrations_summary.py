@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class CredentialUserRegistrationsSummary(Entity):
+class CredentialUserRegistrationsSummary(Entity, Parsable):
     # Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.
     last_refreshed_date_time: Optional[datetime.datetime] = None
     # The number of users that are capable of performing multi-factor authentication or self service password reset. Optional. Read-only.

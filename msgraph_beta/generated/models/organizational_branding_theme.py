@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class OrganizationalBrandingTheme(Entity):
+class OrganizationalBrandingTheme(Entity, Parsable):
     # The isDefaultTheme property
     is_default_theme: Optional[bool] = None
     # The name property

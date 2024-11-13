@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .information_protection_action import InformationProtectionAction
 
 @dataclass
-class MetadataAction(InformationProtectionAction):
+class MetadataAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.metadataAction"
     # A collection of key value pairs that should be added to the file.

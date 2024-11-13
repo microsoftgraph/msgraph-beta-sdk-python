@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class LookupResultRow(Entity):
+class LookupResultRow(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The row property

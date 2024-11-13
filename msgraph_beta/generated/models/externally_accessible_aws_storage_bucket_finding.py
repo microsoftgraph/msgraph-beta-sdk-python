@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class ExternallyAccessibleAwsStorageBucketFinding(Finding):
+class ExternallyAccessibleAwsStorageBucketFinding(Finding, Parsable):
     # The accessibility property
     accessibility: Optional[AwsAccessType] = None
     # The accountsWithAccess property

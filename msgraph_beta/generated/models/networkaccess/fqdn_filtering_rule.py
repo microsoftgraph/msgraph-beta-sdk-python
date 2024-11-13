@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .filtering_rule import FilteringRule
 
 @dataclass
-class FqdnFilteringRule(FilteringRule):
+class FqdnFilteringRule(FilteringRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.fqdnFilteringRule"
     

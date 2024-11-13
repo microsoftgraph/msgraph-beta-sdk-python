@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class AuditCoreRoot(Entity):
+class AuditCoreRoot(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The queries property

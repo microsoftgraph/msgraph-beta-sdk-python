@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class EducationalActivity(ItemFacet):
+class EducationalActivity(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationalActivity"
     # The month and year the user graduated or completed the activity.

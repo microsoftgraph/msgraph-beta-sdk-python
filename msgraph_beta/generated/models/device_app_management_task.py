@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceAppManagementTask(Entity):
+class DeviceAppManagementTask(Entity, Parsable):
     """
     A device app management task.
     """

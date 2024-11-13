@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class IntuneBrandingProfile(Entity):
+class IntuneBrandingProfile(Entity, Parsable):
     """
     This entity contains data which is used in customizing the tenant level appearance of the Company Portal applications as well as the end user web portal.
     """

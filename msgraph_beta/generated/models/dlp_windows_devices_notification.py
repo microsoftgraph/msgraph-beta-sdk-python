@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .dlp_notification import DlpNotification
 
 @dataclass
-class DlpWindowsDevicesNotification(DlpNotification):
+class DlpWindowsDevicesNotification(DlpNotification, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.dlpWindowsDevicesNotification"
     # The contentName property

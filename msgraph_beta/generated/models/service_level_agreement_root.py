@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ServiceLevelAgreementRoot(Entity):
+class ServiceLevelAgreementRoot(Entity, Parsable):
     # Collects the monthly Microsoft Entra Health SLA attainment metrics for a Microsoft Entra tenant.
     azure_a_d_authentication: Optional[AzureADAuthentication] = None
     # The OdataType property

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class IdentityContainer(Entity):
+class IdentityContainer(Entity, Parsable):
     # Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified.
     health_issues: Optional[List[HealthIssue]] = None
     # The OdataType property

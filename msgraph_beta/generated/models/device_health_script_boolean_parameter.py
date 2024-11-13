@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_health_script_parameter import DeviceHealthScriptParameter
 
 @dataclass
-class DeviceHealthScriptBooleanParameter(DeviceHealthScriptParameter):
+class DeviceHealthScriptBooleanParameter(DeviceHealthScriptParameter, Parsable):
     """
     Properties of the  Booolean script parameter.
     """

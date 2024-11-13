@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
 
 @dataclass
-class MacOSCredentialSingleSignOnExtension(MacOSSingleSignOnExtension):
+class MacOSCredentialSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
     """
     Represents a Credential-type Single Sign-On extension profile for macOS devices.
     """

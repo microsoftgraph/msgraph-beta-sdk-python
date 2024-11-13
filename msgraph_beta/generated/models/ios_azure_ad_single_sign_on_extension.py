@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .ios_single_sign_on_extension import IosSingleSignOnExtension
 
 @dataclass
-class IosAzureAdSingleSignOnExtension(IosSingleSignOnExtension):
+class IosAzureAdSingleSignOnExtension(IosSingleSignOnExtension, Parsable):
     """
     Represents an Azure AD-type Single Sign-On extension profile for iOS devices.
     """

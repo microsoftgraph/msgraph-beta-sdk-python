@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagementAction(Entity):
+class ManagementAction(Entity, Parsable):
     # The category property
     category: Optional[ManagementCategory] = None
     # The description for the management action. Optional. Read-only.

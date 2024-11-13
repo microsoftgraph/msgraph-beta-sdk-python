@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class SourceSystemDefinition(Entity):
+class SourceSystemDefinition(Entity, Parsable):
     # The name of the source system. Maximum supported length is 100 characters.
     display_name: Optional[str] = None
     # The OdataType property

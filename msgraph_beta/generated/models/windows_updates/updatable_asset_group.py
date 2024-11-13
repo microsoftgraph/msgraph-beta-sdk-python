@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .updatable_asset import UpdatableAsset
 
 @dataclass
-class UpdatableAssetGroup(UpdatableAsset):
+class UpdatableAssetGroup(UpdatableAsset, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.updatableAssetGroup"
     # Members of the group. Read-only.

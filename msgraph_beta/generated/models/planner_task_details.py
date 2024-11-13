@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .planner_delta import PlannerDelta
 
 @dataclass
-class PlannerTaskDetails(PlannerDelta):
+class PlannerTaskDetails(PlannerDelta, Parsable):
     # Detailed information about the approval that is attached to the task.
     approval_attachment: Optional[PlannerBaseApprovalAttachment] = None
     # The collection of checklist items on the task.

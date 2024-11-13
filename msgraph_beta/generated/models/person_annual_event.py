@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class PersonAnnualEvent(ItemFacet):
+class PersonAnnualEvent(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.personAnnualEvent"
     # The date property

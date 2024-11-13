@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .association import Association
 
 @dataclass
-class AssociatedBranch(Association):
+class AssociatedBranch(Association, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.associatedBranch"
     # Identifier for the branch.

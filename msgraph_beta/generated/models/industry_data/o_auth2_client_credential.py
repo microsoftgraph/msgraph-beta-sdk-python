@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .o_auth_client_credential import OAuthClientCredential
 
 @dataclass
-class OAuth2ClientCredential(OAuthClientCredential):
+class OAuth2ClientCredential(OAuthClientCredential, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.oAuth2ClientCredential"
     # The OAuth scope that is provided to the authentication process.

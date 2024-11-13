@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .delivery_optimization_group_id_source import DeliveryOptimizationGroupIdSource
 
 @dataclass
-class DeliveryOptimizationGroupIdCustom(DeliveryOptimizationGroupIdSource):
+class DeliveryOptimizationGroupIdCustom(DeliveryOptimizationGroupIdSource, Parsable):
     """
     Custom group id type
     """

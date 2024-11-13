@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GroupPolicyOperation(Entity):
+class GroupPolicyOperation(Entity, Parsable):
     """
     The entity represents an group policy operation.
     """

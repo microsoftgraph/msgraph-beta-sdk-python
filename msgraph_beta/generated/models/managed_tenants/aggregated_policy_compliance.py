@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class AggregatedPolicyCompliance(Entity):
+class AggregatedPolicyCompliance(Entity, Parsable):
     # Identifier for the device compliance policy. Optional. Read-only.
     compliance_policy_id: Optional[str] = None
     # Name of the device compliance policy. Optional. Read-only.

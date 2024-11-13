@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .windows81_certificate_profile_base import Windows81CertificateProfileBase
 
 @dataclass
-class Windows81SCEPCertificateProfile(Windows81CertificateProfileBase):
+class Windows81SCEPCertificateProfile(Windows81CertificateProfileBase, Parsable):
     """
     Windows 8.1+ SCEP certificate profile
     """

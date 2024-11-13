@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .governance_criteria import GovernanceCriteria
 
 @dataclass
-class GroupMembershipGovernanceCriteria(GovernanceCriteria):
+class GroupMembershipGovernanceCriteria(GovernanceCriteria, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.groupMembershipGovernanceCriteria"
     # The groupId property

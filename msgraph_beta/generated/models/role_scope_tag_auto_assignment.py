@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class RoleScopeTagAutoAssignment(Entity):
+class RoleScopeTagAutoAssignment(Entity, Parsable):
     """
     Contains the properties for auto-assigning a Role Scope Tag to a group to be applied to Devices.
     """

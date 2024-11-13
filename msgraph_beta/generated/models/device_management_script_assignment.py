@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementScriptAssignment(Entity):
+class DeviceManagementScriptAssignment(Entity, Parsable):
     """
     Contains properties used to assign a device management script to a group.
     """

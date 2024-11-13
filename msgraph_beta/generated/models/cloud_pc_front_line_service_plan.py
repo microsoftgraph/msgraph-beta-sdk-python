@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CloudPcFrontLineServicePlan(Entity):
+class CloudPcFrontLineServicePlan(Entity, Parsable):
     # The allotmentLicensesCount property
     allotment_licenses_count: Optional[int] = None
     # The display name of the front-line service plan. For example, 2vCPU/8GB/128GB Front-line or 4vCPU/16GB/256GB Front-line.

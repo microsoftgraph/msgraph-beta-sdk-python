@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .cloud_pc_disaster_recovery_network_setting import CloudPcDisasterRecoveryNetworkSetting
 
 @dataclass
-class CloudPcDisasterRecoveryAzureConnectionSetting(CloudPcDisasterRecoveryNetworkSetting):
+class CloudPcDisasterRecoveryAzureConnectionSetting(CloudPcDisasterRecoveryNetworkSetting, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcDisasterRecoveryAzureConnectionSetting"
     # Indicates the unique ID of the virtual network that the new Cloud PC joins.

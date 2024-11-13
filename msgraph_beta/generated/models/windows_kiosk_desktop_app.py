@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .windows_kiosk_app_base import WindowsKioskAppBase
 
 @dataclass
-class WindowsKioskDesktopApp(WindowsKioskAppBase):
+class WindowsKioskDesktopApp(WindowsKioskAppBase, Parsable):
     """
     The base class for a type of apps
     """

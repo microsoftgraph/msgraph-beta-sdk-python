@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CartToClassAssociation(Entity):
+class CartToClassAssociation(Entity, Parsable):
     """
     CartToClassAssociation for associating device carts with classrooms.
     """

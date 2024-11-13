@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
 
 @dataclass
-class FeatureUpdateCatalogEntry(SoftwareUpdateCatalogEntry):
+class FeatureUpdateCatalogEntry(SoftwareUpdateCatalogEntry, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.featureUpdateCatalogEntry"
     # The build number of the feature update. Read-only.

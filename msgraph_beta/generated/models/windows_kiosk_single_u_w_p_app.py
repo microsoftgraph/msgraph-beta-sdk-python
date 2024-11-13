@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
 
 @dataclass
-class WindowsKioskSingleUWPApp(WindowsKioskAppConfiguration):
+class WindowsKioskSingleUWPApp(WindowsKioskAppConfiguration, Parsable):
     """
     The class used to identify the UWP app info for the kiosk configuration
     """

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIncident
 
 @dataclass
-class NoMfaOnRoleActivationAlertIncident(UnifiedRoleManagementAlertIncident):
+class NoMfaOnRoleActivationAlertIncident(UnifiedRoleManagementAlertIncident, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.noMfaOnRoleActivationAlertIncident"
     # The name of the Microsoft Entra ID directory role.

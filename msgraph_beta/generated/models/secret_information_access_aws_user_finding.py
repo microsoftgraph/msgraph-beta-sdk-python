@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .aws_secret_information_access_finding import AwsSecretInformationAccessFinding
 
 @dataclass
-class SecretInformationAccessAwsUserFinding(AwsSecretInformationAccessFinding):
+class SecretInformationAccessAwsUserFinding(AwsSecretInformationAccessFinding, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

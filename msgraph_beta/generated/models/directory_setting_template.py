@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .directory_object import DirectoryObject
 
 @dataclass
-class DirectorySettingTemplate(DirectoryObject):
+class DirectorySettingTemplate(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.directorySettingTemplate"
     # Description of the template. Read-only.

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .software_update_filter import SoftwareUpdateFilter
 
 @dataclass
-class WindowsUpdateFilter(SoftwareUpdateFilter):
+class WindowsUpdateFilter(SoftwareUpdateFilter, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.windowsUpdateFilter"
     

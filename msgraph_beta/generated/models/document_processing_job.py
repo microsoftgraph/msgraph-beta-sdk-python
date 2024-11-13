@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DocumentProcessingJob(Entity):
+class DocumentProcessingJob(Entity, Parsable):
     # Date and time of item creation. Read-only.
     created_date_time: Optional[datetime.datetime] = None
     # The document processing job type. The possible values are: file, folder

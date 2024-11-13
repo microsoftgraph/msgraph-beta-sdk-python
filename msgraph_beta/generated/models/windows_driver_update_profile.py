@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsDriverUpdateProfile(Entity):
+class WindowsDriverUpdateProfile(Entity, Parsable):
     """
     Windows Driver Update Profile
     """

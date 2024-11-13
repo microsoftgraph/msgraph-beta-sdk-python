@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class LegalHold(Entity):
+class LegalHold(Entity, Parsable):
     # KQL query that specifies content to be held in the specified locations. To learn more, see Keyword queries and search conditions for Content Search and eDiscovery.  To hold all content in the specified locations, leave contentQuery blank.
     content_query: Optional[str] = None
     # The user who created the legal hold.

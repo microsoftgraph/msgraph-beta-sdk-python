@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .managed_device_mobile_app_configuration import ManagedDeviceMobileAppConfiguration
 
 @dataclass
-class AndroidForWorkMobileAppConfiguration(ManagedDeviceMobileAppConfiguration):
+class AndroidForWorkMobileAppConfiguration(ManagedDeviceMobileAppConfiguration, Parsable):
     """
     Contains properties, inherited properties and actions for AFW mobile app configurations.
     """

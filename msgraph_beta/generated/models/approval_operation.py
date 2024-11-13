@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ApprovalOperation(Entity):
+class ApprovalOperation(Entity, Parsable):
     # The date and time when the operation was created.
     created_date_time: Optional[datetime.datetime] = None
     # The error if the operation failed.

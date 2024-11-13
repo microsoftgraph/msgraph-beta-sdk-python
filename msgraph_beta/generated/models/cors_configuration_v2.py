@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CorsConfiguration_v2(Entity):
+class CorsConfiguration_v2(Entity, Parsable):
     # The request headers that the origin domain may specify on the CORS request. The wildcard character * indicates that any header beginning with the specified prefix is allowed.
     allowed_headers: Optional[List[str]] = None
     # The HTTP request methods that the origin domain may use for a CORS request.

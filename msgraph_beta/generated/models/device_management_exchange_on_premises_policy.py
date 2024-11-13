@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementExchangeOnPremisesPolicy(Entity):
+class DeviceManagementExchangeOnPremisesPolicy(Entity, Parsable):
     """
     Singleton entity which represents the Exchange OnPremises policy configured for a tenant.
     """

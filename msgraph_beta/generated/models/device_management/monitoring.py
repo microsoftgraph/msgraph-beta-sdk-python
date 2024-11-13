@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Monitoring(Entity):
+class Monitoring(Entity, Parsable):
     # The collection of records of alert events.
     alert_records: Optional[List[AlertRecord]] = None
     # The collection of alert rules.

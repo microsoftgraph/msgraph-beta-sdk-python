@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DailyUserInsightMetricsRoot(Entity):
+class DailyUserInsightMetricsRoot(Entity, Parsable):
     # Insights for active users on apps registered in the tenant for a specified period.
     active_users: Optional[List[ActiveUsersMetric]] = None
     # Insights for authentications on apps registered in the tenant for a specified period.

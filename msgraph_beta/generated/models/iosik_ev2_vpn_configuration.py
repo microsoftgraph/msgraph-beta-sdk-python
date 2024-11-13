@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .ios_vpn_configuration import IosVpnConfiguration
 
 @dataclass
-class IosikEv2VpnConfiguration(IosVpnConfiguration):
+class IosikEv2VpnConfiguration(IosVpnConfiguration, Parsable):
     """
     By providing the configurations in this profile you can instruct the iOS device to connect to desired IKEv2 VPN endpoint.
     """

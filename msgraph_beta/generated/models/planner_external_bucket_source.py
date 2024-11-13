@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .planner_bucket_creation import PlannerBucketCreation
 
 @dataclass
-class PlannerExternalBucketSource(PlannerBucketCreation):
+class PlannerExternalBucketSource(PlannerBucketCreation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.plannerExternalBucketSource"
     # Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.

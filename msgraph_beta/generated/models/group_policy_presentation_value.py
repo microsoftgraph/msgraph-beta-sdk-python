@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GroupPolicyPresentationValue(Entity):
+class GroupPolicyPresentationValue(Entity, Parsable):
     """
     The base presentation value entity that stores the value for a single group policy presentation.
     """

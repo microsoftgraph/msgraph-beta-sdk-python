@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GroupPolicySettingMapping(Entity):
+class GroupPolicySettingMapping(Entity, Parsable):
     """
     The Group Policy setting to MDM/Intune mapping.
     """

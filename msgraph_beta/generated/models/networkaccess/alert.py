@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Alert(Entity):
+class Alert(Entity, Parsable):
     # The actions property
     actions: Optional[List[AlertAction]] = None
     # The alertType property

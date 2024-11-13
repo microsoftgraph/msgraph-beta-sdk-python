@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class WindowsPhone81TrustedRootCertificate(DeviceConfiguration):
+class WindowsPhone81TrustedRootCertificate(DeviceConfiguration, Parsable):
     """
     Windows Phone 8.1+ Trusted Root Certificate configuration profile
     """

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
 
 @dataclass
-class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry):
+class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.qualityUpdateCatalogEntry"
     # The catalog name of the content. Read-only.

@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class MacOSWiredNetworkConfiguration(DeviceConfiguration):
+class MacOSWiredNetworkConfiguration(DeviceConfiguration, Parsable):
     """
     MacOS wired network configuration profile.
     """

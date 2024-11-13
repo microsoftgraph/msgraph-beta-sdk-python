@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SymantecCodeSigningCertificate(Entity):
+class SymantecCodeSigningCertificate(Entity, Parsable):
     # The Windows Symantec Code-Signing Certificate in the raw data format.
     content: Optional[bytes] = None
     # The Cert Expiration Date.

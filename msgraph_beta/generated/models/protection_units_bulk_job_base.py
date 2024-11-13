@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ProtectionUnitsBulkJobBase(Entity):
+class ProtectionUnitsBulkJobBase(Entity, Parsable):
     # The identity of person who created the job.
     created_by: Optional[IdentitySet] = None
     # The time of creation of the job.

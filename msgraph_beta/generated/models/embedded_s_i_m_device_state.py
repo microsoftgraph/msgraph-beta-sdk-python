@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EmbeddedSIMDeviceState(Entity):
+class EmbeddedSIMDeviceState(Entity, Parsable):
     """
     Describes the embedded SIM activation code deployment state in relation to a device.
     """

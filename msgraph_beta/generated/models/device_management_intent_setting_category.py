@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_setting_category import DeviceManagementSettingCategory
 
 @dataclass
-class DeviceManagementIntentSettingCategory(DeviceManagementSettingCategory):
+class DeviceManagementIntentSettingCategory(DeviceManagementSettingCategory, Parsable):
     """
     Entity representing an intent setting category
     """

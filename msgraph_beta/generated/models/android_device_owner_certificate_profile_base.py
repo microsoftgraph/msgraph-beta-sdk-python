@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AndroidDeviceOwnerCertificateProfileBase(DeviceConfiguration):
+class AndroidDeviceOwnerCertificateProfileBase(DeviceConfiguration, Parsable):
     """
     Android Device Owner certificate profile base.
     """

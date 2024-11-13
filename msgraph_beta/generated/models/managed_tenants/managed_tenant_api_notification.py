@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagedTenantApiNotification(Entity):
+class ManagedTenantApiNotification(Entity, Parsable):
     # The alert property
     alert: Optional[ManagedTenantAlert] = None
     # The createdByUserId property

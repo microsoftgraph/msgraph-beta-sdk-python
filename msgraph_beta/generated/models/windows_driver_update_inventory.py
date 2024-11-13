@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsDriverUpdateInventory(Entity):
+class WindowsDriverUpdateInventory(Entity, Parsable):
     """
     A new entity to represent driver inventories.
     """

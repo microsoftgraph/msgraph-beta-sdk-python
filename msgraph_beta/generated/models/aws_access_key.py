@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .aws_identity import AwsIdentity
 
 @dataclass
-class AwsAccessKey(AwsIdentity):
+class AwsAccessKey(AwsIdentity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsAccessKey"
     # Represents the owner of the access key.

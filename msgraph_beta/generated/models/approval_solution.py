@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ApprovalSolution(Entity):
+class ApprovalSolution(Entity, Parsable):
     # A collection of approval items.
     approval_items: Optional[List[ApprovalItem]] = None
     # The OdataType property

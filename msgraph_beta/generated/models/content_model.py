@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ContentModel(Entity):
+class ContentModel(Entity, Parsable):
     # Identity of the user, device, or applicationthat created the item. Read-only.
     created_by: Optional[IdentitySet] = None
     # Date and time of item creation. Read-only.

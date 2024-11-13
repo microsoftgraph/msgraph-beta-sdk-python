@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .deployable_content import DeployableContent
 
 @dataclass
-class CatalogContent(DeployableContent):
+class CatalogContent(DeployableContent, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.catalogContent"
     # The catalogEntry property

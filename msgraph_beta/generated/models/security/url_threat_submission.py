@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .threat_submission import ThreatSubmission
 
 @dataclass
-class UrlThreatSubmission(ThreatSubmission):
+class UrlThreatSubmission(ThreatSubmission, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.urlThreatSubmission"
     # Denotes the webUrl that needs to be submitted.

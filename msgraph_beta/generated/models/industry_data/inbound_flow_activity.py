@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .industry_data_run_activity import IndustryDataRunActivity
 
 @dataclass
-class InboundFlowActivity(IndustryDataRunActivity):
+class InboundFlowActivity(IndustryDataRunActivity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.inboundFlowActivity"
     

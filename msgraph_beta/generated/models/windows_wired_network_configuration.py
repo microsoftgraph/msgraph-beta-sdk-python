@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class WindowsWiredNetworkConfiguration(DeviceConfiguration):
+class WindowsWiredNetworkConfiguration(DeviceConfiguration, Parsable):
     """
     This entity provides descriptions of the declared methods, properties and relationships exposed by the Wired Network CSP.
     """

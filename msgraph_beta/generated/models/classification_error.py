@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .classifcation_error_base import ClassifcationErrorBase
 
 @dataclass
-class ClassificationError(ClassifcationErrorBase):
+class ClassificationError(ClassifcationErrorBase, Parsable):
     # The details property
     details: Optional[List[ClassifcationErrorBase]] = None
     # The OdataType property

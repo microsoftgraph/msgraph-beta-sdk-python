@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .exact_match_job_base import ExactMatchJobBase
 
 @dataclass
-class ExactMatchSessionBase(ExactMatchJobBase):
+class ExactMatchSessionBase(ExactMatchJobBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.exactMatchSessionBase"
     # The dataStoreId property

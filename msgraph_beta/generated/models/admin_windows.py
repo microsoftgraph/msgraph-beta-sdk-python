@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AdminWindows(Entity):
+class AdminWindows(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Entity that acts as a container for all Windows Update for Business deployment service functionalities. Read-only.

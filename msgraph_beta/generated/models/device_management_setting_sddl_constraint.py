@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementSettingSddlConstraint(DeviceManagementConstraint):
+class DeviceManagementSettingSddlConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint enforcing the setting is well formed SDDL
     """

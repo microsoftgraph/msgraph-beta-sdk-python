@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsAutopilotSettings(Entity):
+class WindowsAutopilotSettings(Entity, Parsable):
     """
     The windowsAutopilotSettings resource represents a Windows Autopilot Account to sync data with Windows device data sync service.
     """

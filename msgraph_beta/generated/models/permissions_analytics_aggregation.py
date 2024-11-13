@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PermissionsAnalyticsAggregation(Entity):
+class PermissionsAnalyticsAggregation(Entity, Parsable):
     # The aws property
     aws: Optional[PermissionsAnalytics] = None
     # The azure property

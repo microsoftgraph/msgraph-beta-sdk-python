@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ProgramControlType(Entity):
+class ProgramControlType(Entity, Parsable):
     # The controlTypeGroupId property
     control_type_group_id: Optional[str] = None
     # The name of the program control type

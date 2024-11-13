@@ -30,7 +30,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Call(Entity):
+class Call(Entity, Parsable):
     # The list of active modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data. Read-only.
     active_modalities: Optional[List[Modality]] = None
     # The participant that answered the call. Read-only.

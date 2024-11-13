@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .aws_security_tool_administration_finding import AwsSecurityToolAdministrationFinding
 
 @dataclass
-class SecurityToolAwsServerlessFunctionAdministratorFinding(AwsSecurityToolAdministrationFinding):
+class SecurityToolAwsServerlessFunctionAdministratorFinding(AwsSecurityToolAdministrationFinding, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

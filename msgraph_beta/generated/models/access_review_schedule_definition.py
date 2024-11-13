@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessReviewScheduleDefinition(Entity):
+class AccessReviewScheduleDefinition(Entity, Parsable):
     # Defines the list of additional users or group members to be notified of the access review progress.
     additional_notification_recipients: Optional[List[AccessReviewNotificationRecipientItem]] = None
     # This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers are notified to take action if no users are found from the list of reviewers specified. This could occur when either the group owner is specified as the reviewer but the group owner doesn't exist, or manager is specified as reviewer but a user's manager doesn't exist.  Supports $select. Note: This property has been replaced by fallbackReviewers. However, specifying either backupReviewers or fallbackReviewers automatically populates the same values to the other property.

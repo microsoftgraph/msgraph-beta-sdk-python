@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class WindowsDeliveryOptimizationConfiguration(DeviceConfiguration):
+class WindowsDeliveryOptimizationConfiguration(DeviceConfiguration, Parsable):
     """
     Windows Delivery Optimization configuration
     """

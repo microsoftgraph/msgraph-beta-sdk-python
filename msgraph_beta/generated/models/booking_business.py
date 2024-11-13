@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 from .booking_named_entity import BookingNamedEntity
 
 @dataclass
-class BookingBusiness(BookingNamedEntity):
+class BookingBusiness(BookingNamedEntity, Parsable):
     """
     Represents a Microsoft Bookings Business.
     """

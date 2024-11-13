@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegeEscalation(Entity):
+class PrivilegeEscalation(Entity, Parsable):
     # The list of actions that the identity could perform.
     actions: Optional[List[AuthorizationSystemTypeAction]] = None
     # A detailed description of the privilege escalation.

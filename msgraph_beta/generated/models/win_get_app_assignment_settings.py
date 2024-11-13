@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .mobile_app_assignment_settings import MobileAppAssignmentSettings
 
 @dataclass
-class WinGetAppAssignmentSettings(MobileAppAssignmentSettings):
+class WinGetAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
     """
     Contains properties used to assign a WinGet app to a group.
     """

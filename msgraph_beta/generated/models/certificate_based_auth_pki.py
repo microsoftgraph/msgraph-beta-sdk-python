@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .directory_object import DirectoryObject
 
 @dataclass
-class CertificateBasedAuthPki(DirectoryObject):
+class CertificateBasedAuthPki(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.certificateBasedAuthPki"
     # The certificateAuthorities property

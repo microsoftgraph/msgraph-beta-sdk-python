@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ...models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class GetTimesOffGetResponse(BaseCollectionPaginationCountResponse):
+class GetTimesOffGetResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
     value: Optional[List[TimeOff]] = None
     

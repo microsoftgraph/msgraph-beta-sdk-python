@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class Windows10PFXImportCertificateProfile(DeviceConfiguration):
+class Windows10PFXImportCertificateProfile(DeviceConfiguration, Parsable):
     """
     Deprecated
     """

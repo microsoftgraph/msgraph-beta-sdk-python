@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .custom_authentication_extension import CustomAuthenticationExtension
 
 @dataclass
-class OnAttributeCollectionStartCustomExtension(CustomAuthenticationExtension):
+class OnAttributeCollectionStartCustomExtension(CustomAuthenticationExtension, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onAttributeCollectionStartCustomExtension"
     

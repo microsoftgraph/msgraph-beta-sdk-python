@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamworkTag(Entity):
+class TeamworkTag(Entity, Parsable):
     # Tag description as it appears to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
     description: Optional[str] = None
     # Tag name as it appears to the user in Microsoft Teams.

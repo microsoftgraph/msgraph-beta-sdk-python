@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ServicePrincipalCreationConditionSet(Entity):
+class ServicePrincipalCreationConditionSet(Entity, Parsable):
     # The applicationIds property
     application_ids: Optional[List[str]] = None
     # The applicationPublisherIds property

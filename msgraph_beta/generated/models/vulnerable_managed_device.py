@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class VulnerableManagedDevice(Entity):
+class VulnerableManagedDevice(Entity, Parsable):
     """
     This entity represents a device associated with a task.
     """

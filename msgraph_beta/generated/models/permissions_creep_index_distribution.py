@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PermissionsCreepIndexDistribution(Entity):
+class PermissionsCreepIndexDistribution(Entity, Parsable):
     # The authorizationSystem property
     authorization_system: Optional[AuthorizationSystem] = None
     # Defines when the PCI distribution was created.

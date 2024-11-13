@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .windows_update_filter import WindowsUpdateFilter
 
 @dataclass
-class QualityUpdateFilter(WindowsUpdateFilter):
+class QualityUpdateFilter(WindowsUpdateFilter, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.qualityUpdateFilter"
     # The cadence property

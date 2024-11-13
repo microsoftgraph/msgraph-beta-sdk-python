@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Catalog(Entity):
+class Catalog(Entity, Parsable):
     # Lists the content that you can approve for deployment. Read-only.
     entries: Optional[List[CatalogEntry]] = None
     # The OdataType property

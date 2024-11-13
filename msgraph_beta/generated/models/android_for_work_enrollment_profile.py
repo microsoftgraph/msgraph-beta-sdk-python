@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AndroidForWorkEnrollmentProfile(Entity):
+class AndroidForWorkEnrollmentProfile(Entity, Parsable):
     """
     Enrollment Profile used to enroll COSU devices using Google's Cloud Management.
     """

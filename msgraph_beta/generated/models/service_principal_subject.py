@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
 
 @dataclass
-class ServicePrincipalSubject(ConditionalAccessWhatIfSubject):
+class ServicePrincipalSubject(ConditionalAccessWhatIfSubject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.servicePrincipalSubject"
     # The servicePrincipalId property

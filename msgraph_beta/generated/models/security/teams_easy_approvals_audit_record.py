@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .audit_data import AuditData
 
 @dataclass
-class TeamsEasyApprovalsAuditRecord(AuditData):
+class TeamsEasyApprovalsAuditRecord(AuditData, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.teamsEasyApprovalsAuditRecord"
     

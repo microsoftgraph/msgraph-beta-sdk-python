@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ImpactedResource(Entity):
+class ImpactedResource(Entity, Parsable):
     # The date and time when the impactedResource object was initially associated with the recommendation.
     added_date_time: Optional[datetime.datetime] = None
     # Additional information unique to the impactedResource to help contextualize the recommendation.

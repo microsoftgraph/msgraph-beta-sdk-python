@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .planner_delta import PlannerDelta
 
 @dataclass
-class PlannerUser(PlannerDelta):
+class PlannerUser(PlannerDelta, Parsable):
     # The all property
     all: Optional[List[PlannerDelta]] = None
     # A collection that contains the references to the plans that the user marked as favorites.

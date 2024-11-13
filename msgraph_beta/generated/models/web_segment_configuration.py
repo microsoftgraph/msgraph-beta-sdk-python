@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .segment_configuration import SegmentConfiguration
 
 @dataclass
-class WebSegmentConfiguration(SegmentConfiguration):
+class WebSegmentConfiguration(SegmentConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.webSegmentConfiguration"
     # The applicationSegments property

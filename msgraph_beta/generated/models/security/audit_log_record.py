@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class AuditLogRecord(Entity):
+class AuditLogRecord(Entity, Parsable):
     # The administrative units tagged to an audit log record.
     administrative_units: Optional[List[str]] = None
     # A JSON object that contains the actual audit log data.

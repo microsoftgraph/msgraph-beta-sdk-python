@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SensitivityPolicySettings(Entity):
+class SensitivityPolicySettings(Entity, Parsable):
     # The applicableTo property
     applicable_to: Optional[SensitivityLabelTarget] = None
     # The downgradeSensitivityRequiresJustification property

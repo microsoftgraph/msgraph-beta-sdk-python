@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceCustomAttributeShellScript(Entity):
+class DeviceCustomAttributeShellScript(Entity, Parsable):
     """
     Represents a custom attribute script for macOS.
     """

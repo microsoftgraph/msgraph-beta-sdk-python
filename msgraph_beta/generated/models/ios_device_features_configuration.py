@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
 
 @dataclass
-class IosDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase):
+class IosDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Parsable):
     """
     iOS Device Features Configuration Profile.
     """

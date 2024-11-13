@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .azure_identity import AzureIdentity
 
 @dataclass
-class AzureUser(AzureIdentity):
+class AzureUser(AzureIdentity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureUser"
     

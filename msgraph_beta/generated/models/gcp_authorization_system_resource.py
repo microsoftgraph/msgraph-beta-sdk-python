@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .authorization_system_resource import AuthorizationSystemResource
 
 @dataclass
-class GcpAuthorizationSystemResource(AuthorizationSystemResource):
+class GcpAuthorizationSystemResource(AuthorizationSystemResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gcpAuthorizationSystemResource"
     # The service associated with the resource in a GCP authorization system. This object is autoexpanded.

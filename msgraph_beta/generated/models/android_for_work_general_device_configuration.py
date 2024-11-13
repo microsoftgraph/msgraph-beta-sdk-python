@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AndroidForWorkGeneralDeviceConfiguration(DeviceConfiguration):
+class AndroidForWorkGeneralDeviceConfiguration(DeviceConfiguration, Parsable):
     """
     Android For Work general device configuration.
     """

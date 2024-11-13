@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .azure_identity import AzureIdentity
 
 @dataclass
-class AzureServerlessFunction(AzureIdentity):
+class AzureServerlessFunction(AzureIdentity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureServerlessFunction"
     # Represents the resources in an authorization system.

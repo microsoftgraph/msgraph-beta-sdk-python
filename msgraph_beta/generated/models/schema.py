@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Schema(Entity):
+class Schema(Entity, Parsable):
     # The baseType property
     base_type: Optional[str] = None
     # The OdataType property

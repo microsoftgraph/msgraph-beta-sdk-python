@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIncident
 
 @dataclass
-class InvalidLicenseAlertIncident(UnifiedRoleManagementAlertIncident):
+class InvalidLicenseAlertIncident(UnifiedRoleManagementAlertIncident, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.invalidLicenseAlertIncident"
     # Status of the tenant's Microsoft Entra ID P2 license.

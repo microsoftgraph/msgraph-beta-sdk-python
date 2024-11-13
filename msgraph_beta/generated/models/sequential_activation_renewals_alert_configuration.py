@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .unified_role_management_alert_configuration import UnifiedRoleManagementAlertConfiguration
 
 @dataclass
-class SequentialActivationRenewalsAlertConfiguration(UnifiedRoleManagementAlertConfiguration):
+class SequentialActivationRenewalsAlertConfiguration(UnifiedRoleManagementAlertConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.sequentialActivationRenewalsAlertConfiguration"
     # The minimum number of activations within the timeIntervalBetweenActivations period to trigger an alert.

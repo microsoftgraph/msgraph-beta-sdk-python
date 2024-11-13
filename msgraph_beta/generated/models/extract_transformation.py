@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .custom_claim_transformation import CustomClaimTransformation
 
 @dataclass
-class ExtractTransformation(CustomClaimTransformation):
+class ExtractTransformation(CustomClaimTransformation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.extractTransformation"
     # The type of extract transformation to apply.

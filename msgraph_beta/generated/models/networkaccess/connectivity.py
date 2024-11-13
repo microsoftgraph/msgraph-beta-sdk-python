@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Connectivity(Entity):
+class Connectivity(Entity, Parsable):
     # Branches represent locations for connectivity. DEPRECATED AND TO BE RETIRED SOON. Use the remoteNetwork relationship and its associated APIs instead.
     branches: Optional[List[BranchSite]] = None
     # The OdataType property

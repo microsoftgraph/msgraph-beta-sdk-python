@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CloudCertificationAuthority(Entity):
+class CloudCertificationAuthority(Entity, Parsable):
     """
     Entity that represents a collection of metadata of a cloud certification authority.
     """

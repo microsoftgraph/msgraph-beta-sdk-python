@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Ediscoveryroot(Entity):
+class Ediscoveryroot(Entity, Parsable):
     # The cases property
     cases: Optional[List[Case]] = None
     # The OdataType property

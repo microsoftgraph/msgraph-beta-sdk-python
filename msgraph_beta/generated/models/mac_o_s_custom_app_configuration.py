@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class MacOSCustomAppConfiguration(DeviceConfiguration):
+class MacOSCustomAppConfiguration(DeviceConfiguration, Parsable):
     """
     This topic provides descriptions of the declared methods, properties and relationships exposed by the macOSCustomAppConfiguration resource.
     """

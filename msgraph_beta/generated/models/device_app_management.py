@@ -38,7 +38,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceAppManagement(Entity):
+class DeviceAppManagement(Entity, Parsable):
     """
     Singleton entity that acts as a container for all device app management functionality.
     """

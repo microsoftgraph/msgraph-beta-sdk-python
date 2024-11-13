@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .health_monitoring_dictionary import HealthMonitoringDictionary
 
 @dataclass
-class Signals(HealthMonitoringDictionary):
+class Signals(HealthMonitoringDictionary, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

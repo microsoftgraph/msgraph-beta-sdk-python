@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ApprovalItemResponse(Entity):
+class ApprovalItemResponse(Entity, Parsable):
     # The comment made by the approver.
     comments: Optional[str] = None
     # The identity set of the approver.

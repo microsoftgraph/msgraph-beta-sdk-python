@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserExperienceAnalyticsBatteryHealthRuntimeDetails(Entity):
+class UserExperienceAnalyticsBatteryHealthRuntimeDetails(Entity, Parsable):
     """
     The user experience analytics battery health runtime entity contains count of devices broken down into 3 categories - devices with runtime > 5 hours, devices with runtime 3-5 hours and devices with runtime < 3 hours.This API provides the count of devices in these 3 categories.
     """

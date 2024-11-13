@@ -38,7 +38,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration):
+class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable):
     """
     This topic provides descriptions of the declared methods, properties and relationships exposed by the androidDeviceOwnerGeneralDeviceConfiguration resource.
     """

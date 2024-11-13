@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .verifiable_credential_requirement_status import VerifiableCredentialRequirementStatus
 
 @dataclass
-class VerifiableCredentialVerified(VerifiableCredentialRequirementStatus):
+class VerifiableCredentialVerified(VerifiableCredentialRequirementStatus, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.verifiableCredentialVerified"
     

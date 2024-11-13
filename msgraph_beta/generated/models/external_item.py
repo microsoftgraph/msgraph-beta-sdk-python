@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ExternalItem(Entity):
+class ExternalItem(Entity, Parsable):
     # The acl property
     acl: Optional[List[Acl]] = None
     # The content property

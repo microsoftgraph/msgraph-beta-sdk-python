@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class HardwareConfigurationAssignment(Entity):
+class HardwareConfigurationAssignment(Entity, Parsable):
     """
     Contains properties used to assign a hardware configuration to a group.
     """

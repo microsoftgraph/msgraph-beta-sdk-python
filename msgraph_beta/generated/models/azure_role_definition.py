@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AzureRoleDefinition(Entity):
+class AzureRoleDefinition(Entity, Parsable):
     # Scopes at which the Azure role can be assigned. For more information about common patterns, see Understand Azure role definitions: AssignableScopes. Supports $filter (eq).
     assignable_scopes: Optional[List[str]] = None
     # The azureRoleDefinitionType property

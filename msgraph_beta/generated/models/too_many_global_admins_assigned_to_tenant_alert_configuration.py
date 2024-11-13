@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .unified_role_management_alert_configuration import UnifiedRoleManagementAlertConfiguration
 
 @dataclass
-class TooManyGlobalAdminsAssignedToTenantAlertConfiguration(UnifiedRoleManagementAlertConfiguration):
+class TooManyGlobalAdminsAssignedToTenantAlertConfiguration(UnifiedRoleManagementAlertConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.tooManyGlobalAdminsAssignedToTenantAlertConfiguration"
     # The threshold for the number of accounts assigned the Global Administrator role in the tenant. Triggers an alert if the number of global administrators in the tenant reaches or crosses this threshold value.

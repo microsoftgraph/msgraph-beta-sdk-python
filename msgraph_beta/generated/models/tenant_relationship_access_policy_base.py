@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .policy_base import PolicyBase
 
 @dataclass
-class TenantRelationshipAccessPolicyBase(PolicyBase):
+class TenantRelationshipAccessPolicyBase(PolicyBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.tenantRelationshipAccessPolicyBase"
     # The raw JSON definition of the cross-tenant access policy. Deprecated. Do not use.

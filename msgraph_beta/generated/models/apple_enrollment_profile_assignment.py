@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AppleEnrollmentProfileAssignment(Entity):
+class AppleEnrollmentProfileAssignment(Entity, Parsable):
     """
     An assignment of an Apple profile.
     """

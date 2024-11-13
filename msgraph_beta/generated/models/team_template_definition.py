@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamTemplateDefinition(Entity):
+class TeamTemplateDefinition(Entity, Parsable):
     # Describes the audience the team template is available to. The possible values are: organization, user, public, unknownFutureValue.
     audience: Optional[TeamTemplateAudience] = None
     # The assigned categories for the team template.

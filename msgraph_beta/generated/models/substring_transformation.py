@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .custom_claim_transformation import CustomClaimTransformation
 
 @dataclass
-class SubstringTransformation(CustomClaimTransformation):
+class SubstringTransformation(CustomClaimTransformation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.substringTransformation"
     # The start index of the substring operation, where 0 is the first character in the string.

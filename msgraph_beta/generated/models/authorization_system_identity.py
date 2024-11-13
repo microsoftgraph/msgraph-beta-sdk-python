@@ -29,7 +29,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AuthorizationSystemIdentity(Entity):
+class AuthorizationSystemIdentity(Entity, Parsable):
     # Navigation to the authorizationSystem object
     authorization_system: Optional[AuthorizationSystem] = None
     # The name of the identity. Read-only. Supports $filter and (eq,contains).

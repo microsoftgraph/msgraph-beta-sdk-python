@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SalesOrderLine(Entity):
+class SalesOrderLine(Entity, Parsable):
     # The account property
     account: Optional[Account] = None
     # The accountId property

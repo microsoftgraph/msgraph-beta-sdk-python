@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class IdentityUserFlow(Entity):
+class IdentityUserFlow(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The userFlowType property

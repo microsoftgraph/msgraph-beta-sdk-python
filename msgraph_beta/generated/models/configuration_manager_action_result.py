@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_action_result import DeviceActionResult
 
 @dataclass
-class ConfigurationManagerActionResult(DeviceActionResult):
+class ConfigurationManagerActionResult(DeviceActionResult, Parsable):
     """
     Result of the ConfigurationManager action
     """

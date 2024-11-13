@@ -12,8 +12,8 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_definition import DeviceManagementConfigurationSettingDefinition
 
 @dataclass
-class DeviceManagementConfigurationSettingGroupDefinition(DeviceManagementConfigurationSettingDefinition):
-    # Dependent child settings to this group of settings.
+class DeviceManagementConfigurationSettingGroupDefinition(DeviceManagementConfigurationSettingDefinition, Parsable):
+    # Dependent child settings to this group of settings
     child_ids: Optional[List[str]] = None
     # List of child settings that depend on this setting
     depended_on_by: Optional[List[DeviceManagementConfigurationSettingDependedOnBy]] = None

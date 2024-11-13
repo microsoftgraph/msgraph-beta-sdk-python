@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_action_result import DeviceActionResult
 
 @dataclass
-class RevokeAppleVppLicensesActionResult(DeviceActionResult):
+class RevokeAppleVppLicensesActionResult(DeviceActionResult, Parsable):
     """
     Revoke Apple Vpp licenses action result
     """

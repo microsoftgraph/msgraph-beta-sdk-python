@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .call_log_row import CallLogRow
 
 @dataclass
-class PstnCallLogRow(CallLogRow):
+class PstnCallLogRow(CallLogRow, Parsable):
     # The source of the call duration data. If the call uses a third-party telecommunications operator via the Operator Connect Program, the operator may provide their own call duration data. In this case, the property value is operator. Otherwise, the value is microsoft.
     call_duration_source: Optional[PstnCallDurationSource] = None
     # Call identifier. Not guaranteed to be unique.

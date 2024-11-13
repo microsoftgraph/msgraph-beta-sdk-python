@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MacOSSoftwareUpdateStateSummary(Entity):
+class MacOSSoftwareUpdateStateSummary(Entity, Parsable):
     """
     MacOS software update state summary for a device and user
     """

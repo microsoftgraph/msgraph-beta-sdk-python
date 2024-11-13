@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class FileSecurityProfile(Entity):
+class FileSecurityProfile(Entity, Parsable):
     # The activityGroupNames property
     activity_group_names: Optional[List[str]] = None
     # The azureSubscriptionId property

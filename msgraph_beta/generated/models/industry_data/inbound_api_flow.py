@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .inbound_flow import InboundFlow
 
 @dataclass
-class InboundApiFlow(InboundFlow):
+class InboundApiFlow(InboundFlow, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.inboundApiFlow"
     

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_value import DeviceManagementConfigurationSettingValue
 
 @dataclass
-class DeviceManagementConfigurationGroupSettingValue(DeviceManagementConfigurationSettingValue):
+class DeviceManagementConfigurationGroupSettingValue(DeviceManagementConfigurationSettingValue, Parsable):
     """
     Value of the GroupSetting
     """

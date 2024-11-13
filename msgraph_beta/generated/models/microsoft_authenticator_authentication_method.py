@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .authentication_method import AuthenticationMethod
 
 @dataclass
-class MicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod):
+class MicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"
     # The app that the user has registered to use to approve push notifications. The possible values are: microsoftAuthenticator, outlookMobile, unknownFutureValue.

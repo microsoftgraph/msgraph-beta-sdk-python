@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GovernanceSubject(Entity):
+class GovernanceSubject(Entity, Parsable):
     # The display name of the subject.
     display_name: Optional[str] = None
     # The email address of the user subject. If the subject is in other types, it's empty.

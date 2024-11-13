@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ShiftsRoleDefinition(Entity):
+class ShiftsRoleDefinition(Entity, Parsable):
     # The description of the role.
     description: Optional[str] = None
     # The display name of the role.

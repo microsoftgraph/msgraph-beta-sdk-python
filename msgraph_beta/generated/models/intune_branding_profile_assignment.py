@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class IntuneBrandingProfileAssignment(Entity):
+class IntuneBrandingProfileAssignment(Entity, Parsable):
     """
     This entity contains the properties used to assign a branding profile to a group.
     """

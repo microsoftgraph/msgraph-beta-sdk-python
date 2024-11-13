@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .recommendation_base import RecommendationBase
 
 @dataclass
-class Recommendation(RecommendationBase):
+class Recommendation(RecommendationBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_applicability import DeviceManagementConfigurationSettingApplicability
 
 @dataclass
-class DeviceManagementConfigurationWindowsSettingApplicability(DeviceManagementConfigurationSettingApplicability):
+class DeviceManagementConfigurationWindowsSettingApplicability(DeviceManagementConfigurationSettingApplicability, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationWindowsSettingApplicability"
     # Version of CSP setting is a part of

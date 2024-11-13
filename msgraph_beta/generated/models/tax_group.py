@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TaxGroup(Entity):
+class TaxGroup(Entity, Parsable):
     # The code property
     code: Optional[str] = None
     # The displayName property

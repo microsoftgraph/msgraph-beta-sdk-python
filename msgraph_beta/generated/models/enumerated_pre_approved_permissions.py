@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .pre_approved_permissions import PreApprovedPermissions
 
 @dataclass
-class EnumeratedPreApprovedPermissions(PreApprovedPermissions):
+class EnumeratedPreApprovedPermissions(PreApprovedPermissions, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.enumeratedPreApprovedPermissions"
     # The list of id values for the specific resource-specific application permissions to match with. See the resourceSpecificApplicationPermissions property of the servicePrincipal object for the list of permissions.

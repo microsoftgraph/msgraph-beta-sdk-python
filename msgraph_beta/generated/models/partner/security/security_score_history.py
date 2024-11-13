@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ...entity import Entity
 
 @dataclass
-class SecurityScoreHistory(Entity):
+class SecurityScoreHistory(Entity, Parsable):
     # The number of compliant security requirements at the time.
     compliant_requirements_count: Optional[int] = None
     # The date the history entry was created.

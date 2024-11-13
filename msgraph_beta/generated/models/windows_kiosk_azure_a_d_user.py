@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .windows_kiosk_user import WindowsKioskUser
 
 @dataclass
-class WindowsKioskAzureADUser(WindowsKioskUser):
+class WindowsKioskAzureADUser(WindowsKioskUser, Parsable):
     """
     The class used to identify an AzureAD user account for the kiosk configuration
     """

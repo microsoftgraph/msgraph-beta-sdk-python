@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .planner_delta import PlannerDelta
 
 @dataclass
-class PlannerPlanDetails(PlannerDelta):
+class PlannerPlanDetails(PlannerDelta, Parsable):
     # An object that specifies the descriptions of the 25 categories that can be associated with tasks in the plan.
     category_descriptions: Optional[PlannerCategoryDescriptions] = None
     # A collection of additional information associated with plannerPlanContext entries that are defined for the plannerPlan container. Read-only.

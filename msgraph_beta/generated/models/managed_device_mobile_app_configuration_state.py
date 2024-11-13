@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ManagedDeviceMobileAppConfigurationState(Entity):
+class ManagedDeviceMobileAppConfigurationState(Entity, Parsable):
     """
     Managed Device Mobile App Configuration State for a given device.
     """

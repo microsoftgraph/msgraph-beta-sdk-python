@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .android_certificate_profile_base import AndroidCertificateProfileBase
 
 @dataclass
-class AndroidScepCertificateProfile(AndroidCertificateProfileBase):
+class AndroidScepCertificateProfile(AndroidCertificateProfileBase, Parsable):
     """
     Android SCEP certificate profile
     """

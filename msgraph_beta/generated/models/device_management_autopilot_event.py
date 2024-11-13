@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementAutopilotEvent(Entity):
+class DeviceManagementAutopilotEvent(Entity, Parsable):
     """
     Represents an Autopilot flow event.
     """

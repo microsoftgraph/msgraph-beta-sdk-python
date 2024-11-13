@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class RestoreArtifactsBulkRequestBase(Entity):
+class RestoreArtifactsBulkRequestBase(Entity, Parsable):
     # The createdBy property
     created_by: Optional[IdentitySet] = None
     # The createdDateTime property

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
 
 @dataclass
-class MailboxRestoreArtifactsBulkAdditionRequest(RestoreArtifactsBulkRequestBase):
+class MailboxRestoreArtifactsBulkAdditionRequest(RestoreArtifactsBulkRequestBase, Parsable):
     # The directoryObjectIds property
     directory_object_ids: Optional[List[str]] = None
     # The mailboxes property

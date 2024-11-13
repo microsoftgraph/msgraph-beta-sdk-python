@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .authentication_method_target import AuthenticationMethodTarget
 
 @dataclass
-class PasskeyAuthenticationMethodTarget(AuthenticationMethodTarget):
+class PasskeyAuthenticationMethodTarget(AuthenticationMethodTarget, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

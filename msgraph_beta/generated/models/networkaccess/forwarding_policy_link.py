@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .policy_link import PolicyLink
 
 @dataclass
-class ForwardingPolicyLink(PolicyLink):
+class ForwardingPolicyLink(PolicyLink, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingPolicyLink"
     

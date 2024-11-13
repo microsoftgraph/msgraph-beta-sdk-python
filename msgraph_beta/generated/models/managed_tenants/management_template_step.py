@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagementTemplateStep(Entity):
+class ManagementTemplateStep(Entity, Parsable):
     # The acceptedVersion property
     accepted_version: Optional[ManagementTemplateStepVersion] = None
     # The category property

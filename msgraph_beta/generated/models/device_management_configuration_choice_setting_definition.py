@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_definition import DeviceManagementConfigurationSettingDefinition
 
 @dataclass
-class DeviceManagementConfigurationChoiceSettingDefinition(DeviceManagementConfigurationSettingDefinition):
+class DeviceManagementConfigurationChoiceSettingDefinition(DeviceManagementConfigurationSettingDefinition, Parsable):
     # Default option for the choice setting.
     default_option_id: Optional[str] = None
     # The OdataType property

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .security_requirement import SecurityRequirement
 
 @dataclass
-class AdminsMfaEnforcedSecurityRequirement(SecurityRequirement):
+class AdminsMfaEnforcedSecurityRequirement(SecurityRequirement, Parsable):
     # The number of admins who are required to use MFA, but haven't completed registration.
     admins_required_not_using_mfa_count: Optional[int] = None
     # The legacyPerUserMfaStatus property

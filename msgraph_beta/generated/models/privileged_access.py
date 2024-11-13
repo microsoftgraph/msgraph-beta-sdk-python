@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegedAccess(Entity):
+class PrivilegedAccess(Entity, Parsable):
     # The display name of the provider managed by PIM.
     display_name: Optional[str] = None
     # The OdataType property

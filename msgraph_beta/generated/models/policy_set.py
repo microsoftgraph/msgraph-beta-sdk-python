@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PolicySet(Entity):
+class PolicySet(Entity, Parsable):
     """
     A class containing the properties used for PolicySet.
     """

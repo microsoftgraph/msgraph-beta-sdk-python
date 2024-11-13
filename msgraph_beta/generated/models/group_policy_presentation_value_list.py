@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .group_policy_presentation_value import GroupPolicyPresentationValue
 
 @dataclass
-class GroupPolicyPresentationValueList(GroupPolicyPresentationValue):
+class GroupPolicyPresentationValueList(GroupPolicyPresentationValue, Parsable):
     """
     The entity represents a collection of name/value pairs of a list box presentation on a policy definition.
     """

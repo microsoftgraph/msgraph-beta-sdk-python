@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class KnowledgeBaseArticle(Entity):
+class KnowledgeBaseArticle(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The URL of the knowledge base article. Read-only.

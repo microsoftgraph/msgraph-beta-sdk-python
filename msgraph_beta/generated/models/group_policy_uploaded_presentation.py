@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 from .group_policy_presentation import GroupPolicyPresentation
 
 @dataclass
-class GroupPolicyUploadedPresentation(GroupPolicyPresentation):
+class GroupPolicyUploadedPresentation(GroupPolicyPresentation, Parsable):
     """
     Represents an ADMX checkBox element and an ADMX boolean element.
     """

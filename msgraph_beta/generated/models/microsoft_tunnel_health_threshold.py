@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MicrosoftTunnelHealthThreshold(Entity):
+class MicrosoftTunnelHealthThreshold(Entity, Parsable):
     """
     Entity that represents the health thresholds of a health metric
     """

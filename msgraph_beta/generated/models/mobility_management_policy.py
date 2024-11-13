@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MobilityManagementPolicy(Entity):
+class MobilityManagementPolicy(Entity, Parsable):
     # Indicates the user scope of the mobility management policy. Possible values are: none, all, selected.
     applies_to: Optional[PolicyScope] = None
     # Compliance URL of the mobility management application.

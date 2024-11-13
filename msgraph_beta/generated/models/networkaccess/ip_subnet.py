@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .rule_destination import RuleDestination
 
 @dataclass
-class IpSubnet(RuleDestination):
+class IpSubnet(RuleDestination, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.ipSubnet"
     # Defines the IP address of the subset used in a destination for a rule.

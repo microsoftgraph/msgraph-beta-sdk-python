@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MobileContainedApp(Entity):
+class MobileContainedApp(Entity, Parsable):
     """
     An abstract class that represents a contained app in a mobileApp acting as a package.
     """

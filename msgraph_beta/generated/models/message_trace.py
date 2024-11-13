@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MessageTrace(Entity):
+class MessageTrace(Entity, Parsable):
     # The destinationIPAddress property
     destination_i_p_address: Optional[str] = None
     # The messageId property

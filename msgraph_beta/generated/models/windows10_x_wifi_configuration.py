@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
 
 @dataclass
-class Windows10XWifiConfiguration(DeviceManagementResourceAccessProfileBase):
+class Windows10XWifiConfiguration(DeviceManagementResourceAccessProfileBase, Parsable):
     """
     Windows X WifiXml configuration profile
     """

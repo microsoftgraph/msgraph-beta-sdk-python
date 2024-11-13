@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AndroidWorkProfileVpnConfiguration(DeviceConfiguration):
+class AndroidWorkProfileVpnConfiguration(DeviceConfiguration, Parsable):
     """
     By providing the configurations in this profile you can instruct the Android Work Profile device to connect to desired VPN endpoint. By specifying the authentication method and security types expected by VPN endpoint you can make the VPN connection seamless for end user.
     """

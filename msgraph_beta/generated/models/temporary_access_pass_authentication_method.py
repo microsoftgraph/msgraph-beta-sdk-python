@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .authentication_method import AuthenticationMethod
 
 @dataclass
-class TemporaryAccessPassAuthenticationMethod(AuthenticationMethod):
+class TemporaryAccessPassAuthenticationMethod(AuthenticationMethod, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.temporaryAccessPassAuthenticationMethod"
     # Determines whether the pass is limited to a one-time use. If true, the pass can be used once; if false, the pass can be used multiple times within the Temporary Access Pass lifetime.

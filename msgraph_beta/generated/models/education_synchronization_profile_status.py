@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EducationSynchronizationProfileStatus(Entity):
+class EducationSynchronizationProfileStatus(Entity, Parsable):
     # Number of errors during synchronization.
     error_count: Optional[int] = None
     # Date and time when most recent changes were observed in the profile.

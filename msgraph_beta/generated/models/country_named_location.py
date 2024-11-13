@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .named_location import NamedLocation
 
 @dataclass
-class CountryNamedLocation(NamedLocation):
+class CountryNamedLocation(NamedLocation, Parsable):
     # List of countries and/or regions in two-letter format specified by ISO 3166-2.
     countries_and_regions: Optional[List[str]] = None
     # Determines what method is used to decide which country the user is located in. Possible values are clientIpAddress (default) and authenticatorAppGps.

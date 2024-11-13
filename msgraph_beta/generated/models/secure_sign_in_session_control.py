@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .conditional_access_session_control import ConditionalAccessSessionControl
 
 @dataclass
-class SecureSignInSessionControl(ConditionalAccessSessionControl):
+class SecureSignInSessionControl(ConditionalAccessSessionControl, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.secureSignInSessionControl"
     

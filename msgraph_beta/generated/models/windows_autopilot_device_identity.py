@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsAutopilotDeviceIdentity(Entity):
+class WindowsAutopilotDeviceIdentity(Entity, Parsable):
     """
     The windowsAutopilotDeviceIdentity resource represents a Windows Autopilot Device.
     """

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .generic_error import GenericError
 
 @dataclass
-class AccessReviewError(GenericError):
+class AccessReviewError(GenericError, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.accessReviewError"
     

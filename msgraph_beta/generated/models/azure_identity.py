@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .authorization_system_identity import AuthorizationSystemIdentity
 
 @dataclass
-class AzureIdentity(AuthorizationSystemIdentity):
+class AzureIdentity(AuthorizationSystemIdentity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureIdentity"
     

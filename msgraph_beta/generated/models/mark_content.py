@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .label_action_base import LabelActionBase
 
 @dataclass
-class MarkContent(LabelActionBase):
+class MarkContent(LabelActionBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.markContent"
     # The fontColor property

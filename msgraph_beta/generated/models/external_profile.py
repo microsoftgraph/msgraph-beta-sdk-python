@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .directory_object import DirectoryObject
 
 @dataclass
-class ExternalProfile(DirectoryObject):
+class ExternalProfile(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.externalProfile"
     # The office address of the external user profile.

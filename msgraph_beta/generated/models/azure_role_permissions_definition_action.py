@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .azure_permissions_definition_action import AzurePermissionsDefinitionAction
 
 @dataclass
-class AzureRolePermissionsDefinitionAction(AzurePermissionsDefinitionAction):
+class AzureRolePermissionsDefinitionAction(AzurePermissionsDefinitionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureRolePermissionsDefinitionAction"
     # The roles property

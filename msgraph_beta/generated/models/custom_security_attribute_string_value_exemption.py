@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .custom_security_attribute_exemption import CustomSecurityAttributeExemption
 
 @dataclass
-class CustomSecurityAttributeStringValueExemption(CustomSecurityAttributeExemption):
+class CustomSecurityAttributeStringValueExemption(CustomSecurityAttributeExemption, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customSecurityAttributeStringValueExemption"
     # The value property

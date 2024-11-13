@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class BookingAppointment(Entity):
+class BookingAppointment(Entity, Parsable):
     """
     Represents a booked appointment of a service by a customer in a business.
     """

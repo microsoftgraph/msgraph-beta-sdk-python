@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_app_management_task import DeviceAppManagementTask
 
 @dataclass
-class UnmanagedDeviceDiscoveryTask(DeviceAppManagementTask):
+class UnmanagedDeviceDiscoveryTask(DeviceAppManagementTask, Parsable):
     """
     This task derived type represents a list of unmanaged devices discovered in the network.
     """

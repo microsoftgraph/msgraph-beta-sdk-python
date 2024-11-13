@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .authorization_system import AuthorizationSystem
 
 @dataclass
-class GcpAuthorizationSystem(AuthorizationSystem):
+class GcpAuthorizationSystem(AuthorizationSystem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gcpAuthorizationSystem"
     # List of actions for service in authorization system.

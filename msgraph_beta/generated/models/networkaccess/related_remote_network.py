@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .related_resource import RelatedResource
 
 @dataclass
-class RelatedRemoteNetwork(RelatedResource):
+class RelatedRemoteNetwork(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedRemoteNetwork"
     # The remoteNetworkId property

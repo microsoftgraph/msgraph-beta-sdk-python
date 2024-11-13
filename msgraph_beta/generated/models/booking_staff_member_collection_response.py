@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class BookingStaffMemberCollectionResponse(BaseCollectionPaginationCountResponse):
+class BookingStaffMemberCollectionResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
     value: Optional[List[BookingStaffMember]] = None
     

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .forwarding_rule import ForwardingRule
 
 @dataclass
-class M365ForwardingRule(ForwardingRule):
+class M365ForwardingRule(ForwardingRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.m365ForwardingRule"
     # The category property

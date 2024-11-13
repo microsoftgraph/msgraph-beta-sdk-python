@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .aosp_device_owner_certificate_profile_base import AospDeviceOwnerCertificateProfileBase
 
 @dataclass
-class AospDeviceOwnerPkcsCertificateProfile(AospDeviceOwnerCertificateProfileBase):
+class AospDeviceOwnerPkcsCertificateProfile(AospDeviceOwnerCertificateProfileBase, Parsable):
     """
     AOSP Device Owner PKCS certificate profile
     """

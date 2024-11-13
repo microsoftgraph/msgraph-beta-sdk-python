@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .gcp_identity import GcpIdentity
 
 @dataclass
-class GcpCloudFunction(GcpIdentity):
+class GcpCloudFunction(GcpIdentity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gcpCloudFunction"
     # Represents the resources in an authorization system..

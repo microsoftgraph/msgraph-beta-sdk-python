@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(Entity):
+class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(Entity, Parsable):
     """
     Contains properties for the deployment state of a WindowsDefenderApplicationControl supplemental policy for a device.
     """

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ActiveUsersMetric(Entity):
+class ActiveUsersMetric(Entity, Parsable):
     # The appId property
     app_id: Optional[str] = None
     # The appName property

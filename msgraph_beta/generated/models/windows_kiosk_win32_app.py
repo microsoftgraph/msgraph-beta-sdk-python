@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .windows_kiosk_app_base import WindowsKioskAppBase
 
 @dataclass
-class WindowsKioskWin32App(WindowsKioskAppBase):
+class WindowsKioskWin32App(WindowsKioskAppBase, Parsable):
     """
     KioskModeApp v4 for Win32 app support
     """

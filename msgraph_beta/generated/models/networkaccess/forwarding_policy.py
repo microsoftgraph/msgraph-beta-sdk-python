@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .policy import Policy
 
 @dataclass
-class ForwardingPolicy(Policy):
+class ForwardingPolicy(Policy, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingPolicy"
     # The trafficForwardingType property

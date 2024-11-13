@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .policy_set_item import PolicySetItem
 
 @dataclass
-class EnrollmentRestrictionsConfigurationPolicySetItem(PolicySetItem):
+class EnrollmentRestrictionsConfigurationPolicySetItem(PolicySetItem, Parsable):
     """
     A class containing the properties used for enrollment restriction PolicySetItem.
     """

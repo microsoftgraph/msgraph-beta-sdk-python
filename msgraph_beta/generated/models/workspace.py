@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .place import Place
 
 @dataclass
-class Workspace(Place):
+class Workspace(Place, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.workspace"
     # Specifies the building name or building number that the workspace is in.

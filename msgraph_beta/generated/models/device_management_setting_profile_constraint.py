@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementSettingProfileConstraint(DeviceManagementConstraint):
+class DeviceManagementSettingProfileConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint enforcing a given profile metadata
     """

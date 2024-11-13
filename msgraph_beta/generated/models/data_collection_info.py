@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DataCollectionInfo(Entity):
+class DataCollectionInfo(Entity, Parsable):
     # The entitlements property
     entitlements: Optional[EntitlementsDataCollectionInfo] = None
     # The OdataType property

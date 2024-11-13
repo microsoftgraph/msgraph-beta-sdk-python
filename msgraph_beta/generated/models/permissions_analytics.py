@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PermissionsAnalytics(Entity):
+class PermissionsAnalytics(Entity, Parsable):
     # The output of the permissions usage data analysis performed by Permissions Management to assess risk with identities and resources.
     findings: Optional[List[Finding]] = None
     # The OdataType property

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .planner_task_creation import PlannerTaskCreation
 
 @dataclass
-class PlannerExternalTaskSource(PlannerTaskCreation):
+class PlannerExternalTaskSource(PlannerTaskCreation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.plannerExternalTaskSource"
     # Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.

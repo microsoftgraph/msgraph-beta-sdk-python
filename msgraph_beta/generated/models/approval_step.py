@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ApprovalStep(Entity):
+class ApprovalStep(Entity, Parsable):
     # Indicates whether the step is assigned to the calling user to review. Read-only.
     assigned_to_me: Optional[bool] = None
     # The label provided by the policy creator to identify an approval step. Read-only.

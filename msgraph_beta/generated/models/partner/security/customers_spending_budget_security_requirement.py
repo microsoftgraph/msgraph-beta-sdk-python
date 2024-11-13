@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .security_requirement import SecurityRequirement
 
 @dataclass
-class CustomersSpendingBudgetSecurityRequirement(SecurityRequirement):
+class CustomersSpendingBudgetSecurityRequirement(SecurityRequirement, Parsable):
     # The number of customers with a spending budget set.
     customers_with_spend_budget_count: Optional[int] = None
     # The OdataType property

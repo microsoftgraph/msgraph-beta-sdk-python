@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class IosVppAppAssignedLicense(Entity):
+class IosVppAppAssignedLicense(Entity, Parsable):
     """
     iOS Volume Purchase Program license assignment. This class does not support Create, Delete, or Update.
     """

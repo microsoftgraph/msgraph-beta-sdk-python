@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class CloudPcDevice(Entity):
+class CloudPcDevice(Entity, Parsable):
     # The status of the cloud PC. Possible values are: notProvisioned, provisioning, provisioned, upgrading, inGracePeriod, deprovisioning, failed. Required. Read-only.
     cloud_pc_status: Optional[str] = None
     # The specification of the cloud PC device. Required. Read-only.

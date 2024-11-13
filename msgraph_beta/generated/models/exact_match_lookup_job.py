@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .exact_match_job_base import ExactMatchJobBase
 
 @dataclass
-class ExactMatchLookupJob(ExactMatchJobBase):
+class ExactMatchLookupJob(ExactMatchJobBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.exactMatchLookupJob"
     # The matchingRows property

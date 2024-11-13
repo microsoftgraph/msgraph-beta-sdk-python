@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .windows_kiosk_user import WindowsKioskUser
 
 @dataclass
-class WindowsKioskActiveDirectoryGroup(WindowsKioskUser):
+class WindowsKioskActiveDirectoryGroup(WindowsKioskUser, Parsable):
     """
     The class used to identify an Azure Directory group for the kiosk configuration
     """

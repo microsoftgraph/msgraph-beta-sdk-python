@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .information_protection_action import InformationProtectionAction
 
 @dataclass
-class CustomAction(InformationProtectionAction):
+class CustomAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customAction"
     # Name of the custom action.

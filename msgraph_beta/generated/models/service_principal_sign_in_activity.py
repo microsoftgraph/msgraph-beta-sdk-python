@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ServicePrincipalSignInActivity(Entity):
+class ServicePrincipalSignInActivity(Entity, Parsable):
     # The globally unique appId (also called client ID on the Microsoft Entra admin center) of the credentialed resource application.
     app_id: Optional[str] = None
     # The sign-in activity of the application in a app-only authentication flow (app-to-app tokens) where the application acts like a client.

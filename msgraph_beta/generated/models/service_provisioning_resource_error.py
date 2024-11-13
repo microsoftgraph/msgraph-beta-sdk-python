@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .service_provisioning_error import ServiceProvisioningError
 
 @dataclass
-class ServiceProvisioningResourceError(ServiceProvisioningError):
+class ServiceProvisioningResourceError(ServiceProvisioningError, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.serviceProvisioningResourceError"
     # The errors property

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .custom_claim_attribute_base import CustomClaimAttributeBase
 
 @dataclass
-class SourcedAttribute(CustomClaimAttributeBase):
+class SourcedAttribute(CustomClaimAttributeBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.sourcedAttribute"
     # The identifier of the attribute on the specified source.

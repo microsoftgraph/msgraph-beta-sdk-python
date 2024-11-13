@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MobileAppProvisioningConfigGroupAssignment(Entity):
+class MobileAppProvisioningConfigGroupAssignment(Entity, Parsable):
     """
     Contains the properties used to assign an App provisioning configuration to a group.
     """

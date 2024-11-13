@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .win32_lob_app_requirement import Win32LobAppRequirement
 
 @dataclass
-class Win32LobAppPowerShellScriptRequirement(Win32LobAppRequirement):
+class Win32LobAppPowerShellScriptRequirement(Win32LobAppRequirement, Parsable):
     """
     Contains PowerShell script properties to detect a Win32 App
     """

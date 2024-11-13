@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class HardwareConfigurationDeviceState(Entity):
+class HardwareConfigurationDeviceState(Entity, Parsable):
     """
     Contains properties for device run state of the hardware configuration
     """

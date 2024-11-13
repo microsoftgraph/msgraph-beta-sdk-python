@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .response_action import ResponseAction
 
 @dataclass
-class StopAndQuarantineFileResponseAction(ResponseAction):
+class StopAndQuarantineFileResponseAction(ResponseAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.stopAndQuarantineFileResponseAction"
     # The identifier property

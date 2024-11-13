@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .education_identity_synchronization_configuration import EducationIdentitySynchronizationConfiguration
 
 @dataclass
-class EducationIdentityCreationConfiguration(EducationIdentitySynchronizationConfiguration):
+class EducationIdentityCreationConfiguration(EducationIdentitySynchronizationConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationIdentityCreationConfiguration"
     # The userDomains property

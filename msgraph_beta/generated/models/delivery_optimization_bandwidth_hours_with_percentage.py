@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
 
 @dataclass
-class DeliveryOptimizationBandwidthHoursWithPercentage(DeliveryOptimizationBandwidth):
+class DeliveryOptimizationBandwidthHoursWithPercentage(DeliveryOptimizationBandwidth, Parsable):
     """
     Bandwidth limit as a percentage with business hours.
     """

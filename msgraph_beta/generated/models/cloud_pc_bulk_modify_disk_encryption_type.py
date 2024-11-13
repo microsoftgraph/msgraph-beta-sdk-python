@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .cloud_pc_bulk_action import CloudPcBulkAction
 
 @dataclass
-class CloudPcBulkModifyDiskEncryptionType(CloudPcBulkAction):
+class CloudPcBulkModifyDiskEncryptionType(CloudPcBulkAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkModifyDiskEncryptionType"
     # The diskEncryptionType property

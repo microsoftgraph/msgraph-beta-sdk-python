@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ZebraFotaDeployment(Entity):
+class ZebraFotaDeployment(Entity, Parsable):
     """
     The Zebra FOTA deployment entity that describes settings, deployment device groups required to create a FOTA deployment, and deployment status.
     """

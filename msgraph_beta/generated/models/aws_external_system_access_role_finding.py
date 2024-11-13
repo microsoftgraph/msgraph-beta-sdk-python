@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class AwsExternalSystemAccessRoleFinding(Finding):
+class AwsExternalSystemAccessRoleFinding(Finding, Parsable):
     # The IDs of the accounts that this role is able to access.
     accessible_system_ids: Optional[List[str]] = None
     # The OdataType property

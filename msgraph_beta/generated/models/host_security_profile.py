@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class HostSecurityProfile(Entity):
+class HostSecurityProfile(Entity, Parsable):
     # The azureSubscriptionId property
     azure_subscription_id: Optional[str] = None
     # The azureTenantId property

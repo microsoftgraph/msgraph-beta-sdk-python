@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_and_app_management_assignment_target import DeviceAndAppManagementAssignmentTarget
 
 @dataclass
-class AndroidFotaDeploymentAssignmentTarget(DeviceAndAppManagementAssignmentTarget):
+class AndroidFotaDeploymentAssignmentTarget(DeviceAndAppManagementAssignmentTarget, Parsable):
     """
     The AAD Group we are deploying firmware updates to
     """
