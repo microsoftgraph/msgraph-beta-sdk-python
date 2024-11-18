@@ -14,7 +14,7 @@ charset-normalizer==3.4.0
 click==8.1.7
 colorama==0.4.6
 cryptography==43.0.3
-Deprecated==1.2.14
+Deprecated==1.2.15
 dill==0.3.9
 docutils==0.21.2
 flit==3.10.1
