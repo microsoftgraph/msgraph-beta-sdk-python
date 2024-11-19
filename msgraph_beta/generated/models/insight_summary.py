@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class InsightSummary(Entity):
+class InsightSummary(Entity, Parsable):
     # Daily active users.
     active_users: Optional[int] = None
     # The ID of the Microsoft Entra application.

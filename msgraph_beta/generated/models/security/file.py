@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class File(Entity):
+class File(Entity, Parsable):
     # The content property
     content: Optional[bytes] = None
     # The dateTime property

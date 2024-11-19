@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .activity_statistics import ActivityStatistics
 
 @dataclass
-class FocusActivityStatistics(ActivityStatistics):
+class FocusActivityStatistics(ActivityStatistics, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.focusActivityStatistics"
     

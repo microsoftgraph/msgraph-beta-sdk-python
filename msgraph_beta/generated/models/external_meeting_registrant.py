@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .meeting_registrant_base import MeetingRegistrantBase
 
 @dataclass
-class ExternalMeetingRegistrant(MeetingRegistrantBase):
+class ExternalMeetingRegistrant(MeetingRegistrantBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.externalMeetingRegistrant"
     # The tenant ID of this registrant if in Microsoft Entra ID.

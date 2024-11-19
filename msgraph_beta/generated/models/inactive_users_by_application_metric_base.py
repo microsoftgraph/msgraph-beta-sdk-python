@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class InactiveUsersByApplicationMetricBase(Entity):
+class InactiveUsersByApplicationMetricBase(Entity, Parsable):
     # The appId property
     app_id: Optional[str] = None
     # The factDate property

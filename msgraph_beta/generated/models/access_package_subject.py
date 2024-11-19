@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessPackageSubject(Entity):
+class AccessPackageSubject(Entity, Parsable):
     # Not Supported.
     alt_sec_id: Optional[str] = None
     # The date and time the subject is marked to be blocked from sign in or deleted. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time.

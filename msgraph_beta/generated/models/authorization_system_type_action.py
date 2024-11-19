@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AuthorizationSystemTypeAction(Entity):
+class AuthorizationSystemTypeAction(Entity, Parsable):
     # The type of action allowed in the authorization system's service. The possible values are: delete, read, unknownFutureValue. Supports $filter and (eq).
     action_type: Optional[AuthorizationSystemActionType] = None
     # The display name of an action. Read-only. Supports $filter and (eq).

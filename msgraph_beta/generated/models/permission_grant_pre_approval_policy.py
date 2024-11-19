@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .directory_object import DirectoryObject
 
 @dataclass
-class PermissionGrantPreApprovalPolicy(DirectoryObject):
+class PermissionGrantPreApprovalPolicy(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.permissionGrantPreApprovalPolicy"
     # A list of condition sets describing the conditions under which the permission to grant consent for the app has been preapproved.

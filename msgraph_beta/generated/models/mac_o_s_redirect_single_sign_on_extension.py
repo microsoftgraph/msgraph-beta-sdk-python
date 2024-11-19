@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
 
 @dataclass
-class MacOSRedirectSingleSignOnExtension(MacOSSingleSignOnExtension):
+class MacOSRedirectSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
     """
     Represents a Redirect-type Single Sign-On extension profile for macOS devices.
     """

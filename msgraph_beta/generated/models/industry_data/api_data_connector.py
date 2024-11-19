@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .industry_data_connector import IndustryDataConnector
 
 @dataclass
-class ApiDataConnector(IndustryDataConnector):
+class ApiDataConnector(IndustryDataConnector, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.apiDataConnector"
     # The apiFormat property

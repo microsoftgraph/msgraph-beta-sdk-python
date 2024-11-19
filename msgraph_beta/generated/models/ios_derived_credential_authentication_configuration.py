@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class IosDerivedCredentialAuthenticationConfiguration(DeviceConfiguration):
+class IosDerivedCredentialAuthenticationConfiguration(DeviceConfiguration, Parsable):
     """
     iOS Derived Credential profile.
     """

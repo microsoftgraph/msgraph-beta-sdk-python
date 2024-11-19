@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .detected_sensitive_content_base import DetectedSensitiveContentBase
 
 @dataclass
-class ExactMatchDetectedSensitiveContent(DetectedSensitiveContentBase):
+class ExactMatchDetectedSensitiveContent(DetectedSensitiveContentBase, Parsable):
     # The matches property
     matches: Optional[List[SensitiveContentLocation]] = None
     # The OdataType property

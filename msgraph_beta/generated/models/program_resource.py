@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .identity import Identity
 
 @dataclass
-class ProgramResource(Identity):
+class ProgramResource(Identity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.programResource"
     # Type of the resource, indicating whether it is a group or an app.

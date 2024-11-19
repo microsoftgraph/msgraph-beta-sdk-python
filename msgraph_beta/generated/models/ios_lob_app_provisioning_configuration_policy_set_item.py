@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .policy_set_item import PolicySetItem
 
 @dataclass
-class IosLobAppProvisioningConfigurationPolicySetItem(PolicySetItem):
+class IosLobAppProvisioningConfigurationPolicySetItem(PolicySetItem, Parsable):
     """
     A class containing the properties used for iOS lob app provisioning configuration PolicySetItem.
     """

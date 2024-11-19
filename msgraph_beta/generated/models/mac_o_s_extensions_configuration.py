@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class MacOSExtensionsConfiguration(DeviceConfiguration):
+class MacOSExtensionsConfiguration(DeviceConfiguration, Parsable):
     """
     MacOS extensions configuration profile.
     """

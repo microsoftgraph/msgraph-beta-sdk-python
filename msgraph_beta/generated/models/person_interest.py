@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class PersonInterest(ItemFacet):
+class PersonInterest(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.personInterest"
     # Contains categories a user has associated with the interest (for example, personal, recipies).

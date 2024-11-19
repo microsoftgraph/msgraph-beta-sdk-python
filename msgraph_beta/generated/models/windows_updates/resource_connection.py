@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ResourceConnection(Entity):
+class ResourceConnection(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The state of the connection. The possible values are: connected, notAuthorized, notFound, unknownFutureValue.

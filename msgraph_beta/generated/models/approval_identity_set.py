@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .identity_set import IdentitySet
 
 @dataclass
-class ApprovalIdentitySet(IdentitySet):
+class ApprovalIdentitySet(IdentitySet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.approvalIdentitySet"
     # The Microsoft Entra group associated with the approval item.

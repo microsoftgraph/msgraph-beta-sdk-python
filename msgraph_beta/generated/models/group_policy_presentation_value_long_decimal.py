@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .group_policy_presentation_value import GroupPolicyPresentationValue
 
 @dataclass
-class GroupPolicyPresentationValueLongDecimal(GroupPolicyPresentationValue):
+class GroupPolicyPresentationValueLongDecimal(GroupPolicyPresentationValue, Parsable):
     """
     The entity represents an unsigned long value of a long decimal text box presentation on a policy definition.
     """

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MeetingRegistrationQuestion(Entity):
+class MeetingRegistrationQuestion(Entity, Parsable):
     # Answer input type of the custom registration question.
     answer_input_type: Optional[AnswerInputType] = None
     # Answer options when answerInputType is radioButton.

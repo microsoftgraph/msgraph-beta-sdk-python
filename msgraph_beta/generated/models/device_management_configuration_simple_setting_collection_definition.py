@@ -9,10 +9,10 @@ if TYPE_CHECKING:
 from .device_management_configuration_simple_setting_definition import DeviceManagementConfigurationSimpleSettingDefinition
 
 @dataclass
-class DeviceManagementConfigurationSimpleSettingCollectionDefinition(DeviceManagementConfigurationSimpleSettingDefinition):
-    # Maximum number of simple settings in the collection. Valid values 1 to 100
+class DeviceManagementConfigurationSimpleSettingCollectionDefinition(DeviceManagementConfigurationSimpleSettingDefinition, Parsable):
+    # Maximum number of simple settings in the collection
     maximum_count: Optional[int] = None
-    # Minimum number of simple settings in the collection. Valid values 1 to 100
+    # Minimum number of simple settings in the collection
     minimum_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_applicability import DeviceManagementConfigurationSettingApplicability
 
 @dataclass
-class DeviceManagementConfigurationExchangeOnlineSettingApplicability(DeviceManagementConfigurationSettingApplicability):
+class DeviceManagementConfigurationExchangeOnlineSettingApplicability(DeviceManagementConfigurationSettingApplicability, Parsable):
     """
     Applicability for an Exchange Online Setting
     """

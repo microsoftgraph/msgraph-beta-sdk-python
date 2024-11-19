@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .planner_task_configuration_role_base import PlannerTaskConfigurationRoleBase
 
 @dataclass
-class PlannerRelationshipBasedUserType(PlannerTaskConfigurationRoleBase):
+class PlannerRelationshipBasedUserType(PlannerTaskConfigurationRoleBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.plannerRelationshipBasedUserType"
     # The role property

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AndroidForWorkSettings(Entity):
+class AndroidForWorkSettings(Entity, Parsable):
     """
     Settings for Android For Work.
     """

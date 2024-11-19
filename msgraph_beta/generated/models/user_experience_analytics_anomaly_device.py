@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserExperienceAnalyticsAnomalyDevice(Entity):
+class UserExperienceAnalyticsAnomalyDevice(Entity, Parsable):
     """
     The user experience analytics anomaly entity contains device details.
     """

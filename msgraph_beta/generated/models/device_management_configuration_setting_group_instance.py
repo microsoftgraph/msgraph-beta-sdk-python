@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
 
 @dataclass
-class DeviceManagementConfigurationSettingGroupInstance(DeviceManagementConfigurationSettingInstance):
+class DeviceManagementConfigurationSettingGroupInstance(DeviceManagementConfigurationSettingInstance, Parsable):
     """
     Setting instance within policy
     """

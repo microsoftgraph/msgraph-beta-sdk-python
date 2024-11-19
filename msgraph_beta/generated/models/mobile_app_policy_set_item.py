@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .policy_set_item import PolicySetItem
 
 @dataclass
-class MobileAppPolicySetItem(PolicySetItem):
+class MobileAppPolicySetItem(PolicySetItem, Parsable):
     """
     A class containing the properties used for mobile app PolicySetItem.
     """

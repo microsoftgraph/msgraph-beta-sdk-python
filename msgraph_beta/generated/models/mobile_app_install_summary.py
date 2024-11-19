@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MobileAppInstallSummary(Entity):
+class MobileAppInstallSummary(Entity, Parsable):
     """
     Contains properties for the installation summary of a mobile app. This will be deprecated starting May, 2023 (Intune Release 2305).
     """

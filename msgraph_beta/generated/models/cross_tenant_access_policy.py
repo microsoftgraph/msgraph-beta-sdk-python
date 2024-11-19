@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
 
 @dataclass
-class CrossTenantAccessPolicy(TenantRelationshipAccessPolicyBase):
+class CrossTenantAccessPolicy(TenantRelationshipAccessPolicyBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.crossTenantAccessPolicy"
     # Used to specify which Microsoft clouds an organization would like to collaborate with. By default, this value is empty. Supported values for this field are: microsoftonline.com, microsoftonline.us, and partner.microsoftonline.cn.

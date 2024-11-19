@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .single_sign_on_extension import SingleSignOnExtension
 
 @dataclass
-class MacOSSingleSignOnExtension(SingleSignOnExtension):
+class MacOSSingleSignOnExtension(SingleSignOnExtension, Parsable):
     """
     An abstract base class for all macOS-specific single sign-on extension types.
     """

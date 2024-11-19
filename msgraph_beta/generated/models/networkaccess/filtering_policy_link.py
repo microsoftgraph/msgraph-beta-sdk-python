@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .policy_link import PolicyLink
 
 @dataclass
-class FilteringPolicyLink(PolicyLink):
+class FilteringPolicyLink(PolicyLink, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.filteringPolicyLink"
     # The date and time when the filtering Policy link was created.

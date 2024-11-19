@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .information_protection_action import InformationProtectionAction
 
 @dataclass
-class ProtectByTemplateAction(InformationProtectionAction):
+class ProtectByTemplateAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.protectByTemplateAction"
     # The unique identifier for a protection template in Microsoft Purview Information Protection to apply to the content.

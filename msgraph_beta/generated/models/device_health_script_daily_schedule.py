@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_health_script_time_schedule import DeviceHealthScriptTimeSchedule
 
 @dataclass
-class DeviceHealthScriptDailySchedule(DeviceHealthScriptTimeSchedule):
+class DeviceHealthScriptDailySchedule(DeviceHealthScriptTimeSchedule, Parsable):
     """
     Device health script daily schedule.
     """

@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrintJob(Entity):
+class PrintJob(Entity, Parsable):
     # The acknowledgedDateTime property
     acknowledged_date_time: Optional[datetime.datetime] = None
     # The completedDateTime property

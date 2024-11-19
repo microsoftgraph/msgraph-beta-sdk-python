@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .governance_criteria import GovernanceCriteria
 
 @dataclass
-class RoleMembershipGovernanceCriteria(GovernanceCriteria):
+class RoleMembershipGovernanceCriteria(GovernanceCriteria, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.roleMembershipGovernanceCriteria"
     # The roleId property

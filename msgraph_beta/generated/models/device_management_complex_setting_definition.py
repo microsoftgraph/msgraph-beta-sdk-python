@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_setting_definition import DeviceManagementSettingDefinition
 
 @dataclass
-class DeviceManagementComplexSettingDefinition(DeviceManagementSettingDefinition):
+class DeviceManagementComplexSettingDefinition(DeviceManagementSettingDefinition, Parsable):
     """
     Entity representing the defintion for a complex setting
     """

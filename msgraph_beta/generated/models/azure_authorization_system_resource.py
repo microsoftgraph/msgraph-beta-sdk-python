@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .authorization_system_resource import AuthorizationSystemResource
 
 @dataclass
-class AzureAuthorizationSystemResource(AuthorizationSystemResource):
+class AzureAuthorizationSystemResource(AuthorizationSystemResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureAuthorizationSystemResource"
     # The service associated with the resource in an Azure authorization system. This object is auto-expanded.

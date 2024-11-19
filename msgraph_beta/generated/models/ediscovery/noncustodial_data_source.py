@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .data_source_container import DataSourceContainer
 
 @dataclass
-class NoncustodialDataSource(DataSourceContainer):
+class NoncustodialDataSource(DataSourceContainer, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.ediscovery.noncustodialDataSource"
     # Indicates if hold is applied to noncustodial data source (such as mailbox or site).

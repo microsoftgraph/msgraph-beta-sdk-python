@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class UnifiedRoleManagementAlertCollectionResponse(BaseCollectionPaginationCountResponse):
+class UnifiedRoleManagementAlertCollectionResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
     value: Optional[List[UnifiedRoleManagementAlert]] = None
     

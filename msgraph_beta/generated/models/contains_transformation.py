@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .custom_claim_transformation import CustomClaimTransformation
 
 @dataclass
-class ContainsTransformation(CustomClaimTransformation):
+class ContainsTransformation(CustomClaimTransformation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.containsTransformation"
     # The output property

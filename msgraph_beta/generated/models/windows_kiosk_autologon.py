@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .windows_kiosk_user import WindowsKioskUser
 
 @dataclass
-class WindowsKioskAutologon(WindowsKioskUser):
+class WindowsKioskAutologon(WindowsKioskUser, Parsable):
     """
     The class used to identify an autologon kiosk configuration
     """

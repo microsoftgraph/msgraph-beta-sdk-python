@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .dlp_action_info import DlpActionInfo
 
 @dataclass
-class BlockAccessAction(DlpActionInfo):
+class BlockAccessAction(DlpActionInfo, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

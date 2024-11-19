@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .android_for_work_eas_email_profile_base import AndroidForWorkEasEmailProfileBase
 
 @dataclass
-class AndroidForWorkGmailEasConfiguration(AndroidForWorkEasEmailProfileBase):
+class AndroidForWorkGmailEasConfiguration(AndroidForWorkEasEmailProfileBase, Parsable):
     """
     By providing configurations in this profile you can instruct the Gmail email client on Android For Work devices to communicate with an Exchange server and get email, contacts, calendar, tasks, and notes. Furthermore, you can also specify how much email to sync and how often the device should sync.
     """

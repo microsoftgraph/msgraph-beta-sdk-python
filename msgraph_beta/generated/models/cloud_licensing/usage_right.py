@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class UsageRight(Entity):
+class UsageRight(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Information about the services associated with the usageRight. Not nullable. Read-only. Supports $filter on the planId property.

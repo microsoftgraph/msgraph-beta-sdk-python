@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ...entity import Entity
 
 @dataclass
-class PartnerSecurityScore(Entity):
+class PartnerSecurityScore(Entity, Parsable):
     # The current security score for the partner.
     current_score: Optional[float] = None
     # Contains customer-specific information for certain requirements.

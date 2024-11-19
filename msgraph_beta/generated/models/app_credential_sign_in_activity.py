@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AppCredentialSignInActivity(Entity):
+class AppCredentialSignInActivity(Entity, Parsable):
     # The globally unique appId (also called client ID on the Microsoft Entra admin center) of the credentialed application.
     app_id: Optional[str] = None
     # The ID of the credential application instance.

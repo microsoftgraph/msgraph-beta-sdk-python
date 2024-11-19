@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TrustFrameworkKeySet(Entity):
+class TrustFrameworkKeySet(Entity, Parsable):
     # A collection of the keys.
     keys: Optional[List[TrustFrameworkKey]] = None
     # A collection of the keys.

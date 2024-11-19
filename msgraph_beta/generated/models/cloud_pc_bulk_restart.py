@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .cloud_pc_bulk_action import CloudPcBulkAction
 
 @dataclass
-class CloudPcBulkRestart(CloudPcBulkAction):
+class CloudPcBulkRestart(CloudPcBulkAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkRestart"
     

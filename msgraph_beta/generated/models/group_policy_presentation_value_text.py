@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .group_policy_presentation_value import GroupPolicyPresentationValue
 
 @dataclass
-class GroupPolicyPresentationValueText(GroupPolicyPresentationValue):
+class GroupPolicyPresentationValueText(GroupPolicyPresentationValue, Parsable):
     """
     The entity represents a string value for a drop-down list, combo box, or text box presentation on a policy definition.
     """

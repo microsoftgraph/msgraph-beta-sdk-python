@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ComanagementEligibleDevice(Entity):
+class ComanagementEligibleDevice(Entity, Parsable):
     """
     Device Co-Management eligibility state
     """

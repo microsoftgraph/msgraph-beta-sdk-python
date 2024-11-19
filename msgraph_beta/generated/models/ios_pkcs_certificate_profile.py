@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .ios_certificate_profile_base import IosCertificateProfileBase
 
 @dataclass
-class IosPkcsCertificateProfile(IosCertificateProfileBase):
+class IosPkcsCertificateProfile(IosCertificateProfileBase, Parsable):
     """
     iOS PKCS certificate profile.
     """

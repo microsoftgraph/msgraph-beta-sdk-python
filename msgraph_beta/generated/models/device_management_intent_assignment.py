@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementIntentAssignment(Entity):
+class DeviceManagementIntentAssignment(Entity, Parsable):
     """
     Intent assignment entity
     """

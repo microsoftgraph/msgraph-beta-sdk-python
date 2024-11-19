@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .updatable_asset_error import UpdatableAssetError
 
 @dataclass
-class AzureADDeviceRegistrationError(UpdatableAssetError):
+class AzureADDeviceRegistrationError(UpdatableAssetError, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.azureADDeviceRegistrationError"
     # The reason property

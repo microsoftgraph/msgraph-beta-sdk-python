@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PermissionsRequestChange(Entity):
+class PermissionsRequestChange(Entity, Parsable):
     # The status of the active occurence of the schedule if one exists. The possible values are: grantingFailed, granted, granting, revoked, revoking, revokingFailed, unknownFutureValue.
     active_occurrence_status: Optional[PermissionsRequestOccurrenceStatus] = None
     # Time when the change occurred.

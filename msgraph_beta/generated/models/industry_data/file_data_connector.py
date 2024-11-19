@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .industry_data_connector import IndustryDataConnector
 
 @dataclass
-class FileDataConnector(IndustryDataConnector):
+class FileDataConnector(IndustryDataConnector, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.fileDataConnector"
     

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity):
+class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity, Parsable):
     """
     The user experience analytics anomaly correlation group overview entity contains the information for each correlation group of an anomaly.
     """

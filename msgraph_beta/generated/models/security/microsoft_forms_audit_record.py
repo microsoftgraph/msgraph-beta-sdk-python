@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .audit_data import AuditData
 
 @dataclass
-class MicrosoftFormsAuditRecord(AuditData):
+class MicrosoftFormsAuditRecord(AuditData, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.microsoftFormsAuditRecord"
     

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .identity_provider import IdentityProvider
 
 @dataclass
-class OpenIdConnectProvider(IdentityProvider):
+class OpenIdConnectProvider(IdentityProvider, Parsable):
     # After the OIDC provider sends an ID token back to Microsoft Entra ID, Microsoft Entra ID needs to be able to map the claims from the received token to the claims that Microsoft Entra ID recognizes and uses. This complex type captures that mapping. It's a required property.
     claims_mapping: Optional[ClaimsMapping] = None
     # The domain hint can be used to skip directly to the sign-in page of the specified identity provider, instead of having the user make a selection among the list of available identity providers.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .education_identity_synchronization_configuration import EducationIdentitySynchronizationConfiguration
 
 @dataclass
-class EducationIdentityMatchingConfiguration(EducationIdentitySynchronizationConfiguration):
+class EducationIdentityMatchingConfiguration(EducationIdentitySynchronizationConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationIdentityMatchingConfiguration"
     # Mapping between the user account and the options to use to uniquely identify the user to update.

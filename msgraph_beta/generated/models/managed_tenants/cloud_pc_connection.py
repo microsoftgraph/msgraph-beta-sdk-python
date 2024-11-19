@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class CloudPcConnection(Entity):
+class CloudPcConnection(Entity, Parsable):
     # The display name of the cloud PC connection. Required. Read-only.
     display_name: Optional[str] = None
     # The health status of the cloud PC connection. Possible values are: pending, running, passed, failed, unknownFutureValue.  Required. Read-only.

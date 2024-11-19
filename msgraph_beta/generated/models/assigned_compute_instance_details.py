@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AssignedComputeInstanceDetails(Entity):
+class AssignedComputeInstanceDetails(Entity, Parsable):
     # Represents a set of S3 buckets accessed by this EC2 instance.
     accessed_storage_buckets: Optional[List[AuthorizationSystemResource]] = None
     # assigned EC2 instance.

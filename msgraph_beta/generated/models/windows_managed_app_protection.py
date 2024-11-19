@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .managed_app_policy import ManagedAppPolicy
 
 @dataclass
-class WindowsManagedAppProtection(ManagedAppPolicy):
+class WindowsManagedAppProtection(ManagedAppPolicy, Parsable):
     """
     Policy used to configure detailed management settings targeted to specific security groups and for a specified set of apps on a Windows device
     """
@@ -29,7 +29,7 @@ class WindowsManagedAppProtection(ManagedAppPolicy):
     allowed_outbound_clipboard_sharing_level: Optional[WindowsManagedAppClipboardSharingLevel] = None
     # Data can be transferred from/to these classes of apps
     allowed_outbound_data_transfer_destinations: Optional[WindowsManagedAppDataTransferLevel] = None
-    # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Some possible values are block or wipe. If this property is not set, no action will be taken. Possible values are: block, wipe, warn.
+    # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Some possible values are block or wipe. If this property is not set, no action will be taken. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_unable_to_authenticate_user: Optional[ManagedAppRemediationAction] = None
     # List of apps to which the policy is deployed.
     apps: Optional[List[ManagedMobileApp]] = None

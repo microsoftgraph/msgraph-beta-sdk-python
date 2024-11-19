@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .device_management_template import DeviceManagementTemplate
 
 @dataclass
-class SecurityBaselineTemplate(DeviceManagementTemplate):
+class SecurityBaselineTemplate(DeviceManagementTemplate, Parsable):
     """
     The security baseline template of the account
     """

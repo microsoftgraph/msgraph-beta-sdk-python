@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .gradual_rollout_settings import GradualRolloutSettings
 
 @dataclass
-class RateDrivenRolloutSettings(GradualRolloutSettings):
+class RateDrivenRolloutSettings(GradualRolloutSettings, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.rateDrivenRolloutSettings"
     # Specifies the number of devices that are offered at the same time. When not set, all devices in the deployment are offered content at the same time.

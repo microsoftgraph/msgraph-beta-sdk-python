@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .ios_certificate_profile import IosCertificateProfile
 
 @dataclass
-class IosImportedPFXCertificateProfile(IosCertificateProfile):
+class IosImportedPFXCertificateProfile(IosCertificateProfile, Parsable):
     """
     iOS PFX Import certificate profile
     """

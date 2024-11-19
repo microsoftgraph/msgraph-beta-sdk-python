@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ConnectivityConfigurationLink(Entity):
+class ConnectivityConfigurationLink(Entity, Parsable):
     # Specifies the name of the link.
     display_name: Optional[str] = None
     # Specifies Microsoft's end of the tunnel configuration for a device link.

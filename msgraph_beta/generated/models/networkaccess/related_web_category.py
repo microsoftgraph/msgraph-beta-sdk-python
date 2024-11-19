@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .related_resource import RelatedResource
 
 @dataclass
-class RelatedWebCategory(RelatedResource):
+class RelatedWebCategory(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedWebCategory"
     # The webCategoryName property

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .custom_claim_base import CustomClaimBase
 
 @dataclass
-class SamlNameIdClaim(CustomClaimBase):
+class SamlNameIdClaim(CustomClaimBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.samlNameIdClaim"
     # The nameIdFormat property

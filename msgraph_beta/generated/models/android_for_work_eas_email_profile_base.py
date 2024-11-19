@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AndroidForWorkEasEmailProfileBase(DeviceConfiguration):
+class AndroidForWorkEasEmailProfileBase(DeviceConfiguration, Parsable):
     """
     Base for Android For Work EAS Email profiles
     """

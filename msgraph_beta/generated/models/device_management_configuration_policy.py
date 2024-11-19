@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementConfigurationPolicy(Entity):
+class DeviceManagementConfigurationPolicy(Entity, Parsable):
     """
     Device Management Configuration Policy
     """

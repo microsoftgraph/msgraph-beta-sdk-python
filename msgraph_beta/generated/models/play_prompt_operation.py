@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .comms_operation import CommsOperation
 
 @dataclass
-class PlayPromptOperation(CommsOperation):
+class PlayPromptOperation(CommsOperation, Parsable):
     # Possible values are: unknown, completedSuccessfully, mediaOperationCanceled.
     completion_reason: Optional[PlayPromptCompletionReason] = None
     # The OdataType property

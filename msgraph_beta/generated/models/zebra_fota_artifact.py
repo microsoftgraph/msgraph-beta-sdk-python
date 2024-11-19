@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ZebraFotaArtifact(Entity):
+class ZebraFotaArtifact(Entity, Parsable):
     """
     Describes a single artifact for a specific device model.
     """

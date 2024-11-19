@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsInformationProtectionWipeAction(Entity):
+class WindowsInformationProtectionWipeAction(Entity, Parsable):
     """
     Represents wipe requests issued by tenant admin for Bring-Your-Own-Device(BYOD) Windows devices.
     """

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementDerivedCredentialSettings(Entity):
+class DeviceManagementDerivedCredentialSettings(Entity, Parsable):
     """
     Entity that describes tenant level settings for derived credentials
     """

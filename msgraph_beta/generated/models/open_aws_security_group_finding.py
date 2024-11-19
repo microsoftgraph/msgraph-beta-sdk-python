@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class OpenAwsSecurityGroupFinding(Finding):
+class OpenAwsSecurityGroupFinding(Finding, Parsable):
     # A set of AWS EC2 compute instances related to this open security group.
     assigned_compute_instances_details: Optional[List[AssignedComputeInstanceDetails]] = None
     # The inboundPorts property

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class RegionalAndLanguageSettings(Entity):
+class RegionalAndLanguageSettings(Entity, Parsable):
     # Prioritized list of languages the user reads and authors in.Returned by default. Not nullable.
     authoring_languages: Optional[List[LocaleInfo]] = None
     # The  user's preferred user interface language (menus, buttons, ribbons, warning messages) for Microsoft web applications.Returned by default. Not nullable.

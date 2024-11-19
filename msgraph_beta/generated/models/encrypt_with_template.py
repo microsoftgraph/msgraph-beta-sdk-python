@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .encrypt_content import EncryptContent
 
 @dataclass
-class EncryptWithTemplate(EncryptContent):
+class EncryptWithTemplate(EncryptContent, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.encryptWithTemplate"
     # The availableForEncryption property

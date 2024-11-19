@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AppleVpnConfiguration(DeviceConfiguration):
+class AppleVpnConfiguration(DeviceConfiguration, Parsable):
     """
     Apple VPN configuration profile.
     """

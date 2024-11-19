@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .win32_lob_app import Win32LobApp
 
 @dataclass
-class Win32CatalogApp(Win32LobApp):
+class Win32CatalogApp(Win32LobApp, Parsable):
     """
     A mobileApp that is based on a referenced application in a Win32CatalogApp repository
     """

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
 
 @dataclass
-class GroupPolicyPresentationDecimalTextBox(GroupPolicyUploadedPresentation):
+class GroupPolicyPresentationDecimalTextBox(GroupPolicyUploadedPresentation, Parsable):
     """
     Represents an ADMX decimalTextBox element and an ADMX decimal element.
     """

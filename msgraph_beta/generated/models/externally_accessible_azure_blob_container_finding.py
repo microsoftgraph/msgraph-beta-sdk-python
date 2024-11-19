@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class ExternallyAccessibleAzureBlobContainerFinding(Finding):
+class ExternallyAccessibleAzureBlobContainerFinding(Finding, Parsable):
     # The accessibility property
     accessibility: Optional[AzureAccessType] = None
     # The encryptionManagedBy property

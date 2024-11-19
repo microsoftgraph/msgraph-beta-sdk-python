@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CredentialUsageSummary(Entity):
+class CredentialUsageSummary(Entity, Parsable):
     # The authMethod property
     auth_method: Optional[UsageAuthMethod] = None
     # Provides the count of failed resets or registration data.

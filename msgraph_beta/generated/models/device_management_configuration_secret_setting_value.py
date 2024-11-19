@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
 
 @dataclass
-class DeviceManagementConfigurationSecretSettingValue(DeviceManagementConfigurationSimpleSettingValue):
+class DeviceManagementConfigurationSecretSettingValue(DeviceManagementConfigurationSimpleSettingValue, Parsable):
     """
     Graph model for a secret setting value
     """

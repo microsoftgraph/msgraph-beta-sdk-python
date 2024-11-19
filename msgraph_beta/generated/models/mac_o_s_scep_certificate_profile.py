@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
 
 @dataclass
-class MacOSScepCertificateProfile(MacOSCertificateProfileBase):
+class MacOSScepCertificateProfile(MacOSCertificateProfileBase, Parsable):
     """
     Mac OS SCEP certificate profile.
     """

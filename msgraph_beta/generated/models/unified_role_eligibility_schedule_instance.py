@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
 
 @dataclass
-class UnifiedRoleEligibilityScheduleInstance(UnifiedRoleScheduleInstanceBase):
+class UnifiedRoleEligibilityScheduleInstance(UnifiedRoleScheduleInstanceBase, Parsable):
     # Time that the roleEligibilityScheduleInstance will expire.
     end_date_time: Optional[datetime.datetime] = None
     # Membership type of the assignment. It can either be Inherited, Direct, or Group.

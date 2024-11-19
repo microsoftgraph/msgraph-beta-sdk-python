@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .file_data_connector import FileDataConnector
 
 @dataclass
-class AzureDataLakeConnector(FileDataConnector):
+class AzureDataLakeConnector(FileDataConnector, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.azureDataLakeConnector"
     # The file format that external systems can upload using this connector.

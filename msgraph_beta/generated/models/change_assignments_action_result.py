@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_action_result import DeviceActionResult
 
 @dataclass
-class ChangeAssignmentsActionResult(DeviceActionResult):
+class ChangeAssignmentsActionResult(DeviceActionResult, Parsable):
     """
     ChangeAssignmentsActionResult represents the result of executing the changeAssignments action on tracking the live reporting data for applications or configuration regarding their removal or restoration process
     """

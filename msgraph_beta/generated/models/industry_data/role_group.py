@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class RoleGroup(Entity):
+class RoleGroup(Entity, Parsable):
     # The name of the role group.
     display_name: Optional[str] = None
     # The OdataType property

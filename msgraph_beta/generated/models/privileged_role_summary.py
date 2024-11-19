@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegedRoleSummary(Entity):
+class PrivilegedRoleSummary(Entity, Parsable):
     # The elevatedCount property
     elevated_count: Optional[int] = None
     # The managedCount property

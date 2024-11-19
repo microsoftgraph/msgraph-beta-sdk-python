@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsQualityUpdateProfileAssignment(Entity):
+class WindowsQualityUpdateProfileAssignment(Entity, Parsable):
     """
     This entity contains the properties used to assign a windows quality update profile to a group.
     """

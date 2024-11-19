@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class CaseOperation(Entity):
+class CaseOperation(Entity, Parsable):
     # The type of action the operation represents. Possible values are: addToReviewSet,applyTags,contentExport,convertToPdf,estimateStatistics, purgeData
     action: Optional[CaseAction] = None
     # The date and time the operation was completed.

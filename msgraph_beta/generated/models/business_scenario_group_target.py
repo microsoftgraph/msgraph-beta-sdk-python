@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .business_scenario_task_target_base import BusinessScenarioTaskTargetBase
 
 @dataclass
-class BusinessScenarioGroupTarget(BusinessScenarioTaskTargetBase):
+class BusinessScenarioGroupTarget(BusinessScenarioTaskTargetBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.businessScenarioGroupTarget"
     # The unique identifier for the group.

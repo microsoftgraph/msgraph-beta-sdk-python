@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagementTemplateStepVersion(Entity):
+class ManagementTemplateStepVersion(Entity, Parsable):
     # The acceptedFor property
     accepted_for: Optional[ManagementTemplateStep] = None
     # The contentMarkdown property

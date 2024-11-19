@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ManagedDeviceCertificateState(Entity):
+class ManagedDeviceCertificateState(Entity, Parsable):
     # Extended key usage
     certificate_enhanced_key_usage: Optional[str] = None
     # Error code

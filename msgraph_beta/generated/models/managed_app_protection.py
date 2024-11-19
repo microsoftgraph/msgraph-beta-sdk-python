@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 from .managed_app_policy import ManagedAppPolicy
 
 @dataclass
-class ManagedAppProtection(ManagedAppPolicy):
+class ManagedAppProtection(ManagedAppPolicy, Parsable):
     """
     Policy used to configure detailed management settings for a specified set of apps
     """
@@ -48,7 +48,7 @@ class ManagedAppProtection(ManagedAppPolicy):
     app_action_if_device_compliance_required: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_maximum_pin_retries_exceeded: Optional[ManagedAppRemediationAction] = None
-    # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Possible values are: block, wipe, warn.
+    # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_unable_to_authenticate_user: Optional[ManagedAppRemediationAction] = None
     # Indicates whether a user can bring data into org documents.
     block_data_ingestion_into_organization_documents: Optional[bool] = None

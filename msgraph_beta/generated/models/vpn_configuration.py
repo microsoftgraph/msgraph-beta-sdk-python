@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class VpnConfiguration(DeviceConfiguration):
+class VpnConfiguration(DeviceConfiguration, Parsable):
     """
     Base VPN Configuration profile.
     """

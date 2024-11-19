@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .ios_vpp_app_assigned_license import IosVppAppAssignedLicense
 
 @dataclass
-class IosVppAppAssignedUserLicense(IosVppAppAssignedLicense):
+class IosVppAppAssignedUserLicense(IosVppAppAssignedLicense, Parsable):
     """
     iOS Volume Purchase Program user license assignment. This class does not support Create, Delete, or Update.
     """

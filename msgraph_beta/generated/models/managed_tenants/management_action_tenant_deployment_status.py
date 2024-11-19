@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagementActionTenantDeploymentStatus(Entity):
+class ManagementActionTenantDeploymentStatus(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The collection of deployment status for each instance of a management action. Optional.

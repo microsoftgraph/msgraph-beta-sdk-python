@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AuthenticationContextClassReference(Entity):
+class AuthenticationContextClassReference(Entity, Parsable):
     # A short explanation of the policies that are enforced by authenticationContextClassReference. This value should be used to provide secondary text to describe the authentication context class reference when building user facing admin experiences. For example, selection UX.
     description: Optional[str] = None
     # A friendly name that identifies the authenticationContextClassReference object when building user-facing admin experiences. For example, a selection UX.

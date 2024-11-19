@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsQualityUpdatePolicyAssignment(Entity):
+class WindowsQualityUpdatePolicyAssignment(Entity, Parsable):
     """
     This entity contains the properties used to assign a Windows quality update policy to a group.
     """

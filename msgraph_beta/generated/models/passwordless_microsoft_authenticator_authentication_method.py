@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .authentication_method import AuthenticationMethod
 
 @dataclass
-class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod):
+class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(AuthenticationMethod, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.passwordlessMicrosoftAuthenticatorAuthenticationMethod"
     # The timestamp when this method was registered to the user.

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .managed_mobile_lob_app import ManagedMobileLobApp
 
 @dataclass
-class ManagedAndroidLobApp(ManagedMobileLobApp):
+class ManagedAndroidLobApp(ManagedMobileLobApp, Parsable):
     """
     Contains properties and inherited properties for Managed Android Line Of Business apps.
     """

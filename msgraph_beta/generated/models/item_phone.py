@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class ItemPhone(ItemFacet):
+class ItemPhone(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.itemPhone"
     # Friendly name the user has assigned this phone number.

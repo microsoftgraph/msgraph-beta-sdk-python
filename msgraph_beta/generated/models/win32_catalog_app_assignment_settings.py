@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .win32_lob_app_assignment_settings import Win32LobAppAssignmentSettings
 
 @dataclass
-class Win32CatalogAppAssignmentSettings(Win32LobAppAssignmentSettings):
+class Win32CatalogAppAssignmentSettings(Win32LobAppAssignmentSettings, Parsable):
     """
     Contains properties used to assign an Win32 catalog mobile app to a group.
     """

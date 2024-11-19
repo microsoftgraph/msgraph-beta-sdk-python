@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
 
 @dataclass
-class DeviceManagementConfigurationStringSettingValue(DeviceManagementConfigurationSimpleSettingValue):
+class DeviceManagementConfigurationStringSettingValue(DeviceManagementConfigurationSimpleSettingValue, Parsable):
     """
     Simple setting value
     """

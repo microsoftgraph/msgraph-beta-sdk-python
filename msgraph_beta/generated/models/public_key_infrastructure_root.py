@@ -10,8 +10,8 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PublicKeyInfrastructureRoot(Entity):
-    # The certificateBasedAuthConfigurations property
+class PublicKeyInfrastructureRoot(Entity, Parsable):
+    # The collection of public key infrastructure instances for the certificate-based authentication feature for users.
     certificate_based_auth_configurations: Optional[List[CertificateBasedAuthPki]] = None
     # The OdataType property
     odata_type: Optional[str] = None

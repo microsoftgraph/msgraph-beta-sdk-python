@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .windows_certificate_profile_base import WindowsCertificateProfileBase
 
 @dataclass
-class Windows10CertificateProfileBase(WindowsCertificateProfileBase):
+class Windows10CertificateProfileBase(WindowsCertificateProfileBase, Parsable):
     """
     Base class for Windows 10 certificate profile.
     """

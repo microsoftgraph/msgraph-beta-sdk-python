@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ZebraFotaConnector(Entity):
+class ZebraFotaConnector(Entity, Parsable):
     """
     The Zebra FOTA connector entity that represents the tenant's authorization status for Intune to call Zebra Update Services.
     """

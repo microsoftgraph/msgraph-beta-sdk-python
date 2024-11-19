@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .user_set import UserSet
 
 @dataclass
-class ConnectedOrganizationMembers(UserSet):
+class ConnectedOrganizationMembers(UserSet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.connectedOrganizationMembers"
     # The name of the connected organization. Read only.

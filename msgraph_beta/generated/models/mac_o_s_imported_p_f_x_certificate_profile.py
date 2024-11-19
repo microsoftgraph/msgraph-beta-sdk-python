@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
 
 @dataclass
-class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase):
+class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase, Parsable):
     """
     MacOS PFX Import certificate profile
     """

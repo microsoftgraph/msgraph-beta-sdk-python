@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .dlp_evaluation_input import DlpEvaluationInput
 
 @dataclass
-class DlpEvaluationWindowsDevicesInput(DlpEvaluationInput):
+class DlpEvaluationWindowsDevicesInput(DlpEvaluationInput, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.dlpEvaluationWindowsDevicesInput"
     # The contentProperties property

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
 
 @dataclass
-class CertificateBasedApplicationConfiguration(TrustedCertificateAuthorityAsEntityBase):
+class CertificateBasedApplicationConfiguration(TrustedCertificateAuthorityAsEntityBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.certificateBasedApplicationConfiguration"
     # The description of the trusted certificate authorities.

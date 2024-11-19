@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .mobile_app_identifier import MobileAppIdentifier
 
 @dataclass
-class WindowsAppIdentifier(MobileAppIdentifier):
+class WindowsAppIdentifier(MobileAppIdentifier, Parsable):
     """
     The identifier for a Windows app.
     """

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .information_protection_action import InformationProtectionAction
 
 @dataclass
-class RecommendLabelAction(InformationProtectionAction):
+class RecommendLabelAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.recommendLabelAction"
     # The actionSource property

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .custom_claim_condition_base import CustomClaimConditionBase
 
 @dataclass
-class CustomClaimCondition(CustomClaimConditionBase):
+class CustomClaimCondition(CustomClaimConditionBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customClaimCondition"
     # A list of groups (GUIDs) to which the user/application must be a member for this condition to be applied.

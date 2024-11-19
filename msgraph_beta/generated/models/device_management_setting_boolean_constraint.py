@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementSettingBooleanConstraint(DeviceManagementConstraint):
+class DeviceManagementSettingBooleanConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint the enforces a particular boolean value
     """

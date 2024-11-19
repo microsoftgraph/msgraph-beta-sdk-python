@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .planner_task_creation import PlannerTaskCreation
 
 @dataclass
-class PlannerTeamsPublicationInfo(PlannerTaskCreation):
+class PlannerTeamsPublicationInfo(PlannerTaskCreation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.plannerTeamsPublicationInfo"
     # The date and time when this task was last modified by the publication process. Read-only.

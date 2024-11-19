@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .audit_data import AuditData
 
 @dataclass
-class PrivacyTenantAuditHistoryRecord(AuditData):
+class PrivacyTenantAuditHistoryRecord(AuditData, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.privacyTenantAuditHistoryRecord"
     

@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
 
 @dataclass
-class AndroidDeviceOwnerPkcsCertificateProfile(AndroidDeviceOwnerCertificateProfileBase):
+class AndroidDeviceOwnerPkcsCertificateProfile(AndroidDeviceOwnerCertificateProfileBase, Parsable):
     """
     Android Device Owner PKCS certificate profile
     """

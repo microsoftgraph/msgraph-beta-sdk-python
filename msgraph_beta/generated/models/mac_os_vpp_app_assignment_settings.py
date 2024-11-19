@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .mobile_app_assignment_settings import MobileAppAssignmentSettings
 
 @dataclass
-class MacOsVppAppAssignmentSettings(MobileAppAssignmentSettings):
+class MacOsVppAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
     """
     Contains properties used to assign an Mac VPP mobile app to a group.
     """

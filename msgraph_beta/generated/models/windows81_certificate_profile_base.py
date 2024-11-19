@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .windows_certificate_profile_base import WindowsCertificateProfileBase
 
 @dataclass
-class Windows81CertificateProfileBase(WindowsCertificateProfileBase):
+class Windows81CertificateProfileBase(WindowsCertificateProfileBase, Parsable):
     """
     Device Configuration.
     """

@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .android_for_work_certificate_profile_base import AndroidForWorkCertificateProfileBase
 
 @dataclass
-class AndroidForWorkScepCertificateProfile(AndroidForWorkCertificateProfileBase):
+class AndroidForWorkScepCertificateProfile(AndroidForWorkCertificateProfileBase, Parsable):
     """
     Android For Work SCEP certificate profile
     """

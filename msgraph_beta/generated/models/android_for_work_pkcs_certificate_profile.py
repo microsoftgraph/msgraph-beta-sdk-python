@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .android_for_work_certificate_profile_base import AndroidForWorkCertificateProfileBase
 
 @dataclass
-class AndroidForWorkPkcsCertificateProfile(AndroidForWorkCertificateProfileBase):
+class AndroidForWorkPkcsCertificateProfile(AndroidForWorkCertificateProfileBase, Parsable):
     """
     Android For Work PKCS certificate profile
     """

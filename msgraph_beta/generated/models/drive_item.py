@@ -41,7 +41,7 @@ if TYPE_CHECKING:
 from .base_item import BaseItem
 
 @dataclass
-class DriveItem(BaseItem):
+class DriveItem(BaseItem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.driveItem"
     # The list of recent activities that took place on this item.

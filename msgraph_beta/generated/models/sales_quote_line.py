@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SalesQuoteLine(Entity):
+class SalesQuoteLine(Entity, Parsable):
     # The account property
     account: Optional[Account] = None
     # The accountId property

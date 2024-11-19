@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserAppInstallStatus(Entity):
+class UserAppInstallStatus(Entity, Parsable):
     """
     Contains properties for the installation status for a user. This will be deprecated starting May, 2023 (Intune Release 2305).
     """

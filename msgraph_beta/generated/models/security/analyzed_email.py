@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class AnalyzedEmail(Entity):
+class AnalyzedEmail(Entity, Parsable):
     # A collection of values that contain the IDs of any alerts associated with the email.
     alert_ids: Optional[List[str]] = None
     # A collection of the attachments in the email.

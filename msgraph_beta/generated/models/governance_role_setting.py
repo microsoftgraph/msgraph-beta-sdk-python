@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GovernanceRoleSetting(Entity):
+class GovernanceRoleSetting(Entity, Parsable):
     # The rule settings that are evaluated when an administrator tries to add an eligible role assignment.
     admin_eligible_settings: Optional[List[GovernanceRuleSetting]] = None
     # The rule settings that are evaluated when an administrator tries to add a direct member role assignment.

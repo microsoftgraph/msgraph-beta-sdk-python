@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
 
 @dataclass
-class AndroidDeviceOwnerScepCertificateProfile(AndroidDeviceOwnerCertificateProfileBase):
+class AndroidDeviceOwnerScepCertificateProfile(AndroidDeviceOwnerCertificateProfileBase, Parsable):
     """
     Android Device Owner SCEP certificate profile
     """

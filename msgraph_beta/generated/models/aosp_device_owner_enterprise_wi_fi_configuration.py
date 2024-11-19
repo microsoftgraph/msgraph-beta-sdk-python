@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .aosp_device_owner_wi_fi_configuration import AospDeviceOwnerWiFiConfiguration
 
 @dataclass
-class AospDeviceOwnerEnterpriseWiFiConfiguration(AospDeviceOwnerWiFiConfiguration):
+class AospDeviceOwnerEnterpriseWiFiConfiguration(AospDeviceOwnerWiFiConfiguration, Parsable):
     """
     By providing the configurations in this profile you can instruct the AOSP Device Owner device to connect to desired Wi-Fi endpoint. By specifying the authentication method and security types expected by Wi-Fi endpoint you can make the Wi-Fi connection seamless for end user.
     """

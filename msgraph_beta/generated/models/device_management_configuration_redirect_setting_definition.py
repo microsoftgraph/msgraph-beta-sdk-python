@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_definition import DeviceManagementConfigurationSettingDefinition
 
 @dataclass
-class DeviceManagementConfigurationRedirectSettingDefinition(DeviceManagementConfigurationSettingDefinition):
+class DeviceManagementConfigurationRedirectSettingDefinition(DeviceManagementConfigurationSettingDefinition, Parsable):
     # A deep link that points to the specific location in the Intune console where feature support must be managed from.
     deep_link: Optional[str] = None
     # The OdataType property

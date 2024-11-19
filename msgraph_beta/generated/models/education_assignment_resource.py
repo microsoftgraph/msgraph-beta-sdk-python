@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EducationAssignmentResource(Entity):
+class EducationAssignmentResource(Entity, Parsable):
     # The dependentResources property
     dependent_resources: Optional[List[EducationAssignmentResource]] = None
     # Indicates whether this resource should be copied to each student submission for modification and submission. Required

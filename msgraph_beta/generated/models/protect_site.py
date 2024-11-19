@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .label_action_base import LabelActionBase
 
 @dataclass
-class ProtectSite(LabelActionBase):
+class ProtectSite(LabelActionBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.protectSite"
     # The accessType property

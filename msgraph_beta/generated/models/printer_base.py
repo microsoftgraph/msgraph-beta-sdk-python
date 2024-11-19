@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrinterBase(Entity):
+class PrinterBase(Entity, Parsable):
     # The capabilities property
     capabilities: Optional[PrinterCapabilities] = None
     # The defaults property

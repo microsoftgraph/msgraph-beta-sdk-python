@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class HealthMonitoringRoot(Entity):
+class HealthMonitoringRoot(Entity, Parsable):
     # The configuration of an alert type, which defines behavior that occurs when an alert is created.
     alert_configurations: Optional[List[AlertConfiguration]] = None
     # The collection of health monitoring system detected alerts for anomalous usage patterns found in a Microsoft Entra tenant.

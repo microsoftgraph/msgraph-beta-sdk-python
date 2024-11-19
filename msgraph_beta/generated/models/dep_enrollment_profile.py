@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .enrollment_profile import EnrollmentProfile
 
 @dataclass
-class DepEnrollmentProfile(EnrollmentProfile):
+class DepEnrollmentProfile(EnrollmentProfile, Parsable):
     """
     The depEnrollmentProfile resource represents an Apple Device Enrollment Program (DEP) enrollment profile. This type of profile must be assigned to Apple DEP serial numbers before the corresponding devices can enroll via DEP.
     """

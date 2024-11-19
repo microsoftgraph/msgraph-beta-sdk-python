@@ -59,7 +59,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Finding(Entity):
+class Finding(Entity, Parsable):
     # Defines when the finding was created.
     created_date_time: Optional[datetime.datetime] = None
     # The OdataType property

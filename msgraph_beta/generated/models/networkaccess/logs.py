@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Logs(Entity):
+class Logs(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # A collection of remote network health events.

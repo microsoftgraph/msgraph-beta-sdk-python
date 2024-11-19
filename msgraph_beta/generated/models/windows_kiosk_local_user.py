@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .windows_kiosk_user import WindowsKioskUser
 
 @dataclass
-class WindowsKioskLocalUser(WindowsKioskUser):
+class WindowsKioskLocalUser(WindowsKioskUser, Parsable):
     """
     The class used to identify a local account for the kiosk configuration
     """

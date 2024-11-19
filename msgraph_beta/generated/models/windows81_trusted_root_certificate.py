@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class Windows81TrustedRootCertificate(DeviceConfiguration):
+class Windows81TrustedRootCertificate(DeviceConfiguration, Parsable):
     """
     Windows 8.1 Trusted Certificate configuration profile
     """

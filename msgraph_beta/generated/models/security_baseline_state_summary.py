@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SecurityBaselineStateSummary(Entity):
+class SecurityBaselineStateSummary(Entity, Parsable):
     """
     The security baseline compliance state summary for the security baseline of the account.
     """

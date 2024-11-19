@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .event_message_detail import EventMessageDetail
 
 @dataclass
-class ChannelSharingUpdatedEventMessageDetail(EventMessageDetail):
+class ChannelSharingUpdatedEventMessageDetail(EventMessageDetail, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.channelSharingUpdatedEventMessageDetail"
     # Initiator of the event.

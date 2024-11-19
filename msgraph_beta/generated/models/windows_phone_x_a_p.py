@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mobile_lob_app import MobileLobApp
 
 @dataclass
-class WindowsPhoneXAP(MobileLobApp):
+class WindowsPhoneXAP(MobileLobApp, Parsable):
     """
     Contains properties and inherited properties for Windows Phone XAP Line Of Business apps.
     """

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class MacOSSoftwareUpdateConfiguration(DeviceConfiguration):
+class MacOSSoftwareUpdateConfiguration(DeviceConfiguration, Parsable):
     """
     MacOS Software Update Configuration
     """

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .impacted_asset import ImpactedAsset
 
 @dataclass
-class ImpactedMailboxAsset(ImpactedAsset):
+class ImpactedMailboxAsset(ImpactedAsset, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.impactedMailboxAsset"
     # The identifier property

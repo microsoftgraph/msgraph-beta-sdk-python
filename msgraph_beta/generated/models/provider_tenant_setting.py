@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ProviderTenantSetting(Entity):
+class ProviderTenantSetting(Entity, Parsable):
     # The azureTenantId property
     azure_tenant_id: Optional[str] = None
     # The enabled property

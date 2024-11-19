@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class RulesRoot(Entity):
+class RulesRoot(Entity, Parsable):
     # The detectionRules property
     detection_rules: Optional[List[DetectionRule]] = None
     # The OdataType property

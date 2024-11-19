@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .planner_plan_container import PlannerPlanContainer
 
 @dataclass
-class PlannerSharedWithContainer(PlannerPlanContainer):
+class PlannerSharedWithContainer(PlannerPlanContainer, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.plannerSharedWithContainer"
     # The accessLevel property

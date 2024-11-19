@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CloudPcSupportedRegion(Entity):
+class CloudPcSupportedRegion(Entity, Parsable):
     # The name for the supported region. Read-only.
     display_name: Optional[str] = None
     # The OdataType property

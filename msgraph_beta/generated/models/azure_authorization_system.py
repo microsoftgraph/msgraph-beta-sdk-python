@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .authorization_system import AuthorizationSystem
 
 @dataclass
-class AzureAuthorizationSystem(AuthorizationSystem):
+class AzureAuthorizationSystem(AuthorizationSystem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureAuthorizationSystem"
     # List of actions for service in authorization system.

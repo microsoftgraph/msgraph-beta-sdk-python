@@ -41,14 +41,14 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SignIn(Entity):
+class SignIn(Entity, Parsable):
     # The application name displayed in the Microsoft Entra admin center.  Supports $filter (eq, startsWith).
     app_display_name: Optional[str] = None
     # The application identifier in Microsoft Entra ID.  Supports $filter (eq).
     app_id: Optional[str] = None
     # Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the app token was bound to the device.
     app_token_protection_status: Optional[TokenProtectionStatus] = None
-    # A list of conditional access policies that the corresponding sign-in activity triggers. Apps need more Conditional Access-related privileges to read the details of this property. For more information, see Viewing applied conditional access (CA) policies in sign-ins.
+    # A list of conditional access policies that the corresponding sign-in activity triggers. Apps need more Conditional Access-related privileges to read the details of this property. For more information, see Permissions for viewing applied conditional access (CA) policies in sign-ins.
     applied_conditional_access_policies: Optional[List[AppliedConditionalAccessPolicy]] = None
     # Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, which the corresponding events in the sign-in event triggered.
     applied_event_listeners: Optional[List[AppliedAuthenticationEventListener]] = None
@@ -156,7 +156,7 @@ class SignIn(Entity):
     service_principal_id: Optional[str] = None
     # The application name used for sign-in. This field is populated when you're signing in using an application.  Supports $filter (eq, startsWith).
     service_principal_name: Optional[str] = None
-    # The sessionId property
+    # Identifier of the session that was generated during the sign-in.
     session_id: Optional[str] = None
     # Any conditional access session management policies that were applied during the sign-in event.
     session_lifetime_policies: Optional[List[SessionLifetimePolicy]] = None

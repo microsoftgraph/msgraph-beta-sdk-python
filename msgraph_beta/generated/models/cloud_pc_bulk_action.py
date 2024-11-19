@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CloudPcBulkAction(Entity):
+class CloudPcBulkAction(Entity, Parsable):
     # Run summary of this bulk action.
     action_summary: Optional[CloudPcBulkActionSummary] = None
     # The cloudPcIds property

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class NdesConnector(Entity):
+class NdesConnector(Entity, Parsable):
     """
     Entity which represents an OnPrem Ndes connector.
     """

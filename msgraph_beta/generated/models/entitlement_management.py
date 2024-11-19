@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EntitlementManagement(Entity):
+class EntitlementManagement(Entity, Parsable):
     # The accessPackageAssignmentApprovals property
     access_package_assignment_approvals: Optional[List[Approval]] = None
     # Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class OutlookTaskFolder(Entity):
+class OutlookTaskFolder(Entity, Parsable):
     # The version of the task folder.
     change_key: Optional[str] = None
     # True if the folder is the default task folder.

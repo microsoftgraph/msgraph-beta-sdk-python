@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .label_action_base import LabelActionBase
 
 @dataclass
-class ProtectGroup(LabelActionBase):
+class ProtectGroup(LabelActionBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.protectGroup"
     # The allowEmailFromGuestUsers property

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ApplicationSignInSummary(Entity):
+class ApplicationSignInSummary(Entity, Parsable):
     # Name of the application that the user signed into.
     app_display_name: Optional[str] = None
     # Count of failed sign-ins made by the application.

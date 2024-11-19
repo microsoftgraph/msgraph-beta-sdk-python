@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TextClassificationRequest(Entity):
+class TextClassificationRequest(Entity, Parsable):
     # The contentMetaData property
     content_meta_data: Optional[ClassificationRequestContentMetaData] = None
     # The fileExtension property

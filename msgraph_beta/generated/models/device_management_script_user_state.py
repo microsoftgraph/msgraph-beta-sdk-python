@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementScriptUserState(Entity):
+class DeviceManagementScriptUserState(Entity, Parsable):
     """
     Contains properties for user run state of the device management script.
     """

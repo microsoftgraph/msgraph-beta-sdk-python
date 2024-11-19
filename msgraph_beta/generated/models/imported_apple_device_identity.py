@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ImportedAppleDeviceIdentity(Entity):
+class ImportedAppleDeviceIdentity(Entity, Parsable):
     """
     The importedAppleDeviceIdentity resource represents the imported device identity of an Apple device .
     """

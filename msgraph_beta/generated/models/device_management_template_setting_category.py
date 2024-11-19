@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_setting_category import DeviceManagementSettingCategory
 
 @dataclass
-class DeviceManagementTemplateSettingCategory(DeviceManagementSettingCategory):
+class DeviceManagementTemplateSettingCategory(DeviceManagementSettingCategory, Parsable):
     """
     Entity representing a template setting category
     """

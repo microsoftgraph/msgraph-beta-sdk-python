@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TenantSetupInfo(Entity):
+class TenantSetupInfo(Entity, Parsable):
     # The defaultRolesSettings property
     default_roles_settings: Optional[PrivilegedRoleSettings] = None
     # The firstTimeSetup property

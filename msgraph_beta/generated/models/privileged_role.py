@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegedRole(Entity):
+class PrivilegedRole(Entity, Parsable):
     # The assignments property
     assignments: Optional[List[PrivilegedRoleAssignment]] = None
     # The name property

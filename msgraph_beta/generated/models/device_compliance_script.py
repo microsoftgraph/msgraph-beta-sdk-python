@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceComplianceScript(Entity):
+class DeviceComplianceScript(Entity, Parsable):
     """
     Intune will provide customer the ability to run their Powershell Compliance scripts (detection) on the enrolled windows 10 Azure Active Directory joined devices.
     """

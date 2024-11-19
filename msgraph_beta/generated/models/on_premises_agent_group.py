@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class OnPremisesAgentGroup(Entity):
+class OnPremisesAgentGroup(Entity, Parsable):
     # List of onPremisesAgent that are assigned to an onPremisesAgentGroup. Read-only. Nullable.
     agents: Optional[List[OnPremisesAgent]] = None
     # Display name of the onPremisesAgentGroup.

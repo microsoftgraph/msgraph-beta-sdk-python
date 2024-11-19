@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .teams_app_installation_scope_info import TeamsAppInstallationScopeInfo
 
 @dataclass
-class GroupChatTeamsAppInstallationScopeInfo(TeamsAppInstallationScopeInfo):
+class GroupChatTeamsAppInstallationScopeInfo(TeamsAppInstallationScopeInfo, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.groupChatTeamsAppInstallationScopeInfo"
     # The chatId property

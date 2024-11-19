@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .windows_autopilot_deployment_profile import WindowsAutopilotDeploymentProfile
 
 @dataclass
-class AzureADWindowsAutopilotDeploymentProfile(WindowsAutopilotDeploymentProfile):
+class AzureADWindowsAutopilotDeploymentProfile(WindowsAutopilotDeploymentProfile, Parsable):
     """
     Windows Autopilot Deployment Profile
     """

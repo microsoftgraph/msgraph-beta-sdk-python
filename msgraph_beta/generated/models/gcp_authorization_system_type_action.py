@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .authorization_system_type_action import AuthorizationSystemTypeAction
 
 @dataclass
-class GcpAuthorizationSystemTypeAction(AuthorizationSystemTypeAction):
+class GcpAuthorizationSystemTypeAction(AuthorizationSystemTypeAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The service property

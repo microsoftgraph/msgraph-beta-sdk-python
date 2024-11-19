@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .compliance_change_rule import ComplianceChangeRule
 
 @dataclass
-class ContentApprovalRule(ComplianceChangeRule):
+class ContentApprovalRule(ComplianceChangeRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.contentApprovalRule"
     # A filter to determine which content matches the rule on an ongoing basis.

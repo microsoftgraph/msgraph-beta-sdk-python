@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DataLossPreventionPolicy(Entity):
+class DataLossPreventionPolicy(Entity, Parsable):
     # The name property
     name: Optional[str] = None
     # The OdataType property

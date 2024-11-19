@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MobileAppInstallStatus(Entity):
+class MobileAppInstallStatus(Entity, Parsable):
     """
     Contains properties for the installation state of a mobile app for a device. This will be deprecated starting May, 2023 (Intune Release 2305).
     """

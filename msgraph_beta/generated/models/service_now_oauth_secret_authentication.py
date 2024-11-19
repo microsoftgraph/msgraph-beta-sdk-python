@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .service_now_authentication_method import ServiceNowAuthenticationMethod
 
 @dataclass
-class ServiceNowOauthSecretAuthentication(ServiceNowAuthenticationMethod):
+class ServiceNowOauthSecretAuthentication(ServiceNowAuthenticationMethod, Parsable):
     """
     App id for the ServiceNow client app.
     """

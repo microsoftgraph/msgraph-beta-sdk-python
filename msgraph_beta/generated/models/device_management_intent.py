@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementIntent(Entity):
+class DeviceManagementIntent(Entity, Parsable):
     """
     Entity that represents an intent to apply settings to a device
     """

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .unified_role_schedule_base import UnifiedRoleScheduleBase
 
 @dataclass
-class UnifiedRoleEligibilitySchedule(UnifiedRoleScheduleBase):
+class UnifiedRoleEligibilitySchedule(UnifiedRoleScheduleBase, Parsable):
     # Membership type of the eligible assignment. It can either be Inherited, Direct, or Group. Supports $filter (eq).
     member_type: Optional[str] = None
     # The OdataType property

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .detected_sensitive_content import DetectedSensitiveContent
 
 @dataclass
-class MachineLearningDetectedSensitiveContent(DetectedSensitiveContent):
+class MachineLearningDetectedSensitiveContent(DetectedSensitiveContent, Parsable):
     # The matchTolerance property
     match_tolerance: Optional[MlClassificationMatchTolerance] = None
     # The modelVersion property

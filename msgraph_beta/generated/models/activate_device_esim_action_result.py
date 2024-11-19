@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_action_result import DeviceActionResult
 
 @dataclass
-class ActivateDeviceEsimActionResult(DeviceActionResult):
+class ActivateDeviceEsimActionResult(DeviceActionResult, Parsable):
     """
     Activate device eSIM action result
     """

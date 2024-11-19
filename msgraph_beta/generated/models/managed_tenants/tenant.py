@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Tenant(Entity):
+class Tenant(Entity, Parsable):
     # The relationship details for the tenant with the managing entity.
     contract: Optional[TenantContract] = None
     # The date and time the tenant was created in the multi-tenant management platform. Optional. Read-only.

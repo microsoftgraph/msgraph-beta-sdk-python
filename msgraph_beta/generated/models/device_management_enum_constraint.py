@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementEnumConstraint(DeviceManagementConstraint):
+class DeviceManagementEnumConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint that enforces the setting value is from a permitted set of strings
     """

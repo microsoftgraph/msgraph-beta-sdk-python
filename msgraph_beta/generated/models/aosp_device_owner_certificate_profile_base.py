@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AospDeviceOwnerCertificateProfileBase(DeviceConfiguration):
+class AospDeviceOwnerCertificateProfileBase(DeviceConfiguration, Parsable):
     """
     AOSP Device Owner certificate profile base.
     """

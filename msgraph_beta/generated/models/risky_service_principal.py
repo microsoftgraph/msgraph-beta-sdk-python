@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class RiskyServicePrincipal(Entity):
+class RiskyServicePrincipal(Entity, Parsable):
     # true if the service principal account is enabled; otherwise, false.
     account_enabled: Optional[bool] = None
     # The globally unique identifier for the associated application (its appId property), if any.

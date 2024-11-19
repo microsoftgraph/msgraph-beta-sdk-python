@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WorkbookFormatProtection(Entity):
+class WorkbookFormatProtection(Entity, Parsable):
     # The formulaHidden property
     formula_hidden: Optional[bool] = None
     # The locked property

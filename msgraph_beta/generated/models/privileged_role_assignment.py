@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegedRoleAssignment(Entity):
+class PrivilegedRoleAssignment(Entity, Parsable):
     # The expirationDateTime property
     expiration_date_time: Optional[datetime.datetime] = None
     # The isElevated property

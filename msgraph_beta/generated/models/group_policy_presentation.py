@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GroupPolicyPresentation(Entity):
+class GroupPolicyPresentation(Entity, Parsable):
     """
     The base entity for the display presentation of any of the additional options in a group policy definition.
     """

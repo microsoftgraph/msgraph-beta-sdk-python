@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceConfigurationUserStateSummary(Entity):
+class DeviceConfigurationUserStateSummary(Entity, Parsable):
     # Number of compliant users
     compliant_user_count: Optional[int] = None
     # Number of conflict users

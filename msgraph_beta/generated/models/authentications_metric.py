@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AuthenticationsMetric(Entity):
+class AuthenticationsMetric(Entity, Parsable):
     # The ID of the Microsoft Entra application. Supports $filter (eq).
     appid: Optional[str] = None
     # The number of authentication requests made in the specified period. Supports $filter (eq).

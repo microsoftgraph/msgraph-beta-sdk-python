@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .policy import Policy
 
 @dataclass
-class FilteringPolicy(Policy):
+class FilteringPolicy(Policy, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.filteringPolicy"
     # The action property

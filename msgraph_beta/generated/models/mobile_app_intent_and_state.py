@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MobileAppIntentAndState(Entity):
+class MobileAppIntentAndState(Entity, Parsable):
     """
     MobileApp Intent and Install State for a given device.
     """

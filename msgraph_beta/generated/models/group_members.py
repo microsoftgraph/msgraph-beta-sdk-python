@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .user_set import UserSet
 
 @dataclass
-class GroupMembers(UserSet):
+class GroupMembers(UserSet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.groupMembers"
     # The name of the group in Microsoft Entra ID. Read only.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .aws_identity import AwsIdentity
 
 @dataclass
-class AwsLambda(AwsIdentity):
+class AwsLambda(AwsIdentity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsLambda"
     # Represents the resources in an authorization system..

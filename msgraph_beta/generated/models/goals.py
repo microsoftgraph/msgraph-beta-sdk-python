@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Goals(Entity):
+class Goals(Entity, Parsable):
     # Represents a collection of goals export jobs for Viva Goals.
     export_jobs: Optional[List[GoalsExportJob]] = None
     # The OdataType property

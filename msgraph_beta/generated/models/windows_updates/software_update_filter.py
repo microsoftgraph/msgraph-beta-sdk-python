@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .content_filter import ContentFilter
 
 @dataclass
-class SoftwareUpdateFilter(ContentFilter):
+class SoftwareUpdateFilter(ContentFilter, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.softwareUpdateFilter"
     

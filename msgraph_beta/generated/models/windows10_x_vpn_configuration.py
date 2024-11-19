@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
 
 @dataclass
-class Windows10XVpnConfiguration(DeviceManagementResourceAccessProfileBase):
+class Windows10XVpnConfiguration(DeviceManagementResourceAccessProfileBase, Parsable):
     """
     Windows X VPN configuration profile
     """

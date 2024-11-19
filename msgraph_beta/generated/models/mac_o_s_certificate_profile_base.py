@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class MacOSCertificateProfileBase(DeviceConfiguration):
+class MacOSCertificateProfileBase(DeviceConfiguration, Parsable):
     """
     Mac OS certificate profile.
     """

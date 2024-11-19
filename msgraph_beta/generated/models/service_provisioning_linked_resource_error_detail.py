@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .service_provisioning_resource_error_detail import ServiceProvisioningResourceErrorDetail
 
 @dataclass
-class ServiceProvisioningLinkedResourceErrorDetail(ServiceProvisioningResourceErrorDetail):
+class ServiceProvisioningLinkedResourceErrorDetail(ServiceProvisioningResourceErrorDetail, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The propertyName property

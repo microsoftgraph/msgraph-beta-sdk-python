@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entitlements_data_collection_info import EntitlementsDataCollectionInfo
 
 @dataclass
-class NoEntitlementsDataCollection(EntitlementsDataCollectionInfo):
+class NoEntitlementsDataCollection(EntitlementsDataCollectionInfo, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.noEntitlementsDataCollection"
     

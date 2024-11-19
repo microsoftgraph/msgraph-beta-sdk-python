@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserCountMetric(Entity):
+class UserCountMetric(Entity, Parsable):
     # The total number of users in the tenant over time.
     count: Optional[int] = None
     # The date of the insight.

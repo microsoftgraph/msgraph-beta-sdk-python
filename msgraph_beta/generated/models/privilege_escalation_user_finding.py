@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .privilege_escalation_finding import PrivilegeEscalationFinding
 
 @dataclass
-class PrivilegeEscalationUserFinding(PrivilegeEscalationFinding):
+class PrivilegeEscalationUserFinding(PrivilegeEscalationFinding, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .label_action_base import LabelActionBase
 
 @dataclass
-class EncryptContent(LabelActionBase):
+class EncryptContent(LabelActionBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.encryptContent"
     # The encryptWith property

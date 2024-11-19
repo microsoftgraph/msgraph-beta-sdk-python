@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SecurityBaselineSettingState(Entity):
+class SecurityBaselineSettingState(Entity, Parsable):
     """
     The security baseline compliance state of a setting for a device
     """

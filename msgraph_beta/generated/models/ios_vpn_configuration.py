@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .apple_vpn_configuration import AppleVpnConfiguration
 
 @dataclass
-class IosVpnConfiguration(AppleVpnConfiguration):
+class IosVpnConfiguration(AppleVpnConfiguration, Parsable):
     """
     By providing the configurations in this profile you can instruct the iOS device to connect to desired VPN endpoint. By specifying the authentication method and security types expected by VPN endpoint you can make the VPN connection seamless for end user.
     """

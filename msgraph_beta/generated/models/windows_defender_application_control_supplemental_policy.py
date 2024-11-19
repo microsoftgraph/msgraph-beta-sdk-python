@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsDefenderApplicationControlSupplementalPolicy(Entity):
+class WindowsDefenderApplicationControlSupplementalPolicy(Entity, Parsable):
     # The associated group assignments for the Windows Defender Application Control Supplemental Policy.
     assignments: Optional[List[WindowsDefenderApplicationControlSupplementalPolicyAssignment]] = None
     # Indicates the content of the Windows Defender Application Control Supplemental Policy in byte array format.

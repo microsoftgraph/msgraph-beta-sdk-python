@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MessageRecipient(Entity):
+class MessageRecipient(Entity, Parsable):
     # The deliveryStatus property
     delivery_status: Optional[MessageStatus] = None
     # The events property

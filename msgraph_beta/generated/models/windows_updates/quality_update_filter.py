@@ -11,12 +11,12 @@ if TYPE_CHECKING:
 from .windows_update_filter import WindowsUpdateFilter
 
 @dataclass
-class QualityUpdateFilter(WindowsUpdateFilter):
+class QualityUpdateFilter(WindowsUpdateFilter, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.qualityUpdateFilter"
-    # The cadence property
+    # Specifies the cadence for publishing quality updates of the filter. The possible values are: monthly, outOfBand, unknownFutureValue.
     cadence: Optional[QualityUpdateCadence] = None
-    # The classification property
+    # Specifies the quality update classification of the filter. The possible values are: all, security, nonSecurity, unknownFutureValue.
     classification: Optional[QualityUpdateClassification] = None
     
     @staticmethod

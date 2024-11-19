@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EducationSynchronizationError(Entity):
+class EducationSynchronizationError(Entity, Parsable):
     # Represents the sync entity (school, section, student, teacher).
     entry_type: Optional[str] = None
     # Represents the error code for this error.

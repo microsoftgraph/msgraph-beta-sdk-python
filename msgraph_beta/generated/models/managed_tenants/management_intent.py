@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagementIntent(Entity):
+class ManagementIntent(Entity, Parsable):
     # The display name for the management intent. Optional. Read-only.
     display_name: Optional[str] = None
     # A flag indicating whether the management intent is global. Required. Read-only.

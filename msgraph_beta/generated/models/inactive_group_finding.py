@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class InactiveGroupFinding(Finding):
+class InactiveGroupFinding(Finding, Parsable):
     # The actionSummary property
     action_summary: Optional[ActionSummary] = None
     # The group property

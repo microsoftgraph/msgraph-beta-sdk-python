@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .extension import Extension
 
 @dataclass
-class PersonExtension(Extension):
+class PersonExtension(Extension, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.personExtension"
     

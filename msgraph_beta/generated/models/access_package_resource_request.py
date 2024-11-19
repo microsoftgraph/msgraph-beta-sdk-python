@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessPackageResourceRequest(Entity):
+class AccessPackageResourceRequest(Entity, Parsable):
     # The accessPackageResource property
     access_package_resource: Optional[AccessPackageResource] = None
     # The unique ID of the access package catalog.

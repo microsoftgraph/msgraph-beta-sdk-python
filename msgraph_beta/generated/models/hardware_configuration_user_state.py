@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class HardwareConfigurationUserState(Entity):
+class HardwareConfigurationUserState(Entity, Parsable):
     """
     Contains properties for User state of the hardware configuration
     """

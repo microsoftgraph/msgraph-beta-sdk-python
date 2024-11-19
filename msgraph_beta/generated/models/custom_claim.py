@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .custom_claim_base import CustomClaimBase
 
 @dataclass
-class CustomClaim(CustomClaimBase):
+class CustomClaim(CustomClaimBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customClaim"
     # The name of the claim to be emitted.

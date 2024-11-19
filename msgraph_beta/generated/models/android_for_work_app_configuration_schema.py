@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AndroidForWorkAppConfigurationSchema(Entity):
+class AndroidForWorkAppConfigurationSchema(Entity, Parsable):
     """
     Schema describing an Android for Work application's custom configurations.
     """

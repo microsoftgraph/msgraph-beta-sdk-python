@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementIntentDeviceStateSummary(Entity):
+class DeviceManagementIntentDeviceStateSummary(Entity, Parsable):
     """
     Entity that represents device state summary for an intent
     """

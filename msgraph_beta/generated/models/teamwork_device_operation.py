@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamworkDeviceOperation(Entity):
+class TeamworkDeviceOperation(Entity, Parsable):
     # Time at which the operation reached a final state (for example, Successful, Failed, and Cancelled).
     completed_date_time: Optional[datetime.datetime] = None
     # Identity of the user who created the device operation.

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .external_profile import ExternalProfile
 
 @dataclass
-class ExternalUserProfile(ExternalProfile):
+class ExternalUserProfile(ExternalProfile, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.externalUserProfile"
     

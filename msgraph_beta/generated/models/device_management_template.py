@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementTemplate(Entity):
+class DeviceManagementTemplate(Entity, Parsable):
     """
     Entity that represents a defined collection of device settings
     """

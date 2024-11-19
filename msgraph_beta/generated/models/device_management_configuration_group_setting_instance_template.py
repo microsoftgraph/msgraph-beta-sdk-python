@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
 
 @dataclass
-class DeviceManagementConfigurationGroupSettingInstanceTemplate(DeviceManagementConfigurationSettingInstanceTemplate):
+class DeviceManagementConfigurationGroupSettingInstanceTemplate(DeviceManagementConfigurationSettingInstanceTemplate, Parsable):
     """
     Group Setting Instance Template
     """

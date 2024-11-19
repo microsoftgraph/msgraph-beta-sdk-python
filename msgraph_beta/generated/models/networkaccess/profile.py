@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Profile(Entity):
+class Profile(Entity, Parsable):
     # Description.
     description: Optional[str] = None
     # Profile last modified time.

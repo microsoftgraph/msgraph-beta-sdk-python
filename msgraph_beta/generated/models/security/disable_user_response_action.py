@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .response_action import ResponseAction
 
 @dataclass
-class DisableUserResponseAction(ResponseAction):
+class DisableUserResponseAction(ResponseAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.disableUserResponseAction"
     # The identifier property

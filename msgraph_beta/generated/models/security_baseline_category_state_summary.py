@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .security_baseline_state_summary import SecurityBaselineStateSummary
 
 @dataclass
-class SecurityBaselineCategoryStateSummary(SecurityBaselineStateSummary):
+class SecurityBaselineCategoryStateSummary(SecurityBaselineStateSummary, Parsable):
     """
     The security baseline per category compliance state summary for the security baseline of the account.
     """

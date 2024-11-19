@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .aws_permissions_definition_action import AwsPermissionsDefinitionAction
 
 @dataclass
-class AwsPolicyPermissionsDefinitionAction(AwsPermissionsDefinitionAction):
+class AwsPolicyPermissionsDefinitionAction(AwsPermissionsDefinitionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsPolicyPermissionsDefinitionAction"
     # ID for the role.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class ItemPatent(ItemFacet):
+class ItemPatent(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.itemPatent"
     # Descpription of the patent or filing.

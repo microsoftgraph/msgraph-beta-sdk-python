@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .case_operation import CaseOperation
 
 @dataclass
-class TagOperation(CaseOperation):
+class TagOperation(CaseOperation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

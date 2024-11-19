@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .managed_device import ManagedDevice
 
 @dataclass
-class WindowsManagedDevice(ManagedDevice):
+class WindowsManagedDevice(ManagedDevice, Parsable):
     """
     Windows devices that are managed or pre-enrolled through Intune
     """

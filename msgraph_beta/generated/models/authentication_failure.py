@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AuthenticationFailure(Entity):
+class AuthenticationFailure(Entity, Parsable):
     # The count property
     count: Optional[int] = None
     # The OdataType property

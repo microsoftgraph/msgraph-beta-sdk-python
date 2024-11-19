@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .win32_lob_app_requirement import Win32LobAppRequirement
 
 @dataclass
-class Win32LobAppFileSystemRequirement(Win32LobAppRequirement):
+class Win32LobAppFileSystemRequirement(Win32LobAppRequirement, Parsable):
     """
     Contains file or folder path to detect a Win32 App
     """

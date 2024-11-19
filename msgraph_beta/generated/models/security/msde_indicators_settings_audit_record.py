@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .audit_data import AuditData
 
 @dataclass
-class MsdeIndicatorsSettingsAuditRecord(AuditData):
+class MsdeIndicatorsSettingsAuditRecord(AuditData, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.msdeIndicatorsSettingsAuditRecord"
     

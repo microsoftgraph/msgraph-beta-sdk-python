@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class RecommendationBase(Entity):
+class RecommendationBase(Entity, Parsable):
     # List of actions to take to complete a recommendation.
     action_steps: Optional[List[ActionStep]] = None
     # An explanation of why completing the recommendation will benefit you. Corresponds to the Value section of a recommendation shown in the Microsoft Entra admin center.

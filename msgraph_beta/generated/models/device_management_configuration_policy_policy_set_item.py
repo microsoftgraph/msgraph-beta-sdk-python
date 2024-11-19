@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .policy_set_item import PolicySetItem
 
 @dataclass
-class DeviceManagementConfigurationPolicyPolicySetItem(PolicySetItem):
+class DeviceManagementConfigurationPolicyPolicySetItem(PolicySetItem, Parsable):
     """
     A class containing the properties used for DeviceManagementConfiguration PolicySetItem.
     """

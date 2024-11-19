@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PolicySetAssignment(Entity):
+class PolicySetAssignment(Entity, Parsable):
     """
     A class containing the properties used for PolicySet Assignment.
     """

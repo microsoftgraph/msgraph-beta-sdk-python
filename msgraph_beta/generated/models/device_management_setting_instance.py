@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementSettingInstance(Entity):
+class DeviceManagementSettingInstance(Entity, Parsable):
     """
     Base type for a setting instance
     """

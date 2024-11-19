@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class TenantGroup(Entity):
+class TenantGroup(Entity, Parsable):
     # A flag indicating whether all managed tenant are included in the tenant group. Required. Read-only.
     all_tenants_included: Optional[bool] = None
     # The display name for the tenant group. Optional. Read-only.

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Mention(Entity):
+class Mention(Entity, Parsable):
     # The name of the application where the mention is created. Optional. Not used and defaulted as null for message.
     application: Optional[str] = None
     # A unique identifier that represents a parent of the resource instance. Optional. Not used and defaulted as null for message.

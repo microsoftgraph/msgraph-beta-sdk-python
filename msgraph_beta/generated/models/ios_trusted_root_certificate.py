@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class IosTrustedRootCertificate(DeviceConfiguration):
+class IosTrustedRootCertificate(DeviceConfiguration, Parsable):
     """
     iOS Trusted Root Certificate configuration profile.
     """

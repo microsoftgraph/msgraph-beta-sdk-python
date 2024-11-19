@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .updatable_asset import UpdatableAsset
 
 @dataclass
-class AzureADDevice(UpdatableAsset):
+class AzureADDevice(UpdatableAsset, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.azureADDevice"
     # Specifies areas in which the device is enrolled. Read-only. Returned by default.

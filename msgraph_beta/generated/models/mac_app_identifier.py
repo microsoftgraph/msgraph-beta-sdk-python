@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .mobile_app_identifier import MobileAppIdentifier
 
 @dataclass
-class MacAppIdentifier(MobileAppIdentifier):
+class MacAppIdentifier(MobileAppIdentifier, Parsable):
     """
     The identifier for a Mac app.
     """

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ProductRevision(Entity):
+class ProductRevision(Entity, Parsable):
     # The catalogEntry property
     catalog_entry: Optional[CatalogEntry] = None
     # The display name of the content. Read-only.

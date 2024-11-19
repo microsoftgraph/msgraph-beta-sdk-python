@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .planner_task import PlannerTask
 
 @dataclass
-class BusinessScenarioTask(PlannerTask):
+class BusinessScenarioTask(PlannerTask, Parsable):
     # Scenario-specific properties of the task. externalObjectId and externalBucketId properties must be specified when creating a task.
     business_scenario_properties: Optional[BusinessScenarioProperties] = None
     # The OdataType property

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrintDocument(Entity):
+class PrintDocument(Entity, Parsable):
     # The configuration property
     configuration: Optional[PrinterDocumentConfiguration] = None
     # The document's content (MIME) type. Read-only.

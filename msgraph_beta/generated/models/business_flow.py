@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class BusinessFlow(Entity):
+class BusinessFlow(Entity, Parsable):
     # The customData property
     custom_data: Optional[str] = None
     # The deDuplicationId property

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementSettingRegexConstraint(DeviceManagementConstraint):
+class DeviceManagementSettingRegexConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint enforcing the setting matches against a given RegEx pattern
     """

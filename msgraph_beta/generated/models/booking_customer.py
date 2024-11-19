@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .booking_person import BookingPerson
 
 @dataclass
-class BookingCustomer(BookingPerson):
+class BookingCustomer(BookingPerson, Parsable):
     """
     Represents a customer of the business.
     """

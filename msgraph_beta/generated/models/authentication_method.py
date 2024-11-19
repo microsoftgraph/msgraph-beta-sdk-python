@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AuthenticationMethod(Entity):
+class AuthenticationMethod(Entity, Parsable):
     # The createdDateTime property
     created_date_time: Optional[datetime.datetime] = None
     # The OdataType property

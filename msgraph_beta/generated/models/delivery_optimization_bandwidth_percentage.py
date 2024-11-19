@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
 
 @dataclass
-class DeliveryOptimizationBandwidthPercentage(DeliveryOptimizationBandwidth):
+class DeliveryOptimizationBandwidthPercentage(DeliveryOptimizationBandwidth, Parsable):
     """
     Bandwidth limits specified as a percentage.
     """

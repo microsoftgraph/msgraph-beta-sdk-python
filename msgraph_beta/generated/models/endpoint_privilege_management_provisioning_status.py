@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EndpointPrivilegeManagementProvisioningStatus(Entity):
+class EndpointPrivilegeManagementProvisioningStatus(Entity, Parsable):
     """
     Endpoint privilege management (EPM) tenant provisioning status contains tenant level license and onboarding state information.
     """

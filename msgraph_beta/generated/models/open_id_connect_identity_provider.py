@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .identity_provider_base import IdentityProviderBase
 
 @dataclass
-class OpenIdConnectIdentityProvider(IdentityProviderBase):
+class OpenIdConnectIdentityProvider(IdentityProviderBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.openIdConnectIdentityProvider"
     # After the OIDC provider sends an ID token back to Microsoft Entra ID, Microsoft Entra ID needs to be able to map the claims from the received token to the claims that Microsoft Entra ID recognizes and uses. This complex type captures that mapping. Required.

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class Windows10DeviceFirmwareConfigurationInterface(DeviceConfiguration):
+class Windows10DeviceFirmwareConfigurationInterface(DeviceConfiguration, Parsable):
     """
     Graph properties for Device Firmware Configuration Interface 
     """

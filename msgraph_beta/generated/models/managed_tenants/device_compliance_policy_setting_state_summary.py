@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class DeviceCompliancePolicySettingStateSummary(Entity):
+class DeviceCompliancePolicySettingStateSummary(Entity, Parsable):
     # The number of devices in a conflict state. Optional. Read-only.
     conflict_device_count: Optional[int] = None
     # The number of devices in an error state. Optional. Read-only.

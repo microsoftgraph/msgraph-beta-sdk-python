@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .permissions_definition import PermissionsDefinition
 
 @dataclass
-class SingleResourceGcpPermissionsDefinition(PermissionsDefinition):
+class SingleResourceGcpPermissionsDefinition(PermissionsDefinition, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.singleResourceGcpPermissionsDefinition"
     # The actionInfo property

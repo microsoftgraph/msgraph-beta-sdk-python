@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Settings(Entity):
+class Settings(Entity, Parsable):
     # The conditionalAccess property
     conditional_access: Optional[ConditionalAccessSettings] = None
     # The crossTenantAccess property

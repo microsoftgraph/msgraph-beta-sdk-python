@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class EncryptedAzureStorageAccountFinding(Finding):
+class EncryptedAzureStorageAccountFinding(Finding, Parsable):
     # The encryptionManagedBy property
     encryption_managed_by: Optional[AzureEncryption] = None
     # The OdataType property

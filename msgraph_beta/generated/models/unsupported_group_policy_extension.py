@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnsupportedGroupPolicyExtension(Entity):
+class UnsupportedGroupPolicyExtension(Entity, Parsable):
     """
     Unsupported Group Policy Extension.
     """

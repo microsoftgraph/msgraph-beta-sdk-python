@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .access_review_settings import AccessReviewSettings
 
 @dataclass
-class BusinessFlowSettings(AccessReviewSettings):
+class BusinessFlowSettings(AccessReviewSettings, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.businessFlowSettings"
     # The durationInDays property

@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 from .mobile_app import MobileApp
 
 @dataclass
-class MobileLobApp(MobileApp):
+class MobileLobApp(MobileApp, Parsable):
     """
     An abstract base class containing properties for all mobile line of business apps.
     """

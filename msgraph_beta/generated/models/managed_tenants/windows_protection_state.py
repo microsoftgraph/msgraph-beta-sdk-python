@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class WindowsProtectionState(Entity):
+class WindowsProtectionState(Entity, Parsable):
     # The anti-malware version for the managed device. Optional. Read-only.
     anti_malware_version: Optional[str] = None
     # A flag indicating whether attention is required for the managed device. Optional. Read-only.

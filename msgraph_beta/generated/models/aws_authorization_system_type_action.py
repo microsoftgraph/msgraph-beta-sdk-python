@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .authorization_system_type_action import AuthorizationSystemTypeAction
 
 @dataclass
-class AwsAuthorizationSystemTypeAction(AuthorizationSystemTypeAction):
+class AwsAuthorizationSystemTypeAction(AuthorizationSystemTypeAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The service property

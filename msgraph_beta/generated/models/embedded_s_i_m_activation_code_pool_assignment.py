@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EmbeddedSIMActivationCodePoolAssignment(Entity):
+class EmbeddedSIMActivationCodePoolAssignment(Entity, Parsable):
     """
     The embedded SIM activation code pool assignment entity assigns a specific embeddedSIMActivationCodePool to an AAD device group.
     """

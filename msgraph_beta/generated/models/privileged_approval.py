@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegedApproval(Entity):
+class PrivilegedApproval(Entity, Parsable):
     # The approvalDuration property
     approval_duration: Optional[datetime.timedelta] = None
     # The approvalState property

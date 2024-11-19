@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .response_action import ResponseAction
 
 @dataclass
-class MoveToDeletedItemsResponseAction(ResponseAction):
+class MoveToDeletedItemsResponseAction(ResponseAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.moveToDeletedItemsResponseAction"
     # The identifier property

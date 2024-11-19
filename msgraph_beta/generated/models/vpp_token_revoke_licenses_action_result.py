@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .vpp_token_action_result import VppTokenActionResult
 
 @dataclass
-class VppTokenRevokeLicensesActionResult(VppTokenActionResult):
+class VppTokenRevokeLicensesActionResult(VppTokenActionResult, Parsable):
     """
     The status of the revoke licenses action performed on the Apple Volume Purchase Program token.
     """

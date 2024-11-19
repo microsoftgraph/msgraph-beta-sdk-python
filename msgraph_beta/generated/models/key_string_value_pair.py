@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .key_typed_value_pair import KeyTypedValuePair
 
 @dataclass
-class KeyStringValuePair(KeyTypedValuePair):
+class KeyStringValuePair(KeyTypedValuePair, Parsable):
     """
     A key-value pair with a string key and a string value.
     """

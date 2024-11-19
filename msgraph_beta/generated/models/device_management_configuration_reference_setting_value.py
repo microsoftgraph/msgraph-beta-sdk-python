@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_string_setting_value import DeviceManagementConfigurationStringSettingValue
 
 @dataclass
-class DeviceManagementConfigurationReferenceSettingValue(DeviceManagementConfigurationStringSettingValue):
+class DeviceManagementConfigurationReferenceSettingValue(DeviceManagementConfigurationStringSettingValue, Parsable):
     """
     Model for ReferenceSettingValue
     """

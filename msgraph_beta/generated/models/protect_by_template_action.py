@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .information_protection_action import InformationProtectionAction
 
 @dataclass
-class ProtectByTemplateAction(InformationProtectionAction):
+class ProtectByTemplateAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.protectByTemplateAction"
     # The GUID of the Azure Information Protection template to apply to the information.

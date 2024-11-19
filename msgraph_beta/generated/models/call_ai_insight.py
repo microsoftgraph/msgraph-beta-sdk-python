@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CallAiInsight(Entity):
+class CallAiInsight(Entity, Parsable):
     # The actionItems property
     action_items: Optional[List[ActionItem]] = None
     # The callId property

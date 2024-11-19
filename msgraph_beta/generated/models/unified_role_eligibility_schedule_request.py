@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .request import Request
 
 @dataclass
-class UnifiedRoleEligibilityScheduleRequest(Request):
+class UnifiedRoleEligibilityScheduleRequest(Request, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.unifiedRoleEligibilityScheduleRequest"
     # Represents the type of operation on the role eligibility request. The possible values are: AdminAssign: For administrators to assign eligible roles to principals.AdminRemove: For administrators to remove eligible roles from principals. AdminUpdate: For administrators to change existing role eligibilities.AdminExtend: For administrators to extend expiring role eligibilities.AdminRenew: For administrators to renew expired eligibilities.UserAdd: For users to activate their eligible assignments.UserRemove: For users to deactivate their active eligible assignments.UserExtend: For users to request to extend their expiring eligible assignments.UserRenew: For users to request to renew their expired eligible assignments.

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementSettingCategory(Entity):
+class DeviceManagementSettingCategory(Entity, Parsable):
     """
     Entity representing a setting category
     """

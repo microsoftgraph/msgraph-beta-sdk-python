@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class InformationProtectionPolicy(Entity):
+class InformationProtectionPolicy(Entity, Parsable):
     # The labels property
     labels: Optional[List[InformationProtectionLabel]] = None
     # The OdataType property

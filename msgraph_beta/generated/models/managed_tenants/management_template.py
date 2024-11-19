@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagementTemplate(Entity):
+class ManagementTemplate(Entity, Parsable):
     # The management category for the management template. Possible values are: custom, devices, identity, unknownFutureValue. Required. Read-only.
     category: Optional[ManagementCategory] = None
     # The createdByUserId property

@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SensitivityLabel(Entity):
+class SensitivityLabel(Entity, Parsable):
     # The applicableTo property
     applicable_to: Optional[SensitivityLabelTarget] = None
     # The applicationMode property

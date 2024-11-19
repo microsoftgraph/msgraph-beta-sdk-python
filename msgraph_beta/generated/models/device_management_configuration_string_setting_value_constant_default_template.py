@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_string_setting_value_default_template import DeviceManagementConfigurationStringSettingValueDefaultTemplate
 
 @dataclass
-class DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate(DeviceManagementConfigurationStringSettingValueDefaultTemplate):
+class DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate(DeviceManagementConfigurationStringSettingValueDefaultTemplate, Parsable):
     """
     String Setting Value Constant Default Template
     """

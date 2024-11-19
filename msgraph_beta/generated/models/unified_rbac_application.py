@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnifiedRbacApplication(Entity):
+class UnifiedRbacApplication(Entity, Parsable):
     # Workload-specific scope object that represents the resources for which the principal has been granted access.
     custom_app_scopes: Optional[List[CustomAppScope]] = None
     # The OdataType property

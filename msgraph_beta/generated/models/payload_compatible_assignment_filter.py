@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
 
 @dataclass
-class PayloadCompatibleAssignmentFilter(DeviceAndAppManagementAssignmentFilter):
+class PayloadCompatibleAssignmentFilter(DeviceAndAppManagementAssignmentFilter, Parsable):
     """
     A class containing the properties used for Payload Compatible Assignment Filter.
     """

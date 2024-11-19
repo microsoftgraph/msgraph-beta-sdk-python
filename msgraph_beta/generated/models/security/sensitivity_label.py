@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class SensitivityLabel(Entity):
+class SensitivityLabel(Entity, Parsable):
     # The color that the UI should display for the label, if configured.
     color: Optional[str] = None
     # Returns the supported content formats for the label.

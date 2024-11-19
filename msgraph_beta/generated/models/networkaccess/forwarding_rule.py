@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .policy_rule import PolicyRule
 
 @dataclass
-class ForwardingRule(PolicyRule):
+class ForwardingRule(PolicyRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingRule"
     # The action property

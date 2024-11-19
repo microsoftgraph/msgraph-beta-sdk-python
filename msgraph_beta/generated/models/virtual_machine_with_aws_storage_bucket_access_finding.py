@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class VirtualMachineWithAwsStorageBucketAccessFinding(Finding):
+class VirtualMachineWithAwsStorageBucketAccessFinding(Finding, Parsable):
     # The total number of storage buckets that the EC2 instance can access using the role.
     accessible_count: Optional[int] = None
     # The total number of storage buckets in the authorization system that hosts the EC2 instance.

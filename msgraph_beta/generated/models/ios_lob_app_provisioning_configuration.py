@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class IosLobAppProvisioningConfiguration(Entity):
+class IosLobAppProvisioningConfiguration(Entity, Parsable):
     """
     This topic provides descriptions of the declared methods, properties and relationships exposed by the iOS Lob App Provisioning Configuration resource.
     """

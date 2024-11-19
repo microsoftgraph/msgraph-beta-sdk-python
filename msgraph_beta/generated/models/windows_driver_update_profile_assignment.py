@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsDriverUpdateProfileAssignment(Entity):
+class WindowsDriverUpdateProfileAssignment(Entity, Parsable):
     """
     This entity contains the properties used to assign a windows driver update profile to a group.
     """

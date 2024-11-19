@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessReviewStage(Entity):
+class AccessReviewStage(Entity, Parsable):
     # Each user reviewed in an accessReviewStage has a decision item representing if they were approved, denied, or not yet reviewed.
     decisions: Optional[List[AccessReviewInstanceDecisionItem]] = None
     # DateTime when review stage is scheduled to end. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. This property is the cumulative total of the durationInDays for all stages. Read-only.

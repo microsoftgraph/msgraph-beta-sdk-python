@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ApprovalWorkflowProvider(Entity):
+class ApprovalWorkflowProvider(Entity, Parsable):
     # The businessFlows property
     business_flows: Optional[List[BusinessFlow]] = None
     # The businessFlowsWithRequestsAwaitingMyDecision property

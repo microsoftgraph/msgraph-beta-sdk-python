@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CloudCertificationAuthorityLeafCertificate(Entity):
+class CloudCertificationAuthorityLeafCertificate(Entity, Parsable):
     """
     Entity that represents a leaf certificate issued by a cloud certification authority.
     """

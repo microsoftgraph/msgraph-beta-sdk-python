@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
 
 @dataclass
-class GroupPolicyPresentationDropdownList(GroupPolicyUploadedPresentation):
+class GroupPolicyPresentationDropdownList(GroupPolicyUploadedPresentation, Parsable):
     """
     Represents an ADMX dropdownList element and an ADMX enum element.
     """

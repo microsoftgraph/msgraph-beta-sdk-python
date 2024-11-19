@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .conditional_access_context import ConditionalAccessContext
 
 @dataclass
-class WhatIfUserActionContext(ConditionalAccessContext):
+class WhatIfUserActionContext(ConditionalAccessContext, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.whatIfUserActionContext"
     # The userAction property

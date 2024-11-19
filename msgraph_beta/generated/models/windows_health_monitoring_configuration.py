@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class WindowsHealthMonitoringConfiguration(DeviceConfiguration):
+class WindowsHealthMonitoringConfiguration(DeviceConfiguration, Parsable):
     """
     Windows device health monitoring configuration
     """

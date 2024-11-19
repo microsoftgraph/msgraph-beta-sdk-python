@@ -48,9 +48,10 @@ class CertificateBasedAuthConfigurationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CertificateBasedAuthConfigurationsRequestBuilderGetQueryParameters]] = None) -> Optional[CertificateBasedAuthPkiCollectionResponse]:
         """
-        Get certificateBasedAuthConfigurations from directory
+        Get a list of the certificateBasedAuthPki objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CertificateBasedAuthPkiCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/publickeyinfrastructureroot-list-certificatebasedauthconfigurations?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,10 +69,11 @@ class CertificateBasedAuthConfigurationsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CertificateBasedAuthPki, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CertificateBasedAuthPki]:
         """
-        Create new navigation property to certificateBasedAuthConfigurations for directory
+        Create a new certificateBasedAuthPki object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CertificateBasedAuthPki]
+        Find more info here: https://learn.microsoft.com/graph/api/publickeyinfrastructureroot-post-certificatebasedauthconfigurations?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -91,7 +93,7 @@ class CertificateBasedAuthConfigurationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CertificateBasedAuthConfigurationsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get certificateBasedAuthConfigurations from directory
+        Get a list of the certificateBasedAuthPki objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +104,7 @@ class CertificateBasedAuthConfigurationsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CertificateBasedAuthPki, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to certificateBasedAuthConfigurations for directory
+        Create a new certificateBasedAuthPki object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +139,7 @@ class CertificateBasedAuthConfigurationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CertificateBasedAuthConfigurationsRequestBuilderGetQueryParameters():
         """
-        Get certificateBasedAuthConfigurations from directory
+        Get a list of the certificateBasedAuthPki objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

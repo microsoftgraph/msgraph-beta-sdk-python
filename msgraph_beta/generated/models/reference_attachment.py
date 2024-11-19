@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .attachment import Attachment
 
 @dataclass
-class ReferenceAttachment(Attachment):
+class ReferenceAttachment(Attachment, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.referenceAttachment"
     # Specifies whether the attachment is a link to a folder. Must set this to true if sourceUrl is a link to a folder. Optional.

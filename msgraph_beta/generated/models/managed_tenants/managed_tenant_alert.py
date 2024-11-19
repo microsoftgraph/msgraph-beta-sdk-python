@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagedTenantAlert(Entity):
+class ManagedTenantAlert(Entity, Parsable):
     # The alertData property
     alert_data: Optional[AlertData] = None
     # The alertDataReferenceStrings property

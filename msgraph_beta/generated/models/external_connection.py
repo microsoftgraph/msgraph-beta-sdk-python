@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ExternalConnection(Entity):
+class ExternalConnection(Entity, Parsable):
     # The configuration property
     configuration: Optional[Configuration] = None
     # The description property

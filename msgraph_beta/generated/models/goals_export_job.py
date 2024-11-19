@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .long_running_operation import LongRunningOperation
 
 @dataclass
-class GoalsExportJob(LongRunningOperation):
+class GoalsExportJob(LongRunningOperation, Parsable):
     """
     The status of a long-running operation.
     """

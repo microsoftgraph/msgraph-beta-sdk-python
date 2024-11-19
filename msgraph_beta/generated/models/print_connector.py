@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrintConnector(Entity):
+class PrintConnector(Entity, Parsable):
     # The connector's version.
     app_version: Optional[str] = None
     # The connector's device health.

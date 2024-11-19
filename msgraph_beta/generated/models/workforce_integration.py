@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .change_tracked_entity import ChangeTrackedEntity
 
 @dataclass
-class WorkforceIntegration(ChangeTrackedEntity):
+class WorkforceIntegration(ChangeTrackedEntity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.workforceIntegration"
     # API version for the callback URL. Start with 1.

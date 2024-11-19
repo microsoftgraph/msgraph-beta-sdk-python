@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .validating_domains import ValidatingDomains
 
 @dataclass
-class EnumeratedDomains(ValidatingDomains):
+class EnumeratedDomains(ValidatingDomains, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.enumeratedDomains"
     # List of federated or managed root domains that Microsoft Entra ID validates.

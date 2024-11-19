@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
 
 @dataclass
-class AndroidDeviceOwnerGlobalProxyDirect(AndroidDeviceOwnerGlobalProxy):
+class AndroidDeviceOwnerGlobalProxyDirect(AndroidDeviceOwnerGlobalProxy, Parsable):
     """
     Android Device Owner Global Proxy Direct.
     """

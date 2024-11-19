@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .windows_phone81_certificate_profile_base import WindowsPhone81CertificateProfileBase
 
 @dataclass
-class WindowsPhone81SCEPCertificateProfile(WindowsPhone81CertificateProfileBase):
+class WindowsPhone81SCEPCertificateProfile(WindowsPhone81CertificateProfileBase, Parsable):
     """
     Windows Phone 8.1+ SCEP certificate profile
     """

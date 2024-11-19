@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessPackage(Entity):
+class AccessPackage(Entity, Parsable):
     # Read-only. Nullable. Supports $expand.
     access_package_assignment_policies: Optional[List[AccessPackageAssignmentPolicy]] = None
     # The accessPackageCatalog property

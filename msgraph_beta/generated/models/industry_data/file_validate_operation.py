@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .validate_operation import ValidateOperation
 
 @dataclass
-class FileValidateOperation(ValidateOperation):
+class FileValidateOperation(ValidateOperation, Parsable):
     """
     The status of a long-running operation.
     """

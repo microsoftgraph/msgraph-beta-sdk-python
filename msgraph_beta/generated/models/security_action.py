@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SecurityAction(Entity):
+class SecurityAction(Entity, Parsable):
     # Reason for invoking this action.
     action_reason: Optional[str] = None
     # The Application ID of the calling application that submitted (POST) the action. The appId should be extracted from the auth token and not entered manually by the calling application.

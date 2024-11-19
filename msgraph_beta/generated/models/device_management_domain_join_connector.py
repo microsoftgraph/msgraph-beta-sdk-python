@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementDomainJoinConnector(Entity):
+class DeviceManagementDomainJoinConnector(Entity, Parsable):
     """
     A Domain Join Connector is a connector that is responsible to allocate (and delete) machine account blobs
     """

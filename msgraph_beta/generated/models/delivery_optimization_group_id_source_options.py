@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .delivery_optimization_group_id_source import DeliveryOptimizationGroupIdSource
 
 @dataclass
-class DeliveryOptimizationGroupIdSourceOptions(DeliveryOptimizationGroupIdSource):
+class DeliveryOptimizationGroupIdSourceOptions(DeliveryOptimizationGroupIdSource, Parsable):
     """
     Group id options type
     """

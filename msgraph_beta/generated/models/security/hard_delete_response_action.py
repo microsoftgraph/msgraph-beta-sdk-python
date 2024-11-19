@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .response_action import ResponseAction
 
 @dataclass
-class HardDeleteResponseAction(ResponseAction):
+class HardDeleteResponseAction(ResponseAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.hardDeleteResponseAction"
     # The identifier property

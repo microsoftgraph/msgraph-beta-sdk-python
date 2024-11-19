@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .planner_base_approval_attachment import PlannerBaseApprovalAttachment
 
 @dataclass
-class PlannerBasicApprovalAttachment(PlannerBaseApprovalAttachment):
+class PlannerBasicApprovalAttachment(PlannerBaseApprovalAttachment, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.plannerBasicApprovalAttachment"
     # Read-only. The identifier of the approval in the approval service.

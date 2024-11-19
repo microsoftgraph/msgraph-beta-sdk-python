@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ParticipantBase(Entity):
+class ParticipantBase(Entity, Parsable):
     # List of administrativeUnitInfo of the call participant.
     administrative_unit_infos: Optional[List[AdministrativeUnitInfo]] = None
     # The identity of the call participant.

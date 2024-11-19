@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GroupPolicyConfiguration(Entity):
+class GroupPolicyConfiguration(Entity, Parsable):
     """
     The group policy configuration entity contains the configured values for one or more group policy definitions.
     """

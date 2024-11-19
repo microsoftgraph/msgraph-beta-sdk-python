@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ApprovalItem(Entity):
+class ApprovalItem(Entity, Parsable):
     # Indicates whether the approval item can be canceled.
     allow_cancel: Optional[bool] = None
     # Indicates whether email notification is enabled.

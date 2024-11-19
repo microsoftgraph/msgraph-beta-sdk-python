@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AdminDynamics(Entity):
+class AdminDynamics(Entity, Parsable):
     # The customerVoice property
     customer_voice: Optional[CustomerVoiceSettings] = None
     # The OdataType property

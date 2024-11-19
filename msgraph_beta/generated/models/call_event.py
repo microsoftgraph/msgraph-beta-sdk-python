@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CallEvent(Entity):
+class CallEvent(Entity, Parsable):
     # The callEventType property
     call_event_type: Optional[CallEventType] = None
     # The eventDateTime property

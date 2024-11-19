@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 from .planner_delta import PlannerDelta
 
 @dataclass
-class PlannerPlan(PlannerDelta):
+class PlannerPlan(PlannerDelta, Parsable):
     # Read-only. Nullable. Contains information about who archived or unarchived the plan and why.
     archival_info: Optional[PlannerArchivalInfo] = None
     # Collection of buckets in the plan. Read-only. Nullable.

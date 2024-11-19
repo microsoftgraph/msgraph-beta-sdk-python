@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class AppPerformance(Entity):
+class AppPerformance(Entity, Parsable):
     # The appFriendlyName property
     app_friendly_name: Optional[str] = None
     # The appName property

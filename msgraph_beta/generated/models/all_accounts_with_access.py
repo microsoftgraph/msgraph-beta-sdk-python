@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .accounts_with_access import AccountsWithAccess
 
 @dataclass
-class AllAccountsWithAccess(AccountsWithAccess):
+class AllAccountsWithAccess(AccountsWithAccess, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.allAccountsWithAccess"
     

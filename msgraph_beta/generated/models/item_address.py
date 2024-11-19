@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class ItemAddress(ItemFacet):
+class ItemAddress(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.itemAddress"
     # The detail property

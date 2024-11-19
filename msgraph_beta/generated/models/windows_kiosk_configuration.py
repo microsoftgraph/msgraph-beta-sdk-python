@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class WindowsKioskConfiguration(DeviceConfiguration):
+class WindowsKioskConfiguration(DeviceConfiguration, Parsable):
     """
     This entity provides descriptions of the declared methods, properties and relationships exposed by the kiosk resource.
     """

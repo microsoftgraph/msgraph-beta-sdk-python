@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .meeting_registration_base import MeetingRegistrationBase
 
 @dataclass
-class MeetingRegistration(MeetingRegistrationBase):
+class MeetingRegistration(MeetingRegistrationBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.meetingRegistration"
     # Custom registration questions.

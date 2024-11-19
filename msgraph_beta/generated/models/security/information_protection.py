@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class InformationProtection(Entity):
+class InformationProtection(Entity, Parsable):
     # Read the Microsoft Purview Information Protection policy settings for the user or organization.
     label_policy_settings: Optional[InformationProtectionPolicySetting] = None
     # The OdataType property

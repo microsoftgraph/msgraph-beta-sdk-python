@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class IpSecurityProfile(Entity):
+class IpSecurityProfile(Entity, Parsable):
     # The activityGroupNames property
     activity_group_names: Optional[List[str]] = None
     # The address property

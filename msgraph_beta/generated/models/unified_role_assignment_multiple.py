@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnifiedRoleAssignmentMultiple(Entity):
+class UnifiedRoleAssignmentMultiple(Entity, Parsable):
     # Ids of the app specific scopes when the assignment scopes are app specific. The scopes of an assignment determine the set of resources for which the principal has access. Directory scopes are shared scopes stored in the directory that are understood by multiple applications. Use / for tenant-wide scope. App scopes are scopes that are defined and understood by this application only.
     app_scope_ids: Optional[List[str]] = None
     # Read-only collection with details of the app specific scopes when the assignment scopes are app specific. Containment entity. Read-only.

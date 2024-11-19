@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from ...dictionary import Dictionary
 
 @dataclass
-class AdditionalDataDictionary(Dictionary):
+class AdditionalDataDictionary(Dictionary, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

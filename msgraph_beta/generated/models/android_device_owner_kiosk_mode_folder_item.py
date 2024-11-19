@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .android_device_owner_kiosk_mode_home_screen_item import AndroidDeviceOwnerKioskModeHomeScreenItem
 
 @dataclass
-class AndroidDeviceOwnerKioskModeFolderItem(AndroidDeviceOwnerKioskModeHomeScreenItem):
+class AndroidDeviceOwnerKioskModeFolderItem(AndroidDeviceOwnerKioskModeHomeScreenItem, Parsable):
     """
     Represents an item that can be added to Android Device Owner folder (application or weblink)
     """

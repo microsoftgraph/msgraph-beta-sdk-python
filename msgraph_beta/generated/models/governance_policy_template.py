@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GovernancePolicyTemplate(Entity):
+class GovernancePolicyTemplate(Entity, Parsable):
     # The displayName property
     display_name: Optional[str] = None
     # The OdataType property

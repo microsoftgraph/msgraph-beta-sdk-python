@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .device_enrollment_configuration import DeviceEnrollmentConfiguration
 
 @dataclass
-class DeviceEnrollmentPlatformRestrictionConfiguration(DeviceEnrollmentConfiguration):
+class DeviceEnrollmentPlatformRestrictionConfiguration(DeviceEnrollmentConfiguration, Parsable):
     """
     Device Enrollment Configuration that restricts the types of devices a user can enroll for a single platform
     """

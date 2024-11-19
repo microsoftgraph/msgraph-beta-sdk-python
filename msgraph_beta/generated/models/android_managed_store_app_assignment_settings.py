@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mobile_app_assignment_settings import MobileAppAssignmentSettings
 
 @dataclass
-class AndroidManagedStoreAppAssignmentSettings(MobileAppAssignmentSettings):
+class AndroidManagedStoreAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
     """
     Contains properties used to assign an Android Managed Store mobile app to a group.
     """

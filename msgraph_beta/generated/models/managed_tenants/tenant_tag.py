@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class TenantTag(Entity):
+class TenantTag(Entity, Parsable):
     # The identifier for the account that created the tenant tag. Required. Read-only.
     created_by_user_id: Optional[str] = None
     # The date and time when the tenant tag was created. Required. Read-only.

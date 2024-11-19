@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AdvancedThreatProtectionOnboardingDeviceSettingState(Entity):
+class AdvancedThreatProtectionOnboardingDeviceSettingState(Entity, Parsable):
     """
     ATP onboarding State for a given device.
     """

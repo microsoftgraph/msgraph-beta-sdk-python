@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .filtering_rule import FilteringRule
 
 @dataclass
-class WebCategoryFilteringRule(FilteringRule):
+class WebCategoryFilteringRule(FilteringRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.webCategoryFilteringRule"
     

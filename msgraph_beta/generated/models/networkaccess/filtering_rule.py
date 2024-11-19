@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .policy_rule import PolicyRule
 
 @dataclass
-class FilteringRule(PolicyRule):
+class FilteringRule(PolicyRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.filteringRule"
     # Possible destinations and types of destinations accessed by the user in accordance with the network filtering policy, such as IP addresses and FQDNs/URLs.

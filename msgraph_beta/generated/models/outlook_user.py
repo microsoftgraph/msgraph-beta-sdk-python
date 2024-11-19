@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class OutlookUser(Entity):
+class OutlookUser(Entity, Parsable):
     # A list of categories defined for the user.
     master_categories: Optional[List[OutlookCategory]] = None
     # The OdataType property

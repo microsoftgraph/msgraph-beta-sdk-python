@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .scope_sensitivity_labels import ScopeSensitivityLabels
 
 @dataclass
-class EnumeratedScopeSensitivityLabels(ScopeSensitivityLabels):
+class EnumeratedScopeSensitivityLabels(ScopeSensitivityLabels, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.enumeratedScopeSensitivityLabels"
     # The sensitivity labels that are applicable to the scope type and have been preapproved. Required.

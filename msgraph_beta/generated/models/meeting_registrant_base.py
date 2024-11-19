@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MeetingRegistrantBase(Entity):
+class MeetingRegistrantBase(Entity, Parsable):
     # A unique web URL for the registrant to join the meeting. Read-only.
     join_web_url: Optional[str] = None
     # The OdataType property

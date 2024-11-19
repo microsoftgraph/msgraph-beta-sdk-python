@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class ProjectParticipation(ItemFacet):
+class ProjectParticipation(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.projectParticipation"
     # Contains categories a user has associated with the project (for example, digital transformation, oil rig).

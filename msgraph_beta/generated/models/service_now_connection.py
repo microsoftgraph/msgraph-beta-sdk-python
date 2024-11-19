@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ServiceNowConnection(Entity):
+class ServiceNowConnection(Entity, Parsable):
     """
     ServiceNow properties including the ServiceNow instanceUrl, connection credentials and other metadata.
     """

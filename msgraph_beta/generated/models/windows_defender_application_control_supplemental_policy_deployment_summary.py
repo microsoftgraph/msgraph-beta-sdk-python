@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary(Entity):
+class WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary(Entity, Parsable):
     """
     Contains properties for the deployment summary of a WindowsDefenderApplicationControl supplemental policy.
     """

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class BusinessFlowTemplate(Entity):
+class BusinessFlowTemplate(Entity, Parsable):
     # The name of the business flow template
     display_name: Optional[str] = None
     # The OdataType property

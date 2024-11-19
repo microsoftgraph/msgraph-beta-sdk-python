@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mark_content import MarkContent
 
 @dataclass
-class AddFooter(MarkContent):
+class AddFooter(MarkContent, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.addFooter"
     # The alignment property

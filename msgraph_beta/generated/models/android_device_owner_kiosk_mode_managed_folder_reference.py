@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .android_device_owner_kiosk_mode_home_screen_item import AndroidDeviceOwnerKioskModeHomeScreenItem
 
 @dataclass
-class AndroidDeviceOwnerKioskModeManagedFolderReference(AndroidDeviceOwnerKioskModeHomeScreenItem):
+class AndroidDeviceOwnerKioskModeManagedFolderReference(AndroidDeviceOwnerKioskModeHomeScreenItem, Parsable):
     """
     A reference to folder containing apps and weblinks on the Managed Home Screen
     """

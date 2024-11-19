@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .data_set import DataSet
 
 @dataclass
-class EdiscoveryReviewSet(DataSet):
+class EdiscoveryReviewSet(DataSet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.ediscoveryReviewSet"
     # Represents files within the review set.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AwsPolicy(Entity):
+class AwsPolicy(Entity, Parsable):
     # The awsPolicyType property
     aws_policy_type: Optional[AwsPolicyType] = None
     # The display name for the AWS policy. Read-only. Supports $filter and (eq,contains).

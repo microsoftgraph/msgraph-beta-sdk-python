@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnifiedStorageQuota(Entity):
+class UnifiedStorageQuota(Entity, Parsable):
     # The deleted property
     deleted: Optional[int] = None
     # A URL that can be used in a browser to manage the breakdown. Read-only.

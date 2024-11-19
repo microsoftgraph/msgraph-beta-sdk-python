@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
 
 @dataclass
-class MacOSAzureAdSingleSignOnExtension(MacOSSingleSignOnExtension):
+class MacOSAzureAdSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
     """
     Represents an Azure AD-type Single Sign-On extension profile for macOS devices.
     """

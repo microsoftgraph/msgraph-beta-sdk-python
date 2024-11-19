@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegedRoleAssignmentRequest(Entity):
+class PrivilegedRoleAssignmentRequest(Entity, Parsable):
     # The assignmentState property
     assignment_state: Optional[str] = None
     # The duration property

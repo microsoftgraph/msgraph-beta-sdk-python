@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .unified_role_management_alert_incident import UnifiedRoleManagementAlertIncident
 
 @dataclass
-class StaleSignInAlertIncident(UnifiedRoleManagementAlertIncident):
+class StaleSignInAlertIncident(UnifiedRoleManagementAlertIncident, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.staleSignInAlertIncident"
     # Display name of the subject that the incident applies to.

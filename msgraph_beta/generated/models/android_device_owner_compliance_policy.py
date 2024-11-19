@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .device_compliance_policy import DeviceCompliancePolicy
 
 @dataclass
-class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy):
+class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy, Parsable):
     """
     This topic provides descriptions of the declared methods, properties and relationships exposed by the AndroidDeviceOwnerCompliancePolicy resource.
     """

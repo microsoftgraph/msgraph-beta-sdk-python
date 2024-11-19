@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GroupPolicyCategory(Entity):
+class GroupPolicyCategory(Entity, Parsable):
     """
     The category entity stores the category of a group policy definition
     """

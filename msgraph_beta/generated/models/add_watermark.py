@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mark_content import MarkContent
 
 @dataclass
-class AddWatermark(MarkContent):
+class AddWatermark(MarkContent, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.addWatermark"
     # The orientation property

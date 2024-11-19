@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class AwsExternalSystemAccessFinding(Finding):
+class AwsExternalSystemAccessFinding(Finding, Parsable):
     # The accessMethods property
     access_methods: Optional[ExternalSystemAccessMethods] = None
     # The affectedSystem property

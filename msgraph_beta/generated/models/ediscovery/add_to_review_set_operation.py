@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .case_operation import CaseOperation
 
 @dataclass
-class AddToReviewSetOperation(CaseOperation):
+class AddToReviewSetOperation(CaseOperation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The review set to which items matching the source collection query are added to.

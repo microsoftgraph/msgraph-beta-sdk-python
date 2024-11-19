@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class OpenNetworkAzureSecurityGroupFinding(Finding):
+class OpenNetworkAzureSecurityGroupFinding(Finding, Parsable):
     # The inboundPorts property
     inbound_ports: Optional[InboundPorts] = None
     # The OdataType property

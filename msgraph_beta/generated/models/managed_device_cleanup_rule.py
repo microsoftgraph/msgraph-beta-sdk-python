@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ManagedDeviceCleanupRule(Entity):
+class ManagedDeviceCleanupRule(Entity, Parsable):
     """
     Define the rule when the admin wants the devices to be cleaned up.
     """

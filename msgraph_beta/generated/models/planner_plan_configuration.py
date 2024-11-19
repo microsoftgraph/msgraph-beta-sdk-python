@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PlannerPlanConfiguration(Entity):
+class PlannerPlanConfiguration(Entity, Parsable):
     # List the buckets that should be created in the plan.
     buckets: Optional[List[PlannerPlanConfigurationBucketDefinition]] = None
     # The identity of the creator of the plan configuration.

@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AdminWindowsUpdates(Entity):
+class AdminWindowsUpdates(Entity, Parsable):
     # Catalog of content that can be approved for deployment by Windows Autopatch. Read-only.
     catalog: Optional[Catalog] = None
     # The set of updatableAsset resources to which a deployment can apply.

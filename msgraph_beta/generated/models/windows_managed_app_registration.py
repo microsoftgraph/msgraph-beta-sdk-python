@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .managed_app_registration import ManagedAppRegistration
 
 @dataclass
-class WindowsManagedAppRegistration(ManagedAppRegistration):
+class WindowsManagedAppRegistration(ManagedAppRegistration, Parsable):
     """
     Represents the synchronization details of a Windows app, with management capabilities, for a specific user.
     """

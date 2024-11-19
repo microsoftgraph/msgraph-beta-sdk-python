@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WorkbookDocumentTaskChange(Entity):
+class WorkbookDocumentTaskChange(Entity, Parsable):
     # The user identity the task is assigned to. Only present when the type property is assign. Nullable.
     assignee: Optional[WorkbookEmailIdentity] = None
     # The changedBy property

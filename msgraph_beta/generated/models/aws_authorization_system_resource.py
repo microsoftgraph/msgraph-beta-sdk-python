@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .authorization_system_resource import AuthorizationSystemResource
 
 @dataclass
-class AwsAuthorizationSystemResource(AuthorizationSystemResource):
+class AwsAuthorizationSystemResource(AuthorizationSystemResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsAuthorizationSystemResource"
     # The service associated with the resource in an AWS authorization system. This is autoexpanded.

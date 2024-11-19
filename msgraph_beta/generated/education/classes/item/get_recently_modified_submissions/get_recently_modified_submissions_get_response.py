@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class GetRecentlyModifiedSubmissionsGetResponse(BaseCollectionPaginationCountResponse):
+class GetRecentlyModifiedSubmissionsGetResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
     value: Optional[List[EducationSubmission]] = None
     

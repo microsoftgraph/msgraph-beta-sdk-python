@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class TrustFrameworkKey_v2CollectionResponse(BaseCollectionPaginationCountResponse):
+class TrustFrameworkKey_v2CollectionResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
     value: Optional[List[TrustFrameworkKey_v2]] = None
     

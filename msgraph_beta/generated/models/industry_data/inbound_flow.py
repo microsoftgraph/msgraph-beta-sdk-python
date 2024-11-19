@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .industry_data_activity import IndustryDataActivity
 
 @dataclass
-class InboundFlow(IndustryDataActivity):
+class InboundFlow(IndustryDataActivity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.inboundFlow"
     # The dataConnector property

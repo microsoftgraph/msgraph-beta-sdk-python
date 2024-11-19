@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class InformationProtectionPolicySetting(Entity):
+class InformationProtectionPolicySetting(Entity, Parsable):
     # The defaultLabelId property
     default_label_id: Optional[str] = None
     # Exposes whether justification input is required on label downgrade.

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class OnPremisesAgent(Entity):
+class OnPremisesAgent(Entity, Parsable):
     # List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
     agent_groups: Optional[List[OnPremisesAgentGroup]] = None
     # The external IP address as detected by the service for the agent machine. Read-only

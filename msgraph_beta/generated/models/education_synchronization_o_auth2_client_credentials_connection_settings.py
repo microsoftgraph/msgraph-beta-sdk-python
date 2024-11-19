@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
 
 @dataclass
-class EducationSynchronizationOAuth2ClientCredentialsConnectionSettings(EducationSynchronizationConnectionSettings):
+class EducationSynchronizationOAuth2ClientCredentialsConnectionSettings(EducationSynchronizationConnectionSettings, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationSynchronizationOAuth2ClientCredentialsConnectionSettings"
     # The scope of the access request (see RFC6749).

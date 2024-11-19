@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..long_running_operation import LongRunningOperation
 
 @dataclass
-class ValidateOperation(LongRunningOperation):
+class ValidateOperation(LongRunningOperation, Parsable):
     """
     The status of a long-running operation.
     """

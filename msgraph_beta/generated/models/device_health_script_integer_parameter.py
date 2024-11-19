@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_health_script_parameter import DeviceHealthScriptParameter
 
 @dataclass
-class DeviceHealthScriptIntegerParameter(DeviceHealthScriptParameter):
+class DeviceHealthScriptIntegerParameter(DeviceHealthScriptParameter, Parsable):
     """
     Properties of the  Integer script parameter.
     """

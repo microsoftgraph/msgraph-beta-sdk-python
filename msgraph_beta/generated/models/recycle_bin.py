@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .base_item import BaseItem
 
 @dataclass
-class RecycleBin(BaseItem):
+class RecycleBin(BaseItem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.recycleBin"
     # List of the recycleBinItems deleted by a user.

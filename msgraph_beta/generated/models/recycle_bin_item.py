@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .base_item import BaseItem
 
 @dataclass
-class RecycleBinItem(BaseItem):
+class RecycleBinItem(BaseItem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.recycleBinItem"
     # Date and time when the item was deleted. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.

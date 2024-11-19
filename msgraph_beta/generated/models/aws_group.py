@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .aws_identity import AwsIdentity
 
 @dataclass
-class AwsGroup(AwsIdentity):
+class AwsGroup(AwsIdentity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsGroup"
     

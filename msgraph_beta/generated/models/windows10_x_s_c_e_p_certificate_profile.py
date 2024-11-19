@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 from .windows10_x_certificate_profile import Windows10XCertificateProfile
 
 @dataclass
-class Windows10XSCEPCertificateProfile(Windows10XCertificateProfile):
+class Windows10XSCEPCertificateProfile(Windows10XCertificateProfile, Parsable):
     """
     Windows X SCEP Certificate configuration profile
     """

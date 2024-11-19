@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .gradual_rollout_settings import GradualRolloutSettings
 
 @dataclass
-class DateDrivenRolloutSettings(GradualRolloutSettings):
+class DateDrivenRolloutSettings(GradualRolloutSettings, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.dateDrivenRolloutSettings"
     # Specifies the date before which all devices currently in the deployment are offered the update. Devices added after this date are offered immediately. When the endDateTime isn't set, all devices in the deployment are offered content at the same time.

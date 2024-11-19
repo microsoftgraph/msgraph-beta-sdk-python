@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UxSetting(Entity):
+class UxSetting(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The restrictNonAdminAccess property

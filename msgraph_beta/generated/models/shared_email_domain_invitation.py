@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SharedEmailDomainInvitation(Entity):
+class SharedEmailDomainInvitation(Entity, Parsable):
     # The expiryTime property
     expiry_time: Optional[datetime.datetime] = None
     # The invitationDomain property

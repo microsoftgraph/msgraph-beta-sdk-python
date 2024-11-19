@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .education_synchronization_data_provider import EducationSynchronizationDataProvider
 
 @dataclass
-class EducationPowerSchoolDataProvider(EducationSynchronizationDataProvider):
+class EducationPowerSchoolDataProvider(EducationSynchronizationDataProvider, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationPowerSchoolDataProvider"
     # Indicates whether the source has multiple identifiers for a single student or teacher.

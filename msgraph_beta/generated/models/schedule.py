@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Schedule(Entity):
+class Schedule(Entity, Parsable):
     # Indicates whether copied shifts should include the activities.
     activities_included_when_copying_shifts_enabled: Optional[bool] = None
     # The day notes in the schedule.

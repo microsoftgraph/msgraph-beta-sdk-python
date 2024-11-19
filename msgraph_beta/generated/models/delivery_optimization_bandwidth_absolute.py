@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
 
 @dataclass
-class DeliveryOptimizationBandwidthAbsolute(DeliveryOptimizationBandwidth):
+class DeliveryOptimizationBandwidthAbsolute(DeliveryOptimizationBandwidth, Parsable):
     """
     Bandwidth limits in kilobytes per second.
     """

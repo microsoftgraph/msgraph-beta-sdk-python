@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .vpn_proxy_server import VpnProxyServer
 
 @dataclass
-class Windows10VpnProxyServer(VpnProxyServer):
+class Windows10VpnProxyServer(VpnProxyServer, Parsable):
     """
     VPN Proxy Server.
     """

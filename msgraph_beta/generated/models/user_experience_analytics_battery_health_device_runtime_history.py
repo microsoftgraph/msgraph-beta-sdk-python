@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(Entity):
+class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(Entity, Parsable):
     """
     The user experience analytics battery health runtime history entity contains the trend of runtime of a device over a period of 30 days
     """

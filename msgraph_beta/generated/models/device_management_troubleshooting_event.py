@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementTroubleshootingEvent(Entity):
+class DeviceManagementTroubleshootingEvent(Entity, Parsable):
     """
     Event representing an general failure.
     """

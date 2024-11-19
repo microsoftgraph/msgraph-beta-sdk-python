@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .information_protection_action import InformationProtectionAction
 
 @dataclass
-class ProtectDoNotForwardAction(InformationProtectionAction):
+class ProtectDoNotForwardAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.protectDoNotForwardAction"
     

@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class OnlineMeetingBase(Entity):
+class OnlineMeetingBase(Entity, Parsable):
     # Indicates whether attendees can turn on their camera.
     allow_attendee_to_enable_camera: Optional[bool] = None
     # Indicates whether attendees can turn on their microphone.
@@ -48,7 +48,7 @@ class OnlineMeetingBase(Entity):
     allow_transcription: Optional[bool] = None
     # Indicates whether whiteboard is enabled for the meeting.
     allow_whiteboard: Optional[bool] = None
-    # The allowedLobbyAdmitters property
+    # Specifies the users who can admit from the lobby. Possible values are: organizerAndCoOrganizersAndPresenters, organizerAndCoOrganizers, unknownFutureValue.
     allowed_lobby_admitters: Optional[AllowedLobbyAdmitterRoles] = None
     # Specifies who can be a presenter in a meeting. Possible values are: everyone, organization, roleIsPresenter, organizer, unknownFutureValue.
     allowed_presenters: Optional[OnlineMeetingPresenters] = None

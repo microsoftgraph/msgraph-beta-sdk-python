@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PublishedResource(Entity):
+class PublishedResource(Entity, Parsable):
     # List of onPremisesAgentGroups that a publishedResource is assigned to. Read-only. Nullable.
     agent_groups: Optional[List[OnPremisesAgentGroup]] = None
     # Display Name of the publishedResource.

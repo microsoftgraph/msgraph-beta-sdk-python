@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CustomSecurityAttributeAudit(Entity):
+class CustomSecurityAttributeAudit(Entity, Parsable):
     # The activityDateTime property
     activity_date_time: Optional[datetime.datetime] = None
     # The activityDisplayName property

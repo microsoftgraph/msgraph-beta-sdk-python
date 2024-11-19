@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ProgramControl(Entity):
+class ProgramControl(Entity, Parsable):
     # The controlId of the control, in particular the identifier of an access review. Required on create.
     control_id: Optional[str] = None
     # The programControlType identifies the type of program control - for example, a control linking to guest access reviews. Required on create.

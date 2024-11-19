@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PlannerPlanConfigurationLocalization(Entity):
+class PlannerPlanConfigurationLocalization(Entity, Parsable):
     # Localized names for configured buckets in the plan configuration.
     buckets: Optional[List[PlannerPlanConfigurationBucketLocalization]] = None
     # The language code associated with the localized names in this object.

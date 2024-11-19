@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MicrosoftTunnelConfiguration(Entity):
+class MicrosoftTunnelConfiguration(Entity, Parsable):
     """
     Entity that represents a collection of Microsoft Tunnel settings
     """

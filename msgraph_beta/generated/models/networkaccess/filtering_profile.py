@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .profile import Profile
 
 @dataclass
-class FilteringProfile(Profile):
+class FilteringProfile(Profile, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.filteringProfile"
     # A set of associated policies defined to regulate access to resources or systems based on specific conditions. Automatically expanded.

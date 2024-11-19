@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GovernanceRoleDefinition(Entity):
+class GovernanceRoleDefinition(Entity, Parsable):
     # The display name of the role definition.
     display_name: Optional[str] = None
     # The external ID of the role definition.

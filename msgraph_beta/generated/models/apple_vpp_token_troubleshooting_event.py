@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
 
 @dataclass
-class AppleVppTokenTroubleshootingEvent(DeviceManagementTroubleshootingEvent):
+class AppleVppTokenTroubleshootingEvent(DeviceManagementTroubleshootingEvent, Parsable):
     """
     Event representing an Apple Vpp Token Troubleshooting Event.
     """

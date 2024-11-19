@@ -11,18 +11,18 @@ if TYPE_CHECKING:
 from .directory_object import DirectoryObject
 
 @dataclass
-class CertificateBasedAuthPki(DirectoryObject):
+class CertificateBasedAuthPki(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.certificateBasedAuthPki"
-    # The certificateAuthorities property
+    # The collection of certificate authorities contained in this public key infrastructure resource.
     certificate_authorities: Optional[List[CertificateAuthorityDetail]] = None
-    # The displayName property
+    # The name of the object.
     display_name: Optional[str] = None
-    # The lastModifiedDateTime property
+    # The date and time when the object was created or last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
-    # The status property
+    # The status of any asynchronous jobs runs on the object which can be upload or delete.
     status: Optional[str] = None
-    # The statusDetails property
+    # The status details of the upload/deleted operation of PKI (Public Key Infrastructure).
     status_details: Optional[str] = None
     
     @staticmethod

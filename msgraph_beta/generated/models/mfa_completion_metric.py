@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MfaCompletionMetric(Entity):
+class MfaCompletionMetric(Entity, Parsable):
     # The ID of the Microsoft Entra application. Supports $filter (eq).
     app_id: Optional[str] = None
     # Number of users who attempted to sign up. Supports $filter (eq).

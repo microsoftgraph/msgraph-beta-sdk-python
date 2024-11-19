@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .profile import Profile
 
 @dataclass
-class ForwardingProfile(Profile):
+class ForwardingProfile(Profile, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingProfile"
     # Specifies the users, groups, devices, and remote networks whose traffic is associated with the given traffic forwarding profile.

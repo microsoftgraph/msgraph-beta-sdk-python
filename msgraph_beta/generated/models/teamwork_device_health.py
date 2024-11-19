@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamworkDeviceHealth(Entity):
+class TeamworkDeviceHealth(Entity, Parsable):
     # The connection property
     connection: Optional[TeamworkConnection] = None
     # Identity of the user who created the device health document.

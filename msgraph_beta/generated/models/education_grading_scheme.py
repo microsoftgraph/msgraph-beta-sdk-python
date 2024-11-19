@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EducationGradingScheme(Entity):
+class EducationGradingScheme(Entity, Parsable):
     # The name of the grading scheme.
     display_name: Optional[str] = None
     # The grades that make up the scheme.

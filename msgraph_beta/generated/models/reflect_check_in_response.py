@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ReflectCheckInResponse(Entity):
+class ReflectCheckInResponse(Entity, Parsable):
     # Identifier for the Reflect check-in.
     check_in_id: Optional[str] = None
     # The question or prompt of the Reflect check-in that this response addresses.

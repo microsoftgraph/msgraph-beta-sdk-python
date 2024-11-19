@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class CollaborationRoot(Entity):
+class CollaborationRoot(Entity, Parsable):
     # Contains metadata for analyzed emails.
     analyzed_emails: Optional[List[AnalyzedEmail]] = None
     # The OdataType property

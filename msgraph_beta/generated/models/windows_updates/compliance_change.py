@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ComplianceChange(Entity):
+class ComplianceChange(Entity, Parsable):
     # The date and time when a compliance change was created.
     created_date_time: Optional[datetime.datetime] = None
     # True indicates that a compliance change is revoked, preventing further application. Revoking a compliance change is a final action.

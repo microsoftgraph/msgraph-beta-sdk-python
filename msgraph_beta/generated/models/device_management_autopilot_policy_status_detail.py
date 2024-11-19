@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementAutopilotPolicyStatusDetail(Entity):
+class DeviceManagementAutopilotPolicyStatusDetail(Entity, Parsable):
     """
     Policy status detail item contained by an autopilot event.
     """

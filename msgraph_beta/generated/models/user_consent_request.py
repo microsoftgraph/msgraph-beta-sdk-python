@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .request import Request
 
 @dataclass
-class UserConsentRequest(Request):
+class UserConsentRequest(Request, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.userConsentRequest"
     # Approval decisions associated with a request.

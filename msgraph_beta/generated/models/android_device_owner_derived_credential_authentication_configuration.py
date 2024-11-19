@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(DeviceConfiguration):
+class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(DeviceConfiguration, Parsable):
     """
     Android COBO Derived Credential profile.
     """
