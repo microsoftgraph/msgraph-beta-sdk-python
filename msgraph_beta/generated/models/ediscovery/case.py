@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Case(Entity):
+class Case(Entity, Parsable):
     # The user who closed the case.
     closed_by: Optional[IdentitySet] = None
     # The date and time when the case was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementIntentSettingSecretConstraint(DeviceManagementConstraint):
+class DeviceManagementIntentSettingSecretConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint indicating that this value is a secret and will be encrypted.
     """

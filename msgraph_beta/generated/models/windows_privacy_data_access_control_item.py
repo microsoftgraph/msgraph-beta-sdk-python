@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsPrivacyDataAccessControlItem(Entity):
+class WindowsPrivacyDataAccessControlItem(Entity, Parsable):
     """
     Specify access control level per privacy data category
     """

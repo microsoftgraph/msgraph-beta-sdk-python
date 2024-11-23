@@ -9,13 +9,13 @@ if TYPE_CHECKING:
 from .mobile_app_assignment_settings import MobileAppAssignmentSettings
 
 @dataclass
-class WindowsUniversalAppXAppAssignmentSettings(MobileAppAssignmentSettings):
+class WindowsUniversalAppXAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
     """
     Contains properties used when assigning a Windows Universal AppX mobile app to a group.
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUniversalAppXAppAssignmentSettings"
-    # Whether or not to use device execution context for Windows Universal AppX mobile app.
+    # If true, uses device execution context for Windows Universal AppX mobile app. Device-context install is not allowed when this type of app is targeted with Available intent. Defaults to false.
     use_device_context: Optional[bool] = None
     
     @staticmethod

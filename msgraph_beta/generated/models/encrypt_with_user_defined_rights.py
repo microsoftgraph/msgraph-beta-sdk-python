@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .encrypt_content import EncryptContent
 
 @dataclass
-class EncryptWithUserDefinedRights(EncryptContent):
+class EncryptWithUserDefinedRights(EncryptContent, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.encryptWithUserDefinedRights"
     # The allowAdHocPermissions property

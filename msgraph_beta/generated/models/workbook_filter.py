@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WorkbookFilter(Entity):
+class WorkbookFilter(Entity, Parsable):
     # The criteria property
     criteria: Optional[WorkbookFilterCriteria] = None
     # The OdataType property

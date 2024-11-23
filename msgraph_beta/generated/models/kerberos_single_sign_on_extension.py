@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .single_sign_on_extension import SingleSignOnExtension
 
 @dataclass
-class KerberosSingleSignOnExtension(SingleSignOnExtension):
+class KerberosSingleSignOnExtension(SingleSignOnExtension, Parsable):
     """
     Represents a Kerberos-type Single Sign-On extension profile.
     """

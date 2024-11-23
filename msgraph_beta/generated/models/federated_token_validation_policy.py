@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .directory_object import DirectoryObject
 
 @dataclass
-class FederatedTokenValidationPolicy(DirectoryObject):
+class FederatedTokenValidationPolicy(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.federatedTokenValidationPolicy"
     # The validatingDomains property

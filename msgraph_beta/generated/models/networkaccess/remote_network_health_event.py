@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class RemoteNetworkHealthEvent(Entity):
+class RemoteNetworkHealthEvent(Entity, Parsable):
     # The number of BGP routes advertised through tunnel.
     bgp_routes_advertised_count: Optional[int] = None
     # The time of the original event generation in UTC. Supports $filter (ge, le) and $orderby.

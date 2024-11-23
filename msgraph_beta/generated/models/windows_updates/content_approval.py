@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .compliance_change import ComplianceChange
 
 @dataclass
-class ContentApproval(ComplianceChange):
+class ContentApproval(ComplianceChange, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.contentApproval"
     # The content property

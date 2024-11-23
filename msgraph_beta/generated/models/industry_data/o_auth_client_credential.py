@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .credential import Credential
 
 @dataclass
-class OAuthClientCredential(Credential):
+class OAuthClientCredential(Credential, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.oAuthClientCredential"
     # The client identifier of the application that is authenticating.

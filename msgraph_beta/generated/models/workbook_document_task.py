@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WorkbookDocumentTask(Entity):
+class WorkbookDocumentTask(Entity, Parsable):
     # A collection of user identities the task is assigned to.
     assignees: Optional[List[WorkbookEmailIdentity]] = None
     # A collection of task change histories.

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementIntentDeviceState(Entity):
+class DeviceManagementIntentDeviceState(Entity, Parsable):
     """
     Entity that represents device state for an intent
     """

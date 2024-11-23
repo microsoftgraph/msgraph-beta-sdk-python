@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
 
 @dataclass
-class MacOSEnterpriseWiFiConfiguration(MacOSWiFiConfiguration):
+class MacOSEnterpriseWiFiConfiguration(MacOSWiFiConfiguration, Parsable):
     """
     MacOS Wi-Fi WPA-Enterprise/WPA2-Enterprise configuration profile.
     """

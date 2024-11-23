@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .protection_units_bulk_job_base import ProtectionUnitsBulkJobBase
 
 @dataclass
-class DriveProtectionUnitsBulkAdditionJob(ProtectionUnitsBulkJobBase):
+class DriveProtectionUnitsBulkAdditionJob(ProtectionUnitsBulkJobBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.driveProtectionUnitsBulkAdditionJob"
     # The list of OneDrive directoryObjectIds to add to the OneDrive protection policy.

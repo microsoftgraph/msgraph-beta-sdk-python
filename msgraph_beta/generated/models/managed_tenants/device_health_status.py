@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class DeviceHealthStatus(Entity):
+class DeviceHealthStatus(Entity, Parsable):
     # The blueScreenCount property
     blue_screen_count: Optional[int] = None
     # The bootTotalDurationInSeconds property

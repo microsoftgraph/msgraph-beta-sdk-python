@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .ios_single_sign_on_extension import IosSingleSignOnExtension
 
 @dataclass
-class IosCredentialSingleSignOnExtension(IosSingleSignOnExtension):
+class IosCredentialSingleSignOnExtension(IosSingleSignOnExtension, Parsable):
     """
     Represents a Credential-type Single Sign-On extension profile for iOS devices.
     """

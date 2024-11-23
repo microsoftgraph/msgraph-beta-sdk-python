@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .windows_certificate_profile_base import WindowsCertificateProfileBase
 
 @dataclass
-class WindowsPhone81ImportedPFXCertificateProfile(WindowsCertificateProfileBase):
+class WindowsPhone81ImportedPFXCertificateProfile(WindowsCertificateProfileBase, Parsable):
     """
     Windows 8.1 Phone and Mobile PFX Import certificate profile
     """

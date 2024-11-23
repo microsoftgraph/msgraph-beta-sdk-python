@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementConfigurationSettingDefinition(Entity):
+class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
     # The accessTypes property
     access_types: Optional[DeviceManagementConfigurationSettingAccessTypes] = None
     # Details which device setting is applicable on

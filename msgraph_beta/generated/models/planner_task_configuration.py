@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PlannerTaskConfiguration(Entity):
+class PlannerTaskConfiguration(Entity, Parsable):
     # Policy configuration for tasks created for the businessScenario when they're being changed outside of the scenario.
     edit_policy: Optional[PlannerTaskPolicy] = None
     # The OdataType property

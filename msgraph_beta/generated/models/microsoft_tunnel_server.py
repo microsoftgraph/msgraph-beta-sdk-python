@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MicrosoftTunnelServer(Entity):
+class MicrosoftTunnelServer(Entity, Parsable):
     """
     Entity that represents a single Microsoft Tunnel server
     """

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EducationModuleResource(Entity):
+class EducationModuleResource(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Resource object that has been associated with this module.

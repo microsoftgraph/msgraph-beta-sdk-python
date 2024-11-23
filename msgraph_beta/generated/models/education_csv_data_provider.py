@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .education_synchronization_data_provider import EducationSynchronizationDataProvider
 
 @dataclass
-class EducationCsvDataProvider(EducationSynchronizationDataProvider):
+class EducationCsvDataProvider(EducationSynchronizationDataProvider, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationCsvDataProvider"
     # Optional customizations to be applied to the synchronization profile.

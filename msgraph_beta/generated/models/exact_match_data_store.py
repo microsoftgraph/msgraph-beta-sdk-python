@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .exact_match_data_store_base import ExactMatchDataStoreBase
 
 @dataclass
-class ExactMatchDataStore(ExactMatchDataStoreBase):
+class ExactMatchDataStore(ExactMatchDataStoreBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The sessions property

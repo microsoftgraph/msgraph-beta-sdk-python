@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PermissionsManagement(Entity):
+class PermissionsManagement(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents a change event of the scheduledPermissionsRequest entity.

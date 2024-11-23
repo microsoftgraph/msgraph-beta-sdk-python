@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagementTemplateStepTenantSummary(Entity):
+class ManagementTemplateStepTenantSummary(Entity, Parsable):
     # The assignedTenantsCount property
     assigned_tenants_count: Optional[int] = None
     # The compliantTenantsCount property

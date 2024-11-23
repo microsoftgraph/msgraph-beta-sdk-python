@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class PersonName(ItemFacet):
+class PersonName(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.personName"
     # Provides an ordered rendering of firstName and lastName depending on the locale of the user or their device.

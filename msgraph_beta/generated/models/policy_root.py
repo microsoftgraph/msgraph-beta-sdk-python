@@ -37,7 +37,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PolicyRoot(Entity):
+class PolicyRoot(Entity, Parsable):
     # The policy that contains directory-level access review settings.
     access_review_policy: Optional[AccessReviewPolicy] = None
     # The policy that controls the idle time-out for web sessions for applications.

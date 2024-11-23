@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnifiedRbacResourceAction(Entity):
+class UnifiedRbacResourceAction(Entity, Parsable):
     # HTTP method for the action, such as DELETE, GET, PATCH, POST, PUT, or null. Supports $filter (eq) but not for null values.
     action_verb: Optional[str] = None
     # The authenticationContext property

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
 
 @dataclass
-class MacOSKerberosSingleSignOnExtension(MacOSSingleSignOnExtension):
+class MacOSKerberosSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
     """
     Represents a Kerberos-type Single Sign-On extension profile for macOS devices.
     """

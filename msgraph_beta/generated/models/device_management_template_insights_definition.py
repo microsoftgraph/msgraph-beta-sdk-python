@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementTemplateInsightsDefinition(Entity):
+class DeviceManagementTemplateInsightsDefinition(Entity, Parsable):
     """
     template insights definition
     """

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .edge_home_button_configuration import EdgeHomeButtonConfiguration
 
 @dataclass
-class EdgeHomeButtonLoadsStartPage(EdgeHomeButtonConfiguration):
+class EdgeHomeButtonLoadsStartPage(EdgeHomeButtonConfiguration, Parsable):
     """
     Show the home button; clicking the home button loads the Start page - this is also the default value.
     """

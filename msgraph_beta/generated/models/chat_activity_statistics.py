@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .activity_statistics import ActivityStatistics
 
 @dataclass
-class ChatActivityStatistics(ActivityStatistics):
+class ChatActivityStatistics(ActivityStatistics, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.chatActivityStatistics"
     # Time spent on chats outside of working hours, which is based on the user's Microsoft Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.

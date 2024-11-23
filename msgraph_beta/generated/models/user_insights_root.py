@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserInsightsRoot(Entity):
+class UserInsightsRoot(Entity, Parsable):
     # Summaries of daily user activities on apps registered in your tenant that is configured for Microsoft Entra External ID for customers.
     daily: Optional[DailyUserInsightMetricsRoot] = None
     # Summaries of monthly user activities on apps registered in your tenant that is configured for Microsoft Entra External ID for customers.

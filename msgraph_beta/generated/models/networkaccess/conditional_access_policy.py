@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ConditionalAccessPolicy(Entity):
+class ConditionalAccessPolicy(Entity, Parsable):
     # Indicates the date and time the conditional access policy was created.
     created_date_time: Optional[datetime.datetime] = None
     # Provides a summary of the conditional access policy.

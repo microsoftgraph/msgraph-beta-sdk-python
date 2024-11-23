@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .information_protection_action import InformationProtectionAction
 
 @dataclass
-class AddContentHeaderAction(InformationProtectionAction):
+class AddContentHeaderAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.addContentHeaderAction"
     # The alignment property

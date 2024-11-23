@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class PolicyLink(Entity):
+class PolicyLink(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The policy property

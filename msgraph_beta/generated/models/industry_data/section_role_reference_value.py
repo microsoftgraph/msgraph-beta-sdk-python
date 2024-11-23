@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .reference_value import ReferenceValue
 
 @dataclass
-class SectionRoleReferenceValue(ReferenceValue):
+class SectionRoleReferenceValue(ReferenceValue, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.sectionRoleReferenceValue"
     

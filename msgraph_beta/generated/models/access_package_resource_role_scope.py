@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessPackageResourceRoleScope(Entity):
+class AccessPackageResourceRoleScope(Entity, Parsable):
     # Read-only. Nullable. Supports $expand.
     access_package_resource_role: Optional[AccessPackageResourceRole] = None
     # The accessPackageResourceScope property

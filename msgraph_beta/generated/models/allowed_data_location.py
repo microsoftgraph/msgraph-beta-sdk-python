@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AllowedDataLocation(Entity):
+class AllowedDataLocation(Entity, Parsable):
     # The appId property
     app_id: Optional[str] = None
     # The domain property

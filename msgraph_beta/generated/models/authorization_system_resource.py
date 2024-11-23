@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AuthorizationSystemResource(Entity):
+class AuthorizationSystemResource(Entity, Parsable):
     # The authorization system that the resource exists in.
     authorization_system: Optional[AuthorizationSystem] = None
     # The name of the resource. Read-only. Supports $filter (eq,contains).

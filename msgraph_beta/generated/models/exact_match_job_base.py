@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ExactMatchJobBase(Entity):
+class ExactMatchJobBase(Entity, Parsable):
     # The completionDateTime property
     completion_date_time: Optional[datetime.datetime] = None
     # The creationDateTime property

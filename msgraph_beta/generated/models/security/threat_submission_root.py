@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ThreatSubmissionRoot(Entity):
+class ThreatSubmissionRoot(Entity, Parsable):
     # The emailThreatSubmissionPolicies property
     email_threat_submission_policies: Optional[List[EmailThreatSubmissionPolicy]] = None
     # The emailThreats property

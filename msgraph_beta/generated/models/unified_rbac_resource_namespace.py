@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnifiedRbacResourceNamespace(Entity):
+class UnifiedRbacResourceNamespace(Entity, Parsable):
     # Name of the resource namespace. Typically, the same name as the id property, such as microsoft.aad.b2c. Required. Supports $filter (eq, startsWith).
     name: Optional[str] = None
     # The OdataType property

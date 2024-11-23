@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .policy_set_item import PolicySetItem
 
 @dataclass
-class ManagedAppProtectionPolicySetItem(PolicySetItem):
+class ManagedAppProtectionPolicySetItem(PolicySetItem, Parsable):
     """
     A class containing the properties used for managed app protection PolicySetItem.
     """

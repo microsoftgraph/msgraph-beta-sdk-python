@@ -12,17 +12,17 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AndroidWorkProfileWiFiConfiguration(DeviceConfiguration):
+class AndroidWorkProfileWiFiConfiguration(DeviceConfiguration, Parsable):
     """
     By providing the configurations in this profile you can instruct the Android Work Profile device to connect to desired Wi-Fi endpoint. By specifying the authentication method and security types expected by Wi-Fi endpoint you can make the Wi-Fi connection seamless for end user. This profile provides limited and simpler security types than Enterprise Wi-Fi profile.
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidWorkProfileWiFiConfiguration"
-    # Connect automatically when this network is in range. Setting this to true will skip the user prompt and automatically connect the device to Wi-Fi network.
+    # When set to true, device will connect automatically to the Wi-Fi network when in range, skipping the user prompt. When false, user will need to connect manually through Settings on the Android device. Default value is false.
     connect_automatically: Optional[bool] = None
-    # When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.
+    # When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices. When false, device will not automatically connect to hidden networks. Default value is false.
     connect_when_network_name_is_hidden: Optional[bool] = None
-    # Network Name
+    # The name of the Wi-Fi network.
     network_name: Optional[str] = None
     # Specify the pre-shared key for a WEP or WPA personal Wi-Fi network. Restrictions depend on the value set for wiFiSecurityType. If WEP type security is used, then preSharedKey must be a valid passphrase (5 or 13 characters) or a valid HEX key (10 or 26 hexidecimal characters). If WPA security type is used, then preSharedKey can be any string between 8 and 64 characters long.
     pre_shared_key: Optional[str] = None

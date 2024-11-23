@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .data_source_container import DataSourceContainer
 
 @dataclass
-class Custodian(DataSourceContainer):
+class Custodian(DataSourceContainer, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.ediscovery.custodian"
     # Date and time the custodian acknowledged a hold notification.

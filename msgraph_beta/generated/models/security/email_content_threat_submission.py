@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .email_threat_submission import EmailThreatSubmission
 
 @dataclass
-class EmailContentThreatSubmission(EmailThreatSubmission):
+class EmailContentThreatSubmission(EmailThreatSubmission, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.emailContentThreatSubmission"
     # Base64 encoded file content.

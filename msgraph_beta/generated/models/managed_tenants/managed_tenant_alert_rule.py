@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagedTenantAlertRule(Entity):
+class ManagedTenantAlertRule(Entity, Parsable):
     # The alertDisplayName property
     alert_display_name: Optional[str] = None
     # The alertTTL property

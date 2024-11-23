@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .meeting_registration_base import MeetingRegistrationBase
 
 @dataclass
-class ExternalMeetingRegistration(MeetingRegistrationBase):
+class ExternalMeetingRegistration(MeetingRegistrationBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.externalMeetingRegistration"
     

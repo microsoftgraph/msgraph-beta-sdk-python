@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .case_operation import CaseOperation
 
 @dataclass
-class EstimateStatisticsOperation(CaseOperation):
+class EstimateStatisticsOperation(CaseOperation, Parsable):
     # The estimated count of items for the sourceCollection that matched the content query.
     indexed_item_count: Optional[int] = None
     # The estimated size of items for the sourceCollection that matched the content query.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Office365ServicesUserCounts(Entity):
+class Office365ServicesUserCounts(Entity, Parsable):
     # The number of active users on Exchange. Any user who can read and send email is considered an active user.
     exchange_active: Optional[int] = None
     # The number of inactive users on Exchange.

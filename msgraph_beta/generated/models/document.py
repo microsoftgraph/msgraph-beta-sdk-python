@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Document(Entity):
+class Document(Entity, Parsable):
     # The comments property
     comments: Optional[List[DocumentComment]] = None
     # The OdataType property

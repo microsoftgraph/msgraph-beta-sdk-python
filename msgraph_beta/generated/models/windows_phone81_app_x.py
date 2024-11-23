@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .mobile_lob_app import MobileLobApp
 
 @dataclass
-class WindowsPhone81AppX(MobileLobApp):
+class WindowsPhone81AppX(MobileLobApp, Parsable):
     """
     Contains properties and inherited properties for Windows Phone 8.1 AppX Line Of Business apps. Inherits from graph.mobileLobApp. Will be deprecated in February 2023.
     """

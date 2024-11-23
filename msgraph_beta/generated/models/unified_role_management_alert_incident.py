@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnifiedRoleManagementAlertIncident(Entity):
+class UnifiedRoleManagementAlertIncident(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

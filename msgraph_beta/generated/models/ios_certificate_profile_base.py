@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .ios_certificate_profile import IosCertificateProfile
 
 @dataclass
-class IosCertificateProfileBase(IosCertificateProfile):
+class IosCertificateProfileBase(IosCertificateProfile, Parsable):
     """
     iOS certificate profile base.
     """

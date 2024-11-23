@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class HardwarePasswordDetail(Entity):
+class HardwarePasswordDetail(Entity, Parsable):
     """
     Device BIOS password information for devices with managed BIOS and firmware configuration, which provides device serial number, list of previous passwords, and current password.
     """

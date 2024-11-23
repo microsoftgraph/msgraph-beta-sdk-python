@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsInformationProtectionDeviceRegistration(Entity):
+class WindowsInformationProtectionDeviceRegistration(Entity, Parsable):
     """
     Represents device registration records for Bring-Your-Own-Device(BYOD) Windows devices.
     """

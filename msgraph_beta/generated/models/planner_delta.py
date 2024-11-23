@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PlannerDelta(Entity):
+class PlannerDelta(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

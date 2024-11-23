@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class PolicyRule(Entity):
+class PolicyRule(Entity, Parsable):
     # Name.
     name: Optional[str] = None
     # The OdataType property

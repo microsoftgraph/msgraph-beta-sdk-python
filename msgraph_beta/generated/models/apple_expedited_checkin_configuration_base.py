@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AppleExpeditedCheckinConfigurationBase(DeviceConfiguration):
+class AppleExpeditedCheckinConfigurationBase(DeviceConfiguration, Parsable):
     """
     Experimental profile to increase the rate of device check-ins per day of iOS/macOS devices. This profile type is deprecated.
     """

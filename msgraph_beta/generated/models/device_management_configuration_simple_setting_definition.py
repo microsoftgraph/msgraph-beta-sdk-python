@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_definition import DeviceManagementConfigurationSettingDefinition
 
 @dataclass
-class DeviceManagementConfigurationSimpleSettingDefinition(DeviceManagementConfigurationSettingDefinition):
+class DeviceManagementConfigurationSimpleSettingDefinition(DeviceManagementConfigurationSettingDefinition, Parsable):
     # Default setting value for this setting
     default_value: Optional[DeviceManagementConfigurationSettingValue] = None
     # list of child settings that depend on this setting

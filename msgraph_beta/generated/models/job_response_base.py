@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class JobResponseBase(Entity):
+class JobResponseBase(Entity, Parsable):
     # The creationDateTime property
     creation_date_time: Optional[datetime.datetime] = None
     # The endDateTime property

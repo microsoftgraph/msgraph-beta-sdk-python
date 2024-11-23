@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementReusablePolicySetting(Entity):
+class DeviceManagementReusablePolicySetting(Entity, Parsable):
     """
     Graph model for a reusable setting
     """

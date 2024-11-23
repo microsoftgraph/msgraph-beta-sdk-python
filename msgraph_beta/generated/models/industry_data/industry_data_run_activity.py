@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class IndustryDataRunActivity(Entity):
+class IndustryDataRunActivity(Entity, Parsable):
     # The flow that was run by this activity.
     activity: Optional[IndustryDataActivity] = None
     # An error object to diagnose critical failures in an activity.

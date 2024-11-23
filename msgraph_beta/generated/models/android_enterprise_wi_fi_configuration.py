@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .android_wi_fi_configuration import AndroidWiFiConfiguration
 
 @dataclass
-class AndroidEnterpriseWiFiConfiguration(AndroidWiFiConfiguration):
+class AndroidEnterpriseWiFiConfiguration(AndroidWiFiConfiguration, Parsable):
     """
     By providing the configurations in this profile you can instruct the Android device to connect to desired Wi-Fi endpoint. By specifying the authentication method and security types expected by Wi-Fi endpoint you can make the Wi-Fi connection seamless for end user.
     """

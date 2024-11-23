@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class ProjectParticipationCollectionResponse(BaseCollectionPaginationCountResponse):
+class ProjectParticipationCollectionResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
     value: Optional[List[ProjectParticipation]] = None
     

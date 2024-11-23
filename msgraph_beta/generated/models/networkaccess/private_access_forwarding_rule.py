@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .forwarding_rule import ForwardingRule
 
 @dataclass
-class PrivateAccessForwardingRule(ForwardingRule):
+class PrivateAccessForwardingRule(ForwardingRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.privateAccessForwardingRule"
     

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserExperienceAnalyticsDeviceTimelineEvent(Entity):
+class UserExperienceAnalyticsDeviceTimelineEvent(Entity, Parsable):
     """
     The user experience analytics device event entity contains NRT device event details.
     """

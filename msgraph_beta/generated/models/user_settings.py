@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserSettings(Entity):
+class UserSettings(Entity, Parsable):
     # The user's settings for the visibility of merge suggestion for the duplicate contacts in the user's contact list.
     contact_merge_suggestions: Optional[ContactMergeSuggestions] = None
     # Reflects the Office Delve organization level setting. When set to true, the organization doesn't have access to Office Delve. This setting is read-only and can only be changed by administrators in the SharePoint admin center.

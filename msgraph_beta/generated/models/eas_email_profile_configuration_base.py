@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class EasEmailProfileConfigurationBase(DeviceConfiguration):
+class EasEmailProfileConfigurationBase(DeviceConfiguration, Parsable):
     """
     Apple device features configuration profile.
     """

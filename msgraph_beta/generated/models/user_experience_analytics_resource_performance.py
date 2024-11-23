@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserExperienceAnalyticsResourcePerformance(Entity):
+class UserExperienceAnalyticsResourcePerformance(Entity, Parsable):
     """
     The user experience analytics resource performance entity.
     """

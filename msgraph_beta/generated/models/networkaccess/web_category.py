@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .rule_destination import RuleDestination
 
 @dataclass
-class WebCategory(RuleDestination):
+class WebCategory(RuleDestination, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.webCategory"
     # The display name for the web category.

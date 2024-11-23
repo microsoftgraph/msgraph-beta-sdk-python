@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ManagedDeviceEncryptionState(Entity):
+class ManagedDeviceEncryptionState(Entity, Parsable):
     """
     Encryption report per device
     """

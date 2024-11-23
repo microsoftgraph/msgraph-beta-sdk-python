@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Office365GroupsActivityStorage(Entity):
+class Office365GroupsActivityStorage(Entity, Parsable):
     # The storage used in group mailbox.
     mailbox_storage_used_in_bytes: Optional[int] = None
     # The OdataType property

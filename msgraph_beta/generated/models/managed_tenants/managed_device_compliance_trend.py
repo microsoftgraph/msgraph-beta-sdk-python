@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagedDeviceComplianceTrend(Entity):
+class ManagedDeviceComplianceTrend(Entity, Parsable):
     # The number of devices with a compliant status. Required. Read-only.
     compliant_device_count: Optional[int] = None
     # The number of devices manged by Configuration Manager. Required. Read-only.

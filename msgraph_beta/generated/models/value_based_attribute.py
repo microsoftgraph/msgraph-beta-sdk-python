@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .custom_claim_attribute_base import CustomClaimAttributeBase
 
 @dataclass
-class ValueBasedAttribute(CustomClaimAttributeBase):
+class ValueBasedAttribute(CustomClaimAttributeBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.valueBasedAttribute"
     # The static value to be used an the attribute.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .win32_lob_app_requirement import Win32LobAppRequirement
 
 @dataclass
-class Win32LobAppRegistryRequirement(Win32LobAppRequirement):
+class Win32LobAppRegistryRequirement(Win32LobAppRequirement, Parsable):
     """
     Contains registry properties to detect a Win32 App
     """

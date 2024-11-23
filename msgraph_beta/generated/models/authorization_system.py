@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AuthorizationSystem(Entity):
+class AuthorizationSystem(Entity, Parsable):
     # ID of the authorization system retrieved from the customer cloud environment. Supports $filter(eq, contains) and $orderBy.
     authorization_system_id: Optional[str] = None
     # Name of the authorization system detected after onboarding. Supports $filter(eq,contains) and $orderBy.

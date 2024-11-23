@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class PrivilegeEscalationFinding(Finding):
+class PrivilegeEscalationFinding(Finding, Parsable):
     # The identity property
     identity: Optional[AuthorizationSystemIdentity] = None
     # An identity's information details. Inherited from finding.

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .device_health_script_run_schedule import DeviceHealthScriptRunSchedule
 
 @dataclass
-class DeviceHealthScriptTimeSchedule(DeviceHealthScriptRunSchedule):
+class DeviceHealthScriptTimeSchedule(DeviceHealthScriptRunSchedule, Parsable):
     """
     Base type of Device health script time schedule.
     """

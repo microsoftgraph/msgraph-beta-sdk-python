@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MacOsVppAppAssignedLicense(Entity):
+class MacOsVppAppAssignedLicense(Entity, Parsable):
     """
     MacOS Volume Purchase Program license assignment. This class does not support Create, Delete, or Update.
     """

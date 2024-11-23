@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class YearTimePeriodDefinition(Entity):
+class YearTimePeriodDefinition(Entity, Parsable):
     # The name of the year. Maximum supported length is 100 characters.
     display_name: Optional[str] = None
     # The last day of the year using ISO 8601 format for date.

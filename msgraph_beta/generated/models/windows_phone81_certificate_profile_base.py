@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class WindowsPhone81CertificateProfileBase(DeviceConfiguration):
+class WindowsPhone81CertificateProfileBase(DeviceConfiguration, Parsable):
     """
     Base Windows Phone 8.1+ certificate profile.
     """

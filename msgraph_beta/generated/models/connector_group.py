@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ConnectorGroup(Entity):
+class ConnectorGroup(Entity, Parsable):
     # The applications property
     applications: Optional[List[Application]] = None
     # The connectorGroupType property

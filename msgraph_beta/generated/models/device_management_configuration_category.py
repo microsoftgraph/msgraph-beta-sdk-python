@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementConfigurationCategory(Entity):
+class DeviceManagementConfigurationCategory(Entity, Parsable):
     """
     Device Management Configuration Policy
     """

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TenantAttachRBAC(Entity):
+class TenantAttachRBAC(Entity, Parsable):
     """
     Singleton entity that acts as a container for tenant attach enablement functionality.
     """

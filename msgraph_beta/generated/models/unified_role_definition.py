@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnifiedRoleDefinition(Entity):
+class UnifiedRoleDefinition(Entity, Parsable):
     # Types of principals that can be assigned the role. Read-only. The possible values are: user, servicePrincipal, group, unknownFutureValue. This is a multi-valued enumeration that can contain up to three values as a comma-separated string. For example, user, group. Supports $filter (eq).
     allowed_principal_types: Optional[AllowedRolePrincipalTypes] = None
     # The description for the unifiedRoleDefinition. Read-only when isBuiltIn is true.

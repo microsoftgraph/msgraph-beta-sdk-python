@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .gcp_permissions_definition_action import GcpPermissionsDefinitionAction
 
 @dataclass
-class GcpRolePermissionsDefinitionAction(GcpPermissionsDefinitionAction):
+class GcpRolePermissionsDefinitionAction(GcpPermissionsDefinitionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gcpRolePermissionsDefinitionAction"
     # The roles property

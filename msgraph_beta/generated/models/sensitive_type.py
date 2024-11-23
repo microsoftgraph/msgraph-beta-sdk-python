@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SensitiveType(Entity):
+class SensitiveType(Entity, Parsable):
     # The classificationMethod property
     classification_method: Optional[ClassificationMethod] = None
     # The description property

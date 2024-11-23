@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .protection_rule import ProtectionRule
 
 @dataclass
-class DetectionRule(ProtectionRule):
+class DetectionRule(ProtectionRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.detectionRule"
     # Complex type representing the actions taken when a detection is made by this rule.

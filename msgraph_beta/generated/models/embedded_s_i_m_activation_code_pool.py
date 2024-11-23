@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EmbeddedSIMActivationCodePool(Entity):
+class EmbeddedSIMActivationCodePool(Entity, Parsable):
     """
     A pool represents a group of embedded SIM activation codes.
     """

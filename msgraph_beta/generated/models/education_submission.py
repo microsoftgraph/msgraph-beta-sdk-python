@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EducationSubmission(Entity):
+class EducationSubmission(Entity, Parsable):
     # The unique identifier for the assignment with which this submission is associated. A submission is always associated with one and only one assignment.
     assignment_id: Optional[str] = None
     # The user that marked the submission as excused.

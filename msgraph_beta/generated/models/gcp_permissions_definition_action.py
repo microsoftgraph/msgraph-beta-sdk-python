@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .permissions_definition_action import PermissionsDefinitionAction
 
 @dataclass
-class GcpPermissionsDefinitionAction(PermissionsDefinitionAction):
+class GcpPermissionsDefinitionAction(PermissionsDefinitionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gcpPermissionsDefinitionAction"
     

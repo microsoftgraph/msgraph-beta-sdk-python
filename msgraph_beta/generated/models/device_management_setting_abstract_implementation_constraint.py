@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementSettingAbstractImplementationConstraint(DeviceManagementConstraint):
+class DeviceManagementSettingAbstractImplementationConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint that enforces an AbstractComplex type has or is set to a particular value
     """

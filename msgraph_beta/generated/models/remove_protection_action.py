@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .information_protection_action import InformationProtectionAction
 
 @dataclass
-class RemoveProtectionAction(InformationProtectionAction):
+class RemoveProtectionAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.removeProtectionAction"
     

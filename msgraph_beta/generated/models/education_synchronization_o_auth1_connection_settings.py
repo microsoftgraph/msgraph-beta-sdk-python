@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
 
 @dataclass
-class EducationSynchronizationOAuth1ConnectionSettings(EducationSynchronizationConnectionSettings):
+class EducationSynchronizationOAuth1ConnectionSettings(EducationSynchronizationConnectionSettings, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationSynchronizationOAuth1ConnectionSettings"
     

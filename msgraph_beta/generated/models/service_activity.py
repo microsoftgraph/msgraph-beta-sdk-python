@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ServiceActivity(Entity):
+class ServiceActivity(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

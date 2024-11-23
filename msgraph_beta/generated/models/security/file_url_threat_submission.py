@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .file_threat_submission import FileThreatSubmission
 
 @dataclass
-class FileUrlThreatSubmission(FileThreatSubmission):
+class FileUrlThreatSubmission(FileThreatSubmission, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.fileUrlThreatSubmission"
     # It specifies the URL of the file that needs to be submitted.

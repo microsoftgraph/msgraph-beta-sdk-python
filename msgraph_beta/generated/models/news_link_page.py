@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .base_site_page import BaseSitePage
 
 @dataclass
-class NewsLinkPage(BaseSitePage):
+class NewsLinkPage(BaseSitePage, Parsable):
     # The bannerImageWebUrl property
     banner_image_web_url: Optional[str] = None
     # The newsSharepointIds property

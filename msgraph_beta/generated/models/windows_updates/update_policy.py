@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class UpdatePolicy(Entity):
+class UpdatePolicy(Entity, Parsable):
     # Specifies the audience to target.
     audience: Optional[DeploymentAudience] = None
     # Rules for governing the automatic creation of compliance changes.

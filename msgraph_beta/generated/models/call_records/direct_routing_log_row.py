@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .call_log_row import CallLogRow
 
 @dataclass
-class DirectRoutingLogRow(CallLogRow):
+class DirectRoutingLogRow(CallLogRow, Parsable):
     # In addition to the SIP codes, Microsoft has own subcodes that indicate the specific issue.
     call_end_sub_reason: Optional[int] = None
     # Call type and direction.

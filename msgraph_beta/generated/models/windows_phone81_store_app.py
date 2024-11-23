@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .mobile_app import MobileApp
 
 @dataclass
-class WindowsPhone81StoreApp(MobileApp):
+class WindowsPhone81StoreApp(MobileApp, Parsable):
     """
     Contains properties and inherited properties for Windows Phone 8.1 Store apps. Inherits from graph.mobileApp. Will be deprecated in February 2023.
     """

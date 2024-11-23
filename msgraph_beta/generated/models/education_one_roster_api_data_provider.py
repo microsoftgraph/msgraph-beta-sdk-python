@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .education_synchronization_data_provider import EducationSynchronizationDataProvider
 
 @dataclass
-class EducationOneRosterApiDataProvider(EducationSynchronizationDataProvider):
+class EducationOneRosterApiDataProvider(EducationSynchronizationDataProvider, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationOneRosterApiDataProvider"
     # The connectionSettings property

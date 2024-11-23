@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagementTemplateCollectionTenantSummary(Entity):
+class ManagementTemplateCollectionTenantSummary(Entity, Parsable):
     # The completeStepsCount property
     complete_steps_count: Optional[int] = None
     # The completeUsersCount property

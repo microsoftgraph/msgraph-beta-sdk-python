@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class PersonAnnotation(ItemFacet):
+class PersonAnnotation(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.personAnnotation"
     # Contains the detail of the note itself.

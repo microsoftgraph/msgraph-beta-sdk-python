@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
 
 @dataclass
-class GroupPolicyPresentationLongDecimalTextBox(GroupPolicyUploadedPresentation):
+class GroupPolicyPresentationLongDecimalTextBox(GroupPolicyUploadedPresentation, Parsable):
     """
     Represents an ADMX longDecimalTextBox element and an ADMX longDecimal element.
     """

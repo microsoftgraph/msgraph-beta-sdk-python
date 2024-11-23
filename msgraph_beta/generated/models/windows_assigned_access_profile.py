@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsAssignedAccessProfile(Entity):
+class WindowsAssignedAccessProfile(Entity, Parsable):
     """
     Assigned Access profile for Windows.
     """

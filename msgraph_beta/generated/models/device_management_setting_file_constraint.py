@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementSettingFileConstraint(DeviceManagementConstraint):
+class DeviceManagementSettingFileConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint enforcing the file extension is acceptable for a given setting
     """

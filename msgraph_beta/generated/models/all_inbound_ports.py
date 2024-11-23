@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .inbound_ports import InboundPorts
 
 @dataclass
-class AllInboundPorts(InboundPorts):
+class AllInboundPorts(InboundPorts, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.allInboundPorts"
     

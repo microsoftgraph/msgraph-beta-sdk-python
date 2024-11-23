@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 from .outlook_item import OutlookItem
 
 @dataclass
-class OutlookTask(OutlookItem):
+class OutlookTask(OutlookItem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.outlookTask"
     # The name of the person who has been assigned the task in Outlook. Read-only.

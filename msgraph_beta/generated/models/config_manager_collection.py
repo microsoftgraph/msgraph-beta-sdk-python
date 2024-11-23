@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ConfigManagerCollection(Entity):
+class ConfigManagerCollection(Entity, Parsable):
     """
     A ConfigManager defined collection of devices or users.
     """

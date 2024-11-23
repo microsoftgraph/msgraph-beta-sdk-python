@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .policy_set_item import PolicySetItem
 
 @dataclass
-class WindowsAutopilotDeploymentProfilePolicySetItem(PolicySetItem):
+class WindowsAutopilotDeploymentProfilePolicySetItem(PolicySetItem, Parsable):
     """
     A class containing the properties used for windows autopilot deployment profile PolicySetItem.
     """

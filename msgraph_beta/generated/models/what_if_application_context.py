@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .conditional_access_context import ConditionalAccessContext
 
 @dataclass
-class WhatIfApplicationContext(ConditionalAccessContext):
+class WhatIfApplicationContext(ConditionalAccessContext, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.whatIfApplicationContext"
     # The includeApplications property

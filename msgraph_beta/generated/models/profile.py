@@ -28,7 +28,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Profile(Entity):
+class Profile(Entity, Parsable):
     # The account property
     account: Optional[List[UserAccountInformation]] = None
     # Represents details of addresses associated with the user.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .related_resource import RelatedResource
 
 @dataclass
-class RelatedFileHash(RelatedResource):
+class RelatedFileHash(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedFileHash"
     # The algorithm property

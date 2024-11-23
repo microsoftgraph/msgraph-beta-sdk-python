@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .rule_destination import RuleDestination
 
 @dataclass
-class Fqdn(RuleDestination):
+class Fqdn(RuleDestination, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.fqdn"
     # Defines the FQDN used in a destination for a rule.

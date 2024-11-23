@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .windows_update_filter import WindowsUpdateFilter
 
 @dataclass
-class DriverUpdateFilter(WindowsUpdateFilter):
+class DriverUpdateFilter(WindowsUpdateFilter, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.driverUpdateFilter"
     

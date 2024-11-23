@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsManagementAppHealthState(Entity):
+class WindowsManagementAppHealthState(Entity, Parsable):
     """
     Windows management app health state entity.
     """

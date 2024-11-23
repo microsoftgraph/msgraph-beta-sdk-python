@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .custom_claim_transformation import CustomClaimTransformation
 
 @dataclass
-class ToUppercaseTransformation(CustomClaimTransformation):
+class ToUppercaseTransformation(CustomClaimTransformation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.toUppercaseTransformation"
     

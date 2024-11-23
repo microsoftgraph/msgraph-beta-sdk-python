@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GovernanceResource(Entity):
+class GovernanceResource(Entity, Parsable):
     # The display name of the resource.
     display_name: Optional[str] = None
     # The external id of the resource, representing its original id in the external system. For example, a subscription resource's external id can be '/subscriptions/c14ae696-5e0c-4e5d-88cc-bef6637737ac'.

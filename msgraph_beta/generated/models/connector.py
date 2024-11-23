@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Connector(Entity):
+class Connector(Entity, Parsable):
     # The external IP address as detected by the connector server. Read-only.
     external_ip: Optional[str] = None
     # The name of the computer on which the connector is installed and runs on.

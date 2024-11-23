@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .inactive_users_by_application_metric_base import InactiveUsersByApplicationMetricBase
 
 @dataclass
-class MonthlyInactiveUsersByApplicationMetric(InactiveUsersByApplicationMetricBase):
+class MonthlyInactiveUsersByApplicationMetric(InactiveUsersByApplicationMetricBase, Parsable):
     # The inactiveCalendarMonthCount property
     inactive_calendar_month_count: Optional[int] = None
     # The OdataType property

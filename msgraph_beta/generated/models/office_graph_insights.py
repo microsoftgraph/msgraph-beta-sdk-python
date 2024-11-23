@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class OfficeGraphInsights(Entity):
+class OfficeGraphInsights(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Access this property from the derived type itemInsights.

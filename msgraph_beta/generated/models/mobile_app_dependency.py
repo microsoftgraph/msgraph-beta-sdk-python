@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mobile_app_relationship import MobileAppRelationship
 
 @dataclass
-class MobileAppDependency(MobileAppRelationship):
+class MobileAppDependency(MobileAppRelationship, Parsable):
     """
     Describes a dependency type between two mobile apps.
     """

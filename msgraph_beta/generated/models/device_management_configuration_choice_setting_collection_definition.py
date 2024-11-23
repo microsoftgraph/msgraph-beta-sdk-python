@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_choice_setting_definition import DeviceManagementConfigurationChoiceSettingDefinition
 
 @dataclass
-class DeviceManagementConfigurationChoiceSettingCollectionDefinition(DeviceManagementConfigurationChoiceSettingDefinition):
+class DeviceManagementConfigurationChoiceSettingCollectionDefinition(DeviceManagementConfigurationChoiceSettingDefinition, Parsable):
     # Maximum number of choices in the collection. Valid values 1 to 100
     maximum_count: Optional[int] = None
     # Minimum number of choices in the collection. Valid values 1 to 100

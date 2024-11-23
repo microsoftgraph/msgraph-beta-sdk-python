@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Directory(Entity):
+class Directory(Entity, Parsable):
     # Conceptual container for user and group directory objects.
     administrative_units: Optional[List[AdministrativeUnit]] = None
     # Group of related custom security attribute definitions.
@@ -58,7 +58,7 @@ class Directory(Entity):
     outbound_shared_user_profiles: Optional[List[OutboundSharedUserProfile]] = None
     # Collection of pending external user profiles representing collaborators in the directory that are unredeemed.
     pending_external_user_profiles: Optional[List[PendingExternalUserProfile]] = None
-    # The publicKeyInfrastructure property
+    # The collection of public key infrastructure instances for the certificate-based authentication feature for users in a Microsoft Entra tenant.
     public_key_infrastructure: Optional[PublicKeyInfrastructureRoot] = None
     # List of recommended improvements to improve tenant posture.
     recommendations: Optional[List[Recommendation]] = None

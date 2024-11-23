@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ReportRoot(Entity):
+class ReportRoot(Entity, Parsable):
     # Represents a collection of sign-in activities of application credentials.
     app_credential_sign_in_activities: Optional[List[AppCredentialSignInActivity]] = None
     # Represents a detailed summary of an application sign-in.

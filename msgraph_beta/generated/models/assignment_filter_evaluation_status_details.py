@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AssignmentFilterEvaluationStatusDetails(Entity):
+class AssignmentFilterEvaluationStatusDetails(Entity, Parsable):
     """
     A class containing information about the payloads on which filter has been applied.
     """

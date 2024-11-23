@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Security(Entity):
+class Security(Entity, Parsable):
     # The informationProtection property
     information_protection: Optional[InformationProtection] = None
     # The OdataType property

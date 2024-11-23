@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TrainingCampaign(Entity):
+class TrainingCampaign(Entity, Parsable):
     # Details about the schedule and current status for a training campaign
     campaign_schedule: Optional[CampaignSchedule] = None
     # Identity of the user who created the training campaign

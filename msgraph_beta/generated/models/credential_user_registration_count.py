@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CredentialUserRegistrationCount(Entity):
+class CredentialUserRegistrationCount(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Provides the count of users with accountEnabled set to true in the tenant.

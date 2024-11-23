@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ContinuousAccessEvaluationPolicy(Entity):
+class ContinuousAccessEvaluationPolicy(Entity, Parsable):
     # Continuous access evaluation automatically blocks access to resources and applications in near real time when a user's access is removed or a client IP address changes. Read-only.
     description: Optional[str] = None
     # The value is always Continuous Access Evaluation. Read-only.

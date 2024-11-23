@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .provisioning_flow import ProvisioningFlow
 
 @dataclass
-class UserProvisioningFlow(ProvisioningFlow):
+class UserProvisioningFlow(ProvisioningFlow, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.userProvisioningFlow"
     # A Boolean choice indicating whether unmatched users should be created or ignored.

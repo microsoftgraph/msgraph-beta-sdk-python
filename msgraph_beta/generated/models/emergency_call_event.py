@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .call_event import CallEvent
 
 @dataclass
-class EmergencyCallEvent(CallEvent):
+class EmergencyCallEvent(CallEvent, Parsable):
     # The callerInfo property
     caller_info: Optional[EmergencyCallerInfo] = None
     # The emergencyNumberDialed property

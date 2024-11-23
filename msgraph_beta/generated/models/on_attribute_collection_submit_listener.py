@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .authentication_event_listener import AuthenticationEventListener
 
 @dataclass
-class OnAttributeCollectionSubmitListener(AuthenticationEventListener):
+class OnAttributeCollectionSubmitListener(AuthenticationEventListener, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onAttributeCollectionSubmitListener"
     # Configuration for what to invoke if the event resolves to this listener.

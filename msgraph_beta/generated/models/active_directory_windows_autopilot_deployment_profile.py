@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .windows_autopilot_deployment_profile import WindowsAutopilotDeploymentProfile
 
 @dataclass
-class ActiveDirectoryWindowsAutopilotDeploymentProfile(WindowsAutopilotDeploymentProfile):
+class ActiveDirectoryWindowsAutopilotDeploymentProfile(WindowsAutopilotDeploymentProfile, Parsable):
     """
     Windows Autopilot Deployment Profile
     """

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class AlertConfigurationCollectionResponse(BaseCollectionPaginationCountResponse):
+class AlertConfigurationCollectionResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
     value: Optional[List[AlertConfiguration]] = None
     

@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GroupPolicyMigrationReport(Entity):
+class GroupPolicyMigrationReport(Entity, Parsable):
     """
     The Group Policy migration report.
     """

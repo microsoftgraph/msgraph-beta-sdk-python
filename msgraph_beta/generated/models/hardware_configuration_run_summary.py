@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class HardwareConfigurationRunSummary(Entity):
+class HardwareConfigurationRunSummary(Entity, Parsable):
     """
     Contains properties for the run summary of a hardware configuration script.
     """

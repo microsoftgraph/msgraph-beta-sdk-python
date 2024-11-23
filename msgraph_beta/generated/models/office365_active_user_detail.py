@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Office365ActiveUserDetail(Entity):
+class Office365ActiveUserDetail(Entity, Parsable):
     # All the products assigned for the user.
     assigned_products: Optional[List[str]] = None
     # The date when the delete operation happened. Default value is 'null' when the user hasn't been deleted.

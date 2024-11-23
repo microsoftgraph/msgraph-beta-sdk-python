@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .file import File
 
 @dataclass
-class EdiscoveryFile(File):
+class EdiscoveryFile(File, Parsable):
     # Custodians associated with the file.
     custodian: Optional[EdiscoveryCustodian] = None
     # The OdataType property

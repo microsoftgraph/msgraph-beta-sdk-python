@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class DeviceLink(Entity):
+class DeviceLink(Entity, Parsable):
     # Determines the maximum allowed Mbps (megabits per second) bandwidth from a device link. The possible values are:250,500,750,1000.
     bandwidth_capacity_in_mbps: Optional[BandwidthCapacityInMbps] = None
     # The bgpConfiguration property

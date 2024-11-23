@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .android_certificate_profile_base import AndroidCertificateProfileBase
 
 @dataclass
-class AndroidImportedPFXCertificateProfile(AndroidCertificateProfileBase):
+class AndroidImportedPFXCertificateProfile(AndroidCertificateProfileBase, Parsable):
     """
     Android PFX Import certificate profile
     """

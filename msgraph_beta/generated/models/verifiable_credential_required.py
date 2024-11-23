@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .verifiable_credential_requirement_status import VerifiableCredentialRequirementStatus
 
 @dataclass
-class VerifiableCredentialRequired(VerifiableCredentialRequirementStatus):
+class VerifiableCredentialRequired(VerifiableCredentialRequirementStatus, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.verifiableCredentialRequired"
     # When the presentation request will expire and a new one will need to be generated.

@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AndroidManagedStoreAccountEnterpriseSettings(Entity):
+class AndroidManagedStoreAccountEnterpriseSettings(Entity, Parsable):
     """
     Enterprise settings for an Android managed store account.
     """

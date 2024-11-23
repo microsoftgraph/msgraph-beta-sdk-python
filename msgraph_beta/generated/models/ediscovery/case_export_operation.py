@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .case_operation import CaseOperation
 
 @dataclass
-class CaseExportOperation(CaseOperation):
+class CaseExportOperation(CaseOperation, Parsable):
     # The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
     azure_blob_container: Optional[str] = None
     # The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.

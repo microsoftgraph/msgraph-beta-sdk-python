@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class OutlookTaskGroup(Entity):
+class OutlookTaskGroup(Entity, Parsable):
     # The version of the task group.
     change_key: Optional[str] = None
     # The unique GUID identifier for the task group.

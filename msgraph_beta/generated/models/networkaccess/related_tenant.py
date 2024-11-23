@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .related_resource import RelatedResource
 
 @dataclass
-class RelatedTenant(RelatedResource):
+class RelatedTenant(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedTenant"
     # The tenantId property

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Policy(Entity):
+class Policy(Entity, Parsable):
     # Description.
     description: Optional[str] = None
     # Policy name.

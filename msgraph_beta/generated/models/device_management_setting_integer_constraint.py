@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementSettingIntegerConstraint(DeviceManagementConstraint):
+class DeviceManagementSettingIntegerConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint enforcing the permitted value range for an integer setting
     """

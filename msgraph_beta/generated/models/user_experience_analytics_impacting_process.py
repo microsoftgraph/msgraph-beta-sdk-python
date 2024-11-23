@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserExperienceAnalyticsImpactingProcess(Entity):
+class UserExperienceAnalyticsImpactingProcess(Entity, Parsable):
     """
     The user experience analytics top impacting process entity.
     """

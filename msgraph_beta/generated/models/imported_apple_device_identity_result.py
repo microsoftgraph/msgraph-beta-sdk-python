@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .imported_apple_device_identity import ImportedAppleDeviceIdentity
 
 @dataclass
-class ImportedAppleDeviceIdentityResult(ImportedAppleDeviceIdentity):
+class ImportedAppleDeviceIdentityResult(ImportedAppleDeviceIdentity, Parsable):
     """
     The importedAppleDeviceIdentityResult resource represents the result of attempting to import Apple devices identities.
     """

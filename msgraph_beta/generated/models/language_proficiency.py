@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class LanguageProficiency(ItemFacet):
+class LanguageProficiency(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.languageProficiency"
     # Contains the long-form name for the language.

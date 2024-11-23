@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Product(Entity):
+class Product(Entity, Parsable):
     # Represents an edition of a particular Windows product.
     editions: Optional[List[Edition]] = None
     # The friendly names of the product. For example, Version 22H2 (OS build 22621). Read-only.

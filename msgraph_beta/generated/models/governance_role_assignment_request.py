@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GovernanceRoleAssignmentRequest(Entity):
+class GovernanceRoleAssignmentRequest(Entity, Parsable):
     # Required. The state of the assignment. The possible values are: Eligible (for eligible assignment),  Active (if it is directly assigned), Active (by administrators, or activated on an eligible assignment by the users).
     assignment_state: Optional[str] = None
     # If this is a request for role activation, it represents the id of the eligible assignment being referred; Otherwise, the value is null.

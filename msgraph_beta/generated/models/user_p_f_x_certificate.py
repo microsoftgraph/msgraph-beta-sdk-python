@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserPFXCertificate(Entity):
+class UserPFXCertificate(Entity, Parsable):
     """
     Entity that encapsulates all information required for a user's PFX certificates.
     """

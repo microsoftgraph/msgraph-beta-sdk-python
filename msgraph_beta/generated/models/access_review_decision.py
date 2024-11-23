@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessReviewDecision(Entity):
+class AccessReviewDecision(Entity, Parsable):
     # The feature- generated recommendation shown to the reviewer, one of: Approve, Deny, NotAvailable.
     access_recommendation: Optional[str] = None
     # The feature-generated ID of the access review.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .windows_phone81_app_x import WindowsPhone81AppX
 
 @dataclass
-class WindowsPhone81AppXBundle(WindowsPhone81AppX):
+class WindowsPhone81AppXBundle(WindowsPhone81AppX, Parsable):
     """
     Contains properties and inherited properties for Windows Phone 8.1 AppX Bundle Line Of Business apps. Inherits from graph.windowsPhone81AppX (which is also to be deprecated at the same time). Will be deprecated in February 2023.
     """

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CustomExtensionHandler(Entity):
+class CustomExtensionHandler(Entity, Parsable):
     # Indicates which custom workflow extension is executed at this stage. Nullable. Supports $expand.
     custom_extension: Optional[CustomAccessPackageWorkflowExtension] = None
     # The OdataType property

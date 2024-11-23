@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .audit_data import AuditData
 
 @dataclass
-class VivaPulseReportAuditRecord(AuditData):
+class VivaPulseReportAuditRecord(AuditData, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.vivaPulseReportAuditRecord"
     

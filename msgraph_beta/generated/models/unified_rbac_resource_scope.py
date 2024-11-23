@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnifiedRbacResourceScope(Entity):
+class UnifiedRbacResourceScope(Entity, Parsable):
     # The displayName property
     display_name: Optional[str] = None
     # The OdataType property

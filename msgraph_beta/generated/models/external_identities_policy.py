@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .policy_base import PolicyBase
 
 @dataclass
-class ExternalIdentitiesPolicy(PolicyBase):
+class ExternalIdentitiesPolicy(PolicyBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.externalIdentitiesPolicy"
     # Reserved for future use.

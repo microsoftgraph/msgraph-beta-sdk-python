@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AospDeviceOwnerTrustedRootCertificate(DeviceConfiguration):
+class AospDeviceOwnerTrustedRootCertificate(DeviceConfiguration, Parsable):
     """
     AOSP Device Owner Trusted Root Certificate configuration profile
     """

@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ActivityStatistics(Entity):
+class ActivityStatistics(Entity, Parsable):
     # The type of activity for which statistics are returned. The possible values are: call, chat, email, focus, and meeting.
     activity: Optional[AnalyticsActivityType] = None
     # Total hours spent on the activity. The value is represented in ISO 8601 format for durations.

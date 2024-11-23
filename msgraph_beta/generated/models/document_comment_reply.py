@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DocumentCommentReply(Entity):
+class DocumentCommentReply(Entity, Parsable):
     # The content property
     content: Optional[str] = None
     # The location property

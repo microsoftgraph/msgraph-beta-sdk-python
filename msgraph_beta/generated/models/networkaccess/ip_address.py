@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .rule_destination import RuleDestination
 
 @dataclass
-class IpAddress(RuleDestination):
+class IpAddress(RuleDestination, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.ipAddress"
     # Defines the IP address used in a destination for a rule.

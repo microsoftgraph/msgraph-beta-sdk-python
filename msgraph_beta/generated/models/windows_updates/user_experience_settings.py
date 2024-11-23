@@ -13,7 +13,7 @@ class UserExperienceSettings(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # Specifies the number of days after an update is installed, during which the user of the device can control when the device restarts.
     days_until_forced_reboot: Optional[int] = None
-    # The isHotpatchEnabled property
+    # Specifies whether the update is offered as a hotpatch. It can only be set to true on automatic policies that target monthly security updates.
     is_hotpatch_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

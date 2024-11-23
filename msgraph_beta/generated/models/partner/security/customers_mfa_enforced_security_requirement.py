@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .security_requirement import SecurityRequirement
 
 @dataclass
-class CustomersMfaEnforcedSecurityRequirement(SecurityRequirement):
+class CustomersMfaEnforcedSecurityRequirement(SecurityRequirement, Parsable):
     # The number of customer tenants that are compliant.
     compliant_tenant_count: Optional[int] = None
     # The OdataType property

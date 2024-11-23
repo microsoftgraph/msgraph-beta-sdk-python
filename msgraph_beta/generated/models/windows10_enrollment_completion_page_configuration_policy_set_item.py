@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .policy_set_item import PolicySetItem
 
 @dataclass
-class Windows10EnrollmentCompletionPageConfigurationPolicySetItem(PolicySetItem):
+class Windows10EnrollmentCompletionPageConfigurationPolicySetItem(PolicySetItem, Parsable):
     """
     A class containing the properties used for Windows10EnrollmentCompletionPageConfiguration PolicySetItem.
     """

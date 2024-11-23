@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessPackageResource(Entity):
+class AccessPackageResource(Entity, Parsable):
     # Contains the environment information for the resource. This environment can be set using either the @odata.bind annotation or the environment's originId. Supports $expand.
     access_package_resource_environment: Optional[AccessPackageResourceEnvironment] = None
     # Read-only. Nullable. Supports $expand.

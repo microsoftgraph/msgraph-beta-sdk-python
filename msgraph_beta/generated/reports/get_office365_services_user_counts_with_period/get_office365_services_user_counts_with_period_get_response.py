@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ...models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class GetOffice365ServicesUserCountsWithPeriodGetResponse(BaseCollectionPaginationCountResponse):
+class GetOffice365ServicesUserCountsWithPeriodGetResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
     value: Optional[List[Office365ServicesUserCounts]] = None
     

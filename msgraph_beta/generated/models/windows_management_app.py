@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsManagementApp(Entity):
+class WindowsManagementApp(Entity, Parsable):
     """
     Windows management app entity.
     """

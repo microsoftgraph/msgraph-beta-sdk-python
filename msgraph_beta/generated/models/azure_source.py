@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .authorization_system_identity_source import AuthorizationSystemIdentitySource
 
 @dataclass
-class AzureSource(AuthorizationSystemIdentitySource):
+class AzureSource(AuthorizationSystemIdentitySource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureSource"
     # Azure subscription ID.

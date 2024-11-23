@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class BookingNamedEntity(Entity):
+class BookingNamedEntity(Entity, Parsable):
     """
     Booking entities that provide a display name.
     """

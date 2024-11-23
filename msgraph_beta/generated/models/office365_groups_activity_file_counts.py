@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Office365GroupsActivityFileCounts(Entity):
+class Office365GroupsActivityFileCounts(Entity, Parsable):
     # The number of files that were viewed, edited, shared, or synced in the group's SharePoint document library.
     active: Optional[int] = None
     # The OdataType property

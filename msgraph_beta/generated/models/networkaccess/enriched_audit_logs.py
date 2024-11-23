@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class EnrichedAuditLogs(Entity):
+class EnrichedAuditLogs(Entity, Parsable):
     # Exchange Online enriched audit logs settings.
     exchange: Optional[EnrichedAuditLogsSettings] = None
     # The OdataType property

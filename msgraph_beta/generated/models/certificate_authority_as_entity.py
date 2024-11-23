@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CertificateAuthorityAsEntity(Entity):
+class CertificateAuthorityAsEntity(Entity, Parsable):
     # The trusted certificate.
     certificate: Optional[bytes] = None
     # Indicates if the certificate is a root authority. In a certificateBasedApplicationConfiguration object, at least one object in the trustedCertificateAuthorities collection must be a root authority.

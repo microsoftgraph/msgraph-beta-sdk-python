@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
 
 @dataclass
-class UserSubject(ConditionalAccessWhatIfSubject):
+class UserSubject(ConditionalAccessWhatIfSubject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.userSubject"
     # The externalTenantId property

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnifiedRoleManagementAlert(Entity):
+class UnifiedRoleManagementAlert(Entity, Parsable):
     # The configuration of the alert in PIM for Microsoft Entra roles. Alert configurations are pre-defined and cannot be created or deleted, but some configurations can be modified. Supports $filter for the isEnabled property and $expand.
     alert_configuration: Optional[UnifiedRoleManagementAlertConfiguration] = None
     # Contains the description, impact, and measures to mitigate or prevent the security alert from being triggered in your tenant. Supports $expand.

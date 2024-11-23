@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ReadingAssignmentSubmission(Entity):
+class ReadingAssignmentSubmission(Entity, Parsable):
     # Accuracy score of the reading progress.
     accuracy_score: Optional[float] = None
     # Indicates whether the submission is an attempt by the student or a miscue edit done by the educator. The possible values are Attempt and EditMiscue.

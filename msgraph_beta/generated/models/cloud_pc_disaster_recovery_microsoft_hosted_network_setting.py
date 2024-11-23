@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .cloud_pc_disaster_recovery_network_setting import CloudPcDisasterRecoveryNetworkSetting
 
 @dataclass
-class CloudPcDisasterRecoveryMicrosoftHostedNetworkSetting(CloudPcDisasterRecoveryNetworkSetting):
+class CloudPcDisasterRecoveryMicrosoftHostedNetworkSetting(CloudPcDisasterRecoveryNetworkSetting, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcDisasterRecoveryMicrosoftHostedNetworkSetting"
     # The regionGroup property

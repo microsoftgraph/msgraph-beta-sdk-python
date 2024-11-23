@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .cloud_pc_bulk_action import CloudPcBulkAction
 
 @dataclass
-class CloudPcBulkResize(CloudPcBulkAction):
+class CloudPcBulkResize(CloudPcBulkAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkResize"
     # The target service plan ID of the resize configuration with new vCPU and storage size.

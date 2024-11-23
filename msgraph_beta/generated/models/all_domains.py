@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .validating_domains import ValidatingDomains
 
 @dataclass
-class AllDomains(ValidatingDomains):
+class AllDomains(ValidatingDomains, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.allDomains"
     

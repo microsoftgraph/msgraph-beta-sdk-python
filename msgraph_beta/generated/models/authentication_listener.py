@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AuthenticationListener(Entity):
+class AuthenticationListener(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The priority of the listener. Determines the order of evaluation when an event has multiple listeners. The priority is evaluated from low to high.

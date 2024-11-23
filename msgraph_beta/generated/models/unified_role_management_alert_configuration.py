@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnifiedRoleManagementAlertConfiguration(Entity):
+class UnifiedRoleManagementAlertConfiguration(Entity, Parsable):
     # The definition of the alert that contains its description, impact, and measures to mitigate or prevent it. Supports $expand.
     alert_definition: Optional[UnifiedRoleManagementAlertDefinition] = None
     # The identifier of an alert definition. Supports $filter (eq, ne).

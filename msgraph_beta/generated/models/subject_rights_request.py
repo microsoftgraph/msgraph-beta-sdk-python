@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class SubjectRightsRequest(Entity):
+class SubjectRightsRequest(Entity, Parsable):
     # The approvers property
     approvers: Optional[List[User]] = None
     # Identity that the request is assigned to.

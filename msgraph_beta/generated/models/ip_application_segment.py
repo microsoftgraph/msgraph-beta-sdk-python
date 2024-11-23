@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .application_segment import ApplicationSegment
 
 @dataclass
-class IpApplicationSegment(ApplicationSegment):
+class IpApplicationSegment(ApplicationSegment, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.ipApplicationSegment"
     # The application property

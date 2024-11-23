@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceCompliancePolicyGroupAssignment(Entity):
+class DeviceCompliancePolicyGroupAssignment(Entity, Parsable):
     """
     Device compliance policy group assignment.
     """

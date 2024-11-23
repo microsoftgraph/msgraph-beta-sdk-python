@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class B2cAuthenticationMethodsPolicy(Entity):
+class B2cAuthenticationMethodsPolicy(Entity, Parsable):
     # The tenant admin can configure local accounts using email if the email and password authentication method is enabled.
     is_email_password_authentication_enabled: Optional[bool] = None
     # The tenant admin can configure local accounts using phone number if the phone number and one-time password authentication method is enabled.

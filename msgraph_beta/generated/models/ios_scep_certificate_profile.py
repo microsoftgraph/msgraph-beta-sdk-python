@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .ios_certificate_profile_base import IosCertificateProfileBase
 
 @dataclass
-class IosScepCertificateProfile(IosCertificateProfileBase):
+class IosScepCertificateProfile(IosCertificateProfileBase, Parsable):
     """
     iOS SCEP certificate profile.
     """

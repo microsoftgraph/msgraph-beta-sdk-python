@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .inactive_users_by_application_metric_base import InactiveUsersByApplicationMetricBase
 
 @dataclass
-class DailyInactiveUsersByApplicationMetric(InactiveUsersByApplicationMetricBase):
+class DailyInactiveUsersByApplicationMetric(InactiveUsersByApplicationMetricBase, Parsable):
     # The inactive1DayCount property
     inactive1_day_count: Optional[int] = None
     # The OdataType property

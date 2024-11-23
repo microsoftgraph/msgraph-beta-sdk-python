@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .authentication_method import AuthenticationMethod
 
 @dataclass
-class PasswordAuthenticationMethod(AuthenticationMethod):
+class PasswordAuthenticationMethod(AuthenticationMethod, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.passwordAuthenticationMethod"
     # For security, the password is always returned as null from a LIST or GET operation.

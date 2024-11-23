@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .permissions_definition_identity_source import PermissionsDefinitionIdentitySource
 
 @dataclass
-class LocalIdentitySource(PermissionsDefinitionIdentitySource):
+class LocalIdentitySource(PermissionsDefinitionIdentitySource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.localIdentitySource"
     

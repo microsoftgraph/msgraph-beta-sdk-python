@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .windows_vpn_configuration import WindowsVpnConfiguration
 
 @dataclass
-class Windows81VpnConfiguration(WindowsVpnConfiguration):
+class Windows81VpnConfiguration(WindowsVpnConfiguration, Parsable):
     """
     By providing the configurations in this profile you can instruct the Windows 8.1 (and later) devices to connect to desired VPN endpoint. By specifying the authentication method and security types expected by VPN endpoint you can make the VPN connection seamless for end user.
     """

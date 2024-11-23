@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class Windows10NetworkBoundaryConfiguration(DeviceConfiguration):
+class Windows10NetworkBoundaryConfiguration(DeviceConfiguration, Parsable):
     """
     Windows10 Network Boundary Configuration
     """

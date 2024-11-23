@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .aws_identity import AwsIdentity
 
 @dataclass
-class AwsEc2Instance(AwsIdentity):
+class AwsEc2Instance(AwsIdentity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsEc2Instance"
     # Represents the resources in an authorization system.

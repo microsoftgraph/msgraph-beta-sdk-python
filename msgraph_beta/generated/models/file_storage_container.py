@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class FileStorageContainer(Entity):
+class FileStorageContainer(Entity, Parsable):
     # Sensitivity label assigned to the fileStorageContainer. Read-write.
     assigned_sensitivity_label: Optional[AssignedLabel] = None
     # The set of custom structured metadata supported by the fileStorageContainer. Read-write.

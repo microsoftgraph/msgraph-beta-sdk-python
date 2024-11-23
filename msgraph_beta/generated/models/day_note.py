@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .change_tracked_entity import ChangeTrackedEntity
 
 @dataclass
-class DayNote(ChangeTrackedEntity):
+class DayNote(ChangeTrackedEntity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.dayNote"
     # The date of the day note.

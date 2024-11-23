@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .threat_submission import ThreatSubmission
 
 @dataclass
-class FileThreatSubmission(ThreatSubmission):
+class FileThreatSubmission(ThreatSubmission, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.fileThreatSubmission"
     # It specifies the file name to be submitted.

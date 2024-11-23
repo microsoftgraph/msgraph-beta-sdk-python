@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsUpdateCatalogItem(Entity):
+class WindowsUpdateCatalogItem(Entity, Parsable):
     """
     Windows update catalog item entity
     """

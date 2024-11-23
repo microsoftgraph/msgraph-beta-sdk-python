@@ -32,7 +32,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class IdentityFinding(Finding):
+class IdentityFinding(Finding, Parsable):
     # The actionSummary property
     action_summary: Optional[ActionSummary] = None
     # The identity property

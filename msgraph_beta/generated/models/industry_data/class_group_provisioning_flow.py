@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .provisioning_flow import ProvisioningFlow
 
 @dataclass
-class ClassGroupProvisioningFlow(ProvisioningFlow):
+class ClassGroupProvisioningFlow(ProvisioningFlow, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.classGroupProvisioningFlow"
     # The configuration property

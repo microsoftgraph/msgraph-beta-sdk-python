@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GroupPolicyObjectFile(Entity):
+class GroupPolicyObjectFile(Entity, Parsable):
     """
     The Group Policy Object file uploaded by admin.
     """

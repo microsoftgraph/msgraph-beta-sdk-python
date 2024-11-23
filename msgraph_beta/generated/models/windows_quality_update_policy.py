@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsQualityUpdatePolicy(Entity):
+class WindowsQualityUpdatePolicy(Entity, Parsable):
     """
     Windows Quality Update Policy
     """

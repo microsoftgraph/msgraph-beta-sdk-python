@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamsAppDashboardCardDefinition(Entity):
+class TeamsAppDashboardCardDefinition(Entity, Parsable):
     # The configuration for the source of the card content. Required.
     content_source: Optional[TeamsAppDashboardCardContentSource] = None
     # The size of the card. The possible values are: medium, large, unknownFutureValue. Required.

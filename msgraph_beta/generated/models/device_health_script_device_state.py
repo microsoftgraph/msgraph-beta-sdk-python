@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceHealthScriptDeviceState(Entity):
+class DeviceHealthScriptDeviceState(Entity, Parsable):
     """
     Contains properties for device run state of the device health script.
     """

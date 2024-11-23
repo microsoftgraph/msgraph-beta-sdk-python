@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .change_tracked_entity import ChangeTrackedEntity
 
 @dataclass
-class TimeCard(ChangeTrackedEntity):
+class TimeCard(ChangeTrackedEntity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.timeCard"
     # The list of breaks associated with the timeCard.

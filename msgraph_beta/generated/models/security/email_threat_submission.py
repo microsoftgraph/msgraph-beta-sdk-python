@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .threat_submission import ThreatSubmission
 
 @dataclass
-class EmailThreatSubmission(ThreatSubmission):
+class EmailThreatSubmission(ThreatSubmission, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.emailThreatSubmission"
     # If the email is phishing simulation, this field won't be null.

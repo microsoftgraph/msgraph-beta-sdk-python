@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementSettingRequiredConstraint(DeviceManagementConstraint):
+class DeviceManagementSettingRequiredConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint that enforces a particular required setting that is not null/undefined/empty string/not configured
     """

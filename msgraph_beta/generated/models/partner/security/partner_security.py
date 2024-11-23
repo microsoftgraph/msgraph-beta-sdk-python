@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from ...entity import Entity
 
 @dataclass
-class PartnerSecurity(Entity):
+class PartnerSecurity(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The security alerts or a vulnerability of a Cloud Solution Provider (CSP) partner's customer that the partner must be made aware of for further action.

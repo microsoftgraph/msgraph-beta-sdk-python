@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamsAppDefinition(Entity):
+class TeamsAppDefinition(Entity, Parsable):
     # A collection of scopes where the Teams app can be installed. Possible values are:team—Indicates that the Teams app can be installed within a team and is authorized to access that team's data. groupChat—Indicates that the Teams app can be installed within a group chat and is authorized to access that group chat's data. personal—Indicates that the Teams app can be installed in the personal scope of a user and is authorized to access that user's data.
     allowed_installation_scopes: Optional[TeamsAppInstallationScopes] = None
     # Authorization requirements specified in the Teams app manifest.

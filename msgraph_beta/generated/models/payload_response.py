@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PayloadResponse(Entity):
+class PayloadResponse(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class MacOSTrustedRootCertificate(DeviceConfiguration):
+class MacOSTrustedRootCertificate(DeviceConfiguration, Parsable):
     """
     OS X Trusted Root Certificate configuration profile.
     """

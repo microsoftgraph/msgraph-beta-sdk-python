@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceConfigurationState(Entity):
+class DeviceConfigurationState(Entity, Parsable):
     """
     Support for this Entity is being deprecated starting May 2026 & will no longer be supported.
     """

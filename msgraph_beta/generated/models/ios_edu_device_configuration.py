@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class IosEduDeviceConfiguration(DeviceConfiguration):
+class IosEduDeviceConfiguration(DeviceConfiguration, Parsable):
     """
     iOS Education device configuration
     """

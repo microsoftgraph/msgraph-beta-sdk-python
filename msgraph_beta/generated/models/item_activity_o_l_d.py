@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ItemActivityOLD(Entity):
+class ItemActivityOLD(Entity, Parsable):
     # The action property
     action: Optional[ItemActionSet] = None
     # The actor property

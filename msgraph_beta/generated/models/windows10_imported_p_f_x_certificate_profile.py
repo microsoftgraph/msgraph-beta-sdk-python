@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .windows_certificate_profile_base import WindowsCertificateProfileBase
 
 @dataclass
-class Windows10ImportedPFXCertificateProfile(WindowsCertificateProfileBase):
+class Windows10ImportedPFXCertificateProfile(WindowsCertificateProfileBase, Parsable):
     """
     Windows 10 Desktop and Mobile PFX Import certificate profile
     """

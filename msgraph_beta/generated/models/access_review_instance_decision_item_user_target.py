@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .access_review_instance_decision_item_target import AccessReviewInstanceDecisionItemTarget
 
 @dataclass
-class AccessReviewInstanceDecisionItemUserTarget(AccessReviewInstanceDecisionItemTarget):
+class AccessReviewInstanceDecisionItemUserTarget(AccessReviewInstanceDecisionItemTarget, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.accessReviewInstanceDecisionItemUserTarget"
     # The name of user.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .authentication_listener import AuthenticationListener
 
 @dataclass
-class InvokeUserFlowListener(AuthenticationListener):
+class InvokeUserFlowListener(AuthenticationListener, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.invokeUserFlowListener"
     # The user flow that is invoked when this action executes.

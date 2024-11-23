@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MicrosoftTunnelServerLogCollectionResponse(Entity):
+class MicrosoftTunnelServerLogCollectionResponse(Entity, Parsable):
     """
     Entity that stores the server log collection status.
     """

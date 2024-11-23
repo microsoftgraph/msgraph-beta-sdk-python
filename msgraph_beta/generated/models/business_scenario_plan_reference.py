@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class BusinessScenarioPlanReference(Entity):
+class BusinessScenarioPlanReference(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The title property of the plannerPlan.

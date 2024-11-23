@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class AuditLogQuery(Entity):
+class AuditLogQuery(Entity, Parsable):
     # The administrative units tagged to an audit log record.
     administrative_unit_id_filters: Optional[List[str]] = None
     # The display name of the saved audit log query.

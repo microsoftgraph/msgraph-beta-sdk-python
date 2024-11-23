@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
 
 @dataclass
-class GroupPolicyPresentationTextBox(GroupPolicyUploadedPresentation):
+class GroupPolicyPresentationTextBox(GroupPolicyUploadedPresentation, Parsable):
     """
     Represents an ADMX textBox element and an ADMX text element.
     """

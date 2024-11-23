@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_compliance_policy import DeviceCompliancePolicy
 
 @dataclass
-class DefaultDeviceCompliancePolicy(DeviceCompliancePolicy):
+class DefaultDeviceCompliancePolicy(DeviceCompliancePolicy, Parsable):
     """
     Default device compliance policy rules that are enforced account wide.
     """

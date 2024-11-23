@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class IndustryDataRoot(Entity):
+class IndustryDataRoot(Entity, Parsable):
     # Set of connectors for importing data from source systems.
     data_connectors: Optional[List[IndustryDataConnector]] = None
     # Set of data import flow activities to bring data into the canonical store via a connector.

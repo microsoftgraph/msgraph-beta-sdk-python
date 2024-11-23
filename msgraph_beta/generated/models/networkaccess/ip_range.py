@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .rule_destination import RuleDestination
 
 @dataclass
-class IpRange(RuleDestination):
+class IpRange(RuleDestination, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.ipRange"
     # Specifies the starting IP address of the IP range.

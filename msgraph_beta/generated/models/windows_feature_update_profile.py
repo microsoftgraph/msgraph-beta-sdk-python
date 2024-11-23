@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsFeatureUpdateProfile(Entity):
+class WindowsFeatureUpdateProfile(Entity, Parsable):
     """
     Windows Feature Update Profile
     """

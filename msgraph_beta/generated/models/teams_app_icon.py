@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamsAppIcon(Entity):
+class TeamsAppIcon(Entity, Parsable):
     # The contents of the app icon if the icon is hosted within the Teams infrastructure.
     hosted_content: Optional[TeamworkHostedContent] = None
     # The OdataType property

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .android_device_owner_kiosk_mode_folder_item import AndroidDeviceOwnerKioskModeFolderItem
 
 @dataclass
-class AndroidDeviceOwnerKioskModeApp(AndroidDeviceOwnerKioskModeFolderItem):
+class AndroidDeviceOwnerKioskModeApp(AndroidDeviceOwnerKioskModeFolderItem, Parsable):
     """
     An application on the Android Device Owner Managed Home Screen
     """

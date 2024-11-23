@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UnifiedRoleManagementAlertDefinition(Entity):
+class UnifiedRoleManagementAlertDefinition(Entity, Parsable):
     # The description of the alert.
     description: Optional[str] = None
     # The friendly display name that renders in Privileged Identity Management (PIM) alerts in the Microsoft Entra admin center.

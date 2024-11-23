@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .app_scope import AppScope
 
 @dataclass
-class CustomAppScope(AppScope):
+class CustomAppScope(AppScope, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customAppScope"
     # The customAttributes property

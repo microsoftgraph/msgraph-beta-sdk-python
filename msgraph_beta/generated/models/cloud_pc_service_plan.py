@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CloudPcServicePlan(Entity):
+class CloudPcServicePlan(Entity, Parsable):
     # The name for the service plan. Read-only.
     display_name: Optional[str] = None
     # The OdataType property

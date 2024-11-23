@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class NetworkAccessRoot(Entity):
+class NetworkAccessRoot(Entity, Parsable):
     # The alerts property
     alerts: Optional[List[Alert]] = None
     # Connectivity represents all the connectivity components in Global Secure Access.

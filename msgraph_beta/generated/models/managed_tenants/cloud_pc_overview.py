@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class CloudPcOverview(Entity):
+class CloudPcOverview(Entity, Parsable):
     # The total number of cloud PC devices that have the Frontline SKU. Optional. Read-only.
     frontline_licenses_count: Optional[int] = None
     # Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.

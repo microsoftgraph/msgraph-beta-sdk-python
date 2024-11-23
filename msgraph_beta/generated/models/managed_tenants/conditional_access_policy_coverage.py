@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ConditionalAccessPolicyCoverage(Entity):
+class ConditionalAccessPolicyCoverage(Entity, Parsable):
     # The state for the conditional access policy. Possible values are: enabled, disabled, enabledForReportingButNotEnforced. Required. Read-only.
     conditional_access_policy_state: Optional[str] = None
     # The date and time the conditional access policy was last modified. Required. Read-only.

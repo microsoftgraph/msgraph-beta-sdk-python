@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .related_resource import RelatedResource
 
 @dataclass
-class RelatedTransaction(RelatedResource):
+class RelatedTransaction(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedTransaction"
     # The transactionId property

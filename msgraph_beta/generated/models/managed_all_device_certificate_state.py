@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ManagedAllDeviceCertificateState(Entity):
+class ManagedAllDeviceCertificateState(Entity, Parsable):
     # Certificate expiry date
     certificate_expiration_date_time: Optional[datetime.datetime] = None
     # Enhanced Key Usage

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .access_review_instance_decision_item_target import AccessReviewInstanceDecisionItemTarget
 
 @dataclass
-class AccessReviewInstanceDecisionItemServicePrincipalTarget(AccessReviewInstanceDecisionItemTarget):
+class AccessReviewInstanceDecisionItemServicePrincipalTarget(AccessReviewInstanceDecisionItemTarget, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalTarget"
     # The appId for the service principal entity being reviewed.

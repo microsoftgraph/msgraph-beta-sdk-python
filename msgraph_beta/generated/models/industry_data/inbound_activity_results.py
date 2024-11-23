@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .industry_data_activity_statistics import IndustryDataActivityStatistics
 
 @dataclass
-class InboundActivityResults(IndustryDataActivityStatistics):
+class InboundActivityResults(IndustryDataActivityStatistics, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.inboundActivityResults"
     # Number of errors encountered while processing the inbound flow.

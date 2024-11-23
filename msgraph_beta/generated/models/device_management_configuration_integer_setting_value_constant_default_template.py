@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_integer_setting_value_default_template import DeviceManagementConfigurationIntegerSettingValueDefaultTemplate
 
 @dataclass
-class DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate(DeviceManagementConfigurationIntegerSettingValueDefaultTemplate):
+class DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate(DeviceManagementConfigurationIntegerSettingValueDefaultTemplate, Parsable):
     """
     Integer Setting Value Constant Default Template
     """

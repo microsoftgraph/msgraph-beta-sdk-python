@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserExperienceAnalyticsDeviceWithoutCloudIdentity(Entity):
+class UserExperienceAnalyticsDeviceWithoutCloudIdentity(Entity, Parsable):
     """
     The user experience analytics Device without Cloud Identity.
     """

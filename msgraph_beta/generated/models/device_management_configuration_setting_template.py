@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementConfigurationSettingTemplate(Entity):
+class DeviceManagementConfigurationSettingTemplate(Entity, Parsable):
     """
     Setting Template
     """

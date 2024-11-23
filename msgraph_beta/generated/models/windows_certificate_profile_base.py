@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class WindowsCertificateProfileBase(DeviceConfiguration):
+class WindowsCertificateProfileBase(DeviceConfiguration, Parsable):
     """
     Device Configuration.
     """

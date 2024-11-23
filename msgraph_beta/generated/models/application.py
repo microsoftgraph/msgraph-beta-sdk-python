@@ -38,7 +38,7 @@ if TYPE_CHECKING:
 from .directory_object import DirectoryObject
 
 @dataclass
-class Application(DirectoryObject):
+class Application(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.application"
     # Specifies settings for an application that implements a web API.

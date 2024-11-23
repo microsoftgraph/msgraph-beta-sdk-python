@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagedTenantAlertRuleDefinition(Entity):
+class ManagedTenantAlertRuleDefinition(Entity, Parsable):
     # The alertRules property
     alert_rules: Optional[List[ManagedTenantAlertRule]] = None
     # The createdByUserId property

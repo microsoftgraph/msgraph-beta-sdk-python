@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class NetworkAdapter(Entity):
+class NetworkAdapter(Entity, Parsable):
     # Indicates whether the network adapter is selected for capturing and analyzing network traffic.
     is_enabled: Optional[bool] = None
     # The name of the network adapter.

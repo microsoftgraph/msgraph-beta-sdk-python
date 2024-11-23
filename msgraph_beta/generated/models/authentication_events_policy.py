@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AuthenticationEventsPolicy(Entity):
+class AuthenticationEventsPolicy(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # A list of applicable actions to be taken on sign-up.

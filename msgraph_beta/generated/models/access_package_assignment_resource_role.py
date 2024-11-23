@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessPackageAssignmentResourceRole(Entity):
+class AccessPackageAssignmentResourceRole(Entity, Parsable):
     # The access package assignments resulting in this role assignment. Read-only. Nullable.
     access_package_assignments: Optional[List[AccessPackageAssignment]] = None
     # The accessPackageResourceRole property

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_setting_instance import DeviceManagementSettingInstance
 
 @dataclass
-class DeviceManagementStringSettingInstance(DeviceManagementSettingInstance):
+class DeviceManagementStringSettingInstance(DeviceManagementSettingInstance, Parsable):
     """
     A setting instance representing a string value
     """

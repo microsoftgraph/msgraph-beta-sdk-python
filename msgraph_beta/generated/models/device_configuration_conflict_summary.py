@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceConfigurationConflictSummary(Entity):
+class DeviceConfigurationConflictSummary(Entity, Parsable):
     """
     Conflict summary for a set of device configuration policies.
     """

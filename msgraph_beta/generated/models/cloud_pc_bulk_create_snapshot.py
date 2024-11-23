@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .cloud_pc_bulk_action import CloudPcBulkAction
 
 @dataclass
-class CloudPcBulkCreateSnapshot(CloudPcBulkAction):
+class CloudPcBulkCreateSnapshot(CloudPcBulkAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkCreateSnapshot"
     

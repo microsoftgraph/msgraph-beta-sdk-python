@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .pre_approved_permissions import PreApprovedPermissions
 
 @dataclass
-class AllPreApprovedPermissions(PreApprovedPermissions):
+class AllPreApprovedPermissions(PreApprovedPermissions, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.allPreApprovedPermissions"
     

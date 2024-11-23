@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementScriptRunSummary(Entity):
+class DeviceManagementScriptRunSummary(Entity, Parsable):
     """
     Contains properties for the run summary of a device management script.
     """

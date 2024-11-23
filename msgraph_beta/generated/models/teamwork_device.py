@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamworkDevice(Entity):
+class TeamworkDevice(Entity, Parsable):
     # The activity properties that change based on the device usage.
     activity: Optional[TeamworkDeviceActivity] = None
     # The activity state of the device. The possible values are: unknown, busy, idle, unavailable, unknownFutureValue.

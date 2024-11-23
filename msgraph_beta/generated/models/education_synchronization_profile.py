@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class EducationSynchronizationProfile(Entity):
+class EducationSynchronizationProfile(Entity, Parsable):
     # The dataProvider property
     data_provider: Optional[EducationSynchronizationDataProvider] = None
     # Name of the configuration profile for syncing identities.

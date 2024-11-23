@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .pre_approved_permissions import PreApprovedPermissions
 
 @dataclass
-class AllPreApprovedPermissionsOnResourceApp(PreApprovedPermissions):
+class AllPreApprovedPermissionsOnResourceApp(PreApprovedPermissions, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.allPreApprovedPermissionsOnResourceApp"
     # The appId of the resource application (the API). Required.

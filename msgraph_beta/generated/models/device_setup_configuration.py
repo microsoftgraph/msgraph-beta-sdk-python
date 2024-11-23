@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceSetupConfiguration(Entity):
+class DeviceSetupConfiguration(Entity, Parsable):
     """
     This is the base class for Setup Configuration. Setup configurations are platform specific and individual per-platform setup configurations inherit from here.
     """

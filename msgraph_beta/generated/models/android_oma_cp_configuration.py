@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AndroidOmaCpConfiguration(DeviceConfiguration):
+class AndroidOmaCpConfiguration(DeviceConfiguration, Parsable):
     """
     By providing a configuration in this profile you can configure Android devices that support OMA-CP.
     """

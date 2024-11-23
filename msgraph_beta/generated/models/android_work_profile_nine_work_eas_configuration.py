@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .android_work_profile_eas_email_profile_base import AndroidWorkProfileEasEmailProfileBase
 
 @dataclass
-class AndroidWorkProfileNineWorkEasConfiguration(AndroidWorkProfileEasEmailProfileBase):
+class AndroidWorkProfileNineWorkEasConfiguration(AndroidWorkProfileEasEmailProfileBase, Parsable):
     """
     By providing configurations in this profile you can instruct the Nine Work email client on Android Work Profile devices to communicate with an Exchange server and get email, contacts, calendar, tasks, and notes. Furthermore, you can also specify how much email to sync and how often the device should sync.
     """

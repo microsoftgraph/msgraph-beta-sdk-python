@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .protection_units_bulk_job_base import ProtectionUnitsBulkJobBase
 
 @dataclass
-class SiteProtectionUnitsBulkAdditionJob(ProtectionUnitsBulkJobBase):
+class SiteProtectionUnitsBulkAdditionJob(ProtectionUnitsBulkJobBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.siteProtectionUnitsBulkAdditionJob"
     # The list of SharePoint site IDs to add to the SharePoint protection policy.

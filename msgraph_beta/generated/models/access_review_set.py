@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessReviewSet(Entity):
+class AccessReviewSet(Entity, Parsable):
     # Represents a Microsoft Entra access review decision on an instance of a review.
     decisions: Optional[List[AccessReviewInstanceDecisionItem]] = None
     # Represents the template and scheduling for an access review.

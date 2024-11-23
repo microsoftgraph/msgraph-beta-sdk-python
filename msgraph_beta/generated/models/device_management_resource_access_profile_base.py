@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementResourceAccessProfileBase(Entity):
+class DeviceManagementResourceAccessProfileBase(Entity, Parsable):
     """
     Base Profile Type for Resource Access
     """

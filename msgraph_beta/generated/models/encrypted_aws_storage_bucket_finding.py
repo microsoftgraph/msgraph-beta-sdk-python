@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .finding import Finding
 
 @dataclass
-class EncryptedAwsStorageBucketFinding(Finding):
+class EncryptedAwsStorageBucketFinding(Finding, Parsable):
     # The accessibility property
     accessibility: Optional[AwsAccessType] = None
     # The OdataType property

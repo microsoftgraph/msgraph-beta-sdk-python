@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .information_protection_action import InformationProtectionAction
 
 @dataclass
-class RemoveWatermarkAction(InformationProtectionAction):
+class RemoveWatermarkAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.removeWatermarkAction"
     # The name of the UI element of footer to be removed.

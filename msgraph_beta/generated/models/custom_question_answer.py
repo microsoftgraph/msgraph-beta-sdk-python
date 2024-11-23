@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CustomQuestionAnswer(Entity):
+class CustomQuestionAnswer(Entity, Parsable):
     # Display name of the custom registration question. Read-only.
     display_name: Optional[str] = None
     # The OdataType property

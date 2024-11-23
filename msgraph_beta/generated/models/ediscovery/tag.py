@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Tag(Entity):
+class Tag(Entity, Parsable):
     # Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.  This value controls whether the UX presents the tags as checkboxes or a radio button group.
     child_selectability: Optional[ChildSelectability] = None
     # Returns the tags that are a child of a tag.

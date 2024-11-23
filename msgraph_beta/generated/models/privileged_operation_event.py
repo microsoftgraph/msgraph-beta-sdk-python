@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegedOperationEvent(Entity):
+class PrivilegedOperationEvent(Entity, Parsable):
     # The additionalInformation property
     additional_information: Optional[str] = None
     # The creationDateTime property

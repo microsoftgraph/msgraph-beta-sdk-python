@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .tunnel_configuration import TunnelConfiguration
 
 @dataclass
-class TunnelConfigurationIKEv2Default(TunnelConfiguration):
+class TunnelConfigurationIKEv2Default(TunnelConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Default"
     

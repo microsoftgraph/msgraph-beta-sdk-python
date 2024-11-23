@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessPackageResourceScope(Entity):
+class AccessPackageResourceScope(Entity, Parsable):
     # The accessPackageResource property
     access_package_resource: Optional[AccessPackageResource] = None
     # The description of the scope.

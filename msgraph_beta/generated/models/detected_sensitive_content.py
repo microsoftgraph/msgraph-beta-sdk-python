@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .detected_sensitive_content_base import DetectedSensitiveContentBase
 
 @dataclass
-class DetectedSensitiveContent(DetectedSensitiveContentBase):
+class DetectedSensitiveContent(DetectedSensitiveContentBase, Parsable):
     # The classificationAttributes property
     classification_attributes: Optional[List[ClassificationAttribute]] = None
     # The classificationMethod property

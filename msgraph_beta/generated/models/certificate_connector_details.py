@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CertificateConnectorDetails(Entity):
+class CertificateConnectorDetails(Entity, Parsable):
     """
     Entity used to retrieve information about Intune Certificate Connectors.
     """

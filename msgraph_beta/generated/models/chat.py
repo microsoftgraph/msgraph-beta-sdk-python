@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Chat(Entity):
+class Chat(Entity, Parsable):
     # The chatType property
     chat_type: Optional[ChatType] = None
     # The user or application that created the chat. Read-only.

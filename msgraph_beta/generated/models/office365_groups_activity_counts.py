@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Office365GroupsActivityCounts(Entity):
+class Office365GroupsActivityCounts(Entity, Parsable):
     # The number of emails received by Group mailboxes.
     exchange_emails_received: Optional[int] = None
     # The OdataType property

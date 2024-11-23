@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ChromeOSOnboardingSettings(Entity):
+class ChromeOSOnboardingSettings(Entity, Parsable):
     """
     Entity that represents a Chromebook tenant settings
     """

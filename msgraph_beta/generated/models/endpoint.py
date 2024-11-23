@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .directory_object import DirectoryObject
 
 @dataclass
-class Endpoint(DirectoryObject):
+class Endpoint(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.endpoint"
     # Describes the capability that is associated with this resource. (for example, Messages, Conversations, etc.) Not nullable. Read-only.

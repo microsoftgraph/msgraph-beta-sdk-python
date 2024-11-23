@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class AndroidWorkProfileCertificateProfileBase(DeviceConfiguration):
+class AndroidWorkProfileCertificateProfileBase(DeviceConfiguration, Parsable):
     """
     Android Work Profile certificate profile base.
     """

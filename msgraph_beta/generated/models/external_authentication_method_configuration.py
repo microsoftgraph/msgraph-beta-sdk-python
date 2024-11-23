@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .authentication_method_configuration import AuthenticationMethodConfiguration
 
 @dataclass
-class ExternalAuthenticationMethodConfiguration(AuthenticationMethodConfiguration):
+class ExternalAuthenticationMethodConfiguration(AuthenticationMethodConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.externalAuthenticationMethodConfiguration"
     # appId for the app registration in Microsoft Entra ID representing the integration with the external provider.

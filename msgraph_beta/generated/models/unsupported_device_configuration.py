@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class UnsupportedDeviceConfiguration(DeviceConfiguration):
+class UnsupportedDeviceConfiguration(DeviceConfiguration, Parsable):
     """
     UnsupportedDeviceConfiguration is used when an entity cannot be mapped to another model-compliant subtype of deviceConfiguration.
     """

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entitlements_data_collection_info import EntitlementsDataCollectionInfo
 
 @dataclass
-class EntitlementsDataCollection(EntitlementsDataCollectionInfo):
+class EntitlementsDataCollection(EntitlementsDataCollectionInfo, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.entitlementsDataCollection"
     # Last transformation time of entitlements.

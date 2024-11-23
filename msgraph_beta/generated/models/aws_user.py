@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .aws_identity import AwsIdentity
 
 @dataclass
-class AwsUser(AwsIdentity):
+class AwsUser(AwsIdentity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsUser"
     # Roles assumed by the user.

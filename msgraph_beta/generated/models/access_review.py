@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessReview(Entity):
+class AccessReview(Entity, Parsable):
     # The business flow template identifier. Required on create. This value is case sensitive.
     business_flow_template_id: Optional[str] = None
     # The user who created this review.

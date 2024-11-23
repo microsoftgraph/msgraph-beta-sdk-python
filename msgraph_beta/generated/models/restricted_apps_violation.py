@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class RestrictedAppsViolation(Entity):
+class RestrictedAppsViolation(Entity, Parsable):
     """
     Violation of restricted apps configuration profile per device per user
     """

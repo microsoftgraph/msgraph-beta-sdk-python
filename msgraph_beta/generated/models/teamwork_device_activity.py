@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamworkDeviceActivity(Entity):
+class TeamworkDeviceActivity(Entity, Parsable):
     # The active peripheral devices attached to the device.
     active_peripherals: Optional[TeamworkActivePeripherals] = None
     # Identity of the user who created the device activity document.

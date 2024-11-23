@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class StrongAuthenticationDetail(Entity):
+class StrongAuthenticationDetail(Entity, Parsable):
     # The encryptedPinHashHistory property
     encrypted_pin_hash_history: Optional[bytes] = None
     # The OdataType property

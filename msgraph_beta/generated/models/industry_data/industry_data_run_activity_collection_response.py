@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class IndustryDataRunActivityCollectionResponse(BaseCollectionPaginationCountResponse):
+class IndustryDataRunActivityCollectionResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
     value: Optional[List[IndustryDataRunActivity]] = None
     

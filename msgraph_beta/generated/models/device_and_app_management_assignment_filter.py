@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceAndAppManagementAssignmentFilter(Entity):
+class DeviceAndAppManagementAssignmentFilter(Entity, Parsable):
     """
     A class containing the properties used for Assignment Filter.
     """

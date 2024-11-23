@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .job_response_base import JobResponseBase
 
 @dataclass
-class EvaluateLabelJobResponse(JobResponseBase):
+class EvaluateLabelJobResponse(JobResponseBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The result property

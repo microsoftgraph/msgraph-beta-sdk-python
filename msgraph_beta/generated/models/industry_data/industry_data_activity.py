@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class IndustryDataActivity(Entity):
+class IndustryDataActivity(Entity, Parsable):
     # The name of the activity. Maximum supported length is 100 characters.
     display_name: Optional[str] = None
     # The OdataType property

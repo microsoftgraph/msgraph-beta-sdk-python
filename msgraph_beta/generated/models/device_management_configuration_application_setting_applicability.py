@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_applicability import DeviceManagementConfigurationSettingApplicability
 
 @dataclass
-class DeviceManagementConfigurationApplicationSettingApplicability(DeviceManagementConfigurationSettingApplicability):
+class DeviceManagementConfigurationApplicationSettingApplicability(DeviceManagementConfigurationSettingApplicability, Parsable):
     """
     Applicability for a setting that can be targeted on managed Applications by Intune
     """

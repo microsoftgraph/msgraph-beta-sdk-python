@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .app_management_configuration import AppManagementConfiguration
 
 @dataclass
-class AppManagementApplicationConfiguration(AppManagementConfiguration):
+class AppManagementApplicationConfiguration(AppManagementConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.appManagementApplicationConfiguration"
     # Configuration object for restrictions on identifierUris property for an application

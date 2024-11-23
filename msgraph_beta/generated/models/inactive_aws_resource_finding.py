@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .identity_finding import IdentityFinding
 
 @dataclass
-class InactiveAwsResourceFinding(IdentityFinding):
+class InactiveAwsResourceFinding(IdentityFinding, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     

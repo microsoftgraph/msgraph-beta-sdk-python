@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .on_attribute_collection_start_handler import OnAttributeCollectionStartHandler
 
 @dataclass
-class OnAttributeCollectionStartCustomExtensionHandler(OnAttributeCollectionStartHandler):
+class OnAttributeCollectionStartCustomExtensionHandler(OnAttributeCollectionStartHandler, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onAttributeCollectionStartCustomExtensionHandler"
     # Configuration regarding properties of the custom extension that are can be overwritten per event listener.

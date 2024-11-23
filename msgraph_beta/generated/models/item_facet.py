@@ -35,7 +35,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ItemFacet(Entity):
+class ItemFacet(Entity, Parsable):
     # The audiences that are able to see the values contained within the associated entity. Possible values are: me, family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
     allowed_audiences: Optional[AllowedAudiences] = None
     # The createdBy property

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .group_policy_presentation_value import GroupPolicyPresentationValue
 
 @dataclass
-class GroupPolicyPresentationValueMultiText(GroupPolicyPresentationValue):
+class GroupPolicyPresentationValueMultiText(GroupPolicyPresentationValue, Parsable):
     """
     The entity represents a string value of a multi-line text box presentation on a policy definition.
     """

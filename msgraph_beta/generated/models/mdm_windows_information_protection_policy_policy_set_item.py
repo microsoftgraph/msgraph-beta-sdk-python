@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .policy_set_item import PolicySetItem
 
 @dataclass
-class MdmWindowsInformationProtectionPolicyPolicySetItem(PolicySetItem):
+class MdmWindowsInformationProtectionPolicyPolicySetItem(PolicySetItem, Parsable):
     """
     A class containing the properties used for mdm windows information protection policy PolicySetItem.
     """

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .reference_value import ReferenceValue
 
 @dataclass
-class YearReferenceValue(ReferenceValue):
+class YearReferenceValue(ReferenceValue, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.yearReferenceValue"
     

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mobile_app_relationship import MobileAppRelationship
 
 @dataclass
-class MobileAppSupersedence(MobileAppRelationship):
+class MobileAppSupersedence(MobileAppRelationship, Parsable):
     """
     Describes a supersedence relationship between two mobile apps.
     """

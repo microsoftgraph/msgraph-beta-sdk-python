@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class BusinessScenarioPlanner(Entity):
+class BusinessScenarioPlanner(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The configuration of Planner plans that will be created for the scenario.

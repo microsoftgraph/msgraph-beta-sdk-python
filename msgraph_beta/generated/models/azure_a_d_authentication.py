@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AzureADAuthentication(Entity):
+class AzureADAuthentication(Entity, Parsable):
     # SLA data for a Microsoft Entra tenant for a calendar month.
     attainments: Optional[List[ServiceLevelAgreementAttainment]] = None
     # The OdataType property

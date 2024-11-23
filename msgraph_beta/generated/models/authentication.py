@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class Authentication(Entity):
+class Authentication(Entity, Parsable):
     # Represents the email addresses registered to a user for authentication.
     email_methods: Optional[List[EmailAuthenticationMethod]] = None
     # Represents the FIDO2 security keys registered to a user for authentication.

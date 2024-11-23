@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .mobile_app import MobileApp
 
 @dataclass
-class OfficeSuiteApp(MobileApp):
+class OfficeSuiteApp(MobileApp, Parsable):
     """
     Contains properties and inherited properties for the Office365 Suite App.
     """

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegedRoleSettings(Entity):
+class PrivilegedRoleSettings(Entity, Parsable):
     # The approvalOnElevation property
     approval_on_elevation: Optional[bool] = None
     # The approverIds property

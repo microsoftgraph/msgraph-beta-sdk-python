@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class Deployment(Entity):
+class Deployment(Entity, Parsable):
     # Specifies the audience to which content is deployed.
     audience: Optional[DeploymentAudience] = None
     # Specifies what content to deploy. Cannot be changed. Returned by default.

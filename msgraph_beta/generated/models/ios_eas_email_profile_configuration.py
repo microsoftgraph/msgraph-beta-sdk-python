@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
 
 @dataclass
-class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase):
+class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase, Parsable):
     """
     By providing configurations in this profile you can instruct the native email client on iOS devices to communicate with an Exchange server and get email, contacts, calendar, reminders, and notes. Furthermore, you can also specify how much email to sync and how often the device should sync.
     """

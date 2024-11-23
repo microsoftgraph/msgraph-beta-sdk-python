@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .authorization_system_identity_source import AuthorizationSystemIdentitySource
 
 @dataclass
-class GsuiteSource(AuthorizationSystemIdentitySource):
+class GsuiteSource(AuthorizationSystemIdentitySource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gsuiteSource"
     # Domain name

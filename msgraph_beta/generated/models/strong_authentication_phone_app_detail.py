@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class StrongAuthenticationPhoneAppDetail(Entity):
+class StrongAuthenticationPhoneAppDetail(Entity, Parsable):
     # The authenticationType property
     authentication_type: Optional[str] = None
     # The authenticatorFlavor property

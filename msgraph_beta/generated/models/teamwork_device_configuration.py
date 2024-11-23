@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class TeamworkDeviceConfiguration(Entity):
+class TeamworkDeviceConfiguration(Entity, Parsable):
     # The camera configuration. Applicable only for Microsoft Teams Rooms-enabled devices.
     camera_configuration: Optional[TeamworkCameraConfiguration] = None
     # Identity of the user who created the device configuration document.

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .print_usage import PrintUsage
 
 @dataclass
-class PrintUsageByUser(PrintUsage):
+class PrintUsageByUser(PrintUsage, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The UPN of the user represented by these statistics.

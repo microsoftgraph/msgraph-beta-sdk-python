@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .permissions_definition_action import PermissionsDefinitionAction
 
 @dataclass
-class AwsPermissionsDefinitionAction(PermissionsDefinitionAction):
+class AwsPermissionsDefinitionAction(PermissionsDefinitionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsPermissionsDefinitionAction"
     

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
 
 @dataclass
-class WindowsKioskSingleWin32App(WindowsKioskAppConfiguration):
+class WindowsKioskSingleWin32App(WindowsKioskAppConfiguration, Parsable):
     """
     The class used to identify the single app configuration for the kiosk win32 configuration
     """

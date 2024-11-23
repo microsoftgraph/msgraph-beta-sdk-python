@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .mobile_app import MobileApp
 
 @dataclass
-class AndroidForWorkApp(MobileApp):
+class AndroidForWorkApp(MobileApp, Parsable):
     """
     Contains properties and inherited properties for Android for Work (AFW) Apps.
     """

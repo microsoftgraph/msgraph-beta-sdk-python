@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .call_log_row import CallLogRow
 
 @dataclass
-class SmsLogRow(CallLogRow):
+class SmsLogRow(CallLogRow, Parsable):
     # Amount of money or cost of the SMS that is charged.
     call_charge: Optional[float] = None
     # Currency used to calculate the cost of the call. For details, see ISO 4217.

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MeetingRegistrationBase(Entity):
+class MeetingRegistrationBase(Entity, Parsable):
     # Specifies who can register for the meeting.
     allowed_registrant: Optional[MeetingAudience] = None
     # The OdataType property

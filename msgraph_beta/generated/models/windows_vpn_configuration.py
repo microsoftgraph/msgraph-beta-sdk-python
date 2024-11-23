@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class WindowsVpnConfiguration(DeviceConfiguration):
+class WindowsVpnConfiguration(DeviceConfiguration, Parsable):
     """
     Windows VPN configuration profile.
     """

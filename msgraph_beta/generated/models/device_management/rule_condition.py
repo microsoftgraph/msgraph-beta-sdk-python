@@ -25,7 +25,7 @@ class RuleCondition(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The built-in operator for the rule condition. The possible values are: greaterOrEqual, equal, greater, less, lessOrEqual, notEqual, unknownFutureValue.
     operator: Optional[OperatorType] = None
-    # The relationship type. Possible values are: and, or.
+    # The relationship type.  Possible values are: and, or.
     relationship_type: Optional[RelationshipType] = None
     # The threshold value of the alert condition. The threshold value can be a number in string form or string like 'WestUS'.
     threshold_value: Optional[str] = None

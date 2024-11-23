@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 from .planner_delta import PlannerDelta
 
 @dataclass
-class PlannerTask(PlannerDelta):
+class PlannerTask(PlannerDelta, Parsable):
     # The number of checklist items with value set to false, representing incomplete items.
     active_checklist_item_count: Optional[int] = None
     # The categories to which the task is applied. See plannerAppliedCategories resource type for possible values.

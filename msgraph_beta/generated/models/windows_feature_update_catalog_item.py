@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .windows_update_catalog_item import WindowsUpdateCatalogItem
 
 @dataclass
-class WindowsFeatureUpdateCatalogItem(WindowsUpdateCatalogItem):
+class WindowsFeatureUpdateCatalogItem(WindowsUpdateCatalogItem, Parsable):
     """
     Windows update catalog item entity
     """

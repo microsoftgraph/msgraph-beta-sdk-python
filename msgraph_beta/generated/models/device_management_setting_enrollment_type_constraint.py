@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_management_constraint import DeviceManagementConstraint
 
 @dataclass
-class DeviceManagementSettingEnrollmentTypeConstraint(DeviceManagementConstraint):
+class DeviceManagementSettingEnrollmentTypeConstraint(DeviceManagementConstraint, Parsable):
     """
     Constraint that enforces the enrollment types applied to a setting
     """

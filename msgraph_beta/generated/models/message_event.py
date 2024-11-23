@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class MessageEvent(Entity):
+class MessageEvent(Entity, Parsable):
     # The dateTime property
     date_time: Optional[datetime.datetime] = None
     # The description property

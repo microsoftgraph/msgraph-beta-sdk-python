@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class PersonWebsite(ItemFacet):
+class PersonWebsite(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.personWebsite"
     # Contains categories a user has associated with the website (for example, personal, recipes).

@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class BranchSite(Entity):
+class BranchSite(Entity, Parsable):
     # Determines the maximum allowed Mbps (megabits per second) bandwidth from a branch site. The possible values are:250,500,750,1000.
     bandwidth_capacity: Optional[int] = None
     # Specifies the connectivity details of all device links associated with a branch.

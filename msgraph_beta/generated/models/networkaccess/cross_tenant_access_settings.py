@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class CrossTenantAccessSettings(Entity):
+class CrossTenantAccessSettings(Entity, Parsable):
     # The networkPacketTaggingStatus property
     network_packet_tagging_status: Optional[Status] = None
     # The OdataType property

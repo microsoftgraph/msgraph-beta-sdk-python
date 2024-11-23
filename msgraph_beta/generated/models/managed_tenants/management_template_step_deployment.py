@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class ManagementTemplateStepDeployment(Entity):
+class ManagementTemplateStepDeployment(Entity, Parsable):
     # The createdByUserId property
     created_by_user_id: Optional[str] = None
     # The createdDateTime property

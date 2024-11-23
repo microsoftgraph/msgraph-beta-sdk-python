@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .access_review_scope import AccessReviewScope
 
 @dataclass
-class AccessReviewReviewerScope(AccessReviewScope):
+class AccessReviewReviewerScope(AccessReviewScope, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.accessReviewReviewerScope"
     # The query specifying who will be the reviewer.

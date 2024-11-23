@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_enrollment_configuration import DeviceEnrollmentConfiguration
 
 @dataclass
-class DeviceComanagementAuthorityConfiguration(DeviceEnrollmentConfiguration):
+class DeviceComanagementAuthorityConfiguration(DeviceEnrollmentConfiguration, Parsable):
     """
     Windows 10 Co-Management Authority Page Configuration
     """

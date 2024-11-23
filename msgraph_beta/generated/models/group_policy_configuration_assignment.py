@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class GroupPolicyConfigurationAssignment(Entity):
+class GroupPolicyConfigurationAssignment(Entity, Parsable):
     """
     The group policy configuration assignment entity assigns one or more AAD groups to a specific group policy configuration.
     """

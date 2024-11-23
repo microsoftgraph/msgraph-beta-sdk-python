@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .security_requirement import SecurityRequirement
 
 @dataclass
-class ResponseTimeSecurityRequirement(SecurityRequirement):
+class ResponseTimeSecurityRequirement(SecurityRequirement, Parsable):
     # The average response time for alerts from the past 30 days.
     average_response_time_in_hours: Optional[float] = None
     # The OdataType property

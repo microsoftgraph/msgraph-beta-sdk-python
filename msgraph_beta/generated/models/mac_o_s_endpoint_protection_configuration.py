@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class MacOSEndpointProtectionConfiguration(DeviceConfiguration):
+class MacOSEndpointProtectionConfiguration(DeviceConfiguration, Parsable):
     """
     MacOS endpoint protection configuration profile.
     """

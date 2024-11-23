@@ -49,7 +49,7 @@ class SignInItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SignInItemRequestBuilderGetQueryParameters]] = None) -> Optional[SignIn]:
         """
-        Get a signIn object that contains a specific user sign-in event for your tenant that includes sign-ins where a user is asked to enter a username or password, and session tokens.
+        Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SignIn]
         Find more info here: https://learn.microsoft.com/graph/api/signin-get?view=graph-rest-beta
@@ -104,7 +104,7 @@ class SignInItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SignInItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a signIn object that contains a specific user sign-in event for your tenant that includes sign-ins where a user is asked to enter a username or password, and session tokens.
+        Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class SignInItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SignInItemRequestBuilderGetQueryParameters():
         """
-        Get a signIn object that contains a specific user sign-in event for your tenant that includes sign-ins where a user is asked to enter a username or password, and session tokens.
+        Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

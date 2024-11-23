@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .meeting_registrant_base import MeetingRegistrantBase
 
 @dataclass
-class MeetingRegistrant(MeetingRegistrantBase):
+class MeetingRegistrant(MeetingRegistrantBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.meetingRegistrant"
     # The registrant's answer to custom questions.

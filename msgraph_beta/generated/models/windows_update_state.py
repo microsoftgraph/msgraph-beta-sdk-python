@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsUpdateState(Entity):
+class WindowsUpdateState(Entity, Parsable):
     # Device display name.
     device_display_name: Optional[str] = None
     # The id of the device.

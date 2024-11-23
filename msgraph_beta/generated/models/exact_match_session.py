@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .exact_match_session_base import ExactMatchSessionBase
 
 @dataclass
-class ExactMatchSession(ExactMatchSessionBase):
+class ExactMatchSession(ExactMatchSessionBase, Parsable):
     # The checksum property
     checksum: Optional[str] = None
     # The dataUploadURI property

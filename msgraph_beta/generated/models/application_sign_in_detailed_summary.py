@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ApplicationSignInDetailedSummary(Entity):
+class ApplicationSignInDetailedSummary(Entity, Parsable):
     # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     aggregated_event_date_time: Optional[datetime.datetime] = None
     # Name of the application that the user signed in to.

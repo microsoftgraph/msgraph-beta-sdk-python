@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_configuration import DeviceConfiguration
 
 @dataclass
-class WindowsDomainJoinConfiguration(DeviceConfiguration):
+class WindowsDomainJoinConfiguration(DeviceConfiguration, Parsable):
     """
     Windows Domain Join device configuration.
     """
@@ -21,7 +21,7 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration):
     computer_name_static_prefix: Optional[str] = None
     # Dynamically generated characters used as suffix for computer name. Valid values 3 to 14
     computer_name_suffix_random_char_count: Optional[int] = None
-    # Reference to device configurations required for network connectivity
+    # Reference to device configurations required for network connectivity. This collection can contain a maximum of 2 elements.
     network_access_configurations: Optional[List[DeviceConfiguration]] = None
     # Organizational unit (OU) where the computer account will be created. If this parameter is NULL, the well known computer object container will be used as published in the domain.
     organizational_unit: Optional[str] = None

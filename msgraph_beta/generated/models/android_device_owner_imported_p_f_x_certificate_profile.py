@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
 
 @dataclass
-class AndroidDeviceOwnerImportedPFXCertificateProfile(AndroidDeviceOwnerCertificateProfileBase):
+class AndroidDeviceOwnerImportedPFXCertificateProfile(AndroidDeviceOwnerCertificateProfileBase, Parsable):
     """
     Android Device Owner PFX Import certificate profile
     """

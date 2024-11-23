@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .named_location import NamedLocation
 
 @dataclass
-class CompliantNetworkNamedLocation(NamedLocation):
+class CompliantNetworkNamedLocation(NamedLocation, Parsable):
     # The compliantNetworkType property
     compliant_network_type: Optional[CompliantNetworkType] = None
     # true if this location is explicitly trusted. Optional. Default value is false.

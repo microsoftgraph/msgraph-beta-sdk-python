@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ExternalGroup(Entity):
+class ExternalGroup(Entity, Parsable):
     # The description property
     description: Optional[str] = None
     # The displayName property

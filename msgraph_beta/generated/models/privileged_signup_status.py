@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegedSignupStatus(Entity):
+class PrivilegedSignupStatus(Entity, Parsable):
     # The isRegistered property
     is_registered: Optional[bool] = None
     # The OdataType property

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserExperienceAnalyticsNotAutopilotReadyDevice(Entity):
+class UserExperienceAnalyticsNotAutopilotReadyDevice(Entity, Parsable):
     """
     The user experience analytics Device not windows autopilot ready.
     """

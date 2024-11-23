@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .planner_delta import PlannerDelta
 
 @dataclass
-class PlannerAssignedToTaskBoardTaskFormat(PlannerDelta):
+class PlannerAssignedToTaskBoardTaskFormat(PlannerDelta, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Dictionary of hints used to order tasks on the AssignedTo view of the Task Board. The key of each entry is one of the users the task is assigned to and the value is the order hint. The format of each value is defined as outlined here.

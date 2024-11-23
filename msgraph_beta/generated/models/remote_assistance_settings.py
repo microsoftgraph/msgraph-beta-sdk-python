@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class RemoteAssistanceSettings(Entity):
+class RemoteAssistanceSettings(Entity, Parsable):
     """
     Remote assistance settings for the account
     """

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .forwarding_rule import ForwardingRule
 
 @dataclass
-class InternetAccessForwardingRule(ForwardingRule):
+class InternetAccessForwardingRule(ForwardingRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.internetAccessForwardingRule"
     # The ports property

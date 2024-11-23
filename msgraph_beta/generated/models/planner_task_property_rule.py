@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .planner_property_rule import PlannerPropertyRule
 
 @dataclass
-class PlannerTaskPropertyRule(PlannerPropertyRule):
+class PlannerTaskPropertyRule(PlannerPropertyRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.plannerTaskPropertyRule"
     # Rules and restrictions for applied categories. This value doesn't currently support overrides. Accepted values for the default rule and individual overrides are allow, block.

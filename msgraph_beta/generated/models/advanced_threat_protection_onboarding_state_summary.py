@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AdvancedThreatProtectionOnboardingStateSummary(Entity):
+class AdvancedThreatProtectionOnboardingStateSummary(Entity, Parsable):
     """
     Windows defender advanced threat protection onboarding state summary across the account.
     """

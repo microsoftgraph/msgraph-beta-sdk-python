@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class EmailThreatSubmissionPolicy(Entity):
+class EmailThreatSubmissionPolicy(Entity, Parsable):
     # Specifies the email address of the sender from which email notifications will be sent to end users to inform them whether an email is spam, phish or clean. The default value is null. Optional for creation.
     customized_notification_sender_email_address: Optional[str] = None
     # Specifies the destination where the reported messages from end users land whenever they report something as phish, junk or not junk. The default value is null. Optional for creation.

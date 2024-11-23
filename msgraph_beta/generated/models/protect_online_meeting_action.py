@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .label_action_base import LabelActionBase
 
 @dataclass
-class ProtectOnlineMeetingAction(LabelActionBase):
+class ProtectOnlineMeetingAction(LabelActionBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.protectOnlineMeetingAction"
     # The allowedForwarders property

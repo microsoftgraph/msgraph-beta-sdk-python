@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
 
 @dataclass
-class DeviceManagementConfigurationGroupSettingCollectionInstance(DeviceManagementConfigurationSettingInstance):
+class DeviceManagementConfigurationGroupSettingCollectionInstance(DeviceManagementConfigurationSettingInstance, Parsable):
     """
     Instance of a GroupSettingCollection
     """

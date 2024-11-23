@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .onenote_entity_base_model import OnenoteEntityBaseModel
 
 @dataclass
-class OnenoteEntitySchemaObjectModel(OnenoteEntityBaseModel):
+class OnenoteEntitySchemaObjectModel(OnenoteEntityBaseModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onenoteEntitySchemaObjectModel"
     # The createdDateTime property

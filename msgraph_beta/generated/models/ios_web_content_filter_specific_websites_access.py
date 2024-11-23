@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .ios_web_content_filter_base import IosWebContentFilterBase
 
 @dataclass
-class IosWebContentFilterSpecificWebsitesAccess(IosWebContentFilterBase):
+class IosWebContentFilterSpecificWebsitesAccess(IosWebContentFilterBase, Parsable):
     """
     Represents an iOS Web Content Filter setting type, which installs URL bookmarks into iOS built-in browser. An example scenario is in the classroom where teachers would like the students to navigate websites through browser bookmarks configured on their iOS devices, and no access to other sites.
     """

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsManagementAppHealthSummary(Entity):
+class WindowsManagementAppHealthSummary(Entity, Parsable):
     """
     Contains properties for the health summary of the Windows management app.
     """

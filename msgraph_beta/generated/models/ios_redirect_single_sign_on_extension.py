@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .ios_single_sign_on_extension import IosSingleSignOnExtension
 
 @dataclass
-class IosRedirectSingleSignOnExtension(IosSingleSignOnExtension):
+class IosRedirectSingleSignOnExtension(IosSingleSignOnExtension, Parsable):
     """
     Represents a Redirect-type Single Sign-On extension profile for iOS devices.
     """

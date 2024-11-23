@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from ..entity import Entity
 
 @dataclass
-class AuditEvent(Entity):
+class AuditEvent(Entity, Parsable):
     # A string that uniquely represents the operation that occurred. Required. Read-only.
     activity: Optional[str] = None
     # The time when the activity occurred. Required. Read-only.

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .resource_connection import ResourceConnection
 
 @dataclass
-class OperationalInsightsConnection(ResourceConnection):
+class OperationalInsightsConnection(ResourceConnection, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.operationalInsightsConnection"
     # The name of the Azure resource group that contains the Log Analytics workspace.

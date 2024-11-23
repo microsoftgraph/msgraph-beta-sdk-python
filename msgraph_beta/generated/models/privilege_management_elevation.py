@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class PrivilegeManagementElevation(Entity):
+class PrivilegeManagementElevation(Entity, Parsable):
     """
     The endpoint privilege management elevation result entity representing a single elevation action on a client device.
     """

@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 from .device_compliance_policy import DeviceCompliancePolicy
 
 @dataclass
-class AndroidForWorkCompliancePolicy(DeviceCompliancePolicy):
+class AndroidForWorkCompliancePolicy(DeviceCompliancePolicy, Parsable):
     """
     This class contains compliance settings for Android for Work.
     """

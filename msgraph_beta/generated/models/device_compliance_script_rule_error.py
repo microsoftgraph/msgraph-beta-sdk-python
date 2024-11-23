@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .device_compliance_script_error import DeviceComplianceScriptError
 
 @dataclass
-class DeviceComplianceScriptRuleError(DeviceComplianceScriptError):
+class DeviceComplianceScriptRuleError(DeviceComplianceScriptError, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Setting name for the rule with error.

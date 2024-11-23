@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .file_threat_submission import FileThreatSubmission
 
 @dataclass
-class FileContentThreatSubmission(FileThreatSubmission):
+class FileContentThreatSubmission(FileThreatSubmission, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.fileContentThreatSubmission"
     # It specifies the file content in base 64 format.

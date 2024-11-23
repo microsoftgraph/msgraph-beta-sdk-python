@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WorkplaceSensorDevice(Entity):
+class WorkplaceSensorDevice(Entity, Parsable):
     # The description of the device.
     description: Optional[str] = None
     # The user-defined unique identifier of the device provided at the time of creation.

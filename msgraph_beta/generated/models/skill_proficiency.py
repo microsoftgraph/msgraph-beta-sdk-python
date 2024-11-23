@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .item_facet import ItemFacet
 
 @dataclass
-class SkillProficiency(ItemFacet):
+class SkillProficiency(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.skillProficiency"
     # Contains categories a user has associated with the skill (for example, personal, professional, hobby).

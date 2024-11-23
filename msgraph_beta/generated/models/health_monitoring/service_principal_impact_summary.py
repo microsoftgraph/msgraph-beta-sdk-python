@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .directory_object_impact_summary import DirectoryObjectImpactSummary
 
 @dataclass
-class ServicePrincipalImpactSummary(DirectoryObjectImpactSummary):
+class ServicePrincipalImpactSummary(DirectoryObjectImpactSummary, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.healthMonitoring.servicePrincipalImpactSummary"
     

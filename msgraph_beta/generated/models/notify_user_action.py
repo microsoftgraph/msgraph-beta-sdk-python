@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .dlp_action_info import DlpActionInfo
 
 @dataclass
-class NotifyUserAction(DlpActionInfo):
+class NotifyUserAction(DlpActionInfo, Parsable):
     # The actionLastModifiedDateTime property
     action_last_modified_date_time: Optional[datetime.datetime] = None
     # The emailText property

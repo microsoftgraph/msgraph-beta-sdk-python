@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .authentication_event_handler_result import AuthenticationEventHandlerResult
 
 @dataclass
-class CustomExtensionCalloutResult(AuthenticationEventHandlerResult):
+class CustomExtensionCalloutResult(AuthenticationEventHandlerResult, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customExtensionCalloutResult"
     # When the API transaction was initiated, the date and time information uses ISO 8601 format and is always in UTC time. Example: midnight on Jan 1, 2014, is reported as 2014-01-01T00:00:00Z.

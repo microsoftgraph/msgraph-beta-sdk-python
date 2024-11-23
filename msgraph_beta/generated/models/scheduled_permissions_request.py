@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ScheduledPermissionsRequest(Entity):
+class ScheduledPermissionsRequest(Entity, Parsable):
     # The action property
     action: Optional[UnifiedRoleScheduleRequestActions] = None
     # Defines when the identity created the request.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .cloud_pc_bulk_action import CloudPcBulkAction
 
 @dataclass
-class CloudPcBulkSetReviewStatus(CloudPcBulkAction):
+class CloudPcBulkSetReviewStatus(CloudPcBulkAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkSetReviewStatus"
     # The reviewStatus property

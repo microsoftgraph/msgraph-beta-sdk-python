@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .mobile_app import MobileApp
 
 @dataclass
-class WinGetApp(MobileApp):
+class WinGetApp(MobileApp, Parsable):
     """
     A MobileApp that is based on a referenced application in a WinGet repository.
     """

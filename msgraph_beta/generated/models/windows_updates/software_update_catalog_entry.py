@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .catalog_entry import CatalogEntry
 
 @dataclass
-class SoftwareUpdateCatalogEntry(CatalogEntry):
+class SoftwareUpdateCatalogEntry(CatalogEntry, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.softwareUpdateCatalogEntry"
     

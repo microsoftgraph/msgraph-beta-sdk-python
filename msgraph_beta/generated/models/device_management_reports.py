@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementReports(Entity):
+class DeviceManagementReports(Entity, Parsable):
     """
     Singleton entity that acts as a container for all reports functionality.
     """

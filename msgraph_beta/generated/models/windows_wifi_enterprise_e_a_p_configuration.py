@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from .windows_wifi_configuration import WindowsWifiConfiguration
 
 @dataclass
-class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration):
+class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration, Parsable):
     """
     This entity provides descriptions of the declared methods, properties and relationships exposed by the Wifi CSP.
     """

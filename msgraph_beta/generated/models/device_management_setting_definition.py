@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class DeviceManagementSettingDefinition(Entity):
+class DeviceManagementSettingDefinition(Entity, Parsable):
     """
     Entity representing the defintion for a given setting
     """

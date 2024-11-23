@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class CloudPcExportJob(Entity):
+class CloudPcExportJob(Entity, Parsable):
     # The date and time when the export job expires.
     expiration_date_time: Optional[datetime.datetime] = None
     # The status of the export job. The possible values are: notStarted, inProgress, completed, unknownFutureValue. Read-only.

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class WindowsFeatureUpdateProfileAssignment(Entity):
+class WindowsFeatureUpdateProfileAssignment(Entity, Parsable):
     """
     This entity contains the properties used to assign a windows feature update profile to a group.
     """

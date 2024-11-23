@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class UserExperienceAnalyticsDeviceScope(Entity):
+class UserExperienceAnalyticsDeviceScope(Entity, Parsable):
     """
     The user experience analytics device scope entity contains device scope configuration values use to apply filtering on the endpoint analytics reports.
     """

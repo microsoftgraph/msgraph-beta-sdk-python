@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .password_settings import PasswordSettings
 
 @dataclass
-class SimplePasswordSettings(PasswordSettings):
+class SimplePasswordSettings(PasswordSettings, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.industryData.simplePasswordSettings"
     # The password for the user.

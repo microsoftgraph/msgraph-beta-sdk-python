@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ExactMatchDataStoreBase(Entity):
+class ExactMatchDataStoreBase(Entity, Parsable):
     # The columns property
     columns: Optional[List[ExactDataMatchStoreColumn]] = None
     # The dataLastUpdatedDateTime property

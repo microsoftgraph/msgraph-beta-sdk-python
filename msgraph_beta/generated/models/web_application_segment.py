@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .application_segment import ApplicationSegment
 
 @dataclass
-class WebApplicationSegment(ApplicationSegment):
+class WebApplicationSegment(ApplicationSegment, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.webApplicationSegment"
     # If you're configuring a traffic manager in front of multiple App Proxy application segments, this property contains the user-friendly URL that will point to the traffic manager.

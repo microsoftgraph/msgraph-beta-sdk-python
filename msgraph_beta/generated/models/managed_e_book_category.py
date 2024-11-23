@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class ManagedEBookCategory(Entity):
+class ManagedEBookCategory(Entity, Parsable):
     """
     Contains properties for a single Intune eBook category.
     """

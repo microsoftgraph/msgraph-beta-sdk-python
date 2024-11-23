@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .protection_units_bulk_job_base import ProtectionUnitsBulkJobBase
 
 @dataclass
-class MailboxProtectionUnitsBulkAdditionJob(ProtectionUnitsBulkJobBase):
+class MailboxProtectionUnitsBulkAdditionJob(ProtectionUnitsBulkJobBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.mailboxProtectionUnitsBulkAdditionJob"
     # The list of Exchange directoryObjectIds to add to the Exchange protection policy.

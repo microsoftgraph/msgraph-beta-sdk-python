@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from ...entity import Entity
 
 @dataclass
-class PartnerSecurityAlert(Entity):
+class PartnerSecurityAlert(Entity, Parsable):
     # Represents the activity by a partner and includes details of state transitions, who performed them, and when they occurred.
     activity_logs: Optional[List[ActivityLog]] = None
     # A bag of name-value pairs that contain more details about an alert.

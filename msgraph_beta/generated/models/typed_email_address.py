@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 from .email_address import EmailAddress
 
 @dataclass
-class TypedEmailAddress(EmailAddress):
+class TypedEmailAddress(EmailAddress, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.typedEmailAddress"
     # To specify a custom type of email address, set type to other, and assign otherLabel to a custom string. For example, you may use a specific email address for your volunteer activities. Set type to other, and set otherLabel to a custom string such as Volunteer work.

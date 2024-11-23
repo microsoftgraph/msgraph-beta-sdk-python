@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 from .entity import Entity
 
 @dataclass
-class AccessReviewPolicy(Entity):
+class AccessReviewPolicy(Entity, Parsable):
     # Description for this policy. Read-only.
     description: Optional[str] = None
     # Display name for this policy. Read-only.
