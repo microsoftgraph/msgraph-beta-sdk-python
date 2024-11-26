@@ -15,6 +15,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ......models.content_sharing_session import ContentSharingSession
     from ......models.o_data_errors.o_data_error import ODataError
+    from .png_of_current_slide.png_of_current_slide_request_builder import PngOfCurrentSlideRequestBuilder
 
 class ContentSharingSessionItemRequestBuilder(BaseRequestBuilder):
     """
@@ -137,6 +138,15 @@ class ContentSharingSessionItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ContentSharingSessionItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def png_of_current_slide(self) -> PngOfCurrentSlideRequestBuilder:
+        """
+        Provides operations to manage the media for the cloudCommunications entity.
+        """
+        from .png_of_current_slide.png_of_current_slide_request_builder import PngOfCurrentSlideRequestBuilder
+
+        return PngOfCurrentSlideRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ContentSharingSessionItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

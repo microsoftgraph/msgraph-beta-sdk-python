@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .insight_summary import InsightSummary
     from .mfa_completion_metric import MfaCompletionMetric
+    from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
     from .user_count_metric import UserCountMetric
     from .user_sign_up_metric import UserSignUpMetric
 
@@ -28,6 +29,8 @@ class DailyUserInsightMetricsRoot(Entity, Parsable):
     inactive_users_by_application: Optional[List[DailyInactiveUsersByApplicationMetric]] = None
     # Insights for MFA usage on apps registered in the tenant for a specified period.
     mfa_completions: Optional[List[MfaCompletionMetric]] = None
+    # The mfaTelecomFraud property
+    mfa_telecom_fraud: Optional[List[MfaTelecomFraudMetric]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Total sign-ups on apps registered in the tenant for a specified period.
@@ -60,6 +63,7 @@ class DailyUserInsightMetricsRoot(Entity, Parsable):
         from .entity import Entity
         from .insight_summary import InsightSummary
         from .mfa_completion_metric import MfaCompletionMetric
+        from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
         from .user_count_metric import UserCountMetric
         from .user_sign_up_metric import UserSignUpMetric
 
@@ -70,6 +74,7 @@ class DailyUserInsightMetricsRoot(Entity, Parsable):
         from .entity import Entity
         from .insight_summary import InsightSummary
         from .mfa_completion_metric import MfaCompletionMetric
+        from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
         from .user_count_metric import UserCountMetric
         from .user_sign_up_metric import UserSignUpMetric
 
@@ -79,6 +84,7 @@ class DailyUserInsightMetricsRoot(Entity, Parsable):
             "inactiveUsers": lambda n : setattr(self, 'inactive_users', n.get_collection_of_object_values(DailyInactiveUsersMetric)),
             "inactiveUsersByApplication": lambda n : setattr(self, 'inactive_users_by_application', n.get_collection_of_object_values(DailyInactiveUsersByApplicationMetric)),
             "mfaCompletions": lambda n : setattr(self, 'mfa_completions', n.get_collection_of_object_values(MfaCompletionMetric)),
+            "mfaTelecomFraud": lambda n : setattr(self, 'mfa_telecom_fraud', n.get_collection_of_object_values(MfaTelecomFraudMetric)),
             "signUps": lambda n : setattr(self, 'sign_ups', n.get_collection_of_object_values(UserSignUpMetric)),
             "summary": lambda n : setattr(self, 'summary', n.get_collection_of_object_values(InsightSummary)),
             "userCount": lambda n : setattr(self, 'user_count', n.get_collection_of_object_values(UserCountMetric)),
@@ -103,6 +109,7 @@ class DailyUserInsightMetricsRoot(Entity, Parsable):
         from .entity import Entity
         from .insight_summary import InsightSummary
         from .mfa_completion_metric import MfaCompletionMetric
+        from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
         from .user_count_metric import UserCountMetric
         from .user_sign_up_metric import UserSignUpMetric
 
@@ -111,6 +118,7 @@ class DailyUserInsightMetricsRoot(Entity, Parsable):
         writer.write_collection_of_object_values("inactiveUsers", self.inactive_users)
         writer.write_collection_of_object_values("inactiveUsersByApplication", self.inactive_users_by_application)
         writer.write_collection_of_object_values("mfaCompletions", self.mfa_completions)
+        writer.write_collection_of_object_values("mfaTelecomFraud", self.mfa_telecom_fraud)
         writer.write_collection_of_object_values("signUps", self.sign_ups)
         writer.write_collection_of_object_values("summary", self.summary)
         writer.write_collection_of_object_values("userCount", self.user_count)

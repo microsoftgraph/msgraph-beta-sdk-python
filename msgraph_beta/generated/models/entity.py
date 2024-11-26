@@ -370,6 +370,9 @@ if TYPE_CHECKING:
     from .conversation import Conversation
     from .conversation_member import ConversationMember
     from .conversation_thread import ConversationThread
+    from .copilot_admin import CopilotAdmin
+    from .copilot_admin_limited_mode import CopilotAdminLimitedMode
+    from .copilot_admin_setting import CopilotAdminSetting
     from .cors_configuration_v2 import CorsConfiguration_v2
     from .country_named_location import CountryNamedLocation
     from .credential_usage_summary import CredentialUsageSummary
@@ -1047,6 +1050,8 @@ if TYPE_CHECKING:
     from .message_trace import MessageTrace
     from .mfa_completion_metric import MfaCompletionMetric
     from .mfa_failure import MfaFailure
+    from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
+    from .mfa_user_count_metric import MfaUserCountMetric
     from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
     from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
     from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
@@ -3502,6 +3507,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .conversation_thread import ConversationThread
 
             return ConversationThread()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotAdmin".casefold():
+            from .copilot_admin import CopilotAdmin
+
+            return CopilotAdmin()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotAdminLimitedMode".casefold():
+            from .copilot_admin_limited_mode import CopilotAdminLimitedMode
+
+            return CopilotAdminLimitedMode()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotAdminSetting".casefold():
+            from .copilot_admin_setting import CopilotAdminSetting
+
+            return CopilotAdminSetting()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.corsConfiguration_v2".casefold():
             from .cors_configuration_v2 import CorsConfiguration_v2
 
@@ -6236,6 +6253,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mfa_failure import MfaFailure
 
             return MfaFailure()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mfaTelecomFraudMetric".casefold():
+            from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
+
+            return MfaTelecomFraudMetric()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mfaUserCountMetric".casefold():
+            from .mfa_user_count_metric import MfaUserCountMetric
+
+            return MfaUserCountMetric()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.microsoftAccountUserConversationMember".casefold():
             from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
 
@@ -10478,6 +10503,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .conversation import Conversation
         from .conversation_member import ConversationMember
         from .conversation_thread import ConversationThread
+        from .copilot_admin import CopilotAdmin
+        from .copilot_admin_limited_mode import CopilotAdminLimitedMode
+        from .copilot_admin_setting import CopilotAdminSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .country_named_location import CountryNamedLocation
         from .credential_usage_summary import CredentialUsageSummary
@@ -11155,6 +11183,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .message_trace import MessageTrace
         from .mfa_completion_metric import MfaCompletionMetric
         from .mfa_failure import MfaFailure
+        from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
+        from .mfa_user_count_metric import MfaUserCountMetric
         from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
@@ -12481,6 +12511,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .conversation import Conversation
         from .conversation_member import ConversationMember
         from .conversation_thread import ConversationThread
+        from .copilot_admin import CopilotAdmin
+        from .copilot_admin_limited_mode import CopilotAdminLimitedMode
+        from .copilot_admin_setting import CopilotAdminSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .country_named_location import CountryNamedLocation
         from .credential_usage_summary import CredentialUsageSummary
@@ -13158,6 +13191,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .message_trace import MessageTrace
         from .mfa_completion_metric import MfaCompletionMetric
         from .mfa_failure import MfaFailure
+        from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
+        from .mfa_user_count_metric import MfaUserCountMetric
         from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
@@ -14498,6 +14533,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .conversation import Conversation
         from .conversation_member import ConversationMember
         from .conversation_thread import ConversationThread
+        from .copilot_admin import CopilotAdmin
+        from .copilot_admin_limited_mode import CopilotAdminLimitedMode
+        from .copilot_admin_setting import CopilotAdminSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .country_named_location import CountryNamedLocation
         from .credential_usage_summary import CredentialUsageSummary
@@ -15175,6 +15213,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .message_trace import MessageTrace
         from .mfa_completion_metric import MfaCompletionMetric
         from .mfa_failure import MfaFailure
+        from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
+        from .mfa_user_count_metric import MfaUserCountMetric
         from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod

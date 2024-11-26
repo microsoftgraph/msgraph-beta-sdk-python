@@ -87,9 +87,6 @@ from .directory_object import DirectoryObject
 
 @dataclass
 class User(DirectoryObject, Parsable):
-    """
-    Represents a Microsoft Entra user account.
-    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.user"
     # A freeform text entry field for users to describe themselves. Returned only on $select.

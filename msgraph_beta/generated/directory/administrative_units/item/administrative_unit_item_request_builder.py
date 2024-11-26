@@ -15,6 +15,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.administrative_unit import AdministrativeUnit
     from ....models.o_data_errors.o_data_error import ODataError
+    from .deleted_members.deleted_members_request_builder import DeletedMembersRequestBuilder
     from .extensions.extensions_request_builder import ExtensionsRequestBuilder
     from .members.members_request_builder import MembersRequestBuilder
     from .scoped_role_members.scoped_role_members_request_builder import ScopedRoleMembersRequestBuilder
@@ -139,6 +140,15 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AdministrativeUnitItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def deleted_members(self) -> DeletedMembersRequestBuilder:
+        """
+        Provides operations to manage the deletedMembers property of the microsoft.graph.administrativeUnit entity.
+        """
+        from .deleted_members.deleted_members_request_builder import DeletedMembersRequestBuilder
+
+        return DeletedMembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def extensions(self) -> ExtensionsRequestBuilder:

@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .inactive_users.inactive_users_request_builder import InactiveUsersRequestBuilder
     from .inactive_users_by_application.inactive_users_by_application_request_builder import InactiveUsersByApplicationRequestBuilder
     from .mfa_completions.mfa_completions_request_builder import MfaCompletionsRequestBuilder
+    from .mfa_registered_users.mfa_registered_users_request_builder import MfaRegisteredUsersRequestBuilder
     from .requests.requests_request_builder import RequestsRequestBuilder
     from .sign_ups.sign_ups_request_builder import SignUpsRequestBuilder
     from .summary.summary_request_builder import SummaryRequestBuilder
@@ -189,6 +190,15 @@ class MonthlyRequestBuilder(BaseRequestBuilder):
         from .mfa_completions.mfa_completions_request_builder import MfaCompletionsRequestBuilder
 
         return MfaCompletionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mfa_registered_users(self) -> MfaRegisteredUsersRequestBuilder:
+        """
+        Provides operations to manage the mfaRegisteredUsers property of the microsoft.graph.monthlyUserInsightMetricsRoot entity.
+        """
+        from .mfa_registered_users.mfa_registered_users_request_builder import MfaRegisteredUsersRequestBuilder
+
+        return MfaRegisteredUsersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def requests(self) -> RequestsRequestBuilder:

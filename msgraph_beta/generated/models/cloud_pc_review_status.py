@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
     from .cloud_pc_user_access_level import CloudPcUserAccessLevel
 
 @dataclass
@@ -15,6 +16,8 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
+    # The accessTier property
+    access_tier: Optional[CloudPcBlobAccessTier] = None
     # The resource ID of the Azure Storage account in which the Cloud PC snapshot is being saved.
     azure_storage_account_id: Optional[str] = None
     # The name of the Azure Storage account in which the Cloud PC snapshot is being saved.
@@ -52,11 +55,14 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
         from .cloud_pc_user_access_level import CloudPcUserAccessLevel
 
+        from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
         from .cloud_pc_user_access_level import CloudPcUserAccessLevel
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "accessTier": lambda n : setattr(self, 'access_tier', n.get_enum_value(CloudPcBlobAccessTier)),
             "azureStorageAccountId": lambda n : setattr(self, 'azure_storage_account_id', n.get_str_value()),
             "azureStorageAccountName": lambda n : setattr(self, 'azure_storage_account_name', n.get_str_value()),
             "azureStorageContainerName": lambda n : setattr(self, 'azure_storage_container_name', n.get_str_value()),
@@ -78,8 +84,10 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
         from .cloud_pc_user_access_level import CloudPcUserAccessLevel
 
+        writer.write_enum_value("accessTier", self.access_tier)
         writer.write_str_value("azureStorageAccountId", self.azure_storage_account_id)
         writer.write_str_value("azureStorageAccountName", self.azure_storage_account_name)
         writer.write_str_value("azureStorageContainerName", self.azure_storage_container_name)

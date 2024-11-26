@@ -14,7 +14,7 @@ from .entity import Entity
 class CustomSecurityAttributeExemption(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
-    # The operator property
+    # The possible values are: equals, unknownFutureValue. If equals, the customSecurityAttributeExemption value is compared to match the custom security attribute value for the exemption to be applied. The comparison is case sensitive.
     operator: Optional[CustomSecurityAttributeComparisonOperator] = None
     
     @staticmethod

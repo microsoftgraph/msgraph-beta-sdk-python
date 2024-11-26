@@ -18,6 +18,8 @@ class ProductRevision(Entity, Parsable):
     catalog_entry: Optional[CatalogEntry] = None
     # The display name of the content. Read-only.
     display_name: Optional[str] = None
+    # True indicates that the content is hotpatchable; otherwise, false. For more information, see Deploy a hotpatch quality update using Windows Autopatch. Read-only.
+    is_hotpatch_update: Optional[bool] = None
     # The knowledge base article associated with the product revision.
     knowledge_base_article: Optional[KnowledgeBaseArticle] = None
     # The OdataType property
@@ -60,6 +62,7 @@ class ProductRevision(Entity, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "catalogEntry": lambda n : setattr(self, 'catalog_entry', n.get_object_value(CatalogEntry)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isHotpatchUpdate": lambda n : setattr(self, 'is_hotpatch_update', n.get_bool_value()),
             "knowledgeBaseArticle": lambda n : setattr(self, 'knowledge_base_article', n.get_object_value(KnowledgeBaseArticle)),
             "osBuild": lambda n : setattr(self, 'os_build', n.get_object_value(BuildVersionDetails)),
             "product": lambda n : setattr(self, 'product', n.get_str_value()),
@@ -86,6 +89,7 @@ class ProductRevision(Entity, Parsable):
 
         writer.write_object_value("catalogEntry", self.catalog_entry)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_bool_value("isHotpatchUpdate", self.is_hotpatch_update)
         writer.write_object_value("knowledgeBaseArticle", self.knowledge_base_article)
         writer.write_object_value("osBuild", self.os_build)
         writer.write_str_value("product", self.product)

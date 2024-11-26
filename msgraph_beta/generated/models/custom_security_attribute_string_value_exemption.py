@@ -12,7 +12,7 @@ from .custom_security_attribute_exemption import CustomSecurityAttributeExemptio
 class CustomSecurityAttributeStringValueExemption(CustomSecurityAttributeExemption, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customSecurityAttributeStringValueExemption"
-    # The value property
+    # Value representing custom security attribute value to compare against while evaluating the exemption.
     value: Optional[str] = None
     
     @staticmethod

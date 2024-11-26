@@ -11,6 +11,9 @@ from .entity import Entity
 
 @dataclass
 class EmployeeExperienceUser(Entity, Parsable):
+    """
+    Represents a container that exposes navigation properties for employee experience user resources.
+    """
     # The learningCourseActivities property
     learning_course_activities: Optional[List[LearningCourseActivity]] = None
     # The OdataType property

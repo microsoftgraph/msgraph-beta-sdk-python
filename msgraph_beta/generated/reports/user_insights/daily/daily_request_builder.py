@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .inactive_users.inactive_users_request_builder import InactiveUsersRequestBuilder
     from .inactive_users_by_application.inactive_users_by_application_request_builder import InactiveUsersByApplicationRequestBuilder
     from .mfa_completions.mfa_completions_request_builder import MfaCompletionsRequestBuilder
+    from .mfa_telecom_fraud.mfa_telecom_fraud_request_builder import MfaTelecomFraudRequestBuilder
     from .sign_ups.sign_ups_request_builder import SignUpsRequestBuilder
     from .summary.summary_request_builder import SummaryRequestBuilder
     from .user_count.user_count_request_builder import UserCountRequestBuilder
@@ -189,6 +190,15 @@ class DailyRequestBuilder(BaseRequestBuilder):
         from .mfa_completions.mfa_completions_request_builder import MfaCompletionsRequestBuilder
 
         return MfaCompletionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mfa_telecom_fraud(self) -> MfaTelecomFraudRequestBuilder:
+        """
+        Provides operations to manage the mfaTelecomFraud property of the microsoft.graph.dailyUserInsightMetricsRoot entity.
+        """
+        from .mfa_telecom_fraud.mfa_telecom_fraud_request_builder import MfaTelecomFraudRequestBuilder
+
+        return MfaTelecomFraudRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sign_ups(self) -> SignUpsRequestBuilder:
