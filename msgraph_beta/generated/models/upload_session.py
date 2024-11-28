@@ -5,6 +5,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .engagement_upload_session import EngagementUploadSession
+
 @dataclass
 class UploadSession(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -30,6 +33,15 @@ class UploadSession(AdditionalDataHolder, BackedModel, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementUploadSession".casefold():
+            from .engagement_upload_session import EngagementUploadSession
+
+            return EngagementUploadSession()
         return UploadSession()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -37,6 +49,10 @@ class UploadSession(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .engagement_upload_session import EngagementUploadSession
+
+        from .engagement_upload_session import EngagementUploadSession
+
         fields: Dict[str, Callable[[Any], None]] = {
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "nextExpectedRanges": lambda n : setattr(self, 'next_expected_ranges', n.get_collection_of_primitive_values(str)),
@@ -53,6 +69,8 @@ class UploadSession(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .engagement_upload_session import EngagementUploadSession
+
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_collection_of_primitive_values("nextExpectedRanges", self.next_expected_ranges)
         writer.write_str_value("@odata.type", self.odata_type)

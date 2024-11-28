@@ -12,6 +12,10 @@ from .entity import Entity
 class ContentSharingSession(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
+    # The pngOfCurrentSlide property
+    png_of_current_slide: Optional[bytes] = None
+    # The presenterParticipantId property
+    presenter_participant_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ContentSharingSession:
@@ -34,6 +38,8 @@ class ContentSharingSession(Entity, Parsable):
         from .entity import Entity
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "pngOfCurrentSlide": lambda n : setattr(self, 'png_of_current_slide', n.get_bytes_value()),
+            "presenterParticipantId": lambda n : setattr(self, 'presenter_participant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -50,5 +56,7 @@ class ContentSharingSession(Entity, Parsable):
         super().serialize(writer)
         from .entity import Entity
 
+        writer.write_bytes_value("pngOfCurrentSlide", self.png_of_current_slide)
+        writer.write_str_value("presenterParticipantId", self.presenter_participant_id)
     
 

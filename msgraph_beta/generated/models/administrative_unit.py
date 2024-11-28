@@ -14,6 +14,8 @@ from .directory_object import DirectoryObject
 class AdministrativeUnit(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.administrativeUnit"
+    # The deletedMembers property
+    deleted_members: Optional[List[DirectoryObject]] = None
     # The description property
     description: Optional[str] = None
     # The displayName property
@@ -60,6 +62,7 @@ class AdministrativeUnit(DirectoryObject, Parsable):
         from .scoped_role_membership import ScopedRoleMembership
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "deletedMembers": lambda n : setattr(self, 'deleted_members', n.get_collection_of_object_values(DirectoryObject)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(Extension)),
@@ -88,6 +91,7 @@ class AdministrativeUnit(DirectoryObject, Parsable):
         from .extension import Extension
         from .scoped_role_membership import ScopedRoleMembership
 
+        writer.write_collection_of_object_values("deletedMembers", self.deleted_members)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("extensions", self.extensions)

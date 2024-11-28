@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
     from .cloud_pc_bulk_action import CloudPcBulkAction
 
 from .cloud_pc_bulk_action import CloudPcBulkAction
@@ -12,6 +13,10 @@ from .cloud_pc_bulk_action import CloudPcBulkAction
 class CloudPcBulkCreateSnapshot(CloudPcBulkAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkCreateSnapshot"
+    # The accessTier property
+    access_tier: Optional[CloudPcBlobAccessTier] = None
+    # The storageAccountId property
+    storage_account_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcBulkCreateSnapshot:
@@ -29,11 +34,15 @@ class CloudPcBulkCreateSnapshot(CloudPcBulkAction, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
         from .cloud_pc_bulk_action import CloudPcBulkAction
 
+        from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
         from .cloud_pc_bulk_action import CloudPcBulkAction
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "accessTier": lambda n : setattr(self, 'access_tier', n.get_enum_value(CloudPcBlobAccessTier)),
+            "storageAccountId": lambda n : setattr(self, 'storage_account_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -48,7 +57,10 @@ class CloudPcBulkCreateSnapshot(CloudPcBulkAction, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
         from .cloud_pc_bulk_action import CloudPcBulkAction
 
+        writer.write_enum_value("accessTier", self.access_tier)
+        writer.write_str_value("storageAccountId", self.storage_account_id)
     
 

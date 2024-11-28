@@ -10,6 +10,8 @@ if TYPE_CHECKING:
     from .identity_set import IdentitySet
     from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
     from .public_error import PublicError
+    from .restore_job_type import RestoreJobType
+    from .restore_session_artifact_count import RestoreSessionArtifactCount
     from .restore_session_status import RestoreSessionStatus
     from .share_point_restore_session import SharePointRestoreSession
 
@@ -31,6 +33,10 @@ class RestoreSessionBase(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The restoreJobType property
+    restore_job_type: Optional[RestoreJobType] = None
+    # The restoreSessionArtifactCount property
+    restore_session_artifact_count: Optional[RestoreSessionArtifactCount] = None
     # Status of the restore session. The value is an aggregated status of the restored artifacts. The possible values are: draft, activating, active, completedWithError, completed, unknownFutureValue, failed. You must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: failed.
     status: Optional[RestoreSessionStatus] = None
     
@@ -72,6 +78,8 @@ class RestoreSessionBase(Entity, Parsable):
         from .identity_set import IdentitySet
         from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
         from .public_error import PublicError
+        from .restore_job_type import RestoreJobType
+        from .restore_session_artifact_count import RestoreSessionArtifactCount
         from .restore_session_status import RestoreSessionStatus
         from .share_point_restore_session import SharePointRestoreSession
 
@@ -80,6 +88,8 @@ class RestoreSessionBase(Entity, Parsable):
         from .identity_set import IdentitySet
         from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
         from .public_error import PublicError
+        from .restore_job_type import RestoreJobType
+        from .restore_session_artifact_count import RestoreSessionArtifactCount
         from .restore_session_status import RestoreSessionStatus
         from .share_point_restore_session import SharePointRestoreSession
 
@@ -90,6 +100,8 @@ class RestoreSessionBase(Entity, Parsable):
             "error": lambda n : setattr(self, 'error', n.get_object_value(PublicError)),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "restoreJobType": lambda n : setattr(self, 'restore_job_type', n.get_enum_value(RestoreJobType)),
+            "restoreSessionArtifactCount": lambda n : setattr(self, 'restore_session_artifact_count', n.get_object_value(RestoreSessionArtifactCount)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(RestoreSessionStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -110,6 +122,8 @@ class RestoreSessionBase(Entity, Parsable):
         from .identity_set import IdentitySet
         from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
         from .public_error import PublicError
+        from .restore_job_type import RestoreJobType
+        from .restore_session_artifact_count import RestoreSessionArtifactCount
         from .restore_session_status import RestoreSessionStatus
         from .share_point_restore_session import SharePointRestoreSession
 
@@ -119,6 +133,8 @@ class RestoreSessionBase(Entity, Parsable):
         writer.write_object_value("error", self.error)
         writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_enum_value("restoreJobType", self.restore_job_type)
+        writer.write_object_value("restoreSessionArtifactCount", self.restore_session_artifact_count)
         writer.write_enum_value("status", self.status)
     
 

@@ -30,7 +30,7 @@ class StartRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Start a specific Cloud PC for a user. Currently, only Windows 365 Frontline Cloud PCs are supported.
+        Start a specific Cloud PC. Currently, only Windows 365 Frontline Cloud PCs are supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/cloudpc-start?view=graph-rest-beta
@@ -49,7 +49,7 @@ class StartRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Start a specific Cloud PC for a user. Currently, only Windows 365 Frontline Cloud PCs are supported.
+        Start a specific Cloud PC. Currently, only Windows 365 Frontline Cloud PCs are supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

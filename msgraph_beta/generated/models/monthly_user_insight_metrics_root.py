@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .insight_summary import InsightSummary
     from .mfa_completion_metric import MfaCompletionMetric
+    from .mfa_user_count_metric import MfaUserCountMetric
     from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
     from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
     from .user_requests_metric import UserRequestsMetric
@@ -28,6 +29,8 @@ class MonthlyUserInsightMetricsRoot(Entity, Parsable):
     inactive_users_by_application: Optional[List[MonthlyInactiveUsersByApplicationMetric]] = None
     # Insights for MFA usage on apps registered in the tenant for a specified period.
     mfa_completions: Optional[List[MfaCompletionMetric]] = None
+    # The mfaRegisteredUsers property
+    mfa_registered_users: Optional[List[MfaUserCountMetric]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Insights for all user requests on apps registered in the tenant for a specified period.
@@ -58,6 +61,7 @@ class MonthlyUserInsightMetricsRoot(Entity, Parsable):
         from .entity import Entity
         from .insight_summary import InsightSummary
         from .mfa_completion_metric import MfaCompletionMetric
+        from .mfa_user_count_metric import MfaUserCountMetric
         from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
         from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
         from .user_requests_metric import UserRequestsMetric
@@ -68,6 +72,7 @@ class MonthlyUserInsightMetricsRoot(Entity, Parsable):
         from .entity import Entity
         from .insight_summary import InsightSummary
         from .mfa_completion_metric import MfaCompletionMetric
+        from .mfa_user_count_metric import MfaUserCountMetric
         from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
         from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
         from .user_requests_metric import UserRequestsMetric
@@ -79,6 +84,7 @@ class MonthlyUserInsightMetricsRoot(Entity, Parsable):
             "inactiveUsers": lambda n : setattr(self, 'inactive_users', n.get_collection_of_object_values(MonthlyInactiveUsersMetric)),
             "inactiveUsersByApplication": lambda n : setattr(self, 'inactive_users_by_application', n.get_collection_of_object_values(MonthlyInactiveUsersByApplicationMetric)),
             "mfaCompletions": lambda n : setattr(self, 'mfa_completions', n.get_collection_of_object_values(MfaCompletionMetric)),
+            "mfaRegisteredUsers": lambda n : setattr(self, 'mfa_registered_users', n.get_collection_of_object_values(MfaUserCountMetric)),
             "requests": lambda n : setattr(self, 'requests', n.get_collection_of_object_values(UserRequestsMetric)),
             "signUps": lambda n : setattr(self, 'sign_ups', n.get_collection_of_object_values(UserSignUpMetric)),
             "summary": lambda n : setattr(self, 'summary', n.get_collection_of_object_values(InsightSummary)),
@@ -101,6 +107,7 @@ class MonthlyUserInsightMetricsRoot(Entity, Parsable):
         from .entity import Entity
         from .insight_summary import InsightSummary
         from .mfa_completion_metric import MfaCompletionMetric
+        from .mfa_user_count_metric import MfaUserCountMetric
         from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
         from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
         from .user_requests_metric import UserRequestsMetric
@@ -111,6 +118,7 @@ class MonthlyUserInsightMetricsRoot(Entity, Parsable):
         writer.write_collection_of_object_values("inactiveUsers", self.inactive_users)
         writer.write_collection_of_object_values("inactiveUsersByApplication", self.inactive_users_by_application)
         writer.write_collection_of_object_values("mfaCompletions", self.mfa_completions)
+        writer.write_collection_of_object_values("mfaRegisteredUsers", self.mfa_registered_users)
         writer.write_collection_of_object_values("requests", self.requests)
         writer.write_collection_of_object_values("signUps", self.sign_ups)
         writer.write_collection_of_object_values("summary", self.summary)

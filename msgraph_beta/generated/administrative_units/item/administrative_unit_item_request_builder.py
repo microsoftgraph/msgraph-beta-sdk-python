@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
     from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
+    from .deleted_members.deleted_members_request_builder import DeletedMembersRequestBuilder
     from .extensions.extensions_request_builder import ExtensionsRequestBuilder
     from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
     from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
@@ -165,6 +166,15 @@ class AdministrativeUnitItemRequestBuilder(BaseRequestBuilder):
         from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
 
         return CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def deleted_members(self) -> DeletedMembersRequestBuilder:
+        """
+        Provides operations to manage the deletedMembers property of the microsoft.graph.administrativeUnit entity.
+        """
+        from .deleted_members.deleted_members_request_builder import DeletedMembersRequestBuilder
+
+        return DeletedMembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def extensions(self) -> ExtensionsRequestBuilder:
