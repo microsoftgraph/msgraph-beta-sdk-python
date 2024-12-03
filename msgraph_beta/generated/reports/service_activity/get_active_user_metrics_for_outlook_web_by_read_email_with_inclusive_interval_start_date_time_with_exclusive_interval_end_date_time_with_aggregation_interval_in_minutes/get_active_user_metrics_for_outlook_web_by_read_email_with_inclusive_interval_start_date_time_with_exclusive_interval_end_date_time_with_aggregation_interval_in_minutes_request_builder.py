@@ -37,9 +37,10 @@ class GetActiveUserMetricsForOutlookWebByReadEmailWithInclusiveIntervalStartDate
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetActiveUserMetricsForOutlookWebByReadEmailWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetActiveUserMetricsForOutlookWebByReadEmailWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getActiveUserMetricsForOutlookWebByReadEmail
+        Get all the active usage based on the number of users who successfully read emails using Outlook for the web.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetActiveUserMetricsForOutlookWebByReadEmailWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getactiveusermetricsforoutlookwebbyreademail?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -57,7 +58,7 @@ class GetActiveUserMetricsForOutlookWebByReadEmailWithInclusiveIntervalStartDate
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetActiveUserMetricsForOutlookWebByReadEmailWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getActiveUserMetricsForOutlookWebByReadEmail
+        Get all the active usage based on the number of users who successfully read emails using Outlook for the web.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +80,7 @@ class GetActiveUserMetricsForOutlookWebByReadEmailWithInclusiveIntervalStartDate
     @dataclass
     class GetActiveUserMetricsForOutlookWebByReadEmailWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getActiveUserMetricsForOutlookWebByReadEmail
+        Get all the active usage based on the number of users who successfully read emails using Outlook for the web.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

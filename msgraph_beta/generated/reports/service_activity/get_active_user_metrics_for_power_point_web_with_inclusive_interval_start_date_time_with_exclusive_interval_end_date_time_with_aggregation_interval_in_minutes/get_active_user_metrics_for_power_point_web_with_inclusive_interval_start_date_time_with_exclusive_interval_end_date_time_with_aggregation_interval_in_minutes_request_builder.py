@@ -37,9 +37,10 @@ class GetActiveUserMetricsForPowerPointWebWithInclusiveIntervalStartDateTimeWith
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetActiveUserMetricsForPowerPointWebWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetActiveUserMetricsForPowerPointWebWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getActiveUserMetricsForPowerPointWeb
+        Get all the active usage based on the number of active users who open or save PowerPoint for the web.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetActiveUserMetricsForPowerPointWebWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getactiveusermetricsforpowerpointweb?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -57,7 +58,7 @@ class GetActiveUserMetricsForPowerPointWebWithInclusiveIntervalStartDateTimeWith
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetActiveUserMetricsForPowerPointWebWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getActiveUserMetricsForPowerPointWeb
+        Get all the active usage based on the number of active users who open or save PowerPoint for the web.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +80,7 @@ class GetActiveUserMetricsForPowerPointWebWithInclusiveIntervalStartDateTimeWith
     @dataclass
     class GetActiveUserMetricsForPowerPointWebWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getActiveUserMetricsForPowerPointWeb
+        Get all the active usage based on the number of active users who open or save PowerPoint for the web.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -37,9 +37,10 @@ class GetActiveUserMetricsForWordWebWithInclusiveIntervalStartDateTimeWithExclus
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetActiveUserMetricsForWordWebWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetActiveUserMetricsForWordWebWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getActiveUserMetricsForWordWeb
+        Get all the active usage based on the number of active users who open or save Word for the web.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetActiveUserMetricsForWordWebWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getactiveusermetricsforwordweb?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -57,7 +58,7 @@ class GetActiveUserMetricsForWordWebWithInclusiveIntervalStartDateTimeWithExclus
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetActiveUserMetricsForWordWebWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getActiveUserMetricsForWordWeb
+        Get all the active usage based on the number of active users who open or save Word for the web.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +80,7 @@ class GetActiveUserMetricsForWordWebWithInclusiveIntervalStartDateTimeWithExclus
     @dataclass
     class GetActiveUserMetricsForWordWebWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getActiveUserMetricsForWordWeb
+        Get all the active usage based on the number of active users who open or save Word for the web.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

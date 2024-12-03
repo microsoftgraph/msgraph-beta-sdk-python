@@ -37,9 +37,10 @@ class GetConnectivityMetricsForExchangeWithInclusiveIntervalStartDateTimeWithExc
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetConnectivityMetricsForExchangeWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetConnectivityMetricsForExchangeWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getConnectivityMetricsForExchange
+        Get estimated connectivity metrics based on the percentage of successful synthetic connections between organization devices and Exchange Online that might include issues outside the control of Microsoft.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetConnectivityMetricsForExchangeWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getconnectivitymetricsforexchange?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -57,7 +58,7 @@ class GetConnectivityMetricsForExchangeWithInclusiveIntervalStartDateTimeWithExc
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetConnectivityMetricsForExchangeWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getConnectivityMetricsForExchange
+        Get estimated connectivity metrics based on the percentage of successful synthetic connections between organization devices and Exchange Online that might include issues outside the control of Microsoft.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +80,7 @@ class GetConnectivityMetricsForExchangeWithInclusiveIntervalStartDateTimeWithExc
     @dataclass
     class GetConnectivityMetricsForExchangeWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getConnectivityMetricsForExchange
+        Get estimated connectivity metrics based on the percentage of successful synthetic connections between organization devices and Exchange Online that might include issues outside the control of Microsoft.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

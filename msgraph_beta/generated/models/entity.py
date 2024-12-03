@@ -195,6 +195,7 @@ if TYPE_CHECKING:
     from .authentication_methods_policy import AuthenticationMethodsPolicy
     from .authentication_methods_root import AuthenticationMethodsRoot
     from .authentication_method_configuration import AuthenticationMethodConfiguration
+    from .authentication_method_device import AuthenticationMethodDevice
     from .authentication_method_mode_detail import AuthenticationMethodModeDetail
     from .authentication_method_target import AuthenticationMethodTarget
     from .authentication_strength_policy import AuthenticationStrengthPolicy
@@ -761,7 +762,9 @@ if TYPE_CHECKING:
     from .hardware_configuration_device_state import HardwareConfigurationDeviceState
     from .hardware_configuration_run_summary import HardwareConfigurationRunSummary
     from .hardware_configuration_user_state import HardwareConfigurationUserState
+    from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
     from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
+    from .hardware_oath_token_authentication_method_device import HardwareOathTokenAuthenticationMethodDevice
     from .hardware_password_detail import HardwarePasswordDetail
     from .hardware_password_info import HardwarePasswordInfo
     from .health_monitoring.alert import Alert
@@ -1596,7 +1599,11 @@ if TYPE_CHECKING:
     from .stale_sign_in_alert_incident import StaleSignInAlertIncident
     from .standard_web_part import StandardWebPart
     from .start_hold_music_operation import StartHoldMusicOperation
+    from .start_recording_operation import StartRecordingOperation
+    from .start_transcription_operation import StartTranscriptionOperation
     from .stop_hold_music_operation import StopHoldMusicOperation
+    from .stop_recording_operation import StopRecordingOperation
+    from .stop_transcription_operation import StopTranscriptionOperation
     from .storage_quota_breakdown import StorageQuotaBreakdown
     from .storage_settings import StorageSettings
     from .strong_authentication_detail import StrongAuthenticationDetail
@@ -2791,6 +2798,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .authentication_method_configuration import AuthenticationMethodConfiguration
 
             return AuthenticationMethodConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationMethodDevice".casefold():
+            from .authentication_method_device import AuthenticationMethodDevice
+
+            return AuthenticationMethodDevice()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationMethodModeDetail".casefold():
             from .authentication_method_mode_detail import AuthenticationMethodModeDetail
 
@@ -5089,10 +5100,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .hardware_configuration_user_state import HardwareConfigurationUserState
 
             return HardwareConfigurationUserState()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.hardwareOathAuthenticationMethod".casefold():
+            from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
+
+            return HardwareOathAuthenticationMethod()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.hardwareOathAuthenticationMethodConfiguration".casefold():
             from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
 
             return HardwareOathAuthenticationMethodConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.hardwareOathTokenAuthenticationMethodDevice".casefold():
+            from .hardware_oath_token_authentication_method_device import HardwareOathTokenAuthenticationMethodDevice
+
+            return HardwareOathTokenAuthenticationMethodDevice()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.hardwarePasswordDetail".casefold():
             from .hardware_password_detail import HardwarePasswordDetail
 
@@ -8463,10 +8482,26 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .start_hold_music_operation import StartHoldMusicOperation
 
             return StartHoldMusicOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.startRecordingOperation".casefold():
+            from .start_recording_operation import StartRecordingOperation
+
+            return StartRecordingOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.startTranscriptionOperation".casefold():
+            from .start_transcription_operation import StartTranscriptionOperation
+
+            return StartTranscriptionOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.stopHoldMusicOperation".casefold():
             from .stop_hold_music_operation import StopHoldMusicOperation
 
             return StopHoldMusicOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.stopRecordingOperation".casefold():
+            from .stop_recording_operation import StopRecordingOperation
+
+            return StopRecordingOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.stopTranscriptionOperation".casefold():
+            from .stop_transcription_operation import StopTranscriptionOperation
+
+            return StopTranscriptionOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.storageQuotaBreakdown".casefold():
             from .storage_quota_breakdown import StorageQuotaBreakdown
 
@@ -10328,6 +10363,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .authentication_methods_policy import AuthenticationMethodsPolicy
         from .authentication_methods_root import AuthenticationMethodsRoot
         from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .authentication_method_device import AuthenticationMethodDevice
         from .authentication_method_mode_detail import AuthenticationMethodModeDetail
         from .authentication_method_target import AuthenticationMethodTarget
         from .authentication_strength_policy import AuthenticationStrengthPolicy
@@ -10894,7 +10930,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .hardware_configuration_device_state import HardwareConfigurationDeviceState
         from .hardware_configuration_run_summary import HardwareConfigurationRunSummary
         from .hardware_configuration_user_state import HardwareConfigurationUserState
+        from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
+        from .hardware_oath_token_authentication_method_device import HardwareOathTokenAuthenticationMethodDevice
         from .hardware_password_detail import HardwarePasswordDetail
         from .hardware_password_info import HardwarePasswordInfo
         from .health_monitoring.alert import Alert
@@ -11729,7 +11767,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .stale_sign_in_alert_incident import StaleSignInAlertIncident
         from .standard_web_part import StandardWebPart
         from .start_hold_music_operation import StartHoldMusicOperation
+        from .start_recording_operation import StartRecordingOperation
+        from .start_transcription_operation import StartTranscriptionOperation
         from .stop_hold_music_operation import StopHoldMusicOperation
+        from .stop_recording_operation import StopRecordingOperation
+        from .stop_transcription_operation import StopTranscriptionOperation
         from .storage_quota_breakdown import StorageQuotaBreakdown
         from .storage_settings import StorageSettings
         from .strong_authentication_detail import StrongAuthenticationDetail
@@ -12336,6 +12378,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .authentication_methods_policy import AuthenticationMethodsPolicy
         from .authentication_methods_root import AuthenticationMethodsRoot
         from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .authentication_method_device import AuthenticationMethodDevice
         from .authentication_method_mode_detail import AuthenticationMethodModeDetail
         from .authentication_method_target import AuthenticationMethodTarget
         from .authentication_strength_policy import AuthenticationStrengthPolicy
@@ -12902,7 +12945,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .hardware_configuration_device_state import HardwareConfigurationDeviceState
         from .hardware_configuration_run_summary import HardwareConfigurationRunSummary
         from .hardware_configuration_user_state import HardwareConfigurationUserState
+        from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
+        from .hardware_oath_token_authentication_method_device import HardwareOathTokenAuthenticationMethodDevice
         from .hardware_password_detail import HardwarePasswordDetail
         from .hardware_password_info import HardwarePasswordInfo
         from .health_monitoring.alert import Alert
@@ -13737,7 +13782,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .stale_sign_in_alert_incident import StaleSignInAlertIncident
         from .standard_web_part import StandardWebPart
         from .start_hold_music_operation import StartHoldMusicOperation
+        from .start_recording_operation import StartRecordingOperation
+        from .start_transcription_operation import StartTranscriptionOperation
         from .stop_hold_music_operation import StopHoldMusicOperation
+        from .stop_recording_operation import StopRecordingOperation
+        from .stop_transcription_operation import StopTranscriptionOperation
         from .storage_quota_breakdown import StorageQuotaBreakdown
         from .storage_settings import StorageSettings
         from .strong_authentication_detail import StrongAuthenticationDetail
@@ -14358,6 +14407,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .authentication_methods_policy import AuthenticationMethodsPolicy
         from .authentication_methods_root import AuthenticationMethodsRoot
         from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .authentication_method_device import AuthenticationMethodDevice
         from .authentication_method_mode_detail import AuthenticationMethodModeDetail
         from .authentication_method_target import AuthenticationMethodTarget
         from .authentication_strength_policy import AuthenticationStrengthPolicy
@@ -14924,7 +14974,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .hardware_configuration_device_state import HardwareConfigurationDeviceState
         from .hardware_configuration_run_summary import HardwareConfigurationRunSummary
         from .hardware_configuration_user_state import HardwareConfigurationUserState
+        from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
+        from .hardware_oath_token_authentication_method_device import HardwareOathTokenAuthenticationMethodDevice
         from .hardware_password_detail import HardwarePasswordDetail
         from .hardware_password_info import HardwarePasswordInfo
         from .health_monitoring.alert import Alert
@@ -15759,7 +15811,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .stale_sign_in_alert_incident import StaleSignInAlertIncident
         from .standard_web_part import StandardWebPart
         from .start_hold_music_operation import StartHoldMusicOperation
+        from .start_recording_operation import StartRecordingOperation
+        from .start_transcription_operation import StartTranscriptionOperation
         from .stop_hold_music_operation import StopHoldMusicOperation
+        from .stop_recording_operation import StopRecordingOperation
+        from .stop_transcription_operation import StopTranscriptionOperation
         from .storage_quota_breakdown import StorageQuotaBreakdown
         from .storage_settings import StorageSettings
         from .strong_authentication_detail import StrongAuthenticationDetail

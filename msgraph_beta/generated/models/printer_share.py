@@ -17,7 +17,7 @@ from .printer_base import PrinterBase
 class PrinterShare(PrinterBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.printerShare"
-    # If true, all users and groups will be granted access to this printer share. This supersedes the allow lists defined by the allowedUsers and allowedGroups navigation properties.
+    # If true, all users and groups can access this printer share. This property supersedes the lists of allowed users and groups defined by the allowedUsers and allowedGroups navigation properties.
     allow_all_users: Optional[bool] = None
     # The groups whose users have access to print using the printer.
     allowed_groups: Optional[List[Group]] = None
@@ -27,7 +27,7 @@ class PrinterShare(PrinterBase, Parsable):
     created_date_time: Optional[datetime.datetime] = None
     # The printer that this printer share is related to.
     printer: Optional[Printer] = None
-    # Additional data for a printer share as viewed by the signed-in user.
+    # More data for a printer share as viewed by the signed-in user.
     view_point: Optional[PrinterShareViewpoint] = None
     
     @staticmethod

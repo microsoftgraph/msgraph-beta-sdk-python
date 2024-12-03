@@ -29,6 +29,8 @@ class Channel(Entity, Parsable):
     email: Optional[str] = None
     # Metadata for the location where the channel's files are stored.
     files_folder: Optional[DriveItem] = None
+    # The getAllMembers property
+    get_all_members: Optional[List[ConversationMember]] = None
     # Indicates whether the channel is archived. Read-only.
     is_archived: Optional[bool] = None
     # Indicates whether the channel should be marked as recommended for all members of the team to show in their channel list. Note: All recommended channels automatically show in the channels list for education and frontline worker users. The property can only be set programmatically via the Create team method. The default value is false.
@@ -96,6 +98,7 @@ class Channel(Entity, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "filesFolder": lambda n : setattr(self, 'files_folder', n.get_object_value(DriveItem)),
+            "getAllMembers": lambda n : setattr(self, 'get_all_members', n.get_collection_of_object_values(ConversationMember)),
             "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
             "isFavoriteByDefault": lambda n : setattr(self, 'is_favorite_by_default', n.get_bool_value()),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(ConversationMember)),
@@ -136,6 +139,7 @@ class Channel(Entity, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("email", self.email)
         writer.write_object_value("filesFolder", self.files_folder)
+        writer.write_collection_of_object_values("getAllMembers", self.get_all_members)
         writer.write_bool_value("isArchived", self.is_archived)
         writer.write_bool_value("isFavoriteByDefault", self.is_favorite_by_default)
         writer.write_collection_of_object_values("members", self.members)

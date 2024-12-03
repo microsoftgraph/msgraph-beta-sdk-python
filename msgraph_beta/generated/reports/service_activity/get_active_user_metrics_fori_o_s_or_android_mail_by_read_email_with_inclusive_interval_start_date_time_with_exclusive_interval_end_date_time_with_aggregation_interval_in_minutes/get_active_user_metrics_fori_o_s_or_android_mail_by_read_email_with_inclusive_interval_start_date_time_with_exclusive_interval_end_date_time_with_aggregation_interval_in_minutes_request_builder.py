@@ -37,9 +37,10 @@ class GetActiveUserMetricsForiOSOrAndroidMailByReadEmailWithInclusiveIntervalSta
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetActiveUserMetricsForiOSOrAndroidMailByReadEmailWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetActiveUserMetricsForiOSOrAndroidMailByReadEmailWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getActiveUserMetricsForiOSOrAndroidMailByReadEmail
+        Get all the active usage based on the number of users who successfully read emails using iOS or Android mail apps.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetActiveUserMetricsForiOSOrAndroidMailByReadEmailWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getactiveusermetricsforiosorandroidmailbyreademail?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -57,7 +58,7 @@ class GetActiveUserMetricsForiOSOrAndroidMailByReadEmailWithInclusiveIntervalSta
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetActiveUserMetricsForiOSOrAndroidMailByReadEmailWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getActiveUserMetricsForiOSOrAndroidMailByReadEmail
+        Get all the active usage based on the number of users who successfully read emails using iOS or Android mail apps.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +80,7 @@ class GetActiveUserMetricsForiOSOrAndroidMailByReadEmailWithInclusiveIntervalSta
     @dataclass
     class GetActiveUserMetricsForiOSOrAndroidMailByReadEmailWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getActiveUserMetricsForiOSOrAndroidMailByReadEmail
+        Get all the active usage based on the number of users who successfully read emails using iOS or Android mail apps.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

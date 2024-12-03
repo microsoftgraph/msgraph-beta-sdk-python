@@ -16,7 +16,11 @@ if TYPE_CHECKING:
     from .result_info import ResultInfo
     from .send_dtmf_tones_operation import SendDtmfTonesOperation
     from .start_hold_music_operation import StartHoldMusicOperation
+    from .start_recording_operation import StartRecordingOperation
+    from .start_transcription_operation import StartTranscriptionOperation
     from .stop_hold_music_operation import StopHoldMusicOperation
+    from .stop_recording_operation import StopRecordingOperation
+    from .stop_transcription_operation import StopTranscriptionOperation
     from .subscribe_to_tone_operation import SubscribeToToneOperation
     from .unmute_participant_operation import UnmuteParticipantOperation
     from .update_recording_status_operation import UpdateRecordingStatusOperation
@@ -84,10 +88,26 @@ class CommsOperation(Entity, Parsable):
             from .start_hold_music_operation import StartHoldMusicOperation
 
             return StartHoldMusicOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.startRecordingOperation".casefold():
+            from .start_recording_operation import StartRecordingOperation
+
+            return StartRecordingOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.startTranscriptionOperation".casefold():
+            from .start_transcription_operation import StartTranscriptionOperation
+
+            return StartTranscriptionOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.stopHoldMusicOperation".casefold():
             from .stop_hold_music_operation import StopHoldMusicOperation
 
             return StopHoldMusicOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.stopRecordingOperation".casefold():
+            from .stop_recording_operation import StopRecordingOperation
+
+            return StopRecordingOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.stopTranscriptionOperation".casefold():
+            from .stop_transcription_operation import StopTranscriptionOperation
+
+            return StopTranscriptionOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.subscribeToToneOperation".casefold():
             from .subscribe_to_tone_operation import SubscribeToToneOperation
 
@@ -119,7 +139,11 @@ class CommsOperation(Entity, Parsable):
         from .result_info import ResultInfo
         from .send_dtmf_tones_operation import SendDtmfTonesOperation
         from .start_hold_music_operation import StartHoldMusicOperation
+        from .start_recording_operation import StartRecordingOperation
+        from .start_transcription_operation import StartTranscriptionOperation
         from .stop_hold_music_operation import StopHoldMusicOperation
+        from .stop_recording_operation import StopRecordingOperation
+        from .stop_transcription_operation import StopTranscriptionOperation
         from .subscribe_to_tone_operation import SubscribeToToneOperation
         from .unmute_participant_operation import UnmuteParticipantOperation
         from .update_recording_status_operation import UpdateRecordingStatusOperation
@@ -136,7 +160,11 @@ class CommsOperation(Entity, Parsable):
         from .result_info import ResultInfo
         from .send_dtmf_tones_operation import SendDtmfTonesOperation
         from .start_hold_music_operation import StartHoldMusicOperation
+        from .start_recording_operation import StartRecordingOperation
+        from .start_transcription_operation import StartTranscriptionOperation
         from .stop_hold_music_operation import StopHoldMusicOperation
+        from .stop_recording_operation import StopRecordingOperation
+        from .stop_transcription_operation import StopTranscriptionOperation
         from .subscribe_to_tone_operation import SubscribeToToneOperation
         from .unmute_participant_operation import UnmuteParticipantOperation
         from .update_recording_status_operation import UpdateRecordingStatusOperation
@@ -171,7 +199,11 @@ class CommsOperation(Entity, Parsable):
         from .result_info import ResultInfo
         from .send_dtmf_tones_operation import SendDtmfTonesOperation
         from .start_hold_music_operation import StartHoldMusicOperation
+        from .start_recording_operation import StartRecordingOperation
+        from .start_transcription_operation import StartTranscriptionOperation
         from .stop_hold_music_operation import StopHoldMusicOperation
+        from .stop_recording_operation import StopRecordingOperation
+        from .stop_transcription_operation import StopTranscriptionOperation
         from .subscribe_to_tone_operation import SubscribeToToneOperation
         from .unmute_participant_operation import UnmuteParticipantOperation
         from .update_recording_status_operation import UpdateRecordingStatusOperation
