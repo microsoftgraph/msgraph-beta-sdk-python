@@ -12,11 +12,11 @@ class ServiceActivityPerformanceMetric(AdditionalDataHolder, BackedModel, Parsab
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The intervalStartDateTime property
+    # The start date and time (UTC) of the interval. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     interval_start_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The percentage property
+    # The aggregated performance over the given aggregation interval that starts from the intervalStartDateTime. The performance is calculated at the minute level. The performance at the starting minute of the intervalStartDateTime is included. The performance at the last minute of the given interval is excluded. For example, if intervalStartDateTime is 2023-09-20T18:00:00Z and the aggregation interval is 5 minutes, then performance is aggregated from 2023-09-20T18:00:00Z (inclusive) to 2023-09-20T18:05:00Z (exclusive).
     percentage: Optional[float] = None
     
     @staticmethod

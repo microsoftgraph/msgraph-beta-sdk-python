@@ -15,7 +15,7 @@ class MobileAppTroubleshootingEvent(DeviceManagementTroubleshootingEvent, Parsab
     """
     Event representing a users device application install status.
     """
-    # Indicates collection of App Log Upload Request.
+    # The collection property of AppLogUploadRequest.
     app_log_collection_requests: Optional[List[AppLogCollectionRequest]] = None
     # Intune application identifier.
     application_id: Optional[str] = None

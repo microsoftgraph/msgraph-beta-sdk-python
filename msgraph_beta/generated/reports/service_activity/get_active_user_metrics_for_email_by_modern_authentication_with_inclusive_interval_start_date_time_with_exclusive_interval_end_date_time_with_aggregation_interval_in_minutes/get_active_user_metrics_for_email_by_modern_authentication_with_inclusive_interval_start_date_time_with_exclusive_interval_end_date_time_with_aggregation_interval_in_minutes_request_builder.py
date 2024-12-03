@@ -37,9 +37,10 @@ class GetActiveUserMetricsForEmailByModernAuthenticationWithInclusiveIntervalSta
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetActiveUserMetricsForEmailByModernAuthenticationWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetActiveUserMetricsForEmailByModernAuthenticationWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getActiveUserMetricsForEmailByModernAuthentication
+        Get all the active usage based on the number of users who signed in with modern authentication across all email apps.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetActiveUserMetricsForEmailByModernAuthenticationWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getactiveusermetricsforemailbymodernauthentication?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -57,7 +58,7 @@ class GetActiveUserMetricsForEmailByModernAuthenticationWithInclusiveIntervalSta
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetActiveUserMetricsForEmailByModernAuthenticationWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getActiveUserMetricsForEmailByModernAuthentication
+        Get all the active usage based on the number of users who signed in with modern authentication across all email apps.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +80,7 @@ class GetActiveUserMetricsForEmailByModernAuthenticationWithInclusiveIntervalSta
     @dataclass
     class GetActiveUserMetricsForEmailByModernAuthenticationWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getActiveUserMetricsForEmailByModernAuthentication
+        Get all the active usage based on the number of users who signed in with modern authentication across all email apps.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

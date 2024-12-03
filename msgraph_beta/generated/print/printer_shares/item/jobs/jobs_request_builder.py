@@ -49,7 +49,7 @@ class JobsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[JobsRequestBuilderGetQueryParameters]] = None) -> Optional[PrintJobCollectionResponse]:
         """
-        Get jobs from print
+        The list of jobs that are queued for printing by the printer/printerShare.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrintJobCollectionResponse]
         """
@@ -94,7 +94,7 @@ class JobsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[JobsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get jobs from print
+        The list of jobs that are queued for printing by the printer/printerShare.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -143,7 +143,7 @@ class JobsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class JobsRequestBuilderGetQueryParameters():
         """
-        Get jobs from print
+        The list of jobs that are queued for printing by the printer/printerShare.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

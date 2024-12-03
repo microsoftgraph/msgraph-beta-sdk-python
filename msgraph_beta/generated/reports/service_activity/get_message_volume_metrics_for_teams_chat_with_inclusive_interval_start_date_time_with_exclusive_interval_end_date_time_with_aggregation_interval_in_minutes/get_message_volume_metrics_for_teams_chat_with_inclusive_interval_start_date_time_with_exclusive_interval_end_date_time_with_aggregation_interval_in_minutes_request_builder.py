@@ -37,9 +37,10 @@ class GetMessageVolumeMetricsForTeamsChatWithInclusiveIntervalStartDateTimeWithE
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetMessageVolumeMetricsForTeamsChatWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetMessageVolumeMetricsForTeamsChatWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getMessageVolumeMetricsForTeamsChat
+        Get the number of chat messages successfully sent and delivered in Teams.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetMessageVolumeMetricsForTeamsChatWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getmessagevolumemetricsforteamschat?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -57,7 +58,7 @@ class GetMessageVolumeMetricsForTeamsChatWithInclusiveIntervalStartDateTimeWithE
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetMessageVolumeMetricsForTeamsChatWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getMessageVolumeMetricsForTeamsChat
+        Get the number of chat messages successfully sent and delivered in Teams.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +80,7 @@ class GetMessageVolumeMetricsForTeamsChatWithInclusiveIntervalStartDateTimeWithE
     @dataclass
     class GetMessageVolumeMetricsForTeamsChatWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getMessageVolumeMetricsForTeamsChat
+        Get the number of chat messages successfully sent and delivered in Teams.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

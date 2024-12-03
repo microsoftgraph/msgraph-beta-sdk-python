@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .complete_migration.complete_migration_request_builder import CompleteMigrationRequestBuilder
     from .does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder import DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder
     from .files_folder.files_folder_request_builder import FilesFolderRequestBuilder
+    from .get_all_members.get_all_members_request_builder import GetAllMembersRequestBuilder
     from .members.members_request_builder import MembersRequestBuilder
     from .messages.messages_request_builder import MessagesRequestBuilder
     from .provision_email.provision_email_request_builder import ProvisionEmailRequestBuilder
@@ -183,6 +184,15 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
         from .files_folder.files_folder_request_builder import FilesFolderRequestBuilder
 
         return FilesFolderRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_all_members(self) -> GetAllMembersRequestBuilder:
+        """
+        Provides operations to manage the getAllMembers property of the microsoft.graph.channel entity.
+        """
+        from .get_all_members.get_all_members_request_builder import GetAllMembersRequestBuilder
+
+        return GetAllMembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def members(self) -> MembersRequestBuilder:

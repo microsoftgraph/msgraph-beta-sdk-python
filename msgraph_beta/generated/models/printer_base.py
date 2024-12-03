@@ -17,21 +17,21 @@ from .entity import Entity
 
 @dataclass
 class PrinterBase(Entity, Parsable):
-    # The capabilities property
+    # The capabilities of the printer/printerShare.
     capabilities: Optional[PrinterCapabilities] = None
-    # The defaults property
+    # The default print settings of printer/printerShare.
     defaults: Optional[PrinterDefaults] = None
-    # The displayName property
+    # The name of the printer/printerShare.
     display_name: Optional[str] = None
-    # The isAcceptingJobs property
+    # Specifies whether the printer/printerShare is currently accepting new print jobs.
     is_accepting_jobs: Optional[bool] = None
-    # The jobs property
+    # The list of jobs that are queued for printing by the printer/printerShare.
     jobs: Optional[List[PrintJob]] = None
-    # The location property
+    # The physical and/or organizational location of the printer/printerShare.
     location: Optional[PrinterLocation] = None
-    # The manufacturer property
+    # The manufacturer of the printer/printerShare.
     manufacturer: Optional[str] = None
-    # The model property
+    # The model name of the printer/printerShare.
     model: Optional[str] = None
     # The name property
     name: Optional[str] = None
