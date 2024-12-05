@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .email_authentication_method import EmailAuthenticationMethod
     from .entity import Entity
     from .fido2_authentication_method import Fido2AuthenticationMethod
+    from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
     from .long_running_operation import LongRunningOperation
     from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
     from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
@@ -28,6 +29,8 @@ class Authentication(Entity, Parsable):
     email_methods: Optional[List[EmailAuthenticationMethod]] = None
     # Represents the FIDO2 security keys registered to a user for authentication.
     fido2_methods: Optional[List[Fido2AuthenticationMethod]] = None
+    # The hardwareOathMethods property
+    hardware_oath_methods: Optional[List[HardwareOathAuthenticationMethod]] = None
     # Represents all authentication methods registered to a user.
     methods: Optional[List[AuthenticationMethod]] = None
     # The details of the Microsoft Authenticator app registered to a user for authentication.
@@ -75,6 +78,7 @@ class Authentication(Entity, Parsable):
         from .email_authentication_method import EmailAuthenticationMethod
         from .entity import Entity
         from .fido2_authentication_method import Fido2AuthenticationMethod
+        from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .long_running_operation import LongRunningOperation
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
@@ -91,6 +95,7 @@ class Authentication(Entity, Parsable):
         from .email_authentication_method import EmailAuthenticationMethod
         from .entity import Entity
         from .fido2_authentication_method import Fido2AuthenticationMethod
+        from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .long_running_operation import LongRunningOperation
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
@@ -106,6 +111,7 @@ class Authentication(Entity, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "emailMethods": lambda n : setattr(self, 'email_methods', n.get_collection_of_object_values(EmailAuthenticationMethod)),
             "fido2Methods": lambda n : setattr(self, 'fido2_methods', n.get_collection_of_object_values(Fido2AuthenticationMethod)),
+            "hardwareOathMethods": lambda n : setattr(self, 'hardware_oath_methods', n.get_collection_of_object_values(HardwareOathAuthenticationMethod)),
             "methods": lambda n : setattr(self, 'methods', n.get_collection_of_object_values(AuthenticationMethod)),
             "microsoftAuthenticatorMethods": lambda n : setattr(self, 'microsoft_authenticator_methods', n.get_collection_of_object_values(MicrosoftAuthenticatorAuthenticationMethod)),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(LongRunningOperation)),
@@ -136,6 +142,7 @@ class Authentication(Entity, Parsable):
         from .email_authentication_method import EmailAuthenticationMethod
         from .entity import Entity
         from .fido2_authentication_method import Fido2AuthenticationMethod
+        from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .long_running_operation import LongRunningOperation
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
@@ -150,6 +157,7 @@ class Authentication(Entity, Parsable):
 
         writer.write_collection_of_object_values("emailMethods", self.email_methods)
         writer.write_collection_of_object_values("fido2Methods", self.fido2_methods)
+        writer.write_collection_of_object_values("hardwareOathMethods", self.hardware_oath_methods)
         writer.write_collection_of_object_values("methods", self.methods)
         writer.write_collection_of_object_values("microsoftAuthenticatorMethods", self.microsoft_authenticator_methods)
         writer.write_collection_of_object_values("operations", self.operations)

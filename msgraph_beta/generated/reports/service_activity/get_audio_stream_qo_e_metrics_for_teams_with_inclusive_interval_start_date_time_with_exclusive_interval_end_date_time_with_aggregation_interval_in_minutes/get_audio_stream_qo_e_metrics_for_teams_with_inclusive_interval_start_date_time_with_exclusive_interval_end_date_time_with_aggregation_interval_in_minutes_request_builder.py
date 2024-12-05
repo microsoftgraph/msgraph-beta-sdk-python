@@ -37,9 +37,10 @@ class GetAudioStreamQoEMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExcl
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetAudioStreamQoEMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetAudioStreamQoEMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getAudioStreamQoEMetricsForTeams
+        Get metrics based on the percentage of audio streams for which quality of experience (QoE) telemetry was received by the Teams service.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAudioStreamQoEMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getaudiostreamqoemetricsforteams?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -57,7 +58,7 @@ class GetAudioStreamQoEMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExcl
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetAudioStreamQoEMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getAudioStreamQoEMetricsForTeams
+        Get metrics based on the percentage of audio streams for which quality of experience (QoE) telemetry was received by the Teams service.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +80,7 @@ class GetAudioStreamQoEMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExcl
     @dataclass
     class GetAudioStreamQoEMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getAudioStreamQoEMetricsForTeams
+        Get metrics based on the percentage of audio streams for which quality of experience (QoE) telemetry was received by the Teams service.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

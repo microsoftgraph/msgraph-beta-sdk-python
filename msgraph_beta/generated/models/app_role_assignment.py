@@ -18,13 +18,13 @@ class AppRoleAssignment(Entity, Parsable):
     creation_timestamp: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The display name of the user, group, or service principal that was granted the app role assignment. Read-only. Supports $filter (eq and startswith).
+    # The display name of the user, group, or service principal that was granted the app role assignment. Maximum length is 256 characters. Read-only. Supports $filter (eq and startswith).
     principal_display_name: Optional[str] = None
     # The unique identifier (id) for the user, security group, or service principal being granted the app role. Security groups with dynamic memberships are supported. Required on create.
     principal_id: Optional[UUID] = None
     # The type of the assigned principal. This can either be User, Group, or ServicePrincipal. Read-only.
     principal_type: Optional[str] = None
-    # The display name of the resource app's service principal to which the assignment is made.
+    # The display name of the resource app's service principal to which the assignment is made. Maximum length is 256 characters.
     resource_display_name: Optional[str] = None
     # The unique identifier (id) for the resource service principal for which the assignment is made. Required on create. Supports $filter (eq only).
     resource_id: Optional[UUID] = None

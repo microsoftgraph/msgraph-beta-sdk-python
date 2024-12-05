@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .item.alert_item_request_builder import AlertItemRequestBuilder
     from .microsoft_graph_networkaccess_get_alert_frequencies_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_get_alert_frequencies_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessGetAlertFrequenciesWithStartDateTimeWithEndDateTimeRequestBuilder
     from .microsoft_graph_networkaccess_get_alert_severity_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_get_alert_severity_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessGetAlertSeveritySummariesWithStartDateTimeWithEndDateTimeRequestBuilder
+    from .microsoft_graph_networkaccess_get_alert_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_get_alert_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessGetAlertSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
 
 class AlertsRequestBuilder(BaseRequestBuilder):
     """
@@ -100,6 +101,21 @@ class AlertsRequestBuilder(BaseRequestBuilder):
         from .microsoft_graph_networkaccess_get_alert_severity_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_get_alert_severity_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessGetAlertSeveritySummariesWithStartDateTimeWithEndDateTimeRequestBuilder
 
         return MicrosoftGraphNetworkaccessGetAlertSeveritySummariesWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+    
+    def microsoft_graph_networkaccess_get_alert_summaries_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetAlertSummariesWithStartDateTimeWithEndDateTimeRequestBuilder:
+        """
+        Provides operations to call the getAlertSummaries method.
+        param end_date_time: Usage: endDateTime={endDateTime}
+        param start_date_time: Usage: startDateTime={startDateTime}
+        Returns: MicrosoftGraphNetworkaccessGetAlertSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
+        """
+        if end_date_time is None:
+            raise TypeError("end_date_time cannot be null.")
+        if start_date_time is None:
+            raise TypeError("start_date_time cannot be null.")
+        from .microsoft_graph_networkaccess_get_alert_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_get_alert_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessGetAlertSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
+
+        return MicrosoftGraphNetworkaccessGetAlertSummariesWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
     async def post(self,body: Alert, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Alert]:
         """

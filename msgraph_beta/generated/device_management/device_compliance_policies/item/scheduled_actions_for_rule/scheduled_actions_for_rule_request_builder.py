@@ -48,7 +48,7 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ScheduledActionsForRuleRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceComplianceScheduledActionForRuleCollectionResponse]:
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceComplianceScheduledActionForRuleCollectionResponse]
         """
@@ -91,7 +91,7 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ScheduledActionsForRuleRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +137,7 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ScheduledActionsForRuleRequestBuilderGetQueryParameters():
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

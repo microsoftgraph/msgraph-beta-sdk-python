@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .email_authentication_method import EmailAuthenticationMethod
     from .entity import Entity
     from .fido2_authentication_method import Fido2AuthenticationMethod
+    from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
     from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
     from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
     from .password_authentication_method import PasswordAuthenticationMethod
@@ -48,6 +49,10 @@ class AuthenticationMethod(Entity, Parsable):
             from .fido2_authentication_method import Fido2AuthenticationMethod
 
             return Fido2AuthenticationMethod()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.hardwareOathAuthenticationMethod".casefold():
+            from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
+
+            return HardwareOathAuthenticationMethod()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod".casefold():
             from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
 
@@ -90,6 +95,7 @@ class AuthenticationMethod(Entity, Parsable):
         from .email_authentication_method import EmailAuthenticationMethod
         from .entity import Entity
         from .fido2_authentication_method import Fido2AuthenticationMethod
+        from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
         from .password_authentication_method import PasswordAuthenticationMethod
@@ -102,6 +108,7 @@ class AuthenticationMethod(Entity, Parsable):
         from .email_authentication_method import EmailAuthenticationMethod
         from .entity import Entity
         from .fido2_authentication_method import Fido2AuthenticationMethod
+        from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
         from .password_authentication_method import PasswordAuthenticationMethod
@@ -130,6 +137,7 @@ class AuthenticationMethod(Entity, Parsable):
         from .email_authentication_method import EmailAuthenticationMethod
         from .entity import Entity
         from .fido2_authentication_method import Fido2AuthenticationMethod
+        from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
         from .password_authentication_method import PasswordAuthenticationMethod

@@ -37,9 +37,10 @@ class GetUsageMetricsForTeamsByLaunchWithInclusiveIntervalStartDateTimeWithExclu
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetUsageMetricsForTeamsByLaunchWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetUsageMetricsForTeamsByLaunchWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getUsageMetricsForTeamsByLaunch
+        Get usage metrics based on the number of times users opened the Teams app without error.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetUsageMetricsForTeamsByLaunchWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getusagemetricsforteamsbylaunch?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -57,7 +58,7 @@ class GetUsageMetricsForTeamsByLaunchWithInclusiveIntervalStartDateTimeWithExclu
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetUsageMetricsForTeamsByLaunchWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getUsageMetricsForTeamsByLaunch
+        Get usage metrics based on the number of times users opened the Teams app without error.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +80,7 @@ class GetUsageMetricsForTeamsByLaunchWithInclusiveIntervalStartDateTimeWithExclu
     @dataclass
     class GetUsageMetricsForTeamsByLaunchWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getUsageMetricsForTeamsByLaunch
+        Get usage metrics based on the number of times users opened the Teams app without error.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from .administrative_units.administrative_units_request_builder import AdministrativeUnitsRequestBuilder
     from .attribute_sets.attribute_sets_request_builder import AttributeSetsRequestBuilder
+    from .authentication_method_devices.authentication_method_devices_request_builder import AuthenticationMethodDevicesRequestBuilder
     from .certificate_authorities.certificate_authorities_request_builder import CertificateAuthoritiesRequestBuilder
     from .custom_security_attribute_definitions.custom_security_attribute_definitions_request_builder import CustomSecurityAttributeDefinitionsRequestBuilder
     from .deleted_items.deleted_items_request_builder import DeletedItemsRequestBuilder
@@ -169,6 +170,15 @@ class DirectoryRequestBuilder(BaseRequestBuilder):
         from .attribute_sets.attribute_sets_request_builder import AttributeSetsRequestBuilder
 
         return AttributeSetsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def authentication_method_devices(self) -> AuthenticationMethodDevicesRequestBuilder:
+        """
+        Provides operations to manage the authenticationMethodDevices property of the microsoft.graph.directory entity.
+        """
+        from .authentication_method_devices.authentication_method_devices_request_builder import AuthenticationMethodDevicesRequestBuilder
+
+        return AuthenticationMethodDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def certificate_authorities(self) -> CertificateAuthoritiesRequestBuilder:

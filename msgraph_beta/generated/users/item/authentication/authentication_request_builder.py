@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .email_methods.email_methods_request_builder import EmailMethodsRequestBuilder
     from .fido2_methods.fido2_methods_request_builder import Fido2MethodsRequestBuilder
+    from .hardware_oath_methods.hardware_oath_methods_request_builder import HardwareOathMethodsRequestBuilder
     from .methods.methods_request_builder import MethodsRequestBuilder
     from .microsoft_authenticator_methods.microsoft_authenticator_methods_request_builder import MicrosoftAuthenticatorMethodsRequestBuilder
     from .operations.operations_request_builder import OperationsRequestBuilder
@@ -168,6 +169,15 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         from .fido2_methods.fido2_methods_request_builder import Fido2MethodsRequestBuilder
 
         return Fido2MethodsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def hardware_oath_methods(self) -> HardwareOathMethodsRequestBuilder:
+        """
+        Provides operations to manage the hardwareOathMethods property of the microsoft.graph.authentication entity.
+        """
+        from .hardware_oath_methods.hardware_oath_methods_request_builder import HardwareOathMethodsRequestBuilder
+
+        return HardwareOathMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def methods(self) -> MethodsRequestBuilder:
