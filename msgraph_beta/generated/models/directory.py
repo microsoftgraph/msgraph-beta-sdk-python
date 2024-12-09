@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .administrative_unit import AdministrativeUnit
     from .attribute_set import AttributeSet
+    from .authentication_method_device import AuthenticationMethodDevice
     from .certificate_authority_path import CertificateAuthorityPath
     from .company_subscription import CompanySubscription
     from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
@@ -32,6 +33,8 @@ class Directory(Entity, Parsable):
     administrative_units: Optional[List[AdministrativeUnit]] = None
     # Group of related custom security attribute definitions.
     attribute_sets: Optional[List[AttributeSet]] = None
+    # The authenticationMethodDevices property
+    authentication_method_devices: Optional[AuthenticationMethodDevice] = None
     # The certificateAuthorities property
     certificate_authorities: Optional[CertificateAuthorityPath] = None
     # Schema of a custom security attributes (key-value pairs).
@@ -85,6 +88,7 @@ class Directory(Entity, Parsable):
         """
         from .administrative_unit import AdministrativeUnit
         from .attribute_set import AttributeSet
+        from .authentication_method_device import AuthenticationMethodDevice
         from .certificate_authority_path import CertificateAuthorityPath
         from .company_subscription import CompanySubscription
         from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
@@ -105,6 +109,7 @@ class Directory(Entity, Parsable):
 
         from .administrative_unit import AdministrativeUnit
         from .attribute_set import AttributeSet
+        from .authentication_method_device import AuthenticationMethodDevice
         from .certificate_authority_path import CertificateAuthorityPath
         from .company_subscription import CompanySubscription
         from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
@@ -126,6 +131,7 @@ class Directory(Entity, Parsable):
         fields: Dict[str, Callable[[Any], None]] = {
             "administrativeUnits": lambda n : setattr(self, 'administrative_units', n.get_collection_of_object_values(AdministrativeUnit)),
             "attributeSets": lambda n : setattr(self, 'attribute_sets', n.get_collection_of_object_values(AttributeSet)),
+            "authenticationMethodDevices": lambda n : setattr(self, 'authentication_method_devices', n.get_object_value(AuthenticationMethodDevice)),
             "certificateAuthorities": lambda n : setattr(self, 'certificate_authorities', n.get_object_value(CertificateAuthorityPath)),
             "customSecurityAttributeDefinitions": lambda n : setattr(self, 'custom_security_attribute_definitions', n.get_collection_of_object_values(CustomSecurityAttributeDefinition)),
             "deletedItems": lambda n : setattr(self, 'deleted_items', n.get_collection_of_object_values(DirectoryObject)),
@@ -158,6 +164,7 @@ class Directory(Entity, Parsable):
         super().serialize(writer)
         from .administrative_unit import AdministrativeUnit
         from .attribute_set import AttributeSet
+        from .authentication_method_device import AuthenticationMethodDevice
         from .certificate_authority_path import CertificateAuthorityPath
         from .company_subscription import CompanySubscription
         from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
@@ -178,6 +185,7 @@ class Directory(Entity, Parsable):
 
         writer.write_collection_of_object_values("administrativeUnits", self.administrative_units)
         writer.write_collection_of_object_values("attributeSets", self.attribute_sets)
+        writer.write_object_value("authenticationMethodDevices", self.authentication_method_devices)
         writer.write_object_value("certificateAuthorities", self.certificate_authorities)
         writer.write_collection_of_object_values("customSecurityAttributeDefinitions", self.custom_security_attribute_definitions)
         writer.write_collection_of_object_values("deletedItems", self.deleted_items)

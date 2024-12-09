@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from .audit_logs.audit_logs_request_builder import AuditLogsRequestBuilder
     from .authentication_methods_policy.authentication_methods_policy_request_builder import AuthenticationMethodsPolicyRequestBuilder
     from .authentication_method_configurations.authentication_method_configurations_request_builder import AuthenticationMethodConfigurationsRequestBuilder
+    from .authentication_method_devices.authentication_method_devices_request_builder import AuthenticationMethodDevicesRequestBuilder
     from .booking_businesses.booking_businesses_request_builder import BookingBusinessesRequestBuilder
     from .booking_currencies.booking_currencies_request_builder import BookingCurrenciesRequestBuilder
     from .business_flow_templates.business_flow_templates_request_builder import BusinessFlowTemplatesRequestBuilder
@@ -404,6 +405,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .authentication_method_configurations.authentication_method_configurations_request_builder import AuthenticationMethodConfigurationsRequestBuilder
 
         return AuthenticationMethodConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def authentication_method_devices(self) -> AuthenticationMethodDevicesRequestBuilder:
+        """
+        Provides operations to manage the collection of authenticationMethodDevice entities.
+        """
+        from .authentication_method_devices.authentication_method_devices_request_builder import AuthenticationMethodDevicesRequestBuilder
+
+        return AuthenticationMethodDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def authentication_methods_policy(self) -> AuthenticationMethodsPolicyRequestBuilder:

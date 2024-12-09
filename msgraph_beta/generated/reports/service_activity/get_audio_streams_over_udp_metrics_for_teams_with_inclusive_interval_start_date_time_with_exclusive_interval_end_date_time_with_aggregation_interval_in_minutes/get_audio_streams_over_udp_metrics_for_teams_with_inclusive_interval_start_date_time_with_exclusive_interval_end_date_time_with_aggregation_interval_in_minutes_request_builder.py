@@ -37,9 +37,10 @@ class GetAudioStreamsOverUdpMetricsForTeamsWithInclusiveIntervalStartDateTimeWit
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetAudioStreamsOverUdpMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> Optional[GetAudioStreamsOverUdpMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]:
         """
-        Invoke function getAudioStreamsOverUdpMetricsForTeams
+        Get metrics based on the percentage of audio streams that were established over User Datagram Protocol.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAudioStreamsOverUdpMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getaudiostreamsoverudpmetricsforteams?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -57,7 +58,7 @@ class GetAudioStreamsOverUdpMetricsForTeamsWithInclusiveIntervalStartDateTimeWit
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetAudioStreamsOverUdpMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getAudioStreamsOverUdpMetricsForTeams
+        Get metrics based on the percentage of audio streams that were established over User Datagram Protocol.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -79,7 +80,7 @@ class GetAudioStreamsOverUdpMetricsForTeamsWithInclusiveIntervalStartDateTimeWit
     @dataclass
     class GetAudioStreamsOverUdpMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesRequestBuilderGetQueryParameters():
         """
-        Invoke function getAudioStreamsOverUdpMetricsForTeams
+        Get metrics based on the percentage of audio streams that were established over User Datagram Protocol.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

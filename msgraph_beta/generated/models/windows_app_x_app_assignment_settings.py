@@ -15,7 +15,7 @@ class WindowsAppXAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsAppXAppAssignmentSettings"
-    # When TRUE, indicates that device execution context will be used for the AppX mobile app. When FALSE, indicates that user context will be used for the AppX mobile app. By default, this property is set to FALSE. Once this property has been set to TRUE it cannot be changed.
+    # Whether or not to use device execution context for Windows AppX mobile app.
     use_device_context: Optional[bool] = None
     
     @staticmethod

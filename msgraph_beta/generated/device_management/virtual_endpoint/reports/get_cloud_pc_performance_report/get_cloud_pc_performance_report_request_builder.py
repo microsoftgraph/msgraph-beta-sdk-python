@@ -31,10 +31,11 @@ class GetCloudPcPerformanceReportRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: GetCloudPcPerformanceReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
-        Invoke action getCloudPcPerformanceReport
+        Get a report related to the performance of Cloud PCs.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcreports-getcloudpcperformancereport?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -52,7 +53,7 @@ class GetCloudPcPerformanceReportRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: GetCloudPcPerformanceReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action getCloudPcPerformanceReport
+        Get a report related to the performance of Cloud PCs.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

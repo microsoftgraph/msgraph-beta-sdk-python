@@ -32,7 +32,7 @@ class Payload(Entity, Parsable):
     created_date_time: Optional[datetime.datetime] = None
     # Description of the attack simulation and training campaign payload.
     description: Optional[str] = None
-    # Additional details about the payload.
+    # More details about the payload.
     detail: Optional[PayloadDetail] = None
     # Display name of the attack simulation and training campaign payload. Supports $filter and $orderby.
     display_name: Optional[str] = None
@@ -64,7 +64,7 @@ class Payload(Entity, Parsable):
     source: Optional[SimulationContentSource] = None
     # Simulation content status. Supports $filter and $orderby. Possible values are: unknown, draft, ready, archive, delete, unknownFutureValue.
     status: Optional[SimulationContentStatus] = None
-    # The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue, oAuthConsentGrant. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: oAuthConsentGrant. For more information on the types of social engineering attack techniques, see simulations.
+    # The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue, oAuthConsentGrant, phishTraining. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: oAuthConsentGrant, phishTraining. For more information on the types of social engineering attack techniques, see simulations.
     technique: Optional[SimulationAttackTechnique] = None
     # The theme of a payload. Possible values are: unknown, other, accountActivation, accountVerification, billing, cleanUpMail, controversial, documentReceived, expense, fax, financeReport, incomingMessages, invoice, itemReceived, loginAlert, mailReceived, password, payment, payroll, personalizedOffer, quarantine, remoteWork, reviewMessage, securityUpdate, serviceSuspended, signatureRequired, upgradeMailboxStorage, verifyMailbox, voicemail, advertisement, employeeEngagement, unknownFutureValue.
     theme: Optional[PayloadTheme] = None
