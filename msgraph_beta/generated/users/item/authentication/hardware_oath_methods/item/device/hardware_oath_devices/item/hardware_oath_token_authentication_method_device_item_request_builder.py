@@ -50,7 +50,7 @@ class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilder(BaseRequestB
     
     async def get(self,request_configuration: Optional[RequestConfiguration[HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilderGetQueryParameters]] = None) -> Optional[HardwareOathTokenAuthenticationMethodDevice]:
         """
-        Get hardwareOathDevices from users
+        Exposes the hardware OATH method in the directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareOathTokenAuthenticationMethodDevice]
         """
@@ -104,7 +104,7 @@ class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilder(BaseRequestB
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get hardwareOathDevices from users
+        Exposes the hardware OATH method in the directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +157,7 @@ class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilder(BaseRequestB
     @dataclass
     class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilderGetQueryParameters():
         """
-        Get hardwareOathDevices from users
+        Exposes the hardware OATH method in the directory.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

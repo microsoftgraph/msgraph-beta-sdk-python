@@ -16,23 +16,23 @@ from .authentication_method_device import AuthenticationMethodDevice
 class HardwareOathTokenAuthenticationMethodDevice(AuthenticationMethodDevice, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.hardwareOathTokenAuthenticationMethodDevice"
-    # The assignTo property
+    # Assign the hardware OATH token to a user.
     assign_to: Optional[User] = None
-    # The assignedTo property
+    # User the token is assigned to. Nullable. Supports $filter (eq).
     assigned_to: Optional[Identity] = None
-    # The hashFunction property
+    # Hash function of the hardrware token. The possible values are: hmacsha1 or hmacsha256. Default value is: hmacsha1. Supports $filter (eq).
     hash_function: Optional[HardwareOathTokenHashFunction] = None
-    # The manufacturer property
+    # Manufacturer name of the hardware token. Supports $filter (eq).
     manufacturer: Optional[str] = None
-    # The model property
+    # Model name of the hardware token. Supports $filter (eq).
     model: Optional[str] = None
-    # The secretKey property
+    # Secret key of the specific hardware token, provided by the vendor.
     secret_key: Optional[str] = None
-    # The serialNumber property
+    # Serial number of the specific hardware token, often found on the back of the device. Supports $select and $filter (eq).
     serial_number: Optional[str] = None
-    # The status property
+    # Status of the hardware OATH token.The possible values are: available, assigned, activated, failedActivation. Supports $filter(eq).
     status: Optional[HardwareOathTokenStatus] = None
-    # The timeIntervalInSeconds property
+    # Refresh interval of the 6-digit verification code, in seconds. The possible values are: 30 or 60. Supports $filter (eq).
     time_interval_in_seconds: Optional[int] = None
     
     @staticmethod

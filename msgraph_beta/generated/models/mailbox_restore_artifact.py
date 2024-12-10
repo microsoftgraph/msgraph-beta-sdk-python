@@ -13,11 +13,11 @@ from .restore_artifact_base import RestoreArtifactBase
 class MailboxRestoreArtifact(RestoreArtifactBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
-    # The new restored folder identifier for the user.
+    # The newly restored folder identifier for the user.
     restored_folder_id: Optional[str] = None
     # The new restored folder name.
     restored_folder_name: Optional[str] = None
-    # The restoredItemCount property
+    # The number of items that are being restored in the folder.
     restored_item_count: Optional[int] = None
     
     @staticmethod

@@ -19,13 +19,13 @@ class EducationalActivityDetail(AdditionalDataHolder, BackedModel, Parsable):
     awards: Optional[List[str]] = None
     # Short description of the program provided by the user.
     description: Optional[str] = None
-    # Long-form name of the program that the user has provided.
+    # Long-form name of the program that the user provided.
     display_name: Optional[str] = None
     # Majors and minors associated with the program. (if applicable)
     fields_of_study: Optional[List[str]] = None
-    # The final grade, class, GPA or score.
+    # The final grade, class, GPA, or score.
     grade: Optional[str] = None
-    # Additional notes the user has provided.
+    # More notes the user provided.
     notes: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

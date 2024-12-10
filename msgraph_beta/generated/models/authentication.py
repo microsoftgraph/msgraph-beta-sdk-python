@@ -29,7 +29,7 @@ class Authentication(Entity, Parsable):
     email_methods: Optional[List[EmailAuthenticationMethod]] = None
     # Represents the FIDO2 security keys registered to a user for authentication.
     fido2_methods: Optional[List[Fido2AuthenticationMethod]] = None
-    # The hardwareOathMethods property
+    # The hardware OATH time-based one-time password (TOTP) devices assigned to a user for authentication.
     hardware_oath_methods: Optional[List[HardwareOathAuthenticationMethod]] = None
     # Represents all authentication methods registered to a user.
     methods: Optional[List[AuthenticationMethod]] = None

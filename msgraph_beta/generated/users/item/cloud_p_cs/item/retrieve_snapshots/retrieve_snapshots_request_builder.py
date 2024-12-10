@@ -31,9 +31,10 @@ class RetrieveSnapshotsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RetrieveSnapshotsRequestBuilderGetQueryParameters]] = None) -> Optional[RetrieveSnapshotsGetResponse]:
         """
-        Invoke function retrieveSnapshots
+        List all cloudPcSnapshot resources for a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RetrieveSnapshotsGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-retrievesnapshots?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -51,7 +52,7 @@ class RetrieveSnapshotsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RetrieveSnapshotsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function retrieveSnapshots
+        List all cloudPcSnapshot resources for a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,7 +74,7 @@ class RetrieveSnapshotsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RetrieveSnapshotsRequestBuilderGetQueryParameters():
         """
-        Invoke function retrieveSnapshots
+        List all cloudPcSnapshot resources for a Cloud PC.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -16,19 +16,19 @@ from .entity import Entity
 
 @dataclass
 class Onenote(Entity, Parsable):
-    # The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
+    # The collection of OneNote notebooks that the user or group owns. Read-only. Nullable.
     notebooks: Optional[List[Notebook]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The status of OneNote operations. Getting an operations collection isn't supported, but you can get the status of long-running operations if the Operation-Location header is returned in the response. Read-only. Nullable.
     operations: Optional[List[OnenoteOperation]] = None
-    # The pages in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+    # The pages in all OneNote notebooks that the user or group owns. Read-only. Nullable.
     pages: Optional[List[OnenotePage]] = None
     # The image and other file resources in OneNote pages. Getting a resources collection isn't supported, but you can get the binary content of a specific resource. Read-only. Nullable.
     resources: Optional[List[OnenoteResource]] = None
-    # The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+    # The section groups in all OneNote notebooks that the user or group owns. Read-only. Nullable.
     section_groups: Optional[List[SectionGroup]] = None
-    # The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+    # The sections in all OneNote notebooks that the user or group owns. Read-only. Nullable.
     sections: Optional[List[OnenoteSection]] = None
     
     @staticmethod

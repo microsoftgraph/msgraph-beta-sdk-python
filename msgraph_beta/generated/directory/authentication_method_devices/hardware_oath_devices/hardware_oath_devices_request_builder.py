@@ -48,9 +48,10 @@ class HardwareOathDevicesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[HardwareOathDevicesRequestBuilderGetQueryParameters]] = None) -> Optional[HardwareOathTokenAuthenticationMethodDeviceCollectionResponse]:
         """
-        Get hardwareOathDevices from directory
+        List all hardware OATH tokens in the directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareOathTokenAuthenticationMethodDeviceCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationmethoddevice-list-hardwareoathdevices?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,10 +69,11 @@ class HardwareOathDevicesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: HardwareOathTokenAuthenticationMethodDevice, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[HardwareOathTokenAuthenticationMethodDevice]:
         """
-        Create new navigation property to hardwareOathDevices for directory
+        Create a new hardwareOathTokenAuthenticationMethodDevice object. Supports bulk creation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareOathTokenAuthenticationMethodDevice]
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationmethoddevice-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -91,7 +93,7 @@ class HardwareOathDevicesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[HardwareOathDevicesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get hardwareOathDevices from directory
+        List all hardware OATH tokens in the directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +104,7 @@ class HardwareOathDevicesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: HardwareOathTokenAuthenticationMethodDevice, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to hardwareOathDevices for directory
+        Create a new hardwareOathTokenAuthenticationMethodDevice object. Supports bulk creation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +139,7 @@ class HardwareOathDevicesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HardwareOathDevicesRequestBuilderGetQueryParameters():
         """
-        Get hardwareOathDevices from directory
+        List all hardware OATH tokens in the directory.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

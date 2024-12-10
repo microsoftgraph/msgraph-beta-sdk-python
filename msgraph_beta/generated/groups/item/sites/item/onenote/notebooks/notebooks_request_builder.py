@@ -50,7 +50,7 @@ class NotebooksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[NotebooksRequestBuilderGetQueryParameters]] = None) -> Optional[NotebookCollectionResponse]:
         """
-        The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
+        The collection of OneNote notebooks that the user or group owns. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[NotebookCollectionResponse]
         """
@@ -105,7 +105,7 @@ class NotebooksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[NotebooksRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
+        The collection of OneNote notebooks that the user or group owns. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +160,7 @@ class NotebooksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class NotebooksRequestBuilderGetQueryParameters():
         """
-        The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
+        The collection of OneNote notebooks that the user or group owns. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

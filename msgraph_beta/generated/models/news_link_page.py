@@ -11,11 +11,11 @@ from .base_site_page import BaseSitePage
 
 @dataclass
 class NewsLinkPage(BaseSitePage, Parsable):
-    # The bannerImageWebUrl property
+    # A link to the banner image for the newsLinkPage.
     banner_image_web_url: Optional[str] = None
-    # The newsSharepointIds property
+    # The SharePoint IDs of the referenced news article if it's recognized as a SharePoint resource. Read-only.
     news_sharepoint_ids: Optional[SharepointIds] = None
-    # The newsWebUrl property
+    # The URL of the news article referenced by the newsLinkPage. It can be an external link.
     news_web_url: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

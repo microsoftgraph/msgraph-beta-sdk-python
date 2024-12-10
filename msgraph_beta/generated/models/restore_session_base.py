@@ -33,9 +33,9 @@ class RestoreSessionBase(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The restoreJobType property
+    # Indicates whether the restore session was created normally or by a bulk job.
     restore_job_type: Optional[RestoreJobType] = None
-    # The restoreSessionArtifactCount property
+    # The number of metadata artifacts that belong to this restore session.
     restore_session_artifact_count: Optional[RestoreSessionArtifactCount] = None
     # Status of the restore session. The value is an aggregated status of the restored artifacts. The possible values are: draft, activating, active, completedWithError, completed, unknownFutureValue, failed. You must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: failed.
     status: Optional[RestoreSessionStatus] = None

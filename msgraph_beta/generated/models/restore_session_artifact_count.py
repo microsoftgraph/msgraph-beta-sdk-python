@@ -11,15 +11,15 @@ class RestoreSessionArtifactCount(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The completed property
+    # The number of artifacts whose restoration completed.
     completed: Optional[int] = None
-    # The failed property
+    # The number of artifacts whose restoration failed.
     failed: Optional[int] = None
-    # The inProgress property
+    # The number of artifacts whose restoration is in progress.
     in_progress: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The total property
+    # The number of artifacts present in the restore session.
     total: Optional[int] = None
     
     @staticmethod

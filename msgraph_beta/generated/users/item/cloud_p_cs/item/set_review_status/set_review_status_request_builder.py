@@ -31,10 +31,11 @@ class SetReviewStatusRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: SetReviewStatusPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action setReviewStatus
+        Set the review status of a specific Cloud PC device using the Cloud PC ID. Use this API to set the review status of a Cloud PC to in review if you consider a Cloud PC suspicious. After the review is completed, use this API again to set the Cloud PC back to a normal state.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-setreviewstatus?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -52,7 +53,7 @@ class SetReviewStatusRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: SetReviewStatusPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action setReviewStatus
+        Set the review status of a specific Cloud PC device using the Cloud PC ID. Use this API to set the review status of a Cloud PC to in review if you consider a Cloud PC suspicious. After the review is completed, use this API again to set the Cloud PC back to a normal state.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -52,7 +52,7 @@ class RemoteNetworkItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RemoteNetworkItemRequestBuilderGetQueryParameters]] = None) -> Optional[RemoteNetwork]:
         """
-        Represent locations, such as branches, that are connected to Global Secure Access services through an IPsec tunnel.
+        The locations, such as branches, that are connected to Global Secure Access services through an IPsec tunnel.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RemoteNetwork]
         """
@@ -106,7 +106,7 @@ class RemoteNetworkItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RemoteNetworkItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Represent locations, such as branches, that are connected to Global Secure Access services through an IPsec tunnel.
+        The locations, such as branches, that are connected to Global Secure Access services through an IPsec tunnel.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -177,7 +177,7 @@ class RemoteNetworkItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RemoteNetworkItemRequestBuilderGetQueryParameters():
         """
-        Represent locations, such as branches, that are connected to Global Secure Access services through an IPsec tunnel.
+        The locations, such as branches, that are connected to Global Secure Access services through an IPsec tunnel.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

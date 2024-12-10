@@ -11,9 +11,9 @@ from .entity import Entity
 
 @dataclass
 class AuthenticationMethodDevice(Entity, Parsable):
-    # The displayName property
+    # Optional name given to the hardware OATH device.
     display_name: Optional[str] = None
-    # The hardwareOathDevices property
+    # Exposes the hardware OATH method in the directory.
     hardware_oath_devices: Optional[List[HardwareOathTokenAuthenticationMethodDevice]] = None
     # The OdataType property
     odata_type: Optional[str] = None

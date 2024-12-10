@@ -52,7 +52,7 @@ class HardwareOathAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[HardwareOathAuthenticationMethodItemRequestBuilderGetQueryParameters]] = None) -> Optional[HardwareOathAuthenticationMethod]:
         """
-        Get hardwareOathMethods from users
+        The hardware OATH time-based one-time password (TOTP) devices assigned to a user for authentication.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareOathAuthenticationMethod]
         """
@@ -83,7 +83,7 @@ class HardwareOathAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[HardwareOathAuthenticationMethodItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get hardwareOathMethods from users
+        The hardware OATH time-based one-time password (TOTP) devices assigned to a user for authentication.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +139,7 @@ class HardwareOathAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HardwareOathAuthenticationMethodItemRequestBuilderGetQueryParameters():
         """
-        Get hardwareOathMethods from users
+        The hardware OATH time-based one-time password (TOTP) devices assigned to a user for authentication.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

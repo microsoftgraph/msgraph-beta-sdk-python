@@ -33,7 +33,7 @@ class AssignToRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AssignToRequestBuilderGetQueryParameters]] = None) -> Optional[User]:
         """
-        Get assignTo from directory
+        Assign the hardware OATH token to a user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[User]
         """
@@ -53,7 +53,7 @@ class AssignToRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AssignToRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get assignTo from directory
+        Assign the hardware OATH token to a user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -93,7 +93,7 @@ class AssignToRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AssignToRequestBuilderGetQueryParameters():
         """
-        Get assignTo from directory
+        Assign the hardware OATH token to a user.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
