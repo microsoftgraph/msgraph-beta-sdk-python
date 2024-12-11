@@ -31,10 +31,11 @@ class ActivateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ActivatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action activate
+        Activate a hardware OATH token that is already assigned to a user. A user can self-activate their token or an admin can activate for a user.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/hardwareoathauthenticationmethod-activate?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -52,7 +53,7 @@ class ActivateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ActivatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action activate
+        Activate a hardware OATH token that is already assigned to a user. A user can self-activate their token or an admin can activate for a user.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

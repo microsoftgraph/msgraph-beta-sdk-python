@@ -69,7 +69,7 @@ class OpenShiftsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: OpenShift, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[OpenShift]:
         """
-        Create an instance of an openshift object.
+        Create an instance of an openShift object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OpenShift]
@@ -104,7 +104,7 @@ class OpenShiftsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: OpenShift, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create an instance of an openshift object.
+        Create an instance of an openShift object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

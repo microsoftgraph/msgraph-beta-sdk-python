@@ -15,9 +15,9 @@ from .protection_policy_base import ProtectionPolicyBase
 class OneDriveForBusinessProtectionPolicy(ProtectionPolicyBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.oneDriveForBusinessProtectionPolicy"
-    # Contains the details of the Onedrive for Business protection rule.
+    # Contains the details of the OneDrive for Work or School protection rule.
     drive_inclusion_rules: Optional[List[DriveProtectionRule]] = None
-    # Contains the protection units associated with a  OneDrive for Business protection policy.
+    # Contains the protection units associated with a  OneDrive for Work or School protection policy.
     drive_protection_units: Optional[List[DriveProtectionUnit]] = None
     # The driveProtectionUnitsBulkAdditionJobs property
     drive_protection_units_bulk_addition_jobs: Optional[List[DriveProtectionUnitsBulkAdditionJob]] = None

@@ -33,7 +33,7 @@ class Directory(Entity, Parsable):
     administrative_units: Optional[List[AdministrativeUnit]] = None
     # Group of related custom security attribute definitions.
     attribute_sets: Optional[List[AttributeSet]] = None
-    # The authenticationMethodDevices property
+    # Exposes the hardware OATH method in the directory.
     authentication_method_devices: Optional[AuthenticationMethodDevice] = None
     # The certificateAuthorities property
     certificate_authorities: Optional[CertificateAuthorityPath] = None

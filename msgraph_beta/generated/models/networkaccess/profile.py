@@ -17,13 +17,13 @@ from ..entity import Entity
 class Profile(Entity, Parsable):
     # Description.
     description: Optional[str] = None
-    # Profile last modified time.
+    # The date and time when the profile was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
-    # Profile name.
+    # The name of the profile.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Traffic forwarding policies associated with this profile.
+    # The traffic forwarding policies associated with this profile.
     policies: Optional[List[PolicyLink]] = None
     # The state property
     state: Optional[Status] = None

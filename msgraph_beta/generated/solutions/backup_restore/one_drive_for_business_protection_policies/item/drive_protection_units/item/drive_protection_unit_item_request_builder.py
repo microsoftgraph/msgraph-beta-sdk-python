@@ -31,7 +31,7 @@ class DriveProtectionUnitItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DriveProtectionUnitItemRequestBuilderGetQueryParameters]] = None) -> Optional[DriveProtectionUnit]:
         """
-        Contains the protection units associated with a  OneDrive for Business protection policy.
+        Contains the protection units associated with a  OneDrive for Work or School protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveProtectionUnit]
         """
@@ -51,7 +51,7 @@ class DriveProtectionUnitItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DriveProtectionUnitItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Contains the protection units associated with a  OneDrive for Business protection policy.
+        Contains the protection units associated with a  OneDrive for Work or School protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,7 +73,7 @@ class DriveProtectionUnitItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DriveProtectionUnitItemRequestBuilderGetQueryParameters():
         """
-        Contains the protection units associated with a  OneDrive for Business protection policy.
+        Contains the protection units associated with a  OneDrive for Work or School protection policy.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

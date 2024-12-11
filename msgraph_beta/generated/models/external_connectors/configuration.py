@@ -11,7 +11,7 @@ class Configuration(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # A collection of application IDs for registered Microsoft Entra apps that are allowed to manage the externalConnection and to index content in the externalConnection.
+    # A collection of application IDs for registered Microsoft Entra apps allowed to manage the externalConnection and index content in the externalConnection.
     authorized_app_ids: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

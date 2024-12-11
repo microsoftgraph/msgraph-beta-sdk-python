@@ -32,9 +32,10 @@ class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilder(BaseRequestB
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property hardwareOathDevices for directory
+        Delete a Hardware OATH token. Token needs to be unassigned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationmethoddevice-delete-hardwareoathdevices?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,9 +51,10 @@ class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilder(BaseRequestB
     
     async def get(self,request_configuration: Optional[RequestConfiguration[HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilderGetQueryParameters]] = None) -> Optional[HardwareOathTokenAuthenticationMethodDevice]:
         """
-        Get hardwareOathDevices from directory
+        Read the properties and relationships of a hardwareOathTokenAuthenticationMethodDevice object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareOathTokenAuthenticationMethodDevice]
+        Find more info here: https://learn.microsoft.com/graph/api/hardwareoathtokenauthenticationmethoddevice-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,10 +72,11 @@ class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilder(BaseRequestB
     
     async def patch(self,body: HardwareOathTokenAuthenticationMethodDevice, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[HardwareOathTokenAuthenticationMethodDevice]:
         """
-        Update the navigation property hardwareOathDevices in directory
+        Update the properties of a hardwareOathTokenAuthenticationMethodDevice object. The token needs to unassigned.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareOathTokenAuthenticationMethodDevice]
+        Find more info here: https://learn.microsoft.com/graph/api/hardwareoathtokenauthenticationmethoddevice-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -93,7 +96,7 @@ class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilder(BaseRequestB
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property hardwareOathDevices for directory
+        Delete a Hardware OATH token. Token needs to be unassigned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +107,7 @@ class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilder(BaseRequestB
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get hardwareOathDevices from directory
+        Read the properties and relationships of a hardwareOathTokenAuthenticationMethodDevice object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +118,7 @@ class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilder(BaseRequestB
     
     def to_patch_request_information(self,body: HardwareOathTokenAuthenticationMethodDevice, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property hardwareOathDevices in directory
+        Update the properties of a hardwareOathTokenAuthenticationMethodDevice object. The token needs to unassigned.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -157,7 +160,7 @@ class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilder(BaseRequestB
     @dataclass
     class HardwareOathTokenAuthenticationMethodDeviceItemRequestBuilderGetQueryParameters():
         """
-        Get hardwareOathDevices from directory
+        Read the properties and relationships of a hardwareOathTokenAuthenticationMethodDevice object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

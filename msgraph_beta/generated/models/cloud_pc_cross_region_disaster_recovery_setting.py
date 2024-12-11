@@ -15,11 +15,11 @@ class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedMode
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # True if an end user is allowed to set up cross-region disaster recovery for Cloud PC; otherwise, false. The default value is false.
+    # True if an end user is allowed to set up cross-region disaster recovery for Cloud PC; otherwise, false. The default value is false. This property is deprecated and will no longer be supported effective February 11, 2025. For scenarios where crossRegionDisasterRecoveryEnabled is true, set disasterRecoveryType to crossRegion. For scenarios where crossRegionDisasterRecoveryEnabled is false,  set disasterRecoveryType to notconfigured.
     cross_region_disaster_recovery_enabled: Optional[bool] = None
     # Indicates the network settings of the Cloud PC during a cross-region disaster recovery operation.
     disaster_recovery_network_setting: Optional[CloudPcDisasterRecoveryNetworkSetting] = None
-    # The disasterRecoveryType property
+    # Indicates the type of disaster recovery to perform when a disaster occurs on the user's Cloud PC. The possible values are: notConfigured, crossRegion, premium, unknownFutureValue. The default value is notConfigured.
     disaster_recovery_type: Optional[CloudPcDisasterRecoveryType] = None
     # Indicates whether Windows 365 maintain the cross-region disaster recovery function generated restore points. If true, the Windows 365 stored restore points; false indicates that Windows 365 doesn't generate or keep the restore point from the original Cloud PC. If a disaster occurs, the new Cloud PC can only be provisioned using the initial image. This limitation can result in the loss of some user data on the original Cloud PC. The default value is false.
     maintain_cross_region_restore_point_enabled: Optional[bool] = None

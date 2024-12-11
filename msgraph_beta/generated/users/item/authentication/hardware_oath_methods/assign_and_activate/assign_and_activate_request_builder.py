@@ -31,10 +31,11 @@ class AssignAndActivateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: AssignAndActivatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action assignAndActivate
+        Assign and activate a hardware token at the same time. This operation requires the device ID to activate it.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/hardwareoathauthenticationmethod-assignandactivate?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -52,7 +53,7 @@ class AssignAndActivateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: AssignAndActivatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action assignAndActivate
+        Assign and activate a hardware token at the same time. This operation requires the device ID to activate it.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

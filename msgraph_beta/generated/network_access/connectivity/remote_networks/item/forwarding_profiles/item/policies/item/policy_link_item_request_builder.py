@@ -50,7 +50,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PolicyLinkItemRequestBuilderGetQueryParameters]] = None) -> Optional[PolicyLink]:
         """
-        Traffic forwarding policies associated with this profile.
+        The traffic forwarding policies associated with this profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PolicyLink]
         """
@@ -104,7 +104,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PolicyLinkItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Traffic forwarding policies associated with this profile.
+        The traffic forwarding policies associated with this profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +157,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PolicyLinkItemRequestBuilderGetQueryParameters():
         """
-        Traffic forwarding policies associated with this profile.
+        The traffic forwarding policies associated with this profile.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

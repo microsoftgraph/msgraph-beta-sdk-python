@@ -13,7 +13,7 @@ from .authentication_method import AuthenticationMethod
 class HardwareOathAuthenticationMethod(AuthenticationMethod, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.hardwareOathAuthenticationMethod"
-    # The device property
+    # Exposes the hardware OATH method in the directory.
     device: Optional[HardwareOathTokenAuthenticationMethodDevice] = None
     
     @staticmethod

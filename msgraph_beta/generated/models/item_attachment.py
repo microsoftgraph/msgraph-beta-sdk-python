@@ -13,7 +13,7 @@ from .attachment import Attachment
 class ItemAttachment(Attachment, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.itemAttachment"
-    # The attached contact, message or event. Navigation property.
+    # The attached contact, message, or event. Navigation property.
     item: Optional[OutlookItem] = None
     
     @staticmethod

@@ -50,7 +50,7 @@ class AuthenticationMethodDevicesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AuthenticationMethodDevicesRequestBuilderGetQueryParameters]] = None) -> Optional[AuthenticationMethodDevice]:
         """
-        Get authenticationMethodDevices from directory
+        Exposes the hardware OATH method in the directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AuthenticationMethodDevice]
         """
@@ -104,7 +104,7 @@ class AuthenticationMethodDevicesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AuthenticationMethodDevicesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get authenticationMethodDevices from directory
+        Exposes the hardware OATH method in the directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +157,7 @@ class AuthenticationMethodDevicesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AuthenticationMethodDevicesRequestBuilderGetQueryParameters():
         """
-        Get authenticationMethodDevices from directory
+        Exposes the hardware OATH method in the directory.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
