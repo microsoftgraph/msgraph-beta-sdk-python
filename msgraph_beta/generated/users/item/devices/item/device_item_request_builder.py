@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .....models.device import Device
     from .....models.o_data_errors.o_data_error import ODataError
     from .commands.commands_request_builder import CommandsRequestBuilder
+    from .device_template.device_template_request_builder import DeviceTemplateRequestBuilder
     from .extensions.extensions_request_builder import ExtensionsRequestBuilder
     from .member_of.member_of_request_builder import MemberOfRequestBuilder
     from .registered_owners.registered_owners_request_builder import RegisteredOwnersRequestBuilder
@@ -152,6 +153,15 @@ class DeviceItemRequestBuilder(BaseRequestBuilder):
         from .commands.commands_request_builder import CommandsRequestBuilder
 
         return CommandsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_template(self) -> DeviceTemplateRequestBuilder:
+        """
+        Provides operations to manage the deviceTemplate property of the microsoft.graph.device entity.
+        """
+        from .device_template.device_template_request_builder import DeviceTemplateRequestBuilder
+
+        return DeviceTemplateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def extensions(self) -> ExtensionsRequestBuilder:

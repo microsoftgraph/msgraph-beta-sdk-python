@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .alternative_security_id import AlternativeSecurityId
     from .command import Command
+    from .device_template import DeviceTemplate
     from .directory_object import DirectoryObject
     from .extension import Extension
     from .on_premises_extension_attributes import OnPremisesExtensionAttributes
@@ -20,6 +21,8 @@ class Device(DirectoryObject, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.device"
     # true if the account is enabled; otherwise, false. Default is true.  Supports $filter (eq, ne, not, in). Only callers with at least the Cloud Device Administrator role can set this property.
     account_enabled: Optional[bool] = None
+    # The alternativeNames property
+    alternative_names: Optional[List[str]] = None
     # For internal use only. Not nullable. Supports $filter (eq, not, ge, le).
     alternative_security_ids: Optional[List[AlternativeSecurityId]] = None
     # The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderby.
@@ -36,6 +39,8 @@ class Device(DirectoryObject, Parsable):
     device_metadata: Optional[str] = None
     # Ownership of the device. This property is set by Intune. Possible values are: unknown, company, personal.
     device_ownership: Optional[str] = None
+    # The deviceTemplate property
+    device_template: Optional[List[DeviceTemplate]] = None
     # For internal use only.
     device_version: Optional[int] = None
     # The display name for the device. Maximum length is 256 characters. Required. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
@@ -125,6 +130,7 @@ class Device(DirectoryObject, Parsable):
         """
         from .alternative_security_id import AlternativeSecurityId
         from .command import Command
+        from .device_template import DeviceTemplate
         from .directory_object import DirectoryObject
         from .extension import Extension
         from .on_premises_extension_attributes import OnPremisesExtensionAttributes
@@ -132,6 +138,7 @@ class Device(DirectoryObject, Parsable):
 
         from .alternative_security_id import AlternativeSecurityId
         from .command import Command
+        from .device_template import DeviceTemplate
         from .directory_object import DirectoryObject
         from .extension import Extension
         from .on_premises_extension_attributes import OnPremisesExtensionAttributes
@@ -139,6 +146,7 @@ class Device(DirectoryObject, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "accountEnabled": lambda n : setattr(self, 'account_enabled', n.get_bool_value()),
+            "alternativeNames": lambda n : setattr(self, 'alternative_names', n.get_collection_of_primitive_values(str)),
             "alternativeSecurityIds": lambda n : setattr(self, 'alternative_security_ids', n.get_collection_of_object_values(AlternativeSecurityId)),
             "approximateLastSignInDateTime": lambda n : setattr(self, 'approximate_last_sign_in_date_time', n.get_datetime_value()),
             "commands": lambda n : setattr(self, 'commands', n.get_collection_of_object_values(Command)),
@@ -147,6 +155,7 @@ class Device(DirectoryObject, Parsable):
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceMetadata": lambda n : setattr(self, 'device_metadata', n.get_str_value()),
             "deviceOwnership": lambda n : setattr(self, 'device_ownership', n.get_str_value()),
+            "deviceTemplate": lambda n : setattr(self, 'device_template', n.get_collection_of_object_values(DeviceTemplate)),
             "deviceVersion": lambda n : setattr(self, 'device_version', n.get_int_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "domainName": lambda n : setattr(self, 'domain_name', n.get_str_value()),
@@ -198,12 +207,14 @@ class Device(DirectoryObject, Parsable):
         super().serialize(writer)
         from .alternative_security_id import AlternativeSecurityId
         from .command import Command
+        from .device_template import DeviceTemplate
         from .directory_object import DirectoryObject
         from .extension import Extension
         from .on_premises_extension_attributes import OnPremisesExtensionAttributes
         from .usage_right import UsageRight
 
         writer.write_bool_value("accountEnabled", self.account_enabled)
+        writer.write_collection_of_primitive_values("alternativeNames", self.alternative_names)
         writer.write_collection_of_object_values("alternativeSecurityIds", self.alternative_security_ids)
         writer.write_datetime_value("approximateLastSignInDateTime", self.approximate_last_sign_in_date_time)
         writer.write_collection_of_object_values("commands", self.commands)
@@ -212,6 +223,7 @@ class Device(DirectoryObject, Parsable):
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("deviceMetadata", self.device_metadata)
         writer.write_str_value("deviceOwnership", self.device_ownership)
+        writer.write_collection_of_object_values("deviceTemplate", self.device_template)
         writer.write_int_value("deviceVersion", self.device_version)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("domainName", self.domain_name)

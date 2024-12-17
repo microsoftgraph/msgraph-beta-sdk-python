@@ -36,6 +36,7 @@ if TYPE_CHECKING:
     from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
     from .subscriptions_with_commerce_subscription_id.subscriptions_with_commerce_subscription_id_request_builder import SubscriptionsWithCommerceSubscriptionIdRequestBuilder
     from .subscriptions_with_ocp_subscription_id.subscriptions_with_ocp_subscription_id_request_builder import SubscriptionsWithOcpSubscriptionIdRequestBuilder
+    from .templates.templates_request_builder import TemplatesRequestBuilder
 
 class DirectoryRequestBuilder(BaseRequestBuilder):
     """
@@ -323,6 +324,15 @@ class DirectoryRequestBuilder(BaseRequestBuilder):
         from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
 
         return SubscriptionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def templates(self) -> TemplatesRequestBuilder:
+        """
+        Provides operations to manage the templates property of the microsoft.graph.directory entity.
+        """
+        from .templates.templates_request_builder import TemplatesRequestBuilder
+
+        return TemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DirectoryRequestBuilderGetQueryParameters():

@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
     from .entity import Entity
+    from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
 
 from .entity import Entity
 
@@ -13,6 +14,8 @@ from .entity import Entity
 class CertificateAuthorityPath(Entity, Parsable):
     # Defines the trusted certificate authorities for certificates that can be added to apps and service principals in the tenant.
     certificate_based_application_configurations: Optional[List[CertificateBasedApplicationConfiguration]] = None
+    # The mutualTlsOauthConfigurations property
+    mutual_tls_oauth_configurations: Optional[List[MutualTlsOauthConfiguration]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -34,12 +37,15 @@ class CertificateAuthorityPath(Entity, Parsable):
         """
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
         from .entity import Entity
+        from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
 
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
         from .entity import Entity
+        from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
 
         fields: Dict[str, Callable[[Any], None]] = {
             "certificateBasedApplicationConfigurations": lambda n : setattr(self, 'certificate_based_application_configurations', n.get_collection_of_object_values(CertificateBasedApplicationConfiguration)),
+            "mutualTlsOauthConfigurations": lambda n : setattr(self, 'mutual_tls_oauth_configurations', n.get_collection_of_object_values(MutualTlsOauthConfiguration)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,7 +62,9 @@ class CertificateAuthorityPath(Entity, Parsable):
         super().serialize(writer)
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
         from .entity import Entity
+        from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
 
         writer.write_collection_of_object_values("certificateBasedApplicationConfigurations", self.certificate_based_application_configurations)
+        writer.write_collection_of_object_values("mutualTlsOauthConfigurations", self.mutual_tls_oauth_configurations)
     
 

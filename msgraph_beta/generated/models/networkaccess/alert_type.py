@@ -10,4 +10,6 @@ class AlertType(str, Enum):
     UnknownFutureValue = "unknownFutureValue",
     WebContentBlocked = "webContentBlocked",
     Malware = "malware",
+    PatientZero = "patientZero",
+    Dlp = "dlp",
 

@@ -5,6 +5,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .ai_interaction_mentioned_identity_set import AiInteractionMentionedIdentitySet
     from .approval_identity_set import ApprovalIdentitySet
     from .chat_message_from_identity_set import ChatMessageFromIdentitySet
     from .chat_message_mentioned_identity_set import ChatMessageMentionedIdentitySet
@@ -20,13 +21,13 @@ class IdentitySet(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # Optional. The application associated with this action.
+    # The Identity of the Application. This property is read-only.
     application: Optional[Identity] = None
-    # Optional. The device associated with this action.
+    # The Identity of the Device. This property is read-only.
     device: Optional[Identity] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Optional. The user associated with this action.
+    # The Identity of the User. This property is read-only.
     user: Optional[Identity] = None
     
     @staticmethod
@@ -43,6 +44,10 @@ class IdentitySet(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.aiInteractionMentionedIdentitySet".casefold():
+            from .ai_interaction_mentioned_identity_set import AiInteractionMentionedIdentitySet
+
+            return AiInteractionMentionedIdentitySet()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.approvalIdentitySet".casefold():
             from .approval_identity_set import ApprovalIdentitySet
 
@@ -74,6 +79,7 @@ class IdentitySet(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .ai_interaction_mentioned_identity_set import AiInteractionMentionedIdentitySet
         from .approval_identity_set import ApprovalIdentitySet
         from .chat_message_from_identity_set import ChatMessageFromIdentitySet
         from .chat_message_mentioned_identity_set import ChatMessageMentionedIdentitySet
@@ -82,6 +88,7 @@ class IdentitySet(AdditionalDataHolder, BackedModel, Parsable):
         from .identity import Identity
         from .share_point_identity_set import SharePointIdentitySet
 
+        from .ai_interaction_mentioned_identity_set import AiInteractionMentionedIdentitySet
         from .approval_identity_set import ApprovalIdentitySet
         from .chat_message_from_identity_set import ChatMessageFromIdentitySet
         from .chat_message_mentioned_identity_set import ChatMessageMentionedIdentitySet
@@ -106,6 +113,7 @@ class IdentitySet(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .ai_interaction_mentioned_identity_set import AiInteractionMentionedIdentitySet
         from .approval_identity_set import ApprovalIdentitySet
         from .chat_message_from_identity_set import ChatMessageFromIdentitySet
         from .chat_message_mentioned_identity_set import ChatMessageMentionedIdentitySet

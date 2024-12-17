@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .cases.cases_request_builder import CasesRequestBuilder
     from .cloud_app_security_profiles.cloud_app_security_profiles_request_builder import CloudAppSecurityProfilesRequestBuilder
     from .collaboration.collaboration_request_builder import CollaborationRequestBuilder
+    from .data_discovery.data_discovery_request_builder import DataDiscoveryRequestBuilder
     from .domain_security_profiles.domain_security_profiles_request_builder import DomainSecurityProfilesRequestBuilder
     from .file_security_profiles.file_security_profiles_request_builder import FileSecurityProfilesRequestBuilder
     from .host_security_profiles.host_security_profiles_request_builder import HostSecurityProfilesRequestBuilder
@@ -199,6 +200,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .collaboration.collaboration_request_builder import CollaborationRequestBuilder
 
         return CollaborationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def data_discovery(self) -> DataDiscoveryRequestBuilder:
+        """
+        Provides operations to manage the dataDiscovery property of the microsoft.graph.security entity.
+        """
+        from .data_discovery.data_discovery_request_builder import DataDiscoveryRequestBuilder
+
+        return DataDiscoveryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def domain_security_profiles(self) -> DomainSecurityProfilesRequestBuilder:

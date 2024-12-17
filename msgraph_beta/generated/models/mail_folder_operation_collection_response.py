@@ -4,42 +4,40 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .related_resource import RelatedResource
+    from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+    from .mail_folder_operation import MailFolderOperation
 
-from .related_resource import RelatedResource
+from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class RelatedProcess(RelatedResource, Parsable):
-    # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedProcess"
-    # The isSuspicious property
-    is_suspicious: Optional[bool] = None
-    # The processName property
-    process_name: Optional[str] = None
+class MailFolderOperationCollectionResponse(BaseCollectionPaginationCountResponse, Parsable):
+    # The value property
+    value: Optional[List[MailFolderOperation]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: ParseNode) -> RelatedProcess:
+    def create_from_discriminator_value(parse_node: ParseNode) -> MailFolderOperationCollectionResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
-        Returns: RelatedProcess
+        Returns: MailFolderOperationCollectionResponse
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
-        return RelatedProcess()
+        return MailFolderOperationCollectionResponse()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        from .related_resource import RelatedResource
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .mail_folder_operation import MailFolderOperation
 
-        from .related_resource import RelatedResource
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .mail_folder_operation import MailFolderOperation
 
         fields: Dict[str, Callable[[Any], None]] = {
-            "isSuspicious": lambda n : setattr(self, 'is_suspicious', n.get_bool_value()),
-            "processName": lambda n : setattr(self, 'process_name', n.get_str_value()),
+            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(MailFolderOperation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,9 +52,9 @@ class RelatedProcess(RelatedResource, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .related_resource import RelatedResource
+        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
+        from .mail_folder_operation import MailFolderOperation
 
-        writer.write_bool_value("isSuspicious", self.is_suspicious)
-        writer.write_str_value("processName", self.process_name)
+        writer.write_collection_of_object_values("value", self.value)
     
 

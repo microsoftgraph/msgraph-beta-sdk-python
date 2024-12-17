@@ -6,12 +6,14 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .external_authentication_type import ExternalAuthenticationType
+    from .ip_range import IpRange
     from .key_credential import KeyCredential
     from .on_premises_application_segment import OnPremisesApplicationSegment
     from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
     from .password_credential import PasswordCredential
     from .segment_configuration import SegmentConfiguration
     from .verified_custom_domain_certificates_metadata import VerifiedCustomDomainCertificatesMetadata
+    from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
 @dataclass
 class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
@@ -68,6 +70,12 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     verified_custom_domain_key_credential: Optional[KeyCredential] = None
     # The associated password credential for the custom domain used.
     verified_custom_domain_password_credential: Optional[PasswordCredential] = None
+    # The wafAllowedHeaders property
+    waf_allowed_headers: Optional[WafAllowedHeadersDictionary] = None
+    # The wafIpRanges property
+    waf_ip_ranges: Optional[List[IpRange]] = None
+    # The wafProvider property
+    waf_provider: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OnPremisesPublishing:
@@ -86,20 +94,24 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .external_authentication_type import ExternalAuthenticationType
+        from .ip_range import IpRange
         from .key_credential import KeyCredential
         from .on_premises_application_segment import OnPremisesApplicationSegment
         from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
         from .password_credential import PasswordCredential
         from .segment_configuration import SegmentConfiguration
         from .verified_custom_domain_certificates_metadata import VerifiedCustomDomainCertificatesMetadata
+        from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
         from .external_authentication_type import ExternalAuthenticationType
+        from .ip_range import IpRange
         from .key_credential import KeyCredential
         from .on_premises_application_segment import OnPremisesApplicationSegment
         from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
         from .password_credential import PasswordCredential
         from .segment_configuration import SegmentConfiguration
         from .verified_custom_domain_certificates_metadata import VerifiedCustomDomainCertificatesMetadata
+        from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
         fields: Dict[str, Callable[[Any], None]] = {
             "alternateUrl": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
@@ -126,6 +138,9 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
             "verifiedCustomDomainCertificatesMetadata": lambda n : setattr(self, 'verified_custom_domain_certificates_metadata', n.get_object_value(VerifiedCustomDomainCertificatesMetadata)),
             "verifiedCustomDomainKeyCredential": lambda n : setattr(self, 'verified_custom_domain_key_credential', n.get_object_value(KeyCredential)),
             "verifiedCustomDomainPasswordCredential": lambda n : setattr(self, 'verified_custom_domain_password_credential', n.get_object_value(PasswordCredential)),
+            "wafAllowedHeaders": lambda n : setattr(self, 'waf_allowed_headers', n.get_object_value(WafAllowedHeadersDictionary)),
+            "wafIpRanges": lambda n : setattr(self, 'waf_ip_ranges', n.get_collection_of_object_values(IpRange)),
+            "wafProvider": lambda n : setattr(self, 'waf_provider', n.get_str_value()),
         }
         return fields
     
@@ -138,12 +153,14 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         from .external_authentication_type import ExternalAuthenticationType
+        from .ip_range import IpRange
         from .key_credential import KeyCredential
         from .on_premises_application_segment import OnPremisesApplicationSegment
         from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
         from .password_credential import PasswordCredential
         from .segment_configuration import SegmentConfiguration
         from .verified_custom_domain_certificates_metadata import VerifiedCustomDomainCertificatesMetadata
+        from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
         writer.write_str_value("alternateUrl", self.alternate_url)
         writer.write_str_value("applicationServerTimeout", self.application_server_timeout)
@@ -169,6 +186,9 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("verifiedCustomDomainCertificatesMetadata", self.verified_custom_domain_certificates_metadata)
         writer.write_object_value("verifiedCustomDomainKeyCredential", self.verified_custom_domain_key_credential)
         writer.write_object_value("verifiedCustomDomainPasswordCredential", self.verified_custom_domain_password_credential)
+        writer.write_object_value("wafAllowedHeaders", self.waf_allowed_headers)
+        writer.write_collection_of_object_values("wafIpRanges", self.waf_ip_ranges)
+        writer.write_str_value("wafProvider", self.waf_provider)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -16,7 +16,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # The accessTier property
+    # The blob access tier of the Azure Storage account in which the Cloud PC snapshot is saved with. Possible values are hot, cool, cold, and archive, default value is hot.
     access_tier: Optional[CloudPcBlobAccessTier] = None
     # The resource ID of the Azure Storage account in which the Cloud PC snapshot is being saved.
     azure_storage_account_id: Optional[str] = None

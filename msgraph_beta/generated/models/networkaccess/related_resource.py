@@ -10,7 +10,6 @@ if TYPE_CHECKING:
     from .related_file import RelatedFile
     from .related_file_hash import RelatedFileHash
     from .related_malware import RelatedMalware
-    from .related_process import RelatedProcess
     from .related_remote_network import RelatedRemoteNetwork
     from .related_tenant import RelatedTenant
     from .related_threat_intelligence import RelatedThreatIntelligence
@@ -64,10 +63,6 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
             from .related_malware import RelatedMalware
 
             return RelatedMalware()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedProcess".casefold():
-            from .related_process import RelatedProcess
-
-            return RelatedProcess()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedRemoteNetwork".casefold():
             from .related_remote_network import RelatedRemoteNetwork
 
@@ -112,7 +107,6 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
         from .related_file import RelatedFile
         from .related_file_hash import RelatedFileHash
         from .related_malware import RelatedMalware
-        from .related_process import RelatedProcess
         from .related_remote_network import RelatedRemoteNetwork
         from .related_tenant import RelatedTenant
         from .related_threat_intelligence import RelatedThreatIntelligence
@@ -127,7 +121,6 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
         from .related_file import RelatedFile
         from .related_file_hash import RelatedFileHash
         from .related_malware import RelatedMalware
-        from .related_process import RelatedProcess
         from .related_remote_network import RelatedRemoteNetwork
         from .related_tenant import RelatedTenant
         from .related_threat_intelligence import RelatedThreatIntelligence
@@ -155,7 +148,6 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
         from .related_file import RelatedFile
         from .related_file_hash import RelatedFileHash
         from .related_malware import RelatedMalware
-        from .related_process import RelatedProcess
         from .related_remote_network import RelatedRemoteNetwork
         from .related_tenant import RelatedTenant
         from .related_threat_intelligence import RelatedThreatIntelligence

@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
     from .recommendation import Recommendation
     from .shared_email_domain import SharedEmailDomain
+    from .template import Template
 
 from .entity import Entity
 
@@ -69,6 +70,8 @@ class Directory(Entity, Parsable):
     shared_email_domains: Optional[List[SharedEmailDomain]] = None
     # List of commercial subscriptions that an organization has.
     subscriptions: Optional[List[CompanySubscription]] = None
+    # The templates property
+    templates: Optional[Template] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Directory:
@@ -106,6 +109,7 @@ class Directory(Entity, Parsable):
         from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .recommendation import Recommendation
         from .shared_email_domain import SharedEmailDomain
+        from .template import Template
 
         from .administrative_unit import AdministrativeUnit
         from .attribute_set import AttributeSet
@@ -127,6 +131,7 @@ class Directory(Entity, Parsable):
         from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .recommendation import Recommendation
         from .shared_email_domain import SharedEmailDomain
+        from .template import Template
 
         fields: Dict[str, Callable[[Any], None]] = {
             "administrativeUnits": lambda n : setattr(self, 'administrative_units', n.get_collection_of_object_values(AdministrativeUnit)),
@@ -148,6 +153,7 @@ class Directory(Entity, Parsable):
             "recommendations": lambda n : setattr(self, 'recommendations', n.get_collection_of_object_values(Recommendation)),
             "sharedEmailDomains": lambda n : setattr(self, 'shared_email_domains', n.get_collection_of_object_values(SharedEmailDomain)),
             "subscriptions": lambda n : setattr(self, 'subscriptions', n.get_collection_of_object_values(CompanySubscription)),
+            "templates": lambda n : setattr(self, 'templates', n.get_object_value(Template)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -182,6 +188,7 @@ class Directory(Entity, Parsable):
         from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .recommendation import Recommendation
         from .shared_email_domain import SharedEmailDomain
+        from .template import Template
 
         writer.write_collection_of_object_values("administrativeUnits", self.administrative_units)
         writer.write_collection_of_object_values("attributeSets", self.attribute_sets)
@@ -202,5 +209,6 @@ class Directory(Entity, Parsable):
         writer.write_collection_of_object_values("recommendations", self.recommendations)
         writer.write_collection_of_object_values("sharedEmailDomains", self.shared_email_domains)
         writer.write_collection_of_object_values("subscriptions", self.subscriptions)
+        writer.write_object_value("templates", self.templates)
     
 

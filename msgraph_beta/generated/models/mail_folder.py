@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .mail_folder_operation import MailFolderOperation
     from .mail_search_folder import MailSearchFolder
     from .message import Message
     from .message_rule import MessageRule
@@ -32,6 +33,8 @@ class MailFolder(Entity, Parsable):
     multi_value_extended_properties: Optional[List[MultiValueLegacyExtendedProperty]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The operations property
+    operations: Optional[List[MailFolderOperation]] = None
     # The unique identifier for the mailFolder's parent mailFolder.
     parent_folder_id: Optional[str] = None
     # The collection of single-value extended properties defined for the mailFolder. Read-only. Nullable.
@@ -71,6 +74,7 @@ class MailFolder(Entity, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .mail_folder_operation import MailFolderOperation
         from .mail_search_folder import MailSearchFolder
         from .message import Message
         from .message_rule import MessageRule
@@ -79,6 +83,7 @@ class MailFolder(Entity, Parsable):
         from .user_configuration import UserConfiguration
 
         from .entity import Entity
+        from .mail_folder_operation import MailFolderOperation
         from .mail_search_folder import MailSearchFolder
         from .message import Message
         from .message_rule import MessageRule
@@ -94,6 +99,7 @@ class MailFolder(Entity, Parsable):
             "messageRules": lambda n : setattr(self, 'message_rules', n.get_collection_of_object_values(MessageRule)),
             "messages": lambda n : setattr(self, 'messages', n.get_collection_of_object_values(Message)),
             "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(MultiValueLegacyExtendedProperty)),
+            "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(MailFolderOperation)),
             "parentFolderId": lambda n : setattr(self, 'parent_folder_id', n.get_str_value()),
             "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(SingleValueLegacyExtendedProperty)),
             "totalItemCount": lambda n : setattr(self, 'total_item_count', n.get_int_value()),
@@ -115,6 +121,7 @@ class MailFolder(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         from .entity import Entity
+        from .mail_folder_operation import MailFolderOperation
         from .mail_search_folder import MailSearchFolder
         from .message import Message
         from .message_rule import MessageRule
@@ -129,6 +136,7 @@ class MailFolder(Entity, Parsable):
         writer.write_collection_of_object_values("messageRules", self.message_rules)
         writer.write_collection_of_object_values("messages", self.messages)
         writer.write_collection_of_object_values("multiValueExtendedProperties", self.multi_value_extended_properties)
+        writer.write_collection_of_object_values("operations", self.operations)
         writer.write_str_value("parentFolderId", self.parent_folder_id)
         writer.write_collection_of_object_values("singleValueExtendedProperties", self.single_value_extended_properties)
         writer.write_int_value("totalItemCount", self.total_item_count)
