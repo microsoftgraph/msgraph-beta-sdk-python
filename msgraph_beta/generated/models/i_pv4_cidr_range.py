@@ -10,6 +10,9 @@ from .ip_range import IpRange
 
 @dataclass
 class IPv4CidrRange(IpRange, Parsable):
+    """
+    IP range base class for representing IPV4, IPV6 address ranges
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.iPv4CidrRange"
     # IPv4 address in CIDR notation. Not nullable.

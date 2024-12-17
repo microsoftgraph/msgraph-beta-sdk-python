@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .contract import Contract
     from .cross_tenant_access_policy import CrossTenantAccessPolicy
     from .device import Device
+    from .device_template import DeviceTemplate
     from .directory_object_partner_reference import DirectoryObjectPartnerReference
     from .directory_role import DirectoryRole
     from .directory_role_template import DirectoryRoleTemplate
@@ -32,6 +33,7 @@ if TYPE_CHECKING:
     from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
     from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
     from .multi_tenant_organization_member import MultiTenantOrganizationMember
+    from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
     from .organization import Organization
     from .org_contact import OrgContact
     from .pending_external_user_profile import PendingExternalUserProfile
@@ -47,6 +49,7 @@ if TYPE_CHECKING:
     from .token_issuance_policy import TokenIssuancePolicy
     from .token_lifetime_policy import TokenLifetimePolicy
     from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
+    from .trusted_certificate_authority_base import TrustedCertificateAuthorityBase
     from .user import User
 
 from .entity import Entity
@@ -120,6 +123,10 @@ class DirectoryObject(Entity, Parsable):
             from .device import Device
 
             return Device()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceTemplate".casefold():
+            from .device_template import DeviceTemplate
+
+            return DeviceTemplate()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.directoryObjectPartnerReference".casefold():
             from .directory_object_partner_reference import DirectoryObjectPartnerReference
 
@@ -176,6 +183,10 @@ class DirectoryObject(Entity, Parsable):
             from .multi_tenant_organization_member import MultiTenantOrganizationMember
 
             return MultiTenantOrganizationMember()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mutualTlsOauthConfiguration".casefold():
+            from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
+
+            return MutualTlsOauthConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.organization".casefold():
             from .organization import Organization
 
@@ -236,6 +247,10 @@ class DirectoryObject(Entity, Parsable):
             from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
 
             return TrustedCertificateAuthorityAsEntityBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.trustedCertificateAuthorityBase".casefold():
+            from .trusted_certificate_authority_base import TrustedCertificateAuthorityBase
+
+            return TrustedCertificateAuthorityBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.user".casefold():
             from .user import User
 
@@ -259,6 +274,7 @@ class DirectoryObject(Entity, Parsable):
         from .contract import Contract
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .device import Device
+        from .device_template import DeviceTemplate
         from .directory_object_partner_reference import DirectoryObjectPartnerReference
         from .directory_role import DirectoryRole
         from .directory_role_template import DirectoryRoleTemplate
@@ -274,6 +290,7 @@ class DirectoryObject(Entity, Parsable):
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
+        from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
         from .organization import Organization
         from .org_contact import OrgContact
         from .pending_external_user_profile import PendingExternalUserProfile
@@ -289,6 +306,7 @@ class DirectoryObject(Entity, Parsable):
         from .token_issuance_policy import TokenIssuancePolicy
         from .token_lifetime_policy import TokenLifetimePolicy
         from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
+        from .trusted_certificate_authority_base import TrustedCertificateAuthorityBase
         from .user import User
 
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
@@ -303,6 +321,7 @@ class DirectoryObject(Entity, Parsable):
         from .contract import Contract
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .device import Device
+        from .device_template import DeviceTemplate
         from .directory_object_partner_reference import DirectoryObjectPartnerReference
         from .directory_role import DirectoryRole
         from .directory_role_template import DirectoryRoleTemplate
@@ -318,6 +337,7 @@ class DirectoryObject(Entity, Parsable):
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
+        from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
         from .organization import Organization
         from .org_contact import OrgContact
         from .pending_external_user_profile import PendingExternalUserProfile
@@ -333,6 +353,7 @@ class DirectoryObject(Entity, Parsable):
         from .token_issuance_policy import TokenIssuancePolicy
         from .token_lifetime_policy import TokenLifetimePolicy
         from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
+        from .trusted_certificate_authority_base import TrustedCertificateAuthorityBase
         from .user import User
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -363,6 +384,7 @@ class DirectoryObject(Entity, Parsable):
         from .contract import Contract
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .device import Device
+        from .device_template import DeviceTemplate
         from .directory_object_partner_reference import DirectoryObjectPartnerReference
         from .directory_role import DirectoryRole
         from .directory_role_template import DirectoryRoleTemplate
@@ -378,6 +400,7 @@ class DirectoryObject(Entity, Parsable):
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
+        from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
         from .organization import Organization
         from .org_contact import OrgContact
         from .pending_external_user_profile import PendingExternalUserProfile
@@ -393,6 +416,7 @@ class DirectoryObject(Entity, Parsable):
         from .token_issuance_policy import TokenIssuancePolicy
         from .token_lifetime_policy import TokenLifetimePolicy
         from .trusted_certificate_authority_as_entity_base import TrustedCertificateAuthorityAsEntityBase
+        from .trusted_certificate_authority_base import TrustedCertificateAuthorityBase
         from .user import User
 
         writer.write_datetime_value("deletedDateTime", self.deleted_date_time)

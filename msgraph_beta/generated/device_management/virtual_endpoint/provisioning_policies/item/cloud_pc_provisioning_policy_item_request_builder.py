@@ -18,6 +18,9 @@ if TYPE_CHECKING:
     from .apply.apply_request_builder import ApplyRequestBuilder
     from .assign.assign_request_builder import AssignRequestBuilder
     from .assignments.assignments_request_builder import AssignmentsRequestBuilder
+    from .retrieve_policy_apply_action_result.retrieve_policy_apply_action_result_request_builder import RetrievePolicyApplyActionResultRequestBuilder
+    from .retrieve_policy_apply_schedule.retrieve_policy_apply_schedule_request_builder import RetrievePolicyApplyScheduleRequestBuilder
+    from .schedule_policy_apply_task.schedule_policy_apply_task_request_builder import SchedulePolicyApplyTaskRequestBuilder
 
 class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
     """
@@ -169,6 +172,33 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
         from .assignments.assignments_request_builder import AssignmentsRequestBuilder
 
         return AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_policy_apply_action_result(self) -> RetrievePolicyApplyActionResultRequestBuilder:
+        """
+        Provides operations to call the retrievePolicyApplyActionResult method.
+        """
+        from .retrieve_policy_apply_action_result.retrieve_policy_apply_action_result_request_builder import RetrievePolicyApplyActionResultRequestBuilder
+
+        return RetrievePolicyApplyActionResultRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_policy_apply_schedule(self) -> RetrievePolicyApplyScheduleRequestBuilder:
+        """
+        Provides operations to call the retrievePolicyApplySchedule method.
+        """
+        from .retrieve_policy_apply_schedule.retrieve_policy_apply_schedule_request_builder import RetrievePolicyApplyScheduleRequestBuilder
+
+        return RetrievePolicyApplyScheduleRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def schedule_policy_apply_task(self) -> SchedulePolicyApplyTaskRequestBuilder:
+        """
+        Provides operations to call the schedulePolicyApplyTask method.
+        """
+        from .schedule_policy_apply_task.schedule_policy_apply_task_request_builder import SchedulePolicyApplyTaskRequestBuilder
+
+        return SchedulePolicyApplyTaskRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CloudPcProvisioningPolicyItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from ...models.certificate_authority_path import CertificateAuthorityPath
     from ...models.o_data_errors.o_data_error import ODataError
     from .certificate_based_application_configurations.certificate_based_application_configurations_request_builder import CertificateBasedApplicationConfigurationsRequestBuilder
+    from .mutual_tls_oauth_configurations.mutual_tls_oauth_configurations_request_builder import MutualTlsOauthConfigurationsRequestBuilder
 
 class CertificateAuthoritiesRequestBuilder(BaseRequestBuilder):
     """
@@ -146,6 +147,15 @@ class CertificateAuthoritiesRequestBuilder(BaseRequestBuilder):
         from .certificate_based_application_configurations.certificate_based_application_configurations_request_builder import CertificateBasedApplicationConfigurationsRequestBuilder
 
         return CertificateBasedApplicationConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mutual_tls_oauth_configurations(self) -> MutualTlsOauthConfigurationsRequestBuilder:
+        """
+        Provides operations to manage the mutualTlsOauthConfigurations property of the microsoft.graph.certificateAuthorityPath entity.
+        """
+        from .mutual_tls_oauth_configurations.mutual_tls_oauth_configurations_request_builder import MutualTlsOauthConfigurationsRequestBuilder
+
+        return MutualTlsOauthConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CertificateAuthoritiesRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

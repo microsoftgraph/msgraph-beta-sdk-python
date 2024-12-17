@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
     from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
     from .commands.commands_request_builder import CommandsRequestBuilder
+    from .device_template.device_template_request_builder import DeviceTemplateRequestBuilder
     from .extensions.extensions_request_builder import ExtensionsRequestBuilder
     from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
     from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
@@ -178,6 +179,15 @@ class DeviceItemRequestBuilder(BaseRequestBuilder):
         from .commands.commands_request_builder import CommandsRequestBuilder
 
         return CommandsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_template(self) -> DeviceTemplateRequestBuilder:
+        """
+        Provides operations to manage the deviceTemplate property of the microsoft.graph.device entity.
+        """
+        from .device_template.device_template_request_builder import DeviceTemplateRequestBuilder
+
+        return DeviceTemplateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def extensions(self) -> ExtensionsRequestBuilder:

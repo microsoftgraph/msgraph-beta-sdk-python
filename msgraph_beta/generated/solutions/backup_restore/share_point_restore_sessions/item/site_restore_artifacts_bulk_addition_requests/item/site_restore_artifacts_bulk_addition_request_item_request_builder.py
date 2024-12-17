@@ -31,9 +31,10 @@ class SiteRestoreArtifactsBulkAdditionRequestItemRequestBuilder(BaseRequestBuild
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property siteRestoreArtifactsBulkAdditionRequests for solutions
+        Delete a siteRestoreArtifactsBulkAdditionRequest object associated with a sharepointRestoreSession.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/siterestoreartifactsbulkadditionrequest-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -49,9 +50,10 @@ class SiteRestoreArtifactsBulkAdditionRequestItemRequestBuilder(BaseRequestBuild
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SiteRestoreArtifactsBulkAdditionRequestItemRequestBuilderGetQueryParameters]] = None) -> Optional[SiteRestoreArtifactsBulkAdditionRequest]:
         """
-        Get siteRestoreArtifactsBulkAdditionRequests from solutions
+        Get a siteRestoreArtifactsBulkAdditionRequest object by its id, associated with a sharePointRestoreSession.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteRestoreArtifactsBulkAdditionRequest]
+        Find more info here: https://learn.microsoft.com/graph/api/siterestoreartifactsbulkadditionrequest-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +94,7 @@ class SiteRestoreArtifactsBulkAdditionRequestItemRequestBuilder(BaseRequestBuild
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property siteRestoreArtifactsBulkAdditionRequests for solutions
+        Delete a siteRestoreArtifactsBulkAdditionRequest object associated with a sharepointRestoreSession.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class SiteRestoreArtifactsBulkAdditionRequestItemRequestBuilder(BaseRequestBuild
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SiteRestoreArtifactsBulkAdditionRequestItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get siteRestoreArtifactsBulkAdditionRequests from solutions
+        Get a siteRestoreArtifactsBulkAdditionRequest object by its id, associated with a sharePointRestoreSession.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +149,7 @@ class SiteRestoreArtifactsBulkAdditionRequestItemRequestBuilder(BaseRequestBuild
     @dataclass
     class SiteRestoreArtifactsBulkAdditionRequestItemRequestBuilderGetQueryParameters():
         """
-        Get siteRestoreArtifactsBulkAdditionRequests from solutions
+        Get a siteRestoreArtifactsBulkAdditionRequest object by its id, associated with a sharePointRestoreSession.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

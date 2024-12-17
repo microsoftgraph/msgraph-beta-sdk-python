@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .federated_identity_expression import FederatedIdentityExpression
 
 from .entity import Entity
 
@@ -12,6 +13,8 @@ from .entity import Entity
 class FederatedIdentityCredential(Entity, Parsable):
     # The audience that can appear in the external token. This field is mandatory and should be set to api://AzureADTokenExchange for Microsoft Entra ID. It says what Microsoft identity platform should accept in the aud claim in the incoming token. This value represents Microsoft Entra ID in your external identity provider and has no fixed value across identity providers - you may need to create a new application registration in your identity provider to serve as the audience of this token. This field can only accept a single value and has a limit of 600 characters. Required.
     audiences: Optional[List[str]] = None
+    # Enables the use of claims matching expressions against specified claims. For the list of supported expression syntax and claims, visit the Flexible FIC reference.
+    claims_matching_expression: Optional[FederatedIdentityExpression] = None
     # The un-validated, user-provided description of the federated identity credential. It has a limit of 600 characters. Optional.
     description: Optional[str] = None
     # The URL of the external identity provider and must match the issuer claim of the external token being exchanged. The combination of the values of issuer and subject must be unique on the app. It has a limit of 600 characters. Required.
@@ -40,11 +43,14 @@ class FederatedIdentityCredential(Entity, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .federated_identity_expression import FederatedIdentityExpression
 
         from .entity import Entity
+        from .federated_identity_expression import FederatedIdentityExpression
 
         fields: Dict[str, Callable[[Any], None]] = {
             "audiences": lambda n : setattr(self, 'audiences', n.get_collection_of_primitive_values(str)),
+            "claimsMatchingExpression": lambda n : setattr(self, 'claims_matching_expression', n.get_object_value(FederatedIdentityExpression)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "issuer": lambda n : setattr(self, 'issuer', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
@@ -64,8 +70,10 @@ class FederatedIdentityCredential(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         from .entity import Entity
+        from .federated_identity_expression import FederatedIdentityExpression
 
         writer.write_collection_of_primitive_values("audiences", self.audiences)
+        writer.write_object_value("claimsMatchingExpression", self.claims_matching_expression)
         writer.write_str_value("description", self.description)
         writer.write_str_value("issuer", self.issuer)
         writer.write_str_value("name", self.name)

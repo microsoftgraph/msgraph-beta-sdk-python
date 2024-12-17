@@ -10,9 +10,9 @@ from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
 
 @dataclass
 class DriveRestoreArtifactsBulkAdditionRequest(RestoreArtifactsBulkRequestBase, Parsable):
-    # The directoryObjectIds property
+    # The list of directory object IDs that are added to the corresponding OneDrive for work or school restore session in a bulk operation. This property isn't implemented yet. Future value; don't use.
     directory_object_ids: Optional[List[str]] = None
-    # The drives property
+    # The list of email addresses that are added to the corresponding OneDrive for work or school restore session in a bulk operation.
     drives: Optional[List[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

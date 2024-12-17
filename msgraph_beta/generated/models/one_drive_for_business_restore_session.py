@@ -14,9 +14,9 @@ from .restore_session_base import RestoreSessionBase
 class OneDriveForBusinessRestoreSession(RestoreSessionBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.oneDriveForBusinessRestoreSession"
-    # A collection of restore points and destination details that can be used to restore a OneDrive for Work or School drive.
+    # A collection of restore points and destination details that can be used to restore a OneDrive for work or school drive.
     drive_restore_artifacts: Optional[List[DriveRestoreArtifact]] = None
-    # The driveRestoreArtifactsBulkAdditionRequests property
+    # A collection of user mailboxes and destination details that can be used to restore a OneDrive for work or school drive.
     drive_restore_artifacts_bulk_addition_requests: Optional[List[DriveRestoreArtifactsBulkAdditionRequest]] = None
     
     @staticmethod

@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from .attendance_interval import AttendanceInterval
     from .entity import Entity
     from .identity import Identity
+    from .virtual_event_external_registration_information import VirtualEventExternalRegistrationInformation
 
 from .entity import Entity
 
@@ -16,6 +17,8 @@ class AttendanceRecord(Entity, Parsable):
     attendance_intervals: Optional[List[AttendanceInterval]] = None
     # Email address of the user associated with this attendance record.
     email_address: Optional[str] = None
+    # The externalRegistrationInformation property
+    external_registration_information: Optional[VirtualEventExternalRegistrationInformation] = None
     # Identity of the user associated with this attendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
     identity: Optional[Identity] = None
     # The OdataType property
@@ -48,14 +51,17 @@ class AttendanceRecord(Entity, Parsable):
         from .attendance_interval import AttendanceInterval
         from .entity import Entity
         from .identity import Identity
+        from .virtual_event_external_registration_information import VirtualEventExternalRegistrationInformation
 
         from .attendance_interval import AttendanceInterval
         from .entity import Entity
         from .identity import Identity
+        from .virtual_event_external_registration_information import VirtualEventExternalRegistrationInformation
 
         fields: Dict[str, Callable[[Any], None]] = {
             "attendanceIntervals": lambda n : setattr(self, 'attendance_intervals', n.get_collection_of_object_values(AttendanceInterval)),
             "emailAddress": lambda n : setattr(self, 'email_address', n.get_str_value()),
+            "externalRegistrationInformation": lambda n : setattr(self, 'external_registration_information', n.get_object_value(VirtualEventExternalRegistrationInformation)),
             "identity": lambda n : setattr(self, 'identity', n.get_object_value(Identity)),
             "registrantId": lambda n : setattr(self, 'registrant_id', n.get_str_value()),
             "registrationId": lambda n : setattr(self, 'registration_id', n.get_str_value()),
@@ -78,9 +84,11 @@ class AttendanceRecord(Entity, Parsable):
         from .attendance_interval import AttendanceInterval
         from .entity import Entity
         from .identity import Identity
+        from .virtual_event_external_registration_information import VirtualEventExternalRegistrationInformation
 
         writer.write_collection_of_object_values("attendanceIntervals", self.attendance_intervals)
         writer.write_str_value("emailAddress", self.email_address)
+        writer.write_object_value("externalRegistrationInformation", self.external_registration_information)
         writer.write_object_value("identity", self.identity)
         writer.write_str_value("registrantId", self.registrant_id)
         writer.write_str_value("registrationId", self.registration_id)

@@ -16,7 +16,7 @@ class SharePointRestoreSession(RestoreSessionBase, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.sharePointRestoreSession"
     # A collection of restore points and destination details that can be used to restore SharePoint sites.
     site_restore_artifacts: Optional[List[SiteRestoreArtifact]] = None
-    # The siteRestoreArtifactsBulkAdditionRequests property
+    # A collection of SharePoint site URLs and destination details that can be used to restore SharePoint sites.
     site_restore_artifacts_bulk_addition_requests: Optional[List[SiteRestoreArtifactsBulkAdditionRequest]] = None
     
     @staticmethod

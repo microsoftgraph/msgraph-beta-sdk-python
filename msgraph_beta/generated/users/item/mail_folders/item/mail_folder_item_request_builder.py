@@ -20,7 +20,9 @@ if TYPE_CHECKING:
     from .messages.messages_request_builder import MessagesRequestBuilder
     from .message_rules.message_rules_request_builder import MessageRulesRequestBuilder
     from .move.move_request_builder import MoveRequestBuilder
+    from .operations.operations_request_builder import OperationsRequestBuilder
     from .permanent_delete.permanent_delete_request_builder import PermanentDeleteRequestBuilder
+    from .update_all_messages_read_state.update_all_messages_read_state_request_builder import UpdateAllMessagesReadStateRequestBuilder
     from .user_configurations.user_configurations_request_builder import UserConfigurationsRequestBuilder
 
 class MailFolderItemRequestBuilder(BaseRequestBuilder):
@@ -190,6 +192,15 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         return MoveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def operations(self) -> OperationsRequestBuilder:
+        """
+        Provides operations to manage the operations property of the microsoft.graph.mailFolder entity.
+        """
+        from .operations.operations_request_builder import OperationsRequestBuilder
+
+        return OperationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def permanent_delete(self) -> PermanentDeleteRequestBuilder:
         """
         Provides operations to call the permanentDelete method.
@@ -197,6 +208,15 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         from .permanent_delete.permanent_delete_request_builder import PermanentDeleteRequestBuilder
 
         return PermanentDeleteRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def update_all_messages_read_state(self) -> UpdateAllMessagesReadStateRequestBuilder:
+        """
+        Provides operations to call the updateAllMessagesReadState method.
+        """
+        from .update_all_messages_read_state.update_all_messages_read_state_request_builder import UpdateAllMessagesReadStateRequestBuilder
+
+        return UpdateAllMessagesReadStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_configurations(self) -> UserConfigurationsRequestBuilder:

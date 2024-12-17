@@ -48,9 +48,10 @@ class MailboxRestoreArtifactsBulkAdditionRequestsRequestBuilder(BaseRequestBuild
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MailboxRestoreArtifactsBulkAdditionRequestsRequestBuilderGetQueryParameters]] = None) -> Optional[MailboxRestoreArtifactsBulkAdditionRequestCollectionResponse]:
         """
-        Get mailboxRestoreArtifactsBulkAdditionRequests from solutions
+        Get a list of the maiboxRestoreArtifactsBulkAdditionRequest objects associated with an exchangeRestoreSession. The mailboxes property is deliberately omitted from the response body in order to limit the response size.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailboxRestoreArtifactsBulkAdditionRequestCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/exchangerestoresession-list-mailboxrestoreartifactsbulkadditionrequests?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,10 +69,11 @@ class MailboxRestoreArtifactsBulkAdditionRequestsRequestBuilder(BaseRequestBuild
     
     async def post(self,body: MailboxRestoreArtifactsBulkAdditionRequest, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MailboxRestoreArtifactsBulkAdditionRequest]:
         """
-        Create new navigation property to mailboxRestoreArtifactsBulkAdditionRequests for solutions
+        Create a new mailboxRestoreArtifactsBulkAdditionRequest object associated with an exchangeRestoreSession. The initial status upon creation of the restore session is active. When all the mailboxes are added to the corresponding Exchange restore session and the restore session is activated, the status becomes completed. If any failures are encountered during resource resolution, the status of the restore session becomes completedWithErrors.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailboxRestoreArtifactsBulkAdditionRequest]
+        Find more info here: https://learn.microsoft.com/graph/api/exchangerestoresession-post-mailboxrestoreartifactsbulkadditionrequests?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -91,7 +93,7 @@ class MailboxRestoreArtifactsBulkAdditionRequestsRequestBuilder(BaseRequestBuild
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MailboxRestoreArtifactsBulkAdditionRequestsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get mailboxRestoreArtifactsBulkAdditionRequests from solutions
+        Get a list of the maiboxRestoreArtifactsBulkAdditionRequest objects associated with an exchangeRestoreSession. The mailboxes property is deliberately omitted from the response body in order to limit the response size.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +104,7 @@ class MailboxRestoreArtifactsBulkAdditionRequestsRequestBuilder(BaseRequestBuild
     
     def to_post_request_information(self,body: MailboxRestoreArtifactsBulkAdditionRequest, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to mailboxRestoreArtifactsBulkAdditionRequests for solutions
+        Create a new mailboxRestoreArtifactsBulkAdditionRequest object associated with an exchangeRestoreSession. The initial status upon creation of the restore session is active. When all the mailboxes are added to the corresponding Exchange restore session and the restore session is activated, the status becomes completed. If any failures are encountered during resource resolution, the status of the restore session becomes completedWithErrors.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +139,7 @@ class MailboxRestoreArtifactsBulkAdditionRequestsRequestBuilder(BaseRequestBuild
     @dataclass
     class MailboxRestoreArtifactsBulkAdditionRequestsRequestBuilderGetQueryParameters():
         """
-        Get mailboxRestoreArtifactsBulkAdditionRequests from solutions
+        Get a list of the maiboxRestoreArtifactsBulkAdditionRequest objects associated with an exchangeRestoreSession. The mailboxes property is deliberately omitted from the response body in order to limit the response size.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

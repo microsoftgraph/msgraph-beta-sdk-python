@@ -38,6 +38,7 @@ if TYPE_CHECKING:
     from .booking_businesses.booking_businesses_request_builder import BookingBusinessesRequestBuilder
     from .booking_currencies.booking_currencies_request_builder import BookingCurrenciesRequestBuilder
     from .business_flow_templates.business_flow_templates_request_builder import BusinessFlowTemplatesRequestBuilder
+    from .certificate_authorities.certificate_authorities_request_builder import CertificateAuthoritiesRequestBuilder
     from .certificate_based_auth_configuration.certificate_based_auth_configuration_request_builder import CertificateBasedAuthConfigurationRequestBuilder
     from .chats.chats_request_builder import ChatsRequestBuilder
     from .commands.commands_request_builder import CommandsRequestBuilder
@@ -132,6 +133,7 @@ if TYPE_CHECKING:
     from .teams_templates.teams_templates_request_builder import TeamsTemplatesRequestBuilder
     from .teamwork.teamwork_request_builder import TeamworkRequestBuilder
     from .team_template_definition.team_template_definition_request_builder import TeamTemplateDefinitionRequestBuilder
+    from .templates.templates_request_builder import TemplatesRequestBuilder
     from .tenant_relationships.tenant_relationships_request_builder import TenantRelationshipsRequestBuilder
     from .term_store.term_store_request_builder import TermStoreRequestBuilder
     from .threat_submission.threat_submission_request_builder import ThreatSubmissionRequestBuilder
@@ -450,6 +452,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .business_flow_templates.business_flow_templates_request_builder import BusinessFlowTemplatesRequestBuilder
 
         return BusinessFlowTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def certificate_authorities(self) -> CertificateAuthoritiesRequestBuilder:
+        """
+        Provides operations to manage the certificateAuthorityPath singleton.
+        """
+        from .certificate_authorities.certificate_authorities_request_builder import CertificateAuthoritiesRequestBuilder
+
+        return CertificateAuthoritiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def certificate_based_auth_configuration(self) -> CertificateBasedAuthConfigurationRequestBuilder:
@@ -1251,6 +1262,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .teamwork.teamwork_request_builder import TeamworkRequestBuilder
 
         return TeamworkRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def templates(self) -> TemplatesRequestBuilder:
+        """
+        Provides operations to manage the template singleton.
+        """
+        from .templates.templates_request_builder import TemplatesRequestBuilder
+
+        return TemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def tenant_relationships(self) -> TenantRelationshipsRequestBuilder:
