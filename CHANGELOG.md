@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.15.0](https://github.com/microsoftgraph/msgraph-beta-sdk-python/compare/v1.14.0...v1.15.0) (2024-12-18)
+
+
+### Features
+
+* **generation:** update request builders and models ([6b2e0c1](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/6b2e0c1b866fa0d81a10fe325af68fc613f1ddd4))
+* **generation:** update request builders and models ([ceb9e99](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/ceb9e998d07f4a2dfd60cec8b64496301deea671))
+* **generation:** update request builders and models ([240fda7](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/240fda70ac3edfdd5ba84ba6f2278b1f9d546c48))
+
+
+### Bug Fixes
+
+* downgrades aiohttp to match python supported versions ([00a6b5b](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/00a6b5b0757c287cba2cd508afaa4f0d479d4187))
+* downgrades astroid to match python supported versions ([9ebbc83](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/9ebbc83d643f647fbccda117b438ae5167530ab4))
+* downgrades docutils to match python supported versions ([8a9e7ef](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/8a9e7ef48ece01b40ea931307123760682c20814))
+* downgrades PyJWT to match python supported versions ([2650dd7](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/2650dd7ae6a604f29cd291e31615fca2edddaef9))
+* downgrades pylint to match python supported versions ([51cf3ba](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/51cf3baf7860d7c9e19efd5cd0cbe191442bc73b))
+* downgrades time-machine to match python supported versions ([3a8af15](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/3a8af15f3168e433a588968e4f808d904aa21107))
+* downgrades tomli_w to match python supported versions ([8329bae](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/8329bae26aee1f79c712a9e87cc659ac43dc7f1e))
+* downgrades yarl to match python supported versions ([ddbf2ce](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/ddbf2ced40dd9a1a29e3c4644b4e576a55ba0ee1))
+* downgrades zipp to match python supported versions ([58616ff](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/58616fff8c858b2bd63d3d13207444d770638adb))
+
 ## [1.14.0](https://github.com/microsoftgraph/msgraph-beta-sdk-python/compare/v1.13.0...v1.14.0) (2024-11-28)
 
 
